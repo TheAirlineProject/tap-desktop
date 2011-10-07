@@ -1,0 +1,39 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Windows;
+using TheAirlineV2.Model.GeneralModel;
+
+namespace TheAirlineV2.GraphicsModel.PageModel.GeneralModel
+{
+    //the class for some general graphics helpers
+    public class GraphicsHelpers
+    {
+        private static double ContentHeight;
+        //converts coordinates to a map position
+        public static Point WorldToTilePos(Coordinates coordinates, int zoom)
+        {
+            double lon = coordinates.Longitude.toDecimal();
+            double lat = coordinates.Latitude.toDecimal();
+
+            Point p = new Point();
+            p.X = (float)((lon + 180.0) / 360.0 * (1 << zoom));
+            p.Y = (float)((1.0 - Math.Log(Math.Tan(lat * Math.PI / 180.0) +
+                1.0 / Math.Cos(lat * Math.PI / 180.0)) / Math.PI) / 2.0 * (1 << zoom));
+
+            return p;
+        }
+        //returns the content height
+        public static double GetContentHeight()
+        {
+            return ContentHeight;
+        }
+        //sets the content height
+        public static void SetContentHeight(double height)
+        {
+            if (ContentHeight < 1)
+                ContentHeight = height;
+        }
+    }
+}

@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+namespace TheAirlineV2.Model.GeneralModel
+{
+    //the class for a loan
+    public class Loan
+    {
+        public double Amount { get; set; }
+        public double Rate { get; set; }
+        public int Lenght { get; set; }
+        public DateTime Date { get; set; }
+        public double PaymentLeft { get; set; }
+        public Boolean IsActive { get { return hasPaymentLeft(); } set { ;} }
+        public double MonthlyPayment { get { return getMonthlyPayment(); } set { ;} }
+        public int MonthsLeft { get { return getMonthsLeft(); } set { ;} }
+        public Loan(DateTime date, double amount, int lenght, double rate)
+        {
+            this.Amount = amount;
+            this.Rate = rate;
+            this.Lenght = lenght;
+            this.Date = date;
+            this.PaymentLeft = amount;
+            
+        }
+        //returns the monthly payment for the loan
+        public double getMonthlyPayment()
+        {
+            return MathHelpers.GetMonthlyPayment(this.Amount, this.Rate, this.Lenght);
+
+        }
+        //checks if there is still payment left on the loan
+        private Boolean hasPaymentLeft()
+        {
+            return this.PaymentLeft > 0;
+        }
+        //returns the amount of months left on the loan
+        private int getMonthsLeft()
+        {
+            return (int)Math.Ceiling(this.PaymentLeft / this.MonthlyPayment);
+        }
+    }
+}

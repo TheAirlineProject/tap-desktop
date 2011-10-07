@@ -1,0 +1,33 @@
+﻿<Page x:Class="TheAirlineV2.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel.PageAirlineFacilities"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:TheAirlineV2.GraphicsModel.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineFacilities">
+    <Page.Resources>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <DataTemplate x:Key="FacilityItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding Facility}" Margin="5 0 0 0" Background="Transparent" Click="ButtonRemove_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FacilityNewItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Price, StringFormat={}{0:c}}" VerticalAlignment="Bottom"></TextBlock>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="ButtonAdd_Click" Background="Transparent">
+                    <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</Page>

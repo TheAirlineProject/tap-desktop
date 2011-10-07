@@ -1,0 +1,49 @@
+﻿<page:StandardPage x:Class="TheAirlineV2.GraphicsModel.PageModel.GeneralModel.PageNewsBox"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:page="clr-namespace:TheAirlineV2.GraphicsModel.PageModel.GeneralModel"  
+                   xmlns:c="clr-namespace:TheAirlineV2.GraphicsModel.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageNewsBox">
+    <Page.Resources>
+        <c:BooleanToBold x:Key="booleanToBold"></c:BooleanToBold>
+        <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <DataTemplate x:Key="NewsShowItem">
+            <StackPanel>
+                <TextBlock Text="{Binding Subject}" FontWeight="Bold" FontSize="20" VerticalAlignment="Bottom"></TextBlock>
+                <WrapPanel>
+                    <TextBlock Text="Recieved:" FontWeight="Black" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy HH:mm}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                </WrapPanel>
+                <Separator/>
+                <TextBlock Text="{Binding Body}" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+            <DataTemplate x:Key="NewsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock VerticalAlignment="Bottom" Text="Type" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Subject" Width="200" FontWeight="Bold" Margin="0 0 5 0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Received" Width="125" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NewsItem">
+            <WrapPanel>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" Width="100" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Width="200" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}" Margin="0 0 5 0">
+                    <Hyperlink Tag="{Binding}" Click="LnkNews_Click">
+                        <Run  Text="{Binding Subject}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Width="125" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
+
+
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+
+    </Grid>
+</page:StandardPage>
