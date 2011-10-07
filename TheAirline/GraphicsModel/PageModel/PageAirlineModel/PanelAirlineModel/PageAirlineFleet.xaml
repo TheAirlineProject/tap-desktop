@@ -1,0 +1,124 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel.PageAirlineFleet"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineFleet">
+    <Page.Resources>
+        <local:FillingDegreeConverter x:Key="fillingDegreeConverter"></local:FillingDegreeConverter>
+        <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
+            <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetRouteViewItem">
+            <GridViewColumn>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                           <Image Source="/data/images/delete.png"></Image>
+                        </Button>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="150" Header="Name">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding}" Click="HyperlinkAirline_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                        </TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="100" Header="Balance">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RouteAirliner.Route.Balance, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding RouteAirliner.Route.Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="100" Header="Per passenger">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RouteAirliner.Route.IncomePerPassenger, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding RouteAirliner.Route.IncomePerPassenger,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="100" Header="Degree of filling">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RouteAirliner.Route.FillingDegree, StringFormat={}{0:P2}}" VerticalAlignment="Bottom" Foreground="{Binding RouteAirliner.Route.FillingDegree,Converter={StaticResource fillingDegreeConverter}}"></TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            
+        </GridView>
+        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetViewItem">
+            <GridViewColumn>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                            <Image Source="/data/images/delete.png"></Image>
+                        </Button>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="150" Header="Name">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding}" Click="HyperlinkAirline_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                        </TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="150" Header="Type" DisplayMemberBinding="{Binding Airliner.Type.Name}"></GridViewColumn>
+            <GridViewColumn Width="100" Header="Purchased" DisplayMemberBinding="{Binding Purchased}"  />
+            <GridViewColumn Header="Route" >
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="50" Visibility="{Binding HasRoute,Converter={StaticResource booleanToVisibility}}"></TextBlock>
+
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+
+
+        </GridView>
+       <!--
+        <DataTemplate x:Key="AirlinerItem">
+            <WrapPanel>
+                <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                <Image Source="/data/images/delete.png"></Image>
+                </Button>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding}" Click="HyperlinkAirline_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Purchased}" VerticalAlignment="Bottom" Width="100" FontStyle="Italic"></TextBlock>
+                <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="50" Visibility="{Binding HasRoute,Converter={StaticResource booleanToVisibility}}"></TextBlock>
+               
+            </WrapPanel>
+        </DataTemplate>
+        -->
+        <DataTemplate x:Key="InOrderItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                <TextBlock Text="{Binding Airliner.Type.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Airliner.BuiltDate, StringFormat={}{0:MM/dd/yyyy}}" Width="100" VerticalAlignment="Bottom">
+               
+                </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</Page>
