@@ -402,12 +402,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Type type = assembly.GetType("AirportCSVReader.CSVReader");
 
-            object instance = Activator.CreateInstance(type);
+            object instance = Activator.CreateInstance(type,Setup.getDataPath() + "\\plugins\\airports.csv");
 
             string search = txtSearch.Text.Trim();
 
             object o = type.GetMethod("findAirport").Invoke(instance, new object[] { search });
-
 
             if (o != null && Airports.GetAirport(getPropertyValue(o, "IATA").ToString()) == null)
             {
