@@ -327,9 +327,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             string day = cbDay.SelectedItem.ToString();
 
             if (day == "Daily")
-                this.TimeTable.addDailyEntries(new RouteEntryDestination((Airport)cbAirport.SelectedItem, "SA00"), time);
+                // mki, 2011-10-09 we read the FlightCode from the previous TimeTable, instad of using a dummy FlightCode "SA00". The dummy results in an exception, if the "PageRoutes" is not completely loaded new.
+                this.TimeTable.addDailyEntries(new RouteEntryDestination((Airport)cbAirport.SelectedItem, this.Route.TimeTable.getRouteEntryDestinations()[cbAirport.SelectedIndex].FlightCode), time);
             else
-                this.TimeTable.addEntry(new RouteTimeTableEntry(this.TimeTable,(DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination((Airport)cbAirport.SelectedItem, "SA00")));
+                // mki, 2011-10-09 we read the FlightCode from the previous TimeTable, instad of using a dummy FlightCode "SA00". The dummy results in an exception, if the "PageRoutes" is not completely loaded new.
+                this.TimeTable.addEntry(new RouteTimeTableEntry(this.TimeTable, (DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination((Airport)cbAirport.SelectedItem, this.Route.TimeTable.getRouteEntryDestinations()[cbAirport.SelectedIndex].FlightCode)));
 
             showEntries();
         }
