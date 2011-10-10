@@ -30,9 +30,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         {
 
             InitializeComponent();
+            // chs, 2011-10-10 changed to a scroller so all elements are viewable
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.Height = GraphicsHelpers.GetContentHeight();
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight();
+            scroller.Margin = new Thickness(0, 0, 50, 0);
 
             StackPanel panelStatistics = new StackPanel();
-            panelStatistics.Margin = new Thickness(0, 0, 50, 0);
+            panelStatistics.Orientation = Orientation.Vertical;
+            //panelStatistics.Margin = new Thickness(0, 0, 50, 0);
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Margin = new Thickness(0, 0, 0, 0);
@@ -50,7 +58,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
 
-            this.Content = panelStatistics;
+            scroller.Content = panelStatistics;
+
+            this.Content = scroller;//panelStatistics;
 
             showStats();
         }
@@ -97,7 +107,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             ListBox lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            //lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+             //lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
 
             panelStatistics.Children.Add(lbStatistics);

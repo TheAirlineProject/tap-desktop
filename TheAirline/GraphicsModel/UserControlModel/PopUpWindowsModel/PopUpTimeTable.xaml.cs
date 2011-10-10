@@ -316,7 +316,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             newEntryPanel.Children.Add(UICreator.CreateTextBlock(string.Format("Minimum time between flights: {0:D2}:{1:D2}", minFlightTime.Hours, minFlightTime.Minutes)));
         
 
-//problemer
             return newEntryPanel;
         }
 

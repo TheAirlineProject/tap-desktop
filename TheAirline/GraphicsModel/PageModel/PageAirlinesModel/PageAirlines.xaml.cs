@@ -34,13 +34,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             txtHeader.ContentTemplate = this.Resources["AirlinesHeader"] as DataTemplate;
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             //txtHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
-
+            
             airlinesPanel.Children.Add(txtHeader);
 
 
             ListBox lbAirlines = new ListBox();
             lbAirlines.ItemTemplate = this.Resources["AirlineItem"] as DataTemplate;
-            lbAirlines.Height = 500;
+            // chs, 2011-10-10 set max height so scroll bars are enabled
+            lbAirlines.MaxHeight=GraphicsHelpers.GetContentHeight() - 75;
             lbAirlines.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
             List<Airline> airlines = Airlines.GetAirlines();

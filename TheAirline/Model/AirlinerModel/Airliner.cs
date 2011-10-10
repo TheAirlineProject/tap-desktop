@@ -34,11 +34,12 @@ namespace TheAirline.Model.AirlinerModel
             this.Classes.Add(new AirlinerClass(this,AirlinerClass.ClassType.Economy_Class, this.Type.MaxSeatingCapacity));
             
         }
+        // chs, 2011-10-10 changed the leasing price to 5 years
         //gets the price for leasing the airliner per month
         public long getLeasingPrice()
         {
 
-            double months = 20 * 12;
+            double months = 20 * 5;
             double rate = 1.20;
             double leasingPrice = this.getPrice()*rate / months;
             return Convert.ToInt64(leasingPrice);

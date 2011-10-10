@@ -56,10 +56,11 @@ namespace TheAirline.Model.AirlinerModel
             double maintenance = 0.0013 * (double)this.Price;
             return Convert.ToInt64(maintenance);
         }
+        // chs, 2011-10-10 changed the leasing price
         //returns the leasing price based on 5 years with 6% in rate 
         public long getLeasingPrice()
         {
-            double months = 20 * 12;
+            double months = 5 * 12;
             double rate = 1.06;
             double leasingPrice = this.Price / months * rate;
             return Convert.ToInt64(leasingPrice);
