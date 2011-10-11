@@ -154,7 +154,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             types.Add(Invoice.InvoiceType.Tickets);
             types.Add(Invoice.InvoiceType.OnFlight_Income);
-         
+            types.Add(Invoice.InvoiceType.Fees);
+
             types.Add(Invoice.InvoiceType.Maintenances);
             types.Add(Invoice.InvoiceType.Flight_Expenses);
             types.Add(Invoice.InvoiceType.Wages);

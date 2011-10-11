@@ -10,6 +10,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using System.Globalization;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -33,8 +34,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 //string type = airlinerNode.Attributes["type"].Value;
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
-                DateTime built = Convert.ToDateTime(airlinerNode.Attributes["built"].Value);
-                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
+                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("en-US", false));//XmlConvert.ToDateTime(airlinerNode.Attributes["built"].Value,XmlDateTimeSerializationMode.RoundtripKind);
+                double flown = XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
                 airliner.Flown = flown;
@@ -71,7 +72,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 string airlineName = airlineNode.Attributes["name"].Value;
                 string airlineCEO = airlineNode.Attributes["CEO"].Value;
-                double money = Convert.ToDouble(airlineNode.Attributes["money"].Value);
+                double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
                 int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
 
                 Airline airline = airlines.Find(delegate(Airline a) { return a.Profile.IATACode == airlineName; });
@@ -95,10 +96,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (XmlElement airlineLoanNode in airlineLoanList)
                 {
                     DateTime date = Convert.ToDateTime(airlineLoanNode.Attributes["date"].Value);
-                    double rate = Convert.ToDouble(airlineLoanNode.Attributes["rate"].Value);
-                    double amount = Convert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
+                    double rate = XmlConvert.ToDouble(airlineLoanNode.Attributes["rate"].Value);
+                    double amount = XmlConvert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
                     int lenght = Convert.ToInt16(airlineLoanNode.Attributes["lenght"].Value);
-                    double payment = Convert.ToDouble(airlineLoanNode.Attributes["payment"]);
+                    double payment = XmlConvert.ToDouble(airlineLoanNode.Attributes["payment"].Value);
 
                     Loan loan = new Loan(date, amount, lenght, rate);
                     loan.PaymentLeft = payment;
@@ -110,7 +111,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (XmlElement airlineStatNode in airlineStatList)
                 {
                     string airlineStatType = airlineStatNode.Attributes["type"].Value;
-                    int value = Convert.ToInt16(airlineStatNode.Attributes["value"].Value);
+                    int value = Convert.ToInt32(airlineStatNode.Attributes["value"].Value);
 
                     airline.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType(airlineStatType), value);
                 }
@@ -120,8 +121,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (XmlElement airlineInvoiceNode in airlineInvoiceList)
                 {
                     Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), airlineInvoiceNode.Attributes["type"].Value);
-                    DateTime invoiceDate = Convert.ToDateTime(airlineInvoiceNode.Attributes["date"].Value);
-                    double invoiceAmount = Convert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
+                    DateTime invoiceDate = DateTime.Parse(airlineInvoiceNode.Attributes["date"].Value,new CultureInfo("en-US", false));
+                    double invoiceAmount = XmlConvert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
 
                     airline.addInvoice(new Invoice(invoiceDate, type, invoiceAmount));
                 }
@@ -142,7 +143,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (XmlElement airlinerStatNode in airlinerStatList)
                     {
                         string statType = airlinerStatNode.Attributes["type"].Value;
-                        int statValue = Convert.ToInt16(airlinerStatNode.Attributes["value"].Value);
+                        int statValue = Convert.ToInt32(airlinerStatNode.Attributes["value"].Value);
                         fAirliner.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType(statType),statValue);
                     }
                               
@@ -166,7 +167,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (XmlElement routeClassNode in routeClassList)
                     {
                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
-                        double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
+                        double fareprice = XmlConvert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
                         int cabincrew = Convert.ToInt16(routeClassNode.Attributes["cabincrew"].Value);
                         RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; }); 
                         RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; }); 
@@ -318,7 +319,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (XmlElement newsNode in newsList)
             {
-                DateTime newsDate = Convert.ToDateTime(newsNode.Attributes["date"].Value);
+                DateTime newsDate = DateTime.Parse(newsNode.Attributes["date"].Value, new CultureInfo("en-US", false));
                 News.NewsType newsType = (News.NewsType)Enum.Parse(typeof(News.NewsType), newsNode.Attributes["type"].Value);
                 string newsSubject = newsNode.Attributes["subject"].Value;
                 string newsBody = newsNode.Attributes["body"].Value;

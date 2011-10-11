@@ -106,7 +106,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbQuickInfo.Items.Add(new QuickInfoValue("Airline color",UICreator.CreateColorRect(this.Airline.Profile.Color)));
             
             // chs, 2011-10-10 added fleet size to the airline profile
-            TextBlock txtFleetSize = UICreator.CreateTextBlock(string.Format("{0} (+{1} in order)",this.Airline.Fleet.Count - this.Airline.DeliveredFleet.Count,this.Airline.DeliveredFleet.Count));
+            TextBlock txtFleetSize = UICreator.CreateTextBlock(string.Format("{0} (+{1} in order)",this.Airline.DeliveredFleet.Count,this.Airline.Fleet.Count-this.Airline.DeliveredFleet.Count));
 
             lbQuickInfo.Items.Add(new QuickInfoValue("Fleet size",txtFleetSize));
             lbQuickInfo.Items.Add(new QuickInfoValue("Value",createAirlineValuePanel()));

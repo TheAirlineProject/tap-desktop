@@ -233,7 +233,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 string name = facility.Attributes["name"].Value;
                 string shortname = facility.Attributes["shortname"].Value;
-                double price = Convert.ToDouble(facility.Attributes["price"].Value);
+                double price = XmlConvert.ToDouble(facility.Attributes["price"].Value);
 
                 XmlElement levelElement = (XmlElement)facility.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
@@ -306,11 +306,11 @@ namespace TheAirline.Model.GeneralModel
 
 
                 XmlElement specsElement = (XmlElement)airliner.SelectSingleNode("specs");
-                double wingspan = Convert.ToDouble(specsElement.Attributes["wingspan"].Value);
-                double length = Convert.ToDouble(specsElement.Attributes["length"].Value);
+                double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
+                double length = XmlConvert.ToDouble(specsElement.Attributes["length"].Value);
                 long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
-                double speed = Convert.ToDouble(specsElement.Attributes["speed"].Value);
-                double fuel = Convert.ToDouble(specsElement.Attributes["consumption"].Value);
+                double speed = XmlConvert.ToDouble(specsElement.Attributes["speed"].Value);
+                double fuel = XmlConvert.ToDouble(specsElement.Attributes["consumption"].Value);
 
                 XmlElement capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
                 int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
@@ -388,7 +388,7 @@ namespace TheAirline.Model.GeneralModel
       (AirportFacility.FacilityType)Enum.Parse(typeof(AirportFacility.FacilityType), facility.Attributes["type"].Value);
                 int typeLevel = Convert.ToInt16(facility.Attributes["typelevel"].Value);
 
-                double price = Convert.ToDouble(facility.Attributes["price"].Value);
+                double price = XmlConvert.ToDouble(facility.Attributes["price"].Value);
 
                 XmlElement levelElement = (XmlElement)facility.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
@@ -452,9 +452,9 @@ namespace TheAirline.Model.GeneralModel
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
 
                 XmlElement seatsElement = (XmlElement)element.SelectSingleNode("seats");
-                double seatsPercent = Convert.ToDouble(seatsElement.Attributes["percent"].Value);
-                double seatsPrice = Convert.ToDouble(seatsElement.Attributes["price"].Value);
-                double seatuse = Convert.ToDouble(seatsElement.Attributes["uses"].Value);
+                double seatsPercent = XmlConvert.ToDouble(seatsElement.Attributes["percent"].Value);
+                double seatsPrice = XmlConvert.ToDouble(seatsElement.Attributes["price"].Value);
+                double seatuse = XmlConvert.ToDouble(seatsElement.Attributes["uses"].Value);
 
 
                 AirlinerFacilities.AddFacility(new AirlinerFacility(type, name,fromyear, service, seatsPercent, seatsPrice, seatuse));
