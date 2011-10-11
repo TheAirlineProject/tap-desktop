@@ -165,54 +165,5 @@ namespace TheAirline.Model.AirlinerModel
         }
        
     }
-    //the class for a passenger class on an airliner
-    public class AirlinerClass
-    {
-        private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
-        public enum ClassType { Economy_Class = 1, Business_Class = 2, First_Class = 3 }
-        public ClassType Type { get; set; }
-        public int RegularSeatingCapacity { get; set; }
-        public int SeatingCapacity { get; set; }
-        public Airliner Airliner { get; set; }
-        public AirlinerClass(Airliner airliner,ClassType type, int seatingCapacity)
-        {
-            this.Type = type;
-            this.Airliner = airliner;
-            this.SeatingCapacity = seatingCapacity;
-            this.RegularSeatingCapacity = seatingCapacity;
-            this.Facilities = new Dictionary<AirlinerFacility.FacilityType, AirlinerFacility>();
-
-
-            createBasicFacilities();
-        }
-        //sets the facility for a facility type
-        public void setFacility(AirlinerFacility facility)
-        {
-            this.Facilities[facility.Type] = facility;
-
-            if (this.Airliner.Airline != null)
-               this.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity));
-        }
-        //force sets the facility for a facility type without cost
-        public void forceSetFacility(AirlinerFacility facility)
-        {
-            this.Facilities[facility.Type] = facility;
-
-        }
-        //returns the current facility for a facility type
-        public AirlinerFacility getFacility(AirlinerFacility.FacilityType type)
-        {
-            return this.Facilities[type];
-        }
-        //creates the basic facilities
-        private void createBasicFacilities()
-        {
-            foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
-            {
-                this.setFacility(AirlinerFacilities.GetBasicFacility(type));
-                //this.Facilities.Add(type, AirlinerFacilities.GetBasicFacility(type));
-            }
-
-        }
-    }
+   
 }
