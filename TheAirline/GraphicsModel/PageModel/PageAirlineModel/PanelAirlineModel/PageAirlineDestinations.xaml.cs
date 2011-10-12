@@ -48,9 +48,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             ListBox lbDestinations = new ListBox();
             lbDestinations.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbDestinations.ItemTemplate = this.Resources["AirportItem"] as DataTemplate;
-            lbDestinations.MaxHeight = 500;
+            // chs, 2011-10-11 changed the max height so all elements are visible
+            lbDestinations.MaxHeight = GraphicsHelpers.GetContentHeight()-100;
 
             foreach (Airport airport in this.Airline.Airports)
+                for (int i=0;i<22;i++)
                 lbDestinations.Items.Add(airport);
 
             panelDestinations.Children.Add(lbDestinations);

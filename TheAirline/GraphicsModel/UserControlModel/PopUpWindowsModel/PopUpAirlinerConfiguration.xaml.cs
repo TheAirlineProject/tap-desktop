@@ -148,7 +148,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Classes.Add(aClass);
 
+            // chs, 2011-11-10 added so seat capacity is correctly calculated
             this.Classes[0].SeatingCapacity -= aClass.SeatingCapacity;
+            this.Classes[0].RegularSeatingCapacity -= aClass.SeatingCapacity;
 
             showAirlinerClasses();
         }
@@ -157,8 +159,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             AirlinerClass aClass = this.Classes[this.Classes.Count - 1];
             this.Classes.Remove(aClass);
-
+            
+            // chs, 2011-11-10 added so seat capacity is correctly calculated
             this.Classes[0].SeatingCapacity += aClass.RegularSeatingCapacity;
+            this.Classes[0].RegularSeatingCapacity += aClass.RegularSeatingCapacity;
 
             showAirlinerClasses();
         }

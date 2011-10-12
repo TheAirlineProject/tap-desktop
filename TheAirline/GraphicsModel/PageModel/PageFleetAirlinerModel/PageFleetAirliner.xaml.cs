@@ -119,8 +119,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.Items.Add(new QuickInfoValue("Body type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Body, null, null, null).ToString())));
  
             string range = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.Range), new StringToLanguageConverter().Convert("km."));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Range type", UICreator.CreateTextBlock(string.Format("{0} ({1})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
- 
+            lbQuickInfo.Items.Add(new QuickInfoValue("Range", UICreator.CreateTextBlock(string.Format("{1} ({0})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
+   
             //lbQuickInfo.Items.Add(new QuickInfoValue("Range type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.RangeType, null, null, null).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue("Engine type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue("Wingspan", UICreator.CreateTextBlock(string.Format("{0} m.", airliner.Wingspan))));

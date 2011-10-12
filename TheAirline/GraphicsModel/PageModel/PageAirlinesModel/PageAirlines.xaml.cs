@@ -34,7 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             txtHeader.ContentTemplate = this.Resources["AirlinesHeader"] as DataTemplate;
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             //txtHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
-            
+         
             airlinesPanel.Children.Add(txtHeader);
 
 

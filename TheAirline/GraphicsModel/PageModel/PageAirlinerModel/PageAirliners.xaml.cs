@@ -47,6 +47,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             StackPanel airlinersPanel = new StackPanel();
             airlinersPanel.Margin = new Thickness(10, 0, 10, 0);
 
+            
             TextBlock txtNewHeader = new TextBlock();
             txtNewHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtNewHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -55,13 +56,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             airlinersPanel.Children.Add(txtNewHeader);
 
+            // chs, 2011-11-10 added a scroller so all elements are viewable
+         
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+
+            airlinersPanel.Children.Add(scroller);
+
+            StackPanel panelScroller = new StackPanel();
+            panelScroller.Orientation = Orientation.Vertical;
+
+            scroller.Content = panelScroller;
+
+
             ContentControl lblNewHeader = new ContentControl();
             lblNewHeader.ContentTemplate = this.Resources["AirlinersNewHeader"] as DataTemplate;
             lblNewHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             //lblNewHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
 
-            airlinersPanel.Children.Add(lblNewHeader);
-
+            //airlinersPanel.Children.Add(lblNewHeader);
+            panelScroller.Children.Add(lblNewHeader);
 
             lbNewAirliners = new ListBox();
             lbNewAirliners.ItemTemplate = this.Resources["AirlinerNewItem"] as DataTemplate;
@@ -70,7 +85,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             showNewAirliners();
 
-            airlinersPanel.Children.Add(lbNewAirliners);
+            //airlinersPanel.Children.Add(lbNewAirliners);
+            panelScroller.Children.Add(lbNewAirliners);
 
             TextBlock txtUsedHeader = new TextBlock();
             txtUsedHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;

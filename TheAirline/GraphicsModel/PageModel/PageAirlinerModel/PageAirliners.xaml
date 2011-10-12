@@ -12,23 +12,24 @@
     <Page.Resources>
         <c:CultureInfoConverter x:Key="cultureInfoConverter"></c:CultureInfoConverter>
         <DataTemplate x:Key="AirlinersNewHeader">
-            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
-                <TextBlock Width="200" VerticalAlignment="Bottom" FontWeight="Bold">
+        
+                <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                    <TextBlock Width="200" VerticalAlignment="Bottom" FontWeight="Bold">
                      <Hyperlink Tag="Type" Click="HeaderNew_Click">
                         <Run Text="Type"></Run>
                     </Hyperlink>
-                </TextBlock>
-                <TextBlock Width="200" VerticalAlignment="Bottom" FontWeight="Bold">
+                    </TextBlock>
+                    <TextBlock Width="200" VerticalAlignment="Bottom" FontWeight="Bold">
                      <Hyperlink Tag="Manufacturer" Click="HeaderNew_Click">
-                        <Run Text="Manufacturerr"></Run>
+                        <Run Text="Manufacturer"></Run>
                     </Hyperlink>
-                </TextBlock>
-                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" Width="100" TextAlignment="Right">
+                    </TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" Width="100" TextAlignment="Right">
                      <Hyperlink Tag="Price" Click="HeaderNew_Click">
                         <Run Text="Price"></Run>
                     </Hyperlink>
-                </TextBlock>
-            </WrapPanel>
+                    </TextBlock>
+                </WrapPanel>
         </DataTemplate>
       
         <DataTemplate x:Key="AirlinerNewItem">

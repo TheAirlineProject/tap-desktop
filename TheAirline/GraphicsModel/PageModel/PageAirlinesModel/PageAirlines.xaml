@@ -11,12 +11,13 @@
     <Page.Resources>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
         <DataTemplate x:Key="AirlinesHeader">
-            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Width="55"></TextBlock>
                 <TextBlock Text="Name" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="IATA" Width="50" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="CEO" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
             </WrapPanel>
+           
         </DataTemplate>
         <DataTemplate x:Key="AirlineItem">
             <WrapPanel>
