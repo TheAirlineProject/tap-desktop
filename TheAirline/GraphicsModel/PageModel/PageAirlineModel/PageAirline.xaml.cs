@@ -120,8 +120,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
         public WrapPanel createAirlineValuePanel()
         {
             WrapPanel panelValue = new WrapPanel();
-
-            for (int i = 0; i <= (int)this.Airline.getValue(); i++)
+            panelValue.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            for (int i = 0; i <= (int)this.Airline.getAirlineValue(); i++)
             {
                 Image imgValue = new Image();
                 imgValue.Source = new BitmapImage(new Uri(@"/Data/images/coins.png", UriKind.RelativeOrAbsolute));
@@ -130,7 +130,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                 panelValue.Children.Add(imgValue);
             }
-            for (int i = (int)this.Airline.getValue(); i < (int)Airline.AirlineValue.Very_high; i++)
+            for (int i = (int)this.Airline.getAirlineValue(); i < (int)Airline.AirlineValue.Very_high; i++)
             {
                 Image imgValue = new Image();
                 imgValue.Source = new BitmapImage(new Uri(@"/Data/images/coins_gray.png", UriKind.RelativeOrAbsolute));
@@ -139,6 +139,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                 panelValue.Children.Add(imgValue);
             }
+            // chs, 2011-13-10 added value in $ of an airline to the value text
+            TextBlock txtValue = UICreator.CreateTextBlock(string.Format(" ({0})", string.Format("{0:c}", this.Airline.getValue1())));
+            txtValue.FontStyle = FontStyles.Italic;
+            panelValue.Children.Add(txtValue);
 
             return panelValue;
         }

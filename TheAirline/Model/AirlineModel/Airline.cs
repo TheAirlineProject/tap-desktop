@@ -165,6 +165,12 @@ namespace TheAirline.Model.AirlineModel
             //return Math.Abs(amount);
             return amount;
         }
+        // chs, 2011-13-10 added function to add an invoice without have to pay for it. Used for loading of saved game
+        //sets an invoice to the airline - no payment is made
+        public void setInvoice(Invoice invoice)
+        {
+            this.Invoices.Add(invoice);
+        }
         //adds an invoice for the airline - both incoming and expends
         public void addInvoice(Invoice invoice)
         {
@@ -191,8 +197,9 @@ namespace TheAirline.Model.AirlineModel
                 return AirlineValue.Very_high;
             return AirlineValue.Normal;
         }
-        //returns the "value" of the airline
-        public AirlineValue getValue()
+        // chs, 2011-13-10 added function to return the value in $ of an airline
+        //returns the value of the airline in "money"
+        public double getValue1()
         {
             double value = 0;
             value += this.Money;
@@ -202,16 +209,25 @@ namespace TheAirline.Model.AirlineModel
             }
             foreach (AirlineFacility facility in this.Facilities)
             {
-                value += facility.Price; 
+                value += facility.Price;
             }
             foreach (Airport airport in this.Airports)
             {
                 foreach (AirportFacility facility in airport.getAirportFacilities(this))
                     value += facility.Price;
-                
-
             }
+            foreach (Loan loan in this.Loans)
+            {
+                value -= loan.PaymentLeft;
+            }
+            return value;
            
+        }
+       
+        //returns the "value" of the airline
+        public AirlineValue getAirlineValue()
+        {
+            double value = 0;// getValue1();
             double startMoney = GameObject.GetInstance().StartMoney;
             
             if (value < startMoney / 4)

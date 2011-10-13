@@ -48,11 +48,11 @@ namespace TheAirline.Model.AirlinerModel
         public static List<AirlinerFacility> GetFacilities(AirlinerFacility.FacilityType type, int year)
         {
             if (facilities.ContainsKey(type))
-                return facilities[type].FindAll((delegate(AirlinerFacility f) { return f.FromYear<=year; }));
+                return facilities[type].FindAll((delegate(AirlinerFacility f) { return f.FromYear <= year; }));
 
             else
                 return new List<AirlinerFacility>();
-             }
+        }
         //returns the list of facilities for a specific type
         public static List<AirlinerFacility> GetFacilities(AirlinerFacility.FacilityType type)
         {
@@ -60,6 +60,15 @@ namespace TheAirline.Model.AirlinerModel
                 return facilities[type];
             else
                 return new List<AirlinerFacility>();
+        }
+        // chs, 2011-13-10 added function to return a specific airliner facility
+        //returns a facility based on name and type
+        public static AirlinerFacility GetFacility(AirlinerFacility.FacilityType type, string name)
+        {
+            if (GetFacilities(type).Count > 0)
+                return GetFacilities(type).Find((delegate(AirlinerFacility f) { return f.Name == name; }));
+            else
+                return null;
         }
         //returns the basic facility for a specific type
         public static AirlinerFacility GetBasicFacility(AirlinerFacility.FacilityType type)
