@@ -224,8 +224,11 @@ namespace TheAirline.GraphicsModel.Converters
     //the converter for an airline to brush
     public class AirlineBrushConverter : IValueConverter
     {
-       
 
+        public object Convert(object value)
+        {
+            return Convert(value, null, null, null);
+        }
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Airline airline = (Airline)value;

@@ -52,8 +52,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbDestinations.MaxHeight = GraphicsHelpers.GetContentHeight()-100;
 
             foreach (Airport airport in this.Airline.Airports)
-                for (int i=0;i<22;i++)
-                lbDestinations.Items.Add(airport);
+                 lbDestinations.Items.Add(airport);
 
             panelDestinations.Children.Add(lbDestinations);
 

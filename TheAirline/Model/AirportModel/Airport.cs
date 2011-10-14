@@ -34,28 +34,11 @@ namespace TheAirline.Model.AirportModel
         {
             this.Passengers = new Dictionary<Airport, int>();
         }
-        /*
-        //creates the passengers at the airport
-        public void createPassengers(int coff)
-        {
-            for (int i = 0; i < coff*(int)this.Profile.Size; i++)
-            {
-                Airport airport = GameHelpers.GetRandomAirport(this);
-                if (!this.Passengers.ContainsKey(airport))
-                    this.Passengers.Add(airport, 0);
-                this.Passengers[airport]++;
-            }
-        }
-         * */
+       
         //returns the number of passengers for a given destination
         public int getPassengers(Airport airport)
         {
-            /*
-            if (this.Passengers.ContainsKey(airport))
-                return this.Passengers[airport];
-            else
-                return 0;
-             * */
+          
             Random rnd = new Random();
 
             int value = rnd.Next((int)this.Profile.Size * 100);

@@ -14,7 +14,7 @@ namespace TheAirline.Model.GeneralModel
         {
             int rad = 6371;
             dist = dist / rad;  // convert dist to angular distance in radians
-            double brng = MathHelpers.GetDirection(coordinates, destination);//brng.toRad();  // 
+            double brng = MathHelpers.GetDirection(coordinates, destination);
             brng = MathHelpers.DegreeToRadian(brng);
             double lon1 = MathHelpers.DegreeToRadian(coordinates.Longitude.toDecimal());
             double lat1 = MathHelpers.DegreeToRadian(coordinates.Latitude.toDecimal());
@@ -25,9 +25,7 @@ namespace TheAirline.Model.GeneralModel
                                          Math.Cos(dist) - Math.Sin(lat1) * Math.Sin(lat2));
             lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180...+180
 
-            //if (isNaN(lat2) || isNaN(lon2)) return null;
-            //return new LatLon(lat2.toDeg(), lon2.toDeg());
-
+      
             if (Double.IsNaN(lat2))
                 Console.WriteLine(destination.ToString());
 
@@ -63,7 +61,6 @@ namespace TheAirline.Model.GeneralModel
         //gets the distance in kilometers between two coordinates
         public static double GetDistance(Coordinates coordinates1, Coordinates coordinates2)
         {
-            //Cos(a) = Cos(b) × Cos(c) + Sin(b) × Sin(c) × Cos(A)
             long circumference = 40074;
 
             double lat1 = coordinates1.Latitude.toDecimal();
@@ -86,15 +83,7 @@ namespace TheAirline.Model.GeneralModel
 
             return circumference * dist / 360;
         }
-        /*
-        //gets the flight time between two coordinates for an airlinerType
-        public static TimeSpan GetFlightTime(Coordinates coordinate1, Coordinates coordinate2, AirlinerType type)
-        {
-            return GetFlightTime(coordinate1, coordinate2, type);
-
-
-        }
-         * */
+     
         //returns the flight time between two coordinates with a given speed
         public static TimeSpan GetFlightTime(Coordinates coordinate1, Coordinates coordinate2, double speed)
         {
@@ -122,11 +111,9 @@ namespace TheAirline.Model.GeneralModel
             if (dist == 0)
                 return new TimeSpan(0, 0, 0);
 
-            double speed = type.CruisingSpeed;// + Convert.ToDouble(wind.WindSpeed);
+            double speed = type.CruisingSpeed;
 
-           // if (wind.Direction == Wind.WindDirection.Head)
-             //   speed = type.CruisingSpeed - Convert.ToDouble(wind.WindSpeed);
-
+        
             double dtime = dist / speed;
 
             int hours = Convert.ToInt16(Math.Floor(dtime));
@@ -226,13 +213,8 @@ namespace TheAirline.Model.GeneralModel
         //returns the monthly payment of a specific amount with a rate and lenght
         public static double GetMonthlyPayment(double amount, double rate, int lenght)
         {
-          //  double t = 1 - Math.Pow(1 + (rate / 100), -lenght);
-          //  return amount * ((rate / 100) / t); 
-            double pRate = 1+ rate / 100;
-            //double t = Math.Pow(1 + pRate, lenght) - 1;
-            //double d = pRate * Math.Pow(1 + pRate,lenght);
-            //return amount * (d / t);
-
+             double pRate = 1+ rate / 100;
+         
             return amount * pRate / lenght;
         }
     }

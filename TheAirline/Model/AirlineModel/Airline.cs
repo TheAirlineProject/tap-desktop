@@ -199,7 +199,7 @@ namespace TheAirline.Model.AirlineModel
         }
         // chs, 2011-13-10 added function to return the value in $ of an airline
         //returns the value of the airline in "money"
-        public double getValue1()
+        public double getValue()
         {
             double value = 0;
             value += this.Money;
@@ -227,7 +227,7 @@ namespace TheAirline.Model.AirlineModel
         //returns the "value" of the airline
         public AirlineValue getAirlineValue()
         {
-            double value = 0;// getValue1();
+            double value = getValue();
             double startMoney = GameObject.GetInstance().StartMoney;
             
             if (value < startMoney / 4)

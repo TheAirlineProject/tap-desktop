@@ -140,7 +140,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
                 panelValue.Children.Add(imgValue);
             }
             // chs, 2011-13-10 added value in $ of an airline to the value text
-            TextBlock txtValue = UICreator.CreateTextBlock(string.Format(" ({0})", string.Format("{0:c}", this.Airline.getValue1())));
+            TextBlock txtValue = UICreator.CreateTextBlock(string.Format(" ({0})", string.Format("{0:c}", this.Airline.getValue())));
             txtValue.FontStyle = FontStyles.Italic;
             panelValue.Children.Add(txtValue);
 

@@ -13,9 +13,8 @@ namespace TheAirline.Model.AirlinerModel
         public string TailNumber { get; set; }
         public DateTime BuiltDate { get; set; }
         public AirlinerType Type { get; set; }
-        public double Flown { get; set; } //km flown by the airliner
+        public double Flown { get; set; } //distance flown by the airliner
         public Airline Airline { get; set; }
-        //private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
         public double LastServiceCheck { get; set; }  //the km were the airliner was last at service
         public long Price { get { return getPrice(); } private set { } }
         public long LeasingPrice { get { return getLeasingPrice(); } private set { } }
@@ -28,8 +27,7 @@ namespace TheAirline.Model.AirlinerModel
             this.LastServiceCheck = 0;
             this.TailNumber = tailNumber;
             this.Flown = 0;
-            //this.Facilities = new Dictionary<AirlinerFacility.FacilityType, AirlinerFacility>();
-            
+             
             this.Classes = new List<AirlinerClass>();
             this.Classes.Add(new AirlinerClass(this,AirlinerClass.ClassType.Economy_Class, this.Type.MaxSeatingCapacity));
             
@@ -55,17 +53,6 @@ namespace TheAirline.Model.AirlinerModel
         {
             double basePrice = this.Type.Price;
 
-            /*
-            AirlinerFacility audioFacility = this.getFacility(AirlinerFacility.FacilityType.Audio);
-            AirlinerFacility videoFacility = this.getFacility(AirlinerFacility.FacilityType.Video);
-            AirlinerFacility seatFacility = this.getFacility(AirlinerFacility.FacilityType.Seat);
-
-            double audioPrice = audioFacility.PricePerSeat * audioFacility.PercentOfSeats * this.Type.SeatingCapacity;
-            double videoPrice = videoFacility.PricePerSeat * videoFacility.PercentOfSeats * this.Type.SeatingCapacity;
-            double seatPrice = seatFacility.PricePerSeat * seatFacility.PercentOfSeats * this.Type.SeatingCapacity;
-
-            double facilityPrice = audioPrice + videoPrice + seatPrice;
-            */
             double facilityPrice = 0;
 
             foreach (AirlinerClass aClass in this.Classes)
@@ -89,20 +76,7 @@ namespace TheAirline.Model.AirlinerModel
             return Convert.ToInt64(basePrice * devaluationPercent);
         }
         
-        /*
-        //sets the facility for a facility type
-        public void setFacility(AirlinerFacility facility)
-        {
-            this.Facilities[facility.Type] = facility;
-
-            this.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime,Invoice.InvoiceType.Purchases,-facility.PricePerSeat * facility.PercentOfSeats * this.Type.SeatingCapacity));
-        }
-        //returns the current facility for a facility type
-        public AirlinerFacility getFacility(AirlinerFacility.FacilityType type)
-        {
-            return this.Facilities[type];
-        }
-         * */
+        
         //adds a new airliner class to the airliner
         public void addAirlinerClass(AirlinerClass airlinerClass)
         {

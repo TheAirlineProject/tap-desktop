@@ -31,10 +31,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement airlinerNode in airlinersList)
             {
                 AirlinerType type = AirlinerTypes.GetType(airlinerNode.Attributes["type"].Value);
-                //string type = airlinerNode.Attributes["type"].Value;
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
-                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("en-US", false));//XmlConvert.ToDateTime(airlinerNode.Attributes["built"].Value,XmlDateTimeSerializationMode.RoundtripKind);
+                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("en-US", false));
                 double flown = XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
@@ -74,12 +73,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             XmlNodeList airlinesList = root.SelectNodes("//airlines/airline");
 
-            /*
-             * loanNode.SetAttribute("date", loan.Date.ToShortDateString());
-                    loanNode.SetAttribute("rate", loan.Rate.ToString());
-                    loanNode.SetAttribute("amount", loan.Amount.ToString());
-                    loanNode.SetAttribute("lenght", loan.Lenght.ToString());
-                    loanNode.SetAttribute("payment", loan.PaymentLeft.ToString());*/
             foreach (XmlElement airlineNode in airlinesList)
             {
                 string airlineName = airlineNode.Attributes["name"].Value;

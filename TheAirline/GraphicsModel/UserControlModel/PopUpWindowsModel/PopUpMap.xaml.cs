@@ -19,6 +19,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -182,7 +183,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             Point pos2 = GraphicsHelpers.WorldToTilePos(a2.Profile.Coordinates, zoom);
 
             Line line = new Line();
-            line.Stroke = Brushes.DarkBlue;
+            line.Stroke = new AirlineBrushConverter().Convert(GameObject.GetInstance().HumanAirline) as SolidColorBrush;
             line.X1 = pos1.X * ImageSize;
             line.X2 = pos2.X * ImageSize;
             line.Y1 = pos1.Y * ImageSize;

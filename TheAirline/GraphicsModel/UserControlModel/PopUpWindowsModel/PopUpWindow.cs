@@ -15,8 +15,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public object Selected { get; set; }
         public PopUpWindow()
         {
-           // this.Background = new SolidColorBrush(Color.FromRgb(33, 59, 84));
-
+          
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
             this.SetResourceReference(Window.BackgroundProperty, "HeaderBackgroundBrush2");

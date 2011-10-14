@@ -67,7 +67,6 @@ namespace TheAirline.Model.GeneralModel
                 CreateTimeZones();
                 CreateFeeTypes();
                 CreateAirlines();
-                //CreateAirliners();
                 CreateFlightFacilities();
                 CreateLanguages();
 
@@ -118,9 +117,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 LoadSkin(file.FullName);
             }
-            //LoadSkin(dataPath + "\\skins\\DarkBlue.xml");
-            // LoadSkin(dataPath + "\\skins\\Blue_Gold.xml");
-
+         
 
             SkinObject.GetInstance().setCurrentSkin(Skins.GetSkins()[0]);
         }
@@ -298,8 +295,7 @@ namespace TheAirline.Model.GeneralModel
                 string name = airliner.Attributes["name"].Value;
                 long price = Convert.ToInt64(airliner.Attributes["price"].Value);
 
-                //type body="Narrow_Body" rangetype="Medium_Range" engine="Jet" /
-                XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
+                 XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
                 AirlinerType.BodyType body = (AirlinerType.BodyType)Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
                 AirlinerType.TypeRange rangeType = (AirlinerType.TypeRange)Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
                 AirlinerType.EngineType engine = (AirlinerType.EngineType)Enum.Parse(typeof(AirlinerType.EngineType), typeElement.Attributes["engine"].Value);
@@ -317,8 +313,7 @@ namespace TheAirline.Model.GeneralModel
                 int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                 int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                 int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-              //  <capacity passengers="240" cockpitcrew="2" cabincrew="5" maxclasses="2" /> 
-
+          
                 XmlElement producedElement = (XmlElement)airliner.SelectSingleNode("produced");
                 int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
                 int to = Convert.ToInt16(producedElement.Attributes["to"].Value);
@@ -426,16 +421,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirlinerFacilities()
         {
-            /*
-             *  <facility name="No Video" type="Video" fromyear="1950">
-    <level service="0"></level>
-    <seats percent="0" price="0"></seats>
-  </facility>
-            AirlinerFacilities.AddFacility(new AirlinerFacility(AirlinerFacility.FacilityType.Audio, "No Audio", 0, 0, 0));
-            AirlinerFacilities.AddFacility(new AirlinerFacility(AirlinerFacility.FacilityType.Seat, "Standard Seats", 0, 0, 0));
-            AirlinerFacilities.AddFacility(new AirlinerFacility(AirlinerFacility.FacilityType.Seat, "Luxury Seats", 100, 100, 1000));
-            AirlinerFacilities.AddFacility(new AirlinerFacility(AirlinerFacility.FacilityType.Video, "No Video", 0, 0, 0));
-            **/
+        
             XmlDocument doc = new XmlDocument();
             doc.Load(dataPath + "\\airlinerfacilities.xml");
             XmlElement root = doc.DocumentElement;
@@ -489,9 +475,6 @@ namespace TheAirline.Model.GeneralModel
 
 
             Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
-            //airliner.setFacility(audioFacility);
-            //airliner.setFacility(videoFacility);
-            //airliner.setFacility(seatFacility);
 
             int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
 
@@ -689,8 +672,7 @@ namespace TheAirline.Model.GeneralModel
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
 
-            //Airliners.AddAirliner(airliner);
-
+      
             FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner, airliner.TailNumber, airline.Airports[0]);
 
             RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);

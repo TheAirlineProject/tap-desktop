@@ -17,7 +17,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a "turn" (one hour) now 1/4 hour
         public static void SimulateTurn()
         {
-            GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(15);//Game.GetInstance().GameTime.AddHours(1);
+            GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(15);
 
             if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
 
@@ -73,8 +73,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
 
-            // test med down payment + test for om penge nok
-
+    
         }
         //do the yearly update
         private static void DoYearlyUpdate()
@@ -164,9 +163,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / 4 : -(int)currentWeather.WindSpeed / 4;
                 speed = airliner.Airliner.Airliner.Type.CruisingSpeed / 4 + wind;
 
-                // - (int)airliner.Route.CurrentFlight.Wind.WindSpeed) / 4;
-                // if (airliner.Route.CurrentFlight.Wind.Direction == Wind.WindDirection.Tail)
-                //   speed = (airliner.Airliner.Airliner.Type.CruisingSpeed + (int)airliner.Route.CurrentFlight.Wind.WindSpeed) / 4;
             }
             if (adistance > 4)
                 MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates)));
@@ -205,27 +201,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateRouteStart(RouteAirliner airliner)
         {
 
-            //   RouteTimeTableEntry entry = airliner.Route.TimeTable.getNextEntry(Game.GetInstance().GameTime.DayOfWeek, new TimeSpan(Game.GetInstance().GameTime.Hour, Game.GetInstance().GameTime.Minute, 0), Airports.GetAirport(airliner.Destination));
-
-            //  int currentDay = (int)Game.GetInstance().GameTime.DayOfWeek;
-            //if (Game.GetInstance().GameTime.DayOfWeek > entry.Day)
-            //  currentDay -= 7;
-
-            //  int daysBetween = Math.Abs((int)entry.Day - currentDay);
-
-            //  DateTime flightTime = new DateTime(Game.GetInstance().GameTime.Year, Game.GetInstance().GameTime.Month, Game.GetInstance().GameTime.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds).AddDays(daysBetween);
-
-
-            //airliner.Route.CurrentFlight = new Flight(flightTime, entry.Destination);
-
+        
             airliner.CurrentFlight = new Flight(airliner.Route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
 
             airliner.Status = RouteAirliner.AirlinerStatus.Resting;
-
-            // airliner.Destination = airliner.CurrentFlight.Destination.Airport;
-            //    Airport aDest = Airports.GetAirport(airliner.Destination);
-            //    airliner.Destination = airliner.Route.CurrentFlight.Destination.Gate.Airport.Profile.Coordinates;
-            //     airliner.CurrentPosition = new Coordinates(airliner.Destination.Latitude, airliner.Destination.Longitude);
 
         }
         //simulates a route airliner taking off
@@ -272,9 +251,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
-            // airliner.Airliner.Airliner.Stats.TotalDepartures += 1;
-
-        }
+         }
         //simulates a route airliner landing
         private static void SimulateLanding(RouteAirliner airliner)
         {
@@ -283,9 +260,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = RouteAirliner.AirlinerStatus.Resting;
-            //airliner.LastLandingTime = Game.GetInstance().GameTime;
-            //Console.WriteLine("{0} {1}: {2} arrived at {3} with {4} passengers", new Object[] { Game.GetInstance().GameTime.ToShortDateString(), Game.GetInstance().GameTime.ToShortTimeString(), airliner.Route.CurrentRouteEntry.Destination.FlightCode, Airports.GetAirport(airliner.CurrentPosition) == null ? airliner.CurrentPosition.ToString() : Airports.GetAirport(airliner.CurrentPosition).Profile.Name, airliner.Passengers });
-
+     
             double groundTaxPerPassenger = 5;
 
             double tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
@@ -444,8 +419,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
-            //airliner.LastLandingTime = Game.GetInstance().GameTime;
-
+    
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.CurrentPosition);
             double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Airliner.Type.FuelConsumption + Airports.GetAirport(airliner.CurrentPosition).getLandingFee();
 
@@ -455,9 +429,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.Airliner.Airliner.LastServiceCheck = airliner.Airliner.Airliner.Flown;
 
-            //airliner.Airliner.Airline.addInvoice(new Invoice(Game.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -servicePrice));
-
-            //Console.WriteLine("{0} {1}: {2} is on service at {3}", new Object[] { Game.GetInstance().GameTime.ToShortDateString(), Game.GetInstance().GameTime.ToShortTimeString(), airliner.Route.getCurrentDestination().FlightCode, Airports.GetAirport(airliner.CurrentPosition).Profile.Name });
             airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -servicePrice));
 
             airliner.Route.addRouteInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -servicePrice));
@@ -474,8 +445,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 airliner.Status = RouteAirliner.AirlinerStatus.On_service;
                 airliner.CurrentFlight.Entry.Destination = new RouteEntryDestination(airliner.Airliner.Homebase, "Service");
-                //airliner.Route.CurrentFlight = null;
-
+    
             }
 
 
@@ -511,9 +481,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(RouteAirliner airliner)
         {
-            //if (!airliner.CurrentFlight.Delayed && airliner.Route.CurrentFlight.DepartureTime == Game.GetInstance().GameTime)
-            //  CheckForDelay(airliner);
-
+         
             RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
 
             return MathHelpers.ConvertEntryToDate(entry);
@@ -524,8 +492,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
 
-            return PassengerHelpers.GetFlightPassengers(airliner, type);//rnd.Next(airliner.Airliner.Airliner.Type.SeatingCapacity + 1);//Math.Min(airliner.Airliner.Airliner.Type.SeatingCapacity, airportCurrent.getPassengers(airportDestination) / routes);
-
+            return PassengerHelpers.GetFlightPassengers(airliner, type);
         }
 
     }

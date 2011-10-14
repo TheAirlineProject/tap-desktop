@@ -28,8 +28,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             StackPanel newsPanel = new StackPanel();
             newsPanel.Margin = new Thickness(10, 0, 10, 0);
 
-            // airportPanel.Children.Add(createQuickInfoPanel());
-
             StandardContentPanel panelContent = new StandardContentPanel();
 
             panelContent.setContentPage(newsPanel, StandardContentPanel.ContentLocation.Left);

@@ -26,8 +26,7 @@ namespace TheAirline.Model.GeneralModel
             this.FuelPrice = 1.142;
 
             this.NewsBox = new NewsBox();
-            //this.Calendar = new GameCalendar();
-
+  
         }
         //returns the start money based on year of start
         private long getStartMoney()

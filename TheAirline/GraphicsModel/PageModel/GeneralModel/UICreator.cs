@@ -16,7 +16,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
     public class UICreator
     {
-         //creates a standard text block. Font size 0 for default
+         /*!creates a standard text block. Font size 0 for default
+          * */
         public static TextBlock CreateTextBlock(string text)
         {
             TextBlock txtText = new TextBlock();
@@ -25,7 +26,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
           
             return txtText;
         }
-        //creates a color rect
+        /*!creates a color rect
+         * */
         public static Rectangle CreateColorRect(string color)
         {
             TypeConverter colorConverter = new ColorConverter();
@@ -55,11 +57,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             return rectColor;
 
         }
-        //creates the game logo
+        /*! creates the game logo
+         */
         public static Panel CreateGameLogo()
         {
-            //Silver Gradient
-
+       
             StackPanel panelLogo = new StackPanel();
 
             LinearGradientBrush brushGold = new LinearGradientBrush();
@@ -106,7 +108,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             return panelLogo;
         }
-        //creates an image button
+        /*! creates an image button
+         */
         public static Button CreateImageButton(string name, string image, int size)
         {
 
@@ -116,10 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 btnButton.Width = size;
                 btnButton.Height = size;
                 btnButton.Background = null;
-                //btnButton.BorderBrush = null;
-                //btnButton.BorderThickness = new Thickness(0);
-                //btnButton.SetResourceReference(Button.StyleProperty,"TransparentButton");
-         
+           
 
                 Image img = new Image();
 
@@ -135,7 +135,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
         }
-        //creates a link
+        /*!creates a link
+         */ 
         public static TextBlock CreateLink(string text)
         {
            
@@ -144,13 +145,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Run run = new Run(text);
            
             Hyperlink hyperLink = new Hyperlink(run);
-            //hyperLink.FontSize = fontsize;
             txtBlock.Inlines.Add(hyperLink);
-           // txtBlock.VerticalAlignment = VerticalAlignment.Center;
             return txtBlock;
 
         }
-        //creates a grid with x-columns
+        /*!creates a grid with x-columns
+         */ 
         public static Grid CreateGrid(int columns)
         {
             Grid grid = new Grid();
@@ -161,14 +161,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
             return grid;
         }
-        //creates a grid with x-columns and y-rows
+        /*! creates a grid with x-columns and y-rows
+         */
         public static Grid CreateGrid(int columns, int rows)
         {
             Grid grid = new Grid();
             for (int i = 0; i < columns; i++)
             {
                 ColumnDefinition columnDef = new ColumnDefinition();
-                //columnDef.Width = new GridLength(100);
                 grid.ColumnDefinitions.Add(columnDef);
             }
             for (int i = 0; i < rows; i++)
@@ -178,7 +178,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
             return grid;
         }
-        //returns the object from a listbox
+        /*!returns the object from a listbox
+         */
         public static object GetDataFromListBox(ListBox source, Point point)
         {
             UIElement element = source.InputHitTest(point) as UIElement;
@@ -247,7 +248,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             {
 
 
-                //Brush brush = new SolidColorBrush(Color.FromRgb(33, 59, 84));
                 Brush brush = new SolidColorBrush(Colors.Gray);
                 brush.Opacity = 0.50;
 
@@ -259,13 +259,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
             else
             {
-                //Brush brush = new SolidColorBrush(Color.FromRgb(15, 36, 65));
                 Brush brush = new SolidColorBrush(Colors.DarkGray);
                 brush.Opacity = 0.50;
 
                 backGroundSetter.Value = brush;
-                //backGroundSetter.Value = Brushes.Beige;
-
+      
                 st.Resources.Add(SystemColors.HighlightBrushKey, brush);
                 st.Resources.Add(SystemColors.ControlBrushKey, brush);
             }
