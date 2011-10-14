@@ -133,6 +133,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airline.setInvoice(new Invoice(invoiceDate, type, invoiceAmount));
                 }
 
+                // chs, 2011-13-10 added for loading of airliner advertisements
+                XmlNodeList advertisementList = airlineNode.SelectNodes("advertisements/advertisement");
+
+                foreach (XmlElement advertisementNode in advertisementList)
+                {
+                    AdvertisementType.AirlineAdvertisementType type = (AdvertisementType.AirlineAdvertisementType)Enum.Parse(typeof(AdvertisementType.AirlineAdvertisementType), advertisementNode.Attributes["type"].Value);
+                    string advertisementName = advertisementNode.Attributes["name"].Value;
+
+                    airline.setAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
+                }
+             
+
                 XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
 
                 foreach (XmlElement airlineAirlinerNode in airlineFleetList)
@@ -509,6 +521,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     invoicesNode.AppendChild(invoiceNode);
                 }
                 airlineNode.AppendChild(invoicesNode);
+
+                // chs, 2011-14-10 added for saving of airline advertisement
+                XmlElement advertisementsNodes = xmlDoc.CreateElement("advertisements");
+                foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+                {
+                    XmlElement advertisementNode = xmlDoc.CreateElement("advertisement");
+                    advertisementNode.SetAttribute("type", type.ToString());
+                    advertisementNode.SetAttribute("name", airline.getAirlineAdvertisement(type).Name);
+
+                    advertisementsNodes.AppendChild(advertisementNode);
+                }
+                airlineNode.AppendChild(advertisementsNodes);
 
                 XmlElement fleetNode = xmlDoc.CreateElement("fleet");
                 foreach (FleetAirliner airliner in airline.Fleet)

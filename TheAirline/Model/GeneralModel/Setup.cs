@@ -64,6 +64,7 @@ namespace TheAirline.Model.GeneralModel
 
                 SetupStatisticsTypes();
 
+                CreateAdvertisementTypes();
                 CreateTimeZones();
                 CreateFeeTypes();
                 CreateAirlines();
@@ -87,6 +88,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void ClearLists()
         {
+            AdvertisementTypes.Clear();
             TimeZones.Clear();
             Airports.Clear();
             AirportFacilities.Clear();
@@ -173,7 +175,20 @@ namespace TheAirline.Model.GeneralModel
 
             GameObject.GetInstance().setLanguage(langUK);
         }
+        /*! creates the Advertisement types
+         */
+        private static void CreateAdvertisementTypes()
+        {
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Internet, "No Advertisement", 0, 0));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Internet, "National",10000, 50));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Newspaper, "No Advertisement", 0, 0));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Newspaper, "National", 10000, 50));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Radio, "No Advertisement", 0, 0));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Radio, "National", 10000, 50));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.TV, "No Advertisement", 0, 0));
+            AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.TV, "National", 10000, 50));
 
+        }
         /*! creates the time zones.
          */
         private static void CreateTimeZones()

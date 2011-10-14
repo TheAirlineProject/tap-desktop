@@ -47,10 +47,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             newsPanel.Children.Add(ccNewsHeader);
 
             
-             lbNews = new ListBox();
+            lbNews = new ListBox();
             lbNews.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbNews.ItemTemplate = this.Resources["NewsItem"] as DataTemplate;
-            lbNews.Height = 500;
+            lbNews.Height = GraphicsHelpers.GetContentHeight()-50;
 
             
           

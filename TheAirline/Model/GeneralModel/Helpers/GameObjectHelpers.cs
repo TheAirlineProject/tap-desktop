@@ -111,6 +111,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
 
                 }
+                // chs, 2011-14-10 added monthly payment of airline Advertisement
+                foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+                {
+                    airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -GameObject.GetInstance().HumanAirline.getAirlineAdvertisement(type).Price));
+                }
+    
 
             }
         }

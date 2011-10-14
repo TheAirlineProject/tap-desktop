@@ -26,9 +26,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineFacilities : Page
     {
         private Airline Airline;
-        private ListBox lbNewFacilities, lbFacilities;
+        private ListBox lbNewFacilities, lbFacilities, lbAdvertisement;
+        private Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox> cbAdvertisements;
         public PageAirlineFacilities(Airline airline)
         {
+            cbAdvertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox>();
+
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
 
@@ -41,20 +44,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             StackPanel panelFacilities = new StackPanel();
             panelFacilities.Margin = new Thickness(0, 10, 50, 0);
 
-            TextBlock txtHeader = new TextBlock();
-            txtHeader.Margin = new Thickness(0, 0, 0, 0);
-            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airline Facilities";
-            panelFacilities.Children.Add(txtHeader);
+            TextBlock txtHeaderFacilities = new TextBlock();
+            txtHeaderFacilities.Margin = new Thickness(0, 0, 0, 0);
+            txtHeaderFacilities.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderFacilities.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderFacilities.FontWeight = FontWeights.Bold;
+            txtHeaderFacilities.Text = "Airline Facilities";
+            panelFacilities.Children.Add(txtHeaderFacilities);
 
 
       
             lbFacilities = new ListBox();
             lbFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFacilities.ItemTemplate = this.Resources["FacilityItem"] as DataTemplate;
-            lbFacilities.MaxHeight = 400;
+            lbFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             panelFacilities.Children.Add(lbFacilities);
 
          
@@ -70,18 +73,78 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbNewFacilities = new ListBox();
             lbNewFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbNewFacilities.ItemTemplate = this.Resources["FacilityNewItem"] as DataTemplate;
-            lbNewFacilities.MaxHeight = 400;
+            lbNewFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             panelFacilities.Children.Add(lbNewFacilities);
 
         
             lbNewFacilities.Visibility = this.Airline.IsHuman ? Visibility.Visible : Visibility.Collapsed;
-           
+
+            TextBlock txtHeaderAdvertisement = new TextBlock();
+            txtHeaderAdvertisement.Margin = new Thickness(0, 5, 0, 0);
+            txtHeaderAdvertisement.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderAdvertisement.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderAdvertisement.FontWeight = FontWeights.Bold;
+            txtHeaderAdvertisement.Text = "Airline Advertisement";
+            panelFacilities.Children.Add(txtHeaderAdvertisement);
+
+            lbAdvertisement = new ListBox();
+            lbAdvertisement.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbAdvertisement.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbAdvertisement.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            panelFacilities.Children.Add(lbAdvertisement);
+
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                lbAdvertisement.Items.Add(new QuickInfoValue(type.ToString(),createAdvertisementTypeItem(type)));
+            }
+
+            Button btnSave = new Button();
+            btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnSave.Height = 16;
+            btnSave.Width = 200;
+            btnSave.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnSave.Margin = new Thickness(0, 5, 0, 0);
+            btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            btnSave.Content = "Save Advertisements";
+            btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnSave.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            panelFacilities.Children.Add(btnSave);
+
+
             this.Content = panelFacilities;
 
             showFacilities();
 
         }
-      
+        // chs, 2011-14-10 sets the airline advertisement items
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                ComboBox cbAdvertisement = cbAdvertisements[type];
+
+                AdvertisementType aType = (AdvertisementType)cbAdvertisement.SelectedItem;
+                this.Airline.setAirlineAdvertisement(aType);
+            }
+        }
+         // chs, 2011-14-10 added a create item for an airline Advertisement item
+        //creates an item for an advertisering type
+        private ComboBox createAdvertisementTypeItem(AdvertisementType.AirlineAdvertisementType type)
+        {
+            ComboBox cbType = new ComboBox();
+            cbType.ItemTemplate = this.Resources["AdvertisementItem"] as DataTemplate;
+            cbType.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbType.Width = 200;
+
+            cbAdvertisements.Add(type, cbType);
+
+            foreach (AdvertisementType aType in AdvertisementTypes.GetTypes(type))
+                cbType.Items.Add(aType);
+
+            cbType.SelectedItem = GameObject.GetInstance().HumanAirline.getAirlineAdvertisement(type);
+
+            return cbType;
+        }
         //shows the list of facilities
         private void showFacilities()
         {

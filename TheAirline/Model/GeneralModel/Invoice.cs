@@ -8,7 +8,7 @@ namespace TheAirline.Model.GeneralModel
     //the class for an invoice
     public class Invoice
     {
-        public enum InvoiceType { Wages, Rents,Loans, Purchases, Tickets, Fees,Maintenances, Flight_Expenses,OnFlight_Income, Total }
+        public enum InvoiceType { Wages, Rents,Loans, Purchases, Tickets,Airline_Expenses, Fees,Maintenances, Flight_Expenses,OnFlight_Income, Total }
         public DateTime Date { get; set; }
         public double Amount { get; set; }
         public InvoiceType Type { get; set; }

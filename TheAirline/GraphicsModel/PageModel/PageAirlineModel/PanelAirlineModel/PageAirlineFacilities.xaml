@@ -9,6 +9,21 @@
 	Title="PageAirlineFacilities">
     <Page.Resources>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <DataTemplate x:Key="AdvertisementItem">
+            <StackPanel>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Price, StringFormat=Price per month: {0:c}}" VerticalAlignment="Bottom" FontStyle="Italic" x:Name="ColumnPrice"></TextBlock>
+            </StackPanel>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding 
+                       RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                      AncestorType=ComboBoxItem}}"
+                   Value="{x:Null}">
+                    <Setter TargetName="ColumnPrice" Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+
+            </DataTemplate.Triggers>
+        </DataTemplate>
         <DataTemplate x:Key="FacilityItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>

@@ -421,6 +421,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Model\AirlineModel\Airline.cs" />
+    <Compile Include="Model\AirlineModel\AdvertisementType.cs" />
     <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />

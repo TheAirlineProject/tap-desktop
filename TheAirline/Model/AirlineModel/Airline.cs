@@ -20,6 +20,7 @@ namespace TheAirline.Model.AirlineModel
         public AirlineProfile Profile { get; set; }
         public List<Route> Routes { get; set; }
         public List<AirlineFacility> Facilities { get; set; }
+        private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
         public GeneralStatistics Statistics { get; set; }
         public double Money { get; set; }
         public Boolean IsHuman { get { return this == GameObject.GetInstance().HumanAirline; } set { ;} }
@@ -33,6 +34,7 @@ namespace TheAirline.Model.AirlineModel
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this.Routes = new List<Route>();
+            this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new List<Invoice>();
@@ -46,7 +48,8 @@ namespace TheAirline.Model.AirlineModel
 
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
-  
+
+            createStandardAdvertisement();
         }
         //adds a route to the airline
         public void addRoute(Route route)
@@ -268,6 +271,30 @@ namespace TheAirline.Model.AirlineModel
         {
             return this.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime; }));
         }
+        // chs, 2011-14-10 added functions for airline Advertisement
+        //sets an Advertisement to the airline
+        public void setAirlineAdvertisement(AdvertisementType type)
+        {
+            if (!this.Advertisements.ContainsKey(type.Type))
+                this.Advertisements.Add(type.Type, type);
+            else
+                this.Advertisements[type.Type] = type;
+        }
+        //returns the Advertisement for the airline for a specific type
+        public AdvertisementType getAirlineAdvertisement(AdvertisementType.AirlineAdvertisementType type)
+        {
+            return this.Advertisements[type];
+        }
+        //creates the standard Advertisement for the airline
+        private void createStandardAdvertisement()
+        {
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                setAirlineAdvertisement(AdvertisementTypes.GetBasicType(type));
+            }
+        
+        }
+     
      
        
     }

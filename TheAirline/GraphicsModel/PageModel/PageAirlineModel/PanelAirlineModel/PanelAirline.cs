@@ -32,7 +32,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             buttonsPanel.Children.Add(sbDestinations);
 
             ucSelectButton sbFacilities = new ucSelectButton();
-            sbFacilities.Content = "Facilities";
+            sbFacilities.Content = "Facilities and Advertisement";
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
             buttonsPanel.Children.Add(sbFacilities);
 

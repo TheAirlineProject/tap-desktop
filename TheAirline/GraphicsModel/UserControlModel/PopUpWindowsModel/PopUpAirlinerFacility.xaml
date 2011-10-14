@@ -9,7 +9,6 @@
             <StackPanel>
                 <WrapPanel>
                     <TextBlock Text="{Binding Path=Name}"></TextBlock>
-                    <TextBlock Margin="20 0 0 0" Text="{Binding Path=ServiceLevel, StringFormat=Service Level: {0}}" x:Name="ColumnLevel"></TextBlock>
                 </WrapPanel>
                 <WrapPanel>
                     <TextBlock Text="{Binding Path=PricePerSeat, StringFormat=Price per seat: {0:c}}" x:Name="ColumnPrice"></TextBlock>
@@ -21,7 +20,6 @@
                        RelativeSource={RelativeSource Mode=FindAncestor, 
                                                       AncestorType=ComboBoxItem}}"
                    Value="{x:Null}">
-                    <Setter TargetName="ColumnLevel" Property="Visibility" Value="Collapsed"/>
                     <Setter TargetName="ColumnPrice" Property="Visibility" Value="Collapsed" />
                     <Setter TargetName="ColumnPercent" Property="Visibility" Value="Collapsed" />
                 </DataTrigger>
