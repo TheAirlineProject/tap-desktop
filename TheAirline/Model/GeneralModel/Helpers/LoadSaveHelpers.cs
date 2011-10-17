@@ -88,6 +88,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airline.Money = money;
                 airline.Profile.CEO = airlineCEO;
                 airline.Reputation = reputation;
+     
+                // chs, 2011-17-10 added for loading of passenger happiness
+                XmlElement airlinePassengerNode = (XmlElement)airlineNode.SelectSingleNode("passengerhappiness");
+                double passengerHappiness = Convert.ToDouble(airlinePassengerNode.Attributes["value"].Value);
+                PassengerHelpers.SetPassengerHappiness(airline, passengerHappiness);
 
                 XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facilty");
                 foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
@@ -133,7 +138,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airline.setInvoice(new Invoice(invoiceDate, type, invoiceAmount));
                 }
 
-                // chs, 2011-13-10 added for loading of airliner advertisements
+                // chs, 2011-13-10 added for loading of airline advertisements
                 XmlNodeList advertisementList = airlineNode.SelectNodes("advertisements/advertisement");
 
                 foreach (XmlElement advertisementNode in advertisementList)
@@ -143,7 +148,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     airline.setAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
                 }
-             
+                // chs, 2011-17-10 added for loading of fees
+                XmlNodeList airlineFeeList = airlineNode.SelectNodes("fees/fee");
+                foreach (XmlElement feeNode in airlineFeeList)
+                {
+                    string feeType = feeNode.Attributes["type"].Value;
+                    double feeValue = Convert.ToDouble(feeNode.Attributes["value"].Value);
+
+                    airline.Fees.setValue(FeeTypes.GetType(feeType),feeValue);
+                }
 
                 XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
 
@@ -470,6 +483,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("money", airline.Money.ToString());
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
 
+                // chs, 2011-13-10 added for saving of passenger happiness
+                XmlElement airlineHappinessNode = xmlDoc.CreateElement("passengerhappiness");
+                airlineHappinessNode.SetAttribute("value", PassengerHelpers.GetHappinessValue(airline).ToString());
+
+                airlineNode.AppendChild(airlineHappinessNode);
+
                 XmlElement airlineFacilitiesNode = xmlDoc.CreateElement("facilities");
 
                 foreach (AirlineFacility facility in airline.Facilities)
@@ -533,6 +552,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     advertisementsNodes.AppendChild(advertisementNode);
                 }
                 airlineNode.AppendChild(advertisementsNodes);
+
+                // chs, 2011-17-10 added for saving of airline fees
+                XmlElement feesNode = xmlDoc.CreateElement("fees");
+                foreach (FeeType feetype in FeeTypes.GetTypes())
+                {
+                    XmlElement feeNode = xmlDoc.CreateElement("fee");
+                    feeNode.SetAttribute("type", feetype.Name);
+                    feeNode.SetAttribute("value", airline.Fees.getValue(feetype).ToString());
+
+                    feesNode.AppendChild(feeNode);
+                 }
+
+
+
+                airlineNode.AppendChild(feesNode);
 
                 XmlElement fleetNode = xmlDoc.CreateElement("fleet");
                 foreach (FleetAirliner airliner in airline.Fleet)

@@ -111,10 +111,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
 
                 }
-                // chs, 2011-14-10 added monthly payment of airline Advertisement
+                // chs, 2011-17-10 change so it only looks at the advertisement types which are invented at the time
                 foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
                 {
-                    airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -GameObject.GetInstance().HumanAirline.getAirlineAdvertisement(type).Price));
+                    if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                    {
+                        airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -airline.getAirlineAdvertisement(type).Price));
+                        if (airline.Reputation < 100)
+                            airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel; ændre på reputation evt. til kendskab
+                     
+                    }
                 }
     
 

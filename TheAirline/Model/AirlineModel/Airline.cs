@@ -271,7 +271,7 @@ namespace TheAirline.Model.AirlineModel
         {
             return this.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime; }));
         }
-        // chs, 2011-14-10 added functions for airline Advertisement
+        // chs, 2011-14-10 added functions for airline advertisement
         //sets an Advertisement to the airline
         public void setAirlineAdvertisement(AdvertisementType type)
         {

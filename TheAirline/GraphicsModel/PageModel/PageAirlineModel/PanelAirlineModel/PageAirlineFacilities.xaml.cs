@@ -92,10 +92,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbAdvertisement.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             lbAdvertisement.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             panelFacilities.Children.Add(lbAdvertisement);
-
+      
+            // chs, 2011-17-10 changed so it is only advertisement types which has been invented which are shown
             foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
             {
-                lbAdvertisement.Items.Add(new QuickInfoValue(type.ToString(),createAdvertisementTypeItem(type)));
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                    lbAdvertisement.Items.Add(new QuickInfoValue(type.ToString(), createAdvertisementTypeItem(type)));
             }
 
             Button btnSave = new Button();
@@ -127,23 +129,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.Airline.setAirlineAdvertisement(aType);
             }
         }
-         // chs, 2011-14-10 added a create item for an airline Advertisement item
         //creates an item for an advertisering type
-        private ComboBox createAdvertisementTypeItem(AdvertisementType.AirlineAdvertisementType type)
+        private UIElement createAdvertisementTypeItem(AdvertisementType.AirlineAdvertisementType type)
         {
-            ComboBox cbType = new ComboBox();
-            cbType.ItemTemplate = this.Resources["AdvertisementItem"] as DataTemplate;
-            cbType.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbType.Width = 200;
+            if (this.Airline.IsHuman)
+            {
+                ComboBox cbType = new ComboBox();
+                cbType.ItemTemplate = this.Resources["AdvertisementItem"] as DataTemplate;
+                cbType.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                cbType.Width = 200;
 
-            cbAdvertisements.Add(type, cbType);
 
-            foreach (AdvertisementType aType in AdvertisementTypes.GetTypes(type))
-                cbType.Items.Add(aType);
+                cbAdvertisements.Add(type, cbType);
 
-            cbType.SelectedItem = GameObject.GetInstance().HumanAirline.getAirlineAdvertisement(type);
+                foreach (AdvertisementType aType in AdvertisementTypes.GetTypes(type))
+                    cbType.Items.Add(aType);
 
-            return cbType;
+                cbType.SelectedItem = this.Airline.getAirlineAdvertisement(type);
+
+                return cbType;
+            }
+            // chs, 2011-17-10 changed so it is not possible to change the advertisement type for a CPU airline
+            else
+            {
+                return UICreator.CreateTextBlock(this.Airline.getAirlineAdvertisement(type).Name);
+            }
         }
         //shows the list of facilities
         private void showFacilities()

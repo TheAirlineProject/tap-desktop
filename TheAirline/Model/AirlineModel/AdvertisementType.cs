@@ -11,7 +11,7 @@ namespace TheAirline.Model.AirlineModel
  */
     public class AdvertisementType
     {
-        public enum AirlineAdvertisementType { Newspaper, Radio, TV, Internet }
+        public enum AirlineAdvertisementType { Newspaper=1930, Radio=1940, TV=1950, Internet=1995 }
         public AirlineAdvertisementType Type { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }

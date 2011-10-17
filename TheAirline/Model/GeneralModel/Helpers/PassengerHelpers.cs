@@ -19,11 +19,10 @@ namespace TheAirline.Model.GeneralModel
         public static double GetPassengersHappiness(Airline airline)
         {
             double passengers = Convert.ToDouble(airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
+            double value = GetHappinessValue(airline);
 
-            if (HappinessPercent.ContainsKey(airline))
-                return HappinessPercent[airline] / passengers * 100.0;
-            else
-                return 0;
+            return value / passengers * 100.0;
+           
         }
         //adds happiness to an airline
         public static void AddPassengerHappiness(Airline airline)
@@ -32,6 +31,21 @@ namespace TheAirline.Model.GeneralModel
                 HappinessPercent[airline] += 1;
             else
                 HappinessPercent.Add(airline, 1);
+        }
+        // chs, 2011-13-10 added for loading of passenger happiness
+        public static void SetPassengerHappiness(Airline airline,double value)
+        {
+            if (HappinessPercent.ContainsKey(airline))
+                HappinessPercent[airline] = value;
+            else
+                HappinessPercent.Add(airline, value);
+        }
+        public static double GetHappinessValue(Airline airline)
+        {
+            if (HappinessPercent.ContainsKey(airline))
+                return HappinessPercent[airline];
+            else
+                return 0;
         }
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(RouteAirliner airliner, AirlinerClass.ClassType type)
