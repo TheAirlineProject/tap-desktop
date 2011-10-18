@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpRouteFacilities : PopUpWindow
     {
         private RouteAirlinerClass AirlinerClass;
-        private ComboBox cbFood, cbDrinks, cbCrew;
+        private ComboBox cbFood, cbDrinks, cbCrew, cbSeating;
         private TextBox txtPrice;
         private Button btnOk;
    
@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpRouteFacilities(RouteAirlinerClass aClass)
         {
-            this.AirlinerClass = new RouteAirlinerClass(aClass.Type, aClass.FarePrice);
+            this.AirlinerClass = new RouteAirlinerClass(aClass.Type,aClass.Seating, aClass.FarePrice);
             this.AirlinerClass.CabinCrew = aClass.CabinCrew;
             this.AirlinerClass.DrinksFacility = aClass.DrinksFacility;
             this.AirlinerClass.FoodFacility = aClass.FoodFacility;
@@ -47,7 +47,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 400;
 
-            this.Height = 150;
+            this.Height = 200;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -102,6 +102,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             lbRouteInfo.Items.Add(new QuickInfoValue("Cabin crew on board", cbCrew));
 
+            // chs, 2011-18-10 added for type of seating
+            cbSeating = new ComboBox();
+            cbSeating.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbSeating.Width = 150;
+            cbSeating.ItemTemplate = this.Resources["SeatingItem"] as DataTemplate;
+
+            foreach (RouteAirlinerClass.SeatingType sType in Enum.GetValues(typeof(RouteAirlinerClass.SeatingType)))
+                cbSeating.Items.Add(sType);
+
+            lbRouteInfo.Items.Add(new QuickInfoValue("Type of seating", cbSeating));
+                
             WrapPanel panelPrice = new WrapPanel();
 
             txtPrice = new TextBox();
@@ -162,6 +173,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbDrinks.SelectedItem = this.AirlinerClass.DrinksFacility;// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
             cbCrew.SelectedItem = this.AirlinerClass.CabinCrew;
             txtPrice.Text = this.AirlinerClass.FarePrice.ToString();
+            cbSeating.SelectedItem = this.AirlinerClass.Seating;
         }
 
         private void txtPrice_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -192,7 +204,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             RouteFacility food = (RouteFacility)cbFood.SelectedItem;
             RouteFacility drinks = (RouteFacility)cbDrinks.SelectedItem;
             int crew = (int)cbCrew.SelectedItem;
+            RouteAirlinerClass.SeatingType seating = (RouteAirlinerClass.SeatingType)cbSeating.SelectedItem;
 
+            this.AirlinerClass.Seating = seating;
             this.AirlinerClass.FarePrice = price;
             this.AirlinerClass.FoodFacility = food;
             this.AirlinerClass.DrinksFacility = drinks;

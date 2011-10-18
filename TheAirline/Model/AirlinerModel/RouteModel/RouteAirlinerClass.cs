@@ -11,15 +11,20 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     */
     public class RouteAirlinerClass
     {
+        // chs, 2011-18-10 added seating type to a route airliner class
+        public enum SeatingType { Reserved_Seating, Free_Seating }
+        public SeatingType Seating { get; set; } 
         public double FarePrice { get; set; }
         public RouteFacility FoodFacility { get; set; }
         public RouteFacility DrinksFacility { get; set; }
         public int CabinCrew { get; set; }
         public AirlinerClass.ClassType Type { get; set; }
-        public RouteAirlinerClass(AirlinerClass.ClassType type, double fareprice)
+        
+        public RouteAirlinerClass(AirlinerClass.ClassType type,SeatingType seating, double fareprice)
         {
             this.Type = type;
             this.FarePrice = fareprice;
+            this.Seating = seating;
         }
 
     }

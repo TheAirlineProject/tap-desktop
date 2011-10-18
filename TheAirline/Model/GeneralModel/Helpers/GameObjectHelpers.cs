@@ -118,7 +118,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -airline.getAirlineAdvertisement(type).Price));
                         if (airline.Reputation < 100)
-                            airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel; ændre på reputation evt. til kendskab
+                            airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel; 
                      
                     }
                 }

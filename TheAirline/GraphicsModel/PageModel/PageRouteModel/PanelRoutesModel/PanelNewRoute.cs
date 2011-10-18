@@ -144,7 +144,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                RouteAirlinerClass rClass = new RouteAirlinerClass(type, 10);
+                RouteAirlinerClass rClass = new RouteAirlinerClass(type,RouteAirlinerClass.SeatingType.Reserved_Seating, 10);
                 rClass.FoodFacility = RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
                 rClass.DrinksFacility = RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
                 this.Classes.Add(type, rClass);
@@ -259,6 +259,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Classes[type].DrinksFacility = aClass.DrinksFacility;
                 this.Classes[type].FarePrice = aClass.FarePrice;
                 this.Classes[type].FoodFacility = aClass.FoodFacility;
+                this.Classes[type].Seating = aClass.Seating;
             }
         }
 
@@ -339,7 +340,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
                     route.getRouteAirlinerClass(aClass.Type).FoodFacility = aClass.FoodFacility;
                     route.getRouteAirlinerClass(aClass.Type).DrinksFacility = aClass.DrinksFacility;
-
+                    route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
                     // route.DrinksFacility = (RouteFacility)cbDrinks.SelectedItem;
                     // route.FoodFacility = (RouteFacility)cbFood.SelectedItem;
                     // route.CabinCrew = (int)cbCrew.SelectedItem;

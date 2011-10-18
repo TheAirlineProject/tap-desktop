@@ -38,7 +38,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Classes = new List<RouteAirlinerClass>();
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
-                this.Classes.Add(new RouteAirlinerClass(type, farePrice));
+                this.Classes.Add(new RouteAirlinerClass(type,RouteAirlinerClass.SeatingType.Reserved_Seating,farePrice));
 
         }
         //creates the "dummy" time table

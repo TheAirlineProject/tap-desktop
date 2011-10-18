@@ -94,7 +94,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double passengerHappiness = Convert.ToDouble(airlinePassengerNode.Attributes["value"].Value);
                 PassengerHelpers.SetPassengerHappiness(airline, passengerHappiness);
 
-                XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facilty");
+                XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facility");
                 foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
                 {
                     string airlineFacility = airlineFacilityNode.Attributes["name"].Value;
@@ -201,12 +201,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         double fareprice = XmlConvert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
                         int cabincrew = Convert.ToInt16(routeClassNode.Attributes["cabincrew"].Value);
                         RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; }); 
-                        RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; }); 
-
-                        RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, fareprice);
+                        RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
+                        // chs, 2011-18-10 added for loading of type of seating
+                        RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);                        
+  
+                        RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType,RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);
                         rClass.CabinCrew = cabincrew;
                         rClass.DrinksFacility = drinks;
                         rClass.FoodFacility = food;
+                        rClass.Seating = seatingType;
 
                         route.addRouteAirlinerClass(rClass);        
 
@@ -334,7 +337,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline humanAirline = Airlines.GetAirline(gameSettingsNode.Attributes["human"].Value);
             GameObject.GetInstance().HumanAirline = humanAirline;
 
-            DateTime gameTime = Convert.ToDateTime(gameSettingsNode.Attributes["time"].Value);
+            // chs, 2011-18-10 change to DateTime.Parse which works with different time formats
+            DateTime gameTime = DateTime.Parse(gameSettingsNode.Attributes["time"].Value);
             GameObject.GetInstance().GameTime = gameTime;
 
             double fuelPrice = Convert.ToDouble(gameSettingsNode.Attributes["fuelprice"].Value);
@@ -448,7 +452,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement airlinerClassNode = xmlDoc.CreateElement("class");
                     airlinerClassNode.SetAttribute("type", aClass.Type.ToString());
                     airlinerClassNode.SetAttribute("seating", aClass.SeatingCapacity.ToString());
-                    // chs, 2011-13-10 added for saving of airliner facilities
               
                     XmlElement airlinerClassFacilitiesNode = xmlDoc.CreateElement("facilities");
                     foreach (AirlinerFacility.FacilityType facilityType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
@@ -494,7 +497,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (AirlineFacility facility in airline.Facilities)
                 {
                     XmlElement airlineFacilityNode = xmlDoc.CreateElement("facility");
-                    airlineFacilitiesNode.SetAttribute("name", facility.Shortname);
+                    airlineFacilityNode.SetAttribute("name", facility.Shortname);
 
                     airlineFacilitiesNode.AppendChild(airlineFacilityNode);
                 }
@@ -613,6 +616,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         routeClassNode.SetAttribute("cabincrew", aClass.CabinCrew.ToString());
                         routeClassNode.SetAttribute("drinks", aClass.DrinksFacility.Name);
                         routeClassNode.SetAttribute("food", aClass.FoodFacility.Name);
+                        // chs, 2011-18-10 added for saving of type of seating
+                        routeClassNode.SetAttribute("seating", aClass.Seating.ToString());
 
                         routeClassesNode.AppendChild(routeClassNode);
                     }

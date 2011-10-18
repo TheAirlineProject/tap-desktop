@@ -261,6 +261,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Classes[type].DrinksFacility = aClass.DrinksFacility;
                 this.Classes[type].FarePrice = aClass.FarePrice;
                 this.Classes[type].FoodFacility = aClass.FoodFacility;
+                this.Classes[type].Seating = aClass.Seating;
+ 
             }
         }
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)
