@@ -30,24 +30,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         {
 
             InitializeComponent();
-            // chs, 2011-10-10 changed to a scroller so all elements are viewable
+      
             ScrollViewer scroller = new ScrollViewer();
             scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            scroller.Height = GraphicsHelpers.GetContentHeight();
-            scroller.MaxHeight = GraphicsHelpers.GetContentHeight();
-            scroller.Margin = new Thickness(0, 0, 50, 0);
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight()-50;
+            scroller.Margin = new Thickness(0, 10, 50, 0);
 
             StackPanel panelStatistics = new StackPanel();
             panelStatistics.Orientation = Orientation.Vertical;
-            //panelStatistics.Margin = new Thickness(0, 0, 50, 0);
-
+       
             TextBlock txtHeader = new TextBlock();
             txtHeader.Margin = new Thickness(0, 0, 0, 0);
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Statistics";
+            txtHeader.Text = "Flights Statistics";
 
             panelStatistics.Children.Add(txtHeader);
 
@@ -70,11 +68,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         {
             panelStats.Children.Clear();
 
-            // panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Arrivals")));
-            //panelStats.Children.Add(createHappinessPanel());
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Departures")));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers")));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%")));
+            panelStats.Children.Add(createHappinessPanel());
+      
 
         }
         private void PageAirlinesStatistics_OnTimeChanged()

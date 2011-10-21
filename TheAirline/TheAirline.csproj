@@ -130,6 +130,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesExtendedStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -179,6 +183,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PageNewAirline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -314,6 +322,9 @@
     <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PageAirlines.xaml.cs">
       <DependentUpon>PageAirlines.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesExtendedStatistics.xaml.cs">
+      <DependentUpon>PageAirlinesExtendedStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesStatistics.xaml.cs">
       <DependentUpon>PageAirlinesStatistics.xaml</DependentUpon>
     </Compile>
@@ -356,6 +367,9 @@
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PanelFleetAirliner.cs" />
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml.cs">
       <DependentUpon>PageFrontMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PageNewAirline.xaml.cs">
+      <DependentUpon>PageNewAirline.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageNewGame.xaml.cs">
       <DependentUpon>PageNewGame.xaml</DependentUpon>

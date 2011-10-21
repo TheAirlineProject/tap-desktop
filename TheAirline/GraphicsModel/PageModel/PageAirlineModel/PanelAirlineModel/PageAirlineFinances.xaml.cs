@@ -170,7 +170,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
           
             if (this.IsLoaded)
             {
-                txtBalance.Text = string.Format("{0:c}", this.Airline.Money - GameObject.GetInstance().StartMoney);
+                txtBalance.Text = string.Format("{0:c}", this.Airline.getProfit());
                 txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - GameObject.GetInstance().StartMoney, null, null, null) as Brush;
 
                 txtCurrentMoney.Text = string.Format("{0:c}", this.Airline.Money);

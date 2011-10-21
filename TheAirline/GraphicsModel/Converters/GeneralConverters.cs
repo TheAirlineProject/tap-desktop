@@ -237,19 +237,7 @@ namespace TheAirline.GraphicsModel.Converters
             {
                 TypeConverter colorConverter = new ColorConverter();
                 Color c = (Color)colorConverter.ConvertFromString(airline.Profile.Color);
-                /*
-                Color c2 = Color.FromArgb(25, c.R, c.G, c.B);
-
-                LinearGradientBrush colorBrush = new LinearGradientBrush();
-                colorBrush.StartPoint = new Point(0, 0);
-                colorBrush.EndPoint = new Point(0, 1);
-                colorBrush.GradientStops.Add(new GradientStop(c2, 0.2));
-                colorBrush.GradientStops.Add(new GradientStop(c, 0.85));
-                colorBrush.GradientStops.Add(new GradientStop(c2, 1));
-
-                //return new SolidColorBrush(c);
-                return colorBrush;
-                 * */
+              
                 return new SolidColorBrush(c);
             }
             catch
@@ -259,6 +247,31 @@ namespace TheAirline.GraphicsModel.Converters
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for a string to a brush
+    public class StringToBrushConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string color = (string)value;
+            try
+            {
+                TypeConverter colorConverter = new ColorConverter();
+                Color c = (Color)colorConverter.ConvertFromString(color);
+
+                return new SolidColorBrush(c);
+            }
+            catch
+            {
+                return Brushes.White;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

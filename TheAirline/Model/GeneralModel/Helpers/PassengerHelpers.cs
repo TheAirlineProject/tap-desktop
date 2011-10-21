@@ -21,7 +21,10 @@ namespace TheAirline.Model.GeneralModel
             double passengers = Convert.ToDouble(airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
             double value = GetHappinessValue(airline);
 
-            return value / passengers * 100.0;
+            if (passengers == 0)
+                return 0;
+            else 
+               return value / passengers * 100.0;
            
         }
         //adds happiness to an airline

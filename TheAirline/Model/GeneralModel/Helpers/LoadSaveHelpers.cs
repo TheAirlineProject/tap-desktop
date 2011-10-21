@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirlinerType type = AirlinerTypes.GetType(airlinerNode.Attributes["type"].Value);
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
-                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("en-US", false));
+                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
                 double flown = XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
@@ -131,7 +131,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (XmlElement airlineInvoiceNode in airlineInvoiceList)
                 {
                     Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), airlineInvoiceNode.Attributes["type"].Value);
-                    DateTime invoiceDate = DateTime.Parse(airlineInvoiceNode.Attributes["date"].Value,new CultureInfo("en-US", false));
+                    DateTime invoiceDate = DateTime.Parse(airlineInvoiceNode.Attributes["date"].Value,new CultureInfo("de-DE", false));
                     double invoiceAmount = XmlConvert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
 
                     
@@ -337,8 +337,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline humanAirline = Airlines.GetAirline(gameSettingsNode.Attributes["human"].Value);
             GameObject.GetInstance().HumanAirline = humanAirline;
 
-            // chs, 2011-18-10 change to DateTime.Parse which works with different time formats
-            DateTime gameTime = DateTime.Parse(gameSettingsNode.Attributes["time"].Value);
+            // chs, 2011-19-10 change to DateTime.Parse and read it using specific culture info
+            DateTime gameTime = DateTime.Parse(gameSettingsNode.Attributes["time"].Value, new CultureInfo("de-DE"));
             GameObject.GetInstance().GameTime = gameTime;
 
             double fuelPrice = Convert.ToDouble(gameSettingsNode.Attributes["fuelprice"].Value);
@@ -354,7 +354,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (XmlElement newsNode in newsList)
             {
-                DateTime newsDate = DateTime.Parse(newsNode.Attributes["date"].Value, new CultureInfo("en-US", false));
+                DateTime newsDate = DateTime.Parse(newsNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
                 News.NewsType newsType = (News.NewsType)Enum.Parse(typeof(News.NewsType), newsNode.Attributes["type"].Value);
                 string newsSubject = newsNode.Attributes["subject"].Value;
                 string newsBody = newsNode.Attributes["body"].Value;
@@ -757,7 +757,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (News news in GameObject.GetInstance().NewsBox.getNews())
             {
                 XmlElement newsNode = xmlDoc.CreateElement("new");
-                newsNode.SetAttribute("date", news.Date.ToString());
+                // chs, 2011-19-10 change to use a specific culture info for saving date format      
+                newsNode.SetAttribute("date", news.Date.ToString(new CultureInfo("de-DE")));
                 newsNode.SetAttribute("type", news.Type.ToString());
                 newsNode.SetAttribute("subject", news.Subject);
                 newsNode.SetAttribute("body", news.Body);

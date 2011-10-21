@@ -20,6 +20,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -33,7 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ContentControl cntCountry;
         private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone;
         private ICollectionView airportsView;
-
+        private Rectangle airlineColorRect;
         public PageNewGame()
         {
             InitializeComponent();
@@ -58,18 +59,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             ListBox lbContent = new ListBox();
             lbContent.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbContent.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-            // lbAirlines.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
-
+      
             panelContent.Children.Add(lbContent);
 
+            // chs, 2011-19-10 added for the possibility of creating a new airline
+            WrapPanel panelAirline = new WrapPanel();
+
             cbAirline = new ComboBox();
-            //cbAirlines.Background = Brushes.Yellow;
             cbAirline.SetResourceReference(ComboBox.ItemTemplateProperty, "AirlineLogoItem");
             cbAirline.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirline.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirline.SelectionChanged += new SelectionChangedEventHandler(cbAirline_SelectionChanged);
-            //cbAirline.DisplayMemberPath = "Profile.Name";
-            //cbAirline.SelectedValuePath = "Profile.Name";
             cbAirline.Width = 200;
 
             List<Airline> airlines = Airlines.GetAirlines();
@@ -77,16 +77,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbAirline.ItemsSource = airlines;
 
+            panelAirline.Children.Add(cbAirline);
 
-            lbContent.Items.Add(new QuickInfoValue("Select Airline", cbAirline));
+            Button btnAddAirline = new Button();
+            btnAddAirline.Margin = new Thickness(5, 0, 0, 0);
+            btnAddAirline.Background = Brushes.Transparent;
+          //  btnAddAirline.Click += new RoutedEventHandler(btnAddAirline_Click);
+
+            Image imgAddAirline = new Image();
+            imgAddAirline.Source = new BitmapImage(new Uri(@"/Data/images/add.png", UriKind.RelativeOrAbsolute));
+            imgAddAirline.Height = 16;
+            RenderOptions.SetBitmapScalingMode(imgAddAirline, BitmapScalingMode.HighQuality);
+
+            btnAddAirline.Content = imgAddAirline;
+
+            panelAirline.Children.Add(btnAddAirline);
+
+            lbContent.Items.Add(new QuickInfoValue("Select Airline", panelAirline));
 
             txtIATA = UICreator.CreateTextBlock("");
             lbContent.Items.Add(new QuickInfoValue("IATA Code", txtIATA));
 
             cntCountry = new ContentControl();
             cntCountry.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-            //lblFlag.Content = this.Airline.Profile.Country;
-
+    
             lbContent.Items.Add(new QuickInfoValue("Home country", cntCountry));
 
 
@@ -98,31 +112,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue("Name of CEO", txtName));
 
+            // chs, 2011-19-10 added to show the airline color
+            airlineColorRect = new Rectangle();
+            airlineColorRect.Width = 40;
+            airlineColorRect.Height = 20;
+            airlineColorRect.StrokeThickness = 1;
+            airlineColorRect.Stroke = Brushes.Black;
+            airlineColorRect.Fill = new AirlineBrushConverter().Convert(Airlines.GetAirline("ZA")) as Brush;
+            airlineColorRect.Margin = new Thickness(0, 2, 0, 2);
+
+            lbContent.Items.Add(new QuickInfoValue("Airline Color", airlineColorRect));
 
             cbAirport = new ComboBox();
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            //cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirport.SelectionChanged += new SelectionChangedEventHandler(cbAirports_SelectionChanged);
-            //cbAirports.IsEditable = false;
-            //bAirports.IsReadOnly = true;
-
+    
             List<Airport> airportsList = Airports.GetAirports();
 
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));
 
-            //cbAirports.ItemsSource = getAirportsList();// airportsView;
             cbAirport.ItemsSource = airportsView;
 
      
             lbContent.Items.Add(new QuickInfoValue("Select homebase", cbAirport));
 
-            //List<AirlinerType> types = AirlinerTypes.GetTypes();
-            //types.Sort(delegate(AirlinerType a1, AirlinerType a2) { return a1.Produced.From.CompareTo(a2.Produced.From); });
-
+   
             cbStartYear = new ComboBox();
             cbStartYear.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbStartYear.Width = 60;
@@ -204,6 +222,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             showPage(this);
         }
 
+        private void btnAddAirline_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageNewAirline());
+
+        }
+
      
 
         private void cbAirports_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -219,11 +243,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-           // WPFMessageBoxResult result = WPFMessageBox.Show("Exit game", "Are you sure you want to exit the game?", WPFMessageBoxButtons.YesNo);
-
-            //if (result == WPFMessageBoxResult.Yes)
-                //PageNavigator.MainWindow.Close();
-                PageNavigator.NavigateTo(new PageFrontMenu());
+             PageNavigator.NavigateTo(new PageFrontMenu());
 
         }
 
@@ -286,15 +306,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 return a.Profile.Country.Region == airline.Profile.Country.Region && (a.Profile.Size == AirportProfile.AirportSize.Smallest || a.Profile.Size == AirportProfile.AirportSize.Very_small);
             };
 
-            //cbAirports.Items.Clear();
-            //Airports.GetAirports(airline.Profile.Country.Region);
-            // foreach (Airport airport in Airports.GetAirports(airline.Profile.Country.Region))
-            //   cbAirports.Items.Add(airport);
-
-
-
+            airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
             txtName.Text = airline.Profile.CEO;
-            //lblFlag.Content = this.Airline.Profile.Country;
             txtIATA.Text = airline.Profile.IATACode;
             cntCountry.Content = airline.Profile.Country;
 

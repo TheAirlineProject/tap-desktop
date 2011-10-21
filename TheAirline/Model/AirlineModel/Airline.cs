@@ -200,7 +200,8 @@ namespace TheAirline.Model.AirlineModel
                 return AirlineValue.Very_high;
             return AirlineValue.Normal;
         }
-        // chs, 2011-13-10 added function to return the value in $ of an airline
+     
+       
         //returns the value of the airline in "money"
         public double getValue()
         {
@@ -294,6 +295,33 @@ namespace TheAirline.Model.AirlineModel
             }
         
         }
+        // chs, 2011-18-10 added to handle the different statistics for the airline
+        /*! returns the total profit for the airline
+         */
+        public double getProfit()
+        {
+            return this.Money - GameObject.GetInstance().StartMoney;
+        }
+        /*! returns the fleet size
+         */
+        public double getFleetSize()
+        {
+            return this.Fleet.Count;
+        }
+        /*! returns the average age for the fleet
+         */
+        public double getAverageFleetAge()
+        {
+            double totalAge = 0;
+
+            foreach (FleetAirliner airliner in this.Fleet)
+                totalAge += airliner.Airliner.Age;
+
+            if (getFleetSize() == 0)
+                return 0;
+            else
+                return totalAge / getFleetSize();
+        }
      
      
        
@@ -315,7 +343,10 @@ namespace TheAirline.Model.AirlineModel
         //returns an airline
         public static Airline GetAirline(string iata)
         {
-            return airlines[iata];
+            if (airlines.ContainsKey(iata))
+                return airlines[iata];
+            else
+                return null;
         }
         //returns the list of airlines
         public static List<Airline> GetAirlines()
