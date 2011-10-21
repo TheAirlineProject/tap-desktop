@@ -82,7 +82,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             Button btnAddAirline = new Button();
             btnAddAirline.Margin = new Thickness(5, 0, 0, 0);
             btnAddAirline.Background = Brushes.Transparent;
-          //  btnAddAirline.Click += new RoutedEventHandler(btnAddAirline_Click);
+            btnAddAirline.Click += new RoutedEventHandler(btnAddAirline_Click);
 
             Image imgAddAirline = new Image();
             imgAddAirline.Source = new BitmapImage(new Uri(@"/Data/images/add.png", UriKind.RelativeOrAbsolute));
