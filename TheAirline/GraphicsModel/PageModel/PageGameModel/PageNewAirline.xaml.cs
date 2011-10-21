@@ -203,8 +203,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             Airlines.AddAirline(airline);
 
-            //Recreate Airports + Load/save Airline Profile
-
+           
             PageNavigator.NavigateTo(new PageNewGame());
         }
     }

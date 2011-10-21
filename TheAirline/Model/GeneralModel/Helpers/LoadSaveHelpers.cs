@@ -67,7 +67,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                
             }
 
-            List<Airline> airlines = Airlines.GetAirlines();
             Airlines.Clear();
 
             
@@ -75,18 +74,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (XmlElement airlineNode in airlinesList)
             {
+                // chs, 2011-21-10 changed for the possibility of creating a new airline
                 string airlineName = airlineNode.Attributes["name"].Value;
+                string airlineIATA = airlineNode.Attributes["code"].Value;
+                Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
+                string color = airlineNode.Attributes["color"].Value;
+                string logo = airlineNode.Attributes["logo"].Value;
                 string airlineCEO = airlineNode.Attributes["CEO"].Value;
                 double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
                 int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
 
-                Airline airline = airlines.Find(delegate(Airline a) { return a.Profile.IATACode == airlineName; });
+            
+
+                Airline airline = new Airline(new AirlineProfile(airlineName,airlineIATA,color,airlineCountry,airlineCEO));
+                airline.Profile.Logo = logo;
                 airline.Fleet.Clear();
                 airline.Airports.Clear();
                 airline.Routes.Clear();
               
                 airline.Money = money;
-                airline.Profile.CEO = airlineCEO;
                 airline.Reputation = reputation;
      
                 // chs, 2011-17-10 added for loading of passenger happiness
@@ -476,12 +482,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             root.AppendChild(airlinersNode);
 
+      
 
             XmlElement airlinesNode = xmlDoc.CreateElement("airlines");
             foreach (Airline airline in Airlines.GetAirlines())
             {
+                // chs, 2011-21-10 changed for the possibility of creating a new airline
                 XmlElement airlineNode = xmlDoc.CreateElement("airline");
-                airlineNode.SetAttribute("name", airline.Profile.IATACode);
+                airlineNode.SetAttribute("name", airline.Profile.Name);
+                airlineNode.SetAttribute("code", airline.Profile.IATACode);
+                airlineNode.SetAttribute("country", airline.Profile.Country.Name);
+                airlineNode.SetAttribute("color", airline.Profile.Color);
+                airlineNode.SetAttribute("logo", airline.Profile.Logo);
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
                 airlineNode.SetAttribute("money", airline.Money.ToString());
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());

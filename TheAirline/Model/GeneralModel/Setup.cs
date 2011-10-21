@@ -537,21 +537,8 @@ namespace TheAirline.Model.GeneralModel
             GameObject.GetInstance().HumanAirline = Airlines.GetAirline("KWY");
 
             CreateAirlineLogos();
-
-            //sets all the facilities at an airport to none for all airlines
-            foreach (Airport airport in Airports.GetAirports())
-            {
-                foreach (Airline airline in Airlines.GetAirlines())
-                {
-                    foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
-                    {
-                        AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
-
-                        airport.setAirportFacility(airline, noneFacility);
-
-                    }
-                }
-            }
+            
+           
 
         }
 
@@ -567,6 +554,21 @@ namespace TheAirline.Model.GeneralModel
                 if (!airline.IsHuman) CreateComputerRoutes(airline);
             }
 
+            // chs, 2011-21-10 added for the possibility of creating a new airline
+            //sets all the facilities at an airport to none for all airlines
+            foreach (Airport airport in Airports.GetAirports())
+            {
+                foreach (Airline airline in Airlines.GetAirlines())
+                {
+                    foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+                    {
+                        AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+
+                        airport.setAirportFacility(airline, noneFacility);
+
+                    }
+                }
+            }
         }
 
         /*! removes some random airlines from the list bases on number of opponents.
