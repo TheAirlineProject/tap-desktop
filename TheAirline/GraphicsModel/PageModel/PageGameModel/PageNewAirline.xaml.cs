@@ -23,14 +23,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
     /// <summary>
     /// Interaction logic for PageNewAirline.xaml
     /// </summary>
-    // chs, 2011-19-10 added for the possibility of creating a new airline
   
     public partial class PageNewAirline : StandardPage
     {
         private TextBox txtAirlineName, txtIATA;
         private ComboBox cbCountry, cbColor;
+        private Image imgLogo;
         private Button btnCreate;
-        private string defaultLogoPath = Setup.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+        private string logoPath = Setup.getDataPath() + "\\graphics\\airlinelogos\\default.png";
         public PageNewAirline()
         {
             InitializeComponent();
@@ -73,16 +73,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue("IATA Code", txtIATA));
 
-           
-            Image imgLogo = new Image();
-            imgLogo.Source = new BitmapImage(new Uri(defaultLogoPath, UriKind.RelativeOrAbsolute));
+            // chs, 2011-20-10 changed to enable loading of logo
+
+            WrapPanel panelAirlineLogo = new WrapPanel();
+      
+            imgLogo = new Image();
+            imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
             imgLogo.Width = 32;
             imgLogo.Margin = new Thickness(0, 0, 5, 0);
             imgLogo.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             RenderOptions.SetBitmapScalingMode(imgLogo, BitmapScalingMode.HighQuality);
-          
+
+            panelAirlineLogo.Children.Add(imgLogo);
+
+            Button btnLogo = new Button();
+            btnLogo.Content = "...";
+            btnLogo.Background = Brushes.Transparent;
+            btnLogo.Click += new RoutedEventHandler(btnLogo_Click);
+            btnLogo.Margin = new Thickness(5, 0, 0, 0);
+
+            panelAirlineLogo.Children.Add(btnLogo);
            
-            lbContent.Items.Add(new QuickInfoValue("Airline Logo", imgLogo));
+            lbContent.Items.Add(new QuickInfoValue("Airline Logo", panelAirlineLogo));
 
             cbColor = new ComboBox();
             cbColor.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -148,6 +160,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             showPage(this);
 
         }
+        // chs, 2011-20-10 changed to enable loading of logo
+
+        private void btnLogo_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+
+            dlg.DefaultExt = ".png";
+            dlg.Filter = "Images (.png)|*.png";
+            dlg.InitialDirectory = Setup.getDataPath() + "\\graphics\\airlinelogos\\";
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+
+                   logoPath = dlg.FileName;
+                   imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
+                   
+                
+
+            }
+
+        }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -197,7 +232,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             string color = ((PropertyInfo)cbColor.SelectedItem).Name;
 
             AirlineProfile profile = new AirlineProfile(name, iata, color, country, "Unknown");
-            profile.Logo = defaultLogoPath;
+            profile.Logo = logoPath;
 
             Airline airline = new Airline(profile);
 

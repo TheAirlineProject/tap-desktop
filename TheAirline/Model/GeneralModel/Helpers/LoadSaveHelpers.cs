@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirlinerType type = AirlinerTypes.GetType(airlinerNode.Attributes["type"].Value);
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
-                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
+                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
                 double flown = XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
