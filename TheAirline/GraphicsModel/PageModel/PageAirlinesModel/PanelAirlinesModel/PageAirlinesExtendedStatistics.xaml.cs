@@ -74,18 +74,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             if (this.View == ViewType.Fleet)
             {
-                panelStats.Children.Add(createStatisticsPanel("getFleetSize", "Airline Fleet Size"));
-                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge", "Airline Fleet Age"));
+                panelStats.Children.Add(createStatisticsPanel("getFleetSize", "Airline Fleet Size",false));
+                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge", "Airline Fleet Age",false));
             }
             else if (this.View == ViewType.Financial)
             {
-                panelStats.Children.Add(createStatisticsPanel("getProfit", "Airline Profit"));
-                panelStats.Children.Add(createStatisticsPanel("getValue", "Airline Value"));
+                panelStats.Children.Add(createStatisticsPanel("getProfit", "Airline Profit",true));
+                panelStats.Children.Add(createStatisticsPanel("getValue", "Airline Value",true));
             }
 
         }
         //creates the airlines statistics
-        private StackPanel createStatisticsPanel(string methodName, string name)
+        private StackPanel createStatisticsPanel(string methodName, string name, Boolean financial)
         {
             StackPanel panelStatistics = new StackPanel();
             panelStatistics.Margin = new Thickness(0, 0, 0, 5);
@@ -100,8 +100,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             ListBox lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
 
+
+            // chs, 2011-22-10 changed so financial statistics are shown in currency
+            if (financial)
+                lbStatistics.ItemTemplate = this.Resources["AirlineFinancialStatItem"] as DataTemplate;
+            else
+                lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
+            
 
             double maxValue = getMaxValue(methodName);
 

@@ -185,7 +185,7 @@ namespace TheAirline.GraphicsModel.Converters
         {
             try
             {
-                double amount = (double)value;
+                double amount = double.Parse(value.ToString());
 
                 if (amount >= 0)
                     return Brushes.White;

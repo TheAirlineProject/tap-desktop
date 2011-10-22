@@ -41,7 +41,6 @@
                 </TextBlock>
                 <TextBlock Text="{Binding Manufacturer.Name}" Width="200" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Price, StringFormat={}{0:c}, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="100" TextAlignment="Right"></TextBlock>
-              <!--  <TextBlock Text="{Binding Source={x:Static g:CultureInfo.CurrentCulture},Path=NumberFormat.CurrencySymbol}"/>-->
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="AirlinersUsedHeader">
