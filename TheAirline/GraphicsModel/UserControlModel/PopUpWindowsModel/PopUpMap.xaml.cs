@@ -64,8 +64,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpMap(int mapSize)
         {
             InitializeComponent();
+            this.Uid = "1000";
 
-            this.Title = "Map";
+            this.Title = Translator.GetInstance().GetString("PopUpMap", this.Uid);
 
             this.Width = mapSize;
 

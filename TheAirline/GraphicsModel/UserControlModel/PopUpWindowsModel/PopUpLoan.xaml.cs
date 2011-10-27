@@ -32,8 +32,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpLoan()
         {
             InitializeComponent();
+            this.Uid = "1000";
 
-            this.Title = "Apply for a loan";
+            this.Title = Translator.GetInstance().GetString("PopUpLoan", this.Uid);
 
             this.Width = 400;
 
@@ -119,20 +120,22 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "Apply";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
+            btnCancel.Uid = "101";
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCancel.Height = Double.NaN;
             btnCancel.Width = Double.NaN;
-            btnCancel.Content = "Cancel";
+            btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);

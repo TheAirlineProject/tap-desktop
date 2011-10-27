@@ -32,9 +32,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         private ListBox lbArrivals, lbDepartures;
         public PageAirport(Airport airport)
         {
-            this.Airport = airport;
-
             InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageAirport", this.Uid);
+
+            this.Airport = airport;
 
             StackPanel airportPanel = new StackPanel();
             airportPanel.Margin = new Thickness(10, 0, 10, 0);
@@ -59,7 +62,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent(this.Airport.Profile.Name);
+            base.setHeaderContent(this.Title + " - " + this.Airport.Profile.Name);
 
 
             showPage(this);

@@ -34,8 +34,10 @@ namespace TheAirline.Model.GeneralModel
 
         /*! private static variable basePath.
          * stores the path to the Plugin directory.
+         * Plugins are always relative to the location of the exe file, so they do not use
+         * the working directory as base path, but the location of the exe file as base
          */
-        private static string pluginPath = basePath + "\\plugin";
+        private static string pluginsPath = AppDomain.CurrentDomain.BaseDirectory + "plugins";
 
         /*! private static variable rnd.
          * holds a random number.
@@ -70,6 +72,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateAirlines();
                 CreateFlightFacilities();
                 CreateLanguages();
+                Translator.GetInstance();
 
 
                 CreateSkins();
@@ -166,14 +169,19 @@ namespace TheAirline.Model.GeneralModel
             langUS.addWord("km/t", "mph");
             langUS.addWord("l/seat/km", "g/seat/m");
             langUS.addWord("ltr", "gal");
-
             Languages.AddLanguage(langUS);
+
             Language langUK = new Language("English (UK)", "en-GB");
             langUK.Unit = Language.UnitSystem.Metric;
-
             Languages.AddLanguage(langUK);
 
+            Language langDE = new Language("Deutsch (DE)", "de-DE");
+            langDE.Unit = Language.UnitSystem.Metric;
+            Languages.AddLanguage(langDE);
+
+            // we set the default language on startup
             GameObject.GetInstance().setLanguage(langUK);
+            Translator.DefaultLanguage = System.Threading.Thread.CurrentThread.CurrentUICulture.ToString();
         }
         /*! creates the Advertisement types
          */
@@ -804,7 +812,7 @@ namespace TheAirline.Model.GeneralModel
          */
         public static string getPluginPath()
         {
-            return pluginPath;
+            return pluginsPath;
         }
     }
 

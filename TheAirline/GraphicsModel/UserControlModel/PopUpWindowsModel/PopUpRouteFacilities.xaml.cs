@@ -36,6 +36,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpRouteFacilities(RouteAirlinerClass aClass)
         {
+            this.Uid = "1000";
             this.AirlinerClass = new RouteAirlinerClass(aClass.Type,aClass.Seating, aClass.FarePrice);
             this.AirlinerClass.CabinCrew = aClass.CabinCrew;
             this.AirlinerClass.DrinksFacility = aClass.DrinksFacility;
@@ -43,7 +44,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         
             InitializeComponent();
 
-            this.Title = "Change airliner class facilities";
+            this.Title = Translator.GetInstance().GetString("PopUpRouteFacilities", this.Uid);
 
             this.Width = 400;
 
@@ -73,7 +74,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             foreach (RouteFacility facility in RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food))
                 cbFood.Items.Add(facility);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Food on board", cbFood));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1001"), cbFood));
 
             cbDrinks = new ComboBox();
             cbDrinks.Background = Brushes.Transparent;
@@ -87,7 +88,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             foreach (RouteFacility facility in RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks))
                 cbDrinks.Items.Add(facility);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Drinks on board", cbDrinks));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1002"), cbDrinks));
 
             cbCrew = new ComboBox();
             cbCrew.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -100,7 +101,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             cbCrew.SelectedIndex = 0;
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Cabin crew on board", cbCrew));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1003"), cbCrew));
 
             // chs, 2011-18-10 added for type of seating
             cbSeating = new ComboBox();
@@ -111,7 +112,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             foreach (RouteAirlinerClass.SeatingType sType in Enum.GetValues(typeof(RouteAirlinerClass.SeatingType)))
                 cbSeating.Items.Add(sType);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Type of seating", cbSeating));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1004"), cbSeating));
                 
             WrapPanel panelPrice = new WrapPanel();
 
@@ -135,7 +136,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelPrice.Children.Add(txtCurrencySign);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Fare price", panelPrice));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1005"), panelPrice));
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
@@ -143,10 +144,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             contentPanel.Children.Add(panelButtons);
 
             btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height =Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             //btnOk.Margin = new System.Windows.Thickness(0, 5, 0, 0);
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -156,13 +158,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
+            btnCancel.Uid = "101";
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCancel.Height = Double.NaN;
             btnCancel.Width = Double.NaN;
             btnCancel.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
-            btnCancel.Content = "Cancel";
+            btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             panelButtons.Children.Add(btnCancel);

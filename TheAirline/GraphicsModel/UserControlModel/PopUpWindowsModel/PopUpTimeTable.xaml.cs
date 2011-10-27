@@ -41,6 +41,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             InitializeComponent();
 
+            this.Uid = "1000";
             this.Route = route;
             this.Airline = airline;
             
@@ -49,7 +50,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             foreach (RouteTimeTableEntry entry in this.Route.TimeTable.Entries)
                 this.TimeTable.addEntry(entry);
 
-            this.Title = "Route Timetable";
+            this.Title = Translator.GetInstance().GetString("PopUpTimeTable", this.Uid);
 
             this.Width = 600;
 
@@ -139,10 +140,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             buttonsPanel.Margin = new Thickness(0, 10, 0, 0);
 
             Button btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnCPUOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
@@ -157,33 +159,36 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             buttonsPanel.Margin = new Thickness(0, 10, 0, 0);
 
             Button btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnOk);
 
             Button btnCancel = new Button();
+            btnCancel.Uid = "101";
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCancel.Height = Double.NaN;
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Width = Double.NaN;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-            btnCancel.Content = "Cancel";
+            btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnCancel);
 
 
             Button btnUndo = new Button();
+            btnUndo.Uid = "103";
             btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnUndo.Height = Double.NaN;
             btnUndo.Width = Double.NaN;
             btnUndo.Margin = new Thickness(5, 0, 0, 0);
-            btnUndo.Content = "Undo";
+            btnUndo.Content = Translator.GetInstance().GetString("General", btnUndo.Uid);
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
 
@@ -292,12 +297,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             entryPanel.Children.Add(cbMinute);
 
             Button btnAdd = new Button();
+            btnAdd.Uid = "104";
             btnAdd.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnAdd.Height = Double.NaN;
             btnAdd.Width = Double.NaN;
             btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
             btnAdd.Margin = new Thickness(5, 0, 0, 0);
-            btnAdd.Content = "Add";
+            btnAdd.Content = Translator.GetInstance().GetString("General", btnAdd.Uid);
             btnAdd.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             btnAdd.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 

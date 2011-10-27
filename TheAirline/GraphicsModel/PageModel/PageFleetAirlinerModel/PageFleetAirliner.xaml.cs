@@ -36,10 +36,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         private ContentControl lblAirport;
         public PageFleetAirliner(FleetAirliner airliner)
         {
+            InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageFleetAirliner", this.Uid);
           
             this.Airliner = airliner;
-
-            InitializeComponent();
 
             StackPanel airlinerPanel = new StackPanel();
             airlinerPanel.Margin = new Thickness(10, 0, 10, 0);
@@ -60,7 +62,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent(this.Airliner.Name);
+            base.setHeaderContent(this.Title + " - " + this.Airliner.Name);
 
 
             showPage(this);

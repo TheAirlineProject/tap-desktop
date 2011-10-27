@@ -25,6 +25,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         public PageNewsBox()
         {
             InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageNewsBox", this.Uid);
+
             StackPanel newsPanel = new StackPanel();
             newsPanel.Margin = new Thickness(10, 0, 10, 0);
 
@@ -60,7 +64,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             
             base.setContent(panelContent);
 
-            base.setHeaderContent("News");
+            base.setHeaderContent(this.Title);
 
 
 

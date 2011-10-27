@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
@@ -30,6 +31,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
         public PageAirports()
         {
             InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageAirports", this.Uid);
 
             StackPanel airportsPanel = new StackPanel();
             airportsPanel.Margin = new Thickness(10, 0, 10, 0);
@@ -80,7 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Airports");
+            base.setHeaderContent(this.Title);
 
             //base.setHeaderContent(string.Format("{0} Finals", this.League.Profile.ShortName), @"/Data/images/trophy.png");
 

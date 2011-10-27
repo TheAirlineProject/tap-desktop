@@ -33,18 +33,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         private ListSortDirection sortDirection = ListSortDirection.Ascending;
         public PageRoutes()
         {
-
             InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageRoutes", this.Uid);
 
             StackPanel routesPanel = new StackPanel();
             routesPanel.Margin = new Thickness(10, 0, 10, 0);
 
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airline Routes";
+            txtHeader.Text = Translator.GetInstance().GetString("PageRoutes", txtHeader.Uid);
             routesPanel.Children.Add(txtHeader);
 
             ContentControl txtRoutesHeader = new ContentControl();
@@ -69,7 +72,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Routes");
+            base.setHeaderContent(this.Title);
 
             //showRoutes();
 
@@ -82,10 +85,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnCreate = new Button();
+            btnCreate.Uid = "200";
             btnCreate.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCreate.Height = Double.NaN;
             btnCreate.Width = Double.NaN;
-            btnCreate.Content = "Create new route";
+            btnCreate.Content = Translator.GetInstance().GetString("PageRoutes", btnCreate.Uid);
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnCreate.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnCreate.Click += new RoutedEventHandler(btnCreate_Click);
@@ -93,10 +97,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             buttonsPanel.Children.Add(btnCreate);
 
             Button btnMap = new Button();
+            btnMap.Uid = "201";
             btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnMap.Width = Double.NaN;
             btnMap.Height = Double.NaN;
-            btnMap.Content = "Route map";
+            btnMap.Content = Translator.GetInstance().GetString("PageRoutes", btnMap.Uid);
             btnMap.Margin = new Thickness(2, 0, 0, 0);
           //  btnMap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -214,11 +219,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             {
                 route.TimeTable = timeTable;
             }
-
-
-
         }
-
-
     }
 }

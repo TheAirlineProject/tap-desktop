@@ -59,6 +59,7 @@ namespace TheAirline.Model.GeneralModel
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.CultureInfo, true);
 
+
         }
         //returns the current language
         public Language getLanguage()

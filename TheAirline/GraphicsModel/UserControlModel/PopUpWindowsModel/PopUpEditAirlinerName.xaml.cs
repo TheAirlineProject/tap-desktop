@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -34,8 +35,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Airliner = airliner;
 
             InitializeComponent();
+            this.Uid = "1000";
 
-            this.Title = "Airliner name";
+            this.Title = Translator.GetInstance().GetString("PopUpEditAirlinerName", this.Uid);
 
             this.Width = 300;
 
@@ -59,30 +61,33 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             mainPanel.Children.Add(panelButtons);
 
             btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
       
             panelButtons.Children.Add(btnOk);
 
             Button btnReset = new Button();
+            btnReset.Uid = "108";
             btnReset.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnReset.Height = Double.NaN;
             btnReset.Width = Double.NaN;
-            btnReset.Content = "Reset";
+            btnReset.Content = Translator.GetInstance().GetString("General", btnReset.Uid);
             btnReset.Click += new RoutedEventHandler(btnReset_Click);
             btnReset.Margin = new Thickness(5, 0, 0, 0);
             btnReset.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             panelButtons.Children.Add(btnReset);
             Button btnCancel = new Button();
+            btnCancel.Uid = "101";
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCancel.Height = Double.NaN;
             btnCancel.Width = Double.NaN;
-            btnCancel.Content = "Cancel";
+            btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");

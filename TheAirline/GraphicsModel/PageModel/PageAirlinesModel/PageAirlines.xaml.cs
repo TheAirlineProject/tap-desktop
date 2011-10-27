@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel;
@@ -26,6 +27,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
         public PageAirlines()
         {
             InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageAirlines", this.Uid);
 
             StackPanel airlinesPanel = new StackPanel();
             airlinesPanel.Margin = new Thickness(10, 0, 10, 0);
@@ -65,7 +69,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Airlines");
+            base.setHeaderContent(this.Title);
 
 
             showPage(this);

@@ -34,14 +34,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
         public PageAirliners()
         {
+            InitializeComponent();
+
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageAirliners", this.Uid);
         
             sortCriteriaNew = delegate(AirlinerType t1, AirlinerType t2) { return t2.Price.CompareTo(t1.Price); };
             sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a2.BuiltDate.CompareTo(a1.BuiltDate); };
 
             this.Language = XmlLanguage.GetLanguage(new CultureInfo("da", false).IetfLanguageTag); 
 
-
-            InitializeComponent();
 
            
             StackPanel airlinersPanel = new StackPanel();
@@ -126,7 +128,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Airliners");
+            base.setHeaderContent(this.Title);
 
             //base.setHeaderContent(string.Format("{0} Finals", this.League.Profile.ShortName), @"/Data/images/trophy.png");
 

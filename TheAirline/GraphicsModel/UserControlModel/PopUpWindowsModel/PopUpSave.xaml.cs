@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
@@ -34,8 +35,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpSave()
         {
             InitializeComponent();
+            this.Uid = "1000";
 
-            this.Title = "Save game";
+            this.Title = Translator.GetInstance().GetString("PopUpSave", this.Uid);
 
             this.Width = 400;
 

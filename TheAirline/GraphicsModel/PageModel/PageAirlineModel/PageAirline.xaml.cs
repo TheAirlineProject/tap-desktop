@@ -29,6 +29,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
         {
             InitializeComponent();
 
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageAirline", this.Uid);
+
             this.Airline = airline;
 
             StackPanel airportPanel = new StackPanel();
@@ -49,7 +52,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent(this.Airline.Profile.Name);
+            base.setHeaderContent(this.Title + " - " + this.Airline.Profile.Name);
 
             
 
