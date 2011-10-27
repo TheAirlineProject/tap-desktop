@@ -19,14 +19,14 @@
                 <TextBlock Text="{Binding CurrentFacility.Type}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <WrapPanel Width="150">
                 <TextBlock Text="{Binding CurrentFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
-                    <Button Content="-" Style="{DynamicResource RoundedButton}" Width="20" Height="20" Tag="{Binding}" Click="ButtonSell_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" IsEnabled="{Binding Converter={StaticResource humanFacilityButtonEnabled},ConverterParameter='Sell'}">
+                    <Button Content="-" Style="{DynamicResource RoundedButton}" Width="Auto" Height="Auto" Tag="{Binding}" Click="ButtonSell_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" IsEnabled="{Binding Converter={StaticResource humanFacilityButtonEnabled},ConverterParameter='Sell'}">
                     <Button.Background>
                         <SolidColorBrush Color="DarkBlue" Opacity="0.8"></SolidColorBrush>
                     </Button.Background>
                 </Button>
                 </WrapPanel>
                 <TextBlock Text="{Binding NextFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
-                <Button Content="+" Style="{DynamicResource RoundedButton}" Width="20" Height="20" Tag="{Binding}" Click="ButtonBuy_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" IsEnabled="{Binding Converter={StaticResource humanFacilityButtonEnabled},ConverterParameter='Buy'}">
+                <Button Content="+" Style="{DynamicResource RoundedButton}" Width="Auto" Height="Auto" Tag="{Binding}" Click="ButtonBuy_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" IsEnabled="{Binding Converter={StaticResource humanFacilityButtonEnabled},ConverterParameter='Buy'}">
                     <Button.Background>
                         <SolidColorBrush Color="DarkBlue" Opacity="0.8"></SolidColorBrush>
                     </Button.Background>

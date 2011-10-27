@@ -54,8 +54,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             Button btnConfiguration = new Button();
             btnConfiguration.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnConfiguration.Height = 16;
-            btnConfiguration.Width = 100;
+            btnConfiguration.Height = Double.NaN;
+            btnConfiguration.Width = Double.NaN;
             btnConfiguration.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnConfiguration.Click += new RoutedEventHandler(btnConfiguration_Click);
             btnConfiguration.Content = "Configuration";

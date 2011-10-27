@@ -106,8 +106,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             Button btnOrder = new Button();
             btnOrder.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnOrder.Height = 20;
-            btnOrder.Width = 80;
+            btnOrder.Height = Double.NaN;
+            btnOrder.Width = Double.NaN;
             btnOrder.Content = "Order";
             btnOrder.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnOrder.Margin = new System.Windows.Thickness(0, 5, 0, 0);

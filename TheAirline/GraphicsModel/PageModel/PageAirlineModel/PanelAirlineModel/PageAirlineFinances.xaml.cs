@@ -112,8 +112,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             Button btnLoan = new Button();
             btnLoan.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnLoan.Height = 20;
-            btnLoan.Width = 100;
+            btnLoan.Height = Double.NaN;
+            btnLoan.Width = Double.NaN;
             //btnLoan.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnLoan.Content = "Apply for loan";
             btnLoan.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;

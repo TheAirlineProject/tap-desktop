@@ -83,8 +83,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             Button btnCreate = new Button();
             btnCreate.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnCreate.Height = 20;
-            btnCreate.Width = 150;
+            btnCreate.Height = Double.NaN;
+            btnCreate.Width = Double.NaN;
             btnCreate.Content = "Create new route";
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnCreate.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -94,8 +94,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             Button btnMap = new Button();
             btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnMap.Width = 100;
-            btnMap.Height = 20;
+            btnMap.Width = Double.NaN;
+            btnMap.Height = Double.NaN;
             btnMap.Content = "Route map";
             btnMap.Margin = new Thickness(2, 0, 0, 0);
           //  btnMap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;

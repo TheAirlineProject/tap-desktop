@@ -60,8 +60,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnOk.Height = 20;
-            btnOk.Width = 80;
+            btnOk.Height = Double.NaN;
+            btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -70,8 +70,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnReset = new Button();
             btnReset.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnReset.Height = 20;
-            btnReset.Width = 80;
+            btnReset.Height = Double.NaN;
+            btnReset.Width = Double.NaN;
             btnReset.Content = "Reset";
             btnReset.Click += new RoutedEventHandler(btnReset_Click);
             btnReset.Margin = new Thickness(5, 0, 0, 0);
@@ -80,8 +80,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Children.Add(btnReset);
             Button btnCancel = new Button();
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnCancel.Height = 20;
-            btnCancel.Width = 80;
+            btnCancel.Height = Double.NaN;
+            btnCancel.Width = Double.NaN;
             btnCancel.Content = "Cancel";
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);

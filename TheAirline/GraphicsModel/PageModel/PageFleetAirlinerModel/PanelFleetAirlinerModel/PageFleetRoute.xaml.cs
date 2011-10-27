@@ -106,8 +106,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             btnStartFlight = new Button();
             btnStartFlight.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnStartFlight.Height = 20;
-            btnStartFlight.Width = 100;
+            btnStartFlight.Height = Double.NaN;
+            btnStartFlight.Width = Double.NaN;
             btnStartFlight.Content = "Start flight";
             btnStartFlight.IsEnabled = this.Airliner.RouteAirliner.Status == RouteAirliner.AirlinerStatus.Stopped;
             btnStartFlight.Click += new RoutedEventHandler(btnStartFligth_Click);
@@ -117,8 +117,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             btnStopFlight = new Button();
             btnStopFlight.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnStopFlight.Width = 100;
-            btnStopFlight.Height = 20;
+            btnStopFlight.Width = Double.NaN;
+            btnStopFlight.Height = Double.NaN;
             btnStopFlight.Content = "Stop flight";
             btnStopFlight.IsEnabled = this.Airliner.RouteAirliner.Status != RouteAirliner.AirlinerStatus.Stopped;
             btnStopFlight.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -252,8 +252,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             Button btnTimeTable = new Button();
             btnTimeTable.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnTimeTable.Height = 20;
-            btnTimeTable.Width = 100;
+            btnTimeTable.Height = Double.NaN;
+            btnTimeTable.Width = Double.NaN;
             btnTimeTable.Content = "Timetable";
             btnTimeTable.Visibility = this.Airliner.RouteAirliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
             btnTimeTable.Click += new RoutedEventHandler(btnTimeTable_Click);
@@ -264,8 +264,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             Button btnMap = new Button();
             btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnMap.Width = 100;
-            btnMap.Height = 20;
+            btnMap.Width = Double.NaN;
+            btnMap.Height = Double.NaN;
             btnMap.Content = "Route map";
             btnMap.Margin = new Thickness(2, 0, 0, 0);
             btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");

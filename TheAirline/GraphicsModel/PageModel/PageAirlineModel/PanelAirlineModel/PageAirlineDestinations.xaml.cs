@@ -64,8 +64,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             Button btnDestinations = new Button();
             btnDestinations.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnDestinations.Width = 100;
-            btnDestinations.Height = 20;
+            btnDestinations.Width = Double.NaN;
+            btnDestinations.Height = Double.NaN;
             btnDestinations.Content = "Destinations";
             btnDestinations.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnDestinations.Click += new RoutedEventHandler(btnDestinations_Click);
@@ -74,37 +74,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             Button btnMap = new Button();
             btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnMap.Width = 100;
-            btnMap.Height = 20;
+            btnMap.Width = Double.NaN;
+            btnMap.Height = Double.NaN;
             btnMap.Content = "Route map";
             btnMap.Margin = new Thickness(5, 0, 0, 0);
-           // btnMap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+             btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnMap.Click += new RoutedEventHandler(btnMap_Click);
 
             panelButtons.Children.Add(btnMap);
 
           
-            /*
-            TextBlock txtRoutesHeader = new TextBlock();
-            txtRoutesHeader.Margin = new Thickness(0, 10, 0, 0);
-            txtRoutesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtRoutesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtRoutesHeader.FontWeight = FontWeights.Bold;
-            txtRoutesHeader.Text = "Airline Routes";
-
-            panelDestinations.Children.Add(txtRoutesHeader);
-
-            ListBox lbRoutes = new ListBox();
-            lbRoutes.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbRoutes.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
-
-            foreach (Route route in this.Airline.Routes)
-                    lbRoutes.Items.Add(route);
-            
-            panelDestinations.Children.Add(lbRoutes);
-            */
-
+           
             this.Content = panelDestinations;
         }
 

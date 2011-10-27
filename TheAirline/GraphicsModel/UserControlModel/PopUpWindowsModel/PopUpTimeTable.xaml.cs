@@ -140,8 +140,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnOk.Height = 20;
-            btnOk.Width = 80;
+            btnOk.Height = Double.NaN;
+            btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
             btnOk.Click += new RoutedEventHandler(btnCPUOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -158,8 +158,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnOk.Height = 20;
-            btnOk.Width = 80;
+            btnOk.Height = Double.NaN;
+            btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -168,10 +168,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnCancel = new Button();
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnCancel.Height = 20;
+            btnCancel.Height = Double.NaN;
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
-            btnCancel.Width = 80;
-           // btnCancel.Visibility = this.Route.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            btnCancel.Width = Double.NaN;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Content = "Cancel";
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -181,8 +180,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnUndo = new Button();
             btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnUndo.Height = 20;
-            btnUndo.Width = 80;
+            btnUndo.Height = Double.NaN;
+            btnUndo.Width = Double.NaN;
             btnUndo.Margin = new Thickness(5, 0, 0, 0);
             btnUndo.Content = "Undo";
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -294,8 +293,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnAdd = new Button();
             btnAdd.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnAdd.Height = 20;
-            btnAdd.Width = 50;
+            btnAdd.Height = Double.NaN;
+            btnAdd.Width = Double.NaN;
             btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
             btnAdd.Margin = new Thickness(5, 0, 0, 0);
             btnAdd.Content = "Add";

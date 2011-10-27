@@ -131,7 +131,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             Button btnSearch = new Button();
             btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSearch.Height = 16;
-            btnSearch.Width = 50;
+            btnSearch.Width = Double.NaN;
             btnSearch.Content = "Search";
             btnSearch.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
@@ -140,7 +140,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             Button btnClear = new Button();
             btnClear.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnClear.Width = 50;
+            btnClear.Width = Double.NaN;
             btnClear.Height = 16;
             btnClear.Margin = new Thickness(5, 0, 0, 0);
             btnClear.Content = "Clear";

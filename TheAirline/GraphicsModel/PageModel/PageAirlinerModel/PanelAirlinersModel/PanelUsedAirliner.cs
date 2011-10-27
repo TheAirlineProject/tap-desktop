@@ -142,8 +142,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             Button btnBuy = new Button();
             btnBuy.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnBuy.Height = 20;
-            btnBuy.Width = 80;
+            btnBuy.Height = Double.NaN;
+            btnBuy.Width = Double.NaN;
             btnBuy.Content = "Buy";
             btnBuy.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnBuy.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -154,8 +154,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             Button btnLease = new Button();
             btnLease.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnLease.Height = 20;
-            btnLease.Width = 80;
+            btnLease.Height = Double.NaN;
+            btnLease.Width = Double.NaN;
             btnLease.Content = "Lease";
             btnLease.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLease.Margin = new Thickness(5, 0, 0, 0);

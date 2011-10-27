@@ -51,8 +51,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbSaves.Height = 375;
             lbSaves.DisplayMemberPath = "Key";
             lbSaves.SelectionChanged += new SelectionChangedEventHandler(lbSaves_SelectionChanged);
-            //lbSaves.SelectedValuePath = "Name";
-
+            
             foreach (KeyValuePair<string, string> savedFile in LoadSaveHelpers.GetSavedGames())
                 lbSaves.Items.Add(savedFile);
 
@@ -71,8 +70,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnSave.Height = 20;
-            btnSave.Width = 80;
+            btnSave.Height = Double.NaN;
+            btnSave.Width = Double.NaN;
             btnSave.Content = "Save";
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
             btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -82,8 +81,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnCancel = new Button();
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnCancel.Height = 20;
-            btnCancel.Width = 80;
+            btnCancel.Height = Double.NaN;
+            btnCancel.Width = Double.NaN;
             btnCancel.Content = "Cancel";
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);

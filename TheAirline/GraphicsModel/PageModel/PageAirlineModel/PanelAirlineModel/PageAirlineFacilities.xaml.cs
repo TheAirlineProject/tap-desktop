@@ -103,7 +103,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             Button btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSave.Height = 16;
-            btnSave.Width = 200;
+            btnSave.Width = Double.NaN;
             btnSave.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnSave.Margin = new Thickness(0, 5, 0, 0);
             btnSave.Click += new RoutedEventHandler(btnSave_Click);

@@ -108,8 +108,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Button btnDestinations = new Button();
             btnDestinations.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnDestinations.Width = 100;
-            btnDestinations.Height = 20;
+            btnDestinations.Width = Double.NaN;
+            btnDestinations.Height = Double.NaN;
             btnDestinations.Content = "Destinations";
             btnDestinations.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnDestinations.Click += new RoutedEventHandler(btnDestinations_Click);
@@ -195,7 +195,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Button btnSearch = new Button();
             btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSearch.Height = 16;
-            btnSearch.Width = 75;
+            btnSearch.Width = Double.NaN;
             btnSearch.Margin = new Thickness(5, 0, 0, 0);
             btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
             btnSearch.Content = "Search";
@@ -288,7 +288,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSave.Height = 16;
-            btnSave.Width = 50;
+            btnSave.Width = Double.NaN;
             btnSave.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
             btnSave.Content = "Save";

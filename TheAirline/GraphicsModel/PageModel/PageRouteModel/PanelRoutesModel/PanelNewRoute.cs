@@ -233,8 +233,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnSave.Height = 20;
-            btnSave.Width = 80;
+            btnSave.Height = Double.NaN;
+            btnSave.Width = Double.NaN;
             btnSave.Content = "Save";
             btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnSave.Margin = new System.Windows.Thickness(0, 5, 0, 0);

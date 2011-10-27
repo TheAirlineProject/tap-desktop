@@ -153,8 +153,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             Button btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnOk.Height = 20;
-            btnOk.Width = 80;
+            btnOk.Height = Double.NaN;
+            btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             // btnDelete.Margin = new System.Windows.Thickness(0, 5, 0, 0);
@@ -164,8 +164,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             Button btnRemove = new Button();
             btnRemove.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnRemove.Width = 100;
-            btnRemove.Height = 20;
+            btnRemove.Width = Double.NaN;
+            btnRemove.Height = Double.NaN;
             btnRemove.Content = "Remove Airliner";
             btnRemove.Click += new RoutedEventHandler(btnRemove_Click);
             btnRemove.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -174,8 +174,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             Button btnDelete = new Button();
             btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnDelete.Height = 20;
-            btnDelete.Width = 100;
+            btnDelete.Height = Double.NaN;
+            btnDelete.Width = Double.NaN;
             btnDelete.Content = "Delete Route";
             btnDelete.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnDelete.Margin = new System.Windows.Thickness(5, 0, 0, 0);
@@ -185,8 +185,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             Button btnTimeTable = new Button();
             btnTimeTable.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnTimeTable.Height = 20;
-            btnTimeTable.Width = 100;
+            btnTimeTable.Height = Double.NaN;
+            btnTimeTable.Width = Double.NaN;
             btnTimeTable.Content = "Timetable";
             btnTimeTable.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnTimeTable.Margin = new Thickness(5, 0, 0, 0);

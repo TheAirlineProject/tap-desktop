@@ -182,24 +182,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
           
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
-            //panelButtons.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             panelContent.Children.Add(panelButtons);
 
 
             Button btnCreate = new Button();
             btnCreate.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCreate.Click += new RoutedEventHandler(btnCreate_Click);
-            btnCreate.Height = 20;
-            btnCreate.Width = 80;
+            btnCreate.Height = Double.NaN;
+            btnCreate.Width = Double.NaN;
+            //btnCreate.Padding = new Thickness(2, 2,2,2);
             btnCreate.Content = "Create Game";
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            //btnPrevious.Click += new RoutedEventHandler(btnPrevious_Click);
             panelButtons.Children.Add(btnCreate);
 
             Button btnExit = new Button();
             btnExit.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnExit.Height = 20;
-            btnExit.Width = 80;
+            btnExit.Height = double.NaN;
+            btnExit.Width = double.NaN;
             btnExit.Content = "Start Menu";
             btnExit.Margin = new Thickness(5, 0, 0, 0);
             btnExit.Click += new RoutedEventHandler(btnCancel_Click);

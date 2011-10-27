@@ -94,20 +94,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             Button btnRent = new Button();
             btnRent.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnRent.Height = 20;
-            btnRent.Width = 80;
+            btnRent.Height = Double.NaN;
+            btnRent.Width = Double.NaN;
             btnRent.Content = "Rent";
             btnRent.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnRent.IsEnabled = this.Airport.Gates.getFreeGates() > 0;
+            // chs, 2011-27-10 changed so it is only possible to rent 75 % of the gates at an airport
+             
+            btnRent.IsEnabled = this.Airport.Gates.getFreeGates() > 0 &&  Convert.ToDouble(this.Airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline)*3)/4<this.Airport.Profile.Gates;
             btnRent.Click += new RoutedEventHandler(btnRent_Click);
-            buttonsPanel.Children.Add(btnRent);
+             buttonsPanel.Children.Add(btnRent);
 
             Button btnRelease = new Button();
             btnRelease.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnRelease.Height = 20;
-            btnRelease.Width = 80;
+            btnRelease.Height = Double.NaN;
+            btnRelease.Width = Double.NaN;
             btnRelease.Content = "Release";
-           // Boolean b = this.Airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && !this.Airport.hasFacilities(GameObject.GetInstance().HumanAirline);
             btnRelease.IsEnabled = this.Airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && !(this.Airport.hasFacilities(GameObject.GetInstance().HumanAirline) && this.Airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline)==1)  && !(this.Airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)) && !(this.Airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && GameObject.GetInstance().HumanAirline.Airports.Count == 1) && !(this.Airport.Gates.getRoutes(GameObject.GetInstance().HumanAirline).Count>0 && this.Airport.Gates.getFreeGates(GameObject.GetInstance().HumanAirline) == 0);
             btnRelease.Click += new RoutedEventHandler(btnRelease_Click);
             btnRelease.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");

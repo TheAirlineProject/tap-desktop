@@ -56,8 +56,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             Button btnResultsMap = new Button();
             btnResultsMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnResultsMap.Width = 150;
-            btnResultsMap.Height = 20;
+            btnResultsMap.Width = Double.NaN;
+            btnResultsMap.Height = Double.NaN;
             btnResultsMap.Content = "Show results on map";
             btnResultsMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnResultsMap.Margin = new Thickness(0, 10, 0, 0);

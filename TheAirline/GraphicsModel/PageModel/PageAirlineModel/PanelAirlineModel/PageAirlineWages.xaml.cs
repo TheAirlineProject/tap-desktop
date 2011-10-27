@@ -109,21 +109,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             Button btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnOk.Height = 20;
-            btnOk.Width = 80;
+            btnOk.Height = Double.NaN;
+            btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
-            //btnOk.Click += new RoutedEventHandler(btnOk_Click);
-            btnOk.Click += new RoutedEventHandler(btnOk_Click);
+           btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnOk);
 
             Button btnUndo = new Button();
             btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnUndo.Height = 20;
+            btnUndo.Height = Double.NaN;
             btnUndo.Margin = new Thickness(5, 0, 0, 0);
-            btnUndo.Width = 80;
-            // btnCancel.Visibility = this.Route.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            btnUndo.Width = Double.NaN;
             btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
             btnUndo.Content = "Undo";
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");

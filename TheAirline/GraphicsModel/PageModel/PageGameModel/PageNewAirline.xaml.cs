@@ -130,8 +130,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             btnCreate = new Button();
             btnCreate.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnCreate.Click += new RoutedEventHandler(btnCreate_Click);
-            btnCreate.Height = 20;
-            btnCreate.Width = 100;
+            btnCreate.Height = Double.NaN;
+            btnCreate.Width = Double.NaN;
             btnCreate.Content = "Create Airline";
             btnCreate.IsEnabled = false;
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -139,8 +139,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             Button btnCancel = new Button();
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnCancel.Height = 20;
-            btnCancel.Width = 100;
+            btnCancel.Height = Double.NaN;
+            btnCancel.Width = Double.NaN;
             btnCancel.Content = "Cancel";
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
