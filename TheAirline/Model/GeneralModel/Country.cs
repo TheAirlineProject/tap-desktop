@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
+using System.IO;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -16,7 +17,7 @@ namespace TheAirline.Model.GeneralModel
         public string TailNumberFormat { get; set; }
         public CountryTailNumber TailNumbers { get; set; }
         public string Flag { get; set; }
-        public Country(string name, string shortName,Region region, string tailNumberFormat)
+        public Country(string name, string shortName, Region region, string tailNumberFormat)
         {
             this.Name = name;
             this.ShortName = shortName;
@@ -24,128 +25,47 @@ namespace TheAirline.Model.GeneralModel
             this.TailNumberFormat = tailNumberFormat;
             this.TailNumbers = new CountryTailNumber(this);
         }
-        //the class for handling the tail numbers for the country
-        public class CountryTailNumber
+
+    }        //the collection of countries
+        public class Countries
         {
-            private string LastTailNumber;
-            public Country Country { get; set; }
-            public CountryTailNumber(Country country)
+            private static Dictionary<string, Country> countries = new Dictionary<string, Country>();
+            //clears the list
+            public static void Clear()
             {
-                this.Country = country;
-
+                countries = new Dictionary<string, Country>();
             }
-            //returns if a tail number matches the country
-            public Boolean isMatch(string tailNumber)
+            //adds a country to the list
+            public static void AddCountry(Country country)
             {
-                string countryID = this.Country.TailNumberFormat.Split('-')[0];
-                string numberFormat = this.Country.TailNumberFormat.Split('-')[1];
 
-                int length = Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
-
-                string tailID = tailNumber.Split('-')[0];
-                string tailFormat = tailNumber.Split('-')[1];
-
-                return tailID == countryID && tailFormat.Length == length; 
-
+                countries.Add(country.Name, country);
             }
-            //returns the next tail number
-            public string getNextTailNumber()
+            //retuns a country
+            public static Country GetCountry(string name)
             {
-                string countryID = this.Country.TailNumberFormat.Split('-')[0];
-                string numberFormat = this.Country.TailNumberFormat.Split('-')[1];
-
-                int length = Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
-
-                if (numberFormat.Contains("\\d"))
-                {
-                    int number;
-                    if (LastTailNumber == null)
-                        number = 0;
-                    else
-                        number = Convert.ToInt32(this.LastTailNumber.Split('-')[1]) + 1;
-                    string format = countryID + "-{0:";
-                    for (int i = 0; i < length; i++)
-                        format += "0";
-                    format += "}";
-                    this.LastTailNumber = String.Format(format, number);
-                }
-                if (numberFormat.Contains("\\s"))
-                {
-                    if (LastTailNumber == null)
-                    {
-                        string code = countryID + "-";
-                        for (int i = 0; i < length; i++)
-                            code += "A";
-                        this.LastTailNumber = code;
-                    }
-                    else
-                    {
-                        string lastCode = this.LastTailNumber.Split('-')[1];
-
-
-                        int i = 0;
-                        Boolean found = false;
-                        while (!found && i < length)
-                        {
-                            if (lastCode[lastCode.Length - 1 - i] < 'Z')
-                                found = true;
-                            else
-                                i++;
-                        }
-                   
-              
-                        char replaceChar = lastCode[lastCode.Length - 1 - i];
-                        replaceChar++;
-
-                        string newCode = lastCode.Substring(0, length - i - 1) + replaceChar + lastCode.Substring(length - i);
-
-                        this.LastTailNumber = countryID + "-" + newCode;
-                    }
-                }
-                return this.LastTailNumber;
+                if (countries.ContainsKey(name))
+                    return countries[name];
+                else
+                    return null;
+            }
+            //returns a country with a specific tailnumberformat
+            public static Country GetCountryFromTailNumber(string tailnumber)
+            {
+                return GetCountries().Find((delegate(Country country) { return country.TailNumbers.isMatch(tailnumber); }));
+            }
+            //returns the list of countries
+            public static List<Country> GetCountries()
+            {
+                return countries.Values.ToList();
+            }
+            //returns the list of countries from a region
+            public static List<Country> GetCountries(Region region)
+            {
+                return GetCountries().FindAll((delegate(Country country) { return country.Region == region; }));
             }
         }
-    }
-    //the collection of countries
-    public class Countries
-    {
-        private static Dictionary<string, Country> countries = new Dictionary<string, Country>();
-        //clears the list
-        public static void Clear()
-        {
-            countries = new Dictionary<string, Country>();
-        }
-        //adds a country to the list
-        public static void AddCountry(Country country)
-        {
-           
-            countries.Add(country.Name, country);
-        }
-        //retuns a country
-        public static Country GetCountry(string name)
-        {
-            if (countries.ContainsKey(name))
-                return countries[name];
-            else
-                return null;
-        }
-        //returns a country with a specific tailnumberformat
-        public static Country GetCountryFromTailNumber(string tailnumber)
-        {
-            return GetCountries().Find((delegate(Country country) { return country.TailNumbers.isMatch(tailnumber); }));
-        }
-        //returns the list of countries
-        public static List<Country> GetCountries()
-        {
-            return countries.Values.ToList();
-        }
-        //returns the list of countries from a region
-        public static List<Country> GetCountries(Region region)
-        {
-            return GetCountries().FindAll((delegate(Country country) { return country.Region == region; }));
-        }
-    }
-  
+    
    
 }
 

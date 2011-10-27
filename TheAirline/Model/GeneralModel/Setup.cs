@@ -548,12 +548,6 @@ namespace TheAirline.Model.GeneralModel
         {
             RemoveAirlines(opponents);
 
-            foreach (Airline airline in Airlines.GetAirlines())
-            {
-                airline.Money = GameObject.GetInstance().StartMoney;
-                if (!airline.IsHuman) CreateComputerRoutes(airline);
-            }
-
             // chs, 2011-21-10 added for the possibility of creating a new airline
             //sets all the facilities at an airport to none for all airlines
             foreach (Airport airport in Airports.GetAirports())
@@ -569,6 +563,27 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
             }
+        
+            foreach (Airline airline in Airlines.GetAirlines())
+            {
+                airline.Money = GameObject.GetInstance().StartMoney;
+                if (!airline.IsHuman) 
+                    CreateComputerRoutes(airline);
+                // chs, 2011-24-10 changed so the human starts with an airport with home base facilities
+           
+                else
+                {
+                    List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
+
+                    AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+
+                    airline.Airports[0].setAirportFacility(GameObject.GetInstance().HumanAirline, facility);
+                }
+
+            }
+
+          
+            
         }
 
         /*! removes some random airlines from the list bases on number of opponents.

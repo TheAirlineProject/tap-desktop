@@ -137,6 +137,13 @@ namespace TheAirline.Model.AirlinerModel
         {
             return airliners.Values.ToList().FindAll((delegate(Airliner airliner) { return airliner.Airline == null; }));
         }
+        // chs, 2011-27-10 used for fixing of tail number bug
+        //returns if a tail number already exits
+        public static Boolean TailNumberExits(string tailnumber)
+        {
+            return airliners.ContainsKey(tailnumber);
+        }
+  
        
     }
    

@@ -18,7 +18,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
     public class PanelNewAirliner : PanelAirliner
     {
         private AirlinerType Airliner;
-        private ComboBox cbAirport;// cbName;
+        private ComboBox cbAirport;
         private DatePicker dpDate;
         private CheckBox cbPayOnDelivery;
         private double downPaymentRate = 0.03;
@@ -73,21 +73,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbPriceInfo.Items.Add(new QuickInfoValue("Select home base", cbAirport));
 
-            /*
-            cbName = new ComboBox();
-            cbName.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbName.Background = Brushes.Transparent;
-            cbName.Width = 200;
-
-            foreach (string name in AirlinerNameGenerator.GetInstance().getNames())
-                cbName.Items.Add(name);
-
-            cbName.SelectedIndex = 0;
-
-            lbPriceInfo.Items.Add(new QuickInfoValue("Select airliner name", cbName));
-             * */
-
             DateTime firstDate = GameObject.GetInstance().GameTime.AddMonths(3);
 
             dpDate = new DatePicker();
@@ -128,8 +113,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             btnOrder.Margin = new System.Windows.Thickness(0, 5, 0, 0);
             btnOrder.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOrder.Click += new System.Windows.RoutedEventHandler(btnOrder_Click);
-            //btnRent.IsEnabled = this.Airport.Gates.getFreeGates() > 0;
-            //btnRent.Click += new RoutedEventHandler(btnRent_Click);
             this.addObject(btnOrder);
 
 
@@ -159,21 +142,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (result == WPFMessageBoxResult.Yes)
                 {
 
-                    //string name = (string)cbName.SelectedItem;
 
-                    //AirlinerNameGenerator.GetInstance().removeName(name);
-
-                    Airliner airliner = new Airliner(this.Airliner, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);// GameObject.GetInstance().GameTime.AddMonths(3));
+                    Airliner airliner = new Airliner(this.Airliner, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType type = cbPayOnDelivery.IsChecked.Value ? FleetAirliner.PurchasedType.BoughtDownPayment : FleetAirliner.PurchasedType.Bought;
                     GameObject.GetInstance().HumanAirline.addAirliner(type, airliner, airliner.TailNumber, airport);
 
-                    //                GameObject.GetInstance().HumanAirline.Money -= this.Airliner.Price;
-                    //cbPayOnDelivery 
                     GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
 
-                    //Sort routes + airliners
 
                     this.clearPanel();
                 }
