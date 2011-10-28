@@ -92,9 +92,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (FleetAirliner airliner in airline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Purchased == FleetAirliner.PurchasedType.Leased; })))
                     airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.Airliner.LeasingPrice));
 
+                // chs, 2011-28-10 changed so a terminal only costs 75% of gate price
                 foreach (Airport airport in airline.Airports)
                 {
-                    int gates = airport.Gates.getNumberOfGates(airline);
+                    int gates = airport.Terminals.getNumberOfGates(airline);
                     airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airport.getGatePrice() * gates));
                 }
                 foreach (Loan loan in airline.Loans)

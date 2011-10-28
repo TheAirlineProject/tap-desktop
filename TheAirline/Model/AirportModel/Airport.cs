@@ -16,17 +16,19 @@ namespace TheAirline.Model.AirportModel
         public AirportProfile Profile { get; set; }
         public Dictionary<Airport, int> Passengers { get; set; }
         public AirportStatistics Statistics { get; set; }
-        public Gates Gates { get; set; }
         public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
         public Weather Weather { get; set; }
+        // chs, 2011-27-10 added for the possibility of purchasing a terminal
+        public Terminals Terminals { get; set; }
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
-            this.Gates = new Gates(this);
             this.Passengers = new Dictionary<Airport, int>();
             this.Facilities = new Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
+            this.Terminals = new Terminals(this);
+            this.Terminals.addTerminal(new Terminal(this, null, this.Profile.Gates));
         }
 
         //clears the list of passengers
@@ -126,10 +128,18 @@ namespace TheAirline.Model.AirportModel
 
             setAirportFacility(airline, facilities[index - 1]);
 
-
-
         }
-
+        // chs, 2011-27-10 added for the possibility of purchasing a terminal
+        //adds a terminal to the airport
+        public void addTerminal(Terminal terminal)
+        {
+            this.Terminals.addTerminal(terminal);
+        }
+        //removes a terminal from the airport
+        public void removeTerminal(Terminal terminal)
+        {
+            this.Terminals.removeTerminal(terminal);
+        }
     }
     //the collection of airports
     public class Airports

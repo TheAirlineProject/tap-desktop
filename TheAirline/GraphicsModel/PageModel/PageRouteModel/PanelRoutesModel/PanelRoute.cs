@@ -344,8 +344,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 if (this.Route.Airliner != null)
                     this.Route.Airliner.Airliner.RouteAirliner = null;
 
-                this.Route.Destination1.Gates.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;
-                this.Route.Destination2.Gates.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;
+                this.Route.Destination1.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;
+                this.Route.Destination2.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;
 
                 this.ParentPage.showRoutes();
 

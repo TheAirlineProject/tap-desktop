@@ -313,7 +313,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     airport.setAirportFacility(airline, airportFacility);
                 }
-                airport.Gates.clear();
+                airport.Terminals.clear();
 
                 XmlNodeList airportGatesList = airportNode.SelectNodes("gates/gate");
 
@@ -331,7 +331,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             airline.Routes.Find(delegate(Route r) { return r.Id == airportGateNode.Attributes["route"].Value; });
                         }
                     }
-                    airport.Gates.addGate(gate);
+                   // airport.Gates.addGate(gate);
                 }
  
             }
@@ -377,8 +377,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 foreach (Route route in airline.Routes)
                 {
-                    route.Destination1.Gates.getEmptyGate(airline).Route = route;
-                    route.Destination2.Gates.getEmptyGate(airline).Route = route;
+                    route.Destination1.Terminals.getEmptyGate(airline).Route = route;
+                    route.Destination2.Terminals.getEmptyGate(airline).Route = route;
 
                 }
             }
@@ -740,7 +740,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportNode.AppendChild(airportFacilitiesNode);
 
                 XmlElement gatesNode = xmlDoc.CreateElement("gates");
-                foreach (Gate gate in airport.Gates.getGates())
+                foreach (Gate gate in airport.Terminals.getGates())
                 {
                     XmlElement gateNode = xmlDoc.CreateElement("gate");
                     gateNode.SetAttribute("airline", gate.Airline == null ? "" : gate.Airline.Profile.IATACode);

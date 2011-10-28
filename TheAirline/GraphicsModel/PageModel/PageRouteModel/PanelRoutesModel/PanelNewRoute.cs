@@ -327,7 +327,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             Airport dest2 = (Airport)cbDestination2.SelectedItem;
 
             // if (parseable && price > 0 && price < 10000 && dest1.Gates.getFreeGates(airline) > 0 && dest2.Gates.getFreeGates(airline) > 0)
-            if (dest1.Gates.getFreeGates(airline) > 0 && dest2.Gates.getFreeGates(airline) > 0)
+            if (dest1.Terminals.getFreeGates(airline) > 0 && dest2.Terminals.getFreeGates(airline) > 0)
             {
 
 
@@ -348,8 +348,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 airline.addRoute(route);
 
-                dest1.Gates.getEmptyGate(airline).Route = route;
-                dest2.Gates.getEmptyGate(airline).Route = route;
+                dest1.Terminals.getEmptyGate(airline).Route = route;
+                dest2.Terminals.getEmptyGate(airline).Route = route;
 
                 this.ParentPage.showRoutes();
 

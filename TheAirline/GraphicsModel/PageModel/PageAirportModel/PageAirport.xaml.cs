@@ -321,7 +321,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue("Coordinates", panelCoordinates));
             lbQuickInfo.Items.Add(new QuickInfoValue("Airport size", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size, null, null, null).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Number of gates", UICreator.CreateTextBlock(this.Airport.Profile.Gates.ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue("Number of gates", UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString())));
 
 
 

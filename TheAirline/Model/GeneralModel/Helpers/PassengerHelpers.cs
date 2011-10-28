@@ -56,12 +56,12 @@ namespace TheAirline.Model.GeneralModel
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
-            int totalRoutes1 = airportCurrent.Gates.getRoutes().Count;
-            int totalRoutes2 = airportDestination.Gates.getRoutes().Count;
+            int totalRoutes1 = airportCurrent.Terminals.getRoutes().Count;
+            int totalRoutes2 = airportDestination.Terminals.getRoutes().Count;
 
             int sameRoutes = 0;
       
-            foreach (Route route in airportCurrent.Gates.getRoutes())
+            foreach (Route route in airportCurrent.Terminals.getRoutes())
                 if (route.Destination1 == airportDestination || route.Destination2 == airportDestination)
                     sameRoutes++;
 

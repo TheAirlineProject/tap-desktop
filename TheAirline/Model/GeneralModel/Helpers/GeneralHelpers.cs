@@ -23,7 +23,7 @@ namespace TheAirline.Model.GeneralModel
         {
 
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
-            foreach (Route route in airport.Gates.getRoutes())
+            foreach (Route route in airport.Terminals.getRoutes())
             {
                 if (route.Airliner != null)
                 {
@@ -47,7 +47,7 @@ namespace TheAirline.Model.GeneralModel
         public static List<RouteTimeTableEntry> GetAirportDepartures(Airport airport)
         {
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
-            foreach (Route route in airport.Gates.getRoutes())
+            foreach (Route route in airport.Terminals.getRoutes())
             {
                 if (route.Airliner != null)
                 {

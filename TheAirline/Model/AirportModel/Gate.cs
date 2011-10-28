@@ -21,41 +21,42 @@ namespace TheAirline.Model.AirportModel
         }
 
     }
+    // chs, 2011-27-10 changed for the possibility of purchasing a terminal and cleaning the class
     //the collection of gates at an airport
     public class Gates
     {
         private List<Gate> gates;
         public Airport Airport { get; set; }
-        public Gates(Airport airport)
+        public int NumberOfGates { get { return this.gates.Count; } set { ;} }
+        public Gates(Airport airport, int numberOfGates)
         {
             this.Airport = airport;
             gates = new List<Gate>();
-            for (int i = 0; i < this.Airport.Profile.Gates; i++)
+            for (int i = 0; i < numberOfGates; i++)
                 gates.Add(new Gate(this.Airport));
         }
+        //returns the list of gates
         public List<Gate> getGates()
         {
             return gates;
         }
+        
         //rents a gate for an airline
         public void rentGate(Airline airline)
         {
-            if (getNumberOfGates(airline) == 0)
+            if (this.Airport.Terminals.getNumberOfGates(airline) == 0)
                 airline.addAirport(this.Airport);
-
-  
             getFreeGate().Airline = airline;
-
-         
           
         }
+         
         //releases a gate for an airline
         public void releaseGate(Airline airline)
         {
             
             getEmptyGate(airline).Airline = null;
 
-            if (getNumberOfGates(airline) == 0)
+            if (this.Airport.Terminals.getNumberOfGates(airline) == 0)
                 airline.removeAirport(this.Airport);
         }
         //returns a empty gate for an airline
@@ -153,7 +154,7 @@ namespace TheAirline.Model.AirportModel
         //adds a gate
         public void addGate(Gate gate)
         {
-            if (gate.Airline != null && getNumberOfGates(gate.Airline) == 0)
+            if (gate.Airline != null && this.Airport.Terminals.getNumberOfGates(gate.Airline) == 0)
                 gate.Airline.addAirport(this.Airport);
 
             this.gates.Add(gate);

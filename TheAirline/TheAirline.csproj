@@ -463,6 +463,7 @@
     <Compile Include="Model\AirportModel\AirportProfile.cs" />
     <Compile Include="Model\AirportModel\AirportStatistics.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
+    <Compile Include="Model\AirportModel\Terminal.cs" />
     <Compile Include="Model\GeneralModel\Coordinates.cs" />
     <Compile Include="Model\GeneralModel\Country.cs" />
     <Compile Include="Model\GeneralModel\CountryTailNumber.cs" />

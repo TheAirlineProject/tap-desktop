@@ -265,8 +265,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
 
-                airport.Gates.rentGate(airline);
-                airport.Gates.rentGate(airline);
+                airport.Terminals.rentGate(airline);
+                airport.Terminals.rentGate(airline);
                                 
                 List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
                 

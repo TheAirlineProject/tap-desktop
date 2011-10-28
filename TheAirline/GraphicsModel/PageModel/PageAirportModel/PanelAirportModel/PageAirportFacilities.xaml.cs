@@ -225,7 +225,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if (buttonType == "Buy")
             {
-                isEnabled = index < facilities.Count - 1 && airport.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline)>0; 
+                isEnabled = index < facilities.Count - 1 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)>0; 
             }
             if (buttonType == "Sell")
             {

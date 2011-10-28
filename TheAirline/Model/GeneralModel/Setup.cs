@@ -623,11 +623,11 @@ namespace TheAirline.Model.GeneralModel
             while (!isFree)
             {
                 airport = airports[rnd.Next(airports.Count)];
-                isFree = airport.Gates.getFreeGates() > 1;
+                isFree = airport.Terminals.getFreeGates() > 1;
             }
 
-            airport.Gates.rentGate(airline);
-            airport.Gates.rentGate(airline);
+            airport.Terminals.rentGate(airline);
+            airport.Terminals.rentGate(airline);
 
             List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
 
@@ -658,12 +658,12 @@ namespace TheAirline.Model.GeneralModel
 
                 dist = MathHelpers.GetDistance(airport.Profile.Coordinates, airline.Airports[0].Profile.Coordinates);
 
-                isFree = airport.Gates.getFreeGates() > 0;
+                isFree = airport.Terminals.getFreeGates() > 0;
 
                 isInArea = (airport.Profile.Type != AirportProfile.AirportType.Domestic && airline.Airports[0].Profile.Type != AirportProfile.AirportType.Domestic) || (airport.Profile.Country == airline.Airports[0].Profile.Country);
             }
 
-            airport.Gates.rentGate(airline);
+            airport.Terminals.rentGate(airline);
 
             double price = PassengerHelpers.GetPassengerPrice(airport, airline.Airports[0]);
 
@@ -679,8 +679,8 @@ namespace TheAirline.Model.GeneralModel
             }
             airline.addRoute(route);
 
-            airport.Gates.getEmptyGate(airline).Route = route;
-            airline.Airports[0].Gates.getEmptyGate(airline).Route = route;
+            airport.Terminals.getEmptyGate(airline).Route = route;
+            airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
 
             double distance = MathHelpers.GetDistance(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates);
 

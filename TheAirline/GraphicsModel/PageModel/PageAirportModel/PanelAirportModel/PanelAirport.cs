@@ -21,7 +21,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
 
             ucSelectButton sbGates = new ucSelectButton();
-            sbGates.Content = "Gates";
+            // chs, 2011-27-10 changed for the possibility of purchasing a terminal
+         
+            sbGates.Content = "Gates & Terminals";
             sbGates.Click += new System.Windows.RoutedEventHandler(sbGates_Click);
             sbGates.IsSelected = true;
             buttonsPanel.Children.Add(sbGates);
