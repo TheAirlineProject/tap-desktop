@@ -30,9 +30,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private Button btnPrevious, btnNext, btnPause, btnStart;
         public StandardPage()
         {
-            this.Language = XmlLanguage.GetLanguage(new CultureInfo("da", true).IetfLanguageTag); 
-
-
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
 
@@ -40,20 +37,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             int regularMargin = 25;
             int menuHeight = 25;
 
-
             ImageBrush imgBackground = new ImageBrush();
 
             BitmapImage img = (BitmapImage)App.Current.Resources["BackgroundImage"];
 
-           
             imgBackground.ImageSource = (BitmapImage)FindResource("BackgroundImage");
             imgBackground.Viewport = new Rect(0, 0, this.Width, this.Height);
             imgBackground.ViewportUnits = BrushMappingMode.Absolute;
             imgBackground.TileMode = TileMode.Tile;
 
             this.Background = imgBackground;
-
-
 
             mainPanel = new Canvas();
 
@@ -70,7 +63,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             panelNavigation = new DockPanel();
             panelNavigation.Margin = new Thickness(0, 5, 0, 0);
-         
+
             btnPrevious = new Button();
             btnPrevious.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnPrevious.Height = 24;
@@ -139,11 +132,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             frameContent.Navigate(this.PageContent);
 
             //frameBorder.Child = frameMain;
-            
+
             Canvas.SetTop(frameContent, Canvas.GetTop(frameTop) + frameTop.Height + regularMargin);
             Canvas.SetLeft(frameContent, sideMargin);
             mainPanel.Children.Add(frameContent);
-            
+
             frameInformation = new Frame();
             frameInformation.Height = frameTopMenu.Height;
             frameInformation.Width = 100;
@@ -165,8 +158,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             mainPanel.Children.Add(frameBottomMenu);
 
             this.Content = this.mainPanel;
-
-
         }
 
         private void frameContent_SizeChanged(object sender, SizeChangedEventArgs e)

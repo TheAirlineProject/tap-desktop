@@ -13,6 +13,7 @@ namespace TheAirline.Model.GeneralModel
         public string Name { get; set; }
         private Dictionary<string, string> Words;
         public string CultureInfo { get; set; }
+        public string ImageFile { get; set; }
         public Language(string name, string cultureInfo)
         {
             this.Name = name;

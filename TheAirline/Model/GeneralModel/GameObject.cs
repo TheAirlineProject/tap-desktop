@@ -26,18 +26,18 @@ namespace TheAirline.Model.GeneralModel
             this.FuelPrice = 1.142;
 
             this.NewsBox = new NewsBox();
-  
         }
+
         //returns the start money based on year of start
         private long getStartMoney()
         {
-
             long startMoney = 100000000;
 
             int age = DateTime.Now.Year - this.GameTime.Year;
 
             return startMoney - 1500000 * age;
         }
+
         //returns the game instance
         public static GameObject GetInstance()
         {
@@ -45,29 +45,26 @@ namespace TheAirline.Model.GeneralModel
                 GameInstance = new GameObject();
             return GameInstance;
         }
+
         //restarts the instance
         public static void RestartInstance()
         {
             GameInstance = new GameObject();
         }
+
         //sets the language
         public void setLanguage(Language language)
         {
-
             this.Language = language;
 
             System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);
             System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.CultureInfo, true);
-
-
         }
+
         //returns the current language
         public Language getLanguage()
         {
             return this.Language;
         }
-
     }
-  
-   
 }

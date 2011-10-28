@@ -71,19 +71,14 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
-                CreateLanguages();
                 Translator.GetInstance();
-
-
-                CreateSkins();
+                Skins.Init();
+                SetStartupLanguage();
             }
             catch (Exception e)
             {
                 string s = e.ToString();
             }
-
-
-
         }
 
         /*! private static method ClearLists().
@@ -108,86 +103,24 @@ namespace TheAirline.Model.GeneralModel
             Skins.Clear();
             FeeTypes.Clear();
             Languages.Clear();
-
         }
 
-        /*! private static method CreateSkins().
-         * Loads the available skins of the game from the subfolder skins.
+        /*! Dummy method for setting the startup language.
+         * TODO: Use applications Default language en-US as startup and default value.
+         *       Then read language configuration from systems registry and override
+         *       the startup value.
+         *       Place this method to the Culture and Translation module as internal method.
          */
-        private static void CreateSkins()
+        private static void SetStartupLanguage()
         {
-            DirectoryInfo dir = new DirectoryInfo(dataPath + "\\skins");
-
-            foreach (FileInfo file in dir.GetFiles("*.xml"))
-            {
-                LoadSkin(file.FullName);
-            }
-         
-
-            SkinObject.GetInstance().setCurrentSkin(Skins.GetSkins()[0]);
-        }
-
-        /*! private static method LoadSkin(string file).
-         * Helper method. Load and Analyses the given skin file.
-         * \param filename as string.
-         */
-        private static void LoadSkin(string file)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(file);
-            XmlElement root = doc.DocumentElement;
-            string name = root.Attributes["name"].Value;
-
-            XmlNodeList propertiesList = root.SelectNodes("//property");
-
-            Skin skin = new Skin(name);
-
-            foreach (XmlElement propertyElement in propertiesList)
-            {
-                string propertyName = propertyElement.Attributes["name"].Value;
-
-                StringReader reader = new StringReader(propertyElement.InnerXml);
-                XmlReader xmlReader = XmlReader.Create(reader);
-                object o = XamlReader.Load(xmlReader);
-
-                skin.addProperty(new KeyValuePair<string, object>(propertyName, o));
-            }
-
-            Skins.AddSkin(skin);
-
-        }
-
-        /*! Creates the Languages.
-         * We need not only different languages.
-         * In addition we need unit system conversions.
-         */
-        private static void CreateLanguages()
-        {
-            Language langUS = new Language("English (US)", "en-US");
-            langUS.Unit = Language.UnitSystem.Imperial;
-            langUS.addWord("km.", "miles");
-            langUS.addWord("km/t", "mph");
-            langUS.addWord("l/seat/km", "g/seat/m");
-            langUS.addWord("ltr", "gal");
-            Languages.AddLanguage(langUS);
-
-            Language langUK = new Language("English (UK)", "en-GB");
-            langUK.Unit = Language.UnitSystem.Metric;
-            Languages.AddLanguage(langUK);
-
-            Language langDE = new Language("Deutsch (DE)", "de-DE");
-            langDE.Unit = Language.UnitSystem.Metric;
-            Languages.AddLanguage(langDE);
-
-            // we set the default language on startup
-            GameObject.GetInstance().setLanguage(langUK);
+            GameObject.GetInstance().setLanguage(Languages.GetLanguages()[0]);
             Translator.DefaultLanguage = System.Threading.Thread.CurrentThread.CurrentUICulture.ToString();
         }
+
         /*! creates the Advertisement types
          */
         private static void CreateAdvertisementTypes()
         {
-            
             AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Internet, "No Advertisement", 0, 0));
             AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Internet, "National",10000, 1));
             AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Newspaper, "No Advertisement", 0, 0));
@@ -196,8 +129,8 @@ namespace TheAirline.Model.GeneralModel
             AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.Radio, "National", 10000, 1));
             AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.TV, "No Advertisement", 0, 0));
             AdvertisementTypes.AddAdvertisementType(new AdvertisementType(AdvertisementType.AirlineAdvertisementType.TV, "National", 10000, 1));
-
         }
+
         /*! creates the time zones.
          */
         private static void CreateTimeZones()
@@ -235,9 +168,6 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("Central Pacific Standard Time", "CPST", new TimeSpan(11, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("New Zealand Standard Time", "NZST", new TimeSpan(12, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Tonga Standard Time", "TST", new TimeSpan(13, 0, 0)));
-
-
-
         }
 
         /*! loads the airline facilities.
@@ -261,7 +191,6 @@ namespace TheAirline.Model.GeneralModel
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
                 AirlineFacilities.AddFacility(new AirlineFacility(name, shortname, price, service, luxury));
-
             }
         }
 
@@ -319,11 +248,10 @@ namespace TheAirline.Model.GeneralModel
                 string name = airliner.Attributes["name"].Value;
                 long price = Convert.ToInt64(airliner.Attributes["price"].Value);
 
-                 XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
+                XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
                 AirlinerType.BodyType body = (AirlinerType.BodyType)Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
                 AirlinerType.TypeRange rangeType = (AirlinerType.TypeRange)Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
                 AirlinerType.EngineType engine = (AirlinerType.EngineType)Enum.Parse(typeof(AirlinerType.EngineType), typeElement.Attributes["engine"].Value);
-
 
                 XmlElement specsElement = (XmlElement)airliner.SelectSingleNode("specs");
                 double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
@@ -356,7 +284,6 @@ namespace TheAirline.Model.GeneralModel
 
             XmlNodeList airportsList = root.SelectNodes("//airport");
 
-
             foreach (XmlElement airport in airportsList)
             {
                 string name = airport.Attributes["name"].Value;
@@ -384,9 +311,6 @@ namespace TheAirline.Model.GeneralModel
                 AirportProfile profile = new AirportProfile(name, iata, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, gates);
                 Airports.AddAirport(new Airport(profile));
             }
-
-
-
         }
 
         /*!loads the airport facilities.
@@ -414,7 +338,6 @@ namespace TheAirline.Model.GeneralModel
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
                 AirportFacilities.AddFacility(new AirportFacility(name, shortname, type, typeLevel, price, service, luxury));
-
             }
         }
 
@@ -438,14 +361,12 @@ namespace TheAirline.Model.GeneralModel
                 country.Flag = dataPath + "\\graphics\\flags\\" + name + ".png";
                 Countries.AddCountry(country);
             }
-
         }
 
         /*! load the airliner facilities.
          */
         private static void LoadAirlinerFacilities()
         {
-        
             XmlDocument doc = new XmlDocument();
             doc.Load(dataPath + "\\airlinerfacilities.xml");
             XmlElement root = doc.DocumentElement;
@@ -453,7 +374,6 @@ namespace TheAirline.Model.GeneralModel
             XmlNodeList facilitiesList = root.SelectNodes("//facility");
             foreach (XmlElement element in facilitiesList)
             {
-
                 string name = element.Attributes["name"].Value;
                 AirlinerFacility.FacilityType type = (AirlinerFacility.FacilityType)Enum.Parse(typeof(AirlinerFacility.FacilityType), element.Attributes["type"].Value);
                 int fromyear = Convert.ToInt16(element.Attributes["fromyear"].Value);
@@ -466,10 +386,7 @@ namespace TheAirline.Model.GeneralModel
                 double seatsPrice = XmlConvert.ToDouble(seatsElement.Attributes["price"].Value);
                 double seatuse = XmlConvert.ToDouble(seatsElement.Attributes["uses"].Value);
 
-
                 AirlinerFacilities.AddFacility(new AirlinerFacility(type, name,fromyear, service, seatsPercent, seatsPrice, seatuse));
-
-
             }
         }
 
@@ -497,7 +414,6 @@ namespace TheAirline.Model.GeneralModel
 
             int builtYear = rnd.Next(Math.Max(type.Produced.From, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year, type.Produced.To));
 
-
             Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
 
             int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
@@ -514,16 +430,11 @@ namespace TheAirline.Model.GeneralModel
          */
         public static void CreateAirliners()
         {
-
             int number = AirlinerTypes.GetTypes().FindAll((delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year - 30; })).Count * 25;
             for (int i = 0; i < number; i++)
             {
-
-
                 Airliners.AddAirliner(CreateAirliner(0));
-
             }
-
         }
 
         /*! create some game airlines.
@@ -541,13 +452,9 @@ namespace TheAirline.Model.GeneralModel
             Airlines.AddAirline(new Airline(new AirlineProfile("Nationwide Airlines", "CE", "Yellow", Countries.GetCountry("South Africa"), "Vernon Bricknell")));
             Airlines.AddAirline(new Airline(new AirlineProfile("Dinar Líneas Aéreas", "D7", "LightBlue", Countries.GetCountry("Argentina"), "Manuel Santosa")));
 
-
             GameObject.GetInstance().HumanAirline = Airlines.GetAirline("KWY");
 
             CreateAirlineLogos();
-            
-           
-
         }
 
         /*! sets up test game.
@@ -567,7 +474,6 @@ namespace TheAirline.Model.GeneralModel
                         AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
                         airport.setAirportFacility(airline, noneFacility);
-
                     }
                 }
             }
@@ -587,11 +493,7 @@ namespace TheAirline.Model.GeneralModel
 
                     airline.Airports[0].setAirportFacility(GameObject.GetInstance().HumanAirline, facility);
                 }
-
             }
-
-          
-            
         }
 
         /*! removes some random airlines from the list bases on number of opponents.
@@ -635,7 +537,6 @@ namespace TheAirline.Model.GeneralModel
 
             airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility);
 
-
             airports = Airports.GetAirports(region);
 
             double dist = 0;
@@ -645,7 +546,6 @@ namespace TheAirline.Model.GeneralModel
             airport = null;
 
             Boolean isInArea = false;
-
 
             var query = from a in Airliners.GetAirlinersForSale()
                         select a.Type.Range;
@@ -697,23 +597,18 @@ namespace TheAirline.Model.GeneralModel
 
                 double amount = airliners[0].getPrice() - airline.Money + 20000000;
 
-
                 Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, 120, GeneralHelpers.GetAirlineLoanRate(airline));
 
                 double payment = loan.getMonthlyPayment();
 
                 airline.addLoan(loan);
                 airline.addInvoice(new Invoice(loan.Date, Invoice.InvoiceType.Loans, loan.Amount));
-
             }
             Airliner airliner = airliners[rnd.Next(airliners.Count)];
-
 
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-
-      
             FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner, airliner.TailNumber, airline.Airports[0]);
 
             RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
@@ -725,7 +620,6 @@ namespace TheAirline.Model.GeneralModel
             airline.Fleet.Add(fAirliner);
 
             rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
-
         }
 
         /*! loads the logos for the airports.
@@ -744,7 +638,6 @@ namespace TheAirline.Model.GeneralModel
                 else
                     code = "x";
             }
-
         }
 
         /*! loads the logos for the game airlines.
@@ -815,6 +708,5 @@ namespace TheAirline.Model.GeneralModel
             return pluginsPath;
         }
     }
-
 
 }

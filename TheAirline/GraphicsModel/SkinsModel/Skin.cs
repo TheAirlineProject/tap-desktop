@@ -1,9 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Media.Imaging;
 using System.Windows.Media;
+using System.Windows.Markup;
+using System.Xml;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.SkinsModel
 {
@@ -28,6 +32,9 @@ namespace TheAirline.GraphicsModel.SkinsModel
     //the collection of skins
     public class Skins
     {
+        // The Skins class knows where skins are stored
+        private static DirectoryInfo skinsDirectory = new DirectoryInfo(Setup.getDataPath() + "\\skins");
+        // list of found skins
         private static List<Skin> skins = new List<Skin>();
         //clears the list
         public static void Clear()
@@ -35,7 +42,7 @@ namespace TheAirline.GraphicsModel.SkinsModel
             skins = new List<Skin>();
         }
         //adds a new skin to the list
-        public static void AddSkin(Skin skin)
+        private static void AddSkin(Skin skin)
         {
             skins.Add(skin);
         }
@@ -43,6 +50,44 @@ namespace TheAirline.GraphicsModel.SkinsModel
         public static List<Skin> GetSkins()
         {
             return skins;
+        }
+        // loads all available Skins and makes the first the default
+        public static void Init()
+        {
+            LoadAvailableSkins();
+            SkinObject.GetInstance().setCurrentSkin(Skins.GetSkins()[0]);
+        }
+        // loads all skins out of the skin directory
+        public static void LoadAvailableSkins()
+        {
+            foreach (FileInfo file in skinsDirectory.GetFiles("*.xml"))
+            {
+                LoadSkin(file.FullName);
+            }
+        }
+        // load a given skin file
+        private static void LoadSkin(string file)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(file);
+            XmlElement root = doc.DocumentElement;
+            string name = root.Attributes["name"].Value;
+
+            XmlNodeList propertiesList = root.SelectNodes("//property");
+
+            Skin skin = new Skin(name);
+
+            foreach (XmlElement propertyElement in propertiesList)
+            {
+                string propertyName = propertyElement.Attributes["name"].Value;
+
+                StringReader reader = new StringReader(propertyElement.InnerXml);
+                XmlReader xmlReader = XmlReader.Create(reader);
+                object o = XamlReader.Load(xmlReader);
+
+                skin.addProperty(new KeyValuePair<string, object>(propertyName, o));
+            }
+            Skins.AddSkin(skin);
         }
 
     }

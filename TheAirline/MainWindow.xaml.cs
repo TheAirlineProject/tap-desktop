@@ -30,20 +30,15 @@ namespace TheAirline
    
         public MainWindow()
         {
-            //Thread.CurrentThread.CurrentCulture = new CultureInfo("en-GB", true);
-            //Thread.CurrentThread.CurrentUICulture = new CultureInfo("en-GB", true);
+            InitializeComponent();
 
             Setup.SetupGame();
 
             PageNavigator.MainWindow = this;
 
-            InitializeComponent();
-
             //this.Background = new SolidColorBrush(Color.FromRgb(64, 64, 64));
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
-
-
 
             Canvas mainPanel = new Canvas();
 
@@ -61,15 +56,14 @@ namespace TheAirline
             mainPanel.Children.Add(frameMain);
 
             this.Content = mainPanel;
-
-           
         }
+
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-        
           if (e.Key == Key.Escape)
                 this.Close();
         }
+
         //clears the navigator
         public void clearNavigator()
         {
@@ -78,10 +72,6 @@ namespace TheAirline
             // Remove back entries
             while (frameMain.NavigationService.CanGoBack)
                 frameMain.NavigationService.RemoveBackEntry();
-
-           
-
-         
         }
        
         private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
@@ -89,30 +79,33 @@ namespace TheAirline
             frameMain.NavigationService.RemoveBackEntry();
 
             frameMain.NavigationService.LoadCompleted -= new LoadCompletedEventHandler(NavigationService_LoadCompleted);
- 
         }
+
         //returns if navigator can go forward
         public Boolean canGoForward()
         {
             return frameMain.NavigationService.CanGoForward;
         }
+
         //returns if navigator can go back
         public Boolean canGoBack()
         {
             return frameMain.NavigationService.CanGoBack;
         }
+
         //navigates to a new page
         public void navigateTo(Page page)
         {
             frameMain.Navigate(page);
-
         }
+
         //moves the navigator forward
         public void navigateForward()
         {
             if (frameMain.NavigationService.CanGoForward) 
                 frameMain.NavigationService.GoForward();
         }
+
         //moves the navigator back
         public void navigateBack()
         {
@@ -122,8 +115,6 @@ namespace TheAirline
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
         }
-        
     }
 }

@@ -36,7 +36,7 @@ namespace TheAirline.Model.GeneralModel
 		#region Variables
 
 		private static MemoryCache stCache;
-		private Hashtable regions=new Hashtable();
+        private Hashtable regions = new Hashtable();
 		
 		// Konstanten
 		const string CONFIG_FILENAME = "XmlFile";
@@ -147,7 +147,7 @@ namespace TheAirline.Model.GeneralModel
 		/// </summary>
 		public void LoadStrings() 
 		{
-			// Regions-Hashtable leeren
+            // Regions-Hashtable leeren
 			regions.Clear();
 
 			// XML-File laden
@@ -155,7 +155,30 @@ namespace TheAirline.Model.GeneralModel
 			
 			// XML-Daten lesen
 			try {
-				// Durch Region-Nodes iterieren
+                // read available languages
+                foreach (XmlNode LanguageNode in xDoc.SelectNodes("Translator/Languages"))
+                {
+                    foreach (XmlNode language in LanguageNode.ChildNodes)
+                    {
+                        Language read = new Language(language.Attributes["name"].Value, language.Attributes["culture"].Value);
+                        read.ImageFile = language.Attributes["flag"].Value;
+                        if( language.Attributes["UnitSystem"].Value == Language.UnitSystem.Metric.ToString())
+                            read.Unit = Language.UnitSystem.Metric;
+                        else
+                            read.Unit = Language.UnitSystem.Imperial;
+
+                        if (language.HasChildNodes)
+                        {
+                            foreach (XmlNode conversion in language.ChildNodes)
+                            {
+                                read.addWord(conversion.Attributes["original"].Value, conversion.Attributes["translated"].Value);
+                            }
+                        }
+                        Languages.AddLanguage(read);
+                    }
+                }
+
+                // Durch Region-Nodes iterieren
 				foreach(XmlNode regionNode in xDoc.SelectNodes(XML_ROOTNODE)) {
 
 					Hashtable strs = new Hashtable();
