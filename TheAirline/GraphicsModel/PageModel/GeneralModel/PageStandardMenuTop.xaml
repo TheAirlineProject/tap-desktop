@@ -30,8 +30,8 @@
            
        
             <Menu x:Key="MenuMain">
-           
-                <MenuItem Header="Home" Style="{DynamicResource MenuHeaderStyle}" Click="lnkHome_Click" />
+
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuHome}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkHome_Click" />
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
             <MenuItem Header="{Binding ElementName=PageControl, Path=NewsText}"  Style="{DynamicResource MenuHeaderStyle}" Click="lnkNews_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />

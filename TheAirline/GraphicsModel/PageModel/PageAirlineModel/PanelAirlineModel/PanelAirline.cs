@@ -21,33 +21,39 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             WrapPanel buttonsPanel = new WrapPanel();
 
             ucSelectButton sbFleet = new ucSelectButton();
-            sbFleet.Content = "Fleet";
+            sbFleet.Uid = "1001";
+            sbFleet.Content = Translator.GetInstance().GetString("PanelAirline", sbFleet.Uid);
             sbFleet.IsSelected = true;
             sbFleet.Click += new System.Windows.RoutedEventHandler(sbFleet_Click);
             buttonsPanel.Children.Add(sbFleet);
 
             ucSelectButton sbDestinations = new ucSelectButton();
-            sbDestinations.Content = "Destinations and Routes";
+            sbDestinations.Uid = "1002";
+            sbDestinations.Content = Translator.GetInstance().GetString("PanelAirline", sbDestinations.Uid);
             sbDestinations.Click += new System.Windows.RoutedEventHandler(sbDestinations_Click);
             buttonsPanel.Children.Add(sbDestinations);
 
             ucSelectButton sbFacilities = new ucSelectButton();
-            sbFacilities.Content = "Facilities and Advertisement";
+            sbFacilities.Uid = "1003";
+            sbFacilities.Content = Translator.GetInstance().GetString("PanelAirline", sbFacilities.Uid);
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
             buttonsPanel.Children.Add(sbFacilities);
 
             ucSelectButton sbStatistics = new ucSelectButton();
+            sbStatistics.Uid = "1004";
             sbStatistics.Click += new System.Windows.RoutedEventHandler(sbStatistics_Click);
-            sbStatistics.Content = "Statistics";
+            sbStatistics.Content = Translator.GetInstance().GetString("PanelAirline", sbStatistics.Uid);
             buttonsPanel.Children.Add(sbStatistics);
 
             ucSelectButton sbFinances = new ucSelectButton();
-            sbFinances.Content = "Finances";
+            sbFinances.Uid = "1005";
+            sbFinances.Content = Translator.GetInstance().GetString("PanelAirline", sbFinances.Uid);
             sbFinances.Click += new System.Windows.RoutedEventHandler(sbFinances_Click);
             buttonsPanel.Children.Add(sbFinances);
 
             ucSelectButton sbWages = new ucSelectButton();
-            sbWages.Content = "Wages and Fees";
+            sbWages.Uid = "1006";
+            sbWages.Content = Translator.GetInstance().GetString("PanelAirline", sbWages.Uid);
             sbWages.Visibility = this.Airline.IsHuman ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             sbWages.Click += new System.Windows.RoutedEventHandler(sbWages_Click);
             buttonsPanel.Children.Add(sbWages);

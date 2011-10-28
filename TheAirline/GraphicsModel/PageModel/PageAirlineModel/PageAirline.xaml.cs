@@ -66,11 +66,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             panelInfo.Margin = new Thickness(5, 0, 10, 10);
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Profile";
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirline", txtHeader.Uid);
 
             panelInfo.Children.Add(txtHeader);
 
@@ -97,24 +98,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             panelQuickInfo.Children.Add(lbQuickInfo);
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Name", UICreator.CreateTextBlock(this.Airline.Profile.Name)));
-            lbQuickInfo.Items.Add(new QuickInfoValue("IATA code", UICreator.CreateTextBlock(this.Airline.Profile.IATACode)));
-            lbQuickInfo.Items.Add(new QuickInfoValue("CEO", UICreator.CreateTextBlock(this.Airline.Profile.CEO)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1002"), UICreator.CreateTextBlock(this.Airline.Profile.Name)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1003"), UICreator.CreateTextBlock(this.Airline.Profile.IATACode)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1004"), UICreator.CreateTextBlock(this.Airline.Profile.CEO)));
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
             lblFlag.Content = this.Airline.Profile.Country;
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Home country", lblFlag));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Airline color",UICreator.CreateColorRect(this.Airline.Profile.Color)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1005"), lblFlag));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1006"), UICreator.CreateColorRect(this.Airline.Profile.Color)));
             
             // chs, 2011-10-10 added fleet size to the airline profile
             TextBlock txtFleetSize = UICreator.CreateTextBlock(string.Format("{0} (+{1} in order)",this.Airline.DeliveredFleet.Count,this.Airline.Fleet.Count-this.Airline.DeliveredFleet.Count));
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Fleet size",txtFleetSize));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Value",createAirlineValuePanel()));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Reputation",createAirlineReputationPanel()));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Passenger happiness", UICreator.CreateTextBlock(String.Format("{0:0.00} %",PassengerHelpers.GetPassengersHappiness(this.Airline)))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1007"), txtFleetSize));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1008"), createAirlineValuePanel()));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1009"), createAirlineReputationPanel()));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1010"), UICreator.CreateTextBlock(String.Format("{0:0.00} %", PassengerHelpers.GetPassengersHappiness(this.Airline)))));
 
             return panelInfo;
 
