@@ -10,6 +10,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
@@ -33,7 +34,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             InitializeComponent();
 
-            this.Title = "Load a saved game";
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PopUpLoad", this.Uid);
 
             this.Width = 400;
 

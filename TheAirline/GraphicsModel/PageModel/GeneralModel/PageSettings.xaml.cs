@@ -30,6 +30,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             InitializeComponent();
 
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PageSettings", this.Uid);
+
             StackPanel settingsPanel = new StackPanel();
             settingsPanel.Margin = new Thickness(10, 0, 10, 0);
 
@@ -109,10 +112,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             settingsPanel.Children.Add(buttonsPanel);
 
             Button btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             //btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -120,20 +124,21 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             buttonsPanel.Children.Add(btnOk);
 
             Button btnUndo = new Button();
+            btnUndo.Uid = "103";
             btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnUndo.Height = Double.NaN;
             btnUndo.Margin = new Thickness(5, 0, 0, 0);
             btnUndo.Width = Double.NaN;
             // btnCancel.Visibility = this.Route.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
-            btnUndo.Content = "Undo";
+            btnUndo.Content = Translator.GetInstance().GetString("General", btnUndo.Uid);
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnUndo);
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Settings");
+            base.setHeaderContent(this.Title);
 
             
 

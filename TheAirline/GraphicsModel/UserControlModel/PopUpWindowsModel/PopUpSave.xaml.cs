@@ -35,8 +35,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpSave()
         {
             InitializeComponent();
-            this.Uid = "1000";
 
+            this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PopUpSave", this.Uid);
 
             this.Width = 400;

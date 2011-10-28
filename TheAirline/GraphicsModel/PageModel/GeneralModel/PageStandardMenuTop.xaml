@@ -11,6 +11,7 @@
 	Title="PageStandardMenuTop">
     <Page.Resources>
         <c:IsAirportEditorVisibleConverter x:Key="isAirportEditorVisibleConverter"></c:IsAirportEditorVisibleConverter>
+        <c:TranslatorConverter x:Key="translatorConverter"></c:TranslatorConverter>
         <Style x:Key="MenuHeaderStyle" TargetType="MenuItem" >
             <Setter Property="FontFamily" Value="{DynamicResource NormalFont}"></Setter>
             <Setter Property="Margin" Value="0,0,0,0"></Setter>
@@ -34,23 +35,23 @@
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
             <MenuItem Header="{Binding ElementName=PageControl, Path=NewsText}"  Style="{DynamicResource MenuHeaderStyle}" Click="lnkNews_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
-            <MenuItem Header="Airports" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirports_Click"/>
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAirports}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirports_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
-            <MenuItem Header="Airliners" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirliners_Click"/>
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAirliners}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirliners_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
-            <MenuItem Header="Routes" Style="{DynamicResource MenuHeaderStyle}" Click="lnkRoutes_Click"/>
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageRoutes}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkRoutes_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
-            <MenuItem Header="Airlines" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirlines_Click"/>
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAirlines}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirlines_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
 
-            <MenuItem Header="Options" Style="{DynamicResource MenuHeaderStyle}">
-                    <MenuItem Header="Load Game" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkLoadGame_Click"></MenuItem>
-                <MenuItem Header="Save Game" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkSaveGame_Click"> </MenuItem>
-                <MenuItem Header="New Game" Style="{DynamicResource MenuItemStyle}" Click="lnkNewGame_Click"></MenuItem>
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuOptions}" Style="{DynamicResource MenuHeaderStyle}">
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpLoad}" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkLoadGame_Click"></MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpSave}" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkSaveGame_Click"> </MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuNewGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkNewGame_Click"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Settings" Style="{DynamicResource MenuItemStyle}" Click="lnkSettings_Click"></MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageSettings}" Style="{DynamicResource MenuItemStyle}" Click="lnkSettings_Click"></MenuItem>
                 <Separator></Separator>
-                <MenuItem Header="Exit Game" Style="{DynamicResource MenuItemStyle}" Click="lnkExit_Click"></MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuExitGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkExit_Click"></MenuItem>
                 <MenuItem Header="Airport Editor" Style="{DynamicResource MenuItemStyle}" Visibility="{Binding Converter={StaticResource isAirportEditorVisibleConverter}}" Click="lnkTest_Click"></MenuItem>
             </MenuItem>
                

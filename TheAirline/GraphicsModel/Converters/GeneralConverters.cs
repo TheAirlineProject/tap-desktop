@@ -327,9 +327,28 @@ namespace TheAirline.GraphicsModel.Converters
             }
         }
 
+
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();
         }
-    }    
+    }
+
+    // converter for Translations
+    public class TranslatorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+
+            string region = parameter as string;
+            string uid = "1000";
+
+            return Translator.GetInstance().GetString(region, uid);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }
