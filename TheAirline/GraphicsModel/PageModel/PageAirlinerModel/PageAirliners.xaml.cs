@@ -42,19 +42,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             sortCriteriaNew = delegate(AirlinerType t1, AirlinerType t2) { return t2.Price.CompareTo(t1.Price); };
             sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a2.BuiltDate.CompareTo(a1.BuiltDate); };
 
-            this.Language = XmlLanguage.GetLanguage(new CultureInfo("da", false).IetfLanguageTag); 
-
-
-           
             StackPanel airlinersPanel = new StackPanel();
             airlinersPanel.Margin = new Thickness(10, 0, 10, 0);
 
-            
             TextBlock txtNewHeader = new TextBlock();
+            txtNewHeader.Uid = "1001";
             txtNewHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtNewHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtNewHeader.FontWeight = FontWeights.Bold;
-            txtNewHeader.Text = "Order New Airliner";
+            txtNewHeader.Text = Translator.GetInstance().GetString("PageAirliners", txtNewHeader.Uid);
 
             airlinersPanel.Children.Add(txtNewHeader);
 
@@ -70,7 +66,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             panelScroller.Orientation = Orientation.Vertical;
 
             scroller.Content = panelScroller;
-
 
             ContentControl lblNewHeader = new ContentControl();
             lblNewHeader.ContentTemplate = this.Resources["AirlinersNewHeader"] as DataTemplate;
@@ -91,14 +86,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             panelScroller.Children.Add(lbNewAirliners);
 
             TextBlock txtUsedHeader = new TextBlock();
+            txtUsedHeader.Uid = "1002";
             txtUsedHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtUsedHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtUsedHeader.FontWeight = FontWeights.Bold;
             txtUsedHeader.Margin = new Thickness(0, 10, 0, 0);
-            txtUsedHeader.Text = "Buy Used Airliner";
+            txtUsedHeader.Text = Translator.GetInstance().GetString("PageAirliners", txtUsedHeader.Uid);
 
             airlinersPanel.Children.Add(txtUsedHeader);
-
 
             ContentControl lblUsedHeader = new ContentControl();
             lblUsedHeader.ContentTemplate = this.Resources["AirlinersUsedHeader"] as DataTemplate;
@@ -124,19 +119,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             panelContent.setContentPage(panelAirliner, StandardContentPanel.ContentLocation.Right);
 
-
-
             base.setContent(panelContent);
 
             base.setHeaderContent(this.Title);
 
             //base.setHeaderContent(string.Format("{0} Finals", this.League.Profile.ShortName), @"/Data/images/trophy.png");
 
-
             //base.setActionMenu(new ActionMenuModel.ActionMenu());
 
             showPage(this);
         }
+
         //shows the list of new airliners for order
         private void showNewAirliners()
         {
@@ -148,8 +141,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             foreach (AirlinerType airliner in types)
                 lbNewAirliners.Items.Add(airliner);
-
         }
+
         //shows the list of used airliners for sale
         public void showUsedAirliners()
         {
@@ -163,11 +156,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             foreach (Airliner airliner in airliners)
                 lbUsedAirliners.Items.Add(airliner);
-
         }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-
             panelAirliner.Children.Clear();
 
             string type = ((Hyperlink)sender).TargetName;
@@ -176,7 +168,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                 WPFMessageBox.Show("No available homebase", "There are no available homebase, so it is not possible to buy an airliner", WPFMessageBoxButtons.Ok);
             else
             {
-
                 if (type == "Used")
                     panelAirliner.Children.Add(new PanelUsedAirliner(this, (Airliner)((Hyperlink)sender).Tag));
 
@@ -190,9 +181,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             // PageNavigator.NavigateTo(new PagePlayerProfile(player));
         }
+
         private void HeaderNew_Click(object sender, RoutedEventArgs e)
         {
-            
             string type = (string)((Hyperlink)sender).Tag;
 
             switch (type)
@@ -211,6 +202,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                     break;
             }
         }
+
         private void HeaderUsed_Click(object sender, RoutedEventArgs e)
         {
             string type = (string)((Hyperlink)sender).Tag;

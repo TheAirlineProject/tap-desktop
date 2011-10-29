@@ -71,7 +71,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
-                Translator.GetInstance();
+                Translator.Init();
                 Skins.Init();
                 SetStartupLanguage();
             }

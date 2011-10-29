@@ -24,7 +24,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             this.Airliner = airliner;
 
-           
             StackPanel panelAirliner = new StackPanel();
             //scroller.Content = panelAirliner;
 
@@ -35,11 +34,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             this.addObject(panelAirliner);
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.Margin = new System.Windows.Thickness(0, 5, 0, 0);
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airliner Information";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelUsedAirliner", txtHeader.Uid);
 
             this.addObject(txtHeader);
 
@@ -50,7 +50,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             this.addObject(lbAirlineInfo);
 
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Built", UICreator.CreateTextBlock(string.Format("{0} ({1} years old)", this.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Age))));
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1002"), UICreator.CreateTextBlock(string.Format("{0} ({1} years old)", this.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Age))));
 
             WrapPanel panelTailNumber = new WrapPanel();
 
@@ -64,17 +64,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             ccFlag.Margin = new Thickness(10, 0, 0, 0);
 
             panelTailNumber.Children.Add(ccFlag);
-            
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Tail number", panelTailNumber));
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Flown", UICreator.CreateTextBlock( string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Flown), new StringToLanguageConverter().Convert("km.")))));
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Since last service check", UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.LastServiceCheck),new StringToLanguageConverter().Convert("km.")))));
+
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1003"), panelTailNumber));
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1004"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Flown), new StringToLanguageConverter().Convert("km.")))));
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1005"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.LastServiceCheck),new StringToLanguageConverter().Convert("km.")))));
 
             foreach (AirlinerClass aClass in this.Airliner.Classes)
             {
                 TextBlock txtClass = UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(aClass.Type, null, null, null).ToString());
                 txtClass.FontWeight = FontWeights.Bold;
 
-                lbAirlineInfo.Items.Add(new QuickInfoValue("Class", txtClass));
+                lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1006"), txtClass));
 
                 foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
                 {
@@ -84,11 +84,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             }
 
             TextBlock txtPriceHeader = new TextBlock();
+            txtPriceHeader.Uid = "1101";
             txtPriceHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtPriceHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtPriceHeader.Margin = new System.Windows.Thickness(0, 5, 0, 0);
             txtPriceHeader.FontWeight = FontWeights.Bold;
-            txtPriceHeader.Text = "Price Information";
+            txtPriceHeader.Text = Translator.GetInstance().GetString("PanelUsedAirliner", txtPriceHeader.Uid);
 
             this.addObject(txtPriceHeader);
 
@@ -99,9 +100,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             this.addObject(lbPriceInfo);
 
-            lbPriceInfo.Items.Add(new QuickInfoValue("Price", UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.Price))));
-            lbPriceInfo.Items.Add(new QuickInfoValue("Leasing price", UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.LeasingPrice))));
-            lbPriceInfo.Items.Add(new QuickInfoValue("Yearly maintenance", UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.Type.getMaintenance()))));
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1102"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.Price))));
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1103"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.LeasingPrice))));
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1104"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.Type.getMaintenance()))));
 
 
             cbAirport = new ComboBox();
@@ -119,7 +120,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbAirport.SelectedIndex = 0;
 
-            lbPriceInfo.Items.Add(new QuickInfoValue("Select home base", cbAirport));
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1105"), cbAirport));
 
             /*
             cbName = new ComboBox();
@@ -141,10 +142,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             this.addObject(panelButtons);
 
             Button btnBuy = new Button();
+            btnBuy.Uid = "200";
             btnBuy.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnBuy.Height = Double.NaN;
             btnBuy.Width = Double.NaN;
-            btnBuy.Content = "Buy";
+            btnBuy.Content = Translator.GetInstance().GetString("PanelUsedAirliner", btnBuy.Uid);
             btnBuy.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnBuy.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnBuy.Click += new System.Windows.RoutedEventHandler(btnBuy_Click);
@@ -153,10 +155,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             panelButtons.Children.Add(btnBuy);
 
             Button btnLease = new Button();
+            btnLease.Uid = "201";
             btnLease.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnLease.Height = Double.NaN;
             btnLease.Width = Double.NaN;
-            btnLease.Content = "Lease";
+            btnLease.Content = Translator.GetInstance().GetString("PanelUsedAirliner", btnLease.Uid);
             btnLease.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLease.Margin = new Thickness(5, 0, 0, 0);
             btnLease.Click += new RoutedEventHandler(btnLease_Click);

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 
@@ -23,7 +24,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             
             panelAirliner = new StackPanel();
             panelAirliner.Orientation = Orientation.Vertical;
-           
 
             this.Content = panelAirliner;
 
@@ -31,30 +31,33 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             this.Margin = new Thickness(0, 0, 50, 0);
         }
+
         //clears the panel
         public void clearPanel()
         {
             panelAirliner.Children.Clear();
         }
+
         //adds an element to the panel
         public void addObject(UIElement element)
         {
             //DockPanel.SetDock(element, Dock.Top);
             panelAirliner.Children.Add(element);
         }
+
         //creates the quick info panel for a airliner type
         protected StackPanel createQuickInfoPanel(AirlinerType airliner)
         {
             StackPanel quickInfoPanel = new StackPanel();
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airliner Type Specifications";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelAirliner", txtHeader.Uid);
 
             quickInfoPanel.Children.Add(txtHeader);
-
 
             ListBox lbQuickInfo = new ListBox();
             lbQuickInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -62,38 +65,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             quickInfoPanel.Children.Add(lbQuickInfo);
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Name", UICreator.CreateTextBlock(airliner.Name)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1002"), UICreator.CreateTextBlock(airliner.Name)));
 
             ContentControl ccManufactorer = new ContentControl();
             ccManufactorer.SetResourceReference(ContentControl.ContentTemplateProperty, "ManufactorerCountryItem");
             ccManufactorer.Content = airliner.Manufacturer;
- 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Manufactorer",ccManufactorer));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Body type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Body, null, null, null).ToString())));
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1003"), ccManufactorer));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1004"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Body, null, null, null).ToString())));
             
             string range =  string.Format("{0:0.##} {1}",new NumberToUnitConverter().Convert(airliner.Range),new StringToLanguageConverter().Convert("km."));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Range", UICreator.CreateTextBlock(string.Format("{1} ({0})",new TextUnderscoreConverter().Convert(airliner.RangeType),range))));
-            
-            lbQuickInfo.Items.Add(new QuickInfoValue("Engine type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1005"), UICreator.CreateTextBlock(string.Format("{1} ({0})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1006"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
    
             //lbQuickInfo.Items.Add(new QuickInfoValue("Manufactorer", UICreator.CreateTextBlock(airliner.Manufacturer.Name)));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Wingspan", UICreator.CreateTextBlock(string.Format("{0} m.",airliner.Wingspan))));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Length", UICreator.CreateTextBlock(string.Format("{0} m.", airliner.Length))));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Passengers", UICreator.CreateTextBlock(airliner.MaxSeatingCapacity.ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Max airliner classes", UICreator.CreateTextBlock(airliner.MaxAirlinerClasses.ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1007"), UICreator.CreateTextBlock(string.Format("{0} m.", airliner.Wingspan))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1008"), UICreator.CreateTextBlock(string.Format("{0} m.", airliner.Length))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1009"), UICreator.CreateTextBlock(airliner.MaxSeatingCapacity.ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1010"), UICreator.CreateTextBlock(airliner.MaxAirlinerClasses.ToString())));
             
             string crewRequirements = string.Format("Cockpit: {0} Cabin: {1}", airliner.CockpitCrew, airliner.CabinCrew);
-            lbQuickInfo.Items.Add(new QuickInfoValue("Crew requirements", UICreator.CreateTextBlock(crewRequirements)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1011"), UICreator.CreateTextBlock(crewRequirements)));
          
             //lbQuickInfo.Items.Add(new QuickInfoValue("Cockpit crew capacity", UICreator.CreateTextBlock(airliner.CockpitCrew.ToString())));
-           // lbQuickInfo.Items.Add(new QuickInfoValue("Range",
-            lbQuickInfo.Items.Add(new QuickInfoValue("Cruising speed", UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed),new StringToLanguageConverter().Convert("km/t")))));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Fuel Consumption", UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Produced", UICreator.CreateTextBlock(airliner.Produced.ToString())));
-
+            // lbQuickInfo.Items.Add(new QuickInfoValue("Range",
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1013"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1014"), UICreator.CreateTextBlock(airliner.Produced.ToString())));
 
             return quickInfoPanel;
-
         }
     }
 }

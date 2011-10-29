@@ -79,11 +79,16 @@ namespace TheAirline.Model.GeneralModel
 
 		#endregion
 
+        // simple method for initializing the Translator
+        public static void Init()
+        {
+            Translator.GetInstance();
+        }
 
 		#region Methods: GetInstance (Singleton-Pattern)
 
 		/// <summary>
-		/// Liefert eine Instanz von StringPool (Singleton)
+		/// Liefert eine Instanz von Translator (Singleton)
 		/// </summary>
 		/// <returns></returns>
 		public static Translator GetInstance() {
@@ -104,7 +109,7 @@ namespace TheAirline.Model.GeneralModel
 					CACHE_KEY, st, new CacheItemPolicy());
 			}
 
-			// Gebe StringPool-Objekt aus Cache zurück
+			// Gebe Translator-Objekt aus Cache zurück
             return (Translator)stCache[CACHE_KEY];
 		}
 
@@ -211,8 +216,7 @@ namespace TheAirline.Model.GeneralModel
 		/// Liefert den gewünschten String abhängig vom Key in der gewünschhten Sprache
 		/// </summary>
 		/// <param name="region">Bestimmt den Namen der gesuchten Region</param>
-		/// <param name="key">Key des String-Eintrags</param>
-		/// <param name="language">Sprache</param>
+		/// <param name="uid">uid des String-Eintrags</param>
 		/// <returns>String</returns>
 		public string GetString(string region, string uid) 
 		{

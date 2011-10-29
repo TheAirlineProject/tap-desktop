@@ -21,7 +21,6 @@ namespace TheAirline.GraphicsModel.SkinsModel
         {
             this.Name = name;
             this.Properties = new List<KeyValuePair<string,object>>();
-           
         }
         //adds a property to the skin
         public void addProperty(KeyValuePair<string,object> property)
@@ -29,6 +28,7 @@ namespace TheAirline.GraphicsModel.SkinsModel
             this.Properties.Add(property);
         }
     }
+
     //the collection of skins
     public class Skins
     {
@@ -89,8 +89,8 @@ namespace TheAirline.GraphicsModel.SkinsModel
             }
             Skins.AddSkin(skin);
         }
-
     }
+
     //the skin helper class
     public class SkinObject
     {

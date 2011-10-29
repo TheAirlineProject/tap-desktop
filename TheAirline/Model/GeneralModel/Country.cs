@@ -25,47 +25,51 @@ namespace TheAirline.Model.GeneralModel
             this.TailNumberFormat = tailNumberFormat;
             this.TailNumbers = new CountryTailNumber(this);
         }
-
-    }        //the collection of countries
-        public class Countries
-        {
-            private static Dictionary<string, Country> countries = new Dictionary<string, Country>();
-            //clears the list
-            public static void Clear()
-            {
-                countries = new Dictionary<string, Country>();
-            }
-            //adds a country to the list
-            public static void AddCountry(Country country)
-            {
-
-                countries.Add(country.Name, country);
-            }
-            //retuns a country
-            public static Country GetCountry(string name)
-            {
-                if (countries.ContainsKey(name))
-                    return countries[name];
-                else
-                    return null;
-            }
-            //returns a country with a specific tailnumberformat
-            public static Country GetCountryFromTailNumber(string tailnumber)
-            {
-                return GetCountries().Find((delegate(Country country) { return country.TailNumbers.isMatch(tailnumber); }));
-            }
-            //returns the list of countries
-            public static List<Country> GetCountries()
-            {
-                return countries.Values.ToList();
-            }
-            //returns the list of countries from a region
-            public static List<Country> GetCountries(Region region)
-            {
-                return GetCountries().FindAll((delegate(Country country) { return country.Region == region; }));
-            }
-        }
+    }
     
-   
+    //the collection of countries
+    public class Countries
+    {
+        private static Dictionary<string, Country> countries = new Dictionary<string, Country>();
+        
+        //clears the list
+        public static void Clear()
+        {
+            countries = new Dictionary<string, Country>();
+        }
+
+        //adds a country to the list
+        public static void AddCountry(Country country)
+        {
+            countries.Add(country.Name, country);
+        }
+
+        //retuns a country
+        public static Country GetCountry(string name)
+        {
+            if (countries.ContainsKey(name))
+                return countries[name];
+            else
+                return null;
+        }
+
+        //returns a country with a specific tailnumberformat
+        public static Country GetCountryFromTailNumber(string tailnumber)
+        {
+            return GetCountries().Find((delegate(Country country) { return country.TailNumbers.isMatch(tailnumber); }));
+        }
+
+        //returns the list of countries
+        public static List<Country> GetCountries()
+        {
+            return countries.Values.ToList();
+        }
+
+        //returns the list of countries from a region
+        public static List<Country> GetCountries(Region region)
+        {
+            return GetCountries().FindAll((delegate(Country country) { return country.Region == region; }));
+        }
+    }
 }
 
