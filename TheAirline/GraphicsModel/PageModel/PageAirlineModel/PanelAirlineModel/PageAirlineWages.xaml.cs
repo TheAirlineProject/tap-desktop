@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
@@ -28,6 +29,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private ListBox lbWages, lbFees, lbFoodDrinks;
         public PageAirlineWages(Airline airline)
         {
+            InitializeComponent();
+
             this.Airline = airline;
 
             //this.WageValues = new Dictionary<FeeType, double>();
@@ -39,17 +42,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             foreach (FeeType type in FeeTypes.GetTypes())
                 this.FeeValues.Add(type, this.Airline.Fees.getValue(type));
 
-            InitializeComponent();
-            
             StackPanel panelWages = new StackPanel();
             panelWages.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtHeaderWages = new TextBlock();
+            txtHeaderWages.Uid = "1001";
             txtHeaderWages.Margin = new Thickness(0, 0, 0, 0);
             txtHeaderWages.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderWages.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderWages.FontWeight = FontWeights.Bold;
-            txtHeaderWages.Text = "Wages";
+            txtHeaderWages.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderWages.Uid);
 
             panelWages.Children.Add(txtHeaderWages);
 
@@ -62,11 +64,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWages.Children.Add(lbWages);
 
             TextBlock txtHeaderFoods = new TextBlock();
+            txtHeaderFoods.Uid = "1002";
             txtHeaderFoods.Margin = new Thickness(0, 5, 0, 0);
             txtHeaderFoods.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderFoods.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderFoods.FontWeight = FontWeights.Bold;
-            txtHeaderFoods.Text = "Food and drinks";
+            txtHeaderFoods.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderFoods.Uid);
 
             panelWages.Children.Add(txtHeaderFoods);
 
@@ -80,11 +83,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWages.Children.Add(lbFoodDrinks);
 
             TextBlock txtHeaderFees = new TextBlock();
+            txtHeaderFees.Uid = "1003";
             txtHeaderFees.Margin = new Thickness(0, 5, 0, 0);
             txtHeaderFees.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderFees.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderFees.FontWeight = FontWeights.Bold;
-            txtHeaderFees.Text = "Fees";
+            txtHeaderFees.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderFees.Uid);
 
             panelWages.Children.Add(txtHeaderFees);
 
@@ -96,11 +100,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 lbFees.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
 
             panelWages.Children.Add(lbFees);
-
             panelWages.Children.Add(createButtonsPanel());
 
             this.Content = panelWages;
         }
+
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
         {
@@ -108,22 +112,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
+            btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
-           btnOk.Click += new RoutedEventHandler(btnOk_Click);
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
+            btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnOk);
 
             Button btnUndo = new Button();
+            btnUndo.Uid = "103";
             btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnUndo.Height = Double.NaN;
             btnUndo.Margin = new Thickness(5, 0, 0, 0);
             btnUndo.Width = Double.NaN;
             btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
-            btnUndo.Content = "Undo";
+            btnUndo.Content = Translator.GetInstance().GetString("General", btnUndo.Uid);
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnUndo);
@@ -152,8 +158,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.FeeValues[type] = this.Airline.Fees.getValue(type);
                 lbFoodDrinks.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
             }
-              
-
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -164,8 +168,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                foreach (FeeType type in this.FeeValues.Keys)
                    this.Airline.Fees.setValue(type, this.FeeValues[type]);
            }
-
         }
+
         //creates the slider for a wage type
         private WrapPanel createWageSlider(FeeType type)
         {
@@ -190,13 +194,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             slider.IsMoveToPointEnabled = true;
             sliderPanel.Children.Add(slider);
 
-
-
             sliderPanel.Children.Add(txtValue);
 
             return sliderPanel;
         }
-
 
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
@@ -207,8 +208,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             FeeType type = (FeeType)txtBlock.Tag;
 
             this.FeeValues[type] = slider.Value;
-
         }
-
     }
 }

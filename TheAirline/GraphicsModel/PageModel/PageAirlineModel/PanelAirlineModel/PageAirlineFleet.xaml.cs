@@ -40,10 +40,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
         public PageAirlineFleet(Airline airline)
         {
-          
-            this.Airline = airline;
-
             InitializeComponent();
+
+            this.Airline = airline;
 
             foreach (FleetAirliner fa in this.Airline.DeliveredFleet)
                 _FleetDelivered.Add(fa);
@@ -55,16 +54,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelFleet.Children.Add(panelMenuButtons);
 
             ucSelectButton sbOverview = new ucSelectButton();
-            sbOverview.Content = "Fleet overview";
+            sbOverview.Uid = "1001";
+            sbOverview.Content = Translator.GetInstance().GetString("PageAirlineFleet", sbOverview.Uid);
             sbOverview.Click += new RoutedEventHandler(sbOverview_Click);
             sbOverview.IsSelected = true;
             panelMenuButtons.Children.Add(sbOverview);
 
             ucSelectButton sbDetailed = new ucSelectButton();
-            sbDetailed.Content = "Fleet route information";
+            sbDetailed.Uid = "1002";
+            sbDetailed.Content = Translator.GetInstance().GetString("PageAirlineFleet", sbDetailed.Uid);
             sbDetailed.Click += new RoutedEventHandler(sbDetailed_Click);
             panelMenuButtons.Children.Add(sbDetailed);
-            
+
             panelOverview = createOverviewPanel();
 
             panelDetailed = createDetailedPanel();
@@ -76,7 +77,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             this.Content = panelFleet;
 
            // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFleet_OnTimeChanged);
-
         }
 
         private void PageAirlineFleet_OnTimeChanged()
@@ -96,17 +96,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelOverview.Visibility = System.Windows.Visibility.Collapsed;
             panelDetailed.Visibility = System.Windows.Visibility.Visible;
         }
+
         //creates the overview of the fleet
         private StackPanel createOverviewPanel()
         {
             StackPanel panelOverview = new StackPanel();
 
             TextBlock txtFleetHeader = new TextBlock();
+            txtFleetHeader.Uid = "1003";
             txtFleetHeader.Margin = new Thickness(0, 0, 0, 0);
             txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtFleetHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtFleetHeader.FontWeight = FontWeights.Bold;
-            txtFleetHeader.Text = "Airline Fleet";
+            txtFleetHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtFleetHeader.Uid);
 
             panelOverview.Children.Add(txtFleetHeader);
 
@@ -120,15 +122,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelOverview.Children.Add(lvFleet);
 
-   
             lvFleet.ItemsSource = this.FleetDelivered;
 
             TextBlock txtInOrderHeader = new TextBlock();
+            txtInOrderHeader.Uid = "1004";
             txtInOrderHeader.Margin = new Thickness(0, 5, 0, 0);
             txtInOrderHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtInOrderHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtInOrderHeader.FontWeight = FontWeights.Bold;
-            txtInOrderHeader.Text = "Airliners In Order";
+            txtInOrderHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtInOrderHeader.Uid);
 
             panelOverview.Children.Add(txtInOrderHeader);
 
@@ -146,17 +148,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             return panelOverview;
         }
+
         //creates the fleet route details
         private StackPanel createDetailedPanel()
         {
             StackPanel panelDetailed = new StackPanel();
 
             TextBlock txtFleetHeader = new TextBlock();
+            txtFleetHeader.Uid = "1101";
             txtFleetHeader.Margin = new Thickness(0, 0, 0, 0);
             txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtFleetHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtFleetHeader.FontWeight = FontWeights.Bold;
-            txtFleetHeader.Text = "Airline Fleet";
+            txtFleetHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtFleetHeader.Uid);
 
             panelDetailed.Children.Add(txtFleetHeader);
 
@@ -178,26 +182,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             return panelDetailed;
         }
+
         //shows the fleet for the airline
         private void showFleet()
         {
-              ICollectionView dataViewFleet =
-             CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
+            ICollectionView dataViewFleet = CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
             dataViewFleet.Refresh();
 
-            
             ICollectionView dataViewFleetRoute = CollectionViewSource.GetDefaultView(lvRouteFleet.ItemsSource);
             dataViewFleetRoute.Refresh();
-
-            
         }
+
         private void FleetHeaderClickedHandler(object sender,
                                     RoutedEventArgs e)
         {
            //sort route 
             if (e.OriginalSource is GridViewColumnHeader)
             {
-
                 string name = "Airliner.Type.Name";
 
                 if (((GridViewColumnHeader)e.OriginalSource).Content != null)
@@ -216,20 +217,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                         case "Route":
                             name = "HasRoute";
                             break;
-
                     }
                 }
 
                 sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
 
-                ICollectionView dataView =
-                  CollectionViewSource.GetDefaultView(((ListView)sender).ItemsSource);
+                ICollectionView dataView = CollectionViewSource.GetDefaultView(((ListView)sender).ItemsSource);
 
                 dataView.SortDescriptions.Clear();
                 SortDescription sd = new SortDescription(name, sortDirection);
                 dataView.SortDescriptions.Add(sd);
             }
         }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Hyperlink)sender).Tag;
@@ -244,23 +244,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageFleetAirliner(airliner));
-
         }
 
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
-
             FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
 
             if (airliner.Purchased == FleetAirliner.PurchasedType.Bought)
             {
-
                 WPFMessageBoxResult result = WPFMessageBox.Show("Sell airliner", string.Format("Are you sure you want to sell {0}?", airliner.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-
-
                     if (airliner.RouteAirliner != null)
                         airliner.RouteAirliner.Route.Airliner = null;
 
@@ -272,7 +267,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                     showFleet();
                 }
-
             }
             else
             {
@@ -280,8 +274,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-
-
                     if (airliner.RouteAirliner != null)
                         airliner.RouteAirliner.Route.Airliner = null;
 
@@ -292,15 +284,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                     showFleet();
                 }
             }
-
-
         }
-    
     }
+
     //the converter for a filling degree to color
    public class FillingDegreeConverter : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             try
@@ -318,7 +307,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             {
                 return Brushes.White;
             }
-
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

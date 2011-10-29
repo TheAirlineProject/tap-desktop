@@ -32,28 +32,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private ListBox lbSpecifications, lbLoans;
         public PageAirlineFinances(Airline airline)
         {
+            InitializeComponent();
+
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
             this.Airline = airline;
-            
-            InitializeComponent();
 
             StackPanel panelFinances = new StackPanel();
             panelFinances.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.Margin = new Thickness(0, 0, 0, 0);
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airline Finances";
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirlineFinances", txtHeader.Uid);
             panelFinances.Children.Add(txtHeader);
 
             TextBlock txtSummary  =new TextBlock();
+            txtSummary.Uid = "1002";
             txtSummary.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtSummary.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtSummary.FontWeight = FontWeights.Bold;
-            txtSummary.Text = "Financial Summary";
+            txtSummary.Text = Translator.GetInstance().GetString("PageAirlineFinances", txtSummary.Uid);
             panelFinances.Children.Add(txtSummary);
 
             ListBox lbSummary = new ListBox();
@@ -62,13 +64,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelFinances.Children.Add(lbSummary);
 
             txtCurrentMoney = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money));
-            txtCurrentMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money, null, null, null) as Brush;            
-          
-            lbSummary.Items.Add(new QuickInfoValue("Current cash", txtCurrentMoney));
+            txtCurrentMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money, null, null, null) as Brush;
+
+            lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1003"), txtCurrentMoney));
 
             txtBalance = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money - GameObject.GetInstance().StartMoney));
             txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - GameObject.GetInstance().StartMoney, null, null, null) as Brush;
-            lbSummary.Items.Add(new QuickInfoValue("Total balance", txtBalance));
+            lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1004"), txtBalance));
 
             ContentControl txtSpecifications = new ContentControl();
             txtSpecifications.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -83,7 +85,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelFinances.Children.Add(lbSpecifications);
 
-
             showSpecifications();
 
             StackPanel panelLoans = new StackPanel();
@@ -93,10 +94,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelFinances.Children.Add(panelLoans);
 
             TextBlock txtLoans= new TextBlock();
+            txtLoans.Uid = "1005";
             txtLoans.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtLoans.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtLoans.FontWeight = FontWeights.Bold;
-            txtLoans.Text = "Loans";
+            txtLoans.Text = Translator.GetInstance().GetString("PageAirlineFinances", txtLoans.Uid);
             panelLoans.Children.Add(txtLoans);
 
             ContentControl ccLoans = new ContentControl();
@@ -111,11 +113,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelLoans.Children.Add(lbLoans);
 
             Button btnLoan = new Button();
+            btnLoan.Uid = "1006";
             btnLoan.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnLoan.Height = Double.NaN;
             btnLoan.Width = Double.NaN;
             //btnLoan.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-            btnLoan.Content = "Apply for loan";
+            btnLoan.Content = Translator.GetInstance().GetString("PageAirlineFinances", btnLoan.Uid);
             btnLoan.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnLoan.Margin = new Thickness(0, 10, 0, 0);
             btnLoan.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -125,7 +128,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             showLoans(false);
 
-            
             this.Content = panelFinances;
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFinances_OnTimeChanged);
@@ -142,6 +144,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.Airline.addInvoice(new Invoice(loan.Date, Invoice.InvoiceType.Loans, loan.Amount));
             }
         }
+
         //shows the loans
         private void showLoans(Boolean forceShow)
         {
@@ -153,6 +156,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                     lbLoans.Items.Add(loan);
             }
         }
+
         //shows the specifications
         private void showSpecifications()
         {
@@ -161,13 +165,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             foreach (Invoice.InvoiceType type in Enum.GetValues(typeof(Invoice.InvoiceType)))
             {
                 lbSpecifications.Items.Add(new SpecsItem(this.Airline, type));
-              
             }
         }
+
         private void PageAirlineFinances_OnTimeChanged()
         {
-           
-          
             if (this.IsLoaded)
             {
                 txtBalance.Text = string.Format("{0:c}", this.Airline.getProfit());
@@ -179,6 +181,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 showLoans(false);
             }
         }
+
         private void btnPayLoan_Click(object sender, RoutedEventArgs e)
         {
             Loan loan = (Loan)((Button)sender).Tag;
@@ -207,21 +210,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                     }
                 }
             }
-            
         }
+
         private void txtboxLoan_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             try
             {
                 Convert.ToDouble(e.Text);
-
-                
             }
             catch
             {
                 e.Handled = true;
             }
         }
+
         //the class for a category specification
         private class SpecsItem
         {
@@ -235,38 +237,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.InvoiceType = type;
                 this.Airline = airline;
             }
+
             //returns the total amount for the current month
             public double getCurrentMonthTotal()
             {
                 DateTime startDate = new DateTime(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month,1);
                 return this.Airline.getInvoicesAmount(startDate, GameObject.GetInstance().GameTime, this.InvoiceType);
             }
+
             //returns the total amount for the last month
             public double getLastMonthTotal()
             {
                 DateTime tDate = GameObject.GetInstance().GameTime.AddMonths(-1);
-              
                 return this.Airline.getInvoicesAmountMonth(tDate.Month, this.InvoiceType);
-        
             }
+
             //returns the total amount for the year to date
             public double getYearToDateTotal()
             {
-                
                 return  this.Airline.getInvoicesAmountYear(GameObject.GetInstance().GameTime.Year, this.InvoiceType);
-                
             }
- 
         }
-
-    
-
-       
-
-      
-      
-
-        
     }
-    
 }

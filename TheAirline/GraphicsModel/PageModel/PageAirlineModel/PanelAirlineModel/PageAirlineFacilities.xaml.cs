@@ -30,42 +30,38 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox> cbAdvertisements;
         public PageAirlineFacilities(Airline airline)
         {
-            cbAdvertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox>();
-
-            this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
-
-
             InitializeComponent();
 
             this.Airline = airline;
 
-            InitializeComponent();
+            cbAdvertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox>();
+
+            this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
             StackPanel panelFacilities = new StackPanel();
             panelFacilities.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtHeaderFacilities = new TextBlock();
+            txtHeaderFacilities.Uid = "1001";
             txtHeaderFacilities.Margin = new Thickness(0, 0, 0, 0);
             txtHeaderFacilities.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderFacilities.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderFacilities.FontWeight = FontWeights.Bold;
-            txtHeaderFacilities.Text = "Airline Facilities";
+            txtHeaderFacilities.Text = Translator.GetInstance().GetString("PageAirlineFacilities", txtHeaderFacilities.Uid);
             panelFacilities.Children.Add(txtHeaderFacilities);
-
-
-      
+            
             lbFacilities = new ListBox();
             lbFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFacilities.ItemTemplate = this.Resources["FacilityItem"] as DataTemplate;
             lbFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             panelFacilities.Children.Add(lbFacilities);
 
-         
             TextBlock txtNewAirlineFacilities = new TextBlock();
+            txtNewAirlineFacilities.Uid = "1002";
             txtNewAirlineFacilities.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtNewAirlineFacilities.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtNewAirlineFacilities.FontWeight = FontWeights.Bold;
-            txtNewAirlineFacilities.Text = "Purchase Facilities";
+            txtNewAirlineFacilities.Text = Translator.GetInstance().GetString("PageAirlineFacilities", txtNewAirlineFacilities.Uid);
             txtNewAirlineFacilities.Margin = new Thickness(0, 5, 0, 0);
             txtNewAirlineFacilities.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             panelFacilities.Children.Add(txtNewAirlineFacilities);
@@ -76,15 +72,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbNewFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             panelFacilities.Children.Add(lbNewFacilities);
 
-        
             lbNewFacilities.Visibility = this.Airline.IsHuman ? Visibility.Visible : Visibility.Collapsed;
 
             TextBlock txtHeaderAdvertisement = new TextBlock();
+            txtHeaderAdvertisement.Uid = "1003";
             txtHeaderAdvertisement.Margin = new Thickness(0, 5, 0, 0);
             txtHeaderAdvertisement.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderAdvertisement.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderAdvertisement.FontWeight = FontWeights.Bold;
-            txtHeaderAdvertisement.Text = "Airline Advertisement";
+            txtHeaderAdvertisement.Text = Translator.GetInstance().GetString("PageAirlineFacilities", txtHeaderAdvertisement.Uid);
             panelFacilities.Children.Add(txtHeaderAdvertisement);
 
             lbAdvertisement = new ListBox();
@@ -92,7 +88,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbAdvertisement.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             lbAdvertisement.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             panelFacilities.Children.Add(lbAdvertisement);
-      
+
             // chs, 2011-17-10 changed so it is only advertisement types which has been invented which are shown
             foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
             {
@@ -101,23 +97,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             }
 
             Button btnSave = new Button();
+            btnSave.Uid = "1004";
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSave.Height = 16;
             btnSave.Width = Double.NaN;
             btnSave.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnSave.Margin = new Thickness(0, 5, 0, 0);
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
-            btnSave.Content = "Save Advertisements";
+            btnSave.Content = Translator.GetInstance().GetString("PageAirlineFacilities", btnSave.Uid);
             btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnSave.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             panelFacilities.Children.Add(btnSave);
-
 
             this.Content = panelFacilities;
 
             showFacilities();
 
         }
+
         // chs, 2011-14-10 sets the airline advertisement items
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
@@ -129,6 +126,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.Airline.setAirlineAdvertisement(aType);
             }
         }
+
         //creates an item for an advertisering type
         private UIElement createAdvertisementTypeItem(AdvertisementType.AirlineAdvertisementType type)
         {
@@ -138,7 +136,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 cbType.ItemTemplate = this.Resources["AdvertisementItem"] as DataTemplate;
                 cbType.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
                 cbType.Width = 200;
-
 
                 cbAdvertisements.Add(type, cbType);
 
@@ -155,6 +152,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 return UICreator.CreateTextBlock(this.Airline.getAirlineAdvertisement(type).Name);
             }
         }
+
         //shows the list of facilities
         private void showFacilities()
         {
@@ -170,8 +168,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             foreach (AirlineFacility facility in facilitiesNew)
                 lbNewFacilities.Items.Add(facility);
-
-
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
@@ -182,42 +178,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 WPFMessageBox.Show("Not enough money", "You don't have any money to buy these facilities", WPFMessageBoxButtons.Ok);
             else
             {
-
                 WPFMessageBoxResult result = WPFMessageBox.Show("Buy facility", string.Format("Are you sure you want to buy {0} as an airline facility?", facility.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-
                     this.Airline.addFacility(facility);
 
                     //this.Airline.Money -= facility.Price;
 
                     this.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.Price));
 
-
                     showFacilities();
                 }
             }
-
         }
 
         private void ButtonRemove_Click(object sender, RoutedEventArgs e)
         {
-          
             AirlineFacility facility = (AirlineFacility)((Button)sender).Tag;
 
             WPFMessageBoxResult result = WPFMessageBox.Show("Remove facility", string.Format("Are you sure you want to remove {0} as an airline facility?", facility.Name), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
-
                 this.Airline.removeFacility(facility);
 
                 showFacilities();
             }
-
-
         }
+
         //the item for a facility for an airline
         private class AirlineFacilityItem
         {

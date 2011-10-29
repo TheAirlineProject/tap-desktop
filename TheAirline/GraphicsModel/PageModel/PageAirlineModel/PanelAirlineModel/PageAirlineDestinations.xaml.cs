@@ -11,13 +11,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
-using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -29,19 +30,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private Airline Airline;
         public PageAirlineDestinations(Airline airline)
         {
-            this.Airline = airline;
-
             InitializeComponent();
+
+            this.Airline = airline;
 
             StackPanel panelDestinations = new StackPanel();
             panelDestinations.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtDestinationsHeader = new TextBlock();
+            txtDestinationsHeader.Uid = "1001";
             txtDestinationsHeader.Margin = new Thickness(0, 0, 0, 0);
             txtDestinationsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtDestinationsHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtDestinationsHeader.FontWeight = FontWeights.Bold;
-            txtDestinationsHeader.Text = "Destinations";
+            txtDestinationsHeader.Text = Translator.GetInstance().GetString("PageAirlineDestinations", txtDestinationsHeader.Uid);
 
             panelDestinations.Children.Add(txtDestinationsHeader);
 
@@ -63,28 +65,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelDestinations.Children.Add(panelButtons);
 
             Button btnDestinations = new Button();
+            btnDestinations.Uid = "1002";
             btnDestinations.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnDestinations.Width = Double.NaN;
             btnDestinations.Height = Double.NaN;
-            btnDestinations.Content = "Destinations";
+            btnDestinations.Content = Translator.GetInstance().GetString("PageAirlineDestinations", btnDestinations.Uid);
             btnDestinations.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnDestinations.Click += new RoutedEventHandler(btnDestinations_Click);
 
             panelButtons.Children.Add(btnDestinations);
 
             Button btnMap = new Button();
+            btnMap.Uid = "201";
             btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnMap.Width = Double.NaN;
             btnMap.Height = Double.NaN;
-            btnMap.Content = "Route map";
+            btnMap.Content = Translator.GetInstance().GetString("PageAirlineDestinations", btnMap.Uid);
             btnMap.Margin = new Thickness(5, 0, 0, 0);
-             btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnMap.Click += new RoutedEventHandler(btnMap_Click);
 
             panelButtons.Children.Add(btnMap);
 
-          
-           
             this.Content = panelDestinations;
         }
 
@@ -97,13 +99,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             PopUpMap.ShowPopUp(this.Airline.Routes);
         }
+
         private void LnkAirport_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirport(airport));
-
-      
         }
     }
 }

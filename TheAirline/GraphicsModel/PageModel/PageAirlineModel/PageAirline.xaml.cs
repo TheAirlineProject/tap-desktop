@@ -43,22 +43,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             panelContent.setContentPage(airportPanel, StandardContentPanel.ContentLocation.Left);
 
-
             StackPanel panelSideMenu = new PanelAirline(this.Airline);
 
             panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
-
-
 
             base.setContent(panelContent);
 
             base.setHeaderContent(this.Title + " - " + this.Airline.Profile.Name);
 
-            
-
             showPage(this);
-            
         }
+
         //creates the quick info panel for the airline
         private Panel createQuickInfoPanel()
         {
@@ -94,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             ListBox lbQuickInfo = new ListBox();
             lbQuickInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-           lbQuickInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            lbQuickInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             panelQuickInfo.Children.Add(lbQuickInfo);
 
@@ -108,7 +103,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1005"), lblFlag));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1006"), UICreator.CreateColorRect(this.Airline.Profile.Color)));
-            
+
             // chs, 2011-10-10 added fleet size to the airline profile
             TextBlock txtFleetSize = UICreator.CreateTextBlock(string.Format("{0} (+{1} in order)",this.Airline.DeliveredFleet.Count,this.Airline.Fleet.Count-this.Airline.DeliveredFleet.Count));
 
@@ -118,8 +113,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1010"), UICreator.CreateTextBlock(String.Format("{0:0.00} %", PassengerHelpers.GetPassengersHappiness(this.Airline)))));
 
             return panelInfo;
-
         }
+
         //creates the panel for airline value
         public WrapPanel createAirlineValuePanel()
         {
@@ -150,11 +145,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             return panelValue;
         }
+
         //creates the panel for airline reputation
         public WrapPanel createAirlineReputationPanel()
         {
-          
-
             WrapPanel panelStars = new WrapPanel();
 
             for (int i = 0; i <= (int)this.Airline.getReputation(); i++)
@@ -166,6 +160,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                 panelStars.Children.Add(imgStar);
             }
+
             for (int i = (int)this.Airline.getReputation(); i < (int)Airline.AirlineValue.Very_high; i++)
             {
                 Image imgStar = new Image();
@@ -178,6 +173,5 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             return panelStars;
         }
-        
     }
 }

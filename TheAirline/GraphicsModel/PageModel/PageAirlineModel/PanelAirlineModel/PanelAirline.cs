@@ -97,6 +97,5 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             frameContent.Navigate(new PageAirlineFleet(this.Airline));
         }
     }
-
-    }
+}
 
