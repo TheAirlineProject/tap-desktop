@@ -231,7 +231,7 @@ namespace TheAirline.Model.GeneralModel
 					//  Prüfen ob angeforderte Region vorhanden ist
                     if (regions[region] != null)
                     {
-                        if ( ((Hashtable)regions[region])[uid] != null )
+                        if (((Hashtable)regions[region])[uid] != null)
                         {
                             // Prüfen ob gewählte Sprache vorhanden ist;
                             // ansonsten wird die Default-Sprache verwendet
@@ -255,11 +255,12 @@ namespace TheAirline.Model.GeneralModel
                         }
                     }
                     else
-						// Region nicht vorhanden
-						throw new Exception(string.Format(
-							"Region {0} ist nicht vorhanden", region));
+                        return uid;
+                        // Region nicht vorhanden
+//						throw new Exception(string.Format(
+//							"Region {0} ist nicht vorhanden", region));
 				} else
-					return "NaN";
+					return uid;
 			}
 			// Fehlerbehandlung
 			catch (System.Exception ex)
@@ -279,5 +280,40 @@ namespace TheAirline.Model.GeneralModel
 		}
 */
 		#endregion
+
+        #region Methods: addTranslation
+
+        public void addTranslation(String region, string uid, XmlNode node)
+        {
+            Hashtable strs = null;
+            // try to get the existing Hashtable for the region. If no exist, create one 
+            if (regions[region] != null)
+                strs = ((Hashtable)regions[region]);
+            else
+            {
+                // crerate a new Hashtable for the region and add it to the cache
+                strs = new Hashtable();
+                this.regions.Add(region, strs);
+            }
+
+            // if an entry for this uid already exist, return directely
+            if (((Hashtable)regions[region])[uid] != null)
+                return;
+
+            // dictionary with pairs of culture->translated text for the uid element
+            Dictionary<string, string> texts = new Dictionary<string, string>();
+
+            if (node.HasChildNodes)
+            {
+                // Durch Text-Nodes in aktuellem Region-Node iterieren
+                foreach (XmlNode txt in node.ChildNodes)
+                    texts.Add(txt.Name, txt.Attributes["name"].Value);
+            }
+
+            // StringDictionary mit Text-Elementen in übergeordnetes HashTable-Item speichern
+            strs.Add(uid, texts);
+        }
+
+        #endregion
     }
 }

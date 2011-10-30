@@ -54,7 +54,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                           AirlinerFacility.FacilityType airlinerFacilityType =  (AirlinerFacility.FacilityType)Enum.Parse(typeof(AirlinerFacility.FacilityType), airlinerClassFacilityNode.Attributes["type"].Value);
                  
-                        AirlinerFacility aFacility = AirlinerFacilities.GetFacility(airlinerFacilityType,airlinerClassFacilityNode.Attributes["name"].Value);
+                        AirlinerFacility aFacility = AirlinerFacilities.GetFacility(airlinerFacilityType,airlinerClassFacilityNode.Attributes["uid"].Value);
                         aClass.forceSetFacility(aFacility);
                     }
 

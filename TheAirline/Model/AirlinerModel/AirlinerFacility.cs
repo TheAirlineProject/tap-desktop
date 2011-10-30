@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
@@ -9,16 +10,20 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerFacility
     {
         public enum FacilityType { Audio, Video, Seat }
-        public string Name { get; set; }
+        //public string Name { get; set; }
+        public static string tRegion { get; set; }
+        public string Uid { get; set; }
         public double PricePerSeat { get; set; }
         public double PercentOfSeats { get; set; }
         public FacilityType Type { get; set; }
         public int ServiceLevel { get; set; }
         public int FromYear { get; set; }
         public double SeatUses { get; set; }
-        public AirlinerFacility(FacilityType type, string name,int fromYear, int serviceLevel, double percentOfSeats, double pricePerSeat, double seatUses)
+        public AirlinerFacility(FacilityType type, string region, string uid,int fromYear, int serviceLevel, double percentOfSeats, double pricePerSeat, double seatUses)
         {
-            this.Name = name;
+            AirlinerFacility.tRegion = region;
+            this.Uid = uid;
+            //this.Name = name;
             this.FromYear = fromYear;
             this.PricePerSeat = pricePerSeat;
             this.PercentOfSeats = percentOfSeats;
@@ -26,7 +31,13 @@ namespace TheAirline.Model.AirlinerModel
             this.ServiceLevel = serviceLevel;
             this.SeatUses = seatUses;
         }
+        public string Name
+        {
+            get { return Translator.GetInstance().GetString(AirlinerFacility.tRegion, this.Uid); }
+        }
+
     }
+    
     //lists of airliner facilities
     public class AirlinerFacilities
     {
@@ -63,10 +74,10 @@ namespace TheAirline.Model.AirlinerModel
         }
         // chs, 2011-13-10 added function to return a specific airliner facility
         //returns a facility based on name and type
-        public static AirlinerFacility GetFacility(AirlinerFacility.FacilityType type, string name)
+        public static AirlinerFacility GetFacility(AirlinerFacility.FacilityType type, string uid)
         {
             if (GetFacilities(type).Count > 0)
-                return GetFacilities(type).Find((delegate(AirlinerFacility f) { return f.Name == name; }));
+                return GetFacilities(type).Find((delegate(AirlinerFacility f) { return f.Uid == uid; }));
             else
                 return null;
         }

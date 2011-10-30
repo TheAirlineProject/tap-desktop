@@ -371,10 +371,12 @@ namespace TheAirline.Model.GeneralModel
             doc.Load(dataPath + "\\airlinerfacilities.xml");
             XmlElement root = doc.DocumentElement;
 
-            XmlNodeList facilitiesList = root.SelectNodes("//facility");
+            XmlNodeList facilitiesList = root.SelectNodes("//airlinerfacility");
             foreach (XmlElement element in facilitiesList)
             {
-                string name = element.Attributes["name"].Value;
+                string region = root.Name;
+                string uid = element.Attributes["uid"].Value;
+                //string name = element.Attributes["name"].Value;
                 AirlinerFacility.FacilityType type = (AirlinerFacility.FacilityType)Enum.Parse(typeof(AirlinerFacility.FacilityType), element.Attributes["type"].Value);
                 int fromyear = Convert.ToInt16(element.Attributes["fromyear"].Value);
              
@@ -386,7 +388,10 @@ namespace TheAirline.Model.GeneralModel
                 double seatsPrice = XmlConvert.ToDouble(seatsElement.Attributes["price"].Value);
                 double seatuse = XmlConvert.ToDouble(seatsElement.Attributes["uses"].Value);
 
-                AirlinerFacilities.AddFacility(new AirlinerFacility(type, name,fromyear, service, seatsPercent, seatsPrice, seatuse));
+                AirlinerFacilities.AddFacility(new AirlinerFacility(type,/* name*/region, uid, fromyear, service, seatsPercent, seatsPrice, seatuse));
+
+                if (element.SelectSingleNode("translations") != null)
+                    Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
 
