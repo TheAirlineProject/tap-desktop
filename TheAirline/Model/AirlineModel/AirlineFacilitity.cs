@@ -2,24 +2,31 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
     //the class for an airlines facilities
     public class AirlineFacility
     {
-        public string Name { get; set; }
+        public static string tRegion { get; set; }
+        public string Uid { get; set; }
         public string Shortname { get; set; }
         public double Price { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
-        public AirlineFacility(string name, string shortname, double price, int serviceLevel, int luxuryLevel)
+        public AirlineFacility(string region, string uid, string shortname, double price, int serviceLevel, int luxuryLevel)
         {
-            this.Name = name;
+            AirlineFacility.tRegion = region;
+            this.Uid = uid;
             this.Shortname = shortname;
             this.Price = price;
             this.LuxuryLevel = luxuryLevel;
             this.ServiceLevel = serviceLevel;
+        }
+        public string Name
+        {
+            get { return Translator.GetInstance().GetString(AirlineFacility.tRegion, this.Uid); }
         }
     }
     //the collection of facilities

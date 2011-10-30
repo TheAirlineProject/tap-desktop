@@ -10,7 +10,6 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerFacility
     {
         public enum FacilityType { Audio, Video, Seat }
-        //public string Name { get; set; }
         public static string tRegion { get; set; }
         public string Uid { get; set; }
         public double PricePerSeat { get; set; }
@@ -23,7 +22,6 @@ namespace TheAirline.Model.AirlinerModel
         {
             AirlinerFacility.tRegion = region;
             this.Uid = uid;
-            //this.Name = name;
             this.FromYear = fromYear;
             this.PricePerSeat = pricePerSeat;
             this.PercentOfSeats = percentOfSeats;
