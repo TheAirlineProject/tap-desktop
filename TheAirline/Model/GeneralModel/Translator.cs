@@ -190,15 +190,24 @@ namespace TheAirline.Model.GeneralModel
 				
 					// Durch Text-Nodes in aktuellem Region-Node iterieren
 					foreach(XmlNode textNode in regionNode.ChildNodes) {
-					
-						Dictionary<string, string> texts = new Dictionary<string, string>();
+
+                        // dictionary with pairs of culture->translated text for the uid element
+                        Dictionary<string, Dictionary<string, string>> translations = new Dictionary<string, Dictionary<string, string>>();
 
 						// Durch Text-Elemente iterieren und diese in eine Hashtable speichern
-						foreach(XmlNode txt in textNode.ChildNodes)
-							texts.Add(txt.Name, txt.InnerText);
+                        foreach (XmlNode language in textNode.ChildNodes)
+                        {
+                            // dictionary with pairs of attribute->translated attribute text for the uid element
+                            Dictionary<string, string> attributes = new Dictionary<string, string>();
+
+                            foreach (XmlAttribute attr in language.Attributes)
+                                attributes.Add(attr.Name, attr.Value);
+
+                            translations.Add(language.Name, attributes);
+                        }
 					
 						// StringDictionary mit Text-Elementen in übergeordnetes HashTable-Item speichern
-						strs.Add(textNode.Attributes["uid"].Value, texts);
+                        strs.Add(textNode.Attributes["uid"].Value, translations);
 					}
 
 					this.regions.Add(regionNode.Attributes["name"].Value, strs);
@@ -217,10 +226,13 @@ namespace TheAirline.Model.GeneralModel
 		/// </summary>
 		/// <param name="region">Bestimmt den Namen der gesuchten Region</param>
 		/// <param name="uid">uid des String-Eintrags</param>
+        /// <param name="attribute">which attribute should be translated, by default allways attribute "name"</param>
 		/// <returns>String</returns>
-		public string GetString(string region, string uid) 
+		public string GetString(string region, string uid, string attribute = "name") 
 		{
-			string text = null;
+            string culture = System.Threading.Thread.CurrentThread.CurrentUICulture.ToString();
+            
+            string text = null;
 
 			// Lese Text mit den gegebenen Parametern region, key und language
 			try
@@ -236,20 +248,20 @@ namespace TheAirline.Model.GeneralModel
                             // Prüfen ob gewählte Sprache vorhanden ist;
                             // ansonsten wird die Default-Sprache verwendet
                             //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
-                            if (((Dictionary<string, string>)((Hashtable)regions[region])[uid]).ContainsKey(System.Threading.Thread.CurrentThread.CurrentUICulture.ToString()))
-                                text = ((Dictionary<string, string>)((Hashtable)regions[region])[uid])[System.Threading.Thread.CurrentThread.CurrentUICulture.ToString()];
+                            if (((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions[region])[uid]).ContainsKey(culture))
+                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions[region])[uid])[culture][attribute];
                             else
-                                text = ((Dictionary<string, string>)((Hashtable)regions[region])[uid])[DefaultLanguage];
+                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions[region])[uid])[DefaultLanguage][attribute];
 
                             return text;
                         }
                         else
                         {
                             // we try it in the "General" region
-                            if (((Dictionary<string, string>)((Hashtable)regions["General"])[uid]).ContainsKey(System.Threading.Thread.CurrentThread.CurrentUICulture.ToString()))
-                                text = ((Dictionary<string, string>)((Hashtable)regions["General"])[uid])[System.Threading.Thread.CurrentThread.CurrentUICulture.ToString()];
+                            if (((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions["General"])[uid]).ContainsKey(culture))
+                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions["General"])[uid])[culture][attribute];
                             else
-                                text = ((Dictionary<string, string>)((Hashtable)regions["General"])[uid])[DefaultLanguage];
+                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions["General"])[uid])[DefaultLanguage][attribute];
 
                             return text;
                         }
@@ -301,17 +313,25 @@ namespace TheAirline.Model.GeneralModel
                 return;
 
             // dictionary with pairs of culture->translated text for the uid element
-            Dictionary<string, string> texts = new Dictionary<string, string>();
+            Dictionary<string, Dictionary<string, string>> translations = new Dictionary<string, Dictionary<string, string>>();
 
             if (node.HasChildNodes)
             {
                 // Durch Text-Nodes in aktuellem Region-Node iterieren
-                foreach (XmlNode txt in node.ChildNodes)
-                    texts.Add(txt.Name, txt.Attributes["name"].Value);
+                foreach (XmlNode language in node.ChildNodes)
+                {
+                    // dictionary with pairs of attribute->translated attribute text for the uid element
+                    Dictionary<string, string> attributes = new Dictionary<string, string>();
+
+                    foreach (XmlAttribute attr in language.Attributes)
+                        attributes.Add(attr.Name, attr.Value);
+
+                    translations.Add(language.Name, attributes);
+                }
             }
 
             // StringDictionary mit Text-Elementen in übergeordnetes HashTable-Item speichern
-            strs.Add(uid, texts);
+            strs.Add(uid, translations);
         }
 
         #endregion
