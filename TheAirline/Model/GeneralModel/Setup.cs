@@ -325,23 +325,27 @@ namespace TheAirline.Model.GeneralModel
             doc.Load(dataPath + "\\airportfacilities.xml");
             XmlElement root = doc.DocumentElement;
 
-            XmlNodeList facilitiesList = root.SelectNodes("//facility");
+            XmlNodeList facilitiesList = root.SelectNodes("//airportfacility");
 
-            foreach (XmlElement facility in facilitiesList)
+            foreach (XmlElement element in facilitiesList)
             {
-                string name = facility.Attributes["name"].Value;
-                string shortname = facility.Attributes["shortname"].Value;
+                string region = root.Name;
+                string uid = element.Attributes["uid"].Value;
+                string shortname = element.Attributes["shortname"].Value;
                 AirportFacility.FacilityType type =
-      (AirportFacility.FacilityType)Enum.Parse(typeof(AirportFacility.FacilityType), facility.Attributes["type"].Value);
-                int typeLevel = Convert.ToInt16(facility.Attributes["typelevel"].Value);
+      (AirportFacility.FacilityType)Enum.Parse(typeof(AirportFacility.FacilityType), element.Attributes["type"].Value);
+                int typeLevel = Convert.ToInt16(element.Attributes["typelevel"].Value);
 
-                double price = XmlConvert.ToDouble(facility.Attributes["price"].Value);
+                double price = XmlConvert.ToDouble(element.Attributes["price"].Value);
 
-                XmlElement levelElement = (XmlElement)facility.SelectSingleNode("level");
+                XmlElement levelElement = (XmlElement)element.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
-                AirportFacilities.AddFacility(new AirportFacility(name, shortname, type, typeLevel, price, service, luxury));
+                AirportFacilities.AddFacility(new AirportFacility(region, uid, shortname, type, typeLevel, price, service, luxury));
+
+                if (element.SelectSingleNode("translations") != null)
+                    Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
 

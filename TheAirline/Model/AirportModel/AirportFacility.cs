@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirportModel
 {
@@ -10,21 +11,28 @@ namespace TheAirline.Model.AirportModel
     {
         public enum FacilityType { Lounge, Service }
         public FacilityType Type { get; set; }
-        public string Name { get; set; }
+        public static string tRegion { get; set; }
+        public string Uid { get; set; }
         public string Shortname { get; set; }
         public double Price { get; set; }
         public int TypeLevel { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
-        public AirportFacility(string name, string shortname,FacilityType type,int typeLevel, double price, int serviceLevel, int luxuryLevel)
+        public AirportFacility(string region, string uid, string shortname,FacilityType type,int typeLevel, double price, int serviceLevel, int luxuryLevel)
         {
-            this.Name = name;
+            AirportFacility.tRegion = region;
+            this.Uid = uid;
             this.Shortname = shortname;
             this.Price = price;
             this.LuxuryLevel = luxuryLevel;
             this.ServiceLevel = serviceLevel;
             this.TypeLevel = typeLevel;
             this.Type = type;
+        }
+
+        public string Name
+        {
+            get { return Translator.GetInstance().GetString(AirportFacility.tRegion, this.Uid); }
         }
     }
     //the collection of facilities
