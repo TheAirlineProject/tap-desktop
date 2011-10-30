@@ -298,13 +298,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             Airline airline = (Airline)cbAirline.SelectedItem;
 
-
-            airportsView.Filter = o =>
+            try
             {
-                Airport a = o as Airport;
-                return a.Profile.Country.Region == airline.Profile.Country.Region && (a.Profile.Size == AirportProfile.AirportSize.Smallest || a.Profile.Size == AirportProfile.AirportSize.Very_small);
-            };
-
+                airportsView.Filter = o =>
+                {
+                    Airport a = o as Airport;
+                    return a.Profile.Country.Region == airline.Profile.Country.Region && (a.Profile.Size == AirportProfile.AirportSize.Smallest || a.Profile.Size == AirportProfile.AirportSize.Very_small);
+                };
+            }
+            catch (Exception ex)
+            {
+                string exception = ex.ToString();
+            }
             airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
             txtName.Text = airline.Profile.CEO;
             txtIATA.Text = airline.Profile.IATACode;

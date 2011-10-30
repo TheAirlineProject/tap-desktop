@@ -9,18 +9,18 @@ namespace TheAirline.Model.AirlinerModel
     //the class for a facility in an airliner
     public class AirlinerFacility
     {
-        public enum FacilityType { Audio, Video, Seat }
-        public static string tRegion { get; set; }
+        public static string Section { get; set; }
         public string Uid { get; set; }
+        public enum FacilityType { Audio, Video, Seat }
         public double PricePerSeat { get; set; }
         public double PercentOfSeats { get; set; }
         public FacilityType Type { get; set; }
         public int ServiceLevel { get; set; }
         public int FromYear { get; set; }
         public double SeatUses { get; set; }
-        public AirlinerFacility(FacilityType type, string region, string uid,int fromYear, int serviceLevel, double percentOfSeats, double pricePerSeat, double seatUses)
+        public AirlinerFacility(string section, string uid, FacilityType type, int fromYear, int serviceLevel, double percentOfSeats, double pricePerSeat, double seatUses)
         {
-            AirlinerFacility.tRegion = region;
+            AirlinerFacility.Section = section;
             this.Uid = uid;
             this.FromYear = fromYear;
             this.PricePerSeat = pricePerSeat;
@@ -31,9 +31,8 @@ namespace TheAirline.Model.AirlinerModel
         }
         public string Name
         {
-            get { return Translator.GetInstance().GetString(AirlinerFacility.tRegion, this.Uid); }
+            get { return Translator.GetInstance().GetString(AirlinerFacility.Section, this.Uid); }
         }
-
     }
     
     //lists of airliner facilities

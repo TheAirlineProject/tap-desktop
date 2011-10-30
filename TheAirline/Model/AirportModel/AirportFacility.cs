@@ -9,18 +9,18 @@ namespace TheAirline.Model.AirportModel
     //the class for a facility at an airport
     public class AirportFacility
     {
+        public static string Section { get; set; }
+        public string Uid { get; set; }
         public enum FacilityType { Lounge, Service }
         public FacilityType Type { get; set; }
-        public static string tRegion { get; set; }
-        public string Uid { get; set; }
         public string Shortname { get; set; }
         public double Price { get; set; }
         public int TypeLevel { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
-        public AirportFacility(string region, string uid, string shortname,FacilityType type,int typeLevel, double price, int serviceLevel, int luxuryLevel)
+        public AirportFacility(string section, string uid, string shortname,FacilityType type,int typeLevel, double price, int serviceLevel, int luxuryLevel)
         {
-            AirportFacility.tRegion = region;
+            AirportFacility.Section = section;
             this.Uid = uid;
             this.Shortname = shortname;
             this.Price = price;
@@ -32,7 +32,7 @@ namespace TheAirline.Model.AirportModel
 
         public string Name
         {
-            get { return Translator.GetInstance().GetString(AirportFacility.tRegion, this.Uid); }
+            get { return Translator.GetInstance().GetString(AirportFacility.Section, this.Uid); }
         }
     }
     //the collection of facilities

@@ -182,7 +182,7 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (XmlElement element in facilitiesList)
             {
-                string region = root.Name;
+                string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
                 string shortname = element.Attributes["shortname"].Value;
                 double price = XmlConvert.ToDouble(element.Attributes["price"].Value);
@@ -191,7 +191,7 @@ namespace TheAirline.Model.GeneralModel
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
-                AirlineFacilities.AddFacility(new AirlineFacility(region ,uid, shortname, price, service, luxury));
+                AirlineFacilities.AddFacility(new AirlineFacility(section, uid, shortname, price, service, luxury));
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
@@ -207,10 +207,15 @@ namespace TheAirline.Model.GeneralModel
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList regionsList = root.SelectNodes("//region");
-            foreach (XmlElement region in regionsList)
+            foreach (XmlElement element in regionsList)
             {
-                string name = region.Attributes["name"].Value;
-                Regions.AddRegion(new Region(name));
+                string section = root.Name;
+                string uid = element.Attributes["uid"].Value;
+
+                Regions.AddRegion(new Region(section, uid));
+
+                if (element.SelectSingleNode("translations") != null)
+                    Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
 
@@ -329,7 +334,7 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (XmlElement element in facilitiesList)
             {
-                string region = root.Name;
+                string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
                 string shortname = element.Attributes["shortname"].Value;
                 AirportFacility.FacilityType type =
@@ -342,7 +347,7 @@ namespace TheAirline.Model.GeneralModel
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
-                AirportFacilities.AddFacility(new AirportFacility(region, uid, shortname, type, typeLevel, price, service, luxury));
+                AirportFacilities.AddFacility(new AirportFacility(section, uid, shortname, type, typeLevel, price, service, luxury));
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
@@ -382,7 +387,7 @@ namespace TheAirline.Model.GeneralModel
             XmlNodeList facilitiesList = root.SelectNodes("//airlinerfacility");
             foreach (XmlElement element in facilitiesList)
             {
-                string region = root.Name;
+                string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
                 AirlinerFacility.FacilityType type = (AirlinerFacility.FacilityType)Enum.Parse(typeof(AirlinerFacility.FacilityType), element.Attributes["type"].Value);
                 int fromyear = Convert.ToInt16(element.Attributes["fromyear"].Value);
@@ -395,7 +400,7 @@ namespace TheAirline.Model.GeneralModel
                 double seatsPrice = XmlConvert.ToDouble(seatsElement.Attributes["price"].Value);
                 double seatuse = XmlConvert.ToDouble(seatsElement.Attributes["uses"].Value);
 
-                AirlinerFacilities.AddFacility(new AirlinerFacility(type, region, uid, fromyear, service, seatsPercent, seatsPrice, seatuse));
+                AirlinerFacilities.AddFacility(new AirlinerFacility(section, uid, type, fromyear, service, seatsPercent, seatsPrice, seatuse));
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));

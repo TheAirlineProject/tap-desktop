@@ -9,15 +9,15 @@ namespace TheAirline.Model.AirlineModel
     //the class for an airlines facilities
     public class AirlineFacility
     {
-        public static string tRegion { get; set; }
+        public static string Section { get; set; }
         public string Uid { get; set; }
         public string Shortname { get; set; }
         public double Price { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
-        public AirlineFacility(string region, string uid, string shortname, double price, int serviceLevel, int luxuryLevel)
+        public AirlineFacility(string section, string uid, string shortname, double price, int serviceLevel, int luxuryLevel)
         {
-            AirlineFacility.tRegion = region;
+            AirlineFacility.Section = section;
             this.Uid = uid;
             this.Shortname = shortname;
             this.Price = price;
@@ -26,7 +26,7 @@ namespace TheAirline.Model.AirlineModel
         }
         public string Name
         {
-            get { return Translator.GetInstance().GetString(AirlineFacility.tRegion, this.Uid); }
+            get { return Translator.GetInstance().GetString(AirlineFacility.Section, this.Uid); }
         }
     }
     //the collection of facilities

@@ -61,17 +61,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             List<Region> regions = Regions.GetRegions();
             regions.Sort(delegate(Region r1, Region r2){return r1.Name.CompareTo(r2.Name);});
 
-            Region regionAll = new Region("All regions");
+            // we handle "All Regions" seperate
+            Region regionAll = Regions.GetRegion("100");
             cbRegion.Items.Add(regionAll);
 
             foreach (Region region in regions)
                 cbRegion.Items.Add(region);
 
-      
             panelSearch.Children.Add(cbRegion);
 
-            
-          
             cbCountry = new ComboBox();
             cbCountry.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
             cbCountry.Margin = new Thickness(0, 5, 0, 0);
@@ -83,7 +81,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             List<Country> countries = Countries.GetCountries();
             countries.Sort(delegate(Country c1, Country c2) { return c1.Name.CompareTo(c2.Name); });
 
-            Country countryAll = new Country("All countries", "All", regionAll,"");
+            Country countryAll = new Country("All countries", "All", regionAll, "");
             countryAll.Flag = @"\data\images\united nations.png";
 
             cbCountry.Items.Add(countryAll);
@@ -91,9 +89,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             foreach (Country country in countries)
                 cbCountry.Items.Add(country);
 
-             cbCountry.SelectedItem = countryAll;
-             cbRegion.SelectedItem = regionAll;
-         
+            cbCountry.SelectedItem = countryAll;
+            cbRegion.SelectedItem = regionAll;
 
             panelSearch.Children.Add(cbCountry);
 
@@ -124,9 +121,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
             panelButtons.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            
+
             panelSearch.Children.Add(panelButtons);
-            
 
             Button btnSearch = new Button();
             btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -149,15 +145,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             panelButtons.Children.Add(btnClear);
 
-
             this.Content = panelSearch;
-
         }
 
         private void cbRegions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
-
             cbCountry.Items.Clear();
 
             Region region = (Region)((ComboBox)sender).SelectedItem;
@@ -165,9 +157,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             List<Country> countries = Countries.GetCountries();
             countries.Sort(delegate(Country c1, Country c2) { return c1.Name.CompareTo(c2.Name); });
 
-            if (region.Name != "All regions") countries = countries.FindAll(delegate(Country country) { return country.Region == region; });
-            
-      
+            // 100 is the predefined Uid for "All Regions"
+            if (region.Uid != "100") countries = countries.FindAll(delegate(Country country) { return country.Region == region; });
+
             Country countryAll = new Country("All countries", "All", region, "");
             countryAll.Flag = @"\data\images\united nations.png";
 
@@ -177,8 +169,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
                 cbCountry.Items.Add(country);
 
             cbCountry.SelectedItem = countryAll;
-
-
         }
 
         private void btnClear_Click(object sender, RoutedEventArgs e)
