@@ -184,14 +184,13 @@ namespace TheAirline.Model.GeneralModel
             {
                 string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
-                string shortname = element.Attributes["shortname"].Value;
                 double price = XmlConvert.ToDouble(element.Attributes["price"].Value);
 
                 XmlElement levelElement = (XmlElement)element.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
-                AirlineFacilities.AddFacility(new AirlineFacility(section, uid, shortname, price, service, luxury));
+                AirlineFacilities.AddFacility(new AirlineFacility(section, uid, price, service, luxury));
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));

@@ -192,7 +192,8 @@ namespace TheAirline.Model.GeneralModel
 					foreach(XmlNode textNode in regionNode.ChildNodes) {
 
                         // dictionary with pairs of culture->translated text for the uid element
-                        Dictionary<string, Dictionary<string, string>> translations = new Dictionary<string, Dictionary<string, string>>();
+                        Hashtable translations = new Hashtable();
+                        //Dictionary<string, Dictionary<string, string>> translations = new Dictionary<string, Dictionary<string, string>>();
 
 						// Durch Text-Elemente iterieren und diese in eine Hashtable speichern
                         foreach (XmlNode language in textNode.ChildNodes)
@@ -248,20 +249,20 @@ namespace TheAirline.Model.GeneralModel
                             // Prüfen ob gewählte Sprache vorhanden ist;
                             // ansonsten wird die Default-Sprache verwendet
                             //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
-                            if (((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions[region])[uid]).ContainsKey(culture))
-                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions[region])[uid])[culture][attribute];
+                            if (((Hashtable)((Hashtable)regions[region])[uid]).ContainsKey(culture))
+                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions[region])[uid])[culture]))[attribute];
                             else
-                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions[region])[uid])[DefaultLanguage][attribute];
+                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions[region])[uid])[DefaultLanguage]))[attribute];
 
                             return text;
                         }
                         else
                         {
                             // we try it in the "General" region
-                            if (((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions["General"])[uid]).ContainsKey(culture))
-                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions["General"])[uid])[culture][attribute];
+                            if (((Hashtable)((Hashtable)regions["General"])[uid]).ContainsKey(culture))
+                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions["General"])[uid])[culture]))[attribute];
                             else
-                                text = ((Dictionary<string, Dictionary<string, string>>)((Hashtable)regions["General"])[uid])[DefaultLanguage][attribute];
+                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions["General"])[uid])[DefaultLanguage]))[attribute];
 
                             return text;
                         }
@@ -313,7 +314,8 @@ namespace TheAirline.Model.GeneralModel
                 return;
 
             // dictionary with pairs of culture->translated text for the uid element
-            Dictionary<string, Dictionary<string, string>> translations = new Dictionary<string, Dictionary<string, string>>();
+            Hashtable translations = new Hashtable();
+            //Dictionary<string, Dictionary<string, string>> translations = new Dictionary<string, Dictionary<string, string>>();
 
             if (node.HasChildNodes)
             {
