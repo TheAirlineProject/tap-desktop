@@ -19,7 +19,7 @@ namespace TheAirline.GraphicsModel.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Visibility rv = Visibility.Visible;
+            Visibility rv = Visibility.Collapsed;
             try
             {
                 var x = bool.Parse(value.ToString());

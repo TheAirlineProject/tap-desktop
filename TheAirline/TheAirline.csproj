@@ -252,6 +252,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -420,6 +424,9 @@
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml.cs">
       <DependentUpon>PopUpSave.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml.cs">
+      <DependentUpon>PopUpTerminal.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml.cs">
       <DependentUpon>PopUpTest.xaml</DependentUpon>
     </Compile>
@@ -568,6 +575,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Airplane-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\BlankImage.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

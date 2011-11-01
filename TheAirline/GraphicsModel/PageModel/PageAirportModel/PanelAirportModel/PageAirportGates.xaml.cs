@@ -17,6 +17,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -32,8 +33,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             this.Airport = airport;
 
-            //this.Airport.addTerminal(new Terminal(this.Airport, null, 20));
-            //this.Airport.addTerminal(new Terminal(this.Airport,Airlines.GetAirlines()[4], 10));
 
 
             InitializeComponent();
@@ -52,7 +51,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             txtTerminalsInfoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtTerminalsInfoHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtTerminalsInfoHeader.FontWeight = FontWeights.Bold;
-            txtTerminalsInfoHeader.Text = "Terminals Information (Owner/Gates)";
+            txtTerminalsInfoHeader.Text = "Terminals Information (Owner/Gates/Delivery)";
             txtTerminalsInfoHeader.Margin = new Thickness(0, 10, 0, 0);
 
             panelGatesTerminals.Children.Add(txtTerminalsInfoHeader);
@@ -80,19 +79,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             showTerminals();
         }
 
-        private void btnTerminal_Click(object sender, RoutedEventArgs e)
-        {
-            this.Airport.addTerminal(new Terminal(this.Airport, GameObject.GetInstance().HumanAirline, 20));
-            showGatesInformation();
-            showTerminals();
-        }
-        // chs, 2011-27-10 added for the possibility of purchasing a terminal
+
+        // chs, 2011-28-10 changed to show all terminals
         //shows the terminals
         private void showTerminals()
         {
             lbTerminals.Items.Clear();
 
-            foreach (Terminal terminal in this.Airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline != null; })))
+            foreach (Terminal terminal in this.Airport.Terminals.getTerminals())
             {
                 lbTerminals.Items.Add(terminal);
             }
@@ -157,7 +151,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnRent.Content = "Rent";
             btnRent.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             // chs, 2011-27-10 changed so it is only possible to rent 75 % of the gates at an airport
-
             btnRent.IsEnabled = this.Airport.Terminals.getFreeGates() > 0 && Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) * 3) / 4 < this.Airport.Terminals.getNumberOfGates();
             btnRent.Click += new RoutedEventHandler(btnRent_Click);
             buttonsPanel.Children.Add(btnRent);
@@ -175,7 +168,38 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
 
         }
+        private void btnTerminal_Click(object sender, RoutedEventArgs e)
+        {
+            Terminal terminal = PopUpTerminal.ShowPopUp(this.Airport) as Terminal;
 
+            if (terminal != null)
+            {
+                // chs, 2011-01-11 changed so a message for confirmation are shown9han
+                int gates = terminal.Gates.getGates().Count;
+                long price = gates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
+
+                if (price > GameObject.GetInstance().HumanAirline.Money)
+                {
+                    WPFMessageBox.Show("Not enough money", "You don't have enough money to buy this terminal", WPFMessageBoxButtons.Ok);
+                }
+                else
+                {
+                    WPFMessageBoxResult result = WPFMessageBox.Show("Buy terminal", string.Format("Are you sure you want to buy a terminal with {0} gates for {1:C}?", gates, price), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+
+                        this.Airport.addTerminal(terminal);
+                        showGatesInformation();
+                        showTerminals();
+
+                        GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
+
+           
+                    }
+                }
+            }
+        }
         private void btnRelease_Click(object sender, RoutedEventArgs e)
         {
 
@@ -193,34 +217,48 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         }
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
-            Airline airline = (Airline)((Hyperlink)sender).Tag;
+            try
+            {
+                Airline airline = (Airline)((Hyperlink)sender).Tag;
 
-            PageNavigator.NavigateTo(new PageAirline(airline));
+                PageNavigator.NavigateTo(new PageAirline(airline));
+            }
+            catch
+            {
+            }
 
 
         }
         // chs, 2011-27-10 added for the possibility of purchasing a terminal
         private void btnRemoveTerminal_Click(object sender, RoutedEventArgs e)
         {
-             Terminal terminal = (Terminal)((Button)sender).Tag;
+            Terminal terminal = (Terminal)((Button)sender).Tag;
 
-             if (terminal.Gates.getUsedGate(terminal.Airline) == null)
-             {
-                 WPFMessageBoxResult result = WPFMessageBox.Show("Remove terminal", string.Format("Are you sure you want to remove this terminal with {0} gates?", terminal.Gates.NumberOfGates), WPFMessageBoxButtons.YesNo);
+            if (terminal.Gates.getUsedGate(terminal.Airline) == null)
+            {
 
-                 if (result == WPFMessageBoxResult.Yes)
-                 {
-                     this.Airport.removeTerminal(terminal);
+                // chs, 2011-31-10 changed for the possibility of having delivered and non-delivered terminals
 
-                     showTerminals();
-                     showGatesInformation();
+                string strRemove;
+                if (terminal.DevileryDate > GameObject.GetInstance().GameTime)
+                    strRemove = "Are you sure you want to stop building this terminal?";
+                else
+                    strRemove = string.Format("Are you sure you want to remove this terminal with {0} gates?", terminal.Gates.NumberOfGates);
+                WPFMessageBoxResult result = WPFMessageBox.Show("Remove terminal", strRemove, WPFMessageBoxButtons.YesNo);
 
-                 }
-             }
-             else
-             {
-                 WPFMessageBox.Show("Removal not possible", "It is not possible to remove the terminal, since it is currently in use", WPFMessageBoxButtons.Ok);
-             }
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airport.removeTerminal(terminal);
+
+                    showTerminals();
+                    showGatesInformation();
+
+                }
+            }
+            else
+            {
+                WPFMessageBox.Show("Removal not possible", "It is not possible to remove the terminal, since it is currently in use", WPFMessageBoxButtons.Ok);
+            }
         }
         //the class for the gates at an airport
         private class AirlineGates

@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+        xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirportGates">
@@ -13,12 +14,13 @@
         <DataTemplate x:Key="TerminalItem">
             <WrapPanel>
                 <TextBlock Width="150" VerticalAlignment="Bottom">
-                    <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter}}">
-                        <Run Text="{Binding Airline.Profile.Name}"></Run>
+                    <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter},FallbackValue=Green}">
+                        <Run Text="{Binding Airline.Profile.Name,FallbackValue=Airport Terminal}"></Run>
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Width="50" VerticalAlignment="Bottom" Text="{Binding Gates.NumberOfGates}"></TextBlock>
-                <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding DevileryDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
                     <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
             </WrapPanel>

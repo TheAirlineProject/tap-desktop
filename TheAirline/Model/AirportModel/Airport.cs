@@ -28,7 +28,7 @@ namespace TheAirline.Model.AirportModel
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
             this.Terminals = new Terminals(this);
-            this.Terminals.addTerminal(new Terminal(this, null, this.Profile.Gates));
+            this.Terminals.addTerminal(new Terminal(this, null, this.Profile.Gates, new DateTime(1950,1,1)));
         }
 
         //clears the list of passengers
@@ -128,6 +128,21 @@ namespace TheAirline.Model.AirportModel
 
             setAirportFacility(airline, facilities[index - 1]);
 
+        }
+        // chs, 2011-31-10 added for pricing of a terminal
+        //returns the price for a terminal
+        public long getTerminalPrice()
+        {
+            long price = 2000000 + 150000 * ((int)this.Profile.Size + 1);
+            return price;
+   
+        }
+        //returns the price for a gate at a bough terminal
+        public long getTerminalGatePrice()
+        {
+            long price = 125000 * ((int)this.Profile.Size + 1);
+            return price;
+           
         }
         // chs, 2011-27-10 added for the possibility of purchasing a terminal
         //adds a terminal to the airport

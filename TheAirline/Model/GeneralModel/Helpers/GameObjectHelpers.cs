@@ -73,7 +73,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
 
-    
+
         }
         //do the yearly update
         private static void DoYearlyUpdate()
@@ -95,8 +95,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 // chs, 2011-28-10 changed so a terminal only costs 75% of gate price
                 foreach (Airport airport in airline.Airports)
                 {
-                    int gates = airport.Terminals.getNumberOfGates(airline);
-                    airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airport.getGatePrice() * gates));
+                    foreach (Terminal terminal in airport.Terminals.getDeliveredTerminals())
+                    {
+                        double gates = Convert.ToDouble(terminal.Gates.getGates().Count);
+                        double gatePrice = airline == terminal.Airline ? airport.getGatePrice() * 0.75 : airport.getGatePrice();
+
+                        airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -gatePrice * gates));
+
+                    }
                 }
                 foreach (Loan loan in airline.Loans)
                 {
@@ -119,11 +125,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -airline.getAirlineAdvertisement(type).Price));
                         if (airline.Reputation < 100)
-                            airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel; 
-                     
+                            airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel;
+
                     }
                 }
-    
+
 
             }
         }
@@ -214,7 +220,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateRouteStart(RouteAirliner airliner)
         {
 
-        
+
             airliner.CurrentFlight = new Flight(airliner.Route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
 
             airliner.Status = RouteAirliner.AirlinerStatus.Resting;
@@ -264,7 +270,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
-         }
+        }
         //simulates a route airliner landing
         private static void SimulateLanding(RouteAirliner airliner)
         {
@@ -273,7 +279,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = RouteAirliner.AirlinerStatus.Resting;
-     
+
             double groundTaxPerPassenger = 5;
 
             double tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
@@ -432,7 +438,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
-    
+
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.CurrentPosition);
             double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Airliner.Type.FuelConsumption + Airports.GetAirport(airliner.CurrentPosition).getLandingFee();
 
@@ -458,7 +464,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 airliner.Status = RouteAirliner.AirlinerStatus.On_service;
                 airliner.CurrentFlight.Entry.Destination = new RouteEntryDestination(airliner.Airliner.Homebase, "Service");
-    
+
             }
 
 
@@ -494,7 +500,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(RouteAirliner airliner)
         {
-         
+
             RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
 
             return MathHelpers.ConvertEntryToDate(entry);

@@ -11,14 +11,14 @@
     <SolidColorBrush x:Key="ButtonBrush" Color="DarkBlue" Opacity="0.8"></SolidColorBrush>
     <SolidColorBrush x:Key="TextColor" Color="White"></SolidColorBrush>
     <SolidColorBrush x:Key="HeaderTextColor" Color="Yellow"></SolidColorBrush>
-    
-    <BitmapImage x:Key="BackgroundImage"></BitmapImage>
+
+    <BitmapImage x:Key="BackgroundImage" UriSource="pack://application:,,,/Data/images/BlankImage.png">
+       
+    </BitmapImage>
     <Style TargetType="{x:Type DatePickerTextBox}">
         <Setter Property="Control.Template">
             <Setter.Value>
                 <ControlTemplate>
-                  <!--  <TextBox x:Name="PART_TextBox" 
-                                    Text="{Binding Path=SelectedDate, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" Background="Transparent"/>-->
                     <TextBlock x:Name="PART_TextBox" Text="{Binding Path=SelectedDate, StringFormat={}{0:MM/dd/yyyy}, RelativeSource={RelativeSource AncestorType={x:Type DatePicker}}}" VerticalAlignment="Bottom" Background="Transparent"></TextBlock>
                 </ControlTemplate>
             </Setter.Value>

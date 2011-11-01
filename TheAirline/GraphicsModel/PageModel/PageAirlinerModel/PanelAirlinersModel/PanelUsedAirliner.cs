@@ -172,7 +172,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             Airport airport = (Airport)cbAirport.SelectedItem;
 
             if (this.Airliner.getLeasingPrice()*2 > GameObject.GetInstance().HumanAirline.Money)
-                WPFMessageBox.Show("Not enough money", "You don't have any money to lease this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show("Not enough money", "You don't have enough money to lease this airliner", WPFMessageBoxButtons.Ok);
             else if (airport == null)
                 WPFMessageBox.Show("No homebase", "You haven't selected a home base for this airliner", WPFMessageBoxButtons.Ok);
 
