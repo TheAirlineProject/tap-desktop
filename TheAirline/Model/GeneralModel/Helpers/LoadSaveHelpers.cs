@@ -315,24 +315,41 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 airport.Terminals.clear();
 
-                XmlNodeList airportGatesList = airportNode.SelectNodes("gates/gate");
-
-                foreach (XmlElement airportGateNode in airportGatesList)
+                XmlNodeList terminalsList = airportNode.SelectNodes("terminals/terminal");
+        
+                foreach (XmlElement terminalNode in terminalsList)
                 {
-                    Gate gate = new Gate(airport);
-                    if (airportGateNode.Attributes["airline"].Value.Length > 0)
-                    {
-                        Airline airline = Airlines.GetAirline(airportGateNode.Attributes["airline"].Value);
-                        gate.Airline = airline;
+                    DateTime deliveryDate = DateTime.Parse(terminalNode.Attributes["delivery"].Value, new CultureInfo("de-DE", false));
+                    Airline owner = Airlines.GetAirline(terminalNode.Attributes["owner"].Value);
+                    int gates = Convert.ToInt32(terminalNode.Attributes["totalgates"].Value);
 
-                        if (airportGateNode.Attributes["route"].Value.Length > 0)
+                    Terminal terminal = new Terminal(airport, owner, 0, deliveryDate);
+                    terminal.Gates.clear();
+
+                    XmlNodeList airportGatesList = terminalNode.SelectNodes("gates/gate");
+
+               
+                    foreach (XmlElement airportGateNode in airportGatesList)
+                    {
+                        Gate gate = new Gate(airport);
+                        if (airportGateNode.Attributes["airline"].Value.Length > 0)
                         {
-                            string routeId = airportGateNode.Attributes["route"].Value;
-                            airline.Routes.Find(delegate(Route r) { return r.Id == airportGateNode.Attributes["route"].Value; });
+                            Airline airline = Airlines.GetAirline(airportGateNode.Attributes["airline"].Value);
+                            gate.Airline = airline;
+
+                            if (airportGateNode.Attributes["route"].Value.Length > 0)
+                            {
+                                string routeId = airportGateNode.Attributes["route"].Value;
+                                airline.Routes.Find(delegate(Route r) { return r.Id == airportGateNode.Attributes["route"].Value; });
+                            }
                         }
+
+                    terminal.Gates.addGate(gate);
                     }
-                   // airport.Gates.addGate(gate);
+
+                    airport.addTerminal(terminal);
                 }
+             
  
             }
 
@@ -466,7 +483,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         XmlElement airlinerClassFacilityNode = xmlDoc.CreateElement("facility");
                         airlinerClassFacilityNode.SetAttribute("type", acFacility.Type.ToString());
-                        airlinerClassFacilityNode.SetAttribute("name",acFacility.Name);
+                        airlinerClassFacilityNode.SetAttribute("uid",acFacility.Uid);
                   
                         airlinerClassFacilitiesNode.AppendChild(airlinerClassFacilityNode);
                     }
@@ -549,7 +566,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement invoiceNode = xmlDoc.CreateElement("invoice");
                     invoiceNode.SetAttribute("type", invoice.Type.ToString());
-                    invoiceNode.SetAttribute("date", invoice.Date.ToShortDateString());
+                    invoiceNode.SetAttribute("date", invoice.Date.ToString(new CultureInfo("de-DE", false)));
                     invoiceNode.SetAttribute("amount", invoice.Amount.ToString());
 
                     invoicesNode.AppendChild(invoiceNode);
@@ -739,16 +756,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 airportNode.AppendChild(airportFacilitiesNode);
 
-                XmlElement gatesNode = xmlDoc.CreateElement("gates");
-                foreach (Gate gate in airport.Terminals.getGates())
+    
+                // chs, 2011-02-11 added for saving the terminals
+                XmlElement terminalsNode = xmlDoc.CreateElement("terminals");
+                foreach (Terminal terminal in airport.Terminals.getTerminals())
                 {
-                    XmlElement gateNode = xmlDoc.CreateElement("gate");
-                    gateNode.SetAttribute("airline", gate.Airline == null ? "" : gate.Airline.Profile.IATACode);
-                    gateNode.SetAttribute("route", gate.Route == null ? "" : gate.Route.Id);
+                    XmlElement terminalNode = xmlDoc.CreateElement("terminal");
+                    terminalNode.SetAttribute("delivery", terminal.DeliveryDate.ToString(new CultureInfo("de-DE")));
+                    terminalNode.SetAttribute("owner", terminal.Airline == null ? "airport" : terminal.Airline.Profile.IATACode);
+                    terminalNode.SetAttribute("totalgates", terminal.Gates.getGates().Count.ToString());
+                    XmlElement gatesNode = xmlDoc.CreateElement("gates");
+                    foreach (Gate gate in terminal.Gates.getGates())
+                    {
+                        XmlElement gateNode = xmlDoc.CreateElement("gate");
+                        gateNode.SetAttribute("airline", gate.Airline == null ? "" : gate.Airline.Profile.IATACode);
+                        gateNode.SetAttribute("route", gate.Route == null ? "" : gate.Route.Id);
 
-                    gatesNode.AppendChild(gateNode);
+                        gatesNode.AppendChild(gateNode);
+                    }
+                    terminalNode.AppendChild(gatesNode);
+
+                    terminalsNode.AppendChild(terminalNode);
                 }
-                airportNode.AppendChild(gatesNode);
+                airportNode.AppendChild(terminalsNode);
+              
 
                 airportsNode.AppendChild(airportNode);
 

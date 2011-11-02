@@ -24,8 +24,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private PageRoutes ParentPage;
         private ComboBox cbAirliner;
         private ListBox lbRouteFinances;
-       // private ComboBox cbFood, cbDrinks, cbCrew;
-       // private TextBox txtPrice;
         private Dictionary<AirlinerClass.ClassType, RouteAirlinerClass> Classes;
         public PanelRoute(PageRoutes parent, Route route)
         {

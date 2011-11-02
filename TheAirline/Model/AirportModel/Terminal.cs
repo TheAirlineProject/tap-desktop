@@ -13,9 +13,10 @@ namespace TheAirline.Model.AirportModel
      * Class for a terminal at an airport
      * Constructor needs parameter for airport, owner (airline), date of delivery and number of gates
      **/
+    // chs, 2011-27-10 changed so a terminal has a devilery date
     public class Terminal
     {
-        public DateTime DevileryDate { get; set; }
+        public DateTime DeliveryDate { get; set; }
         public Airline Airline { get; set; }
         public Airport Airport { get; set; }
         public Gates Gates { get; set; }
@@ -24,11 +25,21 @@ namespace TheAirline.Model.AirportModel
             this.Airport = airport;
             this.Airline = airline;
             this.Gates = new Gates(airport, gates);
-            this.DevileryDate = deliveryDate;
-                  
+            this.DeliveryDate = new DateTime(deliveryDate.Year, deliveryDate.Month, deliveryDate.Day);
+
+            if (this.Airline != null)
+            {
+                if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0)
+                    airline.addAirport(this.Airport);
+
+                for (int i = 0; i < this.Gates.getGates().Count; i++)
+                    this.Gates.getGates()[i].Airline = airline;
+
+               
+            }
+      
         }
     }
-    // chs, 2011-27-10 changed so a terminal has a devilery date
     //the collection of terminals at an airport
     public class Terminals
     {
@@ -47,7 +58,10 @@ namespace TheAirline.Model.AirportModel
         //returns all delivered terminals
         public List<Terminal> getDeliveredTerminals()
         {
-            return this.AirportTerminals.FindAll((delegate(Terminal terminal) { return terminal.DevileryDate <= GameObject.GetInstance().GameTime; }));
+         
+            return this.AirportTerminals.FindAll((delegate(Terminal terminal) { return terminal.DeliveryDate <= GameObject.GetInstance().GameTime; }));
+         
+           
         }
         //returns the list of gates
         public List<Gate> getGates()
@@ -61,13 +75,12 @@ namespace TheAirline.Model.AirportModel
 
             return gates;
         }
+        
         //adds a terminal to the list
         public void addTerminal(Terminal terminal)
         {
             this.AirportTerminals.Add(terminal);
-            if (terminal.Airline != null)
-                for (int i = 0; i < terminal.Gates.getGates().Count; i++)
-                    terminal.Gates.rentGate(terminal.Airline);
+           
      
         }
         //removes a terminal from the list
@@ -81,7 +94,7 @@ namespace TheAirline.Model.AirportModel
         //rents a gate for an airline
         public void rentGate(Airline airline)
         {
-            if (getNumberOfGates(airline) == 0)
+            if (getTotalNumberOfGates(airline) == 0)
                 airline.addAirport(this.Airport);
             getFreeGate().Airline = airline;
 
@@ -92,7 +105,7 @@ namespace TheAirline.Model.AirportModel
 
             getEmptyGate(airline).Airline = null;
 
-            if (getNumberOfGates(airline) == 0)
+            if (getTotalNumberOfGates(airline) == 0)
                 airline.removeAirport(this.Airport);
         }
         //returns a empty gate for an airline
@@ -109,8 +122,8 @@ namespace TheAirline.Model.AirportModel
         public Gate getUsedGate(Airline airline)
         {
             foreach (Terminal terminal in getDeliveredTerminals())
-                if (getUsedGate(airline) != null)
-                    return getUsedGate(airline);
+                if (terminal.Gates.getUsedGate(airline) != null)
+                    return terminal.Gates.getUsedGate(airline);
             return null;
         }
         //returns a gate for an airline
@@ -145,6 +158,14 @@ namespace TheAirline.Model.AirportModel
         {
             int number = 0;
             foreach (Terminal terminal in getDeliveredTerminals())
+                number += terminal.Gates.getNumberOfGates(airline);
+            return number;
+        }
+        //returns the total number of gates for an airline
+        public int getTotalNumberOfGates(Airline airline)
+        {
+            int number = 0;
+            foreach (Terminal terminal in this.AirportTerminals)
                 number += terminal.Gates.getNumberOfGates(airline);
             return number;
         }
@@ -185,6 +206,7 @@ namespace TheAirline.Model.AirportModel
             foreach (Terminal terminal in this.AirportTerminals)
                 terminal.Gates.clear();
 
+            this.AirportTerminals = new List<Terminal>();
 
         }
         /*

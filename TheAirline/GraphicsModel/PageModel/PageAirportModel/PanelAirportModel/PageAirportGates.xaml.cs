@@ -184,10 +184,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
                 else
                 {
-                    WPFMessageBoxResult result = WPFMessageBox.Show("Buy terminal", string.Format("Are you sure you want to buy a terminal with {0} gates for {1:C}?", gates, price), WPFMessageBoxButtons.YesNo);
+                    WPFMessageBoxResult result = WPFMessageBox.Show("Buy terminal", string.Format("Are you sure you want to buy a terminal with {0} gates for {1:C}?\nAll your rented gates will be moved to to this terminal when finish building it.", gates, price), WPFMessageBoxButtons.YesNo);
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
+
+                        if (this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0)
+                        {
+                            //om konvertering ved levering + mail herom
+                        }
 
                         this.Airport.addTerminal(terminal);
                         showGatesInformation();
@@ -195,6 +200,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                         GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
 
+                        
            
                     }
                 }
@@ -240,7 +246,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 // chs, 2011-31-10 changed for the possibility of having delivered and non-delivered terminals
 
                 string strRemove;
-                if (terminal.DevileryDate > GameObject.GetInstance().GameTime)
+                if (terminal.DeliveryDate > GameObject.GetInstance().GameTime)
                     strRemove = "Are you sure you want to stop building this terminal?";
                 else
                     strRemove = string.Format("Are you sure you want to remove this terminal with {0} gates?", terminal.Gates.NumberOfGates);

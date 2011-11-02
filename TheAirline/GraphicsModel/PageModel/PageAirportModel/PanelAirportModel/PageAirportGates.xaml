@@ -19,7 +19,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Width="50" VerticalAlignment="Bottom" Text="{Binding Gates.NumberOfGates}"></TextBlock>
-                <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding DevileryDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
+                <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding DeliveryDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
                 <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
                     <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>

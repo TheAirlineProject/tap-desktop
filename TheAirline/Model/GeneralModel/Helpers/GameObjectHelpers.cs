@@ -50,6 +50,39 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airport.Weather.WindSpeed = windSpeed;
                 airport.Weather.Direction = windDirection;
 
+                // chs, 2011-01-11 changed for delivery of terminals
+                foreach (Terminal terminal in airport.Terminals.getTerminals())
+                {
+                    if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month && terminal.DeliveryDate.Day == GameObject.GetInstance().GameTime.Day)
+                    {
+                        if (terminal.Airline.IsHuman)
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at {0}, {1} is now finished and ready for use.", airport.Profile.Name,airport.Profile.Country.Name)));
+
+                        //moves the "old" rented gates into the new terminal
+                        foreach (Terminal tTerminal in airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
+                        {
+                            foreach (Gate gate in tTerminal.Gates.getGates(terminal.Airline))
+                            {
+                                Gate nGate = terminal.Gates.getEmptyGate(terminal.Airline);
+                                if (nGate != null)
+                                {
+                                    nGate.Route = gate.Route;
+
+                                    gate.Airline = null;
+                                    gate.Route = null;
+                                }
+
+                                
+                            }
+                          
+                        }
+                     
+                        
+
+                    }
+                }
+                
+
             }
             foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment; })))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner {0} as been delivered to your fleet.\nThe airliner is currently at {1}, {2}.", airliner.Name, airliner.Homebase.Profile.Name, airliner.Homebase.Profile.Country.Name)));

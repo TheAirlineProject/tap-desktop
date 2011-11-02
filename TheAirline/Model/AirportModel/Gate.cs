@@ -21,7 +21,6 @@ namespace TheAirline.Model.AirportModel
         }
 
     }
-    // chs, 2011-27-10 changed for the possibility of purchasing a terminal and cleaning the class
     //the collection of gates at an airport
     public class Gates
     {
@@ -40,11 +39,15 @@ namespace TheAirline.Model.AirportModel
         {
             return gates;
         }
-        
+        //returns all gates for an airline
+        public List<Gate> getGates(Airline airline)
+        {
+            return gates.FindAll((delegate(Gate gate) { return gate.Airline == airline; }));
+        }
         //rents a gate for an airline
         public void rentGate(Airline airline)
         {
-            if (this.Airport.Terminals.getNumberOfGates(airline) == 0)
+            if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0)
                 airline.addAirport(this.Airport);
             getFreeGate().Airline = airline;
           
@@ -56,7 +59,7 @@ namespace TheAirline.Model.AirportModel
             
             getEmptyGate(airline).Airline = null;
 
-            if (this.Airport.Terminals.getNumberOfGates(airline) == 0)
+            if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0)
                 airline.removeAirport(this.Airport);
         }
         //returns a empty gate for an airline
@@ -154,7 +157,7 @@ namespace TheAirline.Model.AirportModel
         //adds a gate
         public void addGate(Gate gate)
         {
-            if (gate.Airline != null && this.Airport.Terminals.getNumberOfGates(gate.Airline) == 0)
+            if (gate.Airline != null && !gate.Airline.Airports.Contains(this.Airport))
                 gate.Airline.addAirport(this.Airport);
 
             this.gates.Add(gate);

@@ -7,7 +7,7 @@
     WindowStartupLocation="CenterOwner" Background="{StaticResource HeaderBackgroundBrush2}">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="55" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="2" />
             <RowDefinition Height="*" />
             <RowDefinition Height="40" />

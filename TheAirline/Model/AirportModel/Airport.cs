@@ -28,7 +28,18 @@ namespace TheAirline.Model.AirportModel
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
             this.Terminals = new Terminals(this);
-            this.Terminals.addTerminal(new Terminal(this, null, this.Profile.Gates, new DateTime(1950,1,1)));
+
+            // chs, 2011-01-11 changed so the number of terminals reflects the airport size
+            // will later be changed to "real" data
+            for (int i = 0; i <= (int)this.Profile.Size; i++)
+            {
+                int gates = this.Profile.Gates / ((int)this.Profile.Size+1);
+
+                if (i == 0)
+                    gates += this.Profile.Gates - (gates * ((int)this.Profile.Size+1));
+                
+                this.Terminals.addTerminal(new Terminal(this, null, gates, new DateTime(1950, 1, 1)));
+            }
         }
 
         //clears the list of passengers
