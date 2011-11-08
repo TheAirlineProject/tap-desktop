@@ -20,13 +20,15 @@ namespace TheAirline.Model.AirportModel
         public Airline Airline { get; set; }
         public Airport Airport { get; set; }
         public Gates Gates { get; set; }
+        public Boolean IsBuilt { get{return isBuilt();} set{;} }
         public Terminal(Airport airport, Airline airline, int gates, DateTime deliveryDate)
         {
             this.Airport = airport;
             this.Airline = airline;
-            this.Gates = new Gates(airport, gates);
             this.DeliveryDate = new DateTime(deliveryDate.Year, deliveryDate.Month, deliveryDate.Day);
 
+            this.Gates = new Gates(airport, gates, this.DeliveryDate);
+      
             if (this.Airline != null)
             {
                 if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0)
@@ -38,6 +40,25 @@ namespace TheAirline.Model.AirportModel
                
             }
       
+        }
+        // chs 11-04-11: changed for the possibility of extending a terminal
+        //extends a terminal with a number of gates
+        public void extendTerminal(int gates)
+        {
+            DateTime deliveryDate = GameObject.GetInstance().GameTime.AddDays(gates * 10);
+            for (int i = 0; i < gates; i++)
+            {
+                Gate gate = new Gate(this.Airport, deliveryDate);
+                gate.Airline = this.Airline;
+                this.Gates.addGate(gate);
+
+                
+            }
+        }
+        //returns if the terminal has been built
+        private Boolean isBuilt()
+        {
+            return GameObject.GetInstance().GameTime > this.DeliveryDate;
         }
     }
     //the collection of terminals at an airport

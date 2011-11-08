@@ -51,7 +51,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             txtTerminalsInfoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtTerminalsInfoHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtTerminalsInfoHeader.FontWeight = FontWeights.Bold;
-            txtTerminalsInfoHeader.Text = "Terminals Information (Owner/Gates/Delivery)";
+            txtTerminalsInfoHeader.Text = "Terminals Information (Owner/Total Gates/Ordered Gates/Delivery)";
             txtTerminalsInfoHeader.Margin = new Thickness(0, 10, 0, 0);
 
             panelGatesTerminals.Children.Add(txtTerminalsInfoHeader);
@@ -175,8 +175,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             if (terminal != null)
             {
                 // chs, 2011-01-11 changed so a message for confirmation are shown9han
-                int gates = terminal.Gates.getGates().Count;
-                long price = gates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
+                long price = terminal.Gates.NumberOfGates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
 
                 if (price > GameObject.GetInstance().HumanAirline.Money)
                 {
@@ -184,7 +183,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
                 else
                 {
-                    WPFMessageBoxResult result = WPFMessageBox.Show("Buy terminal", string.Format("Are you sure you want to buy a terminal with {0} gates for {1:C}?\nAll your rented gates will be moved to to this terminal when finish building it.", gates, price), WPFMessageBoxButtons.YesNo);
+                    WPFMessageBoxResult result = WPFMessageBox.Show("Buy terminal", string.Format("Are you sure you want to buy a terminal with {0} gates for {1:C}?\nAll your rented gates will be moved to to this terminal when finish building it.", terminal.Gates.NumberOfGates, price), WPFMessageBoxButtons.YesNo);
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
@@ -265,6 +264,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             {
                 WPFMessageBox.Show("Removal not possible", "It is not possible to remove the terminal, since it is currently in use", WPFMessageBoxButtons.Ok);
             }
+        }
+        // chs, 2011-04-11 added for the possibility of extending a terminal
+        private void btnEditTerminal_Click(object sender, RoutedEventArgs e)
+        {
+            Terminal terminal = (Terminal)((Button)sender).Tag;
+
+            if (!terminal.IsBuilt)
+            {
+                WPFMessageBox.Show("Extending not possible", "It is not possible to extend this terminal, since it isn't finished building", WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                object o = PopUpTerminal.ShowPopUp(terminal);
+                if (o != null)
+                {
+                    int gates = (int)o;
+                    terminal.extendTerminal(gates);
+
+                    showTerminals();
+                    showGatesInformation();
+                    
+                }
+            }
+           
         }
         //the class for the gates at an airport
         private class AirlineGates

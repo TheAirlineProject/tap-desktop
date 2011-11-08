@@ -331,7 +331,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                
                     foreach (XmlElement airportGateNode in airportGatesList)
                     {
-                        Gate gate = new Gate(airport);
+                        DateTime gateDeliveryDate = DateTime.Parse(airportGateNode.Attributes["delivery"].Value, new CultureInfo("de-DE", false));
+                        Gate gate = new Gate(airport,gateDeliveryDate);
                         if (airportGateNode.Attributes["airline"].Value.Length > 0)
                         {
                             Airline airline = Airlines.GetAirline(airportGateNode.Attributes["airline"].Value);
@@ -769,6 +770,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (Gate gate in terminal.Gates.getGates())
                     {
                         XmlElement gateNode = xmlDoc.CreateElement("gate");
+                        gateNode.SetAttribute("delivery", gate.DeliveryDate.ToString(new CultureInfo("de-DE")));
                         gateNode.SetAttribute("airline", gate.Airline == null ? "" : gate.Airline.Profile.IATACode);
                         gateNode.SetAttribute("route", gate.Route == null ? "" : gate.Route.Id);
 

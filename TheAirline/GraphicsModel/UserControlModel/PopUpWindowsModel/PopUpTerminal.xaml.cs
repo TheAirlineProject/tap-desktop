@@ -90,6 +90,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Content = mainPanel;
         }
+        // chs 11-04-11: changed for making it possible to extending an existing terminal
         //for extending an existing terminal
         public PopUpTerminal(Terminal terminal)
         {
@@ -97,7 +98,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             InitializeComponent();
 
-            this.Title = "Create new terminal";
+            this.Title = "Extend terminal";
 
             this.Width = 400;
 
@@ -114,7 +115,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             mainPanel.Children.Add(lbTerminal);
 
-            lbTerminal.Items.Add(new QuickInfoValue("Current gates", UICreator.CreateTextBlock(string.Format("{0} gates", this.Terminal.Gates))));
+            lbTerminal.Items.Add(new QuickInfoValue("Current gates", UICreator.CreateTextBlock(string.Format("{0} gates", this.Terminal.Gates.getGates().Count))));
 
             txtGates = new TextBox();
             txtGates.Background = Brushes.Transparent;
@@ -128,7 +129,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbTerminal.Items.Add(new QuickInfoValue("Number of gates", txtGates));
 
             txtDaysToCreate = UICreator.CreateTextBlock("0 days");
-            lbTerminal.Items.Add(new QuickInfoValue("Days to create terminal", txtDaysToCreate));
+            lbTerminal.Items.Add(new QuickInfoValue("Days to extend terminal", txtDaysToCreate));
+
+            txtTotalPrice = UICreator.CreateTextBlock(string.Format("{0:C}", 0));
+            lbTerminal.Items.Add(new QuickInfoValue("Price for extending", txtTotalPrice));
+
 
             mainPanel.Children.Add(createButtonsPanel());
 
@@ -175,8 +180,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             int gates = Convert.ToInt32(txtGates.Text);
-
-            this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
+       
+            if (this.Terminal == null)
+                 this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
+            else
+                this.Selected = gates;
             this.Close();
         }
         private void txtGates_PreviewKeyDown(object sender, KeyEventArgs e)
@@ -197,7 +205,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             txtDaysToCreate.Text = string.Format("{0} days", getDaysToCreate(gates));
 
-            long price = gates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
+            // chs 11-04-11: changed for making it possible to extending an existing terminal
+            long price;
+            if (this.Terminal == null)
+                price = gates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
+            else
+                price = gates * this.Terminal.Airport.getTerminalGatePrice();
 
             txtTotalPrice.Text = string.Format("{0:C}", price);
 
@@ -215,7 +228,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //returns the days to create a terminal with a number of gates
         private int getDaysToCreate(int gates)
         {
-            return gates * 10 + 30;
+            if (this.Terminal == null)
+                return gates * 10 + 60;
+            else
+                return gates * 10;
 
         }
     }
