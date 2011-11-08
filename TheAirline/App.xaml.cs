@@ -21,6 +21,7 @@ namespace TheAirline
     {
         static App()
         {
+            AppSettings.Init();
             //FrameworkElement.LanguageProperty.
             /*
             string cultureInfo;

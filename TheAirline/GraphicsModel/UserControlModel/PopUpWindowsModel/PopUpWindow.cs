@@ -15,17 +15,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public object Selected { get; set; }
         public PopUpWindow()
         {
-          
-            this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
+//            this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
             this.SetResourceReference(Window.BackgroundProperty, "HeaderBackgroundBrush2");
 
             this.ResizeMode = System.Windows.ResizeMode.NoResize;
 
             this.WindowStyle = System.Windows.WindowStyle.ToolWindow;
-
-            
-
         }
-     }
+    }
 }

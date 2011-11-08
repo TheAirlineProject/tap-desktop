@@ -30,7 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ComboBox cbCountry, cbColor;
         private Image imgLogo;
         private Button btnCreate;
-        private string logoPath = Setup.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+        private string logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
         public PageNewAirline()
         {
             InitializeComponent();
@@ -168,7 +168,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             dlg.DefaultExt = ".png";
             dlg.Filter = "Images (.png)|*.png";
-            dlg.InitialDirectory = Setup.getDataPath() + "\\graphics\\airlinelogos\\";
+            dlg.InitialDirectory = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\";
 
             Nullable<bool> result = dlg.ShowDialog();
 

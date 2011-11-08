@@ -128,7 +128,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelPrice.Children.Add(txtPrice);
 
-            CultureInfo cultureInfo = new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, false);
+            CultureInfo cultureInfo = new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, false);
 
 
             TextBlock txtCurrencySign = UICreator.CreateTextBlock(cultureInfo.NumberFormat.CurrencySymbol);

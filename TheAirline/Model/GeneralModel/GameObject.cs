@@ -17,7 +17,6 @@ namespace TheAirline.Model.GeneralModel
         public double FuelPrice { get; set; }
         public long StartMoney { get { return getStartMoney(); } set { ;} }
         public GameTimeZone TimeZone { get; set; }
-        private Language Language;
         public string Name { get; set; }
         private GameObject()
         {
@@ -50,21 +49,6 @@ namespace TheAirline.Model.GeneralModel
         public static void RestartInstance()
         {
             GameInstance = new GameObject();
-        }
-
-        //sets the language
-        public void setLanguage(Language language)
-        {
-            this.Language = language;
-
-            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.CultureInfo, true);
-        }
-
-        //returns the current language
-        public Language getLanguage()
-        {
-            return this.Language;
         }
     }
 }

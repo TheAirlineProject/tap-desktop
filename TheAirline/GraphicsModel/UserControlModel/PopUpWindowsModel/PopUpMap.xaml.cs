@@ -100,7 +100,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     Image imgMap = new Image();
                     imgMap.Width = ImageSize;
                     imgMap.Height = ImageSize;
-                    imgMap.Source = new BitmapImage(new Uri(Setup.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                    imgMap.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
                     Canvas.SetTop(imgMap, y * ImageSize);
@@ -133,7 +133,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     Image imgMap = new Image();
                     imgMap.Width = ImageSize;
                     imgMap.Height = ImageSize;
-                    imgMap.Source = new BitmapImage(new Uri(Setup.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                    imgMap.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
                     Canvas.SetTop(imgMap, y * ImageSize);

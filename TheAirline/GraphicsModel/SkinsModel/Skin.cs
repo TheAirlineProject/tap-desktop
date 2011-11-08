@@ -33,7 +33,7 @@ namespace TheAirline.GraphicsModel.SkinsModel
     public class Skins
     {
         // The Skins class knows where skins are stored
-        private static DirectoryInfo skinsDirectory = new DirectoryInfo(Setup.getDataPath() + "\\skins");
+        private static DirectoryInfo skinsDirectory = new DirectoryInfo(AppSettings.getDataPath() + "\\skins");
         // list of found skins
         private static List<Skin> skins = new List<Skin>();
         //clears the list

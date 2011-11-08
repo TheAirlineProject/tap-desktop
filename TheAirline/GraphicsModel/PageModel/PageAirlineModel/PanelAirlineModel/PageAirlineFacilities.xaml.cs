@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             cbAdvertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox>();
 
-            this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
+            this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
             StackPanel panelFacilities = new StackPanel();
             panelFacilities.Margin = new Thickness(0, 10, 50, 0);

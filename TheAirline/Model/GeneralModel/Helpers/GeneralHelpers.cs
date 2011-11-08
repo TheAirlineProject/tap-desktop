@@ -91,7 +91,7 @@ namespace TheAirline.Model.GeneralModel
                     Image imgMap = new Image();
                     imgMap.Width = imageSize;
                     imgMap.Height = imageSize;
-                    imgMap.Source = new BitmapImage(new Uri(Setup.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
+                    imgMap.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\maps\\" + name, UriKind.RelativeOrAbsolute));
                     RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
                     Canvas.SetTop(imgMap, y * imageSize);

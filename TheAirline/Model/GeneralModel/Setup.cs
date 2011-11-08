@@ -22,23 +22,6 @@ namespace TheAirline.Model.GeneralModel
      */
     public class Setup
     {
-        /*! private static variable basePath.
-         * stores the actual defined working directory.
-         */
-        private static string basePath = Environment.CurrentDirectory;
-
-        /*! private static variable dataPath.
-         * stores the path to the Data directory.
-         */
-        private static string dataPath = basePath + "\\data";
-
-        /*! private static variable basePath.
-         * stores the path to the Plugin directory.
-         * Plugins are always relative to the location of the exe file, so they do not use
-         * the working directory as base path, but the location of the exe file as base
-         */
-        private static string pluginsPath = AppDomain.CurrentDomain.BaseDirectory + "plugins";
-
         /*! private static variable rnd.
          * holds a random number.
          */
@@ -71,9 +54,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
-                Translator.Init();
                 Skins.Init();
-                SetStartupLanguage();
             }
             catch (Exception e)
             {
@@ -102,19 +83,6 @@ namespace TheAirline.Model.GeneralModel
             AirlinerTypes.Clear();
             Skins.Clear();
             FeeTypes.Clear();
-            Languages.Clear();
-        }
-
-        /*! Dummy method for setting the startup language.
-         * TODO: Use applications Default language en-US as startup and default value.
-         *       Then read language configuration from systems registry and override
-         *       the startup value.
-         *       Place this method to the Culture and Translation module as internal method.
-         */
-        private static void SetStartupLanguage()
-        {
-            GameObject.GetInstance().setLanguage(Languages.GetLanguages()[0]);
-            Translator.DefaultLanguage = System.Threading.Thread.CurrentThread.CurrentUICulture.ToString();
         }
 
         /*! creates the Advertisement types
@@ -175,7 +143,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirlineFacilities()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\airlinefacilities.xml");
+            doc.Load(AppSettings.getDataPath() + "\\airlinefacilities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airlinefacility");
@@ -202,7 +170,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadRegions()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\regions.xml");
+            doc.Load(AppSettings.getDataPath() + "\\regions.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList regionsList = root.SelectNodes("//region");
@@ -223,7 +191,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadManufacturers()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\manufacturers.xml");
+            doc.Load(AppSettings.getDataPath() + "\\manufacturers.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList manufacturersList = root.SelectNodes("//manufacturer");
@@ -243,7 +211,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirliners()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\airliners.xml");
+            doc.Load(AppSettings.getDataPath() + "\\airliners.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList airlinersList = root.SelectNodes("//airliner");
@@ -287,7 +255,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirports()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\airports.xml");
+            doc.Load(AppSettings.getDataPath() + "\\airports.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList airportsList = root.SelectNodes("//airport");
@@ -326,7 +294,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirportFacilities()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\airportfacilities.xml");
+            doc.Load(AppSettings.getDataPath() + "\\airportfacilities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airportfacility");
@@ -358,7 +326,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadCountries()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\countries.xml");
+            doc.Load(AppSettings.getDataPath() + "\\countries.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList countriesList = root.SelectNodes("//country");
@@ -370,7 +338,7 @@ namespace TheAirline.Model.GeneralModel
                 string tailformat = element.Attributes["tailformat"].Value;
 
                 Country country = new Country(name, shortname, region, tailformat);
-                country.Flag = dataPath + "\\graphics\\flags\\" + name + ".png";
+                country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + name + ".png";
                 Countries.AddCountry(country);
             }
         }
@@ -380,7 +348,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirlinerFacilities()
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(dataPath + "\\airlinerfacilities.xml");
+            doc.Load(AppSettings.getDataPath() + "\\airlinerfacilities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airlinerfacility");
@@ -642,7 +610,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirportLogos()
         {
-            DirectoryInfo dir = new DirectoryInfo(dataPath + "\\graphics\\airportlogos");
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\airportlogos");
 
            foreach (FileInfo file in dir.GetFiles("*.png"))
             {
@@ -661,7 +629,7 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateAirlineLogos()
         {
             foreach (Airline airline in Airlines.GetAirlines())
-                airline.Profile.Logo = dataPath + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
+                airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
         }
 
         /*! private stativ method CreateFlightFacilities.
@@ -696,33 +664,5 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 20, 0, 55, 2));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 150, 1));
 		}
-
-        /*! public static method getBasePath.
-         * returns the path to the working directory.
-         * \return working directory path as string.
-         */
-        public static string getBasePath()
-        {
-            return basePath;
-        }
-
-        /*! public static method getDataPath.
-         * returns the path to the Data directory.
-         * \return Data directory path as string.
-         */
-        public static string getDataPath()
-        {
-            return dataPath;
-        }
-
-        /*! public static method getPluginPath.
-         * returns the path to the Plugin directory.
-         * \return Plugin directory path as string.
-         */
-        public static string getPluginPath()
-        {
-            return pluginsPath;
-        }
     }
-
 }

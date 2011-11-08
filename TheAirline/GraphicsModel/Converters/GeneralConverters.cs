@@ -54,7 +54,7 @@ namespace TheAirline.GraphicsModel.Converters
         {
             double v = Double.Parse(value.ToString());
 
-            if (GameObject.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
                 return MathHelpers.LtrToGallons(v);  
@@ -70,7 +70,7 @@ namespace TheAirline.GraphicsModel.Converters
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            return new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo,false);
+            return new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, false);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -89,7 +89,7 @@ namespace TheAirline.GraphicsModel.Converters
         {
             double v = Double.Parse(value.ToString());
 
-            if (GameObject.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
                 return MathHelpers.LKMToMPG(v);
@@ -111,7 +111,7 @@ namespace TheAirline.GraphicsModel.Converters
         {
             double v = Double.Parse(value.ToString());
 
-            if (GameObject.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
                 return MathHelpers.KMToMiles(v);
@@ -134,7 +134,7 @@ namespace TheAirline.GraphicsModel.Converters
             String text = (String)value;
             try
             {
-                return GameObject.GetInstance().getLanguage().convert(text);
+                return AppSettings.GetInstance().getLanguage().convert(text);
             }
             catch
             {

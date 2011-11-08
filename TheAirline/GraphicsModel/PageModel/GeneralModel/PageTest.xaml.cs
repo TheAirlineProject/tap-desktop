@@ -338,9 +338,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         //saves the list of airports
         private void saveAirports()
         {
-            string path = Setup.getDataPath() + "\\airports.xml";
+            string path = AppSettings.getDataPath() + "\\airports.xml";
 
-            File.Copy(path, Setup.getDataPath() + "\\airports.bak", true);
+            File.Copy(path, AppSettings.getDataPath() + "\\airports.bak", true);
 
 
 
@@ -398,11 +398,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            Assembly assembly = Assembly.LoadFrom(Setup.getDataPath() + "\\plugins\\AirportCSVReader.dll");
+            Assembly assembly = Assembly.LoadFrom(AppSettings.getDataPath() + "\\plugins\\AirportCSVReader.dll");
 
             Type type = assembly.GetType("AirportCSVReader.CSVReader");
 
-            object instance = Activator.CreateInstance(type,Setup.getDataPath() + "\\plugins\\airports.csv");
+            object instance = Activator.CreateInstance(type, AppSettings.getDataPath() + "\\plugins\\airports.csv");
 
             string search = txtSearch.Text.Trim();
 

@@ -84,7 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             foreach (Language language in Languages.GetLanguages())
                 cbLanguage.Items.Add(language);
 
-            cbLanguage.SelectedItem = GameObject.GetInstance().getLanguage();
+            cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
 
             lbSettings.Items.Add(new QuickInfoValue("Language", cbLanguage));
 
@@ -155,7 +155,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             cbSkin.SelectedItem = SkinObject.GetInstance().CurrentSkin;
             slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
-            cbLanguage.SelectedItem = GameObject.GetInstance().getLanguage();
+            cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
             cbMailOnLandings.IsChecked = GameObject.GetInstance().NewsBox.MailsOnLandings;
         }
 
@@ -172,7 +172,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().setGameSpeed(speed);
 
             Language language = (Language)cbLanguage.SelectedItem;
-            GameObject.GetInstance().setLanguage(language);
+            AppSettings.GetInstance().setLanguage(language);
             GameObject.GetInstance().NewsBox.MailsOnLandings = cbMailOnLandings.IsChecked.Value;
 
           PageNavigator.NavigateTo(new PageSettings()); 

@@ -62,7 +62,7 @@ namespace TheAirline.Model.GeneralModel
 		/// </summary>
 		public static string SourceFile
 		{
-			get { return Setup.getDataPath() + "\\Languages.xml"; }
+			get { return AppSettings.getDataPath() + "\\Languages.xml"; }
 		}
 
 		#endregion
@@ -82,7 +82,12 @@ namespace TheAirline.Model.GeneralModel
         // simple method for initializing the Translator
         public static void Init()
         {
-            Translator.GetInstance();
+/*            if (null != stCache)
+            {
+                stCache.Remove(CACHE_KEY);
+                stCache = null;
+            }
+*/            Translator.GetInstance();
         }
 
 		#region Methods: GetInstance (Singleton-Pattern)

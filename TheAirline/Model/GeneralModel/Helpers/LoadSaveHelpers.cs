@@ -10,6 +10,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using System.Globalization;
 
 namespace TheAirline.Model.GeneralModel.Helpers
@@ -19,8 +20,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //loads a game
         public static void LoadGame(string name)
         {
+            if (null == name || name == "")
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show("Filename error", "The given filename, could not be found for loading a game. Loading aborted", WPFMessageBoxButtons.Ok);
+                return;
+            }
+
             XmlDocument doc = new XmlDocument();
-            doc.Load(Setup.getDataPath() + "\\saves\\" + name + ".xml");
+            doc.Load(AppSettings.getDataPath() + "\\saves\\" + name + ".xml");
             XmlElement root = doc.DocumentElement;
 
            
@@ -407,7 +414,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void AppendSavedFile(string name, string file)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(Setup.getDataPath() + "\\saves\\saves.xml");
+            doc.Load(AppSettings.getDataPath() + "\\saves\\saves.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNode node = root.SelectSingleNode("//saves");
@@ -418,7 +425,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             node.AppendChild(e);
 
-            doc.Save(Setup.getDataPath() + "\\saves\\saves.xml");
+            doc.Save(AppSettings.getDataPath() + "\\saves\\saves.xml");
 
         }
         //returns the names of the saved games
@@ -427,7 +434,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<KeyValuePair<string, string>> saves = new List<KeyValuePair<string, string>>();
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(Setup.getDataPath() + "\\saves\\saves.xml");
+            doc.Load(AppSettings.getDataPath() + "\\saves\\saves.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList savesList = root.SelectNodes("//saves/save");
@@ -445,7 +452,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves the game
         public static void SaveGame(string file)
         {
-            string path = Setup.getDataPath() + "\\saves\\" + file + ".xml";
+            string path = AppSettings.getDataPath() + "\\saves\\" + file + ".xml";
 
             XmlDocument xmlDoc = new XmlDocument();
 
