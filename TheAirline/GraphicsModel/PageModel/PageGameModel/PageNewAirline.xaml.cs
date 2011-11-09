@@ -119,7 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             foreach (Country country in countries)
                 cbCountry.Items.Add(country);
 
-            cbCountry.SelectedItem = Countries.GetCountry("United States");
+            cbCountry.SelectedItem = Countries.GetCountry("122");
 
             lbContent.Items.Add(new QuickInfoValue("Country", cbCountry));
 

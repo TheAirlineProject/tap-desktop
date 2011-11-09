@@ -81,7 +81,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             List<Country> countries = Countries.GetCountries();
             countries.Sort(delegate(Country c1, Country c2) { return c1.Name.CompareTo(c2.Name); });
 
-            Country countryAll = new Country("All countries", "All", regionAll, "");
+            Country countryAll = new Country("countries", "100", "All", regionAll, "");
             countryAll.Flag = @"\data\images\united nations.png";
 
             cbCountry.Items.Add(countryAll);
@@ -160,7 +160,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             // 100 is the predefined Uid for "All Regions"
             if (region.Uid != "100") countries = countries.FindAll(delegate(Country country) { return country.Region == region; });
 
-            Country countryAll = new Country("All countries", "All", region, "");
+            Country countryAll = new Country("countries", "100", "All", region, "");
             countryAll.Flag = @"\data\images\united nations.png";
 
             cbCountry.Items.Add(countryAll);
@@ -195,9 +195,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             if (humansOnly) airports = airports.FindAll(delegate(Airport airport) { return GameObject.GetInstance().HumanAirline.Airports.Contains(airport); });
 
-            if (country.ShortName != "All") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
-            
-            if (country.ShortName == "All" && country.Region.Name != "All regions") airports = airports.FindAll(delegate(Airport airport) {return airport.Profile.Country.Region == country.Region;});
+//            if (country.ShortName != "All") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
+            if (country.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
+
+//            if (country.ShortName == "All" && country.Region.Name != "All regions") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == country.Region; });
+            if (country.Uid == "100" && country.Region.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == country.Region; });
 
             if (size != "All sizes") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Size.ToString() == size; });
 

@@ -332,14 +332,19 @@ namespace TheAirline.Model.GeneralModel
             XmlNodeList countriesList = root.SelectNodes("//country");
             foreach (XmlElement element in countriesList)
             {
-                string name = element.Attributes["name"].Value;
+                string section = root.Name;
+                string uid = element.Attributes["uid"].Value;
                 string shortname = element.Attributes["shortname"].Value;
+                string flag = element.Attributes["flag"].Value;
                 Region region = Regions.GetRegion(element.Attributes["region"].Value);
                 string tailformat = element.Attributes["tailformat"].Value;
 
-                Country country = new Country(name, shortname, region, tailformat);
-                country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + name + ".png";
+                Country country = new Country(section, uid, shortname, region, tailformat);
+                country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
                 Countries.AddCountry(country);
+
+                if (element.SelectSingleNode("translations") != null)
+                    Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
 
@@ -425,16 +430,16 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateAirlines()
         {
-            Airlines.AddAirline(new Airline(new AirlineProfile("Air Vegas", "6V", "LightBlue", Countries.GetCountry("United States"), "Michael Smidth")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("German Wings", "GER", "DarkRed", Countries.GetCountry("Germany"), "Franz Ötzel")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Key Airlines", "KWY", "Black", Countries.GetCountry("United States"), "Peter Hanson")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("AccessAir", "ZA", "DarkGreen", Countries.GetCountry("United States"), "Benjamin Watson")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Big Sky Airlines", "CQ", "DarkBlue", Countries.GetCountry("United States"), "George Clark")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Caledonian Airways", "KG", "Purple", Countries.GetCountry("United Kingdom"), "Thomas Owen")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Australian Airlines", "AO", "Orange", Countries.GetCountry("Australia"), "Clive MacPherson")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Adam Air", "KI", "LightGreen", Countries.GetCountry("Indonesia"), "Adam Adhitya Suherman")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Nationwide Airlines", "CE", "Yellow", Countries.GetCountry("South Africa"), "Vernon Bricknell")));
-            Airlines.AddAirline(new Airline(new AirlineProfile("Dinar Líneas Aéreas", "D7", "LightBlue", Countries.GetCountry("Argentina"), "Manuel Santosa")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Air Vegas", "6V", "LightBlue", Countries.GetCountry("122"), "Michael Smidth")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("German Wings", "GER", "DarkRed", Countries.GetCountry("163"), "Franz Ötzel")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Key Airlines", "KWY", "Black", Countries.GetCountry("122"), "Peter Hanson")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("AccessAir", "ZA", "DarkGreen", Countries.GetCountry("122"), "Benjamin Watson")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Big Sky Airlines", "CQ", "DarkBlue", Countries.GetCountry("122"), "George Clark")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Caledonian Airways", "KG", "Purple", Countries.GetCountry("130"), "Thomas Owen")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Australian Airlines", "AO", "Orange", Countries.GetCountry("116"), "Clive MacPherson")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Adam Air", "KI", "LightGreen", Countries.GetCountry("162"), "Adam Adhitya Suherman")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Nationwide Airlines", "CE", "Yellow", Countries.GetCountry("158"), "Vernon Bricknell")));
+            Airlines.AddAirline(new Airline(new AirlineProfile("Dinar Líneas Aéreas", "D7", "LightBlue", Countries.GetCountry("106"), "Manuel Santosa")));
 
             GameObject.GetInstance().HumanAirline = Airlines.GetAirline("KWY");
 

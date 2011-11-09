@@ -516,7 +516,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airlineNode = xmlDoc.CreateElement("airline");
                 airlineNode.SetAttribute("name", airline.Profile.Name);
                 airlineNode.SetAttribute("code", airline.Profile.IATACode);
-                airlineNode.SetAttribute("country", airline.Profile.Country.Name);
+                airlineNode.SetAttribute("country", airline.Profile.Country.Uid);
                 airlineNode.SetAttribute("color", airline.Profile.Color);
                 airlineNode.SetAttribute("logo", airline.Profile.Logo);
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
