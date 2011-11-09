@@ -285,10 +285,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GameTimer.GetInstance().start();
 
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Welcome to the game", string.Format("Dear {0},\n\nWelcome as the CEO of {1}. I hope you will enjoy the game",GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }
             else
-                WPFMessageBox.Show("Name of CEO", "The name of the CEO must be longer than 2 characters", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);
 
         }
 

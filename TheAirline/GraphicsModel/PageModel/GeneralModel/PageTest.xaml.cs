@@ -326,13 +326,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
                 saveAirports();
 
-                WPFMessageBox.Show("Success", "The airport has been saved to the database", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1004"), Translator.GetInstance().GetString("MessageBox", "1004", "message"), WPFMessageBoxButtons.Ok);
 
                 btnSave.IsEnabled = false;
             }
             catch (Exception)
             {
-                WPFMessageBox.Show("Error", "The airport can't be saved to the database", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1005"), Translator.GetInstance().GetString("MessageBox", "1005", "message"), WPFMessageBoxButtons.Ok);
             }
         }
         //saves the list of airports
@@ -430,7 +430,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 btnSave.IsEnabled = true;
             }
             else
-                WPFMessageBox.Show("Error", "The airport does already exits or the searched IATA-code can't be found in the database", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1006"), Translator.GetInstance().GetString("MessageBox", "1006", "message"), WPFMessageBoxButtons.Ok);
         }
                      
 

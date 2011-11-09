@@ -200,7 +200,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             if (airline != null)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show("IATA exits", string.Format("Are you sure you want to override {0}?", airline.Profile.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2401"), string.Format(Translator.GetInstance().GetString("MessageBox", "2401", "message"), airline.Profile.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -209,8 +209,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             }
             else
             {
-                
-                WPFMessageBoxResult result = WPFMessageBox.Show("Create airline", "Are you sure you want to create this airline?", WPFMessageBoxButtons.YesNo);
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2402"), Translator.GetInstance().GetString("MessageBox", "2402", "message"), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {

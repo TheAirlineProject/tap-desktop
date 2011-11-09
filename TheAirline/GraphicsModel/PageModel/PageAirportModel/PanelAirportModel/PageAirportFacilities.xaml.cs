@@ -150,10 +150,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
 
             if (type.NextFacility.Price > GameObject.GetInstance().HumanAirline.Money)
-                WPFMessageBox.Show("Not enough money", "You don't have any money to buy these facilities", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2201"), Translator.GetInstance().GetString("MessageBox", "2201", "message"), WPFMessageBoxButtons.Ok);
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show("Upgrade facility", string.Format("Are you sure you want to upgrade the facilities to {0} for {1:c}?", type.NextFacility.Name, type.NextFacility.Price), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2202"), string.Format(Translator.GetInstance().GetString("MessageBox", "2202", "message"), type.NextFacility.Name, type.NextFacility.Price), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -171,11 +171,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
 
                if (type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline))
-                   WPFMessageBox.Show("Error", "The airport serves as homebase for a fleet airliner, so it need to have at least basic service facilities", WPFMessageBoxButtons.Ok);
+                   WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
                else
                {
 
-                   WPFMessageBoxResult result = WPFMessageBox.Show("Downgrade facility", string.Format("Are you sure you want to downgrade the facilities from {0}?", type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);
+                   WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);
 
                    if (result == WPFMessageBoxResult.Yes)
                    {

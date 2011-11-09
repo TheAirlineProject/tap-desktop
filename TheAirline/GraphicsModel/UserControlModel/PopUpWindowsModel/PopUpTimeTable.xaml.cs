@@ -228,7 +228,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 this.Close();
             }
             else
-                WPFMessageBox.Show("Invalid timetable","The timetable is invalid", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2504"), Translator.GetInstance().GetString("MessageBox", "2504", "message"), WPFMessageBoxButtons.Ok);
         }
         //creates the panel for adding a new entry
         private StackPanel createNewEntryPanel()

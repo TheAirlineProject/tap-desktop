@@ -191,10 +191,18 @@ namespace TheAirline.Model.GeneralModel
                 // Durch Region-Nodes iterieren
 				foreach(XmlNode regionNode in xDoc.SelectNodes(XML_ROOTNODE)) {
 
-					Hashtable strs = new Hashtable();
+                    // we ignore comments
+                    if (regionNode.NodeType == XmlNodeType.Comment)
+                        continue;
+
+                    Hashtable strs = new Hashtable();
 				
 					// Durch Text-Nodes in aktuellem Region-Node iterieren
 					foreach(XmlNode textNode in regionNode.ChildNodes) {
+
+                        // we ignore comments
+                        if (textNode.NodeType == XmlNodeType.Comment)
+                            continue;
 
                         // dictionary with pairs of culture->translated text for the uid element
                         Hashtable translations = new Hashtable();

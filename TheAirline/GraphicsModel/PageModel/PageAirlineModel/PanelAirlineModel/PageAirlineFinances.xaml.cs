@@ -194,11 +194,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 if (amount > loan.PaymentLeft || amount <= 0 || amount> this.Airline.Money)
                 {
-                    WPFMessageBox.Show("Invalid amount", "Please enter a valid amount to pay back on the loan", WPFMessageBoxButtons.Ok);
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2104"), Translator.GetInstance().GetString("MessageBox", "2104", "message"), WPFMessageBoxButtons.Ok);
                 }
                 else
                 {
-                    WPFMessageBoxResult result = WPFMessageBox.Show("Pay on loan", string.Format("Are you sure you want to pay {0:c} on the loan", amount), WPFMessageBoxButtons.YesNo);
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2105"), string.Format(Translator.GetInstance().GetString("MessageBox", "2105", "message"), amount), WPFMessageBoxButtons.YesNo);
 
                     if (result == WPFMessageBoxResult.Yes)
                     {

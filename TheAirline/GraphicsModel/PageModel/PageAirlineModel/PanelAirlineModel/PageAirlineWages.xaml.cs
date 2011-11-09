@@ -162,7 +162,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-           WPFMessageBoxResult result= WPFMessageBox.Show("Change wages", "Are you sure you want to change the wage rates?", WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2108"), Translator.GetInstance().GetString("MessageBox", "2108", "message"), WPFMessageBoxButtons.YesNo);
            if (result == WPFMessageBoxResult.Yes)
            {
                foreach (FeeType type in this.FeeValues.Keys)

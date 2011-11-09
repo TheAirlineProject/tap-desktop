@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
@@ -139,7 +140,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 }
             }
             else
-                WPFMessageBox.Show("Airliner not stopped", "The airliner needs to be stopped to change the facilities", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2301"), Translator.GetInstance().GetString("MessageBox", "2301", "message"), WPFMessageBoxButtons.Ok);
         }
         //the class for an item in the list
         private class AirlinerFacilityItem

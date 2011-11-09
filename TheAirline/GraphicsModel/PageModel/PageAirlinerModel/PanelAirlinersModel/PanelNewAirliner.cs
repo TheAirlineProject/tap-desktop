@@ -131,13 +131,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             Airport airport = (Airport)cbAirport.SelectedItem;
             if (price > GameObject.GetInstance().HumanAirline.Money)
             {
-                WPFMessageBox.Show("Not enough money", "You don't have any money to order this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
             }
             else if (airport == null)
-                WPFMessageBox.Show("No homebase", "You haven't selected a home base for this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show("Order airliner", string.Format("Are you sure you want to order a {0}?", this.Airliner.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2003"), string.Format(Translator.GetInstance().GetString("MessageBox", "2003", "message"), this.Airliner.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {

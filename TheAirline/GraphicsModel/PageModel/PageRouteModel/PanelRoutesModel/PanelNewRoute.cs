@@ -364,7 +364,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 }
             }
             else
-                WPFMessageBox.Show("Invalid route", "The route is not valid which might be because of no free gates at the destinations or that the price is not correct.", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2501"), Translator.GetInstance().GetString("MessageBox", "2501", "message"), WPFMessageBoxButtons.Ok);
 
         }
 

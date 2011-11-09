@@ -99,7 +99,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         }
         private void lnkExitGame_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show("Exit game", "Are you sure you want to exit the game?", WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
                 PageNavigator.MainWindow.Close();

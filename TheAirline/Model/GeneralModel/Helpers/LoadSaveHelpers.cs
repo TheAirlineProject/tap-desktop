@@ -22,7 +22,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (null == name || name == "")
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show("Filename error", "The given filename, could not be found for loading a game. Loading aborted", WPFMessageBoxButtons.Ok);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "101"), Translator.GetInstance().GetString("MessageBox", "101", "message"), WPFMessageBoxButtons.Ok);
                 return;
             }
 

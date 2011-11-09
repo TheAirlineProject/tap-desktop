@@ -172,13 +172,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             Airport airport = (Airport)cbAirport.SelectedItem;
 
             if (this.Airliner.getLeasingPrice()*2 > GameObject.GetInstance().HumanAirline.Money)
-                WPFMessageBox.Show("Not enough money", "You don't have enough money to lease this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2004"), Translator.GetInstance().GetString("MessageBox", "2004", "message"), WPFMessageBoxButtons.Ok);
             else if (airport == null)
-                WPFMessageBox.Show("No homebase", "You haven't selected a home base for this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
 
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show("Lease airliner", string.Format("Are you sure you want to lease this {0}?", this.Airliner.Type.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2005"), string.Format(Translator.GetInstance().GetString("MessageBox", "2005", "message"), this.Airliner.Type.Name), WPFMessageBoxButtons.YesNo);
                 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -203,13 +203,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             Airport airport = (Airport)cbAirport.SelectedItem;
         
             if (this.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
-                WPFMessageBox.Show("Not enough money", "You don't have any money to buy this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2006"), Translator.GetInstance().GetString("MessageBox", "2006", "message"), WPFMessageBoxButtons.Ok);
             else if (airport == null)
-                WPFMessageBox.Show("No homebase", "You haven't selected a home base for this airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
        
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show("Buy airliner", string.Format("Are you sure you want to buy this {0}?", this.Airliner.Type.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2007"), string.Format(Translator.GetInstance().GetString("MessageBox", "2007", "message"), this.Airliner.Type.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {

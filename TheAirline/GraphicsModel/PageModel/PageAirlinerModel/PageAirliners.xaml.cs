@@ -165,7 +165,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             string type = ((Hyperlink)sender).TargetName;
           
             if (  GameObject.GetInstance().HumanAirline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0; })).Count == 0)
-                WPFMessageBox.Show("No available homebase", "There are no available homebase, so it is not possible to buy an airliner", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2000"), Translator.GetInstance().GetString("MessageBox", "2000", "message"), WPFMessageBoxButtons.Ok);
             else
             {
                 if (type == "Used")

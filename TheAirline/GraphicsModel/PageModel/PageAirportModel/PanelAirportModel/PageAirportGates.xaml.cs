@@ -179,11 +179,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 if (price > GameObject.GetInstance().HumanAirline.Money)
                 {
-                    WPFMessageBox.Show("Not enough money", "You don't have enough money to buy this terminal", WPFMessageBoxButtons.Ok);
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2205"), Translator.GetInstance().GetString("MessageBox", "2205", "message"), WPFMessageBoxButtons.Ok);
                 }
                 else
                 {
-                    WPFMessageBoxResult result = WPFMessageBox.Show("Buy terminal", string.Format("Are you sure you want to buy a terminal with {0} gates for {1:C}?\nAll your rented gates will be moved to to this terminal when finish building it.", terminal.Gates.NumberOfGates, price), WPFMessageBoxButtons.YesNo);
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2206"), string.Format(Translator.GetInstance().GetString("MessageBox", "2206", "message"), terminal.Gates.NumberOfGates, price), WPFMessageBoxButtons.YesNo);
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
@@ -246,10 +246,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 string strRemove;
                 if (terminal.DeliveryDate > GameObject.GetInstance().GameTime)
-                    strRemove = "Are you sure you want to stop building this terminal?";
+                    strRemove = Translator.GetInstance().GetString("MessageBox", "2207", "message");
                 else
-                    strRemove = string.Format("Are you sure you want to remove this terminal with {0} gates?", terminal.Gates.NumberOfGates);
-                WPFMessageBoxResult result = WPFMessageBox.Show("Remove terminal", strRemove, WPFMessageBoxButtons.YesNo);
+                    strRemove = string.Format(Translator.GetInstance().GetString("MessageBox", "2208", "message"), terminal.Gates.NumberOfGates);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2207"), strRemove, WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -262,7 +262,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             }
             else
             {
-                WPFMessageBox.Show("Removal not possible", "It is not possible to remove the terminal, since it is currently in use", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2209"), Translator.GetInstance().GetString("MessageBox", "2209", "message"), WPFMessageBoxButtons.Ok);
             }
         }
         // chs, 2011-04-11 added for the possibility of extending a terminal
@@ -272,7 +272,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if (!terminal.IsBuilt)
             {
-                WPFMessageBox.Show("Extending not possible", "It is not possible to extend this terminal, since it isn't finished building", WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2210"), Translator.GetInstance().GetString("MessageBox", "2210", "message"), WPFMessageBoxButtons.Ok);
             }
             else
             {

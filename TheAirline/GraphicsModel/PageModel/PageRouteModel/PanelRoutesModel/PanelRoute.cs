@@ -276,7 +276,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
 
-             WPFMessageBoxResult result = WPFMessageBox.Show("Remove airliner", string.Format("Are you sure you want to remove {0} from this route?", this.Route.Airliner.Airliner.Name), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2502"), string.Format(Translator.GetInstance().GetString("MessageBox", "2502", "message"), this.Route.Airliner.Airliner.Name), WPFMessageBoxButtons.YesNo);
 
              if (result == WPFMessageBoxResult.Yes)
              {
@@ -333,7 +333,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show("Remove route", string.Format("Are you sure you want to remove this route between {0} and {1}?", this.Route.Destination1.Profile.Name, this.Route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2503"), string.Format(Translator.GetInstance().GetString("MessageBox", "2503", "message"), this.Route.Destination1.Profile.Name, this.Route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
