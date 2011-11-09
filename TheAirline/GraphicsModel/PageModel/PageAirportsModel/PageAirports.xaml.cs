@@ -44,7 +44,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
            // txtHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
 
             airportsPanel.Children.Add(txtHeader);
-       
 
             lbAirports = new ListBox();
             lbAirports.ItemTemplate = this.Resources["AirportItem"] as DataTemplate;
@@ -53,24 +52,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); };
 
-           
             showAirports(Airports.GetAirports());
 
             airportsPanel.Children.Add(lbAirports);
 
             Button btnResultsMap = new Button();
+            btnResultsMap.Uid = "1001";
             btnResultsMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnResultsMap.Width = Double.NaN;
             btnResultsMap.Height = Double.NaN;
-            btnResultsMap.Content = "Show results on map";
+            btnResultsMap.Content = Translator.GetInstance().GetString("PageAirports", btnResultsMap.Uid);
             btnResultsMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnResultsMap.Margin = new Thickness(0, 10, 0, 0);
             btnResultsMap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnResultsMap.Click += new RoutedEventHandler(btnResultsMap_Click);
 
             airportsPanel.Children.Add(btnResultsMap);
-
-
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -80,14 +77,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             panelContent.setContentPage(panelSearch, StandardContentPanel.ContentLocation.Right);
 
-   
-
             base.setContent(panelContent);
 
             base.setHeaderContent(this.Title);
 
             //base.setHeaderContent(string.Format("{0} Finals", this.League.Profile.ShortName), @"/Data/images/trophy.png");
-
 
             //base.setActionMenu(new ActionMenuModel.ActionMenu());
 
@@ -98,6 +92,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
         {
             PopUpMap.ShowPopUp(airportsList);
         }
+
         //shows a list of airports
         public void showAirports(List<Airport> airports)
         {
@@ -112,10 +107,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                 lbAirports.Items.Add(airport);
 
         }
+
         public void showAirports()
         {
             showAirports(airportsList);
         }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Hyperlink)sender).Tag;

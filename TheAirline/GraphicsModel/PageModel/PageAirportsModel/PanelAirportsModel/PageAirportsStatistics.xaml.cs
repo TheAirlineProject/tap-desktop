@@ -33,10 +33,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             panelStatistics.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Largest Airports / Passengers";
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirportsStatistics", txtHeader.Uid);
 
             panelStatistics.Children.Add(txtHeader);
 
@@ -52,7 +53,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             this.Content = panelStatistics;
 
             showAirports();
-
         }
 
         private void PageAirportsStatistics_OnTimeChanged()
@@ -60,6 +60,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             if (this.IsLoaded)
                showAirports();
         }
+
         //shows the list of the largest airport
         private void showAirports()
         {
@@ -72,14 +73,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             foreach (Airport airport in airports.GetRange(0, 20))
                 lbAirports.Items.Add(new AirportTotalItem(airport, airport.Statistics.getTotalValue(statType)));
         }
+
         private void LnkAirport_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirport(airport));
-
-
         }
+
         //the class for the total of an airport
         private class AirportTotalItem
         {

@@ -27,23 +27,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
         private ComboBox cbCountry, cbRegion, cbSize;
         public PageSearchAirports(PageAirports parent)
         {
-            this.ParentPage = parent;
-
             InitializeComponent();
+
+            this.ParentPage = parent;
 
             StackPanel panelSearch = new StackPanel();
             panelSearch.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airport search options";
+            txtHeader.Text = Translator.GetInstance().GetString("PageSearchAirports", txtHeader.Uid);
 
             panelSearch.Children.Add(txtHeader);
 
             cbHumanAirports = new CheckBox();
-            cbHumanAirports.Content = "Human airports only";
+            cbHumanAirports.Uid = "1002";
+            cbHumanAirports.Content = Translator.GetInstance().GetString("PageSearchAirports", cbHumanAirports.Uid);
             cbHumanAirports.IsChecked = false;
             cbHumanAirports.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbHumanAirports.FlowDirection = System.Windows.FlowDirection.RightToLeft;
@@ -61,7 +63,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             List<Region> regions = Regions.GetRegions();
             regions.Sort(delegate(Region r1, Region r2){return r1.Name.CompareTo(r2.Name);});
 
-            // we handle "All Regions" seperate
+            // 100 is the predefined Uid for "All Regions"
             Region regionAll = Regions.GetRegion("100");
             cbRegion.Items.Add(regionAll);
 
@@ -81,9 +83,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             List<Country> countries = Countries.GetCountries();
             countries.Sort(delegate(Country c1, Country c2) { return c1.Name.CompareTo(c2.Name); });
 
-            Country countryAll = new Country("countries", "100", "All", regionAll, "");
-            countryAll.Flag = @"\data\images\united nations.png";
-
+            // 100 is the predefined Uid for "All Countries"
+            Country countryAll = Countries.GetCountry("100");
             cbCountry.Items.Add(countryAll);
 
             foreach (Country country in countries)
@@ -125,21 +126,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             panelSearch.Children.Add(panelButtons);
 
             Button btnSearch = new Button();
+            btnSearch.Uid = "109";
             btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSearch.Height = Double.NaN;
             btnSearch.Width = Double.NaN;
-            btnSearch.Content = "Search";
+            btnSearch.Content = Translator.GetInstance().GetString("General", btnSearch.Uid);
             btnSearch.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
 
             panelButtons.Children.Add(btnSearch);
 
             Button btnClear = new Button();
+            btnClear.Uid = "110";
             btnClear.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnClear.Width = Double.NaN;
             btnClear.Height = Double.NaN;
             btnClear.Margin = new Thickness(5, 0, 0, 0);
-            btnClear.Content = "Clear";
+            btnClear.Content = Translator.GetInstance().GetString("General", btnClear.Uid);
             btnClear.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnClear.Click += new RoutedEventHandler(btnClear_Click);
 
@@ -160,9 +163,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             // 100 is the predefined Uid for "All Regions"
             if (region.Uid != "100") countries = countries.FindAll(delegate(Country country) { return country.Region == region; });
 
-            Country countryAll = new Country("countries", "100", "All", region, "");
-            countryAll.Flag = @"\data\images\united nations.png";
-
+            // 100 is the predefined Uid for "All Countries"
+            Country countryAll = Countries.GetCountry("100");
             cbCountry.Items.Add(countryAll);
 
             foreach (Country country in countries)
@@ -175,14 +177,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
         {
             txtTextSearch.Text = "";
             cbHumanAirports.IsChecked = false;
-            //cbCountries.SelectedIndex = 0;
+            cbCountry.SelectedIndex = 0;
             cbRegion.SelectedIndex = 0;
             cbSize.SelectedIndex = 0;
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-          
             string searchText = txtTextSearch.Text.ToUpper();
 
             string size = cbSize.SelectedItem.ToString();
@@ -195,10 +196,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             if (humansOnly) airports = airports.FindAll(delegate(Airport airport) { return GameObject.GetInstance().HumanAirline.Airports.Contains(airport); });
 
-//            if (country.ShortName != "All") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
             if (country.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
 
-//            if (country.ShortName == "All" && country.Region.Name != "All regions") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == country.Region; });
             if (country.Uid == "100" && country.Region.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == country.Region; });
 
             if (size != "All sizes") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Size.ToString() == size; });

@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsModel
 {
@@ -18,15 +19,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             WrapPanel buttonsPanel = new WrapPanel();
 
-
             ucSelectButton sbSearch = new ucSelectButton();
-            sbSearch.Content = "Search";
+            sbSearch.Uid = "201";
+            sbSearch.Content = Translator.GetInstance().GetString("PanelAirports", sbSearch.Uid);
             sbSearch.IsSelected = true;
             sbSearch.Click += new System.Windows.RoutedEventHandler(sbSearch_Click);
             buttonsPanel.Children.Add(sbSearch);
 
             ucSelectButton sbStatistics = new ucSelectButton();
-            sbStatistics.Content = "Statistics";
+            sbStatistics.Uid = "202";
+            sbStatistics.Content = Translator.GetInstance().GetString("PanelAirports", sbStatistics.Uid);
             sbStatistics.Click += new System.Windows.RoutedEventHandler(sbStatistics_Click);
             buttonsPanel.Children.Add(sbStatistics);
 
