@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+      xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel"
         xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -11,6 +12,7 @@
     <Page.Resources>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <local:TerminalOptionsVisibility x:Key="terminalOptionsVisibility"></local:TerminalOptionsVisibility>
         <DataTemplate x:Key="TerminalItem">
             <WrapPanel>
                 <TextBlock Width="150" VerticalAlignment="Bottom">
@@ -19,8 +21,9 @@
                     </Hyperlink>
                 </TextBlock>
                 <WrapPanel Width="75" VerticalAlignment="Bottom">
-                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Gates.NumberOfDeliveredGates}"></TextBlock>
+                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Gates.NumberOfDeliveredGates, StringFormat= ({0}}"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Path=Gates.NumberOfOrderedGates, StringFormat= / {0}}"></TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Gates.NumberOfHumanGates, StringFormat= {}/ {0})}"></TextBlock>
                 </WrapPanel>
                 <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding DeliveryDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
                 <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
@@ -31,6 +34,12 @@
                 </Button>
                 <Button VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Background="Transparent" Click="btnPurchaseTerminal_Click" Visibility="{Binding IsBuyable,Converter={StaticResource booleanToVisibility}}">
                     <Image Source="/Data/images/buy.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Background="Transparent" Click="btnRentGate_Click" Visibility="{Binding Converter={StaticResource terminalOptionsVisibility},ConverterParameter='Rent'}">
+                    <Image Source="/Data/images/add.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Background="Transparent" Click="btnReleaseGate_Click" Visibility="{Binding Converter={StaticResource terminalOptionsVisibility},ConverterParameter='Release'}">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
             </WrapPanel>
         </DataTemplate>

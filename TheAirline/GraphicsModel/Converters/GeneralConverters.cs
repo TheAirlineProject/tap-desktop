@@ -17,7 +17,7 @@ namespace TheAirline.GraphicsModel.Converters
     //the converter for a boolean to visibility
     public class BooleanToVisibility : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Visibility rv = Visibility.Collapsed;
             try

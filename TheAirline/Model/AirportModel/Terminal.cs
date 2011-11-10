@@ -58,6 +58,25 @@ namespace TheAirline.Model.AirportModel
             }
             if (!airline.Airports.Contains(this.Airport))
                 airline.Airports.Add(this.Airport);
+            // chs 11-10-11: changed so old gates (from terminals owned by the airport) are moved into the new terminal
+            //moves the "old" rented gates into the new terminal
+            foreach (Terminal tTerminal in this.Airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
+            {
+                foreach (Gate gate in tTerminal.Gates.getGates(this.Airline))
+                {
+                    Gate nGate = this.Gates.getEmptyGate(this.Airline);
+                    if (nGate != null)
+                    {
+                        nGate.Route = gate.Route;
+
+                        gate.Airline = null;
+                        gate.Route = null;
+                    }
+
+
+                }
+
+            }
         }
         // chs 11-04-11: changed for the possibility of extending a terminal
         //extends a terminal with a number of gates
