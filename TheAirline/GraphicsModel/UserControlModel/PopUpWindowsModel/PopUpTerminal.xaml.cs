@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         private Airport Airport;
         private Terminal Terminal;
-        private TextBox txtGates;
+        private ucNumericUpDown nudGates;
         private Button btnOk;
         private TextBlock txtDaysToCreate, txtTotalPrice;
         //for creating a new terminal
@@ -66,16 +66,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             mainPanel.Children.Add(lbTerminal);
 
-            txtGates = new TextBox();
-            txtGates.Background = Brushes.Transparent;
-            txtGates.Width = 100;
-            txtGates.TextAlignment = TextAlignment.Right;
-            txtGates.Margin = new Thickness(2, 0, 0, 0);
-            txtGates.PreviewKeyDown += new KeyEventHandler(txtGates_PreviewKeyDown);
-            txtGates.PreviewTextInput += new TextCompositionEventHandler(txtGates_PreviewTextInput);
-            txtGates.TextChanged += new TextChangedEventHandler(txtGates_TextChanged);
+            // chs 11-09-11: added numericupdown for selecting number of gates
+            nudGates = new ucNumericUpDown();
+            nudGates.Height = 30;
+            nudGates.MaxValue = 50;
+            nudGates.ValueChanged+=new RoutedPropertyChangedEventHandler<decimal>(nudGates_ValueChanged);
+            nudGates.MinValue = 1;
 
-            lbTerminal.Items.Add(new QuickInfoValue("Number of gates", txtGates));
+            lbTerminal.Items.Add(new QuickInfoValue("Number of gates", nudGates));
 
             lbTerminal.Items.Add(new QuickInfoValue("Basic price for terminal", UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalPrice()))));
             lbTerminal.Items.Add(new QuickInfoValue("Price per terminal gate", UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalGatePrice()))));
@@ -87,6 +85,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbTerminal.Items.Add(new QuickInfoValue("Total terminal price", txtTotalPrice));
 
             mainPanel.Children.Add(createButtonsPanel());
+
+            nudGates.Value = 1;
+   
 
             this.Content = mainPanel;
         }
@@ -117,16 +118,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             lbTerminal.Items.Add(new QuickInfoValue("Current gates", UICreator.CreateTextBlock(string.Format("{0} gates", this.Terminal.Gates.getGates().Count))));
 
-            txtGates = new TextBox();
-            txtGates.Background = Brushes.Transparent;
-            txtGates.Width = 100;
-            txtGates.TextAlignment = TextAlignment.Right;
-            txtGates.Margin = new Thickness(2, 0, 0, 0);
-            txtGates.PreviewKeyDown += new KeyEventHandler(txtGates_PreviewKeyDown);
-            txtGates.PreviewTextInput += new TextCompositionEventHandler(txtGates_PreviewTextInput);
-            txtGates.TextChanged += new TextChangedEventHandler(txtGates_TextChanged);
+            // chs 11-09-11: added numericupdown for selecting number of gates
+            nudGates = new ucNumericUpDown();
+            nudGates.Height = 30;
+            nudGates.MaxValue = 50;
+            nudGates.MinValue = 1;
+            nudGates.ValueChanged += new RoutedPropertyChangedEventHandler<decimal>(nudGates_ValueChanged);
 
-            lbTerminal.Items.Add(new QuickInfoValue("Number of gates", txtGates));
+            lbTerminal.Items.Add(new QuickInfoValue("Number of gates", nudGates));
 
             txtDaysToCreate = UICreator.CreateTextBlock("0 days");
             lbTerminal.Items.Add(new QuickInfoValue("Days to extend terminal", txtDaysToCreate));
@@ -137,7 +136,28 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             mainPanel.Children.Add(createButtonsPanel());
 
+            nudGates.Value = 1;
+       
+
             this.Content = mainPanel;
+        }
+
+        private void nudGates_ValueChanged(object sender, RoutedPropertyChangedEventArgs<decimal> e)
+        {
+           
+            int gates = Convert.ToInt32(nudGates.Value);
+
+            txtDaysToCreate.Text = string.Format("{0} days", getDaysToCreate(gates));
+
+            // chs 11-04-11: changed for making it possible to extending an existing terminal
+            long price;
+            if (this.Terminal == null)
+                price = gates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
+            else
+                price = gates * this.Terminal.Airport.getTerminalGatePrice();
+
+            txtTotalPrice.Text = string.Format("{0:C}", price);
+
         }
         //creates the button panel
         private WrapPanel createButtonsPanel()
@@ -154,7 +174,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
-            btnOk.IsEnabled = false;
+    
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
@@ -179,51 +199,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            int gates = Convert.ToInt32(txtGates.Text);
+            int gates = Convert.ToInt32(nudGates.Value);
        
             if (this.Terminal == null)
                  this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
             else
                 this.Selected = gates;
             this.Close();
-        }
-        private void txtGates_PreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Space)
-            {
-                e.Handled = true;
-            }
-            if (txtGates.Text.Length == 1 && (e.Key == Key.Delete || e.Key == Key.Back))
-                e.Handled = true;
-        }
-
-        private void txtGates_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            btnOk.IsEnabled = Convert.ToDouble(txtGates.Text) < 50 && Convert.ToDouble(txtGates.Text) > 0 ? true : false;
-
-            int gates = Convert.ToInt32(txtGates.Text);
-
-            txtDaysToCreate.Text = string.Format("{0} days", getDaysToCreate(gates));
-
-            // chs 11-04-11: changed for making it possible to extending an existing terminal
-            long price;
-            if (this.Terminal == null)
-                price = gates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
-            else
-                price = gates * this.Terminal.Airport.getTerminalGatePrice();
-
-            txtTotalPrice.Text = string.Format("{0:C}", price);
-
-        }
-        private void txtGates_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            double number;
-            Boolean parseable = double.TryParse(e.Text, out number);
-
-            int length = txtGates.Text.Length;
-
-            e.Handled = !parseable || (length == 0 && number == 0) || length > 2;
-
         }
         //returns the days to create a terminal with a number of gates
         private int getDaysToCreate(int gates)

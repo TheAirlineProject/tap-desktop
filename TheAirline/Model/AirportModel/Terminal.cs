@@ -21,6 +21,7 @@ namespace TheAirline.Model.AirportModel
         public Airport Airport { get; set; }
         public Gates Gates { get; set; }
         public Boolean IsBuilt { get{return isBuilt();} set{;} }
+        public Boolean IsBuyable { get { return isBuyable(); } set { ;} }
         public Terminal(Airport airport, Airline airline, int gates, DateTime deliveryDate)
         {
             this.Airport = airport;
@@ -40,6 +41,23 @@ namespace TheAirline.Model.AirportModel
                
             }
       
+        }
+        // chs 11-10-11: changed for the possibility of purchasing an existing terminal
+        //returns if the terminal is buyalbe
+        private Boolean isBuyable()
+        {
+            return this.Gates.getFreeGates() == this.Gates.NumberOfDeliveredGates && this.Airport.Terminals.getNumberOfAirportTerminals()>1;
+        }
+        //purchases a terminal for an airline
+        public void purchaseTerminal(Airline airline)
+        {
+            this.Airline = airline;
+            foreach (Gate gate in this.Gates.getGates())
+            {
+                gate.Airline = airline;
+            }
+            if (!airline.Airports.Contains(this.Airport))
+                airline.Airports.Add(this.Airport);
         }
         // chs 11-04-11: changed for the possibility of extending a terminal
         //extends a terminal with a number of gates
@@ -75,6 +93,12 @@ namespace TheAirline.Model.AirportModel
         public List<Terminal> getTerminals()
         {
             return this.AirportTerminals;
+        }
+        // chs 11-10-11: changed for the possibility of purchasing an existing terminal
+        //returns the number of terminals owned by the airport
+        public int getNumberOfAirportTerminals()
+        {
+            return getDeliveredTerminals().FindAll((delegate(Terminal terminal) { return terminal.Airline == null; })).Count;
         }
         //returns all delivered terminals
         public List<Terminal> getDeliveredTerminals()

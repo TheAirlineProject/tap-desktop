@@ -15,6 +15,7 @@
     <BitmapImage x:Key="BackgroundImage" UriSource="pack://application:,,,/Data/images/BlankImage.png">
        
     </BitmapImage>
+   
     <Style TargetType="{x:Type DatePickerTextBox}">
         <Setter Property="Control.Template">
             <Setter.Value>

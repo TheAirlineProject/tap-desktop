@@ -264,6 +264,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\UserControlModel\ucNumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\UserControlModel\ucSelectButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -434,6 +438,9 @@
       <DependentUpon>PopUpTimeTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpWindow.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\ucNumericUpDown.xaml.cs">
+      <DependentUpon>ucNumericUpDown.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\UserControlModel\ucSelectButton.xaml.cs">
       <DependentUpon>ucSelectButton.xaml</DependentUpon>
     </Compile>
@@ -579,6 +586,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\BlankImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\buy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

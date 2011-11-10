@@ -115,12 +115,7 @@ namespace TheAirline.Model.AirportModel
                     return gate;
             return null;
         }
-        
-        //returns the total number of free gates
-        public int getFreeGates()
-        {
-            return getDeliveredGates().FindAll((delegate(Gate gate) { return gate.Airline==null; })).Count;
-        }
+      
         //returns the number of gates for an airline 
         public int getNumberOfGates(Airline airline)
         {
@@ -132,7 +127,12 @@ namespace TheAirline.Model.AirportModel
             }
             return number;
         }
-      
+
+        //returns the total number of free gates
+        public int getFreeGates()
+        {
+            return getDeliveredGates().FindAll((delegate(Gate gate) { return gate.Airline == null; })).Count;
+        }
         //returns the number of free gates for an airline (without a route)
         public int getFreeGates(Airline airline)
         {
