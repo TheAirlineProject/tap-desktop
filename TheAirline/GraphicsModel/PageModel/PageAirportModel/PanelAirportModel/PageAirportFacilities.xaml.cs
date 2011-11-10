@@ -31,11 +31,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private StackPanel panelFacilities;
         public PageAirportFacilities(Airport airport)
         {
+            InitializeComponent();
+
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
             this.Airport = airport;
-
-            InitializeComponent();
 
             panelFacilities = new StackPanel();
             panelFacilities.Margin = new Thickness(0, 10, 50, 0);
@@ -44,19 +44,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             this.Content = panelFacilities;
         }
+
         //shows the facilities information
         private void showFacilitiesInformation()
         {
             panelFacilities.Children.Clear();
 
-
-
             TextBlock txtFacilitiesHeader = new TextBlock();
+            txtFacilitiesHeader.Uid = "1001";
             txtFacilitiesHeader.Margin = new Thickness(0, 10, 0, 0);
             txtFacilitiesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtFacilitiesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtFacilitiesHeader.FontWeight = FontWeights.Bold;
-            txtFacilitiesHeader.Text = "Airport Facilities";
+            txtFacilitiesHeader.Text = Translator.GetInstance().GetString("PageAirportFacilities", txtFacilitiesHeader.Uid);
 
             panelFacilities.Children.Add(txtFacilitiesHeader);
 
@@ -64,14 +64,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbAirportFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbAirportFacilities.ItemTemplate = this.Resources["AirlineFacilityItem"] as DataTemplate;
 
-
             panelFacilities.Children.Add(lbAirportFacilities);
 
             Array types = Enum.GetValues(typeof(AirportFacility.FacilityType));
 
             List<Airline> airlines = Airlines.GetAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
-
 
             foreach (Airline airline in airlines)
             {
@@ -84,11 +82,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             }
 
             TextBlock txtHumanFacilitiesHeader = new TextBlock();
+            txtHumanFacilitiesHeader.Uid = "1002";
             txtHumanFacilitiesHeader.Margin = new Thickness(0, 10, 0, 0);
             txtHumanFacilitiesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHumanFacilitiesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHumanFacilitiesHeader.FontWeight = FontWeights.Bold;
-            txtHumanFacilitiesHeader.Text = GameObject.GetInstance().HumanAirline.Profile.Name + " Facilities";
+            txtHumanFacilitiesHeader.Text = GameObject.GetInstance().HumanAirline.Profile.Name + " " + Translator.GetInstance().GetString("PageAirportFacilities", txtHumanFacilitiesHeader.Uid);
 
             panelFacilities.Children.Add(txtHumanFacilitiesHeader);
 
@@ -96,19 +95,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbHumanFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbHumanFacilities.ItemTemplate = this.Resources["HumanFacilityItem"] as DataTemplate;
 
-        
             panelFacilities.Children.Add(lbHumanFacilities);
 
             foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
             {
                 lbHumanFacilities.Items.Add(new HumanFacilityType(this.Airport, this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, type), getHumanNextAirportFacility(type)));
             }
-
-            
-
-           
-
         }
+
         //returns the next facility item for the specific type for the human airline
         private AirportFacility getHumanNextAirportFacility(AirportFacility.FacilityType type)
         {
@@ -123,13 +117,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             else
                 return facilities[0];
         }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             Airline airline = (Airline)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirline(airline));
-
-
         }
 
         //the class for a facility type for an airline
@@ -141,7 +134,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             {
                 this.Airline = airline;
                 this.Facility = facility;
-
             }
         }
 
@@ -168,24 +160,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         private void ButtonSell_Click(object sender, RoutedEventArgs e)
         {
-               HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
+            HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
 
-               if (type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline))
-                   WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
-               else
-               {
+            if (type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline))
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);
 
-                   WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airport.downgradeFacility(GameObject.GetInstance().HumanAirline, type.NextFacility.Type);
 
-                   if (result == WPFMessageBoxResult.Yes)
-                   {
-
-
-                       this.Airport.downgradeFacility(GameObject.GetInstance().HumanAirline, type.NextFacility.Type);
-
-                       showFacilitiesInformation();
-                   }
-               }
+                    showFacilitiesInformation();
+                }
+            }
         }
     }
 
@@ -203,10 +192,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             this.NextFacility = next;
         }
     }
+
     //the converter for a facility button being enabled
     public class HumanFacilityButtonEnabled : IValueConverter
     {
-
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Boolean isEnabled = true;
@@ -233,7 +222,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             }
 
             return isEnabled;
-
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
