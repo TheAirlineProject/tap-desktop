@@ -48,10 +48,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
 
             TextBlock txtTerminalsInfoHeader = new TextBlock();
+            txtTerminalsInfoHeader.Uid = "1001";
             txtTerminalsInfoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtTerminalsInfoHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtTerminalsInfoHeader.FontWeight = FontWeights.Bold;
-            txtTerminalsInfoHeader.Text = "Terminals Information (Owner/(Total Gates/Ordered Gates/Human Gates)/Delivery)";
+            txtTerminalsInfoHeader.Text =Translator.GetInstance().GetString("PageAirportGates", txtTerminalsInfoHeader.Uid);
             txtTerminalsInfoHeader.Margin = new Thickness(0, 10, 0, 0);
 
             panelGatesTerminals.Children.Add(txtTerminalsInfoHeader);
@@ -64,10 +65,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             Button btnTerminal = new Button();
             btnTerminal.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnTerminal.Uid = "201";
             btnTerminal.Height = Double.NaN;
             btnTerminal.Width = Double.NaN;
             btnTerminal.Margin = new Thickness(0, 5, 0, 0);
-            btnTerminal.Content = "Build Terminal";
+            btnTerminal.Content = Translator.GetInstance().GetString("PageAirportGates", btnTerminal.Uid);
             btnTerminal.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnTerminal.Click += new RoutedEventHandler(btnTerminal_Click);
             btnTerminal.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -99,29 +101,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             //GameObject.HumanAirline
 
             TextBlock txtGatesInfoHeader = new TextBlock();
+            txtGatesInfoHeader.Uid = "1002";
             txtGatesInfoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtGatesInfoHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtGatesInfoHeader.FontWeight = FontWeights.Bold;
-            txtGatesInfoHeader.Text = "Gates Information";
+            txtGatesInfoHeader.Text = Translator.GetInstance().GetString("PageAirportGates", txtGatesInfoHeader.Uid);
 
             panelGates.Children.Add(txtGatesInfoHeader);
 
             ListBox lbAirlineInfo = new ListBox();
             lbAirlineInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbAirlineInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Total number of gates", UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString())));
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Used gates", UICreator.CreateTextBlock((this.Airport.Terminals.getNumberOfGates() - this.Airport.Terminals.getFreeGates()).ToString())));
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Free gates", UICreator.CreateTextBlock(this.Airport.Terminals.getFreeGates().ToString())));
-            lbAirlineInfo.Items.Add(new QuickInfoValue("Monthly price per gate", UICreator.CreateTextBlock(string.Format("{0:c}", this.Airport.getGatePrice()))));
-
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1003"), UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString())));
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1004"), UICreator.CreateTextBlock((this.Airport.Terminals.getNumberOfGates() - this.Airport.Terminals.getFreeGates()).ToString())));
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1005"), UICreator.CreateTextBlock(this.Airport.Terminals.getFreeGates().ToString())));
+            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1006"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airport.getGatePrice()))));
             panelGates.Children.Add(lbAirlineInfo);
 
             TextBlock txtGatesHeader = new TextBlock();
             txtGatesHeader.Margin = new Thickness(0, 10, 0, 0);
+            txtGatesHeader.Uid = "1007";
             txtGatesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtGatesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtGatesHeader.FontWeight = FontWeights.Bold;
-            txtGatesHeader.Text = "Airline Gates (Total / Used)";
+            txtGatesHeader.Text = Translator.GetInstance().GetString("PageAirportGates", txtGatesHeader.Uid);
 
             panelGates.Children.Add(txtGatesHeader);
 
