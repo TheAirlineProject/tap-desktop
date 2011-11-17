@@ -42,7 +42,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Flights - Translate";
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirportFlights", txtHeader.Uid);
 
             panelFlights.Children.Add(txtHeader);
 
@@ -68,10 +68,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             panelDestinationFlights.Visibility = System.Windows.Visibility.Collapsed;
 
             TextBlock txtDestinationHeader = new TextBlock();
+            txtDestinationHeader.Uid = "1004";
             txtDestinationHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtDestinationHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtDestinationHeader.FontWeight = FontWeights.Bold;
-            txtDestinationHeader.Text = "Destination Flights";
+            txtDestinationHeader.Text = Translator.GetInstance().GetString("PageAirportFlights", txtDestinationHeader.Uid);
 
             panelDestinationFlights.Children.Add(txtDestinationHeader);
 
@@ -87,7 +88,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             Grid.SetColumn(imgArrivalsHeader, 0);
             grdArrivalsHeader.Children.Add(imgArrivalsHeader);
 
-            TextBlock txtArrivalsHeader = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PageAirport", "1002"));
+            TextBlock txtArrivalsHeader = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PageAirportFlights", "1002"));
             txtArrivalsHeader.FontStyle = FontStyles.Oblique;
             txtArrivalsHeader.FontSize = 16;
 
@@ -113,7 +114,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             Grid.SetColumn(imgDeparturesHeader, 0);
             grdDeparturesHeader.Children.Add(imgDeparturesHeader);
 
-            TextBlock txtDeparturesHeader = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PageAirport", "1004"));
+            TextBlock txtDeparturesHeader = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PageAirportFlights", "1003"));
             txtDeparturesHeader.FontStyle = FontStyles.Oblique;
             txtDeparturesHeader.FontSize = 16;
 

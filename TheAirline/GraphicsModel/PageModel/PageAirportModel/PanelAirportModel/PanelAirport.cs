@@ -42,7 +42,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             ucSelectButton sbFlights = new ucSelectButton();
             sbFlights.Uid = "204";
-            sbFlights.Content = "Flights - Translate";
+            sbFlights.Content = Translator.GetInstance().GetString("PanelAirport", sbFlights.Uid);
             sbFlights.Click += new System.Windows.RoutedEventHandler(sbFlights_Click);
             buttonsPanel.Children.Add(sbFlights);
 

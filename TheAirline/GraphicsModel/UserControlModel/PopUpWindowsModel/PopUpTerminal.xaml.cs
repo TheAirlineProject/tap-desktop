@@ -49,7 +49,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             InitializeComponent();
 
-            this.Title = "Create new terminal";
+            this.Uid = "1000";
+            this.Title = Translator.GetInstance().GetString("PopUpTerminal", this.Uid);
 
             this.Width = 400;
 
@@ -73,16 +74,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             nudGates.ValueChanged+=new RoutedPropertyChangedEventHandler<decimal>(nudGates_ValueChanged);
             nudGates.MinValue = 1;
 
-            lbTerminal.Items.Add(new QuickInfoValue("Number of gates", nudGates));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1001"), nudGates));
 
-            lbTerminal.Items.Add(new QuickInfoValue("Basic price for terminal", UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalPrice()))));
-            lbTerminal.Items.Add(new QuickInfoValue("Price per terminal gate", UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalGatePrice()))));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1002"), UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalPrice()))));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1003"), UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalGatePrice()))));
 
             txtDaysToCreate = UICreator.CreateTextBlock("0 days");
-            lbTerminal.Items.Add(new QuickInfoValue("Days to create terminal", txtDaysToCreate));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1004"), txtDaysToCreate));
 
             txtTotalPrice = UICreator.CreateTextBlock(string.Format("{0:C}", 0));
-            lbTerminal.Items.Add(new QuickInfoValue("Total terminal price", txtTotalPrice));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1005"), txtTotalPrice));
 
             mainPanel.Children.Add(createButtonsPanel());
 
@@ -125,7 +126,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             nudGates.MinValue = 1;
             nudGates.ValueChanged += new RoutedPropertyChangedEventHandler<decimal>(nudGates_ValueChanged);
 
-            lbTerminal.Items.Add(new QuickInfoValue("Number of gates", nudGates));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1001"), nudGates));
 
             txtDaysToCreate = UICreator.CreateTextBlock("0 days");
             lbTerminal.Items.Add(new QuickInfoValue("Days to extend terminal", txtDaysToCreate));
