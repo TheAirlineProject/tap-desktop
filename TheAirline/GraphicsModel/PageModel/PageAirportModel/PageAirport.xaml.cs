@@ -71,7 +71,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             if (this.IsLoaded)
             {
-                //txtWind.Text = string.Format("{0} ({1} km/h) in {2} direction", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather.WindSpeed, null, null, null), (int)this.Airport.Weather.WindSpeed, this.Airport.Weather.Direction);
                 txtWind.Text = string.Format("{0} ({1:0.##} {2} in {3} direction)", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather.WindSpeed, null, null, null),new NumberToUnitConverter().Convert((int)this.Airport.Weather.WindSpeed), new StringToLanguageConverter().Convert("km/t"),this.Airport.Weather.Direction);
 
                 showFlights();
@@ -210,7 +209,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             GameTimeZone tz = this.Airport.Profile.TimeZone;
    
-            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportDepartures(this.Airport))
+            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportDepartures(this.Airport,2))
             {
                 if (entry.TimeTable.Route.Airliner.CurrentFlight != null && entry.TimeTable.Route.Airliner.CurrentFlight.Entry == entry)
                     lbDepartures.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry),tz), entry.TimeTable.Route.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode, "Planned"));
@@ -218,12 +217,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                     lbDepartures.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry),tz), entry.TimeTable.Route.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode, "Planned"));
             }
 
-            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportArrivals(this.Airport))
+            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportArrivals(this.Airport,2))
             {
                 TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.TimeTable.Route.Airliner.Airliner.Airliner.Type);
-
-                foreach (RouteTimeTableEntry e in entry.TimeTable.Entries)
-                    Console.WriteLine(e.Time + " " + flightTime);
 
                 if (entry.TimeTable.Route.Airliner.CurrentFlight != null && entry == entry.TimeTable.Route.Airliner.CurrentFlight.Entry && entry.TimeTable.Route.Airliner.Status == RouteAirliner.AirlinerStatus.On_route)
                     lbArrivals.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime),tz), entry.TimeTable.Route.Airliner.Airliner.Airline, entry.Destination.Airport == entry.TimeTable.Route.Destination1 ? entry.TimeTable.Route.Destination2 : entry.TimeTable.Route.Destination1, entry.Destination.FlightCode, string.Format("{0:HH:mm}", entry.TimeTable.Route.Airliner.CurrentFlight.getExpectedLandingTime())));// string.Format("{0:HH:mm}",entry.TimeTable.Route.Airliner.CurrentFlight.getExpectedLandingTime())));
@@ -282,10 +278,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1011"), lblFlag));
 
-            //TimeZoneInfo timeZone = TimeZoneInfo.GetSystemTimeZones().ToList().Find((delegate(TimeZoneInfo tzInfo) { return tzInfo.BaseUtcOffset == this.Airport.Profile.OffsetDST; }));
             GameTimeZone tz = this.Airport.Profile.TimeZone;
                         
-            TextBlock txtTimeZone = UICreator.CreateTextBlock(tz.DisplayName);//(string.Format("UTC{0}{1}", this.Airport.Profile.OffsetDST < 0 ? "" : "+", this.Airport.Profile.OffsetDST));
+            TextBlock txtTimeZone = UICreator.CreateTextBlock(tz.DisplayName);
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1012"), txtTimeZone));
 
             txtLocalTime = UICreator.CreateTextBlock(string.Format("{0} {1}",MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime,tz).ToShortTimeString(), tz.ShortName));

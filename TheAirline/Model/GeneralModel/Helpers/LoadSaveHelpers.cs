@@ -110,7 +110,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facility");
                 foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
                 {
-                    string airlineFacility = airlineFacilityNode.Attributes["name"].Value;
+                    string airlineFacility = airlineFacilityNode.Attributes["uid"].Value;
                     
                     airline.addFacility(AirlineFacilities.GetFacility(airlineFacility));
                 }
@@ -534,7 +534,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (AirlineFacility facility in airline.Facilities)
                 {
                     XmlElement airlineFacilityNode = xmlDoc.CreateElement("facility");
-                    airlineFacilityNode.SetAttribute("name", facility.Shortname);
+                    airlineFacilityNode.SetAttribute("uid", facility.Uid);
 
                     airlineFacilitiesNode.AppendChild(airlineFacilityNode);
                 }

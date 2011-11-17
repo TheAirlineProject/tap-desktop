@@ -29,6 +29,7 @@ namespace TheAirline.Model.AirlineModel
         public List<Loan> Loans { get; set; }
         private List<string> FlightCodes;
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
+        private int FlightCodePointer = 0;
         public Airline(AirlineProfile profile)
         {
             this.Airports = new List<Airport>();
@@ -54,6 +55,8 @@ namespace TheAirline.Model.AirlineModel
         //adds a route to the airline
         public void addRoute(Route route)
         {
+            this.FlightCodePointer = 0;
+
             this.Routes.Add(route);
 
             foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())
@@ -64,6 +67,8 @@ namespace TheAirline.Model.AirlineModel
         //removes a route from the airline
         public void removeRoute(Route route)
         {
+            this.FlightCodePointer = 0;
+
             this.Routes.Remove(route);
 
             foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())
@@ -257,10 +262,12 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Loans.Remove(loan);
         }
+        // chs, 2011-11-17 changed so the airline gets a "new" flight code each time
         //returns the next flight code for the airline
         public string getNextFlightCode()
         {
-            return this.FlightCodes[0];
+            this.FlightCodePointer++;
+            return this.FlightCodes[this.FlightCodePointer-1];
         }
         //returns the list of flight codes for the airline
         public List<string> getFlightCodes()

@@ -7,7 +7,10 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
-    //the class for a route time table for a route airliner
+    /*! RouteTimeTable
+* This class is used for the time table for a route
+* The class needs parameters for the route
+*/
     public class RouteTimeTable
     {
         public static TimeSpan MinTimeBetweenFlights = new TimeSpan(0, 60, 0);
@@ -98,7 +101,35 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return null;
         }
 
-        
+        //returns the next entry from a specific time
+        public RouteTimeTableEntry getNextEntry(DateTime time)
+        {
+            DayOfWeek day = time.DayOfWeek;
+
+            int counter = 0;
+
+            while (counter < 7)
+            {
+
+
+
+                List<RouteTimeTableEntry> entries = getEntries(day);
+
+                foreach (RouteTimeTableEntry dEntry in entries)
+                {
+                    if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)))
+                        return dEntry;
+                }
+                day++;
+
+                if (day == (DayOfWeek)7)
+                    day = (DayOfWeek)0;
+
+                counter++;
+            }
+
+            return null;
+        }
         //returns the next entry after a specific specific entry
         public RouteTimeTableEntry getNextEntry(RouteTimeTableEntry entry)
         {

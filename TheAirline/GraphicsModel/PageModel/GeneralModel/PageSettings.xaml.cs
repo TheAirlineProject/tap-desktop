@@ -79,8 +79,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbLanguage = new ComboBox();
             cbLanguage.Width = 200;
             cbLanguage.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbLanguage.SelectedValuePath = "Name";
-            cbLanguage.DisplayMemberPath = "Name";
+            // chs, 2011-10-11 changed to display flag together with language
+            cbLanguage.ItemTemplate = this.Resources["LanguageItem"] as DataTemplate;
+          
+            
             foreach (Language language in Languages.GetLanguages())
                 cbLanguage.Items.Add(language);
 

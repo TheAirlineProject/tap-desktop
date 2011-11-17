@@ -47,29 +47,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelStatistics.Children.Add(txtHeader);
 
-            /*
-            ListBox lbStatistics = new ListBox();
-            lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            //lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-            lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
-
-            Random rnd = new Random();
-
-            foreach (Airline airline in Airlines.GetAirlines())
-                lbStatistics.Items.Add(new AirlineStatisticsItem(airline, rnd.Next(100) + 1));
-            /*
-
-            txtDepartures = UICreator.CreateTextBlock(this.Airliner.Statistics.TotalDepartures.ToString());
-            lbStatistics.Items.Add(new QuickInfoValue("Total departures", txtDepartures));
-
-            txtPassengers = UICreator.CreateTextBlock(this.Airliner.Statistics.TotalPassengers.ToString());
-            lbStatistics.Items.Add(new QuickInfoValue("Total passengers", txtPassengers));
-
-            txtPerFlight = UICreator.CreateTextBlock(this.Airliner.Statistics.getPassengersPerFlight().ToString());
-            lbStatistics.Items.Add(new QuickInfoValue("Passengers per flight", txtPerFlight));
-            */
-            //panelStatistics.Children.Add(lbStatistics);
-
             panelStats = new StackPanel();
 
             panelStatistics.Children.Add(panelStats);

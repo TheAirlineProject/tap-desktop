@@ -7,7 +7,14 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageSettings">
-
+    <Page.Resources>
+        <DataTemplate x:Key="LanguageItem">
+            <DockPanel>
+                <Image Source="{Binding ImageFile}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" Width="100" VerticalAlignment="Bottom"/>
+            </DockPanel>
+        </DataTemplate>
+    </Page.Resources>
     <Grid>
         
     </Grid>

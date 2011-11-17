@@ -148,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportGates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,6 +348,9 @@
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFacilities.xaml.cs">
       <DependentUpon>PageAirportFacilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFlights.xaml.cs">
+      <DependentUpon>PageAirportFlights.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportGates.xaml.cs">
       <DependentUpon>PageAirportGates.xaml</DependentUpon>

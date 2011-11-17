@@ -41,7 +41,9 @@ namespace TheAirline.Model.AirportModel
         //returns the time zone for the airport
         private GameTimeZone getTimeZone()
         {
-            return TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == this.OffsetDST; });
+            GameTimeZone zone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == this.OffsetDST; });
+          
+            return zone;
         }
     }
 }

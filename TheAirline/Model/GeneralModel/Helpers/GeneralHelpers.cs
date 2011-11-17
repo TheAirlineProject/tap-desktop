@@ -18,8 +18,36 @@ namespace TheAirline.Model.GeneralModel
     {
         public enum GameSpeedValue { Slowest = 700, Slow = 550, Normal = 400, Fast = 250, Fastest = 100 }
         public static string BigMapXaml;
+        // chs, 2011-17-11 changed for showing departures and arrivals from one airport to another
+        //returns the list of arrivals or departures from one airport to another
+        public static List<RouteTimeTableEntry> GetAirportFlights(Airport fAirport, Airport tAirport, Boolean arrivals)
+        {
+            List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
+            foreach (Route route in fAirport.Terminals.getRoutes())
+            {
+                if (route.Airliner != null && (route.Destination1 == tAirport || route.Destination2 == tAirport))
+                {
+                    RouteTimeTableEntry entry = route.Airliner.CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime) : route.Airliner.CurrentFlight.Entry;
+
+                    for (int i = 0; i < route.TimeTable.Entries.Count; i++)
+                    {
+                        if (!arrivals && entry.Destination.Airport == tAirport)
+                            entries.Add(entry);
+
+                        if (arrivals && entry.Destination.Airport == fAirport)
+                            entries.Add(entry);
+
+                        entry = route.TimeTable.getNextEntry(entry);
+                   
+                    }
+                  
+                }
+            }
+            entries.Sort(delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+            return entries;
+        }
         //returns the list of arrivals for an airport
-        public static List<RouteTimeTableEntry> GetAirportArrivals(Airport airport)
+        public static List<RouteTimeTableEntry> GetAirportArrivals(Airport airport,int count)
         {
 
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
@@ -29,23 +57,23 @@ namespace TheAirline.Model.GeneralModel
                 {
                     RouteTimeTableEntry entry = route.Airliner.CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, (airport == route.Destination1 ? route.Destination2 : route.Destination1).Profile.Coordinates) : route.Airliner.CurrentFlight.Entry;
 
-                    if (entry.Destination.Airport.Profile.Coordinates.CompareTo(airport.Profile.Coordinates) == 0)
-                        entries.Add(entry);
-
-                    while (entries.Count<4)
+                    for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
-                        entry = route.TimeTable.getNextEntry(entry);
                         if (entry.Destination.Airport == airport)
                             entries.Add(entry);
+                        entry = route.TimeTable.getNextEntry(entry);
+                   
                     }
+                   
                 }
             }
             entries.Sort(delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
-            return entries.GetRange(0, Math.Min(entries.Count, 2));
+            return entries.GetRange(0, Math.Min(entries.Count, count));
         }
         //returns the list of departures for an airport
-        public static List<RouteTimeTableEntry> GetAirportDepartures(Airport airport)
+        public static List<RouteTimeTableEntry> GetAirportDepartures(Airport airport, int count)
         {
+            
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
             foreach (Route route in airport.Terminals.getRoutes())
             {
@@ -65,7 +93,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
             entries.Sort(delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
-            return entries.GetRange(0, Math.Min(entries.Count, 2));
+            return entries.GetRange(0, Math.Min(entries.Count, count));
         }
         //returns the rate (for loan) for an airline
         public static double GetAirlineLoanRate(Airline airline)

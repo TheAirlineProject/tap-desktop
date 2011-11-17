@@ -14,7 +14,7 @@ namespace TheAirline.Model.GeneralModel
         private Dictionary<string, string> Words;
         public string CultureInfo { get; set; }
         public string ImageFile { get; set; }
-        public Language(string name, string cultureInfo)
+        public Language(string name,string cultureInfo)
         {
             this.Name = name;
             this.Unit = UnitSystem.Metric;

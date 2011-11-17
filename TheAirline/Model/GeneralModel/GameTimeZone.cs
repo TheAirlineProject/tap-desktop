@@ -25,12 +25,12 @@ namespace TheAirline.Model.GeneralModel
         //returns the display name
         private string getDisplayName()
         {
-            return string.Format("{0} (UTC{1}{2:D2}:{3:D2})", this.Name, this.UTCOffset.Hours < 0 ? "" : "+", this.UTCOffset.Hours, this.UTCOffset.Minutes);
+            return string.Format("{0} (UTC{1}{2:D2}:{3:D2})", this.Name, this.UTCOffset.Hours < 0 ? "" : "+", this.UTCOffset.Hours, Math.Abs(this.UTCOffset.Minutes));
         }
         //returns the short display name
         private string getShortDisplayName()
         {
-            return string.Format("{0} (UTC{1}{2:D2}:{3:D2})", this.ShortName, this.UTCOffset.Hours < 0 ? "" : "+", this.UTCOffset.Hours, this.UTCOffset.Minutes);
+            return string.Format("{0} (UTC{1}{2:D2}:{3:D2})", this.ShortName, this.UTCOffset.Hours < 0 ? "" : "+", this.UTCOffset.Hours, Math.Abs(this.UTCOffset.Minutes));
 
         }
     }

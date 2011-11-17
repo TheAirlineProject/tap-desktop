@@ -56,15 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             this.Children.Add(lbRouteInfo);
 
-            // lbRouteInfo.Items.Add(new QuickInfoValue("Price", UICreator.CreateTextBlock(string.Format("${0:0,0}", this.Airliner.Price))));
-            // lbRouteInfo.Items.Add(new QuickInfoValue("Yearly maintenance", UICreator.CreateTextBlock(string.Format("${0:0,0}", this.Airliner.Type.getMaintenance()))));
-
-
             cbDestination1 = createDestinationComboBox(); ;
-
-
-            //cbDestination1.SelectedIndex = 0;
-
             lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", cbDestination1));
 
 
@@ -77,70 +69,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             lbRouteInfo.Items.Add(new QuickInfoValue("Distance", txtDistance));
             lbRouteInfo.Items.Add(new QuickInfoValue("Max. Distance", UICreator.CreateTextBlock(string.Format("{0:0.00} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
 
-            /*
-            cbFood = new ComboBox();
-            cbFood.Background = Brushes.Transparent;
-            cbFood.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFood.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbFood.DisplayMemberPath = "Name";
-            cbFood.SelectedValuePath = "Name";
-            cbFood.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
-            cbFood.Width = 150;
-
-            foreach (RouteFacility facility in RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food))
-                cbFood.Items.Add(facility);
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Food on board", cbFood));
-
-            cbDrinks = new ComboBox();
-            cbDrinks.Background = Brushes.Transparent;
-            cbDrinks.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbDrinks.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbDrinks.DisplayMemberPath = "Name";
-            cbDrinks.SelectedValuePath = "Name";
-            cbDrinks.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
-            cbDrinks.Width = 150;
-
-            foreach (RouteFacility facility in RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks))
-                cbDrinks.Items.Add(facility);
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Drinks on board", cbDrinks));
-
-            cbCrew = new ComboBox();
-            cbCrew.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbCrew.Background = Brushes.Transparent;
-            cbCrew.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbCrew.Width = 150;
-
-            for (int i = 1; i < 10; i++)
-                cbCrew.Items.Add(i);
-
-            cbCrew.SelectedIndex = 0;
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Cabin crew on board", cbCrew));
-
-            WrapPanel panelPrice = new WrapPanel();
-
-            txtPrice = new TextBox();
-            txtPrice.Background = Brushes.Transparent;
-            txtPrice.Width = 100;
-            txtPrice.TextAlignment = TextAlignment.Right;
-            txtPrice.Margin = new Thickness(2, 0, 0, 0);
-            txtPrice.PreviewTextInput += new TextCompositionEventHandler(txtPrice_PreviewTextInput);
-            txtPrice.Text = "10";
-
-            panelPrice.Children.Add(txtPrice);
          
-            CultureInfo cultureInfo = new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, false);
-         
-
-            TextBlock txtCurrencySign = UICreator.CreateTextBlock(cultureInfo.NumberFormat.CurrencySymbol);
-            txtCurrencySign.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-
-            panelPrice.Children.Add(txtCurrencySign);
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Fare price", panelPrice));
-            */
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -155,9 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 btnEdit.Background = Brushes.Transparent;
                 btnEdit.Tag = type;
                 btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
-                //btnEdit.Height = 16;
-                //btnEdit.Width = 16;
-
+      
                 Image imgEdit = new Image();
                 imgEdit.Width = 16;
                 imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
@@ -320,13 +247,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         {
 
             Airline airline = GameObject.GetInstance().HumanAirline;
-            //double price;
-            //Boolean parseable = double.TryParse(txtPrice.Text, out price);
-
             Airport dest1 = (Airport)cbDestination1.SelectedItem;
             Airport dest2 = (Airport)cbDestination2.SelectedItem;
 
-            // if (parseable && price > 0 && price < 10000 && dest1.Gates.getFreeGates(airline) > 0 && dest2.Gates.getFreeGates(airline) > 0)
             if (dest1.Terminals.getFreeGates(airline) > 0 && dest2.Terminals.getFreeGates(airline) > 0)
             {
 
@@ -341,9 +264,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     route.getRouteAirlinerClass(aClass.Type).FoodFacility = aClass.FoodFacility;
                     route.getRouteAirlinerClass(aClass.Type).DrinksFacility = aClass.DrinksFacility;
                     route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
-                    // route.DrinksFacility = (RouteFacility)cbDrinks.SelectedItem;
-                    // route.FoodFacility = (RouteFacility)cbFood.SelectedItem;
-                    // route.CabinCrew = (int)cbCrew.SelectedItem;
+        
                 }
 
                 airline.addRoute(route);
