@@ -68,7 +68,7 @@ namespace TheAirline.Model.AirportModel
         //rents a gate for an airline
         public void rentGate(Airline airline)
         {
-            if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0)
+            if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0 && !this.Airport.Terminals.hasTerminal(airline))
                 airline.addAirport(this.Airport);
             getFreeGate().Airline = airline;
           

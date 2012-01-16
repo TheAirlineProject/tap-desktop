@@ -273,6 +273,16 @@ namespace TheAirline.Model.AirportModel
             this.AirportTerminals = new List<Terminal>();
 
         }
+        //returns if an airline has terminal
+        public Boolean hasTerminal(Airline airline)
+        {
+            foreach (Terminal terminal in this.AirportTerminals)
+            {
+                if (terminal.Airline == airline)
+                    return true;
+            }
+            return false;
+        }
         /*
         //adds a gate
         public void addGate(Gate gate)
