@@ -18,7 +18,9 @@ namespace TheAirline.Model.AirportModel
         public AirportStatistics Statistics { get; set; }
         public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
         public Weather Weather { get; set; }
-        // chs, 2011-27-10 added for the possibility of purchasing a terminal
+
+        // chs, 2012-18-01 added for runways
+        public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
         public Airport(AirportProfile profile)
         {
@@ -28,7 +30,7 @@ namespace TheAirline.Model.AirportModel
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
             this.Terminals = new Terminals(this);
-
+            this.Runways = new List<Runway>();
             // chs, 2011-01-11 changed so the number of terminals reflects the airport size
             // will later be changed to "real" data
             for (int i = 0; i <= (int)this.Profile.Size; i++)
@@ -40,6 +42,8 @@ namespace TheAirline.Model.AirportModel
                 
                 this.Terminals.addTerminal(new Terminal(this, null, gates, new DateTime(1950, 1, 1)));
             }
+
+            this.Runways.Add(new Runway("Test", 1234, Runway.SurfaceType.Asphalt));
         }
 
         //clears the list of passengers

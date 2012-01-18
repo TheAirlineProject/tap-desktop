@@ -28,6 +28,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             sbGates.IsSelected = true;
             buttonsPanel.Children.Add(sbGates);
 
+            ucSelectButton sbRunways = new ucSelectButton();
+            sbRunways.Uid = "205";
+            sbRunways.Content = Translator.GetInstance().GetString("PanelAirport", sbRunways.Uid);
+            sbRunways.Click += new System.Windows.RoutedEventHandler(sbRunways_Click);
+            buttonsPanel.Children.Add(sbRunways);
+
             ucSelectButton sbFacilities = new ucSelectButton();
             sbFacilities.Uid = "202";
             sbFacilities.Content = Translator.GetInstance().GetString("PanelAirport", sbFacilities.Uid);
@@ -54,6 +60,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             frameContent.Navigate(new PageAirportGates(this.Airport));
 
             this.Children.Add(frameContent);
+        }
+
+        private void sbRunways_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageAirportRunways(this.Airport));
         }
 
         private void sbFlights_Click(object sender, System.Windows.RoutedEventArgs e)

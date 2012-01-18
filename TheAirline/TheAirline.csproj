@@ -156,6 +156,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportRunways.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -355,6 +359,9 @@
     <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportGates.xaml.cs">
       <DependentUpon>PageAirportGates.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportRunways.xaml.cs">
+      <DependentUpon>PageAirportRunways.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportStatistics.xaml.cs">
       <DependentUpon>PageAirportStatistics.xaml</DependentUpon>
     </Compile>
@@ -484,6 +491,7 @@
     <Compile Include="Model\AirportModel\AirportProfile.cs" />
     <Compile Include="Model\AirportModel\AirportStatistics.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
+    <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />
     <Compile Include="Model\GeneralModel\Coordinates.cs" />
