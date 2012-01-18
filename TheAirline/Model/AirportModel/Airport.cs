@@ -45,7 +45,14 @@ namespace TheAirline.Model.AirportModel
 
             this.Runways.Add(new Runway("Test", 1234, Runway.SurfaceType.Asphalt));
         }
+        //returns the maximum value for the run ways
+        public long getMaxRunwayLength()
+        {
+            var query = from r in this.Runways
+                        select r.Length;
+            return query.Max();
 
+        }
         //clears the list of passengers
         public void clearPassengers()
         {

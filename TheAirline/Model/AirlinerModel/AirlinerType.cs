@@ -30,7 +30,8 @@ namespace TheAirline.Model.AirlinerModel
         public BodyType Body { get; set; }
         public TypeRange RangeType { get; set; }
         public EngineType Engine { get; set; }
-        public AirlinerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew,int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price,int maxAirlinerClasses, BodyType body, TypeRange rangeType, EngineType engine, ProductionPeriod produced)
+        public long MinRunwayLenght { get; set; }
+        public AirlinerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew,int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price,int maxAirlinerClasses,long minRunwayLenght, BodyType body, TypeRange rangeType, EngineType engine, ProductionPeriod produced)
         {
             this.Manufacturer = manufacturer;
             this.Name = name;
@@ -48,6 +49,7 @@ namespace TheAirline.Model.AirlinerModel
             this.Engine = engine;
             this.Body = body;
             this.RangeType = rangeType;
+            this.MinRunwayLenght = minRunwayLenght;
         }
        
         //returns the montly maintenance

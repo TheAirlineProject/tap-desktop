@@ -246,7 +246,7 @@ namespace TheAirline.Model.GeneralModel
                 int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
                 int to = Convert.ToInt16(producedElement.Attributes["to"].Value);
 
-                AirlinerTypes.AddType(new AirlinerType(manufacturer, name, passengers, cockpitcrew,cabincrew, speed, range, wingspan, length, fuel, price,maxClasses,body,rangeType,engine,new ProductionPeriod(from, to)));
+                AirlinerTypes.AddType(new AirlinerType(manufacturer, name, passengers, cockpitcrew,cabincrew, speed, range, wingspan, length, fuel, price,maxClasses,0,body,rangeType,engine,new ProductionPeriod(from, to)));
             }
         }
 

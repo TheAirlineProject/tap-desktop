@@ -124,7 +124,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             int minCrews = getMinCrews();//Math.Max(this.Route.FoodFacility.MinimumCabinCrew, this.Route.DrinksFacility.MinimumCabinCrew);
 
             foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
-                if ((!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) || (airliner.HasRoute && (this.Route.Airliner != null && this.Route.Airliner.Airliner == airliner)))
+                if (airliner.Airliner.Type.MinRunwayLenght <= this.Route.Destination1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwayLenght <= this.Route.Destination2.getMaxRunwayLength() &&(!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) || (airliner.HasRoute && (this.Route.Airliner != null && this.Route.Airliner.Airliner == airliner)))
                     cbAirliner.Items.Add(airliner);
 
             if (this.Route.Airliner != null)
