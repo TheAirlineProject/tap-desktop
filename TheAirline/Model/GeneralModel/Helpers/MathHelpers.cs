@@ -210,12 +210,12 @@ namespace TheAirline.Model.GeneralModel
 
             return time.Subtract(delta);
         }
-        //returns the monthly payment of a specific amount with a rate and lenght
-        public static double GetMonthlyPayment(double amount, double rate, int lenght)
+        //returns the monthly payment of a specific amount with a rate and length
+        public static double GetMonthlyPayment(double amount, double rate, int length)
         {
              double pRate = 1+ rate / 100;
          
-            return amount * pRate / lenght;
+            return amount * pRate / length;
         }
     }
 }

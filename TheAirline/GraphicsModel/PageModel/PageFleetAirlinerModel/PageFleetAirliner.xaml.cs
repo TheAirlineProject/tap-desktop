@@ -129,7 +129,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.Items.Add(new QuickInfoValue("Length", UICreator.CreateTextBlock(string.Format("{0} m.", airliner.Length))));
             lbQuickInfo.Items.Add(new QuickInfoValue("Passenger capacity", UICreator.CreateTextBlock(airliner.MaxSeatingCapacity.ToString())));//SeatingCapacity.ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue("Max airliner classes", UICreator.CreateTextBlock(airliner.MaxAirlinerClasses.ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Required Runway lenght", UICreator.CreateTextBlock(string.Format("{0} m.", airliner.MinRunwayLenght))));
+            lbQuickInfo.Items.Add(new QuickInfoValue("Required Runway length", UICreator.CreateTextBlock(string.Format("{0} m.", airliner.MinRunwaylength))));
 
             string crewRequirements = string.Format("Cockpit: {0} Cabin: {1}",airliner.CockpitCrew,airliner.CabinCrew);
             lbQuickInfo.Items.Add(new QuickInfoValue("Crew requirements", UICreator.CreateTextBlock(crewRequirements)));

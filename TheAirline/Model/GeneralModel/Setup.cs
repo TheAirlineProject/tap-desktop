@@ -235,6 +235,7 @@ namespace TheAirline.Model.GeneralModel
                 long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
                 double speed = XmlConvert.ToDouble(specsElement.Attributes["speed"].Value);
                 double fuel = XmlConvert.ToDouble(specsElement.Attributes["consumption"].Value);
+                long runwaylenght = XmlConvert.ToInt64(specsElement.Attributes["runwaylengthrequired"].Value);
 
                 XmlElement capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
                 int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
@@ -246,7 +247,7 @@ namespace TheAirline.Model.GeneralModel
                 int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
                 int to = Convert.ToInt16(producedElement.Attributes["to"].Value);
 
-                AirlinerTypes.AddType(new AirlinerType(manufacturer, name, passengers, cockpitcrew,cabincrew, speed, range, wingspan, length, fuel, price,maxClasses,0,body,rangeType,engine,new ProductionPeriod(from, to)));
+                AirlinerTypes.AddType(new AirlinerType(manufacturer, name, passengers, cockpitcrew,cabincrew, speed, range, wingspan, length, fuel, price,maxClasses,runwaylenght,body,rangeType,engine,new ProductionPeriod(from, to)));
             }
         }
 

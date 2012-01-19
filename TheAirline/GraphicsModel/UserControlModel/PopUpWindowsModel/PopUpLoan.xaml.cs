@@ -20,7 +20,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpLoan : PopUpWindow
     {
-        private ComboBox cbAmount, cbLenght;
+        private ComboBox cbAmount, cblength;
         private TextBlock txtMonthlyPayment;
         public static object ShowPopUp()
         {
@@ -70,20 +70,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
 
 
-            cbLenght = new ComboBox();
-            cbLenght.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbLenght.Width = 150;
-            cbLenght.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
-            cbLenght.SelectionChanged += new SelectionChangedEventHandler(cbLoan_SelectionChanged);
+            cblength = new ComboBox();
+            cblength.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cblength.Width = 150;
+            cblength.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
+            cblength.SelectionChanged += new SelectionChangedEventHandler(cbLoan_SelectionChanged);
 
-            cbLenght.Items.Add(1);
-            cbLenght.Items.Add(2);
-            cbLenght.Items.Add(5);
-            cbLenght.Items.Add(10);
-            cbLenght.Items.Add(20);
-            cbLenght.Items.Add(25);
+            cblength.Items.Add(1);
+            cblength.Items.Add(2);
+            cblength.Items.Add(5);
+            cblength.Items.Add(10);
+            cblength.Items.Add(20);
+            cblength.Items.Add(25);
 
-            lbLoan.Items.Add(new QuickInfoValue("Lenght in years", cbLenght));
+            lbLoan.Items.Add(new QuickInfoValue("length in years", cblength));
 
             txtMonthlyPayment = new TextBlock();
             txtMonthlyPayment.Width = 150;
@@ -97,7 +97,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Content = mainPanel;
  
-            cbLenght.SelectedIndex = 0;
+            cblength.SelectedIndex = 0;
             cbAmount.SelectedIndex = 0;
 
           
@@ -108,9 +108,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void cbLoan_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             double amount = Convert.ToDouble(cbAmount.SelectedItem);
-            int lenght = Convert.ToInt16(cbLenght.SelectedItem) * 12;
+            int length = Convert.ToInt16(cblength.SelectedItem) * 12;
 
-            txtMonthlyPayment.Text = string.Format("{0:c}",MathHelpers.GetMonthlyPayment(amount,GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline),lenght));
+            txtMonthlyPayment.Text = string.Format("{0:c}",MathHelpers.GetMonthlyPayment(amount,GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline),length));
      
         }
           //creates the button panel
@@ -154,9 +154,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             double amount = Convert.ToDouble(cbAmount.SelectedItem);
-            int lenght = Convert.ToInt16(cbLenght.SelectedItem) * 12;
+            int length = Convert.ToInt16(cblength.SelectedItem) * 12;
 
-            this.Selected = new Loan(GameObject.GetInstance().GameTime,amount,lenght,GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline));
+            this.Selected = new Loan(GameObject.GetInstance().GameTime,amount,length,GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline));
             this.Close();
         }
 

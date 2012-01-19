@@ -121,10 +121,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     DateTime date = Convert.ToDateTime(airlineLoanNode.Attributes["date"].Value);
                     double rate = XmlConvert.ToDouble(airlineLoanNode.Attributes["rate"].Value);
                     double amount = XmlConvert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
-                    int lenght = Convert.ToInt16(airlineLoanNode.Attributes["lenght"].Value);
+                    int length = Convert.ToInt16(airlineLoanNode.Attributes["length"].Value);
                     double payment = XmlConvert.ToDouble(airlineLoanNode.Attributes["payment"].Value);
 
-                    Loan loan = new Loan(date, amount, lenght, rate);
+                    Loan loan = new Loan(date, amount, length, rate);
                     loan.PaymentLeft = payment;
 
                     airline.addLoan(loan);
@@ -548,7 +548,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     loanNode.SetAttribute("date", loan.Date.ToShortDateString());
                     loanNode.SetAttribute("rate", loan.Rate.ToString());
                     loanNode.SetAttribute("amount", loan.Amount.ToString());
-                    loanNode.SetAttribute("lenght", loan.Lenght.ToString());
+                    loanNode.SetAttribute("length", loan.Length.ToString());
                     loanNode.SetAttribute("payment", loan.PaymentLeft.ToString());
 
                     loansNode.AppendChild(loanNode);

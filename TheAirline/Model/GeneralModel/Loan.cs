@@ -10,17 +10,17 @@ namespace TheAirline.Model.GeneralModel
     {
         public double Amount { get; set; }
         public double Rate { get; set; }
-        public int Lenght { get; set; }
+        public int Length { get; set; }
         public DateTime Date { get; set; }
         public double PaymentLeft { get; set; }
         public Boolean IsActive { get { return hasPaymentLeft(); } set { ;} }
         public double MonthlyPayment { get { return getMonthlyPayment(); } set { ;} }
         public int MonthsLeft { get { return getMonthsLeft(); } set { ;} }
-        public Loan(DateTime date, double amount, int lenght, double rate)
+        public Loan(DateTime date, double amount, int length, double rate)
         {
             this.Amount = amount;
             this.Rate = rate;
-            this.Lenght = lenght;
+            this.Length = length;
             this.Date = date;
             this.PaymentLeft = amount;
             
@@ -28,7 +28,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the monthly payment for the loan
         public double getMonthlyPayment()
         {
-            return MathHelpers.GetMonthlyPayment(this.Amount, this.Rate, this.Lenght);
+            return MathHelpers.GetMonthlyPayment(this.Amount, this.Rate, this.Length);
 
         }
         //checks if there is still payment left on the loan

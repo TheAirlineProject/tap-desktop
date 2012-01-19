@@ -211,7 +211,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 cbAirliner.Items.Clear();
 
                 foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
-                    if ((!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) && !airliner.HasRoute && airliner.Airliner.Type.MinRunwayLenght<=airport1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwayLenght<=airport2.getMaxRunwayLength())
+                    if ((!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) && !airliner.HasRoute && airliner.Airliner.Type.MinRunwaylength<=airport1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwaylength<=airport2.getMaxRunwayLength())
                         cbAirliner.Items.Add(airliner);
 
                 cbAirliner.Visibility = cbAirliner.Items.Count == 0 ? Visibility.Collapsed : System.Windows.Visibility.Visible;
