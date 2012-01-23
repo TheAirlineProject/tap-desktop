@@ -34,15 +34,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             InitializeComponent();
             this.Uid = "1000";
             
-            this.Width = 600;
+            this.Width = 900;
 
-            this.Height = 300;
+            this.Height = 450;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             Image imgMap = new Image();
-            imgMap.Width = 600;
-            imgMap.Height = 300;
+            imgMap.Width = 900;
+            imgMap.Height = 450;
             imgMap.Source = new BitmapImage(new Uri(this.Airport.Profile.Map, UriKind.RelativeOrAbsolute));
             RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
