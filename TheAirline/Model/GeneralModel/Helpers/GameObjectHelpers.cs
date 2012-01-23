@@ -122,6 +122,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             foreach (Airline airline in Airlines.GetAirlines())
             {
+                foreach (AirlineFacility facility in airline.Facilities)
+                    airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost));
                 foreach (FleetAirliner airliner in airline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Purchased == FleetAirliner.PurchasedType.Leased; })))
                     airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.Airliner.LeasingPrice));
 
