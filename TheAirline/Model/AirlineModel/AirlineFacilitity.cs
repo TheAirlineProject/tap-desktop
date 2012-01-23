@@ -14,10 +14,12 @@ namespace TheAirline.Model.AirlineModel
         public double Price { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
-        public AirlineFacility(string section, string uid, double price, int serviceLevel, int luxuryLevel)
+        public int FromYear { get; set; }
+        public AirlineFacility(string section, string uid, double price,int fromYear, int serviceLevel, int luxuryLevel)
         {
             AirlineFacility.Section = section;
             this.Uid = uid;
+            this.FromYear = fromYear;
             this.Price = price;
             this.LuxuryLevel = luxuryLevel;
             this.ServiceLevel = serviceLevel;

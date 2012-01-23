@@ -156,6 +156,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         //shows the list of facilities
         private void showFacilities()
         {
+            int year = GameObject.GetInstance().GameTime.Year;
             lbFacilities.Items.Clear();
             lbNewFacilities.Items.Clear();
 
@@ -166,7 +167,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             facilitiesNew.RemoveAll((delegate(AirlineFacility af) { return this.Airline.Facilities.Contains(af); }));
 
-            foreach (AirlineFacility facility in facilitiesNew)
+            foreach (AirlineFacility facility in facilitiesNew.FindAll(delegate (AirlineFacility af){return af.FromYear<=year;}))
                 lbNewFacilities.Items.Add(facility);
         }
 
