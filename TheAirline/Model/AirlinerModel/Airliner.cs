@@ -111,38 +111,33 @@ namespace TheAirline.Model.AirlinerModel
     //the list of airliners
     public class Airliners
     {
-        private static Dictionary<string, Airliner> airliners = new Dictionary<string, Airliner>();
+        private static List<Airliner> airliners = new List<Airliner>();
         //clears the list
         public static void Clear()
         {
-            airliners = new Dictionary<string, Airliner>();
+            airliners = new List<Airliner>();
         }
         //adds an airliner to the list
         public static void AddAirliner(Airliner airliner)
         {
-            airliners.Add(airliner.TailNumber, airliner);
+            airliners.Add(airliner);
         }
         //returns an airliner
         public static Airliner GetAirliner(string tailnumber)
         {
-            return airliners[tailnumber];
+            return airliners.Find(delegate(Airliner airliner) { return airliner.TailNumber == tailnumber; });
         }
         //returns the list of airliners
         public static List<Airliner> GetAirliners()
         {
-            return airliners.Values.ToList();
+            return airliners;
         }
         //returns the list of airliners for sell
         public static List<Airliner> GetAirlinersForSale()
         {
-            return airliners.Values.ToList().FindAll((delegate(Airliner airliner) { return airliner.Airline == null; }));
+            return airliners.FindAll((delegate(Airliner airliner) { return airliner.Airline == null; }));
         }
-        // chs, 2011-27-10 used for fixing of tail number bug
-        //returns if a tail number already exits
-        public static Boolean TailNumberExits(string tailnumber)
-        {
-            return airliners.ContainsKey(tailnumber);
-        }
+       
   
        
     }

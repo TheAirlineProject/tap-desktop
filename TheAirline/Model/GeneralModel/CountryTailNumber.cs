@@ -85,15 +85,7 @@ namespace TheAirline.Model.GeneralModel
                         this.LastTailNumber = countryID + "-" + newCode;
                     }
                 }
-                 // chs, 2011-27-10 if tailnumber already exits create log file with the tail number
-                if (Airliners.TailNumberExits(this.LastTailNumber))
-                {
-                    using (TextWriter tw = new StreamWriter("tailnumber.log"))
-                    {
-                        tw.WriteLine(string.Format("{0}: Tailnumber: {1}, Country: {2}",DateTime.Now,this.LastTailNumber,this.Country.Name));
-                    }
-                   
-                }
+              
                 
 
                 return this.LastTailNumber;

@@ -369,6 +369,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameObject.GetInstance().HumanAirline = humanAirline;
 
             // chs, 2011-19-10 change to DateTime.Parse and read it using specific culture info
+            string dateString = gameSettingsNode.Attributes["time"].Value;
             DateTime gameTime = DateTime.Parse(gameSettingsNode.Attributes["time"].Value, new CultureInfo("de-DE"));
             GameObject.GetInstance().GameTime = gameTime;
 
@@ -800,7 +801,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
-            gameSettingsNode.SetAttribute("time", GameObject.GetInstance().GameTime.ToString());
+            gameSettingsNode.SetAttribute("time", GameObject.GetInstance().GameTime.ToString(new CultureInfo("de-DE")));
             gameSettingsNode.SetAttribute("fuelprice", GameObject.GetInstance().FuelPrice.ToString());
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", GameObject.GetInstance().NewsBox.MailsOnLandings.ToString());
