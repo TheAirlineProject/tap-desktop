@@ -269,7 +269,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1007"), UICreator.CreateTextBlock(this.Airport.Profile.Name)));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1008"), UICreator.CreateTextBlock(this.Airport.Profile.IATACode)));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1009"), UICreator.CreateTextBlock(this.Airport.Profile.Type.ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1009"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Type).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"), UICreator.CreateTextBlock(this.Airport.Profile.Town)));
 
             ContentControl lblFlag = new ContentControl();
@@ -295,7 +295,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             imgMap.MouseDown += new MouseButtonEventHandler(imgMap_MouseDown);
             RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
-            imgMap.Margin = new Thickness(2, 0, 0, 0);
+            imgMap.Margin = new Thickness(0, 0, 5, 0);
             panelCoordinates.Children.Add(imgMap);
 
             TextBlock txtCoordinates = UICreator.CreateLink(this.Airport.Profile.Coordinates.ToString());
@@ -305,9 +305,32 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size, null, null, null).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1016"), UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString())));
+
+            WrapPanel panelTerminals = new WrapPanel();
+            
+            Image imgMapOverview = new Image();
+            imgMapOverview.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
+            imgMapOverview.Height = 16;
+            imgMapOverview.MouseDown += new MouseButtonEventHandler(imgMapOverview_MouseDown);
+            RenderOptions.SetBitmapScalingMode(imgMapOverview, BitmapScalingMode.HighQuality);
+
+            imgMapOverview.Margin = new Thickness(5, 0,0, 0);
+            imgMapOverview.Visibility = this.Airport.Profile.Map != null ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            
+            panelTerminals.Children.Add(UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString()));
+
+            panelTerminals.Children.Add(imgMapOverview);
+           
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1016"),panelTerminals));
+
+  
 
             return panelInfo;
+        }
+
+        private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            PopUpAirportMap.ShowPopUp(this.Airport);
         }
 
         private void PageAirport_Click(object sender, RoutedEventArgs e)

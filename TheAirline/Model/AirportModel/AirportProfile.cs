@@ -9,7 +9,7 @@ namespace TheAirline.Model.AirportModel
     //the class for a profile for an airport
     public class AirportProfile
     {
-        public enum AirportType { International, Regional, Domestic }
+        public enum AirportType { Long_Haul_International, Regional, Domestic,Short_Haul_International }
         public AirportType Type { get; set; }
         public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
         public string Name { get; set; }
@@ -20,9 +20,12 @@ namespace TheAirline.Model.AirportModel
         public AirportSize Size { get; set; }
         public int Gates { get; set; }
         public string Logo { get; set; }
+        // chs, 2012-23-01 added for airport maps
+        public string Map { get; set; }
         public TimeSpan OffsetGMT { get; set; }
         public TimeSpan OffsetDST { get; set; }
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
+      
         public AirportProfile(string name, string code, AirportType type,string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, AirportSize size, int gates)
         {
             this.Name = name;

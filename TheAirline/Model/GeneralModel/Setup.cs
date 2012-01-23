@@ -41,6 +41,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadCountries();
                 LoadAirports();
                 LoadAirportLogos();
+                LoadAirportMaps();
                 LoadAirportFacilities();
                 LoadAirlineFacilities();
                 LoadManufacturers();
@@ -266,7 +267,7 @@ namespace TheAirline.Model.GeneralModel
                 string name = airport.Attributes["name"].Value;
                 string iata = airport.Attributes["iata"].Value;
 
-                AirportProfile.AirportType type = (AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airport.Attributes["type"].Value);
+                AirportProfile.AirportType type = AirportProfile.AirportType.Long_Haul_International;//(AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airport.Attributes["type"].Value);
 
                 XmlElement townElement = (XmlElement)airport.SelectSingleNode("town");
                 string town = townElement.Attributes["town"].Value;
@@ -610,7 +611,23 @@ namespace TheAirline.Model.GeneralModel
 
             rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
         }
+        /*! loads the maps for the airports
+         */
+        private static void LoadAirportMaps()
+        {
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\airportmaps");
 
+            foreach (FileInfo file in dir.GetFiles("*.png"))
+            {
+                string code = file.Name.Split('.')[0].ToUpper();
+                Airport airport = Airports.GetAirport(code);
+
+                if (airport != null)
+                    airport.Profile.Map = file.FullName;
+                else
+                    code = "x";
+            }
+        }
         /*! loads the logos for the airports.
          */
         private static void LoadAirportLogos()

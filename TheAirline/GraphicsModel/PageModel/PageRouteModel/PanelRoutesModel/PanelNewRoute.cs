@@ -22,7 +22,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
-        private TextBlock txtDistance, txtNoAssignments, txtFlightCode;
+        private TextBlock txtDistance, txtNoAssignments, txtFlightCode, txtInvalidRoute;
         private ComboBox cbDestination1, cbDestination2, cbFlightCode, cbAirliner;
         private Button btnSave;
         private PageRoutes ParentPage;
@@ -61,15 +61,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
             cbDestination2 = createDestinationComboBox();
-
             lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", cbDestination2));
 
 
             txtDistance = UICreator.CreateTextBlock("-");
             lbRouteInfo.Items.Add(new QuickInfoValue("Distance", txtDistance));
             lbRouteInfo.Items.Add(new QuickInfoValue("Max. Distance", UICreator.CreateTextBlock(string.Format("{0:0.00} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
-
-         
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -170,6 +167,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnSave.IsEnabled = false;
             this.Children.Add(btnSave);
 
+            txtInvalidRoute = UICreator.CreateTextBlock("One or both airports are not the appropriate type for creation");
+            txtInvalidRoute.Foreground = Brushes.DarkRed;
+            txtInvalidRoute.Visibility = System.Windows.Visibility.Collapsed;
+            this.Children.Add(txtInvalidRoute);
 
 
 
@@ -237,9 +238,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             Airport dest1 = (Airport)cbDestination1.SelectedItem;
             Airport dest2 = (Airport)cbDestination2.SelectedItem;
 
+            double distance = MathHelpers.GetDistance(dest1.Profile.Coordinates, dest2.Profile.Coordinates);
 
-
-            return (dest1.Profile.Country == dest2.Profile.Country || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Regional || dest1.Profile.Type == AirportProfile.AirportType.International) && (dest2.Profile.Type == AirportProfile.AirportType.Regional || dest2.Profile.Type == AirportProfile.AirportType.International)) || (dest1.Profile.Type == AirportProfile.AirportType.International && dest2.Profile.Type == AirportProfile.AirportType.International));
+            return (dest1.Profile.Country == dest2.Profile.Country || distance<1000 ||(dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
 
         }
 
@@ -325,6 +326,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 txtDistance.Text = string.Format("{0:0.00} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
 
                 btnSave.IsEnabled = distance > 50 && distance < this.MaxDistance && isRouteInCorrectArea();
+
+                txtInvalidRoute.Visibility = isRouteInCorrectArea() ? Visibility.Collapsed : Visibility.Visible;
 
                 createAirlinersList();
             }
