@@ -17,7 +17,7 @@ namespace TheAirline.Model.GeneralModel
   
         private Settings()
         {
-            this.AirportCodeDisplay = AirportCode.ICAO;
+            this.AirportCodeDisplay = AirportCode.IATA;
             this.MailsOnLandings = true;
         }
         //returns the settings instance
