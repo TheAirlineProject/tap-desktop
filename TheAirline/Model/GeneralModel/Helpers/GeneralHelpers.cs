@@ -98,7 +98,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the rate (for loan) for an airline
         public static double GetAirlineLoanRate(Airline airline)
         {
-            double value = (double)airline.getValue();
+            double value = (double)airline.getAirlineValue();
 
             return 1.5 * ((double)Airline.AirlineValue.Very_high + 1-value); 
         }
