@@ -66,7 +66,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             txtDistance = UICreator.CreateTextBlock("-");
             lbRouteInfo.Items.Add(new QuickInfoValue("Distance", txtDistance));
-            lbRouteInfo.Items.Add(new QuickInfoValue("Max. Distance", UICreator.CreateTextBlock(string.Format("{0:0.00} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
+            lbRouteInfo.Items.Add(new QuickInfoValue("Max. Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -323,7 +323,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
                 double distance = MathHelpers.GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
-                txtDistance.Text = string.Format("{0:0.00} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
+                txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
 
                 btnSave.IsEnabled = distance > 50 && distance < this.MaxDistance && isRouteInCorrectArea();
 
