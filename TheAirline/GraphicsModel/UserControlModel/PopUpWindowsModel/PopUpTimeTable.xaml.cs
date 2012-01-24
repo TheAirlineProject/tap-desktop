@@ -17,6 +17,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -378,7 +379,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = string.Format("To {0} ({1})",airport.Profile.Name,airport.Profile.IATACode);
+            txtHeader.Text = string.Format("To {0} ({1})",airport.Profile.Name,new AirportCodeConverter().Convert(airport));
             
             return txtHeader;
         }

@@ -26,6 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private TextBlock txtGameSpeed;
         private ComboBox cbLanguage;
         private CheckBox cbMailOnLandings;
+        private RadioButton[] rbAirportCodes;
         public PageSettings()
         {
             InitializeComponent();
@@ -105,10 +106,29 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             lbSettings.Items.Add(new QuickInfoValue("Skin", cbSkin));
 
             cbMailOnLandings = new CheckBox();
-            cbMailOnLandings.IsChecked = GameObject.GetInstance().NewsBox.MailsOnLandings;
+            cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
       
             lbSettings.Items.Add(new QuickInfoValue("Mail on landings", cbMailOnLandings));
-            
+
+            rbAirportCodes = new RadioButton[Enum.GetValues(typeof(Settings.AirportCode)).Length];
+
+            WrapPanel panelAirpodeCode = new WrapPanel();
+            int i = 0;
+            foreach (Settings.AirportCode code in Enum.GetValues(typeof(Settings.AirportCode)))
+            {
+                rbAirportCodes[i] = new RadioButton();
+                rbAirportCodes[i].Content = code.ToString();
+                rbAirportCodes[i].GroupName = "AirportCode";
+                rbAirportCodes[i].Tag = code;
+                rbAirportCodes[i].Margin = new Thickness(0, 0, 5, 0);
+                rbAirportCodes[i].IsChecked = code == Settings.GetInstance().AirportCodeDisplay;
+
+                panelAirpodeCode.Children.Add(rbAirportCodes[i]);
+                i++;
+            }
+            lbSettings.Items.Add(new QuickInfoValue("Airport code format", panelAirpodeCode));
+
+
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 10, 0, 0);
             settingsPanel.Children.Add(buttonsPanel);
@@ -158,7 +178,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbSkin.SelectedItem = SkinObject.GetInstance().CurrentSkin;
             slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
             cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
-            cbMailOnLandings.IsChecked = GameObject.GetInstance().NewsBox.MailsOnLandings;
+            cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -175,7 +195,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Language language = (Language)cbLanguage.SelectedItem;
             AppSettings.GetInstance().setLanguage(language);
-            GameObject.GetInstance().NewsBox.MailsOnLandings = cbMailOnLandings.IsChecked.Value;
+            Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;
+
+            foreach (RadioButton rbAirportCode in rbAirportCodes)
+            {
+                if (rbAirportCode.IsChecked.Value)
+                    Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)rbAirportCode.Tag;
+            }
 
           PageNavigator.NavigateTo(new PageSettings()); 
          

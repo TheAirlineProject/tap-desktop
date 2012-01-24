@@ -9,11 +9,10 @@ namespace TheAirline.Model.GeneralModel
     public class NewsBox
     {
         private List<News> News;
-        public Boolean MailsOnLandings { get; set; }
-        public NewsBox()
+         public NewsBox()
         {
             this.News = new List<News>();
-            this.MailsOnLandings = true;
+  
         }
         //adds a news to the news box
         public void addNews(News news)

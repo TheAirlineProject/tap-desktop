@@ -10,6 +10,7 @@
 	Title="PageAirports">
     <Page.Resources>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
         <DataTemplate x:Key="AirportsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
@@ -19,7 +20,7 @@
                 </TextBlock>
                 <TextBlock Width="50" VerticalAlignment="Bottom" FontWeight="Bold">
                     <Hyperlink Tag="IATA" Click="Header_Click">
-                        <Run Text="IATA"></Run>
+                        <Run Text="{Binding AirportCodeDisplay, Source={StaticResource SettingsClass}}"></Run>
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Width="50" VerticalAlignment="Bottom" FontWeight="Bold">
@@ -41,7 +42,7 @@
                         <Run Text="{Binding Profile.Name}"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Text="{Binding Profile.IATACode}" Width="50" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airportCodeConverter}}" Width="50" VerticalAlignment="Bottom"></TextBlock>
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country}"></ContentControl>
                 <TextBlock Text="{Binding Profile.Size,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Margin="10 0 0 0"></TextBlock>
             </WrapPanel>

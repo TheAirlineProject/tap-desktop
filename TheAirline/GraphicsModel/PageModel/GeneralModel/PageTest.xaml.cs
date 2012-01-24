@@ -322,7 +322,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
 
-                Airports.AddAirport(new Airport(new AirportProfile(name, iata, type, town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size, gates)));
+                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type, town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size, gates)));
 
                 saveAirports();
 

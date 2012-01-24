@@ -30,6 +30,8 @@ namespace TheAirline
    
         public MainWindow()
         {
+
+    
             InitializeComponent();
 
             Setup.SetupGame();

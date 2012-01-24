@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.GraphicsModel.Converters
 {
@@ -333,7 +334,29 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotSupportedException();
         }
     }
+    //converter for airport code
+    public class AirportCodeConverter : IValueConverter
+    {
 
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Airport airport = (Airport)value;
+
+            if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
+                return airport.Profile.IATACode;
+            else
+                return airport.Profile.ICAOCode;
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     // converter for Translations
     public class TranslatorConverter : IValueConverter
     {

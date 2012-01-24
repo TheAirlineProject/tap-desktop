@@ -441,7 +441,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.Airliner.Airliner.Flown += fdistance;
 
-            if (airliner.Airliner.Airline.IsHuman && GameObject.GetInstance().NewsBox.MailsOnLandings)
+            if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Airliner.Name), string.Format("Your airliner {0} has landed in {1}, {2} with {3} passengers.\nThe airliner flow from {4}, {5}", new object[] { airliner.Airliner.Name, dest.Profile.Name, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.Name, dept.Profile.Country.Name })));
 
             CreatePassengersHappiness(airliner);

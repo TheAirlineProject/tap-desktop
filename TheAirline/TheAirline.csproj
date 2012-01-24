@@ -517,6 +517,7 @@
     <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
     <Compile Include="Model\GeneralModel\Region.cs" />
+    <Compile Include="Model\GeneralModel\Settings.cs" />
     <Compile Include="Model\GeneralModel\Setup.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\GeneralStatistics.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsType.cs" />

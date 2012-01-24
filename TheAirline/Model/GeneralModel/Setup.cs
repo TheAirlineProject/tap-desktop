@@ -288,7 +288,7 @@ namespace TheAirline.Model.GeneralModel
                 XmlElement gatesElement = (XmlElement)airport.SelectSingleNode("gates");
                 int gates = Convert.ToInt32(gatesElement.Attributes["value"].Value);
 
-                AirportProfile profile = new AirportProfile(name, iata, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, gates);
+                AirportProfile profile = new AirportProfile(name, iata, "K" + iata,type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, gates);
                 Airports.AddAirport(new Airport(profile));
             }
         }

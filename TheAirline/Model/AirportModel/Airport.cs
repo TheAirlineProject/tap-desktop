@@ -43,7 +43,7 @@ namespace TheAirline.Model.AirportModel
                 this.Terminals.addTerminal(new Terminal(this, null, gates, new DateTime(1950, 1, 1)));
             }
 
-            this.Runways.Add(new Runway("Test", 1234, Runway.SurfaceType.Asphalt));
+            this.Runways.Add(new Runway("Test", 5000, Runway.SurfaceType.Asphalt));
         }
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
@@ -51,6 +51,7 @@ namespace TheAirline.Model.AirportModel
             var query = from r in this.Runways
                         select r.Length;
             return query.Max();
+       
 
         }
         //clears the list of passengers

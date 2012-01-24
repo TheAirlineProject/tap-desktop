@@ -379,7 +379,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameTimeZone timezone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == TimeSpan.Parse(gameSettingsNode.Attributes["timezone"].Value);  });
             GameObject.GetInstance().TimeZone = timezone;
 
-            GameObject.GetInstance().NewsBox.MailsOnLandings = Convert.ToBoolean(gameSettingsNode.Attributes["mailonlandings"].Value);
+            Settings.GetInstance().MailsOnLandings = Convert.ToBoolean(gameSettingsNode.Attributes["mailonlandings"].Value);
 
             XmlNodeList newsList = gameSettingsNode.SelectNodes("news/new");
             GameObject.GetInstance().NewsBox.clear();
@@ -804,7 +804,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("time", GameObject.GetInstance().GameTime.ToString(new CultureInfo("de-DE")));
             gameSettingsNode.SetAttribute("fuelprice", GameObject.GetInstance().FuelPrice.ToString());
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
-            gameSettingsNode.SetAttribute("mailonlandings", GameObject.GetInstance().NewsBox.MailsOnLandings.ToString());
+            gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
             XmlElement newsNodes = xmlDoc.CreateElement("news");
 
             foreach (News news in GameObject.GetInstance().NewsBox.getNews())

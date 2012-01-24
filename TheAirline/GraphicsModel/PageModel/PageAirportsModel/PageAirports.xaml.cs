@@ -30,6 +30,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
         private List<Airport> airportsList;
         public PageAirports()
         {
+            this.Resources["SettingsClass"] = Settings.GetInstance();
+
             InitializeComponent();
 
             this.Uid = "1000";
@@ -133,7 +135,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                     showAirports();
                     break;
                 case "IATA":
-                    sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.IATACode.CompareTo(a2.Profile.IATACode); };
+                    if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
+                        sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.IATACode.CompareTo(a2.Profile.IATACode); };
+                    else
+                        sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.ICAOCode.CompareTo(a2.Profile.IATACode); };
+              
                     showAirports();
                     break;
                 case "Size":
