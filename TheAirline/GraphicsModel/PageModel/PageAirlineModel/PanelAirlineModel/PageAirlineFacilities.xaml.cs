@@ -120,10 +120,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
             {
-                ComboBox cbAdvertisement = cbAdvertisements[type];
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                {
+                    ComboBox cbAdvertisement = cbAdvertisements[type];
 
-                AdvertisementType aType = (AdvertisementType)cbAdvertisement.SelectedItem;
-                this.Airline.setAirlineAdvertisement(aType);
+                    AdvertisementType aType = (AdvertisementType)cbAdvertisement.SelectedItem;
+                    this.Airline.setAirlineAdvertisement(aType);
+                }
             }
         }
 

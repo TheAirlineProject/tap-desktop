@@ -33,7 +33,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             InitializeComponent();
             this.Uid = "1000";
-            
+
+            this.Title = "";
+
             this.Width = 900;
 
             this.Height = 450;
