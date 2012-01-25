@@ -287,7 +287,7 @@ namespace TheAirline.GraphicsModel.Converters
             {
                 Assembly assembly = Assembly.LoadFrom(Environment.CurrentDirectory + "\\data\\plugins\\AirportCSVReader.dll");
                 if (assembly != null)
-                    return Visibility.Visible;
+                    return Visibility.Collapsed;//Visibility.Visible;
                 else
                     return Visibility.Collapsed;
             }
