@@ -258,38 +258,80 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirports()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\airports.xml");
-            XmlElement root = doc.DocumentElement;
-
-            XmlNodeList airportsList = root.SelectNodes("//airport");
-
-            foreach (XmlElement airport in airportsList)
+            string id = "";
+            try
             {
-                string name = airport.Attributes["name"].Value;
-                string iata = airport.Attributes["iata"].Value;
+                XmlDocument doc = new XmlDocument();
+                doc.Load(AppSettings.getDataPath() + "\\airports.xml");
+                XmlElement root = doc.DocumentElement;
 
-                AirportProfile.AirportType type = AirportProfile.AirportType.Long_Haul_International;//(AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airport.Attributes["type"].Value);
+                XmlNodeList airportsList = root.SelectNodes("//airport");
 
-                XmlElement townElement = (XmlElement)airport.SelectSingleNode("town");
-                string town = townElement.Attributes["town"].Value;
-                string country = townElement.Attributes["country"].Value;
-                TimeSpan gmt = TimeSpan.Parse(townElement.Attributes["GMT"].Value);
-                TimeSpan dst = TimeSpan.Parse(townElement.Attributes["DST"].Value);
+                foreach (XmlElement airportElement in airportsList)
+                {
+                    string name = airportElement.Attributes["name"].Value;
+                    string icao = airportElement.Attributes["icao"].Value;
+                    string iata = airportElement.Attributes["iata"].Value;
 
-                XmlElement latitudeElement = (XmlElement)airport.SelectSingleNode("coordinates/latitude");
-                XmlElement longitudeElement = (XmlElement)airport.SelectSingleNode("coordinates/longitude");
-                Coordinate latitude = Coordinate.Parse(latitudeElement.Attributes["value"].Value);
-                Coordinate longitude = Coordinate.Parse(longitudeElement.Attributes["value"].Value);
+                    id = iata;
 
-                XmlElement sizeElement = (XmlElement)airport.SelectSingleNode("size");
-                AirportProfile.AirportSize size = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), sizeElement.Attributes["value"].Value);
+                    if (iata == "LTN")
+                    {
+                        for (int i = 0; i < 10; i++)
+                        {
+                        }
+                    }
 
-                XmlElement gatesElement = (XmlElement)airport.SelectSingleNode("gates");
-                int gates = Convert.ToInt32(gatesElement.Attributes["value"].Value);
+                    AirportProfile.AirportType type =(AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
 
-                AirportProfile profile = new AirportProfile(name, iata, "K" + iata,type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, gates);
-                Airports.AddAirport(new Airport(profile));
+                    XmlElement townElement = (XmlElement)airportElement.SelectSingleNode("town");
+                    string town = townElement.Attributes["town"].Value;
+                    string country = townElement.Attributes["country"].Value;
+                    TimeSpan gmt = TimeSpan.Parse(townElement.Attributes["GMT"].Value);
+                    TimeSpan dst = TimeSpan.Parse(townElement.Attributes["DST"].Value);
+
+                    XmlElement latitudeElement = (XmlElement)airportElement.SelectSingleNode("coordinates/latitude");
+                    XmlElement longitudeElement = (XmlElement)airportElement.SelectSingleNode("coordinates/longitude");
+                    Coordinate latitude = Coordinate.Parse(latitudeElement.Attributes["value"].Value);
+                    Coordinate longitude = Coordinate.Parse(longitudeElement.Attributes["value"].Value);
+
+                    XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
+                    AirportProfile.AirportSize size = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), sizeElement.Attributes["value"].Value);
+
+                    
+                    AirportProfile profile = new AirportProfile(name, iata,icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size);
+
+                    Airport airport = new Airport(profile);
+
+                    XmlNodeList terminalList = airportElement.SelectNodes("terminals/terminal");
+
+                    foreach (XmlElement terminalNode in terminalList)
+                    {
+                        string terminalName = terminalNode.Attributes["name"].Value;
+                        int terminalGates = XmlConvert.ToInt32(terminalNode.Attributes["gates"].Value);
+
+                        airport.Terminals.addTerminal(new Terminal(airport,null,terminalGates, new DateTime(1950, 1, 1)));
+                    }
+
+                    XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");
+
+                    foreach (XmlElement runwayNode in runwaysList)
+                    {
+                        string runwayName = runwayNode.Attributes["name"].Value;
+                        long runwayLength = XmlConvert.ToInt32(runwayNode.Attributes["length"].Value);
+                        Runway.SurfaceType surface = (Runway.SurfaceType)Enum.Parse(typeof(Runway.SurfaceType), runwayNode.Attributes["surface"].Value);
+
+                        airport.Runways.Add(new Runway(runwayName, runwayLength, surface));
+
+                    }
+
+                    Airports.AddAirport(airport);
+                }
+            }
+            catch (Exception e)
+            {
+                string i = id;
+                string s = e.ToString();
             }
         }
 

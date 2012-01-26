@@ -19,7 +19,6 @@ namespace TheAirline.Model.AirportModel
         public Country Country { get; set; }
         public Coordinates Coordinates { get; set; }
         public AirportSize Size { get; set; }
-        public int Gates { get; set; }
         public string Logo { get; set; }
         // chs, 2012-23-01 added for airport maps
         public string Map { get; set; }
@@ -27,7 +26,7 @@ namespace TheAirline.Model.AirportModel
         public TimeSpan OffsetDST { get; set; }
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
       
-        public AirportProfile(string name, string code,string icaocode, AirportType type,string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, AirportSize size, int gates)
+        public AirportProfile(string name, string code,string icaocode, AirportType type,string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, AirportSize size)
         {
             this.Name = name;
             this.IATACode = code;
@@ -38,7 +37,6 @@ namespace TheAirline.Model.AirportModel
             this.Coordinates = coordinates;
             this.Size = size;
             this.Logo = "";
-            this.Gates = gates;
             this.OffsetDST = offsetDST;
             this.OffsetGMT = offsetGMT;
             

@@ -33,7 +33,9 @@ namespace TheAirline.Model.AirportModel
             this.Runways = new List<Runway>();
             // chs, 2011-01-11 changed so the number of terminals reflects the airport size
             // will later be changed to "real" data
-            for (int i = 0; i <= (int)this.Profile.Size; i++)
+            
+            /*
+             * for (int i = 0; i <= (int)this.Profile.Size; i++)
             {
                 int gates = this.Profile.Gates / ((int)this.Profile.Size+1);
 
@@ -42,9 +44,9 @@ namespace TheAirline.Model.AirportModel
                 
                 this.Terminals.addTerminal(new Terminal(this, null, gates, new DateTime(1950, 1, 1)));
             }
+             * */
 
-            this.Runways.Add(new Runway("Test", 5000, Runway.SurfaceType.Asphalt));
-        }
+         }
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
         {

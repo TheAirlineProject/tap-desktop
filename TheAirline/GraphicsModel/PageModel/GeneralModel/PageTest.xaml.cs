@@ -322,7 +322,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
 
-                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type, town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size, gates)));
+                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type, town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size)));
 
                 saveAirports();
 
@@ -384,7 +384,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 airportNode.AppendChild(sizeNode);
 
                 XmlElement gatesNode = xmlDoc.CreateElement("gates");
-                gatesNode.SetAttribute("value", airport.Profile.Gates.ToString());
+                gatesNode.SetAttribute("value", airport.Profile.ToString());
                 airportNode.AppendChild(gatesNode);
 
                 root.AppendChild(airportNode);
