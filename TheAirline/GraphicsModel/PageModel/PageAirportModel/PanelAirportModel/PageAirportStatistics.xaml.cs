@@ -34,6 +34,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             this.Airport = airport;
 
+            ScrollViewer svStatistics = new ScrollViewer();
+            svStatistics.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svStatistics.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svStatistics.MaxHeight = GraphicsHelpers.GetContentHeight() - 50;
+
             StackPanel panelStatistics = new StackPanel();
             panelStatistics.Margin = new Thickness(0, 10, 50, 0);
 
@@ -53,7 +58,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirportStatistics_OnTimeChanged);
 
-            this.Content = panelStatistics;
+            svStatistics.Content = panelStatistics;
+
+            this.Content = svStatistics;
 
             showStats();
         }

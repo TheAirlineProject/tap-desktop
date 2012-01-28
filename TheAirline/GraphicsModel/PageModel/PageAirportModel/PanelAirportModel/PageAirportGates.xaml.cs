@@ -47,21 +47,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             panelGatesTerminals.Children.Add(panelGates);
 
 
+           
+            ScrollViewer svTerminals = new ScrollViewer();
+            svTerminals.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svTerminals.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+            StackPanel panelTerminals = new StackPanel();
+
             TextBlock txtTerminalsInfoHeader = new TextBlock();
             txtTerminalsInfoHeader.Uid = "1001";
             txtTerminalsInfoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtTerminalsInfoHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtTerminalsInfoHeader.FontWeight = FontWeights.Bold;
-            txtTerminalsInfoHeader.Text =Translator.GetInstance().GetString("PageAirportGates", txtTerminalsInfoHeader.Uid);
+            txtTerminalsInfoHeader.Text = Translator.GetInstance().GetString("PageAirportGates", txtTerminalsInfoHeader.Uid);
             txtTerminalsInfoHeader.Margin = new Thickness(0, 10, 0, 0);
 
-            panelGatesTerminals.Children.Add(txtTerminalsInfoHeader);
+            panelTerminals.Children.Add(txtTerminalsInfoHeader);
 
             lbTerminals = new ListBox();
             lbTerminals.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbTerminals.ItemTemplate = this.Resources["TerminalItem"] as DataTemplate;
+            panelTerminals.Children.Add(lbTerminals);
 
-            panelGatesTerminals.Children.Add(lbTerminals);
+            svTerminals.Content = panelTerminals;
+
+            panelGatesTerminals.Children.Add(svTerminals);
 
             Button btnTerminal = new Button();
             btnTerminal.SetResourceReference(Button.StyleProperty, "RoundedButton");
