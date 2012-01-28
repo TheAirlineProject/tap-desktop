@@ -74,9 +74,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             txtName.BorderBrush = Brushes.Black;
             txtName.IsEnabled = this.Terminal == null;
             txtName.Width = 100;
-            if (this.Terminal != null) txtName.Text = this.Terminal.Name;
+            txtName.Text = this.Terminal == null ? "Terminal" : this.Terminal.Name;
             lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal","1007"),txtName));
-
+           
             // chs 11-09-11: added numericupdown for selecting number of gates
             nudGates = new ucNumericUpDown();
             nudGates.Height = 30;
@@ -126,6 +126,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbTerminal.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             mainPanel.Children.Add(lbTerminal);
+
+            txtName = new TextBox();
+            txtName.Background = Brushes.Transparent;
+            txtName.BorderBrush = Brushes.Black;
+            txtName.IsEnabled = this.Terminal == null;
+            txtName.Width = 100;
+            txtName.Text = this.Terminal == null ? "Terminal" : this.Terminal.Name;
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1007"), txtName));
+
 
             lbTerminal.Items.Add(new QuickInfoValue("Current gates", UICreator.CreateTextBlock(string.Format("{0} gates", this.Terminal.Gates.getGates().Count))));
 
@@ -213,11 +222,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             int gates = Convert.ToInt32(nudGates.Value);
             string name = txtName.Text;
 
-            if (this.Terminal == null)
-                 this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline,name, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
-            else
-                this.Selected = gates;
-            this.Close();
+            if (name.Length > 0)
+            {
+                if (this.Terminal == null)
+                    this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline, name, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
+                else
+                    this.Selected = gates;
+                this.Close();
+            }
         }
         //returns the days to create a terminal with a number of gates
         private int getDaysToCreate(int gates)
