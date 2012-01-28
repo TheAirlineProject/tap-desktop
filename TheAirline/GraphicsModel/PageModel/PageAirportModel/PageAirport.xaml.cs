@@ -317,14 +317,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             imgMapOverview.Margin = new Thickness(5, 0,0, 0);
             imgMapOverview.Visibility = this.Airport.Profile.Map != null ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             
-            panelTerminals.Children.Add(UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString()));
+            panelTerminals.Children.Add(UICreator.CreateTextBlock(string.Format("{0} ({1} {2})",this.Airport.Terminals.getNumberOfGates(),this.Airport.Terminals.getNumberOfAirportTerminals(),Translator.GetInstance().GetString("PageAirport", "1018"))));
 
             panelTerminals.Children.Add(imgMapOverview);
            
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1016"),panelTerminals));
-
-  
-
+            
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1017"),UICreator.CreateTextBlock(this.Airport.Runways.Count.ToString())));
             return panelInfo;
         }
 
