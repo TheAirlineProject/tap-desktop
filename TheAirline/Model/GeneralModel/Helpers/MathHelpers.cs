@@ -151,6 +151,12 @@ namespace TheAirline.Model.GeneralModel
             double aMile = 1.609344;
             return miles * aMile;
         }
+        //converts meter to feet
+        public static double MeterToFeet(double meter)
+        {
+            double aFeet = 3.2808399;
+            return meter * aFeet;
+        }
         //converts a radian to angle
         public static double RadianToDegree(double radian)
         {

@@ -123,6 +123,28 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
+    //the converter for a number (in m) to the selected unit
+     public class NumberMeterToUnitConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return v + " m.";
+            else
+                return string.Format("{0:0.00} feet", MathHelpers.MeterToFeet(v)) ; 
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a string to a language string
     public class StringToLanguageConverter : IValueConverter
     {
