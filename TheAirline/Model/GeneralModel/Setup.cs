@@ -310,7 +310,7 @@ namespace TheAirline.Model.GeneralModel
                         string terminalName = terminalNode.Attributes["name"].Value;
                         int terminalGates = XmlConvert.ToInt32(terminalNode.Attributes["gates"].Value);
 
-                        airport.Terminals.addTerminal(new Terminal(airport,null,terminalGates, new DateTime(1950, 1, 1)));
+                        airport.Terminals.addTerminal(new Terminal(airport,null,terminalName,terminalGates, new DateTime(1950, 1, 1)));
                     }
 
                     XmlNodeList runwaysList = airportElement.SelectNodes("runways/runway");

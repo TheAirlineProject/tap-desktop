@@ -15,6 +15,7 @@
         <local:TerminalOptionsVisibility x:Key="terminalOptionsVisibility"></local:TerminalOptionsVisibility>
         <DataTemplate x:Key="TerminalItem">
             <WrapPanel>
+                <TextBlock Width="150" VerticalAlignment="Bottom" Text="{Binding Name}" Margin="0 0 5 0"></TextBlock>
                 <TextBlock Width="150" VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter},FallbackValue=Green}">
                         <Run Text="{Binding Airline.Profile.Name,FallbackValue=Airport Terminal}"></Run>

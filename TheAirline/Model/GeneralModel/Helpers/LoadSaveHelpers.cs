@@ -328,9 +328,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     DateTime deliveryDate = DateTime.Parse(terminalNode.Attributes["delivery"].Value, new CultureInfo("de-DE", false));
                     Airline owner = Airlines.GetAirline(terminalNode.Attributes["owner"].Value);
+                    string terminalName = terminalNode.Attributes["name"].Value;
                     int gates = Convert.ToInt32(terminalNode.Attributes["totalgates"].Value);
 
-                    Terminal terminal = new Terminal(airport, owner, 0, deliveryDate);
+                    Terminal terminal = new Terminal(airport, owner,terminalName, gates, deliveryDate);
                     terminal.Gates.clear();
 
                     XmlNodeList airportGatesList = terminalNode.SelectNodes("gates/gate");
@@ -773,6 +774,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement terminalNode = xmlDoc.CreateElement("terminal");
                     terminalNode.SetAttribute("delivery", terminal.DeliveryDate.ToString(new CultureInfo("de-DE")));
                     terminalNode.SetAttribute("owner", terminal.Airline == null ? "airport" : terminal.Airline.Profile.IATACode);
+                    terminalNode.SetAttribute("name", terminal.Name);
                     terminalNode.SetAttribute("totalgates", terminal.Gates.getGates().Count.ToString());
                     XmlElement gatesNode = xmlDoc.CreateElement("gates");
                     foreach (Gate gate in terminal.Gates.getGates())

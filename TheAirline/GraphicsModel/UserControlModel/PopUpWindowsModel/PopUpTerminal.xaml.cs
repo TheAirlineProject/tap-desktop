@@ -26,6 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private ucNumericUpDown nudGates;
         private Button btnOk;
         private TextBlock txtDaysToCreate, txtTotalPrice;
+        private TextBox txtName;
         //for creating a new terminal
         public static object ShowPopUp(Airport airport)
         {
@@ -66,6 +67,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbTerminal.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             mainPanel.Children.Add(lbTerminal);
+
+            // chs 28-01-12: added for name of terminal
+            txtName = new TextBox();
+            txtName.Background = Brushes.Transparent;
+            txtName.BorderBrush = Brushes.Black;
+            txtName.IsEnabled = this.Terminal == null;
+            txtName.Width = 100;
+            if (this.Terminal != null) txtName.Text = this.Terminal.Name;
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal","1007"),txtName));
 
             // chs 11-09-11: added numericupdown for selecting number of gates
             nudGates = new ucNumericUpDown();
@@ -201,9 +211,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             int gates = Convert.ToInt32(nudGates.Value);
-       
+            string name = txtName.Text;
+
             if (this.Terminal == null)
-                 this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
+                 this.Selected = new Terminal(this.Airport, GameObject.GetInstance().HumanAirline,name, gates, GameObject.GetInstance().GameTime.Add(new TimeSpan(getDaysToCreate(gates), 0, 0, 0)));
             else
                 this.Selected = gates;
             this.Close();

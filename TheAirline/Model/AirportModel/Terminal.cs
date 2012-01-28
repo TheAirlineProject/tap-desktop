@@ -16,16 +16,18 @@ namespace TheAirline.Model.AirportModel
     // chs, 2011-27-10 changed so a terminal has a devilery date
     public class Terminal
     {
+        public string Name { get; set; }
         public DateTime DeliveryDate { get; set; }
         public Airline Airline { get; set; }
         public Airport Airport { get; set; }
         public Gates Gates { get; set; }
         public Boolean IsBuilt { get{return isBuilt();} set{;} }
         public Boolean IsBuyable { get { return isBuyable(); } set { ;} }
-        public Terminal(Airport airport, Airline airline, int gates, DateTime deliveryDate)
+        public Terminal(Airport airport, Airline airline,string name, int gates, DateTime deliveryDate)
         {
             this.Airport = airport;
             this.Airline = airline;
+            this.Name = name;
             this.DeliveryDate = new DateTime(deliveryDate.Year, deliveryDate.Month, deliveryDate.Day);
 
             this.Gates = new Gates(airport, gates, this.DeliveryDate);
@@ -283,17 +285,6 @@ namespace TheAirline.Model.AirportModel
             }
             return false;
         }
-        /*
-        //adds a gate
-        public void addGate(Gate gate)
-        {
-            if (gate.Airline != null && getNumberOfGates(gate.Airline) == 0)
-                gate.Airline.addAirport(this.Airport);
-
-            this.gates.Add(gate);
-
-
-        }
-         * */
+       
     }
 }
