@@ -165,6 +165,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Size s = ((Frame)sender).RenderSize;
 
             GraphicsHelpers.SetContentHeight(s.Height -100);
+            GraphicsHelpers.SetContentWidth(s.Width / 2);
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)

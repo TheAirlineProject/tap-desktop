@@ -130,6 +130,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSearch.Height = Double.NaN;
             btnSearch.Width = Double.NaN;
+            btnSearch.IsDefault = true;
             btnSearch.Content = Translator.GetInstance().GetString("General", btnSearch.Uid);
             btnSearch.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnSearch.Click += new RoutedEventHandler(btnSearch_Click);

@@ -11,6 +11,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     public class GraphicsHelpers
     {
         private static double ContentHeight;
+        private static double ContentWidth;
         //converts coordinates to a map position
         public static Point WorldToTilePos(Coordinates coordinates, int zoom)
         {
@@ -23,6 +24,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 1.0 / Math.Cos(lat * Math.PI / 180.0)) / Math.PI) / 2.0 * (1 << zoom));
 
             return p;
+        }
+        //returns the content width
+        public static double GetContentWidth()
+        {
+            return ContentWidth;
+        }
+        //sets the content width
+        public static void SetContentWidth(double width)
+        {
+            if (ContentWidth < 1)
+                ContentWidth = width;
         }
         //returns the content height
         public static double GetContentHeight()
