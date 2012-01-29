@@ -75,7 +75,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             panelSpeed.Children.Add(txtGameSpeed);
 
             slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
-            lbSettings.Items.Add(new QuickInfoValue("Game speed", panelSpeed));
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1001"),panelSpeed));
 
             cbLanguage = new ComboBox();
             cbLanguage.Width = 200;
@@ -89,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
 
-            lbSettings.Items.Add(new QuickInfoValue("Language", cbLanguage));
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1002"), cbLanguage));
 
 
             cbSkin = new ComboBox();
@@ -103,12 +103,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             cbSkin.SelectedItem = SkinObject.GetInstance().CurrentSkin;
 
-            lbSettings.Items.Add(new QuickInfoValue("Skin", cbSkin));
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1003"), cbSkin));
 
             cbMailOnLandings = new CheckBox();
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
-      
-            lbSettings.Items.Add(new QuickInfoValue("Mail on landings", cbMailOnLandings));
+
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1004"), cbMailOnLandings));
+
 
             rbAirportCodes = new RadioButton[Enum.GetValues(typeof(Settings.AirportCode)).Length];
 
@@ -126,7 +127,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 panelAirpodeCode.Children.Add(rbAirportCodes[i]);
                 i++;
             }
-            lbSettings.Items.Add(new QuickInfoValue("Airport code format", panelAirpodeCode));
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1005"), panelAirpodeCode));
 
 
             WrapPanel buttonsPanel = new WrapPanel();

@@ -138,7 +138,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                     if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
                         sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.IATACode.CompareTo(a2.Profile.IATACode); };
                     else
-                        sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.ICAOCode.CompareTo(a2.Profile.IATACode); };
+                        sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.ICAOCode.CompareTo(a2.Profile.ICAOCode); };
               
                     showAirports();
                     break;
