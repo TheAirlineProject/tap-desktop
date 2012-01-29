@@ -37,12 +37,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             this.Airport = airport;
 
-            panelFacilities = new StackPanel();
-            panelFacilities.Margin = new Thickness(0, 10, 50, 0);
+             ScrollViewer svFacilities = new ScrollViewer();
+             svFacilities.Margin = new Thickness(0, 10, 50, 0);
+             svFacilities.MaxHeight = GraphicsHelpers.GetContentHeight()-50;
+
+             panelFacilities = new StackPanel();
+
+             svFacilities.Content = panelFacilities;
+        
 
             showFacilitiesInformation();
 
-            this.Content = panelFacilities;
+            this.Content = svFacilities;
         }
 
         //shows the facilities information

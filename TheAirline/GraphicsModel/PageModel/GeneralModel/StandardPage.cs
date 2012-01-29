@@ -289,7 +289,7 @@ public class StandardContentPanel : Grid
 
     }
     //sets the content page
-    public void setContentPage(Panel contentPanel, ContentLocation location)
+    public void setContentPage(UIElement contentPanel, ContentLocation location)
     {
         if (location == ContentLocation.Left)
         {

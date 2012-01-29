@@ -49,8 +49,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
            
             ScrollViewer svTerminals = new ScrollViewer();
-            svTerminals.VerticalScrollBarVisibility = ScrollBarVisibility.Visible;
-            svTerminals.HorizontalScrollBarVisibility = ScrollBarVisibility.Visible;
+            svTerminals.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svTerminals.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             svTerminals.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
 
             StackPanel panelTerminals = new StackPanel();

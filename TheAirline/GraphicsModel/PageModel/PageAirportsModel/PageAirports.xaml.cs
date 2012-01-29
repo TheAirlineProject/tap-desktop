@@ -37,8 +37,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PageAirports", this.Uid);
 
-            StackPanel airportsPanel = new StackPanel();
+           StackPanel airportsPanel = new StackPanel();
             airportsPanel.Margin = new Thickness(10, 0, 10, 0);
+
 
             ContentControl txtHeader = new ContentControl();
             txtHeader.ContentTemplate = this.Resources["AirportsHeader"] as DataTemplate;
@@ -49,7 +50,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             lbAirports = new ListBox();
             lbAirports.ItemTemplate = this.Resources["AirportItem"] as DataTemplate;
-            lbAirports.MaxHeight = 500;
+            lbAirports.MaxHeight = GraphicsHelpers.GetContentHeight() - 50;
             lbAirports.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
             sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); };

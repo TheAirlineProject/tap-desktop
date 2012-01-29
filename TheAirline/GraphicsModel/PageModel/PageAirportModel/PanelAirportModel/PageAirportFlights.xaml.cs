@@ -67,6 +67,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             panelDestinationFlights.Margin = new Thickness(0, 10, 0, 0);
             panelDestinationFlights.Visibility = System.Windows.Visibility.Collapsed;
 
+            ScrollViewer svFlights = new ScrollViewer();
+            svFlights.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svFlights.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svFlights.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+
+            panelDestinationFlights.Children.Add(svFlights);
+
+            StackPanel panelFlights = new StackPanel();
+            svFlights.Content = panelFlights;
+
             TextBlock txtDestinationHeader = new TextBlock();
             txtDestinationHeader.Uid = "1004";
             txtDestinationHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -74,11 +84,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             txtDestinationHeader.FontWeight = FontWeights.Bold;
             txtDestinationHeader.Text = Translator.GetInstance().GetString("PageAirportFlights", txtDestinationHeader.Uid);
 
-            panelDestinationFlights.Children.Add(txtDestinationHeader);
+            panelFlights.Children.Add(txtDestinationHeader);
 
             Grid grdArrivalsHeader = UICreator.CreateGrid(2);
             grdArrivalsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            panelDestinationFlights.Children.Add(grdArrivalsHeader);
+            panelFlights.Children.Add(grdArrivalsHeader);
 
             Image imgArrivalsHeader = new Image();
             imgArrivalsHeader.Source = new BitmapImage(new Uri(@"/Data/images/Arrivals.png", UriKind.RelativeOrAbsolute));
@@ -98,13 +108,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbDestinationArrivals = new ListBox();
             lbDestinationArrivals.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbDestinationArrivals.ItemTemplate = this.Resources["AirportDestinationItem"] as DataTemplate;
-            lbDestinationArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 2 - 100;
-            panelDestinationFlights.Children.Add(lbDestinationArrivals);
+            //lbDestinationArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 2 - 100;
+            panelFlights.Children.Add(lbDestinationArrivals);
 
             Grid grdDeparturesHeader = UICreator.CreateGrid(2);
             grdDeparturesHeader.Margin = new Thickness(0, 5, 0, 0);
             grdDeparturesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            panelDestinationFlights.Children.Add(grdDeparturesHeader);
+            panelFlights.Children.Add(grdDeparturesHeader);
 
             Image imgDeparturesHeader = new Image();
             imgDeparturesHeader.Source = new BitmapImage(new Uri(@"/Data/images/Departures.png", UriKind.RelativeOrAbsolute));
@@ -124,8 +134,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbDestinationDepartures = new ListBox();
             lbDestinationDepartures.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbDestinationDepartures.ItemTemplate = this.Resources["AirportDestinationItem"] as DataTemplate;
-            lbDestinationDepartures.MaxHeight = GraphicsHelpers.GetContentHeight() / 2 - 100;
-            panelDestinationFlights.Children.Add(lbDestinationDepartures);
+            //lbDestinationDepartures.MaxHeight = GraphicsHelpers.GetContentHeight() / 2 - 100;
+            panelFlights.Children.Add(lbDestinationDepartures);
             
             return panelDestinationFlights;
         }

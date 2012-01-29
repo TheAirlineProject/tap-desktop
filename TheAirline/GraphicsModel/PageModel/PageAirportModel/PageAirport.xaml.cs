@@ -118,8 +118,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         }
 
         //creates the panel for arrivals
-        private Panel createArrivalsPanel()
+        private ScrollViewer createArrivalsPanel()
         {
+            ScrollViewer svArrivals = new ScrollViewer();
+            svArrivals.Margin = new Thickness(0, 10, 0, 0);
+            svArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+
             StackPanel panelArrivals = new StackPanel();
             panelArrivals.Margin = new Thickness(0, 10, 0, 0);
 
@@ -156,15 +160,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             panelArrivals.Children.Add(lbArrivals);
 
-            return panelArrivals;
+            svArrivals.Content = panelArrivals;
+
+            return svArrivals;
         }
 
         //creates the panel for departures
-        private Panel createDeparturesPanel()
+        private ScrollViewer createDeparturesPanel()
         {
+            ScrollViewer svDepartures = new ScrollViewer();
+            svDepartures.Margin = new Thickness(0, 10, 0, 0);
+            svDepartures.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+    
             StackPanel panelDepartures = new StackPanel();
-            panelDepartures.Margin = new Thickness(0, 10, 0, 0);
-
+       
             Grid grdType = UICreator.CreateGrid(2);
             grdType.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             panelDepartures.Children.Add(grdType);
@@ -198,7 +207,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             panelDepartures.Children.Add(lbDepartures);
 
-            return panelDepartures;
+            svDepartures.Content = panelDepartures;
+
+            return svDepartures;
         }
 
         //shows the departures and arrivals
