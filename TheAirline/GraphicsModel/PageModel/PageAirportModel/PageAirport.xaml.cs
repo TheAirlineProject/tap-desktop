@@ -122,6 +122,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             ScrollViewer svArrivals = new ScrollViewer();
             svArrivals.Margin = new Thickness(0, 10, 0, 0);
+            svArrivals.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svArrivals.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             svArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
 
             StackPanel panelArrivals = new StackPanel();
@@ -171,6 +173,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             ScrollViewer svDepartures = new ScrollViewer();
             svDepartures.Margin = new Thickness(0, 10, 0, 0);
             svDepartures.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+            svDepartures.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svDepartures.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
     
             StackPanel panelDepartures = new StackPanel();
        

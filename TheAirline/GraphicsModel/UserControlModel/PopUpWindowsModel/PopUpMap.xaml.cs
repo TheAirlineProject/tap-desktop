@@ -114,7 +114,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
 
             foreach (Airport airport in airports)
-                showAirport(airport, panelMap, zoom, airports.Count < 10);
+                showAirport(airport, panelMap, zoom, airports.Count == 1);
             this.Content = panelMap;
         }
         public PopUpMap(List<Route> routes)
