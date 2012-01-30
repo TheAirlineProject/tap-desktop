@@ -132,7 +132,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     foreach (Terminal terminal in airport.Terminals.getDeliveredTerminals())
                     {
-                        double gates = Convert.ToDouble(terminal.Gates.getGates().Count);
+                        double gates = Convert.ToDouble(terminal.Gates.getNumberOfGates(airline));
                         double gatePrice = airline == terminal.Airline ? airport.getGatePrice() * 0.75 : airport.getGatePrice();
 
                         airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -gatePrice * gates));
