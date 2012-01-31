@@ -41,9 +41,9 @@ namespace TheAirline.Model.GeneralModel
             return String.Format(format, number);
         }
         //returns the tail number for strings
-        private string getTailNumber(string lastNumber, int chars)
+        private string getTailNumber(string lastCode, int chars)
         {
-            if (lastNumber == null)
+            if (lastCode == null)
             {
                 string code = "";
                 for (int i = 0; i < chars; i++)
@@ -52,9 +52,7 @@ namespace TheAirline.Model.GeneralModel
             }
             else
             {
-                string lastCode = this.LastTailNumber.Split('-')[1];
-
-
+            
                 int i = 0;
                 Boolean found = false;
                 while (!found && i < chars)
@@ -93,7 +91,9 @@ namespace TheAirline.Model.GeneralModel
                 {
                     string lastCode = this.LastTailNumber.Split('-')[1].Substring(dLenght, sLenght);
                     int lastNumber = Convert.ToInt16(this.LastTailNumber.Split('-')[1].Substring(0, dLenght));
-                    this.LastTailNumber = countryID + "-" + getTailNumber(lastNumber, dLenght) + getTailNumber(lastCode, sLenght);
+                    string sNumber = getTailNumber(lastCode, sLenght);
+                    string dNumber = getTailNumber(lastNumber, dLenght);
+                    this.LastTailNumber = countryID + "-" + dNumber + sNumber;
                 }
             }
             if (numberFormat.Contains("\\d") && !numberFormat.Contains("\\s"))
