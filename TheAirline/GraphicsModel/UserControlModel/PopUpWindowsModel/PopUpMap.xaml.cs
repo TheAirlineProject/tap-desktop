@@ -29,7 +29,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpMap : PopUpWindow
     {
         private int MapSize;
-        private const int ImageSize = 256;
+        private const int ImageSize = 256;//384;//256*2;
         //shows the pop up for an airport
         public static void ShowPopUp(Airport airport)
         {
@@ -87,6 +87,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpMap(List<Airport> airports)
             : this(ImageSize * 2)
         {
+
+            this.Width = MapSize + 200;
             int zoom = 1;
 
             Canvas panelMap = new Canvas();
@@ -112,9 +114,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 }
             }
+            StackPanel sidePanel = createAirportSizeSidePanel();
+            Canvas.SetTop(sidePanel, 0);
+            Canvas.SetRight(sidePanel, 100);
+
+            panelMap.Children.Add(sidePanel);
 
             foreach (Airport airport in airports)
-                showAirport(airport, panelMap, zoom, airports.Count == 1);
+                showAirport(airport, panelMap, zoom);
             this.Content = panelMap;
         }
         public PopUpMap(List<Route> routes)
@@ -145,19 +152,75 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 }
             }
+            
 
+      
+     
             foreach (Route route in routes)
                  showRoute(route, panelMap, zoom);
+
+       
             this.Content = panelMap;
         }
+        //creates the side panel for the airport size
+        private StackPanel createAirportSizeSidePanel()
+        {
+            StackPanel sidePanel = new StackPanel();
+            foreach (AirportProfile.AirportSize size in Enum.GetValues(typeof(AirportProfile.AirportSize)))
+            {
+                WrapPanel panelSize = new WrapPanel();
+                panelSize.Margin = new Thickness(0, 5, 0, 5);
+
+                Ellipse eSize = new Ellipse();
+                eSize.Width = 20;
+                eSize.Height = 20;
+                eSize.StrokeThickness = 2;
+                eSize.Stroke = Brushes.Black;
+                eSize.Fill = new SolidColorBrush(getSizeColor(size));
+
+                panelSize.Children.Add(eSize);
+
+                TextBlock txtSize = new TextBlock();
+                txtSize.Text = size.ToString();
+                txtSize.Margin = new Thickness(5, 0, 0, 0);
+
+                panelSize.Children.Add(txtSize);
+
+                sidePanel.Children.Add(panelSize);
+            }
+            return sidePanel;
+
+
+        }
+        //returns the color for a specific airport size
+        private Color getSizeColor(AirportProfile.AirportSize size)
+        {
+            switch (size){
+                case AirportProfile.AirportSize.Large:
+                    return Colors.DarkBlue;
+                case AirportProfile.AirportSize.Largest:
+                    return Colors.DarkRed;
+                case AirportProfile.AirportSize.Medium:
+                    return Colors.Black;
+                case AirportProfile.AirportSize.Small:
+                    return Colors.White;
+                case AirportProfile.AirportSize.Smallest:
+                    return Colors.Gray;
+                case AirportProfile.AirportSize.Very_large:
+                    return Colors.Yellow;
+                case AirportProfile.AirportSize.Very_small:
+                    return Colors.Violet;
+            }
+            return Colors.DarkRed;
+        }
         //shows an airport
-        private void showAirport(Airport airport, Panel panelMap, int zoom, Boolean largeSize)
+        private void showAirport(Airport airport, Panel panelMap, int zoom)
         {
             Point pos = GraphicsHelpers.WorldToTilePos(airport.Profile.Coordinates, zoom);
 
             Point p = new Point(pos.X * ImageSize, pos.Y * ImageSize);
 
-            panelMap.Children.Add(createPin(p, airport, largeSize));
+            panelMap.Children.Add(createPin(p, airport));
         }
         //shows a route
         private void showRoute(Route route, Panel panelMap, int zoom)
@@ -166,13 +229,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Point p = new Point(pos.X * ImageSize, pos.Y * ImageSize);
 
-            panelMap.Children.Add(createPin(p,route.Destination1,true));
+            panelMap.Children.Add(createPin(p,route.Destination1));
 
             pos = GraphicsHelpers.WorldToTilePos(route.Destination2.Profile.Coordinates, zoom);
 
             p = new Point(pos.X * ImageSize, pos.Y * ImageSize);
 
-            panelMap.Children.Add(createPin(p,route.Destination2,true));
+            panelMap.Children.Add(createPin(p,route.Destination2));
 
             panelMap.Children.Add(createRouteLine(route.Destination1, route.Destination2, zoom));
 
@@ -237,7 +300,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelMap.Height = this.Height;
 
             if (isAirport)
-                panelMap.Children.Add(createPin(p, Airports.GetAirport(coordinates),true));
+                panelMap.Children.Add(createPin(p, Airports.GetAirport(coordinates)));
             else
                 panelMap.Children.Add(createPin(p));
 
@@ -268,11 +331,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         }
         //creates the pin at a position with airport
-        private Image createPin(Point position,Airport airport, Boolean largeSize)
+        private UIElement createPin(Point position,Airport airport)
         {
+            /*
             Image imgPin = new Image();
             imgPin.Source = new BitmapImage(new Uri(largeSize ? @"/Data/images/pin.png" : @"/Data/images/circle.png", UriKind.RelativeOrAbsolute));
             imgPin.Tag = airport;
+            imgPin.MouseDown += new MouseButtonEventHandler(imgPin_MouseDown);
+
+             * */
+            Ellipse imgPin = new Ellipse();
+            imgPin.Fill = new SolidColorBrush(getSizeColor(airport.Profile.Size));
+            imgPin.Height = 8;
+            imgPin.Width = imgPin.Height;
+            imgPin.Stroke = Brushes.Black;
+            imgPin.StrokeThickness = 1;
             imgPin.MouseDown += new MouseButtonEventHandler(imgPin_MouseDown);
 
             Border brdToolTip = new Border();
@@ -293,8 +366,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
            
 
 
-            imgPin.Height = largeSize ? 24 : 8;
-            RenderOptions.SetBitmapScalingMode(imgPin, BitmapScalingMode.HighQuality);
+            //imgPin.Height = largeSize ? 24 : 8;
+            //RenderOptions.SetBitmapScalingMode(imgPin, BitmapScalingMode.HighQuality);
 
             Canvas.SetTop(imgPin, position.Y - imgPin.Height + 5);
             Canvas.SetLeft(imgPin, position.X - imgPin.Height / 2);
