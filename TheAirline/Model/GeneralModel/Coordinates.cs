@@ -48,6 +48,8 @@ namespace TheAirline.Model.GeneralModel
             this.Minutes = minutes;
             this.Seconds = seconds;
             this.Direction = direction;
+
+        
         }
         public override string ToString()
         {

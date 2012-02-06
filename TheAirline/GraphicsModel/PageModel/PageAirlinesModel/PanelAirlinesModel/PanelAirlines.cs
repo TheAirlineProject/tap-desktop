@@ -5,6 +5,7 @@ using System.Text;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel
 {
@@ -16,20 +17,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             WrapPanel buttonsPanel = new WrapPanel();
 
+        
             // chs, 2011-18-10 added for different views / statistics for airlines
             ucSelectButton sbFlights = new ucSelectButton();
-            sbFlights.Content = "Flights";
+            sbFlights.Uid = "1001";
+            sbFlights.Content = Translator.GetInstance().GetString("PanelAirlines", sbFlights.Uid);
             sbFlights.IsSelected = true;
             sbFlights.Click += new System.Windows.RoutedEventHandler(sbFlights_Click);
             buttonsPanel.Children.Add(sbFlights);
 
             ucSelectButton sbFinancial = new ucSelectButton();
-            sbFinancial.Content = "Financial";
+            sbFinancial.Uid = "1002";
+            sbFinancial.Content = Translator.GetInstance().GetString("PanelAirlines", sbFinancial.Uid);
             sbFinancial.Click += new System.Windows.RoutedEventHandler(sbFinancial_Click);
-            buttonsPanel.Children.Add(sbFinancial);
+             buttonsPanel.Children.Add(sbFinancial);
 
             ucSelectButton sbFleet = new ucSelectButton();
-            sbFleet.Content = "Fleet";
+            sbFleet.Uid = "1003";
+            sbFleet.Content = Translator.GetInstance().GetString("PanelAirlines", sbFleet.Uid);
             sbFleet.Click += new System.Windows.RoutedEventHandler(sbFleet_Click);
             buttonsPanel.Children.Add(sbFleet);
 

@@ -25,7 +25,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
     /// </summary>
     public partial class PageAirlinesExtendedStatistics : Page
     {
-        public enum ViewType { Fleet, Financial }
+        public enum ViewType { Fleet=1001, Financial=1002 }
         public ViewType View { get; set; }
         private StackPanel panelStats;
         private int StatWidth = 200;
@@ -50,7 +50,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = string.Format("{0} Statistics", this.View);
+            txtHeader.Text = string.Format(Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics",((int)this.View).ToString()));
 
             panelStatistics.Children.Add(txtHeader);
 
@@ -74,13 +74,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             if (this.View == ViewType.Fleet)
             {
-                panelStats.Children.Add(createStatisticsPanel("getFleetSize", "Airline Fleet Size",false));
-                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge", "Airline Fleet Age",false));
+                panelStats.Children.Add(createStatisticsPanel("getFleetSize", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1003"),false));
+                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge",Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1004"),false));
             }
             else if (this.View == ViewType.Financial)
             {
-                panelStats.Children.Add(createStatisticsPanel("getProfit", "Airline Profit",true));
-                panelStats.Children.Add(createStatisticsPanel("getValue", "Airline Value",true));
+                panelStats.Children.Add(createStatisticsPanel("getProfit", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1005"),true));
+                panelStats.Children.Add(createStatisticsPanel("getValue", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1006"),true));
             }
 
         }

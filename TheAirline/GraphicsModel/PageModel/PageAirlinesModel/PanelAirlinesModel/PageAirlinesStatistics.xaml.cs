@@ -45,7 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Flights Statistics";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelAirlinesStatistics", "1001");
 
             panelStatistics.Children.Add(txtHeader);
 
@@ -99,7 +99,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Passenger happiness in %";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelAirlinesStatistics", "1002");
 
             panelStatistics.Children.Add(txtHeader);
 
