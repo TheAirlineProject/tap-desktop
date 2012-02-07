@@ -31,7 +31,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private int MapSize;
         private const int ImageSize = 256;
         private int Zoom;
-        private Boolean IsZoomable = false;
         private List<Airport> AirportsList;
         private Coordinates ZoomCoordinates;
         //shows the pop up for an airport
@@ -96,8 +95,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Width = MapSize + 200;
             this.ZoomCoordinates = new Coordinates(new Coordinate(0, 0, 0, Coordinate.Directions.N), new Coordinate(0, 0, 0, Coordinate.Directions.E)); 
             this.Zoom = 1;
-            this.IsZoomable = true;
-
+        
             showMap(airports, this.Zoom, this.ZoomCoordinates);
 
         }
@@ -206,18 +204,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel panelZoom = new StackPanel();
             panelZoom.Margin = new Thickness(0, 10, 0, 0);
 
-            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1001")));
-            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1002")));
+            TextBlock txtMapHeader = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1000"));
+            txtMapHeader.FontWeight = FontWeights.Bold;
+            txtMapHeader.FontSize = 14;
+            txtMapHeader.TextDecorations = TextDecorations.Underline;
 
-            Button btnZoomOut = new Button();
-            btnZoomOut.Uid = "100";
-            btnZoomOut.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnZoomOut.Height = Double.NaN;
-            btnZoomOut.Width = Double.NaN;
-            btnZoomOut.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnZoomOut.Content = Translator.GetInstance().GetString("PopUpMap","1003");
-            btnZoomOut.Click += new RoutedEventHandler(btnZoomOut_Click);
-            panelZoom.Children.Add(btnZoomOut);
+            panelZoom.Children.Add(txtMapHeader);
+
+            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1001"))); 
+            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap","1002")));
+            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1003")));
+            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1004")));
+            panelZoom.Children.Add(UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpMap", "1005"))); 
+
+        
 
             sidePanel.Children.Add(panelZoom);
 
@@ -480,14 +480,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 this.Close();
             }
-            else if (e.RightButton == MouseButtonState.Pressed && this.IsZoomable && this.Zoom<3)
-            {
-                this.Zoom++;
-
-                Airport airport = (Airport)((Ellipse)sender).Tag;
-                showMap(this.AirportsList,this.Zoom,airport.Profile.Coordinates);
-            }
-           
+          
 
         }
     }
