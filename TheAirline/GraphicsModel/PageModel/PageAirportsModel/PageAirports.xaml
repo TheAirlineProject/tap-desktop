@@ -13,7 +13,7 @@
         <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
         <DataTemplate x:Key="AirportsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
-                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                <TextBlock Width="300" VerticalAlignment="Bottom" FontWeight="Bold">
                     <Hyperlink Tag="Name" Click="Header_Click">
                         <Run Text="Name"></Run>
                     </Hyperlink>
@@ -37,7 +37,7 @@
         </DataTemplate>
         <DataTemplate x:Key="AirportItem">
             <WrapPanel>
-                <TextBlock Width="250" VerticalAlignment="Bottom">
+                <TextBlock Width="300" VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding }" Click="Hyperlink_Click">
                         <Run Text="{Binding Profile.Name}"></Run>
                     </Hyperlink>

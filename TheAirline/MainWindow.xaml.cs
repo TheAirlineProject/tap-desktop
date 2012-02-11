@@ -98,12 +98,15 @@ namespace TheAirline
         //navigates to a new page
         public void navigateTo(Page page)
         {
-            frameMain.Navigate(page);
+             frameMain.Navigate(page);
+             frameMain.NavigationService.RemoveBackEntry();
+     
         }
 
         //moves the navigator forward
         public void navigateForward()
         {
+           
             if (frameMain.NavigationService.CanGoForward) 
                 frameMain.NavigationService.GoForward();
         }
@@ -111,12 +114,14 @@ namespace TheAirline
         //moves the navigator back
         public void navigateBack()
         {
+            
             if (frameMain.NavigationService.CanGoBack)
                 frameMain.NavigationService.GoBack();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //social groups + passenger happiness
         }
     }
 }
