@@ -292,8 +292,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             rAirliner.CurrentFlight = currentFlight;
                         }
                     }
-          
-                    airline.Routes.Add(route);
+
+                    airline.addRoute(route);
                 }
 
 
