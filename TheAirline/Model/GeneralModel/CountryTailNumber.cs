@@ -10,7 +10,7 @@ namespace TheAirline.Model.GeneralModel
     //the class for handling the tail numbers for the country
     public class CountryTailNumber
     {
-        private string LastTailNumber;
+        public string LastTailNumber { get; set; }
         public Country Country { get; set; }
         public CountryTailNumber(Country country)
         {

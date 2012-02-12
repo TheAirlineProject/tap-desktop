@@ -31,7 +31,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             doc.Load(AppSettings.getDataPath() + "\\saves\\" + name + ".xml");
             XmlElement root = doc.DocumentElement;
 
-           
+          
+            XmlNodeList tailnumbersList = root.SelectNodes("//tailnumbers/tailnumber");
+
+            foreach (XmlElement tailnumberNode in tailnumbersList)
+            {
+                Country country = Countries.GetCountry(tailnumberNode.Attributes["country"].Value);
+                country.TailNumbers.LastTailNumber = tailnumberNode.Attributes["value"].Value;
+ 
+            }
+
             Airliners.Clear();
 
             XmlNodeList airlinersList = root.SelectNodes("//airliners/airliner");
@@ -473,6 +482,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlNode root = xmlDoc.DocumentElement;
 
+            XmlElement tailnumbersNode = xmlDoc.CreateElement("tailnumbers");
+
+            foreach (Country country in Countries.GetAllCountries())
+            {
+                XmlElement tailnumberNode = xmlDoc.CreateElement("tailnumber");
+                tailnumberNode.SetAttribute("country", country.Uid);
+                tailnumberNode.SetAttribute("value", country.TailNumbers.LastTailNumber);
+
+                tailnumbersNode.AppendChild(tailnumberNode);
+            }
+            root.AppendChild(tailnumbersNode);
 
             XmlElement airlinersNode = xmlDoc.CreateElement("airliners");
 
