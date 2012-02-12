@@ -12,6 +12,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using System.Globalization;
+using TheAirline.GraphicsModel.SkinsModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -41,7 +42,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
                 DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
-                double flown = XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
+                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value, new CultureInfo("de-DE", false));//XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
                 airliner.Flown = flown;
@@ -119,7 +120,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (XmlElement airlineLoanNode in airlineLoanList)
                 {
                     DateTime date = Convert.ToDateTime(airlineLoanNode.Attributes["date"].Value);
-                    double rate = XmlConvert.ToDouble(airlineLoanNode.Attributes["rate"].Value);
+                    double rate = Convert.ToDouble(airlineLoanNode.Attributes["rate"].Value, new CultureInfo("de-DE", false));
                     double amount = XmlConvert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
                     int length = Convert.ToInt16(airlineLoanNode.Attributes["length"].Value);
                     double payment = XmlConvert.ToDouble(airlineLoanNode.Attributes["payment"].Value);
@@ -211,7 +212,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (XmlElement routeClassNode in routeClassList)
                     {
                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
-                        double fareprice = XmlConvert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
+                        double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value, new CultureInfo("de-DE", false));
                         int cabincrew = Convert.ToInt16(routeClassNode.Attributes["cabincrew"].Value);
                         RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; }); 
                         RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
@@ -382,6 +383,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Settings.GetInstance().MailsOnLandings = Convert.ToBoolean(gameSettingsNode.Attributes["mailonlandings"].Value);
 
+            SkinObject.GetInstance().setCurrentSkin(Skins.GetSkin(gameSettingsNode.Attributes["skin"].Value));
+            Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)Enum.Parse(typeof(Settings.AirportCode), gameSettingsNode.Attributes["airportcode"].Value);
+            GameTimer.GetInstance().setGameSpeed((GeneralHelpers.GameSpeedValue)Enum.Parse(typeof(GeneralHelpers.GameSpeedValue),gameSettingsNode.Attributes["gamespeed"].Value));
+            AppSettings.GetInstance().setLanguage(Languages.GetLanguage(gameSettingsNode.Attributes["language"].Value));
+  
             XmlNodeList newsList = gameSettingsNode.SelectNodes("news/new");
             GameObject.GetInstance().NewsBox.clear();
 
@@ -477,7 +483,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToShortDateString());
-                airlinerNode.SetAttribute("flown", airliner.Flown.ToString());
+                airlinerNode.SetAttribute("flown", string.Format("{0:0.##}",airliner.Flown));
 
                 XmlElement airlinerClassesNode = xmlDoc.CreateElement("classes");
                 foreach (AirlinerClass aClass in airliner.Classes)
@@ -651,7 +657,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement routeClassNode = xmlDoc.CreateElement("routeclass");
                         routeClassNode.SetAttribute("type", aClass.Type.ToString());
-                        routeClassNode.SetAttribute("fareprice", aClass.FarePrice.ToString());
+                        routeClassNode.SetAttribute("fareprice", string.Format("{0:0.##}",aClass.FarePrice));
                         routeClassNode.SetAttribute("cabincrew", aClass.CabinCrew.ToString());
                         routeClassNode.SetAttribute("drinks", aClass.DrinksFacility.Name);
                         routeClassNode.SetAttribute("food", aClass.FoodFacility.Name);
@@ -807,6 +813,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("fuelprice", GameObject.GetInstance().FuelPrice.ToString());
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
+            gameSettingsNode.SetAttribute("skin", SkinObject.GetInstance().CurrentSkin.Name);
+            gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());
+            gameSettingsNode.SetAttribute("gamespeed", GameTimer.GetInstance().GameSpeed.ToString());
+            gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().getLanguage().Name);
+       
             XmlElement newsNodes = xmlDoc.CreateElement("news");
 
             foreach (News news in GameObject.GetInstance().NewsBox.getNews())

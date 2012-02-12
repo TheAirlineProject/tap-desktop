@@ -41,6 +41,11 @@ namespace TheAirline.GraphicsModel.SkinsModel
         {
             skins = new List<Skin>();
         }
+        //returns a skin based on the name
+        public static Skin GetSkin(string name)
+        {
+            return skins.Find(delegate(Skin skin) { return skin.Name == name; });
+        }
         //adds a new skin to the list
         private static void AddSkin(Skin skin)
         {
