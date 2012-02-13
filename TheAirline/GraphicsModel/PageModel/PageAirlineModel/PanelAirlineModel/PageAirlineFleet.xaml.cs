@@ -124,27 +124,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lvFleet.ItemsSource = this.FleetDelivered;
 
-            TextBlock txtInOrderHeader = new TextBlock();
-            txtInOrderHeader.Uid = "1004";
-            txtInOrderHeader.Margin = new Thickness(0, 5, 0, 0);
-            txtInOrderHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtInOrderHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtInOrderHeader.FontWeight = FontWeights.Bold;
-            txtInOrderHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtInOrderHeader.Uid);
-
-            panelOverview.Children.Add(txtInOrderHeader);
-
-            ListBox lbInOrder = new ListBox();
-            lbInOrder.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbInOrder.ItemTemplate = this.Resources["InOrderItem"] as DataTemplate;
-            lbInOrder.MaxHeight = 400;
-
-            panelOverview.Children.Add(lbInOrder);
-
-            List<FleetAirliner> airliners = this.Airline.Fleet;
-
-            foreach (FleetAirliner airliner in airliners.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate > GameObject.GetInstance().GameTime; })))
-                lbInOrder.Items.Add(airliner);
+      
 
             return panelOverview;
         }

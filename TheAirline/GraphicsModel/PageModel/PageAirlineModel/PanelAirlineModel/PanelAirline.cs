@@ -27,6 +27,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbFleet.Click += new System.Windows.RoutedEventHandler(sbFleet_Click);
             buttonsPanel.Children.Add(sbFleet);
 
+            ucSelectButton sbOrdered = new ucSelectButton();
+            sbOrdered.Uid = "1007";
+            sbOrdered.Click += new System.Windows.RoutedEventHandler(sbOrdered_Click);
+            sbOrdered.Content = Translator.GetInstance().GetString("PanelAirline", sbOrdered.Uid);
+            buttonsPanel.Children.Add(sbOrdered);
+
             ucSelectButton sbDestinations = new ucSelectButton();
             sbDestinations.Uid = "1002";
             sbDestinations.Content = Translator.GetInstance().GetString("PanelAirline", sbDestinations.Uid);
@@ -65,6 +71,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             frameContent.Navigate(new PageAirlineFleet(this.Airline));
 
             this.Children.Add(frameContent);
+        }
+
+        private void sbOrdered_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageAirlineOrdered(this.Airline));
         }
 
         private void sbWages_Click(object sender, System.Windows.RoutedEventArgs e)
