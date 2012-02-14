@@ -33,7 +33,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private Airline Airline;
         private ListView lvFleet, lvRouteFleet;
         private ListSortDirection sortDirection = ListSortDirection.Ascending;
-        private StackPanel panelOverview, panelDetailed;
+        private StackPanel panelOverview, panelDetailed, panelOrdered;
         private ObservableCollection<FleetAirliner> _FleetDelivered = new ObservableCollection<FleetAirliner>();
         public ObservableCollection<FleetAirliner> FleetDelivered
         { get { return _FleetDelivered; } }
@@ -66,37 +66,92 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbDetailed.Click += new RoutedEventHandler(sbDetailed_Click);
             panelMenuButtons.Children.Add(sbDetailed);
 
+            ucSelectButton sbOrdered = new ucSelectButton();
+            sbOrdered.Uid = "1009";
+            sbOrdered.Content = Translator.GetInstance().GetString("PageAirlineFleet", sbOrdered.Uid);
+            sbOrdered.Click += new RoutedEventHandler(sbOrdered_Click);
+            panelMenuButtons.Children.Add(sbOrdered);
+
+
             panelOverview = createOverviewPanel();
 
             panelDetailed = createDetailedPanel();
             panelDetailed.Visibility = System.Windows.Visibility.Collapsed;
 
+            panelOrdered = createOrderedPanel();
+            panelOrdered.Visibility = System.Windows.Visibility.Collapsed;
+
             panelFleet.Children.Add(panelOverview);
             panelFleet.Children.Add(panelDetailed);
+            panelFleet.Children.Add(panelOrdered);
 
             this.Content = panelFleet;
 
            // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFleet_OnTimeChanged);
         }
 
+     
         private void PageAirlineFleet_OnTimeChanged()
         {
             if (this.IsLoaded)
                 showFleet();
+        }
+        private void sbOrdered_Click(object sender, RoutedEventArgs e)
+        {
+            panelDetailed.Visibility = System.Windows.Visibility.Collapsed;
+            panelOverview.Visibility = System.Windows.Visibility.Collapsed;
+            panelOrdered.Visibility = System.Windows.Visibility.Visible;
         }
 
         private void sbOverview_Click(object sender, RoutedEventArgs e)
         {
             panelDetailed.Visibility = System.Windows.Visibility.Collapsed;
             panelOverview.Visibility = System.Windows.Visibility.Visible;
+            panelOrdered.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void sbDetailed_Click(object sender, RoutedEventArgs e)
         {
             panelOverview.Visibility = System.Windows.Visibility.Collapsed;
             panelDetailed.Visibility = System.Windows.Visibility.Visible;
+            panelOrdered.Visibility = System.Windows.Visibility.Collapsed;
+   
         }
+        //creates the panel for the airliners in order
+        private StackPanel createOrderedPanel()
+        {
+            StackPanel panelInOrder = new StackPanel();
 
+            TextBlock txtFleetHeader = new TextBlock();
+            txtFleetHeader.Uid = "1003";
+            txtFleetHeader.Margin = new Thickness(0, 0, 0, 0);
+            txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtFleetHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtFleetHeader.FontWeight = FontWeights.Bold;
+            txtFleetHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtFleetHeader.Uid);
+
+            panelInOrder.Children.Add(txtFleetHeader);
+
+            ContentControl txtHeader = new ContentControl();
+            txtHeader.ContentTemplate = this.Resources["OrderedHeader"] as DataTemplate;
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+
+            panelInOrder.Children.Add(txtHeader);
+
+            ListBox lbInOrder = new ListBox();
+            lbInOrder.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbInOrder.ItemTemplate = this.Resources["InOrderItem"] as DataTemplate;
+            lbInOrder.MaxHeight = 400;
+
+            panelInOrder.Children.Add(lbInOrder);
+
+            List<FleetAirliner> airliners = this.Airline.Fleet;
+
+            foreach (FleetAirliner airliner in airliners.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate > GameObject.GetInstance().GameTime; })))
+                lbInOrder.Items.Add(airliner);
+
+            return panelInOrder;
+        }
         //creates the overview of the fleet
         private StackPanel createOverviewPanel()
         {

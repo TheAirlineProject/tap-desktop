@@ -108,15 +108,23 @@
             </WrapPanel>
         </DataTemplate>
         -->
+        <DataTemplate x:Key="OrderedHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Type" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Delivery date" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="InOrderItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                 <TextBlock Text="{Binding Airliner.Type.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Airliner.BuiltDate, StringFormat={}{0:MM/dd/yyyy}}" Width="100" VerticalAlignment="Bottom">
-               
+
                 </TextBlock>
             </WrapPanel>
         </DataTemplate>
+       
     </Page.Resources>
         <Grid>
         
