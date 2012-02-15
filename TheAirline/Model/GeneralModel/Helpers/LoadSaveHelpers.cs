@@ -51,7 +51,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
                 DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
-                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value, new CultureInfo("de-DE", false));//XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
+                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);//Convert.ToDouble(airlinerNode.Attributes["flown"].Value, new CultureInfo("de-DE", false));//XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
                 airliner.Flown = flown;
@@ -503,7 +503,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToShortDateString());
-                airlinerNode.SetAttribute("flown", string.Format("{0:0.##}",airliner.Flown));
+                airlinerNode.SetAttribute("flown", string.Format("{0:0}",airliner.Flown));
 
                 XmlElement airlinerClassesNode = xmlDoc.CreateElement("classes");
                 foreach (AirlinerClass aClass in airliner.Classes)
@@ -548,7 +548,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("color", airline.Profile.Color);
                 airlineNode.SetAttribute("logo", airline.Profile.Logo);
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
-                airlineNode.SetAttribute("money", airline.Money.ToString());
+                airlineNode.SetAttribute("money",string.Format("{0:0}",airline.Money));
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
 
                 // chs, 2011-13-10 added for saving of passenger happiness
@@ -603,7 +603,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement invoiceNode = xmlDoc.CreateElement("invoice");
                     invoiceNode.SetAttribute("type", invoice.Type.ToString());
                     invoiceNode.SetAttribute("date", invoice.Date.ToString(new CultureInfo("de-DE", false)));
-                    invoiceNode.SetAttribute("amount", invoice.Amount.ToString());
+                    invoiceNode.SetAttribute("amount", string.Format("{0:0}",invoice.Amount));
 
                     invoicesNode.AppendChild(invoiceNode);
                 }
