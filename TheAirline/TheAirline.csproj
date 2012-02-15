@@ -498,6 +498,7 @@
     <Compile Include="Model\AirportModel\AirportProfile.cs" />
     <Compile Include="Model\AirportModel\AirportStatistics.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
+    <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />

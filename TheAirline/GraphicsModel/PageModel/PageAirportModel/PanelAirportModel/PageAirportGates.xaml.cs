@@ -28,7 +28,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
     {
         private Airport Airport;
         private StackPanel panelGates;
-        private ListBox lbTerminals;
+        private ListBox lbTerminals, lbHubs;
+        private Button btnHub;
         public PageAirportGates(Airport airport)
         {
             this.Airport = airport;
@@ -74,25 +75,54 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelGatesTerminals.Children.Add(svTerminals);
 
+            WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Margin = new Thickness(0, 5, 0, 0);
+            panelGatesTerminals.Children.Add(panelButtons);
+            
+
             Button btnTerminal = new Button();
             btnTerminal.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnTerminal.Uid = "201";
             btnTerminal.Height = Double.NaN;
             btnTerminal.Width = Double.NaN;
-            btnTerminal.Margin = new Thickness(0, 5, 0, 0);
             btnTerminal.Content = Translator.GetInstance().GetString("PageAirportGates", btnTerminal.Uid);
             btnTerminal.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnTerminal.Click += new RoutedEventHandler(btnTerminal_Click);
             btnTerminal.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            panelGatesTerminals.Children.Add(btnTerminal);
+            panelButtons.Children.Add(btnTerminal);
+
+            btnHub = new Button();
+            btnHub.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnHub.Uid = "202";
+            btnHub.Width = Double.NaN;
+            btnHub.Height = Double.NaN;
+            btnHub.Content = "Buy hub";
+            btnHub.Click += new RoutedEventHandler(btnHub_Click);
+            btnHub.Margin = new Thickness(5, 0, 0, 0);
+            btnHub.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+
+            panelButtons.Children.Add(btnHub);
 
             this.Content = panelGatesTerminals;
 
             showGatesInformation();
             showTerminals();
+            showHubs();
         }
 
+       
+        //shows the hubs
+        private void showHubs()
+        {
+            lbHubs.Items.Clear();
 
+            foreach (Hub hub in this.Airport.Hubs)
+                lbHubs.Items.Add(hub);
+
+            Boolean isBuyHubEnabled = (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service) == AirportFacilities.GetFacility("Large ServiceCenter"));
+            btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+        
+        }
         // chs, 2011-28-10 changed to show all terminals
         //shows the terminals
         private void showTerminals()
@@ -120,31 +150,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelGates.Children.Add(txtGatesInfoHeader);
 
-            ListBox lbAirlineInfo = new ListBox();
-            lbAirlineInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbAirlineInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1003"), UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString())));
-            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1004"), UICreator.CreateTextBlock((this.Airport.Terminals.getNumberOfGates() - this.Airport.Terminals.getFreeGates()).ToString())));
-            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1005"), UICreator.CreateTextBlock(this.Airport.Terminals.getFreeGates().ToString())));
-            lbAirlineInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1006"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airport.getGatePrice()))));
-            panelGates.Children.Add(lbAirlineInfo);
+            ListBox lbGatesInfo = new ListBox();
+            lbGatesInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbGatesInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            lbGatesInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1003"), UICreator.CreateTextBlock(this.Airport.Terminals.getNumberOfGates().ToString())));
+            lbGatesInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1004"), UICreator.CreateTextBlock((this.Airport.Terminals.getNumberOfGates() - this.Airport.Terminals.getFreeGates()).ToString())));
+            lbGatesInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1005"), UICreator.CreateTextBlock(this.Airport.Terminals.getFreeGates().ToString())));
+            lbGatesInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirportGates", "1006"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airport.getGatePrice()))));
+            panelGates.Children.Add(lbGatesInfo);
+
+            Grid grdGatesHubs = UICreator.CreateGrid(2);
+            grdGatesHubs.Margin = new Thickness(0, 10, 0, 0);
+            panelGates.Children.Add(grdGatesHubs);
+
+            StackPanel panelAirlineGates = new StackPanel();
+            panelAirlineGates.Margin = new Thickness(0,0,5,0);
 
             TextBlock txtGatesHeader = new TextBlock();
-            txtGatesHeader.Margin = new Thickness(0, 10, 0, 0);
             txtGatesHeader.Uid = "1007";
             txtGatesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtGatesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtGatesHeader.FontWeight = FontWeights.Bold;
             txtGatesHeader.Text = Translator.GetInstance().GetString("PageAirportGates", txtGatesHeader.Uid);
 
-            panelGates.Children.Add(txtGatesHeader);
+            panelAirlineGates.Children.Add(txtGatesHeader);
 
             ListBox lbAirlineGates = new ListBox();
             lbAirlineGates.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbAirlineGates.ItemTemplate = this.Resources["AirlineGatesItem"] as DataTemplate;
-
-
-            panelGates.Children.Add(lbAirlineGates);
+            
+            panelAirlineGates.Children.Add(lbAirlineGates);
 
             List<Airline> airlines = Airlines.GetAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
@@ -152,8 +187,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             foreach (Airline airline in airlines)
                 lbAirlineGates.Items.Add(new AirlineGates(airline, this.Airport.Terminals.getNumberOfGates(airline), this.Airport.Terminals.getNumberOfGates(airline) - this.Airport.Terminals.getFreeGates(airline)));
 
+            Grid.SetColumn(panelAirlineGates,0);
+            grdGatesHubs.Children.Add(panelAirlineGates);
 
-          
+            StackPanel panelHubs = new StackPanel();
+            panelHubs.Margin = new Thickness(5, 0, 0, 0);
+
+            TextBlock txtAirportHubs = new TextBlock();
+            txtAirportHubs.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtAirportHubs.FontWeight = FontWeights.Bold;
+            txtAirportHubs.Text = "Hubs";
+
+            panelHubs.Children.Add(txtAirportHubs);
+
+            lbHubs = new ListBox();
+            lbHubs.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbHubs.ItemTemplate = this.Resources["HubItem"] as DataTemplate;
+
+            panelHubs.Children.Add(lbHubs);
+
+            Grid.SetColumn(panelHubs, 1);
+            grdGatesHubs.Children.Add(panelHubs);
+
 
 
         }
@@ -211,6 +266,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             showTerminals();
 
         }
+        private void btnHub_Click(object sender, RoutedEventArgs e)
+        {
+            this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
+
+            showHubs();
+        }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
             try

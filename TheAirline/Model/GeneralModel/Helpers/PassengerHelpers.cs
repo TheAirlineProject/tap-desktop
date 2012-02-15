@@ -82,6 +82,12 @@ namespace TheAirline.Model.GeneralModel
 
             int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,size), airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
 
+            if (airportCurrent.IsHub)
+            {
+                double hubCoeff = 1.2;
+                double dValue = Convert.ToDouble(value) * hubCoeff;
+                value = Math.Min((int)dValue, airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+            }
 
             return value;
 

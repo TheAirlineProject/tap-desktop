@@ -22,7 +22,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
     public partial class PageSearchAirports : Page
     {
         private TextBox txtTextSearch;
-        private CheckBox cbHumanAirports;
+        private CheckBox cbHumanAirports, cbHubs;
         private PageAirports ParentPage;
         private ComboBox cbCountry, cbRegion, cbSize;
         public PageSearchAirports(PageAirports parent)
@@ -43,13 +43,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             panelSearch.Children.Add(txtHeader);
 
+            WrapPanel panelCheckBoxes = new WrapPanel();
+            panelSearch.Children.Add(panelCheckBoxes);
+
             cbHumanAirports = new CheckBox();
             cbHumanAirports.Uid = "1002";
             cbHumanAirports.Content = Translator.GetInstance().GetString("PageSearchAirports", cbHumanAirports.Uid);
             cbHumanAirports.IsChecked = false;
             cbHumanAirports.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbHumanAirports.FlowDirection = System.Windows.FlowDirection.RightToLeft;
-            panelSearch.Children.Add(cbHumanAirports);
+            
+            panelCheckBoxes.Children.Add(cbHumanAirports);
+
+            cbHubs = new CheckBox();
+            cbHubs.Content = "Hubs only";
+            cbHubs.IsChecked = false;
+            cbHubs.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            cbHubs.Margin = new Thickness(5, 0, 0, 0);
+
+            panelCheckBoxes.Children.Add(cbHubs);
 
             cbRegion = new ComboBox();
             cbRegion.Margin = new Thickness(0, 5, 0, 0);
@@ -142,7 +154,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             btnClear.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnClear.Width = Double.NaN;
             btnClear.Height = Double.NaN;
-            btnClear.Margin = new Thickness(5, 0, 0, 0);
+            btnClear.Margin = new Thickness(10, 0, 0, 0);
             btnClear.Content = Translator.GetInstance().GetString("General", btnClear.Uid);
             btnClear.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnClear.Click += new RoutedEventHandler(btnClear_Click);
@@ -178,6 +190,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
         {
             txtTextSearch.Text = "";
             cbHumanAirports.IsChecked = false;
+            cbHubs.IsChecked = false;
             cbCountry.SelectedIndex = 0;
             cbRegion.SelectedIndex = 0;
             cbSize.SelectedIndex = 0;
@@ -192,10 +205,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             Country country = (Country)cbCountry.SelectedItem;
 
             Boolean humansOnly = cbHumanAirports.IsChecked.Value;
+            Boolean hubsOnly = cbHubs.IsChecked.Value;
 
             List<Airport> airports = Airports.GetAirports();
 
             if (humansOnly) airports = airports.FindAll(delegate(Airport airport) { return GameObject.GetInstance().HumanAirline.Airports.Contains(airport); });
+
+            if (hubsOnly) airports = airports.FindAll(delegate(Airport airport) { return airport.IsHub; });
 
             if (country.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
 

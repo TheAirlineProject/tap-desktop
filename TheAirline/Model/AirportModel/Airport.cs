@@ -22,6 +22,8 @@ namespace TheAirline.Model.AirportModel
         // chs, 2012-18-01 added for runways
         public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
+        public List<Hub> Hubs { get; set; }
+        public Boolean IsHub { get { return this.Hubs.Count > 0; } set { ;} }
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
@@ -31,20 +33,8 @@ namespace TheAirline.Model.AirportModel
             this.Weather = new Weather();
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
-            // chs, 2011-01-11 changed so the number of terminals reflects the airport size
-            // will later be changed to "real" data
-            
-            /*
-             * for (int i = 0; i <= (int)this.Profile.Size; i++)
-            {
-                int gates = this.Profile.Gates / ((int)this.Profile.Size+1);
-
-                if (i == 0)
-                    gates += this.Profile.Gates - (gates * ((int)this.Profile.Size+1));
-                
-                this.Terminals.addTerminal(new Terminal(this, null, gates, new DateTime(1950, 1, 1)));
-            }
-             * */
+            this.Hubs = new List<Hub>();
+          
 
          }
         //returns the maximum value for the run ways
