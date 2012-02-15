@@ -119,7 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             foreach (Hub hub in this.Airport.Hubs)
                 lbHubs.Items.Add(hub);
 
-            Boolean isBuyHubEnabled = (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service) == AirportFacilities.GetFacility("Large ServiceCenter"));
+            Boolean isBuyHubEnabled = (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
             btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
         
         }
@@ -287,6 +287,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
 
         }
+        private void btnRemoveHub_Click(object sender, RoutedEventArgs e)
+        {
+            Hub hub = (Hub)((Button)sender).Tag;
+
+            this.Airport.Hubs.Remove(hub);
+
+            showHubs();
+        }
         // chs, 2011-27-10 added for the possibility of purchasing a terminal
         private void btnRemoveTerminal_Click(object sender, RoutedEventArgs e)
         {
@@ -393,6 +401,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             }
         }
+
+     
 
         
       

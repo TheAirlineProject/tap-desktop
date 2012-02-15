@@ -137,7 +137,7 @@ namespace TheAirline.GraphicsModel.Converters
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v + " m.";
             else
-                return string.Format("{0:0.00} feet", MathHelpers.MeterToFeet(v)) ; 
+                return string.Format("{0:0} feet", MathHelpers.MeterToFeet(v)) ; 
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

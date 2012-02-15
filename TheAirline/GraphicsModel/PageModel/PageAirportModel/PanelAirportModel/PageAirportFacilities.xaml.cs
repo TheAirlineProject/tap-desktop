@@ -81,7 +81,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             foreach (Airline airline in airlines)
             {
-                //foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                 for (int i = 0; i < types.Length; i++)
                 {
 
@@ -169,9 +168,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private void ButtonSell_Click(object sender, RoutedEventArgs e)
         {
             HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
+            Boolean hasHub = this.Airport.Hubs.Find(delegate(Hub hub){return hub.Airline == GameObject.GetInstance().HumanAirline;}) != null;
 
-            if (type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline))
+            if ((type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
+            else if (type.CurrentFacility.Type == AirportFacility.FacilityType.Service && hasHub && type.CurrentFacility == Hub.MinimumServiceFacilities)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), string.Format("The airport serves as a hub, and needs at least a {0}", Hub.MinimumServiceFacilities.Name), WPFMessageBoxButtons.Ok);
             else
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);

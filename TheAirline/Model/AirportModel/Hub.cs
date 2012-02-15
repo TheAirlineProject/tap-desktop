@@ -10,6 +10,7 @@ namespace TheAirline.Model.AirportModel
     public class Hub
     {
         public Airline Airline { get; set; }
+        public static AirportFacility MinimumServiceFacilities = AirportFacilities.GetFacility("Large ServiceCenter");
         public Hub(Airline airline)
         {
             this.Airline = airline;
