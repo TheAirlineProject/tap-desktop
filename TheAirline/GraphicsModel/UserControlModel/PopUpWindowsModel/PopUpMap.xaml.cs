@@ -275,11 +275,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (p.X < panelMap.Width)
               panelMap.Children.Add(createPin(p, route.Destination2));
 
-            panelMap.Children.Add(createRouteLine(route.Destination1, route.Destination2, zoom,margin));
+            createRouteLine(route.Destination1, route.Destination2,panelMap, zoom,margin);
 
         }
         //creates the line between two airports
-        private Line createRouteLine(Airport a1, Airport a2, int zoom, Point margin)
+        private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin)
         {
             
             Point pos1 = GraphicsHelpers.WorldToTilePos(a1.Profile.Coordinates, zoom);
@@ -287,12 +287,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Line line = new Line();
             line.Stroke = new AirlineBrushConverter().Convert(GameObject.GetInstance().HumanAirline) as SolidColorBrush;
-            line.X1 = pos1.X * ImageSize - margin.X * ImageSize;
-            line.X2 = pos2.X * ImageSize - margin.X * ImageSize;
+            line.X1 = Math.Min(panelMap.Width,pos1.X * ImageSize - margin.X * ImageSize);
+            line.X2 = Math.Min(panelMap.Width, pos2.X * ImageSize - margin.X * ImageSize);
             line.Y1 = pos1.Y * ImageSize - margin.Y * ImageSize;
             line.Y2 = pos2.Y * ImageSize - margin.Y * ImageSize;
 
-            return line;
+            panelMap.Children.Add(line);
 
         }
         public PopUpMap(Airport airport)
@@ -354,6 +354,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             foreach (Route route in routes)
                 showRoute(route, panelMainMap, zoom, new Point((int)px - 1, (int)py - 1));
 
+          
             StackPanel sidePanel = createAirportSizeSidePanel();
             Canvas.SetTop(sidePanel, 0);
             Canvas.SetLeft(sidePanel, this.MapSize);
@@ -361,6 +362,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelMap.Children.Add(panelMainMap);
             panelMap.Children.Add(sidePanel);
 
+            
 
             this.Content = panelMap;
         }
