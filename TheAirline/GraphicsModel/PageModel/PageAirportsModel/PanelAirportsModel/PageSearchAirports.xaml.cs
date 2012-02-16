@@ -56,7 +56,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             panelCheckBoxes.Children.Add(cbHumanAirports);
 
             cbHubs = new CheckBox();
-            cbHubs.Content = "Hubs only";
+            cbHubs.Uid = "1003";
+            cbHubs.Content = Translator.GetInstance().GetString("PageSearchAirports", cbHubs.Uid);
             cbHubs.IsChecked = false;
             cbHubs.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             cbHubs.Margin = new Thickness(5, 0, 0, 0);

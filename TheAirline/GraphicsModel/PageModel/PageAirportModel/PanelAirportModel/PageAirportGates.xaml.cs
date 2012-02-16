@@ -93,10 +93,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             btnHub = new Button();
             btnHub.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnHub.Uid = "202";
+            btnHub.Uid = "204";
             btnHub.Width = Double.NaN;
             btnHub.Height = Double.NaN;
-            btnHub.Content = "Buy hub";
+            btnHub.Content = Translator.GetInstance().GetString("PageAirportGates", btnHub.Uid);
             btnHub.Click += new RoutedEventHandler(btnHub_Click);
             btnHub.Margin = new Thickness(5, 0, 0, 0);
             btnHub.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -201,7 +201,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             TextBlock txtAirportHubs = new TextBlock();
             txtAirportHubs.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtAirportHubs.FontWeight = FontWeights.Bold;
-            txtAirportHubs.Text = "Hubs";
+            txtAirportHubs.Uid = "1008";
+            txtAirportHubs.Text = Translator.GetInstance().GetString("PageAirportGates", txtAirportHubs.Uid);
+
 
             panelHubs.Children.Add(txtAirportHubs);
 
@@ -277,11 +279,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
               if (this.Airport.getHubPrice() > GameObject.GetInstance().HumanAirline.Money)
               {
-                  WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2205"), Translator.GetInstance().GetString("MessageBox", "2205", "message"), WPFMessageBoxButtons.Ok);
+                  WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2212"), Translator.GetInstance().GetString("MessageBox", "2212", "message"), WPFMessageBoxButtons.Ok);
               }
               else
               {
-                  WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2206"), string.Format(Translator.GetInstance().GetString("MessageBox", "2206", "message"), 0, this.Airport.getHubPrice()), WPFMessageBoxButtons.YesNo);
+                  WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2213"), string.Format(Translator.GetInstance().GetString("MessageBox", "2213", "message"), this.Airport.getHubPrice()), WPFMessageBoxButtons.YesNo);
 
                   if (result == WPFMessageBoxResult.Yes)
                   {
