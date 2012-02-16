@@ -88,6 +88,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelButtons.Children.Add(btnMap);
 
             this.Content = panelDestinations;
+
         }
 
         private void btnDestinations_Click(object sender, RoutedEventArgs e)

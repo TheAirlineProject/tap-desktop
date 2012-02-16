@@ -119,7 +119,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             foreach (Hub hub in this.Airport.Hubs)
                 lbHubs.Items.Add(hub);
 
-            Boolean isBuyHubEnabled = (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
+            int airlineValue = (int)GameObject.GetInstance().HumanAirline.getAirlineValue()+1;
+
+            int humanHubs = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline);
+            double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
+
+            Boolean isBuyHubEnabled = (humanGatesPercent>20) && (humanHubs<airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
             btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
         
         }
@@ -268,9 +273,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         }
         private void btnHub_Click(object sender, RoutedEventArgs e)
         {
-            this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
+            
 
-            showHubs();
+              if (this.Airport.getHubPrice() > GameObject.GetInstance().HumanAirline.Money)
+              {
+                  WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2205"), Translator.GetInstance().GetString("MessageBox", "2205", "message"), WPFMessageBoxButtons.Ok);
+              }
+              else
+              {
+                  WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2206"), string.Format(Translator.GetInstance().GetString("MessageBox", "2206", "message"), 0, this.Airport.getHubPrice()), WPFMessageBoxButtons.YesNo);
+
+                  if (result == WPFMessageBoxResult.Yes)
+                  {
+                      this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
+
+                      showHubs();
+
+                      GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airport.getHubPrice()));
+
+                  }
+              }
+           
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)

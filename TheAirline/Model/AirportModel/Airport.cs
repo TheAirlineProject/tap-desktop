@@ -144,6 +144,12 @@ namespace TheAirline.Model.AirportModel
             setAirportFacility(airline, facilities[index - 1]);
 
         }
+        //returns the price for a hub
+        public long getHubPrice()
+        {
+            long price = 500000 + 250000 * ((int)this.Profile.Size);
+            return price;
+        }
         // chs, 2011-31-10 added for pricing of a terminal
         //returns the price for a terminal
         public long getTerminalPrice()

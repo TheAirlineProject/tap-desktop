@@ -310,6 +310,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirportProfile.AirportSize airportSize = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
 
+                
+                XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
+                foreach (XmlElement airportHubElement in airportHubsList)
+                {
+                    Airline airline = Airlines.GetAirline(airportHubElement.Attributes["airline"].Value);
+                    airport.Hubs.Add(new Hub(airline));
+                }
 
                 XmlNodeList airportStatList = airportNode.SelectNodes("stats/stat");
 
@@ -759,6 +766,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
                 airportNode.SetAttribute("iata", airport.Profile.IATACode);
                 airportNode.SetAttribute("size", airport.Profile.Size.ToString());
+
+                XmlElement airportHubsNode = xmlDoc.CreateElement("hubs");
+                foreach (Hub hub in airport.Hubs)
+                {
+                    XmlElement airportHubNode = xmlDoc.CreateElement("hub");
+                    airportHubNode.SetAttribute("airline", hub.Airline.Profile.IATACode);
+
+                    airportHubsNode.AppendChild(airportHubNode);
+                }
+
+                airportNode.AppendChild(airportHubsNode);
 
                 XmlElement airportStatsNode = xmlDoc.CreateElement("stats");
                 foreach (Airline airline in Airlines.GetAirlines())
