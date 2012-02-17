@@ -47,9 +47,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             foreach (FleetAirliner fa in this.Airline.DeliveredFleet)
                 _FleetDelivered.Add(fa);
 
-            StackPanel panelFleet = new StackPanel();
-            panelFleet.Margin = new Thickness(0, 10, 50, 0);
+            ScrollViewer svFleet = new ScrollViewer();
+            svFleet.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svFleet.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svFleet.Margin = new Thickness(0, 10, 50, 0);
+            svFleet.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
 
+
+            StackPanel panelFleet = new StackPanel();
+            
             WrapPanel panelMenuButtons = new WrapPanel();
             panelFleet.Children.Add(panelMenuButtons);
 
@@ -85,7 +91,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelFleet.Children.Add(panelDetailed);
             panelFleet.Children.Add(panelOrdered);
 
-            this.Content = panelFleet;
+            svFleet.Content = panelFleet;
+
+            this.Content = svFleet;
 
            // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFleet_OnTimeChanged);
         }
