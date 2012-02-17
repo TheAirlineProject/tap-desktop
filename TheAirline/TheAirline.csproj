@@ -523,6 +523,7 @@
     <Compile Include="Model\GeneralModel\Setup.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\GeneralStatistics.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsType.cs" />
+    <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsValue.cs" />
     <Compile Include="Model\GeneralModel\Translator.cs" />
     <Compile Include="Model\GeneralModel\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
