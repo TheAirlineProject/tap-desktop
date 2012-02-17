@@ -14,7 +14,7 @@ namespace TheAirline.Model.AirportModel
     public class AirportStatistics
     {
         private Dictionary<Airline, Dictionary<StatisticsType, int>> Stats;
-
+        
         public AirportStatistics()
         {
             this.Stats = new Dictionary<Airline, Dictionary<StatisticsType, int>>();

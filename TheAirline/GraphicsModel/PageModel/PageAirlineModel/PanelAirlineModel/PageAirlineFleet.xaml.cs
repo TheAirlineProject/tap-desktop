@@ -47,13 +47,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             foreach (FleetAirliner fa in this.Airline.DeliveredFleet)
                 _FleetDelivered.Add(fa);
 
-            ScrollViewer svFleet = new ScrollViewer();
-            svFleet.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            svFleet.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            svFleet.Margin = new Thickness(0, 10, 50, 0);
-            svFleet.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
-
-
             StackPanel panelFleet = new StackPanel();
             
             WrapPanel panelMenuButtons = new WrapPanel();
@@ -91,9 +84,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelFleet.Children.Add(panelDetailed);
             panelFleet.Children.Add(panelOrdered);
 
-            svFleet.Content = panelFleet;
 
-            this.Content = svFleet;
+
+            this.Content = panelFleet;
 
            // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFleet_OnTimeChanged);
         }
@@ -146,12 +139,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelInOrder.Children.Add(txtHeader);
 
+            ScrollViewer svOrdered = new ScrollViewer();
+            svOrdered.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svOrdered.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svOrdered.MaxHeight = 400;
+       
             ListBox lbInOrder = new ListBox();
             lbInOrder.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbInOrder.ItemTemplate = this.Resources["InOrderItem"] as DataTemplate;
-            lbInOrder.MaxHeight = 400;
 
-            panelInOrder.Children.Add(lbInOrder);
+            svOrdered.Content = lbInOrder;
+
+            panelInOrder.Children.Add(svOrdered);
 
             List<FleetAirliner> airliners = this.Airline.Fleet;
 
