@@ -99,7 +99,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = string.Format(Translator.GetInstance().GetString("PageAirportStatistics", "1002"), type.Name, this.Airport.Statistics.getTotalValue(type));
+            txtHeader.Text = string.Format(Translator.GetInstance().GetString("PageAirportStatistics", "1002"), type.Name, this.Airport.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, type));
 
             panelStatistics.Children.Add(txtHeader);
 
@@ -116,7 +116,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)
-                lbStatistics.Items.Add(new AirlineStatisticsItem(airline,this.Airport.Statistics.getStatisticsValue(airline,type),Math.Max(1, (int)Convert.ToDouble(this.Airport.Statistics.getStatisticsValue(airline,type)*coff))));
+                lbStatistics.Items.Add(new AirlineStatisticsItem(airline, this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, type), Math.Max(1, (int)Convert.ToDouble(this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, type) * coff))));
 
             panelStatistics.Children.Add(lbStatistics);
 
@@ -129,7 +129,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             double value = 1;
             foreach (Airline airline in Airlines.GetAirlines())
             {
-                int aValue = this.Airport.Statistics.getStatisticsValue(airline, type);
+                int aValue = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, type);
                 if (aValue > value)
                     value = aValue;
             }

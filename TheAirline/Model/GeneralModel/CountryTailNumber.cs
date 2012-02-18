@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using TheAirline.Model.AirlinerModel;
+using System.Text.RegularExpressions;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -23,7 +24,16 @@ namespace TheAirline.Model.GeneralModel
             string countryID = this.Country.TailNumberFormat.Split('-')[0];
             string numberFormat = this.Country.TailNumberFormat.Split('-')[1];
 
-            int length = Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
+            int length = 0;//Convert.ToInt16(numberFormat.Substring(numberFormat.Length - 1));
+
+            int sIndex = numberFormat.IndexOf('s');
+            int dIndex = numberFormat.IndexOf('d');
+
+
+            if (sIndex != -1)
+                length += Convert.ToInt16(numberFormat.Substring(sIndex+1,1));
+            if (dIndex != -1)
+                length += Convert.ToInt16(numberFormat.Substring(dIndex+1,1));
 
             string tailID = tailNumber.Split('-')[0];
             string tailFormat = tailNumber.Split('-')[1];

@@ -68,10 +68,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             lbAirports.Items.Clear();
 
             List<Airport> airports = Airports.GetAirports();
-            airports.Sort(delegate(Airport a1, Airport a2) { return a2.Statistics.getTotalValue(statType).CompareTo(a1.Statistics.getTotalValue(statType)); });
+            airports.Sort(delegate(Airport a1, Airport a2) { return a2.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType).CompareTo(a1.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType)); });
 
             foreach (Airport airport in airports.GetRange(0, 20))
-                lbAirports.Items.Add(new AirportTotalItem(airport, airport.Statistics.getTotalValue(statType)));
+                lbAirports.Items.Add(new AirportTotalItem(airport, airport.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType)));
         }
 
         private void LnkAirport_Click(object sender, RoutedEventArgs e)

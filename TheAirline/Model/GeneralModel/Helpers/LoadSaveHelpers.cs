@@ -325,7 +325,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airline airline = Airlines.GetAirline(airportStatNode.Attributes["airline"].Value);
                     string statType = airportStatNode.Attributes["type"].Value; 
                     int statValue = Convert.ToInt32(airportStatNode.Attributes["value"].Value);
-                    airport.Statistics.setStatisticsValue(airline,StatisticsTypes.GetStatisticsType(statType), statValue);
+                    airport.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, StatisticsTypes.GetStatisticsType(statType), statValue);
                 }
 
                 XmlNodeList airportFacilitiesList = airportNode.SelectNodes("facilities/facility");
@@ -785,7 +785,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement airportStatNode = xmlDoc.CreateElement("stat");
 
-                        int value = airport.Statistics.getStatisticsValue(airline, type);
+                        int value = airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, type);
                         airportStatNode.SetAttribute("airline", airline.Profile.IATACode);
                         airportStatNode.SetAttribute("type", type.Shortname);
                         airportStatNode.SetAttribute("value", value.ToString());

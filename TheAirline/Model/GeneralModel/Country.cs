@@ -63,7 +63,9 @@ namespace TheAirline.Model.GeneralModel
         //returns a country with a specific tailnumberformat
         public static Country GetCountryFromTailNumber(string tailnumber)
         {
-            return GetCountries().Find((delegate(Country country) { return country.TailNumbers.isMatch(tailnumber); }));
+            return GetCountries().Find(co => co.TailNumbers.isMatch(tailnumber));
+
+
         }
 
         //returns the list of countries
