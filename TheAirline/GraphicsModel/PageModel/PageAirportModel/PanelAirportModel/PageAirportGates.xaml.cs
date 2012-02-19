@@ -267,11 +267,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         private void btnReleaseGate_Click(object sender, RoutedEventArgs e)
         {
-            Terminal terminal = (Terminal)((Button)sender).Tag;
-            terminal.Gates.releaseGate(GameObject.GetInstance().HumanAirline);
+            double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)-1) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
+            Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
-            showGatesInformation();
-            showTerminals();
+            if (humanGatesPercent < 20 && humanHub)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2215"), Translator.GetInstance().GetString("MessageBox", "2215", "message"), WPFMessageBoxButtons.Ok);
+    
+            }
+            else
+            {
+                Terminal terminal = (Terminal)((Button)sender).Tag;
+                terminal.Gates.releaseGate(GameObject.GetInstance().HumanAirline);
+
+                showGatesInformation();
+                showTerminals();
+            }
 
         }
         private void btnHub_Click(object sender, RoutedEventArgs e)

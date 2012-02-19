@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using System.Collections.ObjectModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -21,6 +22,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpAirlinerConfiguration : PopUpWindow
     {
+        public static int MaxSeats;
         private List<AirlinerClass> Classes;
         private ListBox lbClasses;
         private ContentControl lblNewClass;
@@ -33,6 +35,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpAirlinerConfiguration(Airliner airliner)
         {
+
             this.Classes = new List<AirlinerClass>();
 
             foreach (AirlinerClass aClass in airliner.Classes)
@@ -80,7 +83,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.Content = "OK";
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-         
+
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
@@ -92,7 +95,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Content = "Cancel";
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-           
+
             panelButtons.Children.Add(btnCancel);
 
             panelClasses.Children.Add(panelButtons);
@@ -101,7 +104,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showAirlinerClasses();
 
-           
+
 
         }
 
@@ -124,20 +127,33 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             int i = 0;
             foreach (AirlinerClass aClass in this.Classes)
             {
-                lbClasses.Items.Add(new AirlinerClassItem(aClass,  i==this.Classes.Count-1 && i>0 ));
+                lbClasses.Items.Add(new AirlinerClassItem(aClass, i == this.Classes.Count - 1 && i > 0));
 
                 i++;
             }
 
             AirlinerClass.ClassType nextClass = this.Classes.Count < this.Classes[0].Airliner.Type.MaxAirlinerClasses ? this.Classes[this.Classes.Count - 1].Type + 1 : AirlinerClass.ClassType.Economy_Class;
-   
-            lblNewClass.Visibility = this.Classes.Count < this.Classes[0].Airliner.Type.MaxAirlinerClasses  ? Visibility.Visible : Visibility.Collapsed;
+
+            if (nextClass == AirlinerClass.ClassType.Business_Class)
+            {
+                MaxSeats = (int)(0.2 * Convert.ToDouble(this.Classes[0].Airliner.Type.MaxSeatingCapacity));
+
+
+            }
+            if (nextClass == AirlinerClass.ClassType.First_Class)
+            {
+                MaxSeats = (int)(0.1 * Convert.ToDouble(this.Classes[0].Airliner.Type.MaxSeatingCapacity));
+
+            }
+           
+     
+            lblNewClass.Visibility = this.Classes.Count < this.Classes[0].Airliner.Type.MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
             lblNewClass.Content = nextClass;
         }
-       
+
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            int seating= (int)((Button)sender).Tag;
+            int seating = (int)((Button)sender).Tag;
             AirlinerClass.ClassType nextClass = this.Classes[this.Classes.Count - 1].Type + 1;
             AirlinerClass aClass = new AirlinerClass(this.Classes[0].Airliner, nextClass, seating);
 
@@ -159,7 +175,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             AirlinerClass aClass = this.Classes[this.Classes.Count - 1];
             this.Classes.Remove(aClass);
-            
+
             // chs, 2011-11-10 added so seat capacity is correctly calculated
             this.Classes[0].SeatingCapacity += aClass.RegularSeatingCapacity;
             this.Classes[0].RegularSeatingCapacity += aClass.RegularSeatingCapacity;
@@ -179,15 +195,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
 
 
-      
+
+
     }
-    public class SeatingCapacities : List<int>
+    public class SeatingCapacities : ObservableCollection<int>
     {
         public SeatingCapacities()
         {
-            for (int i = 1; i < 20; i++)
+           
+            for (int i = 1; i < PopUpAirlinerConfiguration.MaxSeats; i++)
                 Add(i + 1);
         }
     }
-   
+
 }
+    
