@@ -13,11 +13,9 @@ namespace TheAirline.Model.AirportModel
  */
     public class AirportStatistics
     {
-        //private Dictionary<Airline, Dictionary<StatisticsType, int>> Stats;
         private Dictionary<int, List<AirportStatisticsValue>> Stats;
         public AirportStatistics()
         {
-            //this.Stats = new Dictionary<Airline, Dictionary<StatisticsType, int>>();
             this.Stats = new Dictionary<int, List<AirportStatisticsValue>>();
         }
         //returns the value for a statistics type for an airline for a year
@@ -30,17 +28,8 @@ namespace TheAirline.Model.AirportModel
             }
             return 0;
         }
-        /**
-        //returns the value for a statistics type for an airline
-        public int getStatisticsValue(Airline airline, StatisticsType type)
-        {
-            
-            if (this.Stats.ContainsKey(airline) && this.Stats[airline].ContainsKey(type))
-                return this.Stats[airline][type];
-            else
-                return 0;
-        }
-         */
+
+       
         //adds the value for a statistics type to an airline for a year
         public void addStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
@@ -66,27 +55,7 @@ namespace TheAirline.Model.AirportModel
                 this.Stats[year].Add(new AirportStatisticsValue(airline, type, value));
            
         }
-        /**
-        //adds the value for a statistics type to an airline
-        public void addStatisticsValue(Airline airline, StatisticsType type, int value)
-        {
-            if (!this.Stats.ContainsKey(airline))
-                this.Stats.Add(airline, new Dictionary<StatisticsType, int>());
-            if (!this.Stats[airline].ContainsKey(type))
-                this.Stats[airline].Add(type, 0);
-            this.Stats[airline][type] += value;
-        }
-        //sets the value for a statistics type to an airline
-        public void setStatisticsValue(Airline airline, StatisticsType type, int value)
-        {
-            if (!this.Stats.ContainsKey(airline))
-                this.Stats.Add(airline, new Dictionary<StatisticsType, int>());
-            if (!this.Stats[airline].ContainsKey(type))
-                this.Stats[airline].Add(type, value);
-            else
-                this.Stats[airline][type] = value;
-        }
-         * */
+     
         //returns the total value for a statistics type for a year
         public int getTotalValue(int year, StatisticsType type)
         {
@@ -102,21 +71,6 @@ namespace TheAirline.Model.AirportModel
         
         }
 
-        /*
-        //returns the total value of a statistics type
-        public int getTotalValue(StatisticsType type)
-        {
-            int value = 0;
-
-            foreach (Airline airline in this.Stats.Keys)
-            {
-                if (this.Stats[airline].ContainsKey(type))
-                    value += this.Stats[airline][type];
-            }
-
-
-            return value;
-        }
-        **/
+       
     }
 }
