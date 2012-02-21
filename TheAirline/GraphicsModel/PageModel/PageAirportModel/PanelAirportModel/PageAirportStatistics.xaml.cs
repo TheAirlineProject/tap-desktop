@@ -17,6 +17,8 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using System.Globalization;
+
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -30,6 +32,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private StackPanel panelStats;
         public PageAirportStatistics(Airport airport)
         {
+            
             InitializeComponent();
 
             this.Airport = airport;
@@ -130,30 +133,37 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            KeyValuePair<Airport, StatisticsType> astat = (KeyValuePair<Airport, StatisticsType>)value;
-
-            int year = Int16.Parse(parameter.ToString());
-
-            int lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
-            int currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
-
-      
-            if (year == 0)
-                return currentYearValue;
-            else if (year == -1)
-                return lastYearValue;
-            else
+            try
             {
-                if (lastYearValue == 0)
-                    return "100.00 %";
-                double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+                KeyValuePair<Airport, StatisticsType> astat = (KeyValuePair<Airport, StatisticsType>)value;
 
-                if (double.IsInfinity(changePercent))
-                    return "100.00 %";
-                if (double.IsNaN(changePercent))
-                    return "-";
+                int year = Int16.Parse(parameter.ToString());
 
-                return string.Format("{0:0.00} %", changePercent * 100);
+                int lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
+                int currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
+
+
+                if (year == 0)
+                    return currentYearValue;
+                else if (year == -1)
+                    return lastYearValue;
+                else
+                {
+                    if (lastYearValue == 0)
+                        return "100.00 %";
+                    double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+
+                    if (double.IsInfinity(changePercent))
+                        return "100.00 %";
+                    if (double.IsNaN(changePercent))
+                        return "-";
+
+                    return string.Format("{0:0.00} %", changePercent * 100);
+                }
+            }
+            catch (Exception e)
+            {
+                return "A";
             }
         }
 
@@ -168,31 +178,38 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>> aa = (KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>>)value;
-
-            int year = Int16.Parse(parameter.ToString());
-
-            if (year == 0 || year == -1)
+            try
             {
-                int currentYear = GameObject.GetInstance().GameTime.Year + year;
-                return string.Format("{0}", aa.Value.Key.Statistics.getStatisticsValue(currentYear, aa.Key, aa.Value.Value));
+                KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>> aa = (KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>>)value;
+
+                int year = Int16.Parse(parameter.ToString());
+
+                if (year == 0 || year == -1)
+                {
+                    int currentYear = GameObject.GetInstance().GameTime.Year + year;
+                    return string.Format("{0}", aa.Value.Key.Statistics.getStatisticsValue(currentYear, aa.Key, aa.Value.Value));
+                }
+                else
+                {
+                    int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
+                    int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);//lastYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, aa.Key, aa.Value.Value);
+
+                    if (totalValue == 0)
+                        return "-";
+
+                    double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); //System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+
+                    if (double.IsInfinity(changePercent))
+                        return "100.00 %";
+                    if (double.IsNaN(changePercent))
+                        return "-";
+
+                    return string.Format("{0:0.00} %", changePercent * 100);
+                }
             }
-            else
+            catch (Exception e)
             {
-                int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
-                int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);//lastYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, aa.Key, aa.Value.Value);
-
-                if (totalValue == 0)
-                    return "-";
-
-                double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); //System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
-
-                if (double.IsInfinity(changePercent))
-                    return "100.00 %";
-                if (double.IsNaN(changePercent))
-                    return "-";
-
-                return string.Format("{0:0.00} %",changePercent * 100);
+                return "B";
             }
             
         }
