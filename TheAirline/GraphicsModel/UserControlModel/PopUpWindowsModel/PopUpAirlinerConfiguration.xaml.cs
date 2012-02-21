@@ -14,6 +14,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -26,7 +27,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private List<AirlinerClass> Classes;
         private ListBox lbClasses;
         private ContentControl lblNewClass;
-        public ObservableCollection<string> TList { get; set; }
         public static object ShowPopUp(Airliner airliner)
         {
             PopUpWindow window = new PopUpAirlinerConfiguration(airliner);
@@ -36,12 +36,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpAirlinerConfiguration(Airliner airliner)
         {
-            this.DataContext = this;
+        
+            DataTemplate dt = this.Resources["NewClassItem"] as DataTemplate;
 
-            this.TList = new ObservableCollection<string>();
-            this.TList.Add("42");
-            this.TList.Add("1012");
-
+   
             this.Classes = new List<AirlinerClass>();
 
             foreach (AirlinerClass aClass in airliner.Classes)
@@ -151,7 +149,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 MaxSeats = (int)(0.1 * Convert.ToDouble(this.Classes[0].Airliner.Type.MaxSeatingCapacity));
 
             }
-           
+       
      
             lblNewClass.Visibility = this.Classes.Count < this.Classes[0].Airliner.Type.MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
             lblNewClass.Content = nextClass;
@@ -213,6 +211,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 Add(i + 1);
         }
     }
+    //the converter for returning the amount of passengers
+    public class NumberOfPassengersConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            ObservableCollection<int> list = new ObservableCollection<int>();
+             for (int i = 1; i < PopUpAirlinerConfiguration.MaxSeats; i++)
+                list.Add(i + 1);
+           return list;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value;
+        }
+    }
+   
 
 }
     
