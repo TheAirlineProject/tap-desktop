@@ -137,14 +137,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             int lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
             int currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
 
-            double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
-
+      
             if (year == 0)
                 return currentYearValue;
             else if (year == -1)
                 return lastYearValue;
             else
             {
+                if (lastYearValue == 0)
+                    return "100.00 %";
+                double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+
                 if (double.IsInfinity(changePercent))
                     return "100.00 %";
                 if (double.IsNaN(changePercent))
