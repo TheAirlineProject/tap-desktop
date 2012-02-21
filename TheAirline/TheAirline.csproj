@@ -408,6 +408,7 @@
     <Compile Include="GraphicsModel\PageModel\PageRouteModel\PanelRoutesModel\PanelNewRoute.cs" />
     <Compile Include="GraphicsModel\PageModel\PageRouteModel\PanelRoutesModel\PanelRoute.cs" />
     <Compile Include="GraphicsModel\ResourceDirectiories\GameResourceEvents.cs" />
+    <Compile Include="GraphicsModel\ResourceDirectiories\GameTemplatesEvents.cs" />
     <Compile Include="GraphicsModel\SkinsModel\Skin.cs" />
     <Compile Include="GraphicsModel\UserControlModel\CalendarModel\TimeBoxControl.xaml.cs">
       <DependentUpon>TimeBoxControl.xaml</DependentUpon>

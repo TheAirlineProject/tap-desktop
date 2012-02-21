@@ -95,6 +95,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             StackPanel panelStatistics = new StackPanel();
             panelStatistics.Margin = new Thickness(0, 0, 0, 5);
 
+            /*
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
@@ -102,12 +103,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             txtHeader.Text = string.Format(Translator.GetInstance().GetString("PageAirportStatistics", "1002"), type.Name, this.Airport.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, type));
 
             panelStatistics.Children.Add(txtHeader);
-
+            */
+            ContentControl ccHeader = new ContentControl();
+            ccHeader.ContentTemplate = this.Resources["AirportStatHeader"] as DataTemplate;
+            ccHeader.Content = new KeyValuePair<string,KeyValuePair<int, int>>(string.Format(Translator.GetInstance().GetString("PageAirportStatistics", "1002"), type.Name, this.Airport.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, type)),new KeyValuePair<int,int>(GameObject.GetInstance().GameTime.Year - 1, GameObject.GetInstance().GameTime.Year));
+            //ccHeader.Content = new KeyValuePair<int, int>(2010, 2011);           
+            panelStatistics.Children.Add(ccHeader);
+            
             ListBox lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            //lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-            lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
+            //lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
+            lbStatistics.ItemTemplate = this.Resources["AirportStatItem"] as DataTemplate;
 
+            /*
             double maxValue = getMaxValue(type);
 
             double coff = 100 / maxValue;
@@ -117,6 +125,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             foreach (Airline airline in airlines)
                 lbStatistics.Items.Add(new AirlineStatisticsItem(airline, this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, type), Math.Max(1, (int)Convert.ToDouble(this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airline, type) * coff))));
+            */
+              List<Airline> airlines = Airlines.GetAirlines();
+            airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
+
+            foreach (Airline airline in airlines)
+                lbStatistics.Items.Add(new KeyValuePair<Airline, KeyValuePair<Airport,StatisticsType>>(airline, new KeyValuePair<Airport, StatisticsType>(this.Airport,type)));
 
             panelStatistics.Children.Add(lbStatistics);
 
@@ -148,6 +162,43 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 this.Value = value;
                 this.Width = Width;
             }
+        }
+    }
+    //the converter for the stats for an airline at an airport
+    public class AirlineStatConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>> aa = (KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>>)value;
+
+            int year = Int16.Parse(parameter.ToString());
+
+            if (year == 0 || year == -1)
+            {
+                int currentYear = GameObject.GetInstance().GameTime.Year + year;
+                return string.Format("{0}", aa.Value.Key.Statistics.getStatisticsValue(currentYear, aa.Key, aa.Value.Value));
+            }
+            else
+            {
+                int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
+                int lastYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, aa.Key, aa.Value.Value);
+
+                double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+
+                if (double.IsInfinity(changePercent))
+                    return "100 %";
+                if (double.IsNaN(changePercent))
+                    return "-";
+
+                return string.Format("{0:0.00} %",changePercent * 100);
+            }
+            
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

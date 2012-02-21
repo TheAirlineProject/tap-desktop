@@ -26,6 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private List<AirlinerClass> Classes;
         private ListBox lbClasses;
         private ContentControl lblNewClass;
+        public ObservableCollection<string> TList { get; set; }
         public static object ShowPopUp(Airliner airliner)
         {
             PopUpWindow window = new PopUpAirlinerConfiguration(airliner);
@@ -35,6 +36,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpAirlinerConfiguration(Airliner airliner)
         {
+            this.DataContext = this;
+
+            this.TList = new ObservableCollection<string>();
+            this.TList.Add("42");
+            this.TList.Add("1012");
 
             this.Classes = new List<AirlinerClass>();
 

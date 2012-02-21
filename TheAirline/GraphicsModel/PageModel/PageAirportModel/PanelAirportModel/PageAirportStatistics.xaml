@@ -4,11 +4,31 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+      xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirportStatistics">
     <Page.Resources>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
+        <local:AirlineStatConverter x:Key="airlineStatConverter"></local:AirlineStatConverter>
+        <DataTemplate x:Key="AirportStatHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="{Binding Key}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Value.Key}" TextAlignment="Right" Width="75" FontWeight="Bold" ></TextBlock>
+                <TextBlock Text="{Binding Value.Value}" TextAlignment="Right" Width="75" FontWeight="Bold" ></TextBlock>
+                <TextBlock Text="%" TextAlignment="Right" Width="75" FontWeight="Bold" ></TextBlock>
+
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AirportStatItem">
+            <WrapPanel>
+                <ContentControl ContentTemplate="{DynamicResource AirlineLink}" Content="{Binding Key}" VerticalAlignment="Bottom" Width="150"></ContentControl>
+                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='-1'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='0'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='1'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="AirlineStatItem">
             <WrapPanel>
                 <TextBlock Width="150" VerticalAlignment="Bottom">
