@@ -56,7 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             panelStats = new StackPanel();
 
-
+            
             panelStatistics.Children.Add(panelStats);
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);

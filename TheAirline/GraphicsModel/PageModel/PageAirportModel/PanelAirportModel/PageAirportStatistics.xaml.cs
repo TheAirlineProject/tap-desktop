@@ -28,7 +28,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
     public partial class PageAirportStatistics : Page
     {
         private Airport Airport;
-        //private TextBlock txtPassengers, txtDepartures, txtPerFlight;
         private StackPanel panelStats;
         public PageAirportStatistics(Airport airport)
         {

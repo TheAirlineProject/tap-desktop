@@ -145,8 +145,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     string airlineStatType = airlineStatNode.Attributes["type"].Value;
                     int value = Convert.ToInt32(airlineStatNode.Attributes["value"].Value);
-
-                    airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType(airlineStatType), value);
+                    
+                    airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year , StatisticsTypes.GetStatisticsType(airlineStatType), value);
                 }
 
                 XmlNodeList airlineInvoiceList = airlineNode.SelectNodes("invoices/invoice");

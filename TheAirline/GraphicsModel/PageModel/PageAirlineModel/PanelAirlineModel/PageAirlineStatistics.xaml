@@ -9,6 +9,7 @@
 	Title="PageAirlineStatistics">
     <Page.Resources>
         <local:AirlineStatConverter x:Key="airlineStatConverter"></local:AirlineStatConverter>
+        
         <DataTemplate x:Key="StatHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Type" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
@@ -27,6 +28,8 @@
 
             </WrapPanel>
         </DataTemplate>
+    
+
     </Page.Resources>
         <Grid>
         
