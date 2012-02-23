@@ -24,7 +24,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineStatistics : Page
     {
         private Airline Airline;
-        private TextBlock txtPassengers, txtDepartures, txtPerFlight;
+        private ListBox lbStats;
         public PageAirlineStatistics(Airline airline)
         {
             InitializeComponent();
@@ -44,34 +44,90 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelStatistics.Children.Add(txtHeader);
 
-            ListBox lbStatistics = new ListBox();
-            lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+          
+            ContentControl ccHeader = new ContentControl();
+            ccHeader.ContentTemplate = this.Resources["StatHeader"] as DataTemplate;
+            ccHeader.Content = new KeyValuePair<int, int>(GameObject.GetInstance().GameTime.Year - 1, GameObject.GetInstance().GameTime.Year);
 
-            txtDepartures = UICreator.CreateTextBlock(this.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures")).ToString());
-            lbStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1002"), txtDepartures));
+            panelStatistics.Children.Add(ccHeader);
 
-            txtPassengers = UICreator.CreateTextBlock(this.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")).ToString());
-            lbStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1003"), txtPassengers));
+            lbStats = new ListBox();
+            lbStats.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbStats.ItemTemplate = this.Resources["StatItem"] as DataTemplate;
 
-            txtPerFlight = UICreator.CreateTextBlock(this.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%")).ToString());
-            lbStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1004"), txtPerFlight));
+            panelStatistics.Children.Add(lbStats);
 
-            panelStatistics.Children.Add(lbStatistics);
-
+            showStats();
+            
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineStatistics_OnTimeChanged);
 
             this.Content = panelStatistics;
         }
+        //shows the stats
+        private void showStats()
+        {
+            lbStats.Items.Clear();
 
+            lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Passengers")));
+            lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Passengers%")));
+            lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Departures")));
+
+        }
         private void PageAirlineStatistics_OnTimeChanged()
         {
             if (this.IsLoaded)
             {
-                txtPassengers.Text = this.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")).ToString();
-                txtPerFlight.Text = this.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%")).ToString();
-                txtDepartures.Text = this.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures")).ToString();
+                showStats();
+                 
             }
         }
     }
+    //the converter for a statistics type
+    public class AirlineStatConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+
+            KeyValuePair<Airline, StatisticsType> sa = (KeyValuePair<Airline, StatisticsType>)value;
+
+            int year = Int16.Parse(parameter.ToString());
+
+            if (year == 0 || year == -1)
+            {
+                int currentYear = GameObject.GetInstance().GameTime.Year + year;
+                return string.Format("{0}", sa.Key.Statistics.getStatisticsValue(currentYear, sa.Value));
+            }
+            else
+            {
+                int currentYearValue = sa.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, sa.Value);
+                int lastYearValue = sa.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, sa.Value);
+
+                if (year == 0)
+                    return currentYearValue;
+                else if (year == -1)
+                    return lastYearValue;
+                else
+                {
+                    if (lastYearValue == 0)
+                        return "100.00 %";
+                    double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+
+                    if (double.IsInfinity(changePercent))
+                        return "100.00 %";
+                    if (double.IsNaN(changePercent))
+                        return "-";
+
+                    return string.Format("{0:0.00} %", changePercent * 100);
+                }
+
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 }

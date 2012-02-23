@@ -149,7 +149,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
 
             foreach (Airline airline in airlines)
-                lbStatistics.Items.Add(new AirlineStatisticsItem(airline, airline.Statistics.getStatisticsValue(type), Math.Max(1, (int)Convert.ToDouble(airline.Statistics.getStatisticsValue(type) * coff))));
+                lbStatistics.Items.Add(new AirlineStatisticsItem(airline, airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, type), Math.Max(1, (int)Convert.ToDouble(airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, type) * coff))));
 
 
             panelStatistics.Children.Add(lbStatistics);
@@ -163,7 +163,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             double value = 1;
             foreach (Airline airline in Airlines.GetAirlines())
             {
-                int aValue = airline.Statistics.getStatisticsValue(type);
+                int aValue = airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, type);
                 if (aValue > value)
                     value = aValue;
             }

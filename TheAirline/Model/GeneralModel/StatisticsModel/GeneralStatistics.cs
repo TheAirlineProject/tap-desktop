@@ -8,34 +8,45 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
     //the class for general statistics
     public class GeneralStatistics
     {
-        private Dictionary<StatisticsType, int> Stats;
-          public GeneralStatistics()
+        private Dictionary<int, List<StatisticsValue>> StatValues;
+        public GeneralStatistics()
         {
-            this.Stats = new Dictionary<StatisticsType, int>();
-        
-          }
-        //returns the value for a statistics type
-        public int getStatisticsValue( StatisticsType type)
-        {
-            if (this.Stats.ContainsKey(type))
-                return this.Stats[type];
-            else
-                return 0;
+            this.StatValues = new Dictionary<int, List<StatisticsValue>>();
+
         }
-        //adds the value for a statistics type
-        public void addStatisticsValue(StatisticsType type,int value)
+        //returns the value for a statistics type for a year
+        public int getStatisticsValue(int year, StatisticsType type)
         {
-            if (!this.Stats.ContainsKey(type))
-                this.Stats.Add(type, 0);
-            this.Stats[type] += value;
+            if (this.StatValues.ContainsKey(year))
+            {
+                StatisticsValue value = this.StatValues[year].Find(sv => sv.Stat == type);
+                if (value != null) return value.Value;
+            }
+            return 0;
+
         }
-        //sets the value for a statistics type
-        public void setStatisticsValue(StatisticsType type, int value)
+        //adds the value for a statistics type for a year
+        public void addStatisticsValue(int year, StatisticsType type, int value)
         {
-            if (!this.Stats.ContainsKey(type))
-                this.Stats.Add(type, value);
+            if (!this.StatValues.ContainsKey(year))
+                this.StatValues.Add(year, new List<StatisticsValue>());
+            StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
+            if (statValue != null)
+                statValue.Value += value;
             else
-                this.Stats[type] = value;
+                this.StatValues[year].Add(new StatisticsValue(type,value));
+        }
+        //sets the value for a statistics type for a year
+        public void setStatisticsValue(int year, StatisticsType type, int value)
+        {
+            if (!this.StatValues.ContainsKey(year))
+                this.StatValues.Add(year, new List<StatisticsValue>());
+            StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
+            if (statValue != null)
+                statValue.Value = value;
+            else
+                this.StatValues[year].Add(new StatisticsValue(type, value));
+
         }
        
 

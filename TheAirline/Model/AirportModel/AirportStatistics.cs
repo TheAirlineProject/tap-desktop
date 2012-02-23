@@ -31,7 +31,7 @@ namespace TheAirline.Model.AirportModel
 
        
         //adds the value for a statistics type to an airline for a year
-        public void addStatisticsValue(int year, Airline airline, StatisticsType type, int value)
+            public void addStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
             if (!(this.Stats.ContainsKey(year)))
                 this.Stats.Add(year,new List<AirportStatisticsValue>());

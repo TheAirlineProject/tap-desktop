@@ -287,8 +287,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airport.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(destPassengers / destDepartures));
 
             }
-            airliner.Airliner.Airline.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"), 1);
-            airliner.Airliner.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"), 1);
+            airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"), 1);
+            airliner.Airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"), 1);
 
             foreach (AirlinerClass aClass in airliner.Airliner.Airliner.Classes)
             {
@@ -296,14 +296,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airliner.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Departures"), 1);
             }
-            double airlinerPassengers = airliner.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"));
-            double airlinerDepartures = airliner.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
-            airliner.Airliner.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinerPassengers / airlinerDepartures));
+            double airlinerPassengers = airliner.Airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
+            double airlinerDepartures = airliner.Airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"));
+            airliner.Airliner.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinerPassengers / airlinerDepartures));
 
 
-            double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"));
-            double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
-            airliner.Airliner.Airline.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
+            double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
+            double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"));
+            airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
         }
         //simulates a route airliner landing
@@ -389,8 +389,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Airliner.Type.FuelConsumption + Airports.GetAirport(airliner.CurrentPosition).getLandingFee() + tax;
 
-            airliner.Airliner.Airline.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
-            airliner.Airliner.Statistics.addStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
+            airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
+            airliner.Airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
             dest.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
             dest.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
 
@@ -404,17 +404,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.Route.Statistics.setStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(routePassengers / routeDepartures));
             }
 
-            double airlinerPassengers = airliner.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"));
-            double airlinerDepartures = airliner.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
-            airliner.Airliner.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinerPassengers / airlinerDepartures));
+            double airlinerPassengers = airliner.Airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
+            double airlinerDepartures = airliner.Airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"));
+            airliner.Airliner.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinerPassengers / airlinerDepartures));
 
             double destPassengers = dest.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"));
             double destDepartures = dest.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Arrivals"));
             dest.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(destPassengers / destDepartures));
 
-            double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"));
-            double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
-            airliner.Airliner.Airline.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
+            double airlinePassengers = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"));
+            double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"));
+            airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
             airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Flight_Expenses, -expenses));
             airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Tickets, ticketsIncome));

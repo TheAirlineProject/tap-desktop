@@ -146,7 +146,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     string airlineStatType = airlineStatNode.Attributes["type"].Value;
                     int value = Convert.ToInt32(airlineStatNode.Attributes["value"].Value);
 
-                    airline.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType(airlineStatType), value);
+                    airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType(airlineStatType), value);
                 }
 
                 XmlNodeList airlineInvoiceList = airlineNode.SelectNodes("invoices/invoice");
@@ -198,7 +198,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         string statType = airlinerStatNode.Attributes["type"].Value;
                         int statValue = Convert.ToInt32(airlinerStatNode.Attributes["value"].Value);
-                        fAirliner.Statistics.setStatisticsValue(StatisticsTypes.GetStatisticsType(statType),statValue);
+                        fAirliner.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType(statType), statValue);
                     }
                               
                     airline.addAirliner(fAirliner);
@@ -596,7 +596,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement airlineStatNode = xmlDoc.CreateElement("stat");
 
-                    int value = airline.Statistics.getStatisticsValue(type);
+                    int value = airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, type);
                     airlineStatNode.SetAttribute("type", type.Shortname);
                     airlineStatNode.SetAttribute("value", value.ToString());
 
@@ -657,7 +657,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement airlinerStatNode = xmlDoc.CreateElement("stat");
 
-                        int value = airliner.Statistics.getStatisticsValue(type);
+                        int value = airliner.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, type);
                         airlinerStatNode.SetAttribute("type", type.Shortname);
                         airlinerStatNode.SetAttribute("value", value.ToString());
 

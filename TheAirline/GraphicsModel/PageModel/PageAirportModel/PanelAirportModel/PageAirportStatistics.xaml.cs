@@ -32,7 +32,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private StackPanel panelStats;
         public PageAirportStatistics(Airport airport)
         {
-            
+
             InitializeComponent();
 
             this.Airport = airport;
@@ -82,7 +82,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private void PageAirportStatistics_OnTimeChanged()
         {
             if (this.IsLoaded)
-             showStats();
+                showStats();
         }
 
         private void LnkAirline_Click(object sender, RoutedEventArgs e)
@@ -100,71 +100,66 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             ContentControl ccHeader = new ContentControl();
             ccHeader.ContentTemplate = this.Resources["AirportStatHeader"] as DataTemplate;
-            ccHeader.Content = new KeyValuePair<string,KeyValuePair<int, int>>(string.Format(Translator.GetInstance().GetString("PageAirportStatistics", "1002"), type.Name),new KeyValuePair<int,int>(GameObject.GetInstance().GameTime.Year - 1, GameObject.GetInstance().GameTime.Year));
+            ccHeader.Content = new KeyValuePair<string, KeyValuePair<int, int>>(string.Format(Translator.GetInstance().GetString("PageAirportStatistics", "1002"), type.Name), new KeyValuePair<int, int>(GameObject.GetInstance().GameTime.Year - 1, GameObject.GetInstance().GameTime.Year));
             panelStatistics.Children.Add(ccHeader);
-            
+
             ListBox lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStatistics.ItemTemplate = this.Resources["AirportStatItem"] as DataTemplate;
 
-        
-              List<Airline> airlines = Airlines.GetAirlines();
+
+            List<Airline> airlines = Airlines.GetAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)
-                lbStatistics.Items.Add(new KeyValuePair<Airline, KeyValuePair<Airport,StatisticsType>>(airline, new KeyValuePair<Airport, StatisticsType>(this.Airport,type)));
+                lbStatistics.Items.Add(new KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>>(airline, new KeyValuePair<Airport, StatisticsType>(this.Airport, type)));
 
-           panelStatistics.Children.Add(lbStatistics);
+            panelStatistics.Children.Add(lbStatistics);
 
-           ContentControl ccTotal = new ContentControl();
-           ccTotal.Margin = new Thickness(5, 0, 0, 0);
-           ccTotal.ContentTemplate = this.Resources["AirportStatTotalItem"] as DataTemplate;
-           ccTotal.Content = new KeyValuePair<Airport, StatisticsType>(this.Airport, type);
+            ContentControl ccTotal = new ContentControl();
+            ccTotal.Margin = new Thickness(5, 0, 0, 0);
+            ccTotal.ContentTemplate = this.Resources["AirportStatTotalItem"] as DataTemplate;
+            ccTotal.Content = new KeyValuePair<Airport, StatisticsType>(this.Airport, type);
 
-           panelStatistics.Children.Add(ccTotal);
+            panelStatistics.Children.Add(ccTotal);
 
             return panelStatistics;
         }
 
-     
+
     }
     //the converter for a stat for a airport with the total value
     public class AirportTotalConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            try
+
+            KeyValuePair<Airport, StatisticsType> astat = (KeyValuePair<Airport, StatisticsType>)value;
+
+            int year = Int16.Parse(parameter.ToString());
+
+            int lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
+            int currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
+
+
+            if (year == 0)
+                return currentYearValue;
+            else if (year == -1)
+                return lastYearValue;
+            else
             {
-                KeyValuePair<Airport, StatisticsType> astat = (KeyValuePair<Airport, StatisticsType>)value;
+                if (lastYearValue == 0)
+                    return "100.00 %";
+                double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
 
-                int year = Int16.Parse(parameter.ToString());
+                if (double.IsInfinity(changePercent))
+                    return "100.00 %";
+                if (double.IsNaN(changePercent))
+                    return "-";
 
-                int lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
-                int currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
-
-
-                if (year == 0)
-                    return currentYearValue;
-                else if (year == -1)
-                    return lastYearValue;
-                else
-                {
-                    if (lastYearValue == 0)
-                        return "100.00 %";
-                    double changePercent = System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
-
-                    if (double.IsInfinity(changePercent))
-                        return "100.00 %";
-                    if (double.IsNaN(changePercent))
-                        return "-";
-
-                    return string.Format("{0:0.00} %", changePercent * 100);
-                }
+                return string.Format("{0:0.00} %", changePercent * 100);
             }
-            catch (Exception e)
-            {
-                return "A";
-            }
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -178,40 +173,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            try
+
+            KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>> aa = (KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>>)value;
+
+            int year = Int16.Parse(parameter.ToString());
+
+            if (year == 0 || year == -1)
             {
-                KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>> aa = (KeyValuePair<Airline, KeyValuePair<Airport, StatisticsType>>)value;
-
-                int year = Int16.Parse(parameter.ToString());
-
-                if (year == 0 || year == -1)
-                {
-                    int currentYear = GameObject.GetInstance().GameTime.Year + year;
-                    return string.Format("{0}", aa.Value.Key.Statistics.getStatisticsValue(currentYear, aa.Key, aa.Value.Value));
-                }
-                else
-                {
-                    int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
-                    int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);//lastYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, aa.Key, aa.Value.Value);
-
-                    if (totalValue == 0)
-                        return "-";
-
-                    double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); //System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
-
-                    if (double.IsInfinity(changePercent))
-                        return "100.00 %";
-                    if (double.IsNaN(changePercent))
-                        return "-";
-
-                    return string.Format("{0:0.00} %", changePercent * 100);
-                }
+                int currentYear = GameObject.GetInstance().GameTime.Year + year;
+                return string.Format("{0}", aa.Value.Key.Statistics.getStatisticsValue(currentYear, aa.Key, aa.Value.Value));
             }
-            catch (Exception e)
+            else
             {
-                return "B";
+                int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
+                int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);//lastYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, aa.Key, aa.Value.Value);
+
+                if (totalValue == 0)
+                    return "-";
+
+                double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); //System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+
+                if (double.IsInfinity(changePercent))
+                    return "100.00 %";
+                if (double.IsNaN(changePercent))
+                    return "-";
+
+                return string.Format("{0:0.00} %", changePercent * 100);
             }
-            
+
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

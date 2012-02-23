@@ -18,7 +18,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the passengers happiness for an airline
         public static double GetPassengersHappiness(Airline airline)
         {
-            double passengers = Convert.ToDouble(airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
+            double passengers = Convert.ToDouble(airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers")));
             double value = GetHappinessValue(airline);
 
             if (passengers == 0)
