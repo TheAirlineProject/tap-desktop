@@ -93,10 +93,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Children.Add(btnCancel);
 
 
+         
 
             this.Content = mainPanel;
        
         }
+
 
         private void txtName_TextChanged(object sender, TextChangedEventArgs e)
         {

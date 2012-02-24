@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using System.IO;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -21,7 +22,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpLoad : PopUpWindow
     {
         private ListBox lbSaves;
-        private Button btnLoad;
+        private Button btnLoad, btnDelete;
         public static object ShowPopUp()
         {
             PopUpWindow window = new PopUpLoad();
@@ -52,9 +53,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbSaves.DisplayMemberPath = "Key";
             lbSaves.SelectionChanged += new SelectionChangedEventHandler(lbSaves_SelectionChanged);
 
-            foreach (KeyValuePair<string, string> savedFile in LoadSaveHelpers.GetSavedGames())
-                lbSaves.Items.Add(savedFile);
-
+      
             mainPanel.Children.Add(lbSaves);
 
             WrapPanel panelButtons = new WrapPanel();
@@ -84,14 +83,44 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelButtons.Children.Add(btnCancel);
 
+            btnDelete = new Button();
+            btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnDelete.Height = Double.NaN;
+            btnDelete.Width = Double.NaN;
+            btnDelete.Content = "Delete";
+            btnDelete.Margin = new Thickness(5, 0, 0, 0);
+            btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
+            btnDelete.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
+            panelButtons.Children.Add(btnDelete);
 
             this.Content = mainPanel;
+
+            showSaves();
+        }
+        //shows the list of saved files
+        private void showSaves()
+        {
+            lbSaves.Items.Clear();
+
+            foreach (KeyValuePair<string, string> savedFile in LoadSaveHelpers.GetSavedGames())
+                lbSaves.Items.Add(savedFile);
+
+        }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            LoadSaveHelpers.DeleteGame(((KeyValuePair<string, string>)lbSaves.SelectedItem).Value);
+            showSaves();
+
+            btnLoad.IsEnabled = false; ;
+            btnDelete.IsEnabled = false;
+
         }
 
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             btnLoad.IsEnabled = true;
+            btnDelete.IsEnabled = true;
         }
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)

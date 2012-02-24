@@ -48,6 +48,11 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
                 this.StatValues[year].Add(new StatisticsValue(type, value));
 
         }
+        //returns all years with statistics
+        public List<int> getYears()
+        {
+            return this.StatValues.Keys.ToList();
+        }
        
 
     }

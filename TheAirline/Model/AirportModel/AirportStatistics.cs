@@ -28,7 +28,11 @@ namespace TheAirline.Model.AirportModel
             }
             return 0;
         }
-
+        //returns every year with statistics
+        public List<int> getYears()
+        {
+            return this.Stats.Keys.ToList();
+        }
        
         //adds the value for a statistics type to an airline for a year
             public void addStatisticsValue(int year, Airline airline, StatisticsType type, int value)
