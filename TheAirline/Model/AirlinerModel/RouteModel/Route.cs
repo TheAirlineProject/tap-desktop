@@ -38,7 +38,12 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Classes = new List<RouteAirlinerClass>();
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
-                this.Classes.Add(new RouteAirlinerClass(type,RouteAirlinerClass.SeatingType.Reserved_Seating,farePrice));
+            {
+                RouteAirlinerClass cl = new RouteAirlinerClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, farePrice);
+                cl.CabinCrew = 1;
+
+                this.Classes.Add(cl);
+            }
 
         }
         //creates the "dummy" time table
@@ -104,6 +109,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the route airliner class for a specific class type
         public RouteAirlinerClass getRouteAirlinerClass(AirlinerClass.ClassType type)
         {
+            RouteAirlinerClass rac = this.Classes.Find(cl => cl.Type == type);
             return this.Classes.Find((delegate(RouteAirlinerClass c) { return c.Type == type; }));
         }
         //returns the total number of cabin crew for the route based on airliner

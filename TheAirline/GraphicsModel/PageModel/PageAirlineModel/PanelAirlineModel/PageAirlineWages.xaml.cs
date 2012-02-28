@@ -64,6 +64,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWagesAndEmployees.Children.Add(panelWages);
 
             panelEmployees = createEmployeesPanel();
+            panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
 
             panelWagesAndEmployees.Children.Add(panelEmployees);
 
@@ -93,12 +94,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cockpit crew", cockpitCrew));
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cabin crew", cabinCrew));
-
+            
             panel.Children.Add(lbEmployees);
-
-            //airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -airliner.Airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit wage"))));
-            //airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -airliner.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin wage"))));
-            return panel;
+       return panel;
         }
         //creates the wage panel
         private StackPanel createWagesPanel()
