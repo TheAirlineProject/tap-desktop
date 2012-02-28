@@ -15,6 +15,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -24,7 +25,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineWages : Page
     {
         private Airline Airline;
-        //private Dictionary<FeeType, double> WageValues;
+        private StackPanel panelWages, panelEmployees;
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees, lbFoodDrinks;
         public PageAirlineWages(Airline airline)
@@ -33,17 +34,76 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.Airline = airline;
 
-            //this.WageValues = new Dictionary<FeeType, double>();
             this.FeeValues = new Dictionary<FeeType, double>();
-
-            //foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Wage))
-              //  this.WageValues.Add(type, this.Airline.Fees.getValue(type));
 
             foreach (FeeType type in FeeTypes.GetTypes())
                 this.FeeValues.Add(type, this.Airline.Fees.getValue(type));
 
-            StackPanel panelWages = new StackPanel();
-            panelWages.Margin = new Thickness(0, 10, 50, 0);
+            StackPanel panelWagesAndEmployees = new StackPanel();
+            //panelWagesAndEmployees.Margin = new Thickness(0, 10, 50, 0);
+
+            WrapPanel panelMenuButtons = new WrapPanel();
+            panelWagesAndEmployees.Children.Add(panelMenuButtons);
+
+            ucSelectButton sbWages = new ucSelectButton();
+            sbWages.Uid = "1006";
+            sbWages.Content = Translator.GetInstance().GetString("PanelAirline", sbWages.Uid);
+            sbWages.IsSelected = true;
+            sbWages.Click += new RoutedEventHandler(sbWages_Click);
+            panelMenuButtons.Children.Add(sbWages);
+
+            ucSelectButton sbEmployees = new ucSelectButton();
+            sbEmployees.Uid = "1002";
+            sbEmployees.Content = "Employees";
+            sbEmployees.Click += new RoutedEventHandler(sbEmployees_Click);
+            panelMenuButtons.Children.Add(sbEmployees);
+
+
+            panelWages = createWagesPanel();
+            
+            panelWagesAndEmployees.Children.Add(panelWages);
+
+            panelEmployees = createEmployeesPanel();
+
+            panelWagesAndEmployees.Children.Add(panelEmployees);
+
+            this.Content = panelWagesAndEmployees;
+        }
+        //creates the employees panel
+        private StackPanel createEmployeesPanel()
+        {
+            StackPanel panel = new StackPanel();
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
+            txtHeader.Margin = new Thickness(0, 0, 0, 0);
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = "Employees";
+
+            panel.Children.Add(txtHeader);
+
+            ListBox lbEmployees = new ListBox();
+            lbEmployees.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbEmployees.ItemTemplate = this.Resources["EmployeeItem"] as DataTemplate;
+
+            int cockpitCrew = this.Airline.Fleet.Sum(f => f.Airliner.Type.CockpitCrew);
+            int cabinCrew = this.Airline.Fleet.FindAll(f => f.RouteAirliner != null).Sum(f => f.RouteAirliner.Route.getTotalCabinCrew());
+
+            lbEmployees.Items.Add(new KeyValuePair<string, int>("Cockpit crew", cockpitCrew));
+            lbEmployees.Items.Add(new KeyValuePair<string, int>("Cabin crew", cabinCrew));
+
+            panel.Children.Add(lbEmployees);
+
+            //airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -airliner.Airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit wage"))));
+            //airliner.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -airliner.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin wage"))));
+            return panel;
+        }
+        //creates the wage panel
+        private StackPanel createWagesPanel()
+        {
+            StackPanel panelWagesFee = new StackPanel();
 
             TextBlock txtHeaderWages = new TextBlock();
             txtHeaderWages.Uid = "1001";
@@ -53,7 +113,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtHeaderWages.FontWeight = FontWeights.Bold;
             txtHeaderWages.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderWages.Uid);
 
-            panelWages.Children.Add(txtHeaderWages);
+            panelWagesFee.Children.Add(txtHeaderWages);
 
             lbWages = new ListBox();
             lbWages.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -61,7 +121,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Wage))
                 lbWages.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
-            panelWages.Children.Add(lbWages);
+            panelWagesFee.Children.Add(lbWages);
 
             TextBlock txtHeaderFoods = new TextBlock();
             txtHeaderFoods.Uid = "1002";
@@ -71,16 +131,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtHeaderFoods.FontWeight = FontWeights.Bold;
             txtHeaderFoods.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderFoods.Uid);
 
-            panelWages.Children.Add(txtHeaderFoods);
+            panelWagesFee.Children.Add(txtHeaderFoods);
 
             lbFoodDrinks = new ListBox();
             lbFoodDrinks.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFoodDrinks.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
-            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks)) 
-                lbFoodDrinks.Items.Add(new QuickInfoValue(type.Name,createWageSlider(type)));
+            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks))
+                lbFoodDrinks.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
 
-            panelWages.Children.Add(lbFoodDrinks);
+            panelWagesFee.Children.Add(lbFoodDrinks);
 
             TextBlock txtHeaderFees = new TextBlock();
             txtHeaderFees.Uid = "1003";
@@ -90,7 +150,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtHeaderFees.FontWeight = FontWeights.Bold;
             txtHeaderFees.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderFees.Uid);
 
-            panelWages.Children.Add(txtHeaderFees);
+            panelWagesFee.Children.Add(txtHeaderFees);
 
             lbFees = new ListBox();
             lbFees.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -99,10 +159,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Fee))
                 lbFees.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
 
-            panelWages.Children.Add(lbFees);
-            panelWages.Children.Add(createButtonsPanel());
+            panelWagesFee.Children.Add(lbFees);
+            panelWagesFee.Children.Add(createButtonsPanel());
 
-            this.Content = panelWages;
+            return panelWagesFee;
+        }
+        private void sbEmployees_Click(object sender, RoutedEventArgs e)
+        {
+            panelWages.Visibility = System.Windows.Visibility.Collapsed;
+            panelEmployees.Visibility = System.Windows.Visibility.Visible;
+        }
+
+        private void sbWages_Click(object sender, RoutedEventArgs e)
+        {
+            panelWages.Visibility = System.Windows.Visibility.Visible;
+            panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         //creates the buttons panel

@@ -7,7 +7,12 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlineWages">
     <Page.Resources>
-       
+        <DataTemplate x:Key="EmployeeItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Key}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom" Width="50" TextAlignment="Right"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
     </Page.Resources>
         <Grid>
         
