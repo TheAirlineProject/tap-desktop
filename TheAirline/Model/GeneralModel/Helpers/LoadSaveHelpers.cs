@@ -118,14 +118,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string airlineIATA = airlineNode.Attributes["code"].Value;
                 Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
                 string color = airlineNode.Attributes["color"].Value;
-                string logo = airlineNode.Attributes["logo"].Value;
+                string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
                 string airlineCEO = airlineNode.Attributes["CEO"].Value;
                 double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
                 int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
+                Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
 
-
-
-                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO));
+                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO),mentality);
                 airline.Profile.Logo = logo;
                 airline.Fleet.Clear();
                 airline.Airports.Clear();
@@ -578,10 +577,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("code", airline.Profile.IATACode);
                 airlineNode.SetAttribute("country", airline.Profile.Country.Uid);
                 airlineNode.SetAttribute("color", airline.Profile.Color);
-                airlineNode.SetAttribute("logo", airline.Profile.Logo);
+                airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\')+1));
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
                 airlineNode.SetAttribute("money", string.Format("{0:0}", airline.Money));
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
+                airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
 
                 // chs, 2011-13-10 added for saving of passenger happiness
                 XmlElement airlineHappinessNode = xmlDoc.CreateElement("passengerhappiness");

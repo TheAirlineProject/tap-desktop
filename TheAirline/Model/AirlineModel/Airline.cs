@@ -14,6 +14,8 @@ namespace TheAirline.Model.AirlineModel
     public class Airline
     {
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
+        public enum AirlineMentality { Aggressive, Moderate, Local_Minded, Global_Minded, Safe, Human }
+        public AirlineMentality Mentality { get; set; }
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
         public List<Airport> Airports { get; set; }
         public List<FleetAirliner> Fleet { get; set; }
@@ -30,7 +32,7 @@ namespace TheAirline.Model.AirlineModel
         private List<string> FlightCodes;
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
         private int FlightCodePointer = 0;
-        public Airline(AirlineProfile profile)
+        public Airline(AirlineProfile profile, AirlineMentality mentality)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
@@ -44,6 +46,8 @@ namespace TheAirline.Model.AirlineModel
             this.Fees = new AirlineFees();
             this.Loans = new List<Loan>();
             this.Reputation = 50;
+
+            this.Mentality = mentality;
 
             this.FlightCodes = new List<string>();
 
