@@ -123,8 +123,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
                 int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
                 Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
+                Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), airlineNode.Attributes["market"].Value);
 
-                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO),mentality);
+                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO),mentality,market);
                 airline.Profile.Logo = logo;
                 airline.Fleet.Clear();
                 airline.Airports.Clear();
@@ -582,6 +583,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("money", string.Format("{0:0}", airline.Money));
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
+                airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
 
                 // chs, 2011-13-10 added for saving of passenger happiness
                 XmlElement airlineHappinessNode = xmlDoc.CreateElement("passengerhappiness");

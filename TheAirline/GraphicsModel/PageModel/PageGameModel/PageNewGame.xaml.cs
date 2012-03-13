@@ -262,8 +262,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airline.Profile.CEO = txtName.Text.Trim();
 
                 GameObject.GetInstance().HumanAirline = airline;
-                airline.Mentality = Airline.AirlineMentality.Human;
-
+        
                 Airport airport = (Airport)cbAirport.SelectedItem;
 
                 airport.Terminals.rentGate(airline);

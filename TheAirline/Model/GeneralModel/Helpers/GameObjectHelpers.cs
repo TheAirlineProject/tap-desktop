@@ -27,8 +27,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airline airline in Airlines.GetAirlines())
             {
-                // if (airline != Game.GetInstance().HumanAirline)
-               // AIHelpers.UpdateCPUAirline(airline);
+                if (airline != GameObject.GetInstance().HumanAirline)
+                    AIHelpers.UpdateCPUAirline(airline);
                 foreach (FleetAirliner airliner in airline.Fleet)
                 {
                     UpdateAirliner(airliner);
