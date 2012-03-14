@@ -30,7 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval) == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval)/1000 == 0;
 
             //creates a new route for the airline
             if (newRoute)
@@ -43,8 +43,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airport == null)
                 {
                     airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
-                    if (airport !=null)
-                       airport.Terminals.rentGate(airline);
+                    if (airport != null)
+                        airport.Terminals.rentGate(airline);
+                    else
+                    {
+                        airport = GetServiceAirport(airline);
+                        if (airport != null)
+                            airport.Terminals.rentGate(airline);
+                    }
                     
                 }
 
@@ -110,17 +116,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double maxDistance = (from a in Airliners.GetAirlinersForSale()
                                   select a.Type.Range).Max();
 
+            double minDistance = (from a in Airports.GetAirports().FindAll(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
+  
      
             List<Airport> airports = new List<Airport>();
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
+                  
             switch (airline.MarketFocus)
             {
                 case Airline.AirlineMarket.Global:
                     airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates,airport.Profile.Coordinates)>100);
                     break;
                 case Airline.AirlineMarket.Local:
-                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 1000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
                     break;
                 case Airline.AirlineMarket.Regional:
                     airports = Airports.GetAirports(airport.Profile.Country.Region).FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
@@ -159,6 +168,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
                 return null;
    
+        }
+        //finds an airport and creates a basic service facility for an airline
+        private static Airport GetServiceAirport(Airline airline)
+        {
+          
+            AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f=>f.TypeLevel==1);
+
+            var airports = from a in airline.Airports.FindAll(aa => aa.Terminals.getFreeGates() > 0) orderby a.Profile.Size descending select a;
+
+            if (airports.Count() > 0)
+            {
+                Airport airport = airports.First();
+
+                airport.setAirportFacility(airline, facility);
+
+                return airport;
+            }
+
+            return null;
+
         }
     }
 }
