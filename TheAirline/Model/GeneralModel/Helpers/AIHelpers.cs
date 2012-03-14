@@ -30,7 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval)/1000 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval) == 0;
 
             //creates a new route for the airline
             if (newRoute)
@@ -43,30 +43,60 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airport == null)
                 {
                     airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
-                    if (airport != null)
-                        airport.Terminals.rentGate(airline);
+                    if (airport !=null)
+                       airport.Terminals.rentGate(airline);
+                    
                 }
 
                 if (airport != null)
                 {
                     Airport destination = GetDestinationAirport(airline, airport);
 
+            
                     if (destination != null)
                     {
-                     
-                        if (destination.Terminals.getFreeGates(airline) == 0) destination.Terminals.rentGate(airline);
 
-                        if (!airline.Airports.Contains(destination)) airline.addAirport(destination);
+                        Airliner airliner = GetAirlinerForRoute(airline, airport, destination);
 
-                        double price = PassengerHelpers.GetPassengerPrice(airport, destination);
+                        if (airliner != null)
+                        {
+                            if (destination.Terminals.getFreeGates(airline) == 0) destination.Terminals.rentGate(airline);
 
-                        Guid id = Guid.NewGuid();
+                            if (!airline.Airports.Contains(destination)) airline.addAirport(destination);
 
-                        Route route = new Route(id.ToString(), airport, destination, price, airline.getNextFlightCode(), airline.getNextFlightCode());
+                            double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
-                        airline.addRoute(route);
+                            Guid id = Guid.NewGuid();
 
-                        //flight
+                            Route route = new Route(id.ToString(), airport, destination, price, airline.getNextFlightCode(), airline.getNextFlightCode());
+
+                            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                            {
+                                route.getRouteAirlinerClass(type).CabinCrew = 2;
+                                route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+                                route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
+                            }
+
+                            airline.addRoute(route);
+
+                            airport.Terminals.getEmptyGate(airline).Route = route;
+                            destination.Terminals.getEmptyGate(airline).Route = route;
+
+                            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
+                                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+
+                            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner, airliner.TailNumber, airline.Airports[0]);
+
+                            RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
+
+                            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice()));
+
+                            fAirliner.RouteAirliner = rAirliner;
+
+                            airline.Fleet.Add(fAirliner);
+
+                            rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+                        }
                     }
                 }
 
@@ -75,40 +105,60 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
         }
         //returns the destination for an airline with a start airport
-        private static Airport GetDestinationAirport(Airline airline, Airport airport)
+        public static Airport GetDestinationAirport(Airline airline, Airport airport)
         {
-            double maxDistance = (from a in AirlinerTypes.GetTypes().FindAll((delegate(AirlinerType t) { return t.Produced.From < GameObject.GetInstance().GameTime.Year; }))
-                                  select a.Range).Max();
+            double maxDistance = (from a in Airliners.GetAirlinersForSale()
+                                  select a.Type.Range).Max();
 
-            //       return (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
-
+     
             List<Airport> airports = new List<Airport>();
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
             switch (airline.MarketFocus)
             {
                 case Airline.AirlineMarket.Global:
-                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance);
+                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates,airport.Profile.Coordinates)>100);
                     break;
                 case Airline.AirlineMarket.Local:
-                    airports = Airports.GetAirports(airport.Profile.Country).FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance);
+                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 1000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
                     break;
                 case Airline.AirlineMarket.Regional:
-                    airports = Airports.GetAirports(airport.Profile.Country.Region).FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance);
+                    airports = Airports.GetAirports(airport.Profile.Country.Region).FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
             }
+           
             Airport destination = null;
             int counter = 0;
+
+            if (airports.Count == 0)
+                airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 2000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+     
 
             while (destination == null && counter < airports.Count)
             {
                 destination = airports[counter];
 
-                if ((routes.Find(r => r.Destination1 == destination || r.Destination2 == destination) != null || destination.Terminals.getFreeGates()==0) && destination.Terminals.getFreeGates(airline)==0) destination = null;
+                if ((routes.Find(r => r.Destination1 == destination || r.Destination2 == destination) != null) || (destination.Terminals.getFreeGates()==0 && destination.Terminals.getFreeGates(airline)==0) || (destination == airport)) destination = null;
                 counter++;
                 
             }
             return destination;
+        }
+        //returns the best fit for an airliner for sale for a route
+        public static Airliner GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
+        {
+            
+            double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
+
+            AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(distance);
+
+            List<Airliner> airliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+
+            if (airliners.Count > 0)
+                return (from a in airliners orderby a.Type.Range select a).First();
+            else
+                return null;
+   
         }
     }
 }

@@ -13,6 +13,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.SkinsModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -558,38 +559,8 @@ namespace TheAirline.Model.GeneralModel
 
             airport.Terminals.rentGate(airline);
             airport.Terminals.rentGate(airline);
-
-            List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
-
-            AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
-
-            airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility);
-
-            airports = Airports.GetAirports(region);
-
-            double dist = 0;
-
-            isFree = false;
-
-            airport = null;
-
-            Boolean isInArea = false;
-
-            var query = from a in Airliners.GetAirlinersForSale()
-                        select a.Type.Range;
-
-            double maxDistance = query.Max();
-
-            while (dist < 50 || dist > maxDistance || !isFree || !isInArea)
-            {
-                airport = airports[rnd.Next(airports.Count)];
-
-                dist = MathHelpers.GetDistance(airport.Profile.Coordinates, airline.Airports[0].Profile.Coordinates);
-
-                isFree = airport.Terminals.getFreeGates() > 0;
-
-                isInArea = (airport.Profile.Type != AirportProfile.AirportType.Domestic && airline.Airports[0].Profile.Type != AirportProfile.AirportType.Domestic) || (airport.Profile.Country == airline.Airports[0].Profile.Country);
-            }
+            
+            airport = AIHelpers.GetDestinationAirport(airline, airline.Airports[0]);
 
             airport.Terminals.rentGate(airline);
 
@@ -610,12 +581,8 @@ namespace TheAirline.Model.GeneralModel
             airport.Terminals.getEmptyGate(airline).Route = route;
             airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
 
-            double distance = MathHelpers.GetDistance(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates);
-
-            AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(dist);
-
-            List<Airliner> airliners = Airliners.GetAirlinersForSale().FindAll((delegate(Airliner a) { return a.getPrice() < airline.Money && dist < a.Type.Range && rangeType == a.Type.RangeType; }));
-
+            Airliner airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1,route.Destination2);
+            /*
             if (airliners.Count == 0)
             {
                 airliners = Airliners.GetAirlinersForSale().FindAll((delegate(Airliner a) { return distance < a.Type.Range; }));
@@ -632,7 +599,8 @@ namespace TheAirline.Model.GeneralModel
                 airline.addLoan(loan);
                 airline.addInvoice(new Invoice(loan.Date, Invoice.InvoiceType.Loans, loan.Amount));
             }
-            Airliner airliner = airliners[rnd.Next(airliners.Count)];
+             * */
+           // Airliner airliner = airliners[rnd.Next(airliners.Count)];
 
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();

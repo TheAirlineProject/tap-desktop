@@ -12,14 +12,14 @@
                 <ContentControl ContentTemplate="{DynamicResource AirlineLogoItem}" Content="{Binding Airline}" Width="150"></ContentControl>
                 <TextBlock Text="{Binding Entry.Destination.FlightCode}" VerticalAlignment="Bottom" Width="50"></TextBlock>
                 <TextBlock Text="{Binding Time,StringFormat={}{0:MM/dd HH:mm}}" VerticalAlignment="Bottom" Width="75"></TextBlock>
-                <TextBlock Text="{Binding AirlinerType.Name}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                <TextBlock Text="{Binding AirlinerType.Name}" VerticalAlignment="Bottom" Width="200"></TextBlock>
            </WrapPanel>
         </DataTemplate>
                       
         <DataTemplate x:Key="DestinationItem">
             <WrapPanel>
                 
-                    <ContentControl ContentTemplate="{DynamicResource AirportCountryItemNormal}" VerticalAlignment="Bottom" Content="{Binding Airport}" Width="250" MouseDown="lnkAirport_MouseDown" Tag="{Binding Airport}"></ContentControl>
+                    <ContentControl ContentTemplate="{DynamicResource AirportCountryItemNormal}" VerticalAlignment="Bottom" Content="{Binding Airport}" Width="300" MouseDown="lnkAirport_MouseDown" Tag="{Binding Airport}"></ContentControl>
                        
                 <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" Width="50" Margin="5 0 0 0"></TextBlock>
             </WrapPanel>
