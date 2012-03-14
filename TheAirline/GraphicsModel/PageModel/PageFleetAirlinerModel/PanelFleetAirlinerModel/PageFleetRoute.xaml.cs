@@ -38,8 +38,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             this.Airliner = airliner;
 
-            // Start + stop plane og Update flight distance
-
             InitializeComponent();
 
             StackPanel panelRoute = new StackPanel();
@@ -61,19 +59,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 if (this.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
             }
             else panelRoute.Children.Add(txtHeader);
-            /*
-            TextBlock txtRouteHeader = new TextBlock();
-            txtRouteHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtRouteHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtRouteHeader.Margin = new System.Windows.Thickness(0, 5, 0, 0);
-            txtRouteHeader.Text = "Route Information";
-
-            panelRoute.Children.Add(txtRouteHeader);
-
-            if (this.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createHumanRouteInfo());
-            else panelRoute.Children.Add(createComputerRouteInfo());
-          **/
-
+         
             this.Content = panelRoute;
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetRoute_OnTimeChanged);

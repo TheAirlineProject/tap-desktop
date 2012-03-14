@@ -30,7 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval) == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval)/1000 == 0;
 
             //creates a new route for the airline
             if (newRoute)
@@ -139,8 +139,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int counter = 0;
 
             if (airports.Count == 0)
-                airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 2000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
-     
+                airports = (from a in Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 2000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
 
             while (destination == null && counter < airports.Count)
             {

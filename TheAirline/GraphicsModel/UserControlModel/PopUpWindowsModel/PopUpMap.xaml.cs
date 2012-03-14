@@ -194,7 +194,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 panelSize.Children.Add(eSize);
 
                 TextBlock txtSize = new TextBlock();
-                txtSize.Text = size.ToString();
+                txtSize.Text = new TextUnderscoreConverter().Convert(size).ToString();
                 txtSize.Margin = new Thickness(5, 0, 0, 0);
 
                 panelSize.Children.Add(txtSize);
