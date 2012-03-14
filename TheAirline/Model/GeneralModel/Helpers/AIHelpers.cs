@@ -30,7 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval)/1000 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval) == 0;
 
             //creates a new route for the airline
             if (newRoute)
@@ -121,7 +121,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
      
             List<Airport> airports = new List<Airport>();
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
-
                   
             switch (airline.MarketFocus)
             {
