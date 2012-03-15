@@ -581,35 +581,16 @@ namespace TheAirline.Model.GeneralModel
             airport.Terminals.getEmptyGate(airline).Route = route;
             airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
 
-            Airliner airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1,route.Destination2);
-            /*
-            if (airliners.Count == 0)
-            {
-                airliners = Airliners.GetAirlinersForSale().FindAll((delegate(Airliner a) { return distance < a.Type.Range; }));
-                airliners.Sort(delegate(Airliner a1, Airliner a2) { return a1.getPrice().CompareTo(a2.getPrice()); });
+            KeyValuePair<Airliner,Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1,route.Destination2);
+        
+            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-                airliners = airliners.GetRange(0, 1);
-
-                double amount = airliners[0].getPrice() - airline.Money + 20000000;
-
-                Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, 120, GeneralHelpers.GetAirlineLoanRate(airline));
-
-                double payment = loan.getMonthlyPayment();
-
-                airline.addLoan(loan);
-                airline.addInvoice(new Invoice(loan.Date, Invoice.InvoiceType.Loans, loan.Amount));
-            }
-             * */
-           // Airliner airliner = airliners[rnd.Next(airliners.Count)];
-
-            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
-                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
-
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner, airliner.TailNumber, airline.Airports[0]);
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airline.Airports[0]);
 
             RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
 
-            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice()));
+            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
 
             fAirliner.RouteAirliner = rAirliner;
 

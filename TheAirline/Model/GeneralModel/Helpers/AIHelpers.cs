@@ -62,9 +62,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (destination != null)
                     {
 
-                        Airliner airliner = GetAirlinerForRoute(airline, airport, destination);
+                        KeyValuePair<Airliner,Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination);
 
-                        if (airliner != null)
+                        if (airliner.HasValue)
                         {
                             if (destination.Terminals.getFreeGates(airline) == 0) destination.Terminals.rentGate(airline);
 
@@ -88,14 +88,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             airport.Terminals.getEmptyGate(airline).Route = route;
                             destination.Terminals.getEmptyGate(airline).Route = route;
 
-                            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
-                                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                                airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-                            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner, airliner.TailNumber, airline.Airports[0]);
+                            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
 
                             RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
 
-                            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice()));
+                            if (airliner.Value.Value) //loan
+                            {
+                                double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
+
+                                Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, 120, GeneralHelpers.GetAirlineLoanRate(airline));
+
+                                double payment = loan.getMonthlyPayment();
+
+                                airline.addLoan(loan);
+                                airline.addInvoice(new Invoice(loan.Date, Invoice.InvoiceType.Loans, loan.Amount));
+                            }
+                            else
+                                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
 
                             fAirliner.RouteAirliner = rAirliner;
 
@@ -151,10 +163,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             return destination;
         }
-        //returns the best fit for an airliner for sale for a route
-        public static Airliner GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
+        //returns the best fit for an airliner for sale for a route true for loan
+        public static KeyValuePair<Airliner,Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
         {
-            
+            double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
 
             AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(distance);
@@ -162,9 +174,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<Airliner> airliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
 
             if (airliners.Count > 0)
-                return (from a in airliners orderby a.Type.Range select a).First();
+                return new KeyValuePair<Airliner,Boolean>((from a in airliners orderby a.Type.Range select a).First(),false);
             else
-                return null;
+            {
+                if (airline.Mentality == Airline.AirlineMentality.Aggressive)
+                {
+                    double airlineLoanTotal = airline.Loans.Sum(l => l.PaymentLeft);
+
+                    if (airlineLoanTotal < maxLoanTotal)
+                    {
+                        List<Airliner> loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+
+                        if (loanAirliners.Count > 0)
+                            return new KeyValuePair<Airliner,Boolean>((from a in loanAirliners orderby a.Price select a).First(),true);
+                        else
+                            return null;
+                    }
+                    else
+                        return null;
+                    
+                }
+                else
+                    return null;
+            }
+                
    
         }
         //finds an airport and creates a basic service facility for an airline
