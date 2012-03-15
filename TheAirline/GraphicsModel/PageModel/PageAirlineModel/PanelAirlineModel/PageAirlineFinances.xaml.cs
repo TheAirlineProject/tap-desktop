@@ -108,6 +108,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lbLoans = new ListBox();
             lbLoans.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbLoans.MaxHeight = GraphicsHelpers.GetContentHeight() / 2 -100;
             lbLoans.ItemTemplate = this.Resources["LoanItem"] as DataTemplate;
 
             panelLoans.Children.Add(lbLoans);
