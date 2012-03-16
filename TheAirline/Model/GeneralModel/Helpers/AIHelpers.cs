@@ -30,7 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval)/1000 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval) == 0;
 
             //creates a new route for the airline
             if (newRoute)
