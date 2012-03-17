@@ -549,7 +549,7 @@ namespace TheAirline.Model.GeneralModel
 
             Region region = airline.Profile.Country.Region;
 
-            List<Airport> airports = Airports.GetAirports(region).FindAll((delegate(Airport a) { return a.Profile.Size == AirportProfile.AirportSize.Very_small || a.Profile.Size == AirportProfile.AirportSize.Smallest; }));
+            List<Airport> airports = Airports.GetAirports(region).FindAll(a => a.Profile.Size == AirportProfile.AirportSize.Very_small || a.Profile.Size == AirportProfile.AirportSize.Smallest);
 
             while (!isFree)
             {
@@ -560,43 +560,57 @@ namespace TheAirline.Model.GeneralModel
             airport.Terminals.rentGate(airline);
             airport.Terminals.rentGate(airline);
             
-            airport = AIHelpers.GetDestinationAirport(airline, airline.Airports[0]);
+            airport = AIHelpers.GetDestinationAirport(airline, airport);
 
-            airport.Terminals.rentGate(airline);
-
-            double price = PassengerHelpers.GetPassengerPrice(airport, airline.Airports[0]);
-
-            Guid id = Guid.NewGuid();
-
-            Route route = new Route(id.ToString(), airport, airline.Airports[0], price, airline.getNextFlightCode(), airline.getNextFlightCode());
-
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            if (airport == null)
             {
-                route.getRouteAirlinerClass(type).CabinCrew = 2;
-                route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
-                route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
+                airline.Airports[0].Terminals.releaseGate(airline);
+                airline.Airports[0].Terminals.releaseGate(airline);
+
+                if (airline.Airports.Count > 0)
+                    airline.Airports.Clear();
+
+                CreateComputerRoutes(airline);
+
             }
-            airline.addRoute(route);
+            else
+            {
+                airport.Terminals.rentGate(airline);
 
-            airport.Terminals.getEmptyGate(airline).Route = route;
-            airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
+                double price = PassengerHelpers.GetPassengerPrice(airport, airline.Airports[0]);
 
-            KeyValuePair<Airliner,Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1,route.Destination2);
-        
-            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
-                airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+                Guid id = Guid.NewGuid();
 
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airline.Airports[0]);
+                Route route = new Route(id.ToString(), airport, airline.Airports[0], price, airline.getNextFlightCode(), airline.getNextFlightCode());
 
-            RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
+                foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                {
+                    route.getRouteAirlinerClass(type).CabinCrew = 2;
+                    route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+                    route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
+                }
+                airline.addRoute(route);
 
-            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
+                airport.Terminals.getEmptyGate(airline).Route = route;
+                airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
 
-            fAirliner.RouteAirliner = rAirliner;
+                KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1, route.Destination2);
 
-            airline.Fleet.Add(fAirliner);
+                if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                    airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-            rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+                FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airline.Airports[0]);
+
+                RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
+
+                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
+
+                fAirliner.RouteAirliner = rAirliner;
+
+                airline.Fleet.Add(fAirliner);
+
+                rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+            }
         }
         /*! loads the maps for the airports
          */
