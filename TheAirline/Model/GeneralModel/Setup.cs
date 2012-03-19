@@ -610,6 +610,10 @@ namespace TheAirline.Model.GeneralModel
                 airline.Fleet.Add(fAirliner);
 
                 rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+
+                route.LastUpdated = GameObject.GetInstance().GameTime;
+
+                DateTime dt = route.LastUpdated;
             }
         }
         /*! loads the maps for the airports

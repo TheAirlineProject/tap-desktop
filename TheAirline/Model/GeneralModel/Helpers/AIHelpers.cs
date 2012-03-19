@@ -16,6 +16,54 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //updates a cpu airline
         public static void UpdateCPUAirline(Airline airline)
         {
+
+            CheckForNewRoute(airline);
+            CheckForUpdateRoute(airline);
+                //checkForDeleteRoute + check i Airliner uden route
+            
+        }
+        //checks for updating of an existing route for an airline
+        private static void CheckForUpdateRoute(Airline airline)
+        {
+            foreach (Route route in airline.Routes.FindAll(r=>GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalDays>10))
+            {
+                if (route.Airliner != null)
+                {
+                    double balance = route.getBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
+                    if (balance < -1000)
+                    {
+                        if (route.IncomePerPassenger < 0 && route.FillingDegree > 0.50)
+                        {
+                            foreach (RouteAirlinerClass rac in route.Classes)
+                            {
+                                rac.FarePrice += 10;
+                            }
+                            route.LastUpdated = GameObject.GetInstance().GameTime;
+                        }
+                        if (route.FillingDegree < 0.25)
+                        {
+                            airline.removeRoute(route);
+
+                            if (route.Airliner != null)
+                                route.Airliner.Airliner.RouteAirliner = null;
+
+                            route.Destination1.Terminals.getUsedGate(airline).Route = null;
+                            route.Destination2.Terminals.getUsedGate(airline).Route = null;
+
+                            Console.WriteLine(string.Format("{0} deleted the route between {1} and {2}", airline.Profile.Name, route.Destination1.Profile.Name, route.Destination2.Profile.Name));
+
+                            if (airline.Routes.Count == 0)
+                                CreateNewRoute(airline);
+                        }
+                    }
+                }
+                
+
+            }
+        }
+        //checks for a new route for an airline
+        private static void CheckForNewRoute(Airline airline)
+        {
             int newRouteInterval = 0;
             switch (airline.Mentality)
             {
@@ -35,66 +83,73 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //creates a new route for the airline
             if (newRoute)
             {
-                List<Airport> homeAirports = airline.Airports.FindAll(a => a.getAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
-                homeAirports.AddRange(airline.Airports.FindAll(a => a.Hubs.Count(h => h.Airline == airline) > 0)); //hubs
+                CreateNewRoute(airline);
 
-                Airport airport = homeAirports.Find(a => a.Terminals.getFreeGates(airline) > 0);
-                
-                if (airport == null)
+            }
+        }
+        //creates a new route for an airline
+        private static void CreateNewRoute(Airline airline)
+        {
+            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            homeAirports.AddRange(airline.Airports.FindAll(a => a.Hubs.Count(h => h.Airline == airline) > 0)); //hubs
+
+            Airport airport = homeAirports.Find(a => a.Terminals.getFreeGates(airline) > 0);
+
+            if (airport == null)
+            {
+                airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
+                if (airport != null)
+                    airport.Terminals.rentGate(airline);
+                else
                 {
-                    airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
+                    airport = GetServiceAirport(airline);
                     if (airport != null)
                         airport.Terminals.rentGate(airline);
-                    else
-                    {
-                        airport = GetServiceAirport(airline);
-                        if (airport != null)
-                            airport.Terminals.rentGate(airline);
-                    }
-                    
                 }
 
-                if (airport != null)
+            }
+
+            if (airport != null)
+            {
+                Airport destination = GetDestinationAirport(airline, airport);
+
+
+                if (destination != null)
                 {
-                    Airport destination = GetDestinationAirport(airline, airport);
+                    FleetAirliner fAirliner;
 
-            
-                    if (destination != null)
+                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination);
+                    fAirliner = GetFleetAirliner(airline, airport, destination);
+
+                    if (airliner.HasValue || fAirliner != null)
                     {
+                        if (destination.Terminals.getFreeGates(airline) == 0) destination.Terminals.rentGate(airline);
 
-                        KeyValuePair<Airliner,Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination);
+                        if (!airline.Airports.Contains(destination)) airline.addAirport(destination);
 
-                        if (airliner.HasValue)
+                        double price = PassengerHelpers.GetPassengerPrice(airport, destination);
+
+                        Guid id = Guid.NewGuid();
+
+                        Route route = new Route(id.ToString(), airport, destination, price, airline.getNextFlightCode(), airline.getNextFlightCode());
+
+                        foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                         {
-                            if (destination.Terminals.getFreeGates(airline) == 0) destination.Terminals.rentGate(airline);
+                            route.getRouteAirlinerClass(type).CabinCrew = 2;
+                            route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+                            route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
+                        }
 
-                            if (!airline.Airports.Contains(destination)) airline.addAirport(destination);
+                        airline.addRoute(route);
 
-                            double price = PassengerHelpers.GetPassengerPrice(airport, destination);
+                        airport.Terminals.getEmptyGate(airline).Route = route;
+                        destination.Terminals.getEmptyGate(airline).Route = route;
 
-                            Guid id = Guid.NewGuid();
+                        if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                            airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-                            Route route = new Route(id.ToString(), airport, destination, price, airline.getNextFlightCode(), airline.getNextFlightCode());
-
-                            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
-                            {
-                                route.getRouteAirlinerClass(type).CabinCrew = 2;
-                                route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
-                                route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
-                            }
-
-                            airline.addRoute(route);
-
-                            airport.Terminals.getEmptyGate(airline).Route = route;
-                            destination.Terminals.getEmptyGate(airline).Route = route;
-
-                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
-                                airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
-
-                            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
-
-                            RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
-
+                        if (fAirliner == null)
+                        {
                             if (airliner.Value.Value) //loan
                             {
                                 double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
@@ -108,19 +163,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             else
                                 airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
-
-                            fAirliner.RouteAirliner = rAirliner;
-
-                            airline.Fleet.Add(fAirliner);
-
-                            rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
                         }
+                        if (fAirliner == null)
+                            fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
+
+                        RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
+
+                        fAirliner.RouteAirliner = rAirliner;
+
+                        airline.Fleet.Add(fAirliner);
+
+                        rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+
+                        route.LastUpdated = GameObject.GetInstance().GameTime;
                     }
                 }
-
-
-
             }
+        }
+        //returns an airliner from the fleet which fits a route
+        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
+        {
+            var fleet = airline.Fleet.FindAll(f => f.RouteAirliner == null && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+
+            if (fleet.Count > 0)
+                return (from f in fleet orderby f.Airliner.Type.Range select f).First();
+            else
+                return null;
         }
         //returns the destination for an airline with a start airport
         public static Airport GetDestinationAirport(Airline airline, Airport airport)
@@ -166,6 +234,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the best fit for an airliner for sale for a route true for loan
         public static KeyValuePair<Airliner,Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
         {
+       
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
 

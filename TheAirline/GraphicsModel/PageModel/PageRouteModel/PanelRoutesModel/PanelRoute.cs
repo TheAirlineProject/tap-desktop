@@ -315,6 +315,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Route.Invoices.Clear();
                 this.Route.Statistics.clear();
 
+                this.Route.LastUpdated = GameObject.GetInstance().GameTime; 
+
             }
        
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)

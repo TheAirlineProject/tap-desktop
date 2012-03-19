@@ -23,6 +23,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public double Balance { get { return getBalance(); } set { ;} }
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
+        public DateTime LastUpdated { get; set; }
         public Route(string id, Airport destination1, Airport destination2, double farePrice,string flightCode1, string flightCode2)
         {
             this.Id = id;
@@ -153,6 +154,18 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             return amount;
         }
+        //returns the invoices amount for a specific type for a period
+        public double getRouteInvoiceAmount(Invoice.InvoiceType type, DateTime startTime, DateTime endTime)
+        {
+            List<Invoice> tInvoices;
+
+            if (type != Invoice.InvoiceType.Total)
+                tInvoices = this.Invoices.FindAll(i => i.Type == type && i.Date >= startTime && i.Date <= endTime);
+            else
+                tInvoices = this.Invoices.FindAll(i => i.Date >= startTime && i.Date <= endTime);
+
+            return tInvoices.Sum(i => i.Amount);
+        }
         //returns the list of invoice types for a route
         public List<Invoice.InvoiceType> getRouteInvoiceTypes()
         {
@@ -170,6 +183,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             return types;
         }
+        //returns the balance for the route for a period
+        public double getBalance(DateTime startTime, DateTime endTime)
+        {
+            return getRouteInvoiceAmount(Invoice.InvoiceType.Total, startTime, endTime);
+        }
         //get the balance for the route 
         private double getBalance()
         {
@@ -184,6 +202,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             return avgPassengers / totalPassengers;
         }
+       
         //gets the income per passenger
         private double getIncomePerPassenger()
         {

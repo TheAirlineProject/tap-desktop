@@ -284,6 +284,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                     airliner.RouteAirliner = rAirliner;
                 }
+                route.LastUpdated = GameObject.GetInstance().GameTime; 
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2501"), Translator.GetInstance().GetString("MessageBox", "2501", "message"), WPFMessageBoxButtons.Ok);
