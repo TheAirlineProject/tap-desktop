@@ -25,7 +25,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for updating of an existing route for an airline
         private static void CheckForUpdateRoute(Airline airline)
         {
-            foreach (Route route in airline.Routes.FindAll(r=>GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalDays>10))
+            int totalHours = rnd.Next(24 * 7, 24 * 13);
+            foreach (Route route in airline.Routes.FindAll(r=>GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalHours>totalHours))
             {
                 if (route.Airliner != null)
                 {
@@ -145,11 +146,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airport.Terminals.getEmptyGate(airline).Route = route;
                         destination.Terminals.getEmptyGate(airline).Route = route;
 
-                        if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
-                            airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
-
+                        
                         if (fAirliner == null)
                         {
+                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                                airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+
+                 
                             if (airliner.Value.Value) //loan
                             {
                                 double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
