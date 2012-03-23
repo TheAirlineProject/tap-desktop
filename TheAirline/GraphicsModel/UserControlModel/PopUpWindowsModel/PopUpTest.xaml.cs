@@ -26,11 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpTest()
         {
-            //this.SetResourceReference(Window.BackgroundProperty, "HeaderBackgroundBrush2");
-
-            //this.ResizeMode = System.Windows.ResizeMode.NoResize;
-
-            //this.WindowStyle = System.Windows.WindowStyle.ToolWindow;
+          
 
             InitializeComponent();
         }

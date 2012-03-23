@@ -19,7 +19,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             CheckForNewRoute(airline);
             CheckForUpdateRoute(airline);
-                //checkForDeleteRoute + check i Airliner uden route
+   
             
         }
         //checks for updating of an existing route for an airline
@@ -50,8 +50,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             route.Destination1.Terminals.getUsedGate(airline).Route = null;
                             route.Destination2.Terminals.getUsedGate(airline).Route = null;
-
-                            Console.WriteLine(string.Format("{0} deleted the route between {1} and {2}", airline.Profile.Name, route.Destination1.Profile.Name, route.Destination2.Profile.Name));
 
                             if (airline.Routes.Count == 0)
                                 CreateNewRoute(airline);
@@ -222,8 +220,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int counter = 0;
 
             if (airports.Count == 0)
-                airports = (from a in Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 2000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
-
+            {
+                airports = (from a in Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
+                airports = (from a in airports orderby a.Profile.Size select a).ToList();
+            }
             while (destination == null && counter < airports.Count)
             {
                 destination = airports[counter];
