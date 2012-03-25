@@ -19,14 +19,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             CheckForNewRoute(airline);
             CheckForUpdateRoute(airline);
-   
-            
+
+
         }
         //checks for updating of an existing route for an airline
         private static void CheckForUpdateRoute(Airline airline)
         {
             int totalHours = rnd.Next(24 * 7, 24 * 13);
-            foreach (Route route in airline.Routes.FindAll(r=>GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalHours>totalHours))
+            foreach (Route route in airline.Routes.FindAll(r => GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalHours > totalHours))
             {
                 if (route.Airliner != null)
                 {
@@ -56,7 +56,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
                     }
                 }
-                
+
 
             }
         }
@@ -77,7 +77,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval) == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval) / 1000 == 0;
 
             //creates a new route for the airline
             if (newRoute)
@@ -144,13 +144,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airport.Terminals.getEmptyGate(airline).Route = route;
                         destination.Terminals.getEmptyGate(airline).Route = route;
 
-                        
+
                         if (fAirliner == null)
                         {
+
                             if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
                                 airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-                 
+
                             if (airliner.Value.Value) //loan
                             {
                                 double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
@@ -164,15 +165,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             else
                                 airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
-                        }
-                        if (fAirliner == null)
+                            
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
+                            airline.Fleet.Add(fAirliner);
+
+                        }
 
                         RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
 
                         fAirliner.RouteAirliner = rAirliner;
 
-                        airline.Fleet.Add(fAirliner);
 
                         rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
 
@@ -198,15 +200,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                   select a.Type.Range).Max();
 
             double minDistance = (from a in Airports.GetAirports().FindAll(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
-  
-     
+
+
             List<Airport> airports = new List<Airport>();
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
-                  
+
             switch (airline.MarketFocus)
             {
                 case Airline.AirlineMarket.Global:
-                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates,airport.Profile.Coordinates)>100);
+                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
                 case Airline.AirlineMarket.Local:
                     airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
@@ -215,7 +217,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airports = Airports.GetAirports(airport.Profile.Country.Region).FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
             }
-           
+
             Airport destination = null;
             int counter = 0;
 
@@ -228,16 +230,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 destination = airports[counter];
 
-                if ((routes.Find(r => r.Destination1 == destination || r.Destination2 == destination) != null) || (destination.Terminals.getFreeGates()==0 && destination.Terminals.getFreeGates(airline)==0) || (destination == airport)) destination = null;
+                if ((routes.Find(r => r.Destination1 == destination || r.Destination2 == destination) != null) || (destination.Terminals.getFreeGates() == 0 && destination.Terminals.getFreeGates(airline) == 0) || (destination == airport)) destination = null;
                 counter++;
-                
+
             }
             return destination;
         }
         //returns the best fit for an airliner for sale for a route true for loan
-        public static KeyValuePair<Airliner,Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
+        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
         {
-       
+
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
 
@@ -246,7 +248,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<Airliner> airliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
 
             if (airliners.Count > 0)
-                return new KeyValuePair<Airliner,Boolean>((from a in airliners orderby a.Type.Range select a).First(),false);
+                return new KeyValuePair<Airliner, Boolean>((from a in airliners orderby a.Type.Range select a).First(), false);
             else
             {
                 if (airline.Mentality == Airline.AirlineMentality.Aggressive)
@@ -258,25 +260,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         List<Airliner> loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
 
                         if (loanAirliners.Count > 0)
-                            return new KeyValuePair<Airliner,Boolean>((from a in loanAirliners orderby a.Price select a).First(),true);
+                            return new KeyValuePair<Airliner, Boolean>((from a in loanAirliners orderby a.Price select a).First(), true);
                         else
                             return null;
                     }
                     else
                         return null;
-                    
+
                 }
                 else
                     return null;
             }
-                
-   
+
+
         }
         //finds an airport and creates a basic service facility for an airline
         private static Airport GetServiceAirport(Airline airline)
         {
-          
-            AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f=>f.TypeLevel==1);
+
+            AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
 
             var airports = from a in airline.Airports.FindAll(aa => aa.Terminals.getFreeGates() > 0) orderby a.Profile.Size descending select a;
 

@@ -45,6 +45,7 @@
         </DataTemplate>
         <DataTemplate x:Key="AirlinersUsedHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+             
                 <TextBlock Width="200" VerticalAlignment="Bottom" FontWeight="Bold">
                      <Hyperlink Tag="Type" Click="HeaderUsed_Click">
                         <Run Text="Type"></Run>
@@ -64,6 +65,7 @@
         </DataTemplate>
         <DataTemplate x:Key="AirlinerUsedItem">
             <WrapPanel>
+    
                 <TextBlock Width="200" VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding }" TargetName="Used" Click="Hyperlink_Click">
                         <Run Text="{Binding Type.Name}"></Run>
