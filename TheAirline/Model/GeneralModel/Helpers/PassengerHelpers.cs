@@ -89,9 +89,17 @@ namespace TheAirline.Model.GeneralModel
                 value = Math.Min((int)dValue, airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
             }
 
+            double price = airliner.Route.getRouteAirlinerClass(type).FarePrice;
+            double standardPrice = GetPassengerPrice(airliner.Route.Destination1, airliner.Route.Destination2);
+            
+            double priceDiff = standardPrice / price;
+
+            value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+
             return value;
 
         }
+       
         //returns the suggested passenger price for a route on a airliner
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
@@ -99,7 +107,7 @@ namespace TheAirline.Model.GeneralModel
             double fuelConsumption = 0.040;
             double groundTaxPerPassenger = 5;
 
-            double tax = groundTaxPerPassenger; //* airliner.getTotalSeatCapacity() / 2;
+            double tax = groundTaxPerPassenger; 
 
             if (dest1.Profile.Country.Name != dest2.Profile.Country.Name)
                 tax *= 2;
