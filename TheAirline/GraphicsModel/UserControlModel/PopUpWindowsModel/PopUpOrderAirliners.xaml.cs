@@ -23,6 +23,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         private AirlinerType Airliner;
         private ucNumericUpDown nudAirliners;
+        private TextBlock txtPrice;
         public static object ShowPopUp(AirlinerType airliner)
         {
             PopUpWindow window = new PopUpOrderAirliners(airliner);
@@ -38,7 +39,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 300;
 
-            this.Height = 110;
+            this.Height = 125;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -57,12 +58,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             nudAirliners.Height = 30;
             nudAirliners.MaxValue = 10;
             nudAirliners.Value = 1;
-            //nudGates.ValueChanged += new RoutedPropertyChangedEventHandler<decimal>(nudGates_ValueChanged);
+            nudAirliners.ValueChanged += new RoutedPropertyChangedEventHandler<decimal>(nudAirliners_ValueChanged);
             nudAirliners.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             nudAirliners.MinValue = 1;
 
             lbOrder.Items.Add(new QuickInfoValue("Orders", nudAirliners));
 
+            txtPrice = new TextBlock();
+            txtPrice.Text = string.Format("{0:C}", this.Airliner.Price);
+
+            lbOrder.Items.Add(new QuickInfoValue("Total price", txtPrice));
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 10, 0, 0);
@@ -94,6 +99,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelButtons.Children.Add(btnCancel);
             this.Content = mainPanel;
+        }
+
+        private void nudAirliners_ValueChanged(object sender, RoutedPropertyChangedEventArgs<decimal> e)
+        {
+            int airliners = Convert.ToInt32(nudAirliners.Value);
+
+            txtPrice.Text = string.Format("{0:C}", airliners * this.Airliner.Price);
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {

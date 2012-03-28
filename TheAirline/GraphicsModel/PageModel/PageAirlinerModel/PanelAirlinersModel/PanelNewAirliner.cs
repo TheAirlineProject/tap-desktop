@@ -127,40 +127,44 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
         private void btnOrder_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-            int orders = (int)PopUpOrderAirliners.ShowPopUp(this.Airliner);
+            object o = PopUpOrderAirliners.ShowPopUp(this.Airliner);
 
-            double price = this.cbPayOnDelivery.IsChecked.Value ? orders*(this.Airliner.Price * this.downPaymentRate) : orders*this.Airliner.Price;
-            Airport airport = (Airport)cbAirport.SelectedItem;
-            if (price > GameObject.GetInstance().HumanAirline.Money)
+            if (o != null)
             {
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
-            }
-            else if (airport == null)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
-            else
-            {
-             
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2003"), string.Format(Translator.GetInstance().GetString("MessageBox", "2003", "message"), this.Airliner.Name,orders), WPFMessageBoxButtons.YesNo);
+                int orders = (int)PopUpOrderAirliners.ShowPopUp(this.Airliner);
 
-                if (result == WPFMessageBoxResult.Yes)
+                double price = this.cbPayOnDelivery.IsChecked.Value ? orders * (this.Airliner.Price * this.downPaymentRate) : orders * this.Airliner.Price;
+                Airport airport = (Airport)cbAirport.SelectedItem;
+                if (price > GameObject.GetInstance().HumanAirline.Money)
+                {
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
+                }
+                else if (airport == null)
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
+                else
                 {
 
-                    for (int i = 0; i < orders; i++)
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2003"), string.Format(Translator.GetInstance().GetString("MessageBox", "2003", "message"), this.Airliner.Name, orders), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
                     {
-                        Airliner airliner = new Airliner(this.Airliner, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
-                        Airliners.AddAirliner(airliner);
 
-                        FleetAirliner.PurchasedType type = cbPayOnDelivery.IsChecked.Value ? FleetAirliner.PurchasedType.BoughtDownPayment : FleetAirliner.PurchasedType.Bought;
-                        GameObject.GetInstance().HumanAirline.addAirliner(type, airliner, airliner.TailNumber, airport);
+                        for (int i = 0; i < orders; i++)
+                        {
+                            Airliner airliner = new Airliner(this.Airliner, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
+                            Airliners.AddAirliner(airliner);
 
+                            FleetAirliner.PurchasedType type = cbPayOnDelivery.IsChecked.Value ? FleetAirliner.PurchasedType.BoughtDownPayment : FleetAirliner.PurchasedType.Bought;
+                            GameObject.GetInstance().HumanAirline.addAirliner(type, airliner, airliner.TailNumber, airport);
+
+                        }
+                        GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
+
+
+                        this.clearPanel();
                     }
-                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
-
-
-                    this.clearPanel();
                 }
             }
-
 
         }
     }
