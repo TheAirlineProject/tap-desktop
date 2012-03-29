@@ -538,13 +538,22 @@ namespace TheAirline.Model.GeneralModel
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
         }
+        //finds the home base for a computer airline
+        private static Airport FindComputerHomeBase(Airline airline)
+        {
+            List<Airport> airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a=>a.Terminals.getFreeGates()>1);
 
+            airports = (from a in airports orderby ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count descending select a).ToList();
+        
+            return airports[rnd.Next(5)];
+        }
         /*! creates some airliners and routes for a computer airline.
          */
         private static void CreateComputerRoutes(Airline airline)
         {
-            Airport airport = null;
+            Airport airport = FindComputerHomeBase(airline);
 
+            /*
             Boolean isFree = false;
 
             Region region = airline.Profile.Country.Region;
@@ -556,7 +565,7 @@ namespace TheAirline.Model.GeneralModel
                 airport = airports[rnd.Next(airports.Count)];
                 isFree = airport.Terminals.getFreeGates() > 1;
             }
-
+            */
             airport.Terminals.rentGate(airline);
             airport.Terminals.rentGate(airline);
             
