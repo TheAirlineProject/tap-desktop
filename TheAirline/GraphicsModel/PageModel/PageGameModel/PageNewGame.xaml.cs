@@ -303,7 +303,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airportsView.Filter = o =>
                 {
                     Airport a = o as Airport;
-                    return a.Profile.Country.Region == airline.Profile.Country.Region;// && (a.Profile.Size == AirportProfile.AirportSize.Smallest || a.Profile.Size == AirportProfile.AirportSize.Very_small);
+                    return a.Profile.Country.Region == airline.Profile.Country.Region && a.Terminals.getNumberOfGates()>10;// && (a.Profile.Size == AirportProfile.AirportSize.Smallest || a.Profile.Size == AirportProfile.AirportSize.Very_small);
                 };
             }
             catch (Exception ex)

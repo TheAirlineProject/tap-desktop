@@ -125,7 +125,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
             Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
-            Boolean isBuyHubEnabled = (!humanHub) && (humanGatesPercent>20) && (totalHumanHubs<airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
+            Boolean isBuyHubEnabled = (GameObject.GetInstance().HumanAirline.Money > this.Airport.getHubPrice()) && (!humanHub) && (humanGatesPercent > 20) && (totalHumanHubs < airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
             btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
         
         }

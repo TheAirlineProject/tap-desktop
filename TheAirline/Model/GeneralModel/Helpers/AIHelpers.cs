@@ -16,9 +16,68 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //updates a cpu airline
         public static void UpdateCPUAirline(Airline airline)
         {
-
+            CheckForNewHub(airline);
             CheckForNewRoute(airline);
             CheckForUpdateRoute(airline);
+
+
+        }
+        //checks for etablishing a new hub
+        private static void CheckForNewHub(Airline airline)
+        {
+
+            int hubs = Airports.GetAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+
+            int newHubInterval = 0;
+            switch (airline.Mentality)
+            {
+                case Airline.AirlineMentality.Aggressive:
+                    newHubInterval = 100000;
+                    break;
+                case Airline.AirlineMentality.Moderate:
+                    newHubInterval = 1000000;
+                    break;
+                case Airline.AirlineMentality.Safe:
+                    newHubInterval = 10000000;
+                    break;
+            }
+
+            Boolean newHub = rnd.Next(newHubInterval * hubs) == 0;// 100000 == 0;
+
+
+            if (newHub)
+            {
+                //creates a new hub for the airline
+                CreateNewHub(airline);
+
+            }
+        }
+        //creates a new hub for an airline
+        private static void CreateNewHub(Airline airline)
+        {
+            List<Airport> airports = airline.Airports.FindAll(a => CanCreateHub(airline,a));
+
+            if (airports.Count > 0)
+            {
+                Airport airport = (from a in airports orderby a.Profile.Size descending select a).First();
+                
+                airport.Hubs.Add(new Hub(airline));
+
+                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airport.getHubPrice()));
+          
+            }
+
+        }
+        //checks if it is possible to create a hub at an airport
+        private static Boolean CanCreateHub(Airline airline, Airport airport)
+        {
+            int airlineValue = (int)airline.getAirlineValue() + 1;
+
+            int totalAirlineHubs = Airports.GetAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
+            Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
+
+            return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
 
 
         }
@@ -77,11 +136,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval) / 110  == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval) / 110 == 0;
 
-            //creates a new route for the airline
             if (newRoute)
             {
+                //creates a new route for the airline
                 CreateNewRoute(airline);
 
             }
@@ -166,7 +225,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             else
                                 airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
-                            
+
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
 
@@ -225,7 +284,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airports.Count == 0)
             {
                 airports = (from a in Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
-                
+
             }
 
             airports = (from a in airports orderby a.Profile.Size descending select a).ToList();
