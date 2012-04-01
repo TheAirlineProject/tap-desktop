@@ -44,7 +44,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Boolean newHub = rnd.Next(newHubInterval * hubs) == 0;// 100000 == 0;
 
-
             if (newHub)
             {
                 //creates a new hub for the airline
@@ -246,6 +245,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns an airliner from the fleet which fits a route
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
         {
+            //Order new airliner
             var fleet = airline.Fleet.FindAll(f => f.RouteAirliner == null && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
 
             if (fleet.Count > 0)
@@ -356,6 +356,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return null;
 
+        }
+        //returns a random item based on a weighted value
+        public static T GetRandomItem<T>(Dictionary<T, int> list)
+        {
+
+            List<T> tList = new List<T>();
+
+            foreach (T item in list.Keys)
+            {
+                for (int i = 0; i < list[item]; i++)
+                    tList.Add(item);
+            }
+
+            return tList[rnd.Next(tList.Count)];
         }
     }
 }

@@ -9,6 +9,7 @@ namespace TheAirline.Model.GeneralModel
 {
     public class MathHelpers
     {
+
         //moves a object with coordinates in a direction for a specific distance in kilometers
         public static void MoveObject(Coordinates coordinates, Coordinates destination, double dist)
         {
@@ -223,5 +224,6 @@ namespace TheAirline.Model.GeneralModel
          
             return amount * pRate / length;
         }
+     
     }
 }

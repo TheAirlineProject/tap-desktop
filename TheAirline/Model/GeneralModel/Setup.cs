@@ -543,9 +543,12 @@ namespace TheAirline.Model.GeneralModel
         {
             List<Airport> airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a=>a.Terminals.getFreeGates()>1);
 
-            airports = (from a in airports orderby ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count descending select a).ToList();
-        
-            return airports[rnd.Next(5)];
+            //airports = (from a in airports orderby ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count descending select a).ToList();
+
+            Dictionary<Airport,int> list = new Dictionary<Airport,int>();
+            airports.ForEach(a => list.Add(a,((int)a.Profile.Size)*GeneralHelpers.GetAirportsNearAirport(a).Count));
+       
+            return AIHelpers.GetRandomItem(list);
         }
         /*! creates some airliners and routes for a computer airline.
          */

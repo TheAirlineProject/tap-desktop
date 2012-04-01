@@ -150,5 +150,6 @@ namespace TheAirline.Model.GeneralModel
 
             return AirlinerType.TypeRange.Medium_Range;
         }
+       
     }
 }
