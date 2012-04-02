@@ -150,6 +150,17 @@ namespace TheAirline.Model.GeneralModel
 
             return AirlinerType.TypeRange.Medium_Range;
         }
-       
+        //converts airliner class type to a price factor
+        public static int ClassToPriceFactor(AirlinerClass.ClassType type)
+        {
+            if (type == AirlinerClass.ClassType.Business_Class)
+                return 3;
+            if (type == AirlinerClass.ClassType.Economy_Class)
+                return 1;
+            if (type == AirlinerClass.ClassType.First_Class)
+                return 6;
+            return 1;
+        }
+
     }
 }

@@ -323,7 +323,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
-                    aClass.FarePrice =  PassengerHelpers.GetPassengerPrice(airport1, airport2) * (int)aClass.Type; 
+                    aClass.FarePrice = PassengerHelpers.GetPassengerPrice(airport1, airport2) * GeneralHelpers.ClassToPriceFactor(aClass.Type);
                 }
 
                 double distance = MathHelpers.GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
