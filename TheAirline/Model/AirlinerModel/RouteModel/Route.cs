@@ -200,6 +200,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.Airliner.getTotalSeatCapacity());
 
+            double fillingDegree = avgPassengers / totalPassengers;
+
+            if (fillingDegree > 1)
+            {
+                string s = "";
+                s += this.Destination1.Profile.Name + " <-> " + this.Destination2.Profile.Name;
+            }
+
             return avgPassengers / totalPassengers;
         }
        

@@ -13,7 +13,7 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerClass
     {
         private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
-        public enum ClassType { Economy_Class = 1, Business_Class = 2, First_Class = 3 }
+        public enum ClassType { Economy_Class = 1, Business_Class = 3, First_Class = 6 }
         public ClassType Type { get; set; }
         public int RegularSeatingCapacity { get; set; }
         public int SeatingCapacity { get; set; }
