@@ -175,7 +175,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbFood.SelectedItem = this.AirlinerClass.FoodFacility;
             cbDrinks.SelectedItem = this.AirlinerClass.DrinksFacility;// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
             cbCrew.SelectedItem = this.AirlinerClass.CabinCrew;
-            txtPrice.Text = this.AirlinerClass.FarePrice.ToString();
+            txtPrice.Text = String.Format("{0:0.##}", this.AirlinerClass.FarePrice);
             cbSeating.SelectedItem = this.AirlinerClass.Seating;
         }
 

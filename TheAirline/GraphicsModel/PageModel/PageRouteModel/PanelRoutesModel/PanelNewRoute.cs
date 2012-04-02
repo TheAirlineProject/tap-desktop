@@ -98,7 +98,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 imgInfo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
                 RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
 
-                 Border brdToolTip = new Border();
+                Border brdToolTip = new Border();
                 brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
                 brdToolTip.Padding = new Thickness(5);
                 brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -321,7 +321,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 Airport airport1 = (Airport)cbDestination1.SelectedItem;
                 Airport airport2 = (Airport)cbDestination2.SelectedItem;
 
-
+                foreach (RouteAirlinerClass aClass in this.Classes.Values)
+                {
+                    aClass.FarePrice = PassengerHelpers.GetPassengerPrice(airport1, airport2); 
+                }
 
                 double distance = MathHelpers.GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
                 txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
