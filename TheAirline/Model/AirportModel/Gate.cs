@@ -30,12 +30,11 @@ namespace TheAirline.Model.AirportModel
     {
         private List<Gate> TerminalGates;
         public Airport Airport { get; set; }
-        // chs 11-10-11: changed for the possibility of showing the number of human gates
-        public int NumberOfHumanGates { get { return this.getNumberOfGates(GameObject.GetInstance().HumanAirline); } set { ;} }
-        
+       
         public int NumberOfGates { get { return this.TerminalGates.Count; } set { ;} }
         public int NumberOfOrderedGates { get { return this.getOrderedGates().Count;} set { ;} }
         public int NumberOfDeliveredGates { get { return this.NumberOfGates - this.NumberOfOrderedGates; } set { ;} }
+        public int NumberOfUsedGates { get { return this.NumberOfGates - getFreeGates(); } set { ;} }
         public Gates(Airport airport, int numberOfGates, DateTime deliveryDate)
         {
             this.Airport = airport;

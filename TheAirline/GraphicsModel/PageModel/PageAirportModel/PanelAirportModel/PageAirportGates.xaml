@@ -36,7 +36,7 @@
                 <WrapPanel Width="75" VerticalAlignment="Bottom">
                  <TextBlock VerticalAlignment="Bottom" Text="{Binding Gates.NumberOfDeliveredGates, StringFormat= ({0}}"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Path=Gates.NumberOfOrderedGates, StringFormat= / {0}}"></TextBlock>
-                    <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Gates.NumberOfHumanGates, StringFormat= {}/ {0})}"></TextBlock>
+                    <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Gates.NumberOfUsedGates, StringFormat= {}/ {0})}"></TextBlock>
                 </WrapPanel>
                 <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding DeliveryDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"></TextBlock>
                 <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
