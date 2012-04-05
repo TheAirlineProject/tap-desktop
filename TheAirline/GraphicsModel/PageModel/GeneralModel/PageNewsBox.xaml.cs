@@ -84,19 +84,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             
             List<News> lNews = GameObject.GetInstance().NewsBox.getNews();
-            lNews.Sort((delegate(News n1, News n2) { if (n2.Date.CompareTo(n1.Date) !=0) return n2.Date.CompareTo(n1.Date); else return n2.Body.CompareTo(n1.Body); }));
 
-
+            lNews = (from n in lNews orderby n.Date descending select n).ToList();
+                   
             if (lNews.Count != lbNews.Items.Count || forceShow)
             {
 
                 lbNews.Items.Clear();
 
-
-                foreach (News news in lNews)
-                {
-                    lbNews.Items.Add(news);
-                }
+                lNews.ForEach(n => lbNews.Items.Add(n));
+               
             }
         }
         private void LnkNews_Click(object sender, RoutedEventArgs e)

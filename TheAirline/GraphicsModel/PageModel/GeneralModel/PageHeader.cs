@@ -21,7 +21,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Border frameBorder = new Border();
             frameBorder.BorderBrush = Brushes.Gray;
-            //frameBorder.CornerRadius = new CornerRadius(5);
             frameBorder.BorderThickness = new Thickness(2);
 
             DockPanel panelMain = new DockPanel();
@@ -35,8 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             txtText.Margin = new Thickness(5, 0, 0, 0);
             txtText.SetResourceReference(TextBlock.ForegroundProperty, "HeaderTextColor");
             txtText.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            //txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-
+    
             panelMain.Children.Add(txtText);
 
             frameBorder.Child = panelMain;

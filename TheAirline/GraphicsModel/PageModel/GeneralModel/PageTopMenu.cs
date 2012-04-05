@@ -15,20 +15,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         protected WrapPanel panelMain;
         public PageTopMenu()
         {
-         //   Brush brush = new SolidColorBrush(Colors.Black);
-          //  brush.Opacity = 0.80;
-
-          //  this.Background = brush;
-
+      
             this.SetResourceReference(Page.BackgroundProperty, "BackgroundTop");
 
-            /*
-            Border frameBorder = new Border();
-            frameBorder.BorderBrush = Brushes.White;
-            //frameBorder.CornerRadius = new CornerRadius(5);
-            frameBorder.BorderThickness = new Thickness(2);
-            */
-            panelMain = new WrapPanel();
+           panelMain = new WrapPanel();
             panelMain.Margin = new Thickness(1, 0, 0, 0);
             panelMain.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
      
@@ -36,10 +26,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             txtName.FontSize = 16;
             txtName.FontWeight = FontWeights.Bold;
             txtName.Text = "The Airline " + Settings.Default.Version;
-            //txtName.Foreground = Brushes.White;
             txtName.Margin = new Thickness(5, 0, 0, 0);
-            //txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-
+      
             panelMain.Children.Add(txtName);
 
             Image imgLogo = new Image();
@@ -50,8 +38,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
             panelMain.Children.Add(imgLogo);
-
-            //frameBorder.Child = panelMain;
 
             this.Content = panelMain;
 

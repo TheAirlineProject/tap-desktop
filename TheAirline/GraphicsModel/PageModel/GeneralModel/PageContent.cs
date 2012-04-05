@@ -12,17 +12,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     public class PageContent : Page
     {
         private StackPanel panelContent;
-        //private StackPanel panelActionMenu;
         public PageContent()
         {
-            Brush brush = new SolidColorBrush(Colors.DarkGray);//(Colors.LightBlue);
+            Brush brush = new SolidColorBrush(Colors.DarkGray);
             brush.Opacity = 0.80;
 
             this.Background = brush;
 
             Border frameBorder = new Border();
             frameBorder.BorderBrush = Brushes.Gray;
-            //frameBorder.CornerRadius = new CornerRadius(5);
             frameBorder.BorderThickness = new Thickness(2);
 
             Grid panelMain = new Grid();
@@ -39,25 +37,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             panelContent = new StackPanel();
             panelContent.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             panelContent.Margin = new Thickness(10, 10, 10, 10);
-            //panelContent.Background = Brushes.DarkRed;
-
+          
             Grid.SetRow(panelContent, 0);
             panelMain.Children.Add(panelContent);
-
-            /*
-            panelActionMenu = new StackPanel();
-            panelActionMenu.Margin = new Thickness(10, 0, 10, 10);
-            panelActionMenu.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-
-            Brush actionMenuBrush = new SolidColorBrush(Colors.Black);
-            actionMenuBrush.Opacity = 0.4;
-            panelActionMenu.Background = actionMenuBrush;
-            panelActionMenu.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            Grid.SetRow(panelActionMenu, 1);
-            panelMain.Children.Add(panelActionMenu);
-             * */
-
 
             frameBorder.Child = panelMain;
 

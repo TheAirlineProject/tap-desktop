@@ -163,14 +163,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbFacilities.Items.Clear();
             lbNewFacilities.Items.Clear();
 
-            foreach (AirlineFacility facility in this.Airline.Facilities)
-                lbFacilities.Items.Add(new AirlineFacilityItem(this.Airline,facility));
-
+            this.Airline.Facilities.ForEach(f => lbFacilities.Items.Add(new KeyValuePair<Airline, AirlineFacility>(this.Airline, f)));
+         
             List<AirlineFacility> facilitiesNew = AirlineFacilities.GetFacilities();
 
-            facilitiesNew.RemoveAll((delegate(AirlineFacility af) { return this.Airline.Facilities.Contains(af); }));
-
-            foreach (AirlineFacility facility in facilitiesNew.FindAll(delegate (AirlineFacility af){return af.FromYear<=year;}))
+            facilitiesNew.RemoveAll(f => this.Airline.Facilities.Contains(f));
+           
+            foreach (AirlineFacility facility in facilitiesNew.FindAll(f=>f.FromYear<=year)) 
                 lbNewFacilities.Items.Add(facility);
         }
 
@@ -210,17 +209,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 showFacilities();
             }
         }
-
-        //the item for a facility for an airline
-        private class AirlineFacilityItem
-        {
-            public Airline Airline { get; set; }
-            public AirlineFacility Facility { get; set; }
-            public AirlineFacilityItem(Airline airline, AirlineFacility facility)
-            {
-                this.Airline = airline;
-                this.Facility = facility;
-            }
-        }
+        
+      
+        
     }
 }

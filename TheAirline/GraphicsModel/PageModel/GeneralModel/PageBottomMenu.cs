@@ -16,11 +16,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private TextBlock txtMoney, txtTime;
         public PageBottomMenu()
         {
-           // Brush brush = new SolidColorBrush(Colors.Black);
-           // brush.Opacity = 0.80;
-
-           // this.Background = brush;
-
+        
             this.SetResourceReference(Page.BackgroundProperty, "BackgroundBottom");
 
             Border frameBorder = new Border();
@@ -68,7 +64,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             if (this.IsLoaded)
             {
-                //txtTime.Text = GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
                 txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
                 txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
                 txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;            

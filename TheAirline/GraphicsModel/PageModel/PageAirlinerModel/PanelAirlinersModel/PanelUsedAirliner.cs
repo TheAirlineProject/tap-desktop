@@ -12,6 +12,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersModel
 {
@@ -25,11 +26,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             this.Airliner = airliner;
 
             StackPanel panelAirliner = new StackPanel();
-            //scroller.Content = panelAirliner;
-
+         
             panelAirliner.Children.Add(base.createQuickInfoPanel(airliner.Type));
-
-            //this.Children.Add(panelAirliner);
 
             this.addObject(panelAirliner);
 
@@ -78,7 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
                 {
-                    AirlinerFacility facility = aClass.getFacility(type);//this.Airliner.getFacility(type);
+                    AirlinerFacility facility = aClass.getFacility(type);
                     lbAirlineInfo.Items.Add(new QuickInfoValue(string.Format("{0} facilities", type), UICreator.CreateTextBlock(facility.Name)));
                 }
             }
@@ -107,35 +105,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbAirport = new ComboBox();
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            //cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
             cbAirport.Background = Brushes.Transparent;
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0; }));
-            airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
-
+            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            airports = (from a in airports orderby a.Profile.Name select a).ToList();
+       
             foreach (Airport airport in airports)
                 cbAirport.Items.Add(airport);
 
             cbAirport.SelectedIndex = 0;
 
             lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1105"), cbAirport));
-
-            /*
-            cbName = new ComboBox();
-            cbName.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbName.Background = Brushes.Transparent;
-            cbName.Width = 200;
-
-            foreach (string name in AirlinerNameGenerator.GetInstance().getNames())
-                cbName.Items.Add(name);
-
-            cbName.SelectedIndex = 0;
-
-            lbPriceInfo.Items.Add(new QuickInfoValue("Select airliner name", cbName));
-             * */
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
@@ -150,8 +132,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             btnBuy.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnBuy.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnBuy.Click += new System.Windows.RoutedEventHandler(btnBuy_Click);
-            //btnRent.IsEnabled = this.Airport.Gates.getFreeGates() > 0;
-            //btnRent.Click += new RoutedEventHandler(btnRent_Click);
             panelButtons.Children.Add(btnBuy);
 
             Button btnLease = new Button();
@@ -182,9 +162,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    //string name = (string)cbName.SelectedItem;
-                    //AirlinerNameGenerator.GetInstance().removeName(name);
-                    if (Countries.GetCountryFromTailNumber(this.Airliner.TailNumber).Name != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
+                     if (Countries.GetCountryFromTailNumber(this.Airliner.TailNumber).Name != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
                        this.Airliner.TailNumber = GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
 
                     GameObject.GetInstance().HumanAirline.addAirliner(FleetAirliner.PurchasedType.Leased, this.Airliner,this.Airliner.TailNumber, airport);
@@ -213,13 +191,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
+                    /*
                     if (Countries.GetCountryFromTailNumber(this.Airliner.TailNumber).Name != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
                         this.Airliner.TailNumber = GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
 
                     GameObject.GetInstance().HumanAirline.addAirliner(FleetAirliner.PurchasedType.Bought, this.Airliner, this.Airliner.TailNumber, airport);
 
-                    //GameObject.GetInstance().HumanAirline.Money -= this.Airliner.getPrice();
                     GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airliner.getPrice()));
+                    */
+                    AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport);
 
                     base.ParentPage.showUsedAirliners();
 

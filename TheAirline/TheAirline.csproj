@@ -518,6 +518,7 @@
     <Compile Include="Model\GeneralModel\GameTimer.cs" />
     <Compile Include="Model\GeneralModel\GameTimeZone.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AIHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\AirlineHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />

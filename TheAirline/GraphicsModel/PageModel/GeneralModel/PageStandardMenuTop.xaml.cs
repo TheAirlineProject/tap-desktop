@@ -44,8 +44,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         public PageStandardMenuTop()
         {
-            //this.MenuItemNews = new MenuItem();
-
+       
             setNewsText();
 
             InitializeComponent();
@@ -73,8 +72,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private void setNewsText()
         {
             int news = GameObject.GetInstance().NewsBox.getUnreadNews().Count;
-            // ((Run)lnkNews.Inlines.FirstInline).Text = news == 0 ? "News" : string.Format("News ({0})", news);
-
+    
             this.NewsText = news == 0 ? "News" : string.Format("News ({0})", news);
 
         }

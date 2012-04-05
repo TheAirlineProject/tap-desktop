@@ -53,9 +53,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             // chs, 2011-10-11 changed the max height so all elements are visible
             lbDestinations.MaxHeight = GraphicsHelpers.GetContentHeight()-100;
 
-            foreach (Airport airport in this.Airline.Airports)
-                 lbDestinations.Items.Add(airport);
-
+            this.Airline.Airports.ForEach(a => lbDestinations.Items.Add(a));
+        
             panelDestinations.Children.Add(lbDestinations);
 
             WrapPanel panelButtons = new WrapPanel();

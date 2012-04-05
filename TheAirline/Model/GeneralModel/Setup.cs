@@ -556,19 +556,7 @@ namespace TheAirline.Model.GeneralModel
         {
             Airport airport = FindComputerHomeBase(airline);
 
-            /*
-            Boolean isFree = false;
-
-            Region region = airline.Profile.Country.Region;
-
-            List<Airport> airports = Airports.GetAirports(region).FindAll(a => a.Profile.Size == AirportProfile.AirportSize.Very_small || a.Profile.Size == AirportProfile.AirportSize.Smallest);
-
-            while (!isFree)
-            {
-                airport = airports[rnd.Next(airports.Count)];
-                isFree = airport.Terminals.getFreeGates() > 1;
-            }
-            */
+       
             airport.Terminals.rentGate(airline);
             airport.Terminals.rentGate(airline);
             
@@ -609,19 +597,24 @@ namespace TheAirline.Model.GeneralModel
 
                 KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1, route.Destination2);
 
-                if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
-                    airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+               
 
-                FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airline.Airports[0]);
+                //if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                  //  airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+
+                //FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airline.Airports[0]);
+
+                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airport);
 
                 RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
 
-                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
+                //airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
 
                 fAirliner.RouteAirliner = rAirliner;
 
-                airline.Fleet.Add(fAirliner);
+                //airline.Fleet.Add(fAirliner);
 
+             
                 rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;

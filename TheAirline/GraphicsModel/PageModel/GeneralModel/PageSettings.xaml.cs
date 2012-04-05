@@ -37,17 +37,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             StackPanel settingsPanel = new StackPanel();
             settingsPanel.Margin = new Thickness(10, 0, 10, 0);
 
-            // airportPanel.Children.Add(createQuickInfoPanel());
-
             StandardContentPanel panelContent = new StandardContentPanel();
 
             panelContent.setContentPage(settingsPanel, StandardContentPanel.ContentLocation.Left);
 
-            //Panel panelSideMenu = createSidePanel();
-
-
-
-            // panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
             ListBox lbSettings = new ListBox();
             lbSettings.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbSettings.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
@@ -152,7 +145,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnUndo.Height = Double.NaN;
             btnUndo.Margin = new Thickness(5, 0, 0, 0);
             btnUndo.Width = Double.NaN;
-            // btnCancel.Visibility = this.Route.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
             btnUndo.Content = Translator.GetInstance().GetString("General", btnUndo.Uid);
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -187,10 +179,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Skin selectedSkin = (Skin)cbSkin.SelectedItem;
 
             SkinObject.GetInstance().setCurrentSkin(selectedSkin);
-          //FindResource("BackgroundImage") = img;
-          //  FindResource("Bac
-           // x:Key="MyImageSource" UriSource="../Media/Image.png" 
-           //SetResourceReference(BitmapImage.UriSourceProperty,new Uri(Setup.getDataPath() + "\\graphics\\background.jpg"));
+      
             GeneralHelpers.GameSpeedValue speed = (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
             GameTimer.GetInstance().setGameSpeed(speed);
 

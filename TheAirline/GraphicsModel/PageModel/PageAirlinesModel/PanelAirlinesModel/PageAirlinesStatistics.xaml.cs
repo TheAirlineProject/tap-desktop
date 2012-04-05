@@ -57,7 +57,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             scroller.Content = panelStatistics;
 
-            this.Content = scroller;//panelStatistics;
+            this.Content = scroller;
 
             showStats();
         }
@@ -70,7 +70,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Departures")));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers")));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%")));
-            //panelStats.Children.Add(createHappinessPanel());
       
 
         }
@@ -105,8 +104,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             ListBox lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-            //lbStatistics.ItemTemplate = this.Resources["StatItem"] as DataTemplate;
-
+     
             panelStatistics.Children.Add(lbStatistics);
 
             List<Airline> airlines = Airlines.GetAirlines();
@@ -114,8 +112,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
 
             foreach (Airline airline in airlines)
-                //lbStatistics.Items.Add(new AirlineStatisticsItem(airline, (int)PassengerHelpers.GetPassengersHappiness(airline), Convert.ToInt16(this.StatWidth * PassengerHelpers.GetPassengersHappiness(airline) / 100)));
-                lbStatistics.Items.Add(new KeyValuePair<Airline, StatisticsType>(airline, null));
+                 lbStatistics.Items.Add(new KeyValuePair<Airline, StatisticsType>(airline, null));
+          
             return panelStatistics;
 
 
@@ -223,7 +221,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 if (totalValue == 0)
                     return "-";
 
-                double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); //System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+                double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue);
 
                 if (double.IsInfinity(changePercent))
                     return "100.00 %";

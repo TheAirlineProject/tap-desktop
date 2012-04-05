@@ -20,9 +20,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     {
         private PageHeader PageHeader;
         private PageContent PageContent;
-
-        //public MainWindow ParentWindow { get; set; }
-
         private Panel panelNavigation;
         private Panel mainPanel;
         private Frame frameTopMenu, frameBottomMenu, frameInformation;
@@ -54,7 +51,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             frameTopMenu.Height = menuHeight;
             frameTopMenu.Width = this.Width;
             frameTopMenu.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            //frameTopMenu.Navigate(new PageStandardTopMenu());
             frameTopMenu.Navigate(new PageStandardMenuTop());
 
             Canvas.SetTop(frameTopMenu, 0);
@@ -123,15 +119,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Frame frameContent = new Frame();
 
-            //frameMain.Background = Brushes.DarkGreen;
             frameContent.SizeChanged += new SizeChangedEventHandler(frameContent_SizeChanged);
             frameContent.Height = this.Height - Canvas.GetTop(frameTop) - 150;
             frameContent.Width = this.Width - 2 * sideMargin;
             frameContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             this.PageContent = new PageContent();
             frameContent.Navigate(this.PageContent);
-
-            //frameBorder.Child = frameMain;
 
             Canvas.SetTop(frameContent, Canvas.GetTop(frameTop) + frameTop.Height + regularMargin);
             Canvas.SetLeft(frameContent, sideMargin);
@@ -230,12 +223,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             
             if (text != null)
                 this.PageHeader.Text = text;
-            /*
-            if (logo != null)
-                this.PageHeader.Logo = new BitmapImage(new Uri(logo, UriKind.RelativeOrAbsolute));
-            else
-                this.PageHeader.Logo = null;
-             * */
         }
         //hides the navigator
         public void hideNavigator()
@@ -248,15 +235,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             this.PageContent.IsEnabled = false;
             this.panelNavigation.IsEnabled = false;
         }
-        /*
-        //navigate to a new page
-        public void navigateTo(Page page)
-        {
-         
-
-            this.ParentWindow.navigateTo(page);
-        }
-         * */
+    
 
     }
 }

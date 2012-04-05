@@ -50,7 +50,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent(this.Title + " - " + this.Airline.Profile.Name);
+            base.setHeaderContent(string.Format("{0} - {1}",this.Title,this.Airline.Profile.Name));
 
             showPage(this);
         }

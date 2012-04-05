@@ -80,7 +80,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
 
             PageNavigator.NavigateTo(new PageAirline(airline));
 
-            // PageNavigator.NavigateTo(new PagePlayerProfile(player));
         }
     }
 }

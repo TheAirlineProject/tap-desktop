@@ -154,7 +154,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             List<FleetAirliner> airliners = this.Airline.Fleet;
 
-            foreach (FleetAirliner airliner in airliners.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate > GameObject.GetInstance().GameTime; })))
+            foreach (FleetAirliner airliner in airliners.FindAll((a=>a.Airliner.BuiltDate>GameObject.GetInstance().GameTime)))
                 lbInOrder.Items.Add(airliner);
 
             return panelInOrder;

@@ -17,7 +17,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private StackPanel panelAirliner;
         public PanelAirliner(PageAirliners parent)
         {
-            //ScrollViewer scroller = new ScrollViewer();
             this.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.Height = GraphicsHelpers.GetContentHeight();
@@ -41,7 +40,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         //adds an element to the panel
         public void addObject(UIElement element)
         {
-            //DockPanel.SetDock(element, Dock.Top);
             panelAirliner.Children.Add(element);
         }
 
@@ -79,7 +77,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1006"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
    
-            //lbQuickInfo.Items.Add(new QuickInfoValue("Manufactorer", UICreator.CreateTextBlock(airliner.Manufacturer.Name)));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1007"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Wingspan).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1008"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Length).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1009"), UICreator.CreateTextBlock(airliner.MaxSeatingCapacity.ToString())));
@@ -89,8 +86,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             string crewRequirements = string.Format("Cockpit: {0} Cabin: {1}", airliner.CockpitCrew, airliner.CabinCrew);
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1011"), UICreator.CreateTextBlock(crewRequirements)));
          
-            //lbQuickInfo.Items.Add(new QuickInfoValue("Cockpit crew capacity", UICreator.CreateTextBlock(airliner.CockpitCrew.ToString())));
-            // lbQuickInfo.Items.Add(new QuickInfoValue("Range",
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1013"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1014"), UICreator.CreateTextBlock(airliner.Produced.ToString())));

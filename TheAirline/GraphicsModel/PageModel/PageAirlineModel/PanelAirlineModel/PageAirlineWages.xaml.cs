@@ -36,9 +36,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.FeeValues = new Dictionary<FeeType, double>();
 
-            foreach (FeeType type in FeeTypes.GetTypes())
-                this.FeeValues.Add(type, this.Airline.Fees.getValue(type));
-
+            FeeTypes.GetTypes().ForEach(f => this.FeeValues.Add(f, this.Airline.Fees.getValue(f)));
+          
             StackPanel panelWagesAndEmployees = new StackPanel();
             //panelWagesAndEmployees.Margin = new Thickness(0, 10, 50, 0);
 

@@ -153,7 +153,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             {
                 lbLoans.Items.Clear();
 
-                foreach (Loan loan in this.Airline.Loans.FindAll((delegate(Loan l) { return l.IsActive; })))
+                foreach (Loan loan in this.Airline.Loans.FindAll(l=>l.IsActive))
                     lbLoans.Items.Add(loan);
             }
         }
