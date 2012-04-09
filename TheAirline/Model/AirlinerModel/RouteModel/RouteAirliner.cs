@@ -7,6 +7,7 @@ using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
+    /*
     //the class for an airliner with a route
     public class RouteAirliner
     {
@@ -17,7 +18,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public Coordinates CurrentPosition { get; set; }
         public Flight CurrentFlight { get; set; }
         public RouteAirliner(FleetAirliner airliner, Route route)
-        {
+        { 
             this.Route = route;
             this.Airliner = airliner;
             this.Route.Airliner = this;
@@ -41,7 +42,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         }
        
     }
-  
+  */
    
    
 }

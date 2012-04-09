@@ -51,7 +51,7 @@ namespace TheAirline.Model.GeneralModel
                 return 0;
         }
         //returns the number of passengers for a flight
-        public static int GetFlightPassengers(RouteAirliner airliner, AirlinerClass.ClassType type)
+        public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
@@ -78,15 +78,15 @@ namespace TheAirline.Model.GeneralModel
 
             size = (int)(Convert.ToDouble(size) * happiness / 100.0);
 
-            double minValue = Math.Min(size, airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity)*0.8;
+            double minValue = Math.Min(size, airliner.Airliner.getAirlinerClass(type).SeatingCapacity)*0.8;
 
-            int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,size), airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
+            int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
 
             if (airportCurrent.IsHub)
             {
                 double hubCoeff = 1.2;
                 double dValue = Convert.ToDouble(value) * hubCoeff;
-                value = Math.Min((int)dValue, airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+                value = Math.Min((int)dValue, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
             }
 
             double price = airliner.Route.getRouteAirlinerClass(type).FarePrice;
@@ -94,7 +94,7 @@ namespace TheAirline.Model.GeneralModel
             
             double priceDiff = (standardPrice / price)/2;
 
-            value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+            value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
 
             return value;
 

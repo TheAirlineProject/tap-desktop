@@ -18,5 +18,6 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.AirlinerClass = aClass;
             this.Passengers = passengers;
         }
+       
     }
 }

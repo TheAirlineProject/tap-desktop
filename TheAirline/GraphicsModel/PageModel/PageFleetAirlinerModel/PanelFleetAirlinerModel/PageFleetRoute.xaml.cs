@@ -51,7 +51,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
 
 
-            if (this.Airliner.RouteAirliner != null)
+            if (this.Airliner.Route != null)
             {
                 panelRoute.Children.Add(createRouteInfo());
                 panelRoute.Children.Add(createFlightInfo());
@@ -74,12 +74,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             {
                 if (this.Airliner.HasRoute)
                 {
-                    Airport airport = Airports.GetAirport(this.Airliner.RouteAirliner.CurrentPosition);
+                    Airport airport = Airports.GetAirport(this.Airliner.CurrentPosition);
 
-                    txtStatus.Text = new TextUnderscoreConverter().Convert(this.Airliner.RouteAirliner.Status, null, null, null).ToString();
-                    txtDestination.Text = this.Airliner.RouteAirliner.CurrentFlight == null ? "Not started" : this.Airliner.RouteAirliner.CurrentFlight.Entry.Destination.Airport.Profile.Name;
-                    txtPosition.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.RouteAirliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
-                    txtPassengers.Text = string.Format("{0}", this.Airliner.RouteAirliner.CurrentFlight == null ? 0 : this.Airliner.RouteAirliner.CurrentFlight.getTotalPassengers());
+                    txtStatus.Text = new TextUnderscoreConverter().Convert(this.Airliner.Status, null, null, null).ToString();
+                    txtDestination.Text = this.Airliner.CurrentFlight == null ? "Not started" : this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name;
+                    txtPosition.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
+                    txtPassengers.Text = string.Format("{0}", this.Airliner.CurrentFlight == null ? 0 : this.Airliner.CurrentFlight.getTotalPassengers());
                 }
             }
         }
@@ -95,7 +95,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnStartFlight.Height = Double.NaN;
             btnStartFlight.Width = Double.NaN;
             btnStartFlight.Content = "Start flight";
-            btnStartFlight.IsEnabled = this.Airliner.RouteAirliner.Status == RouteAirliner.AirlinerStatus.Stopped;
+            btnStartFlight.IsEnabled = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped;
             btnStartFlight.Click += new RoutedEventHandler(btnStartFligth_Click);
             btnStartFlight.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
@@ -106,7 +106,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnStopFlight.Width = Double.NaN;
             btnStopFlight.Height = Double.NaN;
             btnStopFlight.Content = "Stop flight";
-            btnStopFlight.IsEnabled = this.Airliner.RouteAirliner.Status != RouteAirliner.AirlinerStatus.Stopped;
+            btnStopFlight.IsEnabled = this.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped;
             btnStopFlight.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnStopFlight.Margin = new Thickness(5, 0, 0, 0);
             btnStopFlight.Click += new RoutedEventHandler(btnStopFlight_Click);
@@ -119,7 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnStopFlight_Click(object sender, RoutedEventArgs e)
         {
-            this.Airliner.RouteAirliner.Status = RouteAirliner.AirlinerStatus.To_homebase;
+            this.Airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
 
             btnStartFlight.IsEnabled = true;
 
@@ -128,7 +128,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnStartFligth_Click(object sender, RoutedEventArgs e)
         {
-            this.Airliner.RouteAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+            this.Airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
             btnStartFlight.IsEnabled = false;
 
@@ -154,10 +154,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             lbFlightInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
 
-            txtDestination = UICreator.CreateTextBlock(this.Airliner.RouteAirliner.CurrentFlight == null ? "Not started" : this.Airliner.RouteAirliner.CurrentFlight.Entry.Destination.Airport.Profile.Name);
-            txtStatus = UICreator.CreateTextBlock((new TextUnderscoreConverter().Convert(this.Airliner.RouteAirliner.Status, null, null, null).ToString()));
-            txtPosition = UICreator.CreateTextBlock(this.Airliner.HasRoute ? this.Airliner.RouteAirliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
-            txtPassengers = UICreator.CreateTextBlock(string.Format("{0}", this.Airliner.RouteAirliner.CurrentFlight == null ? 0 : this.Airliner.RouteAirliner.CurrentFlight.getTotalPassengers()));
+            txtDestination = UICreator.CreateTextBlock(this.Airliner.CurrentFlight == null ? "Not started" : this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name);
+            txtStatus = UICreator.CreateTextBlock((new TextUnderscoreConverter().Convert(this.Airliner.Status, null, null, null).ToString()));
+            txtPosition = UICreator.CreateTextBlock(this.Airliner.HasRoute ? this.Airliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
+            txtPassengers = UICreator.CreateTextBlock(string.Format("{0}", this.Airliner.CurrentFlight == null ? 0 : this.Airliner.CurrentFlight.getTotalPassengers()));
 
             lbFlightInfo.Items.Add(new QuickInfoValue("Current status", txtStatus));
             lbFlightInfo.Items.Add(new QuickInfoValue("Current position", txtPosition));
@@ -172,7 +172,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
         private StackPanel createRouteInfo()
         {
 
-            Route route = this.Airliner.RouteAirliner.Route;
+            Route route = this.Airliner.Route;
 
             StackPanel panelRoute = new StackPanel();
 
@@ -201,7 +201,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             //foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
             {
-                RouteAirlinerClass rClass = this.Airliner.RouteAirliner.Route.getRouteAirlinerClass(aClass.Type);
+                RouteAirlinerClass rClass = this.Airliner.Route.getRouteAirlinerClass(aClass.Type);
 
 
                 Image imgInfo = new Image();
@@ -241,7 +241,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnTimeTable.Height = Double.NaN;
             btnTimeTable.Width = Double.NaN;
             btnTimeTable.Content = "Timetable";
-            btnTimeTable.Visibility = this.Airliner.RouteAirliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
+            btnTimeTable.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
             btnTimeTable.Click += new RoutedEventHandler(btnTimeTable_Click);
             btnTimeTable.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnTimeTable.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -267,12 +267,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnMap_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(this.Airliner.RouteAirliner.Route);
+            PopUpMap.ShowPopUp(this.Airliner.Route);
         }
 
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            PopUpTimeTable.ShowPopUp(this.Airliner.Airline, this.Airliner.RouteAirliner.Route);
+            PopUpTimeTable.ShowPopUp(this.Airliner.Airline, this.Airliner.Route);
         }
 
     }

@@ -182,7 +182,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportFlights(this.Airport,airport,true))
             {
-                TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.TimeTable.Route.Airliner.Airliner.Airliner.Type);
+                TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.TimeTable.Route.Airliner.Airliner.Type);
 
                 lbDestinationArrivals.Items.Add(new DestinationFlight(entry.TimeTable.Route.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz)));
                 
@@ -201,7 +201,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 this.Airline = airline;
                 this.Entry = entry;
                 this.Time = time;
-                this.AirlinerType = this.Entry.TimeTable.Route.Airliner.Airliner.Airliner.Type;
+                this.AirlinerType = this.Entry.TimeTable.Route.Airliner.Airliner.Type;
             }
         }
         //the class for a destination with number of weekly flights

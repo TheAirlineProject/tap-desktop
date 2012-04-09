@@ -605,17 +605,20 @@ namespace TheAirline.Model.GeneralModel
                 //FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airline.Airports[0]);
 
                 FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airport);
+                fAirliner.Route = route;
+                fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
-                RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
+                route.Airliner = fAirliner;
+                //RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
 
                 //airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
 
-                fAirliner.RouteAirliner = rAirliner;
+                //fAirliner.RouteAirliner = rAirliner;
 
                 //airline.Fleet.Add(fAirliner);
 
              
-                rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+                //rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;
 

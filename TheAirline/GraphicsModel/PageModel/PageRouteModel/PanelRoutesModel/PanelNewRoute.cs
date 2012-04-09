@@ -280,9 +280,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 if (cbAirliner.SelectedItem != null)
                 {
                     FleetAirliner airliner = (FleetAirliner)cbAirliner.SelectedItem;
-                    RouteAirliner rAirliner = new RouteAirliner(airliner, route);
+                    //RouteAirliner rAirliner = new RouteAirliner(airliner, route);
 
-                    airliner.RouteAirliner = rAirliner;
+                    airliner.Route = route;
+                    route.Airliner = airliner;
                 }
                 route.LastUpdated = GameObject.GetInstance().GameTime; 
             }

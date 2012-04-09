@@ -27,9 +27,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the expected time of landing
         public DateTime getExpectedLandingTime()
         {
-            RouteAirliner airliner = this.Entry.TimeTable.Route.Airliner;
+            FleetAirliner airliner = this.Entry.TimeTable.Route.Airliner;
             double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
-            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type);
 
             DateTime time = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day, GameObject.GetInstance().GameTime.Hour, GameObject.GetInstance().GameTime.Minute, 0);
 

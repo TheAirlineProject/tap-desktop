@@ -86,7 +86,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             : this(ImageSize)
         {
 
-            showMap(airliner.HasRoute ? airliner.RouteAirliner.CurrentPosition : airliner.Homebase.Profile.Coordinates, false);
+            showMap(airliner.HasRoute ? airliner.CurrentPosition : airliner.Homebase.Profile.Coordinates, false);
 
         }
         public PopUpMap(List<Airport> airports)

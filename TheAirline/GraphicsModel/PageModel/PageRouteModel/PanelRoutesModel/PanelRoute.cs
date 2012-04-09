@@ -76,7 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 btnEdit.Content = imgEdit;
                 
-                btnEdit.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != RouteAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                btnEdit.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
            
                 panelClassButtons.Children.Add(btnEdit);
 
@@ -124,16 +124,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             int minCrews = getMinCrews();//Math.Max(this.Route.FoodFacility.MinimumCabinCrew, this.Route.DrinksFacility.MinimumCabinCrew);
 
             foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
-                if (airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination2.getMaxRunwayLength() &&(!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) || (airliner.HasRoute && (this.Route.Airliner != null && this.Route.Airliner.Airliner == airliner)))
+                if (airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination2.getMaxRunwayLength() &&(!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) || (airliner.HasRoute && (this.Route.Airliner != null && this.Route.Airliner == airliner)))
                     cbAirliner.Items.Add(airliner);
 
             if (this.Route.Airliner != null)
                 cbAirliner.SelectedItem = this.Route.Airliner.Airliner;
             
-            TextBlock txtAssigned = UICreator.CreateTextBlock(this.Route.Airliner == null ? "No airliner to assign" : this.Route.Airliner.Airliner.Name);
+            TextBlock txtAssigned = UICreator.CreateTextBlock(this.Route.Airliner == null ? "No airliner to assign" : this.Route.Airliner.Name);
             panelAssigned.Children.Add(txtAssigned);
 
-            cbAirliner.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != RouteAirliner.AirlinerStatus.Stopped || cbAirliner.Items.Count==0 ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+            cbAirliner.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped || cbAirliner.Items.Count==0 ? Visibility.Collapsed : System.Windows.Visibility.Visible;
             txtAssigned.Visibility = cbAirliner.Visibility == System.Windows.Visibility.Collapsed ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             
             lbRouteInfo.Items.Add(new QuickInfoValue("Assigned airliner", panelAssigned));
@@ -147,7 +147,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             this.Children.Add(buttonsPanel);
 
-            buttonsPanel.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != RouteAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+            buttonsPanel.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
 
             Button btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -276,12 +276,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2502"), string.Format(Translator.GetInstance().GetString("MessageBox", "2502", "message"), this.Route.Airliner.Airliner.Name), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2502"), string.Format(Translator.GetInstance().GetString("MessageBox", "2502", "message"), this.Route.Airliner.Name), WPFMessageBoxButtons.YesNo);
 
              if (result == WPFMessageBoxResult.Yes)
              {
 
-                 this.Route.Airliner.Airliner.RouteAirliner = null;
+                 this.Route.Airliner.Route = null;
 
                  this.Route.Airliner = null;
 
@@ -299,18 +299,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             //double price;
             //Boolean parseable = double.TryParse(txtPrice.Text, out price);
 
-            if (!(cbAirliner.SelectedItem == null || (this.Route.Airliner != null && ((FleetAirliner)cbAirliner.SelectedItem) == this.Route.Airliner.Airliner)))
+            if (!(cbAirliner.SelectedItem == null || (this.Route.Airliner != null && ((FleetAirliner)cbAirliner.SelectedItem) == this.Route.Airliner)))
             {
                 FleetAirliner airliner = (FleetAirliner)cbAirliner.SelectedItem;
 
                 if (this.Route.Airliner != null)
                 {
-                    this.Route.Airliner.Airliner.RouteAirliner = null;
+                    this.Route.Airliner.Route = null;
                 }
 
-                RouteAirliner rAirliner = new RouteAirliner(airliner, this.Route);
+                //RouteAirliner rAirliner = new RouteAirliner(airliner, this.Route);
 
-                airliner.RouteAirliner = rAirliner;
+                //airliner.RouteAirliner = rAirliner;
+
+                airliner.Route = this.Route;
+                this.Route.Airliner = airliner;
 
                 this.Route.Invoices.Clear();
                 this.Route.Statistics.clear();
@@ -342,7 +345,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 GameObject.GetInstance().HumanAirline.removeRoute(this.Route);
 
                 if (this.Route.Airliner != null)
-                    this.Route.Airliner.Airliner.RouteAirliner = null;
+                    this.Route.Airliner.Route = null;
 
                 this.Route.Destination1.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;
                 this.Route.Destination2.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;

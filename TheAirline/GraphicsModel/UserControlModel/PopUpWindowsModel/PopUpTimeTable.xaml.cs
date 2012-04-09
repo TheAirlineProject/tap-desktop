@@ -74,7 +74,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelMain.Children.Add(grdMain);
 
-            if (this.Airline.IsHuman && !(route.Airliner != null && route.Airliner.Status != RouteAirliner.AirlinerStatus.Stopped))
+            if (this.Airline.IsHuman && !(route.Airliner != null && route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped))
             {
                 panelMain.Children.Add(createNewEntryPanel());
 

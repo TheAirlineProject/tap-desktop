@@ -298,8 +298,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    if (airliner.RouteAirliner != null)
-                        airliner.RouteAirliner.Route.Airliner = null;
+                    if (airliner.Route != null)
+                        airliner.Route.Airliner = null;
 
                     this.Airline.removeAirliner(airliner);
 
@@ -316,8 +316,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    if (airliner.RouteAirliner != null)
-                        airliner.RouteAirliner.Route.Airliner = null;
+                    if (airliner.Route != null)
+                        airliner.Route.Airliner = null;
 
                     this.Airline.removeAirliner(airliner);
 

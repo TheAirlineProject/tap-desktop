@@ -104,7 +104,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             airline.removeRoute(route);
 
                             if (route.Airliner != null)
-                                route.Airliner.Airliner.RouteAirliner = null;
+                                route.Airliner.Route = null;
 
                             route.Destination1.Terminals.getUsedGate(airline).Route = null;
                             route.Destination2.Terminals.getUsedGate(airline).Route = null;
@@ -231,12 +231,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         }
 
-                        RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
+                        //RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
 
-                        fAirliner.RouteAirliner = rAirliner;
+                        //fAirliner.RouteAirliner = rAirliner;
+                        fAirliner.Route = route;
+                        route.Airliner = fAirliner;
 
-
-                        rAirliner.Status = RouteAirliner.AirlinerStatus.To_route_start;
+                        fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
                         route.LastUpdated = GameObject.GetInstance().GameTime;
                     }
@@ -247,7 +248,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
         {
             //Order new airliner
-            var fleet = airline.Fleet.FindAll(f => f.RouteAirliner == null && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+            var fleet = airline.Fleet.FindAll(f => f.Route == null && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
 
             if (fleet.Count > 0)
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();

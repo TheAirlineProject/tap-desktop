@@ -14,7 +14,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public string Id { get; set; }
         public Airport Destination1 { get; set; }
         public Airport Destination2 { get; set; }
-        public RouteAirliner Airliner { get; set; }
+        public FleetAirliner Airliner { get; set; }
         public List<RouteAirlinerClass> Classes { get; set; }
         public RouteTimeTable TimeTable { get; set; }
         public List<Invoice> Invoices { get; set; }
@@ -120,7 +120,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             int cabinCrew = 0;
 
-            foreach (AirlinerClass aClass in this.Airliner.Airliner.Airliner.Classes)
+            foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
                 if (getRouteAirlinerClass(aClass.Type).CabinCrew > cabinCrew)
                     cabinCrew = getRouteAirlinerClass(aClass.Type).CabinCrew;
          
@@ -198,7 +198,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             double avgPassengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers"))) / Convert.ToDouble(this.Statistics.getStatisticsValue(this.Classes[0],StatisticsTypes.GetStatisticsType("Departures")));
 
-            double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.Airliner.getTotalSeatCapacity());
+            double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
 
             double fillingDegree = avgPassengers / totalPassengers;
 
@@ -214,7 +214,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //gets the income per passenger
         private double getIncomePerPassenger()
         {
-            double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.Airliner.getTotalSeatCapacity());
+            double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
 
             return getBalance() / totalPassengers;
         }

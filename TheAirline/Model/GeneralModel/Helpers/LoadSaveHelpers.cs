@@ -282,7 +282,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (routeAirlinerNode != null)
                     {
                         FleetAirliner fAirliner = airline.Fleet.Find(delegate(FleetAirliner fa) { return fa.Name == routeAirlinerNode.Attributes["airliner"].Value; });
-
+                        /*Oprydning
                         RouteAirliner.AirlinerStatus status = (RouteAirliner.AirlinerStatus)Enum.Parse(typeof(RouteAirliner.AirlinerStatus), routeAirlinerNode.Attributes["status"].Value);
                         Coordinate latitude = Coordinate.Parse(routeAirlinerNode.Attributes["latitude"].Value);
                         Coordinate longitude = Coordinate.Parse(routeAirlinerNode.Attributes["longitude"].Value);
@@ -290,7 +290,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
                         rAirliner.CurrentPosition = new Coordinates(latitude, longitude);
                         rAirliner.Status = status;
-
+                        */
                         XmlElement flightNode = (XmlElement)routeAirlinerNode.SelectSingleNode("flight");
                         if (flightNode != null)
                         {
@@ -313,7 +313,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), passengers));
                             }
-                            rAirliner.CurrentFlight = currentFlight;
+                            /*Oprydning rAirliner.CurrentFlight = currentFlight;*/
                         }
                     }
 
@@ -745,7 +745,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
 
                     routeNode.AppendChild(timetableNode);
-
+                    /*Oprydning
                     if (route.Airliner != null)
                     {
                         XmlElement routeAirlinerNode = xmlDoc.CreateElement("routeairliner");
@@ -784,7 +784,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         routeNode.AppendChild(routeAirlinerNode);
 
                     }
-
+                    */
                     routesNode.AppendChild(routeNode);
                 }
                 airlineNode.AppendChild(routesNode);

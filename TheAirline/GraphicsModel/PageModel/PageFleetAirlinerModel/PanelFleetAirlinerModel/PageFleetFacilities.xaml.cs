@@ -61,7 +61,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnConfiguration.Click += new RoutedEventHandler(btnConfiguration_Click);
             btnConfiguration.Content = "Configuration";
             btnConfiguration.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnConfiguration.Visibility = this.Airliner.Airline.IsHuman && (this.Airliner.RouteAirliner == null || this.Airliner.RouteAirliner.Status == RouteAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
+            btnConfiguration.Visibility = this.Airliner.Airline.IsHuman && (this.Airliner.Route == null || this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
 
             panelFacilities.Children.Add(btnConfiguration);
             //panelFacilities.Children.Add(lbFacilities);
@@ -121,7 +121,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-            if ((this.Airliner.HasRoute && this.Airliner.RouteAirliner.Status == RouteAirliner.AirlinerStatus.Stopped) || !this.Airliner.HasRoute)
+            if ((this.Airliner.HasRoute && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) || !this.Airliner.HasRoute)
             {
                 AirlinerFacilityItem item = (AirlinerFacilityItem)((Button)sender).Tag;
             

@@ -76,12 +76,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             if (this.IsLoaded)
             {
                
-                Airport airport = this.Airliner.RouteAirliner == null ? null : Airports.GetAirport(this.Airliner.RouteAirliner.CurrentPosition);
+                Airport airport = this.Airliner.Route == null ? null : Airports.GetAirport(this.Airliner.CurrentPosition);
                // txtFlown.Text = string.Format("{0:0,0} km.", this.Airliner.Airliner.Flown);
                 txtFlown.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km."));
                 //txtPosition.Text = 
                 Run run = (Run)((Hyperlink)txtPosition.Inlines.FirstInline).Inlines.FirstInline;
-                run.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.RouteAirliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
+                run.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
             
                // txtSinceService.Text = string.Format("{0:0,0} km.", this.Airliner.Airliner.LastServiceCheck);
                 txtSinceService.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km."));
@@ -265,7 +265,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             panelCoordinates.Children.Add(imgMap);
 
 
-            txtPosition = UICreator.CreateLink(this.Airliner.HasRoute ? this.Airliner.RouteAirliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
+            txtPosition = UICreator.CreateLink(this.Airliner.HasRoute ? this.Airliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
             ((Hyperlink)txtPosition.Inlines.FirstInline).Click += new RoutedEventHandler(PageAirliner_Click);
             txtPosition.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             panelCoordinates.Children.Add(txtPosition);

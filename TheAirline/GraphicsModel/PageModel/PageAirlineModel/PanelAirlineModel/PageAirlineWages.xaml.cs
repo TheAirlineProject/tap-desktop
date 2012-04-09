@@ -89,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbEmployees.ItemTemplate = this.Resources["EmployeeItem"] as DataTemplate;
 
             int cockpitCrew = this.Airline.Fleet.Sum(f => f.Airliner.Type.CockpitCrew);
-            int cabinCrew = this.Airline.Fleet.FindAll(f => f.RouteAirliner != null).Sum(f => f.RouteAirliner.Route.getTotalCabinCrew());
+            int cabinCrew = this.Airline.Fleet.FindAll(f => f.Route != null).Sum(f => f.Route.getTotalCabinCrew());
 
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cockpit crew", cockpitCrew));
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cabin crew", cabinCrew));
