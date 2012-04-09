@@ -56,7 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 panelRoute.Children.Add(createRouteInfo());
                 panelRoute.Children.Add(createFlightInfo());
 
-                if (this.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
+                if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
             }
             else panelRoute.Children.Add(txtHeader);
          
@@ -267,7 +267,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            PopUpTimeTable.ShowPopUp(this.Airliner.Airline, this.Airliner.Route);
+            PopUpTimeTable.ShowPopUp(this.Airliner.Airliner.Airline, this.Airliner.Route);
         }
 
     }

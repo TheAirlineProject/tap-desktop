@@ -13,10 +13,8 @@ namespace TheAirline.Model.AirlinerModel
     public class FleetAirliner
     {
         public Airliner Airliner { get; set; }
-        public Airline Airline { get; set; }
         public string Name { get; set; }
         public Airport Homebase { get; set; }
-        //public RouteAirliner RouteAirliner { get; set; }
         public enum PurchasedType { Bought, Leased,BoughtDownPayment }
         public PurchasedType Purchased { get; set; }
         public Boolean HasRoute { get { return this.Route != null; } set { ;} }
@@ -35,7 +33,6 @@ namespace TheAirline.Model.AirlinerModel
             this.Airliner = airliner;
             this.Purchased = purchased;
             this.Airliner.Airline = airline;
-            this.Airline = airline;
             this.Homebase = homebase;
             this.Name = name;
             this.Statistics = new GeneralStatistics();

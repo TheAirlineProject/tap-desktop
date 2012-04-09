@@ -130,7 +130,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             if (o != null)
             {
-                int orders = (int)PopUpOrderAirliners.ShowPopUp(this.Airliner);
+                int orders = (int)o;
 
                 double price = this.cbPayOnDelivery.IsChecked.Value ? orders * (this.Airliner.Price * this.downPaymentRate) : orders * this.Airliner.Price;
                 Airport airport = (Airport)cbAirport.SelectedItem;

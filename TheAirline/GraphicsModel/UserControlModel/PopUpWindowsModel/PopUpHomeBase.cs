@@ -42,7 +42,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            List<Airport> airports = this.Airliner.Airline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(this.Airliner.Airline,AirportFacility.FacilityType.Service).TypeLevel>0; }));
+            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(this.Airliner.Airliner.Airline,AirportFacility.FacilityType.Service).TypeLevel>0; }));
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
             //vælg kun med basis service + sæt ved 

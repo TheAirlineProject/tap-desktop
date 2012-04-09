@@ -170,7 +170,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
 
             Image imgLogo = new Image();
-            imgLogo.Source = new BitmapImage(new Uri(this.Airliner.Airline.Profile.Logo, UriKind.RelativeOrAbsolute));
+            imgLogo.Source = new BitmapImage(new Uri(this.Airliner.Airliner.Airline.Profile.Logo, UriKind.RelativeOrAbsolute));
             imgLogo.Width = 110;
             imgLogo.Margin = new Thickness(0, 0, 5, 0);
             imgLogo.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -196,7 +196,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             Button btnEditName = new Button();
             btnEditName.Background = Brushes.Transparent;
             btnEditName.Margin = new Thickness(5, 0, 0, 0);
-            btnEditName.Visibility = this.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            btnEditName.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnEditName.Click += new RoutedEventHandler(btnEditName_Click);
             btnEditName.Content = imgEditName;
 
@@ -204,7 +204,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue("Name", panelName));
 
-            TextBlock lnkOwner = UICreator.CreateLink(this.Airliner.Airline.Profile.Name);
+            TextBlock lnkOwner = UICreator.CreateLink(this.Airliner.Airliner.Airline.Profile.Name);
             ((Hyperlink)lnkOwner.Inlines.FirstInline).Click += new RoutedEventHandler(PageFleetAirliner_Click);
             lbQuickInfo.Items.Add(new QuickInfoValue("Owner", lnkOwner));
 
@@ -228,7 +228,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
            
              
-              btnEditHomeBase.Visibility = this.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+              btnEditHomeBase.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
             btnEditHomeBase.Content = imgEdit;
 
@@ -301,7 +301,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
       
         private void PageFleetAirliner_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airline));
+            PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airliner.Airline));
         }
 
         private void btnEditHomeBase_Click(object sender, RoutedEventArgs e)
