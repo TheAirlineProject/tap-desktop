@@ -133,6 +133,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 int orders = (int)o;
 
                 double price = this.cbPayOnDelivery.IsChecked.Value ? orders * (this.Airliner.Price * this.downPaymentRate) : orders * this.Airliner.Price;
+                price = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(orders)));
+                
                 Airport airport = (Airport)cbAirport.SelectedItem;
                 if (price > GameObject.GetInstance().HumanAirline.Money)
                 {
@@ -160,7 +162,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                         }
                         GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
-
+                        
 
                         this.clearPanel();
                     }

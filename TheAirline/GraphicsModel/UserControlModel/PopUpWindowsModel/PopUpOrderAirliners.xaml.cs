@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         private AirlinerType Airliner;
         private ucNumericUpDown nudAirliners;
-        private TextBlock txtPrice;
+        private TextBlock txtPrice, txtDiscount, txtTotalPrice;
         public static object ShowPopUp(AirlinerType airliner)
         {
             PopUpWindow window = new PopUpOrderAirliners(airliner);
@@ -39,7 +39,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 300;
 
-            this.Height = 125;
+            this.Height = 175;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -67,15 +67,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             txtPrice = new TextBlock();
             txtPrice.Text = string.Format("{0:C}", this.Airliner.Price);
 
-            lbOrder.Items.Add(new QuickInfoValue("Total price", txtPrice));
+            lbOrder.Items.Add(new QuickInfoValue("Price", txtPrice));
+
+            txtDiscount = new TextBlock();
+            txtDiscount.Text = string.Format("{0:C}",0);
+
+            lbOrder.Items.Add(new QuickInfoValue("Discount", txtDiscount));
+
+            txtTotalPrice = new TextBlock();
+            txtTotalPrice.Text = string.Format("{0:C}", this.Airliner.Price);
+
+            lbOrder.Items.Add(new QuickInfoValue("Total Price", txtTotalPrice));
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 10, 0, 0);
 
             mainPanel.Children.Add(panelButtons);
 
-
-
+   
             Button btnOk = new Button();
             btnOk.Uid = "100";
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -105,7 +114,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             int airliners = Convert.ToInt32(nudAirliners.Value);
 
+            double price = (airliners * this.Airliner.Price) * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(airliners)));
+
             txtPrice.Text = string.Format("{0:C}", airliners * this.Airliner.Price);
+            txtDiscount.Text = string.Format("{0:C}", this.Airliner.Price * GeneralHelpers.GetAirlinerOrderDiscount(airliners));
+            txtTotalPrice.Text = string.Format("{0:C}", price);
+
+           
+
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
