@@ -36,21 +36,21 @@
             <GridViewColumn Width="100" Header="Balance">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding RouteAirliner.Route.Balance, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding RouteAirliner.Route.Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                        <TextBlock Text="{Binding Route.Balance, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding Route.Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
             <GridViewColumn Width="100" Header="Per passenger">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding RouteAirliner.Route.IncomePerPassenger, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding RouteAirliner.Route.IncomePerPassenger,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                        <TextBlock Text="{Binding Route.IncomePerPassenger, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding Route.IncomePerPassenger,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
             <GridViewColumn Width="100" Header="Degree of filling">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding RouteAirliner.Route.FillingDegree, StringFormat={}{0:P2}}" VerticalAlignment="Bottom" Foreground="{Binding RouteAirliner.Route.FillingDegree,Converter={StaticResource fillingDegreeConverter}}"></TextBlock>
+                        <TextBlock Text="{Binding Route.FillingDegree, StringFormat={}{0:P2}}" VerticalAlignment="Bottom" Foreground="{Binding Route.FillingDegree,Converter={StaticResource fillingDegreeConverter}}"></TextBlock>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>

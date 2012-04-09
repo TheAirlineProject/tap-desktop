@@ -198,8 +198,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             // chs, 2011-10-10 added missing conversion
             lbRouteInfo.Items.Add(new QuickInfoValue("Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
-            //foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
-            foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
             {
                 RouteAirlinerClass rClass = this.Airliner.Route.getRouteAirlinerClass(aClass.Type);
 
@@ -228,11 +227,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(aClass.Type, null, null, null).ToString(), imgInfo));
             }
-            //lbRouteInfo.Items.Add(new QuickInfoValue("Fare Price", UICreator.CreateTextBlock(string.Format("{0:c}", route.FarePrice))));
-            // lbRouteInfo.Items.Add(new QuickInfoValue("Food on board", UICreator.CreateTextBlock(route.FoodFacility.Name)));
-            // lbRouteInfo.Items.Add(new QuickInfoValue("Drinks on board", UICreator.CreateTextBlock(route.DrinksFacility.Name)));
-            //lbRouteInfo.Items.Add(new QuickInfoValue("Cabin crew on board", UICreator.CreateTextBlock(string.Format("{0}", route.CabinCrew))));
-
+        
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 

@@ -125,13 +125,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (airline.Mentality)
             {
                 case Airline.AirlineMentality.Aggressive:
-                    newRouteInterval = 10000;
-                    break;
-                case Airline.AirlineMentality.Moderate:
                     newRouteInterval = 100000;
                     break;
-                case Airline.AirlineMentality.Safe:
+                case Airline.AirlineMentality.Moderate:
                     newRouteInterval = 1000000;
+                    break;
+                case Airline.AirlineMentality.Safe:
+                    newRouteInterval = 10000000;
                     break;
             }
 
@@ -231,9 +231,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         }
 
-                        //RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
-
-                        //fAirliner.RouteAirliner = rAirliner;
                         fAirliner.Route = route;
                         route.Airliner = fAirliner;
 

@@ -121,14 +121,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             panelAssigned.Children.Add(cbAirliner);
 
-            int minCrews = getMinCrews();//Math.Max(this.Route.FoodFacility.MinimumCabinCrew, this.Route.DrinksFacility.MinimumCabinCrew);
+            int minCrews = getMinCrews();
 
             foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
                 if (airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination2.getMaxRunwayLength() &&(!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) || (airliner.HasRoute && (this.Route.Airliner != null && this.Route.Airliner == airliner)))
                     cbAirliner.Items.Add(airliner);
 
             if (this.Route.Airliner != null)
-                cbAirliner.SelectedItem = this.Route.Airliner.Airliner;
+                cbAirliner.SelectedItem = this.Route.Airliner;
             
             TextBlock txtAssigned = UICreator.CreateTextBlock(this.Route.Airliner == null ? "No airliner to assign" : this.Route.Airliner.Name);
             panelAssigned.Children.Add(txtAssigned);
@@ -155,7 +155,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnOk.Width = Double.NaN;
             btnOk.Content = "OK";
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            // btnDelete.Margin = new System.Windows.Thickness(0, 5, 0, 0);
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             buttonsPanel.Children.Add(btnOk);
@@ -296,9 +295,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
        
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            //double price;
-            //Boolean parseable = double.TryParse(txtPrice.Text, out price);
-
+      
             if (!(cbAirliner.SelectedItem == null || (this.Route.Airliner != null && ((FleetAirliner)cbAirliner.SelectedItem) == this.Route.Airliner)))
             {
                 FleetAirliner airliner = (FleetAirliner)cbAirliner.SelectedItem;
@@ -308,10 +305,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     this.Route.Airliner.Route = null;
                 }
 
-                //RouteAirliner rAirliner = new RouteAirliner(airliner, this.Route);
-
-                //airliner.RouteAirliner = rAirliner;
-
+          
                 airliner.Route = this.Route;
                 this.Route.Airliner = airliner;
 

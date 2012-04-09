@@ -299,7 +299,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
             cbDestination.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            //cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
             cbDestination.Background = Brushes.Transparent;
             cbDestination.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
