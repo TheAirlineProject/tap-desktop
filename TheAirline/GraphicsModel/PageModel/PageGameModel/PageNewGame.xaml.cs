@@ -190,8 +190,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             btnCreate.Click += new RoutedEventHandler(btnCreate_Click);
             btnCreate.Height = Double.NaN;
             btnCreate.Width = Double.NaN;
-            //btnCreate.Padding = new Thickness(2, 2,2,2);
-            btnCreate.Content = "Create Game";
+             btnCreate.Content = "Create Game";
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             panelButtons.Children.Add(btnCreate);
 

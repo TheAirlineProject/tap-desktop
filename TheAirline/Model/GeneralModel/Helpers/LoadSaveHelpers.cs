@@ -73,7 +73,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                 string last_service = airlinerNode.Attributes["last_service"].Value;
                 DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
-                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);//Convert.ToDouble(airlinerNode.Attributes["flown"].Value, new CultureInfo("de-DE", false));//XmlConvert.ToDouble(airlinerNode.Attributes["flown"].Value);
+                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
                 airliner.Flown = flown;
@@ -281,16 +281,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (routeAirlinerNode != null)
                     {
-                        FleetAirliner fAirliner = airline.Fleet.Find(delegate(FleetAirliner fa) { return fa.Name == routeAirlinerNode.Attributes["airliner"].Value; });
-                        /*Oprydning
-                        RouteAirliner.AirlinerStatus status = (RouteAirliner.AirlinerStatus)Enum.Parse(typeof(RouteAirliner.AirlinerStatus), routeAirlinerNode.Attributes["status"].Value);
+                        FleetAirliner fAirliner = airline.Fleet.Find(fa=>fa.Name == routeAirlinerNode.Attributes["airliner"].Value);
+
+                        fAirliner.Status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), routeAirlinerNode.Attributes["status"].Value);
+                   
                         Coordinate latitude = Coordinate.Parse(routeAirlinerNode.Attributes["latitude"].Value);
                         Coordinate longitude = Coordinate.Parse(routeAirlinerNode.Attributes["longitude"].Value);
 
-                        RouteAirliner rAirliner = new RouteAirliner(fAirliner, route);
-                        rAirliner.CurrentPosition = new Coordinates(latitude, longitude);
-                        rAirliner.Status = status;
-                        */
+                        fAirliner.Route = route;
+                        route.Airliner = fAirliner;
+
+                        fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
+                   
+                        
                         XmlElement flightNode = (XmlElement)routeAirlinerNode.SelectSingleNode("flight");
                         if (flightNode != null)
                         {
@@ -313,7 +316,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), passengers));
                             }
-                            /*Oprydning rAirliner.CurrentFlight = currentFlight;*/
+                            fAirliner.CurrentFlight = currentFlight;
                         }
                     }
 
@@ -745,12 +748,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
 
                     routeNode.AppendChild(timetableNode);
-                    /*Oprydning
+                   
                     if (route.Airliner != null)
                     {
                         XmlElement routeAirlinerNode = xmlDoc.CreateElement("routeairliner");
 
-                        routeAirlinerNode.SetAttribute("airliner", route.Airliner.Airliner.Name);
+                        routeAirlinerNode.SetAttribute("airliner", route.Airliner.Name);
                         routeAirlinerNode.SetAttribute("status", route.Airliner.Status.ToString());
                         routeAirlinerNode.SetAttribute("latitude", route.Airliner.CurrentPosition.Latitude.ToString());
                         routeAirlinerNode.SetAttribute("longitude", route.Airliner.CurrentPosition.Longitude.ToString());
@@ -784,7 +787,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         routeNode.AppendChild(routeAirlinerNode);
 
                     }
-                    */
+                    
                     routesNode.AppendChild(routeNode);
                 }
                 airlineNode.AppendChild(routesNode);
