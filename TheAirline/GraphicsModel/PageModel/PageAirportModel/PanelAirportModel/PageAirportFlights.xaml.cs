@@ -143,7 +143,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
           
             Dictionary<Airport, int> destinations = new Dictionary<Airport, int>();
-            foreach (Route route in this.Airport.Terminals.getRoutes())
+            foreach (Route route in this.Airport.Terminals.getRoutes().FindAll(r=>r.Airliner!=null))
             {
                 if (route.Destination1 != this.Airport)
                 {
