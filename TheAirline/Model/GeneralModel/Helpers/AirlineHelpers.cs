@@ -26,5 +26,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fAirliner;
          
         }
+        //orders a number of airliners for an airline
+        public static void OrderAirliners(Airline airline,Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate)
+        {
+             
+            foreach (KeyValuePair<AirlinerType, int> order in orders)
+            {
+                for (int i = 0; i < order.Value; i++)
+                {
+                    Airliner airliner = new Airliner(order.Key, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
+                    Airliners.AddAirliner(airliner);
+
+                    FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
+                    airline.addAirliner(pType, airliner, airliner.TailNumber, airport);
+
+                }
+              
+
+
+            }
+
+            int totalAmount = orders.Values.Sum();
+            double price = orders.Keys.Sum(t => t.Price);
+
+            double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
+
+            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice));
+        }
     }
 }

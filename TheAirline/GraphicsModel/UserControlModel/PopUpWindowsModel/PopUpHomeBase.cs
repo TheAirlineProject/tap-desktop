@@ -37,15 +37,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
             cbAirport = new ComboBox();
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            //cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
             List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(this.Airliner.Airliner.Airline,AirportFacility.FacilityType.Service).TypeLevel>0; }));
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
-
-            //vælg kun med basis service + sæt ved 
 
             foreach (Airport airport in airports)
                 cbAirport.Items.Add(airport);

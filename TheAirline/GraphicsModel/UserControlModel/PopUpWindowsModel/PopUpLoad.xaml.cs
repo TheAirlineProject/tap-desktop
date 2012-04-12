@@ -48,7 +48,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
 
             lbSaves = new ListBox();
-            //lbSaves.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbSaves.Height = 375;
             lbSaves.DisplayMemberPath = "Key";
             lbSaves.SelectionChanged += new SelectionChangedEventHandler(lbSaves_SelectionChanged);

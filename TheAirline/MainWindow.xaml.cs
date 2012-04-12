@@ -38,19 +38,14 @@ namespace TheAirline
 
             PageNavigator.MainWindow = this;
 
-            //this.Background = new SolidColorBrush(Color.FromRgb(64, 64, 64));
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
 
             Canvas mainPanel = new Canvas();
 
             frameMain = new Frame();
-            //frameMain.Width = this.Width;
-            //frameMain.Height = this.Height;
-            frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            //frameMain.Navigate(new PageAirline(GameObject.GetInstance().HumanAirline));
-            //frameMain.Navigate(new PageFrontMenu());
-            frameMain.Navigate(new PageNewGame());
+             frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+             frameMain.Navigate(new PageNewGame());
 
             Canvas.SetTop(frameMain, 0);
             Canvas.SetLeft(frameMain, 0);

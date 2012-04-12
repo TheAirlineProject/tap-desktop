@@ -13,6 +13,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersModel
 {
@@ -146,27 +147,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (orders.Keys.Count > 0)
                 {
                     Airport airport = (Airport)cbAirport.SelectedItem;
-                    double price = 0;
-
-
-                    foreach (AirlinerType type in orders.Keys)
-                        for (int j = 0; j < orders[type]; j++)
-                        {
-
-                            Airliner airliner = new Airliner(type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
-                            Airliners.AddAirliner(airliner);
-
-                            FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
-                            GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airliner.TailNumber, airport);
-
-                            price += type.Price;
-                        }
-
-                    int totalAmount = orders.Values.Sum();
-
-                    double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
-
-                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice));
+                 
+                         AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline,orders,airport,dpDate.SelectedDate.Value);
                 }
             }
 
@@ -198,20 +180,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
+                          Dictionary<AirlinerType, int> tOrders = new Dictionary<AirlinerType, int>();
+                        tOrders.Add(this.Airliner, orders);
 
-                        for (int i = 0; i < orders; i++)
-                        {
-
-
-                            Airliner airliner = new Airliner(this.Airliner, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
-                            Airliners.AddAirliner(airliner);
-
-                            FleetAirliner.PurchasedType type = cbPayOnDelivery.IsChecked.Value ? FleetAirliner.PurchasedType.BoughtDownPayment : FleetAirliner.PurchasedType.Bought;
-                            GameObject.GetInstance().HumanAirline.addAirliner(type, airliner, airliner.TailNumber, airport);
-
-                        }
-                        GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
-
+                        AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, tOrders, airport, dpDate.SelectedDate.Value);
 
                         this.clearPanel();
                     }

@@ -19,8 +19,61 @@ namespace TheAirline.Model.GeneralModel.Helpers
             CheckForNewHub(airline);
             CheckForNewRoute(airline);
             CheckForUpdateRoute(airline);
+            CheckForOrderOfAirliners(airline);
+            CheckForAirlinersWithoutRoutes(airline);
 
 
+        }
+        //checks for any airliners without routes
+        private static void CheckForAirlinersWithoutRoutes(Airline airline)
+        {
+            int i = 0;
+
+            int max = airline.Fleet.FindAll(a=>!a.HasRoute).Count;
+            while (i < max && airline.Fleet.FindAll(a => !a.HasRoute).Count > 0)
+            {
+                CreateNewRoute(airline);
+                i++;
+            }
+           
+        }
+        //checks for ordering new airliners
+        private static void CheckForOrderOfAirliners(Airline airline)
+        {
+            int newAirlinersInterval = 0;
+
+            int airliners = airline.Fleet.Count;
+            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);
+            
+            switch (airline.Mentality)
+            {
+                case Airline.AirlineMentality.Aggressive:
+                    newAirlinersInterval = 100000;
+                    break;
+                case Airline.AirlineMentality.Moderate:
+                    newAirlinersInterval = 1000000;
+                    break;
+                case Airline.AirlineMentality.Safe:
+                    newAirlinersInterval = 10000000;
+                    break;
+            }
+            Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners/10) * airlinersWithoutRoute) == 0;
+
+            if (newAirliners)
+            {
+                //order new airliners for the airline
+                OrderAirliners(airline);
+
+            }
+        }
+        //orders new airliners for an airline
+        private static void OrderAirliners(Airline airline)
+        {
+            int airliners = airline.Fleet.Count;
+            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);
+
+            
+       
         }
         //checks for etablishing a new hub
         private static void CheckForNewHub(Airline airline)
@@ -42,7 +95,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newHub = rnd.Next(newHubInterval * hubs) == 0;// 100000 == 0;
+            Boolean newHub = rnd.Next(newHubInterval * hubs) == 0;
 
             if (newHub)
             {
@@ -175,7 +228,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     FleetAirliner fAirliner;
 
-                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination);
+                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination); 
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)

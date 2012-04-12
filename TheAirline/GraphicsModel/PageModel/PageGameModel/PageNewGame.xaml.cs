@@ -253,7 +253,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GameObject.GetInstance().TimeZone = gtz;
 
                 int startYear = (int)cbStartYear.SelectedItem;
-                GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
+                GameObject.GetInstance().GameTime = new DateTime(startYear, 12, 30);//new DateTime(startYear, 1, 1);
 
                 int opponents = (int)cbOpponents.SelectedItem;
                 Airline airline = (Airline)cbAirline.SelectedItem;
