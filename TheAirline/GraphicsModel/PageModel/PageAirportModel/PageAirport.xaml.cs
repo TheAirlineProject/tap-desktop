@@ -248,8 +248,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         private Panel createQuickInfoPanel()
         {
             StackPanel panelInfo = new StackPanel();
-            //panelInfo.Margin = new Thickness(5, 0, 10, 10);
-
+      
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1006";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;

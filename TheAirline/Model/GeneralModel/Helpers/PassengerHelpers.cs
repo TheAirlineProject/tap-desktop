@@ -95,7 +95,7 @@ namespace TheAirline.Model.GeneralModel
            // double priceDiff = (standardPrice / price) / 2;
 
            // value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
-
+            
             return value;
 
         }

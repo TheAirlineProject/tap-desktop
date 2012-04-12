@@ -108,7 +108,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbDestinationArrivals = new ListBox();
             lbDestinationArrivals.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbDestinationArrivals.ItemTemplate = this.Resources["AirportDestinationItem"] as DataTemplate;
-            //lbDestinationArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 2 - 100;
             panelFlights.Children.Add(lbDestinationArrivals);
 
             Grid grdDeparturesHeader = UICreator.CreateGrid(2);

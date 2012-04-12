@@ -185,12 +185,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             else
             {
                 int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
-                int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);//lastYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, aa.Key, aa.Value.Value);
+                int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);
 
                 if (totalValue == 0)
                     return "-";
 
-                double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); //System.Convert.ToDouble(currentYearValue - lastYearValue) / lastYearValue;
+                double changePercent = System.Convert.ToDouble(currentYearValue) / System.Convert.ToDouble(totalValue); 
 
                 if (double.IsInfinity(changePercent))
                     return "100.00 %";

@@ -19,6 +19,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 {
@@ -38,7 +39,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PageAirliners", this.Uid);
-        
+
             sortCriteriaNew = delegate(AirlinerType t1, AirlinerType t2) { return t2.Price.CompareTo(t1.Price); };
             sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a2.BuiltDate.CompareTo(a1.BuiltDate); };
 
@@ -55,7 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             airlinersPanel.Children.Add(txtNewHeader);
 
             // chs, 2011-11-10 added a scroller so all elements are viewable
-         
+
             ScrollViewer scroller = new ScrollViewer();
             scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
@@ -70,9 +71,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             ContentControl lblNewHeader = new ContentControl();
             lblNewHeader.ContentTemplate = this.Resources["AirlinersNewHeader"] as DataTemplate;
             lblNewHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            //lblNewHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
-
-            //airlinersPanel.Children.Add(lblNewHeader);
             panelScroller.Children.Add(lblNewHeader);
 
             lbNewAirliners = new ListBox();
@@ -82,8 +80,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             showNewAirliners();
 
-            //airlinersPanel.Children.Add(lbNewAirliners);
             panelScroller.Children.Add(lbNewAirliners);
+
+
 
             TextBlock txtUsedHeader = new TextBlock();
             txtUsedHeader.Uid = "1002";
@@ -98,18 +97,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             ContentControl lblUsedHeader = new ContentControl();
             lblUsedHeader.ContentTemplate = this.Resources["AirlinersUsedHeader"] as DataTemplate;
             lblUsedHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            //lblUsedHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
 
             airlinersPanel.Children.Add(lblUsedHeader);
 
             lbUsedAirliners = new ListBox();
             lbUsedAirliners.ItemTemplate = this.Resources["AirlinerUsedItem"] as DataTemplate;
-            lbUsedAirliners.Height = (GraphicsHelpers.GetContentHeight() - 50) / 2;
+            lbUsedAirliners.Height = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             lbUsedAirliners.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
             airlinersPanel.Children.Add(lbUsedAirliners);
 
             showUsedAirliners();
+
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -123,19 +122,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             base.setHeaderContent(this.Title);
 
-            //base.setHeaderContent(string.Format("{0} Finals", this.League.Profile.ShortName), @"/Data/images/trophy.png");
-
-            //base.setActionMenu(new ActionMenuModel.ActionMenu());
 
             showPage(this);
         }
+
+
 
         //shows the list of new airliners for order
         private void showNewAirliners()
         {
             lbNewAirliners.Items.Clear();
 
-            List<AirlinerType> types = AirlinerTypes.GetTypes().FindAll(delegate(AirlinerType t) { return t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Produced.From<=GameObject.GetInstance().GameTime.Year; });
+            List<AirlinerType> types = AirlinerTypes.GetTypes().FindAll(delegate(AirlinerType t) { return t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Produced.From <= GameObject.GetInstance().GameTime.Year; });
 
             types.Sort(sortCriteriaNew);
 
@@ -163,8 +161,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             panelAirliner.Children.Clear();
 
             string type = ((Hyperlink)sender).TargetName;
-          
-            if (  GameObject.GetInstance().HumanAirline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0; })).Count == 0)
+
+            if (GameObject.GetInstance().HumanAirline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0; })).Count == 0)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2000"), Translator.GetInstance().GetString("MessageBox", "2000", "message"), WPFMessageBoxButtons.Ok);
             else
             {
@@ -175,13 +173,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                     panelAirliner.Children.Add(new PanelNewAirliner(this, (AirlinerType)((Hyperlink)sender).Tag));
             }
 
-            //Airport airport = (Airport)((Hyperlink)sender).Tag;
 
-            //PageNavigator.NavigateTo(new PageAirport(airport));
-
-            // PageNavigator.NavigateTo(new PagePlayerProfile(player));
         }
-
+       
         private void HeaderNew_Click(object sender, RoutedEventArgs e)
         {
             string type = (string)((Hyperlink)sender).Tag;
@@ -202,6 +196,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                     break;
             }
         }
+
 
         private void HeaderUsed_Click(object sender, RoutedEventArgs e)
         {

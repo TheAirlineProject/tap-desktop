@@ -26,12 +26,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         public PanelNewAirliner(PageAirliners parent, AirlinerType airliner)
             : base(parent)
         {
-     
+
 
             this.Airliner = airliner;
 
             StackPanel panelAirliner = new StackPanel();
-            
+
             panelAirliner.Children.Add(base.createQuickInfoPanel(airliner));
 
             this.addObject(panelAirliner);
@@ -104,25 +104,74 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbPriceInfo.Items.Add(new QuickInfoValue("Pay on delivery", panelOnDelivery));
 
+            WrapPanel panelOrderButtons = new WrapPanel();
+            panelOrderButtons.Margin = new Thickness(0, 5, 0, 0);
+
+            this.addObject(panelOrderButtons);
+
             Button btnOrder = new Button();
             btnOrder.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOrder.Height = Double.NaN;
             btnOrder.Width = Double.NaN;
             btnOrder.Content = "Order";
             btnOrder.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnOrder.Margin = new System.Windows.Thickness(0, 5, 0, 0);
             btnOrder.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOrder.Click += new System.Windows.RoutedEventHandler(btnOrder_Click);
-            this.addObject(btnOrder);
+            panelOrderButtons.Children.Add(btnOrder);
 
 
+            Button btnOrderManufacturer = new Button();
+            btnOrderManufacturer.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnOrderManufacturer.Height = Double.NaN;
+            btnOrderManufacturer.Width = Double.NaN;
+            btnOrderManufacturer.Content = "Order from manufacturer";
+            btnOrderManufacturer.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnOrderManufacturer.Margin = new System.Windows.Thickness(5, 0, 0, 0);
+            btnOrderManufacturer.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnOrderManufacturer.Click += new RoutedEventHandler(btnOrderManufacturer_Click);
+
+            panelOrderButtons.Children.Add(btnOrderManufacturer);
+
+        }
+        private void btnOrderManufacturer_Click(object sender, RoutedEventArgs e)
+        {
+            object o = PopUpManufacturerOrder.ShowPopUp(this.Airliner.Manufacturer);
+
+            if (o != null)
+            {
+             
+              
+                Dictionary<AirlinerType, int> orders = (Dictionary<AirlinerType, int>)o;
+
+                if (orders.Keys.Count > 0)
+                {
+                    Airport airport = (Airport)cbAirport.SelectedItem;
+                    double price = 0;
 
 
+                    foreach (AirlinerType type in orders.Keys)
+                        for (int j = 0; j < orders[type]; j++)
+                        {
 
+                            Airliner airliner = new Airliner(type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
+                            Airliners.AddAirliner(airliner);
+
+                            FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
+                            GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airliner.TailNumber, airport);
+
+                            price += type.Price;
+                        }
+
+                    int totalAmount = orders.Values.Sum();
+
+                    double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
+
+                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice));
+                }
+            }
 
         }
 
-     
 
         private void btnOrder_Click(object sender, System.Windows.RoutedEventArgs e)
         {
@@ -134,7 +183,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 double price = this.cbPayOnDelivery.IsChecked.Value ? orders * (this.Airliner.Price * this.downPaymentRate) : orders * this.Airliner.Price;
                 price = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(orders)));
-                
+
                 Airport airport = (Airport)cbAirport.SelectedItem;
                 if (price > GameObject.GetInstance().HumanAirline.Money)
                 {
@@ -152,7 +201,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                         for (int i = 0; i < orders; i++)
                         {
-                        
+
 
                             Airliner airliner = new Airliner(this.Airliner, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
                             Airliners.AddAirliner(airliner);
@@ -162,7 +211,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                         }
                         GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
-                        
+
 
                         this.clearPanel();
                     }

@@ -164,7 +164,10 @@ namespace TheAirline.Model.GeneralModel
         //returns the discount for an order of airliners
         public static double GetAirlinerOrderDiscount(int orders)
         {
-            return ((orders - 2) * 0.5)/100;
+            if (orders > 2)
+                return ((orders - 2) * 0.5) / 100;
+            else
+                return 0;
         }
 
     }

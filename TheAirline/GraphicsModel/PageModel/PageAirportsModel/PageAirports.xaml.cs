@@ -44,8 +44,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             ContentControl txtHeader = new ContentControl();
             txtHeader.ContentTemplate = this.Resources["AirportsHeader"] as DataTemplate;
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-           // txtHeader.SetResourceReference(Label.BackgroundProperty, "HeaderBackgroundBrush");
-
+   
             airportsPanel.Children.Add(txtHeader);
 
             lbAirports = new ListBox();
@@ -84,10 +83,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             base.setHeaderContent(this.Title);
 
-            //base.setHeaderContent(string.Format("{0} Finals", this.League.Profile.ShortName), @"/Data/images/trophy.png");
-
-            //base.setActionMenu(new ActionMenuModel.ActionMenu());
-
+     
             showPage(this);
         }
 
@@ -121,9 +117,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             Airport airport = (Airport)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirport(airport));
-
-           // PageNavigator.NavigateTo(new PagePlayerProfile(player));
-        }
+      }
 
         private void Header_Click(object sender, RoutedEventArgs e)
         {

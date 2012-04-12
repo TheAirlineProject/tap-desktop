@@ -385,6 +385,7 @@ VerticalAlignment="Center"/>
                         <Popup 
             Name="Popup"
             Placement="Bottom"
+                            
             IsOpen="{TemplateBinding IsDropDownOpen}"
             AllowsTransparency="True" 
              
@@ -427,6 +428,7 @@ VerticalAlignment="Center"/>
                             <Setter TargetName="PART_EditableTextBox" Property="Visibility"    Value="Visible"/>
                             <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
                         </Trigger>
+                       
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
