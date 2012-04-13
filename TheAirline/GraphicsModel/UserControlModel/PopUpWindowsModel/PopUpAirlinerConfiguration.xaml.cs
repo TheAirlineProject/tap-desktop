@@ -198,18 +198,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
         }
 
-
-
-
-    }
-    public class SeatingCapacities : ObservableCollection<int>
-    {
-        public SeatingCapacities()
-        {
-           
-            for (int i = 1; i < PopUpAirlinerConfiguration.MaxSeats; i++)
-                Add(i + 1);
-        }
     }
     //the converter for returning the amount of passengers
     public class NumberOfPassengersConverter : IValueConverter

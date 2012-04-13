@@ -77,15 +77,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             {
                
                 Airport airport = this.Airliner.Route == null ? null : Airports.GetAirport(this.Airliner.CurrentPosition);
-               // txtFlown.Text = string.Format("{0:0,0} km.", this.Airliner.Airliner.Flown);
                 txtFlown.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km."));
-                //txtPosition.Text = 
                 Run run = (Run)((Hyperlink)txtPosition.Inlines.FirstInline).Inlines.FirstInline;
                 run.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
             
-               // txtSinceService.Text = string.Format("{0:0,0} km.", this.Airliner.Airliner.LastServiceCheck);
                 txtSinceService.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km."));
-            }//husk også currency
+            }
        
         }
         //creates the info panel for the airliner type
@@ -123,7 +120,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             string range = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.Range), new StringToLanguageConverter().Convert("km."));
             lbQuickInfo.Items.Add(new QuickInfoValue("Range", UICreator.CreateTextBlock(string.Format("{1} ({0})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
    
-            //lbQuickInfo.Items.Add(new QuickInfoValue("Range type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.RangeType, null, null, null).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue("Engine type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue("Wingspan", UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Wingspan).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue("Length", UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Length).ToString())));
@@ -133,11 +129,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             string crewRequirements = string.Format("Cockpit: {0} Cabin: {1}",airliner.CockpitCrew,airliner.CabinCrew);
             lbQuickInfo.Items.Add(new QuickInfoValue("Crew requirements", UICreator.CreateTextBlock(crewRequirements)));
-            //lbQuickInfo.Items.Add(new QuickInfoValue("Range", UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.Range), new StringToLanguageConverter().Convert("km.")))));
             lbQuickInfo.Items.Add(new QuickInfoValue("Cruising speed", UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
             lbQuickInfo.Items.Add(new QuickInfoValue("Fuel Consumption", UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
-          //  lbQuickInfo.Items.Add(new QuickInfoValue("Produced", UICreator.CreateTextBlock(airliner.Produced.ToString())));
-
+   
             return panelAirlinerType;
 
         }
@@ -147,13 +141,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             Image imgEditName = new Image();
             imgEditName.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
             imgEditName.Width = 16;
-            //imgEdit.Margin = new Thickness(5, 0, 0, 0);
             RenderOptions.SetBitmapScalingMode(imgEditName, BitmapScalingMode.HighQuality);
             
      
             StackPanel panelInfo = new StackPanel();
-           // panelInfo.Margin = new Thickness(0,10, 0, 0);
-
+   
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
@@ -224,7 +216,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             Image imgEdit = new Image();
             imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
             imgEdit.Width = 16;
-            //imgEdit.Margin = new Thickness(5, 0, 0, 0);
             RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
            
              
@@ -240,7 +231,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
            
 
             lbQuickInfo.Items.Add(new QuickInfoValue("Home base", panelHomeBase));
-           // lbQuickInfo.Items.Add(new QuickInfoValue("Airliner type", UICreator.CreateTextBlock(this.Airliner.Airliner.Type.Name)));
     
             lbQuickInfo.Items.Add(new QuickInfoValue("Built", UICreator.CreateTextBlock(string.Format("{0} ({1} years old)", this.Airliner.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Airliner.Age))));
             lbQuickInfo.Items.Add(new QuickInfoValue("Tail number", UICreator.CreateTextBlock(this.Airliner.Airliner.TailNumber)));

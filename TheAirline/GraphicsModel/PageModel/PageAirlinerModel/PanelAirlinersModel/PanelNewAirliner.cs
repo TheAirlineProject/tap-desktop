@@ -22,8 +22,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private AirlinerType Airliner;
         private ComboBox cbAirport;
         private DatePicker dpDate;
-        private CheckBox cbPayOnDelivery;
-        private double downPaymentRate = 0.03;
+        //private CheckBox cbPayOnDelivery;
+        //private double downPaymentRate = 0.03;
         public PanelNewAirliner(PageAirliners parent, AirlinerType airliner)
             : base(parent)
         {
@@ -89,6 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbPriceInfo.Items.Add(new QuickInfoValue("Delivery time", dpDate));
 
+            /*
             WrapPanel panelOnDelivery = new WrapPanel();
             panelOnDelivery.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
 
@@ -97,14 +98,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             cbPayOnDelivery.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
 
             panelOnDelivery.Children.Add(cbPayOnDelivery);
-
+            
             TextBlock txtDeliveryPrice = UICreator.CreateTextBlock(string.Format("Down payment: {0:c}", this.Airliner.Price * this.downPaymentRate));
             txtDeliveryPrice.Margin = new Thickness(5, 0, 0, 0);
 
             panelOnDelivery.Children.Add(txtDeliveryPrice);
 
             lbPriceInfo.Items.Add(new QuickInfoValue("Pay on delivery", panelOnDelivery));
-
+            */
             WrapPanel panelOrderButtons = new WrapPanel();
             panelOrderButtons.Margin = new Thickness(0, 5, 0, 0);
 
@@ -140,15 +141,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             if (o != null)
             {
-             
-              
+                Airport airport = (Airport)cbAirport.SelectedItem;
                 Dictionary<AirlinerType, int> orders = (Dictionary<AirlinerType, int>)o;
 
-                if (orders.Keys.Count > 0)
+                double price = orders.Keys.Sum(t => t.Price * orders[t]);
+            
+                if (price > GameObject.GetInstance().HumanAirline.Money)
                 {
-                    Airport airport = (Airport)cbAirport.SelectedItem;
-                 
-                         AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline,orders,airport,dpDate.SelectedDate.Value);
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
+                }
+                else if (airport == null)
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
+                else
+                {
+                    if (orders.Keys.Count > 0)
+                    {
+                   
+                        AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value);
+                    }
                 }
             }
 
@@ -163,7 +173,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             {
                 int orders = (int)o;
 
-                double price = this.cbPayOnDelivery.IsChecked.Value ? orders * (this.Airliner.Price * this.downPaymentRate) : orders * this.Airliner.Price;
+                double price = orders * this.Airliner.Price;//this.cbPayOnDelivery.IsChecked.Value ? orders * (this.Airliner.Price * this.downPaymentRate) : orders * this.Airliner.Price;
                 price = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(orders)));
 
                 Airport airport = (Airport)cbAirport.SelectedItem;

@@ -88,8 +88,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.Content = panelFleet;
 
-           // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFleet_OnTimeChanged);
-        }
+         }
 
      
         private void PageAirlineFleet_OnTimeChanged()

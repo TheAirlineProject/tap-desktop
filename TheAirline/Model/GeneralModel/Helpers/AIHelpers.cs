@@ -29,7 +29,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int i = 0;
 
-            int max = airline.Fleet.FindAll(a=>!a.HasRoute).Count;
+            int max = airline.Fleet.FindAll(a=>a.Airliner.BuiltDate<=GameObject.GetInstance().GameTime && !a.HasRoute).Count;
             while (i < max && airline.Fleet.FindAll(a => !a.HasRoute).Count > 0)
             {
                 CreateNewRoute(airline);
@@ -42,22 +42,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int newAirlinersInterval = 0;
 
-            int airliners = airline.Fleet.Count;
-            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);
+            int airliners = airline.Fleet.Count+1;
+            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute)+1;
             
             switch (airline.Mentality)
             {
                 case Airline.AirlineMentality.Aggressive:
-                    newAirlinersInterval = 100000;
+                    newAirlinersInterval = 10000;
                     break;
                 case Airline.AirlineMentality.Moderate:
-                    newAirlinersInterval = 1000000;
+                    newAirlinersInterval = 100000;
                     break;
                 case Airline.AirlineMentality.Safe:
-                    newAirlinersInterval = 10000000;
+                    newAirlinersInterval = 1000000;
                     break;
             }
-            Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners/10) * airlinersWithoutRoute) == 0;
+            Boolean newAirliners = rnd.Next(newAirlinersInterval * airliners * airlinersWithoutRoute)  == 0;
 
             if (newAirliners)
             {
@@ -72,7 +72,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int airliners = airline.Fleet.Count;
             int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);
 
-            
+            int numberToOrder = rnd.Next(1, 3-(int)airline.Mentality);
+
+            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+
+            Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
+            homeAirports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
+
+            Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
+
+            List<AirlinerType> types = AirlinerTypes.GetTypes().FindAll(t => t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Price * numberToOrder < airline.Money);
+
+            types = types.OrderBy(t => t.Price).ToList();
+
+            Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
+            types.ForEach(t => list.Add(t, (int)((t.Range / (t.Price/100000)))));
+
+            if (list.Keys.Count > 0)
+            {
+                AirlinerType type = AIHelpers.GetRandomItem(list);
+
+                Dictionary<AirlinerType, int> orders = new Dictionary<AirlinerType, int>();
+                orders.Add(type, numberToOrder);
+
+
+                int days = rnd.Next(30);
+                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
+            }
+           
+
        
         }
         //checks for etablishing a new hub
@@ -298,7 +326,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
         {
             //Order new airliner
-            var fleet = airline.Fleet.FindAll(f => f.Route == null && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+            var fleet = airline.Fleet.FindAll(f => f.Route == null && f.Airliner.BuiltDate<=GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
 
             if (fleet.Count > 0)
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();

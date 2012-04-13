@@ -94,11 +94,14 @@ namespace TheAirline.Model.GeneralModel
             double price = airliner.Route.getRouteAirlinerClass(type).FarePrice;
             double standardPrice = GetPassengerPrice(airliner.Route.Destination1, airliner.Route.Destination2);
 
-           // double priceDiff = (standardPrice / price) / 2;
-
-           // value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+            double priceDiff = (price / standardPrice) * 1.13;
+     
+            value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
             
             return value;
+
+        
+
 
         }
        

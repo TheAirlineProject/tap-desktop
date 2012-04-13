@@ -34,7 +34,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 for (int i = 0; i < order.Value; i++)
                 {
-                    Airliner airliner = new Airliner(order.Key, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
+                    Airliner airliner = new Airliner(order.Key, airline.Profile.Country.TailNumbers.getNextTailNumber(),deliveryDate);
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
@@ -47,7 +47,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             int totalAmount = orders.Values.Sum();
-            double price = orders.Keys.Sum(t => t.Price);
+            double price = orders.Keys.Sum(t => t.Price * orders[t]);
 
             double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
 
