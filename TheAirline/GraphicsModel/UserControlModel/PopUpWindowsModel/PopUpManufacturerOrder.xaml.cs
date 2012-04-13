@@ -233,7 +233,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 Manufacturer manufacturer = (Manufacturer)e.AddedItems[0];
                 cbTypes.Items.Clear();
-
+                
                 (from t in AirlinerTypes.GetTypes() where t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Manufacturer == manufacturer orderby t.Name select t).ToList().ForEach(m => cbTypes.Items.Add(m));
 
                 cbTypes.SelectedIndex = 0;

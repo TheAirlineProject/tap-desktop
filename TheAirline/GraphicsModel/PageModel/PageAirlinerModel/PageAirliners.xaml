@@ -43,6 +43,23 @@
                 <TextBlock Text="{Binding Price, StringFormat={}{0:c}, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="100" TextAlignment="Right"></TextBlock>
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="ManufacturerItem">
+            <WrapPanel>
+            <TextBlock Width="200" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding }" Click="lnkManufacturer_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+            </TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding Country}"></ContentControl>
+
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ManufacturerHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock  Width="200" Text="Manufacturer" FontWeight="Bold"></TextBlock>
+                <TextBlock Width="100" Text="Country" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="AirlinersUsedHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
              

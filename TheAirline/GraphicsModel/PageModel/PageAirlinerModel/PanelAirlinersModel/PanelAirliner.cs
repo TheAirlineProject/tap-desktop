@@ -44,7 +44,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         }
 
         //creates the quick info panel for a airliner type
-        protected StackPanel createQuickInfoPanel(AirlinerType airliner)
+        public static StackPanel createQuickInfoPanel(AirlinerType airliner)
         {
             StackPanel quickInfoPanel = new StackPanel();
 

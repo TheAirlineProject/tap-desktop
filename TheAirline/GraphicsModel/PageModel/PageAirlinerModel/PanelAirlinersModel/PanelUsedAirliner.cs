@@ -26,8 +26,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             this.Airliner = airliner;
 
             StackPanel panelAirliner = new StackPanel();
-         
-            panelAirliner.Children.Add(base.createQuickInfoPanel(airliner.Type));
+
+            panelAirliner.Children.Add(PanelAirliner.createQuickInfoPanel(airliner.Type));
 
             this.addObject(panelAirliner);
 

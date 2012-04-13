@@ -16,7 +16,7 @@
             <Setter Property="Foreground" Value="{DynamicResource TextColor}"></Setter>
         </Style>
     </UserControl.Resources>
-    <Grid Margin="3">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
             <RowDefinition/>

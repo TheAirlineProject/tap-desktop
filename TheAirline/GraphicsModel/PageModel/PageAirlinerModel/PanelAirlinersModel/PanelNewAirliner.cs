@@ -33,7 +33,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             StackPanel panelAirliner = new StackPanel();
 
-            panelAirliner.Children.Add(base.createQuickInfoPanel(airliner));
+            panelAirliner.Children.Add(PanelAirliner.createQuickInfoPanel(airliner));
 
             this.addObject(panelAirliner);
 
@@ -65,8 +65,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll((delegate(Airport airport) { return airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0; }));
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
-            airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
-
+            
             foreach (Airport airport in airports)
                 cbAirport.Items.Add(airport);
 
