@@ -256,15 +256,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpManufacturerOrder.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpOrderAirliners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -354,7 +346,6 @@
       <DependentUpon>PageOrderAirliners.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PanelAirliner.cs" />
-    <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PanelNewAirliner.cs" />
     <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PanelUsedAirliner.cs" />
     <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PageAirlines.xaml.cs">
       <DependentUpon>PageAirlines.xaml</DependentUpon>
@@ -456,14 +447,8 @@
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml.cs">
       <DependentUpon>PopUpLoan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpManufacturerOrder.xaml.cs">
-      <DependentUpon>PopUpManufacturerOrder.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml.cs">
       <DependentUpon>PopUpMap.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpOrderAirliners.xaml.cs">
-      <DependentUpon>PopUpOrderAirliners.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
       <DependentUpon>PopUpRouteFacilities.xaml</DependentUpon>
