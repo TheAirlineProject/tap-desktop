@@ -46,6 +46,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirportFacilities();
                 LoadAirlineFacilities();
                 LoadManufacturers();
+                LoadManufacturerLogos();
                 LoadAirliners();
                 LoadAirlinerFacilities();
 
@@ -640,7 +641,24 @@ namespace TheAirline.Model.GeneralModel
                     code = "x";
             }
         }
+        /*! loads the manufacturer logos
+         */
+        private static void LoadManufacturerLogos()
+        {
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\manufacturerlogos");
 
+            foreach (FileInfo file in dir.GetFiles("*.png"))
+            {
+                string name = file.Name.Split('.')[0];
+                Manufacturer manufacturer = Manufacturers.GetManufacturer(name);
+
+                if (manufacturer != null)
+                    manufacturer.Logo = file.FullName;
+                else
+                    name = "x";
+            }
+        }
+        
         /*! loads the logos for the game airlines.
          */
         private static void CreateAirlineLogos()

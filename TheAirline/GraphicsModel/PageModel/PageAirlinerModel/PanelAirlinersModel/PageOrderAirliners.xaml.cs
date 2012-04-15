@@ -90,8 +90,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbManufacturers.Items.Add(new QuickInfoValue("Delivery time", dpDate));
 
-         
-            lbManufacturers.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1003"), UICreator.CreateTextBlock(this.Manufacturer.Name)));
+            ContentControl ccManufacturer = new ContentControl();
+            ccManufacturer.SetResourceReference(ContentControl.ContentTemplateProperty, "ManufactorerLogoItem");
+            ccManufacturer.Content = this.Manufacturer;
+
+            lbManufacturers.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1003"),ccManufacturer));
             lbManufacturers.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1004"), createOrderPanel()));
 
             mainPanel.Children.Add(lbManufacturers);

@@ -12,6 +12,7 @@ namespace TheAirline.Model.AirlinerModel
         public string Name { get; set; }
         public string ShortName { get; set; }
         public Country Country { get; set; }
+        public string Logo { get; set; }
         public Manufacturer(string name, string shortname, Country country)
         {
             this.Name = name;
@@ -22,26 +23,26 @@ namespace TheAirline.Model.AirlinerModel
     //the collection of manufacturers
     public class Manufacturers
     {
-        private static Dictionary<string, Manufacturer> manufacturers = new Dictionary<string, Manufacturer>();
+        private static List<Manufacturer> manufacturers = new List<Manufacturer>();
         //clears the list
         public static void Clear()
         {
-            manufacturers = new Dictionary<string, Manufacturer>();
+            manufacturers = new List<Manufacturer>();
         }
         //adds a manufacturer to the collection
         public static void AddManufacturer(Manufacturer manufacturer)
         {
-            manufacturers.Add(manufacturer.ShortName, manufacturer);
+            manufacturers.Add(manufacturer);
         }
         //returns a manufacturer
         public static Manufacturer GetManufacturer(string name)
         {
-            return manufacturers[name];
+            return manufacturers.Find(m => m.Name == name || m.ShortName == name);
         }
         //returns the list manufacturers
         public static List<Manufacturer> GetManufacturers()
         {
-            return manufacturers.Values.ToList();
+            return manufacturers;
         }
     }
 }
