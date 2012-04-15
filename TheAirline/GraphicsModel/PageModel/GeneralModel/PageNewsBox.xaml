@@ -16,7 +16,7 @@
             <StackPanel>
                 <TextBlock Text="{Binding Subject}" FontWeight="Bold" FontSize="20" VerticalAlignment="Bottom"></TextBlock>
                 <WrapPanel>
-                    <TextBlock Text="Recieved:" FontWeight="Black" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1002',StringFormat={}{0}:}" FontWeight="Black" VerticalAlignment="Bottom"></TextBlock>
                     <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy HH:mm}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 </WrapPanel>
                 <Separator/>
@@ -25,15 +25,14 @@
         </DataTemplate>
             <DataTemplate x:Key="NewsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
-                <TextBlock VerticalAlignment="Bottom" Text="Type" Width="100" FontWeight="Bold"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="Subject" Width="200" FontWeight="Bold" Margin="0 0 5 0"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="Received" Width="125" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1000'}" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1001'}" Width="200" FontWeight="Bold" Margin="0 0 5 0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1002'}" FontWeight="Bold"></TextBlock>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="NewsItem">
             <WrapPanel>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter}}"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" Width="100" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
+                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" Width="100" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Width="200" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}" Margin="0 0 5 0">
                     <Hyperlink Tag="{Binding}" Click="LnkNews_Click">
                         <Run  Text="{Binding Subject}"></Run>

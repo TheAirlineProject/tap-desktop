@@ -176,7 +176,8 @@ namespace TheAirline.GraphicsModel.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return Translator.GetInstance().GetString("PanelUsedAirliner", "1003");
+            string uid = parameter.ToString();
+            return Translator.GetInstance().GetString("LanguageTranslationConverter", uid);
            
         }
 
