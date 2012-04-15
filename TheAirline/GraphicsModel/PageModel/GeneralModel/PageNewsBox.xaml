@@ -9,6 +9,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageNewsBox">
     <Page.Resources>
+        <c:LanguageTranslationConverter x:Key="languageTranslationConverter"></c:LanguageTranslationConverter>
         <c:BooleanToBold x:Key="booleanToBold"></c:BooleanToBold>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <DataTemplate x:Key="NewsShowItem">
@@ -31,6 +32,7 @@
         </DataTemplate>
         <DataTemplate x:Key="NewsItem">
             <WrapPanel>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter}}"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" Width="100" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Width="200" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}" Margin="0 0 5 0">
                     <Hyperlink Tag="{Binding}" Click="LnkNews_Click">

@@ -170,7 +170,21 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-   
+    //ther converte for the language translation
+    public class LanguageTranslationConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return Translator.GetInstance().GetString("PanelUsedAirliner", "1003");
+           
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a boolean to bold
     public class BooleanToBold : IValueConverter
     {
