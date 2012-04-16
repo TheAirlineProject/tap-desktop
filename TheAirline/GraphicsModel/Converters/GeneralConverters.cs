@@ -170,22 +170,7 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-    //ther converte for the language translation
-    public class LanguageTranslationConverter : IValueConverter
-    {
-
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            string uid = parameter.ToString();
-            return Translator.GetInstance().GetString("LanguageTranslationConverter", uid);
-           
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+   
     //the converter for a boolean to bold
     public class BooleanToBold : IValueConverter
     {
@@ -404,6 +389,22 @@ namespace TheAirline.GraphicsModel.Converters
             string uid = "1000";
 
             return Translator.GetInstance().GetString(region, uid);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //ther converte for the language translation
+    public class LanguageTranslationConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string uid = parameter.ToString();
+            return Translator.GetInstance().GetString("LanguageTranslationConverter", uid);
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

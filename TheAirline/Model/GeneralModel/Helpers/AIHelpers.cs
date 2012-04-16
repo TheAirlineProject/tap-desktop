@@ -57,7 +57,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     newAirlinersInterval = 1000000;
                     break;
             }
-            Boolean newAirliners = rnd.Next(newAirlinersInterval * airliners * airlinersWithoutRoute)  == 0;
+            Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute)  == 0;
 
             if (newAirliners)
             {
@@ -202,6 +202,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for a new route for an airline
         private static void CheckForNewRoute(Airline airline)
         {
+            int airlinersInOrder = airline.Fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            
             int newRouteInterval = 0;
             switch (airline.Mentality)
             {
@@ -216,7 +218,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval) / 110 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval * airlinersInOrder) / 110 == 0;
 
             if (newRoute)
             {
