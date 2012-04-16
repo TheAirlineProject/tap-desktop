@@ -70,7 +70,7 @@ namespace TheAirline.Model.GeneralModel
             int destSize = (int)airportDestination.Profile.Size;
             int deptSize = (int)airportCurrent.Profile.Size;
 
-            int size = (1000 * destSize) + (750 * deptSize);
+            double size = (1000 * destSize * GetSeasonFactor(airportDestination)) + (750 * deptSize * GetSeasonFactor(airportCurrent));
             size = size / (sameRoutes + 1);
             size = size / totalRoutes1; 
             size = size / totalRoutes2;
@@ -78,11 +78,11 @@ namespace TheAirline.Model.GeneralModel
 
             double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;
 
-            size = (int)(Convert.ToDouble(size) * happiness / 100.0);
+            size = Convert.ToDouble(size) * happiness / 100.0;
 
             double minValue = Math.Min(size, airliner.Airliner.getAirlinerClass(type).SeatingCapacity)*0.8;
 
-            int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
+            int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,(int)size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
 
             if (airportCurrent.IsHub)
             {
@@ -104,7 +104,22 @@ namespace TheAirline.Model.GeneralModel
 
 
         }
-       
+        //returns the season factor for an airport
+        private static double GetSeasonFactor(Airport airport)
+        {
+            Boolean isSummer = GameObject.GetInstance().GameTime.Month>=3 && GameObject.GetInstance().GameTime.Month<9;
+
+            if (airport.Profile.Season == AirportProfile.AirportSeason.All_Year)
+                return 1;
+            if (airport.Profile.Season == AirportProfile.AirportSeason.Summer)
+                if (isSummer) return 1.5;
+                else return 0.5;
+            if (airport.Profile.Season == AirportProfile.AirportSeason.Winter)
+                if (isSummer) return 0.5;
+                else return 1.5;
+
+            return 1;
+        }
         //returns the suggested passenger price for a route on a airliner
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {

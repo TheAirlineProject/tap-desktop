@@ -301,6 +301,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             txtLocalTime = UICreator.CreateTextBlock(string.Format("{0} {1}",MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime,tz).ToShortTimeString(), tz.ShortName));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1013"), txtLocalTime));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1019"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Season).ToString())));
 
             WrapPanel panelCoordinates = new WrapPanel();
             

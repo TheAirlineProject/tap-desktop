@@ -274,12 +274,9 @@ namespace TheAirline.Model.GeneralModel
                     string name = airportElement.Attributes["name"].Value;
                     string icao = airportElement.Attributes["icao"].Value;
                     string iata = airportElement.Attributes["iata"].Value;
-
-                    id = iata;
-
-
-
+                    
                     AirportProfile.AirportType type = (AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
+                    AirportProfile.AirportSeason season = (AirportProfile.AirportSeason)Enum.Parse(typeof(AirportProfile.AirportSeason), airportElement.Attributes["season"].Value);
 
                     XmlElement townElement = (XmlElement)airportElement.SelectSingleNode("town");
                     string town = townElement.Attributes["town"].Value;
@@ -296,7 +293,7 @@ namespace TheAirline.Model.GeneralModel
                     AirportProfile.AirportSize size = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), sizeElement.Attributes["value"].Value);
 
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size,season);
 
                     Airport airport = new Airport(profile);
 
