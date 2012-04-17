@@ -628,7 +628,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement airlineStatNode = xmlDoc.CreateElement("stat");
 
-                        int value = airline.Statistics.getStatisticsValue(year, type);
+                        double value = airline.Statistics.getStatisticsValue(year, type);
 
                         airlineStatNode.SetAttribute("year", year.ToString());
                         airlineStatNode.SetAttribute("type", type.Shortname);
@@ -694,7 +694,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             XmlElement airlinerStatNode = xmlDoc.CreateElement("stat");
 
-                            int value = airliner.Statistics.getStatisticsValue(year, type);
+                            double value = airliner.Statistics.getStatisticsValue(year, type);
                             airlinerStatNode.SetAttribute("year", year.ToString());
                             airlinerStatNode.SetAttribute("type", type.Shortname);
                             airlinerStatNode.SetAttribute("value", value.ToString());
@@ -826,7 +826,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             XmlElement airportStatNode = xmlDoc.CreateElement("stat");
 
-                            int value = airport.Statistics.getStatisticsValue(year, airline, type);
+                            double value = airport.Statistics.getStatisticsValue(year, airline, type);
                             airportStatNode.SetAttribute("year", year.ToString());
                             airportStatNode.SetAttribute("airline", airline.Profile.IATACode);
                             airportStatNode.SetAttribute("type", type.Shortname);

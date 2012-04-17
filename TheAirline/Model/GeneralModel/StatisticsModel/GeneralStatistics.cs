@@ -15,7 +15,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
 
         }
         //returns the value for a statistics type for a year
-        public int getStatisticsValue(int year, StatisticsType type)
+        public double getStatisticsValue(int year, StatisticsType type)
         {
             if (this.StatValues.ContainsKey(year))
             {
@@ -26,7 +26,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
 
         }
         //adds the value for a statistics type for a year
-        public void addStatisticsValue(int year, StatisticsType type, int value)
+        public void addStatisticsValue(int year, StatisticsType type, double value)
         {
             if (!this.StatValues.ContainsKey(year))
                 this.StatValues.Add(year, new List<StatisticsValue>());
@@ -37,7 +37,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
                 this.StatValues[year].Add(new StatisticsValue(type,value));
         }
         //sets the value for a statistics type for a year
-        public void setStatisticsValue(int year, StatisticsType type, int value)
+        public void setStatisticsValue(int year, StatisticsType type, double value)
         {
             if (!this.StatValues.ContainsKey(year))
                 this.StatValues.Add(year, new List<StatisticsValue>());

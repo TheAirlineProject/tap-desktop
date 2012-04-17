@@ -19,7 +19,7 @@ namespace TheAirline.Model.AirportModel
             this.Stats = new Dictionary<int, List<AirportStatisticsValue>>();
         }
         //returns the value for a statistics type for an airline for a year
-        public int getStatisticsValue(int year, Airline airline, StatisticsType type)
+        public double getStatisticsValue(int year, Airline airline, StatisticsType type)
         {
             if (this.Stats.ContainsKey(year))
             {
@@ -61,7 +61,7 @@ namespace TheAirline.Model.AirportModel
         }
      
         //returns the total value for a statistics type for a year
-        public int getTotalValue(int year, StatisticsType type)
+        public double getTotalValue(int year, StatisticsType type)
         {
             if (!this.Stats.ContainsKey(year))
                 return 0;

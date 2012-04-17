@@ -9,8 +9,8 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
     public class StatisticsValue
     {
         public StatisticsType Stat { get; set; }
-        public int Value { get; set; }
-        public StatisticsValue(StatisticsType stat, int value)
+        public double Value { get; set; }
+        public StatisticsValue(StatisticsType stat, double value)
         {
             this.Value = value;
             this.Stat = stat;

@@ -53,6 +53,15 @@
 
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="StatPercentItem">
+            <WrapPanel>
+                <ContentControl ContentTemplate="{DynamicResource AirlineLink}" Content="{Binding Key}" VerticalAlignment="Bottom" Width="150"></ContentControl>
+                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='-1',StringFormat={}{0} %}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='0',StringFormat={}{0} %}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='1'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+        </DataTemplate>
 
     </Page.Resources>
     <Grid>

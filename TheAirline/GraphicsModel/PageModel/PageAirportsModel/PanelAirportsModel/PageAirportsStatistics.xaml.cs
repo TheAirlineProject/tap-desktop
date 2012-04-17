@@ -85,8 +85,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
         private class AirportTotalItem
         {
             public Airport Airport { get; set; }
-            public long Total { get; set; }
-            public AirportTotalItem(Airport airport, long total)
+            public double Total { get; set; }
+            public AirportTotalItem(Airport airport, double total)
             {
                 this.Airport = airport;
                 this.Total = total;

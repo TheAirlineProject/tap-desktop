@@ -137,8 +137,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             int year = Int16.Parse(parameter.ToString());
 
-            int lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
-            int currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
+            double lastYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year - 1, astat.Value);
+            double currentYearValue = astat.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, astat.Value);
 
 
             if (year == 0)
@@ -184,8 +184,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             }
             else
             {
-                int currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
-                int totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);
+                double currentYearValue = aa.Value.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Key, aa.Value.Value);
+                double totalValue = aa.Value.Key.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, aa.Value.Value);
 
                 if (totalValue == 0)
                     return "-";

@@ -26,8 +26,8 @@ namespace TheAirline.Model.AirlinerModel
         public Coordinates CurrentPosition { get; set; }
         public Route Route { get; set; }
         public Flight CurrentFlight { get; set; }
-           
-
+        public Boolean IsOnTime { get; set; }   
+        
         public FleetAirliner(PurchasedType purchased, Airline airline,Airliner airliner, string name, Airport homebase)
         {
             this.Airliner = airliner;
@@ -36,7 +36,7 @@ namespace TheAirline.Model.AirlinerModel
             this.Homebase = homebase;
             this.Name = name;
             this.Statistics = new GeneralStatistics();
-
+            this.IsOnTime = true;
             this.Status = AirlinerStatus.Stopped;
 
             this.CurrentPosition = new Coordinates(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);

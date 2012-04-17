@@ -427,6 +427,8 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.AddStatisticsType(new StatisticsType("Departures", "Departures"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers", "Passengers"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers per flight", "Passengers%"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("On-Time flights", "On-Time"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Flights On-Time", "On-Time%"));
         }
 
         /*! create a random airliner with a minimum range.

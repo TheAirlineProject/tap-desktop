@@ -67,9 +67,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         {
             panelStats.Children.Clear();
 
-            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Departures")));
-            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers")));
-            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%")));
+            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Departures"),false));
+            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers"),false));
+            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%"),false));
+            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("On-Time%"),true));
       
 
         }
@@ -119,7 +120,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
         }
         //creates the airlines statistics
-        private StackPanel createStatisticsPanel(StatisticsType type)
+        private StackPanel createStatisticsPanel(StatisticsType type, Boolean inPercent)
         {
             StackPanel panelStatistics = new StackPanel();
             panelStatistics.Margin = new Thickness(0, 0, 0, 5);
@@ -132,7 +133,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         
             ListBox lbStats = new ListBox();
             lbStats.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbStats.ItemTemplate = this.Resources["StatItem"] as DataTemplate;
+            lbStats.ItemTemplate = inPercent ? this.Resources["StatPercentItem"] as DataTemplate : this.Resources["StatItem"] as DataTemplate;
           
             List<Airline> airlines = Airlines.GetAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
@@ -144,12 +145,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
          
             panelStatistics.Children.Add(lbStats);
 
-            ContentControl ccTotal = new ContentControl();
-            ccTotal.Margin = new Thickness(5, 0, 0, 0);
-            ccTotal.ContentTemplate = this.Resources["StatTotalItem"] as DataTemplate;
-            ccTotal.Content = type;
+            if (!inPercent)
+            {
+                ContentControl ccTotal = new ContentControl();
+                ccTotal.Margin = new Thickness(5, 0, 0, 0);
+                ccTotal.ContentTemplate = this.Resources["StatTotalItem"] as DataTemplate;
+                ccTotal.Content = type;
 
-            panelStatistics.Children.Add(ccTotal);
+                panelStatistics.Children.Add(ccTotal);
+            }
 
             return panelStatistics;
 
@@ -168,8 +172,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
          
 
-            int lastYearValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, stat));
-            int currentYearValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
+            double lastYearValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year-1, stat));
+            double currentYearValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
 
 
             if (year == 0)
@@ -215,8 +219,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             }
             else
             {
-                int currentYearValue = aa.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value);
-                int totalValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value));
+                double currentYearValue = aa.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value);
+                double totalValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value));
           
                 if (totalValue == 0)
                     return "-";
