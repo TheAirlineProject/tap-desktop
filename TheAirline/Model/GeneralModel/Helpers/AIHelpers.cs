@@ -218,7 +218,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval * airlinersInOrder) / 110 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder+1)) / 110 == 0;
 
             if (newRoute)
             {
