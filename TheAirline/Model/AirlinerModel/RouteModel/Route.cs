@@ -57,16 +57,15 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             double maxSpeed= query.Max();
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(this.Destination1.Profile.Coordinates, this.Destination2.Profile.Coordinates, maxSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(this.Destination1.Profile.Coordinates, this.Destination2.Profile.Coordinates, maxSpeed).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days<1)
             {
+                
+              
 
-                TimeSpan tFlightTime = minFlightTime.Subtract(new TimeSpan(minFlightTime.Ticks / 2));
-
-
-                this.TimeTable.addDailyEntries(new RouteEntryDestination(this.Destination2, flightCode2), new TimeSpan(12, 0, 0).Subtract(tFlightTime));
-                this.TimeTable.addDailyEntries(new RouteEntryDestination(this.Destination1, flightCode1), new TimeSpan(12, 0, 0).Add(tFlightTime));
+                this.TimeTable.addDailyEntries(new RouteEntryDestination(this.Destination2, flightCode2), new TimeSpan(12, 0, 0).Subtract(minFlightTime));
+                this.TimeTable.addDailyEntries(new RouteEntryDestination(this.Destination1, flightCode1), new TimeSpan(12, 0, 0).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks)));
             }
             else
             {
