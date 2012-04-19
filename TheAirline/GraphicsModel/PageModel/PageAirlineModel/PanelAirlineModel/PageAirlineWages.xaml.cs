@@ -37,7 +37,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             this.FeeValues = new Dictionary<FeeType, double>();
 
             FeeTypes.GetTypes().ForEach(f => this.FeeValues.Add(f, this.Airline.Fees.getValue(f)));
-          
+
             StackPanel panelWagesAndEmployees = new StackPanel();
             //panelWagesAndEmployees.Margin = new Thickness(0, 10, 50, 0);
 
@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
 
             panelWages = createWagesPanel();
-            
+
             panelWagesAndEmployees.Children.Add(panelWages);
 
             panelEmployees = createEmployeesPanel();
@@ -89,13 +89,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbEmployees.ItemTemplate = this.Resources["EmployeeItem"] as DataTemplate;
 
             int cockpitCrew = this.Airline.Fleet.Sum(f => f.Airliner.Type.CockpitCrew);
-            int cabinCrew = this.Airline.Fleet.FindAll(f => f.Route != null).Sum(f => f.Route.getTotalCabinCrew());
+
+            var list = (from r in this.Airline.Fleet.SelectMany(f => f.Routes) select r);
+
+            int cabinCrew = this.Airline.Routes.Sum(r => r.getTotalCabinCrew());
 
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cockpit crew", cockpitCrew));
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cabin crew", cabinCrew));
-            
+
             panel.Children.Add(lbEmployees);
-       return panel;
+            return panel;
         }
         //creates the wage panel
         private StackPanel createWagesPanel()
@@ -231,11 +234,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2108"), Translator.GetInstance().GetString("MessageBox", "2108", "message"), WPFMessageBoxButtons.YesNo);
-           if (result == WPFMessageBoxResult.Yes)
-           {
-               foreach (FeeType type in this.FeeValues.Keys)
-                   this.Airline.Fees.setValue(type, this.FeeValues[type]);
-           }
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                foreach (FeeType type in this.FeeValues.Keys)
+                    this.Airline.Fees.setValue(type, this.FeeValues[type]);
+            }
         }
 
         //creates the slider for a wage type

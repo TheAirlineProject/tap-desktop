@@ -143,7 +143,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
           
             Dictionary<Airport, int> destinations = new Dictionary<Airport, int>();
-            foreach (Route route in this.Airport.Terminals.getRoutes().FindAll(r=>r.Airliner!=null))
+            foreach (Route route in this.Airport.Terminals.getRoutes().FindAll(r=>r.getAirliners().Count>0))
             {
                 if (route.Destination1 != this.Airport)
                 {
@@ -176,14 +176,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
              
             foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportFlights(this.Airport,airport,false))
             {
-                lbDestinationDepartures.Items.Add(new DestinationFlight(entry.TimeTable.Route.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz)));
+                lbDestinationDepartures.Items.Add(new DestinationFlight(entry.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz)));
             }
 
             foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportFlights(this.Airport,airport,true))
             {
-                TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.TimeTable.Route.Airliner.Airliner.Type);
+                TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.Airliner.Airliner.Type);
 
-                lbDestinationArrivals.Items.Add(new DestinationFlight(entry.TimeTable.Route.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz)));
+                lbDestinationArrivals.Items.Add(new DestinationFlight(entry.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz)));
                 
             }
             
@@ -200,7 +200,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 this.Airline = airline;
                 this.Entry = entry;
                 this.Time = time;
-                this.AirlinerType = this.Entry.TimeTable.Route.Airliner.Airliner.Type;
+                this.AirlinerType = this.Entry.Airliner.Airliner.Type;
             }
         }
         //the class for a destination with number of weekly flights

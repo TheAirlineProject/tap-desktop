@@ -74,7 +74,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelMain.Children.Add(grdMain);
 
-            if (this.Airline.IsHuman && !(route.Airliner != null && route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped))
+            if (this.Airline.IsHuman && !(route.HasAirliner && route.getAirliners()[0].Status != FleetAirliner.AirlinerStatus.Stopped))
             {
                 panelMain.Children.Add(createNewEntryPanel());
 
@@ -97,8 +97,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             destPanel.Children.Add(createHeader(airport));
 
             ListBox lbEntries = new ListBox();
-            //lbEntries.ItemTemplate = this.Resources["EntryItem"] as DataTemplate;
-            lbEntries.ItemTemplate = this.Resources["RouteTimeTableEntryItem"] as DataTemplate;// SetResourceReference(ListBox.ItemTemplateProperty, "RouteTimeTableEntryItem");
+            lbEntries.ItemTemplate = this.Resources["RouteTimeTableEntryItem"] as DataTemplate;
             lbEntries.Height = 300;
             lbEntries.Name = airport.Profile.IATACode;
             lbEntries.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -129,7 +128,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             entries.Sort((delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return e2.CompareTo(e1); }));
 
             foreach (RouteTimeTableEntry entry in entries)
-                //lbEntries.Items.Add(string.Format("{0} {1:D2}:{2:D2}", entry.Day, entry.Time.Hours, entry.Time.Minutes));
                 lb.Items.Add(entry);
 
            
@@ -245,8 +243,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbAirport = new ComboBox();
             
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            //cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
-            //cbAirport.Background = Brushes.Transparent;
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.Items.Add(this.Route.Destination1);
             cbAirport.Items.Add(this.Route.Destination2);
@@ -259,9 +255,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbDay.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDay.Width = 100;
             cbDay.Margin = new Thickness(10, 0, 0, 0);
-            //cbFacility.IsSynchronizedWithCurrentItem = true;
-            //cbFacility.DisplayMemberPath = "Name";
-            //cbFacility.SelectedValuePath = "Name";
             cbDay.Items.Add("Daily");
 
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))

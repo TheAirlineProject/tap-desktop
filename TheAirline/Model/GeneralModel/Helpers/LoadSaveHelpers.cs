@@ -288,9 +288,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         Coordinate latitude = Coordinate.Parse(routeAirlinerNode.Attributes["latitude"].Value);
                         Coordinate longitude = Coordinate.Parse(routeAirlinerNode.Attributes["longitude"].Value);
 
-                        fAirliner.Route = route;
-                        route.Airliner = fAirliner;
-
+                        fAirliner.addRoute(route);
+                   
                         fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
                    
                         
@@ -748,46 +747,46 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
 
                     routeNode.AppendChild(timetableNode);
-                   
-                    if (route.Airliner != null)
-                    {
-                        XmlElement routeAirlinerNode = xmlDoc.CreateElement("routeairliner");
+                    /*rettes
+                     if (route.Airliner != null)
+                     {
+                         XmlElement routeAirlinerNode = xmlDoc.CreateElement("routeairliner");
 
-                        routeAirlinerNode.SetAttribute("airliner", route.Airliner.Name);
-                        routeAirlinerNode.SetAttribute("status", route.Airliner.Status.ToString());
-                        routeAirlinerNode.SetAttribute("latitude", route.Airliner.CurrentPosition.Latitude.ToString());
-                        routeAirlinerNode.SetAttribute("longitude", route.Airliner.CurrentPosition.Longitude.ToString());
+                         routeAirlinerNode.SetAttribute("airliner", route.Airliner.Name);
+                         routeAirlinerNode.SetAttribute("status", route.Airliner.Status.ToString());
+                         routeAirlinerNode.SetAttribute("latitude", route.Airliner.CurrentPosition.Latitude.ToString());
+                         routeAirlinerNode.SetAttribute("longitude", route.Airliner.CurrentPosition.Longitude.ToString());
 
-                        if (route.Airliner.CurrentFlight != null)
-                        {
-                            XmlElement flightNode = xmlDoc.CreateElement("flight");
-
-
-                            flightNode.SetAttribute("destination", route.Airliner.CurrentFlight.Entry.Destination.FlightCode);
-                            flightNode.SetAttribute("day", route.Airliner.CurrentFlight.Entry.Day.ToString());
-                            flightNode.SetAttribute("time", route.Airliner.CurrentFlight.Entry.Time.ToString());
+                         if (route.Airliner.CurrentFlight != null)
+                         {
+                             XmlElement flightNode = xmlDoc.CreateElement("flight");
 
 
-                            XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
-                            foreach (FlightAirlinerClass aClass in route.Airliner.CurrentFlight.Classes)
-                            {
-                                XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
-                                flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
-                                flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
-
-                                flightClassesNode.AppendChild(flightClassNode);
-                            }
-                            flightNode.AppendChild(flightClassesNode);
-
-                            routeAirlinerNode.AppendChild(flightNode);
-
-                        }
+                             flightNode.SetAttribute("destination", route.Airliner.CurrentFlight.Entry.Destination.FlightCode);
+                             flightNode.SetAttribute("day", route.Airliner.CurrentFlight.Entry.Day.ToString());
+                             flightNode.SetAttribute("time", route.Airliner.CurrentFlight.Entry.Time.ToString());
 
 
-                        routeNode.AppendChild(routeAirlinerNode);
+                             XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
+                             foreach (FlightAirlinerClass aClass in route.Airliner.CurrentFlight.Classes)
+                             {
+                                 XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
+                                 flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
+                                 flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
 
-                    }
+                                 flightClassesNode.AppendChild(flightClassNode);
+                             }
+                             flightNode.AppendChild(flightClassesNode);
+
+                             routeAirlinerNode.AppendChild(flightNode);
+
+                         }
+
+
+                         routeNode.AppendChild(routeAirlinerNode);
                     
+                     }
+                     */
                     routesNode.AppendChild(routeNode);
                 }
                 airlineNode.AppendChild(routesNode);

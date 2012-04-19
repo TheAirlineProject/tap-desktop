@@ -31,6 +31,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             sbRoute.Click += new System.Windows.RoutedEventHandler(sbRoute_Click);
             buttonsPanel.Children.Add(sbRoute);
 
+            ucSelectButton sbTimeSlot = new ucSelectButton();
+            sbTimeSlot.Content = "Timeslot";
+            sbTimeSlot.Click += new System.Windows.RoutedEventHandler(sbTimeSlot_Click);
+            buttonsPanel.Children.Add(sbTimeSlot);
+
+
             ucSelectButton sbStatistics = new ucSelectButton();
             sbStatistics.Content = "Statistics";
             sbStatistics.Click += new System.Windows.RoutedEventHandler(sbStatistics_Click);
@@ -43,6 +49,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             frameContent.Navigate(new PageFleetFacilities(this.Airliner));
 
             this.Children.Add(frameContent);
+
+         }
+
+        private void sbTimeSlot_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageFleetTimeslot(this.Airliner));
         }
 
         private void sbFacilities_Click(object sender, System.Windows.RoutedEventArgs e)

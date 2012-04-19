@@ -91,8 +91,8 @@ namespace TheAirline.Model.GeneralModel
                 value = Math.Min((int)dValue, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
             }
 
-            double price = airliner.Route.getRouteAirlinerClass(type).FarePrice;
-            double standardPrice = GetPassengerPrice(airliner.Route.Destination1, airliner.Route.Destination2);
+            double price = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(type).FarePrice;
+            double standardPrice = GetPassengerPrice(airliner.CurrentFlight.Entry.TimeTable.Route.Destination1, airliner.CurrentFlight.Entry.TimeTable.Route.Destination2);
 
             double priceDiff = (price / standardPrice) * 1.13;
      

@@ -16,6 +16,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public TimeSpan Time { get; set; }
         public RouteTimeTable TimeTable { get; set; }
         public RouteEntryDestination Destination { get; set; }
+        public FleetAirliner Airliner { get; set; }
+        public Airport DepartureAirport { get { return getDepartureAirport(); } set { ;} }
         public RouteTimeTableEntry(RouteTimeTable timeTable, DayOfWeek day, TimeSpan time, RouteEntryDestination destination)
         {
             this.Day = day;

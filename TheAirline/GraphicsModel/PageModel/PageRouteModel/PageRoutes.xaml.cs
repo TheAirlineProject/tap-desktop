@@ -20,6 +20,7 @@ using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 {
@@ -118,6 +119,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
+           // PopUpRouteAirliners.ShowPopUp(Airlines.GetAirlines()[2].Routes[0]);
+
             panelSideMenu.Children.Clear();
 
             panelSideMenu.Children.Add(new PanelNewRoute(this));

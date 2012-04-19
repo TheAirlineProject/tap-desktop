@@ -1,0 +1,36 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel.PageFleetTimeslot"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageFleetTimeslot">
+    <Page.Resources>
+        <SolidColorBrush x:Key="FlightItemColor" Opacity="0.2" Color="Red"></SolidColorBrush>
+        <DataTemplate x:Key="FlightItem">
+            <StackPanel Width="100" Height="{Binding Key}" Background="{DynamicResource FlightItemColor}">
+                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" FontWeight="Bold">
+                     <TextBlock.Text>
+        <MultiBinding
+            StringFormat="{}{0}-{1}"
+            >
+             <Binding Path="Value.DepartureAirport.Profile.IATACode" />
+            <Binding Path="Value.Destination.Airport.Profile.IATACode" />
+         </MultiBinding>
+    </TextBlock.Text>
+
+                </TextBlock>
+            </StackPanel>
+       
+        </DataTemplate>
+        <DataTemplate x:Key="HourItem">
+            <StackPanel Width="50" Height="60">
+                <TextBlock Text="{Binding StringFormat=hh\\:mm}" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+        
+    </Grid>
+</Page>

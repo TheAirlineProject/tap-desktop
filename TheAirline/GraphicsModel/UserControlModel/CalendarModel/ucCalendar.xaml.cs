@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
             get { return (DateTime)GetValue(DateProperty); }
             set { SetValue(DateProperty, value); }
         }
-        
+         * */
         private DateTime ___Date;
         public DateTime Date
         {
@@ -50,127 +50,80 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                 }
             }
         }
-         * **/
         public void NotifyPropertyChange(string property)
         {
             if (PropertyChanged != null)
                 PropertyChanged(this, new PropertyChangedEventArgs(property));
         }
-        private RouteTimeTable TimeTable;
-        public ucCalendar(RouteTimeTable timeTable)
+
+        public ucCalendar()
         {
-            this.TimeTable = timeTable;
+            TextBlock[,] cells = new TextBlock[8, 25];
 
             InitializeComponent();
 
-            showTimeTable();
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.MaxWidth = 400;
+            scroller.MaxHeight = 400;
 
-            //Month i header som {}
+            StackPanel panelCalendar = new StackPanel();
 
-        }
-        //show the time table
-        private void showTimeTable()
-        {
-            TimeViewGrid.Children.Clear();
-
-             //     int endDayOfWeek = (int)endDate.DayOfWeek;
-            /*
-            Grid grdDays = UICreator.CreateGrid(7, 6);
-            for (int i = 0; i < 7; i++)
+            DockPanel panelDays = new DockPanel();
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
             {
-                for (int j = 0; j < 6; j++)
+                TextBlock txtDay = new TextBlock();
+                txtDay.Width = 100;
+                txtDay.Height = 60;
+                txtDay.TextAlignment = TextAlignment.Center;
+                txtDay.FontWeight = FontWeights.Bold;
+                txtDay.Text = day.ToString();
+
+                panelDays.Children.Add(txtDay);
+            }
+            panelCalendar.Children.Add(panelDays);
+
+            ListBox lbHours = new ListBox();
+            lbHours.ItemTemplate = this.Resources["HourItem"] as DataTemplate;
+            lbHours.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+          
+            for (int r = 0; r < 25; r++)
+            {
+                WrapPanel panelColumn = new WrapPanel();
+                panelColumn.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                lbHours.Items.Add(panelColumn);
+
+                for (int c = 0; c < 8; c++)
                 {
-                    int day = i + 7 * j + 1;
-                    DayBoxControl dbcDay = new DayBoxControl();
 
-                    if (day > startDayOfWeek && day <= daysInMonth + startDayOfWeek)
-                    {
-                        dbcDay.Day = day - startDayOfWeek;
+                    Border border = new Border();
+                    border.BorderThickness = new Thickness(1);
+                    border.BorderBrush = Brushes.Black;
 
+                    TextBlock txtCell = new TextBlock();
+                    txtCell.Width = 100;
+                    txtCell.Height = 60;
+                    cells[c, r] = txtCell;
 
-                        DateTime currentDate = new DateTime(this.Date.Year, this.Date.Month, dbcDay.Day);
+                    border.Child = txtCell;
+                                       
+                    panelColumn.Children.Add(border);
 
-                        foreach (Airport item in getAirportItems(currentDate))
-                        {
-                            AppointmentControl aControl = new AppointmentControl();
-                            aControl.Airport = item;
-
-                            //dbcDay.DayAppointmentsStack.Children.Add(aControl);
-                        }
-
-
-
-                    }
-                    else
-                        dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;//.DayVisibility = System.Windows.Visibility.Hidden;
-
-                    //   
-
-
-
-                    Grid.SetColumn(dbcDay, i);
-                    Grid.SetRow(dbcDay, j);
-
-                    grdDays.Children.Add(dbcDay);
                 }
             }
+            panelCalendar.Children.Add(lbHours);
 
-            MonthViewGrid.Children.Add(grdDays);
-            */
-            Grid grdTimes = UICreator.CreateGrid(8, 24);
-        
-            TimeSpan time = new TimeSpan(0, 0, 0);
-            for (int i = 0; i < 24; i++)
-            {
+            scroller.Content = panelCalendar;
 
-                TextBlock txtTime = UICreator.CreateTextBlock(string.Format("{0:D2}:{1:D2}", time.Hours, time.Minutes));
-                txtTime.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-                txtTime.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
-                txtTime.Margin = new Thickness(0, 0, 5, 0);
-
-                Grid.SetColumn(txtTime, 0);
-                Grid.SetRow(txtTime, i);
-                grdTimes.Children.Add(txtTime);
-
-                time = time.Add(new TimeSpan(1, 0, 0));
-            }
-            int y = 0;
-
-            time = new TimeSpan(0, 0, 0);
-            for (int j = 1; j<8; j++)
-            {
-                time = new TimeSpan(0, 0, 0);
-         
-                for (int i = 0; i < 24; i++)
-                {
-                    TimeBoxControl control = new TimeBoxControl();
-                    TimeSpan endTime = time.Add(new TimeSpan(0, 45, 0));
-
-                    control.Entry = this.TimeTable.getEntry((DayOfWeek)j - 1, time, endTime);
-
-                    Grid.SetRow(control, i);
-                    Grid.SetColumn(control, j);
-
-                    grdTimes.Children.Add(control);
-
-                    y++;
-
-                    time = time.Add(new TimeSpan(1, 0, 0));
-                }
-            } 
-            TimeViewGrid.Children.Add(grdTimes);
+            this.Content = scroller;
+          
 
         }
-        //returns all the calendaritems for the current date
-        private List<Airport> getAirportItems(DateTime date)
-        {
-            return new List<Airport>();
 
-        }
+
 
 
         public event PropertyChangedEventHandler PropertyChanged;
-
+       
     }
 
 }

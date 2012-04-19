@@ -14,7 +14,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public string Id { get; set; }
         public Airport Destination1 { get; set; }
         public Airport Destination2 { get; set; }
-        public FleetAirliner Airliner { get; set; }
+        //public FleetAirliner Airliner { get; set; }
         public List<RouteAirlinerClass> Classes { get; set; }
         public RouteTimeTable TimeTable { get; set; }
         public List<Invoice> Invoices { get; set; }
@@ -24,12 +24,12 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
         public DateTime LastUpdated { get; set; }
+        public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
         public Route(string id, Airport destination1, Airport destination2, double farePrice,string flightCode1, string flightCode2)
         {
             this.Id = id;
             this.Destination1 = destination1;
             this.Destination2 = destination2;
-            //this.FarePrice = farePrice;
             this.TimeTable = new RouteTimeTable(this);
             this.Invoices = new List<Invoice>();
             this.Statistics = new RouteStatistics();
@@ -115,14 +115,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the total number of cabin crew for the route based on airliner
         public int getTotalCabinCrew()
         {
-
-
             int cabinCrew = 0;
 
-            foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
-                if (getRouteAirlinerClass(aClass.Type).CabinCrew > cabinCrew)
-                    cabinCrew = getRouteAirlinerClass(aClass.Type).CabinCrew;
-         
+            var classes = from ac in getAirliners().SelectMany(c=>c.Airliner.Classes) select ac;
+
+            foreach (AirlinerClass c in classes)
+                if (getRouteAirlinerClass(c.Type).CabinCrew > cabinCrew)
+                    cabinCrew = getRouteAirlinerClass(c.Type).CabinCrew;
+             
             return cabinCrew;
         }
         //adds an invoice for a route 
@@ -197,7 +197,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             double avgPassengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers"))) / Convert.ToDouble(this.Statistics.getStatisticsValue(this.Classes[0],StatisticsTypes.GetStatisticsType("Departures")));
 
-            double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
+            double totalPassengers = 1;//;Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
 
             double fillingDegree = avgPassengers / totalPassengers;
 
@@ -213,11 +213,20 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //gets the income per passenger
         private double getIncomePerPassenger()
         {
-            double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
+            double totalPassengers = 1;// Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
 
             return getBalance() / totalPassengers;
         }
-
+        //returns all airliners assigned to the route
+        public List<FleetAirliner> getAirliners()
+        {
+            return (from e in this.TimeTable.Entries where e.Airliner!=null select e.Airliner).Distinct().ToList();
+        }
+        //returns the current airliner on the route
+        public FleetAirliner getCurrentAirliner()
+        {
+            return getAirliners().Find(f => f.CurrentFlight.Entry.TimeTable.Route == this);
+        }
 
     }
    

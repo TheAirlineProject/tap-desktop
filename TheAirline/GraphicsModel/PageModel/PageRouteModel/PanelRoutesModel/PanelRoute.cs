@@ -20,13 +20,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelRoute : StackPanel
     {
+       
         private Route Route;
         private PageRoutes ParentPage;
-        private ComboBox cbAirliner;
+        //private ComboBox cbAirliner;
         private ListBox lbRouteFinances;
         private Dictionary<AirlinerClass.ClassType, RouteAirlinerClass> Classes;
         public PanelRoute(PageRoutes parent, Route route)
         {
+
             this.Classes = new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>();
 
             this.ParentPage = parent;
@@ -76,7 +78,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 btnEdit.Content = imgEdit;
                 
-                btnEdit.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                btnEdit.Visibility = this.Route.HasAirliner && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
            
                 panelClassButtons.Children.Add(btnEdit);
 
@@ -108,7 +110,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
             }
-
+            /*
             WrapPanel panelAssigned = new WrapPanel();
 
             cbAirliner = new ComboBox();
@@ -137,7 +139,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtAssigned.Visibility = cbAirliner.Visibility == System.Windows.Visibility.Collapsed ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             
             lbRouteInfo.Items.Add(new QuickInfoValue("Assigned airliner", panelAssigned));
-
+            */
             lbRouteInfo.Items.Add(new QuickInfoValue("Homebound flight code",UICreator.CreateTextBlock(this.Route.TimeTable.getRouteEntryDestinations()[1].FlightCode)));
             lbRouteInfo.Items.Add(new QuickInfoValue("Outbound flight code", UICreator.CreateTextBlock(this.Route.TimeTable.getRouteEntryDestinations()[0].FlightCode)));
 
@@ -147,7 +149,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             this.Children.Add(buttonsPanel);
 
-            buttonsPanel.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+            buttonsPanel.Visibility = this.Route.HasAirliner && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped ? Visibility.Collapsed : System.Windows.Visibility.Visible;
 
             Button btnOk = new Button();
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -159,6 +161,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             buttonsPanel.Children.Add(btnOk);
 
+            /*
             Button btnRemove = new Button();
             btnRemove.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnRemove.Width = Double.NaN;
@@ -166,8 +169,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnRemove.Content = "Remove Airliner";
             btnRemove.Click += new RoutedEventHandler(btnRemove_Click);
             btnRemove.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnRemove.Visibility = this.Route.Airliner != null ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+           // btnRemove.Visibility = this.Route.Airliner != null ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             buttonsPanel.Children.Add(btnRemove);
+            */
 
             Button btnDelete = new Button();
             btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -275,15 +279,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2502"), string.Format(Translator.GetInstance().GetString("MessageBox", "2502", "message"), this.Route.Airliner.Name), WPFMessageBoxButtons.YesNo);
+            //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2502"), string.Format(Translator.GetInstance().GetString("MessageBox", "2502", "message"), this.Route.Airliner.Name), WPFMessageBoxButtons.YesNo);
 
-             if (result == WPFMessageBoxResult.Yes)
+             //if (result == WPFMessageBoxResult.Yes)
              {
-
-                 this.Route.Airliner.Route = null;
-
-                 this.Route.Airliner = null;
-
+                 this.Route.getAirliners().ForEach(f => f.removeRoute(this.Route));
+                
                  this.Route.Invoices.Clear();
                  this.Route.Statistics.clear();
 
@@ -296,17 +297,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
       
+            /*
             if (!(cbAirliner.SelectedItem == null || (this.Route.Airliner != null && ((FleetAirliner)cbAirliner.SelectedItem) == this.Route.Airliner)))
             {
                 FleetAirliner airliner = (FleetAirliner)cbAirliner.SelectedItem;
 
                 if (this.Route.Airliner != null)
                 {
-                    this.Route.Airliner.Route = null;
+                    this.Route.Airliner.removeRoute(this.Route);
                 }
 
           
-                airliner.Route = this.Route;
+                airliner.addRoute(this.Route);
                 this.Route.Airliner = airliner;
 
                 this.Route.Invoices.Clear();
@@ -328,6 +330,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             
 
             this.Visibility = System.Windows.Visibility.Collapsed;
+             * */
+            foreach (RouteAirlinerClass aClass in this.Classes.Values)
+            {
+                this.Route.getRouteAirlinerClass(aClass.Type).CabinCrew = aClass.CabinCrew;
+                this.Route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
+                this.Route.getRouteAirlinerClass(aClass.Type).FoodFacility = aClass.FoodFacility;
+                this.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility = aClass.DrinksFacility;
+
+
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
@@ -338,8 +350,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             {
                 GameObject.GetInstance().HumanAirline.removeRoute(this.Route);
 
-                if (this.Route.Airliner != null)
-                    this.Route.Airliner.Route = null;
+                if (this.Route.HasAirliner)
+                    this.Route.getAirliners().ForEach(a => a.removeRoute(this.Route));
 
                 this.Route.Destination1.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;
                 this.Route.Destination2.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).Route = null;

@@ -277,7 +277,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             PageNavigator.NavigateTo(new PageAirport(airport));
 
-            // PageNavigator.NavigateTo(new PagePlayerProfile(player));
         }
 
         private void HyperlinkAirline_Click(object sender, RoutedEventArgs e)
@@ -297,9 +296,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    if (airliner.Route != null)
-                        airliner.Route.Airliner = null;
-
+                    if (airliner.HasRoute)
+                        airliner.Routes.ForEach(r => airliner.removeRoute(r));
+                  
                     this.Airline.removeAirliner(airliner);
 
                     this.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airliner.Airliner.getPrice()));
@@ -315,8 +314,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    if (airliner.Route != null)
-                        airliner.Route.Airliner = null;
+                    if (airliner.HasRoute)
+                        airliner.Routes.ForEach(r => airliner.removeRoute(r));
+              
 
                     this.Airline.removeAirliner(airliner);
 

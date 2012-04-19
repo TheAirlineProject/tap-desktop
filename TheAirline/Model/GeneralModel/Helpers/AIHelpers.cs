@@ -167,7 +167,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int totalHours = rnd.Next(24 * 7, 24 * 13);
             foreach (Route route in airline.Routes.FindAll(r => GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalHours > totalHours))
             {
-                if (route.Airliner != null)
+                if (route.HasAirliner)
                 {
                     double balance = route.getBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
                     if (balance < -1000)
@@ -184,8 +184,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             airline.removeRoute(route);
 
-                            if (route.Airliner != null)
-                                route.Airliner.Route = null;
+                            if (route.HasAirliner)
+                                route.getAirliners().ForEach(a => a.removeRoute(route));
 
                             route.Destination1.Terminals.getUsedGate(airline).Route = null;
                             route.Destination2.Terminals.getUsedGate(airline).Route = null;
@@ -314,8 +314,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         }
 
-                        fAirliner.Route = route;
-                        route.Airliner = fAirliner;
+                        fAirliner.addRoute(route);
+                        //route.Airliner = fAirliner;
 
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
@@ -328,7 +328,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
         {
             //Order new airliner
-            var fleet = airline.Fleet.FindAll(f => f.Route == null && f.Airliner.BuiltDate<=GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate<=GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
 
             if (fleet.Count > 0)
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();

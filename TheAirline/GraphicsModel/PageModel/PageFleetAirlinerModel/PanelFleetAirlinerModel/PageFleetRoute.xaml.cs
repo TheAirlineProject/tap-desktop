@@ -51,12 +51,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
 
 
-            if (this.Airliner.Route != null)
+            if (this.Airliner.HasRoute)
             {
-                panelRoute.Children.Add(createRouteInfo());
-                panelRoute.Children.Add(createFlightInfo());
+          //      panelRoute.Children.Add(createRouteInfo());
+           //    panelRoute.Children.Add(createFlightInfo());
 
-                if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
+             //   if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
             }
             else panelRoute.Children.Add(txtHeader);
          
@@ -83,6 +83,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 }
             }
         }
+        /*
         //creates the buttons for the flight
         private WrapPanel createFlightButtons()
         {
@@ -269,6 +270,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
         {
             PopUpTimeTable.ShowPopUp(this.Airliner.Airliner.Airline, this.Airliner.Route);
         }
-
+        */
     }
 }

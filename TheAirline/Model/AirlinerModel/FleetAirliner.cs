@@ -17,14 +17,16 @@ namespace TheAirline.Model.AirlinerModel
         public Airport Homebase { get; set; }
         public enum PurchasedType { Bought, Leased,BoughtDownPayment }
         public PurchasedType Purchased { get; set; }
-        public Boolean HasRoute { get { return this.Route != null; } set { ;} }
+        public Boolean HasRoute { get { return this.Routes.Count > 0; } set { ;} }//{ get { return this.Route != null; } set { ;} }
         public GeneralStatistics Statistics { get; set; }
 
         /*Changed for deleting routeairliner*/
         public enum AirlinerStatus { Stopped, On_route, On_service, Resting, To_homebase, To_route_start }
         public AirlinerStatus Status { get; set; }
         public Coordinates CurrentPosition { get; set; }
-        public Route Route { get; set; }
+        //sprivate Route pRoute;
+        //public Route Route { get { return pRoute; } set { setRoute(value); } }
+        public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
         public Boolean IsOnTime { get; set; }   
         
@@ -40,7 +42,37 @@ namespace TheAirline.Model.AirlinerModel
             this.Status = AirlinerStatus.Stopped;
 
             this.CurrentPosition = new Coordinates(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);
+
+            this.Routes = new List<Route>();
         }
+        //adds a route to the airliner
+        public void addRoute(Route route)
+        {
+            this.Routes.Add(route);
+
+            foreach (RouteTimeTableEntry e in route.TimeTable.Entries)
+                e.Airliner = this;
+        }
+        //removes a route from the airliner
+        public void removeRoute(Route route)
+        {
+            this.Routes.Remove(route);
+
+            foreach (RouteTimeTableEntry e in route.TimeTable.Entries.FindAll(t => t.Airliner == this))
+                e.Airliner = null;
+
+        }
+        /*
+        //sets the route
+        private void setRoute(Route value)
+        {
+            pRoute = value;
+
+            foreach (RouteTimeTableEntry e in this.Route.TimeTable.Entries)
+                e.Airliner = this;
+        }
+         * */
+        /*
         //returns the next destination
         public Airport getNextDestination()
         {
@@ -52,6 +84,7 @@ namespace TheAirline.Model.AirlinerModel
             return getNextDestination();
 
         }
+         * */
     }
   
 }

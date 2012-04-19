@@ -596,11 +596,9 @@ namespace TheAirline.Model.GeneralModel
 
    
                 FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airport);
-                fAirliner.Route = route;
+                fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
-                route.Airliner = fAirliner;
-   
                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
                 DateTime dt = route.LastUpdated;

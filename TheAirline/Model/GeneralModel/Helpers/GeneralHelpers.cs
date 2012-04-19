@@ -25,9 +25,9 @@ namespace TheAirline.Model.GeneralModel
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
             foreach (Route route in fAirport.Terminals.getRoutes())
             {
-                if (route.Airliner != null && (route.Destination1 == tAirport || route.Destination2 == tAirport))
+                if (route.HasAirliner && (route.Destination1 == tAirport || route.Destination2 == tAirport))
                 {
-                    RouteTimeTableEntry entry = route.Airliner.CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime) : route.Airliner.CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime) : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -53,9 +53,9 @@ namespace TheAirline.Model.GeneralModel
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
             foreach (Route route in airport.Terminals.getRoutes())
             {
-                if (route.Airliner != null)
+                if (route.HasAirliner)
                 {
-                    RouteTimeTableEntry entry = route.Airliner.CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, (airport == route.Destination1 ? route.Destination2 : route.Destination1).Profile.Coordinates) : route.Airliner.CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, (airport == route.Destination1 ? route.Destination2 : route.Destination1).Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -77,9 +77,9 @@ namespace TheAirline.Model.GeneralModel
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
             foreach (Route route in airport.Terminals.getRoutes())
             {
-                if (route.Airliner != null)
+                if (route.HasAirliner)
                 {
-                    RouteTimeTableEntry entry = route.Airliner.CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport.Profile.Coordinates) : route.Airliner.CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport.Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     if (entry.Destination.Airport.Profile.Coordinates.CompareTo(airport.Profile.Coordinates) != 0)
                         entries.Add(entry);

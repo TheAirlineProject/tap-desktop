@@ -13,7 +13,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 */
     public class RouteTimeTable
     {
-        public static TimeSpan MinTimeBetweenFlights = new TimeSpan(0, 60, 0);
+        public static TimeSpan MinTimeBetweenFlights = new TimeSpan(0, 45, 0);
         public List<RouteTimeTableEntry> Entries { get; set; }
         public Route Route { get; set; }
         public RouteTimeTable(Route route)
@@ -74,6 +74,12 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the next entry after a specific date and not to a specific coordinates (airport)
         public RouteTimeTableEntry getNextEntry(DateTime time, Coordinates coordinates)
         {
+            var entries = from e in this.Entries where e.Destination.Airport.Profile.Coordinates.CompareTo(coordinates)!=0 orderby MathHelpers.ConvertEntryToDate(e).Subtract(time) select e;
+
+      
+            return entries.FirstOrDefault();          
+  /*
+
             DayOfWeek day = time.DayOfWeek;
 
              int counter = 0;
@@ -99,11 +105,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
             return null;
+             * */
         }
 
         //returns the next entry from a specific time
         public RouteTimeTableEntry getNextEntry(DateTime time)
         {
+            /*
             DayOfWeek day = time.DayOfWeek;
 
             int counter = 0;
@@ -128,11 +136,21 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 counter++;
             }
 
-            return null;
+            return null;*/
+
+            var entries = from e in this.Entries orderby MathHelpers.ConvertEntryToDate(e).Subtract(time) select e;
+
+            return entries.FirstOrDefault() ;          
+      
         }
         //returns the next entry after a specific specific entry
         public RouteTimeTableEntry getNextEntry(RouteTimeTableEntry entry)
         {
+            DateTime time = MathHelpers.ConvertEntryToDate(entry);
+            var entries = from e in this.Entries orderby MathHelpers.ConvertEntryToDate(e).Subtract(time) where MathHelpers.ConvertEntryToDate(e).Subtract(time).TotalMinutes>0 && e.Destination!=entry.Destination select e;
+
+            return entries.FirstOrDefault();
+            /*
             DayOfWeek eDay = entry.Day;
        
             int counter = 0;
@@ -141,7 +159,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             {
 
 
-                  List<RouteTimeTableEntry> entries = getEntries(eDay);
+                List<RouteTimeTableEntry> entries = getEntries(eDay);
 
                 foreach (RouteTimeTableEntry dEntry in entries)
                 {
@@ -158,6 +176,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
             return null;
+            */
         }
 
     }

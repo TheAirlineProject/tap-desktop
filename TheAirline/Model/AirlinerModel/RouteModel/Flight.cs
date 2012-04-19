@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -15,19 +16,22 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public Boolean Delayed { get; set; }
         public RouteTimeTableEntry Entry { get; set; }
         public List<FlightAirlinerClass> Classes { get; set; }
+        public FleetAirliner Airliner { get; set; }
         public Flight(RouteTimeTableEntry entry)
         {
 
             this.Entry = entry;
             this.Delayed = false;
             this.Classes = new List<FlightAirlinerClass>();
+
+            this.Airliner = this.Entry.Airliner;
   
 
         }
         //returns the expected time of landing
         public DateTime getExpectedLandingTime()
         {
-            FleetAirliner airliner = this.Entry.TimeTable.Route.Airliner;
+            FleetAirliner airliner = this.Airliner;
             double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
             TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type);
 
@@ -51,6 +55,17 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public FlightAirlinerClass getFlightAirlinerClass(AirlinerClass.ClassType type)
         {
             return this.Classes.Find((delegate(FlightAirlinerClass c) { return c.AirlinerClass.Type == type; }));
+        }
+        //returns the next destination
+        public Airport getNextDestination()
+        {
+            return this.Entry.Destination.Airport == this.Entry.TimeTable.Route.Destination1 ? this.Entry.TimeTable.Route.Destination2 : this.Entry.TimeTable.Route.Destination1;
+        }
+        //returns the departure location
+        public Airport getDepartureAirport()
+        {
+            return getNextDestination();
+
         }
 
 

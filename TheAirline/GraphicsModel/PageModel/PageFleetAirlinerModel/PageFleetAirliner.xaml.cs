@@ -76,7 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             if (this.IsLoaded)
             {
                
-                Airport airport = this.Airliner.Route == null ? null : Airports.GetAirport(this.Airliner.CurrentPosition);
+                Airport airport = !this.Airliner.HasRoute ? null : Airports.GetAirport(this.Airliner.CurrentPosition);
                 txtFlown.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km."));
                 Run run = (Run)((Hyperlink)txtPosition.Inlines.FirstInline).Inlines.FirstInline;
                 run.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;

@@ -22,8 +22,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
-        private TextBlock txtDistance, txtNoAssignments, txtFlightCode, txtInvalidRoute;
-        private ComboBox cbDestination1, cbDestination2, cbFlightCode, cbAirliner;
+        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute;
+        private ComboBox cbDestination1, cbDestination2, cbFlightCode;//, cbAirliner;
         private Button btnSave;
         private PageRoutes ParentPage;
         private double MaxDistance;
@@ -40,7 +40,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             this.ParentPage = parent;
 
             this.Margin = new Thickness(0, 0, 50, 0);
-            //this.Margin = new Thickness(0, 10, 50, 0);
+         
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -119,8 +119,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
             }
-
+/*
             WrapPanel panelAssigned = new WrapPanel();
+
 
             cbAirliner = new ComboBox();
             //cbAirliner.Background = Brushes.Transparent;
@@ -139,7 +140,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
             lbRouteInfo.Items.Add(new QuickInfoValue("Assign airliner", panelAssigned));
-
+            */
             txtFlightCode = new TextBlock();
 
             cbFlightCode = new ComboBox();
@@ -197,6 +198,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             txtFlightCode.Text = GameObject.GetInstance().HumanAirline.getFlightCodes()[index];
         }
+        /*
         //creates the list of possible airliners
         private void createAirlinersList()
         {
@@ -220,6 +222,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             }
 
         }
+         * */
+         
         //returns the min crews
         private int getMinCrews()
         {
@@ -277,14 +281,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 this.Visibility = System.Windows.Visibility.Collapsed;
 
+                /*
                 if (cbAirliner.SelectedItem != null)
                 {
                     FleetAirliner airliner = (FleetAirliner)cbAirliner.SelectedItem;
                     //RouteAirliner rAirliner = new RouteAirliner(airliner, route);
-
-                    airliner.Route = route;
-                    route.Airliner = airliner;
+                    
+                    airliner.addRoute(route);
+                 
                 }
+                 * */
                 route.LastUpdated = GameObject.GetInstance().GameTime; 
             }
             else
@@ -333,7 +339,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 txtInvalidRoute.Visibility = isRouteInCorrectArea() ? Visibility.Collapsed : Visibility.Visible;
 
-                createAirlinersList();
+                //createAirlinersList();
             }
         }
     }

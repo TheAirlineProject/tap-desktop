@@ -196,6 +196,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetTimeslot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteAirliners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -398,6 +406,9 @@
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetStatistics.xaml.cs">
       <DependentUpon>PageFleetStatistics.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetTimeslot.xaml.cs">
+      <DependentUpon>PageFleetTimeslot.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PanelFleetAirliner.cs" />
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml.cs">
       <DependentUpon>PageFrontMenu.xaml</DependentUpon>
@@ -449,6 +460,9 @@
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml.cs">
       <DependentUpon>PopUpMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteAirliners.xaml.cs">
+      <DependentUpon>PopUpRouteAirliners.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
       <DependentUpon>PopUpRouteFacilities.xaml</DependentUpon>
