@@ -172,7 +172,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbOpponents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbOpponents.Width = 50;
             cbOpponents.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
-            for (int i = 2; i<Math.Min(Airlines.GetAirlines().Count,10); i++)
+            for (int i = 2; i<Math.Min(Airlines.GetAirlines().Count, 12); i++)
                 cbOpponents.Items.Add(i);
 
             cbOpponents.SelectedIndex = cbOpponents.Items.Count - 1;
