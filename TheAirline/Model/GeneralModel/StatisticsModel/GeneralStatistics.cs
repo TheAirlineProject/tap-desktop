@@ -25,6 +25,17 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
             return 0;
 
         }
+        //returns the total valu for a statistics type
+        public double getStatisticsValue(StatisticsType type)
+        {
+            double value = 0;
+            foreach (int year in this.StatValues.Keys)
+            {
+                StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
+                if (statValue != null) value += statValue.Value;
+            }
+            return value;
+        }
         //adds the value for a statistics type for a year
         public void addStatisticsValue(int year, StatisticsType type, double value)
         {
@@ -34,7 +45,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
             if (statValue != null)
                 statValue.Value += value;
             else
-                this.StatValues[year].Add(new StatisticsValue(type,value));
+                this.StatValues[year].Add(new StatisticsValue(type, value));
         }
         //sets the value for a statistics type for a year
         public void setStatisticsValue(int year, StatisticsType type, double value)
@@ -53,7 +64,7 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         {
             return this.StatValues.Keys.ToList();
         }
-       
+
 
     }
 }

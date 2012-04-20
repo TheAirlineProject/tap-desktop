@@ -276,7 +276,7 @@ namespace TheAirline.Model.GeneralModel
                     string iata = airportElement.Attributes["iata"].Value;
                     
                     AirportProfile.AirportType type = (AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
-                    AirportProfile.AirportSeason season = (AirportProfile.AirportSeason)Enum.Parse(typeof(AirportProfile.AirportSeason), airportElement.Attributes["season"].Value);
+                    Weather.Season season = (Weather.Season)Enum.Parse(typeof(Weather.Season), airportElement.Attributes["season"].Value);
 
                     XmlElement townElement = (XmlElement)airportElement.SelectSingleNode("town");
                     string town = townElement.Attributes["town"].Value;
@@ -427,6 +427,8 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.AddStatisticsType(new StatisticsType("Departures", "Departures"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers", "Passengers"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers per flight", "Passengers%"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Passenger Capacity", "Capacity"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Airliner Income", "Airliner_Income"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("On-Time flights", "On-Time"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Flights On-Time", "On-Time%"));
         }
@@ -596,14 +598,15 @@ namespace TheAirline.Model.GeneralModel
 
                 KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1, route.Destination2);
 
-   
-                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airport);
-                fAirliner.addRoute(route);
-                fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                if (airliner.HasValue)
+                {
+                    FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airport);
+                    fAirliner.addRoute(route);
+                    fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
-                route.LastUpdated = GameObject.GetInstance().GameTime;
+                    route.LastUpdated = GameObject.GetInstance().GameTime;
 
-                DateTime dt = route.LastUpdated;
+                }
             }
         }
         /*! loads the maps for the airports

@@ -109,12 +109,12 @@ namespace TheAirline.Model.GeneralModel
         {
             Boolean isSummer = GameObject.GetInstance().GameTime.Month>=3 && GameObject.GetInstance().GameTime.Month<9;
 
-            if (airport.Profile.Season == AirportProfile.AirportSeason.All_Year)
+            if (airport.Profile.Season == Weather.Season.All_Year)
                 return 1;
-            if (airport.Profile.Season == AirportProfile.AirportSeason.Summer)
+            if (airport.Profile.Season == Weather.Season.Summer)
                 if (isSummer) return 1.5;
                 else return 0.5;
-            if (airport.Profile.Season == AirportProfile.AirportSeason.Winter)
+            if (airport.Profile.Season == Weather.Season.Winter)
                 if (isSummer) return 0.5;
                 else return 1.5;
 

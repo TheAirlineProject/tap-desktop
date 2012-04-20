@@ -146,11 +146,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the next entry after a specific specific entry
         public RouteTimeTableEntry getNextEntry(RouteTimeTableEntry entry)
         {
-            DateTime time = MathHelpers.ConvertEntryToDate(entry);
-            var entries = from e in this.Entries orderby MathHelpers.ConvertEntryToDate(e).Subtract(time) where MathHelpers.ConvertEntryToDate(e).Subtract(time).TotalMinutes>0 && e.Destination!=entry.Destination select e;
-
-            return entries.FirstOrDefault();
-            /*
+         
             DayOfWeek eDay = entry.Day;
        
             int counter = 0;
@@ -176,7 +172,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
             return null;
-            */
+          
         }
 
     }

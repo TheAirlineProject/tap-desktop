@@ -119,7 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-           // PopUpRouteAirliners.ShowPopUp(Airlines.GetAirlines()[2].Routes[0]);
+           
 
             panelSideMenu.Children.Clear();
 
@@ -199,6 +199,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         private void ButtonEdit_Click(object sender, RoutedEventArgs e)
         {
             Route route = (Route)((Button)sender).Tag;
+
+            PopUpRouteAirliners.ShowPopUp(route);
 
             panelSideMenu.Children.Clear();
 

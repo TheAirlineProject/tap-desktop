@@ -18,7 +18,7 @@ namespace TheAirline.Model.AirlinerModel
         public enum PurchasedType { Bought, Leased,BoughtDownPayment }
         public PurchasedType Purchased { get; set; }
         public Boolean HasRoute { get { return this.Routes.Count > 0; } set { ;} }//{ get { return this.Route != null; } set { ;} }
-        public GeneralStatistics Statistics { get; set; }
+        public AirlinerStatistics Statistics { get; set; }
 
         /*Changed for deleting routeairliner*/
         public enum AirlinerStatus { Stopped, On_route, On_service, Resting, To_homebase, To_route_start }
@@ -37,7 +37,7 @@ namespace TheAirline.Model.AirlinerModel
             this.Airliner.Airline = airline;
             this.Homebase = homebase;
             this.Name = name;
-            this.Statistics = new GeneralStatistics();
+            this.Statistics = new AirlinerStatistics(this);
             this.IsOnTime = true;
             this.Status = AirlinerStatus.Stopped;
 

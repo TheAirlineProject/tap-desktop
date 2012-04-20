@@ -25,6 +25,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
         public DateTime LastUpdated { get; set; }
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
+        public Weather.Season Season { get; set; }
         public Route(string id, Airport destination1, Airport destination2, double farePrice,string flightCode1, string flightCode2)
         {
             this.Id = id;
@@ -35,6 +36,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Statistics = new RouteStatistics();
 
             createTimetable(flightCode1,flightCode2);
+
+            this.Season = Weather.Season.All_Year;
 
             this.Classes = new List<RouteAirlinerClass>();
 
@@ -195,25 +198,16 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //get the degree of filling
         private double getFillingDegree()
         {
-            double avgPassengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers"))) / Convert.ToDouble(this.Statistics.getStatisticsValue(this.Classes[0],StatisticsTypes.GetStatisticsType("Departures")));
+            double passengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
-            double totalPassengers = 1;//;Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
-
-            double fillingDegree = avgPassengers / totalPassengers;
-
-            if (fillingDegree > 1)
-            {
-                string s = "";
-                s += this.Destination1.Profile.Name + " <-> " + this.Destination2.Profile.Name;
-            }
-
-            return avgPassengers / totalPassengers;
+            double passengerCapacity = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Capacity")));
+               
+            return passengers / passengerCapacity;
         }
-       
         //gets the income per passenger
         private double getIncomePerPassenger()
         {
-            double totalPassengers = 1;// Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
+            double totalPassengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
             return getBalance() / totalPassengers;
         }

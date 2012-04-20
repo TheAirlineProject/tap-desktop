@@ -12,7 +12,7 @@ namespace TheAirline.Model.GeneralModel
         public eWindSpeed WindSpeed { get; set; }
         public enum WindDirection { Tail, Head }
         public WindDirection Direction { get; set; }
-   
+        public enum Season { All_Year, Winter, Summer }
         public Weather()
         {
             this.WindSpeed = eWindSpeed.Light_Breeze;
