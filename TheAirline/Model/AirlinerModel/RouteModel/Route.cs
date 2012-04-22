@@ -219,7 +219,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the current airliner on the route
         public FleetAirliner getCurrentAirliner()
         {
-            return getAirliners().Find(f => f.CurrentFlight.Entry.TimeTable.Route == this);
+            return getAirliners().Find(f => f.CurrentFlight != null && f.CurrentFlight.Entry.TimeTable.Route == this);
         }
 
     }

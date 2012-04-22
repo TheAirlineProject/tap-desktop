@@ -65,7 +65,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             panelContent.setContentPage(routesPanel, StandardContentPanel.ContentLocation.Left);
 
 
-            panelSideMenu = new StackPanel();//new PanelNewRoute();
+            panelSideMenu = new StackPanel();
 
             panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
 
@@ -74,8 +74,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             base.setContent(panelContent);
 
             base.setHeaderContent(this.Title);
-
-            //showRoutes();
 
             showPage(this);
         }
@@ -104,7 +102,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             btnMap.Height = Double.NaN;
             btnMap.Content = Translator.GetInstance().GetString("PageRoutes", btnMap.Uid);
             btnMap.Margin = new Thickness(2, 0, 0, 0);
-          //  btnMap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnMap.Click += new RoutedEventHandler(btnMap_Click);
 
@@ -119,8 +116,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-           
-
+        
             panelSideMenu.Children.Clear();
 
             panelSideMenu.Children.Add(new PanelNewRoute(this));
@@ -200,11 +196,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         {
             Route route = (Route)((Button)sender).Tag;
 
+             panelSideMenu.Children.Clear();
+
+            //panelSideMenu.Children.Add(new PanelRoute(this, route));
+
             PopUpRouteAirliners.ShowPopUp(route);
 
-            panelSideMenu.Children.Clear();
-
-            panelSideMenu.Children.Add(new PanelRoute(this, route));
 
 
         }

@@ -25,7 +25,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpRouteAirliners : PopUpWindow
     {
         private Route Route;
-        private ListBox lbEntries;
+        private ListBox lbEntriesDest1, lbEntriesDest2;
         private List<RouteTimeTableEntry> Entries;
         public static object ShowPopUp(Route route)
         {
@@ -39,8 +39,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
            
             this.Route = route;
 
-            this.Entries = this.Route.TimeTable.Entries;
- 
+            this.Entries = new List<RouteTimeTableEntry>(this.Route.TimeTable.Entries);
+
             InitializeComponent();
 
             this.Title = string.Format("{0} - {1}", this.Route.Destination1.Profile.Name, this.Route.Destination2.Profile.Name);
@@ -54,17 +54,34 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
 
-            lbEntries = new ListBox();
-            lbEntries.ItemTemplate = this.Resources["EntryItem"] as DataTemplate;
-            lbEntries.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbEntries.MaxHeight = 500;
+            Grid grdEntries = UICreator.CreateGrid(2);
+            mainPanel.Children.Add(grdEntries);
 
-            foreach (RouteTimeTableEntry e in this.Entries)
-                lbEntries.Items.Add(e);
+            lbEntriesDest1 = new ListBox();
+            lbEntriesDest1.ItemTemplate = this.Resources["EntryItem"] as DataTemplate;
+            lbEntriesDest1.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbEntriesDest1.Margin = new Thickness(0, 0, 5, 0);
+            lbEntriesDest1.MaxHeight = 500;
+
+            Grid.SetColumn(lbEntriesDest1, 0);
+            grdEntries.Children.Add(lbEntriesDest1);
+
+            lbEntriesDest2 = new ListBox();
+            lbEntriesDest2.ItemTemplate = this.Resources["EntryItem"] as DataTemplate;
+            lbEntriesDest2.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbEntriesDest2.Margin = new Thickness(5, 0, 0, 0);
+            lbEntriesDest2.MaxHeight = 500;
+
+            Grid.SetColumn(lbEntriesDest2, 1);
+            grdEntries.Children.Add(lbEntriesDest2);
             
-            mainPanel.Children.Add(lbEntries);
-
-            mainPanel.Children.Add(createButtonsPanel());
+            foreach (RouteTimeTableEntry e in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination1))
+                lbEntriesDest1.Items.Add(e);
+          
+            foreach (RouteTimeTableEntry e in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination2))
+                lbEntriesDest2.Items.Add(e);
+          
+              mainPanel.Children.Add(createButtonsPanel());
 
             this.Content = mainPanel;
         }
@@ -106,6 +123,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnUndo.Content = Translator.GetInstance().GetString("General", btnUndo.Uid);
             btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
+            btnUndo.Visibility = System.Windows.Visibility.Collapsed;
 
             buttonsPanel.Children.Add(btnUndo);
 
@@ -115,39 +133,49 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
-            this.Entries = this.Route.TimeTable.Entries;
- 
-            lbEntries.Items.Clear();
+            lbEntriesDest1.Items.Clear();
+            lbEntriesDest2.Items.Clear();
 
-            foreach (RouteTimeTableEntry entry in this.Entries)
-                lbEntries.Items.Add(entry);
+            this.Entries = new List<RouteTimeTableEntry>(this.Route.TimeTable.Entries);
+
+            foreach (RouteTimeTableEntry ev in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination1))
+                lbEntriesDest1.Items.Add(ev);
+
+            foreach (RouteTimeTableEntry ev in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination2))
+                lbEntriesDest2.Items.Add(ev);
       
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-
+           
             this.Close();
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            foreach (object o in lbEntries.Items)
-            {
-                RouteTimeTableEntry entry = (RouteTimeTableEntry)o;
-            }
+            this.Route.TimeTable.Entries = new List<RouteTimeTableEntry>(this.Entries);
+
+            foreach (RouteTimeTableEntry entry in this.Route.TimeTable.Entries)
+                if (entry.Airliner != null && !entry.Airliner.Routes.Contains(entry.TimeTable.Route))
+                    entry.Airliner.Routes.Add(entry.TimeTable.Route);
+
             this.Close();
         }
 
         private void cbAirliner_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+          
             RouteTimeTableEntry entry = (RouteTimeTableEntry)((ComboBox)sender).Tag;
 
             FleetAirliner airliner = (FleetAirliner)((ComboBox)sender).SelectedItem;
-            
+
             entry.Airliner = airliner;
-         
+     
+           
         }
+       
     }
     //the converter for returning airliners for a route entry
     public class RouteAirlinersConverter : IValueConverter
@@ -156,7 +184,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             RouteTimeTableEntry entry = (RouteTimeTableEntry)value;
 
-            List<FleetAirliner> airliners = GameObject.GetInstance().HumanAirline.Fleet;//entry.TimeTable.Route.getAirliners()[0].Airliner.Airline.Fleet;
+            List<FleetAirliner> airliners = new List<FleetAirliner>(GameObject.GetInstance().HumanAirline.Fleet);
+
+            if (!airliners.Contains(entry.Airliner) && entry.Airliner != null)
+                airliners.Add(entry.Airliner);
           
             return airliners;
         }

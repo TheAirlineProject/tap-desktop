@@ -24,7 +24,7 @@
          </MultiBinding>
     </TextBlock.Text>
                 </TextBlock>
-                <ComboBox Name="cbAirliner" ItemsSource="{Binding Converter={StaticResource routeAirlinersConverter}}" SelectedValuePath="Name" DisplayMemberPath="Name" IsSynchronizedWithCurrentItem="True" VerticalAlignment="Bottom" Style="{DynamicResource ComboBoxTransparentStyle}" Width="200" HorizontalAlignment="Left" Tag="{Binding}" SelectionChanged="cbAirliner_SelectionChanged" SelectedItem="{Binding Airliner}"/>
+                <ComboBox ItemsSource="{Binding Converter={StaticResource routeAirlinersConverter}}" SelectedValuePath="Name" DisplayMemberPath="Name" VerticalAlignment="Bottom" Style="{DynamicResource ComboBoxTransparentStyle}" Width="200" HorizontalAlignment="Left" Tag="{Binding}" SelectionChanged="cbAirliner_SelectionChanged" SelectedItem="{Binding Airliner}"/>
 
             </StackPanel>
         </DataTemplate>

@@ -203,6 +203,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //the method for updating a route airliner
         private static void UpdateOnRouteAirliner(FleetAirliner airliner)
         {
+            
             if (airliner.CurrentFlight == null)
             {
                 Route route = GetNextRoute(airliner);
@@ -541,7 +542,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.CurrentFlight = null;
             
-            entry.Airliner.CurrentFlight = new Flight(entry);
+            if (entry.Airliner != null)
+                entry.Airliner.CurrentFlight = new Flight(entry);
+
+            if (airliner.CurrentFlight == null)
+            {
+                Route route = GetNextRoute(airliner);
+                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
+            }
 
 
         }
@@ -549,7 +557,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-
+            
             RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
 
             return MathHelpers.ConvertEntryToDate(entry);

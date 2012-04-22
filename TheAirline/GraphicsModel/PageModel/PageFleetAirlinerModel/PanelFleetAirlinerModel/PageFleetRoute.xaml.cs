@@ -53,10 +53,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             if (this.Airliner.HasRoute)
             {
-          //      panelRoute.Children.Add(createRouteInfo());
-           //    panelRoute.Children.Add(createFlightInfo());
+               panelRoute.Children.Add(createRouteInfo());
+               panelRoute.Children.Add(createFlightInfo());
 
-             //   if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
+                if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
             }
             else panelRoute.Children.Add(txtHeader);
          
@@ -83,7 +83,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 }
             }
         }
-        /*
+        
         //creates the buttons for the flight
         private WrapPanel createFlightButtons()
         {
@@ -135,6 +135,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             btnStopFlight.IsEnabled = true;
         }
+        
         //creates the flight details
         private StackPanel createFlightInfo()
         {
@@ -169,11 +170,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             return panelFlight;
         }
+      
         //creates the route details
         private StackPanel createRouteInfo()
         {
 
-            Route route = this.Airliner.Route;
+            Route route = this.Airliner.Routes[0];
 
             StackPanel panelRoute = new StackPanel();
 
@@ -201,7 +203,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
              foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
             {
-                RouteAirlinerClass rClass = this.Airliner.Route.getRouteAirlinerClass(aClass.Type);
+                RouteAirlinerClass rClass = this.Airliner.Routes[0].getRouteAirlinerClass(aClass.Type);
 
 
                 Image imgInfo = new Image();
@@ -263,13 +265,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnMap_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(this.Airliner.Route);
+            PopUpMap.ShowPopUp(this.Airliner.Routes[0]);
         }
 
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            PopUpTimeTable.ShowPopUp(this.Airliner.Airliner.Airline, this.Airliner.Route);
+            PopUpTimeTable.ShowPopUp(this.Airliner.Airliner.Airline, this.Airliner.Routes[0]);
         }
-        */
+        
     }
 }
