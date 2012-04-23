@@ -36,8 +36,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             List<RouteEntryDestination> destinations = new List<RouteEntryDestination>();
             List<string> codes = new List<string>();
-            
-            
+
+
             foreach (RouteTimeTableEntry entry in this.Entries)
                 if (!codes.Contains(entry.Destination.FlightCode))
                 {
@@ -47,14 +47,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
 
             return destinations;
-             
+
 
         }
         //adds entries for a specific destination and time for each day of the week
         public void addDailyEntries(RouteEntryDestination destination, TimeSpan time)
         {
             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-                this.Entries.Add(new RouteTimeTableEntry(this,day, time, destination));
+                this.Entries.Add(new RouteTimeTableEntry(this, day, time, destination));
         }
         //returns all entries for a specific destination
         public List<RouteTimeTableEntry> getEntries(Airport destination)
@@ -71,24 +71,43 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return getEntries(day).Find((delegate(RouteTimeTableEntry entry) { return entry.Time >= startTime && entry.Time <= endTime; }));
         }
+        //returns the next entry after a specific date and with a specific airliner
+        public RouteTimeTableEntry getNextEntry(DateTime time, FleetAirliner airliner)
+        {
+            DateTime dt = new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second);
+
+            int counter = 0;
+            while (counter < 8)
+            {
+                
+                List<RouteTimeTableEntry> entries = getEntries(dt.DayOfWeek);
+
+                foreach (RouteTimeTableEntry dEntry in entries)
+                {
+                    if (!(dEntry.Time <= dt.TimeOfDay && dt.Day == time.Day) && airliner == dEntry.Airliner)
+                        return dEntry;
+                }
+                dt = dt.AddDays(1);
+
+                counter++;
+            }
+
+            return null;
+
+        }
+    
         //returns the next entry after a specific date and not to a specific coordinates (airport)
         public RouteTimeTableEntry getNextEntry(DateTime time, Coordinates coordinates)
         {
-            var entries = from e in this.Entries where e.Destination.Airport.Profile.Coordinates.CompareTo(coordinates)!=0 orderby MathHelpers.ConvertEntryToDate(e).Subtract(time) select e;
-
-      
-            return entries.FirstOrDefault();          
-  /*
-
             DayOfWeek day = time.DayOfWeek;
 
-             int counter = 0;
+            int counter = 0;
 
-            while (counter < 7)
+            while (counter < 8)
             {
 
 
-              
+
                 List<RouteTimeTableEntry> entries = getEntries(day);
 
                 foreach (RouteTimeTableEntry dEntry in entries)
@@ -105,13 +124,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
             return null;
-             * */
+
         }
 
         //returns the next entry from a specific time
         public RouteTimeTableEntry getNextEntry(DateTime time)
         {
-            /*
+
             DayOfWeek day = time.DayOfWeek;
 
             int counter = 0;
@@ -136,19 +155,15 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 counter++;
             }
 
-            return null;*/
+            return null;
 
-            var entries = from e in this.Entries orderby MathHelpers.ConvertEntryToDate(e).Subtract(time) select e;
-
-            return entries.FirstOrDefault() ;          
-      
         }
         //returns the next entry after a specific specific entry
         public RouteTimeTableEntry getNextEntry(RouteTimeTableEntry entry)
         {
-         
+
             DayOfWeek eDay = entry.Day;
-       
+
             int counter = 0;
 
             while (counter < 7)
@@ -168,13 +183,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 if (eDay == (DayOfWeek)7)
                     eDay = (DayOfWeek)0;
-             
+
             }
 
             return null;
-          
+
         }
 
     }
-   
+
 }

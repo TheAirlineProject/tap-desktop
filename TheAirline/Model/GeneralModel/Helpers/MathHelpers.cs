@@ -205,9 +205,14 @@ namespace TheAirline.Model.GeneralModel
 
             int daysBetween = Math.Abs((int)entry.Day - currentDay);
 
+            if (daysBetween == 0 && new TimeSpan(GameObject.GetInstance().GameTime.Hour,GameObject.GetInstance().GameTime.Minute,0) > new TimeSpan(entry.Time.Hours,entry.Time.Minutes,0).Add(new TimeSpan(1,0,0)))
+            {
+                daysBetween = 7;
+            }
+
             DateTime flightTime = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds).AddDays(daysBetween);
 
-
+            
             return flightTime;
         }
         //gets the local time for a time in a time zone

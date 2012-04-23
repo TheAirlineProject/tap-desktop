@@ -26,6 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         private Route Route;
         private ListBox lbEntriesDest1, lbEntriesDest2;
+        private ComboBox cbAssignToAll;
         private List<RouteTimeTableEntry> Entries;
         public static object ShowPopUp(Route route)
         {
@@ -80,11 +81,43 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
           
             foreach (RouteTimeTableEntry e in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination2))
                 lbEntriesDest2.Items.Add(e);
-          
-              mainPanel.Children.Add(createButtonsPanel());
+
+            WrapPanel panelAssignToAll = new WrapPanel();
+            panelAssignToAll.Margin = new Thickness(0, 5, 0, 0);
+            mainPanel.Children.Add(panelAssignToAll);
+
+            cbAssignToAll = new ComboBox();
+            cbAssignToAll.Background = Brushes.Transparent;
+            cbAssignToAll.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAssignToAll.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAssignToAll.DisplayMemberPath = "Name";
+            cbAssignToAll.SelectedValuePath = "Name";
+            cbAssignToAll.Width = 200;
+
+            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
+                cbAssignToAll.Items.Add(airliner);
+
+            cbAssignToAll.SelectedIndex = 0;
+
+            panelAssignToAll.Children.Add(cbAssignToAll);
+
+            Button btnAssignToAll = new Button();
+            btnAssignToAll.Uid = "1001";
+            btnAssignToAll.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnAssignToAll.Height = Double.NaN;
+            btnAssignToAll.Width = Double.NaN;
+            btnAssignToAll.Margin = new Thickness(5, 0, 0, 0);
+            btnAssignToAll.Content = "Assign to All";
+            btnAssignToAll.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnAssignToAll.Click += new RoutedEventHandler(btnAssignToAll_Click);
+            panelAssignToAll.Children.Add(btnAssignToAll);
+
+            mainPanel.Children.Add(createButtonsPanel());
 
             this.Content = mainPanel;
         }
+
+      
         //creates the button panel
         private WrapPanel createButtonsPanel()
         {
@@ -146,7 +179,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
       
 
         }
+        private void btnAssignToAll_Click(object sender, RoutedEventArgs e)
+        {
+            lbEntriesDest1.Items.Clear();
+            lbEntriesDest2.Items.Clear();
 
+            FleetAirliner airliner =(FleetAirliner)cbAssignToAll.SelectedItem;
+
+            foreach (RouteTimeTableEntry entry in this.Entries)
+                entry.Airliner = airliner;
+
+            foreach (RouteTimeTableEntry ev in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination1))
+                lbEntriesDest1.Items.Add(ev);
+
+            foreach (RouteTimeTableEntry ev in this.Entries.FindAll(ev => ev.Destination.Airport == ev.TimeTable.Route.Destination2))
+                lbEntriesDest2.Items.Add(ev);
+      
+
+        }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
            

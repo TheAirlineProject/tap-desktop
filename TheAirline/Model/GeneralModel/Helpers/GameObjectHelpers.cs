@@ -185,7 +185,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         UpdateOnRouteAirliner(airliner);
                         break;
                     case FleetAirliner.AirlinerStatus.To_route_start:
-                        UpdateOnRouteAirliner(airliner);
+                        UpdateToRouteStartAirliner(airliner);
                         break;
 
                     case FleetAirliner.AirlinerStatus.Resting:
@@ -239,7 +239,37 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
+         //the method for updating a route airliner with status toroutestart
+        private static void UpdateToRouteStartAirliner(FleetAirliner airliner)
+        {
+            if (airliner.CurrentFlight == null)
+            {
+                Route route = GetNextRoute(airliner);
+                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+            }
+            Coordinates destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
 
+            double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+
+            double speed = airliner.Airliner.Type.CruisingSpeed / 4;
+            if (airliner.CurrentFlight != null)
+            {
+                Weather currentWeather = GetAirlinerWeather(airliner);
+                int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / 4 : -(int)currentWeather.WindSpeed / 4;
+                speed = airliner.Airliner.Type.CruisingSpeed / 4 + wind;
+
+            }
+            if (adistance > 4)
+                MathHelpers.MoveObject(airliner.CurrentPosition, destination, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, destination)));
+
+            double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+
+            if (MathHelpers.GetDistance(airliner.CurrentPosition, destination) < 5)
+            {
+                SimulateRouteStart(airliner);
+            }
+
+        }
         //simulates a route airliner going to homebase
         private static void SimulateToHomebase(FleetAirliner airliner)
         {
@@ -251,14 +281,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
             else
                 airliner.CurrentFlight = new Flight(new RouteTimeTableEntry(airliner.CurrentFlight.Entry.TimeTable, GameObject.GetInstance().GameTime.DayOfWeek, GameObject.GetInstance().GameTime.TimeOfDay, new RouteEntryDestination(airliner.Homebase, "Service")));
-            //        airliner.CurrentFlight.Entry.Destination.Airport = airliner.Airliner.Homebase;
+       
         }
         //simulates the start for routing
         private static void SimulateRouteStart(FleetAirliner airliner)
         {
 
             Route route = GetNextRoute(airliner);
-            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
+            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
 
             airliner.Status = FleetAirliner.AirlinerStatus.Resting;
 
@@ -536,29 +566,41 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets the next flight for a route airliner
         private static void SetNextFlight(FleetAirliner airliner)
         {
-
+            
             RouteTimeTableEntry currentEntry = airliner.CurrentFlight.Entry;
             RouteTimeTableEntry entry = currentEntry.TimeTable.getNextEntry(currentEntry);
 
             airliner.CurrentFlight = null;
             
             if (entry.Airliner != null)
+            {
                 entry.Airliner.CurrentFlight = new Flight(entry);
-
+                if (entry.Airliner != airliner)
+                    entry.Airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+            }
+            
             if (airliner.CurrentFlight == null)
             {
                 Route route = GetNextRoute(airliner);
-                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
+                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+                airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+      
             }
-
+            
 
         }
 
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-            
             RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
+
+            DateTime dt = MathHelpers.ConvertEntryToDate(entry);
+
+            if (dt < GameObject.GetInstance().GameTime.AddHours(-1))
+            {
+                string s = dt.ToShortDateString();
+            }
 
             return MathHelpers.ConvertEntryToDate(entry);
 
@@ -566,14 +608,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the passengers for an airliner
         public static int GetPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-
-
             return PassengerHelpers.GetFlightPassengers(airliner, type);
         }
         //returns the next route for an airliner 
         private static Route GetNextRoute(FleetAirliner airliner)
         {
-            var entries = from e in airliner.Routes.Select(r=>r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime,airliner.CurrentPosition)) orderby MathHelpers.ConvertEntryToDate(e) select e;
+
+            var entries = from e in airliner.Routes.Select(r=>r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime,airliner)) orderby MathHelpers.ConvertEntryToDate(e) select e;
             
             return entries.FirstOrDefault().TimeTable.Route;          
           
