@@ -545,9 +545,12 @@ namespace TheAirline.Model.GeneralModel
         //finds the home base for a computer airline
         private static Airport FindComputerHomeBase(Airline airline)
         {
-            List<Airport> airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a=>a.Terminals.getFreeGates()>1);
+            List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a=>a.Terminals.getFreeGates()>1);
 
-              Dictionary<Airport,int> list = new Dictionary<Airport,int>();
+            if (airports.Count<4)
+                airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
+
+            Dictionary<Airport,int> list = new Dictionary<Airport,int>();
             airports.ForEach(a => list.Add(a,((int)a.Profile.Size)*GeneralHelpers.GetAirportsNearAirport(a).Count));
        
             return AIHelpers.GetRandomItem(list);
