@@ -433,7 +433,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airport.setAirportFacility(airline, facility);
 
-                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.Price));
+                double price = facility.Price;
+
+                if (airport.Profile.Country != airline.Profile.Country)
+                    price = price * 1.25;
+
+                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
 
                 return airport;
             }

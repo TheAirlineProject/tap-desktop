@@ -156,7 +156,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -type.NextFacility.Price));
+                    double price = type.NextFacility.Price;
+
+                    if (this.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
+                        price = price * 1.25;
+
+                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
 
                     this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility);
 
