@@ -433,6 +433,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airport.setAirportFacility(airline, facility);
 
+                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.Price));
+
                 return airport;
             }
 
