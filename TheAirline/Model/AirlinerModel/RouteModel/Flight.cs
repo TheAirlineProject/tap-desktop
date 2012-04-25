@@ -13,19 +13,18 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
   */
     public class Flight
     {
-        public Boolean Delayed { get; set; }
         public RouteTimeTableEntry Entry { get; set; }
         public List<FlightAirlinerClass> Classes { get; set; }
         public FleetAirliner Airliner { get; set; }
+        public Boolean IsOnTime { get; set; }   
         public Flight(RouteTimeTableEntry entry)
         {
 
             this.Entry = entry;
-            this.Delayed = false;
             this.Classes = new List<FlightAirlinerClass>();
 
             this.Airliner = this.Entry.Airliner;
-  
+            this.IsOnTime = true;
 
         }
         //returns the expected time of landing

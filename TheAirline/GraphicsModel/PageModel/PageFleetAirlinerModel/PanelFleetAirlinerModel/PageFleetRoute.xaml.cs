@@ -53,7 +53,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             if (this.Airliner.HasRoute)
             {
-               panelRoute.Children.Add(createRouteInfo());
+               panelRoute.Children.Add(createRoutesInfo());
                panelRoute.Children.Add(createFlightInfo());
 
                 if (this.Airliner.Airliner.Airline == GameObject.GetInstance().HumanAirline) panelRoute.Children.Add(createFlightButtons());
@@ -171,66 +171,76 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             return panelFlight;
         }
       
-        //creates the route details
-        private StackPanel createRouteInfo()
+        //creates the routes details
+        private StackPanel createRoutesInfo()
         {
 
-            Route route = this.Airliner.Routes[0];
-
-            StackPanel panelRoute = new StackPanel();
+           
+            StackPanel panelRoutesInfo = new StackPanel();
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Route Information";
-            panelRoute.Children.Add(txtHeader);
+            txtHeader.Text = "Routes Information";
+            panelRoutesInfo.Children.Add(txtHeader);
 
+            ScrollViewer svRoutes = new ScrollViewer();
+            svRoutes.MaxHeight = GraphicsHelpers.GetContentHeight()/2;
+            svRoutes.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svRoutes.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 
-            ListBox lbRouteInfo = new ListBox();
-            lbRouteInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbRouteInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            panelRoutesInfo.Children.Add(svRoutes);
 
-            panelRoute.Children.Add(lbRouteInfo);
+            StackPanel panelRoutes = new StackPanel();
+            svRoutes.Content = panelRoutes;
 
-            double distance = MathHelpers.GetDistance(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates);
-
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", UICreator.CreateTextBlock(route.Destination1.Profile.Name)));
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", UICreator.CreateTextBlock(route.Destination2.Profile.Name)));
-            // chs, 2011-10-10 added missing conversion
-            lbRouteInfo.Items.Add(new QuickInfoValue("Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
-
-             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+            foreach (Route route in this.Airliner.Routes)
             {
-                RouteAirlinerClass rClass = this.Airliner.Routes[0].getRouteAirlinerClass(aClass.Type);
+                ListBox lbRouteInfo = new ListBox();
+                lbRouteInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+                lbRouteInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+                lbRouteInfo.Margin = new Thickness(0, 0, 0, 5);
+                panelRoutes.Children.Add(lbRouteInfo);
 
 
-                Image imgInfo = new Image();
-                imgInfo.Width = 16;
-                imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
-                imgInfo.Margin = new Thickness(5, 0, 0, 0);
-                RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
+                double distance = MathHelpers.GetDistance(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates);
+                
+                lbRouteInfo.Items.Add(new QuickInfoValue("Route", UICreator.CreateTextBlock(string.Format("{0} <-> {1}",route.Destination1.Profile.Name,route.Destination2.Profile.Name))));
+                // chs, 2011-10-10 added missing conversion
+                lbRouteInfo.Items.Add(new QuickInfoValue("Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
-                Border brdToolTip = new Border();
-                brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
-                brdToolTip.Padding = new Thickness(5);
-                brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
+                //showEntries
+
+                foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+                {
+                    RouteAirlinerClass rClass = this.Airliner.Routes[0].getRouteAirlinerClass(aClass.Type);
+                    
+                    Image imgInfo = new Image();
+                    imgInfo.Width = 16;
+                    imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
+                    imgInfo.Margin = new Thickness(5, 0, 0, 0);
+                    RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
+
+                    Border brdToolTip = new Border();
+                    brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
+                    brdToolTip.Padding = new Thickness(5);
+                    brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
 
 
-                ContentControl lblClass = new ContentControl();
-                lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
-                lblClass.Content = rClass;
+                    ContentControl lblClass = new ContentControl();
+                    lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
+                    lblClass.Content = rClass;
 
-                brdToolTip.Child = lblClass;
-
-
-                imgInfo.ToolTip = brdToolTip;
+                    brdToolTip.Child = lblClass;
 
 
-                lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(aClass.Type, null, null, null).ToString(), imgInfo));
+                    imgInfo.ToolTip = brdToolTip;
+
+
+                    lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(aClass.Type, null, null, null).ToString(), imgInfo));
+                }
             }
-        
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
@@ -239,7 +249,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnTimeTable.Height = Double.NaN;
             btnTimeTable.Width = Double.NaN;
             btnTimeTable.Content = "Timetable";
-            btnTimeTable.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
+            btnTimeTable.Visibility = Visibility.Collapsed;//this.Airliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
             btnTimeTable.Click += new RoutedEventHandler(btnTimeTable_Click);
             btnTimeTable.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnTimeTable.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -250,22 +260,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnMap.Width = Double.NaN;
             btnMap.Height = Double.NaN;
-            btnMap.Content = "Route map";
+            btnMap.Content = "Routes map";
             btnMap.Margin = new Thickness(2, 0, 0, 0);
             btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnMap.Click += new RoutedEventHandler(btnMap_Click);
 
             buttonsPanel.Children.Add(btnMap);
 
-            panelRoute.Children.Add(buttonsPanel);
+            panelRoutesInfo.Children.Add(buttonsPanel);
 
-            return panelRoute;
+            return panelRoutesInfo;
 
         }
 
         private void btnMap_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(this.Airliner.Routes[0]);
+            PopUpMap.ShowPopUp(this.Airliner.Routes);
         }
 
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)

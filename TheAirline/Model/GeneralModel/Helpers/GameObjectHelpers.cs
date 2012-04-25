@@ -426,7 +426,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             dest.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
             dest.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
 
-            if (airliner.IsOnTime) airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year,StatisticsTypes.GetStatisticsType("On-Time"),1);
+            if (airliner.CurrentFlight.IsOnTime) airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year,StatisticsTypes.GetStatisticsType("On-Time"),1);
             airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"),1);
           
             double onTimePercent = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time")) / airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -500,7 +500,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CreatePassengersHappiness(FleetAirliner airliner)
         {
             int serviceLevel = 0;//airliner.Route.DrinksFacility.ServiceLevel + airliner.Route.FoodFacility.ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Audio).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Seat).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Video).ServiceLevel;
-            int happyValue = airliner.CurrentFlight.Delayed ? 20 : 10;
+            int happyValue = airliner.CurrentFlight.IsOnTime ? 10 : 20;
             happyValue -= (serviceLevel / 25);
             for (int i = 0; i < airliner.CurrentFlight.getTotalPassengers(); i++)
             {

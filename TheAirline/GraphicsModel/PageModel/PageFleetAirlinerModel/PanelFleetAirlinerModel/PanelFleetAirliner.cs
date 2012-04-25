@@ -33,6 +33,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             ucSelectButton sbTimeSlot = new ucSelectButton();
             sbTimeSlot.Content = "Timeslot";
+            sbTimeSlot.Visibility = System.Windows.Visibility.Collapsed;
             sbTimeSlot.Click += new System.Windows.RoutedEventHandler(sbTimeSlot_Click);
             buttonsPanel.Children.Add(sbTimeSlot);
 

@@ -124,7 +124,7 @@ namespace TheAirline.Model.GeneralModel
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
 
-            double fuelConsumption = 0.040;
+            double fuelConsumption = AirlinerTypes.GetTypes().Max(t=>t.FuelConsumption); 
             double groundTaxPerPassenger = 5;
 
             double tax = groundTaxPerPassenger; 

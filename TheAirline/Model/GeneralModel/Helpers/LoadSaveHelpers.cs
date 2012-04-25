@@ -25,15 +25,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             File.Delete(AppSettings.getDataPath() + "\\saves\\" + name + ".xml");
 
-          
+
         }
         //remove a file to the list of saved files
         public static void RemoveSavedFile(string name)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\saves\\saves.xml");
-       
-            XmlNode node = doc.SelectSingleNode("/saves/save[@file='" + name +"']");
+
+            XmlNode node = doc.SelectSingleNode("/saves/save[@file='" + name + "']");
 
             node.ParentNode.RemoveChild(node);
 
@@ -125,7 +125,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
                 Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), airlineNode.Attributes["market"].Value);
 
-                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO),mentality,market);
+                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
                 airline.Profile.Logo = logo;
                 airline.Fleet.Clear();
                 airline.Airports.Clear();
@@ -212,8 +212,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     string fAirlinerName = airlineAirlinerNode.Attributes["name"].Value;
                     Airport homebase = Airports.GetAirport(airlineAirlinerNode.Attributes["homebase"].Value);
                     FleetAirliner.PurchasedType purchasedtype = (FleetAirliner.PurchasedType)Enum.Parse(typeof(FleetAirliner.PurchasedType), airlineAirlinerNode.Attributes["purchased"].Value);
+                    FleetAirliner.AirlinerStatus status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), airlineAirlinerNode.Attributes["status"].Value);
+
+                    Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
+                    Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
 
                     FleetAirliner fAirliner = new FleetAirliner(purchasedtype, airline, airliner, fAirlinerName, homebase);
+                    fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
+                    fAirliner.Status = status;
+
 
                     XmlNodeList airlinerStatList = airlineAirlinerNode.SelectNodes("stats/stat");
 
@@ -221,9 +228,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         int year = Convert.ToInt32(airlinerStatNode.Attributes["year"].Value);
                         string statType = airlinerStatNode.Attributes["type"].Value;
-                        int statValue = Convert.ToInt32(airlinerStatNode.Attributes["value"].Value);
+                        double statValue = Convert.ToDouble(airlinerStatNode.Attributes["value"].Value);
                         fAirliner.Statistics.setStatisticsValue(year, StatisticsTypes.GetStatisticsType(statType), statValue);
                     }
+
+
+                  
 
                     airline.addAirliner(fAirliner);
 
@@ -272,56 +282,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         string flightCode = entryNode.Attributes["flightcode"].Value;
                         DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), entryNode.Attributes["day"].Value);
                         TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
+                        FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Name == entryNode.Attributes["airliner"].Value); ;
 
-                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode)));
+                        RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
+                        entry.Airliner = airliner;
+
+                        timeTable.addEntry(entry);
                     }
                     route.TimeTable = timeTable;
 
-                    XmlElement routeAirlinerNode = (XmlElement)routeNode.SelectSingleNode("routeairliner");
-
-                    if (routeAirlinerNode != null)
-                    {
-                        FleetAirliner fAirliner = airline.Fleet.Find(fa=>fa.Name == routeAirlinerNode.Attributes["airliner"].Value);
-
-                        fAirliner.Status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), routeAirlinerNode.Attributes["status"].Value);
-                   
-                        Coordinate latitude = Coordinate.Parse(routeAirlinerNode.Attributes["latitude"].Value);
-                        Coordinate longitude = Coordinate.Parse(routeAirlinerNode.Attributes["longitude"].Value);
-
-                        fAirliner.addRoute(route);
-                   
-                        fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
-                   
-                        
-                        XmlElement flightNode = (XmlElement)routeAirlinerNode.SelectSingleNode("flight");
-                        if (flightNode != null)
-                        {
-
-                            string destination = flightNode.Attributes["destination"].Value;
-                            DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
-                            TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
-
-                            RouteTimeTableEntry rtte = timeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
-
-                            Flight currentFlight = new Flight(rtte);
-                            currentFlight.Classes.Clear();
-
-                            XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
-
-                            foreach (XmlElement flightClassNode in flightClassList)
-                            {
-                                AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                                int passengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
-
-                                currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), passengers));
-                            }
-                            fAirliner.CurrentFlight = currentFlight;
-                        }
-                    }
 
                     airline.addRoute(route);
                 }
 
+                XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");
+                foreach (XmlElement flightNode in flightNodes)
+                {
+
+                     FleetAirliner airliner = airline.Fleet.Find(a => a.Name == flightNode.Attributes["airliner"].Value); 
+                    Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
+                    string destination = flightNode.Attributes["destination"].Value;
+                    DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
+                    TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
+
+                    RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
+
+                    Flight currentFlight = new Flight(rtte);
+                    currentFlight.Classes.Clear();
+
+                    XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
+
+                    foreach (XmlElement flightClassNode in flightClassList)
+                    {
+                        AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
+                        int passengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+
+                        currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), passengers));
+                    }
+                    airliner.CurrentFlight = currentFlight;
+                }
+
+          
 
                 Airlines.AddAirline(airline);
 
@@ -580,7 +581,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("code", airline.Profile.IATACode);
                 airlineNode.SetAttribute("country", airline.Profile.Country.Uid);
                 airlineNode.SetAttribute("color", airline.Profile.Color);
-                airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\')+1));
+                airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\') + 1));
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
                 airlineNode.SetAttribute("money", string.Format("{0:0}", airline.Money));
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
@@ -589,7 +590,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 // chs, 2011-13-10 added for saving of passenger happiness
                 XmlElement airlineHappinessNode = xmlDoc.CreateElement("passengerhappiness");
-                airlineHappinessNode.SetAttribute("value", string.Format("{0:0}",PassengerHelpers.GetHappinessValue(airline).ToString()));
+                airlineHappinessNode.SetAttribute("value", string.Format("{0:0}", PassengerHelpers.GetHappinessValue(airline).ToString()));
 
                 airlineNode.AppendChild(airlineHappinessNode);
 
@@ -685,6 +686,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     fleetAirlinerNode.SetAttribute("name", airliner.Name);
                     fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IATACode);
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
+                    fleetAirlinerNode.SetAttribute("status", airliner.Status.ToString());
+                    fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
+                    fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());
 
                     XmlElement airlinerStatsNode = xmlDoc.CreateElement("stats");
                     foreach (StatisticsType type in StatisticsTypes.GetStatisticsTypes())
@@ -701,6 +705,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             airlinerStatsNode.AppendChild(airlinerStatNode);
                         }
                     }
+
+
+
+
+
 
                     fleetAirlinerNode.AppendChild(airlinerStatsNode);
 
@@ -742,55 +751,50 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         ttEntryNode.SetAttribute("flightcode", entry.Destination.FlightCode);
                         ttEntryNode.SetAttribute("day", entry.Day.ToString());
                         ttEntryNode.SetAttribute("time", entry.Time.ToString());
+                        ttEntryNode.SetAttribute("airliner", entry.Airliner != null ? entry.Airliner.Name : "-");
 
                         timetableNode.AppendChild(ttEntryNode);
                     }
 
                     routeNode.AppendChild(timetableNode);
-                    /*rettes
-                     if (route.Airliner != null)
-                     {
-                         XmlElement routeAirlinerNode = xmlDoc.CreateElement("routeairliner");
-
-                         routeAirlinerNode.SetAttribute("airliner", route.Airliner.Name);
-                         routeAirlinerNode.SetAttribute("status", route.Airliner.Status.ToString());
-                         routeAirlinerNode.SetAttribute("latitude", route.Airliner.CurrentPosition.Latitude.ToString());
-                         routeAirlinerNode.SetAttribute("longitude", route.Airliner.CurrentPosition.Longitude.ToString());
-
-                         if (route.Airliner.CurrentFlight != null)
-                         {
-                             XmlElement flightNode = xmlDoc.CreateElement("flight");
 
 
-                             flightNode.SetAttribute("destination", route.Airliner.CurrentFlight.Entry.Destination.FlightCode);
-                             flightNode.SetAttribute("day", route.Airliner.CurrentFlight.Entry.Day.ToString());
-                             flightNode.SetAttribute("time", route.Airliner.CurrentFlight.Entry.Time.ToString());
 
-
-                             XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
-                             foreach (FlightAirlinerClass aClass in route.Airliner.CurrentFlight.Classes)
-                             {
-                                 XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
-                                 flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
-                                 flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
-
-                                 flightClassesNode.AppendChild(flightClassNode);
-                             }
-                             flightNode.AppendChild(flightClassesNode);
-
-                             routeAirlinerNode.AppendChild(flightNode);
-
-                         }
-
-
-                         routeNode.AppendChild(routeAirlinerNode);
-                    
-                     }
-                     */
                     routesNode.AppendChild(routeNode);
                 }
                 airlineNode.AppendChild(routesNode);
 
+                XmlElement flightsNode = xmlDoc.CreateElement("flights");
+                foreach (FleetAirliner airliner in airline.Fleet)
+                {
+                    if (airliner.CurrentFlight != null)
+                    {
+                        XmlElement flightNode = xmlDoc.CreateElement("flight");
+
+                        flightNode.SetAttribute("airliner", airliner.Name);
+                        flightNode.SetAttribute("route", airliner.CurrentFlight.Entry.TimeTable.Route.Id);
+                        flightNode.SetAttribute("destination", airliner.CurrentFlight.Entry.Destination.FlightCode);
+                        flightNode.SetAttribute("day", airliner.CurrentFlight.Entry.Day.ToString());
+                        flightNode.SetAttribute("time", airliner.CurrentFlight.Entry.Time.ToString());
+
+
+                        XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
+                        foreach (FlightAirlinerClass aClass in airliner.CurrentFlight.Classes)
+                        {
+                            XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
+                            flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
+                            flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
+
+                            flightClassesNode.AppendChild(flightClassNode);
+                        }
+                        flightNode.AppendChild(flightClassesNode);
+
+                        flightsNode.AppendChild(flightNode);
+
+                    }
+                }
+
+                airlineNode.AppendChild(flightsNode);
 
 
                 airlinesNode.AppendChild(airlineNode);

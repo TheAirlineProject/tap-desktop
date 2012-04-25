@@ -28,7 +28,6 @@ namespace TheAirline.Model.AirlinerModel
         //public Route Route { get { return pRoute; } set { setRoute(value); } }
         public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
-        public Boolean IsOnTime { get; set; }   
         
         public FleetAirliner(PurchasedType purchased, Airline airline,Airliner airliner, string name, Airport homebase)
         {
@@ -38,7 +37,7 @@ namespace TheAirline.Model.AirlinerModel
             this.Homebase = homebase;
             this.Name = name;
             this.Statistics = new AirlinerStatistics(this);
-            this.IsOnTime = true;
+          
             this.Status = AirlinerStatus.Stopped;
 
             this.CurrentPosition = new Coordinates(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);
@@ -62,29 +61,7 @@ namespace TheAirline.Model.AirlinerModel
                 e.Airliner = null;
 
         }
-        /*
-        //sets the route
-        private void setRoute(Route value)
-        {
-            pRoute = value;
-
-            foreach (RouteTimeTableEntry e in this.Route.TimeTable.Entries)
-                e.Airliner = this;
-        }
-         * */
-        /*
-        //returns the next destination
-        public Airport getNextDestination()
-        {
-            return this.CurrentFlight.Entry.Destination.Airport == this.Route.Destination1 ? this.Route.Destination2 : this.Route.Destination1;
-        }
-        //returns the departure location
-        public Airport getDepartureAirport()
-        {
-            return getNextDestination();
-
-        }
-         * */
+       
     }
   
 }
