@@ -287,6 +287,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
                         entry.Airliner = airliner;
 
+                        if (airliner != null && !airliner.Routes.Contains(route))
+                            airliner.Routes.Add(route);
+
                         timeTable.addEntry(entry);
                     }
                     route.TimeTable = timeTable;
