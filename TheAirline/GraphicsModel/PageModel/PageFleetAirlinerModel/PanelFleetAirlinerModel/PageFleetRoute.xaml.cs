@@ -210,8 +210,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 // chs, 2011-10-10 added missing conversion
                 lbRouteInfo.Items.Add(new QuickInfoValue("Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
-                //showEntries
-
                 foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
                 {
                     RouteAirlinerClass rClass = this.Airliner.Routes[0].getRouteAirlinerClass(aClass.Type);
@@ -249,7 +247,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnTimeTable.Height = Double.NaN;
             btnTimeTable.Width = Double.NaN;
             btnTimeTable.Content = "Timetable";
-            btnTimeTable.Visibility = Visibility.Collapsed;//this.Airliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
+            btnTimeTable.Visibility = Visibility.Visible;// Visibility.Collapsed;//this.Airliner.Airliner.Airline.IsHuman ? Visibility.Collapsed : Visibility.Visible;
             btnTimeTable.Click += new RoutedEventHandler(btnTimeTable_Click);
             btnTimeTable.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnTimeTable.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -280,7 +278,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            PopUpTimeTable.ShowPopUp(this.Airliner.Airliner.Airline, this.Airliner.Routes[0]);
+            PopUpAirlinerRoutes.ShowPopUp(this.Airliner);
         }
         
     }

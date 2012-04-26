@@ -81,9 +81,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             WrapPanel panelHours = new WrapPanel();
             scroller.Content = panelHours;
 
-          //virker det
-           // Grid? roundedcorners på item
-
+      
             ListBox lbHours = new ListBox();
             lbHours.ItemTemplate = this.Resources["HourItem"] as DataTemplate;
             lbHours.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
