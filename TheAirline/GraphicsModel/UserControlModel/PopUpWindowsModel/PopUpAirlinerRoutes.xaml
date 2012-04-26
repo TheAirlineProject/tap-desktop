@@ -4,9 +4,10 @@
         xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
         Title="PopUpAirlinerRoutes" Height="300" Width="300">
     <Window.Resources>
-        <SolidColorBrush x:Key="FlightItemColor" Opacity="0.2" Color="Red"></SolidColorBrush>
+        <window:RouteEntryEndTimeConverter x:Key="routeEntryEndTimeConverter"></window:RouteEntryEndTimeConverter>
+        <SolidColorBrush x:Key="FlightItemColor" Opacity="0.2" Color="DarkGreen"></SolidColorBrush>
         <DataTemplate x:Key="FlightItem">
-                 <TextBlock VerticalAlignment="Center" Width="{Binding Key}" Height="20" Background="{DynamicResource FlightItemColor}" HorizontalAlignment="Center" FontWeight="Bold">
+                 <TextBlock TextAlignment="Center" Width="{Binding Key}" Height="20" Background="{DynamicResource FlightItemColor}" VerticalAlignment="Bottom" FontWeight="Bold">
                      <TextBlock.Text>
         <MultiBinding
             StringFormat="{}{0}-{1}"
@@ -15,7 +16,21 @@
             <Binding Path="Value.Destination.Airport.Profile.IATACode" />
          </MultiBinding>
     </TextBlock.Text>
-
+  <TextBlock.ToolTip>
+<Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
+  <WrapPanel>
+    <StackPanel>
+        <TextBlock FontWeight="Bold" Text="{Binding Value.DepartureAirport.Profile.IATACode}"></TextBlock>
+        <TextBlock Text="{Binding Value.Time,StringFormat=hh\\:mm}"></TextBlock>
+    </StackPanel>
+      <TextBlock Text="{Binding Value.Destination.FlightCode}" FontWeight="Bold" Margin="5 0 5 0" VerticalAlignment="Center"></TextBlock>
+      <StackPanel>
+             <TextBlock FontWeight="Bold" Text="{Binding Value.Destination.Airport.Profile.IATACode}"></TextBlock>
+               <TextBlock Text="{Binding Value,Converter={StaticResource routeEntryEndTimeConverter},StringFormat=hh\\:mm}"></TextBlock>
+      </StackPanel>
+  </WrapPanel> 
+</Border>    
+</TextBlock.ToolTip>
                 </TextBlock>
       
 
