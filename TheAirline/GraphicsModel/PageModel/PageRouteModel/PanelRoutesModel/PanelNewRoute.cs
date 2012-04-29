@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
     public class PanelNewRoute : StackPanel
     {
         private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute;
-        private ComboBox cbDestination1, cbDestination2, cbFlightCode;//, cbAirliner;
+        private ComboBox cbDestination1, cbDestination2, cbFlightCode;
         private Button btnSave;
         private PageRoutes ParentPage;
         private double MaxDistance;
@@ -119,28 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
             }
-/*
-            WrapPanel panelAssigned = new WrapPanel();
 
-
-            cbAirliner = new ComboBox();
-            //cbAirliner.Background = Brushes.Transparent;
-            cbAirliner.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbAirliner.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbAirliner.DisplayMemberPath = "Name";
-            cbAirliner.SelectedValuePath = "Name";
-            cbAirliner.Width = 200;
-            cbAirliner.Visibility = System.Windows.Visibility.Collapsed;
-
-            panelAssigned.Children.Add(cbAirliner);
-
-
-            txtNoAssignments = UICreator.CreateTextBlock("No airliner to assign");
-            panelAssigned.Children.Add(txtNoAssignments);
-
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Assign airliner", panelAssigned));
-            */
             txtFlightCode = new TextBlock();
 
             cbFlightCode = new ComboBox();
@@ -198,31 +177,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             txtFlightCode.Text = GameObject.GetInstance().HumanAirline.getFlightCodes()[index];
         }
-        /*
-        //creates the list of possible airliners
-        private void createAirlinersList()
-        {
-            Airport airport1 = (Airport)cbDestination1.SelectedItem;
-            Airport airport2 = (Airport)cbDestination2.SelectedItem;
-
-            if (airport1 != null && airport2 != null)
-            {
-                double distance = MathHelpers.GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
-
-                int minCrews = getMinCrews();//Math.Max(((RouteFacility)cbFood.SelectedItem).MinimumCabinCrew, ((RouteFacility)cbDrinks.SelectedItem).MinimumCabinCrew);
-
-                cbAirliner.Items.Clear();
-
-                foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
-                    if ((!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) && !airliner.HasRoute && airliner.Airliner.Type.MinRunwaylength<=airport1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwaylength<=airport2.getMaxRunwayLength())
-                        cbAirliner.Items.Add(airliner);
-
-                cbAirliner.Visibility = cbAirliner.Items.Count == 0 ? Visibility.Collapsed : System.Windows.Visibility.Visible;
-                txtNoAssignments.Visibility = cbAirliner.Visibility == System.Windows.Visibility.Collapsed ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-            }
-
-        }
-         * */
+    
          
         //returns the min crews
         private int getMinCrews()
@@ -281,16 +236,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 this.Visibility = System.Windows.Visibility.Collapsed;
 
-                /*
-                if (cbAirliner.SelectedItem != null)
-                {
-                    FleetAirliner airliner = (FleetAirliner)cbAirliner.SelectedItem;
-                    //RouteAirliner rAirliner = new RouteAirliner(airliner, route);
-                    
-                    airliner.addRoute(route);
-                 
-                }
-                 * */
                 route.LastUpdated = GameObject.GetInstance().GameTime; 
             }
             else
@@ -339,7 +284,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 txtInvalidRoute.Visibility = isRouteInCorrectArea() ? Visibility.Collapsed : Visibility.Visible;
 
-                //createAirlinersList();
             }
         }
     }

@@ -110,6 +110,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnAssignToAll.Content = "Assign to All";
             btnAssignToAll.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnAssignToAll.Click += new RoutedEventHandler(btnAssignToAll_Click);
+            btnAssignToAll.IsEnabled = cbAssignToAll.Items.Count > 0;
             panelAssignToAll.Children.Add(btnAssignToAll);
 
             mainPanel.Children.Add(createButtonsPanel());
@@ -132,7 +133,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
+ 
             buttonsPanel.Children.Add(btnOk);
 
             Button btnCancel = new Button();
@@ -163,7 +164,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return buttonsPanel;
 
         }
-
+        //returns the list of airliners avaliable for assignment to the route
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             lbEntriesDest1.Items.Clear();
