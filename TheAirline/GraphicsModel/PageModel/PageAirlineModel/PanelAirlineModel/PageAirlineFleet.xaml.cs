@@ -209,17 +209,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lvRouteFleet.Background = Brushes.Transparent;
             lvRouteFleet.SetResourceReference(ListView.ItemContainerStyleProperty, "ListViewItemStyle");
             lvRouteFleet.MaxHeight = 400;
-            //lvRouteFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
             lvRouteFleet.BorderThickness = new Thickness(0);
             lvRouteFleet.View = this.Resources["FleetRouteViewItem"] as GridView;
 
             panelDetailed.Children.Add(lvRouteFleet);
 
-            //lvFleet.ItemsSource = Airports.GetAirports();
+            List<FleetAirliner> fAirliners = this.Airline.Fleet;
 
-            List<FleetAirliner> fAirliners = this.Airline.Fleet;//.FindAll((delegate(FleetAirliner a) { return a.HasRoute; }));
-
-            lvRouteFleet.ItemsSource = this.FleetDelivered;//fAirliners;
+            lvRouteFleet.ItemsSource = this.FleetDelivered;
 
             return panelDetailed;
         }

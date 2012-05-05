@@ -26,8 +26,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public DateTime LastUpdated { get; set; }
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
         public Weather.Season Season { get; set; }
+        public string FlightCode1 { get; set; }
+        public string FlightCode2 { get; set; }
         public Route(string id, Airport destination1, Airport destination2, double farePrice,string flightCode1, string flightCode2)
         {
+            this.FlightCode1 = flightCode1;
+            this.FlightCode2 = flightCode2;
+
             this.Id = id;
             this.Destination1 = destination1;
             this.Destination2 = destination2;
@@ -139,7 +144,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
            
         
-            return string.Format("{1}/{0}", this.TimeTable.getRouteEntryDestinations()[0].FlightCode, this.TimeTable.getRouteEntryDestinations()[1].FlightCode);
+            return string.Format("{1}/{0}", this.FlightCode1,this.FlightCode2);
            
         }
         //returns invoices amount for a specific type for a route

@@ -74,6 +74,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             panelMain.Children.Add(grdMain);
 
+            /*
             if (this.Airline.IsHuman && !(route.HasAirliner && route.getAirliners()[0].Status != FleetAirliner.AirlinerStatus.Stopped))
             {
                 panelMain.Children.Add(createNewEntryPanel());
@@ -81,6 +82,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 panelMain.Children.Add(createButtonsPanel());
             }
             else
+             * */
                 panelMain.Children.Add(createCPUButtonsPanel());
             
             this.Content = panelMain;
@@ -343,7 +345,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(this.Route.Destination1.Profile.Coordinates, this.Route.Destination2.Profile.Coordinates, maxSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
           
-
             Boolean isValid = true;
 
             List<RouteTimeTableEntry> entries = this.TimeTable.Entries;

@@ -595,13 +595,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
 
-            DateTime dt = MathHelpers.ConvertEntryToDate(entry);
-
-            if (dt < GameObject.GetInstance().GameTime.AddHours(-1))
-            {
-                string s = dt.ToShortDateString();
-            }
-
             return MathHelpers.ConvertEntryToDate(entry);
 
         }

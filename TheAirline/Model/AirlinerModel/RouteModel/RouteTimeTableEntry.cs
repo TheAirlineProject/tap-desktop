@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -24,7 +25,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Time = time;
             this.TimeTable = timeTable;
             this.Destination = destination;
-        }
+
+         }
         //returns the departure airport
         public Airport getDepartureAirport()
         {
@@ -48,7 +50,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             return new TimeSpan(24 * daysBetween, 0, 0).Add(time);
         }
-
+        //returns the estimated flight time for the entry
+        public TimeSpan getFlightTime()
+        {
+            if (this.Airliner != null)
+                return MathHelpers.GetFlightTime(this.Destination.Airport.Profile.Coordinates, this.DepartureAirport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed);
+            return TimeSpan.MinValue;
+        }
     }
     
 }

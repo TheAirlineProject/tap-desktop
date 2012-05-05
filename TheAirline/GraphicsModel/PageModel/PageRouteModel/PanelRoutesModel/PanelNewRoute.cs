@@ -226,6 +226,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
         
                 }
+                route.TimeTable.Entries.Clear();
 
                 airline.addRoute(route);
 

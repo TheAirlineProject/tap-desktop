@@ -21,6 +21,7 @@ using TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 {
@@ -58,7 +59,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             routesPanel.Children.Add(createRoutesPanel());
             routesPanel.Children.Add(createButtonsPanel());
-
+            routesPanel.Children.Add(createFleetPanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -76,6 +77,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             base.setHeaderContent(this.Title);
 
             showPage(this);
+        }
+        //creates the fleet panel
+        private StackPanel createFleetPanel()
+        {
+            StackPanel panelFleet = new StackPanel();
+            panelFleet.Margin = new Thickness(0, 10, 0, 0);
+
+            ContentControl txtFleetHeader = new ContentControl();
+            txtFleetHeader.ContentTemplate = this.Resources["FleetHeader"] as DataTemplate;
+            txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            panelFleet.Children.Add(txtFleetHeader);
+            
+            ListBox lbFleet = new ListBox();
+            lbFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            lbFleet.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbFleet.ItemTemplate = this.Resources["FleetItem"] as DataTemplate;
+            lbFleet.ItemsSource = GameObject.GetInstance().HumanAirline.Routes;
+
+            panelFleet.Children.Add(lbFleet);
+
+            lbFleet.ItemsSource = GameObject.GetInstance().HumanAirline.DeliveredFleet;
+
+
+
+            return panelFleet;
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
@@ -124,12 +150,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         //shows the routes for the human airline
         public void showRoutes()
         {
-            /*
-            lbRoutes.Items.Clear();
-
-            foreach (Route route in GameObject.GetInstance().HumanAirline.Routes)
-               lbRoutes.Items.Add(route);
-            */
+           
             ICollectionView dataView =
             CollectionViewSource.GetDefaultView(lbRoutes.ItemsSource);
             dataView.Refresh();
@@ -140,7 +161,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             StackPanel routesPanel = new StackPanel();
 
             lbRoutes = new ListBox();
-            lbRoutes.MaxHeight = GraphicsHelpers.GetContentHeight() - 75;
+            lbRoutes.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
             lbRoutes.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRoutes.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
             lbRoutes.ItemsSource = GameObject.GetInstance().HumanAirline.Routes;
@@ -196,11 +217,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         {
             Route route = (Route)((Button)sender).Tag;
 
-             panelSideMenu.Children.Clear();
+            panelSideMenu.Children.Clear();
 
-            //panelSideMenu.Children.Add(new PanelRoute(this, route));
+            panelSideMenu.Children.Add(new PanelRoute(this, route));
 
-            PopUpRouteAirliners.ShowPopUp(route);
+            //PopUpRouteAirliners.ShowPopUp(route);
 
 
 
@@ -221,6 +242,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             {
                 route.TimeTable = timeTable;
             }
+        }
+
+        private void lnkAirline_Click(object sender, RoutedEventArgs e)
+        {
+            FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
+
+            PopUpAirlinerRoutes.ShowPopUp(airliner);
         }
     }
 }

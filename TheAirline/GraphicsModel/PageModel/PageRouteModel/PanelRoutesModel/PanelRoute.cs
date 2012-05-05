@@ -140,8 +140,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             
             lbRouteInfo.Items.Add(new QuickInfoValue("Assigned airliner", panelAssigned));
             */
-            lbRouteInfo.Items.Add(new QuickInfoValue("Homebound flight code",UICreator.CreateTextBlock(this.Route.TimeTable.getRouteEntryDestinations()[1].FlightCode)));
-            lbRouteInfo.Items.Add(new QuickInfoValue("Outbound flight code", UICreator.CreateTextBlock(this.Route.TimeTable.getRouteEntryDestinations()[0].FlightCode)));
+            lbRouteInfo.Items.Add(new QuickInfoValue("Homebound flight code",UICreator.CreateTextBlock(this.Route.FlightCode1)));
+            lbRouteInfo.Items.Add(new QuickInfoValue("Outbound flight code", UICreator.CreateTextBlock(this.Route.FlightCode2)));
 
 
             WrapPanel buttonsPanel = new WrapPanel();

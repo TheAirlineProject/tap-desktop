@@ -202,7 +202,7 @@ namespace TheAirline.Model.GeneralModel
             int currentDay = (int)GameObject.GetInstance().GameTime.DayOfWeek;
             if (GameObject.GetInstance().GameTime.DayOfWeek > entry.Day)
                 currentDay -= 7;
-
+            
             int daysBetween = Math.Abs((int)entry.Day - currentDay);
 
             if (daysBetween == 0 && new TimeSpan(GameObject.GetInstance().GameTime.Hour,GameObject.GetInstance().GameTime.Minute,0) > new TimeSpan(entry.Time.Hours,entry.Time.Minutes,0).Add(new TimeSpan(1,0,0)))

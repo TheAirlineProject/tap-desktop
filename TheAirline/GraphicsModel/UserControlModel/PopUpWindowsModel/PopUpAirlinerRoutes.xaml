@@ -6,8 +6,9 @@
     <Window.Resources>
         <window:RouteEntryEndTimeConverter x:Key="routeEntryEndTimeConverter"></window:RouteEntryEndTimeConverter>
         <SolidColorBrush x:Key="FlightItemColor" Opacity="0.2" Color="DarkGreen"></SolidColorBrush>
+     
         <DataTemplate x:Key="FlightItem">
-                 <TextBlock TextAlignment="Center" Width="{Binding Key}" Height="20" Background="{DynamicResource FlightItemColor}" VerticalAlignment="Bottom" FontWeight="Bold">
+                 <TextBlock TextAlignment="Center" Width="{Binding Key}" Height="20" Background="{DynamicResource FlightItemColor}" Tag="{Binding Value}" MouseDown="txtFlightEntry_MouseDown" VerticalAlignment="Bottom" FontWeight="Bold">
                      <TextBlock.Text>
         <MultiBinding
             StringFormat="{}{0}-{1}"
@@ -35,6 +36,7 @@
       
 
         </DataTemplate>
+     
     </Window.Resources>
     <Grid>
         

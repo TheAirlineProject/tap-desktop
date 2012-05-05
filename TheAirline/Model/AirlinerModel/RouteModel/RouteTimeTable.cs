@@ -50,11 +50,26 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
 
         }
+        //adds entries for a specific destination and time for each day of the week assigned to an airliner
+        public void addDailyEntries(RouteEntryDestination destination, TimeSpan time, FleetAirliner airliner)
+        {
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                RouteTimeTableEntry entry = new RouteTimeTableEntry(this, day, time, destination);
+                entry.Airliner = airliner;
+
+                this.Entries.Add(entry);
+            }
+        }
         //adds entries for a specific destination and time for each day of the week
         public void addDailyEntries(RouteEntryDestination destination, TimeSpan time)
         {
-            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-                this.Entries.Add(new RouteTimeTableEntry(this, day, time, destination));
+            addDailyEntries(destination, time, null);
+        }
+        //returns all entries for a specific airliner
+        public List<RouteTimeTableEntry> getEntries(FleetAirliner airliner)
+        {
+            return this.Entries.FindAll(e => e.Airliner == airliner);
         }
         //returns all entries for a specific destination
         public List<RouteTimeTableEntry> getEntries(Airport destination)
@@ -92,7 +107,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 counter++;
             }
 
-            return null;
+            RouteTimeTableEntry entry = this.Entries.Find(e => e.Airliner == airliner);
+            return entry;
 
         }
     
@@ -158,7 +174,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return null;
 
         }
-        //returns the next entry after a specific specific entry
+        //returns the next entry after a specific entry
         public RouteTimeTableEntry getNextEntry(RouteTimeTableEntry entry)
         {
 
@@ -174,7 +190,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 foreach (RouteTimeTableEntry dEntry in entries)
                 {
-                    if (!((dEntry.Day == entry.Day && dEntry.Time <= entry.Time)) && dEntry.Destination != entry.Destination)
+                    if (!((dEntry.Day == entry.Day && dEntry.Time <= entry.Time)))// && dEntry.Destination != entry.Destination)
                         return dEntry;
                 }
                 counter++;
@@ -186,7 +202,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             }
 
-            return null;
+            return entry;
 
         }
 

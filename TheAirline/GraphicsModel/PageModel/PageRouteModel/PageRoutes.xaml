@@ -10,6 +10,22 @@
 	Title="PageRoute">
     <Page.Resources>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
+        <DataTemplate x:Key="FleetHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Type" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FleetItem">
+            <WrapPanel>
+               <TextBlock VerticalAlignment="Bottom" Width="100">
+                    <Hyperlink Tag="{Binding}" Click="lnkAirline_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+          </WrapPanel>
+            </DataTemplate>
         <DataTemplate x:Key="RoutesHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Width="100" FontWeight="Bold">
@@ -48,7 +64,7 @@
                         <Hyperlink Tag="{Binding Destination1}" Click="LnkAirport_Click">
                             <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportIATACountryItem}" Content="{Binding Destination1}">
                             </ContentControl>
-                            <!-- <Run Text="{Binding Route.Destination1.Profile.Name}"></Run>-->
+                        
                         </Hyperlink>
                         </TextBlock>
                         <TextBlock VerticalAlignment="Bottom" Text="&lt;->" Margin="5 0 5 0" FontWeight="Bold"></TextBlock>
