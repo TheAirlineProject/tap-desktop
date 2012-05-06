@@ -473,12 +473,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (!this.Entries.ContainsKey(route))
                 this.Entries.Add(route, new List<RouteTimeTableEntry>());
 
+            string flightCode;
+
+            if (route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner) != null)
+                flightCode = route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner).Destination.FlightCode;
+            else if (this.Entries[route].Find(entry => entry.Destination.Airport == airport) !=null)
+                flightCode = this.Entries[route].Find(entry => entry.Destination.Airport == airport).Destination.FlightCode;
+            else
+                flightCode = this.Airliner.Airliner.Airline.getNextFlightCode();
             if (day == "Daily")
             {
-
                 foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
                 {
-                    RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, dayOfWeek, time, new RouteEntryDestination(airport, "FLAA"));
+                    RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, dayOfWeek, time, new RouteEntryDestination(airport, flightCode));
                     entry.Airliner = this.Airliner;
                     if (isRouteEntryValid(entry))
                         this.Entries[route].Add(entry);
@@ -487,7 +494,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
             else
             {
-                RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, (DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination(airport, "FLAA"));
+                RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, (DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination(airport,flightCode));
                 entry.Airliner = this.Airliner;
                 if (isRouteEntryValid(entry))
                     this.Entries[route].Add(entry);

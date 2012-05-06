@@ -23,7 +23,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
        
         private Route Route;
         private PageRoutes ParentPage;
-        //private ComboBox cbAirliner;
         private ListBox lbRouteFinances;
         private Dictionary<AirlinerClass.ClassType, RouteAirlinerClass> Classes;
         public PanelRoute(PageRoutes parent, Route route)
@@ -68,8 +67,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 btnEdit.Background = Brushes.Transparent;
                 btnEdit.Tag = type;
                 btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
-                //btnEdit.Height = 16;
-                //btnEdit.Width = 16;
+               
 
                 Image imgEdit = new Image();
                 imgEdit.Width = 16;
@@ -110,39 +108,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
             }
-            /*
-            WrapPanel panelAssigned = new WrapPanel();
-
-            cbAirliner = new ComboBox();
-            cbAirliner.Background = Brushes.Transparent;
-            cbAirliner.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbAirliner.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbAirliner.DisplayMemberPath = "Name";
-            cbAirliner.SelectedValuePath = "Name";
-            cbAirliner.Width = 200;
-
-            panelAssigned.Children.Add(cbAirliner);
-
-            int minCrews = getMinCrews();
-
-            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
-                if (airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination1.getMaxRunwayLength() && airliner.Airliner.Type.MinRunwaylength <= this.Route.Destination2.getMaxRunwayLength() &&(!airliner.HasRoute && airliner.Airliner.Type.Range > distance && airliner.Airliner.Type.CabinCrew >= minCrews) || (airliner.HasRoute && (this.Route.Airliner != null && this.Route.Airliner == airliner)))
-                    cbAirliner.Items.Add(airliner);
-
-            if (this.Route.Airliner != null)
-                cbAirliner.SelectedItem = this.Route.Airliner;
-            
-            TextBlock txtAssigned = UICreator.CreateTextBlock(this.Route.Airliner == null ? "No airliner to assign" : this.Route.Airliner.Name);
-            panelAssigned.Children.Add(txtAssigned);
-
-            cbAirliner.Visibility = this.Route.Airliner != null && this.Route.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped || cbAirliner.Items.Count==0 ? Visibility.Collapsed : System.Windows.Visibility.Visible;
-            txtAssigned.Visibility = cbAirliner.Visibility == System.Windows.Visibility.Collapsed ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-            
-            lbRouteInfo.Items.Add(new QuickInfoValue("Assigned airliner", panelAssigned));
-            */
+          /*
             lbRouteInfo.Items.Add(new QuickInfoValue("Homebound flight code",UICreator.CreateTextBlock(this.Route.FlightCode1)));
             lbRouteInfo.Items.Add(new QuickInfoValue("Outbound flight code", UICreator.CreateTextBlock(this.Route.FlightCode2)));
-
+            */
 
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);

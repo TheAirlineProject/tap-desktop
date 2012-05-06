@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
     public class PanelNewRoute : StackPanel
     {
         private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute;
-        private ComboBox cbDestination1, cbDestination2, cbFlightCode;
+        private ComboBox cbDestination1, cbDestination2;//, cbFlightCode;
         private Button btnSave;
         private PageRoutes ParentPage;
         private double MaxDistance;
@@ -122,6 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             txtFlightCode = new TextBlock();
 
+            /*
             cbFlightCode = new ComboBox();
             cbFlightCode.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbFlightCode.Width = 100;
@@ -134,7 +135,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             lbRouteInfo.Items.Add(new QuickInfoValue("Homebound flight code", cbFlightCode));
             lbRouteInfo.Items.Add(new QuickInfoValue("Outbound flight code", txtFlightCode));
-
+            */
+              
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSave.Height = Double.NaN;
@@ -170,14 +172,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Classes[type].Seating = aClass.Seating;
             }
         }
-
+        /*
         private void cbFlightCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index = cbFlightCode.SelectedIndex * 2 + 1;
 
             txtFlightCode.Text = GameObject.GetInstance().HumanAirline.getFlightCodes()[index];
         }
-    
+    */
          
         //returns the min crews
         private int getMinCrews()
@@ -215,7 +217,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
                 Guid id = Guid.NewGuid();
-                Route route = new Route(id.ToString(),dest1, dest2, 0, cbFlightCode.SelectedItem.ToString(), txtFlightCode.Text);
+                Route route = new Route(id.ToString(),dest1, dest2, 0, "", "");
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
