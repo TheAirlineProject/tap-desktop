@@ -15,6 +15,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -302,7 +303,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             double dist = MathHelpers.GetDistance(entry.DepartureAirport.Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates);
 
             if (this.Airliner.Airliner.Type.Range < dist)
+            {
+                WPFMessageBox.Show("Not matching", "The plane type doesn't match the distance for the route", WPFMessageBoxButtons.Ok);
                 return false;
+            }
 
             TimeSpan flightTime = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
 
@@ -328,7 +332,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     eEndTime = new TimeSpan(0, endTime.Hours, endTime.Minutes, endTime.Seconds);
 
                 if ((eStartTime >= startTime && endTime >= eStartTime) || (eEndTime >= startTime && endTime >= eEndTime) || (endTime >= eStartTime && eEndTime >= endTime) || (startTime >= eStartTime && eEndTime >= startTime))
+                {
+                    WPFMessageBox.Show("Not matching", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
                     return false;
+                }
             }
             double minutesPerWeek = 7 * 24*60;
 
@@ -350,11 +357,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                         
                 double timeToNext = currentDate.Subtract(nextDate).TotalMinutes > 0 ? minutesPerWeek - currentDate.Subtract(nextDate).TotalMinutes : Math.Abs(currentDate.Subtract(nextDate).TotalMinutes);
                 double timeFromPrev = prevDate.Subtract(currentDate).TotalMinutes > 0 ? minutesPerWeek - prevDate.Subtract(currentDate).TotalMinutes : Math.Abs(prevDate.Subtract(currentDate).TotalMinutes);
-    
-                if (timeFromPrev> previousEntry.getFlightTime().TotalMinutes + flightTimePrevious.TotalMinutes && timeToNext>entry.getFlightTime().TotalMinutes + flightTimeNext.TotalMinutes) 
+
+                if (timeFromPrev > previousEntry.getFlightTime().TotalMinutes + flightTimePrevious.TotalMinutes && timeToNext > entry.getFlightTime().TotalMinutes + flightTimeNext.TotalMinutes)
                     return true;
                 else
+                {
+                    WPFMessageBox.Show("Not matching", "The plane can't reach the destination from this entry", WPFMessageBoxButtons.Ok);
+
                     return false;
+                }
             }
             else
                 return true;
