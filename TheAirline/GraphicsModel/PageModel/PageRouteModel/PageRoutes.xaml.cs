@@ -248,7 +248,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         {
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
 
-            PopUpAirlinerRoutes.ShowPopUp(airliner);
+            PopUpAirlinerRoutes.ShowPopUp(airliner,true);
         }
     }
 }

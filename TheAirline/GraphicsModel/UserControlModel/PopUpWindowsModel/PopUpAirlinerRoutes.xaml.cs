@@ -29,14 +29,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private ListBox lbFlights;
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
-        public static object ShowPopUp(FleetAirliner airliner)
+        public static object ShowPopUp(FleetAirliner airliner,Boolean editable)
         {
-            PopUpWindow window = new PopUpAirlinerRoutes(airliner);
+            PopUpWindow window = new PopUpAirlinerRoutes(airliner,editable);
             window.ShowDialog();
 
             return window.Selected;
         }
-        public PopUpAirlinerRoutes(FleetAirliner airliner)
+        public PopUpAirlinerRoutes(FleetAirliner airliner, Boolean editable)
         {
             this.Entries = new Dictionary<Route, List<RouteTimeTableEntry>>();
             this.EntriesToDelete = new Dictionary<Route, List<RouteTimeTableEntry>>();
@@ -49,7 +49,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 1200;
 
-            this.Height = this.Airliner.Airliner.Airline.IsHuman ? 325 : 250;
+            this.Height = editable ? 325 : 250;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -63,7 +63,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             mainPanel.Children.Add(lbFlights);
 
-            if (this.Airliner.Airliner.Airline.IsHuman)
+            if (editable)
             {
                 mainPanel.Children.Add(createNewEntryPanel());
                 mainPanel.Children.Add(createButtonsPanel());

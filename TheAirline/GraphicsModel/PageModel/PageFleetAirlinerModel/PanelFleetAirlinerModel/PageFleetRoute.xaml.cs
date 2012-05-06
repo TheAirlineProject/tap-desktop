@@ -278,7 +278,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnTimeTable_Click(object sender, RoutedEventArgs e)
         {
-            PopUpAirlinerRoutes.ShowPopUp(this.Airliner);
+            PopUpAirlinerRoutes.ShowPopUp(this.Airliner,false);
         }
         
     }
