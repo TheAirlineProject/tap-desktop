@@ -16,7 +16,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public RouteTimeTableEntry Entry { get; set; }
         public List<FlightAirlinerClass> Classes { get; set; }
         public FleetAirliner Airliner { get; set; }
-        public Boolean IsOnTime { get; set; }   
+        public Boolean IsOnTime { get; set; }
+        public DateTime FlightTime { get; set; }
         public Flight(RouteTimeTableEntry entry)
         {
 
@@ -25,6 +26,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             this.Airliner = this.Entry.Airliner;
             this.IsOnTime = true;
+
+            this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
 
         }
         //returns the expected time of landing

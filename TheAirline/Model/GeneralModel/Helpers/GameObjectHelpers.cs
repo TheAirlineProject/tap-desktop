@@ -591,9 +591,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-            RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
+            return airliner.CurrentFlight.FlightTime;
+            //RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
 
-            return MathHelpers.ConvertEntryToDate(entry);
+            //return MathHelpers.ConvertEntryToDate(entry);
 
         }
         //returns the passengers for an airliner
