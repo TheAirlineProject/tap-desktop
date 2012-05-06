@@ -92,7 +92,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel panelRoutes = new StackPanel();
             panelRoutes.Margin = new Thickness(5, 0, 0, 0);
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes)
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates)))
             {
                 Border brdRoute = new Border();
                 brdRoute.BorderBrush = Brushes.Black;
@@ -169,9 +169,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             cbRoute.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
             cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbRoute_SelectionChanged);
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes)
+        
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r=>this.Airliner.Airliner.Type.Range>MathHelpers.GetDistance(r.Destination1.Profile.Coordinates,r.Destination2.Profile.Coordinates)))
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
@@ -338,13 +338,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //checks if an entry is valid
         private Boolean isRouteEntryValid(RouteTimeTableEntry entry)
         {
-            double dist = MathHelpers.GetDistance(entry.DepartureAirport.Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates);
-
-            if (this.Airliner.Airliner.Type.Range < dist)
-            {
-                WPFMessageBox.Show("Not matching", "The plane type doesn't match the distance for the route", WPFMessageBoxButtons.Ok);
-                return false;
-            }
+           
 
             TimeSpan flightTime = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
 
