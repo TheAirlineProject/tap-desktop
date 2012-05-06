@@ -59,13 +59,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
 
+            Grid grdFlights = UICreator.CreateGrid(2);
+            grdFlights.ColumnDefinitions[1].Width = new GridLength(200);
+            mainPanel.Children.Add(grdFlights);
+
             lbFlights = new ListBox();
             lbFlights.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFlights.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             lbFlights.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            mainPanel.Children.Add(lbFlights);
+            Grid.SetColumn(lbFlights, 0);
+            grdFlights.Children.Add(lbFlights);
 
+            StackPanel panelRoutes = createRoutesPanel();
+         
+            Grid.SetColumn(panelRoutes, 1);
+            grdFlights.Children.Add(panelRoutes);
+ 
             if (this.IsEditable)
             {
                 mainPanel.Children.Add(createNewEntryPanel());
@@ -75,6 +85,32 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Content = mainPanel;
 
             showFlights();
+        }
+        //creates the panel for the routes
+        private StackPanel createRoutesPanel()
+        {
+            StackPanel panelRoutes = new StackPanel();
+            panelRoutes.Margin = new Thickness(5, 0, 0, 0);
+
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes)
+            {
+                Border brdRoute = new Border();
+                brdRoute.BorderBrush = Brushes.Black;
+                brdRoute.BorderThickness = new Thickness(1);
+                brdRoute.Margin = new Thickness(0, 0, 0, 2);
+                brdRoute.Width = 100;
+                brdRoute.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+                ContentControl ccRoute = new ContentControl();
+                ccRoute.ContentTemplate = this.Resources["RouteItem"] as DataTemplate;
+                ccRoute.Content = route;
+
+                brdRoute.Child = ccRoute;
+
+                panelRoutes.Children.Add(brdRoute);
+            }
+            return panelRoutes;
+
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
@@ -573,7 +609,31 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
 
     }
+    //the converter for getting the color for a route
+    public class RouteColorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Route route = (Route)value;
+   
+            Guid g2 = new Guid(route.Id);
 
+            byte[] bytes = g2.ToByteArray();
+
+            byte red = bytes[0];
+            byte green = bytes[1];
+            byte blue = bytes[2];
+
+            SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(red, green, blue));
+            brush.Opacity = 0.2;
+            return brush;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            return value;
+        }
+    }
     //the converter for getting the end time for a route entry
     public class RouteEntryEndTimeConverter : IValueConverter
     {

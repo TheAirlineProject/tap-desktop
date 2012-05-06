@@ -5,10 +5,22 @@
         Title="PopUpAirlinerRoutes" Height="300" Width="300">
     <Window.Resources>
         <window:RouteEntryEndTimeConverter x:Key="routeEntryEndTimeConverter"></window:RouteEntryEndTimeConverter>
-        <SolidColorBrush x:Key="FlightItemColor" Opacity="0.2" Color="DarkGreen"></SolidColorBrush>
-     
+        <window:RouteColorConverter x:Key="routeColorConverter"></window:RouteColorConverter>
+ 
+        <DataTemplate x:Key="RouteItem">
+            <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Width="100" Height="20" Background="{Binding Converter={StaticResource routeColorConverter}}" VerticalAlignment="Bottom" FontWeight="Bold">
+                     <TextBlock.Text>
+        <MultiBinding
+            StringFormat="{}{0}-{1}"
+            >
+             <Binding Path="Destination1.Profile.IATACode" />
+            <Binding Path="Destination2.Profile.IATACode" />
+         </MultiBinding>
+    </TextBlock.Text>
+            </TextBlock>
+        </DataTemplate>
         <DataTemplate x:Key="FlightItem">
-                 <TextBlock TextAlignment="Center" Width="{Binding Key}" Height="20" Background="{DynamicResource FlightItemColor}" Tag="{Binding Value}" MouseDown="txtFlightEntry_MouseDown" VerticalAlignment="Bottom" FontWeight="Bold">
+            <TextBlock TextAlignment="Center" Width="{Binding Key}" Height="20" Background="{Binding Value.TimeTable.Route,Converter={StaticResource routeColorConverter}}" Tag="{Binding Value}" MouseDown="txtFlightEntry_MouseDown" VerticalAlignment="Bottom" FontWeight="Bold">
                      <TextBlock.Text>
         <MultiBinding
             StringFormat="{}{0}-{1}"
