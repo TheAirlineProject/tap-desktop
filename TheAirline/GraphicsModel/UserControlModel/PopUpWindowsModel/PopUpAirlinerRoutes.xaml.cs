@@ -30,19 +30,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private ListBox lbFlights;
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
-        public static object ShowPopUp(FleetAirliner airliner,Boolean editable)
+        private Boolean IsEditable;
+        public static object ShowPopUp(FleetAirliner airliner,Boolean isEditable)
         {
-            PopUpWindow window = new PopUpAirlinerRoutes(airliner,editable);
+            PopUpWindow window = new PopUpAirlinerRoutes(airliner,isEditable);
             window.ShowDialog();
 
             return window.Selected;
         }
-        public PopUpAirlinerRoutes(FleetAirliner airliner, Boolean editable)
+        public PopUpAirlinerRoutes(FleetAirliner airliner, Boolean isEditable)
         {
             this.Entries = new Dictionary<Route, List<RouteTimeTableEntry>>();
             this.EntriesToDelete = new Dictionary<Route, List<RouteTimeTableEntry>>();
 
             this.Airliner = airliner;
+            this.IsEditable = isEditable;
 
             InitializeComponent();
 
@@ -50,7 +52,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 1200;
 
-            this.Height = editable ? 325 : 250;
+            this.Height = this.IsEditable ? 325 : 250;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -64,7 +66,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             mainPanel.Children.Add(lbFlights);
 
-            if (editable)
+            if (this.IsEditable)
             {
                 mainPanel.Children.Add(createNewEntryPanel());
                 mainPanel.Children.Add(createButtonsPanel());
@@ -543,7 +545,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void txtFlightEntry_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.RightButton == MouseButtonState.Pressed)
+            if (e.RightButton == MouseButtonState.Pressed && this.IsEditable)
             {
                 RouteTimeTableEntry entry = (RouteTimeTableEntry)((TextBlock)sender).Tag;
 
