@@ -8,6 +8,8 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using System.Windows.Documents;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 
 namespace TheAirline.GraphicsModel.ResourceDirectiories
 {
@@ -18,6 +20,12 @@ namespace TheAirline.GraphicsModel.ResourceDirectiories
             Airline airline = (Airline)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirline(airline));
+        }
+        private void Airport_Click(object sender, RoutedEventArgs e)
+        {
+            Airport airport = (Airport)((Hyperlink)sender).Tag;
+
+            PageNavigator.NavigateTo(new PageAirport(airport));
         }
     }
 }
