@@ -53,7 +53,7 @@ namespace TheAirline.Model.GeneralModel
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
             foreach (Route route in airport.Terminals.getRoutes())
             {
-                if (route.HasAirliner)
+                if (route.HasAirliner && route.getCurrentAirliner()!=null)
                 {
                     RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, (airport == route.Destination1 ? route.Destination2 : route.Destination1).Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
 
@@ -77,7 +77,7 @@ namespace TheAirline.Model.GeneralModel
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
             foreach (Route route in airport.Terminals.getRoutes())
             {
-                if (route.HasAirliner)
+                if (route.HasAirliner && route.getCurrentAirliner() != null)
                 {
                     RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport.Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
 
