@@ -11,7 +11,7 @@
         <c:NumberMeterToUnitConverter x:Key="numberMeterToUnitConverter"></c:NumberMeterToUnitConverter>
         <DataTemplate x:Key="RunwayItem">
             <WrapPanel>
-                <TextBlock Width="150" VerticalAlignment="Bottom" Text="{Binding Name}"/>
+                <TextBlock Width="100" VerticalAlignment="Bottom" Text="{Binding Name}"/>
                 <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding Length,Converter={StaticResource numberMeterToUnitConverter}}"/>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Surface}"/>
             </WrapPanel>

@@ -260,11 +260,28 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirports()
         {
+            LoadAirports(AppSettings.getDataPath() + "\\airports.xml");
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airports");
+
+                foreach (FileInfo file in dir.GetFiles("*.xml"))
+                {
+                    LoadAirports(file.FullName);
+                  
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        private static void LoadAirports(string file)
+        {
             string id = "";
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(AppSettings.getDataPath() + "\\airports.xml");
+                doc.Load(file);
                 XmlElement root = doc.DocumentElement;
 
                 XmlNodeList airportsList = root.SelectNodes("//airport");
@@ -318,8 +335,8 @@ namespace TheAirline.Model.GeneralModel
                         airport.Runways.Add(new Runway(runwayName, runwayLength, surface));
 
                     }
-
-                    Airports.AddAirport(airport);
+                    if (Airports.GetAirport(airport.Profile.IATACode)==null)
+                        Airports.AddAirport(airport);
                 }
             }
             catch (Exception e)
