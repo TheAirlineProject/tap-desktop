@@ -204,6 +204,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             string size = cbSize.SelectedItem.ToString();
 
             Country country = (Country)cbCountry.SelectedItem;
+            Region region = (Region)cbRegion.SelectedItem;
 
             Boolean humansOnly = cbHumanAirports.IsChecked.Value;
             Boolean hubsOnly = cbHubs.IsChecked.Value;
@@ -216,7 +217,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             if (country.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
 
-            if (country.Uid == "100" && country.Region.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == country.Region; });
+            if (country.Uid == "100" && region.Uid != "100") 
+                airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == region; });
 
             if (size != "All sizes") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Size.ToString() == size; });
 
