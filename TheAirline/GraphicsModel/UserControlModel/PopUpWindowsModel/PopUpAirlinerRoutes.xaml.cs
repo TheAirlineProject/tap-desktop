@@ -25,7 +25,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpAirlinerRoutes : PopUpWindow
     {
         private FleetAirliner Airliner;
-        private ComboBox cbHour, cbMinute, cbRoute, cbDay;
+        private ComboBox cbHour, cbMinute, cbRoute, cbDay, cbFlightCode;
         private TextBlock txtFlightTime;
         private ListBox lbFlights;
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
@@ -225,6 +225,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbMinute.SelectedIndex = 0;
 
             entryPanel.Children.Add(cbMinute);
+
+            cbFlightCode = new ComboBox();
+            cbFlightCode.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+
+            foreach (string flightCode in this.Airliner.Airliner.Airline.getFlightCodes())
+                cbFlightCode.Items.Add(flightCode);
+
+            cbFlightCode.SelectedIndex = 0;
+
+            entryPanel.Children.Add(cbFlightCode);
 
             Button btnAdd = new Button();
             btnAdd.Uid = "104";
@@ -503,14 +513,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (!this.Entries.ContainsKey(route))
                 this.Entries.Add(route, new List<RouteTimeTableEntry>());
 
-            string flightCode;
+            string flightCode = cbFlightCode.SelectedItem.ToString();
 
-            if (route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner) != null)
-                flightCode = route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner).Destination.FlightCode;
-            else if (this.Entries[route].Find(entry => entry.Destination.Airport == airport) !=null)
-                flightCode = this.Entries[route].Find(entry => entry.Destination.Airport == airport).Destination.FlightCode;
-            else
-                flightCode = this.Airliner.Airliner.Airline.getNextFlightCode();
+          
             if (day == "Daily")
             {
                 foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
@@ -575,9 +580,40 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Route route = ((KeyValuePair<Route, Airport>)item.Tag).Key;
 
+            Airport airport = ((KeyValuePair<Route, Airport>)item.Tag).Value;
+
             TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
 
             txtFlightTime.Text = string.Format("Flight time: {0:hh\\:mm}", flightTime);
+
+            cbFlightCode.Items.Clear();
+
+            List<string> codes = new List<string>(this.Airliner.Airliner.Airline.getFlightCodes());
+            codes.AddRange((from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct());
+
+            foreach (string eEntry in (from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct())
+                codes.Remove(eEntry);
+      
+            foreach (string flightCode in codes)
+                cbFlightCode.Items.Add(flightCode);
+
+            string tFlightCode = null;
+
+            if (route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner) != null)
+                tFlightCode = route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner).Destination.FlightCode;
+            else if (this.Entries.ContainsKey(route) && this.Entries[route].Find(entry => entry.Destination.Airport == airport) != null)
+                tFlightCode = this.Entries[route].Find(entry => entry.Destination.Airport == airport).Destination.FlightCode;
+
+            if (tFlightCode != null)
+            {
+                cbFlightCode.Items.Add(tFlightCode);
+                cbFlightCode.SelectedItem = tFlightCode;
+            }
+            else
+                cbFlightCode.SelectedIndex = 0;
+
+    
+
         }
 
         private void txtFlightEntry_MouseDown(object sender, MouseButtonEventArgs e)

@@ -33,7 +33,6 @@ namespace TheAirline.Model.AirlineModel
         public List<Loan> Loans { get; set; }
         private List<string> FlightCodes;
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
-        private int FlightCodePointer = 0;
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineMarket marketFocus)
         {
             this.Airports = new List<Airport>();
@@ -62,26 +61,26 @@ namespace TheAirline.Model.AirlineModel
         //adds a route to the airline
         public void addRoute(Route route)
         {
-            this.FlightCodePointer = 0;
+            //this.FlightCodePointer = 0;
 
             this.Routes.Add(route);
 
-            foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())
-                this.FlightCodes.Remove(dest.FlightCode);
+         //   foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())<-
+           //     this.FlightCodes.Remove(dest.FlightCode);
 
          
         }
         //removes a route from the airline
         public void removeRoute(Route route)
         {
-            this.FlightCodePointer = 0;
+            //this.FlightCodePointer = 0;
 
             this.Routes.Remove(route);
 
-            foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())
-                this.FlightCodes.Add(dest.FlightCode);
+            //foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())
+              //  this.FlightCodes.Add(dest.FlightCode);
 
-            this.FlightCodes.Sort(delegate(string s1, string s2) { return s1.CompareTo(s2); });
+       
   
        
         }
@@ -273,13 +272,22 @@ namespace TheAirline.Model.AirlineModel
         //returns the next flight code for the airline
         public string getNextFlightCode()
         {
-            this.FlightCodePointer++;
-            return this.FlightCodes[this.FlightCodePointer-1];
+            return getFlightCodes()[0];
         }
         //returns the list of flight codes for the airline
         public List<string> getFlightCodes()
         {
-            return this.FlightCodes;
+            List<string> codes = new List<string>(this.FlightCodes);
+            foreach (RouteTimeTableEntry entry in this.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null)))
+            {
+                if (codes.Contains(entry.Destination.FlightCode))
+                    codes.Remove(entry.Destination.FlightCode);
+                   
+            }
+
+            codes.Sort(delegate(string s1, string s2) { return s1.CompareTo(s2); });
+
+            return codes;
         }
         //returns all airliners which are delivered
         private List<FleetAirliner> getDeliveredFleet()
