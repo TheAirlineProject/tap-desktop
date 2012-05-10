@@ -215,8 +215,25 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirliners()
         {
+         //   LoadAirliners(AppSettings.getDataPath() + "\\airliners.xml");
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners");
+
+                foreach (FileInfo file in dir.GetFiles("*.xml"))
+                {
+                    LoadAirliners(file.FullName);
+
+                }
+            }
+            catch (Exception e)
+            {
+            }
+        }
+        private static void LoadAirliners(string file)
+        {
             XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\airliners.xml");
+            doc.Load(file);
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList airlinersList = root.SelectNodes("//airliner");
