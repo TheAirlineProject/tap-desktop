@@ -83,7 +83,7 @@
                     <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="ButtonEdit_Click" Margin="5 0 0 0" Background="Transparent">
                         <Image Source="/Data/images/edit.png" Height="24" Width="24"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     </Button>
-                    <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="ButtonTimetable_Click" Margin="5 0 0 0" Background="Transparent">
+                    <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="ButtonTimeTable_Click" Margin="5 0 0 0" Background="Transparent">
                         <Image Source="/Data/images/timetable.png" Height="24" Width="24"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     </Button>
                     <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="ButtonMap_Click" Margin="5 0 0 0" Background="Transparent">

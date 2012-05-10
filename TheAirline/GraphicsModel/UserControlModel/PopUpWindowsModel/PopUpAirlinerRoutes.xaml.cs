@@ -346,7 +346,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return brdDay;
         }
         //checks if an entry is valid
-        private Boolean isRouteEntryValid(RouteTimeTableEntry entry)
+        private Boolean isRouteEntryValid(RouteTimeTableEntry entry, Boolean showMessageBoxOnError)
         {
            
 
@@ -375,7 +375,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 if ((eStartTime >= startTime && endTime >= eStartTime) || (eEndTime >= startTime && endTime >= eEndTime) || (endTime >= eStartTime && eEndTime >= endTime) || (startTime >= eStartTime && eEndTime >= startTime))
                 {
-                    WPFMessageBox.Show("Not matching", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
+                    if (showMessageBoxOnError)
+                      WPFMessageBox.Show("Not matching", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
                     return false;
                 }
             }
@@ -404,7 +405,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     return true;
                 else
                 {
-                    WPFMessageBox.Show("Not matching", "The plane can't reach the destination from this entry", WPFMessageBoxButtons.Ok);
+                    if (showMessageBoxOnError)
+                        WPFMessageBox.Show("Not matching", "The plane can't reach the destination from this entry", WPFMessageBoxButtons.Ok);
 
                     return false;
                 }
@@ -518,12 +520,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
           
             if (day == "Daily")
             {
+                Boolean showMessageBoxOnError = true;
                 foreach (DayOfWeek dayOfWeek in Enum.GetValues(typeof(DayOfWeek)))
                 {
                     RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, dayOfWeek, time, new RouteEntryDestination(airport, flightCode));
                     entry.Airliner = this.Airliner;
-                    if (isRouteEntryValid(entry))
+                    if (isRouteEntryValid(entry, showMessageBoxOnError))
                         this.Entries[route].Add(entry);
+                    else
+                        showMessageBoxOnError = false;
                 }
 
             }
@@ -531,7 +536,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, (DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination(airport,flightCode));
                 entry.Airliner = this.Airliner;
-                if (isRouteEntryValid(entry))
+                if (isRouteEntryValid(entry,true))
                     this.Entries[route].Add(entry);
 
             }

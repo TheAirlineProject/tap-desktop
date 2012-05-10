@@ -221,10 +221,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             panelSideMenu.Children.Add(new PanelRoute(this, route));
 
-            //PopUpRouteAirliners.ShowPopUp(route);
-
-
-
         }
         private void ButtonMap_Click(object sender, RoutedEventArgs e)
         {
@@ -232,23 +228,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             PopUpMap.ShowPopUp(route);
         }
-        private void ButtonTimetable_Click(object sender, RoutedEventArgs e)
+        private void ButtonTimeTable_Click(object sender, RoutedEventArgs e)
         {
             Route route = (Route)((Button)sender).Tag;
 
-            RouteTimeTable timeTable = (RouteTimeTable)PopUpTimeTable.ShowPopUp(GameObject.GetInstance().HumanAirline, route);
-            
-            if (timeTable != null)
-            {
-                route.TimeTable = timeTable;
-            }
+            PopUpTimeTable.ShowPopUp(route);
         }
 
         private void lnkAirline_Click(object sender, RoutedEventArgs e)
         {
+            panelSideMenu.Children.Clear();
+
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
 
             PopUpAirlinerRoutes.ShowPopUp(airliner,true);
         }
+
+       
     }
 }
