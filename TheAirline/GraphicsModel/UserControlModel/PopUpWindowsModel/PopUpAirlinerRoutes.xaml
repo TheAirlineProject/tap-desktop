@@ -1,12 +1,17 @@
 ﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpAirlinerRoutes"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
         xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
         Title="PopUpAirlinerRoutes" Height="300" Width="300">
     <Window.Resources>
         <window:RouteEntryEndTimeConverter x:Key="routeEntryEndTimeConverter"></window:RouteEntryEndTimeConverter>
         <window:RouteColorConverter x:Key="routeColorConverter"></window:RouteColorConverter>
- 
+        <window:HourConverter x:Key="hourConverter"></window:HourConverter>
+        <c:TimeSpanConverter x:Key="timeSpanConverter"></c:TimeSpanConverter>
+        <DataTemplate x:Key="HourItem">
+            <TextBlock Text="{Binding Converter={StaticResource hourConverter}}" VerticalAlignment="Bottom"></TextBlock>
+        </DataTemplate>
         <DataTemplate x:Key="RouteItem">
             <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Width="100" Height="20" Background="{Binding Converter={StaticResource routeColorConverter}}" VerticalAlignment="Bottom" FontWeight="Bold">
                      <TextBlock.Text>
@@ -34,12 +39,12 @@
   <WrapPanel>
     <StackPanel>
         <TextBlock FontWeight="Bold" Text="{Binding Value.DepartureAirport.Profile.IATACode}"></TextBlock>
-        <TextBlock Text="{Binding Value.Time,StringFormat=hh\\:mm}"></TextBlock>
+        <TextBlock Text="{Binding Value.Time,Converter={StaticResource timeSpanConverter}}"></TextBlock>
     </StackPanel>
       <TextBlock Text="{Binding Value.Destination.FlightCode}" FontWeight="Bold" Margin="5 0 5 0" VerticalAlignment="Center"></TextBlock>
       <StackPanel>
              <TextBlock FontWeight="Bold" Text="{Binding Value.Destination.Airport.Profile.IATACode}"></TextBlock>
-               <TextBlock Text="{Binding Value,Converter={StaticResource routeEntryEndTimeConverter},StringFormat=hh\\:mm}"></TextBlock>
+               <TextBlock Text="{Binding Value,Converter={StaticResource routeEntryEndTimeConverter}}"></TextBlock>
       </StackPanel>
   </WrapPanel> 
 </Border>    

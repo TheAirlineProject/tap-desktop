@@ -379,6 +379,29 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
+    //converter for a time span to string based on selected language
+    public class TimeSpanConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            TimeSpan timespan = (TimeSpan)value;
+
+            DateTime time =new DateTime(2000,1,1,timespan.Hours,timespan.Minutes,0);
+
+            return time.ToShortTimeString();
+          
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     // converter for Translations
     public class TranslatorConverter : IValueConverter
     {

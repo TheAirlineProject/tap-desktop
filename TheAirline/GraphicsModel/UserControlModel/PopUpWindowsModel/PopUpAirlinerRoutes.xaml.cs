@@ -16,6 +16,8 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.Converters;
+using System.Globalization;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -202,7 +204,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             cbHour = new ComboBox();
             cbHour.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbHour.ItemStringFormat = "{0:D2}";
+            cbHour.ItemTemplate = this.Resources["HourItem"] as DataTemplate;//ItemStringFormat = "{0:D2}";
             cbHour.Margin = new Thickness(5, 0, 0, 0);
 
             for (int i = 0; i < 24; i++)
@@ -218,7 +220,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbMinute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbMinute.ItemStringFormat = "{0:D2}";
 
-
+        
             for (int i = 0; i < 60; i += 15)
                 cbMinute.Items.Add(i);
 
@@ -267,6 +269,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //creates the time indicator header
         private WrapPanel createTimeHeaderPanel()
         {
+            string format = System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.PMDesignator == "" ? "HH" : "hh";
             int hourFactor = 1;
 
             WrapPanel panelHeader = new WrapPanel();
@@ -275,9 +278,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 Border brdHour = new Border();
                 brdHour.BorderThickness = new Thickness(1, 0, 1, 0);
                 brdHour.BorderBrush = Brushes.Black;
-
+                
                 TextBlock txtHour = new TextBlock();
-                txtHour.Text = string.Format("{0:00}-{1:00}", i, i + 1);
+                txtHour.Text = string.Format("{0}-{1}", new DateTime(2000, 1, 1, i, 0, 0).ToString(format), new DateTime(2000, 1, 1, i+1==24 ? 0 : i+1, 0, 0).ToString(format));
                 txtHour.FontWeight = FontWeights.Bold;
                 txtHour.Width = (60 / hourFactor) - 2;
                 txtHour.TextAlignment = TextAlignment.Center;
@@ -669,6 +672,33 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return value;
         }
     }
+    //the converter for the hour
+    public class HourConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            int hour = (int)value;
+
+            if (hour == 24)
+                hour = 0;
+
+            if (System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.PMDesignator == "")
+
+                return new DateTime(2000, 1, 1, hour, 0, 0).ToString("HH tt");
+            else
+                return new DateTime(2000, 1, 1, hour, 0, 0).ToString("hh tt");
+
+
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for getting the end time for a route entry
     public class RouteEntryEndTimeConverter : IValueConverter
     {
@@ -678,7 +708,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             RouteTimeTableEntry e = (RouteTimeTableEntry)value;
             TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, e.Airliner.Airliner.Type);
 
-            return e.Time.Add(flightTime);
+            return new TimeSpanConverter().Convert(e.Time.Add(flightTime));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
