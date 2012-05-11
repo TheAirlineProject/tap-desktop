@@ -32,7 +32,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private ComboBox cbTypes, cbAirport;
         private Frame frameAirlinerInfo;
         private Dictionary<AirlinerType, int> orders;
-        //private Dictionary<KeyValuePair<AirlinerType, int>, KeyValuePair<Airport, DateTime>> eOrders;
         private DatePicker dpDate;
         private Manufacturer Manufacturer;
         public PageOrderAirliners(Manufacturer manufacturer)

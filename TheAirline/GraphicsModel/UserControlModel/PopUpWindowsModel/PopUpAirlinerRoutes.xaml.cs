@@ -361,10 +361,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (endTime.Days == 7)
                 endTime = new TimeSpan(0, endTime.Hours, endTime.Minutes, endTime.Seconds);
 
-            List<RouteTimeTableEntry> airlinerEntries = this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries).ToList();
+            List<RouteTimeTableEntry> airlinerEntries = this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e=>e.Airliner==this.Airliner)).ToList();
             airlinerEntries.AddRange(this.Entries.Keys.SelectMany(r => this.Entries[r]));
-            airlinerEntries.AddRange(entry.TimeTable.Entries);
-
+            airlinerEntries.RemoveAll(e=>this.EntriesToDelete.Keys.SelectMany(r => this.Entries[r]).Contains(e));
+            airlinerEntries.AddRange(entry.TimeTable.Entries.FindAll(e => e.Destination.Airport == entry.Destination.Airport));
+                   
             foreach (RouteTimeTableEntry e in airlinerEntries)
             {
                 TimeSpan eStartTime = new TimeSpan((int)e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
@@ -379,7 +380,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 if ((eStartTime >= startTime && endTime >= eStartTime) || (eEndTime >= startTime && endTime >= eEndTime) || (endTime >= eStartTime && eEndTime >= endTime) || (startTime >= eStartTime && eEndTime >= startTime))
                 {
                     if (showMessageBoxOnError)
-                      WPFMessageBox.Show("Not matching", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
+                    {
+                        if (e.Airliner == this.Airliner)
+                            WPFMessageBox.Show("Already in route", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
+                        else
+                            WPFMessageBox.Show("Already in route", "The route do already has an airliner at that time", WPFMessageBoxButtons.Ok);
+                    }
+                   
                     return false;
                 }
             }

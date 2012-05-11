@@ -149,7 +149,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2000"), Translator.GetInstance().GetString("MessageBox", "2000", "message"), WPFMessageBoxButtons.Ok);
             else
             {
-                sideFrame.Content = new PanelUsedAirliner(this, (Airliner)((Hyperlink)sender).Tag);//panelAirliner.Children.Add(new PanelUsedAirliner(this, (Airliner)((Hyperlink)sender).Tag));
+                sideFrame.Content = new PanelUsedAirliner(this, (Airliner)((Hyperlink)sender).Tag);
             }
 
 
