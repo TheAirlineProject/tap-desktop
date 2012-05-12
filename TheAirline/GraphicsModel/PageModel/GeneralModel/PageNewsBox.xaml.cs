@@ -54,7 +54,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             lbNews = new ListBox();
             lbNews.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbNews.ItemTemplate = this.Resources["NewsItem"] as DataTemplate;
-            lbNews.Height = GraphicsHelpers.GetContentHeight()-50;
+            lbNews.MaxHeight = GraphicsHelpers.GetContentHeight()-50;
 
             
           

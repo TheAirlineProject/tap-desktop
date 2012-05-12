@@ -24,8 +24,6 @@ namespace TheAirline.Model.AirlinerModel
         public enum AirlinerStatus { Stopped, On_route, On_service, Resting, To_homebase, To_route_start }
         public AirlinerStatus Status { get; set; }
         public Coordinates CurrentPosition { get; set; }
-        //sprivate Route pRoute;
-        //public Route Route { get { return pRoute; } set { setRoute(value); } }
         public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
         
