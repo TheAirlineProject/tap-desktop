@@ -31,7 +31,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
     public partial class PageRoutes : StandardPage
     {
         private StackPanel panelSideMenu;
-        private ListBox lbRoutes;
+        private ListBox lbRoutes, lbFleet;
         private ListSortDirection sortDirection = ListSortDirection.Ascending;
         public PageRoutes()
         {
@@ -77,6 +77,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             base.setHeaderContent(this.Title);
 
             showPage(this);
+
+            showFleet();
         }
         //creates the fleet panel
         private StackPanel createFleetPanel()
@@ -89,15 +91,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             panelFleet.Children.Add(txtFleetHeader);
             
-            ListBox lbFleet = new ListBox();
+            lbFleet = new ListBox();
             lbFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
             lbFleet.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFleet.ItemTemplate = this.Resources["FleetItem"] as DataTemplate;
-            lbFleet.ItemsSource = GameObject.GetInstance().HumanAirline.Routes;
-
+         
             panelFleet.Children.Add(lbFleet);
 
-            lbFleet.ItemsSource = GameObject.GetInstance().HumanAirline.DeliveredFleet;
+        
 
 
 
@@ -154,6 +155,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             ICollectionView dataView =
             CollectionViewSource.GetDefaultView(lbRoutes.ItemsSource);
             dataView.Refresh();
+        }
+        //shows the fleet
+        private void showFleet()
+        {
+            lbFleet.Items.Clear();
+
+            GameObject.GetInstance().HumanAirline.DeliveredFleet.ForEach(f => lbFleet.Items.Add(f));
         }
         //creates the panel for the routes
         private StackPanel createRoutesPanel()
@@ -242,6 +250,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
 
             PopUpAirlinerRoutes.ShowPopUp(airliner,true);
+
+            showFleet();
         }
 
        

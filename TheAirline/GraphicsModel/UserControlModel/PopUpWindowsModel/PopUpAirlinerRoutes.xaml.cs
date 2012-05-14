@@ -155,6 +155,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             buttonsPanel.Children.Add(btnUndo);
 
+            Button btnClear = new Button();
+            btnClear.Uid = "108";
+            btnClear.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnClear.Height = Double.NaN;
+            btnClear.Width = Double.NaN;
+            btnClear.Margin = new Thickness(5, 0, 0, 0);
+            btnClear.Content = Translator.GetInstance().GetString("General", btnClear.Uid);
+            btnClear.Click += new RoutedEventHandler(btnClear_Click);
+            btnClear.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+
+            buttonsPanel.Children.Add(btnClear);
+
             return buttonsPanel;
         }
         //creates the panel for adding a new entry
@@ -259,8 +271,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             newEntryPanel.Children.Add(txtFlightTime);
           
             cbRoute.SelectedIndex = 0;
-
-
 
             return newEntryPanel;
         }
@@ -479,6 +489,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 entries.AddRange(this.Entries.Keys.SelectMany(r => this.Entries[r].FindAll(e => e.Day == day)));
                 entries.RemoveAll(e=>this.EntriesToDelete.Keys.SelectMany(r=>this.EntriesToDelete[r]).ToList().Find(te=>te == e)==e);
 
+                entries = (from e in entries orderby e.Time select e).ToList();
+
+
                 foreach (RouteTimeTableEntry dEntry in entries)
                 {
                     if (!((dEntry.Day == entry.Day && dEntry.Time <= entry.Time)))
@@ -563,6 +576,31 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showFlights();
         }
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            this.Entries.Clear();
+
+            foreach (Route route in this.Airliner.Routes)
+            {
+                foreach (RouteTimeTableEntry entry in route.TimeTable.Entries)
+                {
+                    if (!this.EntriesToDelete.ContainsKey(route))
+                    {
+                        this.EntriesToDelete.Add(route, new List<RouteTimeTableEntry>());
+                        this.EntriesToDelete[route].Add(entry);
+                    }
+                    else
+                    {
+                        if (!this.EntriesToDelete[route].Contains(entry))
+                            this.EntriesToDelete[route].Add(entry);
+                    }
+                }
+                    
+            }
+
+            showFlights();
+
+        }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             foreach (Route route in this.Entries.Keys)
@@ -575,7 +613,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
             foreach (Route route in this.EntriesToDelete.Keys)
             {
-                foreach (RouteTimeTableEntry entry in this.Entries[route])
+                foreach (RouteTimeTableEntry entry in this.EntriesToDelete[route])
                     route.TimeTable.removeEntry(entry);
 
                 if (route.TimeTable.getEntries(this.Airliner).Count == 0)

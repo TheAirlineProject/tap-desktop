@@ -95,11 +95,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             while (counter < 8)
             {
                 
-                List<RouteTimeTableEntry> entries = getEntries(dt.DayOfWeek);
+                List<RouteTimeTableEntry> entries = getEntries(dt.DayOfWeek).FindAll(e=>airliner == e.Airliner);
 
-                foreach (RouteTimeTableEntry dEntry in entries)
+                foreach (RouteTimeTableEntry dEntry in (from e in entries orderby e.Time select e))
                 {
-                    if (!(dEntry.Time <= dt.TimeOfDay && dt.Day == time.Day) && airliner == dEntry.Airliner)
+                    if (!(dEntry.Time <= dt.TimeOfDay && dt.Day == time.Day))
                         return dEntry;
                 }
                 dt = dt.AddDays(1);
@@ -126,7 +126,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 List<RouteTimeTableEntry> entries = getEntries(day);
 
-                foreach (RouteTimeTableEntry dEntry in entries)
+                foreach (RouteTimeTableEntry dEntry in (from e in entries orderby e.Time select e))
                 {
                     if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)) && dEntry.Destination.Airport.Profile.Coordinates.CompareTo(coordinates) != 0)
                         return dEntry;
@@ -158,7 +158,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 List<RouteTimeTableEntry> entries = getEntries(day);
 
-                foreach (RouteTimeTableEntry dEntry in entries)
+                foreach (RouteTimeTableEntry dEntry in (from e in entries orderby e.Time select e))
                 {
                     if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)))
                         return dEntry;
@@ -188,7 +188,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 List<RouteTimeTableEntry> entries = getEntries(eDay);
 
-                foreach (RouteTimeTableEntry dEntry in entries)
+                foreach (RouteTimeTableEntry dEntry in (from e in entries orderby e.Time select e))
                 {
                     if (!((dEntry.Day == entry.Day && dEntry.Time <= entry.Time)))// && dEntry.Destination != entry.Destination)
                         return dEntry;

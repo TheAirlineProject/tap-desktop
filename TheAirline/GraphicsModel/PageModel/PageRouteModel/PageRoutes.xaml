@@ -10,10 +10,12 @@
 	Title="PageRoute">
     <Page.Resources>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <DataTemplate x:Key="FleetHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="Type" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Route" VerticalAlignment="Bottom" Width="50" FontWeight="Bold"></TextBlock>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="FleetItem">
@@ -23,8 +25,10 @@
                         <Run Text="{Binding Name}"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
-          </WrapPanel>
+                <TextBlock Text="{Binding Airliner.Type.Name}" Width="150"  VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="50" Visibility="{Binding HasRoute,Converter={StaticResource booleanToVisibility}}"></TextBlock>
+
+            </WrapPanel>
             </DataTemplate>
         <DataTemplate x:Key="RoutesHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
