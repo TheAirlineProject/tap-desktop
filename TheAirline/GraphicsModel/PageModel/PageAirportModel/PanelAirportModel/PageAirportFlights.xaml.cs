@@ -60,6 +60,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             this.Content = panelFlights;
 
         }
+        //creates the panel for the slot allocation
+        private StackPanel createSlotAllocationPanel()
+        {
+            DayOfWeek day = DayOfWeek.Sunday;
+            StackPanel panelSlots = new StackPanel();
+            panelSlots.Margin = new Thickness(0, 10, 0, 0);
+
+            return panelSlots; 
+        }
         //creates the panel for destination flights
         private StackPanel createDestinationFlightsPanel()
         {

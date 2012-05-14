@@ -27,8 +27,10 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (route.HasAirliner && (route.Destination1 == tAirport || route.Destination2 == tAirport))
                 {
-                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime) : route.getCurrentAirliner().CurrentFlight.Entry;
+                  
 
+                    RouteTimeTableEntry entry = route.getCurrentAirliner() == null || route.getCurrentAirliner().CurrentFlight == null || route.getCurrentAirliner().CurrentFlight.Entry == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime) : route.getCurrentAirliner().CurrentFlight.Entry;
+                    
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
                         if (!arrivals && entry.Destination.Airport == tAirport)
