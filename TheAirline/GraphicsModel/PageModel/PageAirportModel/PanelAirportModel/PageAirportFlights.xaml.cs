@@ -67,7 +67,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             StackPanel panelSlots = new StackPanel();
             panelSlots.Margin = new Thickness(0, 10, 0, 0);
-
+                
             
 
             return panelSlots; 

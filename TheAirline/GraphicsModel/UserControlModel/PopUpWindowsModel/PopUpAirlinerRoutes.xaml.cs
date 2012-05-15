@@ -392,20 +392,28 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 TimeSpan eEndTime = eStartTime.Add(eFlightTime);
 
+                double diffStartTime = Math.Abs(eStartTime.Subtract(startTime).TotalMinutes);
+                double diffEndTime = Math.Abs(eEndTime.Subtract(endTime).TotalMinutes);
+                          
                 if (eEndTime.Days == 7)
                     eEndTime = new TimeSpan(0, endTime.Hours, endTime.Minutes, endTime.Seconds);
 
                 if ((eStartTime >= startTime && endTime >= eStartTime) || (eEndTime >= startTime && endTime >= eEndTime) || (endTime >= eStartTime && eEndTime >= endTime) || (startTime >= eStartTime && eEndTime >= startTime))
                 {
-                    if (showMessageBoxOnError)
+                    if (e.Airliner == this.Airliner || diffEndTime < 60 || diffStartTime < 60)
                     {
-                        if (e.Airliner == this.Airliner)
-                            WPFMessageBox.Show("Already in route", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
-                        else
-                            WPFMessageBox.Show("Already in route", "The route do already has an airliner at that time", WPFMessageBoxButtons.Ok);
+                        if (showMessageBoxOnError)
+                        {
+                            if (e.Airliner == this.Airliner)
+                                WPFMessageBox.Show("Already in route", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
+                            else
+                            {
+                                WPFMessageBox.Show("Already in route", "The route do already has an airliner at that time", WPFMessageBoxButtons.Ok);
+                            }
+                        }
+
+                        return false;
                     }
-                   
-                    return false;
                 }
             }
             double minutesPerWeek = 7 * 24*60;

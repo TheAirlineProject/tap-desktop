@@ -74,7 +74,15 @@ namespace TheAirline.Model.GeneralModel
             size = size / (sameRoutes + 1);
             size = size / totalRoutes1; 
             size = size / totalRoutes2;
+           
+            if (double.IsInfinity(size))
+            {
+                double seasonFactor = (750 * deptSize * GetSeasonFactor(airportCurrent));
+                double seasonFactor2 = (1000 * destSize * GetSeasonFactor(airportDestination));
 
+                sameRoutes = Convert.ToInt32(seasonFactor + seasonFactor2);
+            }
+           
 
             double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;
 
@@ -97,7 +105,10 @@ namespace TheAirline.Model.GeneralModel
             double priceDiff = (price / standardPrice) * 1.13;
      
             value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
-            
+
+            if (value < 15)
+                value = rnd.Next(value, 15);
+
             return value;
 
         
