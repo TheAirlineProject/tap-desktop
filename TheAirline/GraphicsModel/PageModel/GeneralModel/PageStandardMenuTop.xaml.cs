@@ -140,6 +140,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
+            GameTimer.GetInstance().pause();
+
             String name = (String)PopUpSave.ShowPopUp();
 
             if (name != null)
@@ -168,11 +170,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 LoadSaveHelpers.SaveGame(fileName);
 
             }
-           
+            GameTimer.GetInstance().start();
         }
 
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {
+            GameTimer.GetInstance().pause();
+
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1002"), Translator.GetInstance().GetString("MessageBox", "1002", "message"), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
@@ -189,6 +193,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
               
             }
 
+            GameTimer.GetInstance().start();
            
         }
 
