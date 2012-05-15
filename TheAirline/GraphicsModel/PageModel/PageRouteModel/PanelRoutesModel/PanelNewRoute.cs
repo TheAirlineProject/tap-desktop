@@ -22,8 +22,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
-        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute;
-        private ComboBox cbDestination1, cbDestination2;//, cbFlightCode;
+        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtDestination1Gates, txtDestination2Gates;
+        private ComboBox cbDestination1, cbDestination2;
         private Button btnSave;
         private PageRoutes ParentPage;
         private double MaxDistance;
@@ -56,12 +56,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             this.Children.Add(lbRouteInfo);
 
-            cbDestination1 = createDestinationComboBox(); ;
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", cbDestination1));
+            WrapPanel panelDestination1 = new WrapPanel();
+
+            cbDestination1 = createDestinationComboBox(); 
+            panelDestination1.Children.Add(cbDestination1);
+
+            txtDestination1Gates = new TextBlock();
+            txtDestination1Gates.Margin = new Thickness(5, 0, 0, 0);
+            txtDestination1Gates.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            panelDestination1.Children.Add(txtDestination1Gates);
 
 
+            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", panelDestination1));
+
+            WrapPanel panelDestination2 = new WrapPanel();
+                        
             cbDestination2 = createDestinationComboBox();
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", cbDestination2));
+            panelDestination2.Children.Add(cbDestination2);
+
+            txtDestination2Gates = new TextBlock();
+            txtDestination2Gates.Margin = new Thickness(5, 0, 0, 0);
+            txtDestination2Gates.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            panelDestination2.Children.Add(txtDestination2Gates);
+
+            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", panelDestination2));
 
 
             txtDistance = UICreator.CreateTextBlock("-");
@@ -122,21 +140,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             txtFlightCode = new TextBlock();
 
-            /*
-            cbFlightCode = new ComboBox();
-            cbFlightCode.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFlightCode.Width = 100;
-            cbFlightCode.SelectionChanged += new SelectionChangedEventHandler(cbFlightCode_SelectionChanged);
-
-            for (int i = 0; i < GameObject.GetInstance().HumanAirline.getFlightCodes().Count-2; i += 2)
-                cbFlightCode.Items.Add(GameObject.GetInstance().HumanAirline.getFlightCodes()[i]);
-
-            cbFlightCode.SelectedIndex = 0;
-
-            lbRouteInfo.Items.Add(new QuickInfoValue("Homebound flight code", cbFlightCode));
-            lbRouteInfo.Items.Add(new QuickInfoValue("Outbound flight code", txtFlightCode));
-            */
-              
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSave.Height = Double.NaN;
@@ -172,14 +175,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Classes[type].Seating = aClass.Seating;
             }
         }
-        /*
-        private void cbFlightCode_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int index = cbFlightCode.SelectedIndex * 2 + 1;
-
-            txtFlightCode.Text = GameObject.GetInstance().HumanAirline.getFlightCodes()[index];
-        }
-    */
+      
          
         //returns the min crews
         private int getMinCrews()
@@ -257,7 +253,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             cbDestination.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbDestination.SelectionChanged += new SelectionChangedEventHandler(cbDestination_SelectionChanged);
-            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports;
+            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline)>0);
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
             foreach (Airport airport in airports)
@@ -288,6 +284,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 txtInvalidRoute.Visibility = isRouteInCorrectArea() ? Visibility.Collapsed : Visibility.Visible;
 
             }
+            
+            Airport airport = (Airport)((ComboBox)sender).SelectedItem;
+
+            TextBlock txtDestinationGates = cbDestination2 == ((ComboBox)sender) ? txtDestination2Gates : txtDestination1Gates;
+
+            txtDestinationGates.Text = string.Format("{0} gate(s)", airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
         }
     }
 }

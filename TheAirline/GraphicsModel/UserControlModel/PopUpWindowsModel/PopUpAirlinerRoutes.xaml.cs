@@ -73,7 +73,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             Grid.SetColumn(lbFlights, 0);
             grdFlights.Children.Add(lbFlights);
 
-            StackPanel panelRoutes = createRoutesPanel();
+            ScrollViewer panelRoutes = createRoutesPanel();
          
             Grid.SetColumn(panelRoutes, 1);
             grdFlights.Children.Add(panelRoutes);
@@ -89,8 +89,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             showFlights();
         }
         //creates the panel for the routes
-        private StackPanel createRoutesPanel()
+        private ScrollViewer createRoutesPanel()
         {
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.MaxHeight = 200;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+
             StackPanel panelRoutes = new StackPanel();
             panelRoutes.Margin = new Thickness(5, 0, 0, 0);
 
@@ -111,7 +116,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 panelRoutes.Children.Add(brdRoute);
             }
-            return panelRoutes;
+
+            scroller.Content = panelRoutes;
+
+            return scroller;
 
         }
         //creates the buttons panel
