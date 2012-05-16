@@ -8,6 +8,7 @@
         <window:RouteEntryEndTimeConverter x:Key="routeEntryEndTimeConverter"></window:RouteEntryEndTimeConverter>
         <window:RouteColorConverter x:Key="routeColorConverter"></window:RouteColorConverter>
         <window:HourConverter x:Key="hourConverter"></window:HourConverter>
+        <window:FlightLocalTimeConverter x:Key="flightLocalTimeConverter"></window:FlightLocalTimeConverter>
         <c:TimeSpanConverter x:Key="timeSpanConverter"></c:TimeSpanConverter>
         <DataTemplate x:Key="HourItem">
             <TextBlock Text="{Binding Converter={StaticResource hourConverter}}" VerticalAlignment="Bottom"></TextBlock>
@@ -39,12 +40,17 @@
   <WrapPanel>
     <StackPanel>
         <TextBlock FontWeight="Bold" Text="{Binding Value.DepartureAirport.Profile.IATACode}"></TextBlock>
+    
         <TextBlock Text="{Binding Value.Time,Converter={StaticResource timeSpanConverter}}"></TextBlock>
+                  <TextBlock Text="{Binding Value,Converter={StaticResource flightLocalTimeConverter},ConverterParameter='D',StringFormat=({0})}" VerticalAlignment="Bottom"></TextBlock>
     </StackPanel>
       <TextBlock Text="{Binding Value.Destination.FlightCode}" FontWeight="Bold" Margin="5 0 5 0" VerticalAlignment="Center"></TextBlock>
       <StackPanel>
              <TextBlock FontWeight="Bold" Text="{Binding Value.Destination.Airport.Profile.IATACode}"></TextBlock>
+        
                <TextBlock Text="{Binding Value,Converter={StaticResource routeEntryEndTimeConverter}}"></TextBlock>
+                  <TextBlock Text="{Binding Value,Converter={StaticResource flightLocalTimeConverter},ConverterParameter='A',StringFormat=({0})}" VerticalAlignment="Bottom"></TextBlock>
+
       </StackPanel>
   </WrapPanel> 
 </Border>    

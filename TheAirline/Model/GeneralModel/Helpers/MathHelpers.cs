@@ -222,6 +222,12 @@ namespace TheAirline.Model.GeneralModel
 
             return time.Subtract(delta);
         }
+        public static TimeSpan ConvertTimeSpanToLocalTime(TimeSpan time, GameTimeZone timeZone)
+        {
+            TimeSpan delta = GameObject.GetInstance().TimeZone.UTCOffset.Subtract(timeZone.UTCOffset);
+
+            return time.Subtract(delta);
+        }
         //returns the monthly payment of a specific amount with a rate and length
         public static double GetMonthlyPayment(double amount, double rate, int length)
         {

@@ -173,6 +173,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                     sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a1.Type.Name.CompareTo(a2.Type.Name); };
                     showUsedAirliners();
                     break;
+                case "Range":
+                    sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a1.Type.RangeType.ToString().CompareTo(a2.Type.RangeType.ToString()); };
+                    showUsedAirliners();
+                    break;
             }
         }
 

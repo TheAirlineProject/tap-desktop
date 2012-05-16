@@ -733,6 +733,29 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return value;
         }
     }
+    //the converter for getting the local time of a flight
+    public class FlightLocalTimeConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            RouteTimeTableEntry e = (RouteTimeTableEntry)value;
+            
+            TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, e.Airliner.Airliner.Type);
+
+            Airport airport = parameter.ToString() == "D" ? e.DepartureAirport : e.Destination.Airport;
+            
+            TimeSpan time = parameter.ToString() == "D" ? e.Time : e.Time.Add(flightTime);
+
+            return new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone));
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for the hour
     public class HourConverter : IValueConverter
     {
