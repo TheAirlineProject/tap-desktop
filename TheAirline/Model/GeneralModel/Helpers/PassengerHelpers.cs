@@ -81,7 +81,7 @@ namespace TheAirline.Model.GeneralModel
                 double seasonFactor2 = (1000 * destSize * GetSeasonFactor(airportDestination));
 
                 sameRoutes = Convert.ToInt32(seasonFactor + seasonFactor2);
-            }
+        }
            
 
             double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;

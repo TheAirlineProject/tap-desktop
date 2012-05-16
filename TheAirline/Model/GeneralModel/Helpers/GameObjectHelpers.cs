@@ -267,7 +267,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (MathHelpers.GetDistance(airliner.CurrentPosition, destination) < 5)
             {
                 airliner.Status = FleetAirliner.AirlinerStatus.Resting;
-                airliner.CurrentPosition = destination;
+                airliner.CurrentPosition = new Coordinates(destination.Latitude, destination.Longitude);
+ 
             }
            
            
