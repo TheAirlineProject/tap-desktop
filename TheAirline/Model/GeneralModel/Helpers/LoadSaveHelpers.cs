@@ -307,6 +307,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     string destination = flightNode.Attributes["destination"].Value;
                     DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
                     TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
+                    DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
 
                     RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
 
@@ -779,7 +780,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         flightNode.SetAttribute("destination", airliner.CurrentFlight.Entry.Destination.FlightCode);
                         flightNode.SetAttribute("day", airliner.CurrentFlight.Entry.Day.ToString());
                         flightNode.SetAttribute("time", airliner.CurrentFlight.Entry.Time.ToString());
-
+                        flightNode.SetAttribute("flighttime",airliner.CurrentFlight.FlightTime.ToString(new CultureInfo("de-DE")));
 
                         XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
                         foreach (FlightAirlinerClass aClass in airliner.CurrentFlight.Classes)
