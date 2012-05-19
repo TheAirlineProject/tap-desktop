@@ -45,10 +45,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             airportPanel.Children.Add(createQuickInfoPanel());
             airportPanel.Children.Add(createWeatherPanel());
-            airportPanel.Children.Add(createArrivalsPanel());
-            airportPanel.Children.Add(createDeparturesPanel());
+            //airportPanel.Children.Add(createArrivalsPanel());
+            //airportPanel.Children.Add(createDeparturesPanel());
 
-            showFlights();
+            //showFlights();
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -74,7 +74,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             {
                 txtWind.Text = string.Format("{0} ({1:0.##} {2} in {3} direction)", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather.WindSpeed, null, null, null),new NumberToUnitConverter().Convert((int)this.Airport.Weather.WindSpeed), new StringToLanguageConverter().Convert("km/t"),this.Airport.Weather.Direction);
 
-                showFlights();
+                //showFlights();
 
                 GameTimeZone tz = this.Airport.Profile.TimeZone;
 
