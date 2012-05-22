@@ -625,8 +625,7 @@ namespace TheAirline.Model.GeneralModel
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
-                AIHelpers.CreateRouteTimeTable(route, fAirliner, airline.getNextFlightCode(), airline.getNextFlightCode());
-
+            
 
                 foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                 {
@@ -639,6 +638,8 @@ namespace TheAirline.Model.GeneralModel
 
                 airportDestination.Terminals.getEmptyGate(airline).Route = route;
                 airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
+
+                AIHelpers.CreateRouteTimeTable(route, fAirliner);
 
 
             }

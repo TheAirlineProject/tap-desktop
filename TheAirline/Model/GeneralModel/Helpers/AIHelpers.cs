@@ -319,7 +319,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
 
                         fAirliner.addRoute(route);
-                        CreateRouteTimeTable(route, fAirliner, airline.getNextFlightCode(), airline.getNextFlightCode());
+                        CreateRouteTimeTable(route, fAirliner);
 
 
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
@@ -452,7 +452,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //creates the time table for an route for an airliner
-        public static void CreateRouteTimeTable(Route route,FleetAirliner airliner, string flightCode1, string flightCode2)
+        public static void CreateRouteTimeTable(Route route,FleetAirliner airliner)
         {
             Random rnd = new Random();
 
@@ -460,9 +460,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
-
-                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode2), new TimeSpan(12, 0, 0).Subtract(minFlightTime));
-                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode1), new TimeSpan(12, 0, 0).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks)));
+                string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
+                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), new TimeSpan(12, 0, 0).Subtract(minFlightTime));
+                string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
+                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), new TimeSpan(12, 0, 0).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks)));
             }
             else
             {
@@ -471,18 +472,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int outTime = 15 * rnd.Next(-12, 12);
                 int homeTime = 15 * rnd.Next(-12, 12);
 
+                string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
+ 
+
                 for (int i = 0; i < 3; i++)
                 {
-                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode2)));
+                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode1)));
 
                     day += 2;
                 }
+
+                string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
+ 
 
                 day = (DayOfWeek)1;
 
                 for (int i = 0; i < 3; i++)
                 {
-                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode1)));
+                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode2)));
 
                     day += 2;
                 }

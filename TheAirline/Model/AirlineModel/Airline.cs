@@ -270,7 +270,7 @@ namespace TheAirline.Model.AirlineModel
         public List<string> getFlightCodes()
         {
             List<string> codes = new List<string>(this.FlightCodes);
-            foreach (RouteTimeTableEntry entry in this.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null)))
+            foreach (RouteTimeTableEntry entry in this.Routes.SelectMany(r => r.TimeTable.Entries))
             {
                 if (codes.Contains(entry.Destination.FlightCode))
                     codes.Remove(entry.Destination.FlightCode);
