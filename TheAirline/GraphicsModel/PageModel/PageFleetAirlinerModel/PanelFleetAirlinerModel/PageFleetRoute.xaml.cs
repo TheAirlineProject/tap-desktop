@@ -30,7 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
     public partial class PageFleetRoute : Page
     {
         private FleetAirliner Airliner;
-        private TextBlock txtStatus, txtDestination, txtPosition, txtPassengers;
+        private TextBlock txtStatus, txtDestination, txtPosition, txtPassengers, txtFlightTime;
         private Button btnStopFlight, btnStartFlight;
         public PageFleetRoute(FleetAirliner airliner)
         {
@@ -80,6 +80,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                     txtDestination.Text = this.Airliner.CurrentFlight == null ? "Not started" : this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name;
                     txtPosition.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
                     txtPassengers.Text = string.Format("{0}", this.Airliner.CurrentFlight == null ? 0 : this.Airliner.CurrentFlight.getTotalPassengers());
+                    txtFlightTime.Text = string.Format(this.Airliner.CurrentFlight == null ? "" : this.Airliner.CurrentFlight.FlightTime.ToShortDateString() + " " + this.Airliner.CurrentFlight.FlightTime.ToShortTimeString());
                 }
             }
         }
@@ -160,10 +161,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             txtStatus = UICreator.CreateTextBlock((new TextUnderscoreConverter().Convert(this.Airliner.Status, null, null, null).ToString()));
             txtPosition = UICreator.CreateTextBlock(this.Airliner.HasRoute ? this.Airliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
             txtPassengers = UICreator.CreateTextBlock(string.Format("{0}", this.Airliner.CurrentFlight == null ? 0 : this.Airliner.CurrentFlight.getTotalPassengers()));
+            txtFlightTime = UICreator.CreateTextBlock(string.Format(this.Airliner.CurrentFlight == null ? "" : this.Airliner.CurrentFlight.FlightTime.ToShortDateString() + " " + this.Airliner.CurrentFlight.FlightTime.ToShortTimeString()));
+
 
             lbFlightInfo.Items.Add(new QuickInfoValue("Current status", txtStatus));
             lbFlightInfo.Items.Add(new QuickInfoValue("Current position", txtPosition));
             lbFlightInfo.Items.Add(new QuickInfoValue("Next destination", txtDestination));
+            lbFlightInfo.Items.Add(new QuickInfoValue("Current/next flight time", txtFlightTime)); 
             lbFlightInfo.Items.Add(new QuickInfoValue("Passengers", txtPassengers));
 
             panelFlight.Children.Add(lbFlightInfo);

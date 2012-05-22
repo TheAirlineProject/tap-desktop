@@ -215,7 +215,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirliners()
         {
-         //   LoadAirliners(AppSettings.getDataPath() + "\\airliners.xml");
+            //   LoadAirliners(AppSettings.getDataPath() + "\\airliners.xml");
             try
             {
                 DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners");
@@ -228,6 +228,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                string s = e.ToString();
             }
         }
         private static void LoadAirliners(string file)
@@ -285,7 +286,7 @@ namespace TheAirline.Model.GeneralModel
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
                     LoadAirports(file.FullName);
-                  
+
                 }
             }
             catch (Exception e)
@@ -308,7 +309,7 @@ namespace TheAirline.Model.GeneralModel
                     string name = airportElement.Attributes["name"].Value;
                     string icao = airportElement.Attributes["icao"].Value;
                     string iata = airportElement.Attributes["iata"].Value;
-                    
+
                     AirportProfile.AirportType type = (AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
                     Weather.Season season = (Weather.Season)Enum.Parse(typeof(Weather.Season), airportElement.Attributes["season"].Value);
 
@@ -327,7 +328,7 @@ namespace TheAirline.Model.GeneralModel
                     AirportProfile.AirportSize size = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), sizeElement.Attributes["value"].Value);
 
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size,season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, season);
 
                     Airport airport = new Airport(profile);
 
@@ -352,7 +353,7 @@ namespace TheAirline.Model.GeneralModel
                         airport.Runways.Add(new Runway(runwayName, runwayLength, surface));
 
                     }
-                    if (Airports.GetAirport(airport.Profile.IATACode)==null)
+                    if (Airports.GetAirport(airport.Profile.IATACode) == null)
                         Airports.AddAirport(airport);
                 }
             }
@@ -520,7 +521,7 @@ namespace TheAirline.Model.GeneralModel
             Airlines.AddAirline(new Airline(new AirlineProfile("Dinar Líneas Aéreas", "D7", "Gold", Countries.GetCountry("106"), "Manuel Santosa"), Airline.AirlineMentality.Aggressive, Airline.AirlineMarket.Local));
             Airlines.AddAirline(new Airline(new AirlineProfile("TransGlobal Airlines", "TGA", "LightBlue", Countries.GetCountry("122"), "Robert Peterson"), Airline.AirlineMentality.Aggressive, Airline.AirlineMarket.Global));
             Airlines.AddAirline(new Airline(new AirlineProfile("Canadian Airways", "CAA", "Red", Countries.GetCountry("113"), "Mark Benson"), Airline.AirlineMentality.Aggressive, Airline.AirlineMarket.Global));
-            
+
             GameObject.GetInstance().HumanAirline = Airlines.GetAirline("KWY");
 
             CreateAirlineLogos();
@@ -579,47 +580,53 @@ namespace TheAirline.Model.GeneralModel
         //finds the home base for a computer airline
         private static Airport FindComputerHomeBase(Airline airline)
         {
-            List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a=>a.Terminals.getFreeGates()>1);
+            List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates() > 1);
 
-            if (airports.Count<4)
+            if (airports.Count < 4)
                 airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
-            Dictionary<Airport,int> list = new Dictionary<Airport,int>();
-            airports.ForEach(a => list.Add(a,((int)a.Profile.Size)*GeneralHelpers.GetAirportsNearAirport(a).Count));
-       
+            Dictionary<Airport, int> list = new Dictionary<Airport, int>();
+            airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count));
+
             return AIHelpers.GetRandomItem(list);
         }
         /*! creates some airliners and routes for a computer airline.
          */
         private static void CreateComputerRoutes(Airline airline)
         {
-            Airport airport = FindComputerHomeBase(airline);
-                   
-            airport.Terminals.rentGate(airline);
-            airport.Terminals.rentGate(airline);
-            
-            airport = AIHelpers.GetDestinationAirport(airline, airport);
+            Airport airportHomeBase = FindComputerHomeBase(airline);
 
-            if (airport == null)
+            Airport airportDestination = AIHelpers.GetDestinationAirport(airline, airportHomeBase);
+
+            KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
+
+            if (airportDestination == null || !airliner.HasValue)
             {
-                airline.Airports[0].Terminals.releaseGate(airline);
-                airline.Airports[0].Terminals.releaseGate(airline);
-
-                if (airline.Airports.Count > 0)
-                    airline.Airports.Clear();
 
                 CreateComputerRoutes(airline);
 
             }
             else
             {
-                airport.Terminals.rentGate(airline);
+                airportHomeBase.Terminals.rentGate(airline);
+                airportHomeBase.Terminals.rentGate(airline);
 
-                double price = PassengerHelpers.GetPassengerPrice(airport, airline.Airports[0]);
+                airportDestination.Terminals.rentGate(airline);
+
+                double price = PassengerHelpers.GetPassengerPrice(airportDestination, airline.Airports[0]);
 
                 Guid id = Guid.NewGuid();
 
-                Route route = new Route(id.ToString(), airport, airline.Airports[0], price, airline.getNextFlightCode(), airline.getNextFlightCode());
+                Route route = new Route(id.ToString(), airportDestination, airline.Airports[0], price);
+
+                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportDestination);
+                fAirliner.addRoute(route);
+                fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+
+                route.LastUpdated = GameObject.GetInstance().GameTime;
+
+                AIHelpers.CreateRouteTimeTable(route, fAirliner, airline.getNextFlightCode(), airline.getNextFlightCode());
+
 
                 foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                 {
@@ -630,20 +637,10 @@ namespace TheAirline.Model.GeneralModel
                 }
                 airline.addRoute(route);
 
-                airport.Terminals.getEmptyGate(airline).Route = route;
+                airportDestination.Terminals.getEmptyGate(airline).Route = route;
                 airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
 
-                KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, route.Destination1, route.Destination2);
 
-                if (airliner.HasValue)
-                {
-                    FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airport);
-                    fAirliner.addRoute(route);
-                    fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
-
-                    route.LastUpdated = GameObject.GetInstance().GameTime;
-
-                }
             }
         }
         /*! loads the maps for the airports
@@ -697,7 +694,7 @@ namespace TheAirline.Model.GeneralModel
                     name = "x";
             }
         }
-        
+
         /*! loads the logos for the game airlines.
          */
         private static void CreateAirlineLogos()

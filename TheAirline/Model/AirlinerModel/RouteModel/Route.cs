@@ -26,7 +26,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public DateTime LastUpdated { get; set; }
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
         public Weather.Season Season { get; set; }
-        public Route(string id, Airport destination1, Airport destination2, double farePrice,string flightCode1, string flightCode2)
+        public Route(string id, Airport destination1, Airport destination2, double farePrice)
         {
     
             this.Id = id;
@@ -36,9 +36,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Invoices = new List<Invoice>();
             this.Statistics = new RouteStatistics();
 
-            createTimetable(flightCode1,flightCode2);
-
-            this.Season = Weather.Season.All_Year;
+             this.Season = Weather.Season.All_Year;
 
             this.Classes = new List<RouteAirlinerClass>();
 
@@ -51,54 +49,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
         }
-        //creates the "dummy" time table
-        private void createTimetable(string flightCode1, string flightCode2)
-        {
-            Random rnd = new Random();
-
-            var query = from a in AirlinerTypes.GetTypes().FindAll((delegate(AirlinerType t) { return t.Produced.From<GameObject.GetInstance().GameTime.Year; }))
-                        select a.CruisingSpeed;
-
-            double maxSpeed= query.Max();
-
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(this.Destination1.Profile.Coordinates, this.Destination2.Profile.Coordinates, maxSpeed).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
-
-            if (minFlightTime.Hours < 12 && minFlightTime.Days<1)
-            {
-                
-              
-
-                this.TimeTable.addDailyEntries(new RouteEntryDestination(this.Destination2, flightCode2), new TimeSpan(12, 0, 0).Subtract(minFlightTime));
-                this.TimeTable.addDailyEntries(new RouteEntryDestination(this.Destination1, flightCode1), new TimeSpan(12, 0, 0).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks)));
-            }
-            else
-            {
-                DayOfWeek day = 0;
-
-                int outTime = 15 * rnd.Next(-12,12);
-                int homeTime = 15 * rnd.Next(-12,12);
-                
-                for (int i = 0; i < 3; i++)
-                {
-                    this.TimeTable.addEntry(new RouteTimeTableEntry(this.TimeTable,day,new TimeSpan(12,0,0).Add(new TimeSpan(0,outTime,0)),new RouteEntryDestination(this.Destination2, flightCode2)));
-         
-                    day += 2;
-                }
-
-                day = (DayOfWeek)1;
-                
-                for (int i = 0; i < 3; i++)
-                {
-                    this.TimeTable.addEntry(new RouteTimeTableEntry(this.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(this.Destination1, flightCode1)));
-         
-                    day += 2;
-                }
-                
-            }
-
-
-
-        }
+      
         //returns if the route contains a specific destination
         public Boolean containsDestination(Airport destination)
         {

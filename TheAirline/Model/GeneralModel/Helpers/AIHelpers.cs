@@ -143,8 +143,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 
                 airport.Hubs.Add(new Hub(airline));
 
-                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airport.getHubPrice()));
-          
+                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airport.getHubPrice());
+
+      
             }
 
         }
@@ -271,7 +272,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         Guid id = Guid.NewGuid();
 
-                        Route route = new Route(id.ToString(), airport, destination, price, airline.getNextFlightCode(), airline.getNextFlightCode());
+                        Route route = new Route(id.ToString(), airport, destination, price);
 
                         foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                         {
@@ -304,18 +305,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 double payment = loan.getMonthlyPayment();
 
                                 airline.addLoan(loan);
-                                airline.addInvoice(new Invoice(loan.Date, Invoice.InvoiceType.Loans, loan.Amount));
+                                AirlineHelpers.AddAirlineInvoice(airline, loan.Date, Invoice.InvoiceType.Loans, loan.Amount);
+
+  
                             }
                             else
-                                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice()));
+                                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
+                  
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
 
                         }
 
                         fAirliner.addRoute(route);
-                        //route.Airliner = fAirliner;
+                        CreateRouteTimeTable(route, fAirliner, airline.getNextFlightCode(), airline.getNextFlightCode());
+
 
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
@@ -438,12 +443,55 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airport.Profile.Country != airline.Profile.Country)
                     price = price * 1.25;
 
-                airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
+                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
 
                 return airport;
             }
 
             return null;
+
+        }
+        //creates the time table for an route for an airliner
+        public static void CreateRouteTimeTable(Route route,FleetAirliner airliner, string flightCode1, string flightCode2)
+        {
+            Random rnd = new Random();
+
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+
+            if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
+            {
+
+                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode2), new TimeSpan(12, 0, 0).Subtract(minFlightTime));
+                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode1), new TimeSpan(12, 0, 0).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks)));
+            }
+            else
+            {
+                DayOfWeek day = 0;
+
+                int outTime = 15 * rnd.Next(-12, 12);
+                int homeTime = 15 * rnd.Next(-12, 12);
+
+                for (int i = 0; i < 3; i++)
+                {
+                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode2)));
+
+                    day += 2;
+                }
+
+                day = (DayOfWeek)1;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode1)));
+
+                    day += 2;
+                }
+
+            }
+
+            foreach (RouteTimeTableEntry e in route.TimeTable.Entries.FindAll(e => e.Airliner == null))
+                e.Airliner = airliner;
+
 
         }
         //returns a random item based on a weighted value

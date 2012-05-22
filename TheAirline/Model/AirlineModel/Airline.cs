@@ -61,25 +61,18 @@ namespace TheAirline.Model.AirlineModel
         //adds a route to the airline
         public void addRoute(Route route)
         {
-            //this.FlightCodePointer = 0;
 
             this.Routes.Add(route);
-
-         //   foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())<-
-           //     this.FlightCodes.Remove(dest.FlightCode);
 
          
         }
         //removes a route from the airline
         public void removeRoute(Route route)
         {
-            //this.FlightCodePointer = 0;
-
+        
             this.Routes.Remove(route);
 
-            //foreach (RouteEntryDestination dest in route.TimeTable.getRouteEntryDestinations())
-              //  this.FlightCodes.Add(dest.FlightCode);
-
+   
        
   
        
@@ -176,8 +169,7 @@ namespace TheAirline.Model.AirlineModel
             double amount = 0;
             foreach (Invoice invoice in tInvoices)
                 amount += invoice.Amount;
-            //return Math.Abs(amount);
-            return amount;
+             return amount;
         }
         // chs, 2011-13-10 added function to add an invoice without have to pay for it. Used for loading of saved game
         //sets an invoice to the airline - no payment is made

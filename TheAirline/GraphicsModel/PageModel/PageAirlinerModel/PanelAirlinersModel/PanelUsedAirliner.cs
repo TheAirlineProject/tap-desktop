@@ -167,8 +167,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                     GameObject.GetInstance().HumanAirline.addAirliner(FleetAirliner.PurchasedType.Leased, this.Airliner,this.Airliner.TailNumber, airport);
 
-                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -this.Airliner.LeasingPrice*2));
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -this.Airliner.LeasingPrice*2);
 
+         
                     base.ParentPage.showUsedAirliners();
 
                     this.clearPanel();

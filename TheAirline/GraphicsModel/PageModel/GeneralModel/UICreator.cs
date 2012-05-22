@@ -33,15 +33,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             TypeConverter colorConverter = new ColorConverter();
             Color c = (Color)colorConverter.ConvertFromString(color);
 
-            Color c2 = Color.FromArgb(25, c.R, c.G, c.B);
 
-            LinearGradientBrush colorBrush = new LinearGradientBrush();
-            colorBrush.StartPoint = new Point(0, 0);
-            colorBrush.EndPoint = new Point(0, 1);
-            colorBrush.GradientStops.Add(new GradientStop(c2, 0.2));
-            colorBrush.GradientStops.Add(new GradientStop(c, 0.85));
-            colorBrush.GradientStops.Add(new GradientStop(c2, 1));
-
+            LinearGradientBrush colorBrush = CreateGradientBrush(c);
 
             Rectangle rectColor = new Rectangle();
             rectColor.Width = 50;
@@ -56,6 +49,22 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             return rectColor;
 
+        }
+        /*! creates a linear gradient brush on a base color
+         */
+        public static LinearGradientBrush CreateGradientBrush(Color baseColor)
+        {
+           
+            Color c2 = Color.FromArgb(25, baseColor.R, baseColor.G, baseColor.B);
+
+            LinearGradientBrush colorBrush = new LinearGradientBrush();
+            colorBrush.StartPoint = new Point(0, 0);
+            colorBrush.EndPoint = new Point(0, 1);
+            colorBrush.GradientStops.Add(new GradientStop(c2, 0.15));
+            colorBrush.GradientStops.Add(new GradientStop(baseColor, 0.85));
+            colorBrush.GradientStops.Add(new GradientStop(c2, 1));
+
+            return colorBrush;
         }
         /*! creates the game logo
          */

@@ -47,8 +47,7 @@ namespace TheAirline.Model.AirlinerModel
         {
             this.Routes.Add(route);
 
-            foreach (RouteTimeTableEntry e in route.TimeTable.Entries.FindAll(e=>e.Airliner == null)) 
-                e.Airliner = this;
+       
         }
         //removes a route from the airliner
         public void removeRoute(Route route)

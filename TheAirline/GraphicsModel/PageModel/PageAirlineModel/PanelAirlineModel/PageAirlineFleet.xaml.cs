@@ -22,6 +22,7 @@ using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -298,8 +299,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                   
                     this.Airline.removeAirliner(airliner);
 
-                    this.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airliner.Airliner.getPrice()));
+                    AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airliner.Airliner.getPrice());
 
+              
                     _FleetDelivered.Remove(airliner);
 
                     showFleet();

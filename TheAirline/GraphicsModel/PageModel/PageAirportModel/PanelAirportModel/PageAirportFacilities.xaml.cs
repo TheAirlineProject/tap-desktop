@@ -19,6 +19,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -161,8 +162,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                     if (this.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
                         price = price * 1.25;
 
-                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price));
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases,-price);
 
+        
                     this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility);
 
                     showFacilitiesInformation();

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.AirlinerModel
 {
@@ -35,7 +36,9 @@ namespace TheAirline.Model.AirlinerModel
             this.Facilities[facility.Type] = facility;
 
             if (this.Airliner.Airline != null)
-                this.Airliner.Airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity));
+                AirlineHelpers.AddAirlineInvoice(this.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity);
+   
+
         }
         //force sets the facility for a facility type without cost
         public void forceSetFacility(AirlinerFacility facility)

@@ -213,7 +213,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
                 Guid id = Guid.NewGuid();
-                Route route = new Route(id.ToString(),dest1, dest2, 0, "", "");
+                Route route = new Route(id.ToString(),dest1, dest2, 0);
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
@@ -224,8 +224,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
         
                 }
-                route.TimeTable.Entries.Clear();
-
+               
                 airline.addRoute(route);
 
                 dest1.Terminals.getEmptyGate(airline).Route = route;

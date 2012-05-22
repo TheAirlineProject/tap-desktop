@@ -11,6 +11,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
     //the class for some general airline helpers
     public class AirlineHelpers
     {
+        //adds an invoice to an airline
+        public static void AddAirlineInvoice(Airline airline, DateTime date, Invoice.InvoiceType type, double amount)
+        {
+            airline.addInvoice(new Invoice(date, type, amount));
+        }
         //buys an airliner to an airline
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport)
         {
@@ -21,8 +26,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.addAirliner(fAirliner);
 
-            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice()));
+            AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice());
 
+   
             return fAirliner;
          
         }
@@ -51,7 +57,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
 
-            airline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice));
-        }
+            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice);
+         }
     }
 }

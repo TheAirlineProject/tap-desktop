@@ -17,6 +17,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -57,21 +59,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelFlights.Children.Add(createDestinationFlightsPanel());
 
+            Button btnSlotAllocation = new Button();
+            btnSlotAllocation.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnSlotAllocation.Height = Double.NaN;
+            btnSlotAllocation.Width = Double.NaN;
+            btnSlotAllocation.Content = "Slot allocations";
+            btnSlotAllocation.Click += new RoutedEventHandler(btnSlotAllocation_Click);
+            btnSlotAllocation.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnSlotAllocation.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnSlotAllocation.Visibility = this.Airport.Terminals.getRoutes().Count > 0 ? Visibility.Visible : Visibility.Collapsed;
+            btnSlotAllocation.Margin = new Thickness(0, 5, 0, 0);
+
+            panelFlights.Children.Add(btnSlotAllocation);
+          
             this.Content = panelFlights;
-
+           
         }
-        //creates the panel for the slot allocation
-        private StackPanel createSlotAllocationPanel()
-        {
-            DayOfWeek day = DayOfWeek.Sunday;
 
-            StackPanel panelSlots = new StackPanel();
-            panelSlots.Margin = new Thickness(0, 10, 0, 0);
-               
-            
-
-            return panelSlots; 
-        }
+       
+       
         //creates the panel for destination flights
         private StackPanel createDestinationFlightsPanel()
         {
@@ -173,6 +179,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
             }
             return destinations;
+
+        }
+        private void btnSlotAllocation_Click(object sender, RoutedEventArgs e)
+        {
+            PopUpAirportSlot.ShowPopUp(this.Airport);
 
         }
         private void lnkAirport_MouseDown(object sender, MouseButtonEventArgs e)

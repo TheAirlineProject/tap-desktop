@@ -768,7 +768,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.PMDesignator == "")
 
-                return new DateTime(2000, 1, 1, hour, 0, 0).ToString("HH tt");
+                return new DateTime(2000, 1, 1, hour, 0, 0).ToString("HH");
             else
                 return new DateTime(2000, 1, 1, hour, 0, 0).ToString("hh tt");
 

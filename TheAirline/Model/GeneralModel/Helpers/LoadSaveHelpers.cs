@@ -246,7 +246,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
                     Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
 
-                    Route route = new Route(id, dest1, dest2, 0, "", "");
+                    Route route = new Route(id, dest1, dest2, 0);
                     route.Classes.Clear();
 
 
