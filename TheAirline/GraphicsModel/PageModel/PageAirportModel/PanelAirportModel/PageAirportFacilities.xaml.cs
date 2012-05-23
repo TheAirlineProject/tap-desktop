@@ -75,17 +75,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelFacilities.Children.Add(lbAirportFacilities);
 
-            Array types = Enum.GetValues(typeof(AirportFacility.FacilityType));
-
+        
             List<Airline> airlines = Airlines.GetAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)
             {
-                for (int i = 0; i < types.Length; i++)
+                foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                 {
-
-                    lbAirportFacilities.Items.Add(new AirlineFacilityType(i == 0 ? airline : null, this.Airport.getAirportFacility(airline, (AirportFacility.FacilityType)types.GetValue(i))));
+                    if (this.Airport.getAirportFacility(airline, type).TypeLevel != 0)
+                     lbAirportFacilities.Items.Add(new AirlineFacilityType(airline, this.Airport.getAirportFacility(airline, type)));
                 }
             }
 
@@ -133,17 +132,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             PageNavigator.NavigateTo(new PageAirline(airline));
         }
 
-        //the class for a facility type for an airline
-        private class AirlineFacilityType
-        {
-            public Airline Airline { get; set; }
-            public AirportFacility Facility { get; set; }
-            public AirlineFacilityType(Airline airline, AirportFacility facility)
-            {
-                this.Airline = airline;
-                this.Facility = facility;
-            }
-        }
+       
 
         private void ButtonBuy_Click(object sender, RoutedEventArgs e)
         {
@@ -193,9 +182,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
             }
         }
+        //the class for a facility type for an airline
+        private class AirlineFacilityType
+        {
+            public Airline Airline { get; set; }
+            public AirportFacility Facility { get; set; }
+            public AirlineFacilityType(Airline airline, AirportFacility facility)
+            {
+                this.Airline = airline;
+                this.Facility = facility;
+            }
+        }
     }
 
-
+   
     //the class for a facility type for the human airline
     public class HumanFacilityType
     {

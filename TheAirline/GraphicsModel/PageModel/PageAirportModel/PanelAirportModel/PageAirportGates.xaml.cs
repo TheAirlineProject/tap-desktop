@@ -188,9 +188,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             
             panelAirlineGates.Children.Add(lbAirlineGates);
 
-            List<Airline> airlines = Airlines.GetAirlines();
-            airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
-
+            List<Airline> airlines = (from a in Airlines.GetAirlines() where this.Airport.Terminals.getNumberOfGates(a)>0 orderby a.Profile.Name select a).ToList();
+           
             foreach (Airline airline in airlines)
                 lbAirlineGates.Items.Add(new AirlineGates(airline, this.Airport.Terminals.getNumberOfGates(airline), this.Airport.Terminals.getNumberOfGates(airline) - this.Airport.Terminals.getFreeGates(airline)));
 

@@ -14,6 +14,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -562,8 +563,37 @@ namespace TheAirline.Model.GeneralModel
                 airline.Airports[0].setAirportFacility(airline, facility);
 
             }
-        }
 
+           // CreatePassengers();
+
+         
+        }
+        /*! creates the passengers at start up
+         */
+        private static void CreatePassengers()
+        {
+            List<Airport> airports = Airports.GetAirports();
+
+            Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
+            airports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
+    
+            foreach (Airport airport in Airports.GetAirports())
+            {
+                int factor = (((int)airport.Profile.Size) + 1)*2;
+                for (int i = 0; i < 1000; i++)
+                {
+                    Guid guid = Guid.NewGuid();
+                 
+                    Passenger passenger = new Passenger(guid.ToString(), Passenger.PassengerType.Business, airport); //type, domestic, regional
+                    passenger.Updated = GameObject.GetInstance().GameTime;
+                    passenger.Destination = AIHelpers.GetRandomItem(airportsList);
+                    passenger.Factor = factor;
+
+                    airport.addPassenger(passenger);
+                }
+            }
+           
+        }
         /*! removes some random airlines from the list bases on number of opponents.
          */
         private static void RemoveAirlines(int opponnents)
@@ -625,7 +655,7 @@ namespace TheAirline.Model.GeneralModel
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
-            
+
 
                 foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                 {

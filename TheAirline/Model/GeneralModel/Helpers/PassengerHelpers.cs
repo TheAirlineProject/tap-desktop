@@ -7,6 +7,8 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -150,6 +152,17 @@ namespace TheAirline.Model.GeneralModel
             double expenses = GameObject.GetInstance().FuelPrice * dist * fuelConsumption + (dest2.getLandingFee() + dest1.getLandingFee())/(2*100) + tax;
 
             return expenses * 2.5;
+
+        }
+        //returns the destination for a passenger
+        public static Airport GetPassengerDestination(Passenger passenger, Airport airport)
+        {
+            List<Airport> airports = Airports.GetAirports();
+           
+            Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
+            airports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
+
+            return AIHelpers.GetRandomItem(airportsList);
 
         }
     }

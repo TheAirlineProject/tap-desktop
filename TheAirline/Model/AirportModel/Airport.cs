@@ -6,6 +6,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.PassengerModel;
 
 
 namespace TheAirline.Model.AirportModel
@@ -14,7 +15,7 @@ namespace TheAirline.Model.AirportModel
     public class Airport
     {
         public AirportProfile Profile { get; set; }
-        public Dictionary<Airport, int> Passengers { get; set; }
+        private List<Passenger> Passengers;
         public AirportStatistics Statistics { get; set; }
         public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
         public Weather Weather { get; set; }
@@ -27,7 +28,7 @@ namespace TheAirline.Model.AirportModel
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
-            this.Passengers = new Dictionary<Airport, int>();
+            this.Passengers = new List<Passenger>();
             this.Facilities = new Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
@@ -46,34 +47,29 @@ namespace TheAirline.Model.AirportModel
        
 
         }
+        
         //clears the list of passengers
         public void clearPassengers()
         {
-            this.Passengers = new Dictionary<Airport, int>();
+            this.Passengers = new List<Passenger>();
         }
        
         //returns the number of passengers for a given destination
-        public int getPassengers(Airport airport)
+        public List<Passenger> getPassengers()
         {
-          
-            Random rnd = new Random();
-
-            int value = rnd.Next((int)this.Profile.Size * 100);
-            return value;
+            return this.Passengers;
         }
-        //removes the number of passengers for a given destination
-        public void removePassengers(Airport airport, int number)
+        //removes a passenger from the airport
+        public void removePassenger(Passenger passenger)
         {
-            if (this.Passengers.ContainsKey(airport))
-                this.Passengers[airport] -= number;
+            this.Passengers.Remove(passenger);
         }
-        //adds the number of passengers to a given destination
-        public void addPassengers(Airport airport, int number)
+        //adds a passenger to the airport
+        public void addPassenger(Passenger passenger)
         {
-            if (!this.Passengers.ContainsKey(airport))
-                this.Passengers.Add(airport, 0);
-            this.Passengers[airport] += number;
+            this.Passengers.Add(passenger);
         }
+       
         //returns the price for a gate
         public long getGatePrice()
         {
