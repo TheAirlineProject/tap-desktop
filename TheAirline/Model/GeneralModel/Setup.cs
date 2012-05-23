@@ -216,6 +216,8 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirliners()
         {
+            TextWriter tw = new StreamWriter("airliners.log");
+
             //   LoadAirliners(AppSettings.getDataPath() + "\\airliners.xml");
             try
             {
@@ -225,12 +227,16 @@ namespace TheAirline.Model.GeneralModel
                 {
                     LoadAirliners(file.FullName);
 
+                    tw.WriteLine(string.Format("{0} has been read", file.FullName));
                 }
             }
             catch (Exception e)
             {
                 string s = e.ToString();
+
+                tw.WriteLine(e.Message);
             }
+            tw.Close();
         }
         private static void LoadAirliners(string file)
         {
@@ -579,7 +585,7 @@ namespace TheAirline.Model.GeneralModel
     
             foreach (Airport airport in Airports.GetAirports())
             {
-                int factor = (((int)airport.Profile.Size) + 1)*2;
+                int factor = (((int)airport.Profile.Size) + 1)*2+rnd.Next(5);
                 for (int i = 0; i < 1000; i++)
                 {
                     Guid guid = Guid.NewGuid();

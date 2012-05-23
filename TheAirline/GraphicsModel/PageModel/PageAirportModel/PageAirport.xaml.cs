@@ -182,7 +182,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             group p by p.Destination into g
             select new { Destination = g.Key, Numbers = g };
 
-            foreach (var g in passengersGroup)
+            foreach (var g in passengersGroup.OrderByDescending(a=>a.Numbers.Sum(p=>p.Factor)))
             {
                 lbPassengers.Items.Add(new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(g.Numbers.Sum(p=>p.Factor).ToString())));
                
