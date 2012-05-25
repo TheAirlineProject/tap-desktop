@@ -570,7 +570,7 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
-           // CreatePassengers();
+           //CreatePassengers();
 
          
         }
@@ -581,16 +581,19 @@ namespace TheAirline.Model.GeneralModel
             List<Airport> airports = Airports.GetAirports();
 
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-            airports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
-    
+           
             foreach (Airport airport in Airports.GetAirports())
             {
+                airportsList.Clear();
                 int factor = (((int)airport.Profile.Size) + 1)*2+rnd.Next(5);
+                 airports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size* (a.Profile.Country == airport.Profile.Country ? 5 : 3)));
+    
+                
                 for (int i = 0; i < 1000; i++)
                 {
                     Guid guid = Guid.NewGuid();
                  
-                    Passenger passenger = new Passenger(guid.ToString(), Passenger.PassengerType.Business, airport); //type, domestic, regional
+                    Passenger passenger = new Passenger(guid.ToString(), Passenger.PassengerType.Business, airport); //type
                     passenger.Updated = GameObject.GetInstance().GameTime;
                     passenger.Destination = AIHelpers.GetRandomItem(airportsList);
                     passenger.Factor = factor;
