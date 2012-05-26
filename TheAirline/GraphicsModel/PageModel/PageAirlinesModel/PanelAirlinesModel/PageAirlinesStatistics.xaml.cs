@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using System.ComponentModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel
 {
@@ -25,6 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
     public partial class PageAirlinesStatistics : Page
     {
         private StackPanel panelStats;
+        private List<ListBox> lbToUpdate;
         public PageAirlinesStatistics()
         {
 
@@ -59,12 +61,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             this.Content = scroller;
 
-            showStats();
+            createStats();
         }
 
-        //shows the stats
-        private void showStats()
+        //creates the stats panel
+        private void createStats()
         {
+            lbToUpdate = new List<ListBox>();
+
             panelStats.Children.Clear();
 
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Departures"),false));
@@ -72,6 +76,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%"),false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("On-Time%"),true));
       
+
+        }
+        //shows the stats
+        private void showStats()
+        {
+            foreach (ListBox lbStat in lbToUpdate)
+            {
+                ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(lbStat.ItemsSource);
+                
+                dataView.Refresh();
+            }
 
         }
         private void PageAirlinesStatistics_OnTimeChanged()
@@ -88,37 +104,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
 
         }
-        //creates the statistics for happiness
-        private StackPanel createHappinessPanel()
-        {
-            StackPanel panelStatistics = new StackPanel();
-            panelStatistics.Margin = new Thickness(0, 0, 0, 5);
-
-            TextBlock txtHeader = new TextBlock();
-            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
-            txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PanelAirlinesStatistics", "1002");
-
-            panelStatistics.Children.Add(txtHeader);
-
-            ListBox lbStatistics = new ListBox();
-            lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-     
-            panelStatistics.Children.Add(lbStatistics);
-
-            List<Airline> airlines = Airlines.GetAirlines();
-            airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
-
-
-            foreach (Airline airline in airlines)
-                 lbStatistics.Items.Add(new KeyValuePair<Airline, StatisticsType>(airline, null));
-          
-            return panelStatistics;
-
-
-        }
+       
         //creates the airlines statistics
         private StackPanel createStatisticsPanel(StatisticsType type, Boolean inPercent)
         {
@@ -130,7 +116,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             ccHeader.Content = new KeyValuePair<StatisticsType, KeyValuePair<int, int>>(type, new KeyValuePair<int, int>(GameObject.GetInstance().GameTime.Year - 1, GameObject.GetInstance().GameTime.Year));
             panelStatistics.Children.Add(ccHeader);
 
-        
             ListBox lbStats = new ListBox();
             lbStats.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStats.ItemTemplate = inPercent ? this.Resources["StatPercentItem"] as DataTemplate : this.Resources["StatItem"] as DataTemplate;
@@ -138,13 +123,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             List<Airline> airlines = Airlines.GetAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
-            foreach (Airline airline in airlines)
-                lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(airline, type));
+            List<KeyValuePair<Airline, StatisticsType>> values = new List<KeyValuePair<Airline, StatisticsType>>();
 
+            airlines.ForEach(a => values.Add(new KeyValuePair<Airline, StatisticsType>(a, type)));
 
-         
+            lbStats.ItemsSource = values;
+
             panelStatistics.Children.Add(lbStats);
 
+            lbToUpdate.Add(lbStats);
+            
+            /*
             if (!inPercent)
             {
                 ContentControl ccTotal = new ContentControl();
@@ -154,6 +143,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
                 panelStatistics.Children.Add(ccTotal);
             }
+             * */
 
             return panelStatistics;
 
