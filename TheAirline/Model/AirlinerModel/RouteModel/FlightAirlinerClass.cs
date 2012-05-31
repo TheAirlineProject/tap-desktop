@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -12,8 +13,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     public class FlightAirlinerClass
     {
         public RouteAirlinerClass AirlinerClass { get; set; }
-        public int Passengers { get; set; }
-        public FlightAirlinerClass(RouteAirlinerClass aClass, int passengers)
+        public List<Passenger> Passengers { get; set; }
+        public FlightAirlinerClass(RouteAirlinerClass aClass, List<Passenger> passengers)
         {
             this.AirlinerClass = aClass;
             this.Passengers = passengers;

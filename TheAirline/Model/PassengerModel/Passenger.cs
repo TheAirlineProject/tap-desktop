@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.Model.PassengerModel
 {
@@ -17,14 +18,42 @@ namespace TheAirline.Model.PassengerModel
         public Airport Destination { get; set; }
         public Airport HomeAirport { get; set; }
         public DateTime Updated { get; set; }
+        public AirlinerClass.ClassType PreferedClass { get; set; }
         public int Factor { get; set; } //how many passengers does the passenger count for
-        public Passenger(string id, PassengerType type, Airport homeAirport)
+        public Passenger(string id, PassengerType type, Airport homeAirport, AirlinerClass.ClassType preferedClass)
         {
             this.ID = id;
             this.CurrentType = type;
             this.PrimaryType = type;
             this.HomeAirport = homeAirport;
+            this.PreferedClass = preferedClass;
        
+        }
+    }
+    //the list of passengers 
+    public class Passengers
+    {
+        private static Dictionary<string, Passenger> passengers = new Dictionary<string, Passenger>();
+        //adds a passengers to the list
+        public static void AddPassenger(Passenger passenger)
+        {
+           
+            passengers.Add(passenger.ID,passenger);
+        }
+        //returns the list of passengers
+        public static List<Passenger> GetPassengers()
+        {
+            return passengers.Values.ToList();
+        }
+        //clears the list of passengers
+        public static void Clear() 
+        {
+            passengers.Clear();
+        }
+        //returns a passenger with an id
+        public static Passenger GetPassenger(string id)
+        {
+            return passengers[id];
         }
     }
 }

@@ -23,6 +23,7 @@ using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using System.Windows.Controls.Primitives;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -185,7 +186,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
                 if (file != null)
                 {
-                 
+
+                    PassengersTimer.GetInstance().cancel();
                     LoadSaveHelpers.LoadGame(file);
 
                     PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));

@@ -184,7 +184,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             foreach (var g in passengersGroup.OrderByDescending(a=>a.Numbers.Sum(p=>p.Factor)))
             {
-                lbPassengers.Items.Add(new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(g.Numbers.Sum(p=>p.Factor).ToString())));
+                lbPassengers.Items.Add(new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
                
             }
 

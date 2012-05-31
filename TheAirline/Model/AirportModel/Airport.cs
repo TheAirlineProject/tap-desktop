@@ -54,10 +54,15 @@ namespace TheAirline.Model.AirportModel
             this.Passengers = new List<Passenger>();
         }
        
-        //returns the number of passengers for a given destination
+        //returns all passengers at the airport
         public List<Passenger> getPassengers()
         {
             return this.Passengers;
+        }
+        //returns all passengers for a specific destination
+        public List<Passenger> getPassengers(Airport destination)
+        {
+            return this.Passengers.FindAll(p => p.Destination == destination);
         }
         //removes a passenger from the airport
         public void removePassenger(Passenger passenger)
@@ -69,7 +74,7 @@ namespace TheAirline.Model.AirportModel
         {
             this.Passengers.Add(passenger);
         }
-       
+        
         //returns the price for a gate
         public long getGatePrice()
         {

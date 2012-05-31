@@ -570,39 +570,9 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
-           //CreatePassengers();
-
          
         }
-        /*! creates the passengers at start up
-         */
-        private static void CreatePassengers()
-        {
-            List<Airport> airports = Airports.GetAirports();
-
-            Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-           
-            foreach (Airport airport in Airports.GetAirports())
-            {
-                airportsList.Clear();
-                int factor = (((int)airport.Profile.Size) + 1)*2+rnd.Next(5);
-                 airports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size* (a.Profile.Country == airport.Profile.Country ? 5 : 3)));
-    
-                
-                for (int i = 0; i < 1000; i++)
-                {
-                    Guid guid = Guid.NewGuid();
-                 
-                    Passenger passenger = new Passenger(guid.ToString(), Passenger.PassengerType.Business, airport); //type
-                    passenger.Updated = GameObject.GetInstance().GameTime;
-                    passenger.Destination = AIHelpers.GetRandomItem(airportsList);
-                    passenger.Factor = factor;
-
-                    airport.addPassenger(passenger);
-                }
-            }
-           
-        }
+       
         /*! removes some random airlines from the list bases on number of opponents.
          */
         private static void RemoveAirlines(int opponnents)

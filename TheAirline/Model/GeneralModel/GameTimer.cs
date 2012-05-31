@@ -24,7 +24,7 @@ namespace TheAirline.Model.GeneralModel
         {
             this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             this.Timer = new Timer();
-            this.Timer.Interval = (int)this.GameSpeed;//1000;
+            this.Timer.Interval = (int)this.GameSpeed;
             this.Timer.Tick += new EventHandler(Timer_Tick);
             this.OnTimeChanged += new TimeChanged(GameTimer_OnTimeChanged);
             this.Timer.Enabled = false;

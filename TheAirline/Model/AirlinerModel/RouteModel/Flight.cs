@@ -49,7 +49,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             int passengers = 0;
 
             foreach (FlightAirlinerClass aClass in this.Classes)
-                passengers += aClass.Passengers;
+                passengers += aClass.Passengers.Sum(p=>p.Factor);
 
             return passengers;
         }
