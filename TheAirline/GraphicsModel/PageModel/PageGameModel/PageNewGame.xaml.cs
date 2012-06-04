@@ -285,7 +285,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GameTimer.GetInstance().start();
                 PassengersTimer.GetInstance().start();
-
+              
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }
             else
