@@ -62,7 +62,7 @@ namespace TheAirline.Model.AirportModel
         //returns all passengers for a specific destination
         public List<Passenger> getPassengers(Airport destination)
         {
-            return this.Passengers.FindAll(p => p.Destination == destination);
+            return this.Passengers.FindAll(p => p.Destination == destination || p.getNextRouteDestination(this)==destination);
         }
         //removes a passenger from the airport
         public void removePassenger(Passenger passenger)

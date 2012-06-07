@@ -83,6 +83,7 @@ namespace TheAirline.Model.GeneralModel
                 newPassenger.Updated = GameObject.GetInstance().GameTime;
                 newPassenger.Destination = tPassengers[i].Destination;
                 newPassenger.Factor = tFactor - tPassengers[i].Factor;
+                newPassenger.Route = tPassengers[i].Route;
 
                 Passengers.AddPassenger(newPassenger);
                 airportCurrent.addPassenger(newPassenger);
@@ -99,6 +100,7 @@ namespace TheAirline.Model.GeneralModel
         //updates a landed passenger
         public static void UpdateLandedPassenger(Passenger passenger, Airport currentAirport)
         {
+            
             if (passenger.Destination == currentAirport)
             {
                 if (passenger.HomeAirport == currentAirport)
@@ -110,6 +112,7 @@ namespace TheAirline.Model.GeneralModel
                 }
                 else
                     passenger.Destination = passenger.HomeAirport;
+                passenger.Route = FindPassengerRoute(currentAirport, passenger);
             }
             passenger.Updated = GameObject.GetInstance().GameTime;
             currentAirport.addPassenger(passenger);
@@ -198,15 +201,14 @@ namespace TheAirline.Model.GeneralModel
         //finds if there is a route for a passenger from one destination to another
         public static List<Airport> FindPassengerRoute(Airport airport, Passenger passenger)
         {
-            List<Airport> route = new List<Airport>();
-
             Airport destination = passenger.Destination;
 
-            List<Route> routes = airport.Terminals.getRoutes();
-            //Airlines.GetAirlines().SelectMany(a => a.Routes).ToList(); Dijkstra
+            PassengerRouteFinder finder = new PassengerRouteFinder(Airports.GetAirports());
+            finder.calculateDistance(airport);
 
-            return route;
+            return finder.getPathTo(passenger.Destination);
         }
+       
         //returns the suggested passenger price for a route on a airliner
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
@@ -243,13 +245,8 @@ namespace TheAirline.Model.GeneralModel
         */
         public static void CreatePassengers(int passengers)
         {
-            
- 
-           //selvstændig tråd til generering husk type
             List<Airport> airports = Airports.GetAirports();
-          
-         
-           
+    
             foreach (Airport airport in Airports.GetAirports())
             {
 
@@ -266,7 +263,7 @@ namespace TheAirline.Model.GeneralModel
                     Passenger.PassengerType passengerType = passengerTypes[rnd.Next(0,passengerTypes.Length)];
 
                     List<AirlinerClass.ClassType> classTypes = new List<AirlinerClass.ClassType>();
-
+                    
                     for (int j = 0; j < 20; j++)
                         classTypes.Add(AirlinerClass.ClassType.Economy_Class);
                     classTypes.Add(AirlinerClass.ClassType.Business_Class);
@@ -281,6 +278,7 @@ namespace TheAirline.Model.GeneralModel
                     passenger.Updated = GameObject.GetInstance().GameTime;
                     passenger.Destination = AIHelpers.GetRandomItem(airportsList);
                     passenger.Factor = (int)factor;
+                    passenger.Route = FindPassengerRoute(passenger.HomeAirport, passenger);
 
                     Passengers.AddPassenger(passenger);
                     airport.addPassenger(passenger);

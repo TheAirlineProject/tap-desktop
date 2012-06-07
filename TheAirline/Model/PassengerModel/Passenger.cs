@@ -19,6 +19,7 @@ namespace TheAirline.Model.PassengerModel
         public Airport HomeAirport { get; set; }
         public DateTime Updated { get; set; }
         public AirlinerClass.ClassType PreferedClass { get; set; }
+        public List<Airport> Route { get; set; }
         public int Factor { get; set; } //how many passengers does the passenger count for
         public Passenger(string id, PassengerType type, Airport homeAirport, AirlinerClass.ClassType preferedClass)
         {
@@ -29,6 +30,16 @@ namespace TheAirline.Model.PassengerModel
             this.PreferedClass = preferedClass;
        
         }
+        //returns the next destination on the route for the passenger
+        public Airport getNextRouteDestination(Airport currentDestination)
+        {
+            int index = this.Route.IndexOf(currentDestination);
+
+            if (index >= 0 && index < this.Route.Count - 1)
+                return this.Route[index + 1];
+            else
+                return null;
+        }
     }
     //the list of passengers 
     public class Passengers
@@ -37,8 +48,7 @@ namespace TheAirline.Model.PassengerModel
         //adds a passengers to the list
         public static void AddPassenger(Passenger passenger)
         {
-           
-            passengers.Add(passenger.ID,passenger);
+           passengers.Add(passenger.ID,passenger);
         }
         //returns the list of passengers
         public static List<Passenger> GetPassengers()
