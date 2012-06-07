@@ -69,6 +69,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetAirliner_OnTimeChanged);
 
+            this.Unloaded += new RoutedEventHandler(PageFleetAirliner_Unloaded);
+
+        }
+
+        private void PageFleetAirliner_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageFleetAirliner_OnTimeChanged);
+
         }
 
         private void PageFleetAirliner_OnTimeChanged()

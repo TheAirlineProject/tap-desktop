@@ -30,7 +30,7 @@ namespace TheAirline.Model.PassengerModel
             int i = 0;
             while (!this.Worker.CancellationPending && i<100)
             {
-                PassengerHelpers.CreatePassengers(10);
+                PassengerHelpers.CreatePassengers(1);
 
                 i++;
             }

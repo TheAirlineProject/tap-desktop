@@ -73,6 +73,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             showNews(true);
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
+
+            this.Unloaded += new RoutedEventHandler(PageNewsBox_Unloaded);
+        }
+
+        private void PageNewsBox_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
+
         }
 
         private void PageNewsBox_OnTimeChanged()

@@ -61,11 +61,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
 
+            this.Unloaded += new RoutedEventHandler(PageAirlinesExtendedStatistics_Unloaded);
+
             scroller.Content = panelStatistics;
 
             this.Content = scroller;
 
             showStats();
+        }
+
+        private void PageAirlinesExtendedStatistics_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
+
         }
         //shows the stats
         private void showStats()

@@ -12,6 +12,7 @@ using System.Windows.Navigation;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.PassengerModel;
 
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -284,7 +285,7 @@ public class StandardContentPanel : Grid
 }
 public class PageInformation : Page
 {
-    private TextBlock txtGasPrice;
+    private TextBlock txtGasPrice, txtPassengers;
     public PageInformation()
     {
         this.Background = Brushes.Transparent;
@@ -308,9 +309,20 @@ public class PageInformation : Page
 
         panelContent.Children.Add(txtGasPrice);
 
+        txtPassengers = UICreator.CreateTextBlock(string.Format("{0}", Passengers.Count()));
+        panelContent.Children.Add(txtPassengers);
+
         this.Content = panelContent;
 
         GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageInformation_OnTimeChanged);
+
+        this.Unloaded += new RoutedEventHandler(PageInformation_Unloaded);
+    }
+
+    private void PageInformation_Unloaded(object sender, RoutedEventArgs e)
+    {
+        GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageInformation_OnTimeChanged);
+
     }
 
     private void PageInformation_OnTimeChanged()

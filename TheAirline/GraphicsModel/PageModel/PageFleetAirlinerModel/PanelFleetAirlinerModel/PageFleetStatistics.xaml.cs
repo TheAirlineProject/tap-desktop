@@ -62,7 +62,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetStatistics_OnTimeChanged);
 
+            this.Unloaded += new RoutedEventHandler(PageFleetStatistics_Unloaded);
+
             this.Content = panelStatistics;
+        }
+
+        private void PageFleetStatistics_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageFleetStatistics_OnTimeChanged);
+
         }
         //shows the stats
         private void showStats()

@@ -10,6 +10,16 @@
                     </Hyperlink>
         </TextBlock>
     </DataTemplate>
+    <DataTemplate x:Key="AirportCountryLink">
+        <DockPanel>
+            <Image Source="{Binding Profile.Country.Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <Hyperlink Tag="{Binding}" Click="Airport_Click" >
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
+            </TextBlock>
+          </DockPanel>
+    </DataTemplate>
     <DataTemplate x:Key="AirportLink">
         <TextBlock VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding}" Click="Airport_Click" >

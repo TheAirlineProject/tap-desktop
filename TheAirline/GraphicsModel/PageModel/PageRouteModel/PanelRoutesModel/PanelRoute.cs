@@ -146,6 +146,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             showRouteFinances();
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PanelRoute_OnTimeChanged);
+
+            this.Unloaded += new RoutedEventHandler(PanelRoute_Unloaded);
+        }
+
+        private void PanelRoute_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PanelRoute_OnTimeChanged);
+
         }
 
         private void PanelRoute_OnTimeChanged()

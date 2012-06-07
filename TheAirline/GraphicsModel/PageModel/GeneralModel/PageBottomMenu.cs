@@ -58,7 +58,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             this.Content = frameBorder;
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageBottomMenu_OnTimeChanged);
+
+            this.Unloaded += new RoutedEventHandler(PageBottomMenu_Unloaded);
         }
+
+        private void PageBottomMenu_Unloaded(object sender, RoutedEventArgs e)
+        {
+                  
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageBottomMenu_OnTimeChanged);
+        }
+       
 
         private void PageBottomMenu_OnTimeChanged()
         {

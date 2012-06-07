@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+                   xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirportModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirport">
     <Page.Resources>
+        <local:AirportPassengersConverter x:Key="airportPassengersConverter"></local:AirportPassengersConverter>
         <DataTemplate x:Key="FlightHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>
@@ -29,8 +31,31 @@
         </DataTemplate>
         <DataTemplate x:Key="PassengersItem">
             <WrapPanel>
-                <ContentControl ContentTemplate="{DynamicResource AirportLink}" Content="{Binding Key}" VerticalAlignment="Bottom" Width="250"></ContentControl>
-                <TextBlock Text="{Binding Value}" Width="50" TextAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Value}" VerticalAlignment="Bottom" Width="250"></ContentControl>
+                <TextBlock Text="{Binding Converter={StaticResource airportPassengersConverter},ConverterParameter='A'}"  Width="50" TextAlignment="Right" VerticalAlignment="Bottom">
+                    <TextBlock.ToolTip>
+                        <Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
+                            <StackPanel>
+                                 <WrapPanel>
+                                <TextBlock Text="Economy Class:" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                           <TextBlock Text="{Binding Converter={StaticResource airportPassengersConverter},ConverterParameter='E'}"  TextAlignment="Right" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                            
+                                    </WrapPanel>
+                                <WrapPanel>
+                                <TextBlock Text="First Class:" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding Converter={StaticResource airportPassengersConverter},ConverterParameter='F'}"  Margin="5 0 0 0" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
+                            
+                                    </WrapPanel>
+                                <WrapPanel>
+                                <TextBlock Text="Business Class:" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                           <TextBlock Text="{Binding Converter={StaticResource airportPassengersConverter},ConverterParameter='B'}" TextAlignment="Right" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                            
+                                    </WrapPanel>
+                               
+                            </StackPanel>
+                        </Border>
+                    </TextBlock.ToolTip>
+                </TextBlock>
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>

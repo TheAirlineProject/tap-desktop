@@ -67,5 +67,10 @@ namespace TheAirline.Model.PassengerModel
         {
             return passengers[id];
         }
+        //counts all the pasengers
+        public static int Count()
+        {
+            return passengers.Count;
+        }
     }
 }

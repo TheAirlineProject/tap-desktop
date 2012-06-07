@@ -183,4 +183,15 @@ namespace TheAirline.Model.GeneralModel
         }
 
     }
+    //the class for a key value pair for use on convertres etc.
+    public class GameKeyValuePair<T,S>
+    {
+        public T Key { get; set; }
+        public S Value { get; set; }
+        public GameKeyValuePair(T key, S value)
+        {
+            this.Key = key;
+            this.Value = value;
+        }
+    }
 }

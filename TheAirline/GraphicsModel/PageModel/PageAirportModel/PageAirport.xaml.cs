@@ -20,6 +20,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 {
@@ -30,7 +31,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
     {
         public Airport Airport { get; set; }
         private TextBlock txtWind, txtLocalTime;
-        private ListBox lbArrivals, lbDepartures;
+        private ListBox lbArrivals, lbDepartures, lbPassengers;
         public PageAirport(Airport airport)
         {
             InitializeComponent();
@@ -67,6 +68,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             showPage(this);
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirport_OnTimeChanged);
+
+            this.Unloaded += new RoutedEventHandler(PageAirport_Unloaded);
+        }
+
+        private void PageAirport_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirport_OnTimeChanged);
         }
 
         private void PageAirport_OnTimeChanged()
@@ -80,6 +88,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 GameTimeZone tz = this.Airport.Profile.TimeZone;
 
                 txtLocalTime.Text = string.Format("{0} {1}", MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, tz).ToShortTimeString(), tz.ShortName);
+
+              //  showPassengers();
             }
         }
 
@@ -183,23 +193,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             txtHeader.Text = Translator.GetInstance().GetString("PageAirport", txtHeader.Uid);
             panelPassengers.Children.Add(txtHeader);
 
-            ListBox lbPassengers = new ListBox();
+            lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
-            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
             panelPassengers.Children.Add(lbPassengers);
-      
-            var passengersGroup =
-            from p in this.Airport.getPassengers()
-            group p by p.Destination into g
-            select new { Destination = g.Key, Numbers = g };
 
-            foreach (var g in passengersGroup.OrderByDescending(a=>a.Numbers.Sum(p=>p.Factor)))
-            {
-                lbPassengers.Items.Add(new KeyValuePair<Airport, int>(g.Destination, g.Numbers.ToList().Sum(p => p.Factor)));// new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
-               
-            }
-
+            showPassengers();
 
             return panelPassengers;
 
@@ -208,7 +208,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
 
         }
+        //shows the passengers
+        private void showPassengers()
+        {
+            lbPassengers.Items.Clear();
 
+            var passengersGroup =
+          from p in this.Airport.getPassengers()
+          group p by p.Destination into g
+          select new { Destination = g.Key, Numbers = g };
+
+            foreach (var g in passengersGroup.OrderByDescending(a => a.Numbers.ToList().Sum(p => p.Factor)))
+            {
+                lbPassengers.Items.Add(new GameKeyValuePair<Airport, Airport>(this.Airport, g.Destination));// new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
+
+            }
+
+            
+        }
         //creates the panel for departures
         private ScrollViewer createDeparturesPanel()
         {
@@ -415,6 +432,44 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 this.Flight = flight;
                 this.Status = status;
             }
+        }
+      
+
+    }
+    //the converter for getting the number of passengers for an airport
+    public class AirportPassengersConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            if (value != null)
+            {
+                GameKeyValuePair<Airport, Airport> airportPair = (GameKeyValuePair<Airport, Airport>)value;
+
+                if (parameter.ToString() == "A")
+                {
+                    return airportPair.Key.getPassengers(airportPair.Value).Sum(p => p.Factor);
+                }
+                else
+                {
+                    AirlinerClass.ClassType pClass = AirlinerClass.ClassType.Economy_Class;
+                    if (parameter.ToString() == "B")
+                        pClass = AirlinerClass.ClassType.Business_Class;
+                    if (parameter.ToString() == "E")
+                        pClass = AirlinerClass.ClassType.Economy_Class;
+                    if (parameter.ToString() == "F")
+                        pClass = AirlinerClass.ClassType.First_Class;
+
+                    return airportPair.Key.getPassengers(airportPair.Value).FindAll(p => p.PreferedClass == pClass).Sum(p => p.Factor);
+
+                }
+            }
+            return -1;
+          
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

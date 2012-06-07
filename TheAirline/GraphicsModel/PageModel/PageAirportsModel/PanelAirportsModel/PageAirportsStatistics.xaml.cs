@@ -50,9 +50,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirportsStatistics_OnTimeChanged);
 
+            this.Unloaded += new RoutedEventHandler(PageAirportsStatistics_Unloaded);
+            
             this.Content = panelStatistics;
 
             showAirports();
+        }
+
+        private void PageAirportsStatistics_Unloaded(object sender, RoutedEventArgs e)
+        {
+            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirportsStatistics_OnTimeChanged);
+
         }
 
         private void PageAirportsStatistics_OnTimeChanged()
