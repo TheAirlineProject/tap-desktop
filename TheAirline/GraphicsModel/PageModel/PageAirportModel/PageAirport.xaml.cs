@@ -169,14 +169,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             return svArrivals;
         }
         //creates the panel for the passengers
-        private ListBox createPassengersPanel()
+        private StackPanel createPassengersPanel()
         {
+            StackPanel panelPassengers = new StackPanel();
+            panelPassengers.Margin = new Thickness(0, 10, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
+            txtHeader.TextAlignment = TextAlignment.Left;
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirport", txtHeader.Uid);
+            panelPassengers.Children.Add(txtHeader);
+
             ListBox lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbPassengers.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
             lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
-
-
+            panelPassengers.Children.Add(lbPassengers);
+      
             var passengersGroup =
             from p in this.Airport.getPassengers()
             group p by p.Destination into g
@@ -184,12 +196,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             foreach (var g in passengersGroup.OrderByDescending(a=>a.Numbers.Sum(p=>p.Factor)))
             {
-                lbPassengers.Items.Add(new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
+                lbPassengers.Items.Add(new KeyValuePair<Airport, int>(g.Destination, g.Numbers.ToList().Sum(p => p.Factor)));// new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
                
             }
 
 
-            return lbPassengers;
+            return panelPassengers;
 
 
 

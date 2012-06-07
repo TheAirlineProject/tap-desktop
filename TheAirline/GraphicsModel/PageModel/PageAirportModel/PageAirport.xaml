@@ -27,6 +27,12 @@
 
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="PassengersItem">
+            <WrapPanel>
+                <ContentControl ContentTemplate="{DynamicResource AirportLink}" Content="{Binding Key}" VerticalAlignment="Bottom" Width="250"></ContentControl>
+                <TextBlock Text="{Binding Value}" Width="50" TextAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
     </Page.Resources>
         <Grid>
         

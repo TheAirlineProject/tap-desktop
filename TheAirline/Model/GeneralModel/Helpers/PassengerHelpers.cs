@@ -304,6 +304,13 @@ namespace TheAirline.Model.GeneralModel
                 passenger.Route = FindPassengerRoute(passenger.CurrentAirport,passenger);
                 
             }
+            //finds all passengers where the route is not set
+            foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Route.Count < 2))
+            {
+                passenger.Route = FindPassengerRoute(passenger.CurrentAirport, passenger);
+
+                if (passenger.Route.Count > 1) passenger.Updated = GameObject.GetInstance().GameTime;
+            }
 
         }
     }
