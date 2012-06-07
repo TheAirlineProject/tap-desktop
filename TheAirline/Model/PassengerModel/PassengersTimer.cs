@@ -22,22 +22,20 @@ namespace TheAirline.Model.PassengerModel
             this.Worker = new BackgroundWorker();
             this.Worker.WorkerSupportsCancellation = true;
             this.Worker.DoWork += new DoWorkEventHandler(Timer_DoWork);
-            this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(Timer_RunWorkerCompleted);
         }
 
-        private void Timer_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-           // if (!this.Worker.IsBusy)
-             //   this.Worker.RunWorkerAsync();
-        }
-
+  
         private void Timer_DoWork(object sender, DoWorkEventArgs e)
         {
             int i = 0;
             while (!this.Worker.CancellationPending && i<100)
             {
-                PassengerHelpers.CreatePassengers(1);
+                PassengerHelpers.CreatePassengers(10);
+
+                i++;
             }
+
+            PassengerHelpers.UpdatePassengers();
             e.Cancel = true;
         }
 

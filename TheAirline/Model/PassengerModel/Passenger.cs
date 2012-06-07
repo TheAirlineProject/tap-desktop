@@ -17,6 +17,7 @@ namespace TheAirline.Model.PassengerModel
         public string ID { get; set; }
         public Airport Destination { get; set; }
         public Airport HomeAirport { get; set; }
+        public Airport CurrentAirport { get; set; }
         public DateTime Updated { get; set; }
         public AirlinerClass.ClassType PreferedClass { get; set; }
         public List<Airport> Route { get; set; }
@@ -27,6 +28,7 @@ namespace TheAirline.Model.PassengerModel
             this.CurrentType = type;
             this.PrimaryType = type;
             this.HomeAirport = homeAirport;
+            this.CurrentAirport = homeAirport;
             this.PreferedClass = preferedClass;
        
         }

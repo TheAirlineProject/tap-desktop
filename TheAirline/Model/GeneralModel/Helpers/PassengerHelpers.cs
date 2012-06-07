@@ -84,6 +84,7 @@ namespace TheAirline.Model.GeneralModel
                 newPassenger.Destination = tPassengers[i].Destination;
                 newPassenger.Factor = tFactor - tPassengers[i].Factor;
                 newPassenger.Route = tPassengers[i].Route;
+                newPassenger.CurrentAirport = tPassengers[i].CurrentAirport;
 
                 Passengers.AddPassenger(newPassenger);
                 airportCurrent.addPassenger(newPassenger);
@@ -94,8 +95,17 @@ namespace TheAirline.Model.GeneralModel
                 passengers = airportCurrent.getPassengers(destination);
 
             passengers.ForEach(p => airportCurrent.removePassenger(p));
+            passengers.ForEach(p => p.CurrentAirport = null);
 
             return passengers;
+        }
+        //returns a random destination from an airport
+        private static Airport GetRandomDestination(Airport currentAirport)
+        {
+            Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
+            Airports.GetAirports().FindAll(a => a != currentAirport).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
+
+            return AIHelpers.GetRandomItem(airportsList);
         }
         //updates a landed passenger
         public static void UpdateLandedPassenger(Passenger passenger, Airport currentAirport)
@@ -105,10 +115,8 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (passenger.HomeAirport == currentAirport)
                 {
-                    Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-                    Airports.GetAirports().FindAll(a => a != currentAirport).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
 
-                    passenger.Destination = AIHelpers.GetRandomItem(airportsList);
+                    passenger.Destination = GetRandomDestination(currentAirport) ;
                 }
                 else
                     passenger.Destination = passenger.HomeAirport;
@@ -116,6 +124,7 @@ namespace TheAirline.Model.GeneralModel
             }
             passenger.Updated = GameObject.GetInstance().GameTime;
             currentAirport.addPassenger(passenger);
+            passenger.CurrentAirport = currentAirport;
         }
         /*
         //returns the number of passengers for a flight
@@ -249,11 +258,7 @@ namespace TheAirline.Model.GeneralModel
     
             foreach (Airport airport in Airports.GetAirports())
             {
-
-                Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-                 airports.FindAll(a=>a!=airport).ForEach(a => airportsList.Add(a, (int)((int)a.Profile.Size* (a.Profile.Country == airport.Profile.Country ? 7 : 3)*GetSeasonFactor(a))));
-
-       
+  
                 for (int i = 0; i < passengers; i++)
                 {
                     double factor = (((int)airport.Profile.Size) + 1) * rnd.Next(1,20);
@@ -276,7 +281,7 @@ namespace TheAirline.Model.GeneralModel
                  
                     Passenger passenger = new Passenger(guid.ToString(), passengerType, airport,classType); 
                     passenger.Updated = GameObject.GetInstance().GameTime;
-                    passenger.Destination = AIHelpers.GetRandomItem(airportsList);
+                    passenger.Destination = GetRandomDestination(airport);
                     passenger.Factor = (int)factor;
                     passenger.Route = FindPassengerRoute(passenger.HomeAirport, passenger);
 
@@ -285,7 +290,21 @@ namespace TheAirline.Model.GeneralModel
 
                 }
             }
+
            
+        }
+        //updates all passengers
+        public static void UpdatePassengers()
+        {
+            //find new routes for all passengers not updated in the last week
+            foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Updated.AddDays(7) < GameObject.GetInstance().GameTime))
+            {
+                passenger.Updated = GameObject.GetInstance().GameTime;
+                passenger.Destination = GetRandomDestination(passenger.CurrentAirport);
+                passenger.Route = FindPassengerRoute(passenger.CurrentAirport,passenger);
+                
+            }
+
         }
     }
 }
