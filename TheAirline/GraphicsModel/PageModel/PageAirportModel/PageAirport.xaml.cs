@@ -183,9 +183,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             StackPanel panelPassengers = new StackPanel();
             panelPassengers.Margin = new Thickness(0, 10, 0, 0);
-
+            
             TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1001";
+            txtHeader.Uid = "1020";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;

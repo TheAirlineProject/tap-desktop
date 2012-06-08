@@ -285,7 +285,7 @@ public class StandardContentPanel : Grid
 }
 public class PageInformation : Page
 {
-    private TextBlock txtGasPrice, txtPassengers;
+    private TextBlock txtGasPrice;
     public PageInformation()
     {
         this.Background = Brushes.Transparent;
@@ -308,9 +308,6 @@ public class PageInformation : Page
         txtGasPrice.Margin = new Thickness(5, 0, 0, 0);
 
         panelContent.Children.Add(txtGasPrice);
-
-        txtPassengers = UICreator.CreateTextBlock(string.Format("{0}", Passengers.Count()));
-        panelContent.Children.Add(txtPassengers);
 
         this.Content = panelContent;
 

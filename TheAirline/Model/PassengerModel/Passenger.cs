@@ -68,9 +68,14 @@ namespace TheAirline.Model.PassengerModel
             return passengers[id];
         }
         //counts all the pasengers
-        public static int Count()
+        public static long Count()
         {
             return passengers.Count;
+        }
+        //returns the max amount of passengers for the game
+        public static long GetMaxPassengers()
+        {
+            return Airports.GetAirports().Count * 10000;
         }
     }
 }

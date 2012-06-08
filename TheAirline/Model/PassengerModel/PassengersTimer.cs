@@ -28,7 +28,7 @@ namespace TheAirline.Model.PassengerModel
         private void Timer_DoWork(object sender, DoWorkEventArgs e)
         {
             int i = 0;
-            while (!this.Worker.CancellationPending && i<100)
+            while (!this.Worker.CancellationPending && i<100 && Passengers.Count() < Passengers.GetMaxPassengers())
             {
                 PassengerHelpers.CreatePassengers(1);
 
