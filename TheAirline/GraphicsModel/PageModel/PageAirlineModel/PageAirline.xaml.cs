@@ -17,6 +17,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 {
@@ -100,7 +101,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-            lblFlag.Content = this.Airline.Profile.Country;
+            lblFlag.Content = new CountryCurrentCountryConverter().Convert(this.Airline.Profile.Country);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1005"), lblFlag));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1006"), UICreator.CreateColorRect(this.Airline.Profile.Color)));

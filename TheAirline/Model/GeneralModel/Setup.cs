@@ -41,6 +41,7 @@ namespace TheAirline.Model.GeneralModel
 
                 LoadRegions();
                 LoadCountries();
+                LoadTemporaryCountries();
                 LoadAirports();
                 LoadAirportLogos();
                 LoadAirportMaps();
@@ -73,6 +74,7 @@ namespace TheAirline.Model.GeneralModel
         {
             AdvertisementTypes.Clear();
             TimeZones.Clear();
+            TemporaryCountries.Clear();
             Airports.Clear();
             AirportFacilities.Clear();
             AirlineFacilities.Clear();
@@ -285,7 +287,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirports()
         {
-            LoadAirports(AppSettings.getDataPath() + "\\airports.xml");
+            //LoadAirports(AppSettings.getDataPath() + "\\airports.xml");
             try
             {
                 DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airports");
@@ -298,6 +300,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                string s = e.ToString();
             }
         }
         private static void LoadAirports(string file)
@@ -428,8 +431,48 @@ namespace TheAirline.Model.GeneralModel
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
+           
+              
         }
+        /*! loads the temporary countries
+         */
+        private static void LoadTemporaryCountries()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\temporary countries.xml");
+            XmlElement root = doc.DocumentElement;
 
+            XmlNodeList countriesList = root.SelectNodes("//country");
+            foreach (XmlElement element in countriesList)
+            {
+                string section = root.Name;
+                string uid = element.Attributes["uid"].Value;
+                string shortname = element.Attributes["shortname"].Value;
+                string flag = element.Attributes["flag"].Value;
+                Region region = Regions.GetRegion(element.Attributes["region"].Value);
+                string tailformat = element.Attributes["tailformat"].Value;
+
+                XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
+                DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value);
+                DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value);
+            
+                XmlElement historyElement = (XmlElement)element.SelectSingleNode("history");
+                Country before = Countries.GetCountry(historyElement.Attributes["before"].Value);
+                Country after = Countries.GetCountry(historyElement.Attributes["after"].Value);
+
+                Country country = new Country(section, uid, shortname, region, tailformat);
+                          
+                if (element.SelectSingleNode("translations") != null)
+                    Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
+
+                TemporaryCountry tCountry = new TemporaryCountry(country,startDate,endDate,before,after);
+
+                tCountry.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+             
+
+                TemporaryCountries.AddCountry(tCountry);
+            }
+        }
         /*! load the airliner facilities.
          */
         private static void LoadAirlinerFacilities()

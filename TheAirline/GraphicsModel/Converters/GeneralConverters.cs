@@ -435,4 +435,22 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
+    //the converter for a country to get current country (used for temporary countries)
+    public class CountryCurrentCountryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Country country = (Country)value;
+
+            return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
 }

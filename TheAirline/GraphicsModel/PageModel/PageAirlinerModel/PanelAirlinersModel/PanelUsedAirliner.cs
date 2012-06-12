@@ -58,7 +58,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             ContentControl ccFlag = new ContentControl();
             ccFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-            ccFlag.Content = Countries.GetCountryFromTailNumber(this.Airliner.TailNumber);
+            ccFlag.Content = new CountryCurrentCountryConverter().Convert(Countries.GetCountryFromTailNumber(this.Airliner.TailNumber));
             ccFlag.Margin = new Thickness(10, 0, 0, 0);
 
             panelTailNumber.Children.Add(ccFlag);

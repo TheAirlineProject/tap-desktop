@@ -10,6 +10,7 @@
     <Page.Resources>
         <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <DataTemplate x:Key="RouteItem">
             <WrapPanel>
                     
@@ -39,7 +40,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Text="{Binding Converter={StaticResource airportCodeConverter}}" Margin="5 0 0 0" Width="50" VerticalAlignment="Bottom"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country}"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
                 <TextBlock Text="Hub" FontWeight="Bold" VerticalAlignment="Bottom" Margin="10 0 0 0"  Visibility="{Binding IsHub,Converter={StaticResource booleanToVisibility}}"></TextBlock>
             </WrapPanel>
         </DataTemplate>

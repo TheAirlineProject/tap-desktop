@@ -12,6 +12,7 @@
     <Page.Resources>
         <c:CultureInfoConverter x:Key="cultureInfoConverter"></c:CultureInfoConverter>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <DataTemplate x:Key="ManufacturerItem">
             <WrapPanel>
                 <WrapPanel Width="250">
@@ -23,7 +24,7 @@
                     </Hyperlink>
             </TextBlock>
                 </WrapPanel>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding Country}"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
 
             </WrapPanel>
         </DataTemplate>

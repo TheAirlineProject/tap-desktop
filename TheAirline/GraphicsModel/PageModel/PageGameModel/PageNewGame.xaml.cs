@@ -60,7 +60,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             ListBox lbContent = new ListBox();
             lbContent.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbContent.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-      
+
             panelContent.Children.Add(lbContent);
 
             // chs, 2011-19-10 added for the possibility of creating a new airline
@@ -101,7 +101,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cntCountry = new ContentControl();
             cntCountry.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-    
+
             lbContent.Items.Add(new QuickInfoValue("Home country", cntCountry));
 
 
@@ -130,7 +130,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirport.SelectionChanged += new SelectionChangedEventHandler(cbAirports_SelectionChanged);
-    
+
             List<Airport> airportsList = Airports.GetAirports();
 
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
@@ -138,14 +138,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbAirport.ItemsSource = airportsView;
 
-     
+
             lbContent.Items.Add(new QuickInfoValue("Select homebase", cbAirport));
 
-   
+
             cbStartYear = new ComboBox();
             cbStartYear.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbStartYear.Width = 60;
-            for (int i = 1960; i < DateTime.Now.Year+2; i++)
+            for (int i = 1960; i < DateTime.Now.Year + 2; i++)
                 cbStartYear.Items.Add(i);
 
             cbStartYear.SelectedItem = DateTime.Now.Year;
@@ -157,12 +157,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbTimeZone.Width = 300;
             cbTimeZone.DisplayMemberPath = "DisplayName";
             cbTimeZone.SelectedValuePath = "DisplayName";
-            
+
 
             foreach (GameTimeZone gtz in TimeZones.GetTimeZones())
                 cbTimeZone.Items.Add(gtz);
 
-            cbTimeZone.SelectedItem = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) {return gtz.UTCOffset == new TimeSpan(0,0,0);});
+            cbTimeZone.SelectedItem = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
 
             lbContent.Items.Add(new QuickInfoValue("Select time zone", cbTimeZone));
 
@@ -173,14 +173,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbOpponents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbOpponents.Width = 50;
             cbOpponents.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
-            for (int i = 2; i<Math.Min(Airlines.GetAirlines().Count, 12); i++)
+            for (int i = 2; i < Math.Min(Airlines.GetAirlines().Count, 12); i++)
                 cbOpponents.Items.Add(i);
 
             cbOpponents.SelectedIndex = cbOpponents.Items.Count - 1;
 
             lbContent.Items.Add(new QuickInfoValue("Select # of opponents", cbOpponents));
 
-          
+
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
             panelContent.Children.Add(panelButtons);
@@ -191,7 +191,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             btnCreate.Click += new RoutedEventHandler(btnCreate_Click);
             btnCreate.Height = Double.NaN;
             btnCreate.Width = Double.NaN;
-             btnCreate.Content = "Create Game";
+            btnCreate.Content = "Create Game";
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             panelButtons.Children.Add(btnCreate);
 
@@ -219,6 +219,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
             showPage(this);
+
         }
 
         private void btnAddAirline_Click(object sender, RoutedEventArgs e)
@@ -227,7 +228,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
-     
+
 
         private void cbAirports_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -237,12 +238,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 cbTimeZone.SelectedItem = airport.Profile.TimeZone;
             }
 
-            
+
         }
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-             PageNavigator.NavigateTo(new PageFrontMenu());
+            PageNavigator.NavigateTo(new PageFrontMenu());
 
         }
 
@@ -254,7 +255,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GameObject.GetInstance().TimeZone = gtz;
 
                 int startYear = (int)cbStartYear.SelectedItem;
-                GameObject.GetInstance().GameTime =new DateTime(startYear, 1, 1);
+                GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
 
                 int opponents = (int)cbOpponents.SelectedItem;
                 Airline airline = (Airline)cbAirline.SelectedItem;
@@ -262,15 +263,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airline.Profile.CEO = txtName.Text.Trim();
 
                 GameObject.GetInstance().HumanAirline = airline;
-        
+
                 Airport airport = (Airport)cbAirport.SelectedItem;
 
                 airport.Terminals.rentGate(airline);
                 airport.Terminals.rentGate(airline);
-                                
+
                 List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
-                
-                AirportFacility facility =  facilities.Find((delegate(AirportFacility f) { return f.TypeLevel==1; }));
+
+                AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
                 airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility);
 
@@ -285,7 +286,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GameTimer.GetInstance().start();
                 PassengersTimer.GetInstance().start();
-              
+
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }
             else

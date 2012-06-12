@@ -57,6 +57,9 @@ namespace TheAirline.Model.GeneralModel
             if (countries.ContainsKey(uid))
                 return countries[uid];
             else
+                if (TemporaryCountries.GetCountry(uid) != null)
+                    return TemporaryCountries.GetCountry(uid);
+                else
                 return null;
         }
 
@@ -72,6 +75,7 @@ namespace TheAirline.Model.GeneralModel
         public static List<Country> GetCountries()
         {
             List<Country> netto = countries.Values.ToList();
+            netto.AddRange(TemporaryCountries.GetCountries());
             netto.Remove(GetCountry("100"));
             return netto;
         }
@@ -79,7 +83,9 @@ namespace TheAirline.Model.GeneralModel
         //returns the list of countries
         public static List<Country> GetAllCountries()
         {
-            return countries.Values.ToList();
+            List<Country> tCountries = countries.Values.ToList();
+            tCountries.AddRange(TemporaryCountries.GetCountries());
+            return tCountries;
         }
 
         //returns the list of countries from a region

@@ -4,14 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel"
+      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirportStatistics">
     <Page.Resources>
+        <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <local:AirlineStatConverter x:Key="airlineStatConverter"></local:AirlineStatConverter>
         <DataTemplate x:Key="AirportItem">
             <WrapPanel>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Airport.Profile.Country}"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Airport.Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
                 <TextBlock Width="250" VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding Airport}" Click="LnkAirport_Click">
                         <Run Text="{Binding Airport.Profile.Name}"></Run>

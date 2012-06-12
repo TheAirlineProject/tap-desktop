@@ -58,7 +58,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             airportsPanel.Children.Add(lbAirports);
 
-            Button btnResultsMap = new Button();
+            Button btnResultsMap = new Button(); 
             btnResultsMap.Uid = "1001";
             btnResultsMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnResultsMap.Width = Double.NaN;

@@ -27,11 +27,10 @@ namespace TheAirline
     public partial class MainWindow : Window
     {
         private Frame frameMain;
-   
+
         public MainWindow()
         {
 
-    
             InitializeComponent();
 
             Setup.SetupGame();
@@ -44,8 +43,8 @@ namespace TheAirline
             Canvas mainPanel = new Canvas();
 
             frameMain = new Frame();
-             frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-             frameMain.Navigate(new PageNewGame());
+            frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+            frameMain.Navigate(new PageNewGame());
 
             Canvas.SetTop(frameMain, 0);
             Canvas.SetLeft(frameMain, 0);
@@ -53,11 +52,12 @@ namespace TheAirline
             mainPanel.Children.Add(frameMain);
 
             this.Content = mainPanel;
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
-          if (e.Key == Key.Escape)
+            if (e.Key == Key.Escape)
                 this.Close();
         }
 
@@ -65,12 +65,12 @@ namespace TheAirline
         public void clearNavigator()
         {
             frameMain.NavigationService.LoadCompleted += new LoadCompletedEventHandler(NavigationService_LoadCompleted);
- 
+
             // Remove back entries
             while (frameMain.NavigationService.CanGoBack)
                 frameMain.NavigationService.RemoveBackEntry();
         }
-       
+
         private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
         {
             frameMain.NavigationService.RemoveBackEntry();
@@ -93,23 +93,23 @@ namespace TheAirline
         //navigates to a new page
         public void navigateTo(Page page)
         {
-             frameMain.Navigate(page);
-             frameMain.NavigationService.RemoveBackEntry();
-     
+            frameMain.Navigate(page);
+            frameMain.NavigationService.RemoveBackEntry();
+
         }
 
         //moves the navigator forward
         public void navigateForward()
         {
-           
-            if (frameMain.NavigationService.CanGoForward) 
+
+            if (frameMain.NavigationService.CanGoForward)
                 frameMain.NavigationService.GoForward();
         }
 
         //moves the navigator back
         public void navigateBack()
         {
-            
+
             if (frameMain.NavigationService.CanGoBack)
                 frameMain.NavigationService.GoBack();
         }

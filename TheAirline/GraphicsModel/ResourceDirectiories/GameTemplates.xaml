@@ -36,7 +36,7 @@
     <DataTemplate x:Key="CountryFlagLongItem">
         <DockPanel>
             <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" Width="100" VerticalAlignment="Bottom"/>
+            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" Width="200" VerticalAlignment="Bottom"/>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="RouteAirlinerClassItem">

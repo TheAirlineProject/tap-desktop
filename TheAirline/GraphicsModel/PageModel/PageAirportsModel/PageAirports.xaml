@@ -11,6 +11,7 @@
     <Page.Resources>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
+        <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <DataTemplate x:Key="AirportsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Width="300" VerticalAlignment="Bottom" FontWeight="Bold">
@@ -43,7 +44,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Text="{Binding Converter={StaticResource airportCodeConverter}}" Width="50" VerticalAlignment="Bottom"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country}"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
                 <TextBlock Text="{Binding Profile.Size,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Margin="10 0 0 0"></TextBlock>
             </WrapPanel>
         </DataTemplate>

@@ -347,7 +347,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-            lblFlag.Content = this.Airport.Profile.Country;
+            lblFlag.Content = new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country);//this.Airport.Profile.Country is TemporaryCountry ? ((TemporaryCountry)this.Airport.Profile.Country).getCurrentCountry(GameObject.GetInstance().GameTime) : this.Airport.Profile.Country;
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1011"), lblFlag));
 

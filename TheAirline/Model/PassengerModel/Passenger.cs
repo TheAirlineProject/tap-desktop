@@ -14,6 +14,7 @@ namespace TheAirline.Model.PassengerModel
         public enum PassengerType { Business, Tourist, Other }
         public PassengerType CurrentType { get; set; }
         public PassengerType PrimaryType { get; set; }
+        
         public string ID { get; set; }
         public Airport Destination { get; set; }
         public Airport HomeAirport { get; set; }
