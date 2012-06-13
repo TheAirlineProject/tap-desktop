@@ -210,12 +210,17 @@ namespace TheAirline.Model.GeneralModel
         //finds if there is a route for a passenger from one destination to another
         public static List<Airport> FindPassengerRoute(Airport airport, Passenger passenger)
         {
-            Airport destination = passenger.Destination;
+            if (passenger.Destination != null && airport != null)
+            {
+                Airport destination = passenger.Destination;
 
-            PassengerRouteFinder finder = new PassengerRouteFinder(Airports.GetAirports());
-            finder.calculateDistance(airport);
+                PassengerRouteFinder finder = new PassengerRouteFinder(Airports.GetAirports());
+                finder.calculateDistance(airport);
 
-            return finder.getPathTo(passenger.Destination);
+                return finder.getPathTo(passenger.Destination);
+            }
+            else
+                return new List<Airport>();
         }
        
         //returns the suggested passenger price for a route on a airliner

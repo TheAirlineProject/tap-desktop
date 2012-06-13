@@ -12,9 +12,9 @@ namespace TheAirline.Model.PassengerModel
     {
         public List<Airport> Nodes { get; set; }
         public List<Airport> Basis { get; set; }
-        public Dictionary<string,double> Dist { get; set; }
-        public Dictionary<string,Airport> Previous { get; set; }
-        
+        public Dictionary<string, double> Dist { get; set; }
+        public Dictionary<string, Airport> Previous { get; set; }
+
         /// <summary>
         /// Constructor
         /// </summary>
@@ -77,6 +77,7 @@ namespace TheAirline.Model.PassengerModel
             List<Airport> path = new List<Airport>();
 
             path.Insert(0, d);
+
 
             while (this.Previous[d.Profile.IATACode] != null)
             {
@@ -144,6 +145,6 @@ namespace TheAirline.Model.PassengerModel
 
         }
 
-      
+
     }
 }

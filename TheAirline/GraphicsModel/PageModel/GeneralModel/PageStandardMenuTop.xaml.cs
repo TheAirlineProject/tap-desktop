@@ -110,6 +110,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
+                PassengersTimer.GetInstance().cancel();
                 GameObject.RestartInstance();
                 GameTimer.RestartInstance();
                 Setup.SetupGame();

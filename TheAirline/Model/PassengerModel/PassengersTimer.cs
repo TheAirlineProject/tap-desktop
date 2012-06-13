@@ -35,7 +35,10 @@ namespace TheAirline.Model.PassengerModel
                 i++;
             }
 
-            PassengerHelpers.UpdatePassengers();
+            if (!this.Worker.CancellationPending)
+                PassengerHelpers.UpdatePassengers();
+
+         
             e.Cancel = true;
         }
 
@@ -58,6 +61,11 @@ namespace TheAirline.Model.PassengerModel
         {
             if (!this.Worker.IsBusy)
                 this.Worker.RunWorkerAsync();
+        }
+        //returns if the worker is busy
+        public Boolean isBusy()
+        {
+            return this.Worker.IsBusy;
         }
     }
 }

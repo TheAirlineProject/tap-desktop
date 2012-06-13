@@ -218,10 +218,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirliners()
         {
-            TextWriter tw = new StreamWriter("airliners.log");
-
-            //   LoadAirliners(AppSettings.getDataPath() + "\\airliners.xml");
-            try
+              try
             {
                 DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners");
 
@@ -229,16 +226,12 @@ namespace TheAirline.Model.GeneralModel
                 {
                     LoadAirliners(file.FullName);
 
-                    tw.WriteLine(string.Format("{0} has been read", file.FullName));
                 }
             }
             catch (Exception e)
             {
                 string s = e.ToString();
-
-                tw.WriteLine(e.Message);
-            }
-            tw.Close();
+          }
         }
         private static void LoadAirliners(string file)
         {
