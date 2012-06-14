@@ -51,7 +51,8 @@ namespace TheAirline.Model.GeneralModel
                 LoadManufacturerLogos();
                 LoadAirliners();
                 LoadAirlinerFacilities();
-
+                LoadFlightRestrictions();
+             
                 SetupStatisticsTypes();
 
                 CreateAdvertisementTypes();
@@ -59,8 +60,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
-                LoadFlightRestrictions();
-                Skins.Init();
+                 Skins.Init();
             }
             catch (Exception e)
             {
@@ -497,7 +497,32 @@ namespace TheAirline.Model.GeneralModel
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
+        /*loads the flight restrictions
+       */
+        private static void LoadFlightRestrictions()
+        {
+            //Read from xml + Unions + TemporaryCountry
+         
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\flightrestrictions.xml");
+            XmlElement root = doc.DocumentElement;
 
+            XmlNodeList restrictionsList = root.SelectNodes("//restriction");
+            foreach (XmlElement element in restrictionsList)
+            {
+                FlightRestriction.RestrictionType type = (FlightRestriction.RestrictionType)Enum.Parse(typeof(FlightRestriction.RestrictionType), element.Attributes["type"].Value);
+             
+                DateTime startDate = Convert.ToDateTime(element.Attributes["start"].Value);
+                DateTime endDate = Convert.ToDateTime(element.Attributes["end"].Value);
+            
+                XmlElement countriesElement = (XmlElement)element.SelectSingleNode("countries");
+                Country from = Countries.GetCountry(countriesElement.Attributes["from"].Value);
+                Country to= Countries.GetCountry(countriesElement.Attributes["to"].Value);
+
+                FlightRestrictions.AddRestriction(new FlightRestriction(type, startDate, endDate, from, to));       
+
+            }   
+        }
         /*! sets up the statistics types.
          */
         private static void SetupStatisticsTypes()
@@ -741,14 +766,7 @@ namespace TheAirline.Model.GeneralModel
                     name = "x";
             }
         }
-        /*loads the flight restrictions
-        */
-        private static void LoadFlightRestrictions()
-        {
-            //Read from xml + Unions + TemporaryCountry
-            FlightRestrictions.AddRestriction(new FlightRestriction(FlightRestriction.RestrictionType.Flights,new DateTime(1960, 6, 30), new DateTime(2012, 1, 2), Countries.GetCountry("122"), Countries.GetCountry("113")));//198 == Cuba
-            FlightRestrictions.AddRestriction(new FlightRestriction(FlightRestriction.RestrictionType.Airlines,new DateTime(2007,1,1),new DateTime(2012,1,2),Countries.GetCountry("122"), Countries.GetCountry("113")));
-        }
+       
         /*! creates the logos for the game airlines.
          */
         private static void CreateAirlineLogos()
