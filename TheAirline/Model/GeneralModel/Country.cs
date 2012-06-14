@@ -93,6 +93,11 @@ namespace TheAirline.Model.GeneralModel
         {
             return GetCountries().FindAll((delegate(Country country) { return country.Region == region; }));
         }
+        //returns the number of countries
+        public static int Count()
+        {
+            return countries.Values.Count - 1;//removes 100 (All)
+        }
     }
 }
 

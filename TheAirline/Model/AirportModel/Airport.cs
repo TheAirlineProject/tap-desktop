@@ -232,7 +232,11 @@ namespace TheAirline.Model.AirportModel
         {
             return airports.Values.ToList();
         }
-
+        //returns the total number of airports
+        public static int Count()
+        {
+            return airports.Values.Count;
+        }
 
     }
   

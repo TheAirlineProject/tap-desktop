@@ -88,7 +88,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
 
-            lbTest.Items.Add(UICreator.CreateTextBlock(string.Format("Total: {0}", Airports.GetAirports().Count)));
+            lbTest.Items.Add(UICreator.CreateTextBlock(string.Format("Total: {0}", Airports.Count())));
 
             panelMain.Children.Add(lbTest);
 

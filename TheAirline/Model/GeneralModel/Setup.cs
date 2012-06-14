@@ -59,6 +59,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
+                CreateFlightRestrictions();
                 Skins.Init();
             }
             catch (Exception e)
@@ -520,7 +521,7 @@ namespace TheAirline.Model.GeneralModel
             int typeNumber = rnd.Next(types.Count);
             AirlinerType type = types[typeNumber];
 
-            int countryNumber = rnd.Next(Countries.GetCountries().Count);
+            int countryNumber = rnd.Next(Countries.Count());
             Country country = Countries.GetCountries()[countryNumber];
 
             int builtYear = rnd.Next(Math.Max(type.Produced.From, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year, type.Produced.To));
@@ -748,7 +749,12 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airline airline in Airlines.GetAirlines())
                 airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
         }
-
+        /*creates the flight restrictions
+         */
+        private static void CreateFlightRestrictions()
+        {
+            FlightRestrictions.AddRestriction(new FlightRestriction(new DateTime(1960, 6, 30), new DateTime(2012, 1, 1), Countries.GetCountry("122"), Countries.GetCountry("113")));//198 == Cuba
+        }
         /*! private stativ method CreateFlightFacilities.
          * creates the in flight facilities.
          */

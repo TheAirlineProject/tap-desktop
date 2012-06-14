@@ -17,12 +17,13 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
-        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtDestination1Gates, txtDestination2Gates;
+        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates;
         private ComboBox cbDestination1, cbDestination2;
         private Button btnSave;
         private PageRoutes ParentPage;
@@ -45,7 +46,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Create New Route";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelNewRoute", "201");
             this.Children.Add(txtHeader);
 
 
@@ -67,7 +68,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             panelDestination1.Children.Add(txtDestination1Gates);
 
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", panelDestination1));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "202"), panelDestination1));
 
             WrapPanel panelDestination2 = new WrapPanel();
                         
@@ -79,12 +80,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtDestination2Gates.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             panelDestination2.Children.Add(txtDestination2Gates);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", panelDestination2));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "203"), panelDestination2));
 
 
             txtDistance = UICreator.CreateTextBlock("-");
-            lbRouteInfo.Items.Add(new QuickInfoValue("Distance", txtDistance));
-            lbRouteInfo.Items.Add(new QuickInfoValue("Max. Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "204"), txtDistance));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "205"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -152,12 +153,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnSave.IsEnabled = false;
             this.Children.Add(btnSave);
 
-            txtInvalidRoute = UICreator.CreateTextBlock("One or both airports are not the appropriate type for creation");
+            txtInvalidRoute = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PanelNewRoute","1001"));
             txtInvalidRoute.Foreground = Brushes.DarkRed;
             txtInvalidRoute.Visibility = System.Windows.Visibility.Collapsed;
             this.Children.Add(txtInvalidRoute);
 
-
+            txtFlightRestrictions = UICreator.CreateTextBlock("");
+            txtFlightRestrictions.Foreground = Brushes.DarkRed;
+            txtFlightRestrictions.Visibility = System.Windows.Visibility.Collapsed;
+            this.Children.Add(txtFlightRestrictions);
 
         }
 
@@ -278,9 +282,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 double distance = MathHelpers.GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
                 txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
 
-                btnSave.IsEnabled = distance > 50 && distance < this.MaxDistance && isRouteInCorrectArea();
+                btnSave.IsEnabled = distance > 50 && distance < this.MaxDistance && isRouteInCorrectArea() && !FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime);
 
                 txtInvalidRoute.Visibility = isRouteInCorrectArea() ? Visibility.Collapsed : Visibility.Visible;
+                txtFlightRestrictions.Visibility = FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime) ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+
+                txtFlightRestrictions.Text= string.Format(Translator.GetInstance().GetString("PanelNewRoute","1002"),airport1.Profile.Country.Name,airport2.Profile.Country.Name);
 
             }
             
@@ -288,7 +295,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             TextBlock txtDestinationGates = cbDestination2 == ((ComboBox)sender) ? txtDestination2Gates : txtDestination1Gates;
 
-            txtDestinationGates.Text = string.Format("{0} gate(s)", airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
+            txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
         }
     }
 }

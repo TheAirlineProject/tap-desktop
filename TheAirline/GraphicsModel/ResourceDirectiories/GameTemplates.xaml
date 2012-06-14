@@ -3,6 +3,10 @@
                     x:Class="TheAirline.GraphicsModel.ResourceDirectiories.GameTemplatesEvents"
                     xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters">
     <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
+    <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
+    <DataTemplate x:Key="CountryFlag">
+        <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+    </DataTemplate>
     <DataTemplate x:Key="AirlineLink">
         <TextBlock VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding}" Click="Airline_Click" >
@@ -12,7 +16,8 @@
     </DataTemplate>
     <DataTemplate x:Key="AirportCountryLink">
         <DockPanel>
-            <Image Source="{Binding Profile.Country.Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
                     <Hyperlink Tag="{Binding}" Click="Airport_Click" >
                         <Run Text="{Binding Profile.Name}"></Run>
@@ -36,7 +41,7 @@
     <DataTemplate x:Key="CountryFlagLongItem">
         <DockPanel>
             <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" Width="200" VerticalAlignment="Bottom"/>
+            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="RouteAirlinerClassItem">

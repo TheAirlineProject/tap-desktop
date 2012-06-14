@@ -76,7 +76,7 @@ namespace TheAirline.Model.PassengerModel
         //returns the max amount of passengers for the game
         public static long GetMaxPassengers()
         {
-            return Airports.GetAirports().Count * 10000;
+            return Airports.Count() * 10000;
         }
     }
 }

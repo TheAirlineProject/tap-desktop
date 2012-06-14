@@ -22,6 +22,7 @@ using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 {
@@ -60,6 +61,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             routesPanel.Children.Add(createRoutesPanel());
             routesPanel.Children.Add(createButtonsPanel());
             routesPanel.Children.Add(createFleetPanel());
+            routesPanel.Children.Add(createRestrictionsPanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -97,12 +99,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             lbFleet.ItemTemplate = this.Resources["FleetItem"] as DataTemplate;
          
             panelFleet.Children.Add(lbFleet);
-
-        
-
-
-
+            
             return panelFleet;
+        }
+        //creates the panel for restrictions
+        private StackPanel createRestrictionsPanel()
+        {
+            StackPanel panelRestrictions = new StackPanel();
+            panelRestrictions.Margin = new Thickness(0, 10, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1002";
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PageRoutes", txtHeader.Uid);
+            panelRestrictions.Children.Add(txtHeader);
+
+            ListBox lbRestrictions = new ListBox();
+            lbRestrictions.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            lbRestrictions.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbRestrictions.ItemTemplate = this.Resources["RestrictionItem"] as DataTemplate;
+
+            lbRestrictions.ItemsSource = FlightRestrictions.GetRestrictions().FindAll(r=>r.StartDate<GameObject.GetInstance().GameTime && r.EndDate>GameObject.GetInstance().GameTime);
+
+            panelRestrictions.Children.Add(lbRestrictions);
+
+            return panelRestrictions;
+
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()

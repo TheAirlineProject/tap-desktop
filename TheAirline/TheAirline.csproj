@@ -563,6 +563,7 @@
     <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
     <Compile Include="Model\GeneralModel\TemporaryCountry.cs" />
+    <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
     <Compile Include="Model\PassengerModel\PassengersTimer.cs" />
     <Compile Include="Model\GeneralModel\Region.cs" />
