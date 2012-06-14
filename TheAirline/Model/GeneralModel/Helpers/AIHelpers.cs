@@ -350,7 +350,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double minDistance = (from a in Airports.GetAirports().FindAll(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
 
 
-            List<Airport> airports = new List<Airport>().FindAll(a=> airline.Airports.Find(ar=>ar.Profile.Town == a.Profile.Town)==null && !FlightRestrictions.HasRestriction(a.Profile.Country,airport.Profile.Country,GameObject.GetInstance().GameTime));
+            List<Airport> airports = new List<Airport>().FindAll(a=> airline.Airports.Find(ar=>ar.Profile.Town == a.Profile.Town)==null && !FlightRestrictions.HasRestriction(a.Profile.Country,airport.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline,a.Profile.Country,airport.Profile.Country,GameObject.GetInstance().GameTime));
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
             switch (airline.MarketFocus)

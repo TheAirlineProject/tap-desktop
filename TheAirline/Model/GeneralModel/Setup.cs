@@ -59,7 +59,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
-                CreateFlightRestrictions();
+                LoadFlightRestrictions();
                 Skins.Init();
             }
             catch (Exception e)
@@ -741,20 +741,22 @@ namespace TheAirline.Model.GeneralModel
                     name = "x";
             }
         }
-
-        /*! loads the logos for the game airlines.
+        /*loads the flight restrictions
+        */
+        private static void LoadFlightRestrictions()
+        {
+            //Read from xml + Unions + TemporaryCountry
+            FlightRestrictions.AddRestriction(new FlightRestriction(FlightRestriction.RestrictionType.Flights,new DateTime(1960, 6, 30), new DateTime(2012, 1, 2), Countries.GetCountry("122"), Countries.GetCountry("113")));//198 == Cuba
+            FlightRestrictions.AddRestriction(new FlightRestriction(FlightRestriction.RestrictionType.Airlines,new DateTime(2007,1,1),new DateTime(2012,1,2),Countries.GetCountry("122"), Countries.GetCountry("113")));
+        }
+        /*! creates the logos for the game airlines.
          */
         private static void CreateAirlineLogos()
         {
             foreach (Airline airline in Airlines.GetAirlines())
                 airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
         }
-        /*creates the flight restrictions
-         */
-        private static void CreateFlightRestrictions()
-        {
-            FlightRestrictions.AddRestriction(new FlightRestriction(new DateTime(1960, 6, 30), new DateTime(2012, 1, 1), Countries.GetCountry("122"), Countries.GetCountry("113")));//198 == Cuba
-        }
+       
         /*! private stativ method CreateFlightFacilities.
          * creates the in flight facilities.
          */

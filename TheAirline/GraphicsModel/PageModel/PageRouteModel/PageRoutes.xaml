@@ -13,6 +13,7 @@
     <Page.Resources>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <DataTemplate x:Key="FleetHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
@@ -102,10 +103,11 @@
 <DataTemplate x:Key="RestrictionItem">
             <WrapPanel>
                 <TextBlock Text="{Binding StartDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding Country1,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
-                <TextBlock Text="&lt;->" VerticalAlignment="Bottom" Margin="5 0 5 0"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding Country2,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
-          </WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Margin="0 0 10 0" FontWeight="Bold"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding From,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+                <TextBlock Text="->" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding To,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+              </WrapPanel>
         </DataTemplate>
     </Page.Resources>
     <Grid>

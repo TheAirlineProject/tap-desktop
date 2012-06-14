@@ -43,6 +43,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             PassengersTimer.GetInstance().start();
 
+            //checks for changed flight restrictions
+            foreach (FlightRestriction restriction in FlightRestrictions.GetRestrictions().FindAll(r=>r.StartDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() || r.EndDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            {
+                string restrictionNewsText="";
+                if (restriction.Type == FlightRestriction.RestrictionType.Flights)
+                {
+                    if (restriction.StartDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
+                        restrictionNewsText = string.Format("All flights from {0} to {1} have been banned", restriction.From.Name, restriction.To.Name);
+                    else
+                        restrictionNewsText = string.Format("The ban for all flights from {0} to {1} have been lifted", restriction.From.Name, restriction.To.Name);
+                }
+                if (restriction.Type == FlightRestriction.RestrictionType.Airlines)
+                {
+                    if (restriction.StartDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
+                        restrictionNewsText = string.Format("All airlines flying from {0} flying to {1} have been blacklisted", restriction.From.Name, restriction.To.Name);
+                    else
+                        restrictionNewsText = string.Format("The blacklist on all airlines from {0} flying to {1} have been lifted", restriction.From.Name, restriction.To.Name);
+         
+                }
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Flight restriction", restrictionNewsText));
+
+            }
+
             foreach (Airport airport in Airports.GetAirports())
             {
                 Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));

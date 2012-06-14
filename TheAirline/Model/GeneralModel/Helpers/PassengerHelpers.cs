@@ -103,10 +103,11 @@ namespace TheAirline.Model.GeneralModel
         private static Airport GetRandomDestination(Airport currentAirport)
         {
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-            Airports.GetAirports().FindAll(a => a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country,a.Profile.Country,GameObject.GetInstance().GameTime)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
+            Airports.GetAirports().FindAll(a => a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country,a.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
 
             return AIHelpers.GetRandomItem(airportsList);
         }
+       
         //updates a landed passenger
         public static void UpdateLandedPassenger(Passenger passenger, Airport currentAirport)
         {
