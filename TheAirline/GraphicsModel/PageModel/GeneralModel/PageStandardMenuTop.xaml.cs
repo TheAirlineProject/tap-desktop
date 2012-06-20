@@ -24,6 +24,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using System.Windows.Controls.Primitives;
 using TheAirline.Model.PassengerModel;
+using TheAirline.GraphicsModel.PageModel.PageAlliancesModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -122,7 +123,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             PageNavigator.NavigateTo(new PageTest());
         }
-
+        private void lnkAlliances_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageAlliances());
+        }
         private void lnkAirlines_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageAirlines());

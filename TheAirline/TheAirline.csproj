@@ -184,6 +184,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PageAlliances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelNewAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -409,6 +421,15 @@
       <DependentUpon>PageSearchAirports.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PanelAirports.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PageAlliances.xaml.cs">
+      <DependentUpon>PageAlliances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelAlliance.xaml.cs">
+      <DependentUpon>PanelAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelNewAlliance.xaml.cs">
+      <DependentUpon>PanelNewAlliance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml.cs">
       <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
     </Compile>
@@ -518,6 +539,7 @@
     <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
+    <Compile Include="Model\AirlineModel\Alliance.cs" />
     <Compile Include="Model\AirlineModel\FeeType.cs" />
     <Compile Include="Model\AirlinerModel\Airliner.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerClass.cs" />
@@ -664,6 +686,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\buy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\human.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

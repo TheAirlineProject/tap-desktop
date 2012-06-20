@@ -236,7 +236,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             this.PageContent.IsEnabled = false;
             this.panelNavigation.IsEnabled = false;
         }
-    
+        public virtual void updatePage()
+        {
+        }
 
     }
 }

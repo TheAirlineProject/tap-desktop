@@ -114,10 +114,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1008"), createAirlineValuePanel()));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1009"), createAirlineReputationPanel()));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1010"), UICreator.CreateTextBlock(String.Format("{0:0.00} %", PassengerHelpers.GetPassengersHappiness(this.Airline)))));
-           
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline","1012"),  UICreator.CreateTextBlock(this.Airline.Alliances.Count>0 ? string.Join(", ",from a in this.Airline.Alliances select a.Name) : Translator.GetInstance().GetString("PageAirline","1013"))));
+
             return panelInfo;
         }
-
+       
+        
         //creates the panel for airline value
         public WrapPanel createAirlineValuePanel()
         {

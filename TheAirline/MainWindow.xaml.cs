@@ -113,7 +113,7 @@ namespace TheAirline
             if (frameMain.NavigationService.CanGoBack)
                 frameMain.NavigationService.GoBack();
         }
-
+       
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //social groups + passenger happiness

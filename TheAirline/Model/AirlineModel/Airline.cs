@@ -33,6 +33,7 @@ namespace TheAirline.Model.AirlineModel
         public List<Loan> Loans { get; set; }
         private List<string> FlightCodes;
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
+        public List<Alliance> Alliances { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineMarket marketFocus)
         {
             this.Airports = new List<Airport>();
@@ -47,6 +48,7 @@ namespace TheAirline.Model.AirlineModel
             this.Fees = new AirlineFees();
             this.Loans = new List<Loan>();
             this.Reputation = 50;
+            this.Alliances = new List<Alliance>();
 
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
@@ -71,11 +73,17 @@ namespace TheAirline.Model.AirlineModel
         {
         
             this.Routes.Remove(route);
-
-   
        
-  
-       
+        }
+        //adds an alliance to the airline
+        public void addAlliance(Alliance alliance)
+        {
+            this.Alliances.Add(alliance);
+        }
+        //removes an alliance
+        public void removeAlliance(Alliance alliance)
+        {
+            this.Alliances.Remove(alliance);
         }
         //adds an airliner to the airlines fleet
         public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner, string name, Airport homeBase)

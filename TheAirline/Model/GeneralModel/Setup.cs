@@ -60,7 +60,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateFeeTypes();
                 CreateAirlines();
                 CreateFlightFacilities();
-                 Skins.Init();
+                Skins.Init();
             }
             catch (Exception e)
             {
@@ -90,6 +90,7 @@ namespace TheAirline.Model.GeneralModel
             AirlinerTypes.Clear();
             Skins.Clear();
             FeeTypes.Clear();
+            Alliances.Clear();
         }
 
         /*! creates the Advertisement types
@@ -501,8 +502,7 @@ namespace TheAirline.Model.GeneralModel
        */
         private static void LoadFlightRestrictions()
         {
-            //Read from xml + Unions + TemporaryCountry
-         
+            
             XmlDocument doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\flightrestrictions.xml");
             XmlElement root = doc.DocumentElement;
@@ -632,6 +632,14 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
+            Alliance alliance = new Alliance("One World", Airports.GetAirport("JFK"));
+            alliance.addMember(Airlines.GetAirlines()[0]);
+            alliance.addMember(Airlines.GetAirlines()[2]);
+            alliance.addMember(Airlines.GetAirlines()[4]);
+
+            Alliances.AddAlliance(alliance);
+
+            
          
         }
        

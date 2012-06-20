@@ -57,5 +57,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             return MainWindow.canGoBack();
         }
+      
+
     }
 }
