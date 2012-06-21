@@ -57,8 +57,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             ListBox lbTest = new ListBox();
             lbTest.MaxHeight = 400;
             lbTest.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            //lbTest.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-
+    
             foreach (Region region in Regions.GetRegions())
             {
 
@@ -83,7 +82,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 }
                 lbTest.Items.Add(expRegion);
 
-                //lbTest.Items.Add(new QuickInfoValue(region.Name, UICreator.CreateTextBlock(value.ToString())));
             }
 
 

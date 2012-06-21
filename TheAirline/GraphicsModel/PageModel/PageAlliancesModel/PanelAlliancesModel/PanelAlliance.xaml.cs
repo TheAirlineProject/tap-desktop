@@ -16,6 +16,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesModel
 {
@@ -26,6 +27,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
     {
         private Alliance Alliance;
         private StandardPage ParentPage;
+        private ListBox lbMembers;
         public PanelAlliance(StandardPage parent, Alliance alliance)
         {
             this.ParentPage = parent;
@@ -49,7 +51,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             panelAlliance.Children.Add(txtHeader);
 
 
-            ListBox lbMembers = new ListBox();
+            lbMembers = new ListBox();
             lbMembers.ItemTemplate = this.Resources["AirlineItem"] as DataTemplate;
             lbMembers.MaxHeight = GraphicsHelpers.GetContentHeight() - 75;
             lbMembers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -62,12 +64,56 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
 
             panelAlliance.Children.Add(lbMembers);
 
+            panelAlliance.Children.Add(createInfoPanel());
+
+            Button btnMap = new Button();
+            btnMap.Uid = "204";
+            btnMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnMap.Height = Double.NaN;
+            btnMap.Width = Double.NaN;
+            btnMap.Content = Translator.GetInstance().GetString("PanelAlliance", btnMap.Uid);
+            btnMap.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnMap.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnMap.Click += new RoutedEventHandler(btnMap_Click);
+            btnMap.Margin = new Thickness(0, 5, 0, 0);
+
+            panelAlliance.Children.Add(btnMap);
+
             panelAlliance.Children.Add(createButtonsPanel());
 
             scroller.Content = panelAlliance;
             
             this.Content = scroller;
        
+        }
+        //creates the info panel
+        private StackPanel createInfoPanel()
+        {
+            StackPanel panelInfo = new StackPanel();
+            panelInfo.Margin = new Thickness(0, 5, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PanelAlliance", "205");
+
+            panelInfo.Children.Add(txtHeader);
+
+            ListBox lbInfo = new ListBox();
+            lbInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            lbInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+
+            panelInfo.Children.Add(lbInfo);
+
+            int routes = this.Alliance.Members.Sum(a => a.Routes.Count);
+            int destinations = this.Alliance.Members.Sum(a => a.Airports.Count);
+
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAlliance", "208"), UICreator.CreateTextBlock(this.Alliance.Type.ToString())));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAlliance", "206"), UICreator.CreateTextBlock(routes.ToString())));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAlliance", "207"), UICreator.CreateTextBlock(destinations.ToString())));
+
+            return panelInfo;
         }
         //creates the button panel
         private WrapPanel createButtonsPanel()
@@ -98,8 +144,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnInvite.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnInvite.Click += new RoutedEventHandler(btnInvite_Click);
             btnInvite.Visibility = this.Alliance.Members.Contains(GameObject.GetInstance().HumanAirline) ? Visibility.Visible : Visibility.Collapsed;
-            btnInvite.IsEnabled = false;
-
+         
             buttonsPanel.Children.Add(btnInvite);
 
             Button btnDelete = new Button();
@@ -134,7 +179,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
 
             return buttonsPanel;
         }
-
+        
         private void btnExit_Click(object sender, RoutedEventArgs e)
         {
              WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2602"), string.Format(Translator.GetInstance().GetString("MessageBox", "2602", "message"), this.Alliance.Name), WPFMessageBoxButtons.YesNo);
@@ -165,7 +210,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
         private void btnInvite_Click(object sender, RoutedEventArgs e)
         {
 
-            throw new NotImplementedException();
+            object o = PopUpInviteAlliance.ShowPopUp(this.Alliance);
+
+            if (o != null)
+            {
+                List<Airline> airlines = (List<Airline>)o;
+
+                airlines.ForEach(a => this.Alliance.addMember(a));
+
+                lbMembers.Items.Clear();
+
+                List<Airline> tAirlines = this.Alliance.Members;
+                tAirlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
+
+                foreach (Airline airline in tAirlines)
+                    lbMembers.Items.Add(airline);
+
+            }
+            
         }
 
         private void btnJoin_Click(object sender, RoutedEventArgs e)
@@ -179,7 +241,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
 
             this.ParentPage.updatePage();
         }
-      
+
+        private void btnMap_Click(object sender, RoutedEventArgs e)
+        {
+
+            PopUpMap.ShowPopUp((this.Alliance.Members.SelectMany(a => a.Routes)).ToList());
+        }
+
         private void lnkAirline_Click(object sender, RoutedEventArgs e)
         {
             Airline airline = (Airline)((Hyperlink)sender).Tag;

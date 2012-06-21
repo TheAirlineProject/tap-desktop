@@ -9,11 +9,14 @@ namespace TheAirline.Model.AirlineModel
     //the class for an alliance of airlines
     public class Alliance
     {
+        public enum AllianceType { Codesharing, Full }
+        public AllianceType Type { get; set; }
         public string Name { get; set; }
         public List<Airline> Members { get; set; }
         public Airport Headquarter { get; set; }
-        public Alliance(string name, Airport headquarter)
+        public Alliance(AllianceType type, string name, Airport headquarter)
         {
+            this.Type = type;
             this.Name = name;
             this.Members = new List<Airline>();
             this.Headquarter = headquarter;

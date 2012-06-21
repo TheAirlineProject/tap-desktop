@@ -5,6 +5,7 @@ using System.Text;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -26,7 +27,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public DateTime LastUpdated { get; set; }
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
         public Weather.Season Season { get; set; }
-        public Route(string id, Airport destination1, Airport destination2, double farePrice)
+        public Airline Airline { get; set; }
+        public Route(string id,Airport destination1, Airport destination2, double farePrice)
         {
     
             this.Id = id;

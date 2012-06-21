@@ -20,6 +20,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -171,7 +172,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Width = MapSize + 200;
             this.RoutesList = routes;
           
-            showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
+            showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates); 
         }
         //creates the side panel for the airport size and zooming
         private StackPanel createAirportSizeSidePanel()
@@ -275,18 +276,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (p.X < panelMap.Width)
               panelMap.Children.Add(createPin(p, route.Destination2));
 
-            createRouteLine(route.Destination1, route.Destination2,panelMap, zoom,margin);
+
+            createRouteLine(route.Destination1, route.Destination2,panelMap, zoom,margin, route.Airline);
 
         }
         //creates the line between two airports
-        private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin)
+        private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin, Airline airline)
         {
-            
+       
             Point pos1 = GraphicsHelpers.WorldToTilePos(a1.Profile.Coordinates, zoom);
             Point pos2 = GraphicsHelpers.WorldToTilePos(a2.Profile.Coordinates, zoom);
 
             Line line = new Line();
-            line.Stroke = new AirlineBrushConverter().Convert(GameObject.GetInstance().HumanAirline) as SolidColorBrush;
+            line.Stroke = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
             line.X1 = Math.Min(panelMap.Width,pos1.X * ImageSize - margin.X * ImageSize);
             line.X2 = Math.Min(panelMap.Width, pos2.X * ImageSize - margin.X * ImageSize);
             line.Y1 = pos1.Y * ImageSize - margin.Y * ImageSize;

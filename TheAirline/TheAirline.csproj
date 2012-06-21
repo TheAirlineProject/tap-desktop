@@ -276,6 +276,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -494,6 +498,9 @@
       <DependentUpon>PopUpEditAirlinerName.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpHomeBase.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
+      <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml.cs">
       <DependentUpon>PopUpLoad.xaml</DependentUpon>
     </Compile>

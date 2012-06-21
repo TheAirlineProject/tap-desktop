@@ -65,6 +65,7 @@ namespace TheAirline.Model.AirlineModel
         {
 
             this.Routes.Add(route);
+            route.Airline = this;
 
          
         }

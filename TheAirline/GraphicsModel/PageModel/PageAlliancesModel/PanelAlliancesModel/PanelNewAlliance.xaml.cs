@@ -26,6 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
     {
         private TextBox txtAllianceName;
         private ComboBox cbHeadquarter;
+        private ComboBox cbType;
         private Button btnCreate;
         public PanelNewAlliance()
         {
@@ -53,6 +54,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             txtAllianceName.TextChanged += new TextChangedEventHandler(txtAllianceName_TextChanged);
 
             lbNewAlliance.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewAlliance", "201"), txtAllianceName));
+
+            cbType = new ComboBox();
+            cbType.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbType.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbType.ItemsSource = Enum.GetValues(typeof(Alliance.AllianceType));
+            cbType.Width = 100;
+            cbType.SelectedIndex = 0;
+
+            lbNewAlliance.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewAlliance", "204"), cbType));
 
             cbHeadquarter = new ComboBox();
             cbHeadquarter.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
@@ -87,7 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                Alliance alliance = new Alliance(txtAllianceName.Text, (Airport)cbHeadquarter.SelectedItem);
+                Alliance alliance = new Alliance((Alliance.AllianceType)cbType.SelectedItem, txtAllianceName.Text, (Airport)cbHeadquarter.SelectedItem);
                 alliance.addMember(GameObject.GetInstance().HumanAirline);
 
                 Alliances.AddAlliance(alliance);

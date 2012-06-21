@@ -20,7 +20,6 @@
                 </TextBlock>
                 <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Headquarter}" VerticalAlignment="Bottom" Width="250"></ContentControl>
                 <Image Source="/Data/images/human.png" Height="20" Width="20"  RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Converter={StaticResource humanAllianceToVisibility}}"></Image>
-
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="AlliancesHeader">

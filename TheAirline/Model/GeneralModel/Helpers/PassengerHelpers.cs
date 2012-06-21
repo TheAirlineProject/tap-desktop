@@ -56,27 +56,28 @@ namespace TheAirline.Model.GeneralModel
         }
         public static List<Passenger> GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-            int seatingCapacity = airliner.Airliner.getAirlinerClass(type).SeatingCapacity;
-
+            
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport destination = airliner.CurrentFlight.Entry.Destination.Airport;
 
             List<Passenger> passengers = new List<Passenger>();
 
-            if (airportCurrent.getPassengers(destination).FindAll(p => p.PreferedClass == type).Sum(p => p.Factor) > seatingCapacity)
+            int numberOfPassengers = GetNumberOfPassengers(airliner, type);
+
+            List<Passenger> tPassengers = airportCurrent.getPassengers(destination);
+
+            int i = 0;
+
+            if (tPassengers.Count > 0)
             {
-                List<Passenger> tPassengers = airportCurrent.getPassengers(destination);
-
-                int i = 0;
-
-                while (passengers.Sum(p => p.Factor) + tPassengers[i].Factor <= seatingCapacity)
+                while (passengers.Sum(p => p.Factor) + tPassengers[i].Factor <= numberOfPassengers)
                 {
                     passengers.Add(tPassengers[i]);
                     i++;
                 }
                 int tFactor = tPassengers[i].Factor;
 
-                tPassengers[i].Factor = seatingCapacity - passengers.Sum(p => p.Factor);
+                tPassengers[i].Factor = numberOfPassengers - passengers.Sum(p => p.Factor);
                 passengers.Add(tPassengers[i]);
 
                 Passenger newPassenger = new Passenger(Guid.NewGuid().ToString(), tPassengers[i].PrimaryType, tPassengers[i].HomeAirport, tPassengers[i].PreferedClass);
@@ -88,36 +89,57 @@ namespace TheAirline.Model.GeneralModel
 
                 Passengers.AddPassenger(newPassenger);
                 airportCurrent.addPassenger(newPassenger);
-
-
             }
-            else
-                passengers = airportCurrent.getPassengers(destination);
+
 
             passengers.ForEach(p => airportCurrent.removePassenger(p));
             passengers.ForEach(p => p.CurrentAirport = null);
 
             return passengers;
         }
+        //returns the number of passengers for 
+        private static int GetNumberOfPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
+        {
+            Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
+            Airport destination = airliner.CurrentFlight.Entry.Destination.Airport;
+
+            int totalPassengers = airportCurrent.getPassengers(destination).FindAll(p => p.PreferedClass == type).Sum(p => p.Factor);
+
+            int value = 0;
+            double price = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(type).FarePrice;
+            double standardPrice = GetPassengerPrice(airliner.CurrentFlight.Entry.TimeTable.Route.Destination1, airliner.CurrentFlight.Entry.TimeTable.Route.Destination2);
+
+            double priceDiff = (price / standardPrice) * 1.13;
+
+            priceDiff = Math.Max(1, priceDiff);
+
+            value = ((int)(Convert.ToDouble(totalPassengers) / priceDiff));
+
+            if (value < 15)
+                value = rnd.Next(Math.Min(totalPassengers, value), Math.Min(15, totalPassengers));
+
+          
+            return Math.Min(value, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+        }
         //returns a random destination from an airport
         private static Airport GetRandomDestination(Airport currentAirport)
         {
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-            Airports.GetAirports().FindAll(a => a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country,a.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
+            Airports.GetAirports().FindAll(a => a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
 
             return AIHelpers.GetRandomItem(airportsList);
         }
-       
+
         //updates a landed passenger
         public static void UpdateLandedPassenger(Passenger passenger, Airport currentAirport)
         {
-            
+
             if (passenger.Destination == currentAirport)
             {
                 if (passenger.HomeAirport == currentAirport)
                 {
 
-                    passenger.Destination = GetRandomDestination(currentAirport) ;
+                    passenger.Destination = GetRandomDestination(currentAirport);
                 }
                 else
                     passenger.Destination = passenger.HomeAirport;
@@ -127,6 +149,7 @@ namespace TheAirline.Model.GeneralModel
             currentAirport.addPassenger(passenger);
             passenger.CurrentAirport = currentAirport;
         }
+
         /*
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
@@ -223,7 +246,7 @@ namespace TheAirline.Model.GeneralModel
             else
                 return new List<Airport>();
         }
-       
+
         //returns the suggested passenger price for a route on a airliner
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
@@ -261,31 +284,31 @@ namespace TheAirline.Model.GeneralModel
         public static void CreatePassengers(int passengers)
         {
             List<Airport> airports = Airports.GetAirports();
-    
+
             foreach (Airport airport in Airports.GetAirports())
             {
-  
+
                 for (int i = 0; i < passengers; i++)
                 {
-                    double factor = (((int)airport.Profile.Size) + 1) * rnd.Next(1,20);
+                    double factor = (((int)airport.Profile.Size) + 1) * rnd.Next(1, 20);
                     factor *= GetSeasonFactor(airport);
 
-                    Passenger.PassengerType[] passengerTypes = (Passenger.PassengerType[]) Enum.GetValues(typeof(Passenger.PassengerType));
-                    Passenger.PassengerType passengerType = passengerTypes[rnd.Next(0,passengerTypes.Length)];
+                    Passenger.PassengerType[] passengerTypes = (Passenger.PassengerType[])Enum.GetValues(typeof(Passenger.PassengerType));
+                    Passenger.PassengerType passengerType = passengerTypes[rnd.Next(0, passengerTypes.Length)];
 
                     List<AirlinerClass.ClassType> classTypes = new List<AirlinerClass.ClassType>();
-                    
+
                     for (int j = 0; j < 20; j++)
                         classTypes.Add(AirlinerClass.ClassType.Economy_Class);
                     classTypes.Add(AirlinerClass.ClassType.Business_Class);
                     classTypes.Add(AirlinerClass.ClassType.Business_Class);
                     classTypes.Add(AirlinerClass.ClassType.First_Class);
-                   
+
                     AirlinerClass.ClassType classType = classTypes[rnd.Next(0, classTypes.Count)];
 
                     Guid guid = Guid.NewGuid();
-                 
-                    Passenger passenger = new Passenger(guid.ToString(), passengerType, airport,classType); 
+
+                    Passenger passenger = new Passenger(guid.ToString(), passengerType, airport, classType);
                     passenger.Updated = GameObject.GetInstance().GameTime;
                     passenger.Destination = GetRandomDestination(airport);
                     passenger.Factor = (int)factor;
@@ -297,7 +320,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-           
+
         }
         //updates all passengers
         public static void UpdatePassengers()
@@ -307,8 +330,8 @@ namespace TheAirline.Model.GeneralModel
             {
                 passenger.Updated = GameObject.GetInstance().GameTime;
                 passenger.Destination = GetRandomDestination(passenger.CurrentAirport);
-                passenger.Route = FindPassengerRoute(passenger.CurrentAirport,passenger);
-                
+                passenger.Route = FindPassengerRoute(passenger.CurrentAirport, passenger);
+
             }
             //finds all passengers where the route is not set
             foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Route.Count < 2))

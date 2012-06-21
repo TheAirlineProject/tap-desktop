@@ -284,12 +284,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
 
                         airline.addRoute(route);
-
-
+                        
                         airport.Terminals.getEmptyGate(airline).Route = route;
                         destination.Terminals.getEmptyGate(airline).Route = route;
-
-
+                        
                         if (fAirliner == null)
                         {
 
