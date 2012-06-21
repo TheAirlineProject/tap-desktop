@@ -11,7 +11,7 @@ namespace TheAirline.Model.AirportModel
         public string Name { get; set; }
         public long Length { get; set; }
 
-        public enum SurfaceType { Asphalt, Concrete, Grass, Dirt, Gravel, Ice, Salt }
+        public enum SurfaceType { Asphalt, Concrete, Grass, Dirt, Gravel, Ice, Salt, Paved }
         public SurfaceType Surface { get; set; }
         public Runway(string name, long length, SurfaceType surface)
         {
