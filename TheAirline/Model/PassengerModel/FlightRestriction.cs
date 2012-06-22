@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.Model.PassengerModel
 {
     /*
-     * The class for flight restrictions with no flights between two countries
+     * The class for flight restrictions with no flights between two countries or unions
      */
     public class FlightRestriction
     {
@@ -16,8 +17,8 @@ namespace TheAirline.Model.PassengerModel
         public RestrictionType Type { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public Country From { get; set; }
-        public Country To { get; set; }
+        public BaseUnit From { get; set; }
+        public BaseUnit To { get; set; }
         public FlightRestriction(RestrictionType type, DateTime startDate, DateTime endDate, Country from, Country to)
         {
             this.Type = type;
@@ -40,11 +41,6 @@ namespace TheAirline.Model.PassengerModel
         public static List<FlightRestriction> GetRestrictions()
         {
             return restrictions;
-        }
-        //returns the restrictions for a country
-        public static List<FlightRestriction> GetRestrictions(Country country)
-        {
-            return restrictions.FindAll(r => r.To == country || r.From == country);
         }
         //returns if there is flight restrictions from one country to another
         public static Boolean HasRestriction(Country from, Country to, DateTime date, FlightRestriction.RestrictionType type)

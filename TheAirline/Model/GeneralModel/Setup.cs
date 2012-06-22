@@ -468,6 +468,11 @@ namespace TheAirline.Model.GeneralModel
                 TemporaryCountries.AddCountry(tCountry);
             }
         }
+        /*! load the unions
+         */
+        private static void LoadUnions()
+        {
+        }
         /*! load the airliner facilities.
          */
         private static void LoadAirlinerFacilities()

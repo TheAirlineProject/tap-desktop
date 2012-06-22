@@ -575,8 +575,10 @@
     <Compile Include="Model\AirportModel\Terminal.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />
     <Compile Include="Model\GeneralModel\Coordinates.cs" />
-    <Compile Include="Model\GeneralModel\Country.cs" />
-    <Compile Include="Model\GeneralModel\CountryTailNumber.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\BaseUnit.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Country.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\CountryTailNumber.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\UnionMember.cs" />
     <Compile Include="Model\GeneralModel\GameObject.cs" />
     <Compile Include="Model\GeneralModel\GameTimer.cs" />
     <Compile Include="Model\GeneralModel\GameTimeZone.cs" />
@@ -591,11 +593,12 @@
     <Compile Include="Model\GeneralModel\NewsBox.cs" />
     <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
-    <Compile Include="Model\GeneralModel\TemporaryCountry.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\TemporaryCountry.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
     <Compile Include="Model\PassengerModel\PassengersTimer.cs" />
-    <Compile Include="Model\GeneralModel\Region.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Region.cs" />
     <Compile Include="Model\GeneralModel\Settings.cs" />
     <Compile Include="Model\GeneralModel\Setup.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\GeneralStatistics.cs" />

@@ -4,34 +4,27 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
 using System.IO;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a country
-    public class Country
+    public class Country : BaseUnit
     {
         public static string Section { get; set; }
-        public string Uid { get; set; }
-        public string ShortName { get; set; }
         public Region Region { get; set; }
         //the format used for the tail number
         public string TailNumberFormat { get; set; }
         public CountryTailNumber TailNumbers { get; set; }
-        public string Flag { get; set; }
-        public Country(string section, string uid, string shortName, Region region, string tailNumberFormat)
+        public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {
             Country.Section = section;
-            this.Uid = uid;
-            this.ShortName = shortName;
             this.Region = region;
             this.TailNumberFormat = tailNumberFormat;
             this.TailNumbers = new CountryTailNumber(this);
         }
 
-        public string Name
-        {
-            get { return Translator.GetInstance().GetString(Country.Section, this.Uid); }
-        }
+      
     }
     
     //the collection of countries

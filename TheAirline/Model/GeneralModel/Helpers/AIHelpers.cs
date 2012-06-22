@@ -503,7 +503,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns a random item based on a weighted value
         public static T GetRandomItem<T>(Dictionary<T, int> list)
         {
-
+            
             List<T> tList = new List<T>();
 
             foreach (T item in list.Keys)

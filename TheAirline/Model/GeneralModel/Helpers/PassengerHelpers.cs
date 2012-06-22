@@ -56,7 +56,7 @@ namespace TheAirline.Model.GeneralModel
         }
         public static List<Passenger> GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-            
+
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport destination = airliner.CurrentFlight.Entry.Destination.Airport;
 
@@ -70,7 +70,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (tPassengers.Count > 0)
             {
-                while (passengers.Sum(p => p.Factor) + tPassengers[i].Factor <= numberOfPassengers)
+                while (passengers.Sum(p => p.Factor) + tPassengers[i].Factor < numberOfPassengers)
                 {
                     passengers.Add(tPassengers[i]);
                     i++;
@@ -87,14 +87,18 @@ namespace TheAirline.Model.GeneralModel
                 newPassenger.Route = tPassengers[i].Route;
                 newPassenger.CurrentAirport = tPassengers[i].CurrentAirport;
 
-                Passengers.AddPassenger(newPassenger);
-                airportCurrent.addPassenger(newPassenger);
+                if (newPassenger.Factor > 0)
+                {
+                    Passengers.AddPassenger(newPassenger);
+                    airportCurrent.addPassenger(newPassenger);
+                }
             }
 
+            passengers.ForEach(p => p.Updated = GameObject.GetInstance().GameTime);
 
             passengers.ForEach(p => airportCurrent.removePassenger(p));
             passengers.ForEach(p => p.CurrentAirport = null);
-
+     
             return passengers;
         }
         //returns the number of passengers for 
@@ -118,16 +122,19 @@ namespace TheAirline.Model.GeneralModel
             if (value < 15)
                 value = rnd.Next(Math.Min(totalPassengers, value), Math.Min(15, totalPassengers));
 
-          
+
             return Math.Min(value, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
         }
         //returns a random destination from an airport
         private static Airport GetRandomDestination(Airport currentAirport)
         {
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-            Airports.GetAirports().FindAll(a => a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
+            Airports.GetAirports().FindAll(a => currentAirport!=null && a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
 
-            return AIHelpers.GetRandomItem(airportsList);
+            if (airportsList.Count > 0)
+                return AIHelpers.GetRandomItem(airportsList);
+            else
+                return null;
         }
 
         //updates a landed passenger
@@ -326,8 +333,9 @@ namespace TheAirline.Model.GeneralModel
         public static void UpdatePassengers()
         {
             //find new routes for all passengers not updated in the last week
-            foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Updated.AddDays(7) < GameObject.GetInstance().GameTime))
+            foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Updated.AddDays(7) < GameObject.GetInstance().GameTime && p.CurrentAirport != null))
             {
+        
                 passenger.Updated = GameObject.GetInstance().GameTime;
                 passenger.Destination = GetRandomDestination(passenger.CurrentAirport);
                 passenger.Route = FindPassengerRoute(passenger.CurrentAirport, passenger);
