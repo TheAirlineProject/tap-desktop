@@ -14,6 +14,7 @@
                     </Hyperlink>
         </TextBlock>
     </DataTemplate>
+    
     <DataTemplate x:Key="AirportCountryLink">
         <DockPanel>
             <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>

@@ -23,7 +23,13 @@ namespace TheAirline.Model.GeneralModel
             this.TailNumberFormat = tailNumberFormat;
             this.TailNumbers = new CountryTailNumber(this);
         }
-
+        public override string Name
+        {
+            get
+            {
+                return Translator.GetInstance().GetString(Country.Section, this.Uid); ;
+            }
+        }
       
     }
     

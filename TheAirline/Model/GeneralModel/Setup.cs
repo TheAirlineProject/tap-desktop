@@ -15,6 +15,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -42,6 +43,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadRegions();
                 LoadCountries();
                 LoadTemporaryCountries();
+                LoadUnions();
                 LoadAirports();
                 LoadAirportLogos();
                 LoadAirportMaps();
@@ -52,7 +54,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirliners();
                 LoadAirlinerFacilities();
                 LoadFlightRestrictions();
-             
+
                 SetupStatisticsTypes();
 
                 CreateAdvertisementTypes();
@@ -87,6 +89,7 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.Clear();
             Regions.Clear();
             Countries.Clear();
+            Unions.Clear();
             AirlinerTypes.Clear();
             Skins.Clear();
             FeeTypes.Clear();
@@ -220,7 +223,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirliners()
         {
-              try
+            try
             {
                 DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners");
 
@@ -233,7 +236,7 @@ namespace TheAirline.Model.GeneralModel
             catch (Exception e)
             {
                 string s = e.ToString();
-          }
+            }
         }
         private static void LoadAirliners(string file)
         {
@@ -426,8 +429,8 @@ namespace TheAirline.Model.GeneralModel
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
-           
-              
+
+
         }
         /*! loads the temporary countries
          */
@@ -450,20 +453,20 @@ namespace TheAirline.Model.GeneralModel
                 XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
                 DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value);
                 DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value);
-            
+
                 XmlElement historyElement = (XmlElement)element.SelectSingleNode("history");
                 Country before = Countries.GetCountry(historyElement.Attributes["before"].Value);
                 Country after = Countries.GetCountry(historyElement.Attributes["after"].Value);
 
                 Country country = new Country(section, uid, shortname, region, tailformat);
-                          
+
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
 
-                TemporaryCountry tCountry = new TemporaryCountry(country,startDate,endDate,before,after);
+                TemporaryCountry tCountry = new TemporaryCountry(country, startDate, endDate, before, after);
 
                 tCountry.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
-             
+
 
                 TemporaryCountries.AddCountry(tCountry);
             }
@@ -472,6 +475,51 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadUnions()
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\unions.xml");
+            XmlElement root = doc.DocumentElement;
+
+            XmlNodeList unionsList = root.SelectNodes("//union");
+            foreach (XmlElement element in unionsList)
+            {
+                try
+                {
+                    string section = root.Name;
+                    string uid = element.Attributes["uid"].Value;
+                    string shortname = element.Attributes["shortname"].Value;
+                    string flag = element.Attributes["flag"].Value;
+
+
+                    XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
+                    DateTime creationDate = Convert.ToDateTime(periodElement.Attributes["creation"].Value);
+                    DateTime obsoleteDate = Convert.ToDateTime(periodElement.Attributes["obsolete"].Value);
+
+                    Union union = new Union(section, uid, shortname, creationDate, obsoleteDate);
+
+                    XmlNodeList membersList = element.SelectNodes("members/member");
+
+                    foreach (XmlElement memberNode in membersList)
+                    {
+                        Country country = Countries.GetCountry(memberNode.Attributes["country"].Value);
+                        DateTime fromDate = Convert.ToDateTime(memberNode.Attributes["memberfrom"].Value);
+                        DateTime toDate = Convert.ToDateTime(memberNode.Attributes["memberto"].Value);
+
+                        union.addMember(new UnionMember(country, fromDate, toDate));
+                    }
+
+
+                    union.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+                    Unions.AddUnion(union);
+
+                    if (element.SelectSingleNode("translations") != null)
+                        Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
+                }
+                catch (Exception e)
+                {
+                    throw new Exception("Error on reading unions");
+                }
+            }
+
         }
         /*! load the airliner facilities.
          */
@@ -507,7 +555,7 @@ namespace TheAirline.Model.GeneralModel
        */
         private static void LoadFlightRestrictions()
         {
-            
+
             XmlDocument doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\flightrestrictions.xml");
             XmlElement root = doc.DocumentElement;
@@ -516,17 +564,27 @@ namespace TheAirline.Model.GeneralModel
             foreach (XmlElement element in restrictionsList)
             {
                 FlightRestriction.RestrictionType type = (FlightRestriction.RestrictionType)Enum.Parse(typeof(FlightRestriction.RestrictionType), element.Attributes["type"].Value);
-             
+
                 DateTime startDate = Convert.ToDateTime(element.Attributes["start"].Value);
                 DateTime endDate = Convert.ToDateTime(element.Attributes["end"].Value);
-            
+
                 XmlElement countriesElement = (XmlElement)element.SelectSingleNode("countries");
-                Country from = Countries.GetCountry(countriesElement.Attributes["from"].Value);
-                Country to= Countries.GetCountry(countriesElement.Attributes["to"].Value);
 
-                FlightRestrictions.AddRestriction(new FlightRestriction(type, startDate, endDate, from, to));       
+                BaseUnit from, to;
 
-            }   
+                if (countriesElement.Attributes["fromtype"].Value == "C")
+                    from = Countries.GetCountry(countriesElement.Attributes["from"].Value);
+                else
+                    from = Unions.GetUnion(countriesElement.Attributes["from"].Value);
+               
+                if (countriesElement.Attributes["totype"].Value == "C")
+                    to = Countries.GetCountry(countriesElement.Attributes["to"].Value);
+                else
+                    to = Unions.GetUnion(countriesElement.Attributes["to"].Value);
+         
+                FlightRestrictions.AddRestriction(new FlightRestriction(type, startDate, endDate, from, to));
+
+            }
         }
         /*! sets up the statistics types.
          */
@@ -644,10 +702,10 @@ namespace TheAirline.Model.GeneralModel
 
             Alliances.AddAlliance(alliance);
 
-            
-         
+
+
         }
-       
+
         /*! removes some random airlines from the list bases on number of opponents.
          */
         private static void RemoveAirlines(int opponnents)
@@ -779,7 +837,7 @@ namespace TheAirline.Model.GeneralModel
                     name = "x";
             }
         }
-       
+
         /*! creates the logos for the game airlines.
          */
         private static void CreateAirlineLogos()
@@ -787,7 +845,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airline airline in Airlines.GetAirlines())
                 airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
         }
-       
+
         /*! private stativ method CreateFlightFacilities.
          * creates the in flight facilities.
          */

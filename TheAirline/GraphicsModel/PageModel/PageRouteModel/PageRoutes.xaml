@@ -109,6 +109,7 @@
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding To,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
               </WrapPanel>
         </DataTemplate>
+       
     </Page.Resources>
     <Grid>
 

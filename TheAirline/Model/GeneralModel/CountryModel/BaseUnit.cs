@@ -16,7 +16,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel
             this.Uid = uid;
             this.ShortName = shortname;
         }
-        public string Name
+        public virtual string Name
         {
             get { return Translator.GetInstance().GetString(Country.Section, this.Uid); }
         }

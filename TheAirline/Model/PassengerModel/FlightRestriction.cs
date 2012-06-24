@@ -19,7 +19,7 @@ namespace TheAirline.Model.PassengerModel
         public DateTime EndDate { get; set; }
         public BaseUnit From { get; set; }
         public BaseUnit To { get; set; }
-        public FlightRestriction(RestrictionType type, DateTime startDate, DateTime endDate, Country from, Country to)
+        public FlightRestriction(RestrictionType type, DateTime startDate, DateTime endDate, BaseUnit from, BaseUnit to)
         {
             this.Type = type;
             this.StartDate = startDate;
@@ -45,8 +45,10 @@ namespace TheAirline.Model.PassengerModel
         //returns if there is flight restrictions from one country to another
         public static Boolean HasRestriction(Country from, Country to, DateTime date, FlightRestriction.RestrictionType type)
         {
-            FlightRestriction restriction = GetRestrictions().Find(r=>((r.From == from) && (r.To == to) && (date>r.StartDate && date<r.EndDate) && r.Type == type));
-        
+            FlightRestriction restriction = GetRestrictions().Find(r=>(r.From == from || (r.From is Union && ((Union)r.From).isMember(from,date))) && (r.To == to || (r.To is Union && ((Union)r.To).isMember(to,date))) && (date>r.StartDate && date<r.EndDate) && r.Type == type);
+
+            FlightRestriction res = GetRestrictions().Find(r => r.From == from && r.To == to && r.Type == type);
+
             return restriction != null;
         }
         //returns if there is flight restrictions for airlines to one of the destinations

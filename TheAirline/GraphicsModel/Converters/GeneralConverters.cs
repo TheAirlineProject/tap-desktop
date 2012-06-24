@@ -12,6 +12,7 @@ using System.Windows.Media;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GraphicsModel.Converters
 {
@@ -440,6 +441,9 @@ namespace TheAirline.GraphicsModel.Converters
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (value is Union)
+                return value;
+
             Country country = (Country)value;
 
             return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
