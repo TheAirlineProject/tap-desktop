@@ -15,7 +15,7 @@ namespace TheAirline.Model.PassengerModel
     public class PassengersTimer
     {
         private static PassengersTimer WorkerInstance;
-
+        private Boolean IsFinished;
         private BackgroundWorker Worker;
         private PassengersTimer()
         {
@@ -27,6 +27,8 @@ namespace TheAirline.Model.PassengerModel
   
         private void Timer_DoWork(object sender, DoWorkEventArgs e)
         {
+            this.IsFinished = false;
+
             int i = 0;
             while (!this.Worker.CancellationPending && i<100 && Passengers.Count() < Passengers.GetMaxPassengers())
             {
@@ -39,7 +41,10 @@ namespace TheAirline.Model.PassengerModel
                 PassengerHelpers.UpdatePassengers();
 
          
+           
             e.Cancel = true;
+
+            this.IsFinished = true;
         }
 
        
@@ -66,6 +71,11 @@ namespace TheAirline.Model.PassengerModel
         public Boolean isBusy()
         {
             return this.Worker.IsBusy;
+        }
+        //returns if the worker is finished
+        public Boolean isFinished()
+        {
+            return this.IsFinished;
         }
     }
 }

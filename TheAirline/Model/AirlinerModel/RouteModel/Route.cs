@@ -20,7 +20,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public RouteTimeTable TimeTable { get; set; }
         public List<Invoice> Invoices { get; set; }
         public RouteStatistics Statistics { get; set; }
-        //public string FlightCodes { get { return getFlightCodes();} set { ;} }
+        public Boolean Banned { get; set; }
         public double Balance { get { return getBalance(); } set { ;} }
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
@@ -37,6 +37,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.TimeTable = new RouteTimeTable(this);
             this.Invoices = new List<Invoice>();
             this.Statistics = new RouteStatistics();
+            this.Banned = false;
 
              this.Season = Weather.Season.All_Year;
 

@@ -17,7 +17,7 @@ namespace TheAirline.Model.AirlinerModel
         public Airport Homebase { get; set; }
         public enum PurchasedType { Bought, Leased,BoughtDownPayment }
         public PurchasedType Purchased { get; set; }
-        public Boolean HasRoute { get { return this.Routes.Count > 0; } set { ;} }//{ get { return this.Route != null; } set { ;} }
+        public Boolean HasRoute { get { return this.Routes.Count > 0; } set { ;} }
         public AirlinerStatistics Statistics { get; set; }
 
         /*Changed for deleting routeairliner*/

@@ -179,12 +179,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 {
                     fileName = f.Value;
                 }
-                  
+                PassengersTimer.GetInstance().cancel();
+
+                while (!PassengersTimer.GetInstance().isFinished())
+                {
+                }
 
                 LoadSaveHelpers.SaveGame(fileName);
 
             }
             GameTimer.GetInstance().start();
+            
         }
 
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
@@ -201,6 +206,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 {
 
                     PassengersTimer.GetInstance().cancel();
+
+                    while (!PassengersTimer.GetInstance().isFinished())
+                    {
+                    }
                     LoadSaveHelpers.LoadGame(file);
 
                     PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));

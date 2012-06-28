@@ -62,6 +62,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         restrictionNewsText = string.Format("The blacklist on all airlines from {0} flying to {1} have been lifted", restriction.From.Name, restriction.To.Name);
          
                 }
+                if (restriction.StartDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
+                {
+                    if (restriction.Type == FlightRestriction.RestrictionType.Flights)
+                    {
+                        var bannedRoutes = (from r in Airlines.GetAirlines().SelectMany(a => a.Routes) where FlightRestrictions.HasRestriction(r.Destination1.Profile.Country, r.Destination2.Profile.Country, GameObject.GetInstance().GameTime) select r);
+
+                        foreach (Route route in bannedRoutes)
+                        {
+                            route.Banned = true;
+                        }
+                    }
+                }
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Flight restriction", restrictionNewsText));
 
             }
@@ -613,7 +625,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-            return airliner.CurrentFlight.FlightTime;
+            if (airliner.CurrentFlight.Entry.TimeTable.Route.Banned)
+            {
+                SetNextFlight(airliner);
+                if (airliner.CurrentFlight.Entry.TimeTable.Route.Banned)
+                {
+                    airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+                    return new DateTime(2500, 1, 1);
+                    
+                }
+                else
+                    return airliner.CurrentFlight.FlightTime;
+            }
+            else
+                return airliner.CurrentFlight.FlightTime;
        
         }
         //returns the passengers for an airliner
