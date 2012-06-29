@@ -193,7 +193,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbRoute_SelectionChanged);
         
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r=>this.Airliner.Airliner.Type.Range>MathHelpers.GetDistance(r.Destination1.Profile.Coordinates,r.Destination2.Profile.Coordinates)))
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r=>this.Airliner.Airliner.Type.Range>MathHelpers.GetDistance(r.Destination1.Profile.Coordinates,r.Destination2.Profile.Coordinates) && !r.Banned))
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
