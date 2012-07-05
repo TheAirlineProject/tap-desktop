@@ -79,7 +79,7 @@ namespace TheAirline.Model.PassengerModel
             path.Insert(0, d);
 
 
-            while (this.Previous[d.Profile.IATACode] != null)
+            while ((this.Previous.Count != 0) && (this.Previous[d.Profile.IATACode] != null))
             {
                 d = this.Previous[d.Profile.IATACode];
                 path.Insert(0, d);

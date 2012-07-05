@@ -695,14 +695,6 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
-            Alliance alliance = new Alliance(Alliance.AllianceType.Codesharing, "One World", Airports.GetAirport("JFK"));
-            alliance.addMember(Airlines.GetAirlines()[0]);
-            alliance.addMember(Airlines.GetAirlines()[2]);
-            alliance.addMember(Airlines.GetAirlines()[4]);
-
-            Alliances.AddAlliance(alliance);
-
-
 
         }
 
