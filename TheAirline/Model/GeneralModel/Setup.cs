@@ -54,14 +54,16 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirliners();
                 LoadAirlinerFacilities();
                 LoadFlightRestrictions();
-
+           
                 SetupStatisticsTypes();
 
                 CreateAdvertisementTypes();
                 CreateTimeZones();
                 CreateFeeTypes();
-                CreateAirlines();
                 CreateFlightFacilities();
+
+                LoadAirlines();
+
                 Skins.Init();
             }
             catch (Exception e)
@@ -551,6 +553,49 @@ namespace TheAirline.Model.GeneralModel
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
+        /*loads the airlines
+         */
+        private static void LoadAirlines()
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airlines");
+
+                foreach (FileInfo file in dir.GetFiles("*.xml"))
+                {
+                    LoadAirline(file.FullName);
+                }
+ 
+                CreateAirlineLogos();
+
+                GameObject.GetInstance().HumanAirline = Airlines.GetAirlines()[0];
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+            }
+        }
+        /*loads an airline
+         */
+        private static void LoadAirline(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+            XmlElement root = doc.DocumentElement;
+     
+            XmlElement profileElement = (XmlElement)root.SelectSingleNode("profile");
+            
+            string name = profileElement.Attributes["name"].Value;
+            string iata = profileElement.Attributes["iata"].Value;
+            string color = profileElement.Attributes["color"].Value;
+            Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
+            string ceo = profileElement.Attributes["CEO"].Value;
+            Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
+            Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), profileElement.Attributes["market"].Value);
+
+            Airlines.AddAirline(new Airline(new AirlineProfile(name, iata, color, country, ceo), mentality, market));
+
+        }
         /*loads the flight restrictions
        */
         private static void LoadFlightRestrictions()
@@ -636,11 +681,14 @@ namespace TheAirline.Model.GeneralModel
                 Airliners.AddAirliner(CreateAirliner(0));
             }
         }
-
+        
         /*! create some game airlines.
          */
+        /*
         private static void CreateAirlines()
         {
+            LoadAirlines();
+
             Airlines.AddAirline(new Airline(new AirlineProfile("Air Vegas", "6V", "LightCoral", Countries.GetCountry("122"), "Michael Smidth"), Airline.AirlineMentality.Aggressive, Airline.AirlineMarket.Local));
             Airlines.AddAirline(new Airline(new AirlineProfile("German Wings", "GER", "DarkRed", Countries.GetCountry("163"), "Franz Ötzel"), Airline.AirlineMentality.Aggressive, Airline.AirlineMarket.Local));
             Airlines.AddAirline(new Airline(new AirlineProfile("Key Airlines", "KWY", "Black", Countries.GetCountry("122"), "Peter Hanson"), Airline.AirlineMentality.Aggressive, Airline.AirlineMarket.Local));
@@ -658,7 +706,7 @@ namespace TheAirline.Model.GeneralModel
 
             CreateAirlineLogos();
         }
-
+        */
         /*! sets up test game.
          */
         public static void SetupTestGame(int opponents)
