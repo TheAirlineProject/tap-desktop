@@ -10,11 +10,13 @@
 	Title="PageAirlines">
     <Page.Resources>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <DataTemplate x:Key="AirlinesHeader">
              <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                  <TextBlock Text="Airline" Width="205" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="IATA" Width="50" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="CEO" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+      
             </WrapPanel>
            
         </DataTemplate>
@@ -28,7 +30,8 @@
                 </TextBlock>
                 <TextBlock Text="{Binding Profile.IATACode}" Width="50" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.CEO}" VerticalAlignment="Bottom"></TextBlock>
-                <!--<ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country}"></ContentControl>-->
+                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0"    RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding IsHuman,Converter={StaticResource booleanToVisibility}}"></Image>
+
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>

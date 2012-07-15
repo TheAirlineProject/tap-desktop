@@ -84,7 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                 {
                     if (this.Airport.getAirportFacility(airline, type).TypeLevel != 0)
-                     lbAirportFacilities.Items.Add(new AirlineFacilityType(airline, this.Airport.getAirportFacility(airline, type)));
+                     lbAirportFacilities.Items.Add(this.Airport.getAirlineAirportFacility(airline, type));
                 }
             }
 
@@ -152,8 +152,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                         price = price * 1.25;
 
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases,-price);
-
-        
+                    
                     this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility);
 
                     showFacilitiesInformation();
@@ -182,17 +181,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
             }
         }
+        /*
         //the class for a facility type for an airline
         private class AirlineFacilityType
         {
             public Airline Airline { get; set; }
-            public AirportFacility Facility { get; set; }
-            public AirlineFacilityType(Airline airline, AirportFacility facility)
+            public AirlineAirportFacility Facility { get; set; }
+            public AirlineFacilityType(Airline airline, AirlineAirportFacility facility)
             {
                 this.Airline = airline;
                 this.Facility = facility;
             }
         }
+         * */
     }
 
    

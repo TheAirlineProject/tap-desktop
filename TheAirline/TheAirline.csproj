@@ -564,6 +564,7 @@
     <Compile Include="Model\AirlinerModel\RouteModel\RouteStatistics.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTable.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTableEntry.cs" />
+    <Compile Include="Model\AirportModel\AirlineAirportFacility.cs" />
     <Compile Include="Model\AirportModel\Airport.cs" />
     <Compile Include="Model\AirportModel\AirportFacility.cs" />
     <Compile Include="Model\AirportModel\AirportProfile.cs" />

@@ -16,11 +16,10 @@ namespace TheAirline.Model.AirportModel
     {
         public AirportProfile Profile { get; set; }
         private List<Passenger> Passengers;
+        private List<AirlineAirportFacility> Facilities;
         public AirportStatistics Statistics { get; set; }
-        public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
+        //public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
         public Weather Weather { get; set; }
-
-        // chs, 2012-18-01 added for runways
         public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
         public List<Hub> Hubs { get; set; }
@@ -29,7 +28,8 @@ namespace TheAirline.Model.AirportModel
         {
             this.Profile = profile;
             this.Passengers = new List<Passenger>();
-            this.Facilities = new Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>>();
+            //this.Facilities = new Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>>();
+            this.Facilities = new List<AirlineAirportFacility>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
             this.Terminals = new Terminals(this);
@@ -90,26 +90,34 @@ namespace TheAirline.Model.AirportModel
         //sets a facility to an airline
         public void setAirportFacility(Airline airline, AirportFacility facility)
         {
-            if (!this.Facilities.ContainsKey(airline))
-                this.Facilities.Add(airline, new Dictionary<AirportFacility.FacilityType, AirportFacility>());
-            if (!this.Facilities[airline].ContainsKey(facility.Type))
-                this.Facilities[airline].Add(facility.Type, facility);
+            if (getAirlineAirportFacility(airline, facility.Type) == null)
+            {
+                this.Facilities.Add(new AirlineAirportFacility(airline, facility, GameObject.GetInstance().GameTime));
+            }
             else
-                this.Facilities[airline][facility.Type] = facility;
+            {
+                this.Facilities.Remove(getAirlineAirportFacility(airline, facility.Type));
+                this.Facilities.Add(new AirlineAirportFacility(airline, facility, GameObject.GetInstance().GameTime));
+       
+            }
+          
         }
+      
         //returns the facility of a specific type for an airline
         public AirportFacility getAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
-            return this.Facilities[airline][type];
+            return (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type select f.Facility).FirstOrDefault(); 
+        }
+        //return the airport facility for a specific type for an airline
+        public AirlineAirportFacility getAirlineAirportFacility(Airline airline, AirportFacility.FacilityType type)
+        {
+            return this.Facilities.Where(f => f.Airline == airline && f.Facility.Type == type).FirstOrDefault();
         }
         //return all the facilities for an airline
         public List<AirportFacility> getAirportFacilities(Airline airline)
         {
-            List<AirportFacility> facilities = new List<AirportFacility>();
-            foreach (AirportFacility.FacilityType type in this.Facilities[airline].Keys)
-                facilities.Add(this.Facilities[airline][type]);
-
-            return facilities;
+            return (from f in this.Facilities where f.Airline==airline select f.Facility).ToList();
+           
         }
         //returns if an airline has any facilities at the airport
         public Boolean hasFacilities(Airline airline)

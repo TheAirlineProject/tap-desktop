@@ -49,7 +49,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             lbAirlines.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
             List<Airline> airlines = Airlines.GetAirlines();
-            airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
+            //airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
+
+            airlines.OrderBy(a => a.Profile.Name);
+
+            airlines.Remove(GameObject.GetInstance().HumanAirline);
+            airlines[0] = GameObject.GetInstance().HumanAirline;
 
             foreach (Airline airline in airlines)
                 lbAirlines.Items.Add(airline);
