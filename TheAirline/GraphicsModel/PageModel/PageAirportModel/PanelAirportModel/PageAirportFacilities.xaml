@@ -41,7 +41,8 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Text="{Binding Facility.Type}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding FinishedDate, StringFormat={}{0:MM/dd/yyyy}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>

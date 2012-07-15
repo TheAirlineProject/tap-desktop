@@ -10,13 +10,13 @@ namespace TheAirline.Model.AirportModel
     public class AirlineAirportFacility
     {
         public AirportFacility Facility { get; set; }
-        public DateTime Date { get; set; }
+        public DateTime FinishedDate { get; set; }
         public Airline Airline{ get; set; }
         public AirlineAirportFacility(Airline airline, AirportFacility facility, DateTime date)
         {
             this.Airline = airline;
             this.Facility = facility;
-            this.Date = date;
+            this.FinishedDate = date;
         }
     }
 }

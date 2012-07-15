@@ -401,8 +401,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     Airline airline = Airlines.GetAirline(airportFacilityNode.Attributes["airline"].Value);
                     AirportFacility airportFacility = AirportFacilities.GetFacility(airportFacilityNode.Attributes["name"].Value);
+                    DateTime finishedDate = DateTime.Parse(airportFacilityNode.Attributes["finished"].Value, new CultureInfo("de-DE", false));
 
-                    airport.setAirportFacility(airline, airportFacility);
+
+                    airport.setAirportFacility(airline, airportFacility,finishedDate);
                 }
                 airport.Terminals.clear();
 
@@ -929,12 +931,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airportFacilitiesNode = xmlDoc.CreateElement("facilities");
                 foreach (Airline airline in Airlines.GetAirlines())
                 {
-                    foreach (AirportFacility facility in airport.getAirportFacilities(airline))
+                    foreach (AirlineAirportFacility facility in airport.getAirportFacilities(airline))
                     {
                         XmlElement airportFacilityNode = xmlDoc.CreateElement("facility");
                         airportFacilityNode.SetAttribute("airline", airline.Profile.IATACode);
-                        airportFacilityNode.SetAttribute("name", facility.Shortname);
-
+                        airportFacilityNode.SetAttribute("name", facility.Facility.Shortname);
+                        airportFacilityNode.SetAttribute("finished",facility.FinishedDate.ToString(new CultureInfo("de-DE")));
+                   
                         airportFacilitiesNode.AppendChild(airportFacilityNode);
                     }
                 }

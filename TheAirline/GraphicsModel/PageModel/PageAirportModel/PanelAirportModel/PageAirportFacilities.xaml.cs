@@ -131,9 +131,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             PageNavigator.NavigateTo(new PageAirline(airline));
         }
-
-       
-
         private void ButtonBuy_Click(object sender, RoutedEventArgs e)
         {
             HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
@@ -153,14 +150,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases,-price);
                     
-                    this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility);
+                    this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility,GameObject.GetInstance().GameTime.AddDays(type.NextFacility.BuildingDays));
 
                     showFacilitiesInformation();
                 }
             }
         }
-
-        private void ButtonSell_Click(object sender, RoutedEventArgs e)
+         private void ButtonSell_Click(object sender, RoutedEventArgs e)
         {
             HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
             Boolean hasHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline)>0;
@@ -181,19 +177,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
             }
         }
-        /*
-        //the class for a facility type for an airline
-        private class AirlineFacilityType
-        {
-            public Airline Airline { get; set; }
-            public AirlineAirportFacility Facility { get; set; }
-            public AirlineFacilityType(Airline airline, AirlineAirportFacility facility)
-            {
-                this.Airline = airline;
-                this.Facility = facility;
-            }
-        }
-         * */
+        
     }
 
    
@@ -232,11 +216,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if (buttonType == "Buy")
             {
-                isEnabled = index < facilities.Count - 1 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)>0; 
+                isEnabled = index < facilities.Count - 1 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime; 
             }
             if (buttonType == "Sell")
             {
-                isEnabled = index > 0;
+                isEnabled = index > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,type).FinishedDate<GameObject.GetInstance().GameTime;
             }
 
             return isEnabled;

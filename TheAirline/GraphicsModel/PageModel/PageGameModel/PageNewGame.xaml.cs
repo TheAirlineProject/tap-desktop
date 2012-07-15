@@ -273,7 +273,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-                airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility);
+                airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility,GameObject.GetInstance().GameTime);
 
 
                 Setup.CreateAirliners();

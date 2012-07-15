@@ -394,12 +394,13 @@ namespace TheAirline.Model.GeneralModel
                 int typeLevel = Convert.ToInt16(element.Attributes["typelevel"].Value);
 
                 double price = XmlConvert.ToDouble(element.Attributes["price"].Value);
+                int buildingDays = XmlConvert.ToInt32(element.Attributes["buildingdays"].Value);
 
                 XmlElement levelElement = (XmlElement)element.SelectSingleNode("level");
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
-                AirportFacilities.AddFacility(new AirportFacility(section, uid, shortname, type, typeLevel, price, service, luxury));
+                AirportFacilities.AddFacility(new AirportFacility(section, uid, shortname, type,buildingDays, typeLevel, price, service, luxury));
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
@@ -722,7 +723,7 @@ namespace TheAirline.Model.GeneralModel
                     {
                         AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                        airport.setAirportFacility(airline, noneFacility);
+                        airport.setAirportFacility(airline, noneFacility,GameObject.GetInstance().GameTime);
                     }
                 }
             }
@@ -739,7 +740,7 @@ namespace TheAirline.Model.GeneralModel
 
                 AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-                airline.Airports[0].setAirportFacility(airline, facility);
+                airline.Airports[0].setAirportFacility(airline, facility,GameObject.GetInstance().GameTime);
 
             }
 

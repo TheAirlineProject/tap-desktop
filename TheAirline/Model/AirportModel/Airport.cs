@@ -88,16 +88,16 @@ namespace TheAirline.Model.AirportModel
             return sizeValue;
         }
         //sets a facility to an airline
-        public void setAirportFacility(Airline airline, AirportFacility facility)
+        public void setAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
             if (getAirlineAirportFacility(airline, facility.Type) == null)
             {
-                this.Facilities.Add(new AirlineAirportFacility(airline, facility, GameObject.GetInstance().GameTime));
+                this.Facilities.Add(new AirlineAirportFacility(airline, facility, finishedDate));
             }
             else
             {
                 this.Facilities.Remove(getAirlineAirportFacility(airline, facility.Type));
-                this.Facilities.Add(new AirlineAirportFacility(airline, facility, GameObject.GetInstance().GameTime));
+                this.Facilities.Add(new AirlineAirportFacility(airline, facility, finishedDate));
        
             }
           
@@ -114,9 +114,9 @@ namespace TheAirline.Model.AirportModel
             return this.Facilities.Where(f => f.Airline == airline && f.Facility.Type == type).FirstOrDefault();
         }
         //return all the facilities for an airline
-        public List<AirportFacility> getAirportFacilities(Airline airline)
+        public List<AirlineAirportFacility> getAirportFacilities(Airline airline)
         {
-            return (from f in this.Facilities where f.Airline==airline select f.Facility).ToList();
+            return (from f in this.Facilities where f.Airline==airline select f).ToList();
            
         }
         //returns if an airline has any facilities at the airport
@@ -150,7 +150,7 @@ namespace TheAirline.Model.AirportModel
 
             int index = facilities.IndexOf(this.getAirportFacility(GameObject.GetInstance().HumanAirline, type));
 
-            setAirportFacility(airline, facilities[index - 1]);
+            setAirportFacility(airline, facilities[index - 1],GameObject.GetInstance().GameTime);
 
         }
         //returns the price for a hub

@@ -435,7 +435,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airport airport = airports.First();
 
-                airport.setAirportFacility(airline, facility);
+                airport.setAirportFacility(airline, facility,GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 

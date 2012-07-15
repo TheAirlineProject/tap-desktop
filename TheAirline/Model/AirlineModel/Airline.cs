@@ -229,8 +229,8 @@ namespace TheAirline.Model.AirlineModel
             }
             foreach (Airport airport in this.Airports)
             {
-                foreach (AirportFacility facility in airport.getAirportFacilities(this))
-                    value += facility.Price;
+                foreach (AirlineAirportFacility facility in airport.getAirportFacilities(this))
+                    value += facility.Facility.Price;
             }
             foreach (Loan loan in this.Loans)
             {

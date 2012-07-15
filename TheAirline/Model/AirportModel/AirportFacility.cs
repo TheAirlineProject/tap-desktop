@@ -18,7 +18,8 @@ namespace TheAirline.Model.AirportModel
         public int TypeLevel { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
-        public AirportFacility(string section, string uid, string shortname,FacilityType type,int typeLevel, double price, int serviceLevel, int luxuryLevel)
+        public int BuildingDays { get; set; }
+        public AirportFacility(string section, string uid, string shortname,FacilityType type,int buildingDays, int typeLevel, double price, int serviceLevel, int luxuryLevel)
         {
             AirportFacility.Section = section;
             this.Uid = uid;
@@ -26,6 +27,7 @@ namespace TheAirline.Model.AirportModel
             this.Price = price;
             this.LuxuryLevel = luxuryLevel;
             this.ServiceLevel = serviceLevel;
+            this.BuildingDays = buildingDays;
             this.TypeLevel = typeLevel;
             this.Type = type;
         }
