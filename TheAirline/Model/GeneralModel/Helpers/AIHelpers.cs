@@ -75,7 +75,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int numberToOrder = rnd.Next(1, 3-(int)airline.Mentality);
 
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
 
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
             homeAirports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
@@ -159,7 +159,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
             Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
 
-            return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
+            return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
 
 
         }
@@ -232,7 +232,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new route for an airline
         private static void CreateNewRoute(Airline airline)
         {
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
             homeAirports.AddRange(airline.Airports.FindAll(a => a.Hubs.Count(h => h.Airline == airline) > 0)); //hubs
 
             Airport airport = homeAirports.Find(a => a.Terminals.getFreeGates(airline) > 0);

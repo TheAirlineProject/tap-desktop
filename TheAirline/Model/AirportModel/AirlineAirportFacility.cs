@@ -12,11 +12,13 @@ namespace TheAirline.Model.AirportModel
         public AirportFacility Facility { get; set; }
         public DateTime FinishedDate { get; set; }
         public Airline Airline{ get; set; }
-        public AirlineAirportFacility(Airline airline, AirportFacility facility, DateTime date)
+        public Airport Airport { get; set; }
+        public AirlineAirportFacility(Airline airline, Airport airport, AirportFacility facility, DateTime date)
         {
             this.Airline = airline;
             this.Facility = facility;
             this.FinishedDate = date;
+            this.Airport = airport;
         }
     }
 }

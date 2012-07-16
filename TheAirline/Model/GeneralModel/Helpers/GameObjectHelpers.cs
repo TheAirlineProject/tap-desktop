@@ -43,6 +43,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             PassengersTimer.GetInstance().start();
 
+            //checks for airport facilities for the human airline
+            var humanAirportFacilities = (from f in GameObject.GetInstance().HumanAirline.Airports.SelectMany(a => a.getAirportFacilities(GameObject.GetInstance().HumanAirline)) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
+
+            foreach (AirlineAirportFacility facility in humanAirportFacilities)
+            {
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at {1} is now finished building",facility.Facility.Name,facility.Airport.Profile.Name)));
+
+            }
             //checks for changed flight restrictions
             foreach (FlightRestriction restriction in FlightRestrictions.GetRestrictions().FindAll(r=>r.StartDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() || r.EndDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
             {
@@ -77,7 +85,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Flight restriction", restrictionNewsText));
 
             }
-
+            //updates airports
             foreach (Airport airport in Airports.GetAirports())
             {
                 Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
@@ -123,6 +131,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
+            //checks for airliners for the human airline
             foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment; })))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner {0} as been delivered to your fleet.\nThe airliner is currently at {1}, {2}.", airliner.Name, airliner.Homebase.Profile.Name, airliner.Homebase.Profile.Country.Name)));
             foreach (Airline airline in Airlines.GetAirlines())

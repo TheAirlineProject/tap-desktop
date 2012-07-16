@@ -109,7 +109,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0);
             airports = (from a in airports orderby a.Profile.Name select a).ToList();
        
             foreach (Airport airport in airports)
