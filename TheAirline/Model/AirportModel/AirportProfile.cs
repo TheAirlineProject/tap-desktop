@@ -13,6 +13,7 @@ namespace TheAirline.Model.AirportModel
         public AirportType Type { get; set; }
         public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
         public AirportSize Size { get; set; }
+        public AirportSize Cargo { get; set; }
         public Weather.Season Season { get; set; }
         public string Name { get; set; }
         public string IATACode { get; set; }
@@ -26,7 +27,7 @@ namespace TheAirline.Model.AirportModel
         public TimeSpan OffsetGMT { get; set; }
         public TimeSpan OffsetDST { get; set; }
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
-        public AirportProfile(string name, string code,string icaocode, AirportType type,string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, AirportSize size, Weather.Season season)
+        public AirportProfile(string name, string code,string icaocode, AirportType type,string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, AirportSize size,AirportSize cargo, Weather.Season season)
         {
             this.Name = name;
             this.IATACode = code;
@@ -36,6 +37,7 @@ namespace TheAirline.Model.AirportModel
             this.Country = country;
             this.Coordinates = coordinates;
             this.Size = size;
+            this.Cargo = cargo;
             this.Logo = "";
             this.OffsetDST = offsetDST;
             this.OffsetGMT = offsetGMT;

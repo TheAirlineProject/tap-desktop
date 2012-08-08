@@ -42,6 +42,11 @@ namespace TheAirline.Model.PassengerModel
         {
             return restrictions;
         }
+        //celars the list
+        public static void Clear()
+        {
+            restrictions.Clear();
+        }
         //returns if there is flight restrictions from one country to another
         public static Boolean HasRestriction(Country from, Country to, DateTime date, FlightRestriction.RestrictionType type)
         {

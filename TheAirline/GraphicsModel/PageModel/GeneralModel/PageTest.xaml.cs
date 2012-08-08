@@ -320,7 +320,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
 
-                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type, town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size,Weather.Season.All_Year)));
+                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type, town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size,size,Weather.Season.All_Year)));
 
                 saveAirports();
 

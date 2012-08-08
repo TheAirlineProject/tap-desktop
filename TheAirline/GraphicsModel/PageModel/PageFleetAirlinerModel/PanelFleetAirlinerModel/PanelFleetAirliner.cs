@@ -24,6 +24,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             sbFacilities.Content = "Facilities";
             sbFacilities.IsSelected = true;
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
+            sbFacilities.Visibility = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             buttonsPanel.Children.Add(sbFacilities);
 
             ucSelectButton sbRoute = new ucSelectButton();
@@ -36,7 +37,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             sbTimeSlot.Visibility = System.Windows.Visibility.Collapsed;
             sbTimeSlot.Click += new System.Windows.RoutedEventHandler(sbTimeSlot_Click);
             buttonsPanel.Children.Add(sbTimeSlot);
-
 
             ucSelectButton sbStatistics = new ucSelectButton();
             sbStatistics.Content = "Statistics";

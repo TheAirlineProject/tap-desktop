@@ -25,7 +25,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
     public partial class PageAlliances : StandardPage
     {
         private Frame panelSidePanel;
-        private ListBox lbAlliances;
+        private ListBox lbAlliances, lbRequests;
         public PageAlliances()
         {
             InitializeComponent();
@@ -53,6 +53,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
             alliancesPanel.Children.Add(lbAlliances);
 
             alliancesPanel.Children.Add(createButtonsPanel());
+
+            ContentControl txtRequests = new ContentControl();
+            txtRequests.ContentTemplate = this.Resources["RequestsHeader"] as DataTemplate;
+            txtRequests.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtRequests.Margin = new Thickness(0, 5, 0, 0);
+
+            alliancesPanel.Children.Add(txtRequests);
+
+            lbRequests = new ListBox();
+            lbRequests.ItemTemplate = this.Resources["RequestItem"] as DataTemplate;
+            lbRequests.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            lbRequests.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+
+            foreach (PendingAllianceMember member in from a in Alliances.GetAlliances() where a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline) != null select a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline))
+                lbRequests.Items.Add(member);
+
+            alliancesPanel.Children.Add(lbRequests);
+
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -100,11 +118,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
             Alliance alliance = (Alliance)((Hyperlink)sender).Tag;
             panelSidePanel.Content = new PanelAlliance(this,alliance);
         }
+        private void btnAccept_Click(object sender, RoutedEventArgs e)
+        {
+            PendingAllianceMember pending = (PendingAllianceMember)((Button)sender).Tag;
+
+            pending.Alliance.addMember(pending.Airline);
+            pending.Alliance.removePendingMember(pending);
+      
+            updatePage();
+        }
+
+        private void btnDecline_Click(object sender, RoutedEventArgs e)
+        {
+            PendingAllianceMember pending = (PendingAllianceMember)((Button)sender).Tag;
+
+            pending.Alliance.removePendingMember(pending);
+      
+            updatePage();
+        }
+
         public override void updatePage()
         {
             panelSidePanel.Content = null;
 
             lbAlliances.Items.Refresh();
+            
+            lbRequests.Items.Clear();
+            foreach (PendingAllianceMember member in from a in Alliances.GetAlliances() where a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline) != null select a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline))
+                lbRequests.Items.Add(member);
+
         }
         
     }

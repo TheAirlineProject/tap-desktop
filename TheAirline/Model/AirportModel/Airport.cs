@@ -146,6 +146,7 @@ namespace TheAirline.Model.AirportModel
         public void downgradeFacility(Airline airline, AirportFacility.FacilityType type)
         {
             AirportFacility currentFacility = getAirportFacility(airline, type);
+            AirlineAirportFacility aaf = getAirlineAirportFacility(airline, type);
 
             List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
 
@@ -155,8 +156,7 @@ namespace TheAirline.Model.AirportModel
 
             setAirportFacility(airline, facilities[index - 1],GameObject.GetInstance().GameTime);
 
-            this.Facilities.Remove(getAirlineAirportFacility(airline, type));
-
+            this.Facilities.Remove(aaf);
 
         }
         //returns the price for a hub

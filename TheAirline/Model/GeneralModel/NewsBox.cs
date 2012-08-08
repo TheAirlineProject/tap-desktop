@@ -49,7 +49,7 @@ namespace TheAirline.Model.GeneralModel
     //the class for a news
     public class News
     {
-        public enum NewsType { Standard_News,Airport_News, Flight_News, Fleet_News }
+        public enum NewsType { Standard_News,Airport_News, Flight_News, Fleet_News, Airline_News, Alliance_News }
         public NewsType Type { get; set; }
         public DateTime Date { get; set; }
         public string Subject { get; set; }

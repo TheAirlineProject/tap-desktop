@@ -28,6 +28,26 @@
                 <TextBlock Text="Headquarter" Width="250" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="RequestsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="Invitions to alliance" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+              </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="RequestItem">
+            <WrapPanel>
+                <TextBlock VerticalAlignment="Bottom" Width="200">
+                    <Hyperlink Tag="{Binding Alliance}" Click="lnkAlliance_Click" >
+                        <Run Text="{Binding Alliance.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnAccept_Click" Background="Transparent">
+                    <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnDecline_Click" Background="Transparent">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
     </Page.Resources>
     
     <Grid>

@@ -136,22 +136,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 i++;
             }
 
-            AirlinerClass.ClassType nextClass = this.Classes.Count < this.Classes[0].Airliner.Type.MaxAirlinerClasses ? this.Classes[this.Classes.Count - 1].Type + 1 : AirlinerClass.ClassType.Economy_Class;
+            int maxCapacity = ((AirlinerPassengerType)this.Classes[0].Airliner.Type).MaxAirlinerClasses;
+
+            AirlinerClass.ClassType nextClass = this.Classes.Count < maxCapacity ? this.Classes[this.Classes.Count - 1].Type + 1 : AirlinerClass.ClassType.Economy_Class;
 
             if (nextClass == AirlinerClass.ClassType.Business_Class)
             {
-                MaxSeats = (int)(0.2 * Convert.ToDouble(this.Classes[0].Airliner.Type.MaxSeatingCapacity));
+                MaxSeats = (int)(0.2 * Convert.ToDouble(maxCapacity));
 
 
             }
             if (nextClass == AirlinerClass.ClassType.First_Class)
             {
-                MaxSeats = (int)(0.1 * Convert.ToDouble(this.Classes[0].Airliner.Type.MaxSeatingCapacity));
+                MaxSeats = (int)(0.1 * Convert.ToDouble(maxCapacity));
 
             }
        
      
-            lblNewClass.Visibility = this.Classes.Count < this.Classes[0].Airliner.Type.MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
+            lblNewClass.Visibility = this.Classes.Count < maxCapacity ? Visibility.Visible : Visibility.Collapsed;
             lblNewClass.Content = nextClass;
         }
 

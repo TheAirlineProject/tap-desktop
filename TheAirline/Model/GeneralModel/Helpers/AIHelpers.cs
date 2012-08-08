@@ -7,6 +7,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
+using System.Collections;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -22,7 +23,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             CheckForUpdateRoute(airline);
             CheckForOrderOfAirliners(airline);
             CheckForAirlinersWithoutRoutes(airline);
-
+            CheckForAirlineAlliance(airline);
 
         }
         //checks for any airliners without routes
@@ -30,22 +31,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int i = 0;
 
-            int max = airline.Fleet.FindAll(a=>a.Airliner.BuiltDate<=GameObject.GetInstance().GameTime && !a.HasRoute).Count;
+            int max = airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute).Count;
             while (i < max && airline.Fleet.FindAll(a => !a.HasRoute).Count > 0)
             {
                 CreateNewRoute(airline);
                 i++;
             }
-           
+
         }
         //checks for ordering new airliners
         private static void CheckForOrderOfAirliners(Airline airline)
         {
             int newAirlinersInterval = 0;
 
-            int airliners = airline.Fleet.Count+1;
-            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute)+1;
-            
+            int airliners = airline.Fleet.Count + 1;
+            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute) + 1;
+
             switch (airline.Mentality)
             {
                 case Airline.AirlineMentality.Aggressive:
@@ -58,7 +59,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     newAirlinersInterval = 1000000;
                     break;
             }
-            Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute)  == 0;
+            Boolean newAirliners = rnd.Next(newAirlinersInterval * (airliners / 2) * airlinersWithoutRoute) == 0;
 
             if (newAirliners)
             {
@@ -73,7 +74,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int airliners = airline.Fleet.Count;
             int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute);
 
-            int numberToOrder = rnd.Next(1, 3-(int)airline.Mentality);
+            int numberToOrder = rnd.Next(1, 3 - (int)airline.Mentality);
 
             List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
 
@@ -87,7 +88,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             types = types.OrderBy(t => t.Price).ToList();
 
             Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
-            types.ForEach(t => list.Add(t, (int)((t.Range / (t.Price/100000)))));
+            types.ForEach(t => list.Add(t, (int)((t.Range / (t.Price / 100000)))));
 
             if (list.Keys.Count > 0)
             {
@@ -100,9 +101,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int days = rnd.Next(30);
                 AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
             }
-           
 
-       
+
+
         }
         //checks for etablishing a new hub
         private static void CheckForNewHub(Airline airline)
@@ -136,17 +137,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new hub for an airline
         private static void CreateNewHub(Airline airline)
         {
-            List<Airport> airports = airline.Airports.FindAll(a => CanCreateHub(airline,a));
+            List<Airport> airports = airline.Airports.FindAll(a => CanCreateHub(airline, a));
 
             if (airports.Count > 0)
             {
                 Airport airport = (from a in airports orderby a.Profile.Size descending select a).First();
-                
+
                 airport.Hubs.Add(new Hub(airline));
 
                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airport.getHubPrice());
 
-      
+
             }
 
         }
@@ -161,6 +162,138 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
 
+
+        }
+        //checks for the creating of alliance / join existing alliance for an airline
+        private static void CheckForAirlineAlliance(Airline airline)
+        {
+            int airlineAlliances = airline.Alliances.Count;
+
+            if (airlineAlliances == 0)
+            {
+                int newAllianceInterval = 10000;
+                Boolean newAlliance = rnd.Next(newAllianceInterval) == 0;
+
+                if (newAlliance)
+                {
+                    Alliance alliance = GetAirlineAlliance(airline);
+
+                    if (alliance == null)
+                    {
+                        //creates a new alliance for the airline
+                        CreateNewAlliance(airline);
+                    }
+                    //joins an existing alliance
+                    else
+                    {
+                      
+                        if (alliance.Members.Contains(GameObject.GetInstance().HumanAirline))
+                        {
+                            alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime,alliance,airline,PendingAllianceMember.AcceptType.Request));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Request to join alliance", string.Format("{0} has requested to joined {1}. The request can be accepted or declined on the alliance page", airline.Profile.Name, alliance.Name)));
+                 
+                        }
+                        else
+                        {
+                            if (CanJoinAlliance(airline, alliance))
+                            {
+                                alliance.addMember(airline);
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("{0} has joined {1}", airline.Profile.Name, alliance.Name)));
+                            }
+                        }
+                    }
+
+                }
+            }
+            else
+            {
+                CheckForInviteToAlliance(airline);
+            }
+        }
+        //checks for inviting airlines to the an alliance for an airline
+        private static void CheckForInviteToAlliance(Airline airline)
+        {
+            Alliance alliance = airline.Alliances[0];
+
+            int members = alliance.Members.Count;
+            int inviteToAllianceInterval = 100000;
+            Boolean inviteToAlliance = rnd.Next(inviteToAllianceInterval * members) == 0;
+
+            if (inviteToAlliance)
+                InviteToAlliance(airline, alliance);
+        }
+        //invites an airline to an alliance
+        private static void InviteToAlliance(Airline airline, Alliance alliance)
+        {
+            Airline bestFitAirline = GetAllianceAirline(alliance);
+
+            if (bestFitAirline != null)
+            {
+                if (bestFitAirline == GameObject.GetInstance().HumanAirline)
+                {
+                    alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime,alliance, bestFitAirline, PendingAllianceMember.AcceptType.Invitation));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Invitation to join alliance", string.Format("{0} has invited you to join {1}. The invitation can be accepted or declined on the alliance page", airline.Profile.Name, alliance.Name)));
+
+                }
+                else
+                {
+                    if (DoAcceptAllianceInvitation(bestFitAirline, alliance))
+                    {
+                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("{0} has joined {1}", bestFitAirline.Profile.Name, alliance.Name)));
+                        alliance.addMember(bestFitAirline);
+                    }
+                }
+            }
+        }
+        //returns a "good" alliance for an airline to join
+        private static Alliance GetAirlineAlliance(Airline airline)
+        {
+            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.Contains(airline) orderby GetAirlineAllianceScore(airline,a,true) descending select a).FirstOrDefault();
+
+            if (bestAlliance !=null && GetAirlineAllianceScore(airline, bestAlliance, true) > 50)
+                return bestAlliance;
+            else
+                return null;
+        }
+        //returns the "score" for an airline compared to an alliance
+        private static double GetAirlineAllianceScore(Airline airline, Alliance alliance, Boolean forAlliance)
+        {
+            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airports).Distinct().Intersect(airline.Airports);
+
+            double airlineRoutes = airline.Routes.Count;
+            double allianceRoutes = alliance.Members.SelectMany(m => m.Routes).Count();
+
+            double coeff = forAlliance ? allianceRoutes * 10 : airlineRoutes * 10;
+
+            double score = coeff + (5-sameCountries.Count())*5 + (5 - sameDestinations.Count())*5;
+
+            return score;
+
+        }
+        //returns the best fit airline for an alliance
+        private static Airline GetAllianceAirline(Alliance alliance)
+        {
+            Airline bestAirline = (from a in Airlines.GetAirlines() where !alliance.Members.Contains(a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance,false) descending select a).FirstOrDefault();
+
+            if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
+                return bestAirline;
+            else
+                return null;
+        }
+        //creates a new alliance for an airline
+        private static void CreateNewAlliance(Airline airline)
+        {
+            string name = Alliance.GenerateAllianceName();
+            Airport headquarter = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0)[0];
+            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, Alliance.AllianceType.Full, name, headquarter);
+            alliance.addMember(airline);
+
+            Alliances.AddAlliance(alliance);
+
+            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "New alliance", string.Format("A new alliance: {0} has been created by {1}", name, airline.Profile.Name)));
+
+            InviteToAlliance(airline,alliance);
 
         }
         //checks for updating of an existing route for an airline
@@ -197,7 +330,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
                     }
                 }
+                if (route.Banned)
+                {
 
+                    airline.removeRoute(route);
+
+                    if (route.HasAirliner)
+                        route.getAirliners().ForEach(a => a.removeRoute(route));
+
+                    route.Destination1.Terminals.getUsedGate(airline).Route = null;
+                    route.Destination2.Terminals.getUsedGate(airline).Route = null;
+
+                    if (airline.Routes.Count == 0)
+                        CreateNewRoute(airline);
+                }
 
             }
         }
@@ -205,7 +351,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CheckForNewRoute(Airline airline)
         {
             int airlinersInOrder = airline.Fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
-            
+
             int newRouteInterval = 0;
             switch (airline.Mentality)
             {
@@ -220,7 +366,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder+1)) / 110 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder + 1)) / 110 == 0;
 
             if (newRoute)
             {
@@ -260,7 +406,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     FleetAirliner fAirliner;
 
-                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination); 
+                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination);
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -284,10 +430,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
 
                         airline.addRoute(route);
-                        
+
                         airport.Terminals.getEmptyGate(airline).Route = route;
                         destination.Terminals.getEmptyGate(airline).Route = route;
-                        
+
                         if (fAirliner == null)
                         {
 
@@ -306,12 +452,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 airline.addLoan(loan);
                                 AirlineHelpers.AddAirlineInvoice(airline, loan.Date, Invoice.InvoiceType.Loans, loan.Amount);
 
-  
+
                             }
                             else
                                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
-                  
+
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
 
@@ -332,7 +478,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
         {
             //Order new airliner
-            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate<=GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
 
             if (fleet.Count > 0)
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();
@@ -354,7 +500,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (airline.MarketFocus)
             {
                 case Airline.AirlineMarket.Global:
-                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates,airport.Profile.Coordinates)>100 && airport.Profile.Town != a.Profile.Town &&  MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
+                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
                 case Airline.AirlineMarket.Local:
                     airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
@@ -435,7 +581,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airport airport = airports.First();
 
-                airport.setAirportFacility(airline, facility,GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                airport.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 
@@ -451,7 +597,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //creates the time table for an route for an airliner
-        public static void CreateRouteTimeTable(Route route,FleetAirliner airliner)
+        public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)
         {
             Random rnd = new Random();
 
@@ -472,7 +618,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int homeTime = 15 * rnd.Next(-12, 12);
 
                 string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
- 
+
 
                 for (int i = 0; i < 3; i++)
                 {
@@ -482,7 +628,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
                 string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
- 
+
 
                 day = (DayOfWeek)1;
 
@@ -500,10 +646,70 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
+        //check if an airline can join an alliance
+        public static Boolean CanJoinAlliance(Airline airline, Alliance alliance)
+        {
+            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airports).Distinct().Intersect(airline.Airports);
+
+            double airlineDestinations = airline.Airports.Count;
+            double airlineRoutes = airline.Routes.Count;
+            double airlineCountries = airline.Airports.Select(a => a.Profile.Country).Distinct().Count();
+            double airlineAlliances = airline.Alliances.Count;
+
+            double allianceRoutes = alliance.Members.SelectMany(m => m.Routes).Count();
+
+            //declines if airline is much smaller than alliance
+            if (airlineRoutes * 5 < allianceRoutes)
+                return false;
+
+            //declines if there is a match for 75% of the airline and alliance destinations
+            if (sameDestinations.Count() >= airlineDestinations * 0.75)
+                return false;
+
+            //declines if there is a match for 75% of the airline and alliance countries
+            if (sameCountries.Count() >= airlineCountries * 0.75)
+                return false;
+
+            return true;
+
+        }
+        //check if an airline accepts an invitation to an alliance
+        public static Boolean DoAcceptAllianceInvitation(Airline airline, Alliance alliance)
+        {
+
+            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airports).Distinct().Intersect(airline.Airports);
+
+            double airlineDestinations = airline.Airports.Count;
+            double airlineRoutes = airline.Routes.Count;
+            double airlineCountries = airline.Airports.Select(a => a.Profile.Country).Distinct().Count();
+            double airlineAlliances = airline.Alliances.Count;
+
+            double allianceRoutes = alliance.Members.SelectMany(m => m.Routes).Count();
+
+            //declines if invited airline is much larger than alliance
+            if (airlineRoutes > 2 * allianceRoutes)
+                return false;
+
+            //declines if there is a match for 50% of the airline and alliance destinations
+            if (sameDestinations.Count() >= airlineDestinations * 0.50)
+                return false;
+
+            //declines if there is a match for 75% of the airline and alliance countries
+            if (sameCountries.Count() >= airlineCountries * 0.75)
+                return false;
+
+            //declines if the airline already are in "many" alliances - many == 2
+            if (airlineAlliances > 2)
+                return false;
+
+            return true;
+        }
         //returns a random item based on a weighted value
         public static T GetRandomItem<T>(Dictionary<T, int> list)
         {
-            
+
             List<T> tList = new List<T>();
 
             foreach (T item in list.Keys)

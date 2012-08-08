@@ -98,10 +98,15 @@ namespace TheAirline.Model.GeneralModel
 
             passengers.ForEach(p => airportCurrent.removePassenger(p));
             passengers.ForEach(p => p.CurrentAirport = null);
-     
+
+            if (passengers.Sum(p => p.Factor) > numberOfPassengers)
+            {
+                numberOfPassengers = 200;
+            }
+
             return passengers;
         }
-        //returns the number of passengers for 
+        //returns the number of passengers for an airliner
         private static int GetNumberOfPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
@@ -121,7 +126,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (value < 15)
                 value = rnd.Next(Math.Min(totalPassengers, value), Math.Min(15, totalPassengers));
-
+            
 
             return Math.Min(value, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
         }

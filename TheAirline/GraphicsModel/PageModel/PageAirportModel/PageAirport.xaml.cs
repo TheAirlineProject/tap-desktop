@@ -378,7 +378,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             panelCoordinates.Children.Add(txtCoordinates);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size, null, null, null).ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1021"),UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
 
             WrapPanel panelTerminals = new WrapPanel();
 

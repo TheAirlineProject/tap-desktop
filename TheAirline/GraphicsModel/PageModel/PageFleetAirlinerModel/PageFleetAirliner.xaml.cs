@@ -40,7 +40,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PageFleetAirliner", this.Uid);
-          
+
             this.Airliner = airliner;
 
             StackPanel airlinerPanel = new StackPanel();
@@ -83,15 +83,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         {
             if (this.IsLoaded)
             {
-               
+
                 Airport airport = !this.Airliner.HasRoute ? null : Airports.GetAirport(this.Airliner.CurrentPosition);
                 txtFlown.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km."));
                 Run run = (Run)((Hyperlink)txtPosition.Inlines.FirstInline).Inlines.FirstInline;
                 run.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
-            
+
                 txtSinceService.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km."));
             }
-       
+
         }
         //creates the info panel for the airliner type
         private Panel createAirlinerTypePanel()
@@ -106,7 +106,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airliner Type";
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1001");
 
             panelAirlinerType.Children.Add(txtHeader);
 
@@ -116,30 +116,37 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             panelAirlinerType.Children.Add(lbQuickInfo);
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Name", UICreator.CreateTextBlock(airliner.Name)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1002"), UICreator.CreateTextBlock(airliner.Name)));
 
             ContentControl ccManufactorer = new ContentControl();
             ccManufactorer.SetResourceReference(ContentControl.ContentTemplateProperty, "ManufactorerCountryItem");
             ccManufactorer.Content = airliner.Manufacturer;
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Manufactorer", ccManufactorer));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Body type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Body, null, null, null).ToString())));
- 
-            string range = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.Range), new StringToLanguageConverter().Convert("km."));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Range", UICreator.CreateTextBlock(string.Format("{1} ({0})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
-   
-            lbQuickInfo.Items.Add(new QuickInfoValue("Engine type", UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Wingspan", UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Wingspan).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Length", UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Length).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Passenger capacity", UICreator.CreateTextBlock(airliner.MaxSeatingCapacity.ToString())));//SeatingCapacity.ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Max airliner classes", UICreator.CreateTextBlock(airliner.MaxAirlinerClasses.ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Required Runway length", UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.MinRunwaylength).ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1003"), ccManufactorer));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1004"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Body, null, null, null).ToString())));
 
-            string crewRequirements = string.Format("Cockpit: {0} Cabin: {1}",airliner.CockpitCrew,airliner.CabinCrew);
-            lbQuickInfo.Items.Add(new QuickInfoValue("Crew requirements", UICreator.CreateTextBlock(crewRequirements)));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Cruising speed", UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Fuel Consumption", UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
-   
+            string range = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.Range), new StringToLanguageConverter().Convert("km."));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1005"), UICreator.CreateTextBlock(string.Format("{1} ({0})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1006"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1007"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Wingspan).ToString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1008"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Length).ToString())));
+            if (airliner.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+            {
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1009"), UICreator.CreateTextBlock(((AirlinerPassengerType)airliner).MaxSeatingCapacity.ToString())));//SeatingCapacity.ToString())));
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1010"), UICreator.CreateTextBlock(((AirlinerPassengerType)airliner).MaxAirlinerClasses.ToString())));
+            }
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1011"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.MinRunwaylength).ToString())));
+
+            if (airliner.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+            {
+                string crewRequirements = string.Format(Translator.GetInstance().GetString("PageFleetAirliner", "1012"), airliner.CockpitCrew, ((AirlinerPassengerType)airliner).CabinCrew);
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1013"), UICreator.CreateTextBlock(crewRequirements)));
+            }
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1014"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1015"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
+
             return panelAirlinerType;
 
         }
@@ -149,17 +156,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             Image imgEditName = new Image();
             imgEditName.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
             imgEditName.Width = 16;
+           
             RenderOptions.SetBitmapScalingMode(imgEditName, BitmapScalingMode.HighQuality);
-            
-     
+
+
             StackPanel panelInfo = new StackPanel();
-   
+
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Airliner Profile";
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1016");
 
             panelInfo.Children.Add(txtHeader);
 
@@ -202,14 +210,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             panelName.Children.Add(btnEditName);
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Name", panelName));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1002"), panelName));
 
             TextBlock lnkOwner = UICreator.CreateLink(this.Airliner.Airliner.Airline.Profile.Name);
             ((Hyperlink)lnkOwner.Inlines.FirstInline).Click += new RoutedEventHandler(PageFleetAirliner_Click);
-            lbQuickInfo.Items.Add(new QuickInfoValue("Owner", lnkOwner));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1017"), lnkOwner));
 
             DockPanel panelHomeBase = new DockPanel();
-            
+
             lblAirport = new ContentControl();
             lblAirport.MouseDown += new MouseButtonEventHandler(lblAirport_MouseDown);
             lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItem");
@@ -225,31 +233,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
             imgEdit.Width = 16;
             RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
-           
-             
-              btnEditHomeBase.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+
+
+            btnEditHomeBase.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
             btnEditHomeBase.Content = imgEdit;
 
             panelHomeBase.Children.Add(btnEditHomeBase);
-           
 
 
-          
-           
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Home base", panelHomeBase));
-    
-            lbQuickInfo.Items.Add(new QuickInfoValue("Built", UICreator.CreateTextBlock(string.Format("{0} ({1} years old)", this.Airliner.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Airliner.Age))));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Tail number", UICreator.CreateTextBlock(this.Airliner.Airliner.TailNumber)));
-            
+
+
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1018"), panelHomeBase));
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1019"), UICreator.CreateTextBlock(string.Format(Translator.GetInstance().GetString("PageFleetAirliner", "1020"), this.Airliner.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Airliner.Age))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1021"), UICreator.CreateTextBlock(this.Airliner.Airliner.TailNumber)));
+
             txtFlown = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km.")));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Flown", txtFlown));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1022"), txtFlown));
 
-            txtSinceService =  UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km.")));
-            lbQuickInfo.Items.Add(new QuickInfoValue("Since last service check",txtSinceService));
+            txtSinceService = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km.")));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1023"), txtSinceService));
 
-          
+
             WrapPanel panelCoordinates = new WrapPanel();
 
 
@@ -269,9 +277,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             panelCoordinates.Children.Add(txtPosition);
 
 
-            lbQuickInfo.Items.Add(new QuickInfoValue("Current position", panelCoordinates));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1024"), panelCoordinates));
 
-             return panelInfo;
+            return panelInfo;
 
         }
 
@@ -295,8 +303,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         {
             PopUpMap.ShowPopUp(this.Airliner);
         }
-     
-      
+
+
         private void PageFleetAirliner_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airliner.Airline));
@@ -311,7 +319,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
                 this.Airliner.Homebase = airport;
 
                 lblAirport.Content = this.Airliner.Homebase;
-                
+
             }
         }
 

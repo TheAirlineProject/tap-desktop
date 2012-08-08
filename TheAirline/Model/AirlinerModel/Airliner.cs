@@ -29,7 +29,12 @@ namespace TheAirline.Model.AirlinerModel
             this.Flown = 0;
              
             this.Classes = new List<AirlinerClass>();
-            this.Classes.Add(new AirlinerClass(this,AirlinerClass.ClassType.Economy_Class, this.Type.MaxSeatingCapacity));
+            
+            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                this.Classes.Add(new AirlinerClass(this,AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)this.Type).MaxSeatingCapacity));
+
+            if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+                this.Classes.Add(new AirlinerClass(this, AirlinerClass.ClassType.Cargo, 0));
             
         }
         // chs, 2011-10-10 changed the leasing price to 5 years

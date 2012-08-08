@@ -36,6 +36,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
             }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+            GC.Collect();
 
           }
         //do the daily update
@@ -399,6 +402,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
 
+          
             if (airliner.CurrentFlight.Entry.Destination.Airport.Profile.Country.Name != airliner.CurrentFlight.getDepartureAirport().Profile.Country.Name)
                 tax = 2 * tax;
 
