@@ -73,7 +73,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbAirline.SelectionChanged += new SelectionChangedEventHandler(cbAirline_SelectionChanged);
             cbAirline.Width = 200;
 
-            List<Airline> airlines = Airlines.GetAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             cbAirline.ItemsSource = airlines;
@@ -131,7 +131,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirport.SelectionChanged += new SelectionChangedEventHandler(cbAirports_SelectionChanged);
 
-            List<Airport> airportsList = Airports.GetAirports();
+            List<Airport> airportsList = Airports.GetAllAirports();
 
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));
@@ -173,7 +173,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbOpponents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbOpponents.Width = 50;
             cbOpponents.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
-            for (int i = 2; i < Math.Min(Airlines.GetAirlines().Count, 12); i++)
+            for (int i = 2; i < Math.Min(Airlines.GetAllAirlines().Count, 12); i++)
                 cbOpponents.Items.Add(i);
 
             cbOpponents.SelectedIndex = cbOpponents.Items.Count - 1;

@@ -40,7 +40,7 @@ namespace TheAirline.Model.AirlinerModel
             return manufacturers.Find(m => m.Name == name || m.ShortName == name);
         }
         //returns the list manufacturers
-        public static List<Manufacturer> GetManufacturers()
+        public static List<Manufacturer> GetAllManufacturers()
         {
             return manufacturers;
         }

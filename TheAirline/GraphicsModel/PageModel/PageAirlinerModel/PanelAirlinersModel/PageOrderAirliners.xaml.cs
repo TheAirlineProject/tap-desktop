@@ -150,7 +150,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             showOrders();
 
-            (from t in AirlinerTypes.GetTypes() where t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Manufacturer == this.Manufacturer orderby t.Name select t).ToList().ForEach(m => cbTypes.Items.Add(m));
+            (from t in AirlinerTypes.GetAllTypes() where t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Manufacturer == this.Manufacturer orderby t.Name select t).ToList().ForEach(m => cbTypes.Items.Add(m));
 
             cbTypes.SelectedIndex = 0;
 

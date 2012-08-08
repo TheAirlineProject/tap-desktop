@@ -83,7 +83,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
 
-            List<AirlinerType> types = AirlinerTypes.GetTypes().FindAll(t => t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Price * numberToOrder < airline.Money);
+            List<AirlinerType> types = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year && t.Price * numberToOrder < airline.Money);
 
             types = types.OrderBy(t => t.Price).ToList();
 
@@ -109,7 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CheckForNewHub(Airline airline)
         {
 
-            int hubs = Airports.GetAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int hubs = Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
 
             int newHubInterval = 0;
             switch (airline.Mentality)
@@ -156,7 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int airlineValue = (int)airline.getAirlineValue() + 1;
 
-            int totalAirlineHubs = Airports.GetAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int totalAirlineHubs = Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
             double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
             Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
 
@@ -274,7 +274,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the best fit airline for an alliance
         private static Airline GetAllianceAirline(Alliance alliance)
         {
-            Airline bestAirline = (from a in Airlines.GetAirlines() where !alliance.Members.Contains(a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance,false) descending select a).FirstOrDefault();
+            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.Contains(a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance,false) descending select a).FirstOrDefault();
 
             if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
                 return bestAirline;
@@ -491,7 +491,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double maxDistance = (from a in Airliners.GetAirlinersForSale()
                                   select a.Type.Range).Max();
 
-            double minDistance = (from a in Airports.GetAirports().FindAll(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
+            double minDistance = (from a in Airports.GetAirports(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
 
 
             List<Airport> airports = new List<Airport>().FindAll(a => airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null && !FlightRestrictions.HasRestriction(a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline, a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime));
@@ -500,10 +500,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (airline.MarketFocus)
             {
                 case Airline.AirlineMarket.Global:
-                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
+                    airports = Airports.GetAirports(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
                 case Airline.AirlineMarket.Local:
-                    airports = Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+                    airports = Airports.GetAirports(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
                     break;
                 case Airline.AirlineMarket.Regional:
                     airports = Airports.GetAirports(airport.Profile.Country.Region).FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
@@ -515,7 +515,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airports.Count == 0)
             {
-                airports = (from a in Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
+                airports = (from a in Airports.GetAirports(a => MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
 
             }
 

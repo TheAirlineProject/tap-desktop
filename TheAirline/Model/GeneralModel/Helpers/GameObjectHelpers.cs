@@ -26,7 +26,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 if (airline != GameObject.GetInstance().HumanAirline)
                     AIHelpers.UpdateCPUAirline(airline);
@@ -77,7 +77,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     if (restriction.Type == FlightRestriction.RestrictionType.Flights)
                     {
-                        var bannedRoutes = (from r in Airlines.GetAirlines().SelectMany(a => a.Routes) where FlightRestrictions.HasRestriction(r.Destination1.Profile.Country, r.Destination2.Profile.Country, GameObject.GetInstance().GameTime) select r);
+                        var bannedRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) where FlightRestrictions.HasRestriction(r.Destination1.Profile.Country, r.Destination2.Profile.Country, GameObject.GetInstance().GameTime) select r);
 
                         foreach (Route route in bannedRoutes)
                         {
@@ -89,7 +89,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
             //updates airports
-            foreach (Airport airport in Airports.GetAirports())
+            foreach (Airport airport in Airports.GetAllAirports())
             {
                 Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
                 Weather.eWindSpeed windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];
@@ -137,7 +137,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //checks for airliners for the human airline
             foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment; })))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner {0} as been delivered to your fleet.\nThe airliner is currently at {1}, {2}.", airliner.Name, airliner.Homebase.Profile.Name, airliner.Homebase.Profile.Country.Name)));
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
                 foreach (FleetAirliner airliner in airline.Fleet.FindAll(a => a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment))
                 {
                     airliner.Purchased = FleetAirliner.PurchasedType.Bought;
@@ -163,7 +163,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the yearly update
         private static void DoYearlyUpdate()
         {
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (FleetAirliner airliner in airline.Fleet)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -airliner.Airliner.Type.getMaintenance());
@@ -172,7 +172,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the monthly update
         private static void DoMonthlyUpdate()
         {
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);

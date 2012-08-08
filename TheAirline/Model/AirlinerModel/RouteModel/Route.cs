@@ -89,16 +89,6 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Invoices.Add(invoice);
 
         }
-        /*
-        //returns the flightcodes for the codes
-        private string getFlightCodes()
-        {
-           
-        
-            return string.Format("{1}/{0}", this.FlightCode1,this.FlightCode2);
-           
-        }
-         * */
         //returns invoices amount for a specific type for a route
         public double getRouteInvoiceAmount(Invoice.InvoiceType type)
         {

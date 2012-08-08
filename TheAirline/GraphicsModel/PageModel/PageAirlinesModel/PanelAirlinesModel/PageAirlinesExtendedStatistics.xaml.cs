@@ -121,10 +121,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             double coff = this.StatWidth / maxValue;
 
-            List<Airline> airlines = Airlines.GetAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
-
-
 
             foreach (Airline airline in airlines)
             {
@@ -145,7 +143,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         private double getMaxValue(string methodName)
         {
             double value = 1;
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
 
                 MethodInfo method = typeof(Airline).GetMethod(methodName);

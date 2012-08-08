@@ -214,37 +214,40 @@ namespace TheAirline.Model.AirportModel
             else
                 return null;
         }
+        //returns all airports
+        public static List<Airport> GetAllAirports()
+        {
+            return airports.Values.ToList();
+        }
         //returns a possible match for coordinates
         public static Airport GetAirport(Coordinates coordinates)
         {
-            foreach (Airport airport in GetAirports())
-                if (airport.Profile.Coordinates.CompareTo(coordinates) == 0)
-                    return airport;
-            return null;
+            return airports.Values.ToList().Find(a => a.Profile.Coordinates.CompareTo(coordinates) == 0);
+      
         }
         //returns all airports with a specific size
         public static List<Airport> GetAirports(AirportProfile.AirportSize size)
         {
          
-            return GetAirports().FindAll((delegate(Airport airport) { return airport.Profile.Size == size; }));
+            return GetAirports(delegate(Airport airport) { return airport.Profile.Size == size; });
           
         }
         //returns all airports from a specific country
         public static List<Airport> GetAirports(Country country)
         {
-             return GetAirports().FindAll((delegate(Airport airport) { return airport.Profile.Country == country; }));
+             return GetAirports(delegate(Airport airport) { return airport.Profile.Country == country; });
   
         }
         //returns all airports from a specific region
         public static List<Airport> GetAirports(Region region)
         {
-             return GetAirports().FindAll((delegate(Airport airport) { return airport.Profile.Country.Region == region; }));
+             return GetAirports(delegate(Airport airport) { return airport.Profile.Country.Region == region; });
   
         }
-        //returns the list of airports
-        public static List<Airport> GetAirports()
+        //returns a list of airports
+        public static List<Airport> GetAirports(Predicate<Airport> match)
         {
-            return airports.Values.ToList();
+            return airports.Values.ToList().FindAll(match);
         }
         //returns the total number of airports
         public static int Count()

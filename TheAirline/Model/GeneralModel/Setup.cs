@@ -590,7 +590,7 @@ namespace TheAirline.Model.GeneralModel
 
                 CreateAirlineLogos();
 
-                GameObject.GetInstance().HumanAirline = Airlines.GetAirlines()[0];
+                GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
             }
             catch (Exception e)
             {
@@ -671,7 +671,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static Airliner CreateAirliner(double minRange)
         {
-            List<AirlinerType> types = AirlinerTypes.GetTypes().FindAll((delegate(AirlinerType t) { return t.Range >= minRange && t.Produced.From < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.Year - 30; }));
+            List<AirlinerType> types = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Range >= minRange && t.Produced.From < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.Year - 30; });
 
             int typeNumber = rnd.Next(types.Count);
             AirlinerType type = types[typeNumber];
@@ -697,7 +697,7 @@ namespace TheAirline.Model.GeneralModel
          */
         public static void CreateAirliners()
         {
-            int number = AirlinerTypes.GetTypes().FindAll((delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year - 30; })).Count * 25;
+            int number = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year - 30; }).Count * 25;
             for (int i = 0; i < number; i++)
             {
                 Airliners.AddAirliner(CreateAirliner(0));
@@ -712,9 +712,9 @@ namespace TheAirline.Model.GeneralModel
             RemoveAirlines(opponents);
 
             //sets all the facilities at an airport to none for all airlines
-            foreach (Airport airport in Airports.GetAirports())
+            foreach (Airport airport in Airports.GetAllAirports())
             {
-                foreach (Airline airline in Airlines.GetAirlines())
+                foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                     {
@@ -725,7 +725,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 airline.Money = GameObject.GetInstance().StartMoney;
                 if (!airline.IsHuman)
@@ -741,22 +741,18 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
-            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, Alliance.AllianceType.Codesharing, "Test Alliance", Airports.GetAirport("JFK"));
-            alliance.addMember(Airlines.GetAirlines()[1]);
-            alliance.addMember(GameObject.GetInstance().HumanAirline);
-
-            // Alliances.AddAlliance(alliance);
+       
         }
 
         /*! removes some random airlines from the list bases on number of opponents.
          */
         private static void RemoveAirlines(int opponnents)
         {
-            int count = Airlines.GetAirlines().FindAll((delegate(Airline a) { return !a.IsHuman; })).Count;
+            int count = Airlines.GetAirlines(a=>!a.IsHuman).Count;
 
             for (int i = 0; i < count - opponnents; i++)
             {
-                List<Airline> airlines = Airlines.GetAirlines().FindAll((delegate(Airline a) { return !a.IsHuman; }));
+                List<Airline> airlines = Airlines.GetAirlines(a=>!a.IsHuman);
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
@@ -884,7 +880,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateAirlineLogos()
         {
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
                 airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
         }
 

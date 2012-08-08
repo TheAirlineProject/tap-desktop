@@ -134,7 +134,7 @@ namespace TheAirline.Model.GeneralModel
         private static Airport GetRandomDestination(Airport currentAirport)
         {
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-            Airports.GetAirports().FindAll(a => currentAirport!=null && a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
+            Airports.GetAirports(a => currentAirport!=null && a != currentAirport && !FlightRestrictions.HasRestriction(currentAirport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights)).ForEach(a => airportsList.Add(a, (int)a.Profile.Size * (a.Profile.Country == currentAirport.Profile.Country ? 7 : 3)));
 
             if (airportsList.Count > 0)
                 return AIHelpers.GetRandomItem(airportsList);
@@ -250,7 +250,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport destination = passenger.Destination;
 
-                PassengerRouteFinder finder = new PassengerRouteFinder(Airports.GetAirports());
+                PassengerRouteFinder finder = new PassengerRouteFinder(Airports.GetAllAirports());
                 finder.calculateDistance(airport);
 
                 return finder.getPathTo(passenger.Destination);
@@ -263,7 +263,7 @@ namespace TheAirline.Model.GeneralModel
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
 
-            double fuelConsumption = AirlinerTypes.GetTypes().Max(t => t.FuelConsumption);
+            double fuelConsumption = AirlinerTypes.GetAllTypes().Max(t => t.FuelConsumption);
             double groundTaxPerPassenger = 5;
 
             double tax = groundTaxPerPassenger;
@@ -283,7 +283,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the destination for a passenger
         public static Airport GetPassengerDestination(Passenger passenger, Airport airport)
         {
-            List<Airport> airports = Airports.GetAirports();
+            List<Airport> airports = Airports.GetAllAirports();
 
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
             airports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
@@ -295,9 +295,9 @@ namespace TheAirline.Model.GeneralModel
         */
         public static void CreatePassengers(int passengers)
         {
-            List<Airport> airports = Airports.GetAirports();
+            List<Airport> airports = Airports.GetAllAirports();
 
-            foreach (Airport airport in Airports.GetAirports())
+            foreach (Airport airport in Airports.GetAllAirports())
             {
 
                 for (int i = 0; i < passengers; i++)
@@ -338,7 +338,7 @@ namespace TheAirline.Model.GeneralModel
         public static void UpdatePassengers()
         {
             //find new routes for all passengers not updated in the last week
-            foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Updated.AddDays(7) < GameObject.GetInstance().GameTime && p.CurrentAirport != null))
+            foreach (Passenger passenger in Passengers.GetPassengers(p => p.Updated.AddDays(7) < GameObject.GetInstance().GameTime && p.CurrentAirport != null))
             {
         
                 passenger.Updated = GameObject.GetInstance().GameTime;
@@ -347,7 +347,7 @@ namespace TheAirline.Model.GeneralModel
 
             }
             //finds all passengers where the route is not set
-            foreach (Passenger passenger in Passengers.GetPassengers().FindAll(p => p.Route.Count < 2))
+            foreach (Passenger passenger in Passengers.GetPassengers(p => p.Route.Count < 2))
             {
                 passenger.Route = FindPassengerRoute(passenger.CurrentAirport, passenger);
 

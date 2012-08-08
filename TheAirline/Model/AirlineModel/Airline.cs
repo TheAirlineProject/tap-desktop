@@ -376,10 +376,15 @@ namespace TheAirline.Model.AirlineModel
             else
                 return null;
         }
-        //returns the list of airlines
-        public static List<Airline> GetAirlines()
+        //returns all airlines
+        public static List<Airline> GetAllAirlines()
         {
             return airlines.Values.ToList();
+        }
+        //returns a list of airlines
+        public static List<Airline> GetAirlines(Predicate<Airline> match)
+        {
+            return airlines.Values.ToList().FindAll(match);
         }
         //removes an airline from the list
         public static void RemoveAirline(Airline airline)

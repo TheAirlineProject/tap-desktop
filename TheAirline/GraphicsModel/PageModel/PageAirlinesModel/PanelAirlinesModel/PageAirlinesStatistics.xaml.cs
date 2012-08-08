@@ -143,7 +143,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             lbStats.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStats.ItemTemplate = inPercent ? this.Resources["StatPercentItem"] as DataTemplate : this.Resources["StatItem"] as DataTemplate;
 
-            List<Airline> airlines = Airlines.GetAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             List<KeyValuePair<Airline, StatisticsType>> values = new List<KeyValuePair<Airline, StatisticsType>>();
@@ -185,8 +185,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
 
 
-            double lastYearValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, stat));
-            double currentYearValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
+            double lastYearValue = Airlines.GetAllAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, stat));
+            double currentYearValue = Airlines.GetAllAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, stat));
 
 
             if (year == 0)
@@ -233,7 +233,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             else
             {
                 double currentYearValue = aa.Key.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value);
-                double totalValue = Airlines.GetAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value));
+                double totalValue = Airlines.GetAllAirlines().Sum(a => a.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, aa.Value));
 
                 if (totalValue == 0)
                     return "-";

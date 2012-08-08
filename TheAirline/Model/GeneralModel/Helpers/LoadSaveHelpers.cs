@@ -539,7 +539,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(news);
 
             }
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (Route route in airline.Routes)
                 {
@@ -620,7 +620,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlElement airlinersNode = xmlDoc.CreateElement("airliners");
 
-            foreach (Airliner airliner in Airliners.GetAirliners())
+            foreach (Airliner airliner in Airliners.GetAllAirliners())
             {
                 XmlElement airlinerNode = xmlDoc.CreateElement("airliner");
                 airlinerNode.SetAttribute("type", airliner.Type.Name);
@@ -681,7 +681,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             root.AppendChild(passengersNode);
 
             XmlElement airlinesNode = xmlDoc.CreateElement("airlines");
-            foreach (Airline airline in Airlines.GetAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 // chs, 2011-21-10 changed for the possibility of creating a new airline
                 XmlElement airlineNode = xmlDoc.CreateElement("airline");
@@ -923,7 +923,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             XmlElement airportsNode = xmlDoc.CreateElement("airports");
-            foreach (Airport airport in Airports.GetAirports())
+            foreach (Airport airport in Airports.GetAllAirports())
             {
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
                 airportNode.SetAttribute("iata", airport.Profile.IATACode);
@@ -941,7 +941,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportNode.AppendChild(airportHubsNode);
 
                 XmlElement airportStatsNode = xmlDoc.CreateElement("stats");
-                foreach (Airline airline in Airlines.GetAirlines())
+                foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     foreach (StatisticsType type in StatisticsTypes.GetStatisticsTypes())
                     {
@@ -963,7 +963,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportNode.AppendChild(airportStatsNode);
 
                 XmlElement airportFacilitiesNode = xmlDoc.CreateElement("facilities");
-                foreach (Airline airline in Airlines.GetAirlines())
+                foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     foreach (AirlineAirportFacility facility in airport.getAirportFacilities(airline))
                     {

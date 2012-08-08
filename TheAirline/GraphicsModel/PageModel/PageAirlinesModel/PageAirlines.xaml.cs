@@ -48,7 +48,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             lbAirlines.MaxHeight=GraphicsHelpers.GetContentHeight() - 75;
             lbAirlines.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            List<Airline> airlines = Airlines.GetAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines();
             //airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             airlines.OrderBy(a => a.Profile.Name);

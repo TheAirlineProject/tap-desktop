@@ -33,7 +33,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         {
             this.Classes = new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>();
 
-            var query = from a in AirlinerTypes.GetTypes().FindAll((delegate(AirlinerType t) { return t.Produced.From < GameObject.GetInstance().GameTime.Year; }))
+            var query = from a in AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From < GameObject.GetInstance().GameTime.Year; })
                         select a.Range;
 
             this.MaxDistance = query.Max();

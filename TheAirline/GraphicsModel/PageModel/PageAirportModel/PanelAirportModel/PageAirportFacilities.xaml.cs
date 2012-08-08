@@ -76,7 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             panelFacilities.Children.Add(lbAirportFacilities);
 
         
-            List<Airline> airlines = Airlines.GetAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)

@@ -133,10 +133,11 @@ namespace TheAirline.Model.AirlinerModel
             return airliners.Find(delegate(Airliner airliner) { return airliner.TailNumber == tailnumber; });
         }
         //returns the list of airliners
-        public static List<Airliner> GetAirliners()
+        public static List<Airliner> GetAllAirliners()
         {
             return airliners;
         }
+
         //returns the list of airliners for sell
         public static List<Airliner> GetAirlinersForSale()
         {

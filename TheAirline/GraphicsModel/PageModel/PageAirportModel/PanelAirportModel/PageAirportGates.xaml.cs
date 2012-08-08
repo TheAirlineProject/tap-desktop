@@ -122,7 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             int airlineValue = (int)GameObject.GetInstance().HumanAirline.getAirlineValue()+1;
 
-            int totalHumanHubs = Airports.GetAirports().Sum(a => a.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline));
+            int totalHumanHubs = Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline));
             double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
             Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
@@ -188,7 +188,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             
             panelAirlineGates.Children.Add(lbAirlineGates);
 
-            List<Airline> airlines = (from a in Airlines.GetAirlines() where this.Airport.Terminals.getNumberOfGates(a)>0 orderby a.Profile.Name select a).ToList();
+            List<Airline> airlines = (from a in Airlines.GetAllAirlines() where this.Airport.Terminals.getNumberOfGates(a)>0 orderby a.Profile.Name select a).ToList();
            
             foreach (Airline airline in airlines)
                 lbAirlineGates.Items.Add(new AirlineGates(airline, this.Airport.Terminals.getNumberOfGates(airline), this.Airport.Terminals.getNumberOfGates(airline) - this.Airport.Terminals.getFreeGates(airline)));

@@ -97,52 +97,51 @@ namespace TheAirline.Model.PassengerModel
         //returns a passenger with an id
         public static Passenger GetPassenger(string id)
         {
+            conn.Open();
             string sqlQuery = "select * from passengers where ID='" + id + "'";
 
             SQLiteCommand sql_cmd = conn.CreateCommand();
             sql_cmd.CommandText = sqlQuery;
 
             SQLiteDataReader reader = sql_cmd.ExecuteReader();
-            
-            string pID= reader["ID"].ToString();
-            Passenger.PassengerType primaryType = (Passenger.PassengerType)Enum.Parse(typeof(Passenger.PassengerType), reader["primarytype"].ToString());
-            Passenger.PassengerType currentType = (Passenger.PassengerType)Enum.Parse(typeof(Passenger.PassengerType), reader["currenttype"].ToString());
-            Airport homeairport = Airports.GetAirport(reader["homeairport"].ToString());
-            Airport destination = Airports.GetAirport(reader["destination"].ToString());
-            Airport currentairport = Airports.GetAirport(reader["currentairport"].ToString());
-            DateTime updated = Convert.ToDateTime(reader["updated"].ToString());
-            int factor = Convert.ToInt16(reader["factor"].ToString());
-            AirlinerClass.ClassType preferedClass = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType),reader["preferedclass"].ToString());
-            List<Airport> route = new List<Airport>();
-            reader["route"].ToString().Split(':').ToList().ForEach(a=>route.Add(Airports.GetAirport(a)));
-            
-            Passenger passenger = new Passenger(pID, primaryType, homeairport, preferedClass);
-            passenger.CurrentAirport = currentairport;
-            passenger.CurrentType = currentType;
-            passenger.Destination = destination;
-            passenger.Factor = factor;
-            passenger.Updated = updated;
-            passenger.Route = route;
-
             conn.Close();
 
-            return passenger;
+            return GetPassenger(reader);
+        }
+        //returns a list of passengers 
+        public static List<Passenger> GetPassengers(Predicate<Passenger> match)
+        {
+            
         }
         //returns all passengers 
         public static List<Passenger> GetAllPassengers()
         {
             List<Passenger> passengers = new List<Passenger>();
 
-            DataTable table = GetTable(); // Get the data table.
-            foreach (DataRow row in table.Rows) // Loop over the rows.
-            {
-                passengers.Add(GetPassenger(row));
-            }
+            conn.Open();
 
+            try
+            {
+                string sqlQuery = "select * from passengers";
+
+                SQLiteCommand command = new SQLiteCommand(sqlQuery, conn);
+                SQLiteDataReader reader = command.ExecuteReader();
+
+                while (reader.Read())
+                    passengers.Add(GetPassenger(reader));
+            }
+            catch
+            {
+            }
+            finally
+            {
+                conn.Close();
+            }
+            
             return passengers;
         }
-        //reads and returns a passenger from a datarow
-        private static Passenger GetPassenger(DataRow row)
+        //reads and returns a passenger from a reader
+        private static Passenger GetPassenger(SQLiteDataReader row)
         {
             string id = row["ID"].ToString();
             Passenger.PassengerType primaryType = (Passenger.PassengerType)Enum.Parse(typeof(Passenger.PassengerType), row["primarytype"].ToString());
@@ -166,8 +165,8 @@ namespace TheAirline.Model.PassengerModel
 
             return passenger;
         }
-         * */
-        
+      
+        */
         private static Dictionary<string, Passenger> passengers = new Dictionary<string, Passenger>();
         //adds a passengers to the list
         public static void AddPassenger(Passenger passenger)
@@ -180,9 +179,9 @@ namespace TheAirline.Model.PassengerModel
             return passengers.Values.ToList();
         }
         //returns the list of passengers
-        public static List<Passenger> GetPassengers()
+        public static List<Passenger> GetPassengers(Predicate<Passenger> match)
         {
-            return passengers.Values.ToList();
+            return passengers.Values.ToList().FindAll(match);
         }
         //clears the list of passengers
         public static void Clear() 

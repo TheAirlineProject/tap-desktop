@@ -107,7 +107,7 @@ namespace TheAirline.Model.GeneralModel
         //finds all airports in a radius of 1000 km from a airport
         public static List<Airport> GetAirportsNearAirport(Airport airport)
         {
-            return Airports.GetAirports().FindAll(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < 1000 && airport != a);
+            return Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < 1000 && airport != a);
         }
         //creates the big image map
         public static void CreateBigImageCanvas()

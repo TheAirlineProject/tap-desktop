@@ -100,7 +100,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             //foreach (Airport airport in Airports.GetAirports())
               //  lvAirports.Items.Add(airport);
-            lvAirports.ItemsSource = Airports.GetAirports();
+            lvAirports.ItemsSource = Airports.GetAllAirports();
 
             panelMain.Children.Add(lvAirports);
 
@@ -166,7 +166,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void btnDestinations_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(Airports.GetAirports());
+            PopUpMap.ShowPopUp(Airports.GetAllAirports());
         }
         //creates the side panel
         private Panel createSidePanel()
@@ -353,7 +353,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             XmlNode root = xmlDoc.DocumentElement;
 
-            foreach (Airport airport in Airports.GetAirports())
+            foreach (Airport airport in Airports.GetAllAirports())
             {
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
                 airportNode.SetAttribute("name", airport.Profile.Name);

@@ -106,26 +106,32 @@ namespace TheAirline.Model.AirlinerModel
     //the collection of airliner types
     public class AirlinerTypes
     {
-        private static Dictionary<string, AirlinerType> types = new Dictionary<string, AirlinerType>();
-        //clears the list
+        private static List<AirlinerType> types = new List<AirlinerType>();
+        //clears the list of airliner types
         public static void Clear()
         {
-            types = new Dictionary<string, AirlinerType>();
+            types = new List<AirlinerType>();
         }
+        //adds an airliner type to the list
         public static void AddType(AirlinerType type)
         {
-            if (types.ContainsKey(type.Name))
-                Console.WriteLine(type.Name);
-            types.Add(type.Name, type);
+
+            types.Add(type);
         }
+        //returns an airliner with a name
         public static AirlinerType GetType(string name)
         {
-            return types[name];
+            return types.Find(t => t.Name == name);
         }
-        public static List<AirlinerType> GetTypes()
+        //returns all airliner types
+        public static List<AirlinerType> GetAllTypes()
         {
-            return types.Values.ToList();
+            return types;
         }
-        
+        //returns a list of airliner types
+        public static List<AirlinerType> GetTypes(Predicate<AirlinerType> match)
+        {
+            return types.FindAll(match);
+        }
     }
 }
