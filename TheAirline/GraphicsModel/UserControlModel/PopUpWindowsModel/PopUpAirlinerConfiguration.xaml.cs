@@ -136,7 +136,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 i++;
             }
 
-            int maxCapacity = ((AirlinerPassengerType)this.Classes[0].Airliner.Type).MaxAirlinerClasses;
+            int maxCapacity = ((AirlinerPassengerType)this.Classes[0].Airliner.Type).MaxSeatingCapacity;
 
             AirlinerClass.ClassType nextClass = this.Classes.Count < maxCapacity ? this.Classes[this.Classes.Count - 1].Type + 1 : AirlinerClass.ClassType.Economy_Class;
 
@@ -151,9 +151,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 MaxSeats = (int)(0.1 * Convert.ToDouble(maxCapacity));
 
             }
-       
-     
-            lblNewClass.Visibility = this.Classes.Count < maxCapacity ? Visibility.Visible : Visibility.Collapsed;
+
+
+            lblNewClass.Visibility = this.Classes.Count < ((AirlinerPassengerType)this.Classes[0].Airliner.Type).MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
             lblNewClass.Content = nextClass;
         }
 

@@ -30,24 +30,10 @@
 
             </WrapPanel>
         </DataTemplate>
-        <DataTemplate x:Key="AirlineStatItem">
-            <WrapPanel>
-                <TextBlock Width="150" VerticalAlignment="Bottom">
-                    <Hyperlink Tag="{Binding Airline}" Click="LnkAirline_Click">
-                        <Run Text="{Binding Airline.Profile.Name}"></Run>
-                    </Hyperlink>
-                </TextBlock>
-
-                <Rectangle Width="{Binding Width}"  Fill="{Binding Airline,Converter={StaticResource airlineBrushConverter}}" Height="10" Margin="0 2 0 2">
-
-                </Rectangle>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Value}" Margin="5 0 0 0"></TextBlock>
-            </WrapPanel>
-        </DataTemplate>
         <DataTemplate x:Key="StatItem">
             <WrapPanel>
                 <ContentControl ContentTemplate="{DynamicResource AirlineLink}" Content="{Binding Key}" VerticalAlignment="Bottom" Width="150"></ContentControl>
-                <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='-1'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+              <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='-1'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='0'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Converter={StaticResource airlineStatConverter},ConverterParameter='1'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
 

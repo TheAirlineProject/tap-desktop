@@ -34,7 +34,7 @@ namespace TheAirline.Model.AirlinerModel
                 this.Classes.Add(new AirlinerClass(this,AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)this.Type).MaxSeatingCapacity));
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
-                this.Classes.Add(new AirlinerClass(this, AirlinerClass.ClassType.Cargo, 0));
+                this.Classes.Add(new AirlinerClass(this, AirlinerClass.ClassType.Economy_Class, 0));
             
         }
         // chs, 2011-10-10 changed the leasing price to 5 years
