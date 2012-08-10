@@ -137,7 +137,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             else
                 distance = double.MaxValue;
 
-            List<Airport> airports = Airports.GetAirports(a => Convert.ToDouble(new NumberToUnitConverter().Convert(MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates))) < distance); 
+            List<Airport> airports = Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < distance); 
 
             this.ParentPage.showAirports(airports);
         }

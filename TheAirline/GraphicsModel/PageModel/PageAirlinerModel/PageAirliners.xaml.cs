@@ -31,6 +31,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
         private ListBox lbUsedAirliners;//, lbNewAirliners;
         private Comparison<Airliner> sortCriteriaUsed;
         private Frame sideFrame;
+        private List<Airliner> airliners;
         public PageAirliners()
         {
             InitializeComponent();
@@ -101,7 +102,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             airlinersPanel.Children.Add(lbUsedAirliners);
 
-            showUsedAirliners();
+            Button btnSearch = new Button();
+            btnSearch.Uid = "109";
+            btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnSearch.Height = Double.NaN;
+            btnSearch.Width = Double.NaN;
+            btnSearch.IsDefault = true;
+            btnSearch.Content = Translator.GetInstance().GetString("General", btnSearch.Uid);
+            btnSearch.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnSearch.Margin = new Thickness(0, 5, 0, 0);
+            btnSearch.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
+
+            airlinersPanel.Children.Add(btnSearch);
+
+            showUsedAirliners(Airliners.GetAirlinersForSale());
 
 
             StandardContentPanel panelContent = new StandardContentPanel();
@@ -120,19 +135,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             showPage(this);
         }
 
+     
 
-
+     
         //shows the list of used airliners for sale
         public void showUsedAirliners()
         {
             lbUsedAirliners.Items.Clear();
 
-            List<Airliner> airliners = Airliners.GetAirlinersForSale();
+            //List<Airliner> airliners = Airliners.GetAirlinersForSale();
 
             airliners.Sort(sortCriteriaUsed);
 
             foreach (Airliner airliner in airliners)
                 lbUsedAirliners.Items.Add(airliner);
+        }
+        public void showUsedAirliners(List<Airliner> airlinersList)
+        {
+            airliners = airlinersList;
+            showUsedAirliners();
         }
 
         private void lnkManufacturer_Click(object sender, RoutedEventArgs e)
@@ -140,6 +161,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             Manufacturer manufacturer = (Manufacturer)((Hyperlink)sender).Tag;
             sideFrame.Content = new PageOrderAirliners(manufacturer);
         }
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            sideFrame.Content = new PageSearchAirliners(this);
+        }
+
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
         {
 

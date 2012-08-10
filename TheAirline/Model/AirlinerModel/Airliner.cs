@@ -138,10 +138,15 @@ namespace TheAirline.Model.AirlinerModel
             return airliners;
         }
 
-        //returns the list of airliners for sell
+        //returns the list of airliners for sale
         public static List<Airliner> GetAirlinersForSale()
         {
             return airliners.FindAll((delegate(Airliner airliner) { return airliner.Airline == null; }));
+        }
+        //returns the list of airliners for sale
+        public static List<Airliner> GetAirlinersForSale(Predicate<Airliner> match)
+        {
+            return airliners.FindAll(a => a.Airline == null).FindAll(match);
         }
        
   

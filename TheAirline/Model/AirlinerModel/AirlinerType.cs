@@ -23,7 +23,7 @@ namespace TheAirline.Model.AirlinerModel
         public enum BodyType {Narrow_Body, Single_Aisle,Wide_Body} 
         public enum TypeRange {Regional, Short_Range, Medium_Range, Long_Range}
         public enum EngineType {Jet, Turboprop}
-        public enum TypeOfAirliner {Passenger, Cargo, Mixed}
+        public enum TypeOfAirliner { Passenger, Cargo, Mixed, Convertible }
         public BodyType Body { get; set; }
         public TypeRange RangeType { get; set; }
         public EngineType Engine { get; set; }
