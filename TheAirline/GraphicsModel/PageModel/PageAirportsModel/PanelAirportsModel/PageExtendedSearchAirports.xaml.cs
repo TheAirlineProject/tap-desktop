@@ -40,7 +40,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PageSearchAirports", txtHeader.Uid);
+            txtHeader.Text = Translator.GetInstance().GetString("PageExtendedSearchAirports", txtHeader.Uid);
 
             panelSearch.Children.Add(txtHeader);
 
@@ -72,20 +72,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             addDistanceItem(7500);
             addDistanceItem(10000);
             addDistanceItem(15000);
-            cbDistanceToAirport.Items.Add("All");
+            cbDistanceToAirport.Items.Add(Translator.GetInstance().GetString("General", "111"));
 
             cbDistanceToAirport.SelectedIndex = cbDistanceToAirport.Items.Count-1;
 
             panelAirportWithin.Children.Add(cbDistanceToAirport);
-            
+
+            TextBlock txtOf = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PageExtendedSearchAirports", "1003"));
+            txtOf.Margin = new Thickness(5,0,5,0);
+            txtOf.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            panelAirportWithin.Children.Add(txtOf);
+
             cbAirport = new ComboBox();
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirport.Width = 200;
-            cbAirport.Margin = new Thickness(5, 0, 0, 0);
-
+           
             List<Airport> airportsList = Airports.GetAllAirports();
 
             ICollectionView airportsView = CollectionViewSource.GetDefaultView(airportsList);
@@ -96,7 +100,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             panelAirportWithin.Children.Add(cbAirport);
 
-            lbContent.Items.Add(new QuickInfoValue("Search airports within", panelAirportWithin));
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageExtendedSearchAirports", "1002"), panelAirportWithin));
             
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
