@@ -125,12 +125,16 @@ namespace TheAirline.Model.GeneralModel
 
             return new TimeSpan(hours, minutes, 0);
         }
-      
+        //converts gallons to ltr
+        public static double GallonsToLtr(double gallons)
+        { 
+            double aGallon = 0.264172051; 
+            return gallons * aGallon;
+        }
         //converts ltr to gallons
         public static double LtrToGallons(double ltr)
         {
-            double aGallon = 0.264172051;
-        
+            double aGallon = 3.785411784; 
             return ltr * aGallon;
         }
         //converts l/km to mpg
