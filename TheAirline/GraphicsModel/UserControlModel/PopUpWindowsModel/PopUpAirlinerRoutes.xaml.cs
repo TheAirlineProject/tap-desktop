@@ -197,12 +197,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
-                item1.Content = string.Format("{0}-{1}", route.Destination1.Profile.IATACode, route.Destination2.Profile.IATACode);
+                item1.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
                 cbRoute.Items.Add(item1);
 
                 ComboBoxItem item2 = new ComboBoxItem();
                 item2.Tag = new KeyValuePair<Route, Airport>(route, route.Destination1);
-                item2.Content = string.Format("{0}-{1}", route.Destination2.Profile.IATACode, route.Destination1.Profile.IATACode);
+                item2.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
                 cbRoute.Items.Add(item2);
             }
 
@@ -739,6 +739,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            
             RouteTimeTableEntry e = (RouteTimeTableEntry)value;
             
             TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, e.Airliner.Airliner.Type);
@@ -747,7 +748,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             
             TimeSpan time = parameter.ToString() == "D" ? e.Time : e.Time.Add(flightTime);
 
-            return new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone));
+            string timezone = parameter.ToString() == "D" ? e.DepartureAirport.Profile.TimeZone.ShortName : e.Destination.Airport.Profile.TimeZone.ShortName;
+
+            return string.Format("{0} {1}",new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone)),timezone);
 
         }
 

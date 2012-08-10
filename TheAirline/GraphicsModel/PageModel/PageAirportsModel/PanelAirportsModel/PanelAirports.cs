@@ -26,6 +26,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             sbSearch.Click += new System.Windows.RoutedEventHandler(sbSearch_Click);
             buttonsPanel.Children.Add(sbSearch);
 
+            ucSelectButton sbExtendedSearch = new ucSelectButton();
+            sbExtendedSearch.Uid = "203";
+            sbExtendedSearch.Content = Translator.GetInstance().GetString("PanelAirports", sbExtendedSearch.Uid);
+            sbExtendedSearch.Click += new System.Windows.RoutedEventHandler(sbExtendedSearch_Click);
+            buttonsPanel.Children.Add(sbExtendedSearch);
+
             ucSelectButton sbStatistics = new ucSelectButton();
             sbStatistics.Uid = "202";
             sbStatistics.Content = Translator.GetInstance().GetString("PanelAirports", sbStatistics.Uid);
@@ -39,6 +45,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             frameContent.Navigate(new PageSearchAirports(this.ParentPage));
 
             this.Children.Add(frameContent);
+        }
+
+        private void sbExtendedSearch_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageExtendedSearchAirports(this.ParentPage));
         }
 
         private void sbStatistics_Click(object sender, System.Windows.RoutedEventArgs e)
