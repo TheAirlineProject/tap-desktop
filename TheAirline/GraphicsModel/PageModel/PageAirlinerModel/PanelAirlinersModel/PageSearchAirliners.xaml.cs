@@ -34,13 +34,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(0, 0, 5, 0);
-
+  
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Search for airliners";//Translator.GetInstance().GetString("PageOrderAirliners", txtHeader.Uid);
+            txtHeader.Text = Translator.GetInstance().GetString("PageSearchAirliners", txtHeader.Uid);
             mainPanel.Children.Add(txtHeader);
 
             ListBox lbSearch = new ListBox();
@@ -65,7 +65,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbRange.SelectedIndex = cbRange.Items.Count - 1;
 
-            lbSearch.Items.Add(new QuickInfoValue("Airliner range", panelRange));
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirliners","1002"), panelRange));
 
             WrapPanel panelCapacity = new WrapPanel();
 
@@ -84,7 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbCapacity.SelectedIndex = cbCapacity.Items.Count - 1;
 
-            lbSearch.Items.Add(new QuickInfoValue("Airliner capacity", panelCapacity));
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirliners", "1003"), panelCapacity));
 
             WrapPanel panelPrice = new WrapPanel();
 
@@ -108,7 +108,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbPrice.SelectedIndex = cbPrice.Items.Count - 1;
 
-            lbSearch.Items.Add(new QuickInfoValue("Airliner price", panelPrice));
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirliners", "1004"), panelPrice));
 
             WrapPanel panelYear = new WrapPanel();
 
@@ -129,7 +129,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbYear.SelectedItem = startYear;
 
-            lbSearch.Items.Add(new QuickInfoValue("Airliner built year", panelYear));
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirliners", "1005"), panelYear));
 
             Button btnSearch = new Button();
             btnSearch.Uid = "109";
