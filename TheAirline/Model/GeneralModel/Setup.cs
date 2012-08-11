@@ -700,7 +700,7 @@ namespace TheAirline.Model.GeneralModel
             int typeNumber = rnd.Next(types.Count);
             AirlinerType type = types[typeNumber];
 
-            int countryNumber = rnd.Next(Countries.Count());
+            int countryNumber = rnd.Next(Countries.GetCountries().Count()-1);
             Country country = Countries.GetCountries()[countryNumber];
 
             int builtYear = rnd.Next(Math.Max(type.Produced.From, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year, type.Produced.To));

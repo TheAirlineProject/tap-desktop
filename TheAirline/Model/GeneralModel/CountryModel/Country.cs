@@ -5,6 +5,7 @@ using System.Text;
 using TheAirline.Model.AirlinerModel;
 using System.IO;
 using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -74,9 +75,20 @@ namespace TheAirline.Model.GeneralModel
         public static List<Country> GetCountries()
         {
             List<Country> netto = countries.Values.ToList();
-            netto.AddRange(TemporaryCountries.GetCountries());
+            //netto.AddRange(TemporaryCountries.GetCountries());
             netto.Remove(GetCountry("100"));
-            return netto;
+
+            List<Country> tCountries = new List<Country>();
+            foreach (Country country in netto)
+                tCountries.Add((Country)new CountryCurrentCountryConverter().Convert(country));
+
+            foreach (Country country in TemporaryCountries.GetCountries())
+            {
+                if (((TemporaryCountry)country).Type == TemporaryCountry.TemporaryType.ManyToOne)
+                    tCountries.Add((Country)new CountryCurrentCountryConverter().Convert(country));
+            }
+
+            return tCountries.Distinct().ToList();
         }
 
         //returns the list of countries

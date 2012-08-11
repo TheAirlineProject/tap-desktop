@@ -95,6 +95,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             cbCountry.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbCountry.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
+            
             List<Country> countries = Countries.GetCountries();
             countries.Sort(delegate(Country c1, Country c2) { return c1.Name.CompareTo(c2.Name); });
 

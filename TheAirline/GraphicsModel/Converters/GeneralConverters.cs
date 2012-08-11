@@ -458,16 +458,12 @@ namespace TheAirline.GraphicsModel.Converters
                         return country;
                     else
                         return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime);
-                    return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime);
                 }
             }
             else
             {
                 return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime);
-                if (((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) == null)
-                    return country;
-                else
-                    return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime);
+    
             }
             //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
         }

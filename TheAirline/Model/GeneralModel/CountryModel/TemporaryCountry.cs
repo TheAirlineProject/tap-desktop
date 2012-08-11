@@ -35,10 +35,10 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (date < this.StartDate)
                     return this.CountryBefore;
-                if (date >= this.StartDate && date < this.EndDate)
+                if (date >= this.StartDate && date <= this.EndDate)
                     return this;
-
-                return this.CountryAfter;
+                if (date > this.EndDate)
+                    return this.CountryAfter;
             }
             if (this.Type == TemporaryType.OneToMany)
             {
