@@ -19,7 +19,7 @@ namespace TheAirline.GraphicsModel.Converters
     //the converter for a boolean to visibility
     public class BooleanToVisibility : IValueConverter
     {
-         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Visibility rv = Visibility.Collapsed;
             try
@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.Converters
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
-                return MathHelpers.LtrToGallons(v);  
+                return MathHelpers.LtrToGallons(v);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -125,7 +125,7 @@ namespace TheAirline.GraphicsModel.Converters
         }
     }
     //the converter for a number (in m) to the selected unit
-     public class NumberMeterToUnitConverter : IValueConverter
+    public class NumberMeterToUnitConverter : IValueConverter
     {
         public object Convert(object value)
         {
@@ -138,7 +138,7 @@ namespace TheAirline.GraphicsModel.Converters
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v + " m.";
             else
-                return string.Format("{0:0} feet", MathHelpers.MeterToFeet(v)) ; 
+                return string.Format("{0:0} feet", MathHelpers.MeterToFeet(v));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -171,7 +171,7 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-   
+
     //the converter for a boolean to bold
     public class BooleanToBold : IValueConverter
     {
@@ -187,7 +187,7 @@ namespace TheAirline.GraphicsModel.Converters
                 }
                 else
                 {
-                    font = FontWeights.Normal; 
+                    font = FontWeights.Normal;
                 }
             }
             catch (Exception)
@@ -261,7 +261,7 @@ namespace TheAirline.GraphicsModel.Converters
             {
                 TypeConverter colorConverter = new ColorConverter();
                 Color c = (Color)colorConverter.ConvertFromString(airline.Profile.Color);
-              
+
                 return new SolidColorBrush(c);
             }
             catch
@@ -388,10 +388,10 @@ namespace TheAirline.GraphicsModel.Converters
         {
             TimeSpan timespan = (TimeSpan)value;
 
-            DateTime time =new DateTime(2000,1,1,timespan.Hours,timespan.Minutes,0);
+            DateTime time = new DateTime(2000, 1, 1, timespan.Hours, timespan.Minutes, 0);
 
             return time.ToShortTimeString();
-          
+
         }
         public object Convert(object value)
         {
@@ -446,7 +446,30 @@ namespace TheAirline.GraphicsModel.Converters
 
             Country country = (Country)value;
 
-            return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
+            if (!(country is TemporaryCountry))
+            {
+                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country);
+
+                if (tempCountry == null)
+                    return country;
+                else
+                {
+                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime) == null)
+                        return country;
+                    else
+                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime);
+                    return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime);
+                }
+            }
+            else
+            {
+                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime);
+                if (((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) == null)
+                    return country;
+                else
+                    return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime);
+            }
+            //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
         }
         public object Convert(object value)
         {

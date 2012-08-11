@@ -291,6 +291,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
        
     }
+    //the converter for an unions member
+    public class UnionMemberConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            BaseUnit unit = (BaseUnit)value;
+
+            if (unit is Union)
+            {
+                return string.Join("\r\n", from m in ((Union)unit).Members select m.Country.Name);
+            }
+            else
+                return unit.Name;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for possibility of starting a flight
     public class StartFlightBooleanToVisibility : IValueConverter
     {

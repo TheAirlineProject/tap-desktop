@@ -225,7 +225,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirliners()
         {
-          
+
             try
             {
                 DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners");
@@ -239,7 +239,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                  string s = e.ToString();
+                string s = e.ToString();
             }
         }
         private static void LoadAirliners(string file)
@@ -467,32 +467,56 @@ namespace TheAirline.Model.GeneralModel
             XmlNodeList countriesList = root.SelectNodes("//country");
             foreach (XmlElement element in countriesList)
             {
+
                 string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
                 string shortname = element.Attributes["shortname"].Value;
                 string flag = element.Attributes["flag"].Value;
                 Region region = Regions.GetRegion(element.Attributes["region"].Value);
                 string tailformat = element.Attributes["tailformat"].Value;
+                TemporaryCountry.TemporaryType tempType = (TemporaryCountry.TemporaryType)Enum.Parse(typeof(TemporaryCountry.TemporaryType), element.Attributes["type"].Value);
 
                 XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
                 DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value);
                 DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value);
-
-                XmlElement historyElement = (XmlElement)element.SelectSingleNode("history");
-                Country before = Countries.GetCountry(historyElement.Attributes["before"].Value);
-                Country after = Countries.GetCountry(historyElement.Attributes["after"].Value);
 
                 Country country = new Country(section, uid, shortname, region, tailformat);
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
 
-                TemporaryCountry tCountry = new TemporaryCountry(country, startDate, endDate, before, after);
+
+                XmlElement historyElement = (XmlElement)element.SelectSingleNode("history");
+
+                TemporaryCountry tCountry = new TemporaryCountry(tempType, country, startDate, endDate);
+
+                if (tempType == TemporaryCountry.TemporaryType.ManyToOne)
+                {
+                    Country before = Countries.GetCountry(historyElement.Attributes["before"].Value);
+                    Country after = Countries.GetCountry(historyElement.Attributes["after"].Value);
+
+                    tCountry.CountryBefore = before;
+                    tCountry.CountryAfter = after;
+
+                }
+                if (tempType == TemporaryCountry.TemporaryType.OneToMany)
+                {
+                    XmlNodeList tempCountriesList = historyElement.SelectNodes("tempcountries/tempcountry");
+
+                    foreach (XmlElement tempCountryElement in tempCountriesList)
+                    {
+
+                        tCountry.Countries.Add(Countries.GetCountry(tempCountryElement.Attributes["id"].Value));
+                    }
+
+                }
+
 
                 tCountry.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
-
-
+         
                 TemporaryCountries.AddCountry(tCountry);
+
+       
             }
         }
         /*! load the unions
@@ -741,18 +765,18 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
-       
+
         }
 
         /*! removes some random airlines from the list bases on number of opponents.
          */
         private static void RemoveAirlines(int opponnents)
         {
-            int count = Airlines.GetAirlines(a=>!a.IsHuman).Count;
+            int count = Airlines.GetAirlines(a => !a.IsHuman).Count;
 
             for (int i = 0; i < count - opponnents; i++)
             {
-                List<Airline> airlines = Airlines.GetAirlines(a=>!a.IsHuman);
+                List<Airline> airlines = Airlines.GetAirlines(a => !a.IsHuman);
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }

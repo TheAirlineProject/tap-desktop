@@ -17,6 +17,7 @@
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <local:StartFlightBooleanToVisibility x:Key="startFlightBooleanToVisibility"></local:StartFlightBooleanToVisibility>
+        <local:UnionMemberConverter x:Key="unionMemberConverter"></local:UnionMemberConverter>
         <DataTemplate x:Key="FleetHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
@@ -116,9 +117,22 @@
             <WrapPanel>
                 <TextBlock Text="{Binding StartDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                 <TextBlock Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Width="50" FontWeight="Bold"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding From,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding From,Converter={StaticResource countryCurrentCountryConverter}}">
+                    <ContentControl.ToolTip>
+                        <Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
+
+                            <TextBlock Text="{Binding From,Converter={StaticResource unionMemberConverter}}"></TextBlock>
+                        </Border>
+                    </ContentControl.ToolTip>
+                </ContentControl>
                 <TextBlock Text="->" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding To,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding To,Converter={StaticResource countryCurrentCountryConverter}}">
+                    <ContentControl.ToolTip>
+                        <Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
+                            <TextBlock Text="{Binding To,Converter={StaticResource unionMemberConverter}}"></TextBlock>
+                        </Border>
+                    </ContentControl.ToolTip>
+                </ContentControl>
               </WrapPanel>
         </DataTemplate>
        

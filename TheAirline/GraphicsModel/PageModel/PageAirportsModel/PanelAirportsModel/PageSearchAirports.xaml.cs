@@ -13,6 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsModel
 {
@@ -88,6 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             cbCountry = new ComboBox();
             cbCountry.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
             cbCountry.Margin = new Thickness(0, 5, 0, 0);
+            cbCountry.Width = 250;
             //cbCountries.Style = this.Resources["ComboBoxStyle"] as Style;
             cbCountry.Background = Brushes.Transparent;
             cbCountry.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -215,14 +217,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             if (hubsOnly) airports = airports.FindAll(delegate(Airport airport) { return airport.IsHub; });
 
-            if (country.Uid != "100") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
+            if (country.Uid != "100") airports = airports.FindAll(a => ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country);//airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
 
             if (country.Uid == "100" && region.Uid != "100") 
                 airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == region; });
-
+               
             if (size != "All sizes") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Size.ToString() == size; });
 
-            airports = airports.FindAll((delegate(Airport airport) { return airport.Profile.Name.ToUpper().Contains(searchText) || airport.Profile.ICAOCode.ToUpper().Contains(searchText) || airport.Profile.IATACode.ToUpper().Contains(searchText) || airport.Profile.Town.ToUpper().Contains(searchText) || airport.Profile.Country.Name.ToUpper().Contains(searchText); }));
+            airports = airports.FindAll(a => a.Profile.Name.ToUpper().Contains(searchText) || a.Profile.ICAOCode.ToUpper().Contains(searchText) || a.Profile.IATACode.ToUpper().Contains(searchText) || a.Profile.Town.ToUpper().Contains(searchText) || ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)).Name.ToUpper().Contains(searchText));
+           // airports = airports.FindAll((delegate(Airport airport) { return airport.Profile.Name.ToUpper().Contains(searchText) || airport.Profile.ICAOCode.ToUpper().Contains(searchText) || airport.Profile.IATACode.ToUpper().Contains(searchText) || airport.Profile.Town.ToUpper().Contains(searchText) || airport.Profile.Country.Name.ToUpper().Contains(searchText); }));
 
             this.ParentPage.showAirports(airports);
         }
