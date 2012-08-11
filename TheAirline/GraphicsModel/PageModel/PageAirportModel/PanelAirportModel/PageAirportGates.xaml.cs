@@ -126,7 +126,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
             Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
-            Boolean isBuyHubEnabled = (GameObject.GetInstance().HumanAirline.Money > this.Airport.getHubPrice()) && (!humanHub) && (humanGatesPercent > 20) && (totalHumanHubs < airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
+            
+            Boolean isBuyHubEnabled = (GameObject.GetInstance().HumanAirline.Money > this.Airport.getHubPrice()) && (!humanHub) && (humanGatesPercent > 20) && (totalHumanHubs < airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= Hub.MinimumServiceFacilities.TypeLevel);
             btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
         
         }
@@ -263,6 +264,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             showGatesInformation();
             showTerminals();
+            showHubs();
         }
 
         private void btnReleaseGate_Click(object sender, RoutedEventArgs e)
@@ -282,6 +284,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 showGatesInformation();
                 showTerminals();
+                showHubs();
             }
 
         }
