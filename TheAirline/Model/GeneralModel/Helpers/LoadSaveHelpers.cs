@@ -671,7 +671,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 passengerNode.SetAttribute("factor", passenger.Factor.ToString());
                 passengerNode.SetAttribute("primarytype", passenger.PrimaryType.ToString());
                 passengerNode.SetAttribute("currenttype", passenger.CurrentType.ToString());
-                passengerNode.SetAttribute("destination", passenger.Destination.Profile.IATACode);
+                passengerNode.SetAttribute("destination", passenger.Destination != null ? passenger.Destination.Profile.IATACode : "");
                 passengerNode.SetAttribute("preferedclass", passenger.PreferedClass.ToString());
                 passengerNode.SetAttribute("updated", passenger.Updated.ToString(new CultureInfo("de-DE")));
 
