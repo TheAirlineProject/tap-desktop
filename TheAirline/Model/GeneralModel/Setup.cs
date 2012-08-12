@@ -432,12 +432,41 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadCountries()
         {
+            List<XmlElement> territoryElements = new List<XmlElement>();
+
             XmlDocument doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\countries.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList countriesList = root.SelectNodes("//country");
             foreach (XmlElement element in countriesList)
+            {
+                XmlElement territoryElement = (XmlElement)element.SelectSingleNode("territoryof");
+
+                if (territoryElement != null)
+                {
+                    territoryElements.Add(element);
+                }
+                else
+                {
+                    string section = root.Name;
+                    string uid = element.Attributes["uid"].Value;
+                    string shortname = element.Attributes["shortname"].Value;
+                    string flag = element.Attributes["flag"].Value;
+                    Region region = Regions.GetRegion(element.Attributes["region"].Value);
+                    string tailformat = element.Attributes["tailformat"].Value;
+
+                    Country country = new Country(section, uid, shortname, region, tailformat);
+                    
+                    country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
+                    Countries.AddCountry(country);
+
+                    if (element.SelectSingleNode("translations") != null)
+                        Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
+                }
+            }
+            //reads all countries which is a territory for another
+            foreach (XmlElement element in territoryElements)
             {
                 string section = root.Name;
                 string uid = element.Attributes["uid"].Value;
@@ -446,26 +475,21 @@ namespace TheAirline.Model.GeneralModel
                 Region region = Regions.GetRegion(element.Attributes["region"].Value);
                 string tailformat = element.Attributes["tailformat"].Value;
 
-                Country country;
                 XmlElement territoryElement = (XmlElement)element.SelectSingleNode("territoryof");
-                if (territoryElement != null)
-                {
-                    Country territoryOf = Countries.GetCountry(territoryElement.Attributes["uid"].Value);
+                              
+                Country territoryOf = Countries.GetCountry(territoryElement.Attributes["uid"].Value);
 
-                    country = new TerritoryCountry(section, uid, shortname, region, tailformat,territoryOf);
+                Country country = new TerritoryCountry(section, uid, shortname, region, tailformat, territoryOf);
 
-                }
-                else
-                {
-                    country = new Country(section, uid, shortname, region, tailformat);
-                }
                 country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
                 Countries.AddCountry(country);
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
-            }
+  
 
+
+            }        
 
         }
         /*! loads the temporary countries
