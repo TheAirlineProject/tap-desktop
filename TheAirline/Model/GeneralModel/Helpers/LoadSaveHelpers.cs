@@ -240,12 +240,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     string fAirlinerName = airlineAirlinerNode.Attributes["name"].Value;
                     Airport homebase = Airports.GetAirport(airlineAirlinerNode.Attributes["homebase"].Value);
                     FleetAirliner.PurchasedType purchasedtype = (FleetAirliner.PurchasedType)Enum.Parse(typeof(FleetAirliner.PurchasedType), airlineAirlinerNode.Attributes["purchased"].Value);
+                    DateTime purchasedDate = DateTime.Parse(airlineAirlinerNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
                     FleetAirliner.AirlinerStatus status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), airlineAirlinerNode.Attributes["status"].Value);
 
                     Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
                     Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
 
-                    FleetAirliner fAirliner = new FleetAirliner(purchasedtype, airline, airliner, fAirlinerName, homebase);
+                    FleetAirliner fAirliner = new FleetAirliner(purchasedtype,purchasedDate, airline, airliner, fAirlinerName, homebase);
                     fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
                     fAirliner.Status = status;
 
@@ -794,6 +795,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     fleetAirlinerNode.SetAttribute("name", airliner.Name);
                     fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IATACode);
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
+                    fleetAirlinerNode.SetAttribute("date",airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
                     fleetAirlinerNode.SetAttribute("status", airliner.Status.ToString());
                     fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
                     fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());

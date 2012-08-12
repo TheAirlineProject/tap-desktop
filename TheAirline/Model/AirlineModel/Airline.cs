@@ -89,7 +89,7 @@ namespace TheAirline.Model.AirlineModel
         //adds an airliner to the airlines fleet
         public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner, string name, Airport homeBase)
         {
-            addAirliner(new FleetAirliner(type,this,airliner, name, homeBase));
+            addAirliner(new FleetAirliner(type,GameObject.GetInstance().GameTime, this,airliner, name, homeBase));
         }
         //adds a fleet airliner to the airlines fleet
         public void addAirliner(FleetAirliner airliner)

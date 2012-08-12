@@ -23,6 +23,8 @@ using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 {
@@ -34,6 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         private FleetAirliner Airliner;
         private TextBlock txtFlown, txtPosition, txtSinceService, txtName;
         private ContentControl lblAirport;
+        private StackPanel panelLeasedAirliner;
         public PageFleetAirliner(FleetAirliner airliner)
         {
             InitializeComponent();
@@ -48,6 +51,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             airlinerPanel.Children.Add(createQuickInfoPanel());
             airlinerPanel.Children.Add(createAirlinerTypePanel());
+            if (this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Airline.IsHuman)
+                airlinerPanel.Children.Add(createLeasedAirlinerPanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -93,13 +98,52 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             }
 
         }
+        //creates the panel for leased airliner
+        private Panel createLeasedAirlinerPanel()
+        {
+            panelLeasedAirliner = new StackPanel();
+            panelLeasedAirliner.Margin = new Thickness(0, 10, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
+            txtHeader.TextAlignment = TextAlignment.Left;
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1001");
+
+            panelLeasedAirliner.Children.Add(txtHeader);
+
+            ListBox lbQuickInfo = new ListBox();
+            lbQuickInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbQuickInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1025"), UICreator.CreateTextBlock(this.Airliner.PurchasedDate.ToShortDateString())));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(string.Format("{0:C}", this.Airliner.Airliner.getPrice()))));
+
+            panelLeasedAirliner.Children.Add(lbQuickInfo);
+
+            Button btnBuy = new Button();
+            btnBuy.Uid = "200";
+            btnBuy.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnBuy.Height = Double.NaN;
+            btnBuy.Width = Double.NaN;
+            btnBuy.Margin = new Thickness(0, 5, 0, 0);
+            btnBuy.Content = Translator.GetInstance().GetString("PageFleetAirliner", btnBuy.Uid);
+            btnBuy.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnBuy.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnBuy.Click += new System.Windows.RoutedEventHandler(btnBuy_Click);
+            panelLeasedAirliner.Children.Add(btnBuy);
+
+            return panelLeasedAirliner;
+
+        }
         //creates the info panel for the airliner type
         private Panel createAirlinerTypePanel()
         {
             AirlinerType airliner = this.Airliner.Airliner.Type;
 
             StackPanel panelAirlinerType = new StackPanel();
-            panelAirlinerType.Margin = new Thickness(0, 50, 0, 0);
+            panelAirlinerType.Margin = new Thickness(0, 10, 0, 0);
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -216,6 +260,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             ((Hyperlink)lnkOwner.Inlines.FirstInline).Click += new RoutedEventHandler(PageFleetAirliner_Click);
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1017"), lnkOwner));
 
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1025"), UICreator.CreateTextBlock(this.Airliner.PurchasedDate.ToShortDateString())));
+
             DockPanel panelHomeBase = new DockPanel();
 
             lblAirport = new ContentControl();
@@ -292,6 +338,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
                 this.Airliner.Name = s;
 
                 txtName.Text = this.Airliner.Name;
+            }
+        }
+        private void btnBuy_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+          
+            if (this.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2109"), Translator.GetInstance().GetString("MessageBox", "2109", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2110"), string.Format(Translator.GetInstance().GetString("MessageBox", "2110", "message"), this.Airliner.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airliner.Purchased = FleetAirliner.PurchasedType.Bought;
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airliner.Airliner.getPrice());
+
+                    panelLeasedAirliner.Children.Clear();
+                }
             }
         }
         private void PageAirliner_Click(object sender, RoutedEventArgs e)
