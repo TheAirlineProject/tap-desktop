@@ -127,7 +127,8 @@ namespace TheAirline.Model.GeneralModel
 
             List<Country> tCountries = new List<Country>();
             foreach (Country country in netto)
-                tCountries.Add((Country)new CountryCurrentCountryConverter().Convert(country));
+                if (!(country is TerritoryCountry))
+                    tCountries.Add((Country)new CountryCurrentCountryConverter().Convert(country));
 
             foreach (Country country in TemporaryCountries.GetCountries())
             {

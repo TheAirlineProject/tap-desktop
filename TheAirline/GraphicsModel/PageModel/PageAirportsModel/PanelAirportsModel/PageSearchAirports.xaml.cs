@@ -218,7 +218,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             if (hubsOnly) airports = airports.FindAll(delegate(Airport airport) { return airport.IsHub; });
 
-            if (country.Uid != "100") airports = airports.FindAll(a => ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country);//airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
+            if (country.Uid != "100") airports = airports.FindAll(a => ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country || a.Profile.Country == country);//airports.FindAll(delegate(Airport airport) { return airport.Profile.Country == country; });
 
             if (country.Uid == "100" && region.Uid != "100") 
                 airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == region; });
