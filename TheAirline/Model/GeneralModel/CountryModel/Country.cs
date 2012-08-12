@@ -31,9 +31,56 @@ namespace TheAirline.Model.GeneralModel
                 return Translator.GetInstance().GetString(Country.Section, this.Uid); ;
             }
         }
+        /*
+        public static bool operator ==(Country a, Country b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            if (a is TerritoryCountry && b is TerritoryCountry)
+            {
+                return a.Uid == b.Uid || ((TerritoryCountry)a).MainCountry.Uid == b.Uid || a.Uid == ((TerritoryCountry)b).MainCountry.Uid || ((TerritoryCountry)a).MainCountry.Uid == ((TerritoryCountry)b).MainCountry.Uid;
+            }
+            if (a is TerritoryCountry)
+            {
+                return a.Uid == b.Uid || ((TerritoryCountry)a).MainCountry.Uid == b.Uid;
+            }
+            if (b is TerritoryCountry)
+            {
+                return a.Uid == b.Uid || a.Uid == ((TerritoryCountry)b).MainCountry.Uid;
+            }
+            
+            return a.Uid == b.Uid;//a.x == b.x && a.y == b.y && a.z == b.z;
+        }
+
+        public static bool operator !=(Country a, Country b)
+        {
+            return !(a == b);
+        }
+         * */
       
     }
-    
+    //the class for a country which is a territory of another country
+    public class TerritoryCountry : Country
+    {
+        public Country MainCountry { get; set; }
+        public TerritoryCountry(string section, string uid, string shortName, Region region, string tailNumberFormat, Country mainCountry)
+            : base(section,uid,shortName,region,tailNumberFormat)
+        {
+            this.MainCountry = mainCountry;
+        }
+        
+    }
     //the collection of countries
     public class Countries
     {

@@ -20,5 +20,61 @@ namespace TheAirline.Model.GeneralModel.CountryModel
         {
             get { return Translator.GetInstance().GetString(Country.Section, this.Uid); }
         }
+        public static bool operator ==(BaseUnit a, BaseUnit b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+            // if one is union and the other is not
+            if ((a is Union && b is Country) || (a is Country && b is Union))
+                return false;
+
+            if (a is Union && b is Union)
+                return a.Uid == b.Uid;
+
+            // Return true if the fields match:
+            if (a is TerritoryCountry && b is TerritoryCountry)
+            {
+                return a.Uid == b.Uid || ((TerritoryCountry)a).MainCountry.Uid == b.Uid || a.Uid == ((TerritoryCountry)b).MainCountry.Uid || ((TerritoryCountry)a).MainCountry.Uid == ((TerritoryCountry)b).MainCountry.Uid;
+            }
+            if (a is TerritoryCountry)
+            {
+                return a.Uid == b.Uid || ((TerritoryCountry)a).MainCountry.Uid == b.Uid;
+            }
+            if (b is TerritoryCountry)
+            {
+                return a.Uid == b.Uid || a.Uid == ((TerritoryCountry)b).MainCountry.Uid;
+            }
+
+            return a.Uid == b.Uid;//a.x == b.x && a.y == b.y && a.z == b.z;
+        }
+
+        public static bool operator !=(BaseUnit a, BaseUnit b)
+        {
+            return !(a == b);
+        }
+        public override int GetHashCode()
+        {
+            return this.Uid.GetHashCode() ^ this.ShortName.GetHashCode();
+        }
+        public override bool Equals(object u)
+        {
+            // If parameter is null return false:
+            if ((object)u == null || !(u is BaseUnit))
+            {
+                return false;
+            }
+           
+            // Return true if the fields match:
+            return (this.Uid == ((BaseUnit)u).Uid);
+        }
     }
 }

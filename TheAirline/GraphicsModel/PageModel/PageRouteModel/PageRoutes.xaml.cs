@@ -301,7 +301,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             if (unit is Union)
             {
-                return string.Join("\r\n", from m in ((Union)unit).Members select m.Country.Name);
+                return string.Join("\r\n", from m in ((Union)unit).Members where GameObject.GetInstance().GameTime>=m.MemberFromDate && GameObject.GetInstance().GameTime<=m.MemberToDate select m.Country.Name);
             }
             else
                 return unit.Name;

@@ -446,7 +446,19 @@ namespace TheAirline.Model.GeneralModel
                 Region region = Regions.GetRegion(element.Attributes["region"].Value);
                 string tailformat = element.Attributes["tailformat"].Value;
 
-                Country country = new Country(section, uid, shortname, region, tailformat);
+                Country country;
+                XmlElement territoryElement = (XmlElement)element.SelectSingleNode("territoryof");
+                if (territoryElement != null)
+                {
+                    Country territoryOf = Countries.GetCountry(territoryElement.Attributes["uid"].Value);
+
+                    country = new TerritoryCountry(section, uid, shortname, region, tailformat,territoryOf);
+
+                }
+                else
+                {
+                    country = new Country(section, uid, shortname, region, tailformat);
+                }
                 country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
                 Countries.AddCountry(country);
 
