@@ -65,29 +65,29 @@
             </WrapPanel>
         </StackPanel>
     </DataTemplate>
-
+   
     <DataTemplate x:Key="AirportCountryItem">
         <DockPanel>
-            <Image Source="{Binding Profile.Country.Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
             <TextBlock Text="{Binding Profile.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" Width="250" TextAlignment="Left"></TextBlock>
          </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportCountryItemNormal">
         <DockPanel>
-            <Image Source="{Binding Profile.Country.Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
             <TextBlock Text="{Binding Profile.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" TextAlignment="Left"></TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirportIATACountryItem">
         <DockPanel>
-            <Image Source="{Binding Profile.Country.Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
             <TextBlock Text="{Binding Converter={StaticResource airportCodeConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0" TextAlignment="Left"></TextBlock>
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="ManufactorerCountryItem">
         <DockPanel>
              <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="0 0 5 0" TextAlignment="Left"></TextBlock>
-            <Image Source="{Binding Country.Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
 
         </DockPanel>
     </DataTemplate>
