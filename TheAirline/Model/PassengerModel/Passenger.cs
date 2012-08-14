@@ -37,6 +37,8 @@ namespace TheAirline.Model.PassengerModel
         //returns the next destination on the route for the passenger
         public Airport getNextRouteDestination(Airport currentDestination)
         {
+            if (currentDestination == null)
+                return null;
             int index = this.Route.IndexOf(currentDestination);
 
             if (index >= 0 && index < this.Route.Count - 1)
