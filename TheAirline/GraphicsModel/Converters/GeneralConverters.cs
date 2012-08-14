@@ -386,11 +386,18 @@ namespace TheAirline.GraphicsModel.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            TimeSpan timespan = (TimeSpan)value;
+            try
+            {
+                TimeSpan timespan = (TimeSpan)value;
 
-            DateTime time = new DateTime(2000, 1, 1, timespan.Hours, timespan.Minutes, 0);
+                DateTime time = new DateTime(2000, 1, 1, timespan.Hours, timespan.Minutes, 0);
 
-            return time.ToShortTimeString();
+                return time.ToShortTimeString();
+            }
+            catch
+            {
+                return new DateTime(2000, 1, 1, 0, 0, 0);
+            }
 
         }
         public object Convert(object value)
