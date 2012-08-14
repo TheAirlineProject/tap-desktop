@@ -149,6 +149,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 cbStartYear.Items.Add(i);
 
             cbStartYear.SelectedItem = DateTime.Now.Year;
+            cbStartYear.SelectionChanged += new SelectionChangedEventHandler(cbStartYear_SelectionChanged);
 
             lbContent.Items.Add(new QuickInfoValue("Select start year", cbStartYear));
 
@@ -222,6 +223,42 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
+        private void cbStartYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            Airline airline = (Airline)cbAirline.SelectedItem;
+            int year = (int)cbStartYear.SelectedItem;
+
+            setAirportsView(year, airline.Profile.Country);
+            /*
+            try
+            {
+                airportsView.Filter = getCountryAirports(year, airline.Profile.Country);
+            }
+            catch (Exception ex)
+            {
+                string exception = ex.ToString();
+            }
+            */
+        }
+
+        private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+
+            Airline airline = (Airline)cbAirline.SelectedItem;
+            int year = (int)cbStartYear.SelectedItem;
+
+
+            setAirportsView(year, airline.Profile.Country);
+          
+
+            airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
+            txtName.Text = airline.Profile.CEO;
+            txtIATA.Text = airline.Profile.IATACode;
+            cntCountry.Content = airline.Profile.Country;
+
+        }
         private void btnAddAirline_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageNewAirline());
@@ -266,7 +303,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
 
-                airport.Terminals.rentGate(airline);
+                airport.Terminals.rentGate(airline); 
                 airport.Terminals.rentGate(airline);
 
                 List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
@@ -293,19 +330,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);
 
         }
-
-        private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        //sets the airports view
+        private void setAirportsView(int year, Country country)
         {
+            GameObject.GetInstance().GameTime = new DateTime(year, 1, 1);
 
-
-            Airline airline = (Airline)cbAirline.SelectedItem;
-
+      
             try
             {
                 airportsView.Filter = o =>
                 {
                     Airport a = o as Airport;
-                    return a.Profile.Country == airline.Profile.Country && a.Terminals.getNumberOfGates() > 10;
+                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country && a.Terminals.getNumberOfGates() > 10;
                 };
             }
             catch (Exception ex)
@@ -313,13 +349,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 string exception = ex.ToString();
             }
 
-            airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
-            txtName.Text = airline.Profile.CEO;
-            txtIATA.Text = airline.Profile.IATACode;
-            cntCountry.Content = airline.Profile.Country;
-
+            if (cbAirport.SelectedIndex == -1) cbAirport.SelectedIndex = 0;
         }
-
+      
     }
 
 }
