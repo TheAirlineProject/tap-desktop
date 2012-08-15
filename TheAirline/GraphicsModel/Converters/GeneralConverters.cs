@@ -464,9 +464,14 @@ namespace TheAirline.GraphicsModel.Converters
 
             Country country = (Country)value;
 
+            if (country.ShortName == "NED")
+            {
+                string s = country.Name;
+            }
+
             if (!(country is TemporaryCountry))
             {
-                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country);
+                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country,GameObject.GetInstance().GameTime);
 
                 if (tempCountry == null)
                     return country;

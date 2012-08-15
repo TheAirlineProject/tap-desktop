@@ -91,9 +91,9 @@ namespace TheAirline.Model.GeneralModel
 
         }
         //returns a temporary country which a country is a part of
-        public static TemporaryCountry GetTemporaryCountry(Country country)
+        public static TemporaryCountry GetTemporaryCountry(Country country,DateTime date)
         {
-            TemporaryCountry tCountry = tCountries.Find(c => c.CountryBefore == country || c.CountryAfter == country || c.Countries.Find(tc=>tc.Country==country)!=null);
+            TemporaryCountry tCountry = tCountries.Find(c => c.StartDate<date && c.EndDate>date && (c.CountryBefore == country || c.CountryAfter == country || c.Countries.Find(tc=>tc.Country.Uid==country.Uid)!=null));
             return tCountry;
         }
         //clears the list

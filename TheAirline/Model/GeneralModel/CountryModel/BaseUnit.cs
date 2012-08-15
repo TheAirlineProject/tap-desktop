@@ -39,7 +39,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel
 
             if (a is Union && b is Union)
                 return a.Uid == b.Uid;
-
+                      
             // Return true if the fields match:
             if (a is TerritoryCountry && b is TerritoryCountry)
             {

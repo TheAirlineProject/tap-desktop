@@ -178,7 +178,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             for (int i = 0; i < Math.Min(Airlines.GetAllAirlines().Count, 19); i++)
                 cbOpponents.Items.Add(i);
 
-            cbOpponents.SelectedIndex = cbOpponents.Items.Count - 1;
+            cbOpponents.SelectedIndex = 3;// cbOpponents.Items.Count - 1;
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), cbOpponents));
 
