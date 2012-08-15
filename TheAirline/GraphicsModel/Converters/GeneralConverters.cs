@@ -308,11 +308,15 @@ namespace TheAirline.GraphicsModel.Converters
         {
             try
             {
+                /*
                 Assembly assembly = Assembly.LoadFrom(Environment.CurrentDirectory + "\\data\\plugins\\AirportCSVReader.dll");
                 if (assembly != null)
                     return Visibility.Collapsed;//Visibility.Visible;
                 else
                     return Visibility.Collapsed;
+                 * */
+
+                return Visibility.Collapsed;
             }
             catch
             {

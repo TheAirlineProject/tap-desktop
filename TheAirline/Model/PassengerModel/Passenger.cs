@@ -5,7 +5,6 @@ using System.Text;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel;
-using System.Data.SQLite;
 using System.Data;
 
 namespace TheAirline.Model.PassengerModel
