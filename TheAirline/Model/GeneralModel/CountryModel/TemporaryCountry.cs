@@ -43,6 +43,10 @@ namespace TheAirline.Model.GeneralModel
             if (this.Type == TemporaryType.OneToMany)
             {
                 OneToManyCountry tCountry = this.Countries.Find(c => c.Country == originalCountry);
+
+                if (tCountry == null)
+                    return originalCountry;
+
                 if (date >= tCountry.StartDate && date <= tCountry.EndDate)
                     return this;
                 else

@@ -338,7 +338,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         {
             GameObject.GetInstance().GameTime = new DateTime(year, 1, 1);
 
-      
+            
             try
             {
                 airportsView.Filter = o =>
