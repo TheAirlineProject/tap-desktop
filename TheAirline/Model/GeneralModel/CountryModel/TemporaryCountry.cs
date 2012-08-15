@@ -17,19 +17,19 @@ namespace TheAirline.Model.GeneralModel
         public Country CountryAfter { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
-        public List<Country> Countries { get; set; }
+        public List<OneToManyCountry> Countries { get; set; }
         public TemporaryCountry(TemporaryType type, Country country, DateTime startDate, DateTime endDate)
             : base(Country.Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)
         {
             this.Type = type;
             this.StartDate = startDate;
             this.EndDate = endDate;
-            this.Countries = new List<Country>();
+            this.Countries = new List<OneToManyCountry>();
             this.CountryAfter = this;
             this.CountryBefore = this;
         }
         //returns the current country for the country
-        public Country getCurrentCountry(DateTime date)
+        public Country getCurrentCountry(DateTime date, Country originalCountry)
         {
             if (this.Type == TemporaryType.ManyToOne)
             {
@@ -42,13 +42,27 @@ namespace TheAirline.Model.GeneralModel
             }
             if (this.Type == TemporaryType.OneToMany)
             {
-                if (date >= this.StartDate && date <= this.EndDate)
+                OneToManyCountry tCountry = this.Countries.Find(c => c.Country == originalCountry);
+                if (date >= tCountry.StartDate && date <= tCountry.EndDate)
                     return this;
                 else
-                    return null;
+                    return originalCountry;
             }
             return null;
 
+        }
+    }
+    //the class for a one to many temporary country
+    public class OneToManyCountry
+    {
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public Country Country { get; set; }
+        public OneToManyCountry(Country country, DateTime startDate, DateTime endDate)
+        {
+            this.StartDate = startDate;
+            this.EndDate = endDate;
+            this.Country = country;
         }
     }
     //the list of temporary countries
@@ -79,7 +93,7 @@ namespace TheAirline.Model.GeneralModel
         //returns a temporary country which a country is a part of
         public static TemporaryCountry GetTemporaryCountry(Country country)
         {
-            TemporaryCountry tCountry = tCountries.Find(c => c.CountryBefore == country || c.CountryAfter == country || c.Countries.Contains(country));
+            TemporaryCountry tCountry = tCountries.Find(c => c.CountryBefore == country || c.CountryAfter == country || c.Countries.Find(tc=>tc.Country==country)!=null);
             return tCountry;
         }
         //clears the list

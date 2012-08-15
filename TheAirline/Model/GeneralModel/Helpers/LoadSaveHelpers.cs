@@ -131,6 +131,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 passenger.Destination = destination;
                 passenger.Updated = updated;
 
+                List<Airport> route = new List<Airport>();
+
+                if (passengerNode.HasAttribute("route"))
+                    passengerNode.Attributes["route"].Value.Split(':').ToList().ForEach(a => route.Add(Airports.GetAirport(a)));
+
+                passenger.Route = route;
+
+
                 Passengers.AddPassenger(passenger);
 
             }
@@ -675,6 +683,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 passengerNode.SetAttribute("destination", passenger.Destination != null ? passenger.Destination.Profile.IATACode : "");
                 passengerNode.SetAttribute("preferedclass", passenger.PreferedClass.ToString());
                 passengerNode.SetAttribute("updated", passenger.Updated.ToString(new CultureInfo("de-DE")));
+                passengerNode.SetAttribute("route", string.Join(",", from r in passenger.Route select r.Profile.IATACode));
 
                 passengersNode.AppendChild(passengerNode);
             }

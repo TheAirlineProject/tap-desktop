@@ -541,8 +541,11 @@ namespace TheAirline.Model.GeneralModel
 
                     foreach (XmlElement tempCountryElement in tempCountriesList)
                     {
-
-                        tCountry.Countries.Add(Countries.GetCountry(tempCountryElement.Attributes["id"].Value));
+                        Country tempCountry = Countries.GetCountry(tempCountryElement.Attributes["id"].Value);
+                        DateTime cStartDate = Convert.ToDateTime(tempCountryElement.Attributes["start"].Value);
+                        DateTime cEndDate = Convert.ToDateTime(tempCountryElement.Attributes["end"].Value);
+                                       
+                        tCountry.Countries.Add(new OneToManyCountry(tempCountry,cStartDate,cEndDate));
                     }
 
                 }

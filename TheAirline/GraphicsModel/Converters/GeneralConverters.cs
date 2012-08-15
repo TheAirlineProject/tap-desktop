@@ -386,17 +386,24 @@ namespace TheAirline.GraphicsModel.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            TimeSpan timespan = (TimeSpan)value;
+
             try
             {
-                TimeSpan timespan = (TimeSpan)value;
-
+              
                 DateTime time = new DateTime(2000, 1, 1, timespan.Hours, timespan.Minutes, 0);
 
                 return time.ToShortTimeString();
             }
             catch
             {
-                return new DateTime(2000, 1, 1, 0, 0, 0);
+                int hours = timespan.Hours;
+                if (hours > 24)
+                    hours -= 24;
+                if (hours < 0)
+                    hours = 24 + hours;
+
+                return new DateTime(2000, 1, 1, hours, Math.Abs(timespan.Minutes), 0).ToShortTimeString();
             }
 
         }
@@ -461,15 +468,15 @@ namespace TheAirline.GraphicsModel.Converters
                     return country;
                 else
                 {
-                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime) == null)
+                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime,country) == null)
                         return country;
                     else
-                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime);
+                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime,country);
                 }
             }
             else
             {
-                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime);
+                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime,country);
     
             }
             //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;

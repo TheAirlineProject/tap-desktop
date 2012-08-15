@@ -369,8 +369,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //checks if an entry is valid
         private Boolean isRouteEntryValid(RouteTimeTableEntry entry, Boolean showMessageBoxOnError)
         {
-           
-
             TimeSpan flightTime = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
 
             TimeSpan startTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
@@ -396,7 +394,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 double diffEndTime = Math.Abs(eEndTime.Subtract(endTime).TotalMinutes);
                           
                 if (eEndTime.Days == 7)
-                    eEndTime = new TimeSpan(0, endTime.Hours, endTime.Minutes, endTime.Seconds);
+                    eEndTime = new TimeSpan(0, eEndTime.Hours, eEndTime.Minutes, eEndTime.Seconds);
 
                 if ((eStartTime >= startTime && endTime >= eStartTime) || (eEndTime >= startTime && endTime >= eEndTime) || (endTime >= eStartTime && eEndTime >= endTime) || (startTime >= eStartTime && eEndTime >= startTime))
                 {
@@ -750,6 +748,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             string timezone = parameter.ToString() == "D" ? e.DepartureAirport.Profile.TimeZone.ShortName : e.Destination.Airport.Profile.TimeZone.ShortName;
 
+            TimeSpan localTime = MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone);
+
+      
             return string.Format("{0} {1}",new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone)),timezone);
 
         }
