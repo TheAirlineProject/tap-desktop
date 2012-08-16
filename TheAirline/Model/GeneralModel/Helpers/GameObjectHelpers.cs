@@ -409,7 +409,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double ticketsIncome = 0;
 
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
-                ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers.Sum(p=>p.Factor) * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
+                ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
 
             Airport dest = Airports.GetAirport(airliner.CurrentPosition);
             Airport dept = airliner.CurrentFlight.getDepartureAirport();
@@ -429,7 +429,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                    feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers.Sum(p=>p.Factor) * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                    feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
                 }
             }
 
@@ -438,7 +438,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.EType == RouteFacility.ExpenseType.Fixed)
                 {
-                    mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers.Sum(p=>p.Factor) * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.ExpensePerPassenger;
+                    mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.ExpensePerPassenger;
                 }
                 else
                 {
@@ -449,11 +449,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                    mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers.Sum(p=>p.Factor) * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                    mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
                 }
                 if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility.EType == RouteFacility.ExpenseType.Fixed)
                 {
-                    mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers.Sum(p=>p.Factor) * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility.ExpensePerPassenger;
+                    mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers* airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility.ExpensePerPassenger;
                 }
                 else
                 {
@@ -464,7 +464,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                    mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers.Sum(p => p.Factor) * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                    mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
                 }
             }
 
@@ -489,7 +489,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 RouteAirlinerClass raClass = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type);
 
-                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getFlightAirlinerClass(raClass.Type).Passengers.Sum(p=>p.Factor));
+                airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getFlightAirlinerClass(raClass.Type).Passengers);
                 double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
                 double routeDepartures = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Departures"));
                 airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.setStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(routePassengers / routeDepartures));
@@ -545,7 +545,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
             {
                 FlightAirlinerClass faClass = airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type);
-                faClass.Passengers.ForEach(p => PassengerHelpers.UpdateLandedPassenger(p, dest));
+                //Ændres - faClass.Passengers.ForEach(p => PassengerHelpers.UpdateLandedPassenger(p, dest));
 
             }
 
@@ -655,10 +655,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
        
         }
         //returns the passengers for an airliner
+        public static int GetPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
+        {
+            return PassengerHelpers.GetFlightPassengers(airliner, type);
+        }
+        /*
+        //returns the passengers for an airliner
         public static List<Passenger> GetPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
             return PassengerHelpers.GetFlightPassengers(airliner, type);
         }
+         * */
         //returns the next route for an airliner 
         private static Route GetNextRoute(FleetAirliner airliner)
         {

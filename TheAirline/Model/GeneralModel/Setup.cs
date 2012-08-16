@@ -356,7 +356,7 @@ namespace TheAirline.Model.GeneralModel
                     Coordinate longitude = Coordinate.Parse(longitudeElement.Attributes["value"].Value);
 
                     XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
-                    AirportProfile.AirportSize size = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), sizeElement.Attributes["value"].Value);
+                    GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
 
 
                     AirportProfile profile = new AirportProfile(name, iata, icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, size, season);

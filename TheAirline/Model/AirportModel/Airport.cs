@@ -15,7 +15,9 @@ namespace TheAirline.Model.AirportModel
     public class Airport
     {
         public AirportProfile Profile { get; set; }
-        private List<Passenger> Passengers;
+       // private List<Passenger> Passengers;
+        public List<DestinationPassengers> DestinationPassengers { get; set; }
+
         private List<AirlineAirportFacility> Facilities;
         public AirportStatistics Statistics { get; set; }
         //public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
@@ -27,7 +29,8 @@ namespace TheAirline.Model.AirportModel
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
-            this.Passengers = new List<Passenger>();
+         //   this.Passengers = new List<Passenger>();
+            this.DestinationPassengers = new List<DestinationPassengers>();
             //this.Facilities = new Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>>();
             this.Facilities = new List<AirlineAirportFacility>();
             this.Statistics = new AirportStatistics();
@@ -47,7 +50,12 @@ namespace TheAirline.Model.AirportModel
        
 
         }
-        
+        //returns the destination passengers for a specific destination for a class
+        public GeneralHelpers.Rate getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
+        {
+            return this.DestinationPassengers.Find(a => a.Destination == destination).Rate;
+        }
+        /*
         //clears the list of passengers
         public void clearPassengers()
         {
@@ -74,7 +82,7 @@ namespace TheAirline.Model.AirportModel
         {
             this.Passengers.Add(passenger);
         }
-        
+        */
         //returns the price for a gate
         public long getGatePrice()
         {
@@ -226,7 +234,7 @@ namespace TheAirline.Model.AirportModel
       
         }
         //returns all airports with a specific size
-        public static List<Airport> GetAirports(AirportProfile.AirportSize size)
+        public static List<Airport> GetAirports(GeneralHelpers.Size size)
         {
          
             return GetAirports(delegate(Airport airport) { return airport.Profile.Size == size; });

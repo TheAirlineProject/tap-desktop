@@ -119,7 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             cbSize.Items.Add("All sizes");
 
-            foreach (AirportProfile.AirportSize type in Enum.GetValues(typeof(AirportProfile.AirportSize)))
+            foreach (GeneralHelpers.Size type in Enum.GetValues(typeof(GeneralHelpers.Size)))
                 cbSize.Items.Add(type);
 
             cbSize.SelectedIndex = 0;

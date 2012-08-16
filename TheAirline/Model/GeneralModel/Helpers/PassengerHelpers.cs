@@ -54,6 +54,7 @@ namespace TheAirline.Model.GeneralModel
             else
                 return 0;
         }
+        /*
         public static List<Passenger> GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
 
@@ -130,6 +131,7 @@ namespace TheAirline.Model.GeneralModel
 
             return Math.Min(value, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
         }
+         * */
         //returns a random destination from an airport
         private static Airport GetRandomDestination(Airport currentAirport)
         {
@@ -141,7 +143,7 @@ namespace TheAirline.Model.GeneralModel
             else
                 return null;
         }
-
+        /*
         //updates a landed passenger
         public static void UpdateLandedPassenger(Passenger passenger, Airport currentAirport)
         {
@@ -158,11 +160,11 @@ namespace TheAirline.Model.GeneralModel
                 passenger.Route = FindPassengerRoute(currentAirport, passenger);
             }
             passenger.Updated = GameObject.GetInstance().GameTime;
-            currentAirport.addPassenger(passenger);
+            //currentAirport.addPassenger(passenger);
             passenger.CurrentAirport = currentAirport;
         }
 
-        /*
+        */
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
@@ -178,14 +180,17 @@ namespace TheAirline.Model.GeneralModel
                 if (route.Destination1 == airportDestination || route.Destination2 == airportDestination)
                     sameRoutes++;
 
-            int destSize = (int)airportDestination.Profile.Size;
-            int deptSize = (int)airportCurrent.Profile.Size;
+            //int destSize = (int)airportDestination.Profile.Size;
+            //int deptSize = (int)airportCurrent.Profile.Size;
 
-            double size = (1000 * destSize * GetSeasonFactor(airportDestination)) + (750 * deptSize * GetSeasonFactor(airportCurrent));
+            int destPassengers = (int)airportCurrent.getDestinationPassengersRate(airportDestination, type);
+
+            double size = (1000 * destPassengers * GetSeasonFactor(airportDestination));// + (750 * deptSize * GetSeasonFactor(airportCurrent));
             size = size / (sameRoutes + 1);
             size = size / totalRoutes1; 
             size = size / totalRoutes2;
            
+            /*
             if (double.IsInfinity(size))
             {
                 double seasonFactor = (750 * deptSize * GetSeasonFactor(airportCurrent));
@@ -193,7 +198,7 @@ namespace TheAirline.Model.GeneralModel
 
                 sameRoutes = Convert.ToInt32(seasonFactor + seasonFactor2);
         }
-           
+           */
 
             double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;
 
@@ -220,13 +225,16 @@ namespace TheAirline.Model.GeneralModel
             if (value < 15)
                 value = rnd.Next(value, 15);
 
-            return value;
+            if (airportCurrent.getDestinationPassengersRate(airportDestination, type) == GeneralHelpers.Rate.None)
+                return 0;
+            else
+             return value;
 
         
 
 
         }
-         * */
+         
         //returns the season factor for an airport
         private static double GetSeasonFactor(Airport airport)
         {
@@ -280,6 +288,7 @@ namespace TheAirline.Model.GeneralModel
             return expenses * 2.5;
 
         }
+        /*
         //returns the destination for a passenger
         public static Airport GetPassengerDestination(Passenger passenger, Airport airport)
         {
@@ -291,8 +300,43 @@ namespace TheAirline.Model.GeneralModel
             return AIHelpers.GetRandomItem(airportsList);
 
         }
+        /*! creates the destination passengers
+         */
+        public static void CreateDestinationPassengers()
+        {
+            foreach (Airport airport in Airports.GetAllAirports())
+                foreach (Airport dAirport in Airports.GetAirports(a => a != airport))
+                {
+                  
+                    Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
+
+                    Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
+                    Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
+
+                    int sameContinentCoeff = isSameContinent ? values.Length * 1 : 0;
+                    int sameCountryCoeff = isSameCountry ? values.Length * 2 : 0;
+
+                    int destCoeff = ((int)dAirport.Profile.Size + 1) *2;
+                    int deptCoeff = ((int)airport.Profile.Size + 1);
+
+                    int rndCoeff= rnd.Next(values.Length);
+
+                    int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
+
+                    int value = coeff / 6;
+                   
+                
+
+                    GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
+
+               
+                    airport.DestinationPassengers.Add(new DestinationPassengers(dAirport,rate));
+                }
+        }
+        
         /*! creates a number of passengers
         */
+        /*
         public static void CreatePassengers(int passengers)
         {
             List<Airport> airports = Airports.GetAllAirports();
@@ -332,8 +376,10 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-
+        
         }
+         * */
+        /*
         //updates all passengers
         public static void UpdatePassengers()
         {
@@ -355,5 +401,6 @@ namespace TheAirline.Model.GeneralModel
             }
 
         }
+         * */
     }
 }

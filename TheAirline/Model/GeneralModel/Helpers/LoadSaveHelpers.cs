@@ -365,7 +365,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             Passenger passenger = Passengers.GetPassenger(flightPassengerNode.Attributes["id"].Value);
                         }
 
-                        currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                        //Ændres currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
                     }
                     airliner.CurrentFlight = currentFlight;
                 }
@@ -382,7 +382,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement airportNode in airportsList)
             {
                 Airport airport = Airports.GetAirport(airportNode.Attributes["iata"].Value);
-                AirportProfile.AirportSize airportSize = (AirportProfile.AirportSize)Enum.Parse(typeof(AirportProfile.AirportSize), airportNode.Attributes["size"].Value);
+                GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
 
 
@@ -453,7 +453,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     airport.addTerminal(terminal);
 
-                    airport.clearPassengers();
+                    //airport.clearPassengers();
 
                     XmlNodeList airportPassengersList = airportNode.SelectNodes("passengers/passenger");
 
@@ -462,7 +462,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         Passenger passenger = Passengers.GetPassenger(flightPassengerNode.Attributes["id"].Value);
 
-                        airport.addPassenger(passenger);
+                        //airport.addPassenger(passenger);
                     }
 
 
@@ -905,13 +905,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             XmlElement flightClassPassengersNode = xmlDoc.CreateElement("passengers");
 
+                            /*Ændres
                             foreach (Passenger passenger in aClass.Passengers)
                             {
                                 XmlElement flightClassPassengerNode = xmlDoc.CreateElement("passenger");
                                 flightClassPassengerNode.SetAttribute("id", passenger.ID);
 
                                 flightClassPassengersNode.AppendChild(flightClassPassengerNode);
-                            }
+                            }*/
 
 
                             flightClassNode.AppendChild(flightClassPassengersNode);
@@ -1015,6 +1016,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportNode.AppendChild(terminalsNode);
 
                 XmlElement airportPassengersNode = xmlDoc.CreateElement("passengers");
+                /*
                 foreach (Passenger passenger in airport.getPassengers())
                 {
                     XmlElement passengerNode = xmlDoc.CreateElement("passenger");
@@ -1022,7 +1024,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     airportPassengersNode.AppendChild(passengerNode);
                 }
-
+                */
                 airportNode.AppendChild(airportPassengersNode);
 
                 airportsNode.AppendChild(airportNode);

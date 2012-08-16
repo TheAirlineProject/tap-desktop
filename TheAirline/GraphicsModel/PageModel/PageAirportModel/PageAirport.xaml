@@ -5,11 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
                    xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirportModel"
+                   xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
+                   
 	Title="PageAirport">
     <Page.Resources>
         <local:AirportPassengersConverter x:Key="airportPassengersConverter"></local:AirportPassengersConverter>
+        <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <DataTemplate x:Key="FlightHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>
@@ -28,6 +31,12 @@
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Status}" Width="75"></TextBlock>
 
             </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="PassengersItem2">
+            <WrapPanel>
+            <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination}" VerticalAlignment="Bottom" Width="250"></ContentControl>
+                <TextBlock Text="{Binding Rate,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+              </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="PassengersItem">
             <WrapPanel>

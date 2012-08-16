@@ -273,9 +273,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbSize.SetResourceReference(ComboBox.StyleProperty,"ComboBoxTransparentStyle");
             cbSize.Width = 100;
 
-            
-     
-            foreach (AirportProfile.AirportSize size in Enum.GetValues(typeof(AirportProfile.AirportSize)))
+
+
+            foreach (GeneralHelpers.Size size in Enum.GetValues(typeof(GeneralHelpers.Size)))
             {
                 cbSize.Items.Add(size);
             }
@@ -307,7 +307,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 string iata = txtIATA.Text;
                 string name = txtName.Text;
                 Country country = (Country)cbCountry.SelectedItem;
-                AirportProfile.AirportSize size = (AirportProfile.AirportSize)cbSize.SelectedItem;
+                GeneralHelpers.Size size = (GeneralHelpers.Size)cbSize.SelectedItem;
                 AirportProfile.AirportType type = (AirportProfile.AirportType)cbType.SelectedItem;
                 string town = txtTown.Text;
                 int gates = Convert.ToInt16(txtGates.Text);

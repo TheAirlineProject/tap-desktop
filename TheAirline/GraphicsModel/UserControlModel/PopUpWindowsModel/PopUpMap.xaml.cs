@@ -180,7 +180,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel sidePanel = new StackPanel();
             sidePanel.Margin = new Thickness(5, 0, 0, 0);
 
-            foreach (AirportProfile.AirportSize size in Enum.GetValues(typeof(AirportProfile.AirportSize)))
+            foreach (GeneralHelpers.Size size in Enum.GetValues(typeof(GeneralHelpers.Size)))
             {
                 WrapPanel panelSize = new WrapPanel();
                 panelSize.Margin = new Thickness(0, 5, 0, 5);
@@ -228,23 +228,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
 
         //returns the color for a specific airport size
-        private Color getSizeColor(AirportProfile.AirportSize size)
+        private Color getSizeColor(GeneralHelpers.Size size)
         {
             switch (size)
             {
-                case AirportProfile.AirportSize.Large:
+                case GeneralHelpers.Size.Large:
                     return Colors.DarkBlue;
-                case AirportProfile.AirportSize.Largest:
+                case GeneralHelpers.Size.Largest:
                     return Colors.DarkRed;
-                case AirportProfile.AirportSize.Medium:
+                case GeneralHelpers.Size.Medium:
                     return Colors.Black;
-                case AirportProfile.AirportSize.Small:
+                case GeneralHelpers.Size.Small:
                     return Colors.White;
-                case AirportProfile.AirportSize.Smallest:
+                case GeneralHelpers.Size.Smallest:
                     return Colors.Gray;
-                case AirportProfile.AirportSize.Very_large:
+                case GeneralHelpers.Size.Very_large:
                     return Colors.Yellow;
-                case AirportProfile.AirportSize.Very_small:
+                case GeneralHelpers.Size.Very_small:
                     return Colors.Violet;
             }
             return Colors.DarkRed;

@@ -13,8 +13,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     public class FlightAirlinerClass
     {
         public RouteAirlinerClass AirlinerClass { get; set; }
-        public List<Passenger> Passengers { get; set; }
-        public FlightAirlinerClass(RouteAirlinerClass aClass, List<Passenger> passengers)
+        public int Passengers { get; set; }
+        public FlightAirlinerClass(RouteAirlinerClass aClass, int passengers)
         {
             this.AirlinerClass = aClass;
             this.Passengers = passengers;

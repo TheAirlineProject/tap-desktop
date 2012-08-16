@@ -607,6 +607,7 @@
     <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\TemporaryCountry.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
+    <Compile Include="Model\PassengerModel\DestinationPassengers.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
     <Compile Include="Model\PassengerModel\PassengersTimer.cs" />

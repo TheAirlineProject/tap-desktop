@@ -17,6 +17,8 @@ namespace TheAirline.Model.GeneralModel
     public class GeneralHelpers
     {
         public enum GameSpeedValue { Slowest = 700, Slow = 550, Normal = 400, Fast = 250, Fastest = 100 }
+        public enum Size { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
+        public enum Rate { None, Fewest, Few, Below_average,Above_average, Many, Most }
         public static string BigMapXaml;
         // chs, 2011-17-11 changed for showing departures and arrivals from one airport to another
         //returns the list of arrivals or departures from one airport to another

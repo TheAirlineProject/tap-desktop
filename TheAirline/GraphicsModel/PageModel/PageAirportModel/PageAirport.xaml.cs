@@ -195,7 +195,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
+            lbPassengers.ItemTemplate = this.Resources["PassengersItem2"] as DataTemplate;
             lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
             panelPassengers.Children.Add(lbPassengers);
 
@@ -213,6 +213,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             lbPassengers.Items.Clear();
 
+            var airports = Airports.GetAirports(a => a != this.Airport).OrderByDescending(a=>this.Airport.getDestinationPassengersRate(a,AirlinerClass.ClassType.Economy_Class));
+      
+            foreach (Airport airport in airports)
+            {
+                DestinationPassengers passengers = this.Airport.DestinationPassengers.Find(d => d.Destination == airport); //+545lenght-1
+
+                if (passengers == null)
+                    lbPassengers.Items.Add(new DestinationPassengers(airport, GeneralHelpers.Rate.None));
+                else
+                    lbPassengers.Items.Add(passengers);
+             }
+            /*
             var passengersGroup =
           from p in this.Airport.getPassengers()
           group p by p.Destination into g
@@ -223,6 +235,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 lbPassengers.Items.Add(new GameKeyValuePair<Airport, Airport>(this.Airport, g.Destination));// new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
 
             }
+             * */
+
 
             
         }
@@ -448,7 +462,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
                 if (parameter.ToString() == "A")
                 {
-                    return airportPair.Key.getPassengers(airportPair.Value).Sum(p => p.Factor);
+                    return "";// airportPair.Key.getPassengers(airportPair.Value).Sum(p => p.Factor);
                 }
                 else
                 {
@@ -460,7 +474,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                     if (parameter.ToString() == "F")
                         pClass = AirlinerClass.ClassType.First_Class;
 
-                    return airportPair.Key.getPassengers(airportPair.Value).FindAll(p => p.PreferedClass == pClass).Sum(p => p.Factor);
+                    return "";// airportPair.Key.getPassengers(airportPair.Value).FindAll(p => p.PreferedClass == pClass).Sum(p => p.Factor);
 
                 }
             }

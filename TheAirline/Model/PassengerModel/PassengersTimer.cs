@@ -32,13 +32,13 @@ namespace TheAirline.Model.PassengerModel
             int i = 0;
             while (!this.Worker.CancellationPending && i<100 && Passengers.Count() < Passengers.GetMaxPassengers())
             {
-                PassengerHelpers.CreatePassengers(1);
+                //PassengerHelpers.CreatePassengers(1);
 
                 i++;
             }
 
-            if (!this.Worker.CancellationPending)
-                PassengerHelpers.UpdatePassengers();
+            //if (!this.Worker.CancellationPending)
+              //  PassengerHelpers.UpdatePassengers();
 
          
            
@@ -64,8 +64,11 @@ namespace TheAirline.Model.PassengerModel
         //starts the worker 
         public void start()
         {
+            PassengerHelpers.CreateDestinationPassengers();
+            /*
             if (!this.Worker.IsBusy)
                 this.Worker.RunWorkerAsync();
+             * */
         }
         //returns if the worker is busy
         public Boolean isBusy()
