@@ -267,7 +267,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Route route = GetNextRoute(airliner);
                 airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
-                //airliner.CurrentFlight = new Flight(airliner.Route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
             }
             double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
@@ -509,6 +508,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
+            //the statistics for destination airport
+            dept.addDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
+
             Airline airline = airliner.Airliner.Airline;
 
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Flight_Expenses, -expenses);
@@ -545,8 +547,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
             {
                 FlightAirlinerClass faClass = airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type);
-                //Ændres - faClass.Passengers.ForEach(p => PassengerHelpers.UpdateLandedPassenger(p, dest));
-
+   
             }
 
             CreatePassengersHappiness(airliner);
@@ -659,14 +660,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return PassengerHelpers.GetFlightPassengers(airliner, type);
         }
-        /*
-        //returns the passengers for an airliner
-        public static List<Passenger> GetPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
-        {
-            return PassengerHelpers.GetFlightPassengers(airliner, type);
-        }
-         * */
-        //returns the next route for an airliner 
+         //returns the next route for an airliner 
         private static Route GetNextRoute(FleetAirliner airliner)
         {
 

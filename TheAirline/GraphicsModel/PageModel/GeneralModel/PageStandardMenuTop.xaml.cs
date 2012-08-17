@@ -111,8 +111,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                PassengersTimer.GetInstance().cancel();
-                GameObject.RestartInstance();
+                 GameObject.RestartInstance();
                 GameTimer.RestartInstance();
                 Setup.SetupGame();
                 PageNavigator.NavigateTo(new PageNewGame());
@@ -179,12 +178,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 {
                     fileName = f.Value;
                 }
-                PassengersTimer.GetInstance().cancel();
-
-                while (!PassengersTimer.GetInstance().isFinished())
-                {
-                }
-
+                
                 LoadSaveHelpers.SaveGame(fileName);
 
             }
@@ -205,11 +199,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 if (file != null)
                 {
 
-                    PassengersTimer.GetInstance().cancel();
-
-                    while (!PassengersTimer.GetInstance().isFinished())
-                    {
-                    }
+                   
                     LoadSaveHelpers.LoadGame(file);
 
                     PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));

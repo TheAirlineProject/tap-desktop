@@ -83,13 +83,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             {
                 txtWind.Text = string.Format("{0} ({1:0.##} {2} in {3} direction)", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather.WindSpeed, null, null, null), new NumberToUnitConverter().Convert((int)this.Airport.Weather.WindSpeed), new StringToLanguageConverter().Convert("km/t"), this.Airport.Weather.Direction);
 
-                //showFlights();
-
+       
                 GameTimeZone tz = this.Airport.Profile.TimeZone;
 
                 txtLocalTime.Text = string.Format("{0} {1}", MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, tz).ToShortTimeString(), tz.ShortName);
 
-              //  showPassengers();
+         
             }
         }
 
@@ -195,7 +194,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbPassengers.ItemTemplate = this.Resources["PassengersItem2"] as DataTemplate;
+            lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
             lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
             panelPassengers.Children.Add(lbPassengers);
 
@@ -217,25 +216,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
       
             foreach (Airport airport in airports)
             {
-                DestinationPassengers passengers = this.Airport.DestinationPassengers.Find(d => d.Destination == airport); //+545lenght-1
+                DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport);
 
                 if (passengers == null)
                     lbPassengers.Items.Add(new DestinationPassengers(airport, GeneralHelpers.Rate.None));
                 else
                     lbPassengers.Items.Add(passengers);
              }
-            /*
-            var passengersGroup =
-          from p in this.Airport.getPassengers()
-          group p by p.Destination into g
-          select new { Destination = g.Key, Numbers = g };
-
-            foreach (var g in passengersGroup.OrderByDescending(a => a.Numbers.ToList().Sum(p => p.Factor)))
-            {
-                lbPassengers.Items.Add(new GameKeyValuePair<Airport, Airport>(this.Airport, g.Destination));// new QuickInfoValue(g.Destination.Profile.IATACode,UICreator.CreateTextBlock(string.Format("{0}",g.Numbers.ToList().Sum(p=>p.Factor).ToString()))));
-
-            }
-             * */
+          
 
 
             
@@ -451,40 +439,5 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
       
 
     }
-    //the converter for getting the number of passengers for an airport
-    public class AirportPassengersConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            if (value != null)
-            {
-                GameKeyValuePair<Airport, Airport> airportPair = (GameKeyValuePair<Airport, Airport>)value;
-
-                if (parameter.ToString() == "A")
-                {
-                    return "";// airportPair.Key.getPassengers(airportPair.Value).Sum(p => p.Factor);
-                }
-                else
-                {
-                    AirlinerClass.ClassType pClass = AirlinerClass.ClassType.Economy_Class;
-                    if (parameter.ToString() == "B")
-                        pClass = AirlinerClass.ClassType.Business_Class;
-                    if (parameter.ToString() == "E")
-                        pClass = AirlinerClass.ClassType.Economy_Class;
-                    if (parameter.ToString() == "F")
-                        pClass = AirlinerClass.ClassType.First_Class;
-
-                    return "";// airportPair.Key.getPassengers(airportPair.Value).FindAll(p => p.PreferedClass == pClass).Sum(p => p.Factor);
-
-                }
-            }
-            return -1;
-          
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+   
 }

@@ -30,7 +30,7 @@ namespace TheAirline.Model.PassengerModel
             this.IsFinished = false;
 
             int i = 0;
-            while (!this.Worker.CancellationPending && i<100 && Passengers.Count() < Passengers.GetMaxPassengers())
+            //while (!this.Worker.CancellationPending && i<100 && Passengers.Count() < Passengers.GetMaxPassengers())
             {
                 //PassengerHelpers.CreatePassengers(1);
 
@@ -56,11 +56,7 @@ namespace TheAirline.Model.PassengerModel
             return WorkerInstance;
         }
 
-        //cancels the worker
-        public void cancel()
-        {
-            this.Worker.CancelAsync();
-        }
+       
         //starts the worker 
         public void start()
         {
@@ -70,15 +66,6 @@ namespace TheAirline.Model.PassengerModel
                 this.Worker.RunWorkerAsync();
              * */
         }
-        //returns if the worker is busy
-        public Boolean isBusy()
-        {
-            return this.Worker.IsBusy;
-        }
-        //returns if the worker is finished
-        public Boolean isFinished()
-        {
-            return this.IsFinished;
-        }
+      
     }
 }

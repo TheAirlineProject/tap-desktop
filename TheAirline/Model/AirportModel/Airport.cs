@@ -16,11 +16,10 @@ namespace TheAirline.Model.AirportModel
     {
         public AirportProfile Profile { get; set; }
        // private List<Passenger> Passengers;
-        public List<DestinationPassengers> DestinationPassengers { get; set; }
-
+        private List<DestinationPassengers> DestinationPassengers { get; set; }
+        private Dictionary<Airport, long> DestinationStatistics { get; set; }
         private List<AirlineAirportFacility> Facilities;
         public AirportStatistics Statistics { get; set; }
-        //public Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>> Facilities { get; private set; }
         public Weather Weather { get; set; }
         public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
@@ -31,16 +30,16 @@ namespace TheAirline.Model.AirportModel
             this.Profile = profile;
          //   this.Passengers = new List<Passenger>();
             this.DestinationPassengers = new List<DestinationPassengers>();
-            //this.Facilities = new Dictionary<Airline, Dictionary<AirportFacility.FacilityType, AirportFacility>>();
             this.Facilities = new List<AirlineAirportFacility>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather();
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
             this.Hubs = new List<Hub>();
-          
+            this.DestinationStatistics = new Dictionary<Airport, long>();
 
          }
+
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
         {
@@ -55,34 +54,44 @@ namespace TheAirline.Model.AirportModel
         {
             return this.DestinationPassengers.Find(a => a.Destination == destination).Rate;
         }
-        /*
-        //clears the list of passengers
-        public void clearPassengers()
+        //adds a rate for a destination
+        public void addDestinationPassengersRate(DestinationPassengers passengers)
         {
-            this.Passengers = new List<Passenger>();
+            this.DestinationPassengers.Add(passengers);
+        }
+        //returns a destination passengers object
+        public DestinationPassengers getDestinationPassengersObject(Airport destination)
+        {
+            return this.DestinationPassengers.Find(a => a.Destination==destination);
+        }
+        //clears the destination passengers
+        public void clearDestinationPassengers()
+        {
+            this.DestinationPassengers.Clear();
+        }
+        //adds a number of passengers to destination to the statistics
+        public void addDestinationStatistics(Airport destination, long passengers)
+        {
+            if (!this.DestinationStatistics.ContainsKey(destination))
+                this.DestinationStatistics.Add(destination, passengers);
+            else
+                this.DestinationStatistics[destination] += passengers;
+
+        }
+        //clears the destination statistics
+        public void clearDestinationStatistics()
+        {
+            this.DestinationStatistics.Clear();
+        }
+        //returns the number of passengers to a destination
+        public long getDestinationStatistics(Airport destination)
+        {
+            if (this.DestinationStatistics.ContainsKey(destination))
+                return this.DestinationStatistics[destination];
+            else
+                return 0;
         }
        
-        //returns all passengers at the airport
-        public List<Passenger> getPassengers()
-        {
-            return this.Passengers;
-        }
-        //returns all passengers for a specific destination
-        public List<Passenger> getPassengers(Airport destination)
-        {
-            return this.Passengers.FindAll(p => p.Destination == destination || p.getNextRouteDestination(this)==destination);
-        }
-        //removes a passenger from the airport
-        public void removePassenger(Passenger passenger)
-        {
-            this.Passengers.Remove(passenger);
-        }
-        //adds a passenger to the airport
-        public void addPassenger(Passenger passenger)
-        {
-            this.Passengers.Add(passenger);
-        }
-        */
         //returns the price for a gate
         public long getGatePrice()
         {

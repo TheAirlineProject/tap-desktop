@@ -10,14 +10,14 @@
     <Page.Resources>
         <local:AirportDistanceConverter x:Key="airportDistanceConverter"></local:AirportDistanceConverter>
         <DataTemplate x:Key="AirportsHeader">
-            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush2}">
                 <TextBlock Text="Airport" VerticalAlignment="Bottom" Width="200" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="Distance" VerticalAlignment="Bottom" Width="75" FontWeight="Bold" TextAlignment="Center"></TextBlock>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="AirportItem">
             <WrapPanel>
-                <ContentControl ContentTemplate="{DynamicResource AirportLink}" Content="{Binding Value}" VerticalAlignment="Bottom" Width="200"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Value}" VerticalAlignment="Bottom" Width="200"></ContentControl>
                 <TextBlock Width="75" TextAlignment="Right" Text="{Binding Converter={StaticResource airportDistanceConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>

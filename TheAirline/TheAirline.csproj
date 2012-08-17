@@ -173,6 +173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportTraffic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirportsModel\PageAirports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -422,6 +426,9 @@
     <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportStatistics.xaml.cs">
       <DependentUpon>PageAirportStatistics.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportTraffic.xaml.cs">
+      <DependentUpon>PageAirportTraffic.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PanelAirport.cs" />
     <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PageAirports.xaml.cs">
       <DependentUpon>PageAirports.xaml</DependentUpon>
@@ -619,7 +626,6 @@
     <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsValue.cs" />
     <Compile Include="Model\GeneralModel\Translator.cs" />
     <Compile Include="Model\GeneralModel\Weather.cs" />
-    <Compile Include="Model\PassengerModel\Passenger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
