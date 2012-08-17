@@ -12,6 +12,7 @@ namespace TheAirline.Model.PassengerModel
 * This is used for the timer for managing the passengers
 * The class needs no parameters
 */
+    /*
     public class PassengersTimer
     {
         private static PassengersTimer WorkerInstance;
@@ -64,8 +65,9 @@ namespace TheAirline.Model.PassengerModel
             /*
             if (!this.Worker.IsBusy)
                 this.Worker.RunWorkerAsync();
-             * */
+          
         }
-      
+        
     }
+   * */
 }

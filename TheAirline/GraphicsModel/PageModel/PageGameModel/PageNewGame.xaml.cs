@@ -325,7 +325,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 PageNavigator.ClearNavigator();
 
                 GameTimer.GetInstance().start();
-                PassengersTimer.GetInstance().start();
+                PassengerHelpers.CreateDestinationPassengers();
 
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }

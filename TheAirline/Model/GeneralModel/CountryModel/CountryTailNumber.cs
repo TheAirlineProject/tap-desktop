@@ -72,7 +72,7 @@ namespace TheAirline.Model.GeneralModel
                     else
                         i++;
                 }
-
+                
                 char replaceChar = lastCode[lastCode.Length - 1 - i];
                 replaceChar++;
 
@@ -95,15 +95,31 @@ namespace TheAirline.Model.GeneralModel
                 int sLenght = Convert.ToInt16(numberFormat.Substring(numberFormat.IndexOf('s') + 1, 1));
                 if (LastTailNumber == null)
                 {
-                    this.LastTailNumber = countryID + "-" + getTailNumber(0, dLenght) + getTailNumber(null, sLenght);
+                    if (dLenght < sLenght)
+                        this.LastTailNumber = countryID + "-" + getTailNumber(0, dLenght) + getTailNumber(null, sLenght);
+                    else
+                        this.LastTailNumber = countryID + "-" + getTailNumber(null, sLenght) + getTailNumber(0, dLenght);
                 }
                 else
                 {
-                    string lastCode = this.LastTailNumber.Split('-')[1].Substring(dLenght, sLenght);
-                    int lastNumber = Convert.ToInt16(this.LastTailNumber.Split('-')[1].Substring(0, dLenght));
-                    string sNumber = getTailNumber(lastCode, sLenght);
-                    string dNumber = getTailNumber(lastNumber, dLenght);
-                    this.LastTailNumber = countryID + "-" + dNumber + sNumber;
+                    string t = this.LastTailNumber.Split('-')[1].Substring(0, dLenght);
+                    string s = this.LastTailNumber.Split('-')[1].Substring(sLenght, dLenght);
+                    string postfix = this.LastTailNumber.Split('-')[1];
+                    string lastCode = dLenght < sLenght ? this.LastTailNumber.Split('-')[1].Substring(dLenght, sLenght) : this.LastTailNumber.Split('-')[1].Substring(0, sLenght);
+                    
+                    int lastNumber = dLenght < sLenght ? Convert.ToInt16(t) : Convert.ToInt16(s);
+                    int number = lastNumber+1;
+
+                    int nLenght = number.ToString().Length;
+
+                    string sNumber = nLenght > dLenght ? getTailNumber(lastCode, sLenght) : lastCode;
+                    string dNumber = nLenght > dLenght ? getTailNumber(0,dLenght) : getTailNumber(number, dLenght);
+                    string code = getTailNumber(lastCode, sLenght);
+                    
+                    if (dLenght < sLenght)
+                        this.LastTailNumber = countryID + "-" + dNumber + sNumber;
+                    else
+                        this.LastTailNumber = countryID + "-" + sNumber + dNumber;
                 }
             }
             if (numberFormat.Contains("\\d") && !numberFormat.Contains("\\s"))

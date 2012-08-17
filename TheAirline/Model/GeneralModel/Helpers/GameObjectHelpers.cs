@@ -44,8 +44,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the daily update
         private static void DoDailyUpdate()
         {
-            PassengersTimer.GetInstance().start();
-
+           
             //checks for airport facilities for the human airline
             var humanAirportFacilities = (from f in GameObject.GetInstance().HumanAirline.Airports.SelectMany(a => a.getAirportFacilities(GameObject.GetInstance().HumanAirline)) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
 
