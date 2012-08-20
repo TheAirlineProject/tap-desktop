@@ -25,6 +25,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private Slider slGameSpeed;
         private TextBlock txtGameSpeed;
         private ComboBox cbLanguage;
+        private ComboBox cbTurnMinutes;
         private CheckBox cbMailOnLandings;
         private RadioButton[] rbAirportCodes;
         public PageSettings()
@@ -69,6 +70,18 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1001"),panelSpeed));
+
+            cbTurnMinutes = new ComboBox();
+            cbTurnMinutes.Width = 100;
+            cbTurnMinutes.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbTurnMinutes.Items.Add(15);
+            cbTurnMinutes.Items.Add(30);
+            cbTurnMinutes.Items.Add(60);
+
+            cbTurnMinutes.SelectedItem = 15;
+
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1006"),cbTurnMinutes));
+            
 
             cbLanguage = new ComboBox();
             cbLanguage.Width = 200;
@@ -172,6 +185,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
             cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
+            cbTurnMinutes.SelectedItem = Settings.GetInstance().MinutesPerTurn;
+            
         }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
@@ -186,6 +201,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Language language = (Language)cbLanguage.SelectedItem;
             AppSettings.GetInstance().setLanguage(language);
             Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;
+            Settings.GetInstance().MinutesPerTurn = (int)cbTurnMinutes.SelectedItem;
+
+           
 
             foreach (RadioButton rbAirportCode in rbAirportCodes)
             {

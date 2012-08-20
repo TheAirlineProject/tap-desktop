@@ -14,11 +14,13 @@ namespace TheAirline.Model.GeneralModel
         public AirportCode AirportCodeDisplay { get; set; }
         //the setting for receiving mails on landings
         public Boolean MailsOnLandings { get; set; }
-  
+        public int MinutesPerTurn { get; set; }
+
         private Settings()
         {
             this.AirportCodeDisplay = AirportCode.IATA;
             this.MailsOnLandings = false;
+            this.MinutesPerTurn = 15;
         }
         //returns the settings instance
         public static Settings GetInstance()

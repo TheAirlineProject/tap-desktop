@@ -88,7 +88,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return getEntries(day).Find((delegate(RouteTimeTableEntry entry) { return entry.Time >= startTime && entry.Time <= endTime; }));
         }
         //returns the next entry after a specific date and with a specific airliner
-        public RouteTimeTableEntry getNextEntry(DateTime time, FleetAirliner airliner)
+        public RouteTimeTableEntry getNextEntry(DateTime time, FleetAirliner airliner) 
         {
             DateTime dt = new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second);
 

@@ -137,6 +137,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new hub for an airline
         private static void CreateNewHub(Airline airline)
         {
+            
             List<Airport> airports = airline.Airports.FindAll(a => CanCreateHub(airline, a));
 
             if (airports.Count > 0)
@@ -366,7 +367,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder + 1)) / 110 == 0;
+            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder + 1)) / 1100 == 0;//ændres 1100->110
 
             if (newRoute)
             {

@@ -107,7 +107,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
-           
+
             Airlines.Clear();
 
             XmlNodeList airlinesList = root.SelectNodes("//airlines/airline");
@@ -219,7 +219,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
                     Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
 
-                    FleetAirliner fAirliner = new FleetAirliner(purchasedtype,purchasedDate, airline, airliner, fAirlinerName, homebase);
+                    FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, fAirlinerName, homebase);
                     fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
                     fAirliner.Status = status;
 
@@ -321,11 +321,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (XmlElement flightClassNode in flightClassList)
                     {
                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                        int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
-                                              
+                        int flightPassengers = 200;//Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+
                         currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
                     }
                     airliner.CurrentFlight = currentFlight;
+
                 }
 
 
@@ -411,14 +412,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     airport.addTerminal(terminal);
 
-                  
+
 
 
                 }
 
 
             }
-            
+
             XmlNodeList airportDestinationsList = root.SelectNodes("//airportdestinations/airportdestination");
 
             foreach (XmlElement airportDestinationElement in airportDestinationsList)
@@ -436,11 +437,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     targetAirport.addDestinationPassengersRate(new DestinationPassengers(destAirport, rate));
                 }
             }
-      
+
             Alliances.Clear();
 
             XmlNodeList alliancesList = root.SelectNodes("//alliances/alliance");
-            
+
             foreach (XmlElement allianceNode in alliancesList)
             {
                 string allianceName = allianceNode.Attributes["name"].Value;
@@ -470,7 +471,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Alliances.AddAlliance(alliance);
             }
-        
+
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
 
             GameObject.GetInstance().Name = gameSettingsNode.Attributes["name"].Value;
@@ -636,7 +637,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlElement passengersNode = xmlDoc.CreateElement("passengers");
 
-          
+
 
             XmlElement airlinesNode = xmlDoc.CreateElement("airlines");
             foreach (Airline airline in Airlines.GetAllAirlines())
@@ -752,7 +753,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     fleetAirlinerNode.SetAttribute("name", airliner.Name);
                     fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IATACode);
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
-                    fleetAirlinerNode.SetAttribute("date",airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
+                    fleetAirlinerNode.SetAttribute("date", airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
                     fleetAirlinerNode.SetAttribute("status", airliner.Status.ToString());
                     fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
                     fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());
@@ -850,8 +851,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
                             flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
-                            flightClassesNode.SetAttribute("passengers", aClass.Passengers.ToString());
-                       
+                            flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
+
                             flightClassesNode.AppendChild(flightClassNode);
                         }
                         flightNode.AppendChild(flightClassesNode);
@@ -950,7 +951,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 airportNode.AppendChild(terminalsNode);
 
-               
+
                 airportsNode.AppendChild(airportNode);
 
 
@@ -1005,7 +1006,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (PendingAllianceMember pending in alliance.PendingMembers)
                 {
-                    
+
                     XmlElement pendingNode = xmlDoc.CreateElement("pending");
                     pendingNode.SetAttribute("airline", pending.Airline.Profile.IATACode);
                     pendingNode.SetAttribute("date", pending.Date.ToString(new CultureInfo("de-DE")));
