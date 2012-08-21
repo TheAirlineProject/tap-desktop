@@ -16,7 +16,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
         private static Random rnd = new Random();
         private static DateTime LastTime;
-        //simulates a "turn" (one hour) now 1/4 hour
+        //simulates a "turn"
         public static void SimulateTurn()
         {
             GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);

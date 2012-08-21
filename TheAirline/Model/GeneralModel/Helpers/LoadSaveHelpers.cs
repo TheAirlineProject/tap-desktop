@@ -306,29 +306,33 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     FleetAirliner airliner = airline.Fleet.Find(a => a.Name == flightNode.Attributes["airliner"].Value);
                     Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
-                    string destination = flightNode.Attributes["destination"].Value;
-                    DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
-                    TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
-                    DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
 
-                    RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
-
-                    Flight currentFlight = new Flight(rtte);
-                    currentFlight.Classes.Clear();
-
-                    XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
-
-                    foreach (XmlElement flightClassNode in flightClassList)
+                    if (route != null)
                     {
-                        AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                        int flightPassengers = 200;//Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+                        string destination = flightNode.Attributes["destination"].Value;
+                        DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
+                        TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
+                        DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
 
-                        currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                        RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
+
+                        Flight currentFlight = new Flight(rtte);
+                        currentFlight.Classes.Clear();
+
+                        XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
+
+                        foreach (XmlElement flightClassNode in flightClassList)
+                        {
+                            AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
+                            int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+
+                            currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                        }
+                        airliner.CurrentFlight = currentFlight;
                     }
-                    airliner.CurrentFlight = currentFlight;
-
+                    else
+                        airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
                 }
-
 
 
                 Airlines.AddAirline(airline);
@@ -495,6 +499,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             SkinObject.GetInstance().setCurrentSkin(Skins.GetSkin(gameSettingsNode.Attributes["skin"].Value));
             Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)Enum.Parse(typeof(Settings.AirportCode), gameSettingsNode.Attributes["airportcode"].Value);
             GameTimer.GetInstance().setGameSpeed((GeneralHelpers.GameSpeedValue)Enum.Parse(typeof(GeneralHelpers.GameSpeedValue), gameSettingsNode.Attributes["gamespeed"].Value));
+            if (gameSettingsNode.HasAttribute("minutesperturn")) Settings.GetInstance().MinutesPerTurn = Convert.ToInt16(gameSettingsNode.Attributes["minutesperturn"].Value);
             AppSettings.GetInstance().setLanguage(Languages.GetLanguage(gameSettingsNode.Attributes["language"].Value));
 
             XmlNodeList newsList = gameSettingsNode.SelectNodes("news/new");
@@ -1030,6 +1035,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("skin", SkinObject.GetInstance().CurrentSkin.Name);
             gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());
             gameSettingsNode.SetAttribute("gamespeed", GameTimer.GetInstance().GameSpeed.ToString());
+            gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString());
             gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().getLanguage().Name);
 
             XmlElement newsNodes = xmlDoc.CreateElement("news");

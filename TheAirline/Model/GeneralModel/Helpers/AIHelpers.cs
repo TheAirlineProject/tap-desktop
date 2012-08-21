@@ -21,7 +21,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             CheckForNewHub(airline);
             CheckForNewRoute(airline);
             CheckForUpdateRoute(airline);
-            CheckForOrderOfAirliners(airline);
+            //CheckForOrderOfAirliners(airline);
             CheckForAirlinersWithoutRoutes(airline);
             CheckForAirlineAlliance(airline);
 

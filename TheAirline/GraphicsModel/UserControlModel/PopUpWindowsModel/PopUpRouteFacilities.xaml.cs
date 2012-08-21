@@ -191,7 +191,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void txtPrice_TextChanged(object sender, TextChangedEventArgs e)
         {
-            btnOk.IsEnabled = Convert.ToDouble(txtPrice.Text) < 10000 && Convert.ToDouble(txtPrice.Text)>0 ? true : false; 
+            btnOk.IsEnabled = Convert.ToDouble(txtPrice.Text) < 100000 && Convert.ToDouble(txtPrice.Text)>0 ? true : false; 
     
         }
 
