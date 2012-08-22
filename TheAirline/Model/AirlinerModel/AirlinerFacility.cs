@@ -12,7 +12,8 @@ namespace TheAirline.Model.AirlinerModel
         public static string Section { get; set; }
         public string Uid { get; set; }
         public enum FacilityType { Audio, Video, Seat }
-        public double PricePerSeat { get; set; }
+        private double APricePerSeat;
+        public double PricePerSeat { get { return GeneralHelpers.GetInflationPrice(this.APricePerSeat); } set { this.APricePerSeat = value; } }
         public double PercentOfSeats { get; set; }
         public FacilityType Type { get; set; }
         public int ServiceLevel { get; set; }

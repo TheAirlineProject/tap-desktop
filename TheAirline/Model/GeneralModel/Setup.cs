@@ -54,6 +54,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirliners();
                 LoadAirlinerFacilities();
                 LoadFlightRestrictions();
+                LoadInflationYears();
 
                 SetupStatisticsTypes();
 
@@ -97,6 +98,7 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.Clear();
             Alliances.Clear();
             FlightRestrictions.Clear();
+            Inflations.Clear();
         }
         /*! creates the Advertisement types
          */
@@ -150,7 +152,29 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("New Zealand Standard Time", "NZST", new TimeSpan(12, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Tonga Standard Time", "TST", new TimeSpan(13, 0, 0)));
         }
+        /*! loads the inflation years
+         */
+        private static void LoadInflationYears()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\inflations.xml");
+            XmlElement root = doc.DocumentElement;
 
+            XmlNodeList inflationsList = root.SelectNodes("//inflation");
+
+            foreach (XmlElement element in inflationsList)
+            {
+                int year = Convert.ToInt16(element.Attributes["year"].Value);
+                double fuelprice = Convert.ToDouble(element.Attributes["fuelprice"].Value);
+                double inflation = Convert.ToDouble(element.Attributes["inflation"].Value);
+                double modifier = Convert.ToDouble(element.Attributes["pricemodifier"].Value);
+
+                Inflations.AddInflationYear(new Inflation(year, fuelprice, inflation, modifier));
+
+            }
+
+              
+        }
         /*! loads the airline facilities.
          */
         private static void LoadAirlineFacilities()

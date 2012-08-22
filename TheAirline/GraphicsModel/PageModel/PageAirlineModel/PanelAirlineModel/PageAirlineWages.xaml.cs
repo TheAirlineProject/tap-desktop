@@ -39,8 +39,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             FeeTypes.GetTypes().ForEach(f => this.FeeValues.Add(f, this.Airline.Fees.getValue(f)));
 
             StackPanel panelWagesAndEmployees = new StackPanel();
-            //panelWagesAndEmployees.Margin = new Thickness(0, 10, 50, 0);
-
+          
             WrapPanel panelMenuButtons = new WrapPanel();
             panelWagesAndEmployees.Children.Add(panelMenuButtons);
 

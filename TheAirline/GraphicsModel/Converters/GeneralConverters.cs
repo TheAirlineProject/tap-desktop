@@ -384,6 +384,22 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
+    //converter for a price based on the inflation
+    public class PriceInflationConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            long price = System.Convert.ToInt64(value);
+
+            return GeneralHelpers.GetInflationPrice(price);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //converter for a time span to string based on selected language
     public class TimeSpanConverter : IValueConverter
     {

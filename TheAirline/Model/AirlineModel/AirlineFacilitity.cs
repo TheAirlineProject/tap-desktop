@@ -11,7 +11,8 @@ namespace TheAirline.Model.AirlineModel
     {
         public static string Section { get; set; }
         public string Uid { get; set; }
-        public double Price { get; set; }
+        private double APrice;
+        public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
         public double MonthlyCost { get; set; }
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 

@@ -13,7 +13,7 @@
         <c:CultureInfoConverter x:Key="cultureInfoConverter"></c:CultureInfoConverter>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
-        <DataTemplate x:Key="ManufacturerItem">
+          <DataTemplate x:Key="ManufacturerItem">
             <WrapPanel>
                 <WrapPanel Width="250">
                 <Image Source="{Binding Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="32" Height="32" Margin="2 0 5 0"></Image>

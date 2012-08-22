@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -14,7 +15,8 @@ namespace TheAirline.Model.AirlineModel
         public enum AirlineAdvertisementType { Newspaper=1930, Radio=1940, TV=1950, Internet=1995 }
         public AirlineAdvertisementType Type { get; set; }
         public string Name { get; set; }
-        public double Price { get; set; }
+        private double APrice;
+        public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
         public int ReputationLevel { get; set; }
         public AdvertisementType(AirlineAdvertisementType type, string name, double price, int reputationLevel)
         {

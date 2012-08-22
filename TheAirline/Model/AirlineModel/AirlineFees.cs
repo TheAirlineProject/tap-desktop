@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -17,7 +18,7 @@ namespace TheAirline.Model.AirlineModel
             this.Fees = new Dictionary<FeeType, double>();
 
             foreach (FeeType type in FeeTypes.GetTypes())
-                this.Fees.Add(type, type.DefaultValue);
+                this.Fees.Add(type, GeneralHelpers.GetInflationPrice(type.DefaultValue));
 
         }
         //returns the value of a specific fee type

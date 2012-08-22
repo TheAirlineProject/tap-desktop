@@ -30,11 +30,9 @@ namespace TheAirline.Model.GeneralModel
         //returns the start money based on year of start
         private long getStartMoney()
         {
-            long startMoney = 100000000;
+            long baseStartMoney = 100000000;
 
-            int age = DateTime.Now.Year - this.GameTime.Year;
-
-            return startMoney - 1500000 * age;
+            return GeneralHelpers.GetInflationPrice(baseStartMoney);
         }
 
         //returns the game instance

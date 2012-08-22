@@ -9,7 +9,7 @@
 	Title="PageAirlineFacilities">
     <Page.Resources>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
-        <DataTemplate x:Key="AdvertisementItem">
+         <DataTemplate x:Key="AdvertisementItem">
             <StackPanel>
                 <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Price, StringFormat=Price per month: {0:c}}" VerticalAlignment="Bottom" FontStyle="Italic" x:Name="ColumnPrice"></TextBlock>
@@ -41,7 +41,7 @@
                 <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="ButtonAdd_Click" Background="Transparent">
                     <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
-                <TextBlock Text="{Binding MonthlyCost, StringFormat=Price per month: {0:c}}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding MonthlyCost,Converter={StaticResource priceInflationConverter}, StringFormat=Price per month: {0:c}}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
 
             </WrapPanel>
         </DataTemplate>
