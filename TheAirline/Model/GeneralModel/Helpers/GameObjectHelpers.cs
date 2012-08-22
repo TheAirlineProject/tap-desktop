@@ -70,7 +70,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             LastTime = DateTime.Now;
             //changes the fuel prices 
             double fuelDiff = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year+1).FuelPrice - Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
-            double fuelPrice = (rnd.NextDouble() * fuelDiff)-(fuelDiff/4);
+            double fuelPrice = (rnd.NextDouble() * (fuelDiff/4));
 
             GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice+fuelPrice;
             //checks for new airliner types for purchase

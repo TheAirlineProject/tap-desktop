@@ -18,6 +18,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.Converters;
 using System.Globalization;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -139,6 +140,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             buttonsPanel.Children.Add(btnOk);
 
+            Button btnAutoGenerate = new Button();
+            btnAutoGenerate.Uid = "112";
+            btnAutoGenerate.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnAutoGenerate.Height = Double.NaN;
+            btnAutoGenerate.Width = Double.NaN;
+            btnAutoGenerate.Margin = new Thickness(5, 0, 0, 0);
+            btnAutoGenerate.Content = Translator.GetInstance().GetString("General", btnAutoGenerate.Uid);
+            btnAutoGenerate.Click += new RoutedEventHandler(btnAutoGenerate_Click);
+            btnAutoGenerate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+
+            btnAutoGenerate.IsEnabled = cbRoute.Items.Count > 0;
+
+
+            buttonsPanel.Children.Add(btnAutoGenerate);
+
             Button btnCancel = new Button();
             btnCancel.Uid = "101";
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -177,6 +193,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             return buttonsPanel;
         }
+
+       
         //creates the panel for adding a new entry
         private StackPanel createNewEntryPanel()
         {
@@ -270,7 +288,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnAdd.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             btnAdd.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
-
+           
             entryPanel.Children.Add(btnAdd);
 
             txtFlightTime = new TextBlock();
@@ -366,6 +384,29 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             return brdDay;
         }
+        //clears the time table
+        private void clearTimeTable()
+        {
+            this.Entries.Clear();
+
+            foreach (Route r in this.Airliner.Routes)
+            {
+                foreach (RouteTimeTableEntry entry in r.TimeTable.Entries)
+                {
+                    if (!this.EntriesToDelete.ContainsKey(r))
+                    {
+                        this.EntriesToDelete.Add(r, new List<RouteTimeTableEntry>());
+                        this.EntriesToDelete[r].Add(entry);
+                    }
+                    else
+                    {
+                        if (!this.EntriesToDelete[r].Contains(entry))
+                            this.EntriesToDelete[r].Add(entry);
+                    }
+                }
+
+            }
+        }
         //checks if an entry is valid
         private Boolean isRouteEntryValid(RouteTimeTableEntry entry, Boolean showMessageBoxOnError)
         {
@@ -403,10 +444,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                         if (showMessageBoxOnError)
                         {
                             if (e.Airliner == this.Airliner)
-                                WPFMessageBox.Show("Already in route", "The plane is already in route at that time", WPFMessageBoxButtons.Ok);
+                                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2702"), string.Format(Translator.GetInstance().GetString("MessageBox", "2702", "message")), WPFMessageBoxButtons.Ok);
                             else
                             {
-                                WPFMessageBox.Show("Already in route", "The route do already has an airliner at that time", WPFMessageBoxButtons.Ok);
+                                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2703"), string.Format(Translator.GetInstance().GetString("MessageBox", "2703", "message")), WPFMessageBoxButtons.Ok);
                             }
                         }
 
@@ -440,7 +481,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 else
                 {
                     if (showMessageBoxOnError)
-                        WPFMessageBox.Show("Not matching", "The plane can't reach the destination from this entry", WPFMessageBoxButtons.Ok);
+                        WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2704"), string.Format(Translator.GetInstance().GetString("MessageBox", "2704", "message")), WPFMessageBoxButtons.Ok);
 
                     return false;
                 }
@@ -537,6 +578,30 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             }
         }
+        private void btnAutoGenerate_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBoxItem item = (ComboBoxItem)cbRoute.SelectedItem;
+
+            Route route = ((KeyValuePair<Route, Airport>)item.Tag).Key;
+                       
+               // check hvis den kan laves (frie Gates)
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2701"), string.Format(Translator.GetInstance().GetString("MessageBox", "2701", "message"),route.Destination1.Profile.Name, route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+
+                clearTimeTable();
+
+                AIHelpers.CreateRouteTimeTable(route, this.Airliner);
+
+                if (!this.Airliner.Routes.Contains(route))
+                    this.Airliner.addRoute(route);
+
+                showFlights();
+            }
+
+        }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             ComboBoxItem item = (ComboBoxItem)cbRoute.SelectedItem;
@@ -592,25 +657,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnClear_Click(object sender, RoutedEventArgs e)
         {
-            this.Entries.Clear();
-
-            foreach (Route route in this.Airliner.Routes)
-            {
-                foreach (RouteTimeTableEntry entry in route.TimeTable.Entries)
-                {
-                    if (!this.EntriesToDelete.ContainsKey(route))
-                    {
-                        this.EntriesToDelete.Add(route, new List<RouteTimeTableEntry>());
-                        this.EntriesToDelete[route].Add(entry);
-                    }
-                    else
-                    {
-                        if (!this.EntriesToDelete[route].Contains(entry))
-                            this.EntriesToDelete[route].Add(entry);
-                    }
-                }
-                    
-            }
+            clearTimeTable();
 
             showFlights();
 
