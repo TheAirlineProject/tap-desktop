@@ -23,7 +23,7 @@ namespace TheAirline.Model.GeneralModel
     //the list of inflation years
     public class Inflations
     {
-        public static int BaseYear = 2011;
+        public static int BaseYear = 1960;
         private static List<Inflation> inflations = new List<Inflation>();
         //adds an inflation year to the list
         public static void AddInflationYear(Inflation inflation)
