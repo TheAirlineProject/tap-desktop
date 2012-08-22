@@ -44,9 +44,7 @@ namespace TheAirline.Model.AirlineModel
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new List<Invoice>();
             this.Profile = profile;
-            this.Money = GameObject.GetInstance().StartMoney;
-            this.Fees = new AirlineFees();
-            this.Loans = new List<Loan>();
+             this.Loans = new List<Loan>();
             this.Reputation = 50;
             this.Alliances = new List<Alliance>();
 

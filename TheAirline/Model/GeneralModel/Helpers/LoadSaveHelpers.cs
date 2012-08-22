@@ -519,6 +519,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 GameObject.GetInstance().NewsBox.addNews(news);
 
+
             }
             foreach (Airline airline in Airlines.GetAllAirlines())
             {

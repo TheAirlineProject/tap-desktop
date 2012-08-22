@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -13,10 +14,13 @@ namespace TheAirline.Model.AirlineModel
     {
         public enum eFeeType { Fee, Wage, FoodDrinks }
         public eFeeType Type { get; set; }
-        public double MinValue { get; set; }
-        public double MaxValue { get; set; }
+        private double AMinValue;
+        public double MinValue { get { return GeneralHelpers.GetInflationPrice(this.AMinValue); } set { this.AMinValue = value; } }
+        private double AMaxValue;
+        public double MaxValue { get { return GeneralHelpers.GetInflationPrice(this.AMaxValue); } set { this.AMaxValue = value; } }
         public string Name { get; set; }
-        public double DefaultValue { get; set; }
+        private double ADefaultValue;
+        public double DefaultValue { get { return GeneralHelpers.GetInflationPrice(this.ADefaultValue); } set { this.ADefaultValue = value; } }
         public int Percentage { get; set; }
         public FeeType(eFeeType type, string name, double defaultValue, double minValue, double maxValue, int percentage)
         {

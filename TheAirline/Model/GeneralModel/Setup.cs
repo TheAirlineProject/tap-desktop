@@ -815,6 +815,8 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 airline.Money = GameObject.GetInstance().StartMoney;
+                airline.Fees = new AirlineFees();
+
                 if (!airline.IsHuman)
                     CreateComputerRoutes(airline);
                 // chs, 2011-24-10 changed so the human starts with an airport with home base facilities

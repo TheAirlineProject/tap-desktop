@@ -18,7 +18,7 @@ namespace TheAirline.Model.AirlineModel
             this.Fees = new Dictionary<FeeType, double>();
 
             foreach (FeeType type in FeeTypes.GetTypes())
-                this.Fees.Add(type, GeneralHelpers.GetInflationPrice(type.DefaultValue));
+                this.Fees.Add(type, type.DefaultValue);
 
         }
         //returns the value of a specific fee type

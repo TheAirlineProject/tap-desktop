@@ -315,7 +315,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility,GameObject.GetInstance().GameTime);
 
-
                 Setup.CreateAirliners();
 
                 Setup.SetupTestGame(opponents);
