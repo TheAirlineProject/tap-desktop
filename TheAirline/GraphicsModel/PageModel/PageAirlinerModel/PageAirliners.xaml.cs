@@ -76,7 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             lbManufacturers.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             lbManufacturers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime.Year && a.Produced.To >= GameObject.GetInstance().GameTime.Year orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => lbManufacturers.Items.Add(m));
+            (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => lbManufacturers.Items.Add(m));
             panelScroller.Children.Add(lbManufacturers);
 
             TextBlock txtUsedHeader = new TextBlock();

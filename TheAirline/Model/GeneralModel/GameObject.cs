@@ -22,8 +22,7 @@ namespace TheAirline.Model.GeneralModel
         {
             this.GameTime = new DateTime(2007, 12, 31, 10, 0, 0);
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
-            this.FuelPrice = 1.142;
-
+           
             this.NewsBox = new NewsBox();
         }
 

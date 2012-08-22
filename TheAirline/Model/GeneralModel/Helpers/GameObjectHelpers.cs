@@ -68,6 +68,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: "+ totalAirlinersOnRoute);
 
             LastTime = DateTime.Now;
+            //changes the fuel prices 
+            double fuelDiff = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year+1).FuelPrice - Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
+            double fuelPrice = (rnd.NextDouble() * fuelDiff)-(fuelDiff/4);
+
+            GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice+fuelPrice;
+            //checks for new airliner types for purchase
+            foreach (AirlinerType aType in AirlinerTypes.GetTypes(a=>a.Produced.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News,GameObject.GetInstance().GameTime,"New airliner type available", string.Format("{0} has finished the design of {1} and it is now available for purchase",aType.Manufacturer.Name,aType.Name)));
+            
+            //checks for airliner types which are out of production
+            foreach (AirlinerType aType in AirlinerTypes.GetTypes(a=>a.Produced.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "Airliner type out of production", string.Format("{0} has taken {1} out of production", aType.Manufacturer.Name, aType.Name)));
+          
             //checks for airport facilities for the human airline
             var humanAirportFacilities = (from f in GameObject.GetInstance().HumanAirline.Airports.SelectMany(a => a.getAirportFacilities(GameObject.GetInstance().HumanAirline)) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
 
@@ -110,6 +123,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Flight restriction", restrictionNewsText));
 
             }
+            //
             //updates airports
             foreach (Airport airport in Airports.GetAllAirports())
             {

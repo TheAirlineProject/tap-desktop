@@ -618,7 +618,6 @@
     <Compile Include="Model\PassengerModel\DestinationPassengers.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
-    <Compile Include="Model\PassengerModel\PassengersTimer.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\Region.cs" />
     <Compile Include="Model\GeneralModel\Settings.cs" />
     <Compile Include="Model\GeneralModel\Setup.cs" />

@@ -92,17 +92,14 @@ namespace TheAirline.Model.AirlinerModel
     //the class for a production period (year from - year to)
     public class ProductionPeriod
     {
-        public int From { get; set; }
-        public int To { get; set; }
-        public ProductionPeriod(int from, int to)
+        public DateTime From { get; set; }
+        public DateTime To { get; set; }
+        public ProductionPeriod(DateTime from, DateTime to)
         {
             this.From = from;
             this.To = to;
         }
-        public override string ToString()
-        {
-            return string.Format("{0}-{1}", this.From > GameObject.GetInstance().GameTime.Year ? "?" : this.From.ToString(), this.To > GameObject.GetInstance().GameTime.Year ? "?" : this.To.ToString());
-        }
+       
     }
     //the collection of airliner types
     public class AirlinerTypes

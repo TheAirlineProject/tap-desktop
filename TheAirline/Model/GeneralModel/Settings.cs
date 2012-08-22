@@ -20,7 +20,7 @@ namespace TheAirline.Model.GeneralModel
         {
             this.AirportCodeDisplay = AirportCode.IATA;
             this.MailsOnLandings = false;
-            this.MinutesPerTurn = 15;
+            this.MinutesPerTurn = 60;
         }
         //returns the settings instance
         public static Settings GetInstance()

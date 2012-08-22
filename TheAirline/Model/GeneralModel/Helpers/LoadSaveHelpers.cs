@@ -196,14 +196,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airline.setAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
                 }
                 // chs, 2011-17-10 added for loading of fees
+                AirlineFees fees = new AirlineFees();
+                
                 XmlNodeList airlineFeeList = airlineNode.SelectNodes("fees/fee");
                 foreach (XmlElement feeNode in airlineFeeList)
                 {
                     string feeType = feeNode.Attributes["type"].Value;
                     double feeValue = Convert.ToDouble(feeNode.Attributes["value"].Value);
 
-                    airline.Fees.setValue(FeeTypes.GetType(feeType), feeValue);
+                    fees.setValue(FeeTypes.GetType(feeType), feeValue);
                 }
+
+                airline.Fees = fees;
 
                 XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
 
@@ -521,6 +525,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
+            
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (Route route in airline.Routes)
@@ -530,6 +535,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
             }
+             
 
 
         }

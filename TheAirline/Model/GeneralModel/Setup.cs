@@ -256,7 +256,7 @@ namespace TheAirline.Model.GeneralModel
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
-                    Console.WriteLine(file.FullName);
+
                     LoadAirliners(file.FullName);
 
                 }
@@ -303,8 +303,11 @@ namespace TheAirline.Model.GeneralModel
                 XmlElement capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
 
                 XmlElement producedElement = (XmlElement)airliner.SelectSingleNode("produced");
-                int from = Convert.ToInt16(producedElement.Attributes["from"].Value);
-                int to = Convert.ToInt16(producedElement.Attributes["to"].Value);
+                int fromYear = Convert.ToInt16(producedElement.Attributes["from"].Value);
+                int toYear = Convert.ToInt16(producedElement.Attributes["to"].Value);
+
+                DateTime from = new DateTime(fromYear, 1, 2);
+                DateTime to = new DateTime(toYear, 12, 31);
 
                 if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
                 {
@@ -410,6 +413,8 @@ namespace TheAirline.Model.GeneralModel
                     }
                     if (Airports.GetAirport(airport.Profile.IATACode) == null)
                         Airports.AddAirport(airport);
+                    else
+                        Console.WriteLine(string.Format("{0} ({1}) already exits in the game. Read from file: {2}",airport.Profile.Name,airport.Profile.IATACode,file));
                 }
             }
             catch (Exception e)
@@ -758,7 +763,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static Airliner CreateAirliner(double minRange)
         {
-            List<AirlinerType> types = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Range >= minRange && t.Produced.From < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.Year - 30; });
+            List<AirlinerType> types = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Range >= minRange && t.Produced.From < GameObject.GetInstance().GameTime && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30); });
 
             int typeNumber = rnd.Next(types.Count);
             AirlinerType type = types[typeNumber];
@@ -766,7 +771,7 @@ namespace TheAirline.Model.GeneralModel
             int countryNumber = rnd.Next(Countries.GetCountries().Count()-1);
             Country country = Countries.GetCountries()[countryNumber];
 
-            int builtYear = rnd.Next(Math.Max(type.Produced.From, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year, type.Produced.To));
+            int builtYear = rnd.Next(Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year, type.Produced.To.Year));
 
             Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
 
@@ -784,7 +789,7 @@ namespace TheAirline.Model.GeneralModel
          */
         public static void CreateAirliners()
         {
-            int number = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime.Year && t.Produced.To >= GameObject.GetInstance().GameTime.Year - 30; }).Count * 25;
+            int number = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime.AddYears(-30); }).Count * 25;
             for (int i = 0; i < number; i++)
             {
                 Airliners.AddAirliner(CreateAirliner(0));

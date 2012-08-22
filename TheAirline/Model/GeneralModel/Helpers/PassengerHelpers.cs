@@ -146,7 +146,7 @@ namespace TheAirline.Model.GeneralModel
         {
 
             double fuelConsumption = AirlinerTypes.GetAllTypes().Max(t => t.FuelConsumption);
-            double groundTaxPerPassenger = 5;
+            double groundTaxPerPassenger = GeneralHelpers.GetInflationPrice(5);
 
             double tax = groundTaxPerPassenger;
 

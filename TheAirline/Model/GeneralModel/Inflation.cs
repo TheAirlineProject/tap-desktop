@@ -36,7 +36,23 @@ namespace TheAirline.Model.GeneralModel
         {
             Inflation inflation = inflations.Find(i => i.Year == year);
 
-            return inflation;
+            if (inflation == null)
+            {
+                Random rnd = new Random();
+
+                double rndInflation = (((rnd.NextDouble() * 5)-1) / 100.0);
+                double inflationPercent = 1 + rndInflation;
+
+                Inflation prevInflation = inflations.Find(i=>i.Year == year-1);
+
+                Inflation newInflation = new Inflation(year, prevInflation.FuelPrice * inflationPercent, rndInflation, prevInflation.Modifier * inflationPercent);
+                Inflations.AddInflationYear(newInflation);
+
+                return newInflation;
+
+            }
+            else
+                return inflation;
         }
         //clears the list of inflations
         public static void Clear()
