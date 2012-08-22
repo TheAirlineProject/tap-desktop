@@ -975,7 +975,12 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateAirlineLogos()
         {
             foreach (Airline airline in Airlines.GetAllAirlines())
-                airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
+            {
+                if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png"))
+                    airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
+                else
+                    airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+            }
         }
 
         /*! private stativ method CreateFlightFacilities.
