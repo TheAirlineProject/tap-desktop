@@ -160,7 +160,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
             Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
 
-            return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service) == Hub.MinimumServiceFacilities);
+            return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).ServiceLevel >= Hub.MinimumServiceFacilities.ServiceLevel);
 
 
         }
@@ -457,7 +457,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             else
                                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
-
+                            if (airport.Profile.Country != airline.Profile.Country)
+                            {
+                                AirportFacility facility = airport.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service);
+                                string service = airport.Profile.Name;
+                                service = facility.Shortname;
+                                service = destination.Profile.Name;
+                            }
+                            
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought,GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
 
