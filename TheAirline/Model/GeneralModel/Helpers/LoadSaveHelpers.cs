@@ -307,7 +307,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");
                 foreach (XmlElement flightNode in flightNodes)
                 {
-
+                 
                     FleetAirliner airliner = airline.Fleet.Find(a => a.Name == flightNode.Attributes["airliner"].Value);
                     Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
 
@@ -316,11 +316,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         string destination = flightNode.Attributes["destination"].Value;
                         DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
                         TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
-                        DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
+                        DateTime flightTime = DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
 
                         RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
 
                         Flight currentFlight = new Flight(rtte);
+                        currentFlight.FlightTime = flightTime;
                         currentFlight.Classes.Clear();
 
                         XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
