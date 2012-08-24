@@ -108,7 +108,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CheckForNewHub(Airline airline)
         {
 
-            int hubs = Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int hubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
 
             int newHubInterval = 0;
             switch (airline.Mentality)
@@ -156,7 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int airlineValue = (int)airline.getAirlineValue() + 1;
 
-            int totalAirlineHubs = Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int totalAirlineHubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
             double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
             Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
 

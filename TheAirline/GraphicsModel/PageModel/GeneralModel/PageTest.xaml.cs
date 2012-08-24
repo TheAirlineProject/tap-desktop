@@ -166,7 +166,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void btnDestinations_Click(object sender, RoutedEventArgs e)
         {
-            PopUpMap.ShowPopUp(Airports.GetAllAirports());
+            PopUpMap.ShowPopUp(Airports.GetAllActiveAirports());
         }
         //creates the side panel
         private Panel createSidePanel()

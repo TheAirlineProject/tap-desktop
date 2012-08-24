@@ -8,6 +8,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -73,6 +74,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double fuelPrice = (rnd.NextDouble() * (fuelDiff/4));
 
             GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice+fuelPrice;
+            //checks for new airports which are opening
+            foreach (Airport airport in Airports.GetAllAirports(a=>a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+            //checks for airports which are closing down
+            foreach (Airport airport in Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            {
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closed", string.Format("The airport {0}({1}) has now been closed. \n\rAll routes to and from the airports has been cancelled.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString())));
+
+                //cancel flights and routes. Stopped as in restrictions
+
+//                    popup ved homebase ikke længere med GameTimer.Stop og kun Ok knap. Kan ikke minimere
+            }
             //checks for new airliner types for purchase
             foreach (AirlinerType aType in AirlinerTypes.GetTypes(a=>a.Produced.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
                  GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News,GameObject.GetInstance().GameTime,"New airliner type available", string.Format("{0} has finished the design of {1} and it is now available for purchase",aType.Manufacturer.Name,aType.Name)));
@@ -125,7 +138,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             //
             //updates airports
-            foreach (Airport airport in Airports.GetAllAirports())
+            foreach (Airport airport in Airports.GetAllActiveAirports())
             {
                 Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
                 Weather.eWindSpeed windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];

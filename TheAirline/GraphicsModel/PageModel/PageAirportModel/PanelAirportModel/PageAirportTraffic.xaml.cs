@@ -44,7 +44,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbDestinations.ItemTemplate = this.Resources["DestinationItem"] as DataTemplate;
             lbDestinations.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
 
-            var destinations = from a in Airports.GetAllAirports() orderby this.Airport.getDestinationStatistics(a) descending select a;
+            var destinations = from a in Airports.GetAllActiveAirports() orderby this.Airport.getDestinationStatistics(a) descending select a;
 
             foreach (Airport a in destinations.Take(20))
                 lbDestinations.Items.Add(new KeyValuePair<Airport,long>(a,this.Airport.getDestinationStatistics(a)));

@@ -212,7 +212,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             Boolean humansOnly = cbHumanAirports.IsChecked.Value;
             Boolean hubsOnly = cbHubs.IsChecked.Value;
 
-            List<Airport> airports = Airports.GetAllAirports();
+            List<Airport> airports = Airports.GetAllActiveAirports();
 
             if (humansOnly) airports = airports.FindAll(delegate(Airport airport) { return GameObject.GetInstance().HumanAirline.Airports.Contains(airport); });
 

@@ -90,7 +90,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbAirport.Width = 200;
            
-            List<Airport> airportsList = Airports.GetAllAirports();
+            List<Airport> airportsList = Airports.GetAllActiveAirports();
 
             ICollectionView airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));

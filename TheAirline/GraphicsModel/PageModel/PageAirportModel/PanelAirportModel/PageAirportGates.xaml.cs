@@ -122,7 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             int airlineValue = (int)GameObject.GetInstance().HumanAirline.getAirlineValue()+1;
 
-            int totalHumanHubs = Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline));
+            int totalHumanHubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline));
             double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
             Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 

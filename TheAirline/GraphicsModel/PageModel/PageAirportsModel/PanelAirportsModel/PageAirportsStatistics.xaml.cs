@@ -75,7 +75,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             StatisticsType statType = StatisticsTypes.GetStatisticsType("Passengers");
             lbAirports.Items.Clear();
 
-            List<Airport> airports = Airports.GetAllAirports();
+            List<Airport> airports = Airports.GetAllActiveAirports();
             airports.Sort(delegate(Airport a1, Airport a2) { return a2.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType).CompareTo(a1.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType)); });
 
             foreach (Airport airport in airports.GetRange(0, 20))

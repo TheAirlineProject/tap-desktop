@@ -54,7 +54,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); };
 
-            showAirports(Airports.GetAllAirports());
+            showAirports(Airports.GetAllActiveAirports());
 
             airportsPanel.Children.Add(lbAirports);
 
