@@ -184,14 +184,16 @@ namespace TheAirline.Model.GeneralModel
             return airport.Terminals.getRoutes().SelectMany(r=> r.TimeTable.Entries.FindAll(e=> e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates,e.DepartureAirport.Profile.Coordinates,e.Airliner.Airliner.Type))>=startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates,e.DepartureAirport.Profile.Coordinates,e.Airliner.Airliner.Type))<endTime && e.Day == day)).ToList();
         }
         //the converter for a price based on inflation
-        public static long GetInflationPrice(double price)
+        public static double GetInflationPrice(double price)
         {
             Inflation baseInflation = Inflations.GetInflation(Inflations.BaseYear);
             Inflation currentInflation = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year);
 
             double modifier = currentInflation.Modifier / baseInflation.Modifier;
 
-            return Convert.ToInt64(price * modifier);
+            double newPrice = price * modifier;
+
+            return newPrice;
         }
 
     }

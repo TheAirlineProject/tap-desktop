@@ -17,7 +17,7 @@ namespace TheAirline.Model.AirlinerModel
         public double Wingspan { get; set; }
         public int CockpitCrew { get; set; }
         private long APrice;
-        public long Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
+        public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
         public ProductionPeriod Produced { get; set; }
         public double FuelConsumption { get; set; }
         public Manufacturer Manufacturer { get; set; }

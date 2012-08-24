@@ -250,8 +250,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtValue.Margin = new Thickness(5, 0, 0, 0);
             txtValue.Tag = type;
 
-            double frequency = (type.MaxValue - type.MinValue) / 200;
-
             Slider slider = new Slider();
             slider.Width = 200;
             slider.Value = this.FeeValues[type];

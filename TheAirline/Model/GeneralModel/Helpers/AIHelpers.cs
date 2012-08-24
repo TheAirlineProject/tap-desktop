@@ -457,7 +457,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             else
                                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
-                            if (airport.Profile.Country != airline.Profile.Country)
+                            if (airport != airline.Airports[0])
                             {
                                 AirportFacility facility = airport.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service);
                                 string service = airport.Profile.Name;
@@ -618,12 +618,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
+            
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
+                int numberOfFlightsPerDay = Convert.ToInt16(24*60 / (2 * minFlightTime.TotalMinutes));
+              
                 string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
-                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), new TimeSpan(12, 0, 0).Subtract(minFlightTime));
                 string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
-                route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), new TimeSpan(12, 0, 0).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks)));
+
+                int startMinutes = Convert.ToInt16((24*60) - (minFlightTime.TotalMinutes*numberOfFlightsPerDay*2));
+
+                if (startMinutes < 0) startMinutes = 0;
+
+                TimeSpan flightTime = new TimeSpan(0, 0, 0).Add(new TimeSpan(0, startMinutes/2, 0)); 
+ 
+                for (int i = 0; i < numberOfFlightsPerDay; i++)
+                {
+                    
+                    route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
+
+                    flightTime = flightTime.Add(minFlightTime);
+
+                    route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
+
+                    flightTime = flightTime.Add(minFlightTime);
+                }
             }
             else
             {

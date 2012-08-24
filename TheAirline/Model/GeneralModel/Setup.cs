@@ -1003,17 +1003,17 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateFeeTypes()
         {
 
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin kilometer rate", 0.8, 0.2, 2, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit kilometer rate", 2, 1, 4, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 100, 20, 200, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 50, 10, 100, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 2, 0.5, 6, 75));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 3, 2, 4, 70));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 5, 4, 6, 50));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 30, 95));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 10, 0, 45, 25));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 20, 0, 55, 2));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 150, 1));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin kilometer rate", 0.15, 0.025, 0.25, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit kilometer rate", 0.25, 0.15, 0.5, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 15, 2.5, 30, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 7.5, 1.25, 15, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.25, 0.06, 0.8, 75));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 0.625, 0.525, 0.725, 50));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 5, 95));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 1.25, 0, 5.25, 25));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 2.5, 0, 6, 2));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 18, 1));
         }
     }
 }

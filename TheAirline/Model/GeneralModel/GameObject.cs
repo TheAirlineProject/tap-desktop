@@ -29,9 +29,9 @@ namespace TheAirline.Model.GeneralModel
         //returns the start money based on year of start
         private long getStartMoney()
         {
-            long baseStartMoney = 100000000;
+            long baseStartMoney = 12500000;
 
-            return GeneralHelpers.GetInflationPrice(baseStartMoney);
+            return Convert.ToInt64(GeneralHelpers.GetInflationPrice(baseStartMoney));
         }
 
         //returns the game instance
