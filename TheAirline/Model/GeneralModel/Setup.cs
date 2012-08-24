@@ -1014,10 +1014,10 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateFeeTypes()
         {
 
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin kilometer rate", 0.15, 0.025, 0.25, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit kilometer rate", 0.25, 0.15, 0.5, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 15, 2.5, 30, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 7.5, 1.25, 15, 100));
+            //FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin kilometer rate", 0.15, 0.025, 0.25, 100));
+            //FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit kilometer rate", 0.25, 0.15, 0.5, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 4.11, 3.75, 12.75, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.25, 0.06, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 0.625, 0.525, 0.725, 50));
