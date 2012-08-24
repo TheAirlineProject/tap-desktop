@@ -163,8 +163,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if ((type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
-            else if (type.CurrentFacility.Type == AirportFacility.FacilityType.Service && hasHub && type.CurrentFacility == Hub.MinimumServiceFacilities)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2214"), string.Format(Translator.GetInstance().GetString("MessageBox","2214","message"), Hub.MinimumServiceFacilities.Name), WPFMessageBoxButtons.Ok);
+            else if (type.CurrentFacility.Type == AirportFacility.FacilityType.Service && hasHub && type.CurrentFacility == Hub.MinimumServiceFacility)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2214"), string.Format(Translator.GetInstance().GetString("MessageBox","2214","message"), Hub.MinimumServiceFacility.Name), WPFMessageBoxButtons.Ok);
             else
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);

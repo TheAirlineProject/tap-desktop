@@ -528,6 +528,7 @@
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml.cs">
       <DependentUpon>PopUpMap.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewAirlinerHomeBase.cs" />
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
       <DependentUpon>PopUpRouteFacilities.xaml</DependentUpon>
     </Compile>

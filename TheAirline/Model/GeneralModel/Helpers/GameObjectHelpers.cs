@@ -9,6 +9,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -32,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                if (GameObject.GetInstance().GameTime.Hour % 3 ==0 && GameObject.GetInstance().GameTime.Minute == 0)
+                if (GameObject.GetInstance().GameTime.Hour % 3 == 0 && GameObject.GetInstance().GameTime.Minute == 0)
                 {
                     if (airline != GameObject.GetInstance().HumanAirline)
                         AIHelpers.UpdateCPUAirline(airline);
@@ -66,34 +67,55 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int totalRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) select r).Count();
             int totalAirlinersOnRoute = (from a in Airlines.GetAllAirlines().SelectMany(t => t.Fleet) where a.HasRoute select a).Count();
 
-            Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: "+ totalAirlinersOnRoute);
+            Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: " + totalAirlinersOnRoute);
 
             LastTime = DateTime.Now;
             //changes the fuel prices 
-            double fuelDiff = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year+1).FuelPrice - Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
-            double fuelPrice = (rnd.NextDouble() * (fuelDiff/4));
+            double fuelDiff = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year + 1).FuelPrice - Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
+            double fuelPrice = (rnd.NextDouble() * (fuelDiff / 4));
 
-            GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice+fuelPrice;
+            GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice + fuelPrice;
             //checks for new airports which are opening
-            foreach (Airport airport in Airports.GetAllAirports(a=>a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            foreach (Airport airport in Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
             //checks for airports which are closing down
             foreach (Airport airport in Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
             {
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closed", string.Format("The airport {0}({1}) has now been closed. \n\rAll routes to and from the airports has been cancelled.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString())));
 
-                //cancel flights and routes. Stopped as in restrictions
+                var obsoleteRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) where r.Destination1 == airport || r.Destination2 == airport select r);
 
-//                    popup ved homebase ikke længere med GameTimer.Stop og kun Ok knap. Kan ikke minimere
-            }
+                foreach (Route route in obsoleteRoutes)
+                {
+                     route.Banned = true;
+
+                     foreach (FleetAirliner airliner in route.getAirliners())
+                     {
+                         if (airliner.Homebase == airport)
+                         {
+                             if (airliner.Airliner.Airline.IsHuman)
+                             {
+                                 airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner.Airliner.Airline);
+
+                             }
+                             else
+                             {
+                                 AIHelpers.SetAirlinerHomebase(airliner);
+                             }
+                             
+                         }
+                       
+                     }
+                 }
+              }
             //checks for new airliner types for purchase
-            foreach (AirlinerType aType in AirlinerTypes.GetTypes(a=>a.Produced.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
-                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News,GameObject.GetInstance().GameTime,"New airliner type available", string.Format("{0} has finished the design of {1} and it is now available for purchase",aType.Manufacturer.Name,aType.Name)));
-            
+            foreach (AirlinerType aType in AirlinerTypes.GetTypes(a => a.Produced.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "New airliner type available", string.Format("{0} has finished the design of {1} and it is now available for purchase", aType.Manufacturer.Name, aType.Name)));
+
             //checks for airliner types which are out of production
-            foreach (AirlinerType aType in AirlinerTypes.GetTypes(a=>a.Produced.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            foreach (AirlinerType aType in AirlinerTypes.GetTypes(a => a.Produced.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "Airliner type out of production", string.Format("{0} has taken {1} out of production", aType.Manufacturer.Name, aType.Name)));
-          
+
             //checks for airport facilities for the human airline
             var humanAirportFacilities = (from f in GameObject.GetInstance().HumanAirline.Airports.SelectMany(a => a.getAirportFacilities(GameObject.GetInstance().HumanAirline)) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
 

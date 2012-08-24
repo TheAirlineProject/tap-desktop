@@ -2,30 +2,32 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Media;
 using TheAirline.Model.AirlinerModel;
+using System.Windows.Controls;
+using System.Windows;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
-    public class PopUpHomeBase : PopUpWindow
+    public class PopUpNewAirlinerHomeBase : PopUpWindow
     {
-        private FleetAirliner Airliner;
+        private Airline Airline;
         private ComboBox cbAirport;
-        public static object ShowPopUp(FleetAirliner airliner)
+        public static object ShowPopUp(Airline airline)
         {
-            PopUpWindow window = new PopUpHomeBase(airliner);
+            PopUpNewAirlinerHomeBase window = new PopUpNewAirlinerHomeBase(airline);
             window.ShowDialog();
 
             return window.Selected == null ? null : window.Selected;
         }
-        public PopUpHomeBase(FleetAirliner airliner)
+        public PopUpNewAirlinerHomeBase(Airline airline)
         {
-            this.Airliner = airliner;
+            this.Airline = airline;
 
-            this.Title = "Select New Homebase";
+            this.Title = "Select Homebase";
 
             this.Width = 300;
 
@@ -33,7 +35,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
-            this.WindowStyle = System.Windows.WindowStyle.None;
+            this.WindowStyle = System.Windows.WindowStyle.SingleBorderWindow;
 
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
@@ -43,19 +45,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll((delegate(Airport airport) { return airport.getCurrentAirportFacility(this.Airliner.Airliner.Airline,AirportFacility.FacilityType.Service).TypeLevel>0; }));
+            List<Airport> airports = this.Airline.Airports.FindAll(a=>a.getCurrentAirportFacility(this.Airline,AirportFacility.FacilityType.Service).TypeLevel>0 && a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To>GameObject.GetInstance().GameTime);
+
+            if (airports.Count == 0)
+                airports = this.Airline.Airports.FindAll(a => a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
+            
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
             foreach (Airport airport in airports)
                 cbAirport.Items.Add(airport);
 
-            cbAirport.SelectedItem = this.Airliner.Homebase;
+            cbAirport.SelectedIndex = 0;
 
             mainPanel.Children.Add(cbAirport);
 
             mainPanel.Children.Add(createButtonsPanel());
-
-                
 
             this.Content = mainPanel;
 
@@ -77,29 +81,29 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             panelButtons.Children.Add(btnOk);
 
-            Button btnCancel = new Button();
-            btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnCancel.Height = Double.NaN;
-            btnCancel.Width = Double.NaN;
-            btnCancel.Content = "Cancel";
-            btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnCancel.Margin = new Thickness(5, 0, 0, 0);
-            btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
-           
-            panelButtons.Children.Add(btnCancel);
-
+          
             return panelButtons;
         }
 
-        private void btnCancel_Click(object sender, RoutedEventArgs e)
-        {
-            this.Selected = null;
-            this.Close();
-        }
-
+       
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            this.Selected = cbAirport.SelectedItem;
+            Airport airport = (Airport)cbAirport.SelectedItem;
+            this.Selected = airport;
+
+            if (((Airport)this.Selected).getCurrentAirportFacility(this.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
+            {
+                AirportFacility facility = Hub.MinimumServiceFacility;
+                airport.setAirportFacility(this.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+
+                double price = facility.Price;
+
+                if (airport.Profile.Country != this.Airline.Profile.Country)
+                    price = price * 1.25;
+
+                AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+            }
+
             this.Close();
         }
 
