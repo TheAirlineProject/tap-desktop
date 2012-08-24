@@ -23,8 +23,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public RouteAirlinerClass(AirlinerClass.ClassType type,SeatingType seating, double fareprice)
         {
             this.Type = type;
-            this.FarePrice = fareprice;
-            this.Seating = seating;
+            this.FarePrice =  fareprice;
+            this.Seating =  seating;
         }
 
     }

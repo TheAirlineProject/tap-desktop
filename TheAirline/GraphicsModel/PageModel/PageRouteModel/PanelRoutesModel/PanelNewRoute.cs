@@ -90,7 +90,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                RouteAirlinerClass rClass = new RouteAirlinerClass(type,RouteAirlinerClass.SeatingType.Reserved_Seating, 10);
+                
+                RouteAirlinerClass rClass = new RouteAirlinerClass(type,RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
                 rClass.FoodFacility = RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
                 rClass.DrinksFacility = RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
                 this.Classes.Add(type, rClass);
@@ -266,6 +267,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
+                    
                     aClass.FarePrice = PassengerHelpers.GetPassengerPrice(airport1, airport2) * GeneralHelpers.ClassToPriceFactor(aClass.Type);
                 }
 

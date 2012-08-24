@@ -144,7 +144,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the suggested passenger price for a route on a airliner
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
-
+            
             double fuelConsumption = AirlinerTypes.GetAllTypes().Max(t => t.FuelConsumption);
             double groundTaxPerPassenger = GeneralHelpers.GetInflationPrice(5);
 
