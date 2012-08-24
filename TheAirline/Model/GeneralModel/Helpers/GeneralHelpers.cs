@@ -195,6 +195,11 @@ namespace TheAirline.Model.GeneralModel
 
             return newPrice;
         }
+        //returns if an airport is active (built)
+        public static Boolean IsAirportActive(Airport airport)
+        {
+            return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime;
+        }
 
     }
     //the class for a key value pair for use on convertres etc.

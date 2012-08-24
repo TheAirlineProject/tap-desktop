@@ -316,14 +316,14 @@ namespace TheAirline.Model.GeneralModel
                     int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                     int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                     int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-                    AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, body, rangeType, engine, new ProductionPeriod(from, to)));
+                    AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, body, rangeType, engine, new Period(from, to)));
 
                 }
                 if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                 {
                     int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                     double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
-                    AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, body, rangeType, engine, new ProductionPeriod(from, to)));
+                    AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, body, rangeType, engine, new Period(from, to)));
                 }
 
             }
@@ -371,6 +371,19 @@ namespace TheAirline.Model.GeneralModel
                     AirportProfile.AirportType type = (AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
                     Weather.Season season = (Weather.Season)Enum.Parse(typeof(Weather.Season), airportElement.Attributes["season"].Value);
 
+                    XmlElement periodElement = (XmlElement)airportElement.SelectSingleNode("period");
+
+                    Period airportPeriod;
+                    if (periodElement != null)
+                    {
+                        DateTime airportFrom = Convert.ToDateTime(periodElement.Attributes["from"].Value);
+                        DateTime airportTo = Convert.ToDateTime(periodElement.Attributes["to"].Value);
+
+                        airportPeriod = new Period(airportFrom, airportTo);
+                    }
+                    else
+                        airportPeriod = new Period(new DateTime(1959,12, 31), new DateTime(2199,12, 31));
+
                     XmlElement townElement = (XmlElement)airportElement.SelectSingleNode("town");
                     string town = townElement.Attributes["town"].Value;
                     string country = townElement.Attributes["country"].Value;
@@ -386,7 +399,7 @@ namespace TheAirline.Model.GeneralModel
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
 
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, size, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type,airportPeriod, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, size, season);
 
                     Airport airport = new Airport(profile);
 
@@ -411,10 +424,8 @@ namespace TheAirline.Model.GeneralModel
                         airport.Runways.Add(new Runway(runwayName, runwayLength, surface));
 
                     }
-                    if (Airports.GetAirport(airport.Profile.IATACode) == null)
-                        Airports.AddAirport(airport);
-                    else
-                        Console.WriteLine(string.Format("{0} ({1}) already exits in the game. Read from file: {2}",airport.Profile.Name,airport.Profile.IATACode,file));
+                    Airports.AddAirport(airport);
+
                 }
             }
             catch (Exception e)

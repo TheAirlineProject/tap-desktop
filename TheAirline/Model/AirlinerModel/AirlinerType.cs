@@ -18,7 +18,7 @@ namespace TheAirline.Model.AirlinerModel
         public int CockpitCrew { get; set; }
         private long APrice;
         public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
-        public ProductionPeriod Produced { get; set; }
+        public Period Produced { get; set; }
         public double FuelConsumption { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public enum BodyType {Narrow_Body, Single_Aisle,Wide_Body} 
@@ -30,7 +30,7 @@ namespace TheAirline.Model.AirlinerModel
         public EngineType Engine { get; set; }
         public long MinRunwaylength { get; set; }
         public TypeOfAirliner TypeAirliner { get; set; }
-        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, BodyType body, TypeRange rangeType, EngineType engine, ProductionPeriod produced)
+        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, BodyType body, TypeRange rangeType, EngineType engine, Period produced)
         {
             this.TypeAirliner = typeOfAirliner;
             this.Manufacturer = manufacturer;
@@ -73,7 +73,7 @@ namespace TheAirline.Model.AirlinerModel
         public int MaxSeatingCapacity { get; set; }
         public int CabinCrew { get; set; }
         public int MaxAirlinerClasses { get; set; }
-        public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, BodyType body, TypeRange rangeType, EngineType engine, ProductionPeriod produced) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,body,rangeType,engine,produced)
+        public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, BodyType body, TypeRange rangeType, EngineType engine, Period produced) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,body,rangeType,engine,produced)
         {
             this.MaxSeatingCapacity = seating;
             this.CabinCrew = cabincrew;
@@ -84,23 +84,12 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerCargoType : AirlinerType
     {
         public double CargoSize { get; set; }
-        public AirlinerCargoType(Manufacturer manufacturer, string name,  int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, BodyType body, TypeRange rangeType, EngineType engine, ProductionPeriod produced) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,body,rangeType,engine,produced)
+        public AirlinerCargoType(Manufacturer manufacturer, string name,  int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, BodyType body, TypeRange rangeType, EngineType engine, Period produced) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,body,rangeType,engine,produced)
         {
             this.CargoSize = cargoSize;
         }
     }
-    //the class for a production period (year from - year to)
-    public class ProductionPeriod
-    {
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
-        public ProductionPeriod(DateTime from, DateTime to)
-        {
-            this.From = from;
-            this.To = to;
-        }
-       
-    }
+  
     //the collection of airliner types
     public class AirlinerTypes
     {

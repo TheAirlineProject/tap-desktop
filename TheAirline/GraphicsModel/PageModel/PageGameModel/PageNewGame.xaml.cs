@@ -233,16 +233,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             int year = (int)cbStartYear.SelectedItem;
 
             setAirportsView(year, airline.Profile.Country);
-            /*
-            try
-            {
-                airportsView.Filter = getCountryAirports(year, airline.Profile.Country);
-            }
-            catch (Exception ex)
-            {
-                string exception = ex.ToString();
-            }
-            */
+           
         }
 
         private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -339,14 +330,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private void setAirportsView(int year, Country country)
         {
             GameObject.GetInstance().GameTime = new DateTime(year, 1, 1);
-
-            
+                        
             try
             {
                 airportsView.Filter = o =>
                 {
                     Airport a = o as Airport;
-                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country && a.Terminals.getNumberOfGates() > 10;
+                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country && a.Terminals.getNumberOfGates() > 10 && a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
                 };
             }
             catch (Exception ex)

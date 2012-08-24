@@ -227,17 +227,17 @@ namespace TheAirline.Model.AirportModel
         public static Airport GetAirport(string iata)
         {
             return airports.Find(a => a.Profile.IATACode == iata);
-          
+            
         }
         //returns all airports
         public static List<Airport> GetAllAirports()
         {
-            return airports;
+            return airports.FindAll(a=>GeneralHelpers.IsAirportActive(a));
         }
         //returns a possible match for coordinates
         public static Airport GetAirport(Coordinates coordinates)
         {
-            return airports.Find(a => a.Profile.Coordinates.CompareTo(coordinates) == 0);
+            return GetAllAirports().Find(a => a.Profile.Coordinates.CompareTo(coordinates) == 0);
       
         }
         //returns all airports with a specific size
@@ -262,12 +262,12 @@ namespace TheAirline.Model.AirportModel
         //returns a list of airports
         public static List<Airport> GetAirports(Predicate<Airport> match)
         {
-            return airports.FindAll(match);
+            return GetAllAirports().FindAll(match);
         }
         //returns the total number of airports
         public static int Count()
         {
-            return airports.Count;
+            return GetAllAirports().Count;
         }
 
     }

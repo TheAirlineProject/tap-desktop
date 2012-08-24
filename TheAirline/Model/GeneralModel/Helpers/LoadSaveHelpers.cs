@@ -261,7 +261,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (XmlElement routeClassNode in routeClassList)
                     {
                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
-                        double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value, new CultureInfo("de-DE", false));
+                        double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
                         int cabincrew = Convert.ToInt16(routeClassNode.Attributes["cabincrew"].Value);
                         RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; });
                         RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
