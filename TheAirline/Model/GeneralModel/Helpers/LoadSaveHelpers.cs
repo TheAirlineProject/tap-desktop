@@ -320,20 +320,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
 
-                        Flight currentFlight = new Flight(rtte);
-                        currentFlight.FlightTime = flightTime;
-                        currentFlight.Classes.Clear();
-
-                        XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
-
-                        foreach (XmlElement flightClassNode in flightClassList)
+                        if (rtte != null)
                         {
-                            AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                            int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+                            Flight currentFlight = new Flight(rtte);
+                            currentFlight.FlightTime = flightTime;
+                            currentFlight.Classes.Clear();
 
-                            currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                            XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
+
+                            foreach (XmlElement flightClassNode in flightClassList)
+                            {
+                                AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
+                                int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+
+                                currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                            }
+                            airliner.CurrentFlight = currentFlight;
                         }
-                        airliner.CurrentFlight = currentFlight;
                     }
                     else
                         airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
