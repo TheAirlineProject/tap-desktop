@@ -95,13 +95,13 @@ namespace TheAirline.Model.AirportModel
         //returns the price for a gate
         public long getGatePrice()
         {
-            long sizeValue = 1000 + 1023 * ((int)this.Profile.Size + 1);
+            long sizeValue = 100 + 102 * ((int)this.Profile.Size + 1);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(sizeValue));
         }
         //returns the fee for landing at the airport
         public double getLandingFee()
         {
-            long sizeValue = 1543 * ((int)this.Profile.Size + 1);
+            long sizeValue = 151 * ((int)this.Profile.Size + 1);
             return GeneralHelpers.GetInflationPrice(sizeValue);
         }
         //sets a facility to an airline
@@ -179,21 +179,21 @@ namespace TheAirline.Model.AirportModel
         //returns the price for a hub
         public long getHubPrice()
         {
-            long price = 500000 + 250000 * ((int)this.Profile.Size);
+            long price = 50000 + 25000 * ((int)this.Profile.Size);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
         }
         // chs, 2011-31-10 added for pricing of a terminal
         //returns the price for a terminal
         public long getTerminalPrice()
         {
-            long price = 2000000 + 150000 * ((int)this.Profile.Size + 1);
+            long price = 200000 + 15000 * ((int)this.Profile.Size + 1);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
    
         }
         //returns the price for a gate at a bough terminal
         public long getTerminalGatePrice()
         {
-            long price = 125000 * ((int)this.Profile.Size + 1);
+            long price = 12500 * ((int)this.Profile.Size + 1);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
            
         }
