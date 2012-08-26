@@ -245,7 +245,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
             setAirportsView(year, airline.Profile.Country);
-          
+
+            if (airline.Profile.PreferedAirport != null)
+                cbAirport.SelectedItem = airline.Profile.PreferedAirport;
 
             airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
             txtName.Text = airline.Profile.CEO;

@@ -725,7 +725,14 @@ namespace TheAirline.Model.GeneralModel
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
             Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), profileElement.Attributes["market"].Value);
 
-            Airlines.AddAirline(new Airline(new AirlineProfile(name, iata, color, country, ceo), mentality, market));
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo), mentality, market);
+            if (profileElement.HasAttribute("preferedairport"))
+            {
+                Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
+                airline.Profile.PreferedAirport = preferedAirport;
+            }
+
+            Airlines.AddAirline(airline);
 
         }
         /*loads the flight restrictions
@@ -845,12 +852,6 @@ namespace TheAirline.Model.GeneralModel
                 // chs, 2011-24-10 changed so the human starts with an airport with home base facilities
 
 
-                List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
-
-                AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
-
-                airline.Airports[0].setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
-
             }
 
 
@@ -872,15 +873,20 @@ namespace TheAirline.Model.GeneralModel
         //finds the home base for a computer airline
         private static Airport FindComputerHomeBase(Airline airline)
         {
-            List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates() > 1);
+            if (airline.Profile.PreferedAirport == null)
+            {
+                List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates() > 1);
 
-            if (airports.Count < 4)
-                airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
+                if (airports.Count < 4)
+                    airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
-            Dictionary<Airport, int> list = new Dictionary<Airport, int>();
-            airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count));
+                Dictionary<Airport, int> list = new Dictionary<Airport, int>();
+                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count));
 
-            return AIHelpers.GetRandomItem(list);
+                return AIHelpers.GetRandomItem(list);
+            }
+            else
+                return airline.Profile.PreferedAirport;
         }
         /*! creates some airliners and routes for a computer airline.
          */
@@ -888,8 +894,12 @@ namespace TheAirline.Model.GeneralModel
         {
             Airport airportHomeBase = FindComputerHomeBase(airline);
 
-            Airport airportDestination = AIHelpers.GetDestinationAirport(airline, airportHomeBase);
+            AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
 
+            airportHomeBase.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            
+            Airport airportDestination = AIHelpers.GetDestinationAirport(airline, airportHomeBase);
+           
             KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
 
             if (airportDestination == null || !airliner.HasValue)
@@ -911,7 +921,7 @@ namespace TheAirline.Model.GeneralModel
 
                 Route route = new Route(id.ToString(), airportDestination, airline.Airports[0], price);
 
-                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportDestination);
+                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key,airportHomeBase);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 

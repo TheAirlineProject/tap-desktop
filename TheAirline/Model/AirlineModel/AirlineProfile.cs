@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -15,6 +16,7 @@ namespace TheAirline.Model.AirlineModel
         public Country Country { get; set; }
         public string Color { get; set; }
         public string Logo { get; set; }
+        public Airport PreferedAirport { get; set; }
         public AirlineProfile(string name, string iata, string color, Country country, string ceo)
         {
             this.Name = name;
