@@ -8,7 +8,8 @@ using System.Configuration;
 using System.Xml;
 
 namespace TheAirline.Model.GeneralModel
-{
+{   // this is just a comment to test all my settings and make sure they are correct
+    // ps, pjank42 if you see this, don't forget to commit this file!
     /*! Translator class.
      * This class is a singleton and is used for translating static texts.
      * The translations are loaded from a xml file and stored in a MemoryCache
