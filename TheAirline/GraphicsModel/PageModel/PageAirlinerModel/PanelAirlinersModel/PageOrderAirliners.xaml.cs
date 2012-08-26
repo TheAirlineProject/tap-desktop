@@ -30,6 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private ListBox lbOrders;
         private ucNumericUpDown nudAirliners;
         private ComboBox cbTypes, cbAirport;
+        private CheckBox cbDownPayment;//<-
         private Frame frameAirlinerInfo;
         private Dictionary<AirlinerType, int> orders;
         private DatePicker dpDate;
