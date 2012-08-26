@@ -268,64 +268,71 @@ namespace TheAirline.Model.GeneralModel
         }
         private static void LoadAirliners(string file)
         {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(file);
-            XmlElement root = doc.DocumentElement;
-
-            XmlNodeList airlinersList = root.SelectNodes("//airliner");
-
-            foreach (XmlElement airliner in airlinersList)
+            try
             {
-                AirlinerType.TypeOfAirliner airlinerType = airliner.HasAttribute("type") ? (AirlinerType.TypeOfAirliner)Enum.Parse(typeof(AirlinerType.TypeOfAirliner), airliner.Attributes["type"].Value) : AirlinerType.TypeOfAirliner.Passenger;
+                XmlDocument doc = new XmlDocument();
+                doc.Load(file);
+                XmlElement root = doc.DocumentElement;
 
-                string manufacturerName = airliner.Attributes["manufacturer"].Value;
-                Manufacturer manufacturer = Manufacturers.GetManufacturer(manufacturerName);
+                XmlNodeList airlinersList = root.SelectNodes("//airliner");
 
-                string name = airliner.Attributes["name"].Value;
-                long price = Convert.ToInt64(airliner.Attributes["price"].Value);
-
-
-                XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
-                AirlinerType.BodyType body = (AirlinerType.BodyType)Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
-                AirlinerType.TypeRange rangeType = (AirlinerType.TypeRange)Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
-                AirlinerType.EngineType engine = (AirlinerType.EngineType)Enum.Parse(typeof(AirlinerType.EngineType), typeElement.Attributes["engine"].Value);
-
-                XmlElement specsElement = (XmlElement)airliner.SelectSingleNode("specs");
-                double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
-                double length = XmlConvert.ToDouble(specsElement.Attributes["length"].Value);
-                long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
-                double speed = XmlConvert.ToDouble(specsElement.Attributes["speed"].Value);
-                double fuel = XmlConvert.ToDouble(specsElement.Attributes["consumption"].Value);
-                long runwaylenght = XmlConvert.ToInt64(specsElement.Attributes["runwaylengthrequired"].Value);
-
-
-
-                XmlElement capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
-
-                XmlElement producedElement = (XmlElement)airliner.SelectSingleNode("produced");
-                int fromYear = Convert.ToInt16(producedElement.Attributes["from"].Value);
-                int toYear = Convert.ToInt16(producedElement.Attributes["to"].Value);
-
-                DateTime from = new DateTime(fromYear, 1, 2);
-                DateTime to = new DateTime(toYear, 12, 31);
-
-                if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
+                foreach (XmlElement airliner in airlinersList)
                 {
+                    AirlinerType.TypeOfAirliner airlinerType = airliner.HasAttribute("type") ? (AirlinerType.TypeOfAirliner)Enum.Parse(typeof(AirlinerType.TypeOfAirliner), airliner.Attributes["type"].Value) : AirlinerType.TypeOfAirliner.Passenger;
 
-                    int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
-                    int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
-                    int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
-                    int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-                    AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, body, rangeType, engine, new Period(from, to)));
+                    string manufacturerName = airliner.Attributes["manufacturer"].Value;
+                    Manufacturer manufacturer = Manufacturers.GetManufacturer(manufacturerName);
+
+                    string name = airliner.Attributes["name"].Value;
+                    long price = Convert.ToInt64(airliner.Attributes["price"].Value);
+
+
+                    XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
+                    AirlinerType.BodyType body = (AirlinerType.BodyType)Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
+                    AirlinerType.TypeRange rangeType = (AirlinerType.TypeRange)Enum.Parse(typeof(AirlinerType.TypeRange), typeElement.Attributes["rangetype"].Value);
+                    AirlinerType.EngineType engine = (AirlinerType.EngineType)Enum.Parse(typeof(AirlinerType.EngineType), typeElement.Attributes["engine"].Value);
+
+                    XmlElement specsElement = (XmlElement)airliner.SelectSingleNode("specs");
+                    double wingspan = XmlConvert.ToDouble(specsElement.Attributes["wingspan"].Value);
+                    double length = XmlConvert.ToDouble(specsElement.Attributes["length"].Value);
+                    long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
+                    double speed = XmlConvert.ToDouble(specsElement.Attributes["speed"].Value);
+                    double fuel = XmlConvert.ToDouble(specsElement.Attributes["consumption"].Value);
+                    long runwaylenght = XmlConvert.ToInt64(specsElement.Attributes["runwaylengthrequired"].Value);
+
+
+
+                    XmlElement capacityElement = (XmlElement)airliner.SelectSingleNode("capacity");
+
+                    XmlElement producedElement = (XmlElement)airliner.SelectSingleNode("produced");
+                    int fromYear = Convert.ToInt16(producedElement.Attributes["from"].Value);
+                    int toYear = Convert.ToInt16(producedElement.Attributes["to"].Value);
+
+                    DateTime from = new DateTime(fromYear, 1, 2);
+                    DateTime to = new DateTime(toYear, 12, 31);
+
+                    if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
+                    {
+
+                        int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
+                        int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
+                        int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
+                        int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
+                        AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, body, rangeType, engine, new Period(from, to)));
+
+                    }
+                    if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
+                    {
+                        int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
+                        double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
+                        AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, body, rangeType, engine, new Period(from, to)));
+                    }
 
                 }
-                if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
-                {
-                    int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
-                    double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
-                    AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, body, rangeType, engine, new Period(from, to)));
-                }
-
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
             }
         }
 
