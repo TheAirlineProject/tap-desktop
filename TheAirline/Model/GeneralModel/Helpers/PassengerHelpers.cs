@@ -166,7 +166,7 @@ namespace TheAirline.Model.GeneralModel
         public static void CreateDestinationPassengers()
         {
             foreach (Airport airport in Airports.GetAllActiveAirports())
-                foreach (Airport dAirport in Airports.GetAirports(a => a != airport))
+                foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town))
                 {
                   
                     Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
