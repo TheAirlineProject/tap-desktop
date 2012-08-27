@@ -322,7 +322,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (route.HasAirliner)
                                 route.getAirliners().ForEach(a => a.removeRoute(route));
 
-                            route.Destination1.Terminals.getUsedGate(airline).Route = null;
+                            route.Destination1.Terminals.getUsedGate(airline).Route = null; 
                             route.Destination2.Terminals.getUsedGate(airline).Route = null;
 
                             if (airline.Routes.Count == 0)
@@ -491,6 +491,42 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();
             else
                 return null;
+        }
+        //returns the sorted list of possible destinations for an airline with a start airport
+        public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
+        {
+            double maxDistance = (from a in Airliners.GetAirlinersForSale()
+                                  select a.Type.Range).Max();
+
+            double minDistance = (from a in Airports.GetAirports(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
+
+
+            List<Airport> airports = Airports.GetAirports(a => airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null && !FlightRestrictions.HasRestriction(a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline, a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime));
+            List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
+
+            switch (airline.MarketFocus)
+            {
+                case Airline.AirlineMarket.Global:
+                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
+                    break;
+                case Airline.AirlineMarket.Local:
+                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+                    break;
+                case Airline.AirlineMarket.Regional:
+                    airports = airports.FindAll(a => a.Profile.Country.Region == airport.Profile.Country.Region && AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
+                    break;
+            }
+
+         
+            if (airports.Count == 0)
+            {
+                airports = (from a in Airports.GetAirports(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
+
+            }
+
+          
+
+            return (from a in airports where routes.Find(r=>r.Destination1 == a || r.Destination2 == a)==null && (a.Terminals.getFreeGates()>0 || a.Terminals.getFreeGates(airline)>0) orderby a.Profile.Size descending select a).ToList();
         }
         //returns the destination for an airline with a start airport
         public static Airport GetDestinationAirport(Airline airline, Airport airport)

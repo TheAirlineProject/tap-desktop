@@ -55,6 +55,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlElement root = doc.DocumentElement;
 
 
+             DateTime gameTime = DateTime.Parse(root.Attributes["time"].Value, new CultureInfo("de-DE"));
+            GameObject.GetInstance().GameTime = gameTime;
+
+
             XmlNodeList tailnumbersList = root.SelectNodes("//tailnumbers/tailnumber");
 
             foreach (XmlElement tailnumberNode in tailnumbersList)
@@ -251,8 +255,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     string id = routeNode.Attributes["id"].Value;
                     Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
                     Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
+                    Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
 
                     Route route = new Route(id, dest1, dest2, 0);
+                    route.Banned = isBanned;
                     route.Classes.Clear();
 
 
@@ -337,6 +343,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             airliner.CurrentFlight = currentFlight;
                         }
+                        else
+                        {
+                            string s = "";
+                        }
                     }
                     else
                         airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
@@ -352,7 +362,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (XmlElement airportNode in airportsList)
             {
-                Airport airport = Airports.GetAirport(airportNode.Attributes["iata"].Value);
+                Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
 
@@ -415,13 +425,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (airportGateNode.Attributes["route"].Value.Length > 0)
                             {
                                 string routeId = airportGateNode.Attributes["route"].Value;
-                                airline.Routes.Find(delegate(Route r) { return r.Id == airportGateNode.Attributes["route"].Value; });
+                                Route route = airline.Routes.Find(r=>r.Id == routeId);
+                                gate.Route = route;
                             }
                         }
-
+                        
                         terminal.Gates.addGate(gate);
                     }
 
+                 
                     airport.addTerminal(terminal);
 
 
@@ -432,11 +444,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
+
             XmlNodeList airportDestinationsList = root.SelectNodes("//airportdestinations/airportdestination");
 
             foreach (XmlElement airportDestinationElement in airportDestinationsList)
             {
                 Airport targetAirport = Airports.GetAirport(airportDestinationElement.Attributes["id"].Value);
+                targetAirport.clearDestinationPassengers();
 
                 XmlNodeList destinationsList = airportDestinationElement.SelectNodes("destinations/destination");
                 foreach (XmlElement destinationElement in destinationsList)
@@ -491,11 +505,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline humanAirline = Airlines.GetAirline(gameSettingsNode.Attributes["human"].Value);
             GameObject.GetInstance().HumanAirline = humanAirline;
 
-            // chs, 2011-19-10 change to DateTime.Parse and read it using specific culture info
-            string dateString = gameSettingsNode.Attributes["time"].Value;
-            DateTime gameTime = DateTime.Parse(gameSettingsNode.Attributes["time"].Value, new CultureInfo("de-DE"));
-            GameObject.GetInstance().GameTime = gameTime;
-
             double fuelPrice = Convert.ToDouble(gameSettingsNode.Attributes["fuelprice"].Value);
             GameObject.GetInstance().FuelPrice = fuelPrice;
 
@@ -529,18 +538,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
-            
+          /*
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (Route route in airline.Routes)
                 {
-                    route.Destination1.Terminals.getEmptyGate(airline).Route = route;
-                    route.Destination2.Terminals.getEmptyGate(airline).Route = route;
+                    Gate gate1 = route.Destination1.Terminals.getEmptyGate(airline);
+                    Gate gate2 = route.Destination2.Terminals.getEmptyGate(airline);
+
+                    if (gate1!=null) gate1.Route = route;
+                    if (gate2!=null) gate2.Route = route;
 
                 }
             }
-             
-
+            
+            */
 
         }
         //append a file to the list of saved files
@@ -597,7 +609,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             xmlDoc.Load(path);
 
             XmlNode root = xmlDoc.DocumentElement;
-
+            ((XmlElement)root).SetAttribute("time", GameObject.GetInstance().GameTime.ToString(new CultureInfo("de-DE")));
+    
+            
             XmlElement tailnumbersNode = xmlDoc.CreateElement("tailnumbers");
 
             foreach (Country country in Countries.GetAllCountries())
@@ -808,6 +822,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     routeNode.SetAttribute("id", route.Id);
                     routeNode.SetAttribute("destination1", route.Destination1.Profile.IATACode);
                     routeNode.SetAttribute("destination2", route.Destination2.Profile.IATACode);
+                    routeNode.SetAttribute("isbanned", route.Banned.ToString());
 
                     XmlElement routeClassesNode = xmlDoc.CreateElement("routeclasses");
 
@@ -890,7 +905,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airport airport in Airports.GetAllAirports())
             {
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
-                airportNode.SetAttribute("iata", airport.Profile.IATACode);
+                airportNode.SetAttribute("id", airport.Profile.ID);
                 airportNode.SetAttribute("size", airport.Profile.Size.ToString());
 
                 XmlElement airportHubsNode = xmlDoc.CreateElement("hubs");
@@ -1039,7 +1054,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
-            gameSettingsNode.SetAttribute("time", GameObject.GetInstance().GameTime.ToString(new CultureInfo("de-DE")));
             gameSettingsNode.SetAttribute("fuelprice", GameObject.GetInstance().FuelPrice.ToString());
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());

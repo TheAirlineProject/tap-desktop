@@ -28,6 +28,7 @@ namespace TheAirline.Model.AirportModel
         public TimeSpan OffsetDST { get; set; }
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
         public Period Period { get; set; }
+        public string ID { get; set; }
         public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, Weather.Season season)
         {
             this.Name = name;
@@ -44,6 +45,8 @@ namespace TheAirline.Model.AirportModel
             this.OffsetDST = offsetDST;
             this.OffsetGMT = offsetGMT;
             this.Season = season;
+            this.ID = string.Format("{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}", char.ConvertToUtf32(this.IATACode, 0), char.ConvertToUtf32(this.IATACode, 1), char.ConvertToUtf32(this.IATACode, 2), name.Length, char.ConvertToUtf32(this.Name, this.Name.Length / 2),(int)this.Size);
+
             
         }
         //returns the time zone for the airport

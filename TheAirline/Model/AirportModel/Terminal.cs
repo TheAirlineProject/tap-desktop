@@ -104,7 +104,7 @@ namespace TheAirline.Model.AirportModel
     public class Terminals
     {
         public Airport Airport { get; set; }
-        private List<Terminal> AirportTerminals;
+        public List<Terminal> AirportTerminals;
         public Terminals(Airport airport)
         {
             this.Airport = airport;

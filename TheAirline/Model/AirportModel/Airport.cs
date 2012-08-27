@@ -229,8 +229,22 @@ namespace TheAirline.Model.AirportModel
         //returns an airport based on iata code
         public static Airport GetAirport(string iata)
         {
-            return airports.Find(a => a.Profile.IATACode == iata);
-            
+            var tAirports = airports.FindAll(a => a.Profile.IATACode == iata);
+
+            if (tAirports.Count == 1)
+                return tAirports[0];
+
+            var tAirport = tAirports.Find(a => GeneralHelpers.IsAirportActive(a));
+
+            if (tAirport == null)
+                return null;
+            else
+                return tAirport;
+        }
+        //returns an airport based on id
+        public static Airport GetAirportFromID(string id)
+        {
+            return airports.Find(a => a.Profile.ID == id);
         }
         //returns all active airports
         public static List<Airport> GetAllActiveAirports()

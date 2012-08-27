@@ -94,7 +94,7 @@ namespace TheAirline.Model.GeneralModel
             size = Convert.ToDouble(size) * happiness / 100.0;
 
             double minValue = Math.Min(size, airliner.Airliner.getAirlinerClass(type).SeatingCapacity)*0.8;
-
+            
             int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,(int)size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
 
             if (airportCurrent.IsHub)
@@ -166,7 +166,7 @@ namespace TheAirline.Model.GeneralModel
         public static void CreateDestinationPassengers()
         {
             foreach (Airport airport in Airports.GetAllActiveAirports())
-                foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town))
+                foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates,airport.Profile.Coordinates)>25))
                 {
                   
                     Array values = Enum.GetValues(typeof(GeneralHelpers.Size));

@@ -873,7 +873,11 @@ namespace TheAirline.Model.GeneralModel
         //finds the home base for a computer airline
         private static Airport FindComputerHomeBase(Airline airline)
         {
-            if (airline.Profile.PreferedAirport == null)
+            if (airline.Profile.PreferedAirport != null && airline.Profile.PreferedAirport.Terminals.getFreeGates() > 1)
+            {
+                 return airline.Profile.PreferedAirport;
+            }
+            else
             {
                 List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates() > 1);
 
@@ -885,8 +889,8 @@ namespace TheAirline.Model.GeneralModel
 
                 return AIHelpers.GetRandomItem(list);
             }
-            else
-                return airline.Profile.PreferedAirport;
+         
+               
         }
         /*! creates some airliners and routes for a computer airline.
          */
@@ -897,14 +901,26 @@ namespace TheAirline.Model.GeneralModel
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
 
             airportHomeBase.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
-            
-            Airport airportDestination = AIHelpers.GetDestinationAirport(airline, airportHomeBase);
-           
-            KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
+
+            List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
+
+            KeyValuePair<Airliner, Boolean>? airliner = null;
+            Airport airportDestination = null;
+
+            int counter = 0;
+
+            while (airportDestination == null || airliner==null || !airliner.HasValue)
+            {
+                airportDestination = airportDestinations[counter];
+
+                airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
+
+                counter++;
+            }
 
             if (airportDestination == null || !airliner.HasValue)
             {
-
+               
                 CreateComputerRoutes(airline);
 
             }
