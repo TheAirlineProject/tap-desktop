@@ -297,6 +297,7 @@ namespace TheAirline.Model.GeneralModel
                     double length = XmlConvert.ToDouble(specsElement.Attributes["length"].Value);
                     long range = Convert.ToInt64(specsElement.Attributes["range"].Value);
                     double speed = XmlConvert.ToDouble(specsElement.Attributes["speed"].Value);
+                    long fuelcapacity = XmlConvert.ToInt64(specsElement.Attributes["fuelcapacity"].Value);
                     double fuel = XmlConvert.ToDouble(specsElement.Attributes["consumption"].Value);
                     long runwaylenght = XmlConvert.ToInt64(specsElement.Attributes["runwaylengthrequired"].Value);
 
@@ -318,14 +319,14 @@ namespace TheAirline.Model.GeneralModel
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                         int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-                        AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, body, rangeType, engine, new Period(from, to)));
+                        AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to)));
 
                     }
                     if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                     {
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
-                        AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, body, rangeType, engine, new Period(from, to)));
+                        AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to)));
                     }
 
                 }

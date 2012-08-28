@@ -94,6 +94,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             }
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1013"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1016"), UICreator.CreateTextBlock(string.Format("{0:0.#} {1}", new FuelUnitConverter().Convert(airliner.fuelcapacity), new StringToLanguageConverter().Convert("gallons")))));
             
             
             string produced = string.Format("{0}-{1}", airliner.Produced.From > GameObject.GetInstance().GameTime ? "?" : airliner.Produced.From.ToShortDateString(), airliner.Produced.To > GameObject.GetInstance().GameTime ? "?" : airliner.Produced.To.ToShortDateString());

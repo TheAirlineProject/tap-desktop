@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.Converters
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
-                return MathHelpers.LtrToGallons(v);
+                return MathHelpers.GallonsToLtr(v);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

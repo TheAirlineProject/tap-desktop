@@ -190,7 +190,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             }
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1014"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1015"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
-
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1027"), UICreator.CreateTextBlock(string.Format("{0:0.#} {1}", new FuelUnitConverter().Convert(airliner.fuelcapacity), new StringToLanguageConverter().Convert("gallons")))));
             return panelAirlinerType;
 
         }
