@@ -873,7 +873,7 @@ namespace TheAirline.Model.GeneralModel
         //finds the home base for a computer airline
         private static Airport FindComputerHomeBase(Airline airline)
         {
-            if (airline.Profile.PreferedAirport != null && airline.Profile.PreferedAirport.Terminals.getFreeGates() > 1)
+            if (airline.Profile.PreferedAirport != null && GeneralHelpers.IsAirportActive(airline.Profile.PreferedAirport) && airline.Profile.PreferedAirport.Terminals.getFreeGates() > 1)
             {
                  return airline.Profile.PreferedAirport;
             }
