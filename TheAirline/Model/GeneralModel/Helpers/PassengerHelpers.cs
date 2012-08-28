@@ -141,7 +141,7 @@ namespace TheAirline.Model.GeneralModel
             return 1;
         }
         //returns the suggested passenger price for a route - new
-        public static double GetPassengerPriceNew(Airport dest1, Airport dest2)
+        public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
@@ -168,7 +168,7 @@ namespace TheAirline.Model.GeneralModel
            
         }
         //returns the suggested passenger price for a route on a airliner
-        public static double GetPassengerPrice(Airport dest1, Airport dest2)
+        public static double GetPassengerPriceOld(Airport dest1, Airport dest2)
         {
             
             double fuelConsumption = AirlinerTypes.GetAllTypes().Max(t => t.FuelConsumption);
