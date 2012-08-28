@@ -59,6 +59,27 @@ namespace TheAirline.GraphicsModel.Converters
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
+                return MathHelpers.LtrToGallons(v);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class FuelUnitGtLConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return v;
+            else
                 return MathHelpers.GallonsToLtr(v);
         }
 

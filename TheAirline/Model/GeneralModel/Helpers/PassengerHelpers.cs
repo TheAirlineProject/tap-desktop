@@ -159,12 +159,25 @@ namespace TheAirline.Model.GeneralModel
             double consumption = (bestFitAirliner.FuelCapacity / tMax / bestFitAirliner.CruisingSpeed)*0.9; //why tMax / speed when tMax is range / speed
             double fuelExpenses = fuelprice * dist * consumption; //why are passenger capacity isn't used here
             double otherCost = ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity * (2.50 + dist * 0.0005);
+            Convert.ToDouble(((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
 
             double totalExpenses = otherCost + fuelExpenses + crewExpenses;//minimum ticket price
         
             double paxIndex = 3 / Convert.ToDouble(((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
          
             double ticketPrice = totalExpenses * paxIndex;
+            //distance modifiers
+            if (dist < 5000) ticketPrice = ticketPrice * 0.5;
+            else
+                if (dist < 5600) ticketPrice = ticketPrice * 0.90;
+                else
+                    if (dist < 7000) ticketPrice = ticketPrice * 1.85;
+                    else
+                        if (dist < 15000) ticketPrice = ticketPrice * 1.49;
+                 
+                        
+       
+         
 
             return ticketPrice;
             
