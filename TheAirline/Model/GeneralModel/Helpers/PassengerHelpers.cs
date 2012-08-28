@@ -153,16 +153,18 @@ namespace TheAirline.Model.GeneralModel
             double cockpitWage = FeeTypes.GetType("Cockpit wage").DefaultValue;
             double fuelprice = GameObject.GetInstance().FuelPrice;
 
+         
             double crewExpenses = (bestFitAirliner.CockpitCrew * cockpitWage * estFlightTime.TotalHours) + (((AirlinerPassengerType)bestFitAirliner).CabinCrew * cabinWage * estFlightTime.TotalHours);
             double tMax = bestFitAirliner.Range / bestFitAirliner.CruisingSpeed;
-            double consumption = bestFitAirliner.FuelCapacity / tMax / bestFitAirliner.CruisingSpeed; //why tMax / speed when tMax is range / speed
-            double fuelExpenses = fuelprice * dist * bestFitAirliner.FuelCapacity; //why are passenger capacity isn't used here
+            double consumption = (bestFitAirliner.FuelCapacity / tMax / bestFitAirliner.CruisingSpeed)*0.9; //why tMax / speed when tMax is range / speed
+            double fuelExpenses = fuelprice * dist * consumption; //why are passenger capacity isn't used here
             double otherCost = ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity * (2.50 + dist * 0.0005);
 
             double totalExpenses = otherCost + fuelExpenses + crewExpenses;//minimum ticket price
-            
-            //renamed mtp to ticketPrice, removed extra parentheses
-            double ticketPrice = totalExpenses * 3 / ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity;
+        
+            double paxIndex = 3 / Convert.ToDouble(((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
+         
+            double ticketPrice = totalExpenses * paxIndex;
 
             return ticketPrice;
             

@@ -290,6 +290,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 int startYear = (int)cbStartYear.SelectedItem;
                 GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
 
+                //sets the fuel price
+                GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
+
                 int opponents = (int)cbOpponents.SelectedItem;
                 Airline airline = (Airline)cbAirline.SelectedItem;
 
@@ -319,9 +322,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GameTimer.GetInstance().start();
                 PassengerHelpers.CreateDestinationPassengers();
 
-                //sets the fuel price
-                GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
-
+         
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }
             else
