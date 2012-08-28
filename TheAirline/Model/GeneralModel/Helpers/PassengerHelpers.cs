@@ -159,9 +159,10 @@ namespace TheAirline.Model.GeneralModel
             double fuelExpenses = fuelprice * dist * bestFitAirliner.FuelCapacity; //why are passenger capacity isn't used here
             double otherCost = ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity * (2.50 + dist * 0.0005);
 
-            double mtp = otherCost + fuelExpenses + crewExpenses;//minimum ticket price
-
-            double ticketPrice = mtp * (3 / ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
+            double totalExpenses = otherCost + fuelExpenses + crewExpenses;//minimum ticket price
+            
+            //renamed mtp to ticketPrice, removed extra parentheses
+            double ticketPrice = totalExpenses * 3 / ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity;
 
             return ticketPrice;
             
