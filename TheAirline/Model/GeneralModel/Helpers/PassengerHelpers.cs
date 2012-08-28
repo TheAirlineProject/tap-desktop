@@ -140,7 +140,33 @@ namespace TheAirline.Model.GeneralModel
 
             return 1;
         }
-        
+        //returns the suggested passenger price for a route - new
+        public static double GetPassengerPriceNew(Airport dest1, Airport dest2)
+        {
+            double dist = MathHelpers.GetDistance(dest1, dest2);
+
+            AirlinerType bestFitAirliner = (from at in AirlinerTypes.GetAllTypes() where at.Produced.From < GameObject.GetInstance().GameTime && at.Produced.To <= GameObject.GetInstance().GameTime && at.Range>=dist orderby at.Range select at).FirstOrDefault();
+
+            TimeSpan estFlightTime = MathHelpers.GetFlightTime(dest1.Profile.Coordinates,dest2.Profile.Coordinates,bestFitAirliner);
+
+            double cabinWage = FeeTypes.GetType("Cabin wage").DefaultValue;
+            double cockpitWage = FeeTypes.GetType("Cockpit wage").DefaultValue;
+            double fuelprice = GameObject.GetInstance().FuelPrice;
+
+            double crewExpenses = (bestFitAirliner.CockpitCrew * cockpitWage * estFlightTime.TotalHours) + (((AirlinerPassengerType)bestFitAirliner).CabinCrew * cabinWage * estFlightTime.TotalHours);
+            double tMax = bestFitAirliner.Range / bestFitAirliner.CruisingSpeed;
+            double consumption = bestFitAirliner.FuelCapacity / tMax / bestFitAirliner.CruisingSpeed; //why tMax / speed when tMax is range / speed
+            double fuelExpenses = fuelprice * dist * bestFitAirliner.FuelCapacity; //why are passenger capacity isn't used here
+            double otherCost = ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity * (2.50 + dist * 0.0005);
+
+            double mtp = otherCost + fuelExpenses + crewExpenses;//minimum ticket price
+
+            double ticketPrice = mtp * (3 / ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
+
+            return ticketPrice;
+            
+           
+        }
         //returns the suggested passenger price for a route on a airliner
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {

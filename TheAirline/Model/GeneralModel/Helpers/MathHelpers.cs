@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -58,6 +59,11 @@ namespace TheAirline.Model.GeneralModel
 
             return (RadianToDegree(Math.Atan2(y, x)) + 360) % 360;
 
+        }
+        //gets the distance between two airports in kilometers
+        public static double GetDistance(Airport airport1, Airport airport2)
+        {
+            return GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
         }
         //gets the distance in kilometers between two coordinates
         public static double GetDistance(Coordinates coordinates1, Coordinates coordinates2)

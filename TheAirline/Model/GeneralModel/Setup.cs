@@ -268,6 +268,7 @@ namespace TheAirline.Model.GeneralModel
         }
         private static void LoadAirliners(string file)
         {
+            string id = "";
             try
             {
                 XmlDocument doc = new XmlDocument();
@@ -286,6 +287,7 @@ namespace TheAirline.Model.GeneralModel
                     string name = airliner.Attributes["name"].Value;
                     long price = Convert.ToInt64(airliner.Attributes["price"].Value);
 
+                    id = name;
 
                     XmlElement typeElement = (XmlElement)airliner.SelectSingleNode("type");
                     AirlinerType.BodyType body = (AirlinerType.BodyType)Enum.Parse(typeof(AirlinerType.BodyType), typeElement.Attributes["body"].Value);
@@ -333,7 +335,9 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                string s = e.ToString();
+
+                string s = id;
+                s = e.ToString();
             }
         }
 
