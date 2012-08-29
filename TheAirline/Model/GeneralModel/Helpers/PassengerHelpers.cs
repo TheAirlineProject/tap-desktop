@@ -171,11 +171,17 @@ namespace TheAirline.Model.GeneralModel
             else
                 if (dist < 5600) ticketPrice = ticketPrice * 0.90;
                 else
-                    if (dist < 7000) ticketPrice = ticketPrice * 1.85;
+                    if (dist < 6500) ticketPrice = ticketPrice * 1;
                     else
-                        if (dist < 15000) ticketPrice = ticketPrice * 1.49;
-                 
-                        
+                        if (dist < 7000) ticketPrice = ticketPrice * 1.85;
+                        else
+                            if (dist < 9000) ticketPrice = ticketPrice * 1.75;
+                            else
+                                if (dist < 11000) ticketPrice = ticketPrice * 1.65;
+                                else
+                                    if (dist < 13000) ticketPrice = ticketPrice * 1.55;
+                                    else
+                                        if (dist < 15000) ticketPrice = ticketPrice * 1.49;                
        
          
 
