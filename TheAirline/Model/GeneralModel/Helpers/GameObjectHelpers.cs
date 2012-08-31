@@ -10,6 +10,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -76,11 +77,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice + fuelPrice;
             //checks for new airports which are opening
-            foreach (Airport airport in Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            List<Airport> openedAirports =Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+
+            foreach (Airport airport in openedAirports)
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
             //checks for airports which are closing down
-            foreach (Airport airport in Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
+            List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+            foreach (Airport airport in closedAirports)
             {
+                //check for airport which are reallocated 
+                Airport reallocatedAirport = openedAirports.Find(a=>a.Profile.Town == airport.Profile.Town);
+
+                if (reallocatedAirport != null) 
+                {
+                    var airlines = new List<Airline>(from g in airport.Terminals.getUsedGates() select g.Airline).Distinct();
+                    foreach (Airline airline in airlines)
+                    {
+                        AirlineHelpers.ReallocateAirport(airport, reallocatedAirport, airline);
+                        
+                        if (airline.IsHuman)
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News,GameObject.GetInstance().GameTime,"Airport operations changed",string.Format("All your gates, routes and facilities has been moved from {0}({1}) to {2}({3})",airport.Profile.Name,new AirportCodeConverter().Convert(airport).ToString(),reallocatedAirport.Profile.Name,new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+                    }
+                }
+
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closed", string.Format("The airport {0}({1}) has now been closed. \n\rAll routes to and from the airports has been cancelled.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString())));
 
                 var obsoleteRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) where r.Destination1 == airport || r.Destination2 == airport select r);
@@ -95,7 +114,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                          {
                              if (airliner.Airliner.Airline.IsHuman)
                              {
+                                 GameTimer.GetInstance().pause();
+
                                  airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner.Airliner.Airline);
+
+                                 GameTimer.GetInstance().start();
 
                              }
                              else
@@ -263,6 +286,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         double gatePrice = airline == terminal.Airline ? airport.getGatePrice() * 0.75 : airport.getGatePrice();
 
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -gatePrice * gates);
+
+                        long airportIncome = Convert.ToInt64(gatePrice * gates);
+                        airport.Income += airportIncome;
 
 
                     }
@@ -537,10 +563,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
 
-
+            
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates, airliner.CurrentPosition);
 
-            double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption + Airports.GetAirport(airliner.CurrentPosition).getLandingFee() + tax;
+            double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption + dest.getLandingFee() + tax;
 
             airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
             airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
@@ -580,6 +606,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             //the statistics for destination airport
             dept.addDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
+
+            long airportIncome = Convert.ToInt64(dest.getLandingFee());
+            dest.Income += airportIncome;
 
             Airline airline = airliner.Airliner.Airline;
 

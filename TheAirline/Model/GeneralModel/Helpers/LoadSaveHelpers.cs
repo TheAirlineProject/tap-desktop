@@ -365,7 +365,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
-
+                airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
 
                 XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
                 foreach (XmlElement airportHubElement in airportHubsList)
@@ -907,6 +907,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
                 airportNode.SetAttribute("id", airport.Profile.ID);
                 airportNode.SetAttribute("size", airport.Profile.Size.ToString());
+                airportNode.SetAttribute("income", airport.Income.ToString());
 
                 XmlElement airportHubsNode = xmlDoc.CreateElement("hubs");
                 foreach (Hub hub in airport.Hubs)

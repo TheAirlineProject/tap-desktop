@@ -168,8 +168,8 @@ namespace TheAirline.Model.AirportModel
         //releases a gate for an airline
         public void releaseGate(Airline airline)
         {
-
-            getEmptyGate(airline).Airline = null;
+            Gate gate = getEmptyGate(airline);
+            gate.Airline = null;
 
             if (getTotalNumberOfGates(airline) == 0)
                 airline.removeAirport(this.Airport);
@@ -183,7 +183,16 @@ namespace TheAirline.Model.AirportModel
 
             return null;
         }
-
+        //returns all used gates 
+        public List<Gate> getUsedGates()
+        {
+            return this.getDeliveredTerminals().SelectMany(t => t.Gates.getUsedGates()).ToList();
+        }
+        //returns all used gates for an airline
+        public List<Gate> getUsedGates(Airline airline)
+        {
+            return this.getDeliveredTerminals().SelectMany(t => t.Gates.getUsedGates(airline)).ToList();
+        }
         //returns a used gate for an airline
         public Gate getUsedGate(Airline airline)
         {
@@ -192,6 +201,7 @@ namespace TheAirline.Model.AirportModel
                     return terminal.Gates.getUsedGate(airline);
             return null;
         }
+        
         //returns a gate for an airline
         public Gate getGate(Airline airline)
         {

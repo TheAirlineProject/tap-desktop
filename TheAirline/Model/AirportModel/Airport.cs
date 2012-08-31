@@ -25,10 +25,11 @@ namespace TheAirline.Model.AirportModel
         public Terminals Terminals { get; set; }
         public List<Hub> Hubs { get; set; }
         public Boolean IsHub { get { return this.Hubs.Count > 0; } set { ;} }
+        public long Income{ get; set; }
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
-         //   this.Passengers = new List<Passenger>();
+            this.Income = 0;
             this.DestinationPassengers = new List<DestinationPassengers>();
             this.Facilities = new List<AirlineAirportFacility>();
             this.Statistics = new AirportStatistics();
@@ -131,6 +132,17 @@ namespace TheAirline.Model.AirportModel
         {
             return (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type orderby f.Facility.TypeLevel descending select f).FirstOrDefault();
          }
+        //return all the facilities for an airline
+        public List<AirportFacility> getCurrentAirportFacilities(Airline airline)
+        {
+            List<AirportFacility> fs = new List<AirportFacility>();
+            foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+            {
+                fs.Add(getCurrentAirportFacility(airline, type));
+            }
+
+            return fs;
+        }
         //return all the facilities for an airline
         public List<AirlineAirportFacility> getAirportFacilities(Airline airline)
         {

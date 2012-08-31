@@ -27,7 +27,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             this.Airline = airline;
 
-            this.Title = "Select Homebase";
+            this.Title = "Select new homebase";
 
             this.Width = 300;
 

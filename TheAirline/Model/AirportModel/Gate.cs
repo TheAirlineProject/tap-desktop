@@ -91,7 +91,16 @@ namespace TheAirline.Model.AirportModel
 
             return null;
         }
-
+        //returns all used gates
+        public List<Gate> getUsedGates()
+        {
+            return getDeliveredGates().FindAll(g => g.Airline != null);
+        }
+        //returns all gates for an airline
+        public List<Gate> getUsedGates(Airline airline)
+        {
+            return getDeliveredGates().FindAll(g => g.Airline == airline);
+        }
         //returns a used gate for an airline
         public Gate getUsedGate(Airline airline)
         {

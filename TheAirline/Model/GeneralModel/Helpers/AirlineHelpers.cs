@@ -5,6 +5,7 @@ using System.Text;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -59,5 +60,48 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice);
          }
+        //reallocate all gates and facilities from one airport to another - gates, facilities and routes
+        public static void ReallocateAirport(Airport oldAirport, Airport newAirport, Airline airline)
+        {
+            
+            //gates
+            foreach (Gate gate in oldAirport.Terminals.getUsedGates(airline))
+            {
+                gate.Route = null;
+            }
+            while (oldAirport.Terminals.getTotalNumberOfGates(airline) > 0)
+            {
+                oldAirport.Terminals.releaseGate(airline);
+                newAirport.Terminals.rentGate(airline);
+            }
+            //routes
+            var obsoleteRoutes = (from r in airline.Routes where r.Destination1 == oldAirport || r.Destination2 == oldAirport select r);
+
+            foreach (Route route in obsoleteRoutes)
+            {
+                if (route.Destination1 == oldAirport) route.Destination1 = newAirport;
+                if (route.Destination2 == oldAirport) route.Destination2 = newAirport;
+
+                newAirport.Terminals.getEmptyGate(airline).Route = route;
+                
+                var entries = route.TimeTable.Entries.FindAll(e=>e.Destination.Airport == oldAirport);
+
+                foreach (RouteTimeTableEntry entry in entries)
+                    entry.Destination.Airport = newAirport;
+
+                foreach (FleetAirliner airliner in route.getAirliners())
+                {
+                    if (airliner.Homebase == oldAirport)
+                        airliner.Homebase = newAirport;
+                }
+            }
+           
+            //facilities
+            foreach (AirportFacility facility in oldAirport.getCurrentAirportFacilities(airline))
+            {
+                newAirport.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            }
+          
+        }
     }
 }

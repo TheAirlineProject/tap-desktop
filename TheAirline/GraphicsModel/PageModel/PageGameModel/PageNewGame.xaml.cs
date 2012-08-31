@@ -134,6 +134,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             List<Airport> airportsList = Airports.GetAllAirports();
 
+            int c = airportsList.Count(a => a.Profile.IATACode == "DEN");
+            Console.WriteLine(c);
+            
+
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));
 
@@ -339,7 +343,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airportsView.Filter = o =>
                 {
                     Airport a = o as Airport;
-                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country && a.Terminals.getNumberOfGates() > 10 && a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
+                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country && GeneralHelpers.IsAirportActive(a);// && a.Terminals.getNumberOfGates() > 10 //a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
                 };
             }
             catch (Exception ex)
