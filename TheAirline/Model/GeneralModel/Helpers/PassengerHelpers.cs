@@ -99,7 +99,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (airportCurrent.IsHub)
             {
-                double hubCoeff = 1.2;
+                double hubCoeff = 1.5;
                 double dValue = Convert.ToDouble(value) * hubCoeff;
                 value = Math.Min((int)dValue, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
             }
@@ -173,15 +173,15 @@ namespace TheAirline.Model.GeneralModel
                 else
                     if (dist < 6500) ticketPrice = ticketPrice * 1;
                     else
-                        if (dist < 7000) ticketPrice = ticketPrice * 1.85;
+                        if (dist < 7000) ticketPrice = ticketPrice * 1.50;
                         else
-                            if (dist < 9000) ticketPrice = ticketPrice * 1.75;
+                            if (dist < 9000) ticketPrice = ticketPrice * 1.45;
                             else
-                                if (dist < 11000) ticketPrice = ticketPrice * 1.65;
+                                if (dist < 11000) ticketPrice = ticketPrice * 1.40;
                                 else
-                                    if (dist < 13000) ticketPrice = ticketPrice * 1.55;
+                                    if (dist < 13000) ticketPrice = ticketPrice * 1.35;
                                     else
-                                        if (dist < 15000) ticketPrice = ticketPrice * 1.49;                
+                                        if (dist < 15000) ticketPrice = ticketPrice * 1.30;                
        
          
 

@@ -37,12 +37,12 @@ namespace TheAirline.Model.AirlinerModel
                 this.Classes.Add(new AirlinerClass(this, AirlinerClass.ClassType.Economy_Class, 0));
             
         }
-        // chs, 2011-10-10 changed the leasing price to 5 years
+        // mjd 08/30/12 leasing price recalculated for 15 years
         //gets the price for leasing the airliner per month
         public long getLeasingPrice()
         {
 
-            double months = 20 * 5;
+            double months = 20 * 15;
             double rate = 1.20;
             double leasingPrice = this.getPrice()*rate / months;
             return Convert.ToInt64(leasingPrice);
