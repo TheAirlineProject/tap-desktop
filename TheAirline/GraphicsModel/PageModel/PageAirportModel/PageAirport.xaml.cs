@@ -343,10 +343,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             panelQuickInfo.Children.Add(lbQuickInfo);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1007"), UICreator.CreateTextBlock(this.Airport.Profile.Name)));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1022"),UICreator.CreateTextBlock(this.Airport.Profile.Period.From.ToShortDateString())));
+                 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1008"), UICreator.CreateTextBlock(new AirportCodeConverter().Convert(this.Airport).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1009"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Type).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"), UICreator.CreateTextBlock(this.Airport.Profile.Town)));
+    
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1022"), UICreator.CreateTextBlock(this.Airport.Profile.Period.From.ToShortDateString())));
+
+            if (GameObject.GetInstance().GameTime.AddDays(14) > this.Airport.Profile.Period.To)
+            {
+                TextBlock txtClosingDate = UICreator.CreateTextBlock(this.Airport.Profile.Period.To.ToShortDateString());
+                txtClosingDate.Foreground = Brushes.DarkRed;
+
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1024"),txtClosingDate ));
+            }
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");

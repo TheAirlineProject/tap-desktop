@@ -76,11 +76,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double fuelPrice = (rnd.NextDouble() * (fuelDiff / 4));
 
             GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice + fuelPrice;
+            //checks for airports due to close in 14 days
+            var closingAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.AddDays(14).ToShortDateString());
+            var openingAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.AddDays(14).ToShortDateString());
+
+            foreach (Airport airport in closingAirports)
+            {
+                Airport reallocatedAirport = openingAirports.Find(a => a.Profile.Town == airport.Profile.Town);
+
+                if (reallocatedAirport == null)
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString())));
+                else
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(),reallocatedAirport.Profile.Name,new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+   
+
+            }
+
             //checks for new airports which are opening
             List<Airport> openedAirports =Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
 
             foreach (Airport airport in openedAirports)
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+            {
+                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+                
+            }
             //checks for airports which are closing down
             List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
             foreach (Airport airport in closedAirports)
