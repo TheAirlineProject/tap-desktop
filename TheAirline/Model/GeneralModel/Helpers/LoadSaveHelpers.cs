@@ -734,7 +734,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airlineStatsNode.AppendChild(airlineStatNode);
                     }
                 }
-                airlineNode.AppendChild(airlineStatsNode);
+              /* airlineNode.AppendChild(airlineStatsNode);
 
                 XmlElement invoicesNode = xmlDoc.CreateElement("invoices");
                 foreach (Invoice invoice in airline.getInvoices())
@@ -759,7 +759,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     advertisementsNodes.AppendChild(advertisementNode);
                 }
                 airlineNode.AppendChild(advertisementsNodes);
-
+                */
                 // chs, 2011-17-10 added for saving of airline fees
                 XmlElement feesNode = xmlDoc.CreateElement("fees");
                 foreach (FeeType feetype in FeeTypes.GetTypes())
