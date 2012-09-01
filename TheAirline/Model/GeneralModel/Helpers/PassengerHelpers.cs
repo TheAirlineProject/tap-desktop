@@ -173,25 +173,16 @@ namespace TheAirline.Model.GeneralModel
          
             double ticketPrice = totalExpenses * paxIndex;
             //distance modifiers
-            if (dist < 500) ticketPrice = ticketPrice * 1.5;
-            else
-               if (dist < 5000) ticketPrice = ticketPrice * 0.8;
-              else
-                  if (dist < 5600) ticketPrice = ticketPrice * 0.90;
-                  else
-                    if (dist < 6500) ticketPrice = ticketPrice * 1;
-                    else
-                        if (dist < 7000) ticketPrice = ticketPrice * 1.50;
-                        else
-                            if (dist < 9000) ticketPrice = ticketPrice * 1.45;
-                            else
-                                if (dist < 11000) ticketPrice = ticketPrice * 1.40;
-                                else
-                                    if (dist < 13000) ticketPrice = ticketPrice * 1.35;
-                                    else
-                                        if (dist < 15000) ticketPrice = ticketPrice * 1.30;                
-       
-         
+            if (dist <= 500) ticketPrice = ticketPrice * 1.5;
+            else if (dist > 500 && dist <= 5000) ticketPrice = ticketPrice * 0.8;
+            else if (dist > 5000 && dist <= 5600) ticketPrice = ticketPrice * 0.90;
+            else if (dist > 5600 && dist <= 6500) ticketPrice = ticketPrice * 1;
+            else if (dist > 6500 && dist <= 7000) ticketPrice = ticketPrice * 1.50;
+            else if (dist > 7000 && dist <= 9000) ticketPrice = ticketPrice * 1.45;
+            else if (dist > 9000 && dist <= 11000) ticketPrice = ticketPrice * 1.40;
+            else if (dist > 11000 && dist <= 13000) ticketPrice = ticketPrice * 1.35;
+            else if (dist > 13000 && dist <= 15000) ticketPrice = ticketPrice * 1.30;
+            else ticketPrice = ticketPrice * 1.25;                    
 
             return ticketPrice;
             
