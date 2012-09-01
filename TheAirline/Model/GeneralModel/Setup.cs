@@ -1044,7 +1044,8 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Full Dinner", 3, 100, RouteFacility.ExpenseType.Fixed, 40, null));
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "No Drinks", 1, -50, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Buyable Drinks", 1, 25, RouteFacility.ExpenseType.Random, 0, FeeTypes.GetType("Drinks")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Free Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 30, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Free Drinks", 2, 80, RouteFacility.ExpenseType.Fixed, 30, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Served Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 15, null));
         }
 
         /*! creates the Fee types.
