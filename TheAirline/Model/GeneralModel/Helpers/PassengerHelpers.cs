@@ -145,7 +145,7 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            AirlinerType bestFitAirliner = (from at in AirlinerTypes.GetAllTypes() where at.Produced.From < GameObject.GetInstance().GameTime && at.Produced.To <= GameObject.GetInstance().GameTime && at.Range>=dist orderby at.Range select at).FirstOrDefault();
+            AirlinerType bestFitAirliner = (from at in AirlinerTypes.GetAllTypes() where at.Produced.From <= GameObject.GetInstance().GameTime && at.Produced.To > GameObject.GetInstance().GameTime && at.Range>=dist orderby at.Range select at).FirstOrDefault();
 
             TimeSpan estFlightTime = MathHelpers.GetFlightTime(dest1.Profile.Coordinates,dest2.Profile.Coordinates,bestFitAirliner);
 
@@ -210,37 +210,42 @@ namespace TheAirline.Model.GeneralModel
             return expenses * 2.5;
 
         }
-       
+        //creates the airport destination passengers a destination
+        public static void CreateDestinationPassengers(Airport airport)
+        {
+            foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
+            {
+
+                Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
+
+                Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
+                Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
+
+                int sameContinentCoeff = isSameContinent ? values.Length * 1 : 0;
+                int sameCountryCoeff = isSameCountry ? values.Length * 2 : 0;
+
+                int destCoeff = ((int)dAirport.Profile.Size + 1) * 2;
+                int deptCoeff = ((int)airport.Profile.Size + 1);
+
+                int rndCoeff = rnd.Next(values.Length);
+
+                int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
+
+                int value = coeff / 6;
+
+
+
+                GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
+
+
+                airport.addDestinationPassengersRate(new DestinationPassengers(dAirport, rate));
+            }
+        }
+        //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()
         {
             foreach (Airport airport in Airports.GetAllActiveAirports())
-                foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates,airport.Profile.Coordinates)>25))
-                {
-                  
-                    Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
-
-                    Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
-                    Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
-
-                    int sameContinentCoeff = isSameContinent ? values.Length * 1 : 0;
-                    int sameCountryCoeff = isSameCountry ? values.Length * 2 : 0;
-
-                    int destCoeff = ((int)dAirport.Profile.Size + 1) *2;
-                    int deptCoeff = ((int)airport.Profile.Size + 1);
-
-                    int rndCoeff= rnd.Next(values.Length);
-
-                    int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
-
-                    int value = coeff / 6;
-                   
-                
-
-                    GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
-
-               
-                    airport.addDestinationPassengersRate(new DestinationPassengers(dAirport,rate));
-                }
+                CreateDestinationPassengers(airport); 
         }
         
       
