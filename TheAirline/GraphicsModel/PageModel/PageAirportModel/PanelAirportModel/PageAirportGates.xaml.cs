@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -35,8 +36,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             this.Airport = airport;
 
-
-
             InitializeComponent();
 
             // chs, 2011-27-10 added for the possibility of purchasing a terminal
@@ -48,8 +47,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelGatesTerminals.Children.Add(panelGates);
 
-
-           
             ScrollViewer svTerminals = new ScrollViewer();
             svTerminals.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             svTerminals.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
@@ -101,9 +98,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnHub.Click += new RoutedEventHandler(btnHub_Click);
             btnHub.Margin = new Thickness(5, 0, 0, 0);
             btnHub.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
             panelButtons.Children.Add(btnHub);
 
+            Airport allocateToAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Profile.Period.From.AddDays(30)>GameObject.GetInstance().GameTime).FirstOrDefault();
+            
+            Button btnReallocate = new Button();
+            btnReallocate.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnReallocate.Uid = "205";
+            btnReallocate.Width = Double.NaN;
+            btnReallocate.Height = Double.NaN;
+            btnReallocate.Tag = allocateToAirport;
+            btnReallocate.Content = string.Format(Translator.GetInstance().GetString("PageAirportGates", btnReallocate.Uid), allocateToAirport == null ? "" : new AirportCodeConverter().Convert(allocateToAirport).ToString());
+            btnReallocate.Visibility = allocateToAirport == null || this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)==0 ? Visibility.Collapsed : Visibility.Visible;
+            btnReallocate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnReallocate.Margin = new Thickness(5, 0, 0, 0);
+            btnReallocate.Click += new RoutedEventHandler(btnReallocate_Click);
+            panelButtons.Children.Add(btnReallocate);
+      
             this.Content = panelGatesTerminals;
 
             showGatesInformation();
@@ -111,6 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             showHubs();
         }
 
+       
        
         //shows the hubs
         private void showHubs()
@@ -287,6 +299,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 showHubs();
             }
 
+        }
+        private void btnReallocate_Click(object sender, RoutedEventArgs e)
+        {
+            Airport allocateToAirport = (Airport)((Button)sender).Tag;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2216"), string.Format(Translator.GetInstance().GetString("MessageBox", "2216", "message"), this.Airport.Profile.Name, allocateToAirport.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                AirlineHelpers.ReallocateAirport(this.Airport, allocateToAirport, GameObject.GetInstance().HumanAirline);
+
+                PageNavigator.NavigateTo(new PageAirport(allocateToAirport));
+            }
         }
         private void btnHub_Click(object sender, RoutedEventArgs e)
         {

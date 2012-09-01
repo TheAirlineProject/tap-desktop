@@ -352,6 +352,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             if (GameObject.GetInstance().GameTime.AddDays(14) > this.Airport.Profile.Period.To)
             {
+            
                 TextBlock txtClosingDate = UICreator.CreateTextBlock(this.Airport.Profile.Period.To.ToShortDateString());
                 txtClosingDate.Foreground = Brushes.DarkRed;
 

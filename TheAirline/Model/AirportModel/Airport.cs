@@ -191,6 +191,13 @@ namespace TheAirline.Model.AirportModel
             this.Facilities.Remove(aaf);
 
         }
+        //cleares the list of facilities for an airline
+        public void clearFacilities(Airline airline)
+        {
+            this.Facilities.RemoveAll(f => f.Airline == airline);
+          
+        }
+
         //returns the price for a hub
         public long getHubPrice()
         {

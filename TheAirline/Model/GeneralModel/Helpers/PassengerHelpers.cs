@@ -76,6 +76,12 @@ namespace TheAirline.Model.GeneralModel
             int totalRoutes1 = airportCurrent.Terminals.getRoutes().Count;
             int totalRoutes2 = airportDestination.Terminals.getRoutes().Count;
 
+            if (totalRoutes1 == 0 || totalRoutes2 == 0)
+            {
+                string s = "";
+                s = airportCurrent.Profile.Name;
+            }
+
             int sameRoutes = 0;
       
             foreach (Route route in airportCurrent.Terminals.getRoutes())
@@ -216,29 +222,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
             {
 
-                Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
-
-                Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
-                Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
-
-                int sameContinentCoeff = isSameContinent ? values.Length * 1 : 0;
-                int sameCountryCoeff = isSameCountry ? values.Length * 2 : 0;
-
-                int destCoeff = ((int)dAirport.Profile.Size + 1) * 2;
-                int deptCoeff = ((int)airport.Profile.Size + 1);
-
-                int rndCoeff = rnd.Next(values.Length);
-
-                int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
-
-                int value = coeff / 6;
-
-
-
-                GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
-
-
-                airport.addDestinationPassengersRate(new DestinationPassengers(dAirport, rate));
+                CreateDestinationPassengers(airport, dAirport);
             }
         }
         //creates the airport destinations passenger for all destinations
@@ -247,7 +231,32 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airport airport in Airports.GetAllActiveAirports())
                 CreateDestinationPassengers(airport); 
         }
-        
+        //creates the airport destinations passengers between two destinations 
+        public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
+        {
+            Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
+
+            Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
+            Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
+
+            int sameContinentCoeff = isSameContinent ? values.Length * 1 : 0;
+            int sameCountryCoeff = isSameCountry ? values.Length * 2 : 0;
+
+            int destCoeff = ((int)dAirport.Profile.Size + 1) * 2;
+            int deptCoeff = ((int)airport.Profile.Size + 1);
+
+            int rndCoeff = rnd.Next(values.Length);
+
+            int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
+
+            int value = coeff / 6;
+
+
+            GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
+
+
+            airport.addDestinationPassengersRate(new DestinationPassengers(dAirport, rate));
+        }
       
     }
 }

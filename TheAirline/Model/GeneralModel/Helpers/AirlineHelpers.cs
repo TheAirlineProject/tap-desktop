@@ -101,7 +101,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 newAirport.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
             }
-          
+         
+            oldAirport.clearFacilities(airline);
+
+            foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+            {
+               
+                AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+
+                oldAirport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+            }
         }
     }
 }
