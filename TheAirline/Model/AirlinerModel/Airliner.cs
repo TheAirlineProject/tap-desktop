@@ -18,6 +18,7 @@ namespace TheAirline.Model.AirlinerModel
         public double LastServiceCheck { get; set; }  //the km were the airliner was last at service
         public long Price { get { return getPrice(); } private set { } }
         public long LeasingPrice { get { return getLeasingPrice(); } private set { } }
+        public long FuelCapacity { get; set; }
         public int Age { get { return getAge(); } private set { } }
         public List<AirlinerClass> Classes { get; set; }
         public Airliner(AirlinerType type, string tailNumber, DateTime builtDate)
@@ -27,7 +28,6 @@ namespace TheAirline.Model.AirlinerModel
             this.LastServiceCheck = 0;
             this.TailNumber = tailNumber;
             this.Flown = 0;
-             
             this.Classes = new List<AirlinerClass>();
             
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
@@ -111,7 +111,7 @@ namespace TheAirline.Model.AirlinerModel
         {
             return this.Classes.Find((delegate(AirlinerClass c) { return c.Type == type; }));
         }
-       
+
     }
     //the list of airliners
     public class Airliners

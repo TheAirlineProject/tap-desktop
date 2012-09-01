@@ -26,6 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
     {
         private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates;
         private ComboBox cbDestination1, cbDestination2;
+        private ComboBox cbAircraft;
         private Button btnSave;
         private PageRoutes ParentPage;
         private double MaxDistance;
@@ -82,6 +83,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             panelDestination2.Children.Add(txtDestination2Gates);
 
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "203"), panelDestination2));
+
+           // New combo box for primary airliner
+           // WrapPanel panelAircraft = new WrapPanel(); 
+
+           // cbAircraft = createAircraftComboBox();
+           // panelAircraft.Children.Add(cbAircraft);
+
+          //  lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "210"), panelAircraft));
 
 
             txtDistance = UICreator.CreateTextBlock("-");
@@ -236,6 +245,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
         }
 
+        //creates the combo box for selecting a primary route aircraft
+        private ComboBox createAircraftComboBox()
+        {
+            ComboBox cbAircraft = new ComboBox();
+
+            cbAircraft.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
+            cbAircraft.Background = Brushes.Transparent;
+            cbAircraft.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAircraft.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAircraft.SelectionChanged += new SelectionChangedEventHandler(cbAircraft_SelectionChanged);
+            List<FleetAirliner> airliners = GameObject.GetInstance().HumanAirline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime; }));
+       
+            foreach (FleetAirliner airliner in airliners)
+                cbAircraft.Items.Add(airliner);
+        
+            return cbAircraft;
+        }
+
+        private void cbAircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
         //creates the combo box for a destination
         private ComboBox createDestinationComboBox()
         {
