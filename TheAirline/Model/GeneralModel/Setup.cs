@@ -1046,28 +1046,25 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateFlightFacilities()
         {
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "No Food", 1, -50, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Buyable Snacks", 1, 10, RouteFacility.ExpenseType.Random, 0, FeeTypes.GetType("Snacks")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Buyable Meal", 1, 25, RouteFacility.ExpenseType.Random, 0, FeeTypes.GetType("Meal")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Basic Meal", 2, 50, RouteFacility.ExpenseType.Fixed, 20, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Full Dinner", 3, 100, RouteFacility.ExpenseType.Fixed, 40, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Buyable Snacks", 1, 10, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Snacks")));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Buyable Meal", 1, 25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Basic Meal", 2, 50, RouteFacility.ExpenseType.Fixed, 0.50, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Full Dinner", 3, 100, RouteFacility.ExpenseType.Fixed, 2, null));
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "No Drinks", 1, -50, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Buyable Drinks", 1, 25, RouteFacility.ExpenseType.Random, 0, FeeTypes.GetType("Drinks")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Free Drinks", 2, 80, RouteFacility.ExpenseType.Fixed, 30, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Served Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 15, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Buyable Drinks", 1, 25, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Free Drinks", 2, 80, RouteFacility.ExpenseType.Fixed, 0.20, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Served Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 2, null));
         }
 
         /*! creates the Fee types.
          */
         private static void CreateFeeTypes()
         {
-
-            //FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin kilometer rate", 0.15, 0.025, 0.25, 100));
-            //FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit kilometer rate", 0.25, 0.15, 0.5, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 4.11, 3.75, 12.75, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.25, 0.06, 0.8, 75));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.2, 0.1, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 0.625, 0.525, 0.725, 50));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 0.75, 1.25, 2, 50));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 5, 95));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 1.25, 0, 5.25, 25));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 2.5, 0, 6, 2));
