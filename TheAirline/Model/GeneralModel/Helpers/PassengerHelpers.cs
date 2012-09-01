@@ -221,6 +221,7 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
+
             foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
             {
 

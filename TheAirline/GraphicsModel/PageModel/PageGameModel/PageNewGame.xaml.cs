@@ -133,10 +133,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbAirport.SelectionChanged += new SelectionChangedEventHandler(cbAirports_SelectionChanged);
 
             List<Airport> airportsList = Airports.GetAllAirports();
-
-            int c = airportsList.Count(a => a.Profile.IATACode == "DEN");
-            Console.WriteLine(c);
-            
+           
 
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));

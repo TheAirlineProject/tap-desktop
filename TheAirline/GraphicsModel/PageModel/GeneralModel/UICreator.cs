@@ -11,6 +11,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -73,6 +74,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
        
             StackPanel panelLogo = new StackPanel();
 
+            string image = AppSettings.getDataPath() + "\\graphics\\TheAirline034.png";
+
+            Image imgLogo = new Image();
+            imgLogo.Source = new BitmapImage(new Uri(image, UriKind.RelativeOrAbsolute));
+            imgLogo.Width = SystemParameters.PrimaryScreenWidth / 4;
+            RenderOptions.SetBitmapScalingMode(imgLogo, BitmapScalingMode.HighQuality);
+
+            /*
             LinearGradientBrush brushGold = new LinearGradientBrush();
             brushGold.StartPoint = new Point(0, 0);
             brushGold.EndPoint = new Point(0,1);
@@ -114,6 +123,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             txtSubHeader.Text = "Come fly with us!";
 
             panelLogo.Children.Add(txtSubHeader);
+            */
+            panelLogo.Children.Add(imgLogo);
 
             return panelLogo;
         }
