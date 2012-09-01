@@ -90,7 +90,7 @@ namespace TheAirline.Model.GeneralModel
 
             int destPassengers = (int)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
-            double size = (1000 * destPassengers * GetSeasonFactor(airportDestination));// + (750 * deptSize * GetSeasonFactor(airportCurrent));
+            double size = (20000 * destPassengers * GetSeasonFactor(airportDestination));// + (750 * deptSize * GetSeasonFactor(airportCurrent));
             size = size / (sameRoutes + 1);
             size = size / totalRoutes1; 
             size = size / totalRoutes2;
@@ -173,10 +173,12 @@ namespace TheAirline.Model.GeneralModel
          
             double ticketPrice = totalExpenses * paxIndex;
             //distance modifiers
-            if (dist < 5000) ticketPrice = ticketPrice * 0.5;
+            if (dist < 500) ticketPrice = ticketPrice * 1.5;
             else
-                if (dist < 5600) ticketPrice = ticketPrice * 0.90;
-                else
+               if (dist < 5000) ticketPrice = ticketPrice * 0.8;
+              else
+                  if (dist < 5600) ticketPrice = ticketPrice * 0.90;
+                  else
                     if (dist < 6500) ticketPrice = ticketPrice * 1;
                     else
                         if (dist < 7000) ticketPrice = ticketPrice * 1.50;
