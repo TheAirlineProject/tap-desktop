@@ -439,7 +439,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 if ((eStartTime >= startTime && endTime >= eStartTime) || (eEndTime >= startTime && endTime >= eEndTime) || (endTime >= eStartTime && eEndTime >= endTime) || (startTime >= eStartTime && eEndTime >= startTime))
                 {
-                    if (e.Airliner == this.Airliner || diffEndTime < 60 || diffStartTime < 60)
+                    if (e.Airliner == this.Airliner || diffEndTime < 15 || diffStartTime < 15)
                     {
                         if (showMessageBoxOnError)
                         {
