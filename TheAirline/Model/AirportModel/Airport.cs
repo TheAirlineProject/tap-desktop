@@ -124,7 +124,7 @@ namespace TheAirline.Model.AirportModel
         //returns the current airport facility of a specific type for an airlines
         public AirportFacility getCurrentAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
-            return (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility).First();
+            return (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility).FirstOrDefault();
        
         }
         //return the airport facility for a specific type for an airline

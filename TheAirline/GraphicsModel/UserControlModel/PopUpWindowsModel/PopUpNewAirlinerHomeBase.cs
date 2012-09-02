@@ -14,20 +14,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
     public class PopUpNewAirlinerHomeBase : PopUpWindow
     {
-        private Airline Airline;
+        private FleetAirliner Airliner;
         private ComboBox cbAirport;
-        public static object ShowPopUp(Airline airline)
+        public static object ShowPopUp(FleetAirliner airliner)
         {
-            PopUpNewAirlinerHomeBase window = new PopUpNewAirlinerHomeBase(airline);
+            PopUpNewAirlinerHomeBase window = new PopUpNewAirlinerHomeBase(airliner);
             window.ShowDialog();
 
             return window.Selected == null ? null : window.Selected;
         }
-        public PopUpNewAirlinerHomeBase(Airline airline)
+        public PopUpNewAirlinerHomeBase(FleetAirliner airliner)
         {
-            this.Airline = airline;
+            this.Airliner = airliner;
 
-            this.Title = "Select new homebase";
+            this.Title = string.Format("Select new homebase for {0}",airliner.Name);
 
             this.Width = 300;
 
@@ -45,10 +45,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbAirport.IsSynchronizedWithCurrentItem = true;
             cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            List<Airport> airports = this.Airline.Airports.FindAll(a=>a.getCurrentAirportFacility(this.Airline,AirportFacility.FacilityType.Service).TypeLevel>0 && a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To>GameObject.GetInstance().GameTime);
+            List<Airport> airports = this.Airliner.Airliner.Airline.Airports.FindAll(a=>a.getCurrentAirportFacility(this.Airliner.Airliner.Airline,AirportFacility.FacilityType.Service).TypeLevel>0 && a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To>GameObject.GetInstance().GameTime);
 
             if (airports.Count == 0)
-                airports = this.Airline.Airports.FindAll(a => a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
+                airports = this.Airliner.Airliner.Airline.Airports.FindAll(a => a.Profile.Period.From <= GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime);
             
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
@@ -91,17 +91,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             Airport airport = (Airport)cbAirport.SelectedItem;
             this.Selected = airport;
 
-            if (((Airport)this.Selected).getCurrentAirportFacility(this.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
+            if (((Airport)this.Selected).getCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
             {
                 AirportFacility facility = Hub.MinimumServiceFacility;
-                airport.setAirportFacility(this.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                airport.setAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 
-                if (airport.Profile.Country != this.Airline.Profile.Country)
+                if (airport.Profile.Country != this.Airliner.Airliner.Airline.Profile.Country)
                     price = price * 1.25;
 
-                AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+                AirlineHelpers.AddAirlineInvoice(this.Airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
             }
 
             this.Close();

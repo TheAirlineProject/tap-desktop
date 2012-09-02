@@ -150,7 +150,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                              {
                                  GameTimer.GetInstance().pause();
 
-                                 airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner.Airliner.Airline);
+                                 airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner);
 
                                  GameTimer.GetInstance().start();
 
