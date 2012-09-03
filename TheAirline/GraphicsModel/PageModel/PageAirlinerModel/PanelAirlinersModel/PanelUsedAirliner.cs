@@ -171,7 +171,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -this.Airliner.LeasingPrice*2);
 
 
-                    base.ParentPage.showUsedAirliners();
+                    base.ParentPage.showUsedAirliners(Airliners.GetAirlinersForSale());
 
                     this.clearPanel();
                 }
@@ -193,17 +193,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-                    /*
-                    if (Countries.GetCountryFromTailNumber(this.Airliner.TailNumber).Name != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
-                        this.Airliner.TailNumber = GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
+                   AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport);
 
-                    GameObject.GetInstance().HumanAirline.addAirliner(FleetAirliner.PurchasedType.Bought, this.Airliner, this.Airliner.TailNumber, airport);
-
-                    GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airliner.getPrice()));
-                    */
-                    AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport);
-
-                    base.ParentPage.showUsedAirliners();
+                   base.ParentPage.showUsedAirliners(Airliners.GetAirlinersForSale());
 
                     this.clearPanel();
                 }

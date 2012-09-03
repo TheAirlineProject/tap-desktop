@@ -139,11 +139,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
      
         //shows the list of used airliners for sale
-        public void showUsedAirliners()
+        private void showUsedAirliners()
         {
             lbUsedAirliners.Items.Clear();
-
-            //List<Airliner> airliners = Airliners.GetAirlinersForSale();
 
             airliners.Sort(sortCriteriaUsed);
 

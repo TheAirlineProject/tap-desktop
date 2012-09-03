@@ -29,7 +29,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice());
 
-   
             return fAirliner;
          
         }
