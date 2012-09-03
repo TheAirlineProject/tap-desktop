@@ -28,7 +28,7 @@ namespace TheAirline.Model.AirlinerModel
         public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
         
-        public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner, string name, Airport homebase)
+        public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,string name, Airport homebase)
         {
             this.Airliner = airliner;
             this.Purchased = purchased;

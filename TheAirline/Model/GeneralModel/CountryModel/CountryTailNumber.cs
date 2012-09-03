@@ -174,7 +174,10 @@ namespace TheAirline.Model.GeneralModel
                  * */
             }
 
+            Airliner airliner = Airliners.GetAirliner(this.LastTailNumber);
 
+            if (airliner != null)
+                return null;
 
             return this.LastTailNumber;
         }

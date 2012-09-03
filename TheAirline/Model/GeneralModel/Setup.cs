@@ -626,7 +626,7 @@ namespace TheAirline.Model.GeneralModel
                     string tailformat = element.Attributes["tailformat"].Value;
 
                     Country country = new Country(section, uid, shortname, region, tailformat);
-                    
+
                     country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
                     Countries.AddCountry(country);
 

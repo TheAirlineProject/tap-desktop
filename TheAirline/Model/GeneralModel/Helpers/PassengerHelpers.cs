@@ -138,7 +138,7 @@ namespace TheAirline.Model.GeneralModel
                 HolidayYearEvent holiday = HolidayYear.GetHoliday(airport.Profile.Country, GameObject.GetInstance().GameTime);
 
                 if (holiday.Holiday.Travel == Holiday.TravelType.Both || holiday.Holiday.Travel == Holiday.TravelType.Travel)
-                    return 1.25;
+                    return 1.50;
 
             }
             return 1;
