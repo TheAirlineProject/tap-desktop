@@ -665,25 +665,41 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the time table for an route for an airliner
         public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)
         {
+     
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+
+            int maxHours = 22 - 6; //from 06.00 to 22.00
+            
+            int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+
+            CreateRouteTimeTable(route, airliner, flightsPerDay);
+        }
+        public static void CreateRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay)
+        {
             Random rnd = new Random();
 
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
+            
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
-                int numberOfFlightsPerDay = Convert.ToInt16(24 * 60 / (2 * minFlightTime.TotalMinutes));
+                int startHour = 6;
+                int endHour = 22;
 
+                int maxHours = endHour - startHour;
+                
                 string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
                 string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
 
-                int startMinutes = Convert.ToInt16((24 * 60) - (minFlightTime.TotalMinutes * numberOfFlightsPerDay * 2));
+              
+                int startMinutes = Convert.ToInt16((maxHours * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
 
                 if (startMinutes < 0) startMinutes = 0;
 
-                TimeSpan flightTime = new TimeSpan(0, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+                TimeSpan flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
 
-                for (int i = 0; i < numberOfFlightsPerDay; i++)
+                for (int i = 0; i < flightsPerDay; i++)
                 {
 
                     route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);

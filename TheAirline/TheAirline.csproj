@@ -77,6 +77,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\GeneralModel\PageNewsBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -281,6 +285,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAutogenerateRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -344,6 +352,9 @@
     <Compile Include="GraphicsModel\Converters\GeneralConverters.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\GraphicsHelpers.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageBottomMenu.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageCalendar.xaml.cs">
+      <DependentUpon>PageCalendar.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageContent.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageHeader.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageNavigator.cs" />
@@ -511,6 +522,9 @@
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml.cs">
       <DependentUpon>PopUpAirportSlot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAutogenerateRoute.xaml.cs">
+      <DependentUpon>PopUpAutogenerateRoute.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml.cs">
       <DependentUpon>PopUpEditAirlinerName.xaml</DependentUpon>

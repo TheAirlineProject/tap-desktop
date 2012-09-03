@@ -1,0 +1,21 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpAutogenerateRoute"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+                    xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+        Title="PopUpAutogenerateRoute" Height="300" Width="300">
+    <Window.Resources>
+        <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
+        <DataTemplate x:Key="RouteItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Destination1, Converter={StaticResource airportCodeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="-" VerticalAlignment="Bottom" Margin="2 0 2 0"></TextBlock>
+                <TextBlock Text="{Binding Destination2, Converter={StaticResource airportCodeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        
+    </Grid>
+</window:PopUpWindow>

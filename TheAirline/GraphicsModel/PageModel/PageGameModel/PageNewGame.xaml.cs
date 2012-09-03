@@ -318,12 +318,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 Setup.SetupTestGame(opponents);
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-
+                GameTimer.GetInstance().start();
+          
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
                 PageNavigator.ClearNavigator();
 
-                GameTimer.GetInstance().start();
                 PassengerHelpers.CreateDestinationPassengers();
 
          

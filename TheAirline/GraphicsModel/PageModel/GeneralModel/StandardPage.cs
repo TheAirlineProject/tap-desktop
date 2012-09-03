@@ -87,6 +87,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnPause.Width = 32;
             btnPause.Margin = new Thickness(2, 0, 0, 0);
             btnPause.Content = "||";
+            btnPause.Visibility = GameTimer.GetInstance().isPaused() ? Visibility.Collapsed : Visibility.Visible;
             btnPause.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnPause.Click += new RoutedEventHandler(btnPause_Click);
             panelNavigation.Children.Add(btnPause);
@@ -95,7 +96,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnStart.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnStart.Height = 24;
             btnStart.Width = 32;
-            btnStart.Visibility = System.Windows.Visibility.Collapsed;
+            btnStart.Visibility = GameTimer.GetInstance().isPaused() ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnStart.Margin = new Thickness(2, 0, 0, 0);
             btnStart.Content = ">";
             btnStart.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");

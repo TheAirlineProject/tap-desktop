@@ -34,9 +34,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
         private Boolean IsEditable;
-        public static object ShowPopUp(FleetAirliner airliner,Boolean isEditable)
+        public static object ShowPopUp(FleetAirliner airliner, Boolean isEditable)
         {
-            PopUpWindow window = new PopUpAirlinerRoutes(airliner,isEditable);
+            PopUpWindow window = new PopUpAirlinerRoutes(airliner, isEditable);
             window.ShowDialog();
 
             return window.Selected;
@@ -75,14 +75,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             grdFlights.Children.Add(lbFlights);
 
             ScrollViewer panelRoutes = createRoutesPanel();
-         
+
             Grid.SetColumn(panelRoutes, 1);
             grdFlights.Children.Add(panelRoutes);
- 
+
             if (this.IsEditable)
             {
                 mainPanel.Children.Add(createNewEntryPanel());
                 mainPanel.Children.Add(createButtonsPanel());
+
             }
 
             this.Content = mainPanel;
@@ -151,8 +152,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnAutoGenerate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             btnAutoGenerate.IsEnabled = cbRoute.Items.Count > 0;
-
-
+            
             buttonsPanel.Children.Add(btnAutoGenerate);
 
             Button btnCancel = new Button();
@@ -194,7 +194,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return buttonsPanel;
         }
 
-       
+
+
         //creates the panel for adding a new entry
         private StackPanel createNewEntryPanel()
         {
@@ -210,8 +211,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbRoute.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
             cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbRoute_SelectionChanged);
-        
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r=>this.Airliner.Airliner.Type.Range>MathHelpers.GetDistance(r.Destination1.Profile.Coordinates,r.Destination2.Profile.Coordinates) && !r.Banned))
+
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned))
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
@@ -224,7 +225,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 cbRoute.Items.Add(item2);
             }
 
-          
+
             entryPanel.Children.Add(cbRoute);
 
             cbDay = new ComboBox();
@@ -258,7 +259,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbMinute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbMinute.ItemStringFormat = "{0:D2}";
 
-        
+
             for (int i = 0; i < 60; i += 15)
                 cbMinute.Items.Add(i);
 
@@ -288,14 +289,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnAdd.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             btnAdd.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
-           
             entryPanel.Children.Add(btnAdd);
 
             txtFlightTime = new TextBlock();
             txtFlightTime.Text = "Flight time: ";
 
             newEntryPanel.Children.Add(txtFlightTime);
-          
+
             cbRoute.SelectedIndex = 0;
 
             return newEntryPanel;
@@ -314,9 +314,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 Border brdHour = new Border();
                 brdHour.BorderThickness = new Thickness(1, 0, 1, 0);
                 brdHour.BorderBrush = Brushes.Black;
-                
+
                 TextBlock txtHour = new TextBlock();
-                txtHour.Text = string.Format("{0}-{1}", new DateTime(2000, 1, 1, i, 0, 0).ToString(format), new DateTime(2000, 1, 1, i+1==24 ? 0 : i+1, 0, 0).ToString(format));
+                txtHour.Text = string.Format("{0}-{1}", new DateTime(2000, 1, 1, i, 0, 0).ToString(format), new DateTime(2000, 1, 1, i + 1 == 24 ? 0 : i + 1, 0, 0).ToString(format));
                 txtHour.FontWeight = FontWeights.Bold;
                 txtHour.Width = (60 / hourFactor) - 2;
                 txtHour.TextAlignment = TextAlignment.Center;
@@ -418,11 +418,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (endTime.Days == 7)
                 endTime = new TimeSpan(0, endTime.Hours, endTime.Minutes, endTime.Seconds);
 
-            List<RouteTimeTableEntry> airlinerEntries = this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e=>e.Airliner==this.Airliner)).ToList();
+            List<RouteTimeTableEntry> airlinerEntries = this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner == this.Airliner)).ToList();
             airlinerEntries.AddRange(this.Entries.Keys.SelectMany(r => this.Entries[r]));
-            airlinerEntries.RemoveAll(e=>this.EntriesToDelete.Keys.SelectMany(r => this.Entries[r]).Contains(e));
+            airlinerEntries.RemoveAll(e => this.EntriesToDelete.Keys.SelectMany(r => this.Entries[r]).Contains(e));
             airlinerEntries.AddRange(entry.TimeTable.Entries.FindAll(e => e.Destination.Airport == entry.Destination.Airport));
-                   
+
             foreach (RouteTimeTableEntry e in airlinerEntries)
             {
                 TimeSpan eStartTime = new TimeSpan((int)e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
@@ -433,7 +433,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 double diffStartTime = Math.Abs(eStartTime.Subtract(startTime).TotalMinutes);
                 double diffEndTime = Math.Abs(eEndTime.Subtract(endTime).TotalMinutes);
-                          
+
                 if (eEndTime.Days == 7)
                     eEndTime = new TimeSpan(0, eEndTime.Hours, eEndTime.Minutes, eEndTime.Seconds);
 
@@ -455,7 +455,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     }
                 }
             }
-            double minutesPerWeek = 7 * 24*60;
+            double minutesPerWeek = 7 * 24 * 60;
 
             RouteTimeTableEntry nextEntry = getNextEntry(entry);
 
@@ -463,16 +463,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (nextEntry != null && previousEntry != null)
             {
-             
+
                 TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates, nextEntry.DepartureAirport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
                 TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, previousEntry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
-        
 
-                TimeSpan prevDate = new TimeSpan((int)previousEntry.Day,previousEntry.Time.Hours,previousEntry.Time.Minutes,previousEntry.Time.Seconds);
-                TimeSpan nextDate = new TimeSpan((int)nextEntry.Day,nextEntry.Time.Hours,nextEntry.Time.Minutes,nextEntry.Time.Seconds);
+
+                TimeSpan prevDate = new TimeSpan((int)previousEntry.Day, previousEntry.Time.Hours, previousEntry.Time.Minutes, previousEntry.Time.Seconds);
+                TimeSpan nextDate = new TimeSpan((int)nextEntry.Day, nextEntry.Time.Hours, nextEntry.Time.Minutes, nextEntry.Time.Seconds);
                 TimeSpan currentDate = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
 
-                        
+
                 double timeToNext = currentDate.Subtract(nextDate).TotalMinutes > 0 ? minutesPerWeek - currentDate.Subtract(nextDate).TotalMinutes : Math.Abs(currentDate.Subtract(nextDate).TotalMinutes);
                 double timeFromPrev = prevDate.Subtract(currentDate).TotalMinutes > 0 ? minutesPerWeek - prevDate.Subtract(currentDate).TotalMinutes : Math.Abs(prevDate.Subtract(currentDate).TotalMinutes);
 
@@ -542,7 +542,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 List<RouteTimeTableEntry> entries = this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner == this.Airliner && e.Day == day)).ToList();
                 entries.AddRange(this.Entries.Keys.SelectMany(r => this.Entries[r].FindAll(e => e.Day == day)));
-                entries.RemoveAll(e=>this.EntriesToDelete.Keys.SelectMany(r=>this.EntriesToDelete[r]).ToList().Find(te=>te == e)==e);
+                entries.RemoveAll(e => this.EntriesToDelete.Keys.SelectMany(r => this.EntriesToDelete[r]).ToList().Find(te => te == e) == e);
 
                 entries = (from e in entries orderby e.Time select e).ToList();
 
@@ -580,27 +580,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnAutoGenerate_Click(object sender, RoutedEventArgs e)
         {
-            ComboBoxItem item = (ComboBoxItem)cbRoute.SelectedItem;
+            object o = PopUpAutogenerateRoute.ShowPopUp(this.Airliner);
 
-            Route route = ((KeyValuePair<Route, Airport>)item.Tag).Key;
-                       
-               // check hvis den kan laves (frie Gates)
-
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2701"), string.Format(Translator.GetInstance().GetString("MessageBox", "2701", "message"),route.Destination1.Profile.Name, route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
-
-            if (result == WPFMessageBoxResult.Yes)
-            {
-
-                clearTimeTable();
-
-                AIHelpers.CreateRouteTimeTable(route, this.Airliner);
-
-                if (!this.Airliner.Routes.Contains(route))
-                    this.Airliner.addRoute(route);
-
-                showFlights();
-            }
-
+            if (o != null)
+                if (((int)o) > 0)
+                    showFlights();
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -619,7 +603,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             string flightCode = cbFlightCode.SelectedItem.ToString();
 
-          
+
             if (day == "Daily")
             {
                 Boolean showMessageBoxOnError = true;
@@ -636,9 +620,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
             else
             {
-                RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, (DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination(airport,flightCode));
+                RouteTimeTableEntry entry = new RouteTimeTableEntry(route.TimeTable, (DayOfWeek)cbDay.SelectedItem, time, new RouteEntryDestination(airport, flightCode));
                 entry.Airliner = this.Airliner;
-                if (isRouteEntryValid(entry,true))
+                if (isRouteEntryValid(entry, true))
                     this.Entries[route].Add(entry);
 
             }
@@ -679,7 +663,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 if (route.TimeTable.getEntries(this.Airliner).Count == 0)
                     this.Airliner.removeRoute(route);
-           
+
             }
 
             this.Close();
@@ -688,6 +672,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             this.Close();
         }
+
+
         private void cbRoute_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ComboBoxItem item = (ComboBoxItem)cbRoute.SelectedItem;
@@ -707,7 +693,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             foreach (string eEntry in (from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct())
                 codes.Remove(eEntry);
-      
+
             foreach (string flightCode in codes)
                 cbFlightCode.Items.Add(flightCode);
 
@@ -726,7 +712,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             else
                 cbFlightCode.SelectedIndex = 0;
 
-    
+
 
         }
 
@@ -759,7 +745,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Route route = (Route)value;
-   
+
             Guid g2 = new Guid(route.Id);
 
             byte[] bytes = g2.ToByteArray();
@@ -784,21 +770,21 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            
+
             RouteTimeTableEntry e = (RouteTimeTableEntry)value;
-            
+
             TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, e.Airliner.Airliner.Type);
 
             Airport airport = parameter.ToString() == "D" ? e.DepartureAirport : e.Destination.Airport;
-            
+
             TimeSpan time = parameter.ToString() == "D" ? e.Time : e.Time.Add(flightTime);
 
             string timezone = parameter.ToString() == "D" ? e.DepartureAirport.Profile.TimeZone.ShortName : e.Destination.Airport.Profile.TimeZone.ShortName;
 
             TimeSpan localTime = MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone);
 
-      
-            return string.Format("{0} {1}",new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone)),timezone);
+
+            return string.Format("{0} {1}", new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone)), timezone);
 
         }
 
