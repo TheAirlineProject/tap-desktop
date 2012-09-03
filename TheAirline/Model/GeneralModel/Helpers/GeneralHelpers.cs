@@ -10,6 +10,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -199,6 +200,34 @@ namespace TheAirline.Model.GeneralModel
         public static Boolean IsAirportActive(Airport airport)
         {
             return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime;
+        }
+        //creates the holidays for a year
+        public static void CreateHolidays(int year)
+        {
+            HolidayYear.Clear();
+    
+            foreach (Holiday holiday in Holidays.GetHolidays())
+            {
+                if (holiday.Type == Holiday.HolidayType.Fixed_Date)
+                {
+                    HolidayYear.AddHoliday(new HolidayYearEvent(new DateTime(year, holiday.Date.Month, holiday.Date.Day), holiday, 1));
+                }
+                if (holiday.Type == Holiday.HolidayType.Fixed_Month)
+                {
+                    HolidayYearEvent eHoliday = new HolidayYearEvent(new DateTime(year, holiday.Month, 1), holiday, DateTime.DaysInMonth(year, holiday.Month));
+                    HolidayYear.AddHoliday(eHoliday);
+                }
+                if (holiday.Type == Holiday.HolidayType.Fixed_Week)
+                {
+                    HolidayYear.AddHoliday(new HolidayYearEvent(MathHelpers.GetFirstDateOfWeek(year, holiday.Week), holiday, 7));
+                    
+                }
+                if (holiday.Type == Holiday.HolidayType.Non_Fixed_Date)
+                {
+                    HolidayYear.AddHoliday(new HolidayYearEvent(MathHelpers.GetNthWeekdayOfMonth(year, holiday.Month, holiday.Day, holiday.Week),holiday,1));
+                 }
+            }
+            
         }
 
     }

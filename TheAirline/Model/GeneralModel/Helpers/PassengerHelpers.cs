@@ -9,6 +9,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -90,7 +91,7 @@ namespace TheAirline.Model.GeneralModel
 
             int destPassengers = (int)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
-            double size = (20000 * destPassengers * GetSeasonFactor(airportDestination));// + (750 * deptSize * GetSeasonFactor(airportCurrent));
+            double size = (20000 * destPassengers * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination)*GetHolidayFactor(airportCurrent));// + (750 * deptSize * GetSeasonFactor(airportCurrent));
             size = size / (sameRoutes + 1);
             size = size / totalRoutes1; 
             size = size / totalRoutes2;
@@ -129,7 +130,19 @@ namespace TheAirline.Model.GeneralModel
 
 
         }
-         
+        //returns the holiday factor for an airport
+        private static double GetHolidayFactor(Airport airport)
+        {
+            if (HolidayYear.IsHoliday(airport.Profile.Country, GameObject.GetInstance().GameTime))
+            {
+                HolidayYearEvent holiday = HolidayYear.GetHoliday(airport.Profile.Country, GameObject.GetInstance().GameTime);
+
+                if (holiday.Holiday.Travel == Holiday.TravelType.Both || holiday.Holiday.Travel == Holiday.TravelType.Travel)
+                    return 1.25;
+
+            }
+            return 1;
+        }
         //returns the season factor for an airport
         private static double GetSeasonFactor(Airport airport)
         {

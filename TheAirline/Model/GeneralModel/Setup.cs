@@ -16,6 +16,7 @@ using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -55,6 +56,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirlinerFacilities();
                 LoadFlightRestrictions();
                 LoadInflationYears();
+                LoadHolidays();
 
                 SetupStatisticsTypes();
 
@@ -99,6 +101,7 @@ namespace TheAirline.Model.GeneralModel
             Alliances.Clear();
             FlightRestrictions.Clear();
             Inflations.Clear();
+            Holidays.Clear();
         }
         /*! creates the Advertisement types
          */
@@ -159,6 +162,112 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("Central Pacific Standard Time", "CPST", new TimeSpan(11, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("New Zealand Standard Time", "NZST", new TimeSpan(12, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Tonga Standard Time", "TST", new TimeSpan(13, 0, 0)));
+        }
+        /*! loads the holidays
+         */
+        private static void LoadHolidays()
+        {
+            string id = " ";
+            try
+            {
+
+                XmlDocument doc = new XmlDocument();
+                doc.Load(AppSettings.getDataPath() + "\\holidays.xml");
+                XmlElement root = doc.DocumentElement;
+
+                XmlNodeList holidaysList = root.SelectNodes("//holiday");
+
+                foreach (XmlElement element in holidaysList)
+                {
+
+
+                    string uid = element.Attributes["uid"].Value;
+                    string name = element.Attributes["name"].Value;
+
+                    id = name;
+
+                    Holiday.HolidayType type = (Holiday.HolidayType)Enum.Parse(typeof(Holiday.HolidayType), element.Attributes["type"].Value);
+                    Holiday.TravelType traveltype = (Holiday.TravelType)Enum.Parse(typeof(Holiday.TravelType), element.Attributes["holidaytype"].Value);
+
+                    List<Country> countries = new List<Country>();
+
+                    XmlNodeList countriesList = element.SelectNodes("observers/observer");
+
+                    foreach (XmlElement eCountry in countriesList)
+                        countries.Add(Countries.GetCountry(eCountry.Attributes["country"].Value));
+
+                    XmlElement dateElement = (XmlElement)element.SelectSingleNode("observationdate");
+
+                    if (type == Holiday.HolidayType.Fixed_Date)
+                    {
+                    
+                        int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
+                        int day = Convert.ToInt16(dateElement.Attributes["day"].Value);
+
+                        DateTime date = new DateTime(1900, month, day);
+
+                        foreach (Country country in countries)
+                        {
+                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            holiday.Date = date;
+
+                            Holidays.AddHoliday(holiday);
+                        }
+
+                    }
+                    if (type == Holiday.HolidayType.Fixed_Month)
+                    {
+                        int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
+
+                        foreach (Country country in countries)
+                        {
+                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            holiday.Month = month;
+
+                            Holidays.AddHoliday(holiday);
+                        }
+                    }
+                    if (type == Holiday.HolidayType.Fixed_Week)
+                    {
+                        int week = Convert.ToInt16(dateElement.Attributes["week"].Value);
+
+                        foreach (Country country in countries)
+                        {
+                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            holiday.Week = week;
+
+                            Holidays.AddHoliday(holiday);
+                        }
+
+                    }
+                    if (type == Holiday.HolidayType.Non_Fixed_Date)
+                    {
+                        int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
+                        int week = Convert.ToInt16(dateElement.Attributes["week"].Value);
+                        DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), dateElement.Attributes["dayofweek"].Value);
+
+                        foreach (Country country in countries)
+                        {
+                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            holiday.Month = month;
+                            holiday.Week = week;
+                            holiday.Day = day;
+
+                            Holidays.AddHoliday(holiday);
+                        }
+                    }
+
+                    if (element.SelectSingleNode("translations") != null)
+                        Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
+
+
+                }
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+                s = id;
+            }
         }
         /*! loads the inflation years
          */

@@ -5,6 +5,7 @@ using System.Text;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
+using System.Globalization;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -246,6 +247,42 @@ namespace TheAirline.Model.GeneralModel
              double pRate = 1+ rate / 100;
          
             return amount * pRate / length;
+        }
+        //returns the nth day for a given month and year
+        public static DateTime GetNthWeekdayOfMonth(int year, int month, DayOfWeek day, int number)
+        {
+            DateTime tDate = new DateTime(year, month, 1);
+
+            int diffDays = day - tDate.DayOfWeek;
+
+            if (diffDays < 0)
+                diffDays = 7 + diffDays;
+
+            tDate = tDate.AddDays(diffDays).AddDays(7 * (number - 1));
+
+            return tDate;
+
+
+        }
+        //returns the first date for a given week
+        public static DateTime GetFirstDateOfWeek(int year, int weekOfYear)
+        {
+            DateTime jan1 = new DateTime(year, 1, 1);
+            int daysOffset = DayOfWeek.Thursday - jan1.DayOfWeek;
+
+            DateTime firstThursday = jan1.AddDays(daysOffset);
+            var cal = CultureInfo.CurrentCulture.Calendar;
+            int firstWeek = cal.GetWeekOfYear(firstThursday, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+
+            var weekNum = weekOfYear;
+            if (firstWeek <= 1)
+            {
+                weekNum -= 1;
+            }
+            
+            var result = firstThursday.AddDays(weekNum * 7);
+            return result.AddDays(-3);
+
         }
      
     }

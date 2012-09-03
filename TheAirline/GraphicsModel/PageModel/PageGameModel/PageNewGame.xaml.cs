@@ -22,6 +22,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -315,6 +316,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 Setup.CreateAirliners();
 
                 Setup.SetupTestGame(opponents);
+
+                GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 

@@ -607,6 +607,8 @@
     <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />
+    <Compile Include="Model\GeneralModel\HolidaysModel\Holiday.cs" />
+    <Compile Include="Model\GeneralModel\HolidaysModel\HolidayYear.cs" />
     <Compile Include="Model\GeneralModel\Inflation.cs" />
     <Compile Include="Model\GeneralModel\Invoice.cs" />
     <Compile Include="Model\GeneralModel\Language.cs" />

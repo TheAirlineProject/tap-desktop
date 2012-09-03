@@ -11,6 +11,7 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -294,6 +295,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the yearly update
         private static void DoYearlyUpdate()
         {
+            //updates holidays 
+            GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+            
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (FleetAirliner airliner in airline.Fleet)
