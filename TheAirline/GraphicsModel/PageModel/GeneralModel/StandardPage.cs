@@ -164,26 +164,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
-            this.btnNext.IsEnabled = true;
-            this.btnPrevious.IsEnabled = true;
-            this.PageContent.IsEnabled = true;
-            this.frameTopMenu.IsEnabled = true;
             this.btnStart.Visibility = System.Windows.Visibility.Collapsed;
             this.btnPause.Visibility = System.Windows.Visibility.Visible;
             GameTimer.GetInstance().start();
-        
         }
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
-            this.btnNext.IsEnabled = false;
-            this.btnPrevious.IsEnabled = false;
-            this.PageContent.IsEnabled = false;
-            this.frameTopMenu.IsEnabled = false;
             this.btnStart.Visibility = System.Windows.Visibility.Visible;
             this.btnPause.Visibility = System.Windows.Visibility.Collapsed;
             GameTimer.GetInstance().pause();
-            
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)
