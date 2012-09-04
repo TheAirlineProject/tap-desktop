@@ -306,7 +306,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         //do the monthly update
         private static void DoMonthlyUpdate()
-        {
+        {   foreach (Airline airline1 in Airlines.GetAllAirlines())
+            AirlineHelpers.MergeInvoicesMonthly(airline1);
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (AirlineFacility facility in airline.Facilities)

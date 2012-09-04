@@ -6,6 +6,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -111,5 +112,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 oldAirport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
             }
         }
+        //merges and clears all invoices from the previous month
+        public static void MergeInvoicesMonthly(Airline airline)
+        {
+            foreach (Invoice.InvoiceType type in Enum.GetValues(typeof(Invoice.InvoiceType)))
+    {
+        double sum=0;
+        if (type != Invoice.InvoiceType.Total)
+    {
+       foreach (Invoice invoice in airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1))) sum += invoice.Amount;
+
+        airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1));
+        airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddMinutes(-1), type, sum));
+    }
+}
+}
     }
 }

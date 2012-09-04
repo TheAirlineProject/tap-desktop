@@ -127,8 +127,19 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Facilities.Remove(facility);
         }
+        //clears all the invoices
+        public void clearInvoices(DateTime start, DateTime end)
+        {
+            this.Invoices.Clear();
+        }
         //returns all the invoices
         public List<Invoice> getInvoices()
+        {
+            return this.Invoices;
+        }
+        //returns all invoices with type
+        public List<Invoice> getInvoices(DateTime start, DateTime end, Type invoice)
+        
         {
             return this.Invoices;
         }
@@ -137,7 +148,7 @@ namespace TheAirline.Model.AirlineModel
         {
             return this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
 
-        }
+        } 
         //returns the amount of all the invoices in a specific period of a specific type
         public double getInvoicesAmount(DateTime start, DateTime end, Invoice.InvoiceType type)
         {
