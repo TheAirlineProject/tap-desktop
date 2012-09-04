@@ -32,6 +32,18 @@ namespace TheAirline.Model.GeneralModel.HolidaysModel
         {
             return holidays;
         }
+        //returns all holidays
+        public static List<HolidayYearEvent> GetHolidays(Predicate<HolidayYearEvent> match)
+        {
+            return holidays.FindAll(match);
+        }
+        //returns all holidays for a specific day
+        public static List<HolidayYearEvent> GetHolidays(DateTime date)
+        {
+            DateTime currentDate = new DateTime(date.Year, date.Month, date.Day, 0, 0, 0);
+
+            return holidays.FindAll(h => h.Date <= currentDate && h.Date.AddDays(h.Length) > currentDate);
+        }
         //returns all holidays for a country
         public static List<HolidayYearEvent> GetHolidays(Country country)
         {

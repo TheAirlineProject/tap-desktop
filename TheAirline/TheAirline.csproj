@@ -253,7 +253,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\UserControlModel\CalendarModel\TimeBoxControl.xaml">
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\AppointmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\DayBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -496,8 +500,11 @@
     <Compile Include="GraphicsModel\ResourceDirectiories\GameResourceEvents.cs" />
     <Compile Include="GraphicsModel\ResourceDirectiories\GameTemplatesEvents.cs" />
     <Compile Include="GraphicsModel\SkinsModel\Skin.cs" />
-    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\TimeBoxControl.xaml.cs">
-      <DependentUpon>TimeBoxControl.xaml</DependentUpon>
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\AppointmentControl.xaml.cs">
+      <DependentUpon>AppointmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\DayBoxControl.xaml.cs">
+      <DependentUpon>DayBoxControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\CalendarModel\ucCalendar.xaml.cs">
       <DependentUpon>ucCalendar.xaml</DependentUpon>

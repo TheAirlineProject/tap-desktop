@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.GraphicsModel.UserControlModel.CalendarModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -26,23 +28,23 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
             this.Uid = "1000";
-            this.Title = Translator.GetInstance().GetString("PageSettings", this.Uid);
+            this.Title = Translator.GetInstance().GetString("PageCalendar", this.Uid);
 
-            StackPanel settingsPanel = new StackPanel();
-            settingsPanel.Margin = new Thickness(10, 0, 10, 0);
+            StackPanel calendarPanel = new StackPanel();
+            calendarPanel.Margin = new Thickness(10, 0, 10, 0);
 
-            StandardContentPanel panelContent = new StandardContentPanel();
+       
+            calendarPanel.Children.Add(new ucCalendar());
 
-            panelContent.setContentPage(settingsPanel, StandardContentPanel.ContentLocation.Left);
-
-            base.setContent(panelContent);
+            base.setContent(calendarPanel);
 
             base.setHeaderContent(this.Title);
-
+            
 
 
             showPage(this);
 
         }
     }
+    
 }

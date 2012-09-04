@@ -25,6 +25,7 @@ using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using System.Windows.Controls.Primitives;
 using TheAirline.Model.PassengerModel;
 using TheAirline.GraphicsModel.PageModel.PageAlliancesModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -145,6 +146,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             PageNavigator.NavigateTo(new PageAirports());
         }
+        private void lnkCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageCalendar());
+        }
 
         private void lnkHome_Click(object sender, RoutedEventArgs e)
         {
@@ -203,6 +208,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     LoadSaveHelpers.LoadGame(file);
 
                     PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+                    HolidayYear.Clear();
+
+                    GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 }
               
             }

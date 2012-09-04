@@ -208,7 +208,7 @@ namespace TheAirline.Model.GeneralModel
 
                         foreach (Country country in countries)
                         {
-                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            Holiday holiday = new Holiday(root.Name,uid,type, name, traveltype, country);
                             holiday.Date = date;
 
                             Holidays.AddHoliday(holiday);
@@ -221,7 +221,7 @@ namespace TheAirline.Model.GeneralModel
 
                         foreach (Country country in countries)
                         {
-                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            Holiday holiday = new Holiday(root.Name, uid, type, name, traveltype, country);
                             holiday.Month = month;
 
                             Holidays.AddHoliday(holiday);
@@ -233,7 +233,7 @@ namespace TheAirline.Model.GeneralModel
 
                         foreach (Country country in countries)
                         {
-                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            Holiday holiday = new Holiday(root.Name, uid, type, name, traveltype, country);
                             holiday.Week = week;
 
                             Holidays.AddHoliday(holiday);
@@ -248,7 +248,7 @@ namespace TheAirline.Model.GeneralModel
 
                         foreach (Country country in countries)
                         {
-                            Holiday holiday = new Holiday(type, name, traveltype, country);
+                            Holiday holiday = new Holiday(root.Name, uid, type, name, traveltype, country);
                             holiday.Month = month;
                             holiday.Week = week;
                             holiday.Day = day;
