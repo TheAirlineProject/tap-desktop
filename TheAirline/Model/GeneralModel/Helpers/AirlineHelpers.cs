@@ -24,31 +24,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought,GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airport); 
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airport);
 
             airline.addAirliner(fAirliner);
 
             AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice());
 
             return fAirliner;
-         
+
         }
         //orders a number of airliners for an airline
-        public static void OrderAirliners(Airline airline,Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate)
+        public static void OrderAirliners(Airline airline, Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate)
         {
-             
+
             foreach (KeyValuePair<AirlinerType, int> order in orders)
             {
                 for (int i = 0; i < order.Value; i++)
                 {
-                    Airliner airliner = new Airliner(order.Key, airline.Profile.Country.TailNumbers.getNextTailNumber(),deliveryDate);
+                    Airliner airliner = new Airliner(order.Key, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
                     airline.addAirliner(pType, airliner, airliner.TailNumber, airport);
 
                 }
-              
+
 
 
             }
@@ -59,11 +59,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
 
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice);
-         }
+        }
         //reallocate all gates and facilities from one airport to another - gates, facilities and routes
         public static void ReallocateAirport(Airport oldAirport, Airport newAirport, Airline airline)
         {
-            
+
             //gates
             foreach (Gate gate in oldAirport.Terminals.getUsedGates(airline))
             {
@@ -83,8 +83,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (route.Destination2 == oldAirport) route.Destination2 = newAirport;
 
                 newAirport.Terminals.getEmptyGate(airline).Route = route;
-                
-                var entries = route.TimeTable.Entries.FindAll(e=>e.Destination.Airport == oldAirport);
+
+                var entries = route.TimeTable.Entries.FindAll(e => e.Destination.Airport == oldAirport);
 
                 foreach (RouteTimeTableEntry entry in entries)
                     entry.Destination.Airport = newAirport;
@@ -95,18 +95,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airliner.Homebase = newAirport;
                 }
             }
-           
+
             //facilities
             foreach (AirportFacility facility in oldAirport.getCurrentAirportFacilities(airline))
             {
                 newAirport.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
             }
-         
+
             oldAirport.clearFacilities(airline);
 
             foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
             {
-               
+
                 AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
                 oldAirport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
@@ -116,16 +116,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void MergeInvoicesMonthly(Airline airline)
         {
             foreach (Invoice.InvoiceType type in Enum.GetValues(typeof(Invoice.InvoiceType)))
-    {
-        double sum=0;
-        if (type != Invoice.InvoiceType.Total)
-    {
-       foreach (Invoice invoice in airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1))) sum += invoice.Amount;
+            {
+                double sum = 0;
+                if (type != Invoice.InvoiceType.Total)
+                {
+                    foreach (Invoice invoice in airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1))) sum += invoice.Amount;
 
-        airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1), type);
-        airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddMinutes(-1), type, sum));
-    }
-}
-}
+                    airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1), type);
+                    airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddMinutes(-1), type, sum));
+                }
+            }
+        }
     }
 }

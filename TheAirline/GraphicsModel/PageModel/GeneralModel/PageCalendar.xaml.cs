@@ -22,6 +22,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     /// </summary>
     public partial class PageCalendar : StandardPage
     {
+        private CheckBox cbShowAll;
+        private ucCalendar ucCalendar;
         public PageCalendar()
         {
             InitializeComponent();
@@ -33,8 +35,19 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             StackPanel calendarPanel = new StackPanel();
             calendarPanel.Margin = new Thickness(10, 0, 10, 0);
 
-       
-            calendarPanel.Children.Add(new ucCalendar());
+            cbShowAll = new CheckBox();
+            cbShowAll.Content = "Show all holidays";
+            cbShowAll.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            cbShowAll.Checked += new RoutedEventHandler(cbShowAll_Checked);
+            cbShowAll.Unchecked += new RoutedEventHandler(cbShowAll_Unchecked);
+            cbShowAll.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbShowAll.IsChecked = false;
+
+            calendarPanel.Children.Add(cbShowAll);
+
+            ucCalendar = new ucCalendar();
+
+            calendarPanel.Children.Add(ucCalendar);
 
             base.setContent(calendarPanel);
 
@@ -44,6 +57,19 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             showPage(this);
 
+        }
+
+        private void cbShowAll_Unchecked(object sender, RoutedEventArgs e)
+        {
+            ucCalendar.ShowAll = false;
+            ucCalendar.showCurrentMonth();
+ 
+        }
+
+        void cbShowAll_Checked(object sender, RoutedEventArgs e)
+        {
+            ucCalendar.ShowAll = true;
+            ucCalendar.showCurrentMonth();
         }
     }
     

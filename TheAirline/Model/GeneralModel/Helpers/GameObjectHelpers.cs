@@ -306,10 +306,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         //do the monthly update
         private static void DoMonthlyUpdate()
-        {   foreach (Airline airline1 in Airlines.GetAllAirlines())
-            AirlineHelpers.MergeInvoicesMonthly(airline1);
+        {  
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
+                AirlineHelpers.MergeInvoicesMonthly(airline);
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
 

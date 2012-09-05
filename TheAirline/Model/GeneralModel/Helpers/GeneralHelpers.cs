@@ -202,30 +202,35 @@ namespace TheAirline.Model.GeneralModel
             return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime;
         }
         //creates the holidays for a year
-        public static void CreateHolidays(int year)
+        public static void CreateHolidays(int startYear)
         {
             HolidayYear.Clear();
     
-            foreach (Holiday holiday in Holidays.GetHolidays())
+            int endYear = startYear +5;
+
+            for (int i = startYear; i < endYear; i++)
             {
-                if (holiday.Type == Holiday.HolidayType.Fixed_Date)
+                foreach (Holiday holiday in Holidays.GetHolidays())
                 {
-                    HolidayYear.AddHoliday(new HolidayYearEvent(new DateTime(year, holiday.Date.Month, holiday.Date.Day), holiday, 1));
+                    if (holiday.Type == Holiday.HolidayType.Fixed_Date)
+                    {
+                        HolidayYear.AddHoliday(new HolidayYearEvent(new DateTime(startYear, holiday.Date.Month, holiday.Date.Day), holiday, 1));
+                    }
+                    if (holiday.Type == Holiday.HolidayType.Fixed_Month)
+                    {
+                        HolidayYearEvent eHoliday = new HolidayYearEvent(new DateTime(startYear, holiday.Month, 1), holiday, DateTime.DaysInMonth(startYear, holiday.Month));
+                        HolidayYear.AddHoliday(eHoliday);
+                    }
+                    if (holiday.Type == Holiday.HolidayType.Fixed_Week)
+                    {
+                        HolidayYear.AddHoliday(new HolidayYearEvent(MathHelpers.GetFirstDateOfWeek(startYear, holiday.Week), holiday, 7));
+
+                    }
+                    if (holiday.Type == Holiday.HolidayType.Non_Fixed_Date)
+                    {
+                        HolidayYear.AddHoliday(new HolidayYearEvent(MathHelpers.GetNthWeekdayOfMonth(startYear, holiday.Month, holiday.Day, holiday.Week), holiday, 1));
+                    }
                 }
-                if (holiday.Type == Holiday.HolidayType.Fixed_Month)
-                {
-                    HolidayYearEvent eHoliday = new HolidayYearEvent(new DateTime(year, holiday.Month, 1), holiday, DateTime.DaysInMonth(year, holiday.Month));
-                    HolidayYear.AddHoliday(eHoliday);
-                }
-                if (holiday.Type == Holiday.HolidayType.Fixed_Week)
-                {
-                    HolidayYear.AddHoliday(new HolidayYearEvent(MathHelpers.GetFirstDateOfWeek(year, holiday.Week), holiday, 7));
-                    
-                }
-                if (holiday.Type == Holiday.HolidayType.Non_Fixed_Date)
-                {
-                    HolidayYear.AddHoliday(new HolidayYearEvent(MathHelpers.GetNthWeekdayOfMonth(year, holiday.Month, holiday.Day, holiday.Week),holiday,1));
-                 }
             }
             
         }

@@ -29,7 +29,6 @@ namespace TheAirline.Model.AirlineModel
         public double Money { get; set; }
         public Boolean IsHuman { get { return this == GameObject.GetInstance().HumanAirline; } set { ;} }
         private List<Invoice> Invoices;
-        public enum InvoiceType { Wages, Rents, Loans, Purchases, Tickets, Airline_Expenses, Fees, Maintenances, Flight_Expenses, OnFlight_Income, Total }
         public AirlineFees Fees { get; set; }
         public List<Loan> Loans { get; set; }
         private List<string> FlightCodes;
@@ -149,7 +148,8 @@ namespace TheAirline.Model.AirlineModel
         {
             return this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
 
-        } 
+        }
+       
         //returns the amount of all the invoices in a specific period of a specific type
         public double getInvoicesAmount(DateTime start, DateTime end, Invoice.InvoiceType type)
         {

@@ -26,19 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
     /// </summary>
     public partial class ucCalendar : UserControl, INotifyPropertyChanged
     {
-        /*
-        public static readonly DependencyProperty DateProperty =
-                                DependencyProperty.Register("Date",
-                                typeof(DateTime), typeof(ucSelectButton));
-
-
-        [Category("Common Properties")]
-        public DateTime Date
-        {
-            get { return (DateTime)GetValue(DateProperty); }
-            set { SetValue(DateProperty, value); }
-        }
-         * */
+        public Boolean ShowAll { get; set; }
         private DateTime ___Date;
         public DateTime Date
         {
@@ -60,14 +48,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
         public ucCalendar()
         {
+            this.ShowAll = false;
+
             this.Date = GameObject.GetInstance().GameTime;
 
             InitializeComponent();
 
             showMonth();
 
-            //Month i header som {}
-
+     
         }
         //show current month
         private void showMonth()
@@ -77,11 +66,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
             int daysInMonth = DateTime.DaysInMonth(this.Date.Year, this.Date.Month);
 
             DateTime startDate = new DateTime(this.Date.Year, this.Date.Month, 1);
-            //            DateTime endDate = new DateTime(startDate.Year, startDate.Month, daysInMonth);
-
+   
             int startDayOfWeek = (int)startDate.DayOfWeek;
-            //     int endDayOfWeek = (int)endDate.DayOfWeek;
-
+    
             Grid grdDays = UICreator.CreateGrid(7, 6);
             for (int i = 0; i < 7; i++)
             {
@@ -109,11 +96,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
                     }
                     else
-                        dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;//.DayVisibility = System.Windows.Visibility.Hidden;
+                        dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;
 
-                    //   
-
-
+              
 
                     Grid.SetColumn(dbcDay, i);
                     Grid.SetRow(dbcDay, j);
@@ -124,15 +109,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
             MonthViewGrid.Children.Add(grdDays);
         }
+        //shows the current month
+        public void showCurrentMonth()
+        {
+            showMonth();
+        }
         //returns all the calendaritems for the current date
         private List<CalendarItem> getCalendarItems(DateTime date)
         {
             List<CalendarItem> items = new List<CalendarItem>();
 
+            var airlineCountries = (from a in GameObject.GetInstance().HumanAirline.Airports select a.Profile.Country).Distinct();
+
             var holidayGroups =
-       from n in HolidayYear.GetHolidays(date)
-       orderby n.Date
-       group n by n.Holiday.Name into gh
+       from h in HolidayYear.GetHolidays(date)
+       where (this.ShowAll || airlineCountries.Contains(h.Holiday.Country)) 
+       orderby h.Date
+       group h by h.Holiday.Name into gh
        select new { Holiday = gh.First(), Countries = gh };
 
 
@@ -141,8 +134,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
                 List<Country> countries = new List<Country>();
 
-                Console.WriteLine("Group {0}:", hg.Holiday.Holiday.Name);
-                foreach (var n in hg.Countries)
+                 foreach (var n in hg.Countries)
                 {
                     countries.Add(n.Holiday.Country);
        
@@ -150,13 +142,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                 items.Add(new CalendarItem(CalendarItem.ItemType.Holiday, date,hg.Holiday.Holiday.Name,string.Join("\r\n",from c in countries select c.Name)));
             }
 
-            foreach (FleetAirliner orderedAirliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll((a=>a.Airliner.BuiltDate.ToShortDateString() == date.ToShortDateString() && date>GameObject.GetInstance().GameTime)))
+            var airliners = GameObject.GetInstance().HumanAirline.Fleet.FindAll((a => a.Airliner.BuiltDate.ToShortDateString() == date.ToShortDateString() && date > GameObject.GetInstance().GameTime));
+            
+            if (airliners.Count > 0)
             {
-                items.Add(new CalendarItem(CalendarItem.ItemType.Airliner_Order, date, orderedAirliner.Name, string.Format("{0} is delivered",orderedAirliner.Name)));
-       
+                items.Add(new CalendarItem(CalendarItem.ItemType.Airliner_Order, date, "Delivery of airliners", string.Join("\r\n", from a in airliners select a.Name)));    
             }
-
-
+        
          
             return items;
 
