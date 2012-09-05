@@ -74,42 +74,23 @@ namespace TheAirline.Model.GeneralModel
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
-            int totalRoutes1 = airportCurrent.Terminals.getRoutes().Count;
-            int totalRoutes2 = airportDestination.Terminals.getRoutes().Count;
-
-            if (totalRoutes1 == 0 || totalRoutes2 == 0)
-            {
-                string s = "";
-                s = airportCurrent.Profile.Name;
-            }
-
-            int sameRoutes = 0;
-      
-            foreach (Route route in airportCurrent.Terminals.getRoutes())
-                if (route.Destination1 == airportDestination || route.Destination2 == airportDestination)
-                    sameRoutes++;
-
-            int destPassengers = (int)airportCurrent.getDestinationPassengersRate(airportDestination, type);
-
-            double size = (20000 * destPassengers * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination)*GetHolidayFactor(airportCurrent));// + (750 * deptSize * GetSeasonFactor(airportCurrent));
-            size = size / (sameRoutes + 1);
-            size = size / totalRoutes1; 
-            size = size / totalRoutes2;
-        
+            int passengerDemand = (int)airportCurrent.getDestinationPassengersRate(airportDestination, type) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            
+            if (airportCurrent.IsHub)
+                passengerDemand = passengerDemand * (150 / 100);
+            
+            int passengerCapacity = 0;
+        	
+        	foreach (Route route in airportCurrent.Terminals.getRoutes())
+	        	passengerCapacity = route.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity());
+            
+            double size = passengerDemand - passengerCapacity;
+            
             double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;
 
             size = Convert.ToDouble(size) * happiness / 100.0;
-
-            double minValue = Math.Min(size, airliner.Airliner.getAirlinerClass(type).SeatingCapacity)*0.8;
             
-            int value = rnd.Next((int)minValue, Math.Min(Math.Max(10,(int)size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity));
-
-            if (airportCurrent.IsHub)
-            {
-                double hubCoeff = 1.5;
-                double dValue = Convert.ToDouble(value) * hubCoeff;
-                value = Math.Min((int)dValue, airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
-            }
+            int value = Math.Min(Math.Max(10,(int)size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
 
             double price = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(type).FarePrice;
             double standardPrice = GetPassengerPrice(airliner.CurrentFlight.Entry.TimeTable.Route.Destination1, airliner.CurrentFlight.Entry.TimeTable.Route.Destination2);
@@ -118,48 +99,41 @@ namespace TheAirline.Model.GeneralModel
      
             value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
 
-            if (value < 15)
-                value = rnd.Next(value, 15);
-
             if (airportCurrent.getDestinationPassengersRate(airportDestination, type) == GeneralHelpers.Rate.None)
                 return 0;
             else
              return value;
-
-        
-
-
         }
         //returns the holiday factor for an airport
-        private static double GetHolidayFactor(Airport airport)
+        private static int GetHolidayFactor(Airport airport)
         {
             if (HolidayYear.IsHoliday(airport.Profile.Country, GameObject.GetInstance().GameTime))
             {
                 HolidayYearEvent holiday = HolidayYear.GetHoliday(airport.Profile.Country, GameObject.GetInstance().GameTime);
 
                 if (holiday.Holiday.Travel == Holiday.TravelType.Both || holiday.Holiday.Travel == Holiday.TravelType.Travel)
-                    return 1.50;
+                    return 150 / 100;
 
             }
             return 1;
         }
         //returns the season factor for an airport
-        private static double GetSeasonFactor(Airport airport)
+        private static int GetSeasonFactor(Airport airport)
         {
             Boolean isSummer = GameObject.GetInstance().GameTime.Month >= 3 && GameObject.GetInstance().GameTime.Month < 9;
 
             if (airport.Profile.Season == Weather.Season.All_Year)
                 return 1;
             if (airport.Profile.Season == Weather.Season.Summer)
-                if (isSummer) return 1.5;
-                else return 0.5;
+            	if (isSummer) return 150 / 100;
+            	else return 50 / 100;
             if (airport.Profile.Season == Weather.Season.Winter)
-                if (isSummer) return 0.5;
-                else return 1.5;
+                if (isSummer) return 50 / 100;
+                else return 150 / 100;
 
             return 1;
         }
-        //returns the suggested passenger price for a route - new
+        //returns the suggested passenger price for a route
         public static double GetPassengerPrice(Airport dest1, Airport dest2)
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
@@ -198,37 +172,12 @@ namespace TheAirline.Model.GeneralModel
             else ticketPrice = ticketPrice * 1.25;                    
 
             return ticketPrice;
-            
-           
-        }
-        //returns the suggested passenger price for a route on a airliner
-        public static double GetPassengerPriceOld(Airport dest1, Airport dest2)
-        {
-            
-            double fuelConsumption = AirlinerTypes.GetAllTypes().Max(t => t.FuelConsumption);
-            double groundTaxPerPassenger = GeneralHelpers.GetInflationPrice(5);
-
-            double tax = groundTaxPerPassenger;
-
-            if (dest1.Profile.Country.Name != dest2.Profile.Country.Name)
-                tax *= 2;
-
-            double dist = MathHelpers.GetDistance(dest1.Profile.Coordinates, dest2.Profile.Coordinates);
-
-            double fuel = GameObject.GetInstance().FuelPrice * dist * fuelConsumption;
-
-            double expenses = GameObject.GetInstance().FuelPrice * dist * fuelConsumption + (dest2.getLandingFee() + dest1.getLandingFee()) / (2 * 100) + tax;
-
-            return expenses * 2.5;
-
         }
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
-
             foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
             {
-
                 CreateDestinationPassengers(airport, dAirport);
             }
         }
@@ -255,12 +204,12 @@ namespace TheAirline.Model.GeneralModel
             int rndCoeff = rnd.Next(values.Length);
 
             int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
-
-            int value = coeff / 6;
-
+            
+            int passengerModifier = rnd.Next(50, 125);
+            
+            int value = ((coeff / 6) * ((coeff / 6) * 101)) * (passengerModifier / 100);
 
             GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
-
 
             airport.addDestinationPassengersRate(new DestinationPassengers(dAirport, rate));
         }
