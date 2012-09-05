@@ -128,9 +128,9 @@ namespace TheAirline.Model.AirlineModel
             this.Facilities.Remove(facility);
         }
         //clears all the invoices
-        public void clearInvoices(DateTime start, DateTime end)
+        public void clearInvoices(DateTime start, DateTime end, Invoice.InvoiceType type)
         {
-            this.Invoices.Clear();
+            this.Invoices.RemoveAll(i => i.Date >= start && i.Date < end && i.Type == type);
         }
         //returns all the invoices
         public List<Invoice> getInvoices()

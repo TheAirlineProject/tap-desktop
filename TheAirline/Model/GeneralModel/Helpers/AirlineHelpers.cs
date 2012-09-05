@@ -122,7 +122,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
        foreach (Invoice invoice in airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1))) sum += invoice.Amount;
 
-        airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1));
+        airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1),GameObject.GetInstance().GameTime.AddMinutes(-1), type);
         airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddMinutes(-1), type, sum));
     }
 }
