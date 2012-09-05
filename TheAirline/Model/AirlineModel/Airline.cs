@@ -138,10 +138,10 @@ namespace TheAirline.Model.AirlineModel
             return this.Invoices;
         }
         //returns all invoices with type
-        public List<Invoice> getInvoices(DateTime start, DateTime end, Type invoice)
+        public List<Invoice> getInvoices(DateTime start, DateTime end, Invoice.InvoiceType type)
         
         {
-            return this.Invoices;
+            return this.Invoices.FindAll(i=>i.Date>=start && i.Date <=end && i.Type == type);
         }
         //returns all the invoices in a specific period
         public List<Invoice> getInvoices(DateTime start, DateTime end)

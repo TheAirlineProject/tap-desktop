@@ -117,13 +117,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             foreach (Invoice.InvoiceType type in Enum.GetValues(typeof(Invoice.InvoiceType)))
             {
-                double sum = 0;
                 if (type != Invoice.InvoiceType.Total)
                 {
-                    foreach (Invoice invoice in airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1))) sum += invoice.Amount;
+                 
+                    double sum = airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1), type).Sum(i => i.Amount);
 
                     airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1), type);
-                    airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddMinutes(-1), type, sum));
+                    airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddDays(-1), type, sum));
                 }
             }
         }
