@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             calendarPanel.Margin = new Thickness(10, 0, 10, 0);
 
             cbShowAll = new CheckBox();
-            cbShowAll.Content = "Show all holidays";
+            cbShowAll.Content = Translator.GetInstance().GetString("PageCalendar","200");
             cbShowAll.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             cbShowAll.Checked += new RoutedEventHandler(cbShowAll_Checked);
             cbShowAll.Unchecked += new RoutedEventHandler(cbShowAll_Unchecked);
