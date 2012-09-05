@@ -29,6 +29,7 @@ namespace TheAirline.Model.AirlineModel
         public double Money { get; set; }
         public Boolean IsHuman { get { return this == GameObject.GetInstance().HumanAirline; } set { ;} }
         private List<Invoice> Invoices;
+        public enum InvoiceType { Wages, Rents, Loans, Purchases, Tickets, Airline_Expenses, Fees, Maintenances, Flight_Expenses, OnFlight_Income, Total }
         public AirlineFees Fees { get; set; }
         public List<Loan> Loans { get; set; }
         private List<string> FlightCodes;
@@ -47,7 +48,6 @@ namespace TheAirline.Model.AirlineModel
              this.Loans = new List<Loan>();
             this.Reputation = 50;
             this.Alliances = new List<Alliance>();
-
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
 
@@ -58,6 +58,7 @@ namespace TheAirline.Model.AirlineModel
 
             createStandardAdvertisement();
         }
+
         //adds a route to the airline
         public void addRoute(Route route)
         {
