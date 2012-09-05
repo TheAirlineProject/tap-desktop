@@ -136,7 +136,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
                  foreach (var n in hg.Countries)
                 {
-                    countries.Add(n.Holiday.Country);
+                     if (!countries.Contains(n.Holiday.Country))
+                        countries.Add(n.Holiday.Country);
        
                 }
                 items.Add(new CalendarItem(CalendarItem.ItemType.Holiday, date,hg.Holiday.Holiday.Name,string.Join("\r\n",from c in countries select c.Name)));

@@ -20,6 +20,9 @@ namespace TheAirline.Model.AirportModel
         public int LuxuryLevel { get; set; } //for business customers
         public int ServiceLevel { get; set; } //for repairing airliners 
         public int BuildingDays { get; set; }
+        public int NumberOfEmployees { get; set; }
+        public enum EmployeeTypes { Maintenance, Support }
+        public EmployeeTypes EmployeeType { get; set; }
         public AirportFacility(string section, string uid, string shortname,FacilityType type,int buildingDays, int typeLevel, double price, int serviceLevel, int luxuryLevel)
         {
             AirportFacility.Section = section;

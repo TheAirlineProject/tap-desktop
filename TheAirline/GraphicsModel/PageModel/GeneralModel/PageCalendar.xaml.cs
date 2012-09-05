@@ -45,9 +45,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             calendarPanel.Children.Add(cbShowAll);
 
+            ScrollViewer viewer = new ScrollViewer();
+            viewer.MaxHeight = GraphicsHelpers.GetContentHeight() - 50;
+
             ucCalendar = new ucCalendar();
 
-            calendarPanel.Children.Add(ucCalendar);
+            viewer.Content = ucCalendar;
+
+            calendarPanel.Children.Add(viewer);
 
             base.setContent(calendarPanel);
 

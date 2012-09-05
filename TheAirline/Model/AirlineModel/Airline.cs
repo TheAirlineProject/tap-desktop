@@ -146,7 +146,7 @@ namespace TheAirline.Model.AirlineModel
         //returns all the invoices in a specific period
         public List<Invoice> getInvoices(DateTime start, DateTime end)
         {
-            return this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
+                   return this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
 
         }
        

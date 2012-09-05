@@ -590,7 +590,18 @@ namespace TheAirline.Model.GeneralModel
                 int service = Convert.ToInt32(levelElement.Attributes["service"].Value);
                 int luxury = Convert.ToInt32(levelElement.Attributes["luxury"].Value);
 
-                AirportFacilities.AddFacility(new AirportFacility(section, uid, shortname, type, buildingDays, typeLevel, price, service, luxury));
+                AirportFacility facility = new AirportFacility(section, uid, shortname, type, buildingDays, typeLevel, price, service, luxury);
+
+                AirportFacilities.AddFacility(facility);
+
+                XmlElement employeesElement = (XmlElement)element.SelectSingleNode("employees");
+
+                AirportFacility.EmployeeTypes employeestype = (AirportFacility.EmployeeTypes)Enum.Parse(typeof(AirportFacility.EmployeeTypes), employeesElement.Attributes["type"].Value);
+                int numberofemployees = Convert.ToInt16(employeesElement.Attributes["numberofemployees"].Value);
+
+                facility.EmployeeType = employeestype;
+                facility.NumberOfEmployees = numberofemployees;
+
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
@@ -1170,6 +1181,8 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateFeeTypes()
         {
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 4.11, 3.75, 12.75, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Maintenance wage", 3.95, 3.0, 4.25, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support wage", 2.65, 1, 3, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.2, 0.1, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
