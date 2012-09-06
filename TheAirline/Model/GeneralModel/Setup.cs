@@ -1173,7 +1173,7 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "No Drinks", 1, -50, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Buyable Drinks", 1, 25, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Drinks")));
             RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Free Drinks", 2, 80, RouteFacility.ExpenseType.Fixed, 0.20, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Served Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 2, null));
+            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Served Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 0.5, null));
         }
 
         /*! creates the Fee types.
@@ -1186,7 +1186,7 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.2, 0.1, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 0.75, 1.25, 2, 50));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 1.40, 1.25, 2, 50));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 5, 95));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 1.25, 0, 5.25, 25));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 2.5, 0, 6, 2));
