@@ -25,7 +25,17 @@
                     </Button.Background>
                 </Button>
                 </WrapPanel>
-                <TextBlock Text="{Binding NextFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding NextFacility.Name}" VerticalAlignment="Bottom">
+                    <TextBlock.ToolTip>
+                        <Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
+                        <StackPanel>
+                            <TextBlock Text="{Binding NextFacility.BuildingDays, StringFormat=Days of building: {0}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding NextFacility.NumberOfEmployees, StringFormat=Employees: {0}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding NextFacility.Price, StringFormat=Price: {0:C}}" VerticalAlignment="Bottom"></TextBlock>
+                           </StackPanel>
+                            </Border>
+                    </TextBlock.ToolTip>
+                </TextBlock>
                 <Button Content="+" Style="{DynamicResource RoundedButton}" Width="Auto" Height="Auto" Tag="{Binding}" Click="ButtonBuy_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" IsEnabled="{Binding Converter={StaticResource humanFacilityButtonEnabled},ConverterParameter='Buy'}">
                     <Button.Background>
                         <SolidColorBrush Color="DarkBlue" Opacity="0.8"></SolidColorBrush>

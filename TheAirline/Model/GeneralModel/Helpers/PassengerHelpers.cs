@@ -81,8 +81,8 @@ namespace TheAirline.Model.GeneralModel
             
             int passengerCapacity = 0;
         	
-        	foreach (Route route in airportCurrent.Terminals.getRoutes())
-	        	passengerCapacity = route.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity());
+        	//foreach (Route route in airportCurrent.Terminals.getRoutes())
+	        	//passengerCapacity = route.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity());
             
             double size = passengerDemand - passengerCapacity;
             
