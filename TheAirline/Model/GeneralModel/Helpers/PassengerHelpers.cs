@@ -74,16 +74,18 @@ namespace TheAirline.Model.GeneralModel
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
-            int passengerDemand = (int)airportCurrent.getDestinationPassengersRate(airportDestination, type) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            int passengerDemand = Convert.ToInt16(((int)airportCurrent.getDestinationPassengersRate(airportDestination, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent));
             
             if (airportCurrent.IsHub)
                 passengerDemand = passengerDemand * (150 / 100);
-            
-            int passengerCapacity = 0;
-        	
-        	//foreach (Route route in airportCurrent.Terminals.getRoutes())
-	        	//passengerCapacity = route.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity());
-            
+
+            var routes = airportCurrent.Terminals.getRoutes();
+
+            double passengerCapacity=0;
+
+            if (routes.Count>0)
+                passengerCapacity = routes.SelectMany(a => a.getAirliners()).Max(a=>a.Airliner.getTotalSeatCapacity());
+      
             double size = passengerDemand - passengerCapacity;
             
             double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;
@@ -105,7 +107,7 @@ namespace TheAirline.Model.GeneralModel
              return value;
         }
         //returns the holiday factor for an airport
-        private static int GetHolidayFactor(Airport airport)
+        private static double GetHolidayFactor(Airport airport)
         {
             if (HolidayYear.IsHoliday(airport.Profile.Country, GameObject.GetInstance().GameTime))
             {
@@ -118,7 +120,7 @@ namespace TheAirline.Model.GeneralModel
             return 1;
         }
         //returns the season factor for an airport
-        private static int GetSeasonFactor(Airport airport)
+        private static double GetSeasonFactor(Airport airport)
         {
             Boolean isSummer = GameObject.GetInstance().GameTime.Month >= 3 && GameObject.GetInstance().GameTime.Month < 9;
 
@@ -207,9 +209,9 @@ namespace TheAirline.Model.GeneralModel
             
             int passengerModifier = rnd.Next(50, 125);
             
-            int value = ((coeff / 6) * ((coeff / 6) * 101)) * (passengerModifier / 100);
+            double value = ((coeff / 6) * ((coeff / 6) * 101)) * Convert.ToDouble((passengerModifier) / 100);
 
-            GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), value);
+            GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), (int)value);
 
             airport.addDestinationPassengersRate(new DestinationPassengers(dAirport, rate));
         }
