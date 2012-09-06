@@ -331,6 +331,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                     }
+                    //wages
+                    foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airline))
+                    {
+                        double wage=0;
+
+                        if (facility.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
+                            wage = airline.Fees.getValue(FeeTypes.GetType("Maintenance wage"));
+                        if (facility.EmployeeType == AirportFacility.EmployeeTypes.Support)
+                            wage = airline.Fees.getValue(FeeTypes.GetType("Support wage"));
+
+                        double facilityWage = facility.NumberOfEmployees * wage * (40 * 4.33);
+
+                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
+                    }
                 }
                 foreach (Loan loan in airline.Loans)
                 {
