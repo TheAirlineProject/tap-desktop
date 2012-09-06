@@ -341,7 +341,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         if (facility.EmployeeType == AirportFacility.EmployeeTypes.Support)
                             wage = airline.Fees.getValue(FeeTypes.GetType("Support wage"));
 
-                        double facilityWage = facility.NumberOfEmployees * wage * (40 * 4.33);
+                        double facilityWage = facility.NumberOfEmployees * wage * (40 * 4.33); //40 hours per week and 4.33 weeks per month
 
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
                     }

@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -93,8 +94,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             int cabinCrew = this.Airline.Routes.Sum(r => r.getTotalCabinCrew());
 
+            int serviceCrew = this.Airline.Airports.SelectMany(a=>a.getCurrentAirportFacilities(this.Airline)).Where(a=>a.EmployeeType==AirportFacility.EmployeeTypes.Support).Sum(a=>a.NumberOfEmployees);
+            int maintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a=>a.EmployeeType==AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
+
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cockpit crew", cockpitCrew));
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Cabin crew", cabinCrew));
+            lbEmployees.Items.Add(new KeyValuePair<string, int>("Support crew", serviceCrew));
+            lbEmployees.Items.Add(new KeyValuePair<string, int>("Maintenance crew", maintenanceCrew));            
 
             panel.Children.Add(lbEmployees);
             return panel;
