@@ -13,6 +13,7 @@ namespace TheAirline.Model.AirlinerModel
         public string Name { get; set; }
         public double CruisingSpeed { get; set; }
         public long Range { get; set; }
+        public string Image { get; set; }
         public double Length { get; set; }
         public double Wingspan { get; set; }
         public int CockpitCrew { get; set; }
@@ -111,7 +112,7 @@ namespace TheAirline.Model.AirlinerModel
         //returns an airliner with a name
         public static AirlinerType GetType(string name)
         {
-            return types.Find(t => t.Name == name);
+            return types.Find(t => t.Name == name || t.Name.ToUpper() == name);
         }
         //returns all airliner types
         public static List<AirlinerType> GetAllTypes()

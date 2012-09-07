@@ -383,8 +383,10 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
         }
+
         private static void LoadAirliners(string file)
         {
+           string dir = AppSettings.getDataPath() + "\\graphics\\airlinerimages\\";
             string id = "";
             try
             {
@@ -403,6 +405,8 @@ namespace TheAirline.Model.GeneralModel
 
                     string name = airliner.Attributes["name"].Value;
                     long price = Convert.ToInt64(airliner.Attributes["price"].Value);
+
+                 
 
                     id = name;
 
@@ -431,6 +435,8 @@ namespace TheAirline.Model.GeneralModel
                     DateTime from = new DateTime(fromYear, 1, 2);
                     DateTime to = new DateTime(toYear, 12, 31);
 
+                    AirlinerType type=null;
+
                     if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
                     {
 
@@ -438,16 +444,21 @@ namespace TheAirline.Model.GeneralModel
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                         int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-                        AirlinerTypes.AddType(new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to)));
+                        type = new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to));
 
                     }
                     if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                     {
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
-                        AirlinerTypes.AddType(new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to)));
+                        type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to));
                     }
 
+                     if (airliner.HasAttribute("image"))
+                        type.Image = dir + airliner.Attributes["image"].Value + ".png";
+
+                    if (type != null)
+                        AirlinerTypes.AddType(type);
                 }
             }
             catch (Exception e)
@@ -457,7 +468,7 @@ namespace TheAirline.Model.GeneralModel
                 s = e.ToString();
             }
         }
-
+        
         /*!loads the airports.
          */
         private static void LoadAirports()
@@ -1095,7 +1106,7 @@ namespace TheAirline.Model.GeneralModel
 
             }
         }
-        /*! loads the maps for the airports
+         /*! loads the maps for the airports
          */
         private static void LoadAirportMaps()
         {

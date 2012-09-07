@@ -10,45 +10,42 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using TheAirline.Model.AirportModel;
-using TheAirline.Model.GeneralModel;
-using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
     /// <summary>
-    /// Interaction logic for PopUpAirportMap.xaml
+    /// Interaction logic for PopUpAirlinerImage.xaml
     /// </summary>
-    public partial class PopUpAirportMap : PopUpWindow
+    public partial class PopUpAirlinerImage : PopUpWindow
     {
-        private Airport Airport;
-        //shows the pop up for an airport
-        public static void ShowPopUp(Airport airport)
+        private AirlinerType Type;
+        //shows the pop up for an airliner
+        public static void ShowPopUp(AirlinerType type)
         {
-            PopUpAirportMap window = new PopUpAirportMap(airport);
+            PopUpAirlinerImage window = new PopUpAirlinerImage(type);
             window.ShowDialog();
         }
-        public PopUpAirportMap(Airport airport)
+        public PopUpAirlinerImage(AirlinerType type)
         {
-            this.Airport = airport;
+            this.Type = type;
 
             InitializeComponent();
-           
-            this.Width = 900;
 
-            this.Height = 450;
+            this.Width = 600;
+
+            this.Height = 300;
+            this.Title = type.Name;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            this.Title = this.Airport.Profile.Name;
 
             Image imgMap = new Image();
-            imgMap.Width = 900;
-            imgMap.Height = 450;
-            imgMap.Source = new BitmapImage(new Uri(this.Airport.Profile.Map, UriKind.RelativeOrAbsolute));
+            imgMap.Width = 600;
+            imgMap.Height = 300;
+            imgMap.Source = new BitmapImage(new Uri(this.Type.Image, UriKind.RelativeOrAbsolute));
             RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
             this.Content = imgMap;
-
         }
     }
 }

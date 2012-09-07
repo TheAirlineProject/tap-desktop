@@ -160,7 +160,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             panelAirlinerType.Children.Add(lbQuickInfo);
 
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1002"), UICreator.CreateTextBlock(airliner.Name)));
+            WrapPanel panelAirlinerName = new WrapPanel();
+
+            Image imgAirlinerImage = new Image();
+            imgAirlinerImage.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
+            imgAirlinerImage.Height = 16;
+            imgAirlinerImage.Tag = airliner;
+            imgAirlinerImage.Visibility = airliner.Image == null ? Visibility.Collapsed : Visibility.Visible;
+            imgAirlinerImage.Margin = new Thickness(5, 0, 0, 0);
+            imgAirlinerImage.MouseDown += new System.Windows.Input.MouseButtonEventHandler(imgAirlinerImage_MouseDown);
+
+            RenderOptions.SetBitmapScalingMode(imgAirlinerImage, BitmapScalingMode.HighQuality);
+
+            panelAirlinerName.Children.Add(UICreator.CreateTextBlock(airliner.Name));
+            panelAirlinerName.Children.Add(imgAirlinerImage);
+            
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1002"), panelAirlinerName));
 
             ContentControl ccManufactorer = new ContentControl();
             ccManufactorer.SetResourceReference(ContentControl.ContentTemplateProperty, "ManufactorerCountryItem");
@@ -387,6 +402,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             }
         }
 
+        private static void imgAirlinerImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            PopUpAirlinerImage.ShowPopUp((AirlinerType)((Image)sender).Tag);
+        }
         private void lblAirport_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PageNavigator.NavigateTo(new PageAirport(this.Airliner.Homebase));
