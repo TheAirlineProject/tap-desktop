@@ -19,7 +19,8 @@ namespace TheAirline.Model.GeneralModel
         private Timer Timer;
         public delegate void TimeChanged();
         public event TimeChanged OnTimeChanged;
-
+        public event TimeChanged OnTimeChangedForced; //will be forced to update eventhough the game is pausd
+        private Boolean IsPaused;
         private GameTimer()
         {
             this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
@@ -28,21 +29,26 @@ namespace TheAirline.Model.GeneralModel
             this.Timer.Tick += new EventHandler(Timer_Tick);
             this.OnTimeChanged += new TimeChanged(GameTimer_OnTimeChanged);
             this.Timer.Enabled = false;
+            this.IsPaused = false;
         }
         //returns if the game is paused
         public Boolean isPaused()
         {
-            return !this.Timer.Enabled;
+            return this.IsPaused;//!this.Timer.Enabled;
         }
         //pause the game
         public void pause()
         {
-            this.Timer.Enabled = false;
+            //this.Timer.Enabled = false;
+            this.IsPaused = true;
         }
         //(re)start the game 
         public void start()
         {
-            this.Timer.Enabled = true;
+            if (!this.Timer.Enabled)
+                this.Timer.Enabled = true;
+
+            this.IsPaused = false;
         }
         //sets the speed of the game
         public void setGameSpeed(GeneralHelpers.GameSpeedValue gameSpeed)
@@ -57,8 +63,11 @@ namespace TheAirline.Model.GeneralModel
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (this.OnTimeChanged != null)
+            if (this.OnTimeChanged != null && !this.IsPaused)
                 this.OnTimeChanged();
+
+            if (this.OnTimeChangedForced != null)
+                this.OnTimeChangedForced(); 
         }
         //starts the timer
         public static void StartTimer()
