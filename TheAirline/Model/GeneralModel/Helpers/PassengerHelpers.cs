@@ -178,7 +178,7 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
-            foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
+            foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50))
             {
                 CreateDestinationPassengers(airport, dAirport);
             }
@@ -192,24 +192,465 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destinations passengers between two destinations 
         public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
         {
-            Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
-
+        	Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
+            
+            int passengerLevel = 0;
             Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
             Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
-
-            int sameContinentCoeff = isSameContinent ? values.Length * 1 : 0;
-            int sameCountryCoeff = isSameCountry ? values.Length * 2 : 0;
-
-            int destCoeff = ((int)dAirport.Profile.Size + 1) * 2;
-            int deptCoeff = ((int)airport.Profile.Size + 1);
-
-            int rndCoeff = rnd.Next(values.Length);
-
-            int coeff = destCoeff + deptCoeff + sameContinentCoeff + sameCountryCoeff;
             
-            int passengerModifier = rnd.Next(50, 125);
+            String dAirportSize = dAirport.Profile.Size.ToString();
+            String airportSize = airport.Profile.Size.ToString();
             
-            double value = ((coeff / 6) * ((coeff / 6) * 101)) * Convert.ToDouble((passengerModifier) / 100);
+            //Smallest Airports
+            if (airportSize.Equals("Smallest") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 74;
+            	else if (isSameContinent)
+            		passengerLevel = 56;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Smallest") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 99;
+            	else if (isSameContinent)
+            		passengerLevel = 74;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Smallest") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 161;
+            	else if (isSameContinent)
+            		passengerLevel = 121;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Smallest") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 213;
+            	else if (isSameContinent)
+            		passengerLevel = 160;
+            	else
+            		passengerLevel = 0;
+        	}
+            else if (airportSize.Equals("Smallest") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 291;
+            	else if (isSameContinent)
+            		passengerLevel = 218;
+            	else
+            		passengerLevel = 0;
+        	}
+            else if (airportSize.Equals("Smallest") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 439;
+            	else if (isSameContinent)
+            		passengerLevel = 329;
+            	else
+            		passengerLevel = 0;
+        	}
+            else if (airportSize.Equals("Smallest") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 501;
+            	else if (isSameContinent)
+            		passengerLevel = 376;
+            	else
+            		passengerLevel = 0;
+        	}
+            //Very Small Airports
+			if (airportSize.Equals("Very_small") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 99;
+            	else if (isSameContinent)
+            		passengerLevel = 74;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Very_small") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 157;
+            	else if (isSameContinent)
+            		passengerLevel = 118;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Very_small") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 231;
+            	else if (isSameContinent)
+            		passengerLevel = 173;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Very_small") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 311;
+            	else if (isSameContinent)
+            		passengerLevel = 233;
+            	else
+            		passengerLevel = 0;
+        	}
+            else if (airportSize.Equals("Very_small") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 481;
+            	else if (isSameContinent)
+            		passengerLevel = 361;
+            	else
+            		passengerLevel = 0;
+        	}
+            else if (airportSize.Equals("Very_small") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 747;
+            	else if (isSameContinent)
+            		passengerLevel = 560;
+            	else
+            		passengerLevel = 0;
+        	}
+            else if (airportSize.Equals("Very_small") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1129;
+            	else if (isSameContinent)
+            		passengerLevel = 847;
+            	else
+            		passengerLevel = 0;
+        	}
+            //Small Airports
+			if (airportSize.Equals("Small") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 161;
+            	else if (isSameContinent)
+            		passengerLevel = 121;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Small") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 231;
+            	else if (isSameContinent)
+            		passengerLevel = 173;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Small") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 514;
+            	else if (isSameContinent)
+            		passengerLevel = 386;
+            	else
+            		passengerLevel = 334;
+            }
+            else if (airportSize.Equals("Small") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 871;
+            	else if (isSameContinent)
+            		passengerLevel = 653;
+            	else
+            		passengerLevel = 566;
+        	}
+            else if (airportSize.Equals("Small") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1101;
+            	else if (isSameContinent)
+            		passengerLevel = 826;
+            	else
+            		passengerLevel = 716;
+        	}
+            else if (airportSize.Equals("Small") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1711;
+            	else if (isSameContinent)
+            		passengerLevel = 1283;
+            	else
+            		passengerLevel = 1112;
+        	}
+            else if (airportSize.Equals("Small") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 2487;
+            	else if (isSameContinent)
+            		passengerLevel = 1865;
+            	else
+            		passengerLevel = 1617;
+        	}
+            //Medium Airports
+			if (airportSize.Equals("Medium") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 213;
+            	else if (isSameContinent)
+            		passengerLevel = 160;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Medium") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 311;
+            	else if (isSameContinent)
+            		passengerLevel = 233;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Medium") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 871;
+            	else if (isSameContinent)
+            		passengerLevel = 653;
+            	else
+            		passengerLevel = 566;
+            }
+            else if (airportSize.Equals("Medium") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1319;
+            	else if (isSameContinent)
+            		passengerLevel = 989;
+            	else
+            		passengerLevel = 857;
+        	}
+            else if (airportSize.Equals("Medium") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 2071;
+            	else if (isSameContinent)
+            		passengerLevel = 1553;
+            	else
+            		passengerLevel = 1346;
+        	}
+            else if (airportSize.Equals("Medium") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 3081;
+            	else if (isSameContinent)
+            		passengerLevel = 2311;
+            	else
+            		passengerLevel = 2003;
+        	}
+            else if (airportSize.Equals("Medium") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 4391;
+            	else if (isSameContinent)
+            		passengerLevel = 3293;
+            	else
+            		passengerLevel = 2854;
+        	}
+            //Large Airports
+			if (airportSize.Equals("Large") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 291;
+            	else if (isSameContinent)
+            		passengerLevel = 218;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Large") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 481;
+            	else if (isSameContinent)
+            		passengerLevel = 361;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Large") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1101;
+            	else if (isSameContinent)
+            		passengerLevel = 826;
+            	else
+            		passengerLevel = 716;
+            }
+            else if (airportSize.Equals("Large") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 2071;
+            	else if (isSameContinent)
+            		passengerLevel = 1553;
+            	else
+            		passengerLevel = 1346;
+        	}
+            else if (airportSize.Equals("Large") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 3794;
+            	else if (isSameContinent)
+            		passengerLevel = 2846;
+            	else
+            		passengerLevel = 2466;
+        	}
+            else if (airportSize.Equals("Large") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 5571;
+            	else if (isSameContinent)
+            		passengerLevel = 4178;
+            	else
+            		passengerLevel = 3621;
+        	}
+            else if (airportSize.Equals("Large") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 7431;
+            	else if (isSameContinent)
+            		passengerLevel = 5573;
+            	else
+            		passengerLevel = 4830;
+        	}
+            //Very Large Airports
+			if (airportSize.Equals("Very_large") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 439;
+            	else if (isSameContinent)
+            		passengerLevel = 329;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Very_large") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 747;
+            	else if (isSameContinent)
+            		passengerLevel = 560;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Very_large") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1711;
+            	else if (isSameContinent)
+            		passengerLevel = 1283;
+            	else
+            		passengerLevel = 1112;
+            }
+            else if (airportSize.Equals("Very_large") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 3081;
+            	else if (isSameContinent)
+            		passengerLevel = 2311;
+            	else
+            		passengerLevel = 2003;
+        	}
+            else if (airportSize.Equals("Very_large") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 5571;
+            	else if (isSameContinent)
+            		passengerLevel = 4178;
+            	else
+            		passengerLevel = 3621;
+        	}
+            else if (airportSize.Equals("Very_large") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 7891;
+            	else if (isSameContinent)
+            		passengerLevel = 5918;
+            	else
+            		passengerLevel = 5129;
+        	}
+            else if (airportSize.Equals("Very_large") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 10523;
+            	else if (isSameContinent)
+            		passengerLevel = 7892;
+            	else
+            		passengerLevel = 6839;
+        	}
+            //Largest Airports
+			if (airportSize.Equals("Largest") && dAirportSize.Equals("Smallest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 501;
+            	else if (isSameContinent)
+            		passengerLevel = 376;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Largest") && dAirportSize.Equals("Very_small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 1129;
+            	else if (isSameContinent)
+            		passengerLevel = 847;
+            	else
+            		passengerLevel = 0;
+            }
+            else if (airportSize.Equals("Largest") && dAirportSize.Equals("Small"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 2487;
+            	else if (isSameContinent)
+            		passengerLevel = 1865;
+            	else
+            		passengerLevel = 1617;
+            }
+            else if (airportSize.Equals("Largest") && dAirportSize.Equals("Medium"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 4391;
+            	else if (isSameContinent)
+            		passengerLevel = 3293;
+            	else
+            		passengerLevel = 2854;
+        	}
+            else if (airportSize.Equals("Largest") && dAirportSize.Equals("Large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 7431;
+            	else if (isSameContinent)
+            		passengerLevel = 5573;
+            	else
+            		passengerLevel = 4830;
+        	}
+            else if (airportSize.Equals("Largest") && dAirportSize.Equals("Very_large"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 10523;
+            	else if (isSameContinent)
+            		passengerLevel = 7892;
+            	else
+            		passengerLevel = 6839;
+        	}
+            else if (airportSize.Equals("Largest") && dAirportSize.Equals("Largest"))
+            {
+            	if (isSameCountry)
+            		passengerLevel = 13791;
+            	else if (isSameContinent)
+            		passengerLevel = 10343;
+            	else
+            		passengerLevel = 8964;
+        	}
+
+            double value = passengerLevel;
 
             GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), (int)value);
 
