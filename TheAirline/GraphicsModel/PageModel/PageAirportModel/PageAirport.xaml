@@ -34,7 +34,7 @@
         <DataTemplate x:Key="PassengersItem">
             <WrapPanel>
             <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination}" VerticalAlignment="Bottom" Width="250"></ContentControl>
-                <TextBlock Text="{Binding Rate,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Rate,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
               </WrapPanel>
         </DataTemplate>
        

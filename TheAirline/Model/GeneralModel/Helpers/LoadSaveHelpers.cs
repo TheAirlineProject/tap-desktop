@@ -450,17 +450,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement airportDestinationElement in airportDestinationsList)
             {
                 Airport targetAirport = Airports.GetAirport(airportDestinationElement.Attributes["id"].Value);
-                targetAirport.clearDestinationPassengers();
 
-                XmlNodeList destinationsList = airportDestinationElement.SelectNodes("destinations/destination");
-                foreach (XmlElement destinationElement in destinationsList)
+                if (targetAirport != null)
                 {
-                    Airport destAirport = Airports.GetAirport(destinationElement.Attributes["id"].Value);
-                    GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.Parse(typeof(GeneralHelpers.Rate), destinationElement.Attributes["rate"].Value);
-                    long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
+                    targetAirport.clearDestinationPassengers();
 
-                    targetAirport.addDestinationStatistics(destAirport, destPassengers);
-                    targetAirport.addDestinationPassengersRate(new DestinationPassengers(destAirport, rate));
+                    XmlNodeList destinationsList = airportDestinationElement.SelectNodes("destinations/destination");
+                    foreach (XmlElement destinationElement in destinationsList)
+                    {
+                        Airport destAirport = Airports.GetAirport(destinationElement.Attributes["id"].Value);
+
+                        if (destAirport != null)
+                        {
+                            GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.Parse(typeof(GeneralHelpers.Rate), destinationElement.Attributes["rate"].Value);
+                            long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
+
+                            targetAirport.addDestinationStatistics(destAirport, destPassengers);
+                            targetAirport.addDestinationPassengersRate(new DestinationPassengers(destAirport, rate));
+                        }
+                    }
                 }
             }
 

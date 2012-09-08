@@ -74,7 +74,7 @@ namespace TheAirline.Model.GeneralModel
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
-            int passengerDemand = Convert.ToInt16(((int)airportCurrent.getDestinationPassengersRate(airportDestination, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent));
+            double passengerDemand = ((int)airportCurrent.getDestinationPassengersRate(airportDestination, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
             
             if (airportCurrent.IsHub)
                 passengerDemand = passengerDemand * (125 / 100);
