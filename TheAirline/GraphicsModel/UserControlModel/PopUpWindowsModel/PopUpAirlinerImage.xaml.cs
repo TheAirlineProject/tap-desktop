@@ -32,16 +32,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             InitializeComponent();
 
-            this.Width = 499;
+            this.Width = 700;
 
-            this.Height = 170;
+            this.Height = 260;
             this.Title = type.Name;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             Image imgMap = new Image();
-            imgMap.Width = 499;
-            imgMap.Height = 150;
+            imgMap.Width = 700;
+            imgMap.Height = 240;
             imgMap.Source = new BitmapImage(new Uri(this.Type.Image, UriKind.RelativeOrAbsolute));
             RenderOptions.SetBitmapScalingMode(imgMap, BitmapScalingMode.HighQuality);
 
