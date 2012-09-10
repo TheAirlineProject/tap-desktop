@@ -363,6 +363,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement airportNode in airportsList)
             {
                 Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
+
+                
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
                 airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
@@ -386,6 +388,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
                 XmlNodeList airportFacilitiesList = airportNode.SelectNodes("facilities/facility");
+                airport.clearFacilities();
 
                 foreach (XmlElement airportFacilityNode in airportFacilitiesList)
                 {
@@ -393,6 +396,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirportFacility airportFacility = AirportFacilities.GetFacility(airportFacilityNode.Attributes["name"].Value);
                     DateTime finishedDate = DateTime.Parse(airportFacilityNode.Attributes["finished"].Value, new CultureInfo("de-DE", false));
 
+                    string ss = airline.Profile.Name;
 
                     airport.setAirportFacility(airline, airportFacility, finishedDate);
                 }
