@@ -171,21 +171,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             Route route = (Route)cbRoute.SelectedItem;
 
             int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
-          
+
+            string flightcode1 = cbFlightCode.SelectedItem.ToString();
+            string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1)+1];
+            
             //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2701"), string.Format(Translator.GetInstance().GetString("MessageBox", "2701", "message"), route.Destination1.Profile.Name, route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
 
             //if (result == WPFMessageBoxResult.Yes)
             {
 
               
-                AIHelpers.CreateRouteTimeTable(route, this.Airliner, flightsPerDay);
+                AIHelpers.CreateRouteTimeTable(route, this.Airliner, flightsPerDay,flightcode1,flightcode2);
 
                 if (!this.Airliner.Routes.Contains(route))
                     this.Airliner.addRoute(route);
 
         
             }
-
+             
             this.Selected = flightsPerDay;
             this.Close();
         }

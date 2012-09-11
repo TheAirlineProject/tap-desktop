@@ -287,9 +287,9 @@ namespace TheAirline.Model.AirlineModel
         }
         // chs, 2011-11-17 changed so the airline gets a "new" flight code each time
         //returns the next flight code for the airline
-        public string getNextFlightCode()
+        public string getNextFlightCode(int n)
         {
-            return getFlightCodes()[0];
+            return getFlightCodes()[n];
         }
         //returns the list of flight codes for the airline
         public List<string> getFlightCodes()

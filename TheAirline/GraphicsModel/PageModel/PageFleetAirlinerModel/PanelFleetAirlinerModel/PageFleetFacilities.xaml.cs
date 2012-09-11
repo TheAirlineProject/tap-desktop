@@ -136,7 +136,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
         }
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            //oversigt over configurations + mere end et med samme navn
             AirlinerPassengerType airlinerType = ((AirlinerPassengerType)this.Airliner.Airliner.Type);
       
             ComboBox cbConfigurations = new ComboBox();

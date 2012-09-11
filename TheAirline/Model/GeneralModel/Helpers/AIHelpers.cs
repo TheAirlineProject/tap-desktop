@@ -672,16 +672,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
-            CreateRouteTimeTable(route, airliner, flightsPerDay);
+            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+
+
+            CreateRouteTimeTable(route, airliner, flightsPerDay,flightCode1,flightCode2);
         }
-        public static void CreateRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay)
+        public static void CreateRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
         {
             Random rnd = new Random();
 
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
-
             
-
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
                 int startHour = 6;
@@ -689,9 +691,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 int maxHours = endHour - startHour;
                 
-                string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
-                string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
-
+        
               
                 int startMinutes = Convert.ToInt16((maxHours * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
 
@@ -718,8 +718,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int outTime = 15 * rnd.Next(-12, 12);
                 int homeTime = 15 * rnd.Next(-12, 12);
 
-                string flightCode1 = airliner.Airliner.Airline.getNextFlightCode();
-
+             
 
                 for (int i = 0; i < 3; i++)
                 {
@@ -728,8 +727,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     day += 2;
                 }
 
-                string flightCode2 = airliner.Airliner.Airline.getNextFlightCode();
-
+              
 
                 day = (DayOfWeek)1;
 
