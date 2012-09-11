@@ -322,8 +322,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (route.HasAirliner)
                                 route.getAirliners().ForEach(a => a.removeRoute(route));
 
-                            route.Destination1.Terminals.getUsedGate(airline).Route = null; 
-                            route.Destination2.Terminals.getUsedGate(airline).Route = null;
+                            route.Destination1.Terminals.getUsedGate(airline).HasRoute = false; 
+                            route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
 
                             if (airline.Routes.Count == 0)
                                 CreateNewRoute(airline);
@@ -338,8 +338,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (route.HasAirliner)
                         route.getAirliners().ForEach(a => a.removeRoute(route));
 
-                    route.Destination1.Terminals.getUsedGate(airline).Route = null;
-                    route.Destination2.Terminals.getUsedGate(airline).Route = null;
+                    route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
+                    route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
 
                     if (airline.Routes.Count == 0)
                         CreateNewRoute(airline);
@@ -431,8 +431,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         airline.addRoute(route);
 
-                        airport.Terminals.getEmptyGate(airline).Route = route;
-                        destination.Terminals.getEmptyGate(airline).Route = route;
+                        airport.Terminals.getEmptyGate(airline).HasRoute = true;
+                        destination.Terminals.getEmptyGate(airline).HasRoute = true;
 
                         if (fAirliner == null)
                         {

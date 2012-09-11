@@ -1098,8 +1098,8 @@ namespace TheAirline.Model.GeneralModel
                 }
                 airline.addRoute(route);
 
-                airportDestination.Terminals.getEmptyGate(airline).Route = route;
-                airline.Airports[0].Terminals.getEmptyGate(airline).Route = route;
+                airportDestination.Terminals.getEmptyGate(airline).HasRoute = true;
+                airline.Airports[0].Terminals.getEmptyGate(airline).HasRoute = true;
 
                 AIHelpers.CreateRouteTimeTable(route, fAirliner);
 

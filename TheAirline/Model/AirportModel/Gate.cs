@@ -14,12 +14,12 @@ namespace TheAirline.Model.AirportModel
     {
         public Airport Airport { get; set; }
         public Airline Airline { get; set; }
-        public Route Route { get; set; }
+        public Boolean HasRoute { get; set; }
         public DateTime DeliveryDate { get; set; }
         public Gate(Airport airport, DateTime deliveryDate)
         {
             this.Airport = airport;
-            this.Route = null;
+            this.HasRoute = false;
             this.DeliveryDate = deliveryDate;
         }
 
@@ -86,7 +86,7 @@ namespace TheAirline.Model.AirportModel
         public Gate getEmptyGate(Airline airline)
         {
             foreach (Gate gate in getDeliveredGates())
-                if (gate.Airline == airline && gate.Route == null)
+                if (gate.Airline == airline && !gate.HasRoute)
                     return gate;
 
             return null;
@@ -105,7 +105,7 @@ namespace TheAirline.Model.AirportModel
         public Gate getUsedGate(Airline airline)
         {
             foreach (Gate gate in getDeliveredGates())
-                if (gate.Airline == airline && gate.Route != null)
+                if (gate.Airline == airline && gate.HasRoute)
                     return gate;
 
             return null;
@@ -150,19 +150,20 @@ namespace TheAirline.Model.AirportModel
             int number = 0;
             foreach (Gate gate in getDeliveredGates())
             {
-                if (gate.Airline != null && gate.Airline == airline && gate.Route == null)
+                if (gate.Airline != null && gate.Airline == airline && !gate.HasRoute)
                     number++;
             }
             return number;
         }
+        /*
         //finds the routes assigned to the gates
         public List<Route> getRoutes()
         {
             List<Route> routes = new List<Route>();
             foreach (Gate gate in getDeliveredGates())
             {
-                if (gate.Route != null)
-                    routes.Add(gate.Route);
+                if (gate.HasRoute != null)
+                    routes.Add(gate.HasRoute);
          
             }
             return routes;
@@ -172,12 +173,13 @@ namespace TheAirline.Model.AirportModel
             List<Route> routes = new List<Route>();
             foreach (Gate gate in getDeliveredGates())
             {
-                if (gate.Route != null && gate.Airline == airline)
-                    routes.Add(gate.Route);
+                if (gate.HasRoute != null && gate.Airline == airline)
+                    routes.Add(gate.HasRoute);
 
             }
             return routes;
         }
+         * */
         //clears the gates
         public void clear()
         {

@@ -245,10 +245,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 Gate nGate = terminal.Gates.getEmptyGate(terminal.Airline);
                                 if (nGate != null)
                                 {
-                                    nGate.Route = gate.Route;
+                                    nGate.HasRoute = gate.HasRoute;
 
                                     gate.Airline = null;
-                                    gate.Route = null;
+                                    gate.HasRoute = false;
                                 }
 
 

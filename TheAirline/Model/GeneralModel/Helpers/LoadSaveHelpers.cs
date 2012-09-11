@@ -421,17 +421,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         DateTime gateDeliveryDate = DateTime.Parse(airportGateNode.Attributes["delivery"].Value, new CultureInfo("de-DE", false));
                         Gate gate = new Gate(airport, gateDeliveryDate);
+
                         if (airportGateNode.Attributes["airline"].Value.Length > 0)
                         {
                             Airline airline = Airlines.GetAirline(airportGateNode.Attributes["airline"].Value);
                             gate.Airline = airline;
 
-                            if (airportGateNode.Attributes["route"].Value.Length > 0)
-                            {
-                                string routeId = airportGateNode.Attributes["route"].Value;
-                                Route route = airline.Routes.Find(r=>r.Id == routeId);
-                                gate.Route = route;
-                            }
+                            gate.HasRoute = Convert.ToBoolean(airportGateNode.Attributes["route"].Value);
+                          
                         }
                         
                         terminal.Gates.addGate(gate);
@@ -985,7 +982,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         XmlElement gateNode = xmlDoc.CreateElement("gate");
                         gateNode.SetAttribute("delivery", gate.DeliveryDate.ToString(new CultureInfo("de-DE")));
                         gateNode.SetAttribute("airline", gate.Airline == null ? "" : gate.Airline.Profile.IATACode);
-                        gateNode.SetAttribute("route", gate.Route == null ? "" : gate.Route.Id);
+                        gateNode.SetAttribute("route", gate.HasRoute.ToString());
 
                         gatesNode.AppendChild(gateNode);
                     }

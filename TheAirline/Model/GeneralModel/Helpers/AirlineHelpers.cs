@@ -67,7 +67,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //gates
             foreach (Gate gate in oldAirport.Terminals.getUsedGates(airline))
             {
-                gate.Route = null;
+                gate.HasRoute = false;
             }
             while (oldAirport.Terminals.getTotalNumberOfGates(airline) > 0)
             {
@@ -82,7 +82,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (route.Destination1 == oldAirport) route.Destination1 = newAirport;
                 if (route.Destination2 == oldAirport) route.Destination2 = newAirport;
 
-                newAirport.Terminals.getEmptyGate(airline).Route = route;
+                newAirport.Terminals.getEmptyGate(airline).HasRoute = true;
 
                 var entries = route.TimeTable.Entries.FindAll(e => e.Destination.Airport == oldAirport);
 

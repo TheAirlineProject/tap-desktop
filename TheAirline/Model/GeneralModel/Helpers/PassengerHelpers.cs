@@ -79,7 +79,7 @@ namespace TheAirline.Model.GeneralModel
             if (airportCurrent.IsHub)
                 passengerDemand = passengerDemand * (125 / 100);
 
-            var routes = airportCurrent.Terminals.getRoutes();
+            var routes = GeneralHelpers.GetAirportRoutes(airportCurrent);
 
             double passengerCapacity = 0;
 

@@ -231,8 +231,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                
                 airline.addRoute(route);
 
-                dest1.Terminals.getEmptyGate(airline).Route = route;
-                dest2.Terminals.getEmptyGate(airline).Route = route;
+                dest1.Terminals.getEmptyGate(airline).HasRoute = true;
+                dest2.Terminals.getEmptyGate(airline).HasRoute = true;
 
                 this.ParentPage.showRoutes();
 

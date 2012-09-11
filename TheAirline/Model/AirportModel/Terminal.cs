@@ -69,10 +69,10 @@ namespace TheAirline.Model.AirportModel
                     Gate nGate = this.Gates.getEmptyGate(this.Airline);
                     if (nGate != null)
                     {
-                        nGate.Route = gate.Route;
+                        nGate.HasRoute = gate.HasRoute;
 
                         gate.Airline = null;
-                        gate.Route = null;
+                        gate.HasRoute = false;
                     }
 
 
@@ -258,6 +258,12 @@ namespace TheAirline.Model.AirportModel
                 number += terminal.Gates.getFreeGates(airline);
             return number;
         }
+        //returns the number of gates with route 
+        public int getNumberOfRoutes()
+        {
+            return this.AirportTerminals.SelectMany(a => a.Gates.getGates()).Where(g=>g.HasRoute).Count();
+        }
+        /*
         //finds the routes assigned to the gates
         public List<Route> getRoutes()
         {
@@ -276,6 +282,7 @@ namespace TheAirline.Model.AirportModel
 
             return routes;
         }
+        */
         //clears the gates
         public void clear()
         {

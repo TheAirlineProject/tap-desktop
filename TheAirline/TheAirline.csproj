@@ -597,6 +597,7 @@
     <Compile Include="Model\AirlineModel\FeeType.cs" />
     <Compile Include="Model\AirlinerModel\Airliner.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerClass.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerFacility.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerStatistics.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerType.cs" />

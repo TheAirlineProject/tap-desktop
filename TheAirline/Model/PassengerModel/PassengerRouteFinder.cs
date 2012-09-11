@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.PassengerModel
 {
@@ -118,7 +119,7 @@ namespace TheAirline.Model.PassengerModel
         {
             List<Airport> neighbors = new List<Airport>();
 
-            foreach (Route route in n.Terminals.getRoutes())
+            foreach (Route route in GeneralHelpers.GetAirportRoutes(n))
             {
                 Airport destination = route.Destination1 == n ? route.Destination2 : route.Destination1;
                 if (this.Basis.Contains(n))
@@ -138,7 +139,7 @@ namespace TheAirline.Model.PassengerModel
         /// <returns></returns>
         private double getDistanceBetween(Airport o, Airport d)
         {
-            if (o.Terminals.getRoutes().Find(r => r.Destination1 == d || r.Destination2 == d) != null)
+            if (GeneralHelpers.GetAirportRoutes(o).Find(r => r.Destination1 == d || r.Destination2 == d) != null)
                 return 1;
             else
                 return 0;
