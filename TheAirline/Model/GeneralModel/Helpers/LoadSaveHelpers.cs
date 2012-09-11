@@ -506,6 +506,39 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Alliances.AddAlliance(alliance);
             }
+            AirlinerConfigurations.Clear();
+
+            XmlNodeList configurationsList = root.SelectNodes("//configurations/configuration");
+
+            foreach (XmlElement confElement in configurationsList)
+            {
+                string confName = confElement.Attributes["name"].Value;
+                int minimumSeats = Convert.ToInt16(confElement.Attributes["minimumseats"].Value);
+
+                AirlinerConfiguration configuration = new AirlinerConfiguration(confName,minimumSeats);
+
+                XmlNodeList classesList = confElement.SelectNodes("classes/class");
+
+                foreach (XmlElement classElement in classesList)
+                {
+                    int seating = Convert.ToInt16(classElement.Attributes["seating"].Value);
+                    int regularseating = Convert.ToInt16(classElement.Attributes["regularseating"].Value);
+                     AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+                      
+                    AirlinerClassConfiguration classConf = new AirlinerClassConfiguration(classType,seating,regularseating);
+                    foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                    {
+                        string facUid = classElement.Attributes[facType.ToString()].Value;
+
+                        classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
+                    }
+
+                    configuration.addClassConfiguration(classConf);
+                }
+                AirlinerConfigurations.AddConfiguration(configuration);
+            }
+           
+            
 
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
 
@@ -1060,6 +1093,40 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 alliancesNode.AppendChild(allianceNode);
             }
             root.AppendChild(alliancesNode);
+
+            XmlElement configurationsNode = xmlDoc.CreateElement("configurations");
+
+            foreach (AirlinerConfiguration conf in AirlinerConfigurations.GetConfigurations())
+            {
+                XmlElement configurationNode = xmlDoc.CreateElement("configuration");
+                configurationNode.SetAttribute("name",conf.Name);
+                configurationNode.SetAttribute("minimumseats", conf.MinimumSeats.ToString());
+
+                XmlElement classesNode = xmlDoc.CreateElement("classes");
+
+                foreach (AirlinerClassConfiguration aClass in conf.Classes)
+                {
+                    XmlElement classNode = xmlDoc.CreateElement("class");
+                    classNode.SetAttribute("seating", aClass.SeatingCapacity.ToString());
+                    classNode.SetAttribute("regularseating", aClass.RegularSeatingCapacity.ToString());
+                    classNode.SetAttribute("type", aClass.Type.ToString());
+
+                    foreach (AirlinerFacility aFac in aClass.Facilities)
+                    {
+                        classNode.SetAttribute(aFac.Type.ToString(), aFac.Uid);
+                    }
+
+                    classesNode.AppendChild(classNode);
+
+                
+                }
+                configurationNode.AppendChild(classesNode);
+
+                configurationsNode.AppendChild(configurationNode);
+
+            }
+
+            root.AppendChild(configurationsNode);
 
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);

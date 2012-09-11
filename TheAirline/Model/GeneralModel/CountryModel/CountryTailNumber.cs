@@ -35,6 +35,9 @@ namespace TheAirline.Model.GeneralModel
             if (dIndex != -1)
                 length += Convert.ToInt16(numberFormat.Substring(dIndex+1,1));
 
+            if (tailNumber.Split('-').Length < 2)
+                return false;
+
             string tailID = tailNumber.Split('-')[0];
             string tailFormat = tailNumber.Split('-')[1];
 

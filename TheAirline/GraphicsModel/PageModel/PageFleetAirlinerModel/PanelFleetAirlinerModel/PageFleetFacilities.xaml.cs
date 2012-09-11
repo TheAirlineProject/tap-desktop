@@ -53,6 +53,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
           
             showFacilities();
 
+            WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : Visibility.Collapsed;
+            
+            panelFacilities.Children.Add(panelButtons);
+            
+            
             Button btnConfiguration = new Button();
             btnConfiguration.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnConfiguration.Height = Double.NaN;
@@ -61,29 +67,39 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnConfiguration.Click += new RoutedEventHandler(btnConfiguration_Click);
             btnConfiguration.Content = "Configuration";
             btnConfiguration.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnConfiguration.Visibility = this.Airliner.Airliner.Airline.IsHuman && (!this.Airliner.HasRoute || this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
+            btnConfiguration.Visibility = (!this.Airliner.HasRoute || this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
 
-            panelFacilities.Children.Add(btnConfiguration);
-            //panelFacilities.Children.Add(lbFacilities);
+            panelButtons.Children.Add(btnConfiguration);
 
+            Button btnLoadConfiguration = new Button();
+            btnLoadConfiguration.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnLoadConfiguration.Width = Double.NaN;
+            btnLoadConfiguration.Height = Double.NaN;
+            btnLoadConfiguration.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnLoadConfiguration.Margin = new Thickness(5, 0, 0, 0);
+            btnLoadConfiguration.Content = "Load";
+            btnLoadConfiguration.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnLoadConfiguration.Visibility = (!this.Airliner.HasRoute || this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
+            btnLoadConfiguration.Click += new RoutedEventHandler(btnLoadConfiguration_Click);
+
+            panelButtons.Children.Add(btnLoadConfiguration);
+
+            Button btnSaveConfiguration = new Button();
+            btnSaveConfiguration.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnSaveConfiguration.Height = Double.NaN;
+            btnSaveConfiguration.Width = Double.NaN;
+            btnSaveConfiguration.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnSaveConfiguration.Margin = new Thickness(5, 0, 0, 0);
+            btnSaveConfiguration.Content = "Save";
+            btnSaveConfiguration.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnSaveConfiguration.Click += new RoutedEventHandler(btnSaveConfiguration_Click);
+
+            panelButtons.Children.Add(btnSaveConfiguration);
+            
             this.Content = panelFacilities;
         }
 
-        private void btnConfiguration_Click(object sender, RoutedEventArgs e)
-        {
-
-            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(this.Airliner.Airliner);
-
-            if (classes != null)
-            {
-                this.Airliner.Airliner.clearAirlinerClasses();
-
-                foreach (AirlinerClass aClass in classes)
-                    this.Airliner.Airliner.addAirlinerClass(aClass);
-
-                showFacilities();
-            }
-        }
+       
         //shows the facilities
         private void showFacilities()
         {
@@ -118,7 +134,100 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             }
 
         }
+        private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            //oversigt over configurations + mere end et med samme navn
+            AirlinerPassengerType airlinerType = ((AirlinerPassengerType)this.Airliner.Airliner.Type);
+      
+            ComboBox cbConfigurations = new ComboBox();
+            cbConfigurations.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbConfigurations.SelectedValuePath = "Name";
+            cbConfigurations.DisplayMemberPath = "Name";
+            cbConfigurations.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbConfigurations.Width = 200;
 
+            foreach (AirlinerConfiguration confItem in AirlinerConfigurations.GetConfigurations(c=>c.getNumberOfClasses()<=airlinerType.MaxAirlinerClasses && c.MinimumSeats <= airlinerType.MaxSeatingCapacity))
+                cbConfigurations.Items.Add(confItem);
+
+            cbConfigurations.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp("Select configuration", cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem!=null)
+            {
+
+                AirlinerConfiguration configuration = (AirlinerConfiguration)cbConfigurations.SelectedItem ;
+
+                this.Airliner.Airliner.clearAirlinerClasses();
+
+                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
+                {
+                    AirlinerClass airlinerClass = new AirlinerClass(this.Airliner.Airliner, aClass.Type, aClass.SeatingCapacity);
+                    airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+
+                    foreach (AirlinerFacility facility in aClass.getFacilities())
+                        airlinerClass.setFacility(facility);
+
+                    this.Airliner.Airliner.addAirlinerClass(airlinerClass);
+                }
+
+                int seatingDiff = airlinerType.MaxSeatingCapacity - configuration.MinimumSeats;
+
+                this.Airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
+
+                AirlinerFacility seatingFacility = this.Airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+
+                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+
+                this.Airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
+
+                showFacilities();
+            }
+        }
+        private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox txtName = new TextBox();
+            txtName.Width = 200;
+            txtName.Background = Brushes.Transparent;
+            txtName.Foreground = Brushes.White;
+            txtName.Text = string.Format("{0} ({1} {2})",this.Airliner.Airliner.Type.Name,this.Airliner.Airliner.Classes.Count, this.Airliner.Airliner.Classes.Count == 1 ? "class" : "classes");
+            txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+
+            if (PopUpSingleElement.ShowPopUp("Select configuration name", txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
+            {
+                string name = txtName.Text.Trim();
+
+                AirlinerConfiguration configuration = new AirlinerConfiguration(name,((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxSeatingCapacity);
+
+                foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+                {
+                    AirlinerClassConfiguration classConf = new AirlinerClassConfiguration(aClass.Type, aClass.SeatingCapacity,aClass.RegularSeatingCapacity);
+
+                    foreach (AirlinerFacility classFacility in aClass.getFacilities())
+                        classConf.addFacility(classFacility);
+
+                    configuration.addClassConfiguration(classConf);
+                }
+
+                AirlinerConfigurations.AddConfiguration(configuration);
+            }
+           
+        }
+
+        private void btnConfiguration_Click(object sender, RoutedEventArgs e)
+        {
+
+            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(this.Airliner.Airliner);
+
+            if (classes != null)
+            {
+                this.Airliner.Airliner.clearAirlinerClasses();
+
+                foreach (AirlinerClass aClass in classes)
+                    this.Airliner.Airliner.addAirlinerClass(aClass);
+
+                showFacilities();
+            }
+        }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             if ((this.Airliner.HasRoute && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) || !this.Airliner.HasRoute)

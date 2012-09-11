@@ -51,6 +51,11 @@ namespace TheAirline.Model.AirlinerModel
         {
             return this.Facilities[type];
         }
+        //returns all facilities for the class
+        public List<AirlinerFacility> getFacilities()
+        {
+            return this.Facilities.Values.ToList();
+        }
         //creates the basic facilities
         private void createBasicFacilities()
         {
