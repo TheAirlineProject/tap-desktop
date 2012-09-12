@@ -111,9 +111,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbFlightCode = new ComboBox();
             cbFlightCode.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
 
-            foreach (string flightCode in this.Airliner.Airliner.Airline.getFlightCodes())
-                cbFlightCode.Items.Add(flightCode);
-
+            for (int i = 0; i < this.Airliner.Airliner.Airline.getFlightCodes().Count - 2;i++ )
+                cbFlightCode.Items.Add(this.Airliner.Airliner.Airline.getFlightCodes()[i]);
+        
             cbFlightCode.SelectedIndex = 0;
 
             autogeneratePanel.Children.Add(cbFlightCode);

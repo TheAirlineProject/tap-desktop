@@ -436,8 +436,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (fAirliner == null)
                         {
-
-                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                            
+                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name) 
                                 airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
 
