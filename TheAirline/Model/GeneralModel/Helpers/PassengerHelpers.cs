@@ -139,37 +139,20 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            AirlinerType bestFitAirliner = (from at in AirlinerTypes.GetAllTypes() where at is AirlinerPassengerType && at.Produced.From <= GameObject.GetInstance().GameTime && at.Produced.To > GameObject.GetInstance().GameTime && at.Range>=dist orderby at.Range select at).FirstOrDefault();
-
-            TimeSpan estFlightTime = MathHelpers.GetFlightTime(dest1.Profile.Coordinates,dest2.Profile.Coordinates,bestFitAirliner);
-
-            double cabinWage = FeeTypes.GetType("Cabin wage").DefaultValue;
-            double cockpitWage = FeeTypes.GetType("Cockpit wage").DefaultValue;
-            double fuelprice = GameObject.GetInstance().FuelPrice;
-         
-            double crewExpenses = (bestFitAirliner.CockpitCrew * cockpitWage * estFlightTime.TotalHours) + (((AirlinerPassengerType)bestFitAirliner).CabinCrew * cabinWage * estFlightTime.TotalHours);
-            double tMax = bestFitAirliner.Range / bestFitAirliner.CruisingSpeed;
-            double consumption = (bestFitAirliner.FuelCapacity / tMax / bestFitAirliner.CruisingSpeed)*0.9; //why tMax / speed when tMax is range / speed
-            double fuelExpenses = fuelprice * dist * consumption; //why are passenger capacity isn't used here
-            double otherCost = ((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity * (2.50 + dist * 0.0005);
-            Convert.ToDouble(((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
-
-            double totalExpenses = otherCost + fuelExpenses + crewExpenses;//minimum ticket price
-        
-            double paxIndex = 3 / Convert.ToDouble(((AirlinerPassengerType)bestFitAirliner).MaxSeatingCapacity);
-         
-            double ticketPrice = totalExpenses * paxIndex;
-            //distance modifiers
-            if (dist <= 500) ticketPrice = ticketPrice * 1.5;
-            else if (dist > 500 && dist <= 5000) ticketPrice = ticketPrice * 0.8;
-            else if (dist > 5000 && dist <= 5600) ticketPrice = ticketPrice * 0.90;
-            else if (dist > 5600 && dist <= 6500) ticketPrice = ticketPrice * 1;
-            else if (dist > 6500 && dist <= 7000) ticketPrice = ticketPrice * 1.50;
-            else if (dist > 7000 && dist <= 9000) ticketPrice = ticketPrice * 1.45;
-            else if (dist > 9000 && dist <= 11000) ticketPrice = ticketPrice * 1.40;
-            else if (dist > 11000 && dist <= 13000) ticketPrice = ticketPrice * 1.35;
-            else if (dist > 13000 && dist <= 15000) ticketPrice = ticketPrice * 1.30;
-            else ticketPrice = ticketPrice * 1.25;                    
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0311);
+            
+            double minimumTicketPrice = GeneralHelpers.GetInflationPrice(29);
+         	
+         	Boolean isSameContinent = dest1.Profile.Country.Region == dest2.Profile.Country.Region;
+            Boolean isSameCountry = dest1.Profile.Country == dest2.Profile.Country;
+         	
+            if (isSameCountry && isSameContinent)
+            	ticketPrice = ticketPrice / 2.9;
+            else if (!isSameCountry && isSameContinent)
+            	ticketPrice = ticketPrice / 1.75;
+            
+            if (ticketPrice < minimumTicketPrice)
+            	ticketPrice = minimumTicketPrice + (ticketPrice / 3);
 
             return ticketPrice;
         }
