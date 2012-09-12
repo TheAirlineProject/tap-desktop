@@ -436,7 +436,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (fAirliner == null)
                         {
-                            
+                            if (airliner.Value.Key.TailNumber == "")
+                            {
+                                string s = airliner.Value.Key.TailNumber;
+                                s = "JJ";
+                            }
                             if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name) 
                                 airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 

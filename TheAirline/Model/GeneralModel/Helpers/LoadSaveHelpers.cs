@@ -660,7 +660,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement tailnumberNode = xmlDoc.CreateElement("tailnumber");
                 tailnumberNode.SetAttribute("country", country.Uid);
-                tailnumberNode.SetAttribute("value", country.TailNumbers.LastTailNumber);
+                tailnumberNode.SetAttribute("value", country.TailNumbers.LastTailNumber == null ? country.TailNumbers.getNextTailNumber() : country.TailNumbers.LastTailNumber);//?? Tailnumberformat == ""??? tjek country
+             
 
                 tailnumbersNode.AppendChild(tailnumberNode);
             }
@@ -672,7 +673,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement airlinerNode = xmlDoc.CreateElement("airliner");
                 airlinerNode.SetAttribute("type", airliner.Type.Name);
-                airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
+                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToShortDateString());
                 airlinerNode.SetAttribute("flown", string.Format("{0:0}", airliner.Flown));

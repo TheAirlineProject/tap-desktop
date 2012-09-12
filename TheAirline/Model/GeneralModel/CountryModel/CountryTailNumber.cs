@@ -21,6 +21,7 @@ namespace TheAirline.Model.GeneralModel
         //returns if a tail number matches the country
         public Boolean isMatch(string tailNumber)
         {
+
             string countryID = this.Country.TailNumberFormat.Split('-')[0];
             string numberFormat = this.Country.TailNumberFormat.Split('-')[1];
 
@@ -36,8 +37,8 @@ namespace TheAirline.Model.GeneralModel
                 length += Convert.ToInt16(numberFormat.Substring(dIndex+1,1));
 
             
-            if (tailNumber.Split('-').Length < 2) 
-                return true;
+           // if (tailNumber.Split('-').Length < 2) 
+             //   return true;
 
             string tailID = tailNumber.Split('-')[0];
             string tailFormat = tailNumber.Split('-')[1];
@@ -87,6 +88,10 @@ namespace TheAirline.Model.GeneralModel
         //returns the next tail number
         public string getNextTailNumber()
         {
+            if (!this.Country.TailNumberFormat.Contains("-"))
+                return "";
+
+          
             string countryID = this.Country.TailNumberFormat.Split('-')[0];
             string numberFormat = this.Country.TailNumberFormat.Split('-')[1];
 
@@ -178,11 +183,7 @@ namespace TheAirline.Model.GeneralModel
                  * */
             }
 
-            Airliner airliner = Airliners.GetAirliner(this.LastTailNumber);
-
-            if (airliner != null)
-                return null;
-
+            
             return this.LastTailNumber;
         }
     }
