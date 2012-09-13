@@ -139,20 +139,20 @@ namespace TheAirline.Model.GeneralModel
         {
             double dist = MathHelpers.GetDistance(dest1, dest2);
 
-            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0311);
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0078);
             
-            double minimumTicketPrice = GeneralHelpers.GetInflationPrice(29);
+            double minimumTicketPrice = GeneralHelpers.GetInflationPrice(18);
          	
          	Boolean isSameContinent = dest1.Profile.Country.Region == dest2.Profile.Country.Region;
             Boolean isSameCountry = dest1.Profile.Country == dest2.Profile.Country;
          	
-            if (isSameCountry && isSameContinent)
-            	ticketPrice = ticketPrice / 2.9;
-            else if (!isSameCountry && isSameContinent)
-            	ticketPrice = ticketPrice / 1.75;
+            if (!isSameCountry && !isSameContinent)
+            	ticketPrice = ticketPrice * 2.05;
+            if (!isSameCountry && isSameContinent)
+            	ticketPrice = ticketPrice * 1.35;
             
             if (ticketPrice < minimumTicketPrice)
-            	ticketPrice = minimumTicketPrice + (ticketPrice / 3);
+            	ticketPrice = minimumTicketPrice + (ticketPrice / 4);
 
             return ticketPrice;
         }
