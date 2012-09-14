@@ -7,6 +7,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.GeneralModel.InvoicesModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -28,7 +29,7 @@ namespace TheAirline.Model.AirlineModel
         public GeneralStatistics Statistics { get; set; }
         public double Money { get; set; }
         public Boolean IsHuman { get { return this == GameObject.GetInstance().HumanAirline; } set { ;} }
-        private List<Invoice> Invoices;
+        private Invoices Invoices;
         public AirlineFees Fees { get; set; }
         public List<Loan> Loans { get; set; }
         private List<string> FlightCodes;
@@ -42,7 +43,7 @@ namespace TheAirline.Model.AirlineModel
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
-            this.Invoices = new List<Invoice>();
+            this.Invoices = new Invoices();
             this.Profile = profile;
              this.Loans = new List<Loan>();
             this.Reputation = 50;
@@ -128,16 +129,17 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Facilities.Remove(facility);
         }
+        /*
         //clears all the invoices
         public void clearInvoices(DateTime start, DateTime end, Invoice.InvoiceType type)
         {
             this.Invoices.RemoveAll(i => i.Date >= start && i.Date < end && i.Type == type);
-        }
+        }*/
         //returns all the invoices
-        public List<Invoice> getInvoices()
+        public Invoices getInvoices()
         {
             return this.Invoices;
-        }
+        }/*
         //returns all invoices with type
         public List<Invoice> getInvoices(DateTime start, DateTime end, Invoice.InvoiceType type)
         
@@ -147,66 +149,68 @@ namespace TheAirline.Model.AirlineModel
         //returns all the invoices in a specific period
         public List<Invoice> getInvoices(DateTime start, DateTime end)
         {
-                   return this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
+           return this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
 
         }
-       
+       */
         //returns the amount of all the invoices in a specific period of a specific type
-        public double getInvoicesAmount(DateTime start, DateTime end, Invoice.InvoiceType type)
+        public double getInvoicesAmount(DateTime startTime, DateTime endTime, Invoice.InvoiceType type)
         {
-            List<Invoice> tInvoices = new List<Invoice>();
-            
-            if (type == Invoice.InvoiceType.Total)
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end; });
-            else
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Date >= start && i.Date <= end && i.Type == type; });
+            int startYear = startTime.Year;
+            int endYear = endTime.Year;
 
-            double amount = 0;
-            foreach (Invoice invoice in tInvoices)
-                amount += invoice.Amount;
-            //return Math.Abs(amount);
-            return amount;
+            int startMonth = startTime.Month;
+            int endMonth = endTime.Month;
+
+            int totalMonths = (endMonth - startMonth) + 12 * (endYear - startYear) +1;
+
+            double totalAmount = 0;
+
+            DateTime date = new DateTime(startYear, startMonth, 1);
+
+            for (int i = 0; i < totalMonths; i++)
+            {
+                if (type == Invoice.InvoiceType.Total)
+                    totalAmount += this.Invoices.getAmount(date.Year, date.Month);
+                else
+                    totalAmount += this.Invoices.getAmount(type, date.Year, date.Month);
+
+                date = date.AddMonths(1);
+            }
+
+            return totalAmount;
         }
         public double getInvoicesAmountYear(int year, Invoice.InvoiceType type)
         {
-            List<Invoice> tInvoices = new List<Invoice>();
-
             if (type == Invoice.InvoiceType.Total)
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Date.Year == year; });
+                return this.Invoices.getYearlyAmount(year);
             else
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Date.Year == year && i.Type == type; });
-
-            double amount = 0;
-            foreach (Invoice invoice in tInvoices)
-                amount += invoice.Amount;
-            //return Math.Abs(amount);
-            return amount;
+                return this.Invoices.getYearlyAmount(type, year);
+          
         }
-        public double getInvoicesAmountMonth(int month, Invoice.InvoiceType type)
+        public double getInvoicesAmountMonth(int year,int month, Invoice.InvoiceType type)
         {
-            List<Invoice> tInvoices = new List<Invoice>();
-
             if (type == Invoice.InvoiceType.Total)
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Date.Month == month; });
+                return this.Invoices.getAmount(year, month);
             else
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Date.Month == month && i.Type == type; });
-
-            double amount = 0;
-            foreach (Invoice invoice in tInvoices)
-                amount += invoice.Amount;
-             return amount;
+                return this.Invoices.getAmount(type, year, month);
+           
         }
         // chs, 2011-13-10 added function to add an invoice without have to pay for it. Used for loading of saved game
         //sets an invoice to the airline - no payment is made
         public void setInvoice(Invoice invoice)
         {
-            this.Invoices.Add(invoice);
+            this.Invoices.addInvoice(invoice);
+        }
+        public void setInvoice(Invoice.InvoiceType type, int year, int month, double amount)
+        {
+            this.Invoices.addInvoice(type, year, month, amount);
         }
         //adds an invoice for the airline - both incoming and expends
         public void addInvoice(Invoice invoice)
         {
-            
-            this.Invoices.Add(invoice);
+
+            this.Invoices.addInvoice(invoice);
             this.Money += invoice.Amount;
 
 

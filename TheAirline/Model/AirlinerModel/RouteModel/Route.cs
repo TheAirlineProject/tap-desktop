@@ -6,6 +6,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel.InvoicesModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -18,7 +19,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //public FleetAirliner Airliner { get; set; }
         public List<RouteAirlinerClass> Classes { get; set; }
         public RouteTimeTable TimeTable { get; set; }
-        public List<Invoice> Invoices { get; set; }
+        public Invoices Invoices { get; set; }
         public RouteStatistics Statistics { get; set; }
         public Boolean Banned { get; set; }
         public double Balance { get { return getBalance(); } set { ;} }
@@ -35,7 +36,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Destination1 = destination1;
             this.Destination2 = destination2;
             this.TimeTable = new RouteTimeTable(this);
-            this.Invoices = new List<Invoice>();
+            this.Invoices = new Invoices();
             this.Statistics = new RouteStatistics();
             this.Banned = false;
 
@@ -86,34 +87,41 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //adds an invoice for a route 
         public void addRouteInvoice(Invoice invoice)
         {
-            this.Invoices.Add(invoice);
+            this.Invoices.addInvoice(invoice);
 
         }
         //returns invoices amount for a specific type for a route
         public double getRouteInvoiceAmount(Invoice.InvoiceType type)
         {
-            List<Invoice> tInvoices = this.Invoices;
-
-            if (type != Invoice.InvoiceType.Total)
-                tInvoices = this.Invoices.FindAll(delegate(Invoice i) { return i.Type == type; });
-
-            double amount = 0;
-            foreach (Invoice invoice in tInvoices)
-                amount += invoice.Amount;
-
-            return amount;
+            return this.Invoices.getAmount(type);
+           
         }
         //returns the invoices amount for a specific type for a period
         public double getRouteInvoiceAmount(Invoice.InvoiceType type, DateTime startTime, DateTime endTime)
         {
-            List<Invoice> tInvoices;
+            int startYear = startTime.Year;
+            int endYear = endTime.Year;
 
-            if (type != Invoice.InvoiceType.Total)
-                tInvoices = this.Invoices.FindAll(i => i.Type == type && i.Date >= startTime && i.Date <= endTime);
-            else
-                tInvoices = this.Invoices.FindAll(i => i.Date >= startTime && i.Date <= endTime);
+            int startMonth = startTime.Month;
+            int endMonth = endTime.Month;
 
-            return tInvoices.Sum(i => i.Amount);
+            int totalMonths = (endMonth - startMonth) + 12 * (endYear - startYear);
+
+            double totalAmount = 0;
+
+            DateTime date = new DateTime(startYear, startMonth, 1);
+
+            for (int i = 0; i < totalMonths; i++)
+            {
+                if (type == Invoice.InvoiceType.Total)
+                    totalAmount += this.Invoices.getAmount(date.Year, date.Month);
+                else
+                    totalAmount += this.Invoices.getAmount(type, date.Year, date.Month);
+                
+                date = date.AddMonths(1);
+            }
+
+            return totalAmount;
         }
         //returns the list of invoice types for a route
         public List<Invoice.InvoiceType> getRouteInvoiceTypes()

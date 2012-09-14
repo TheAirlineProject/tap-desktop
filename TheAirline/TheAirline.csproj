@@ -646,7 +646,9 @@
     <Compile Include="Model\GeneralModel\HolidaysModel\Holiday.cs" />
     <Compile Include="Model\GeneralModel\HolidaysModel\HolidayYear.cs" />
     <Compile Include="Model\GeneralModel\Inflation.cs" />
-    <Compile Include="Model\GeneralModel\Invoice.cs" />
+    <Compile Include="Model\GeneralModel\InvoicesModel\Invoice.cs" />
+    <Compile Include="Model\GeneralModel\InvoicesModel\Invoices.cs" />
+    <Compile Include="Model\GeneralModel\InvoicesModel\MonthlyInvoice.cs" />
     <Compile Include="Model\GeneralModel\Language.cs" />
     <Compile Include="Model\GeneralModel\Loan.cs" />
     <Compile Include="Model\GeneralModel\NewsBox.cs" />

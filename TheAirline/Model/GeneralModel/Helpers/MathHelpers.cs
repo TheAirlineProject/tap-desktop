@@ -213,7 +213,7 @@ namespace TheAirline.Model.GeneralModel
         public static DateTime ConvertEntryToDate(RouteTimeTableEntry entry)
         {
             int currentDay = (int)GameObject.GetInstance().GameTime.DayOfWeek;
-            if (GameObject.GetInstance().GameTime.DayOfWeek > entry.Day)
+            if (GameObject.GetInstance().GameTime.DayOfWeek > entry.Day) 
                 currentDay -= 7;
             
             int daysBetween = Math.Abs((int)entry.Day - currentDay);

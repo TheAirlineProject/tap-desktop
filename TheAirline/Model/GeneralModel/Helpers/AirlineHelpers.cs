@@ -112,6 +112,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 oldAirport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
             }
         }
+        /*
         //merges and clears all invoices from the previous month
         public static void MergeInvoicesMonthly(Airline airline)
         {
@@ -127,5 +128,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
         }
+         * */
     }
 }

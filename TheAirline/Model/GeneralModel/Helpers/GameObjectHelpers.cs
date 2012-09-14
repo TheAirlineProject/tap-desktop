@@ -309,7 +309,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {  
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                AirlineHelpers.MergeInvoicesMonthly(airline);
+                //AirlineHelpers.MergeInvoicesMonthly(airline);
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
 

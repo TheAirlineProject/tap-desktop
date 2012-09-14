@@ -263,7 +263,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             public double getLastMonthTotal()
             {
                 DateTime tDate = GameObject.GetInstance().GameTime.AddMonths(-1);
-                return this.Airline.getInvoicesAmountMonth(tDate.Month, this.InvoiceType);
+                return this.Airline.getInvoicesAmountMonth(tDate.Year,tDate.Month, this.InvoiceType);
             }
 
             //returns the total amount for the year to date
