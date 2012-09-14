@@ -84,11 +84,21 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
              
             return cabinCrew;
         }
+        //returns all invoices for the route
+        public Invoices getInvoices()
+        {
+            return this.Invoices;
+        }
         //adds an invoice for a route 
         public void addRouteInvoice(Invoice invoice)
         {
             this.Invoices.addInvoice(invoice);
 
+        }
+        //sets the invoice to the route
+        public void setRouteInvoice(Invoice.InvoiceType type, int year, int month, double amount)
+        {
+            this.Invoices.addInvoice(type, year, month, amount);
         }
         //returns invoices amount for a specific type for a route
         public double getRouteInvoiceAmount(Invoice.InvoiceType type)

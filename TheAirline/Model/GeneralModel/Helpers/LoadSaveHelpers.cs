@@ -284,7 +284,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         route.addRouteAirlinerClass(rClass);
 
                     }
-
+                    
                     RouteTimeTable timeTable = new RouteTimeTable(route);
 
                     XmlNodeList timetableList = routeNode.SelectNodes("timetable/timetableentry");
@@ -307,6 +307,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                     route.TimeTable = timeTable;
 
+                    XmlNodeList routeInvoiceList = airlineNode.SelectNodes("invoices/invoice");
+
+                    foreach (XmlElement routeInvoiceNode in routeInvoiceList)
+                    {
+                        Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), routeInvoiceNode.Attributes["type"].Value);
+                        int invoiceYear = Convert.ToInt16(routeInvoiceNode.Attributes["year"].Value);
+                        int invoiceMonth = Convert.ToInt16(routeInvoiceNode.Attributes["month"].Value);
+                        double invoiceAmount = XmlConvert.ToDouble(routeInvoiceNode.Attributes["amount"].Value);
+
+                        route.setRouteInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
+                    }
 
                     airline.addRoute(route);
                 }
@@ -896,7 +907,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     routeNode.AppendChild(timetableNode);
 
+                    XmlElement routeInvoicesNode = xmlDoc.CreateElement("invoices");
+                    foreach (MonthlyInvoice invoice in route.getInvoices().MonthlyInvoices)
+                    {
+                        XmlElement routeInvoiceNode = xmlDoc.CreateElement("invoice");
+                        routeInvoiceNode.SetAttribute("type", invoice.Type.ToString());
+                        routeInvoiceNode.SetAttribute("year", invoice.Year.ToString());
+                        routeInvoiceNode.SetAttribute("month", invoice.Month.ToString());
+                        routeInvoiceNode.SetAttribute("amount", string.Format("{0:0}", invoice.Amount));
 
+                        routeInvoicesNode.AppendChild(routeInvoiceNode);
+                    }
+                    routesNode.AppendChild(invoicesNode);
 
                     routesNode.AppendChild(routeNode);
                 }
