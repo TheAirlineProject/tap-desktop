@@ -5,7 +5,8 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel
 {
-    public class Configuration
+    //the class for a configuration
+    public abstract class Configuration
     {
     }
 }
