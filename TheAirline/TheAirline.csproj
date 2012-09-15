@@ -630,6 +630,7 @@
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />
+    <Compile Include="Model\GeneralModel\Configuration.cs" />
     <Compile Include="Model\GeneralModel\Coordinates.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\BaseUnit.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\Country.cs" />
