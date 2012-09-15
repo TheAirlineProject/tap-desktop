@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -104,7 +105,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 txtClassHeader.Margin = new Thickness(0, 5, 0, 0);
 
                 panelServices.Children.Add(txtClassHeader);
-            }
+    
+                ListBox lbServices = new ListBox();
+                lbServices.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+                lbServices.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+                panelServices.Children.Add(lbServices);
+
+                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                {
+                    ComboBox cbFacility = new ComboBox();
+                    cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                    cbFacility.Width = 200;
+                    cbFacility.DisplayMemberPath = "Name";
+                    cbFacility.SelectedValuePath = "Name";
+
+                    RouteFacilities.GetFacilities(facilityType).ForEach(f => cbFacility.Items.Add(f));
+
+                    lbServices.Items.Add(new QuickInfoValue(facilityType.ToString(), cbFacility));
+
+
+                }
+
+             }
 
 
 
