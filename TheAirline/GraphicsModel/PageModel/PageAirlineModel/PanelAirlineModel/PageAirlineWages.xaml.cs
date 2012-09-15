@@ -17,6 +17,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -26,7 +28,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineWages : Page
     {
         private Airline Airline;
-        private StackPanel panelWages, panelEmployees;
+        private StackPanel panelWages, panelEmployees, panelInflightServices;
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees, lbFoodDrinks;
         public PageAirlineWages(Airline airline)
@@ -57,18 +59,58 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbEmployees.Click += new RoutedEventHandler(sbEmployees_Click);
             panelMenuButtons.Children.Add(sbEmployees);
 
+            ucSelectButton sbService = new ucSelectButton();
+            sbService.Uid = "1006";
+            sbService.Content = Translator.GetInstance().GetString("PageAirlineWages", sbService.Uid);
+            sbService.Click += new RoutedEventHandler(sbService_Click);
+            panelMenuButtons.Children.Add(sbService);
 
             panelWages = createWagesPanel();
-
             panelWagesAndEmployees.Children.Add(panelWages);
 
             panelEmployees = createEmployeesPanel();
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
-
             panelWagesAndEmployees.Children.Add(panelEmployees);
 
+            panelInflightServices = createInflightServicesPanel();
+            panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelWagesAndEmployees.Children.Add(panelInflightServices);
+
+
+     
             this.Content = panelWagesAndEmployees;
         }
+        //creates the inflight services panel
+        private StackPanel createInflightServicesPanel()
+        {
+            StackPanel panelServices = new StackPanel();
+
+            TextBlock txtServicesHeader = new TextBlock();
+            txtServicesHeader.Uid = "1007";
+            txtServicesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtServicesHeader.FontWeight = FontWeights.Bold;
+            txtServicesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtServicesHeader.Text = Translator.GetInstance().GetString("PageAirlineWages", txtServicesHeader.Uid);
+
+            panelServices.Children.Add(txtServicesHeader);
+
+            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            {
+                TextBlock txtClassHeader = new TextBlock();
+                txtClassHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+                txtClassHeader.FontWeight = FontWeights.Bold;
+                txtClassHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+                txtClassHeader.Text = new TextUnderscoreConverter().Convert(type).ToString();
+                txtClassHeader.Margin = new Thickness(0, 5, 0, 0);
+
+                panelServices.Children.Add(txtClassHeader);
+            }
+
+
+
+            return panelServices;
+        }
+      
         //creates the employees panel
         private StackPanel createEmployeesPanel()
         {
@@ -176,14 +218,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             panelWages.Visibility = System.Windows.Visibility.Collapsed;
             panelEmployees.Visibility = System.Windows.Visibility.Visible;
+            panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void sbWages_Click(object sender, RoutedEventArgs e)
         {
             panelWages.Visibility = System.Windows.Visibility.Visible;
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
+            panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
         }
-
+        private void sbService_Click(object sender, RoutedEventArgs e)
+        {
+            panelWages.Visibility = System.Windows.Visibility.Collapsed;
+            panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
+            panelInflightServices.Visibility = System.Windows.Visibility.Visible;
+        }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
         {

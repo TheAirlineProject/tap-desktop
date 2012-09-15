@@ -145,7 +145,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             cbConfigurations.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbConfigurations.Width = 200;
 
-            foreach (AirlinerConfiguration confItem in AirlinerConfigurations.GetConfigurations(c=>c.getNumberOfClasses()<=airlinerType.MaxAirlinerClasses && c.MinimumSeats <= airlinerType.MaxSeatingCapacity))
+            foreach (AirlinerConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Airliner).FindAll(c => ((AirlinerConfiguration)c).getNumberOfClasses() <= airlinerType.MaxAirlinerClasses && ((AirlinerConfiguration)c).MinimumSeats <= airlinerType.MaxSeatingCapacity))
                 cbConfigurations.Items.Add(confItem);
 
             cbConfigurations.SelectedIndex = 0;
@@ -207,7 +207,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                     configuration.addClassConfiguration(classConf);
                 }
 
-                AirlinerConfigurations.AddConfiguration(configuration);
+                Configurations.AddConfiguration(configuration);
             }
            
         }

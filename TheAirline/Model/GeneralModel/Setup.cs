@@ -102,7 +102,7 @@ namespace TheAirline.Model.GeneralModel
             FlightRestrictions.Clear();
             Inflations.Clear();
             Holidays.Clear();
-            AirlinerConfigurations.Clear();
+            Configurations.Clear();
         }
         /*! creates the Advertisement types
          */

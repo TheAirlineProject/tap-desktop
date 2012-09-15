@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
     //the configuration of an airliner 
-    public class AirlinerConfiguration
+    public class AirlinerConfiguration : Configuration
     {
-        public string Name { get; set; }
         public int MinimumSeats { get; set; }
         public List<AirlinerClassConfiguration> Classes { get; set; }
-        public AirlinerConfiguration(string name, int minimumSeats)
+        public AirlinerConfiguration(string name, int minimumSeats) : base(Configuration.ConfigurationType.Airliner, name)
         {
-            this.Name = name;
             this.MinimumSeats = minimumSeats;
             this.Classes = new List<AirlinerClassConfiguration>();
         }
@@ -27,7 +26,6 @@ namespace TheAirline.Model.AirlinerModel
         {
             this.Classes.Add(conf);
         }
-        //returns the total number of seats needed for the configuration
      
 
     }
@@ -62,6 +60,7 @@ namespace TheAirline.Model.AirlinerModel
         }
     
     }
+    /*
     //the list of configurations
     public class AirlinerConfigurations
     {
@@ -89,6 +88,31 @@ namespace TheAirline.Model.AirlinerModel
         {
             configurations = new List<AirlinerConfiguration>();
         }
+        private static List<AirlinerConfiguration> configurations = new List<AirlinerConfiguration>();
+        //adds a configuration to the list
+        public static void AddConfiguration(AirlinerConfiguration configuration)
+        {
+            if (configurations.Find(c => c.Name == configuration.Name) != null)
+                configurations.RemoveAll(c => c.Name == configuration.Name);
+
+            configurations.Add(configuration);
+        }
+        //returns the list of configuraitons
+        public static List<AirlinerConfiguration> GetConfigurations()
+        {
+            return configurations;
+        }
+        //returns the list of configurations
+        public static List<AirlinerConfiguration> GetConfigurations(Predicate<AirlinerConfiguration> match)
+        {
+            return configurations.FindAll(match);
+        }
+        //clears the list of configurations
+        public static void Clear()
+        {
+            configurations = new List<AirlinerConfiguration>();
+        }
 
     }
+     * */
 }

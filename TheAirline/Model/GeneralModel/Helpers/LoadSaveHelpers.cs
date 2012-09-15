@@ -512,7 +512,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Alliances.AddAlliance(alliance);
             }
-            AirlinerConfigurations.Clear();
+            Configurations.Clear();
 
             XmlNodeList configurationsList = root.SelectNodes("//configurations/configuration");
 
@@ -541,7 +541,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     configuration.addClassConfiguration(classConf);
                 }
-                AirlinerConfigurations.AddConfiguration(configuration);
+                Configurations.AddConfiguration(configuration);
             }
 
 
@@ -1115,7 +1115,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlElement configurationsNode = xmlDoc.CreateElement("configurations");
 
-            foreach (AirlinerConfiguration conf in AirlinerConfigurations.GetConfigurations())
+            foreach (AirlinerConfiguration conf in Configurations.GetConfigurations(Configuration.ConfigurationType.Airliner))
             {
                 XmlElement configurationNode = xmlDoc.CreateElement("configuration");
                 configurationNode.SetAttribute("name", conf.Name);
