@@ -45,15 +45,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWagesAndEmployees.Children.Add(panelMenuButtons);
 
             ucSelectButton sbWages = new ucSelectButton();
-            sbWages.Uid = "1006";
-            sbWages.Content = Translator.GetInstance().GetString("PanelAirline", sbWages.Uid);
+            sbWages.Uid = "1004";
+            sbWages.Content = Translator.GetInstance().GetString("PageAirlineWages", sbWages.Uid);
             sbWages.IsSelected = true;
             sbWages.Click += new RoutedEventHandler(sbWages_Click);
             panelMenuButtons.Children.Add(sbWages);
 
             ucSelectButton sbEmployees = new ucSelectButton();
-            sbEmployees.Uid = "1002";
-            sbEmployees.Content = "Employees";
+            sbEmployees.Uid = "1005";
+            sbEmployees.Content = Translator.GetInstance().GetString("PageAirlineWages", sbEmployees.Uid);
             sbEmployees.Click += new RoutedEventHandler(sbEmployees_Click);
             panelMenuButtons.Children.Add(sbEmployees);
 
@@ -72,17 +72,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         //creates the employees panel
         private StackPanel createEmployeesPanel()
         {
-            StackPanel panel = new StackPanel();
+            StackPanel panelEmployees = new StackPanel();
 
-            TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1001";
-            txtHeader.Margin = new Thickness(0, 0, 0, 0);
-            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Employees";
+            TextBlock txtHeaderWages = new TextBlock();
+            txtHeaderWages.Uid = "1001";
+            txtHeaderWages.Margin = new Thickness(0, 0, 0, 0);
+            txtHeaderWages.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderWages.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderWages.FontWeight = FontWeights.Bold;
+            txtHeaderWages.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderWages.Uid);
 
-            panel.Children.Add(txtHeader);
+            panelEmployees.Children.Add(txtHeaderWages);
+
+            lbWages = new ListBox();
+            lbWages.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbWages.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Wage))
+                lbWages.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
+            panelEmployees.Children.Add(lbWages);
+
+            TextBlock txtEmployeesHeader = new TextBlock();
+            txtEmployeesHeader.Uid = "1005";
+            txtEmployeesHeader.Margin = new Thickness(0, 5, 0, 0);
+            txtEmployeesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtEmployeesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtEmployeesHeader.FontWeight = FontWeights.Bold;
+            txtEmployeesHeader.Text = Translator.GetInstance().GetString("PageAirlineWages", txtEmployeesHeader.Uid);
+
+            panelEmployees.Children.Add(txtEmployeesHeader);
 
             ListBox lbEmployees = new ListBox();
             lbEmployees.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -102,35 +120,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Support crew", serviceCrew));
             lbEmployees.Items.Add(new KeyValuePair<string, int>("Maintenance crew", maintenanceCrew));            
 
-            panel.Children.Add(lbEmployees);
-            return panel;
+            panelEmployees.Children.Add(lbEmployees);
+
+            panelEmployees.Children.Add(createButtonsPanel());
+
+            return panelEmployees;
         }
         //creates the wage panel
         private StackPanel createWagesPanel()
         {
             StackPanel panelWagesFee = new StackPanel();
 
-            TextBlock txtHeaderWages = new TextBlock();
-            txtHeaderWages.Uid = "1001";
-            txtHeaderWages.Margin = new Thickness(0, 0, 0, 0);
-            txtHeaderWages.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtHeaderWages.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtHeaderWages.FontWeight = FontWeights.Bold;
-            txtHeaderWages.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderWages.Uid);
-
-            panelWagesFee.Children.Add(txtHeaderWages);
-
-            lbWages = new ListBox();
-            lbWages.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbWages.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-
-            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Wage))
-                lbWages.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
-            panelWagesFee.Children.Add(lbWages);
-
             TextBlock txtHeaderFoods = new TextBlock();
             txtHeaderFoods.Uid = "1002";
-            txtHeaderFoods.Margin = new Thickness(0, 5, 0, 0);
+            //txtHeaderFoods.Margin = new Thickness(0, 5, 0, 0);
             txtHeaderFoods.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderFoods.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderFoods.FontWeight = FontWeights.Bold;
@@ -188,7 +191,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
-            btnOk.Uid = "100";
+            btnOk.Uid = "100"; 
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;

@@ -147,7 +147,7 @@ namespace TheAirline.Model.GeneralModel
             Boolean isSameCountry = dest1.Profile.Country == dest2.Profile.Country;
          	
             if (!isSameCountry && !isSameContinent)
-            	ticketPrice = ticketPrice * 2.05;
+            	ticketPrice = ticketPrice * 1.9;
             if (!isSameCountry && isSameContinent)
             	ticketPrice = ticketPrice * 1.35;
             
