@@ -544,6 +544,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Configurations.AddConfiguration(configuration);
             }
 
+            XmlNodeList routeConfigurationsList = root.SelectNodes("//routeclassesconfigurations/routeclassesconfiguration");
+            
+            foreach (XmlElement confElement in routeConfigurationsList)
+            {
+                string routeConfName = confElement.Attributes["name"].Value;
+                 XmlNodeList classesList = confElement.SelectNodes("classes/class");
+
+                 RouteClassesConfiguration classesConfiguration = new RouteClassesConfiguration(routeConfName);
+                 foreach (XmlElement classElement in classesList)
+                 {
+                     AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+
+                     RouteClassConfiguration classConf = new RouteClassConfiguration(classType);
+                     foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                     {
+                         string facilityName = classElement.Attributes[facType.ToString()].Value;
+
+                         classConf.addFacility(RouteFacilities.GetFacilities(facType).Find(f=>f.Name == facilityName));
+                     }
+
+                     classesConfiguration.addClass(classConf);
+                 }
+
+                 Configurations.AddConfiguration(classesConfiguration);
+            }
+           
 
 
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
@@ -1146,6 +1172,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             root.AppendChild(configurationsNode);
+
+            XmlElement routeConfigurationsNode = xmlDoc.CreateElement("routeclassesconfigurations");
+         
+            foreach (RouteClassesConfiguration configuration in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
+            {
+                XmlElement routeConfigurationNode = xmlDoc.CreateElement("routeclassesconfiguration");
+                routeConfigurationNode.SetAttribute("name", configuration.Name);
+
+                XmlElement classesNode = xmlDoc.CreateElement("classes");
+
+                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                {
+                    XmlElement classNode = xmlDoc.CreateElement("class");
+                    classNode.SetAttribute("type", classConfiguration.Type.ToString());
+
+                    foreach (RouteFacility aFac in classConfiguration.getFacilities())
+                    {
+                        classNode.SetAttribute(aFac.Type.ToString(), aFac.Name);
+                    }
+                    
+                    classesNode.AppendChild(classNode);
+                }
+
+                routeConfigurationNode.AppendChild(classesNode);
+                routeConfigurationsNode.AppendChild(routeConfigurationNode);
+
+            }
+
+            root.AppendChild(routeConfigurationsNode);
 
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
