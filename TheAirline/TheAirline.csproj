@@ -613,6 +613,7 @@
     <Compile Include="Model\AirlinerModel\RouteModel\Flight.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\FlightAirlinerClass.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteAirlinerClass.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteEntryDestination.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteFacility.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\Route.cs" />

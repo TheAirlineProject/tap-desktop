@@ -20,6 +20,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -32,6 +33,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private StackPanel panelWages, panelEmployees, panelInflightServices;
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees, lbFoodDrinks;
+        private Dictionary<AirlinerClass.ClassType, List<RouteFacility>> Facilities;
+        private Dictionary<AirlinerClass.ClassType,List<ComboBox>> cbFacilities;
         public PageAirlineWages(Airline airline)
         {
             InitializeComponent();
@@ -39,7 +42,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             this.Airline = airline;
 
             this.FeeValues = new Dictionary<FeeType, double>();
-
+      
             FeeTypes.GetTypes().ForEach(f => this.FeeValues.Add(f, this.Airline.Fees.getValue(f)));
 
             StackPanel panelWagesAndEmployees = new StackPanel();
@@ -84,8 +87,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         //creates the inflight services panel
         private StackPanel createInflightServicesPanel()
         {
+            this.Facilities = new Dictionary<AirlinerClass.ClassType, List<RouteFacility>>();
+            this.cbFacilities = new Dictionary<AirlinerClass.ClassType, List<ComboBox>>();
+
             StackPanel panelServices = new StackPanel();
 
+            /*
             TextBlock txtServicesHeader = new TextBlock();
             txtServicesHeader.Uid = "1007";
             txtServicesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -94,14 +101,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtServicesHeader.Text = Translator.GetInstance().GetString("PageAirlineWages", txtServicesHeader.Uid);
 
             panelServices.Children.Add(txtServicesHeader);
-
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            */
+            foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
+                this.cbFacilities.Add(classType, new List<ComboBox>());
+
                 TextBlock txtClassHeader = new TextBlock();
                 txtClassHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
                 txtClassHeader.FontWeight = FontWeights.Bold;
                 txtClassHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-                txtClassHeader.Text = new TextUnderscoreConverter().Convert(type).ToString();
+                txtClassHeader.Text = new TextUnderscoreConverter().Convert(classType).ToString();
                 txtClassHeader.Margin = new Thickness(0, 5, 0, 0);
 
                 panelServices.Children.Add(txtClassHeader);
@@ -109,7 +118,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 ListBox lbServices = new ListBox();
                 lbServices.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
                 lbServices.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
-
+                
                 panelServices.Children.Add(lbServices);
 
                 foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
@@ -119,21 +128,48 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                     cbFacility.Width = 200;
                     cbFacility.DisplayMemberPath = "Name";
                     cbFacility.SelectedValuePath = "Name";
+                    cbFacility.Tag = classType;
+                    cbFacility.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
 
                     RouteFacilities.GetFacilities(facilityType).ForEach(f => cbFacility.Items.Add(f));
 
                     lbServices.Items.Add(new QuickInfoValue(facilityType.ToString(), cbFacility));
 
+                    cbFacility.SelectedIndex = 0;
 
+                    this.cbFacilities[classType].Add(cbFacility);
                 }
 
              }
 
+             WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Margin = new Thickness(0, 5, 0, 0);
 
+            panelServices.Children.Add(panelButtons);
+
+            Button btnSave = new Button();
+            btnSave.Uid = "113";
+            btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnSave.Height = Double.NaN;
+            btnSave.Width = Double.NaN;
+            btnSave.Content = Translator.GetInstance().GetString("General", btnSave.Uid);
+            btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnSave.Click += new RoutedEventHandler(btnSave_Click);
+            panelButtons.Children.Add(btnSave);
+
+            Button btnLoad = new Button();
+            btnLoad.Uid = "114";
+            btnLoad.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnLoad.Height = Double.NaN;
+            btnLoad.Width = Double.NaN;
+            btnLoad.Content = Translator.GetInstance().GetString("General", btnLoad.Uid);
+            btnLoad.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
+            panelButtons.Children.Add(btnLoad);
+         
 
             return panelServices;
         }
-      
         //creates the employees panel
         private StackPanel createEmployeesPanel()
         {
@@ -237,11 +273,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             return panelWagesFee;
         }
+         private void cbFacility_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+             RouteFacility facility = (RouteFacility)((ComboBox)sender).SelectedItem;
+             AirlinerClass.ClassType classType = (AirlinerClass.ClassType)((ComboBox)sender).Tag;
+
+             if (!this.Facilities.ContainsKey(classType))
+                 this.Facilities.Add(classType, new List<RouteFacility>());
+             else
+                 if (this.Facilities[classType].Exists(r=>r.Type==facility.Type))
+                     this.Facilities[classType].RemoveAll(r=>r.Type==facility.Type);
+
+             this.Facilities[classType].Add(facility);
+
+
+
+        }
+
         private void sbEmployees_Click(object sender, RoutedEventArgs e)
         {
             panelWages.Visibility = System.Windows.Visibility.Collapsed;
             panelEmployees.Visibility = System.Windows.Visibility.Visible;
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            undoSettings();
         }
 
         private void sbWages_Click(object sender, RoutedEventArgs e)
@@ -249,12 +303,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWages.Visibility = System.Windows.Visibility.Visible;
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            undoSettings();
         }
         private void sbService_Click(object sender, RoutedEventArgs e)
         {
             panelWages.Visibility = System.Windows.Visibility.Collapsed;
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
             panelInflightServices.Visibility = System.Windows.Visibility.Visible;
+           
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
@@ -287,8 +343,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             return buttonsPanel;
         }
-
-        private void btnUndo_Click(object sender, RoutedEventArgs e)
+        //undos the settings
+        private void undoSettings()
         {
             lbWages.Items.Clear();
             foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Wage))
@@ -310,6 +366,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 lbFoodDrinks.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
             }
         }
+        private void btnUndo_Click(object sender, RoutedEventArgs e)
+        {
+            undoSettings();
+        }
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
@@ -320,7 +380,62 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                     this.Airline.Fees.setValue(type, this.FeeValues[type]);
             }
         }
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox txtName = new TextBox();
+            txtName.Width = 200;
+            txtName.Background = Brushes.Transparent;
+            txtName.Foreground = Brushes.White;
+            txtName.Text = "";
+            txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
+
+            if (PopUpSingleElement.ShowPopUp("Select configuration name", txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
+            {
+                string name = txtName.Text.Trim();
+                RouteClassesConfiguration configuration = new RouteClassesConfiguration(name);
+                foreach (AirlinerClass.ClassType type in this.Facilities.Keys)
+                {
+                    RouteClassConfiguration classConfiguration = new RouteClassConfiguration(type);
+
+                    foreach (RouteFacility facility in this.Facilities[type])
+                    {
+                        classConfiguration.addFacility(facility);
+                    }
+                    configuration.addClass(classConfiguration);
+                }
+
+                Configurations.AddConfiguration(configuration);
+            }
+        }
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbConfigurations = new ComboBox();
+            cbConfigurations.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbConfigurations.SelectedValuePath = "Name";
+            cbConfigurations.DisplayMemberPath = "Name";
+            cbConfigurations.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbConfigurations.Width = 200;
+
+            foreach (RouteClassesConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
+                cbConfigurations.Items.Add(confItem);
+
+            cbConfigurations.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp("Select configuration", cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            {
+                 RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
+
+                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                 {
+                     foreach (RouteFacility facility in classConfiguration.getFacilities())
+                     {
+                         ComboBox cbFacility = cbFacilities[classConfiguration.Type].Find(cb => ((RouteFacility)cb.SelectedItem).Type == facility.Type);
+                         cbFacility.SelectedItem = facility;
+                     }
+                 }
+            }
+        }
         //creates the slider for a wage type
         private WrapPanel createWageSlider(FeeType type)
         {
