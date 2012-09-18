@@ -55,9 +55,14 @@
                 <TextBlock Text="Food on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding FoodFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
-            <WrapPanel>
+            <WrapPanel> 
                 <TextBlock Text="Drinks on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding DrinksFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Alcohol on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding AlcoholicDrinksFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+
             </WrapPanel>
             <WrapPanel>
                 <TextBlock Text="Cabin crew on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>

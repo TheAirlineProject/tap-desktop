@@ -133,7 +133,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                     RouteFacilities.GetFacilities(facilityType).ForEach(f => cbFacility.Items.Add(f));
 
-                    lbServices.Items.Add(new QuickInfoValue(facilityType.ToString(), cbFacility));
+                    lbServices.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(facilityType).ToString(), cbFacility));
 
                     cbFacility.SelectedIndex = 0;
 

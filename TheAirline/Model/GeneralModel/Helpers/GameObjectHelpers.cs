@@ -88,13 +88,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (reallocatedAirport == null)
                     GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString())));
                 else
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(),reallocatedAirport.Profile.Name,new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
-   
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+
 
             }
             //checks for new airports which are opening
             List<Airport> openedAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
-           
+
             foreach (Airport airport in openedAirports)
             {
 
@@ -103,17 +103,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
                     PassengerHelpers.CreateDestinationPassengers(dAirport, airport);
 
-                int count = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)>0).Count;
+                int count = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).Count;
 
                 if (count == 1)
                 {
                     Airport allocateFromAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name,allocateFromAirport.Profile.Name,new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
                 }
                 else
                     GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
-            
-                
+
+
 
             }
             //checks for airports which are closing down
@@ -121,17 +121,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airport airport in closedAirports)
             {
                 //check for airport which are reallocated 
-                Airport reallocatedAirport = openedAirports.Find(a=>a.Profile.Town == airport.Profile.Town);
+                Airport reallocatedAirport = openedAirports.Find(a => a.Profile.Town == airport.Profile.Town);
 
-                if (reallocatedAirport != null) 
+                if (reallocatedAirport != null)
                 {
                     var airlines = new List<Airline>(from g in airport.Terminals.getUsedGates() select g.Airline).Distinct();
                     foreach (Airline airline in airlines)
                     {
                         AirlineHelpers.ReallocateAirport(airport, reallocatedAirport, airline);
-                        
+
                         if (airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News,GameObject.GetInstance().GameTime,"Airport operations changed",string.Format("All your gates, routes and facilities has been moved from {0}({1}) to {2}({3})",airport.Profile.Name,new AirportCodeConverter().Convert(airport).ToString(),reallocatedAirport.Profile.Name,new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport operations changed", string.Format("All your gates, routes and facilities has been moved from {0}({1}) to {2}({3})", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
                     }
                 }
 
@@ -141,31 +141,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (Route route in obsoleteRoutes)
                 {
-                     route.Banned = true;
+                    route.Banned = true;
 
-                     foreach (FleetAirliner airliner in route.getAirliners())
-                     {
-                         if (airliner.Homebase == airport)
-                         {
-                             if (airliner.Airliner.Airline.IsHuman)
-                             {
-                                 GameTimer.GetInstance().pause();
+                    foreach (FleetAirliner airliner in route.getAirliners())
+                    {
+                        if (airliner.Homebase == airport)
+                        {
+                            if (airliner.Airliner.Airline.IsHuman)
+                            {
+                                GameTimer.GetInstance().pause();
 
-                                 airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner);
+                                airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner);
 
-                                 GameTimer.GetInstance().start();
+                                GameTimer.GetInstance().start();
 
-                             }
-                             else
-                             {
-                                 AIHelpers.SetAirlinerHomebase(airliner);
-                             }
-                             
-                         }
-                       
-                     }
-                 }
-              }
+                            }
+                            else
+                            {
+                                AIHelpers.SetAirlinerHomebase(airliner);
+                            }
+
+                        }
+
+                    }
+                }
+            }
             //checks for new airliner types for purchase
             foreach (AirlinerType aType in AirlinerTypes.GetTypes(a => a.Produced.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "New airliner type available", string.Format("{0} has finished the design of {1} and it is now available for purchase", aType.Manufacturer.Name, aType.Name)));
@@ -297,7 +297,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             //updates holidays 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-            
+
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (FleetAirliner airliner in airline.Fleet)
@@ -306,7 +306,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         //do the monthly update
         private static void DoMonthlyUpdate()
-        {  
+        {
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 //AirlineHelpers.MergeInvoicesMonthly(airline);
@@ -334,7 +334,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     //wages
                     foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airline))
                     {
-                        double wage=0;
+                        double wage = 0;
 
                         if (facility.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
                             wage = airline.Fees.getValue(FeeTypes.GetType("Maintenance wage"));
@@ -584,6 +584,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double mealExpenses = 0;
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
             {
+                foreach (RouteFacility facility in airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).getFacilities())
+                {
+                    if (facility.EType == RouteFacility.ExpenseType.Fixed)
+                        mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * facility.ExpensePerPassenger;
+                    else
+                    {
+                        FeeType feeType = facility.FeeType;
+                        double percent = 0.10;
+                        double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
+                        double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
+
+                        double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
+
+                        mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+
+                    }
+                }
+            }
+                /*
                 if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.EType == RouteFacility.ExpenseType.Fixed)
                 {
                     mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.ExpensePerPassenger;
@@ -614,8 +633,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
                 }
-            }
+                null
+                if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).AlcoholicDrinksFacility.EType == RouteFacility.ExpenseType.Fixed)
+                {
+                    mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).AlcoholicDrinksFacility.ExpensePerPassenger;
+    
+                }
+                else
+                {
+                    FeeType feeType = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).AlcoholicDrinksFacility.FeeType;
+                    double percent = 0.10;
+                    double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
+                    double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
 
+                    double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
+
+                    mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+
+                }
+            }
+                */
             
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates, airliner.CurrentPosition);
 
@@ -697,9 +734,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner {0} has landed in {1}, {2} with {3} passengers.\nThe airliner flow from {4}, {5}", new object[] { airliner.Name, dest.Profile.Name, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.Name, dept.Profile.Country.Name })));
 
             //updates the passengers
-            foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+            foreach (AirlinerClass airlinerClass in airliner.Airliner.Classes)
             {
-                FlightAirlinerClass faClass = airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type);
+                FlightAirlinerClass faClass = airliner.CurrentFlight.getFlightAirlinerClass(airlinerClass.Type);
 
             }
 

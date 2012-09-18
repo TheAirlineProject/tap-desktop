@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -23,7 +24,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpRouteFacilities : PopUpWindow
     {
         private RouteAirlinerClass AirlinerClass;
-        private ComboBox cbFood, cbDrinks, cbCrew, cbSeating;
+        private ComboBox cbCrew, cbSeating;
         private TextBox txtPrice;
         private Button btnOk;
    
@@ -39,9 +40,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Uid = "1000";
             this.AirlinerClass = new RouteAirlinerClass(aClass.Type,aClass.Seating, aClass.FarePrice);
             this.AirlinerClass.CabinCrew = aClass.CabinCrew;
-            this.AirlinerClass.DrinksFacility = aClass.DrinksFacility;
-            this.AirlinerClass.FoodFacility = aClass.FoodFacility;
-        
+
+            foreach (RouteFacility facility in aClass.getFacilities())
+                this.AirlinerClass.addFacility(facility);
+          
             InitializeComponent();
 
             this.Title = Translator.GetInstance().GetString("PopUpRouteFacilities", this.Uid);
@@ -54,42 +56,31 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             StackPanel contentPanel = new StackPanel();
 
-         
-
             ListBox lbRouteInfo = new ListBox();
             lbRouteInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRouteInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             contentPanel.Children.Add(lbRouteInfo);
 
-            cbFood = new ComboBox();
-            cbFood.Background = Brushes.Transparent;
-            cbFood.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFood.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbFood.DisplayMemberPath = "Name";
-            cbFood.SelectedValuePath = "Name";
-            cbFood.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
-            cbFood.Width = 150;
+            foreach (RouteFacility.FacilityType type in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+            {
+                ComboBox cbFacility = new ComboBox();
+                cbFacility.Background = Brushes.Transparent;
+                cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                cbFacility.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                cbFacility.DisplayMemberPath = "Name";
+                cbFacility.SelectedValuePath = "Name";
+                cbFacility.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
+                cbFacility.Width = 150;
 
-            foreach (RouteFacility facility in RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food))
-                cbFood.Items.Add(facility);
+                foreach (RouteFacility facility in RouteFacilities.GetFacilities(type))
+                    cbFacility.Items.Add(facility);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1001"), cbFood));
+                lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type).ToString(), cbFacility));
 
-            cbDrinks = new ComboBox();
-            cbDrinks.Background = Brushes.Transparent;
-            cbDrinks.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbDrinks.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbDrinks.DisplayMemberPath = "Name";
-            cbDrinks.SelectedValuePath = "Name";
-            cbDrinks.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
-            cbDrinks.Width = 150;
-
-            foreach (RouteFacility facility in RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks))
-                cbDrinks.Items.Add(facility);
-
-            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1002"), cbDrinks));
-
+                cbFacility.SelectedItem = this.AirlinerClass.getFacility(type);
+            }
+            
             cbCrew = new ComboBox();
             cbCrew.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbCrew.Background = Brushes.Transparent;
@@ -172,8 +163,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Content = contentPanel;
 
-            cbFood.SelectedItem = this.AirlinerClass.FoodFacility;
-            cbDrinks.SelectedItem = this.AirlinerClass.DrinksFacility;// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+
             cbCrew.SelectedItem = this.AirlinerClass.CabinCrew;
             txtPrice.Text = String.Format("{0:0.##}", this.AirlinerClass.FarePrice);
             cbSeating.SelectedItem = this.AirlinerClass.Seating;
@@ -204,16 +194,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             double price = Convert.ToDouble(txtPrice.Text);
-            RouteFacility food = (RouteFacility)cbFood.SelectedItem;
-            RouteFacility drinks = (RouteFacility)cbDrinks.SelectedItem;
             int crew = (int)cbCrew.SelectedItem;
             RouteAirlinerClass.SeatingType seating = (RouteAirlinerClass.SeatingType)cbSeating.SelectedItem;
 
             this.AirlinerClass.Seating = seating;
             this.AirlinerClass.FarePrice = price;
-            this.AirlinerClass.FoodFacility = food;
-            this.AirlinerClass.DrinksFacility = drinks;
-            this.AirlinerClass.CabinCrew = crew;
+             this.AirlinerClass.CabinCrew = crew;
 
             this.Selected = this.AirlinerClass;
             this.Close();
@@ -230,21 +216,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
           }
         private void cbFacility_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (cbDrinks.SelectedItem != null && cbFood.SelectedItem != null)
-            {
-                int minimumValue = Math.Max(((RouteFacility)cbFood.SelectedItem).MinimumCabinCrew, ((RouteFacility)cbDrinks.SelectedItem).MinimumCabinCrew);
-
-                int selectedValue = (int)cbCrew.SelectedItem;
-                cbCrew.Items.Clear();
-
-                for (int i = minimumValue; i < 10; i++)
-                    cbCrew.Items.Add(i);
-
-                cbCrew.SelectedItem = Math.Max(selectedValue, minimumValue);
-
-                //createAirlinersList();
-            }
-
+            RouteFacility facility = (RouteFacility)((ComboBox)sender).SelectedItem;
+            this.AirlinerClass.addFacility(facility);
+           
         }
 
     }

@@ -102,8 +102,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             {
                 
                 RouteAirlinerClass rClass = new RouteAirlinerClass(type,RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
-                rClass.FoodFacility = RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
-                rClass.DrinksFacility = RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+
+                foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                {
+                    rClass.addFacility(RouteFacilities.GetBasicFacility(ftype));
+                }
+             
                 this.Classes.Add(type, rClass);
 
                 WrapPanel panelClassButtons = new WrapPanel();
@@ -209,10 +213,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             if (aClass != null)
             {
                 this.Classes[type].CabinCrew = aClass.CabinCrew;
-                this.Classes[type].DrinksFacility = aClass.DrinksFacility;
                 this.Classes[type].FarePrice = aClass.FarePrice;
-                this.Classes[type].FoodFacility = aClass.FoodFacility;
                 this.Classes[type].Seating = aClass.Seating;
+
+                foreach (RouteFacility facility in aClass.getFacilities())
+                    this.Classes[type].addFacility(facility);
             }
         }
         private void btnLoad_Click(object sender, RoutedEventArgs e)
@@ -235,10 +240,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
-
-                    this.Classes[classConfiguration.Type].FoodFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Food);
-                    this.Classes[classConfiguration.Type].DrinksFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Drinks);
-
+                    foreach (RouteFacility facility in classConfiguration.getFacilities())
+                        this.Classes[classConfiguration.Type].addFacility(facility);
                 }
             }
         }
@@ -260,8 +263,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 {
                     route.getRouteAirlinerClass(aClass.Type).CabinCrew = aClass.CabinCrew;
                     route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
-                    route.getRouteAirlinerClass(aClass.Type).FoodFacility = aClass.FoodFacility;
-                    route.getRouteAirlinerClass(aClass.Type).DrinksFacility = aClass.DrinksFacility;
+
+                    foreach (RouteFacility facility in aClass.getFacilities())
+                        route.getRouteAirlinerClass(aClass.Type).addFacility(facility);
+                   
                     route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
         
                 }

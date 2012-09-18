@@ -270,16 +270,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
                         double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
                         int cabincrew = Convert.ToInt16(routeClassNode.Attributes["cabincrew"].Value);
-                        RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; });
-                        RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
+                        //RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; });
+                        //RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
                         // chs, 2011-18-10 added for loading of type of seating
                         RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);
 
                         RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);
                         rClass.CabinCrew = cabincrew;
-                        rClass.DrinksFacility = drinks;
-                        rClass.FoodFacility = food;
                         rClass.Seating = seatingType;
+
+                        foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                        {
+                            RouteFacility facility = RouteFacilities.GetFacility(routeClassNode[ftype.ToString()].Value);
+                            rClass.addFacility(facility);
+                        }
 
                         route.addRouteAirlinerClass(rClass);
 
@@ -908,8 +912,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         routeClassNode.SetAttribute("type", aClass.Type.ToString());
                         routeClassNode.SetAttribute("fareprice", string.Format("{0:0.##}", aClass.FarePrice));
                         routeClassNode.SetAttribute("cabincrew", aClass.CabinCrew.ToString());
-                        routeClassNode.SetAttribute("drinks", aClass.DrinksFacility.Name);
-                        routeClassNode.SetAttribute("food", aClass.FoodFacility.Name);
+                        
+                        foreach (RouteFacility facility in aClass.getFacilities())
+                            routeClassNode.SetAttribute(facility.Type.ToString(), facility.Uid);
                         // chs, 2011-18-10 added for saving of type of seating
                         routeClassNode.SetAttribute("seating", aClass.Seating.ToString());
 

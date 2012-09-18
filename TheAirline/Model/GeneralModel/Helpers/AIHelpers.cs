@@ -425,8 +425,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             route.getRouteAirlinerClass(type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(type);
                             route.getRouteAirlinerClass(type).CabinCrew = 2;
-                            route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
-                            route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
+
+                            foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                            {
+                                route.getRouteAirlinerClass(type).addFacility(RouteFacilities.GetFacilities(ftype)[rnd.Next(RouteFacilities.GetFacilities(ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+          
+                            }
+
+
                         }
 
                         airline.addRoute(route);

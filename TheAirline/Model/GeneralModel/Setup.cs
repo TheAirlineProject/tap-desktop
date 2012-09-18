@@ -1094,8 +1094,12 @@ namespace TheAirline.Model.GeneralModel
                 {
                     route.getRouteAirlinerClass(type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(type);
                     route.getRouteAirlinerClass(type).CabinCrew = 2;
-                    route.getRouteAirlinerClass(type).DrinksFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Count)];// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
-                    route.getRouteAirlinerClass(type).FoodFacility = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food)[rnd.Next(RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Count)];//RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Food);
+                    
+                    foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                    {
+                        route.getRouteAirlinerClass(type).addFacility(RouteFacilities.GetFacilities(ftype)[rnd.Next(RouteFacilities.GetFacilities(ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+
+                    }
                 }
                 airline.addRoute(route);
 
@@ -1177,15 +1181,19 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateFlightFacilities()
         {
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "No Food", 1, -50, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Buyable Snacks", 1, 10, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Snacks")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Buyable Meal", 1, 25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Basic Meal", 2, 50, RouteFacility.ExpenseType.Fixed, 0.50, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Food, "Full Dinner", 3, 100, RouteFacility.ExpenseType.Fixed, 2, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "No Drinks", 1, -50, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Buyable Drinks", 1, 25, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Drinks")));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Free Drinks", 2, 80, RouteFacility.ExpenseType.Fixed, 0.20, null));
-            RouteFacilities.AddFacility(new RouteFacility(RouteFacility.FacilityType.Drinks, "Served Drinks", 3, 100, RouteFacility.ExpenseType.Fixed, 0.5, null));
+            RouteFacilities.AddFacility(new RouteFacility("100",RouteFacility.FacilityType.Food, "No Food", -50, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("101", RouteFacility.FacilityType.Food, "Buyable Snacks", 10, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Snacks")));
+            RouteFacilities.AddFacility(new RouteFacility("102", RouteFacility.FacilityType.Food, "Buyable Meal",  25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
+            RouteFacilities.AddFacility(new RouteFacility("103", RouteFacility.FacilityType.Food, "Basic Meal",  50, RouteFacility.ExpenseType.Fixed, 0.50, null));
+            RouteFacilities.AddFacility(new RouteFacility("104", RouteFacility.FacilityType.Food, "Full Dinner",  100, RouteFacility.ExpenseType.Fixed, 2, null));
+            RouteFacilities.AddFacility(new RouteFacility("105", RouteFacility.FacilityType.Drinks, "No Drinks",  -50, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("106", RouteFacility.FacilityType.Drinks, "Buyable Drinks",  25, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility("107", RouteFacility.FacilityType.Drinks, "Free Drinks",  80, RouteFacility.ExpenseType.Fixed, 0.20, null));
+            RouteFacilities.AddFacility(new RouteFacility("108", RouteFacility.FacilityType.Drinks, "Served Drinks",  100, RouteFacility.ExpenseType.Fixed, 0.5, null));
+            RouteFacilities.AddFacility(new RouteFacility("109", RouteFacility.FacilityType.Alcoholic_Drinks, "None",  0, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("110", RouteFacility.FacilityType.Alcoholic_Drinks, "Buyable",  40, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility("111", RouteFacility.FacilityType.Alcoholic_Drinks, "Free",  100, RouteFacility.ExpenseType.Fixed, 0.75, null));
+     
         }
 
         /*! creates the Fee types.

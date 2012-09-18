@@ -15,16 +15,40 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public enum SeatingType { Reserved_Seating, Free_Seating }
         public SeatingType Seating { get; set; } 
         public double FarePrice { get; set; }
+        private List<RouteFacility> Facilities;
+        /*
         public RouteFacility FoodFacility { get; set; }
         public RouteFacility DrinksFacility { get; set; }
+        public RouteFacility AlcoholicDrinksFacility { get; set; }
+        
+         **/
         public int CabinCrew { get; set; }
         public AirlinerClass.ClassType Type { get; set; }
         
         public RouteAirlinerClass(AirlinerClass.ClassType type,SeatingType seating, double fareprice)
         {
+            this.Facilities = new List<RouteFacility>();
             this.Type = type;
             this.FarePrice =  fareprice;
             this.Seating =  seating;
+        }
+        //adds a facility to the route class
+        public void addFacility(RouteFacility facility)
+        {
+            if (this.Facilities.Exists(f => f.Type == facility.Type))
+                this.Facilities.RemoveAll(f => f.Type == facility.Type);
+
+            this.Facilities.Add(facility);
+        }
+        //returns the facility for a type for the route class
+        public RouteFacility getFacility(RouteFacility.FacilityType type)
+        {
+            return this.Facilities.Find(f => f.Type == type);
+        }
+        //returns all facilities
+        public List<RouteFacility> getFacilities()
+        {
+            return this.Facilities;
         }
 
     }

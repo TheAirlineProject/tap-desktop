@@ -139,8 +139,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
             btnLoad.Margin = new Thickness(5, 0, 0, 0);
             buttonsPanel.Children.Add(btnLoad);
-
-
+            
             Button btnDelete = new Button();
             btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnDelete.Height = Double.NaN;
@@ -227,9 +226,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             if (aClass != null)
             {
                 this.Classes[type].CabinCrew = aClass.CabinCrew;
-                this.Classes[type].DrinksFacility = aClass.DrinksFacility;
+
+                foreach (RouteFacility facility in aClass.getFacilities())
+                    this.Classes[type].addFacility(facility);
                 this.Classes[type].FarePrice = aClass.FarePrice;
-                this.Classes[type].FoodFacility = aClass.FoodFacility;
                 this.Classes[type].Seating = aClass.Seating;
  
             }
@@ -255,10 +255,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
-
-                    this.Classes[classConfiguration.Type].FoodFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Food);
-                    this.Classes[classConfiguration.Type].DrinksFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Drinks);
-
+                    foreach (RouteFacility facility in classConfiguration.getFacilities())
+                        this.Classes[classConfiguration.Type].addFacility(facility);
+             
                 }
             }
         }
@@ -271,9 +270,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             {
                 this.Route.getRouteAirlinerClass(aClass.Type).CabinCrew = aClass.CabinCrew;
                 this.Route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
-                this.Route.getRouteAirlinerClass(aClass.Type).FoodFacility = aClass.FoodFacility;
-                this.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility = aClass.DrinksFacility;
 
+                foreach (RouteFacility facility in aClass.getFacilities())
+                    this.Route.getRouteAirlinerClass(aClass.Type).addFacility(facility);
+             
 
             }
         }
