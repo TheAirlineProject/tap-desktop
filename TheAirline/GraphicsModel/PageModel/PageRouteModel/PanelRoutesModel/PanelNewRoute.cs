@@ -27,7 +27,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates;
         private ComboBox cbDestination1, cbDestination2;
         private ComboBox cbAircraft;
-        private Button btnSave;
+        private Button btnSave, btnLoad;
         private PageRoutes ParentPage;
         private double MaxDistance;
         private Dictionary<AirlinerClass.ClassType, RouteAirlinerClass> Classes;
@@ -97,6 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "204"), txtDistance));
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "205"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
 
+      
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
                 
@@ -152,17 +153,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             txtFlightCode = new TextBlock();
 
+            WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Margin = new Thickness(0, 5, 0, 0);
+            this.Children.Add(panelButtons);
+
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSave.Height = Double.NaN;
             btnSave.Width = Double.NaN;
-            btnSave.Content = "Save";
+            btnSave.Content = Translator.GetInstance().GetString("General","113");
             btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnSave.Margin = new System.Windows.Thickness(0, 5, 0, 0);
-            btnSave.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnSave.Click += new RoutedEventHandler(btnSave_Click);
             btnSave.IsEnabled = false;
-            this.Children.Add(btnSave);
+            panelButtons.Children.Add(btnSave);
+
+            btnLoad = new Button();
+            btnLoad.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnLoad.Height = Double.NaN;
+            btnLoad.Width = Double.NaN;
+            btnLoad.Content = Translator.GetInstance().GetString("General", "115");
+            btnLoad.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnLoad.IsEnabled = false;
+            btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
+            btnLoad.Margin = new Thickness(5, 0, 0, 0);
+            panelButtons.Children.Add(btnLoad);
 
             txtInvalidRoute = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PanelNewRoute","1001"));
             txtInvalidRoute.Foreground = Brushes.DarkRed;
@@ -175,7 +189,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             this.Children.Add(txtFlightRestrictions);
 
         }
+        //returns the min crews
+        private int getMinCrews()
+        {
+            int minCrew = int.MaxValue;
 
+            foreach (RouteAirlinerClass aClass in this.Classes.Values)
+            {
+                if (minCrew > aClass.CabinCrew)
+                    minCrew = aClass.CabinCrew;
+            }
+            return minCrew;
+        }
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             AirlinerClass.ClassType type = (AirlinerClass.ClassType)((Button)sender).Tag;
@@ -190,21 +215,33 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Classes[type].Seating = aClass.Seating;
             }
         }
-      
-         
-        //returns the min crews
-        private int getMinCrews()
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            int minCrew = int.MaxValue;
+            ComboBox cbConfigurations = new ComboBox();
+            cbConfigurations.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbConfigurations.SelectedValuePath = "Name";
+            cbConfigurations.DisplayMemberPath = "Name";
+            cbConfigurations.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbConfigurations.Width = 200;
 
-            foreach (RouteAirlinerClass aClass in this.Classes.Values)
+            foreach (RouteClassesConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
+                cbConfigurations.Items.Add(confItem);
+
+            cbConfigurations.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp("Select configuration", cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
-                if (minCrew > aClass.CabinCrew)
-                    minCrew = aClass.CabinCrew;
+                RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
+
+                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                {
+
+                    this.Classes[classConfiguration.Type].FoodFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Food);
+                    this.Classes[classConfiguration.Type].DrinksFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Drinks);
+
+                }
             }
-            return minCrew;
         }
-        
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
 
@@ -306,7 +343,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
 
                 btnSave.IsEnabled = distance > 50 && distance < this.MaxDistance && AIHelpers.IsRouteInCorrectArea(airport1,airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) &&  !FlightRestrictions.HasRestriction(airport2.Profile.Country,airport1.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime);
-                
+                btnLoad.IsEnabled = btnSave.IsEnabled;
+    
                 txtInvalidRoute.Visibility = AIHelpers.IsRouteInCorrectArea(airport1,airport2) ? Visibility.Collapsed : Visibility.Visible;
                 
                 txtFlightRestrictions.Visibility =FlightRestrictions.HasRestriction(airport2.Profile.Country,airport1.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ||  FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime) || FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ? Visibility.Visible : System.Windows.Visibility.Collapsed;

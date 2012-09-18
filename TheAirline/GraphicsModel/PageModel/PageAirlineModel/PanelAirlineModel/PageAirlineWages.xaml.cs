@@ -386,7 +386,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtName.Width = 200;
             txtName.Background = Brushes.Transparent;
             txtName.Foreground = Brushes.White;
-            txtName.Text = "";
+            txtName.Text = string.Format("Configuration {0}",Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count+1);
             txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
 
