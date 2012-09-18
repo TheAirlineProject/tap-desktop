@@ -129,6 +129,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             buttonsPanel.Children.Add(btnOk);
+            
+            Button btnLoad = new Button();
+            btnLoad.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnLoad.Height = Double.NaN;
+            btnLoad.Width = Double.NaN;
+            btnLoad.Content = Translator.GetInstance().GetString("General", "115");
+            btnLoad.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
+            btnLoad.Margin = new Thickness(5, 0, 0, 0);
+            buttonsPanel.Children.Add(btnLoad);
+
 
             Button btnDelete = new Button();
             btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -141,6 +152,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
             buttonsPanel.Children.Add(btnDelete);
 
+         
             this.Children.Add(createRouteFinancesPanel());
 
             showRouteFinances();
@@ -222,8 +234,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
  
             }
         }
-       
-       
+
+        private void btnLoad_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbConfigurations = new ComboBox();
+            cbConfigurations.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbConfigurations.SelectedValuePath = "Name";
+            cbConfigurations.DisplayMemberPath = "Name";
+            cbConfigurations.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbConfigurations.Width = 200;
+
+            foreach (RouteClassesConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
+                cbConfigurations.Items.Add(confItem);
+
+            cbConfigurations.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp("Select configuration", cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            {
+                RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
+
+                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                {
+
+                    this.Classes[classConfiguration.Type].FoodFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Food);
+                    this.Classes[classConfiguration.Type].DrinksFacility = classConfiguration.getFacility(RouteFacility.FacilityType.Drinks);
+
+                }
+            }
+        }
        
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
