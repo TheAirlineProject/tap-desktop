@@ -33,13 +33,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbDestinations.Click += new System.Windows.RoutedEventHandler(sbDestinations_Click);
             buttonsPanel.Children.Add(sbDestinations);
 
-            ucSelectButton sbFacilities = new ucSelectButton();
-            sbFacilities.Uid = "1003";
-            sbFacilities.Content = Translator.GetInstance().GetString("PanelAirline", sbFacilities.Uid);
-            sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
-            sbFacilities.Visibility = System.Windows.Visibility.Collapsed;
-            buttonsPanel.Children.Add(sbFacilities);
-
+     
             ucSelectButton sbStatistics = new ucSelectButton();
             sbStatistics.Uid = "1004";
             sbStatistics.Click += new System.Windows.RoutedEventHandler(sbStatistics_Click);
@@ -79,10 +73,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             frameContent.Navigate(new PageAirlineFinances(this.Airline));
         }
 
-        private void sbFacilities_Click(object sender, System.Windows.RoutedEventArgs e)
-        {
-            frameContent.Navigate(new PageAirlineFacilities(this.Airline));
-        }
+       
 
         private void sbStatistics_Click(object sender, System.Windows.RoutedEventArgs e)
         {

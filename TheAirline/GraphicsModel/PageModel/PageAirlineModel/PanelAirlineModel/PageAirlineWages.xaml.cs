@@ -166,7 +166,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbFacilities = new ListBox();
             lbFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFacilities.ItemTemplate = this.Resources["FacilityItem"] as DataTemplate;
-            lbFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             panelFacilities.Children.Add(lbFacilities);
 
             TextBlock txtNewAirlineFacilities = new TextBlock();
@@ -182,7 +182,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbNewFacilities = new ListBox();
             lbNewFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbNewFacilities.ItemTemplate = this.Resources["FacilityNewItem"] as DataTemplate;
-            lbNewFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbNewFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             panelFacilities.Children.Add(lbNewFacilities);
 
             lbNewFacilities.Visibility = this.Airline.IsHuman ? Visibility.Visible : Visibility.Collapsed;
