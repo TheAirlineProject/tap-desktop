@@ -1044,8 +1044,10 @@ namespace TheAirline.Model.GeneralModel
             Airport airportHomeBase = FindComputerHomeBase(airline);
 
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
+            AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
             airportHomeBase.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            airportHomeBase.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
             List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
 
@@ -1074,7 +1076,10 @@ namespace TheAirline.Model.GeneralModel
                 airportHomeBase.Terminals.rentGate(airline);
                 airportHomeBase.Terminals.rentGate(airline);
 
+               
                 airportDestination.Terminals.rentGate(airline);
+                airportDestination.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+
 
                 double price = PassengerHelpers.GetPassengerPrice(airportDestination, airline.Airports[0]);
 

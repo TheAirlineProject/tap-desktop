@@ -271,12 +271,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
        
         private void btnRentGate_Click(object sender, RoutedEventArgs e)
         {
-            Terminal terminal = (Terminal)((Button)sender).Tag;
-            terminal.Gates.rentGate(GameObject.GetInstance().HumanAirline);
 
-            showGatesInformation();
-            showTerminals();
-            showHubs();
+
+            Boolean isRentable = this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
+
+            if (isRentable)
+            {
+                Terminal terminal = (Terminal)((Button)sender).Tag;
+                terminal.Gates.rentGate(GameObject.GetInstance().HumanAirline);
+
+                showGatesInformation();
+                showTerminals();
+                showHubs();
+            }
+            else
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2217"), Translator.GetInstance().GetString("MessageBox", "2217", "message"), WPFMessageBoxButtons.Ok);
+  
         }
 
         private void btnReleaseGate_Click(object sender, RoutedEventArgs e)
@@ -496,8 +506,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
                 if (type == "Release")
                 {
-             
-                    isEnabled = terminal.Gates.getFreeGates(GameObject.GetInstance().HumanAirline)>0 && terminal.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && terminal.Airline == null && !(terminal.Airport.hasFacilities(GameObject.GetInstance().HumanAirline) && terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && terminal.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && GameObject.GetInstance().HumanAirline.Airports.Count == 1) && !(GeneralHelpers.GetAirportRoutes(terminal.Airport, GameObject.GetInstance().HumanAirline).Count > 0 && terminal.Airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline) == 0);
+                    Boolean hasFacilities = terminal.Airport.hasFacilities(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.CheckIn);
+                    isEnabled = terminal.Gates.getFreeGates(GameObject.GetInstance().HumanAirline)>0 && terminal.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && terminal.Airline == null && !(hasFacilities && terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && terminal.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && GameObject.GetInstance().HumanAirline.Airports.Count == 1) && !(GeneralHelpers.GetAirportRoutes(terminal.Airport, GameObject.GetInstance().HumanAirline).Count > 0 && terminal.Airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline) == 0);
                 }
                 rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled,null,null,null);
               

@@ -467,13 +467,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             else
                                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
-                            if (airport != airline.Airports[0])
-                            {
-                                AirportFacility facility = airport.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service);
-                                string service = airport.Profile.Name;
-                                service = facility.Shortname;
-                                service = destination.Profile.Name;
-                            }
+                            
 
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
@@ -488,8 +482,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         route.LastUpdated = GameObject.GetInstance().GameTime;
                     }
+                    
+                }
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                {
+                    destination.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+                }
+                if (airport.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                {
+                    airport.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
                 }
             }
+            
         }
         //returns an airliner from the fleet which fits a route
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
@@ -638,9 +648,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (homebase == null)
                 homebase = GetDestinationAirport(airliner.Airliner.Airline, airliner.Homebase);
- 
+
             if (homebase.Terminals.getNumberOfGates(airliner.Airliner.Airline) == 0)
+            {
                 homebase.Terminals.rentGate(airliner.Airliner.Airline);
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+
+                if (homebase.getAirportFacility(airliner.Airliner.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                {
+                    homebase.setAirportFacility(airliner.Airliner.Airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+                }
+            }
 
             airliner.Homebase = homebase;
 

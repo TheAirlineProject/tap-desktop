@@ -307,11 +307,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.Terminals.rentGate(airline); 
                 airport.Terminals.rentGate(airline);
 
-                List<AirportFacility> facilities = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service);
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+                AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
-                AirportFacility facility = facilities.Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+                airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
+                airport.setAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility,GameObject.GetInstance().GameTime);
 
                 Setup.CreateAirliners();
 

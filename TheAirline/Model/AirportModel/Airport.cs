@@ -179,6 +179,18 @@ namespace TheAirline.Model.AirportModel
             }
             return hasFacilities;
         }
+        //returns if an airline has any facilities besides a specific type
+        public Boolean hasFacilities(Airline airline, AirportFacility.FacilityType ftype)
+        {
+            Boolean hasFacilities = false;
+            foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
+            {
+                if (type != ftype)
+                    if (getAirportFacility(airline, type).TypeLevel > 0)
+                        hasFacilities = true;
+            }
+            return hasFacilities;
+        }
         //returns if an airline has any airliners with the airport as home base
         public Boolean hasAsHomebase(Airline airline)
         {

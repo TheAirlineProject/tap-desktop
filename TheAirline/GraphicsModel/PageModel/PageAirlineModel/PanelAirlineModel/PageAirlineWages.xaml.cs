@@ -324,10 +324,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             int serviceCrew = this.Airline.Airports.SelectMany(a=>a.getCurrentAirportFacilities(this.Airline)).Where(a=>a.EmployeeType==AirportFacility.EmployeeTypes.Support).Sum(a=>a.NumberOfEmployees);
             int maintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a=>a.EmployeeType==AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
 
-            lbEmployees.Items.Add(new KeyValuePair<string, int>("Cockpit crew", cockpitCrew));
-            lbEmployees.Items.Add(new KeyValuePair<string, int>("Cabin crew", cabinCrew));
-            lbEmployees.Items.Add(new KeyValuePair<string, int>("Support crew", serviceCrew));
-            lbEmployees.Items.Add(new KeyValuePair<string, int>("Maintenance crew", maintenanceCrew));            
+            lbEmployees.Items.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirlineWages", "1009"), cockpitCrew));
+            lbEmployees.Items.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirlineWages", "1010"), cabinCrew));
+            lbEmployees.Items.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirlineWages", "1011"), serviceCrew));
+            lbEmployees.Items.Add(new KeyValuePair<string, int>(Translator.GetInstance().GetString("PageAirlineWages", "1012"), maintenanceCrew));            
 
             panelEmployees.Children.Add(lbEmployees);
 
@@ -527,7 +527,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtName.Text = string.Format("Configuration {0} (Service level: {1})",Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count+1,totalServiceLevel);
             txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            if (PopUpSingleElement.ShowPopUp("Select configuration name", txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
             {
                 string name = txtName.Text.Trim();
                 RouteClassesConfiguration configuration = new RouteClassesConfiguration(name);
@@ -559,7 +559,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             cbConfigurations.SelectedIndex = 0;
 
-            if (PopUpSingleElement.ShowPopUp("Select configuration", cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
                  RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
 
