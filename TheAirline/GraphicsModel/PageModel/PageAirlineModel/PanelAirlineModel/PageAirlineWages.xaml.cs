@@ -373,7 +373,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbFees.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFees.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
-            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Fee))
+            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Fee).FindAll(f=>f.FromYear<=GameObject.GetInstance().GameTime.Year))
                 lbFees.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
 
             panelWagesFee.Children.Add(lbFees);
@@ -526,7 +526,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtName.Foreground = Brushes.White;
             txtName.Text = string.Format("Configuration {0} (Service level: {1})",Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count+1,totalServiceLevel);
             txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-
 
             if (PopUpSingleElement.ShowPopUp("Select configuration name", txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
             {

@@ -22,7 +22,8 @@ namespace TheAirline.Model.AirlineModel
         private double ADefaultValue;
         public double DefaultValue { get { return GeneralHelpers.GetInflationPrice(this.ADefaultValue); } set { this.ADefaultValue = value; } }
         public int Percentage { get; set; }
-        public FeeType(eFeeType type, string name, double defaultValue, double minValue, double maxValue, int percentage)
+        public int FromYear { get; set; }
+        public FeeType(eFeeType type, string name, double defaultValue, double minValue, double maxValue, int percentage,int fromYear)
         {
             this.Type = type;
             this.MinValue = minValue;
@@ -30,6 +31,11 @@ namespace TheAirline.Model.AirlineModel
             this.DefaultValue = defaultValue;
             this.Name = name;
             this.Percentage = percentage;
+            this.FromYear = fromYear;
+        }
+        public FeeType(eFeeType type, string name, double defaultValue, double minValue, double maxValue, int percentage)
+            : this(type, name, defaultValue, minValue, maxValue, percentage, 1990)
+        {
         }
     }
     public class FeeTypes

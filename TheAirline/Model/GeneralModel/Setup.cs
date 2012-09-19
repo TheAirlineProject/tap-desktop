@@ -1216,7 +1216,7 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 0, 0, 5.25, 25));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 0, 0, 6, 2));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 18, 1));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25,2007));
         }
     }
 }
