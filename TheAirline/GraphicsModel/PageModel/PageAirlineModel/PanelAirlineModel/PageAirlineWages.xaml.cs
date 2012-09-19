@@ -21,6 +21,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -133,7 +134,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                         cbFacility.Tag = classType;
                         cbFacility.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
 
-                        RouteFacilities.GetFacilities(facilityType).ForEach(f => cbFacility.Items.Add(f));
+                        AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline,facilityType).ForEach(f => cbFacility.Items.Add(f));
 
                         lbServices.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(facilityType).ToString(), cbFacility));
 

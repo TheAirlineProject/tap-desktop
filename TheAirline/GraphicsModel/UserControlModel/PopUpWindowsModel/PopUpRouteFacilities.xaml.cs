@@ -15,6 +15,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -78,7 +79,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     cbFacility.Tag = type;
                     cbFacility.Width = 150;
 
-                    foreach (RouteFacility facility in RouteFacilities.GetFacilities(type))
+                    foreach (RouteFacility facility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline,type))
                         cbFacility.Items.Add(facility);
 
                     cbFacilities.Add(cbFacility);

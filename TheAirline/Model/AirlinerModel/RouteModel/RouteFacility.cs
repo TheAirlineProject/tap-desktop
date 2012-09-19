@@ -18,7 +18,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public int ServiceLevel { get; set; }
         public FeeType FeeType { get; set; }
         public string Uid { get; set; }
-        public RouteFacility(string uid, FacilityType type, string name, int serviceLevel, ExpenseType eType, double expense, FeeType feeType)
+        public AirlineFacility Requires { get; set; }
+        public RouteFacility(string uid, FacilityType type, string name, int serviceLevel, ExpenseType eType, double expense, FeeType feeType) : this(uid,type,name,serviceLevel,eType,expense,feeType,null)
+        {
+        }
+        public RouteFacility(string uid, FacilityType type, string name, int serviceLevel, ExpenseType eType, double expense, FeeType feeType,AirlineFacility requires)
         {
             this.Type = type;
             this.Name = name;
@@ -27,6 +31,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.EType = eType;
             this.ExpensePerPassenger = expense;
             this.FeeType = feeType;
+            this.Requires = requires;
         }
 
     }

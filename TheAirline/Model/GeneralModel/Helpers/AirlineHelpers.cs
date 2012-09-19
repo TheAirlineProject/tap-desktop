@@ -112,22 +112,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 oldAirport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
             }
         }
-        /*
-        //merges and clears all invoices from the previous month
-        public static void MergeInvoicesMonthly(Airline airline)
+        //returns all route facilities for a given airline and type
+        public static List<RouteFacility> GetRouteFacilities(Airline airline, RouteFacility.FacilityType type)
         {
-            foreach (Invoice.InvoiceType type in Enum.GetValues(typeof(Invoice.InvoiceType)))
-            {
-                if (type != Invoice.InvoiceType.Total)
-                {
-                 
-                    double sum = airline.getInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1), type).Sum(i => i.Amount);
-
-                    airline.clearInvoices(GameObject.GetInstance().GameTime.AddMonths(-1), GameObject.GetInstance().GameTime.AddMinutes(-1), type);
-                    airline.setInvoice(new Invoice(GameObject.GetInstance().GameTime.AddDays(-1), type, sum));
-                }
-            }
+            return RouteFacilities.GetFacilities(type).FindAll(f => f.Requires == null || airline.Facilities.Contains(f.Requires));
         }
-         * */
     }
 }
