@@ -16,12 +16,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public SeatingType Seating { get; set; } 
         public double FarePrice { get; set; }
         private List<RouteFacility> Facilities;
-        /*
-        public RouteFacility FoodFacility { get; set; }
-        public RouteFacility DrinksFacility { get; set; }
-        public RouteFacility AlcoholicDrinksFacility { get; set; }
-        
-         **/
+     
         public int CabinCrew { get; set; }
         public AirlinerClass.ClassType Type { get; set; }
         

@@ -281,7 +281,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                         {
-                            RouteFacility facility = RouteFacilities.GetFacility(routeClassNode[ftype.ToString()].Value);
+                            RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
                             rClass.addFacility(facility);
                         }
 

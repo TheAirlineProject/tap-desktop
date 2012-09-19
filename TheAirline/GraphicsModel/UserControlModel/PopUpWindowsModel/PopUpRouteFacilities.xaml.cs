@@ -27,7 +27,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private ComboBox cbCrew, cbSeating;
         private TextBox txtPrice;
         private Button btnOk;
-   
+        private List<ComboBox> cbFacilities;
+
         public static object ShowPopUp(RouteAirlinerClass aClass)
         {
             PopUpWindow window = new PopUpRouteFacilities(aClass);
@@ -37,6 +38,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpRouteFacilities(RouteAirlinerClass aClass)
         {
+            this.cbFacilities = new List<ComboBox>();
+
             this.Uid = "1000";
             this.AirlinerClass = new RouteAirlinerClass(aClass.Type,aClass.Seating, aClass.FarePrice);
             this.AirlinerClass.CabinCrew = aClass.CabinCrew;
@@ -70,11 +73,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 cbFacility.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                 cbFacility.DisplayMemberPath = "Name";
                 cbFacility.SelectedValuePath = "Name";
-                cbFacility.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
+                cbFacility.Tag = type;
                 cbFacility.Width = 150;
 
                 foreach (RouteFacility facility in RouteFacilities.GetFacilities(type))
                     cbFacility.Items.Add(facility);
+
+                cbFacilities.Add(cbFacility);
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type).ToString(), cbFacility));
 
@@ -199,7 +204,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.AirlinerClass.Seating = seating;
             this.AirlinerClass.FarePrice = price;
-             this.AirlinerClass.CabinCrew = crew;
+            this.AirlinerClass.CabinCrew = crew;
+
+            foreach (ComboBox cbFacility in cbFacilities)
+                this.AirlinerClass.addFacility((RouteFacility)cbFacility.SelectedItem);
 
             this.Selected = this.AirlinerClass;
             this.Close();
@@ -214,12 +222,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             e.Handled = !parseable || (length == 0 && number == 0);
 
           }
-        private void cbFacility_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            RouteFacility facility = (RouteFacility)((ComboBox)sender).SelectedItem;
-            this.AirlinerClass.addFacility(facility);
-           
-        }
+       
 
     }
 }

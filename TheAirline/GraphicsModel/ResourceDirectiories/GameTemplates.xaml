@@ -1,9 +1,11 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     x:Class="TheAirline.GraphicsModel.ResourceDirectiories.GameTemplatesEvents"
+                    xmlns:local="clr-namespace:TheAirline.GraphicsModel.ResourceDirectiories"
                     xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters">
     <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
     <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
+    <local:RouteClassFacilityConverter x:Key="routeClassFacilityConverter"></local:RouteClassFacilityConverter>
     <DataTemplate x:Key="CountryFlag">
         <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
     </DataTemplate>
@@ -53,15 +55,15 @@
             </WrapPanel>
             <WrapPanel>
                 <TextBlock Text="Food on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding FoodFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='Food'}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel> 
                 <TextBlock Text="Drinks on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding DrinksFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='Drinks'}"  VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel>
                 <TextBlock Text="Alcohol on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding AlcoholicDrinksFacility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='Alcoholic_Drinks'}"  VerticalAlignment="Bottom"></TextBlock>
 
             </WrapPanel>
             <WrapPanel>
