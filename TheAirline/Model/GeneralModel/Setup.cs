@@ -1093,7 +1093,6 @@ namespace TheAirline.Model.GeneralModel
                 foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                 {
                     route.getRouteAirlinerClass(type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(type);
-                    route.getRouteAirlinerClass(type).CabinCrew = 2;
                     
                     foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {

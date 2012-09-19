@@ -194,18 +194,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             this.Children.Add(txtFlightRestrictions);
 
         }
-        //returns the min crews
-        private int getMinCrews()
-        {
-            int minCrew = int.MaxValue;
-
-            foreach (RouteAirlinerClass aClass in this.Classes.Values)
-            {
-                if (minCrew > aClass.CabinCrew)
-                    minCrew = aClass.CabinCrew;
-            }
-            return minCrew;
-        }
+      
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             AirlinerClass.ClassType type = (AirlinerClass.ClassType)((Button)sender).Tag;
@@ -213,7 +202,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             if (aClass != null)
             {
-                this.Classes[type].CabinCrew = aClass.CabinCrew;
                 this.Classes[type].FarePrice = aClass.FarePrice;
                 this.Classes[type].Seating = aClass.Seating;
 
@@ -262,7 +250,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
-                    route.getRouteAirlinerClass(aClass.Type).CabinCrew = aClass.CabinCrew;
                     route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
 
                     foreach (RouteFacility facility in aClass.getFacilities())

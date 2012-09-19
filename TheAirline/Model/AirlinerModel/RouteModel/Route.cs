@@ -47,8 +47,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
                 RouteAirlinerClass cl = new RouteAirlinerClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, farePrice);
-                cl.CabinCrew = 1;
-
+                
                 this.Classes.Add(cl);
             }
 
@@ -74,14 +73,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the total number of cabin crew for the route based on airliner
         public int getTotalCabinCrew()
         {
-            int cabinCrew = 0;
-
-            var classes = from ac in getAirliners().SelectMany(c=>c.Airliner.Classes) select ac;
-
-            foreach (AirlinerClass c in classes)
-                if (getRouteAirlinerClass(c.Type).CabinCrew > cabinCrew)
-                    cabinCrew = getRouteAirlinerClass(c.Type).CabinCrew;
-             
+            int cabinCrew = getAirliners().Max(c => ((AirlinerPassengerType)c.Airliner.Type).CabinCrew);
+          
             return cabinCrew;
         }
         //returns all invoices for the route

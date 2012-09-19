@@ -68,13 +68,9 @@
             </WrapPanel>
             <WrapPanel Visibility="{Binding Converter={StaticResource wifiEnabledConverter}}">
                 <TextBlock Text="Wifi on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='Wifi'}"  VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='WiFi'}"  VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
-            <WrapPanel>
-                <TextBlock Text="Cabin crew on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding CabinCrew}" VerticalAlignment="Bottom"></TextBlock>
-            </WrapPanel>
-        </StackPanel>
+          </StackPanel>
     </DataTemplate>
    
     <DataTemplate x:Key="AirportCountryItem">

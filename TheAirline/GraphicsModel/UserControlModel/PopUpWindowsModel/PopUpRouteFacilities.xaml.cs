@@ -25,7 +25,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpRouteFacilities : PopUpWindow
     {
         private RouteAirlinerClass AirlinerClass;
-        private ComboBox cbCrew, cbSeating;
+        private ComboBox cbSeating;
         private TextBox txtPrice;
         private Button btnOk;
         private List<ComboBox> cbFacilities;
@@ -43,8 +43,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Uid = "1000";
             this.AirlinerClass = new RouteAirlinerClass(aClass.Type,aClass.Seating, aClass.FarePrice);
-            this.AirlinerClass.CabinCrew = aClass.CabinCrew;
-
+         
             foreach (RouteFacility facility in aClass.getFacilities())
                 this.AirlinerClass.addFacility(facility);
           
@@ -90,19 +89,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 }
             }
             
-            cbCrew = new ComboBox();
-            cbCrew.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbCrew.Background = Brushes.Transparent;
-            cbCrew.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbCrew.Width = 150;
-
-            for (int i = 1; i < 10; i++)
-                cbCrew.Items.Add(i);
-
-            cbCrew.SelectedIndex = 0;
-
-            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpRouteFacilities", "1003"), cbCrew));
-
+          
             // chs, 2011-18-10 added for type of seating
             cbSeating = new ComboBox();
             cbSeating.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -173,8 +160,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Content = contentPanel;
 
 
-            cbCrew.SelectedItem = this.AirlinerClass.CabinCrew;
-            txtPrice.Text = String.Format("{0:0.##}", this.AirlinerClass.FarePrice);
+             txtPrice.Text = String.Format("{0:0.##}", this.AirlinerClass.FarePrice);
             cbSeating.SelectedItem = this.AirlinerClass.Seating;
         }
 
@@ -203,13 +189,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             double price = Convert.ToDouble(txtPrice.Text);
-            int crew = (int)cbCrew.SelectedItem;
             RouteAirlinerClass.SeatingType seating = (RouteAirlinerClass.SeatingType)cbSeating.SelectedItem;
 
             this.AirlinerClass.Seating = seating;
             this.AirlinerClass.FarePrice = price;
-            this.AirlinerClass.CabinCrew = crew;
-
+         
             foreach (ComboBox cbFacility in cbFacilities)
                 this.AirlinerClass.addFacility((RouteFacility)cbFacility.SelectedItem);
 
