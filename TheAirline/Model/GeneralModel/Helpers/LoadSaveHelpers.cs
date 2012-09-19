@@ -187,7 +187,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     int invoiceMonth = Convert.ToInt16(airlineInvoiceNode.Attributes["month"].Value);
                     double invoiceAmount = XmlConvert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
 
-                    airline.setInvoice(type,invoiceYear,invoiceMonth,invoiceAmount);
+                    airline.setInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
                 }
 
                 // chs, 2011-13-10 added for loading of airline advertisements
@@ -291,7 +291,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         route.addRouteAirlinerClass(rClass);
 
                     }
-                    
+
                     RouteTimeTable timeTable = new RouteTimeTable(route);
 
                     XmlNodeList timetableList = routeNode.SelectNodes("timetable/timetableentry");
@@ -305,6 +305,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Name == entryNode.Attributes["airliner"].Value); ;
 
                         RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
+
                         entry.Airliner = airliner;
 
                         if (airliner != null && !airliner.Routes.Contains(route))
@@ -339,26 +340,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (route != null)
                     {
                         string destination = flightNode.Attributes["destination"].Value;
+                        
                         DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
                         TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
                         DateTime flightTime = DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
 
-                        RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
-                        
-                        Flight currentFlight = new Flight(rtte);
-                        currentFlight.FlightTime = flightTime;
-                        currentFlight.Classes.Clear();
 
-                        XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
 
-                        foreach (XmlElement flightClassNode in flightClassList)
+                        if (destination != "Service")
                         {
-                            AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                            int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+                            RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
+                            Flight currentFlight = new Flight(rtte);
+                            currentFlight.FlightTime = flightTime;
+                            currentFlight.Classes.Clear();
 
-                            currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                            XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
+
+                            foreach (XmlElement flightClassNode in flightClassList)
+                            {
+                                AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
+                                int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+
+                                currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                            }
+                            airliner.CurrentFlight = currentFlight;
                         }
-                        airliner.CurrentFlight = currentFlight;
+                        else
+                            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(flightTime, airliner));
+                 
+                      
 
                     }
                     else
@@ -552,34 +562,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             XmlNodeList routeConfigurationsList = root.SelectNodes("//routeclassesconfigurations/routeclassesconfiguration");
-            
+
             foreach (XmlElement confElement in routeConfigurationsList)
             {
                 string routeConfName = confElement.Attributes["name"].Value;
-                 XmlNodeList classesList = confElement.SelectNodes("classes/class");
+                XmlNodeList classesList = confElement.SelectNodes("classes/class");
 
-                 RouteClassesConfiguration classesConfiguration = new RouteClassesConfiguration(routeConfName);
-                 foreach (XmlElement classElement in classesList)
-                 {
-                     AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+                RouteClassesConfiguration classesConfiguration = new RouteClassesConfiguration(routeConfName);
+                foreach (XmlElement classElement in classesList)
+                {
+                    AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
 
-                     RouteClassConfiguration classConf = new RouteClassConfiguration(classType);
-                     foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
-                     {
-                         if (classElement.HasAttribute(facType.ToString()))
-                         {
-                             string facilityName = classElement.Attributes[facType.ToString()].Value;
+                    RouteClassConfiguration classConf = new RouteClassConfiguration(classType);
+                    foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                    {
+                        if (classElement.HasAttribute(facType.ToString()))
+                        {
+                            string facilityName = classElement.Attributes[facType.ToString()].Value;
 
-                             classConf.addFacility(RouteFacilities.GetFacilities(facType).Find(f => f.Name == facilityName));
-                         }
-                     }
+                            classConf.addFacility(RouteFacilities.GetFacilities(facType).Find(f => f.Name == facilityName));
+                        }
+                    }
 
-                     classesConfiguration.addClass(classConf);
-                 }
+                    classesConfiguration.addClass(classConf);
+                }
 
-                 Configurations.AddConfiguration(classesConfiguration);
+                Configurations.AddConfiguration(classesConfiguration);
             }
-           
+
 
 
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
@@ -827,7 +837,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement invoiceNode = xmlDoc.CreateElement("invoice");
                     invoiceNode.SetAttribute("type", invoice.Type.ToString());
                     invoiceNode.SetAttribute("year", invoice.Year.ToString());
-                    invoiceNode.SetAttribute("month",invoice.Month.ToString());
+                    invoiceNode.SetAttribute("month", invoice.Month.ToString());
                     invoiceNode.SetAttribute("amount", string.Format("{0:0}", invoice.Amount));
 
                     invoicesNode.AppendChild(invoiceNode);
@@ -918,7 +928,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         routeClassNode.SetAttribute("type", aClass.Type.ToString());
                         routeClassNode.SetAttribute("fareprice", string.Format("{0:0.##}", aClass.FarePrice));
                         routeClassNode.SetAttribute("cabincrew", aClass.CabinCrew.ToString());
-                        
+
                         foreach (RouteFacility facility in aClass.getFacilities())
                             routeClassNode.SetAttribute(facility.Type.ToString(), facility.Uid);
                         // chs, 2011-18-10 added for saving of type of seating
@@ -1185,7 +1195,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             root.AppendChild(configurationsNode);
 
             XmlElement routeConfigurationsNode = xmlDoc.CreateElement("routeclassesconfigurations");
-         
+
             foreach (RouteClassesConfiguration configuration in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
             {
                 XmlElement routeConfigurationNode = xmlDoc.CreateElement("routeclassesconfiguration");
@@ -1202,7 +1212,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         classNode.SetAttribute(aFac.Type.ToString(), aFac.Name);
                     }
-                    
+
                     classesNode.AppendChild(classNode);
                 }
 

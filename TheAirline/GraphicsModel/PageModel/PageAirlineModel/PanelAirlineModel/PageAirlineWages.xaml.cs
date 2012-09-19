@@ -31,9 +31,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineWages : Page
     {
         private Airline Airline;
-        private StackPanel panelWages, panelEmployees, panelInflightServices;
+        private StackPanel panelWages, panelEmployees, panelInflightServices, panelAirlineServices, panelAdvertisement;
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees, lbFoodDrinks;
+        private ListBox lbNewFacilities, lbFacilities, lbAdvertisement;
+        private Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox> cbAdvertisements;
         private Dictionary<AirlinerClass.ClassType, List<RouteFacility>> Facilities;
         private Dictionary<AirlinerClass.ClassType,List<ComboBox>> cbFacilities;
         public PageAirlineWages(Airline airline)
@@ -70,6 +72,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbService.Click += new RoutedEventHandler(sbService_Click);
             panelMenuButtons.Children.Add(sbService);
 
+            ucSelectButton sbAirlineService = new ucSelectButton();
+            sbAirlineService.Uid = "1007";
+            sbAirlineService.Content = Translator.GetInstance().GetString("PageAirlineWages", sbAirlineService.Uid);
+            sbAirlineService.Click += new RoutedEventHandler(sbAirlineService_Click);
+            panelMenuButtons.Children.Add(sbAirlineService);
+
+            ucSelectButton sbAdvertisement = new ucSelectButton();
+            sbAdvertisement.Uid = "1008";
+            sbAdvertisement.Content = Translator.GetInstance().GetString("PageAirlineWages", sbAdvertisement.Uid);
+            sbAdvertisement.Click += new RoutedEventHandler(sbAdvertisement_Click);
+            panelMenuButtons.Children.Add(sbAdvertisement);
+
             panelWages = createWagesPanel();
             panelWagesAndEmployees.Children.Add(panelWages);
 
@@ -81,9 +95,99 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
             panelWagesAndEmployees.Children.Add(panelInflightServices);
 
+            panelAirlineServices = createAirlineServicesPanel();
+            panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelWagesAndEmployees.Children.Add(panelAirlineServices);
 
+            panelAdvertisement = createAdvertisementPanel();
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+            panelWagesAndEmployees.Children.Add(panelAdvertisement);
      
             this.Content = panelWagesAndEmployees;
+        }
+        //creates the for the panel advertisement
+        private StackPanel createAdvertisementPanel()
+        {
+            cbAdvertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox>();
+
+            StackPanel panelAdvertisement = new StackPanel();
+
+            TextBlock txtHeaderAdvertisement = new TextBlock();
+            txtHeaderAdvertisement.Uid = "1003";
+            txtHeaderAdvertisement.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderAdvertisement.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderAdvertisement.FontWeight = FontWeights.Bold;
+            txtHeaderAdvertisement.Text = Translator.GetInstance().GetString("PageAirlineFacilities", txtHeaderAdvertisement.Uid);
+            panelAdvertisement.Children.Add(txtHeaderAdvertisement);
+
+            lbAdvertisement = new ListBox();
+            lbAdvertisement.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbAdvertisement.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbAdvertisement.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            panelAdvertisement.Children.Add(lbAdvertisement);
+
+            // chs, 2011-17-10 changed so it is only advertisement types which has been invented which are shown
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                    lbAdvertisement.Items.Add(new QuickInfoValue(type.ToString(), createAdvertisementTypeItem(type)));
+            }
+
+            Button btnSave = new Button();
+            btnSave.Uid = "113";
+            btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnSave.Height = 16;
+            btnSave.Width = Double.NaN;
+            btnSave.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnSave.Margin = new Thickness(0, 5, 0, 0);
+            btnSave.Content = Translator.GetInstance().GetString("General", btnSave.Uid);
+            btnSave.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnSave.Click+=new RoutedEventHandler(btnSaveAdvertisement_Click);
+            btnSave.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            
+            panelAdvertisement.Children.Add(btnSave);
+
+            return panelAdvertisement;
+        }
+         //creates the panel for the airline services
+        private StackPanel createAirlineServicesPanel()
+        {
+            StackPanel panelFacilities = new StackPanel();
+
+            TextBlock txtHeaderFacilities = new TextBlock();
+            txtHeaderFacilities.Uid = "1001";
+            txtHeaderFacilities.Margin = new Thickness(0, 0, 0, 0);
+            txtHeaderFacilities.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderFacilities.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderFacilities.FontWeight = FontWeights.Bold;
+            txtHeaderFacilities.Text = Translator.GetInstance().GetString("PageAirlineFacilities", txtHeaderFacilities.Uid);
+            panelFacilities.Children.Add(txtHeaderFacilities);
+
+            lbFacilities = new ListBox();
+            lbFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbFacilities.ItemTemplate = this.Resources["FacilityItem"] as DataTemplate;
+            lbFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            panelFacilities.Children.Add(lbFacilities);
+
+            TextBlock txtNewAirlineFacilities = new TextBlock();
+            txtNewAirlineFacilities.Uid = "1002";
+            txtNewAirlineFacilities.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtNewAirlineFacilities.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtNewAirlineFacilities.FontWeight = FontWeights.Bold;
+            txtNewAirlineFacilities.Text = Translator.GetInstance().GetString("PageAirlineFacilities", txtNewAirlineFacilities.Uid);
+            txtNewAirlineFacilities.Margin = new Thickness(0, 5, 0, 0);
+            txtNewAirlineFacilities.Visibility = this.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            panelFacilities.Children.Add(txtNewAirlineFacilities);
+
+            lbNewFacilities = new ListBox();
+            lbNewFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbNewFacilities.ItemTemplate = this.Resources["FacilityNewItem"] as DataTemplate;
+            lbNewFacilities.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            panelFacilities.Children.Add(lbNewFacilities);
+
+            lbNewFacilities.Visibility = this.Airline.IsHuman ? Visibility.Visible : Visibility.Collapsed;
+
+            return panelFacilities;
         }
         //creates the inflight services panel
         private StackPanel createInflightServicesPanel()
@@ -290,15 +394,37 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
              this.Facilities[classType].Add(facility);
 
-
-
         }
+        private void sbAdvertisement_Click(object sender, RoutedEventArgs e)
+         {
+             panelWages.Visibility = System.Windows.Visibility.Collapsed;
+             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
+             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+             panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
+             panelAdvertisement.Visibility = System.Windows.Visibility.Visible;
 
+             showAdvertisements();
+         }
+   
+        private void sbAirlineService_Click(object sender, RoutedEventArgs e)
+        {
+            panelWages.Visibility = System.Windows.Visibility.Collapsed;
+            panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
+            panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAirlineServices.Visibility = System.Windows.Visibility.Visible;
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+            
+            showFacilities();
+     
+        }
         private void sbEmployees_Click(object sender, RoutedEventArgs e)
         {
             panelWages.Visibility = System.Windows.Visibility.Collapsed;
             panelEmployees.Visibility = System.Windows.Visibility.Visible;
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+  
             undoSettings();
         }
 
@@ -307,6 +433,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWages.Visibility = System.Windows.Visibility.Visible;
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+  
             undoSettings();
         }
         private void sbService_Click(object sender, RoutedEventArgs e)
@@ -314,6 +443,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWages.Visibility = System.Windows.Visibility.Collapsed;
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
             panelInflightServices.Visibility = System.Windows.Visibility.Visible;
+            panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+  
+       
            
         }
         //creates the buttons panel
@@ -386,11 +519,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            int totalServiceLevel = this.Facilities.Keys.Sum(c => this.Facilities[c].Sum(f => f.ServiceLevel)) ; 
             TextBox txtName = new TextBox();
             txtName.Width = 200;
             txtName.Background = Brushes.Transparent;
             txtName.Foreground = Brushes.White;
-            txtName.Text = string.Format("Configuration {0}",Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count+1);
+            txtName.Text = string.Format("Configuration {0} (Service level: {1})",Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses).Count+1,totalServiceLevel);
             txtName.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
 
@@ -440,6 +574,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                  }
             }
         }
+        private void btnSaveAdvertisement_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                {
+                    ComboBox cbAdvertisement = cbAdvertisements[type];
+
+                    AdvertisementType aType = (AdvertisementType)cbAdvertisement.SelectedItem;
+                    this.Airline.setAirlineAdvertisement(aType);
+                }
+            }
+        }
         //creates the slider for a wage type
         private WrapPanel createWageSlider(FeeType type)
         {
@@ -477,5 +624,99 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.FeeValues[type] = slider.Value;
         }
+        
+
+        private void ButtonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            AirlineFacility facility = (AirlineFacility)((Button)sender).Tag;
+
+            if (facility.Price > GameObject.GetInstance().HumanAirline.Money)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2101"), Translator.GetInstance().GetString("MessageBox", "2101", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2102"), string.Format(Translator.GetInstance().GetString("MessageBox", "2102", "message"), facility.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airline.addFacility(facility);
+
+                    AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.Price);
+
+
+                    showFacilities();
+                }
+            }
+        }
+
+        private void ButtonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            AirlineFacility facility = (AirlineFacility)((Button)sender).Tag;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2103"), string.Format(Translator.GetInstance().GetString("MessageBox", "2103", "message"), facility.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airline.removeFacility(facility);
+
+                showFacilities();
+            }
+        }
+        //shows the advertisement
+        private void showAdvertisements()
+        {
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                {
+                    ComboBox cbAdvertisement = cbAdvertisements[type];
+                    cbAdvertisement.SelectedItem = this.Airline.getAirlineAdvertisement(type);
+
+                }
+            }
+        }
+        //shows the list of facilities
+        private void showFacilities()
+        {
+            int year = GameObject.GetInstance().GameTime.Year;
+            lbFacilities.Items.Clear();
+            lbNewFacilities.Items.Clear();
+
+            this.Airline.Facilities.ForEach(f => lbFacilities.Items.Add(new KeyValuePair<Airline, AirlineFacility>(this.Airline, f)));
+
+            List<AirlineFacility> facilitiesNew = AirlineFacilities.GetFacilities();
+
+            facilitiesNew.RemoveAll(f => this.Airline.Facilities.Contains(f));
+
+            foreach (AirlineFacility facility in facilitiesNew.FindAll(f => f.FromYear <= year))
+                lbNewFacilities.Items.Add(facility);
+        }
+        //creates an item for an advertisering type
+        private UIElement createAdvertisementTypeItem(AdvertisementType.AirlineAdvertisementType type)
+        {
+            if (this.Airline.IsHuman)
+            {
+                ComboBox cbType = new ComboBox();
+                cbType.ItemTemplate = this.Resources["AdvertisementItem"] as DataTemplate;
+                cbType.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                cbType.Width = 200;
+
+                cbAdvertisements.Add(type, cbType);
+
+                foreach (AdvertisementType aType in AdvertisementTypes.GetTypes(type))
+                    cbType.Items.Add(aType);
+
+                cbType.SelectedItem = this.Airline.getAirlineAdvertisement(type);
+
+                return cbType;
+            }
+            // chs, 2011-17-10 changed so it is not possible to change the advertisement type for a CPU airline
+            else
+            {
+                return UICreator.CreateTextBlock(this.Airline.getAirlineAdvertisement(type).Name);
+            }
+        }
+      
+        
     }
+
 }

@@ -784,6 +784,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.CurrentFlight.Entry.TimeTable.Route.addRouteInvoice(new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -servicePrice));
             airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Airliner_Income"), -servicePrice);
+
+            SetNextFlight(airliner);
+
         }
         //checks for an airliner should go to service
         private static void CheckForService(FleetAirliner airliner)

@@ -37,6 +37,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbFacilities.Uid = "1003";
             sbFacilities.Content = Translator.GetInstance().GetString("PanelAirline", sbFacilities.Uid);
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
+            sbFacilities.Visibility = System.Windows.Visibility.Collapsed;
             buttonsPanel.Children.Add(sbFacilities);
 
             ucSelectButton sbStatistics = new ucSelectButton();
