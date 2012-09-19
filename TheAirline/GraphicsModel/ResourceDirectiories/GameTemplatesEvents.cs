@@ -37,7 +37,7 @@ namespace TheAirline.GraphicsModel.ResourceDirectiories
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Boolean enabled = GameObject.GetInstance().GameTime.Year >= (int)RouteFacility.FacilityType.Wifi;
+            Boolean enabled = GameObject.GetInstance().GameTime.Year >= (int)RouteFacility.FacilityType.WiFi;
 
             return enabled ? Visibility.Visible : Visibility.Collapsed;
         }

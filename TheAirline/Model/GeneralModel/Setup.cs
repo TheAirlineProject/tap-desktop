@@ -1182,21 +1182,21 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateFlightFacilities()
         {
-            RouteFacilities.AddFacility(new RouteFacility("100",RouteFacility.FacilityType.Food, "No Food", -50, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("100",RouteFacility.FacilityType.Food, "None", -50, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility("101", RouteFacility.FacilityType.Food, "Buyable Snacks", 10, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Snacks")));
-            RouteFacilities.AddFacility(new RouteFacility("102", RouteFacility.FacilityType.Food, "Buyable Meal",  25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
-            RouteFacilities.AddFacility(new RouteFacility("103", RouteFacility.FacilityType.Food, "Basic Meal",  50, RouteFacility.ExpenseType.Fixed, 0.50, null));
-            RouteFacilities.AddFacility(new RouteFacility("104", RouteFacility.FacilityType.Food, "Full Dinner",  100, RouteFacility.ExpenseType.Fixed, 2, null));
-            RouteFacilities.AddFacility(new RouteFacility("105", RouteFacility.FacilityType.Drinks, "No Drinks",  -50, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility("106", RouteFacility.FacilityType.Drinks, "Buyable Drinks",  25, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Drinks")));
-            RouteFacilities.AddFacility(new RouteFacility("107", RouteFacility.FacilityType.Drinks, "Free Drinks",  80, RouteFacility.ExpenseType.Fixed, 0.20, null));
-            RouteFacilities.AddFacility(new RouteFacility("108", RouteFacility.FacilityType.Drinks, "Served Drinks",  100, RouteFacility.ExpenseType.Fixed, 0.5, null));
+            RouteFacilities.AddFacility(new RouteFacility("102", RouteFacility.FacilityType.Food, "Free Snacks",  15, RouteFacility.ExpenseType.Fixed, 0.10, null));
+            RouteFacilities.AddFacility(new RouteFacility("103", RouteFacility.FacilityType.Food, "Buyable Meal",  25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
+            RouteFacilities.AddFacility(new RouteFacility("104", RouteFacility.FacilityType.Food, "Basic Meal",  50, RouteFacility.ExpenseType.Fixed, 0.50, null));
+            RouteFacilities.AddFacility(new RouteFacility("105", RouteFacility.FacilityType.Food, "Full Dinner",  100, RouteFacility.ExpenseType.Fixed, 2, null));
+            RouteFacilities.AddFacility(new RouteFacility("106", RouteFacility.FacilityType.Drinks, "None",  -50, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("107", RouteFacility.FacilityType.Drinks, "Buyable",  25, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility("108", RouteFacility.FacilityType.Drinks, "Free",  80, RouteFacility.ExpenseType.Fixed, 0.20, null));
             RouteFacilities.AddFacility(new RouteFacility("109", RouteFacility.FacilityType.Alcoholic_Drinks, "None",  0, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility("110", RouteFacility.FacilityType.Alcoholic_Drinks, "Buyable",  40, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility("110", RouteFacility.FacilityType.Alcoholic_Drinks, "Buyable",  40, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Alcholic Drinks")));
             RouteFacilities.AddFacility(new RouteFacility("111", RouteFacility.FacilityType.Alcoholic_Drinks, "Free",  100, RouteFacility.ExpenseType.Fixed, 0.75, null));
-            RouteFacilities.AddFacility(new RouteFacility("112", RouteFacility.FacilityType.Wifi, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility("113", RouteFacility.FacilityType.Wifi, "Buyable", 40, RouteFacility.ExpenseType.Fixed, 0, FeeTypes.GetType("Meal"),AirlineFacilities.GetFacility("107")));
-            RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.Wifi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.6, null,AirlineFacilities.GetFacility("107")));
+            RouteFacilities.AddFacility(new RouteFacility("112", RouteFacility.FacilityType.WiFi, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("113", RouteFacility.FacilityType.WiFi, "Buyable", 40, RouteFacility.ExpenseType.Random, 0.5, FeeTypes.GetType("WiFi"), AirlineFacilities.GetFacility("107")));
+            RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.WiFi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.5, null, AirlineFacilities.GetFacility("107")));
      
         }
 
@@ -1208,13 +1208,15 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Maintenance wage", 3.95, 3.0, 4.25, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support wage", 2.65, 1, 3, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Alcholic Drinks", 0.75, 0.5, 1.1, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.2, 0.1, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 1.40, 1.25, 2, 50));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 5, 95));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 1.25, 0, 5.25, 25));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 2.5, 0, 6, 2));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 0, 0, 5.25, 25));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 0, 0, 6, 2));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 18, 1));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25));
         }
     }
 }

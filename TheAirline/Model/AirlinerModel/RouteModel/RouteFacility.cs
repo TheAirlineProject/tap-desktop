@@ -12,7 +12,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public enum ExpenseType { Random, Fixed }
         public ExpenseType EType { get; set; }
         public double ExpensePerPassenger { get; set; }
-        public enum FacilityType { Food, Drinks,Alcoholic_Drinks,Wifi=2007 }
+        public enum FacilityType { Food, Drinks, Alcoholic_Drinks, WiFi=2007 }
         public FacilityType Type { get; set; }
         public string Name { get; set; }
         public int ServiceLevel { get; set; }
