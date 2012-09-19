@@ -428,7 +428,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                             {
-                                route.getRouteAirlinerClass(type).addFacility(RouteFacilities.GetFacilities(ftype)[rnd.Next(RouteFacilities.GetFacilities(ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+                                if (GameObject.GetInstance().GameTime.Year >= (int)ftype)
+                                    route.getRouteAirlinerClass(type).addFacility(RouteFacilities.GetFacilities(ftype)[rnd.Next(RouteFacilities.GetFacilities(ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
           
                             }
 

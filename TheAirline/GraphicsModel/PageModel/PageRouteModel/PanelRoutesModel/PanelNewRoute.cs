@@ -105,7 +105,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                 {
-                    rClass.addFacility(RouteFacilities.GetBasicFacility(ftype));
+                    if (GameObject.GetInstance().GameTime.Year >= (int)ftype)
+                        rClass.addFacility(RouteFacilities.GetBasicFacility(ftype));
                 }
              
                 this.Classes.Add(type, rClass);

@@ -123,21 +123,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                 foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                 {
-                    ComboBox cbFacility = new ComboBox();
-                    cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-                    cbFacility.Width = 200;
-                    cbFacility.DisplayMemberPath = "Name";
-                    cbFacility.SelectedValuePath = "Name";
-                    cbFacility.Tag = classType;
-                    cbFacility.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
+                    if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
+                    {
+                        ComboBox cbFacility = new ComboBox();
+                        cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                        cbFacility.Width = 200;
+                        cbFacility.DisplayMemberPath = "Name";
+                        cbFacility.SelectedValuePath = "Name";
+                        cbFacility.Tag = classType;
+                        cbFacility.SelectionChanged += new SelectionChangedEventHandler(cbFacility_SelectionChanged);
 
-                    RouteFacilities.GetFacilities(facilityType).ForEach(f => cbFacility.Items.Add(f));
+                        RouteFacilities.GetFacilities(facilityType).ForEach(f => cbFacility.Items.Add(f));
 
-                    lbServices.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(facilityType).ToString(), cbFacility));
+                        lbServices.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(facilityType).ToString(), cbFacility));
 
-                    cbFacility.SelectedIndex = 0;
+                        cbFacility.SelectedIndex = 0;
 
-                    this.cbFacilities[classType].Add(cbFacility);
+                        this.cbFacilities[classType].Add(cbFacility);
+                    }
                 }
 
              }

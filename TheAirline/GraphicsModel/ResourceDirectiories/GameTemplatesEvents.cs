@@ -12,6 +12,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using System.Windows.Data;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.ResourceDirectiories
 {
@@ -30,16 +31,39 @@ namespace TheAirline.GraphicsModel.ResourceDirectiories
             PageNavigator.NavigateTo(new PageAirport(airport));
         }
     }
+    //the converter for if wifi is enabled
+    public class WifiEnabledConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Boolean enabled = GameObject.GetInstance().GameTime.Year >= (int)RouteFacility.FacilityType.Wifi;
+
+            return enabled ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a boolean to visibility
     public class RouteClassFacilityConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            RouteAirlinerClass rClass = (RouteAirlinerClass)value;
+            try
+            {
+                RouteAirlinerClass rClass = (RouteAirlinerClass)value;
 
-            RouteFacility.FacilityType facilityType = (RouteFacility.FacilityType)Enum.Parse(typeof(RouteFacility.FacilityType), parameter.ToString());
-     
-            return rClass.getFacility(facilityType).Name;
+                RouteFacility.FacilityType facilityType = (RouteFacility.FacilityType)Enum.Parse(typeof(RouteFacility.FacilityType), parameter.ToString());
+
+                return rClass.getFacility(facilityType).Name;
+            }
+            catch
+            {
+                return "";
+            }
      
         }
 

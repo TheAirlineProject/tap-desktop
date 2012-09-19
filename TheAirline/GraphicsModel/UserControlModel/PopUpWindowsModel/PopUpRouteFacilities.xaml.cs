@@ -53,7 +53,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 400;
 
-            this.Height = 200;
+            this.Height = 250;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -67,23 +67,26 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             foreach (RouteFacility.FacilityType type in Enum.GetValues(typeof(RouteFacility.FacilityType)))
             {
-                ComboBox cbFacility = new ComboBox();
-                cbFacility.Background = Brushes.Transparent;
-                cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-                cbFacility.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-                cbFacility.DisplayMemberPath = "Name";
-                cbFacility.SelectedValuePath = "Name";
-                cbFacility.Tag = type;
-                cbFacility.Width = 150;
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                {
+                    ComboBox cbFacility = new ComboBox();
+                    cbFacility.Background = Brushes.Transparent;
+                    cbFacility.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                    cbFacility.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    cbFacility.DisplayMemberPath = "Name";
+                    cbFacility.SelectedValuePath = "Name";
+                    cbFacility.Tag = type;
+                    cbFacility.Width = 150;
 
-                foreach (RouteFacility facility in RouteFacilities.GetFacilities(type))
-                    cbFacility.Items.Add(facility);
+                    foreach (RouteFacility facility in RouteFacilities.GetFacilities(type))
+                        cbFacility.Items.Add(facility);
 
-                cbFacilities.Add(cbFacility);
+                    cbFacilities.Add(cbFacility);
 
-                lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type).ToString(), cbFacility));
+                    lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type).ToString(), cbFacility));
 
-                cbFacility.SelectedItem = this.AirlinerClass.getFacility(type);
+                    cbFacility.SelectedItem = this.AirlinerClass.getFacility(type);
+                }
             }
             
             cbCrew = new ComboBox();

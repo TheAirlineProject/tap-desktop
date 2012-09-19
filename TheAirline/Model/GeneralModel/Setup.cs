@@ -1097,7 +1097,8 @@ namespace TheAirline.Model.GeneralModel
                     
                     foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {
-                        route.getRouteAirlinerClass(type).addFacility(RouteFacilities.GetFacilities(ftype)[rnd.Next(RouteFacilities.GetFacilities(ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+                        if (GameObject.GetInstance().GameTime.Year >= (int)ftype)
+                            route.getRouteAirlinerClass(type).addFacility(RouteFacilities.GetFacilities(ftype)[rnd.Next(RouteFacilities.GetFacilities(ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
 
                     }
                 }
@@ -1193,6 +1194,9 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility("109", RouteFacility.FacilityType.Alcoholic_Drinks, "None",  0, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility("110", RouteFacility.FacilityType.Alcoholic_Drinks, "Buyable",  40, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Drinks")));
             RouteFacilities.AddFacility(new RouteFacility("111", RouteFacility.FacilityType.Alcoholic_Drinks, "Free",  100, RouteFacility.ExpenseType.Fixed, 0.75, null));
+            RouteFacilities.AddFacility(new RouteFacility("112", RouteFacility.FacilityType.Wifi, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("113", RouteFacility.FacilityType.Wifi, "Buyable", 40, RouteFacility.ExpenseType.Fixed, 0, FeeTypes.GetType("Meal")));
+            RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.Wifi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.6, null));
      
         }
 

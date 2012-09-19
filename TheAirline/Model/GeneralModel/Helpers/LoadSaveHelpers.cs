@@ -281,8 +281,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                         {
-                            RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
-                            rClass.addFacility(facility);
+                            if (routeClassNode.HasAttribute(ftype.ToString()))
+                            {
+                                RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
+                                rClass.addFacility(facility);
+                            }
                         }
 
                         route.addRouteAirlinerClass(rClass);
@@ -563,9 +566,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      RouteClassConfiguration classConf = new RouteClassConfiguration(classType);
                      foreach (RouteFacility.FacilityType facType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                      {
-                         string facilityName = classElement.Attributes[facType.ToString()].Value;
+                         if (classElement.HasAttribute(facType.ToString()))
+                         {
+                             string facilityName = classElement.Attributes[facType.ToString()].Value;
 
-                         classConf.addFacility(RouteFacilities.GetFacilities(facType).Find(f=>f.Name == facilityName));
+                             classConf.addFacility(RouteFacilities.GetFacilities(facType).Find(f => f.Name == facilityName));
+                         }
                      }
 
                      classesConfiguration.addClass(classConf);

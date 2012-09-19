@@ -6,6 +6,7 @@
     <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
     <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
     <local:RouteClassFacilityConverter x:Key="routeClassFacilityConverter"></local:RouteClassFacilityConverter>
+    <local:WifiEnabledConverter x:Key="wifiEnabledConverter"></local:WifiEnabledConverter>
     <DataTemplate x:Key="CountryFlag">
         <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
     </DataTemplate>
@@ -64,7 +65,10 @@
             <WrapPanel>
                 <TextBlock Text="Alcohol on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='Alcoholic_Drinks'}"  VerticalAlignment="Bottom"></TextBlock>
-
+            </WrapPanel>
+            <WrapPanel Visibility="{Binding Converter={StaticResource wifiEnabledConverter}}">
+                <TextBlock Text="Wifi on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource routeClassFacilityConverter},ConverterParameter='Wifi'}"  VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel>
                 <TextBlock Text="Cabin crew on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
