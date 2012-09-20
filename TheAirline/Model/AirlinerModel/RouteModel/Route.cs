@@ -73,7 +73,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the total number of cabin crew for the route based on airliner
         public int getTotalCabinCrew()
         {
-            int cabinCrew = getAirliners().Max(c => ((AirlinerPassengerType)c.Airliner.Type).CabinCrew);
+            int cabinCrew = 0;
+            if (getAirliners().Count > 0)
+                cabinCrew = getAirliners().Max(c => ((AirlinerPassengerType)c.Airliner.Type).CabinCrew);
           
             return cabinCrew;
         }
