@@ -34,7 +34,7 @@ namespace TheAirline.Model.AirlineModel
             this.FromYear = fromYear;
         }
         public FeeType(eFeeType type, string name, double defaultValue, double minValue, double maxValue, int percentage)
-            : this(type, name, defaultValue, minValue, maxValue, percentage, 1990)
+            : this(type, name, defaultValue, minValue, maxValue, percentage, 1900)
         {
         }
     }

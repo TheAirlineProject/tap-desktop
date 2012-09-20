@@ -491,8 +491,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             }
 
             lbFees.Items.Clear();
-            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Fee))
+            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Fee).FindAll(f=>GameObject.GetInstance().GameTime.Year>=f.FromYear))
             {
+                
                 this.FeeValues[type] = this.Airline.Fees.getValue(type);
                 lbFees.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
             }
