@@ -629,6 +629,7 @@
     <Compile Include="Model\GeneralModel\CountryModel\BaseUnit.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\Country.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\CountryTailNumber.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\TownModel\State.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\UnionMember.cs" />
     <Compile Include="Model\GeneralModel\GameObject.cs" />
     <Compile Include="Model\GeneralModel\GameTimer.cs" />
@@ -652,6 +653,7 @@
     <Compile Include="Model\GeneralModel\CountryModel\TemporaryCountry.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
     <Compile Include="Model\GeneralModel\Period.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
     <Compile Include="Model\PassengerModel\DestinationPassengers.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />

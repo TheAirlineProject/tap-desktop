@@ -346,7 +346,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                  
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1008"), UICreator.CreateTextBlock(new AirportCodeConverter().Convert(this.Airport).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1009"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Type).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"), UICreator.CreateTextBlock(this.Airport.Profile.Town)));
+    
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"),createTownPanel()));
     
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1022"), UICreator.CreateTextBlock(this.Airport.Profile.Period.From.ToShortDateString())));
 
@@ -416,7 +418,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1017"), UICreator.CreateTextBlock(this.Airport.Runways.Count.ToString())));
             return panelInfo;
         }
+        //creates the town panel
+        private WrapPanel createTownPanel()
+        {
+            WrapPanel townPanel = new WrapPanel();
 
+            townPanel.Children.Add(UICreator.CreateTextBlock(this.Airport.Profile.Town.Name));
+
+            if (this.Airport.Profile.Town.State != null)
+            {
+                townPanel.Children.Add(UICreator.CreateTextBlock(string.Format(", {0}", this.Airport.Profile.Town.State.ShortName)));
+
+                if (this.Airport.Profile.Town.State.Flag != null)
+                {
+                    Image imgFlag = new Image();
+                    imgFlag.Source = new BitmapImage(new Uri(this.Airport.Profile.Town.State.Flag, UriKind.RelativeOrAbsolute));
+                    imgFlag.Height = 16;
+                    imgFlag.MouseDown += new MouseButtonEventHandler(imgMap_MouseDown);
+                    imgFlag.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                    RenderOptions.SetBitmapScalingMode(imgFlag, BitmapScalingMode.HighQuality);
+
+                    imgFlag.Margin = new Thickness(5, 0, 0, 0);
+
+                    townPanel.Children.Add(imgFlag);
+                }
+
+            }
+            return townPanel;
+        }
         private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PopUpAirportMap.ShowPopUp(this.Airport);

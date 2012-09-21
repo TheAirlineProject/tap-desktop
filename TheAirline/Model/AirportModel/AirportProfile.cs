@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
 namespace TheAirline.Model.AirportModel
 {
@@ -18,8 +19,8 @@ namespace TheAirline.Model.AirportModel
         public string Name { get; set; }
         public string IATACode { get; set; }
         public string ICAOCode { get; set; }
-        public string Town { get; set; }
-        public Country Country { get; set; }
+        public Town Town { get; set; }
+        public Country Country { get { return this.Town.Country; } private set { ;} }
         public Coordinates Coordinates { get; set; }
         public string Logo { get; set; }
         // chs, 2012-23-01 added for airport maps
@@ -29,7 +30,7 @@ namespace TheAirline.Model.AirportModel
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
         public Period Period { get; set; }
         public string ID { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, string town, Country country, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, Weather.Season season)
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, Weather.Season season)
         {
             this.Name = name;
             this.Period = period;
@@ -37,7 +38,6 @@ namespace TheAirline.Model.AirportModel
             this.ICAOCode = icaocode;
             this.Type = type;
             this.Town = town;
-            this.Country = country;
             this.Coordinates = coordinates;
             this.Size = size;
             this.Cargo = cargo;

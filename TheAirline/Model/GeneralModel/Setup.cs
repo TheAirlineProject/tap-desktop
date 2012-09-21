@@ -17,6 +17,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -43,6 +44,7 @@ namespace TheAirline.Model.GeneralModel
 
                 LoadRegions();
                 LoadCountries();
+                LoadStates();
                 LoadTemporaryCountries();
                 LoadUnions();
                 LoadAirports();
@@ -94,6 +96,7 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.Clear();
             Regions.Clear();
             Countries.Clear();
+            States.Clear();
             Unions.Clear();
             AirlinerTypes.Clear();
             Skins.Clear();
@@ -539,8 +542,20 @@ namespace TheAirline.Model.GeneralModel
                     XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
 
+                    Town eTown=null;
+                    if (town.Contains(","))
+                    {
+                        State state = States.GetState(Countries.GetCountry(country), town.Split(',')[1].Trim());
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type,airportPeriod, town, Countries.GetCountry(country), gmt, dst, new Coordinates(latitude, longitude), size, size, season);
+                        if (state == null)
+                            eTown = new Town(town.Split(',')[0], Countries.GetCountry(country));
+                        else
+                            eTown = new Town(town.Split(',')[0], Countries.GetCountry(country), state); 
+                    }
+                    else
+                        eTown = new Town(town, Countries.GetCountry(country));
+
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type,airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, season);
 
                     Airport airport = new Airport(profile);
 
@@ -619,7 +634,33 @@ namespace TheAirline.Model.GeneralModel
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
+        /*!loads the states
+         */
+        private static void LoadStates()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\states.xml");
+            XmlElement root = doc.DocumentElement;
 
+            XmlNodeList statesList = root.SelectNodes("//state");
+            foreach (XmlElement element in statesList)
+            {
+                Country country = Countries.GetCountry(element.Attributes["country"].Value);
+                string name = element.Attributes["name"].Value;
+                string shortname = element.Attributes["shortname"].Value;
+
+                State state = new State(country, name, shortname);
+                state.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\states\\" + element.Attributes["flag"].Value + ".png";
+
+                States.AddState(state);
+
+                if (!File.Exists(state.Flag))
+                {
+                    name = "";
+                }
+                
+            }
+        }
         /*!loads the countries.
          */
         private static void LoadCountries()

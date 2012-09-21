@@ -22,6 +22,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.UserControlModel.CalendarModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -320,7 +321,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
 
-                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type,new Period(new DateTime(12,31,1960),new DateTime(12,31,1979)), town, country, TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size,size,Weather.Season.All_Year)));
+                Airports.AddAirport(new Airport(new AirportProfile(name, iata,"K" + iata, type,new Period(new DateTime(12,31,1960),new DateTime(12,31,1979)),new Town(town, country), TimeSpan.FromHours(gmt),TimeSpan.FromHours(dst), new Coordinates(latitude, longitude), size,size,Weather.Season.All_Year)));
 
                 saveAirports();
 
@@ -361,7 +362,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 airportNode.SetAttribute("type", airport.Profile.Type.ToString());
 
                 XmlElement townNode = xmlDoc.CreateElement("town");
-                townNode.SetAttribute("town", airport.Profile.Town);
+                townNode.SetAttribute("town", airport.Profile.Town.Name);
                 townNode.SetAttribute("country", airport.Profile.Country.Name);
                 townNode.SetAttribute("GMT", airport.Profile.OffsetGMT.ToString());
                 townNode.SetAttribute("DST", airport.Profile.OffsetDST.ToString());
