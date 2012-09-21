@@ -318,6 +318,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Setup.SetupTestGame(opponents);
 
+                //GameObject.GetInstance().HumanAirline.Money = 1000000000;
+
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 GameTimer.GetInstance().start();
           

@@ -83,8 +83,8 @@ namespace TheAirline.Model.GeneralModel
 
             double passengerCapacity = 0;
 
-            if (routes.Count > 0)
-                passengerCapacity = routes.SelectMany(a => a.getAirliners()).Max(a=>a.Airliner.getTotalSeatCapacity());
+            if (routes.Count > 0) 
+                passengerCapacity = routes.Where(r=>r.HasAirliner).SelectMany(a => a.getAirliners()).Max(a=>a.Airliner.getTotalSeatCapacity());
       
             double size = passengerDemand - passengerCapacity;
             

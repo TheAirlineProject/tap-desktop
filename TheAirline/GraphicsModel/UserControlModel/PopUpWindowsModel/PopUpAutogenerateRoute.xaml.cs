@@ -152,7 +152,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 cbFlightsPerDay.Items.Clear();
 
-                for (int i = 0; i < flightsPerDay; i++)
+                for (int i = 0; i < Math.Max(1,flightsPerDay); i++)
                     cbFlightsPerDay.Items.Add(i + 1);
 
                 cbFlightsPerDay.SelectedIndex = 0;

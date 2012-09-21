@@ -423,19 +423,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             WrapPanel townPanel = new WrapPanel();
 
-            townPanel.Children.Add(UICreator.CreateTextBlock(this.Airport.Profile.Town.Name));
-
+         
             if (this.Airport.Profile.Town.State != null)
             {
-                townPanel.Children.Add(UICreator.CreateTextBlock(string.Format(", {0}", this.Airport.Profile.Town.State.ShortName)));
+                TextBlock txtTown = UICreator.CreateTextBlock(string.Format("{0}, {1}",this.Airport.Profile.Town.Name, this.Airport.Profile.Town.State.ShortName));
+                txtTown.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+                townPanel.Children.Add(txtTown);
 
                 if (this.Airport.Profile.Town.State.Flag != null)
                 {
                     Image imgFlag = new Image();
                     imgFlag.Source = new BitmapImage(new Uri(this.Airport.Profile.Town.State.Flag, UriKind.RelativeOrAbsolute));
-                    imgFlag.Height = 16;
+                    imgFlag.Height = 24;
                     imgFlag.MouseDown += new MouseButtonEventHandler(imgMap_MouseDown);
-                    imgFlag.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
                     RenderOptions.SetBitmapScalingMode(imgFlag, BitmapScalingMode.HighQuality);
 
                     imgFlag.Margin = new Thickness(5, 0, 0, 0);
@@ -444,6 +445,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 }
 
             }
+            else
+                townPanel.Children.Add(UICreator.CreateTextBlock(this.Airport.Profile.Town.Name));
+
             return townPanel;
         }
         private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
