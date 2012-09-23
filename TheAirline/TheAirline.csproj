@@ -603,6 +603,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerType.cs" />
     <Compile Include="Model\AirlinerModel\FleetAirliner.cs" />
     <Compile Include="Model\AirlinerModel\Manufacturer.cs" />
+    <Compile Include="Model\AirlinerModel\ManufacturerContract.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\Flight.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\FlightAirlinerClass.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteAirlinerClass.cs" />

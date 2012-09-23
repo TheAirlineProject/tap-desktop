@@ -18,6 +18,7 @@ using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersModel
 {
@@ -94,7 +95,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             ccManufacturer.SetResourceReference(ContentControl.ContentTemplateProperty, "ManufactorerLogoItem");
             ccManufacturer.Content = this.Manufacturer;
 
-            lbManufacturers.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1003"),ccManufacturer));
+            lbManufacturers.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1003"), ccManufacturer));
             lbManufacturers.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1004"), createOrderPanel()));
 
             mainPanel.Children.Add(lbManufacturers);
@@ -131,6 +132,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             mainPanel.Children.Add(lbPrice);
 
+            WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Margin = new Thickness(0, 5, 0, 0);
+            mainPanel.Children.Add(panelButtons);
+
             Button btnOrder = new Button();
             btnOrder.Uid = "200";
             btnOrder.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -138,12 +143,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             btnOrder.Width = Double.NaN;
             btnOrder.Content = Translator.GetInstance().GetString("PageOrderAirliners", btnOrder.Uid);
             btnOrder.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnOrder.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            btnOrder.Margin = new Thickness(0, 5, 0, 0);
             btnOrder.Click += new RoutedEventHandler(btnOrder_Click);
 
-            mainPanel.Children.Add(btnOrder);
+            panelButtons.Children.Add(btnOrder);
 
+            Button btnContract = new Button();
+            btnContract.Uid = "1009";
+            btnContract.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnContract.Height = Double.NaN;
+            btnContract.Width = Double.NaN;
+            btnContract.Content = Translator.GetInstance().GetString("PageOrderAirliners", btnContract.Uid);
+            btnContract.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnContract.Margin = new Thickness(5, 0, 0, 0);
+            btnContract.Click += new RoutedEventHandler(btnContract_Click);
+
+            panelButtons.Children.Add(btnContract);
 
             frameAirlinerInfo = new Frame();
             frameAirlinerInfo.Margin = new Thickness(0, 10, 0, 0);
@@ -160,7 +174,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
         }
 
-     
+
         //creates the panel for ordering of a type
         private Panel createOrderPanel()
         {
@@ -239,9 +253,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         }
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
+            Boolean contractedOrder = false;
+            Boolean tryOrder = true;
+            if (GameObject.GetInstance().HumanAirline.Contract != null)
+            {
+                if (GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Manufacturer)
+                    contractedOrder = true;
+                else
+                {
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2010"), string.Format(Translator.GetInstance().GetString("MessageBox", "2010", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name, terminationFee), WPFMessageBoxButtons.YesNo);
+
+                    tryOrder = result == WPFMessageBoxResult.Yes;
+                }
+            }
+            
             Airport airport = (Airport)cbAirport.SelectedItem;
 
-            if (airport != null)
+            if (airport != null && tryOrder)
             {
                 int totalAmount = orders.Values.Sum();
                 double price = orders.Keys.Sum(t => t.Price * orders[t]);
@@ -259,7 +288,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     }
                     else
                     {
-                        WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2009"), string.Format(Translator.GetInstance().GetString("MessageBox", "2009", "message"), totalPrice,downpaymentPrice), WPFMessageBoxButtons.YesNo);
+                        WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2009"), string.Format(Translator.GetInstance().GetString("MessageBox", "2009", "message"), totalPrice, downpaymentPrice), WPFMessageBoxButtons.YesNo);
 
                         if (result == WPFMessageBoxResult.Yes)
                         {
@@ -278,7 +307,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
 
                             }
-
+                            if (contractedOrder)
+                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Keys.Count();
                             AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -downpaymentPrice);
                         }
                     }
@@ -304,12 +334,102 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                                 PageNavigator.NavigateTo(new PageAirliners());
                             }
 
-
+                            if (contractedOrder)
+                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Keys.Count();
+                    
                         }
                     }
                 }
             }
-        }  
+        }
+        private void btnContract_Click(object sender, RoutedEventArgs e)
+        {
+            Boolean newContract = true;
+            if (GameObject.GetInstance().HumanAirline.Contract != null)
+            {
+                if (GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Manufacturer && GameObject.GetInstance().HumanAirline.Contract.Length < 15)
+                {
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2011"), string.Format(Translator.GetInstance().GetString("MessageBox", "2011", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        ComboBox cbLength = new ComboBox();
+                        cbLength.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                        cbLength.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                        cbLength.Width = 200;
+
+                        cbLength.Items.Add(createLengthItem(3));
+                        cbLength.Items.Add(createLengthItem(5));
+                        cbLength.Items.Add(createLengthItem(7));
+                        cbLength.Items.Add(createLengthItem(10));
+
+                        cbLength.SelectedIndex = 0;
+
+                        if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
+                        {
+                            int nLength = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
+
+                            int length = GameObject.GetInstance().HumanAirline.Contract.Length + nLength; 
+                             
+                            double discount = length * 5;
+
+                            GameObject.GetInstance().HumanAirline.Contract.Length = length;
+                            GameObject.GetInstance().HumanAirline.Contract.Discount = discount;
+                            GameObject.GetInstance().HumanAirline.Contract.Airliners = length;
+                            GameObject.GetInstance().HumanAirline.Contract.ExpireDate = GameObject.GetInstance().HumanAirline.Contract.ExpireDate.AddYears(nLength);
+                        }
+                    }
+                    newContract = false;
+                }
+                else
+                {
+                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2010"), string.Format(Translator.GetInstance().GetString("MessageBox", "2010", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name, terminationFee), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
+                    }
+                    else
+                        newContract = false;
+                }
+            }
+
+            if (newContract)
+            {
+                ComboBox cbLength = new ComboBox();
+                cbLength.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                cbLength.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                cbLength.Width = 200;
+
+                cbLength.Items.Add(createLengthItem(3));
+                cbLength.Items.Add(createLengthItem(5));
+                cbLength.Items.Add(createLengthItem(7));
+                cbLength.Items.Add(createLengthItem(10));
+
+                cbLength.SelectedIndex = 0;
+
+                if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
+                {
+                    int length = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
+
+                    double discount = length * 5;
+
+                    ManufacturerContract contract = new ManufacturerContract(this.Manufacturer, GameObject.GetInstance().GameTime, length, discount);
+                    GameObject.GetInstance().HumanAirline.Contract = contract; 
+                }
+            }
+        }
+        //adds a contract item
+        private ComboBoxItem createLengthItem(int years)
+        {
+            ComboBoxItem item = new ComboBoxItem();
+            item.Content = string.Format("{0} years", years);
+            item.Tag = years;
+
+            return item;
+        }
+
         private void cbTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             AirlinerType type = (AirlinerType)cbTypes.SelectedItem;

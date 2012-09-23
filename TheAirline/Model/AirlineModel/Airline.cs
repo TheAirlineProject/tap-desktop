@@ -35,6 +35,7 @@ namespace TheAirline.Model.AirlineModel
         private List<string> FlightCodes;
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
         public List<Alliance> Alliances { get; set; }
+        public ManufacturerContract Contract { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineMarket marketFocus)
         {
             this.Airports = new List<Airport>();
