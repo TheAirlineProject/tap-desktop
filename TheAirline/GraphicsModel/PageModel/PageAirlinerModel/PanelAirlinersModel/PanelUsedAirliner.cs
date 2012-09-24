@@ -225,7 +225,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     if (result == WPFMessageBoxResult.Yes)
                     {
                         AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
-
+                        GameObject.GetInstance().HumanAirline.Contract = null;
+           
 
                     }
                     tryOrder = result == WPFMessageBoxResult.Yes;
@@ -247,7 +248,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport);
+                        if (contractedOrder)
+                            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport, GameObject.GetInstance().HumanAirline.Contract.Discount);
+                        else
+                            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport);
+    
 
                         base.ParentPage.showUsedAirliners(Airliners.GetAirlinersForSale());
 

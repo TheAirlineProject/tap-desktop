@@ -264,6 +264,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
                     WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2010"), string.Format(Translator.GetInstance().GetString("MessageBox", "2010", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name, terminationFee), WPFMessageBoxButtons.YesNo);
 
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
+                        GameObject.GetInstance().HumanAirline.Contract = null;
+           
+                    }
                     tryOrder = result == WPFMessageBoxResult.Yes;
                 }
             }
@@ -276,6 +282,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 double price = orders.Keys.Sum(t => t.Price * orders[t]);
 
                 double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
+
+                if (contractedOrder)
+                    totalPrice = totalPrice * ((100 - GameObject.GetInstance().HumanAirline.Contract.Discount) / 100);
 
                 double downpaymentPrice = totalPrice * 0.05;
 
@@ -330,7 +339,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                             if (result == WPFMessageBoxResult.Yes)
                             {
-                                AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value);
+                                if (contractedOrder)
+                                    AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value, GameObject.GetInstance().HumanAirline.Contract.Discount);
+                                else
+                                    AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value);
+                                
                                 PageNavigator.NavigateTo(new PageAirliners());
                             }
 
@@ -365,7 +378,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                         cbLength.SelectedIndex = 0;
 
-                        if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
+                        if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageOrderAirliners", "1010"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
                         {
                             int nLength = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
 
@@ -389,6 +402,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     if (result == WPFMessageBoxResult.Yes)
                     {
                         AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
+                        GameObject.GetInstance().HumanAirline.Contract = null;
                     }
                     else
                         newContract = false;
@@ -409,7 +423,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 cbLength.SelectedIndex = 0;
 
-                if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
+                if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageOrderAirliners", "1011"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
                 {
                     int length = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
 

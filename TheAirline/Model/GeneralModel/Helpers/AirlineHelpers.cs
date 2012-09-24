@@ -21,6 +21,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //buys an airliner to an airline
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport)
         {
+            return BuyAirliner(airline, airliner, airport, 0);
+
+        }
+        public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
+        {
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
@@ -28,15 +33,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.addAirliner(fAirliner);
 
-            AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.getPrice());
+            double price = airliner.getPrice() * ((100 - discount) / 100);
+
+            AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases,-price);
 
             return fAirliner;
-
+           
         }
         //orders a number of airliners for an airline
         public static void OrderAirliners(Airline airline, Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate)
         {
-
+            OrderAirliners(airline, orders, airport, deliveryDate, 0);
+           
+        }
+          //orders a number of airliners for an airline
+        public static void OrderAirliners(Airline airline, Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate, double discount)
+        {
             foreach (KeyValuePair<AirlinerType, int> order in orders)
             {
                 for (int i = 0; i < order.Value; i++)
@@ -56,9 +68,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int totalAmount = orders.Values.Sum();
             double price = orders.Keys.Sum(t => t.Price * orders[t]);
 
-            double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
+            double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount))) * ((100 - discount) / 100); 
 
-            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice);
+            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice); 
         }
         //reallocate all gates and facilities from one airport to another - gates, facilities and routes
         public static void ReallocateAirport(Airport oldAirport, Airport newAirport, Airline airline)
