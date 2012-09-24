@@ -140,6 +140,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airline.Money = money;
                 airline.Reputation = reputation;
 
+                XmlElement airlineContractNode = (XmlElement)airlineNode.SelectSingleNode("contract");
+                if (airlineContractNode != null)
+                {
+                    Manufacturer contractManufacturer = Manufacturers.GetManufacturer(airlineContractNode.Attributes["manufacturer"].Value);
+                    DateTime contractSigningDate = Convert.ToDateTime(airlineContractNode.Attributes["signingdate"].Value);
+                    int contractLength = Convert.ToInt16(airlineContractNode.Attributes["length"].Value);
+                    double contractDiscount = Convert.ToDouble(airlineContractNode.Attributes["discount"].Value);
+                    int contractAirliners = Convert.ToInt16(airlineContractNode.Attributes["airliners"].Value);
+
+                    ManufacturerContract contract = new ManufacturerContract(contractManufacturer, contractSigningDate, contractLength, contractDiscount);
+                    contract.PurchasedAirliners = contractAirliners;
+
+                    airline.Contract = contract;
+
+                }
+
                 // chs, 2011-17-10 added for loading of passenger happiness
                 XmlElement airlinePassengerNode = (XmlElement)airlineNode.SelectSingleNode("passengerhappiness");
                 double passengerHappiness = XmlConvert.ToDouble(airlinePassengerNode.Attributes["value"].Value);
@@ -777,6 +793,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
                 airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
+
+                if (airline.Contract != null)
+                {
+                    XmlElement airlineContractNode = xmlDoc.CreateElement("contract");
+                    airlineContractNode.SetAttribute("manufacturer", airline.Contract.Manufacturer.ShortName);
+                    airlineContractNode.SetAttribute("signingdate", airline.Contract.ExpireDate.ToShortDateString());
+                    airlineContractNode.SetAttribute("length", airline.Contract.Length.ToString());
+                    airlineContractNode.SetAttribute("discount", airline.Contract.Discount.ToString());
+                    airlineContractNode.SetAttribute("airliners", airline.Contract.PurchasedAirliners.ToString());
+
+                    airlineNode.AppendChild(airlineContractNode);
+                }
 
                 // chs, 2011-13-10 added for saving of passenger happiness
                 XmlElement airlineHappinessNode = xmlDoc.CreateElement("passengerhappiness");
