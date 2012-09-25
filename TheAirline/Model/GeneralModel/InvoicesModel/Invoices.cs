@@ -63,6 +63,11 @@ namespace TheAirline.Model.GeneralModel.InvoicesModel
         {
             return this.MonthlyInvoices.FindAll(m => m.Month == month && m.Year == year).Sum(m=>m.Amount);
         }
+        //returns the total amount of invoices
+        public double getAmount()
+        {
+            return this.MonthlyInvoices.Sum(m => m.Amount);
+        }
         //returns if the invoices contains a month, year and type element
         public Boolean contains(Invoice.InvoiceType type,int year, int month)
         {

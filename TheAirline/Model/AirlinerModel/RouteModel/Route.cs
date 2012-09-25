@@ -98,7 +98,10 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns invoices amount for a specific type for a route
         public double getRouteInvoiceAmount(Invoice.InvoiceType type)
         {
-            return this.Invoices.getAmount(type);
+            if (type == Invoice.InvoiceType.Total)
+                return this.Invoices.getAmount();
+            else
+                return this.Invoices.getAmount(type);
            
         }
         //returns the invoices amount for a specific type for a period

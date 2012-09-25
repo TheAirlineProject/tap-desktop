@@ -202,7 +202,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     int invoiceYear = Convert.ToInt16(airlineInvoiceNode.Attributes["year"].Value);
                     int invoiceMonth = Convert.ToInt16(airlineInvoiceNode.Attributes["month"].Value);
                     double invoiceAmount = XmlConvert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
-
+                    
                     airline.setInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
                 }
 
@@ -329,7 +329,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                     route.TimeTable = timeTable;
 
-                    XmlNodeList routeInvoiceList = airlineNode.SelectNodes("invoices/invoice");
+                    XmlNodeList routeInvoiceList = routeNode.SelectNodes("invoices/invoice");
 
                     foreach (XmlElement routeInvoiceNode in routeInvoiceList)
                     {
@@ -990,7 +990,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         routeInvoicesNode.AppendChild(routeInvoiceNode);
                     }
-                    routesNode.AppendChild(invoicesNode);
+                    routesNode.AppendChild(routeInvoicesNode);
 
                     routesNode.AppendChild(routeNode);
                 }
