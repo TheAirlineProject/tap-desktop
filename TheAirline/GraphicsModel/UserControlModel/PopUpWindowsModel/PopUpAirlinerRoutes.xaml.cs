@@ -155,6 +155,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             
             buttonsPanel.Children.Add(btnAutoGenerate);
 
+            Button btnTransfer = new Button();
+            btnTransfer.Uid = "1000";
+            btnTransfer.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnTransfer.Height = Double.NaN;
+            btnTransfer.Width = Double.NaN;
+            btnTransfer.Visibility = getTransferAirliners().Count > 0  && this.Airliner.Routes.Count == 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            btnTransfer.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnTransfer.Content = Translator.GetInstance().GetString("PopUpAirlinerRoutes", btnTransfer.Uid);
+            btnTransfer.Click+=new RoutedEventHandler(btnTransfer_Click);
+            btnTransfer.Margin = new Thickness(5, 0, 0, 0);
+
+            buttonsPanel.Children.Add(btnTransfer);
+
             Button btnCancel = new Button();
             btnCancel.Uid = "101";
             btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -194,8 +207,44 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return buttonsPanel;
         }
 
+        private void btnTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbAirliners = new ComboBox();
+            cbAirliners.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAirliners.SelectedValuePath = "Name";
+            cbAirliners.DisplayMemberPath = "Name";
+            cbAirliners.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAirliners.Width = 200;
+                             
+            foreach (FleetAirliner airliner in getTransferAirliners())
+                cbAirliners.Items.Add(airliner);
+            
+            cbAirliners.SelectedIndex = 0;
 
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PopUpAirlinerRoutes","1001"), cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
+            {
+                FleetAirliner transferAirliner = (FleetAirliner)cbAirliners.SelectedItem;
 
+                foreach (Route route in transferAirliner.Routes)
+                {
+                    foreach (RouteTimeTableEntry entry in route.TimeTable.Entries.FindAll(en=>en.Airliner == transferAirliner))
+                    {
+                        entry.Airliner = this.Airliner;
+                    }
+                    this.Airliner.addRoute(route);
+                }
+                transferAirliner.Routes.Clear();
+
+                showFlights();
+            }
+        }
+        //returns the airliners from where the airliner can transfer schedule
+        private List<FleetAirliner> getTransferAirliners()
+        {
+            long maxDistance = this.Airliner.Airliner.Type.Range;
+
+            return GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => MathHelpers.GetDistance(r.Destination1, r.Destination2)) <= maxDistance);
+        }
         //creates the panel for adding a new entry
         private StackPanel createNewEntryPanel()
         {
