@@ -19,6 +19,8 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -51,7 +53,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbDestinations.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbDestinations.ItemTemplate = this.Resources["AirportItem"] as DataTemplate;
             // chs, 2011-10-11 changed the max height so all elements are visible
-            lbDestinations.MaxHeight = GraphicsHelpers.GetContentHeight()-100;
+            lbDestinations.MaxHeight = (GraphicsHelpers.GetContentHeight()-100)/2;
 
             this.Airline.Airports.ForEach(a => lbDestinations.Items.Add(a));
         
@@ -86,6 +88,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelButtons.Children.Add(btnMap);
 
+            panelDestinations.Children.Add(createRoutesInformationPanel());
+
             this.Content = panelDestinations;
 
         }
@@ -105,6 +109,50 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             Airport airport = (Airport)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirport(airport));
+        }
+        //creates the panel for some routes information
+        private StackPanel createRoutesInformationPanel()
+        {
+            StackPanel informationPanel = new StackPanel();
+            informationPanel.Margin = new Thickness(0, 10, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
+            txtHeader.Margin = new Thickness(0, 0, 0, 0);
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirlineDestinations", txtHeader.Uid);
+
+            informationPanel.Children.Add(txtHeader);
+
+            ListBox lbInfo = new ListBox();
+            lbInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            lbInfo.MaxHeight = (GraphicsHelpers.GetContentHeight()-100)/2;
+
+            informationPanel.Children.Add(lbInfo);
+
+            lbInfo.Items.Add(new QuickInfoValue("Total number of routes", UICreator.CreateTextBlock(this.Airline.Routes.Count.ToString())));
+
+            double maxDistance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Max(r=>MathHelpers.GetDistance(r.Destination1,r.Destination2));
+            lbInfo.Items.Add(new QuickInfoValue("Longest route",UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance),new StringToLanguageConverter().Convert("km.")))));
+
+            double avgBalance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.Balance);
+            lbInfo.Items.Add(new QuickInfoValue("Average route balance", UICreator.CreateTextBlock(string.Format("{0:C}", avgBalance))));
+
+            double avgFillingPercent = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.FillingDegree);
+            lbInfo.Items.Add(new QuickInfoValue("Average filling percent",UICreator.CreateTextBlock(string.Format("{0:0} %",avgFillingPercent*100))));
+
+            int totalFlights = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Sum(r => r.TimeTable.Entries.Count);
+            lbInfo.Items.Add(new QuickInfoValue("Total weekly flights", UICreator.CreateTextBlock(totalFlights.ToString())));
+
+            long totalPassengers = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Sum(r=>r.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
+            lbInfo.Items.Add(new QuickInfoValue("Total passengers", UICreator.CreateTextBlock(totalPassengers.ToString())));
+
+
+
+            return informationPanel;
         }
     }
 }

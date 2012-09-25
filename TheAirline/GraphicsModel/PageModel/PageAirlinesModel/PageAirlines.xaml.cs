@@ -54,8 +54,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             airlines.OrderBy(a => a.Profile.Name);
 
             airlines.Remove(GameObject.GetInstance().HumanAirline);
-            airlines[0] = GameObject.GetInstance().HumanAirline;
-
+            airlines.Insert(0, GameObject.GetInstance().HumanAirline);
+        
             foreach (Airline airline in airlines)
                 lbAirlines.Items.Add(airline);
 
