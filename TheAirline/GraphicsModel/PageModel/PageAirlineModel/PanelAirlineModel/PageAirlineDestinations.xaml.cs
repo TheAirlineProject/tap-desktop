@@ -117,7 +117,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             informationPanel.Margin = new Thickness(0, 10, 0, 0);
 
             TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1001";
+            txtHeader.Uid = "1003";
             txtHeader.Margin = new Thickness(0, 0, 0, 0);
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -133,22 +133,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             informationPanel.Children.Add(lbInfo);
 
-            lbInfo.Items.Add(new QuickInfoValue("Total number of routes", UICreator.CreateTextBlock(this.Airline.Routes.Count.ToString())));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1004"), UICreator.CreateTextBlock(this.Airline.Routes.Count.ToString())));
 
             double maxDistance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Max(r=>MathHelpers.GetDistance(r.Destination1,r.Destination2));
-            lbInfo.Items.Add(new QuickInfoValue("Longest route",UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance),new StringToLanguageConverter().Convert("km.")))));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1005"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance), new StringToLanguageConverter().Convert("km.")))));
 
             double avgBalance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.Balance);
-            lbInfo.Items.Add(new QuickInfoValue("Average route balance", UICreator.CreateTextBlock(string.Format("{0:C}", avgBalance))));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"), UICreator.CreateTextBlock(string.Format("{0:C}", avgBalance))));
 
             double avgFillingPercent = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.FillingDegree);
-            lbInfo.Items.Add(new QuickInfoValue("Average filling percent",UICreator.CreateTextBlock(string.Format("{0:0} %",avgFillingPercent*100))));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1007"), UICreator.CreateTextBlock(string.Format("{0:0} %", avgFillingPercent * 100))));
 
             int totalFlights = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Sum(r => r.TimeTable.Entries.Count);
-            lbInfo.Items.Add(new QuickInfoValue("Total weekly flights", UICreator.CreateTextBlock(totalFlights.ToString())));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1008"), UICreator.CreateTextBlock(totalFlights.ToString())));
 
             long totalPassengers = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Sum(r=>r.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
-            lbInfo.Items.Add(new QuickInfoValue("Total passengers", UICreator.CreateTextBlock(totalPassengers.ToString())));
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1009"), UICreator.CreateTextBlock(totalPassengers.ToString())));
 
 
 

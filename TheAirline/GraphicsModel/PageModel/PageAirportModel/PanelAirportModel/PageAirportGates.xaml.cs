@@ -198,10 +198,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             ListBox lbAirlineGates = new ListBox();
             lbAirlineGates.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbAirlineGates.ItemTemplate = this.Resources["AirlineGatesItem"] as DataTemplate;
+            lbAirlineGates.Height = GraphicsHelpers.GetContentHeight() / 4;
             
             panelAirlineGates.Children.Add(lbAirlineGates);
 
-            List<Airline> airlines = (from a in Airlines.GetAllAirlines() where this.Airport.Terminals.getNumberOfGates(a)>0 orderby a.Profile.Name select a).ToList();
+            List<Airline> airlines = (from a in Airlines.GetAllAirlines() where this.Airport.Terminals.getNumberOfGates(a) > 0 orderby a.Profile.Name select a).ToList();
            
             foreach (Airline airline in airlines)
                 lbAirlineGates.Items.Add(new AirlineGates(airline, this.Airport.Terminals.getNumberOfGates(airline), this.Airport.Terminals.getNumberOfGates(airline) - this.Airport.Terminals.getFreeGates(airline)));
