@@ -581,6 +581,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                 ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
 
+            //employees discount
+            FeeType employeeDiscountType = FeeTypes.GetType("Employee discount");
+            double employeesDiscount = airliner.Airliner.Airline.Fees.getValue(employeeDiscountType);
+
+            double totalDiscount = ticketsIncome * (employeeDiscountType.Percentage / 100.0) * (employeesDiscount / 100.0);
+            ticketsIncome = ticketsIncome - totalDiscount;
+
             Airport dest = Airports.GetAirport(airliner.CurrentPosition);
             Airport dept = airliner.CurrentFlight.getDepartureAirport();
 

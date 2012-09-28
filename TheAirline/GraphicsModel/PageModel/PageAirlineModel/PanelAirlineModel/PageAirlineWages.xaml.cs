@@ -33,7 +33,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private Airline Airline;
         private StackPanel panelWages, panelEmployees, panelInflightServices, panelAirlineServices, panelAdvertisement;
         private Dictionary<FeeType, double> FeeValues;
-        private ListBox lbWages, lbFees, lbFoodDrinks;
+        private ListBox lbWages, lbFees,lbDiscounts, lbFoodDrinks;
         private ListBox lbNewFacilities, lbFacilities, lbAdvertisement;
         private Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox> cbAdvertisements;
         private Dictionary<AirlinerClass.ClassType, List<RouteFacility>> Facilities;
@@ -375,8 +375,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Fee).FindAll(f=>f.FromYear<=GameObject.GetInstance().GameTime.Year))
                 lbFees.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
-
+            
             panelWagesFee.Children.Add(lbFees);
+
+            TextBlock txtHeaderDiscounts = new TextBlock();
+            txtHeaderDiscounts.Uid = "1004";
+            txtHeaderDiscounts.Margin = new Thickness(0, 5, 0, 0);
+            txtHeaderDiscounts.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderDiscounts.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderDiscounts.FontWeight = FontWeights.Bold;
+            txtHeaderDiscounts.Text = "Discounts";
+
+            panelWagesFee.Children.Add(txtHeaderDiscounts);
+
+            lbDiscounts = new ListBox();
+            lbDiscounts.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbDiscounts.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Discount).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year))
+                lbDiscounts.Items.Add(new QuickInfoValue(type.Name, createDiscountSlider(type)));
+
+            panelWagesFee.Children.Add(lbDiscounts);
+
             panelWagesFee.Children.Add(createButtonsPanel());
 
             return panelWagesFee;
@@ -503,6 +523,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.FeeValues[type] = this.Airline.Fees.getValue(type);
                 lbFoodDrinks.Items.Add(new QuickInfoValue(type.Name, createWageSlider(type)));
             }
+
+            lbDiscounts.Items.Clear();
+            foreach (FeeType type in FeeTypes.GetTypes(FeeType.eFeeType.Discount))
+            {
+                this.FeeValues[type] = this.Airline.Fees.getValue(type);
+                lbDiscounts.Items.Add(new QuickInfoValue(type.Name, createDiscountSlider(type)));
+            }
+            
         }
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
@@ -587,6 +615,32 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 }
             }
         }
+        //creates the slider for a discount type
+        private WrapPanel createDiscountSlider(FeeType type)
+        {
+            WrapPanel sliderPanel = new WrapPanel();
+
+            TextBlock txtValue = UICreator.CreateTextBlock(string.Format("{0} %", this.FeeValues[type]));
+            txtValue.VerticalAlignment = VerticalAlignment.Bottom;
+            txtValue.Margin = new Thickness(5, 0, 0, 0);
+            txtValue.Tag = type;
+
+            Slider slider = new Slider();
+            slider.Width = 200;
+            slider.Value = this.FeeValues[type];
+            slider.Tag = txtValue;
+            slider.Maximum = 100;
+            slider.Minimum = type.MinValue;
+            slider.ValueChanged +=new RoutedPropertyChangedEventHandler<double>(sliderDiscount_ValueChanged);
+            slider.TickFrequency = (100 - type.MinValue) / slider.Width;
+            slider.IsSnapToTickEnabled = true;
+            slider.IsMoveToPointEnabled = true;
+            sliderPanel.Children.Add(slider);
+
+            sliderPanel.Children.Add(txtValue);
+
+            return sliderPanel;
+        }
         //creates the slider for a wage type
         private WrapPanel createWageSlider(FeeType type)
         {
@@ -624,8 +678,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.FeeValues[type] = slider.Value;
         }
-        
 
+        private void sliderDiscount_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider slider = (Slider)sender;
+            TextBlock txtBlock = (TextBlock)slider.Tag;
+            txtBlock.Text = string.Format("{0} %", slider.Value);
+
+            FeeType type = (FeeType)txtBlock.Tag;
+
+            this.FeeValues[type] = slider.Value;
+        }
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             AirlineFacility facility = (AirlineFacility)((Button)sender).Tag;

@@ -12,7 +12,7 @@ namespace TheAirline.Model.AirlineModel
      */
     public class FeeType
     {
-        public enum eFeeType { Fee, Wage, FoodDrinks }
+        public enum eFeeType { Fee, Wage, FoodDrinks, Discount }
         public eFeeType Type { get; set; }
         private double AMinValue;
         public double MinValue { get { return GeneralHelpers.GetInflationPrice(this.AMinValue); } set { this.AMinValue = value; } }
