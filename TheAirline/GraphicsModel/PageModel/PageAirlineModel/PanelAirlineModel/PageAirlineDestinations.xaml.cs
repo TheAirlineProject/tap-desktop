@@ -150,7 +150,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             long totalPassengers = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Sum(r=>r.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1009"), UICreator.CreateTextBlock(totalPassengers.ToString())));
 
+            Airport largestGateAirport = this.Airline.Airports.OrderByDescending(a => a.Terminals.getNumberOfGates(this.Airline) / Convert.ToDouble(a.Terminals.getUsedGates().Count)).FirstOrDefault();
 
+            ContentControl ccLargestAirport = new ContentControl();
+            ccLargestAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryLink");
+            ccLargestAirport.Content = largestGateAirport;
+
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1010"), ccLargestAirport));
+
+            Airport smallestGateAirport = this.Airline.Airports.OrderBy(a => a.Terminals.getNumberOfGates(this.Airline) / Convert.ToDouble(a.Terminals.getUsedGates().Count)).FirstOrDefault();
+
+            ContentControl ccSmallestAirport = new ContentControl();
+            ccSmallestAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryLink");
+            ccSmallestAirport.Content = smallestGateAirport;
+
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1011"), ccSmallestAirport));
 
             return informationPanel;
         }

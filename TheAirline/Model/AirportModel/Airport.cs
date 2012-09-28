@@ -39,15 +39,7 @@ namespace TheAirline.Model.AirportModel
             this.Hubs = new List<Hub>();
             this.DestinationStatistics = new Dictionary<Airport, long>();
 
-            /*
-            foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
-            {
-
-                AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
-
-                oldAirport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
-            }
-             * */
+          
          }
 
         //returns the maximum value for the run ways
@@ -158,15 +150,7 @@ namespace TheAirline.Model.AirportModel
         public List<AirlineAirportFacility> getAirportFacilities(Airline airline)
         {
             return this.Facilities.FindAll(f => f.Airline == airline);
-            /*
-            List<AirlineAirportFacility> fs = new List<AirlineAirportFacility>();
-            foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
-            {
-                fs.Add(getAirlineAirportFacility(airline, type));
-            }
-
-            return fs;
-             * */
+           
         }
         //returns if an airline has any facilities at the airport
         public Boolean hasFacilities(Airline airline)

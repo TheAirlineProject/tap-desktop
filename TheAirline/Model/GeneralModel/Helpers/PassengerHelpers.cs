@@ -73,38 +73,41 @@ namespace TheAirline.Model.GeneralModel
         {
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
+            
+            var currentRoute = airliner.Routes.Find(r=>(r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
+            /*
+             * If the capacity is less than the demand, fill the airliner and decrease airline happiness. 
 
+If an airline wants to increase its market share on a route that is already at capacity, it would have two options.
+             * It could either increase the level of service or more likely lower the price.
+             * If the other airlines do not do the same thing, they would begin to loose passengers to the other airline. 
+             * The AI would have to be programmed to understand this. 
+             * The current prices charged by airlines on the route would to be displayed somewhere so player knows what to charge.*/
+         
             double passengerDemand = ((int)airportCurrent.getDestinationPassengersRate(airportDestination, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
             
             if (airportCurrent.IsHub)
                 passengerDemand = passengerDemand * (125 / 100);
 
-            var routes = GeneralHelpers.GetAirportRoutes(airportCurrent);
+            var routes =Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
 
-            double passengerCapacity = 0;
+            double totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
 
-            if (routes.Count > 0) 
-                passengerCapacity = routes.Where(r=>r.HasAirliner).SelectMany(a => a.getAirliners()).Max(a=>a.Airliner.getTotalSeatCapacity());
-      
-            double size = passengerDemand - passengerCapacity;
-            
-            double happiness = GetPassengersHappiness(airliner.Airliner.Airline) > 0 ? GetPassengersHappiness(airliner.Airliner.Airline) : 35.0;
+            double capacityPercent = passengerDemand > totalCapacity ? 1 : passengerDemand / totalCapacity;
 
-            size = Convert.ToDouble(size) * happiness / 100.0;
-            
-            int value = Math.Min(Math.Max(10,(int)size), airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+            Dictionary<Route, double> rations = new Dictionary<Route, double>();
 
-            double price = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(type).FarePrice;
-            double standardPrice = GetPassengerPrice(airliner.CurrentFlight.Entry.TimeTable.Route.Destination1, airliner.CurrentFlight.Entry.TimeTable.Route.Destination2);
+            foreach (Route route in routes)
+                rations.Add(route, route.getServiceLevel(type) / route.getFarePrice(type));
 
-            double priceDiff = (price / standardPrice) * 1.13;
-     
-            value = Math.Min((int)(Convert.ToDouble(value) / priceDiff),airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+            double totalRatio = rations.Values.Sum();
 
-            if (airportCurrent.getDestinationPassengersRate(airportDestination, type) == GeneralHelpers.Rate.None)
-                return 0;
-            else
-             return value;
+            double routeRatioPercent = rations[currentRoute] / totalRatio;
+
+            return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent);
+
+          
+
         }
         //returns the holiday factor for an airport
         private static double GetHolidayFactor(Airport airport)

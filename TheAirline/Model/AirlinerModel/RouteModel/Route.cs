@@ -184,6 +184,16 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return getAirliners().Find(f => f.CurrentFlight != null && f.CurrentFlight.Entry.TimeTable.Route == this);
         }
+        //returns the service level for a specific class
+        public double getServiceLevel(AirlinerClass.ClassType type)
+        {
+            return this.Classes.Find(c => c.Type == type).getFacilities().Sum(f => f.ServiceLevel);
+        }
+        //returns the price for a specific class
+        public double getFarePrice(AirlinerClass.ClassType type)
+        {
+            return this.Classes.Find(c => c.Type == type).FarePrice;
+        }
 
     }
    
