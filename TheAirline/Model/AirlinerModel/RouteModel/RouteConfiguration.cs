@@ -10,8 +10,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     public class RouteClassesConfiguration : Configuration
     {
         private List<RouteClassConfiguration> Classes;
-        public RouteClassesConfiguration(string name)
-            : base(ConfigurationType.Routeclasses, name)
+        public RouteClassesConfiguration(string name,Boolean standard)
+            : base(ConfigurationType.Routeclasses, name,standard)
         {
             this.Classes = new List<RouteClassConfiguration>();
         }

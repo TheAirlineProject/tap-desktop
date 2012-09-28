@@ -195,7 +195,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             {
                 string name = txtName.Text.Trim();
 
-                AirlinerConfiguration configuration = new AirlinerConfiguration(name,((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxSeatingCapacity);
+                AirlinerConfiguration configuration = new AirlinerConfiguration(name,((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxSeatingCapacity,false);
 
                 foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
                 {

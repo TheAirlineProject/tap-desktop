@@ -59,13 +59,15 @@ namespace TheAirline.Model.GeneralModel
                 LoadFlightRestrictions();
                 LoadInflationYears();
                 LoadHolidays();
-
+            
                 SetupStatisticsTypes();
 
                 CreateAdvertisementTypes();
                 CreateTimeZones();
                 CreateFeeTypes();
                 CreateFlightFacilities();
+
+                LoadStandardConfigurations();
 
                 LoadAirlines();
 
@@ -167,6 +169,98 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("New Zealand Standard Time", "NZST", new TimeSpan(12, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Tonga Standard Time", "TST", new TimeSpan(13, 0, 0)));
         }
+        /*!loads the standard configurations
+         */
+        private static void LoadStandardConfigurations()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\standardconfigurations.xml");
+            XmlElement root = doc.DocumentElement;
+
+            try
+            {
+                XmlNodeList configurationsList = root.SelectNodes("//configuration");
+
+                foreach (XmlElement element in configurationsList)
+                {
+                    string type = element.Attributes["type"].Value;
+                    
+                    if (type == "Route")
+                        Configurations.AddConfiguration(LoadRouteClassesConfiguration(element));
+                    if (type == "Airliner")
+                        Configurations.AddConfiguration(LoadAirlinerConfiguration(element));
+                }
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+            }
+
+        }
+        /*! loads and returns an airliner configuration
+        */
+        private static AirlinerConfiguration LoadAirlinerConfiguration(XmlElement element)
+        {
+            string name = element.Attributes["name"].Value;
+            string id = element.Attributes["id"].Value;
+            int minimumSeats = Convert.ToInt16(element.Attributes["minimumseats"].Value);
+
+            XmlNodeList classesList = element.SelectNodes("classes/class");
+
+            AirlinerConfiguration configuration = new AirlinerConfiguration(name,minimumSeats, true);
+            configuration.ID = id;
+                  
+            foreach (XmlElement classElement in classesList)
+            {
+                int seating = Convert.ToInt16(classElement.Attributes["seating"].Value);
+                int regularseating = Convert.ToInt16(classElement.Attributes["regularseating"].Value);
+                AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+
+                AirlinerClassConfiguration classConf = new AirlinerClassConfiguration(classType, seating, regularseating);
+                foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                {
+                    string facUid = classElement.Attributes[facType.ToString()].Value;
+
+                    classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
+                }
+
+                configuration.addClassConfiguration(classConf);
+            }
+
+            return configuration;
+        }
+        /*! loads and returns a route classes configuration
+         */
+        private static RouteClassesConfiguration LoadRouteClassesConfiguration(XmlElement element)
+        {
+            string name = element.Attributes["name"].Value;
+            string id = element.Attributes["id"].Value;
+
+            XmlNodeList classesList = element.SelectNodes("classes/class");
+
+            RouteClassesConfiguration configuration = new RouteClassesConfiguration(name, true);
+            configuration.ID = id;
+
+            foreach (XmlElement classElement in classesList)
+            {
+                AirlinerClass.ClassType type = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+
+                RouteClassConfiguration classConfiguration = new RouteClassConfiguration(type);
+
+                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                {
+                    string value = classElement.Attributes[facilityType.ToString()].Value;
+                    RouteFacility facility = RouteFacilities.GetFacility(value);
+
+                    classConfiguration.addFacility(facility);
+                }
+                configuration.addClass(classConfiguration);
+
+
+            }
+
+            return configuration;
+        }
         /*! loads the holidays
          */
         private static void LoadHolidays()
@@ -204,7 +298,7 @@ namespace TheAirline.Model.GeneralModel
 
                     if (type == Holiday.HolidayType.Fixed_Date)
                     {
-                    
+
                         int month = Convert.ToInt16(dateElement.Attributes["month"].Value);
                         int day = Convert.ToInt16(dateElement.Attributes["day"].Value);
 
@@ -212,7 +306,7 @@ namespace TheAirline.Model.GeneralModel
 
                         foreach (Country country in countries)
                         {
-                            Holiday holiday = new Holiday(root.Name,uid,type, name, traveltype, country);
+                            Holiday holiday = new Holiday(root.Name, uid, type, name, traveltype, country);
                             holiday.Date = date;
 
                             Holidays.AddHoliday(holiday);
@@ -294,7 +388,7 @@ namespace TheAirline.Model.GeneralModel
 
             }
 
-              
+
         }
         /*! loads the airline facilities.
          */
@@ -390,7 +484,7 @@ namespace TheAirline.Model.GeneralModel
 
         private static void LoadAirliners(string file)
         {
-           string dir = AppSettings.getDataPath() + "\\graphics\\airlinerimages\\";
+            string dir = AppSettings.getDataPath() + "\\graphics\\airlinerimages\\";
             string id = "";
             try
             {
@@ -410,7 +504,7 @@ namespace TheAirline.Model.GeneralModel
                     string name = airliner.Attributes["name"].Value;
                     long price = Convert.ToInt64(airliner.Attributes["price"].Value);
 
-                 
+
 
                     id = name;
 
@@ -439,7 +533,7 @@ namespace TheAirline.Model.GeneralModel
                     DateTime from = new DateTime(fromYear, 1, 2);
                     DateTime to = new DateTime(toYear, 12, 31);
 
-                    AirlinerType type=null;
+                    AirlinerType type = null;
 
                     if (airlinerType == AirlinerType.TypeOfAirliner.Passenger)
                     {
@@ -458,7 +552,7 @@ namespace TheAirline.Model.GeneralModel
                         type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to));
                     }
 
-                     if (airliner.HasAttribute("image"))
+                    if (airliner.HasAttribute("image"))
                         type.Image = dir + airliner.Attributes["image"].Value + ".png";
 
                     if (type != null)
@@ -472,7 +566,7 @@ namespace TheAirline.Model.GeneralModel
                 s = e.ToString();
             }
         }
-        
+
         /*!loads the airports.
          */
         private static void LoadAirports()
@@ -526,7 +620,7 @@ namespace TheAirline.Model.GeneralModel
                         airportPeriod = new Period(airportFrom, airportTo);
                     }
                     else
-                        airportPeriod = new Period(new DateTime(1959,12, 31), new DateTime(2199,12, 31));
+                        airportPeriod = new Period(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31));
 
                     XmlElement townElement = (XmlElement)airportElement.SelectSingleNode("town");
                     string town = townElement.Attributes["town"].Value;
@@ -542,7 +636,7 @@ namespace TheAirline.Model.GeneralModel
                     XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
 
-                    Town eTown=null;
+                    Town eTown = null;
                     if (town.Contains(","))
                     {
                         State state = States.GetState(Countries.GetCountry(country), town.Split(',')[1].Trim());
@@ -550,12 +644,12 @@ namespace TheAirline.Model.GeneralModel
                         if (state == null)
                             eTown = new Town(town.Split(',')[0], Countries.GetCountry(country));
                         else
-                            eTown = new Town(town.Split(',')[0], Countries.GetCountry(country), state); 
+                            eTown = new Town(town.Split(',')[0], Countries.GetCountry(country), state);
                     }
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type,airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, season);
 
                     Airport airport = new Airport(profile);
 
@@ -582,7 +676,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                     Airports.AddAirport(airport);
 
-                 }
+                }
             }
             catch (Exception e)
             {
@@ -658,7 +752,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     name = "";
                 }
-                
+
             }
         }
         /*!loads the countries.
@@ -709,7 +803,7 @@ namespace TheAirline.Model.GeneralModel
                 string tailformat = element.Attributes["tailformat"].Value;
 
                 XmlElement territoryElement = (XmlElement)element.SelectSingleNode("territoryof");
-                              
+
                 Country territoryOf = Countries.GetCountry(territoryElement.Attributes["uid"].Value);
 
                 Country country = new TerritoryCountry(section, uid, shortname, region, tailformat, territoryOf);
@@ -719,11 +813,11 @@ namespace TheAirline.Model.GeneralModel
 
                 if (element.SelectSingleNode("translations") != null)
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
-  
+
 
 
             }
-       
+
         }
         /*! loads the temporary countries
          */
@@ -777,18 +871,18 @@ namespace TheAirline.Model.GeneralModel
                         Country tempCountry = Countries.GetCountry(tempCountryElement.Attributes["id"].Value);
                         DateTime cStartDate = Convert.ToDateTime(tempCountryElement.Attributes["start"].Value);
                         DateTime cEndDate = Convert.ToDateTime(tempCountryElement.Attributes["end"].Value);
-                                       
-                        tCountry.Countries.Add(new OneToManyCountry(tempCountry,cStartDate,cEndDate));
+
+                        tCountry.Countries.Add(new OneToManyCountry(tempCountry, cStartDate, cEndDate));
                     }
 
                 }
 
 
                 tCountry.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
-         
+
                 TemporaryCountries.AddCountry(tCountry);
 
-       
+
             }
         }
         /*! load the unions
@@ -979,7 +1073,7 @@ namespace TheAirline.Model.GeneralModel
             int typeNumber = rnd.Next(types.Count);
             AirlinerType type = types[typeNumber];
 
-            int countryNumber = rnd.Next(Countries.GetCountries().Count()-1);
+            int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
             Country country = Countries.GetCountries()[countryNumber];
 
             int builtYear = rnd.Next(Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year, type.Produced.To.Year));
@@ -1061,7 +1155,7 @@ namespace TheAirline.Model.GeneralModel
         {
             if (airline.Profile.PreferedAirport != null && GeneralHelpers.IsAirportActive(airline.Profile.PreferedAirport) && airline.Profile.PreferedAirport.Terminals.getFreeGates() > 1)
             {
-                 return airline.Profile.PreferedAirport;
+                return airline.Profile.PreferedAirport;
             }
             else
             {
@@ -1075,8 +1169,8 @@ namespace TheAirline.Model.GeneralModel
 
                 return AIHelpers.GetRandomItem(list);
             }
-         
-               
+
+
         }
         /*! creates some airliners and routes for a computer airline.
          */
@@ -1097,7 +1191,7 @@ namespace TheAirline.Model.GeneralModel
 
             int counter = 0;
 
-            while (airportDestination == null || airliner==null || !airliner.HasValue)
+            while (airportDestination == null || airliner == null || !airliner.HasValue)
             {
                 airportDestination = airportDestinations[counter];
 
@@ -1108,7 +1202,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (airportDestination == null || !airliner.HasValue)
             {
-               
+
                 CreateComputerRoutes(airline);
 
             }
@@ -1117,7 +1211,7 @@ namespace TheAirline.Model.GeneralModel
                 airportHomeBase.Terminals.rentGate(airline);
                 airportHomeBase.Terminals.rentGate(airline);
 
-               
+
                 airportDestination.Terminals.rentGate(airline);
                 airportDestination.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
@@ -1128,25 +1222,24 @@ namespace TheAirline.Model.GeneralModel
 
                 Route route = new Route(id.ToString(), airportDestination, airline.Airports[0], price);
 
-                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key,airportHomeBase);
+                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportHomeBase);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
+                AIHelpers.CreateAirlinerClasses(fAirliner);
+
                 route.LastUpdated = GameObject.GetInstance().GameTime;
+                
+                RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
 
-
-
-                foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
-                    route.getRouteAirlinerClass(type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(type);
-                    
-                    foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
-                    {
-                        if (GameObject.GetInstance().GameTime.Year >= (int)ftype)
-                            route.getRouteAirlinerClass(type).addFacility(AirlineHelpers.GetRouteFacilities(airline, ftype)[rnd.Next(AirlineHelpers.GetRouteFacilities(airline,ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
+                    route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
 
-                    }
+                    foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                        route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rFacility);
                 }
+
                 airline.addRoute(route);
 
                 airportDestination.Terminals.getEmptyGate(airline).HasRoute = true;
@@ -1157,8 +1250,8 @@ namespace TheAirline.Model.GeneralModel
 
             }
         }
-         /*! loads the maps for the airports
-         */
+        /*! loads the maps for the airports
+        */
         private static void LoadAirportMaps()
         {
             DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\graphics\\airportmaps");
@@ -1227,22 +1320,22 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateFlightFacilities()
         {
-            RouteFacilities.AddFacility(new RouteFacility("100",RouteFacility.FacilityType.Food, "None", -50, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("100", RouteFacility.FacilityType.Food, "None", -50, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility("101", RouteFacility.FacilityType.Food, "Buyable Snacks", 10, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Snacks")));
-            RouteFacilities.AddFacility(new RouteFacility("102", RouteFacility.FacilityType.Food, "Free Snacks",  15, RouteFacility.ExpenseType.Fixed, 0.10, null));
-            RouteFacilities.AddFacility(new RouteFacility("103", RouteFacility.FacilityType.Food, "Buyable Meal",  25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
-            RouteFacilities.AddFacility(new RouteFacility("104", RouteFacility.FacilityType.Food, "Basic Meal",  50, RouteFacility.ExpenseType.Fixed, 0.50, null));
-            RouteFacilities.AddFacility(new RouteFacility("105", RouteFacility.FacilityType.Food, "Full Dinner",  100, RouteFacility.ExpenseType.Fixed, 2, null));
-            RouteFacilities.AddFacility(new RouteFacility("106", RouteFacility.FacilityType.Drinks, "None",  -50, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility("107", RouteFacility.FacilityType.Drinks, "Buyable",  25, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Drinks")));
-            RouteFacilities.AddFacility(new RouteFacility("108", RouteFacility.FacilityType.Drinks, "Free",  80, RouteFacility.ExpenseType.Fixed, 0.20, null));
-            RouteFacilities.AddFacility(new RouteFacility("109", RouteFacility.FacilityType.Alcoholic_Drinks, "None",  0, RouteFacility.ExpenseType.Fixed, 0, null));
-            RouteFacilities.AddFacility(new RouteFacility("110", RouteFacility.FacilityType.Alcoholic_Drinks, "Buyable",  40, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Alcholic Drinks")));
-            RouteFacilities.AddFacility(new RouteFacility("111", RouteFacility.FacilityType.Alcoholic_Drinks, "Free",  100, RouteFacility.ExpenseType.Fixed, 0.75, null));
+            RouteFacilities.AddFacility(new RouteFacility("102", RouteFacility.FacilityType.Food, "Free Snacks", 15, RouteFacility.ExpenseType.Fixed, 0.10, null));
+            RouteFacilities.AddFacility(new RouteFacility("103", RouteFacility.FacilityType.Food, "Buyable Meal", 25, RouteFacility.ExpenseType.Random, 0.50, FeeTypes.GetType("Meal")));
+            RouteFacilities.AddFacility(new RouteFacility("104", RouteFacility.FacilityType.Food, "Basic Meal", 50, RouteFacility.ExpenseType.Fixed, 0.50, null));
+            RouteFacilities.AddFacility(new RouteFacility("105", RouteFacility.FacilityType.Food, "Full Dinner", 100, RouteFacility.ExpenseType.Fixed, 2, null));
+            RouteFacilities.AddFacility(new RouteFacility("106", RouteFacility.FacilityType.Drinks, "None", -50, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("107", RouteFacility.FacilityType.Drinks, "Buyable", 25, RouteFacility.ExpenseType.Random, 0.10, FeeTypes.GetType("Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility("108", RouteFacility.FacilityType.Drinks, "Free", 80, RouteFacility.ExpenseType.Fixed, 0.20, null));
+            RouteFacilities.AddFacility(new RouteFacility("109", RouteFacility.FacilityType.Alcoholic_Drinks, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("110", RouteFacility.FacilityType.Alcoholic_Drinks, "Buyable", 40, RouteFacility.ExpenseType.Random, 0.05, FeeTypes.GetType("Alcholic Drinks")));
+            RouteFacilities.AddFacility(new RouteFacility("111", RouteFacility.FacilityType.Alcoholic_Drinks, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.75, null));
             RouteFacilities.AddFacility(new RouteFacility("112", RouteFacility.FacilityType.WiFi, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility("113", RouteFacility.FacilityType.WiFi, "Buyable", 40, RouteFacility.ExpenseType.Random, 0.5, FeeTypes.GetType("WiFi"), AirlineFacilities.GetFacility("107")));
             RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.WiFi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.5, null, AirlineFacilities.GetFacility("107")));
-     
+
         }
 
         /*! creates the Fee types.
@@ -1261,7 +1354,7 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 0, 0, 5.25, 25));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 0, 0, 6, 2));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 18, 1));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25,2007));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25, 2007));
         }
     }
 }

@@ -421,19 +421,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         Route route = new Route(id.ToString(), airport, destination, price);
 
-                        foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                        RouteClassesConfiguration configuration = GetRouteConfiguration(route);
+
+                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                         {
-                            route.getRouteAirlinerClass(type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(type);
-                       
-                            foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
-                            {
-                                if (GameObject.GetInstance().GameTime.Year >= (int)ftype)
-                                    route.getRouteAirlinerClass(type).addFacility(AirlineHelpers.GetRouteFacilities(airline,ftype)[rnd.Next(AirlineHelpers.GetRouteFacilities(airline,ftype).Count)]);// RouteFacilities.GetBasicFacility(RouteFacility.FacilityType.Drinks);
-          
-                            }
+                            route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
 
-
+                            foreach (RouteFacility facility in classConfiguration.getFacilities())
+                                route.getRouteAirlinerClass(classConfiguration.Type).addFacility(facility);
                         }
+
+                    
 
                         airline.addRoute(route);
 
@@ -442,11 +440,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (fAirliner == null)
                         {
-                            if (airliner.Value.Key.TailNumber == "")
-                            {
-                                string s = airliner.Value.Key.TailNumber;
-                                s = "JJ";
-                            }
+                           
                             if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name) 
                                 airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
@@ -472,8 +466,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
 
-                        }
+                            CreateAirlinerClasses(fAirliner);
 
+
+                        }
+                      
                         fAirliner.addRoute(route);
                         CreateRouteTimeTable(route, fAirliner);
 
@@ -835,6 +832,62 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return false;
 
             return true;
+        }
+        //creates the airliner classes for an airliner
+        public static void CreateAirlinerClasses(FleetAirliner airliner)
+        {
+            airliner.Airliner.clearAirlinerClasses();
+
+            AirlinerConfiguration configuration = null;
+
+            int classes = ((AirlinerPassengerType)airliner.Airliner.Type).MaxAirlinerClasses;
+
+            if (classes == 1)
+                configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
+            if (classes == 2)
+                configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
+            if (classes == 3)
+                configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
+
+            foreach (AirlinerClassConfiguration aClass in configuration.Classes)
+            {
+                AirlinerClass airlinerClass = new AirlinerClass(airliner.Airliner, aClass.Type, aClass.SeatingCapacity);
+                airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+
+                foreach (AirlinerFacility facility in aClass.getFacilities())
+                    airlinerClass.setFacility(facility);
+
+                airliner.Airliner.addAirlinerClass(airlinerClass);
+            }
+
+            int seatingDiff = ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
+
+            airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
+
+            AirlinerFacility seatingFacility = airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+
+            int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+
+            airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
+
+            
+
+        }
+        //returns the prefered configuration for a spefic route
+        public static RouteClassesConfiguration GetRouteConfiguration(Route route)
+        {
+            double distance = MathHelpers.GetDistance(route.Destination1, route.Destination2);
+
+            if (distance < 500)
+                return (RouteClassesConfiguration)Configurations.GetStandardConfiguration("100");
+            if (distance < 2000)
+                return (RouteClassesConfiguration)Configurations.GetStandardConfiguration("101");
+            if (route.Destination1.Profile.Country == route.Destination2.Profile.Country)
+                return (RouteClassesConfiguration)Configurations.GetStandardConfiguration("102");
+            if (route.Destination1.Profile.Country != route.Destination2.Profile.Country)
+                return (RouteClassesConfiguration)Configurations.GetStandardConfiguration("103");
+
+            return null;
         }
         //returns a random item based on a weighted value
         public static T GetRandomItem<T>(Dictionary<T, int> list)

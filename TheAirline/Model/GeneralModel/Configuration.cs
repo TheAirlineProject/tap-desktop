@@ -10,11 +10,15 @@ namespace TheAirline.Model.GeneralModel
     {
         public enum ConfigurationType { Airliner, Routeclasses }
         public ConfigurationType Type { get; set; }
+        public Boolean Standard { get; set; }
         public string Name { get; set; }
-        public Configuration(ConfigurationType type, string name)
+        public string ID { get; set; }
+        public Configuration(ConfigurationType type, string name,Boolean standard)
         {
             this.Name = name;
             this.Type = type;
+            this.Standard = standard;
+            this.ID = name;
         }
     }
     //the collection of configurations
@@ -24,10 +28,15 @@ namespace TheAirline.Model.GeneralModel
         //adds a configuration to the list
         public static void AddConfiguration(Configuration configuration)
         {
-            if (configurations.Find(c => c.Name == configuration.Name) != null)
+            if (configurations.Find(c => c.Name == configuration.Name && !c.Standard) != null)
                 configurations.RemoveAll(c => c.Name == configuration.Name);
 
             configurations.Add(configuration);
+        }
+        //returns a standard configuration with a specific name / or
+        public static Configuration GetStandardConfiguration(string name)
+        {
+            return configurations.Find(c => (c.Name == name || c.ID == name) && c.Standard);
         }
         //returns the list of configuraitons
         public static List<Configuration> GetConfigurations()

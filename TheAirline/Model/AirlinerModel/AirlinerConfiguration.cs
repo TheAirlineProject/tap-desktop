@@ -11,7 +11,7 @@ namespace TheAirline.Model.AirlinerModel
     {
         public int MinimumSeats { get; set; }
         public List<AirlinerClassConfiguration> Classes { get; set; }
-        public AirlinerConfiguration(string name, int minimumSeats) : base(Configuration.ConfigurationType.Airliner, name)
+        public AirlinerConfiguration(string name, int minimumSeats, Boolean standard) : base(Configuration.ConfigurationType.Airliner, name,standard)
         {
             this.MinimumSeats = minimumSeats;
             this.Classes = new List<AirlinerClassConfiguration>();

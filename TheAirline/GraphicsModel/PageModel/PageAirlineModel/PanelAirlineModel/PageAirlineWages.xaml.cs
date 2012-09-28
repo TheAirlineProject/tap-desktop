@@ -531,7 +531,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), txtName) == PopUpSingleElement.ButtonSelected.OK && txtName.Text.Trim().Length > 2)
             {
                 string name = txtName.Text.Trim();
-                RouteClassesConfiguration configuration = new RouteClassesConfiguration(name);
+                RouteClassesConfiguration configuration = new RouteClassesConfiguration(name,true);
                 foreach (AirlinerClass.ClassType type in this.Facilities.Keys)
                 {
                     RouteClassConfiguration classConfiguration = new RouteClassConfiguration(type);

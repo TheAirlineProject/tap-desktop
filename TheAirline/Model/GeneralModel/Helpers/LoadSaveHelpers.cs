@@ -550,9 +550,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement confElement in configurationsList)
             {
                 string confName = confElement.Attributes["name"].Value;
+                string confid = confElement.Attributes["id"].Value;
+                Boolean standard = Convert.ToBoolean(confElement.Attributes["standard"].Value);
+               
                 int minimumSeats = Convert.ToInt16(confElement.Attributes["minimumseats"].Value);
-
-                AirlinerConfiguration configuration = new AirlinerConfiguration(confName, minimumSeats);
+              
+                AirlinerConfiguration configuration = new AirlinerConfiguration(confName, minimumSeats,standard);
+                configuration.ID = confid;
 
                 XmlNodeList classesList = confElement.SelectNodes("classes/class");
 
@@ -580,9 +584,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement confElement in routeConfigurationsList)
             {
                 string routeConfName = confElement.Attributes["name"].Value;
+                string confid = confElement.Attributes["id"].Value;
+                Boolean standard = Convert.ToBoolean(confElement.Attributes["standard"].Value);
+             
                 XmlNodeList classesList = confElement.SelectNodes("classes/class");
 
-                RouteClassesConfiguration classesConfiguration = new RouteClassesConfiguration(routeConfName);
+                RouteClassesConfiguration classesConfiguration = new RouteClassesConfiguration(routeConfName,standard);
+                classesConfiguration.ID = confid;
+
                 foreach (XmlElement classElement in classesList)
                 {
                     AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
@@ -1191,7 +1200,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement configurationNode = xmlDoc.CreateElement("configuration");
                 configurationNode.SetAttribute("name", conf.Name);
-                configurationNode.SetAttribute("minimumseats", conf.MinimumSeats.ToString());
+                configurationNode.SetAttribute("id", conf.ID);
+                configurationNode.SetAttribute("standard", conf.Standard.ToString());
+           
+                 configurationNode.SetAttribute("minimumseats", conf.MinimumSeats.ToString());
 
                 XmlElement classesNode = xmlDoc.CreateElement("classes");
 
@@ -1225,7 +1237,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement routeConfigurationNode = xmlDoc.CreateElement("routeclassesconfiguration");
                 routeConfigurationNode.SetAttribute("name", configuration.Name);
-
+                routeConfigurationNode.SetAttribute("id", configuration.ID);
+                routeConfigurationNode.SetAttribute("standard", configuration.Standard.ToString());
+              
                 XmlElement classesNode = xmlDoc.CreateElement("classes");
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
