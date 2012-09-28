@@ -379,12 +379,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelWagesFee.Children.Add(lbFees);
 
             TextBlock txtHeaderDiscounts = new TextBlock();
-            txtHeaderDiscounts.Uid = "1004";
+            txtHeaderDiscounts.Uid = "1015";
             txtHeaderDiscounts.Margin = new Thickness(0, 5, 0, 0);
             txtHeaderDiscounts.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeaderDiscounts.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeaderDiscounts.FontWeight = FontWeights.Bold;
-            txtHeaderDiscounts.Text = "Discounts";
+            txtHeaderDiscounts.Text = Translator.GetInstance().GetString("PageAirlineWages",txtHeaderDiscounts.Uid);
 
             panelWagesFee.Children.Add(txtHeaderDiscounts);
 
