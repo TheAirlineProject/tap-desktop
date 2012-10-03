@@ -27,6 +27,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
     public partial class PageAirline : StandardPage
     {
         private Airline Airline;
+        private ComboBox cbControlling;
+        private Button btnOk;
         public PageAirline(Airline airline)
         {
             InitializeComponent();
@@ -40,14 +42,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             airportPanel.Margin = new Thickness(10, 0, 10, 0);
 
             airportPanel.Children.Add(createQuickInfoPanel());
+            
             if (this.Airline.Contract != null)
                 airportPanel.Children.Add(createManufacturerContractPanel());
+
+            if (this.Airline.IsHuman)
+                airportPanel.Children.Add(createHumanControllingPanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
             panelContent.setContentPage(airportPanel, StandardContentPanel.ContentLocation.Left);
 
-            StackPanel panelSideMenu = new PanelAirline(this.Airline);
+            StackPanel panelSideMenu = new PanelAirline(this.Airline,this);
 
             panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
 
@@ -151,7 +157,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
        
         
         //creates the panel for airline value
-        public WrapPanel createAirlineValuePanel()
+        private WrapPanel createAirlineValuePanel()
         {
             WrapPanel panelValue = new WrapPanel();
             panelValue.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
@@ -180,7 +186,57 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             return panelValue;
         }
+        //creates the panel for the human controlling airline
+        private StackPanel createHumanControllingPanel()
+        {
+            StackPanel panelMain = new StackPanel();
+            panelMain.Margin = new Thickness(5, 5, 10, 0);
 
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1020";
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
+            txtHeader.TextAlignment = TextAlignment.Left;
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirline", txtHeader.Uid);
+
+            panelMain.Children.Add(txtHeader);
+
+            WrapPanel panelChangeControl = new WrapPanel();
+
+            panelMain.Children.Add(panelChangeControl);
+
+            cbControlling = new ComboBox();
+            cbControlling.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbControlling.SetResourceReference(ComboBox.ItemTemplateProperty, "AirlineLogoItem");
+            cbControlling.Width = 250;
+            cbControlling.Items.Add(GameObject.GetInstance().MainAirline);
+
+            foreach (Airline airline in GameObject.GetInstance().MainAirline.Subsidiaries)
+                cbControlling.Items.Add(airline);
+
+             cbControlling.SelectedItem = GameObject.GetInstance().HumanAirline;
+
+             panelChangeControl.Children.Add(cbControlling);
+
+             btnOk = new Button();
+             btnOk.Uid = "116";
+             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+             btnOk.Height = Double.NaN;
+             btnOk.Width = Double.NaN;
+             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
+             btnOk.IsEnabled = cbControlling.Items.Count > 1;
+             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+             btnOk.Margin = new Thickness(5, 0, 0, 0);
+             btnOk.Click += new RoutedEventHandler(btnOk_Click);
+
+             panelChangeControl.Children.Add(btnOk);
+
+             return panelMain;
+       
+        }
+
+       
         //creates the panel for airline reputation
         public WrapPanel createAirlineReputationPanel()
         {
@@ -207,6 +263,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             }
 
             return panelStars;
+        }
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            Airline airline = (Airline)cbControlling.SelectedItem;
+
+            if (airline != GameObject.GetInstance().HumanAirline)
+            {
+                GameObject.GetInstance().HumanAirline = airline;
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+            }
+        }
+        public override void updatePage()
+        {
+            cbControlling.Items.Clear();
+
+            cbControlling.Items.Add(GameObject.GetInstance().MainAirline);
+
+            foreach (Airline airline in GameObject.GetInstance().MainAirline.Subsidiaries)
+                cbControlling.Items.Add(airline);
+
+            cbControlling.SelectedItem = GameObject.GetInstance().HumanAirline;
+
+            btnOk.IsEnabled = cbControlling.Items.Count > 1;
+        
+
         }
     }
 }

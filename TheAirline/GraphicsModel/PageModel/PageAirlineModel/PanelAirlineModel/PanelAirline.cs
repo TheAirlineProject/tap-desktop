@@ -7,6 +7,8 @@ using System.Windows.Navigation;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -14,9 +16,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     {
         private Frame frameContent;
         private Airline Airline;
-        public PanelAirline(Airline airline)
+        private StandardPage PageParent;
+        public PanelAirline(Airline airline,StandardPage parent)
         {
             this.Airline = airline;
+            this.PageParent = parent;
 
             WrapPanel buttonsPanel = new WrapPanel();
 
@@ -46,6 +50,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbFinances.Click += new System.Windows.RoutedEventHandler(sbFinances_Click);
             buttonsPanel.Children.Add(sbFinances);
 
+            ucSelectButton sbSubsidiary = new ucSelectButton();
+            sbSubsidiary.Uid = "1007";
+            sbSubsidiary.Content = Translator.GetInstance().GetString("PanelAirline", sbSubsidiary.Uid);
+            sbSubsidiary.Click += new System.Windows.RoutedEventHandler(sbSubsidiary_Click);
+            sbSubsidiary.Visibility = this.Airline is SubsidiaryAirline ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+            buttonsPanel.Children.Add(sbSubsidiary);
+
             ucSelectButton sbWages = new ucSelectButton();
             sbWages.Uid = "1006";
             sbWages.Content = Translator.GetInstance().GetString("PanelAirline", sbWages.Uid);
@@ -60,6 +71,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             frameContent.Navigate(new PageAirlineFleet(this.Airline));
 
             this.Children.Add(frameContent);
+        }
+
+        private void sbSubsidiary_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageAirlineSubsidiaries(this.Airline,this.PageParent));
         }
 
      

@@ -26,6 +26,7 @@ using System.Windows.Controls.Primitives;
 using TheAirline.Model.PassengerModel;
 using TheAirline.GraphicsModel.PageModel.PageAlliancesModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -60,15 +61,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
          
             panelMain.Children.Add(menu);
 
-           
-          
+       
+
             this.Content = base.panelMain;
 
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageStandardMenuTop_OnTimeChanged);
 
             this.Unloaded += new RoutedEventHandler(PageStandardMenuTop_Unloaded);
         }
-
+     
         private void PageStandardMenuTop_Unloaded(object sender, RoutedEventArgs e)
         {
             GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageStandardMenuTop_OnTimeChanged);
@@ -77,7 +78,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void PageStandardMenuTop_OnTimeChanged()
         {
+            
             setNewsText();
+            
+     
+      
+   
         }
         //sets the text of the news
         private void setNewsText()

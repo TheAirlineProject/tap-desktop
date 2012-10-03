@@ -301,6 +301,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airline.Profile.CEO = txtName.Text.Trim();
 
                 GameObject.GetInstance().HumanAirline = airline;
+                GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
 

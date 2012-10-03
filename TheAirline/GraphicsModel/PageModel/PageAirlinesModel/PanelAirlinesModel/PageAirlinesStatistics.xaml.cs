@@ -18,6 +18,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using System.ComponentModel;
 using System.Threading;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel
 {
@@ -143,13 +144,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             lbStats.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStats.ItemTemplate = inPercent ? this.Resources["StatPercentItem"] as DataTemplate : this.Resources["StatItem"] as DataTemplate;
 
-            List<Airline> airlines = Airlines.GetAllAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a=>!a.IsSubsidiary);
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             List<KeyValuePair<Airline, StatisticsType>> values = new List<KeyValuePair<Airline, StatisticsType>>();
 
-            airlines.ForEach(a => values.Add(new KeyValuePair<Airline, StatisticsType>(a, type)));
-
+            foreach (Airline airline in airlines)
+            {
+                values.Add(new KeyValuePair<Airline, StatisticsType>(airline, type));
+                foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
+                    values.Add(new KeyValuePair<Airline, StatisticsType>(sAirline, type));
+            }
+          
             lbStats.ItemsSource = values;
 
             panelStatistics.Children.Add(lbStats);

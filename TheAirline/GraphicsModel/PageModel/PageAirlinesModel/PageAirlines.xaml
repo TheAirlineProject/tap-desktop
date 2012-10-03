@@ -30,7 +30,8 @@
                 </TextBlock>
                 <TextBlock Text="{Binding Profile.IATACode}" Width="50" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.CEO}" VerticalAlignment="Bottom"></TextBlock>
-                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0"    RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding IsHuman,Converter={StaticResource booleanToVisibility}}"></Image>
+                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding IsHuman,Converter={StaticResource booleanToVisibility}}"></Image>
+                <Image Source="/Data/images/airplane.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding IsSubsidiary,Converter={StaticResource booleanToVisibility}}"></Image>
 
             </WrapPanel>
         </DataTemplate>

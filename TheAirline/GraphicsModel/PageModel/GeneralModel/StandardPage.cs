@@ -13,6 +13,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.AirlineModel;
 
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -279,6 +280,7 @@ public class StandardContentPanel : Grid
 public class PageInformation : Page
 {
     private TextBlock txtGasPrice;
+
     public PageInformation()
     {
         this.Background = Brushes.Transparent;
@@ -288,6 +290,7 @@ public class PageInformation : Page
         panelContent.VerticalAlignment = System.Windows.VerticalAlignment.Center;
         panelContent.Margin = new Thickness(0, 0, 5, 0);
 
+      
         Image imgLogo = new Image();
         imgLogo.Source = new BitmapImage(new Uri(@"/Data/images/gas-white.png", UriKind.RelativeOrAbsolute));
         imgLogo.Height = 16;
@@ -309,6 +312,7 @@ public class PageInformation : Page
         this.Unloaded += new RoutedEventHandler(PageInformation_Unloaded);
     }
 
+   
     private void PageInformation_Unloaded(object sender, RoutedEventArgs e)
     {
         GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageInformation_OnTimeChanged);
@@ -317,7 +321,13 @@ public class PageInformation : Page
 
     private void PageInformation_OnTimeChanged()
     {
+       
         if (this.IsLoaded)
+        {
             txtGasPrice.Text = string.Format("{0:c}/{1}.", new FuelUnitConverter().Convert(GameObject.GetInstance().FuelPrice), new StringToLanguageConverter().Convert("ltr"));
-    }
+            
+     
+
+        }
+     }
 }

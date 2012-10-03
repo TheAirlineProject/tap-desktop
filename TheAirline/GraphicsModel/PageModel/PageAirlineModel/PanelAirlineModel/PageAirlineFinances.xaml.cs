@@ -69,8 +69,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1003"), txtCurrentMoney));
 
-            txtBalance = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money - GameObject.GetInstance().StartMoney));
-            txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - GameObject.GetInstance().StartMoney, null, null, null) as Brush;
+            txtBalance = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money - this.Airline.StartMoney));
+            txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - this.Airline.StartMoney, null, null, null) as Brush;
             lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1004"), txtBalance));
 
             ContentControl txtSpecifications = new ContentControl();
@@ -186,7 +186,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             if (this.IsLoaded)
             {
                 txtBalance.Text = string.Format("{0:c}", this.Airline.getProfit());
-                txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - GameObject.GetInstance().StartMoney, null, null, null) as Brush;
+                txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - this.Airline.StartMoney, null, null, null) as Brush;
 
                 txtCurrentMoney.Text = string.Format("{0:c}", this.Airline.Money);
                 txtCurrentMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money, null, null, null) as Brush;            

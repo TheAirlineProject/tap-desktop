@@ -17,7 +17,16 @@
                     </Hyperlink>
         </TextBlock>
     </DataTemplate>
-    
+    <DataTemplate x:Key="AirlineLogoLink">
+        <DockPanel>
+            <Image Source="{Binding Profile.Logo}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding}" Click="Airline_Click" >
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
+            </TextBlock>
+        </DockPanel>
+    </DataTemplate>
     <DataTemplate x:Key="AirportCountryLink">
         <DockPanel>
             <ContentControl ContentTemplate="{DynamicResource CountryFlag}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>

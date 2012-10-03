@@ -117,6 +117,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineSubsidiaries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineWages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -313,6 +317,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -395,6 +403,9 @@
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineStatistics.xaml.cs">
       <DependentUpon>PageAirlineStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineSubsidiaries.xaml.cs">
+      <DependentUpon>PageAirlineSubsidiaries.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineWages.xaml.cs">
       <DependentUpon>PageAirlineWages.xaml</DependentUpon>
@@ -554,6 +565,9 @@
       <DependentUpon>PopUpMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewAirlinerHomeBase.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml.cs">
+      <DependentUpon>PopUpNewSubsidiary.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
       <DependentUpon>PopUpRouteFacilities.xaml</DependentUpon>
     </Compile>
@@ -595,6 +609,7 @@
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />
     <Compile Include="Model\AirlineModel\FeeType.cs" />
+    <Compile Include="Model\AirlineModel\SubsidiaryModel\SubsidiaryAirline.cs" />
     <Compile Include="Model\AirlinerModel\Airliner.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerClass.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerConfiguration.cs" />
@@ -762,6 +777,7 @@
   <ItemGroup>
     <Resource Include="Data\images\start.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

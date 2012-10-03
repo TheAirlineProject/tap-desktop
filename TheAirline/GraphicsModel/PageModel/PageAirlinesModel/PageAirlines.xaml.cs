@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
 {
@@ -45,21 +46,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             ListBox lbAirlines = new ListBox();
             lbAirlines.ItemTemplate = this.Resources["AirlineItem"] as DataTemplate;
             // chs, 2011-10-10 set max height so scroll bars are enabled
-            lbAirlines.MaxHeight=GraphicsHelpers.GetContentHeight() - 75;
+            lbAirlines.MaxHeight=GraphicsHelpers.GetContentHeight() - 100;
             lbAirlines.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            List<Airline> airlines = Airlines.GetAllAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a=>!a.IsSubsidiary);
             //airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             airlines.OrderBy(a => a.Profile.Name);
 
-            airlines.Remove(GameObject.GetInstance().HumanAirline);
-            airlines.Insert(0, GameObject.GetInstance().HumanAirline);
-        
+            if (!GameObject.GetInstance().HumanAirline.IsSubsidiary)
+            {
+                airlines.Remove(GameObject.GetInstance().HumanAirline);
+                airlines.Insert(0, GameObject.GetInstance().HumanAirline);
+            }
+
             foreach (Airline airline in airlines)
+            {
                 lbAirlines.Items.Add(airline);
+                foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
+                    lbAirlines.Items.Add(sAirline);
+            }
 
             airlinesPanel.Children.Add(lbAirlines);
+
+            airlinesPanel.Children.Add(createSymbolsPanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -85,6 +95,41 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
 
             PageNavigator.NavigateTo(new PageAirline(airline));
 
+        }
+        //creates the panel for the symbols
+        private WrapPanel createSymbolsPanel()
+        {
+            WrapPanel panelSymbols = new WrapPanel();
+            panelSymbols.Margin = new Thickness(0, 5, 0, 0);
+
+            Image imgHuman = new Image();
+            imgHuman.Source = new BitmapImage(new Uri(@"/Data/images/human.png", UriKind.RelativeOrAbsolute));
+            imgHuman.Width = 20;
+            RenderOptions.SetBitmapScalingMode(imgHuman, BitmapScalingMode.HighQuality);
+
+            panelSymbols.Children.Add(imgHuman);
+
+            TextBlock txtHuman = new TextBlock();
+            txtHuman.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            txtHuman.Text = string.Format(" = {0}", Translator.GetInstance().GetString("PageAirlines","1001"));
+
+            panelSymbols.Children.Add(txtHuman);
+
+            Image imgSubsidiary = new Image();
+            imgSubsidiary.Source = new BitmapImage(new Uri(@"/Data/images/airplane.png", UriKind.RelativeOrAbsolute));
+            imgSubsidiary.Width = 20;
+            imgSubsidiary.Margin = new Thickness(5, 0, 0, 0);
+            RenderOptions.SetBitmapScalingMode(imgSubsidiary, BitmapScalingMode.HighQuality);
+
+            panelSymbols.Children.Add(imgSubsidiary);
+
+            TextBlock txtSubsidiary = new TextBlock();
+            txtSubsidiary.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            txtSubsidiary.Text = string.Format(" = {0}", Translator.GetInstance().GetString("PageAirlines","1002"));
+
+            panelSymbols.Children.Add(txtSubsidiary);
+
+            return panelSymbols;
         }
     }
 }

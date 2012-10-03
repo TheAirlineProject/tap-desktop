@@ -622,6 +622,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline humanAirline = Airlines.GetAirline(gameSettingsNode.Attributes["human"].Value);
             GameObject.GetInstance().HumanAirline = humanAirline;
 
+            Airline mainAirline = Airlines.GetAirline(gameSettingsNode.Attributes["mainairline"].Value);
+            GameObject.GetInstance().MainAirline = mainAirline;
+
             double fuelPrice = Convert.ToDouble(gameSettingsNode.Attributes["fuelprice"].Value);
             GameObject.GetInstance().FuelPrice = fuelPrice;
 
@@ -1265,6 +1268,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
+            gameSettingsNode.SetAttribute("mainairline", GameObject.GetInstance().MainAirline.Profile.IATACode);
             gameSettingsNode.SetAttribute("fuelprice", GameObject.GetInstance().FuelPrice.ToString());
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());

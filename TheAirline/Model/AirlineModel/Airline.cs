@@ -8,6 +8,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -22,13 +23,16 @@ namespace TheAirline.Model.AirlineModel
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
         public List<Airport> Airports { get; set; }
         public List<FleetAirliner> Fleet { get; set; }
+        public List<SubsidiaryAirline> Subsidiaries { get; set; }
         public AirlineProfile Profile { get; set; }
         public List<Route> Routes { get; set; }
         public List<AirlineFacility> Facilities { get; set; }
         private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
         public GeneralStatistics Statistics { get; set; }
         public double Money { get; set; }
-        public Boolean IsHuman { get { return this == GameObject.GetInstance().HumanAirline; } set { ;} }
+        public double StartMoney { get; set; }
+        public Boolean IsHuman { get { return isHuman(); } set { ;} }
+        public Boolean IsSubsidiary { get { return isSubsidiaryAirline(); } set { ;} }
         private Invoices Invoices;
         public AirlineFees Fees { get; set; }
         public List<Loan> Loans { get; set; }
@@ -41,6 +45,7 @@ namespace TheAirline.Model.AirlineModel
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this.Routes = new List<Route>();
+            this.Subsidiaries = new List<SubsidiaryAirline>();
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
@@ -130,12 +135,6 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Facilities.Remove(facility);
         }
-        /*
-        //clears all the invoices
-        public void clearInvoices(DateTime start, DateTime end, Invoice.InvoiceType type)
-        {
-            this.Invoices.RemoveAll(i => i.Date >= start && i.Date < end && i.Type == type);
-        }*/
         //returns all the invoices
         public Invoices getInvoices()
         {
@@ -265,7 +264,7 @@ namespace TheAirline.Model.AirlineModel
         public AirlineValue getAirlineValue()
         {
             double value = getValue();
-            double startMoney = GameObject.GetInstance().StartMoney;
+            double startMoney = this.StartMoney;
             
             if (value < startMoney / 4)
                 return AirlineValue.Very_low;
@@ -344,7 +343,7 @@ namespace TheAirline.Model.AirlineModel
          */
         public double getProfit()
         {
-            return this.Money - GameObject.GetInstance().StartMoney;
+            return this.Money - this.StartMoney;
         }
         /*! returns the fleet size
          */
@@ -366,7 +365,26 @@ namespace TheAirline.Model.AirlineModel
             else
                 return totalAge / getFleetSize();
         }
-     
+        //returns if the airline is a subsidiary airline
+        public virtual Boolean isSubsidiaryAirline()
+        {
+            return false;
+        }
+        //returns if it is the human airline
+        public virtual Boolean isHuman()
+        {
+            return this == GameObject.GetInstance().HumanAirline || this == GameObject.GetInstance().MainAirline;
+        }
+        //adds a subsidiary airline to the airline
+        public void addSubsidiaryAirline(SubsidiaryAirline subsidiary)
+        {
+            this.Subsidiaries.Add(subsidiary);
+        }
+        //removes a subsidary airline from the airline 
+        public void removeSubsidiaryAirline(SubsidiaryAirline subsidiary)
+        {
+            this.Subsidiaries.Remove(subsidiary);
+        }
      
        
     }
@@ -407,7 +425,9 @@ namespace TheAirline.Model.AirlineModel
         {
             airlines.Remove(airline.Profile.IATACode);
         }
+      
     }
+
    
    
    

@@ -16,6 +16,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel
 {
@@ -121,7 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             double coff = this.StatWidth / maxValue;
 
-            List<Airline> airlines = Airlines.GetAllAirlines();
+            List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a=>!a.IsSubsidiary);
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)
@@ -131,6 +132,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 double value = (double)method.Invoke(airline, null);
 
                 lbStatistics.Items.Add(new AirlineStatisticsItem(airline, (int)value, Math.Max(1, (int)Convert.ToDouble(value * coff))));
+
+                foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
+                {
+                    double sValue = (double)method.Invoke(sAirline, null);
+                    lbStatistics.Items.Add(new AirlineStatisticsItem(sAirline,(int)sValue,Math.Max(1, (int)Convert.ToDouble(sValue * coff))));
+                }
 
             }
 
