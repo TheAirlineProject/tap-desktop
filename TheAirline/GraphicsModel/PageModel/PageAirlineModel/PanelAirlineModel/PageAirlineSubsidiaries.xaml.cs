@@ -122,7 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 if (result == WPFMessageBoxResult.Yes)
                 {
 
-                    GameObject.GetInstance().MainAirline.removeSubsidiaryAirline(airline);
+                    AirlineHelpers.CloseSubsidiaryAirline(airline);
 
                     showSubsidiaries();
 

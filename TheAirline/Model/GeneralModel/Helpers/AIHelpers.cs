@@ -185,7 +185,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
 
-            Boolean newSub = rnd.Next(newSubInterval * subAirlines) == 0 && airline.FutureAirlines.Count > 0;
+            Boolean newSub = !airline.IsSubsidiary && rnd.Next(newSubInterval * subAirlines) == 0 && airline.FutureAirlines.Count > 0 && airline.Money>airline.StartMoney/5;
 
             if (newSub)
             {
@@ -208,8 +208,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Created subsidiary", string.Format("{0} has created a new subsidiary airline {1}", airline.Profile.Name, sAirline.Profile.Name)));
             
-            //ændre interval +ikke LOT ved start  + 0 passengers?
-
+         
         }
         //checks for the creation of alliance / join existing alliance for an airline
         private static void CheckForAirlineAlliance(Airline airline)

@@ -130,6 +130,46 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return RouteFacilities.GetFacilities(type).FindAll(f => f.Requires == null || airline.Facilities.Contains(f.Requires));
         }
+        //closes a subsidiary airline for an airline
+        public static void CloseSubsidiaryAirline(SubsidiaryAirline airline)
+        {
+            AddAirlineInvoice(airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, airline.Money);
+          
+            airline.Airline.removeSubsidiaryAirline(airline);
+            Airlines.RemoveAirline(airline);
+
+            var fleet = airline.Fleet; 
+
+            for (int f=0;f<fleet.Count;f++)
+            {
+                fleet[f].Airliner.Airline = airline.Airline;
+                airline.Airline.addAirliner(fleet[f]);
+
+            }
+
+            var airports = airline.Airports;
+
+            for (int i=0;i<airports.Count;i++)
+            {
+                var gates = airports[i].Terminals.getUsedGates(airline);
+
+                for (int g = 0;g<gates.Count;g++)
+                {
+                    gates[g].Airline = airline.Airline;
+                    gates[g].HasRoute = false;
+                }
+                if (!airline.Airline.Airports.Contains(airports[i]))
+                {
+                    airline.Airline.addAirport(airports[i]);
+                }
+
+                airports[i].clearFacilities(airline);
+
+               // checkin facility + isHuman!!
+            }
+
+  
+        }
         //adds a subsidiary airline to an airline
         public static void AddSubsidiaryAirline(Airline airline, SubsidiaryAirline sAirline, double money, Airport airportHomeBase)
         {
