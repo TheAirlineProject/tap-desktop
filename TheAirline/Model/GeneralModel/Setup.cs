@@ -1013,6 +1013,23 @@ namespace TheAirline.Model.GeneralModel
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
                 airline.Profile.PreferedAirport = preferedAirport;
             }
+          
+            XmlNodeList subsidiariesList = root.SelectNodes("subsidiaries/subsidiary");
+            if (subsidiariesList != null)
+            {
+                foreach (XmlElement subsidiaryElement in subsidiariesList)
+                {
+                    string subName = subsidiaryElement.Attributes["name"].Value;
+                    string subIATA = subsidiaryElement.Attributes["IATA"].Value;
+                    Airport subAirport = Airports.GetAirport(subsidiaryElement.Attributes["homebase"].Value);
+                    Airline.AirlineMentality subMentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), subsidiaryElement.Attributes["mentality"].Value);
+                    Airline.AirlineMarket subMarket = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), subsidiaryElement.Attributes["market"].Value);
+                    string subLogo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + subsidiaryElement.Attributes["logo"].Value + ".png";
+
+                    airline.FutureAirlines.Add(new FutureSubsidiaryAirline(subName, subIATA, subAirport, subMentality, subMarket, subLogo));
+                }
+            }
+
 
             Airlines.AddAirline(airline);
 
@@ -1145,6 +1162,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void RemoveAirlines(int opponnents)
         {
+            Airline lot = Airlines.GetAirline("LO");
             int count = Airlines.GetAirlines(a => !a.IsHuman).Count;
 
             for (int i = 0; i < count - opponnents; i++)
@@ -1153,6 +1171,9 @@ namespace TheAirline.Model.GeneralModel
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
+         //   if (!Airlines.GetAllAirlines().Contains(lot))
+           //     Airlines.AddAirline(lot);
+
         }
         //finds the home base for a computer airline
         private static Airport FindComputerHomeBase(Airline airline)

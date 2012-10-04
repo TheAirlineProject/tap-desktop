@@ -71,6 +71,10 @@ namespace TheAirline.Model.GeneralModel
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
+            string s="";
+            if (airliner.Airliner.Airline.Profile.IATACode == "K2")
+                s = "kk";
+
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
             
@@ -83,8 +87,9 @@ If an airline wants to increase its market share on a route that is already at c
              * If the other airlines do not do the same thing, they would begin to loose passengers to the other airline. 
              * The AI would have to be programmed to understand this. 
              * The current prices charged by airlines on the route would to be displayed somewhere so player knows what to charge.*/
-         
-            double passengerDemand = ((int)airportCurrent.getDestinationPassengersRate(airportDestination, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
+
+            double passengerDemand = demand * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
             
             if (airportCurrent.IsHub)
                 passengerDemand = passengerDemand * (125 / 100);

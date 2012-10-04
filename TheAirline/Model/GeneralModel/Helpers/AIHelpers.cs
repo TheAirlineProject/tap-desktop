@@ -8,6 +8,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using System.Collections;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -24,6 +25,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //CheckForOrderOfAirliners(airline);
             CheckForAirlinersWithoutRoutes(airline);
             CheckForAirlineAlliance(airline);
+            CheckForSubsidiaryAirline(airline);
 
         }
         //checks for any airliners without routes
@@ -164,7 +166,52 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
-        //checks for the creating of alliance / join existing alliance for an airline
+        //checks for the creation of a subsidiary airline for an airline
+        private static void CheckForSubsidiaryAirline(Airline airline)
+        {
+            int subAirlines = airline.Subsidiaries.Count; 
+
+            int newSubInterval = 0;
+            switch (airline.Mentality)
+            {
+                case Airline.AirlineMentality.Aggressive:
+                    newSubInterval = 100000;
+                    break;
+                case Airline.AirlineMentality.Moderate:
+                    newSubInterval = 1000000;
+                    break;
+                case Airline.AirlineMentality.Safe:
+                    newSubInterval = 10000000;
+                    break;
+            }
+
+            Boolean newSub = rnd.Next(newSubInterval * subAirlines) == 0 && airline.FutureAirlines.Count > 0;
+
+            if (newSub)
+            {
+                //creates a new subsidiary airline for the airline
+                CreateSubsidiaryAirline(airline);
+            }
+        }
+        //creates a new subsidiary airline for the airline
+        private static void CreateSubsidiaryAirline(Airline airline)
+        {
+            FutureSubsidiaryAirline futureAirline = airline.FutureAirlines[rnd.Next(airline.FutureAirlines.Count)];
+
+            airline.FutureAirlines.Remove(futureAirline);
+
+            SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(airline, airline.Money / 5, futureAirline.Name, futureAirline.IATA, futureAirline.Mentality, futureAirline.Market, futureAirline.PreferedAirport);
+            sAirline.Profile.Logo = futureAirline.Logo;
+            sAirline.Profile.Color = airline.Profile.Color;
+
+            CreateNewRoute(sAirline);
+
+            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Created subsidiary", string.Format("{0} has created a new subsidiary airline {1}", airline.Profile.Name, sAirline.Profile.Name)));
+            
+            //ændre interval +ikke LOT ved start  + 0 passengers?
+
+        }
+        //checks for the creation of alliance / join existing alliance for an airline
         private static void CheckForAirlineAlliance(Airline airline)
         {
             int airlineAlliances = airline.Alliances.Count;

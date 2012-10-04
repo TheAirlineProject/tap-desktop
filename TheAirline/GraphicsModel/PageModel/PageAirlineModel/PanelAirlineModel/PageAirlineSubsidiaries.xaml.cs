@@ -95,8 +95,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             {
                AirlineHelpers.AddSubsidiaryAirline(GameObject.GetInstance().MainAirline, airline, airline.Money,airline.Airports[0]);
                airline.Airports.RemoveAt(0);
-               airline.Profile.Logo = airline.Profile.Logo;
-               airline.Profile.Color = airline.Profile.Color;
+             //  airline.Profile.Logo = airline.Profile.Logo;
+             //  airline.Profile.Color = airline.Profile.Color;
 
                this.PageParent.updatePage();
 

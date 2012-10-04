@@ -40,11 +40,13 @@ namespace TheAirline.Model.AirlineModel
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
         public List<Alliance> Alliances { get; set; }
         public ManufacturerContract Contract { get; set; }
+        public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineMarket marketFocus)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this.Routes = new List<Route>();
+            this.FutureAirlines = new List<FutureSubsidiaryAirline>();
             this.Subsidiaries = new List<SubsidiaryAirline>();
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
             this.Statistics = new GeneralStatistics();
@@ -56,7 +58,7 @@ namespace TheAirline.Model.AirlineModel
             this.Alliances = new List<Alliance>();
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
-
+  
             this.FlightCodes = new List<string>();
 
             for (int i = 1; i < 10000; i++)
