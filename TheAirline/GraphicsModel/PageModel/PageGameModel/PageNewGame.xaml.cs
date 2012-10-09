@@ -291,7 +291,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 int startYear = (int)cbStartYear.SelectedItem;
                 GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
-
                 //sets the fuel price
                 GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
 

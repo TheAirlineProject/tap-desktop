@@ -12,6 +12,7 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.HistoricEventModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -218,7 +219,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Flight restriction", restrictionNewsText));
 
             }
-            //
+            //checks for historic events
+            foreach (HistoricEvent e in HistoricEvents.GetHistoricEvents(GameObject.GetInstance().GameTime))
+            {
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, e.Name,e.Text));
+
+                foreach (HistoricEventInfluence influence in e.Influences)
+                {
+                    SetHistoricEventInfluence(influence,false);
+                }
+            }
+            //checks for historic events influences ending
+            foreach (HistoricEventInfluence influence in HistoricEvents.GetHistoricEventInfluences(GameObject.GetInstance().GameTime))
+            {
+                SetHistoricEventInfluence(influence, true);
+            }
             //updates airports
             foreach (Airport airport in Airports.GetAllActiveAirports())
             {
@@ -899,5 +914,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return entries.FirstOrDefault().TimeTable.Route;
 
         }
+        //handles an influence for a historic event
+        public static void SetHistoricEventInfluence(HistoricEventInfluence e, Boolean onEndDate)
+        {
+            double value = onEndDate ? -e.Value : e.Value;
+
+            switch (e.Type)
+            {
+                case HistoricEventInfluence.InfluenceType.PassengerDemand:
+                    
+                    break;
+                case HistoricEventInfluence.InfluenceType.FuelPrices:
+                    double percent = (100 - value) / 100;
+                    GameObject.GetInstance().FuelPrice = GameObject.GetInstance().FuelPrice * percent;
+                    break;
+                case HistoricEventInfluence.InfluenceType.Stocks:
+                    break;
+            }
+        }
+
     }
 }

@@ -246,7 +246,7 @@ namespace TheAirline.Model.GeneralModel
             }
             
         }
-
+  
     }
     //the class for a key value pair for use on convertres etc.
     public class GameKeyValuePair<T,S>

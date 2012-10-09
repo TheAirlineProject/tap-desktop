@@ -19,6 +19,7 @@ using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.GeneralModel.HistoricEventModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -60,7 +61,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadFlightRestrictions();
                 LoadInflationYears();
                 LoadHolidays();
-            
+                LoadHistoricEvents();
                 SetupStatisticsTypes();
 
                 CreateAdvertisementTypes();
@@ -109,6 +110,7 @@ namespace TheAirline.Model.GeneralModel
             Inflations.Clear();
             Holidays.Clear();
             Configurations.Clear();
+            HistoricEvents.Clear();
         }
         /*! creates the Advertisement types
          */
@@ -261,6 +263,47 @@ namespace TheAirline.Model.GeneralModel
             }
 
             return configuration;
+        }
+        /*! loads the historic events
+         */
+        private static void LoadHistoricEvents()
+        {
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\historicevents");
+
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadHistoricEvent(file.FullName);
+            }
+
+        }
+        /*! loads a historic event
+         */
+        private static void LoadHistoricEvent(string filename)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(filename);
+            XmlElement root = doc.DocumentElement;
+            
+            string name = root.Attributes["name"].Value;
+            string text = root.Attributes["text"].Value;
+            DateTime eventDate = Convert.ToDateTime(root.Attributes["date"].Value);
+
+            HistoricEvent historicEvent = new HistoricEvent(name, text, eventDate);
+
+            XmlNodeList influencesList = root.SelectNodes("influences/influence");
+
+            foreach (XmlElement influenceElement in influencesList)
+            {
+                HistoricEventInfluence.InfluenceType type = (HistoricEventInfluence.InfluenceType)Enum.Parse(typeof(HistoricEventInfluence.InfluenceType), influenceElement.Attributes["type"].Value);
+                double value = Convert.ToDouble(influenceElement.Attributes["value"].Value);
+                DateTime endDate = Convert.ToDateTime(influenceElement.Attributes["enddate"].Value);
+
+                historicEvent.addInfluence(new HistoricEventInfluence(type, value, endDate));
+            }
+
+            HistoricEvents.AddHistoricEvent(historicEvent);
+
+           
         }
         /*! loads the holidays
          */
