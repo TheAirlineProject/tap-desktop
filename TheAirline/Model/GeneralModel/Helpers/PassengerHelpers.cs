@@ -71,14 +71,17 @@ namespace TheAirline.Model.GeneralModel
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-            string s="";
-            if (airliner.Airliner.Airline.Profile.IATACode == "K2")
-                s = "kk";
+            
 
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
             
             var currentRoute = airliner.Routes.Find(r=>(r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
+
+            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2);
+            double routePrice = currentRoute.getFarePrice(type);
+
+            double priceDiff = basicPrice / routePrice;
             /*
              * If the capacity is less than the demand, fill the airliner and decrease airline happiness. 
 
@@ -111,7 +114,9 @@ If an airline wants to increase its market share on a route that is already at c
 
             double routeRatioPercent = rations[currentRoute] / totalRatio;
 
-            return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent);
+            double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
+
+            return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff);
 
           
 
