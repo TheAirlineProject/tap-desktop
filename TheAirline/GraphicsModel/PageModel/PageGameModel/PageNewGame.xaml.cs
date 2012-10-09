@@ -180,7 +180,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbDifficulty.SelectedIndex = 0;
 
-            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), cbDifficulty));
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), cbDifficulty));
 
             cbOpponents = new ComboBox();
             cbOpponents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
