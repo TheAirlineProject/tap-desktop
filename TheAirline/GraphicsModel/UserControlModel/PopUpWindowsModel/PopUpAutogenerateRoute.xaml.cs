@@ -182,16 +182,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             //if (result == WPFMessageBoxResult.Yes)
             {
 
-              
-                AIHelpers.CreateRouteTimeTable(route, this.Airliner, flightsPerDay,flightcode1,flightcode2);
-
-                if (!this.Airliner.Routes.Contains(route))
-                    this.Airliner.addRoute(route);
+    
 
         
             }
-             
-            this.Selected = flightsPerDay;
+            if (flightsPerDay > 0)
+                this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
+            else
+                this.Selected = null;
             this.Close();
         }
        

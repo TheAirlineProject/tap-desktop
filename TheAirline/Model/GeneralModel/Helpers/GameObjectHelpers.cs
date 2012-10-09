@@ -66,6 +66,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the daily update
         private static void DoDailyUpdate()
         {
+            var humanAirlines = Airlines.GetAirlines(a=>a.IsHuman);
+
             int totalRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) select r).Count();
             int totalAirlinersOnRoute = (from a in Airlines.GetAllAirlines().SelectMany(t => t.Fleet) where a.HasRoute select a).Count();
 
@@ -103,8 +105,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
                     PassengerHelpers.CreateDestinationPassengers(dAirport, airport);
 
-                int count = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).Count;
-
+                int count = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().MainAirline) > 0).Count;
+             
                 if (count == 1)
                 {
                     Airport allocateFromAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
@@ -175,8 +177,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airliner_News, GameObject.GetInstance().GameTime, "Airliner type out of production", string.Format("{0} has taken {1} out of production", aType.Manufacturer.Name, aType.Name)));
 
             //checks for airport facilities for the human airline
-            var humanAirportFacilities = (from f in GameObject.GetInstance().HumanAirline.Airports.SelectMany(a => a.getAirportFacilities(GameObject.GetInstance().HumanAirline)) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
-
+            var humanAirportFacilities = (from f in humanAirlines.SelectMany(ai=>ai.Airports.SelectMany(a => a.getAirportFacilities(ai))) where f.FinishedDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() select f);
+          
             foreach (AirlineAirportFacility facility in humanAirportFacilities)
             {
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at {1} is now finished building", facility.Facility.Name, facility.Airport.Profile.Name)));
@@ -265,7 +267,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             //checks for airliners for the human airline
-            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment; })))
+            foreach (FleetAirliner airliner in humanAirlines.SelectMany(a=>a.Fleet.FindAll(f=>f.Airliner.BuiltDate == GameObject.GetInstance().GameTime && f.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment)))
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner {0} as been delivered to your fleet.\nThe airliner is currently at {1}, {2}.", airliner.Name, airliner.Homebase.Profile.Name, airliner.Homebase.Profile.Country.Name)));
 
 

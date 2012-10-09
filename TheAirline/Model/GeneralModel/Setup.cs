@@ -1162,7 +1162,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void RemoveAirlines(int opponnents)
         {
-            Airline lot = Airlines.GetAirline("BA");
+            Airline lot = Airlines.GetAirline("LO");
             int count = Airlines.GetAirlines(a => !a.IsHuman).Count;
 
             for (int i = 0; i < count - opponnents; i++)
@@ -1171,8 +1171,8 @@ namespace TheAirline.Model.GeneralModel
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
-            if (!Airlines.GetAllAirlines().Contains(lot))
-                Airlines.AddAirline(lot);
+           //if (!Airlines.GetAllAirlines().Contains(lot))
+             //   Airlines.AddAirline(lot);
 
         }
         //finds the home base for a computer airline

@@ -314,6 +314,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.setAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.setAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
+                PassengerHelpers.CreateDestinationPassengers();
 
                 Setup.CreateAirliners();
 
@@ -328,8 +329,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 PageNavigator.ClearNavigator();
 
-                PassengerHelpers.CreateDestinationPassengers();
-
+        
          
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }

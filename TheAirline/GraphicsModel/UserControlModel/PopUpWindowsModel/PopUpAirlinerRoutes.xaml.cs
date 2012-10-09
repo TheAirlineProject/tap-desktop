@@ -629,11 +629,27 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnAutoGenerate_Click(object sender, RoutedEventArgs e)
         {
+           
             object o = PopUpAutogenerateRoute.ShowPopUp(this.Airliner);
 
+
             if (o != null)
-                if (((int)o) > 0)
-                    showFlights();
+            {
+                clearTimeTable();
+
+                RouteTimeTable timeTable = (RouteTimeTable)o;
+
+                Route route = timeTable.Route;
+                
+                if (!this.Entries.ContainsKey(route))
+                    this.Entries.Add(route, new List<RouteTimeTableEntry>());
+
+                foreach (RouteTimeTableEntry entry in timeTable.Entries)
+                    this.Entries[route].Add(entry);
+
+                showFlights();
+            }
+        
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {

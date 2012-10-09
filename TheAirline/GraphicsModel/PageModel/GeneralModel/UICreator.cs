@@ -74,7 +74,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
        
             StackPanel panelLogo = new StackPanel();
 
-            string image = AppSettings.getDataPath() + "\\graphics\\TheAirline034.png";
+            string image = AppSettings.getDataPath() + "\\graphics\\TheAirlineLogo.png";
 
             Image imgLogo = new Image();
             imgLogo.Source = new BitmapImage(new Uri(image, UriKind.RelativeOrAbsolute));
