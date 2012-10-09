@@ -90,7 +90,9 @@ If an airline wants to increase its market share on a route that is already at c
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
             double passengerDemand = demand * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
-            
+
+            passengerDemand = passengerDemand * (GameObject.GetInstance().PassengerDemandFactor / 100.0);
+
             if (airportCurrent.IsHub)
                 passengerDemand = passengerDemand * (125 / 100);
 

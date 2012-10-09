@@ -922,7 +922,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (e.Type)
             {
                 case HistoricEventInfluence.InfluenceType.PassengerDemand:
-                    
+                    GameObject.GetInstance().PassengerDemandFactor = GameObject.GetInstance().PassengerDemandFactor + value;
                     break;
                 case HistoricEventInfluence.InfluenceType.FuelPrices:
                     double percent = (100 - value) / 100;

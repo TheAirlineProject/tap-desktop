@@ -27,7 +27,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private ComboBox cbLanguage;
         private ComboBox cbTurnMinutes;
         private CheckBox cbMailOnLandings;
-        private RadioButton[] rbDifficulty;
         private RadioButton[] rbAirportCodes;
         public PageSettings()
         {
@@ -116,25 +115,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
 
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1004"), cbMailOnLandings));
-
-                rbDifficulty = new RadioButton[Enum.GetValues(typeof(Settings.Difficulty)).Length];
-            
-            WrapPanel panelDifficulty = new WrapPanel();
-            int j = 0;
-            foreach (Settings.Difficulty difficulty in Enum.GetValues(typeof(Settings.Difficulty)))
-            {
-                rbDifficulty[j] = new RadioButton();
-                rbDifficulty[j].Content = difficulty;
-                rbDifficulty[j].GroupName = "Difficulty";
-                rbDifficulty[j].Tag = difficulty;
-                rbDifficulty[j].Margin = new Thickness(0, 0, 5, 0);
-                rbDifficulty[j].IsChecked = difficulty == Settings.GetInstance().DifficultyDisplay;
-
-                panelDifficulty.Children.Add(rbDifficulty[j]);
-                j++;
-    }
-            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1050"), panelDifficulty));
-          
 
             rbAirportCodes = new RadioButton[Enum.GetValues(typeof(Settings.AirportCode)).Length];
 

@@ -34,7 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private TextBox txtName;
         private TextBlock txtIATA;
         private ContentControl cntCountry;
-        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone;
+        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         public PageNewGame()
@@ -134,7 +134,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbAirport.SelectionChanged += new SelectionChangedEventHandler(cbAirports_SelectionChanged);
 
             List<Airport> airportsList = Airports.GetAllAirports();
-           
+
 
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));
@@ -170,7 +170,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1009"), cbTimeZone));
 
+            cbDifficulty = new ComboBox();
+            cbDifficulty.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbDifficulty.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbDifficulty.Width = 100;
+            
+            foreach (GameObject.DifficultyLevel difficulty in Enum.GetValues(typeof(GameObject.DifficultyLevel)))
+                 cbDifficulty.Items.Add(difficulty);
 
+            cbDifficulty.SelectedIndex = 0;
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), cbDifficulty));
 
             cbOpponents = new ComboBox();
             cbOpponents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -226,7 +236,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             showPage(this);
 
+
+
         }
+
 
         private void cbStartYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -235,8 +248,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             int year = (int)cbStartYear.SelectedItem;
 
             setAirportsView(year, airline.Profile.Country);
-           
+
         }
+
+
 
         private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -304,7 +319,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
 
-                airport.Terminals.rentGate(airline); 
+                airport.Terminals.rentGate(airline);
                 airport.Terminals.rentGate(airline);
 
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
@@ -323,13 +338,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 GameTimer.GetInstance().start();
-          
+
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
                 PageNavigator.ClearNavigator();
 
-        
-         
+
+
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
             }
             else
@@ -340,7 +355,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private void setAirportsView(int year, Country country)
         {
             GameObject.GetInstance().GameTime = new DateTime(year, 1, 1);
-                        
+
             try
             {
                 airportsView.Filter = o =>
@@ -356,7 +371,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             if (cbAirport.SelectedIndex == -1) cbAirport.SelectedIndex = 0;
         }
-      
+
+
     }
 
 }
