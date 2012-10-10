@@ -33,21 +33,23 @@ namespace TheAirline.Model.AirlinerModel
             return GeneralHelpers.GetInflationPrice(this.Length * 1000000);
         }
         //the discount for airliners ordered under a contract
-        public double getDiscount()
+        public double getDiscount(int airliners)
         {
+            airliners = PurchasedAirliners;
             if (Length <= 3)
-            { this.Discount = (PurchasedAirliners / 2) + 5; }
+            { this.Discount = (PurchasedAirliners / 2) + 1; }
             else if (Length <= 5)
-            { this.Discount = (PurchasedAirliners / 2) + 7; }
+            { this.Discount = (PurchasedAirliners / 2) + 2; }
             else if (Length <= 7)
-            { this.Discount = (PurchasedAirliners / 2) + 8; }
+            { this.Discount = (PurchasedAirliners / 2) + 4; }
             else if (Length <= 15)
-            { this.Discount = (PurchasedAirliners / 2) + 10; }
+            { this.Discount = (PurchasedAirliners / 2) + 7; }
             else
-                this.Discount = 5;
+                this.Discount = 1;
 
             this.Discount = Discount;
             return Discount;
-        }
+
+           }     
     }
 }

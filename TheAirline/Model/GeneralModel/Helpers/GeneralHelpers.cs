@@ -166,12 +166,15 @@ namespace TheAirline.Model.GeneralModel
                 return 6;
             return 1;
         }
+
+
         //returns the discount for an order of airliners
         public static double GetAirlinerOrderDiscount(int orders)
         {
+            
             if (orders > 2)
                 return ((orders - 2) * 0.5) / 100;
-            else
+           else
                 return 0;
         }
         //returns all routes from an airport for an airline
