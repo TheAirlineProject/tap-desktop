@@ -291,8 +291,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (contractedOrder)
                     totalPrice = totalPrice * ((100 - GameObject.GetInstance().HumanAirline.Contract.Discount) / 100);
 
-                double downpaymentPrice = totalPrice * 0.05;
+                double downpaymentPrice = 0;
 
+                if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+                
+                    downpaymentPrice = totalPrice * 0.05;
+                
+                else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
+                 
+                    downpaymentPrice = totalPrice * 0.075;
+                
+                else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+                
+                    downpaymentPrice = totalPrice * 0.10;
+                
+                
                 if (cbDownPayment.IsChecked.Value)
                 {
 

@@ -105,7 +105,13 @@ namespace TheAirline.Model.GeneralModel
         {
             double value = (double)airline.getAirlineValue();
 
-            return 1.5 * ((double)Airline.AirlineValue.Very_high + 1-value); 
+            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+                return 1.25 * ((double)Airline.AirlineValue.Very_high + 1 - value);
+            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
+                return 1.5 * ((double)Airline.AirlineValue.Very_high + 1 - value);
+            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+                return 1.75 * ((double)Airline.AirlineValue.Very_high + 1 - value);
+            else return 1.5 * ((double)Airline.AirlineValue.Very_high + 1 - value);
         }
         //finds all airports in a radius of 1000 km from a airport
         public static List<Airport> GetAirportsNearAirport(Airport airport)

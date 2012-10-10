@@ -184,6 +184,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     newSubInterval = 10000000;
                     break;
             }
+            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+                newSubInterval *= (4 / 3);
+            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+            newSubInterval *= ( 3 / 4 );
+
 
             Boolean newSub = !airline.IsSubsidiary && rnd.Next(newSubInterval * (subAirlines+1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money>airline.StartMoney/5;
 
