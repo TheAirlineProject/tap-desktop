@@ -15,6 +15,7 @@ using System.Globalization;
 using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -122,6 +123,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 // chs, 2011-21-10 changed for the possibility of creating a new airline
                 string airlineName = airlineNode.Attributes["name"].Value;
                 string airlineIATA = airlineNode.Attributes["code"].Value;
+                Boolean airlineIsSubsidiary = Convert.ToBoolean(airlineNode.Attributes["subsidiary"].Value);
                 Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
                 string color = airlineNode.Attributes["color"].Value;
                 string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
@@ -131,7 +133,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
                 Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), airlineNode.Attributes["market"].Value);
 
-                Airline airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+                Airline airline;
+                if (airlineIsSubsidiary)
+                {
+                    Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
+                    airline = new SubsidiaryAirline(parent,new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+                    parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
+                }
+                else
+                    airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+                
                 airline.Profile.Logo = logo;
                 airline.Fleet.Clear();
                 airline.Airports.Clear();
@@ -230,6 +241,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airline.Fees = fees;
 
+           
                 XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
 
                 foreach (XmlElement airlineAirlinerNode in airlineFleetList)
@@ -799,6 +811,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airlineNode = xmlDoc.CreateElement("airline");
                 airlineNode.SetAttribute("name", airline.Profile.Name);
                 airlineNode.SetAttribute("code", airline.Profile.IATACode);
+                airlineNode.SetAttribute("subsidiary", airline.IsSubsidiary.ToString());
+                if (airline.IsSubsidiary)
+                    airlineNode.SetAttribute("parentairline", ((SubsidiaryAirline)airline).Airline.Profile.IATACode);
+
                 airlineNode.SetAttribute("country", airline.Profile.Country.Uid);
                 airlineNode.SetAttribute("color", airline.Profile.Color);
                 airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\') + 1));
@@ -812,7 +828,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement airlineContractNode = xmlDoc.CreateElement("contract");
                     airlineContractNode.SetAttribute("manufacturer", airline.Contract.Manufacturer.ShortName);
-                    airlineContractNode.SetAttribute("signingdate", airline.Contract.ExpireDate.ToShortDateString());
+                    airlineContractNode.SetAttribute("signingdate", airline.Contract.SigningDate.ToShortDateString());
                     airlineContractNode.SetAttribute("length", airline.Contract.Length.ToString());
                     airlineContractNode.SetAttribute("discount", airline.Contract.Discount.ToString());
                     airlineContractNode.SetAttribute("airliners", airline.Contract.PurchasedAirliners.ToString());

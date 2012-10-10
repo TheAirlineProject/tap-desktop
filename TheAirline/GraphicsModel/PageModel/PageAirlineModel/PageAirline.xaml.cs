@@ -87,7 +87,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbContract.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1015"),UICreator.CreateTextBlock(this.Airline.Contract.Manufacturer.Name)));
             lbContract.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1016"), UICreator.CreateTextBlock(this.Airline.Contract.SigningDate.ToShortDateString())));
             lbContract.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1017"), UICreator.CreateTextBlock(this.Airline.Contract.ExpireDate.ToShortDateString())));
-            lbContract.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1018"), UICreator.CreateTextBlock(string.Format("{0} %",this.Airline.Contract.Discount))));
+            lbContract.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1018"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", this.Airline.Contract.Discount))));
             lbContract.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1019"), UICreator.CreateTextBlock(string.Format("{0} / {1}", this.Airline.Contract.PurchasedAirliners,this.Airline.Contract.Airliners))));
 
             return panelContract;
