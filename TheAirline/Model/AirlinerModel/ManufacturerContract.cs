@@ -17,7 +17,7 @@ namespace TheAirline.Model.AirlinerModel
         public double Discount { get; set; } //in percent
         public int Airliners { get; set; } //the number of airliners to purchase in that period
         public int PurchasedAirliners { get; set; }
-        public ManufacturerContract(Manufacturer manufacturer,  DateTime date, int length, double discount)
+        public ManufacturerContract(Manufacturer manufacturer, DateTime date, int length, double discount)
         {
             this.Manufacturer = manufacturer;
             this.Airliners = length;
@@ -31,6 +31,23 @@ namespace TheAirline.Model.AirlinerModel
         public double getTerminationFee()
         {
             return GeneralHelpers.GetInflationPrice(this.Length * 1000000);
+        }
+        //the discount for airliners ordered under a contract
+        public double getDiscount()
+        {
+            if (Length <= 3)
+            { this.Discount = (PurchasedAirliners / 2) + 5; }
+            else if (Length <= 5)
+            { this.Discount = (PurchasedAirliners / 2) + 7; }
+            else if (Length <= 7)
+            { this.Discount = (PurchasedAirliners / 2) + 8; }
+            else if (Length <= 15)
+            { this.Discount = (PurchasedAirliners / 2) + 10; }
+            else
+                this.Discount = 5;
+
+            this.Discount = Discount;
+            return Discount;
         }
     }
 }
