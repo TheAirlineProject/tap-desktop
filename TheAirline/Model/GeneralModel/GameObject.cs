@@ -33,9 +33,6 @@ namespace TheAirline.Model.GeneralModel
             this.NewsBox = new NewsBox();
         }
 
-        //return the difficulty level
-        
-        
         //returns the start money based on year of start
         
         private long getStartMoney()
