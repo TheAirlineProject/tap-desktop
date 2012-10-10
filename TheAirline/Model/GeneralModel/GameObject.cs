@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using TheAirline.Model.AirlineModel;
+using TheAirline.GraphicsModel.PageModel.PageGameModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -28,14 +29,25 @@ namespace TheAirline.Model.GeneralModel
             this.PassengerDemandFactor = 100;
             this.GameTime = new DateTime(2007, 12, 31, 10, 0, 0);
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
-           
+            this.Difficulty = DifficultyLevel.Easy;
             this.NewsBox = new NewsBox();
         }
 
+        //return the difficulty level
+        
+
         //returns the start money based on year of start
+        
         private long getStartMoney()
         {
-            long baseStartMoney = 12500000;
+            
+            double baseStartMoney = 12500000;
+            if (this.Difficulty == DifficultyLevel.Easy)
+            { baseStartMoney *= 1.5; }
+            else if (this.Difficulty == DifficultyLevel.Normal)
+            { baseStartMoney *= 1;}
+            else if (this.Difficulty == DifficultyLevel.Hard)
+            { baseStartMoney *= 0.5;}
 
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(baseStartMoney));
         }
@@ -53,5 +65,6 @@ namespace TheAirline.Model.GeneralModel
         {
             GameInstance = new GameObject();
         }
+
     }
 }

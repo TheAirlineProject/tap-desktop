@@ -251,6 +251,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
+        private void cbDifficulty_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            Airline airline = (Airline)cbDifficulty.SelectedItem;
+            int year = (int)cbStartYear.SelectedItem;
+
+            setAirportsView(year, airline.Profile.Country);
+        }
+
 
 
         private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -347,6 +356,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name)));
+                GameObject.GetInstance().Difficulty = (GameObject.DifficultyLevel)cbDifficulty.SelectedItem;
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);

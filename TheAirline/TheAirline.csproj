@@ -783,6 +783,7 @@
   <ItemGroup>
     <Resource Include="..\Data\languages.xml">
       <Link>Data\languages.xml</Link>
+      <SubType>Designer</SubType>
     </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
