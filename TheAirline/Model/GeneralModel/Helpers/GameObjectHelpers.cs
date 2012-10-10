@@ -646,58 +646,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                 }
             }
-            /*
-            if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.EType == RouteFacility.ExpenseType.Fixed)
-            {
-                mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.ExpensePerPassenger;
-            }
-            else
-            {
-                FeeType feeType = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FoodFacility.FeeType;
-                double percent = 0.10;
-                double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
-                double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
-
-                double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
-
-                mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
-            }
-            if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility.EType == RouteFacility.ExpenseType.Fixed)
-            {
-                mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility.ExpensePerPassenger;
-            }
-            else
-            {
-                FeeType feeType = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).DrinksFacility.FeeType;
-                double percent = 0.10;
-                double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
-                double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
-
-                double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
-
-                mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
-            }
-            null
-            if (airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).AlcoholicDrinksFacility.EType == RouteFacility.ExpenseType.Fixed)
-            {
-                mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).AlcoholicDrinksFacility.ExpensePerPassenger;
-    
-            }
-            else
-            {
-                FeeType feeType = airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).AlcoholicDrinksFacility.FeeType;
-                double percent = 0.10;
-                double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
-                double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
-
-                double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
-
-                mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
-
-            }
-        }
-            */
-
+           
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates, airliner.CurrentPosition);
 
             double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption + dest.getLandingFee() + tax;

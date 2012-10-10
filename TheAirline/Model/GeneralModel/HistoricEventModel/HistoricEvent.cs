@@ -47,7 +47,7 @@ namespace TheAirline.Model.GeneralModel.HistoricEventModel
         //returns all historic events with influences ending at a date
         public static List<HistoricEventInfluence> GetHistoricEventInfluences(DateTime date)
         {
-            return events.SelectMany(e => e.Influences.FindAll(i => i.EndDate.ToShortDateString() == date.ToShortDateString())).ToList();
+            return events.Where(e=>e.Date>=GameObject.GetInstance().StartDate).SelectMany(e => e.Influences.FindAll(i => i.EndDate.ToShortDateString() == date.ToShortDateString())).ToList();
          }
         //clears the list of historic events
         public static void Clear()

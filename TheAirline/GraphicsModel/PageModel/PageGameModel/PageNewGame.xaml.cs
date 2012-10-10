@@ -190,7 +190,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             for (int i = 0; i < Airlines.GetAllAirlines().Count; i++)
                 cbOpponents.Items.Add(i);
 
-            cbOpponents.SelectedIndex = 3;// cbOpponents.Items.Count - 1;
+            cbOpponents.SelectedIndex = 3;
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), cbOpponents));
 
@@ -306,6 +306,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 int startYear = (int)cbStartYear.SelectedItem;
                 GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
+                GameObject.GetInstance().StartDate = GameObject.GetInstance().GameTime;
                 //sets the fuel price
                 GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
 

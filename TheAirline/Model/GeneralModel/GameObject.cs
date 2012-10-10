@@ -12,6 +12,7 @@ namespace TheAirline.Model.GeneralModel
     {
         private static GameObject GameInstance;
         public DateTime GameTime { get; set; }
+        public DateTime StartDate { get; set; }
         public Airline HumanAirline { get; set; }
         public Airline MainAirline { get; set; }
         public NewsBox NewsBox { get; set; }
