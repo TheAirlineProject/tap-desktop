@@ -35,7 +35,7 @@ namespace TheAirline.Model.GeneralModel
 
         //return the difficulty level
         
-
+        
         //returns the start money based on year of start
         
         private long getStartMoney()

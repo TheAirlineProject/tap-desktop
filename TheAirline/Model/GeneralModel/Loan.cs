@@ -26,10 +26,20 @@ namespace TheAirline.Model.GeneralModel
             
         }
         //returns the monthly payment for the loan
+       
         public double getMonthlyPayment()
         {
-            return MathHelpers.GetMonthlyPayment(this.Amount, this.Rate, this.Length);
-
+           double basePayment = MathHelpers.GetMonthlyPayment(this.Amount, this.Rate, this.Length);
+            {
+                if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+                { return (basePayment * 0.75); }
+                if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
+                { return (basePayment * 1.0); }
+                if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+                { return (basePayment * 1.25); }
+                else
+                { return MathHelpers.GetMonthlyPayment(this.Amount, this.Rate, this.Length); }
+            }
         }
         //checks if there is still payment left on the loan
         private Boolean hasPaymentLeft()

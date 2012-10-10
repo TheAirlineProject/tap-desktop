@@ -96,9 +96,15 @@ If an airline wants to increase its market share on a route that is already at c
 
             passengerDemand = passengerDemand * (GameObject.GetInstance().PassengerDemandFactor / 100.0);
 
-            if (airportCurrent.IsHub)
-                passengerDemand = passengerDemand * (125 / 100);
+            if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+            {passengerDemand = passengerDemand * (125 / 100);}
 
+            else if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
+            {passengerDemand = passengerDemand * (150 / 100);}
+
+            else if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+            {passengerDemand = passengerDemand * (175 / 100);}
+        
             var routes =Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
 
             double totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
@@ -115,6 +121,12 @@ If an airline wants to increase its market share on a route that is already at c
             double routeRatioPercent = rations[currentRoute] / totalRatio;
 
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
+            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+            { routePriceDiff *= 1.2;}
+            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
+            { routePriceDiff *= 1.1;}
+            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+            { routePriceDiff *= 1.0;}
 
             return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff);
 
@@ -190,7 +202,7 @@ If an airline wants to increase its market share on a route that is already at c
         {
         	Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
             
-            int estimatedPassengerLevel = 0;
+            double estimatedPassengerLevel = 0;
             Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
             Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
             
@@ -645,8 +657,17 @@ If an airline wants to increase its market share on a route that is already at c
             	else
             		estimatedPassengerLevel = 3570;
         	}
-            
+
+            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
+            { estimatedPassengerLevel *= 1.0; }
+            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
+            { estimatedPassengerLevel *= 1.2; }
+            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
+            { estimatedPassengerLevel *= 1.5; }
+
             double value = estimatedPassengerLevel;
+
+            
 
             GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), (int)value);
 
