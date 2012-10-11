@@ -587,6 +587,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             switch (marketFocus)
             {
+                case Airline.AirlineMarket.Domestic:
+                    airports = airports.FindAll(a => a.Profile.Country == airport.Profile.Country);
+                    break;
                 case Airline.AirlineMarket.Global:
                     airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
