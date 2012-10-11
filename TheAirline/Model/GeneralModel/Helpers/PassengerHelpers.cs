@@ -105,7 +105,7 @@ If an airline wants to increase its market share on a route that is already at c
             else if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
             { passengerDemand = passengerDemand * (175 / 100); }
 
-            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
+            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
 
             double totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
 
