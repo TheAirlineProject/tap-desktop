@@ -163,7 +163,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Selected = -1;
+            this.Selected = null;
             this.Close();
         }
 
@@ -177,15 +177,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             string flightcode1 = cbFlightCode.SelectedItem.ToString();
             string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1)+1];
             
-            //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2701"), string.Format(Translator.GetInstance().GetString("MessageBox", "2701", "message"), route.Destination1.Profile.Name, route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
-
-            //if (result == WPFMessageBoxResult.Yes)
-            {
-
-    
-
-        
-            }
+           
             if (flightsPerDay > 0)
                 this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
             else
