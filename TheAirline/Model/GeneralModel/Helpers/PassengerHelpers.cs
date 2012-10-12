@@ -667,11 +667,18 @@ If an airline wants to increase its market share on a route that is already at c
 
             double value = estimatedPassengerLevel;
 
+            foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            {
+                double distance = MathHelpers.GetDistance(airport,dAirport);
+
+                if ((classType == AirlinerClass.ClassType.Economy_Class || classType == AirlinerClass.ClassType.Business_Class) && distance<7500)
+                    value = value / (int)classType;
 
 
-            GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), (int)value);
+                GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), (int)value);
 
-            airport.addDestinationPassengersRate(new DestinationPassengers(dAirport, rate));
+                airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
+            }
         }
 
     }

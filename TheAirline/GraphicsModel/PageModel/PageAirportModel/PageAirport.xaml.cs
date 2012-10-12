@@ -219,7 +219,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport);
 
                 if (passengers == null)
-                    lbPassengers.Items.Add(new DestinationPassengers(airport, GeneralHelpers.Rate.None));
+                    lbPassengers.Items.Add(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, airport, GeneralHelpers.Rate.None));
                 else
                     lbPassengers.Items.Add(passengers);
              }

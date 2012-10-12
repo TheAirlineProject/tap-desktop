@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.Model.PassengerModel
 {
@@ -12,8 +13,10 @@ namespace TheAirline.Model.PassengerModel
     {
         public GeneralHelpers.Rate Rate { get; set; }
         public Airport Destination { get; set; }
-        public DestinationPassengers(Airport destination, GeneralHelpers.Rate rate)
+        public AirlinerClass.ClassType Type { get; set; }
+        public DestinationPassengers(AirlinerClass.ClassType type, Airport destination, GeneralHelpers.Rate rate)
         {
+            this.Type = type;
             this.Rate = rate;
             this.Destination = destination;
         }

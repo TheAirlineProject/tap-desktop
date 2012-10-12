@@ -513,10 +513,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         if (destAirport != null)
                         {
                             GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.Parse(typeof(GeneralHelpers.Rate), destinationElement.Attributes["rate"].Value);
+                            AirlinerClass.ClassType classtype = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), destinationElement.Attributes["classtype"].Value);
                             long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
                             targetAirport.addDestinationStatistics(destAirport, destPassengers);
-                            targetAirport.addDestinationPassengersRate(new DestinationPassengers(destAirport, rate));
+                            targetAirport.addDestinationPassengersRate(new DestinationPassengers(classtype,destAirport, rate));
                         }
                     }
                 }
@@ -1163,12 +1164,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement destinationsNode = xmlDoc.CreateElement("destinations");
                 foreach (Airport dest in Airports.GetAirports(a => a != airport))
                 {
-                    XmlElement destinationNode = xmlDoc.CreateElement("destination");
-                    destinationNode.SetAttribute("id", dest.Profile.IATACode);
-                    destinationNode.SetAttribute("rate", airport.getDestinationPassengersRate(dest, AirlinerClass.ClassType.Economy_Class).ToString());
-                    destinationNode.SetAttribute("passengers", airport.getDestinationStatistics(dest).ToString());
+                    foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                    {
+                        XmlElement destinationNode = xmlDoc.CreateElement("destination");
+                        destinationNode.SetAttribute("id", dest.Profile.IATACode);
+                        destinationNode.SetAttribute("classtype", classType.ToString());
+                        destinationNode.SetAttribute("rate", airport.getDestinationPassengersRate(dest,classType).ToString());
+                        destinationNode.SetAttribute("passengers", airport.getDestinationStatistics(dest).ToString());
 
-                    destinationsNode.AppendChild(destinationNode);
+                        destinationsNode.AppendChild(destinationNode);
+                    }
                 }
                 airportDestinationNode.AppendChild(destinationsNode);
                 airportDestinationsNode.AppendChild(airportDestinationNode);
