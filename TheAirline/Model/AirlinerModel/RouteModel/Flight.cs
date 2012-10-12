@@ -24,11 +24,15 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Entry = entry;
             this.Classes = new List<FlightAirlinerClass>();
 
-            this.Airliner = this.Entry.Airliner;
+            if (this.Entry != null)
+            {
+                this.Airliner = this.Entry.Airliner;
+                this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
+            }
+            
             this.IsOnTime = true;
 
-            this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
-
+         
         }
         //returns the expected time of landing
         public DateTime getExpectedLandingTime()
