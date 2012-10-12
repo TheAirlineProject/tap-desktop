@@ -23,6 +23,7 @@ using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -348,6 +349,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 GameTimer.GetInstance().start();
+               // AIWorker.GetInstance().start();
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 

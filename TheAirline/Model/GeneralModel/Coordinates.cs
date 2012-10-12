@@ -36,6 +36,7 @@ namespace TheAirline.Model.GeneralModel
     //the class for the coordinate
     public class Coordinate
     {
+        
         public enum Directions { N, S, W, E };
 
         public int Degrees { get; set; }

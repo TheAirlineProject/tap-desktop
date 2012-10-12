@@ -19,14 +19,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //updates a cpu airline
         public static void UpdateCPUAirline(Airline airline)
         {
-            CheckForNewHub(airline);
+           
             CheckForNewRoute(airline);
-            CheckForUpdateRoute(airline);
+         
+            CheckForNewHub(airline);
+             CheckForUpdateRoute(airline);
             //CheckForOrderOfAirliners(airline);
             CheckForAirlinersWithoutRoutes(airline);
             CheckForAirlineAlliance(airline);
             CheckForSubsidiaryAirline(airline);
-
+        
         }
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)

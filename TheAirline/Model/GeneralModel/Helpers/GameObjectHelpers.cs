@@ -13,6 +13,7 @@ using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.HistoricEventModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -24,6 +25,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a "turn"
         public static void SimulateTurn()
         {
+        
             GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);
 
             CalibrateTime();
@@ -33,20 +35,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
 
             if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
-
+           
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                if (GameObject.GetInstance().GameTime.Hour % 3 == 0 && GameObject.GetInstance().GameTime.Minute == 0)
+
+               // 3 - 3300 ms
+            
+               if (GameObject.GetInstance().GameTime.Hour % 3 == 0 && GameObject.GetInstance().GameTime.Minute == 0)
                 {
                     if (!airline.IsHuman)
                         AIHelpers.UpdateCPUAirline(airline);
                 }
 
+                int airlineCount = airline.Fleet.Count;
 
-                foreach (FleetAirliner airliner in airline.Fleet)
-                {
-                    UpdateAirliner(airliner);
-                }
+                for (int i = 0; i < airlineCount; i++)
+                    UpdateAirliner(airline.Fleet[i]);
+               
 
             }
 
