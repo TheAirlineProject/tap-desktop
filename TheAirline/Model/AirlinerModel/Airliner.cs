@@ -41,10 +41,11 @@ namespace TheAirline.Model.AirlinerModel
         //gets the price for leasing the airliner per month
         public long getLeasingPrice()
         {
+           
 
             double months = 20 * 15;
             double rate = 1.20;
-            double leasingPrice = this.getPrice()*rate / months;
+            double leasingPrice = (this.getPrice()*rate / months);
             return Convert.ToInt64(leasingPrice);
         }
         //gets the age of the airliner
@@ -77,8 +78,12 @@ namespace TheAirline.Model.AirlinerModel
 
             int age=getAge();
             double devaluationPercent = 1 - (0.02 * (double)age);
+
+            Random ran = new Random();
+            double randPrice = ran.Next(95, 105);
+            randPrice = randPrice / 100;
             
-            return Convert.ToInt64(basePrice * devaluationPercent);
+            return Convert.ToInt64(basePrice * devaluationPercent * randPrice);
         }
         
         

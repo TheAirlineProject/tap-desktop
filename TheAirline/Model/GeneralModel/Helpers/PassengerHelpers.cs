@@ -68,6 +68,9 @@ namespace TheAirline.Model.GeneralModel
                 return null;
         }
 
+        //generates a random number
+        private Random ran = new Random();
+
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
@@ -128,7 +131,13 @@ If an airline wants to increase its market share on a route that is already at c
             else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
             { routePriceDiff *= 1.0; }
 
-            return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff);
+            Random ran = new Random();
+
+            double randomPax = ran.Next(97, 103);
+
+            randomPax = randomPax / 100;
+
+            return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax);
 
 
 
