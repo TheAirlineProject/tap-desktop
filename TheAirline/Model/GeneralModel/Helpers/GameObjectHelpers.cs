@@ -39,8 +39,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
 
-               // 3 - 3300 ms
-            
+             
                if (GameObject.GetInstance().GameTime.Hour % 3 == 0 && GameObject.GetInstance().GameTime.Minute == 0)
                 {
                     if (!airline.IsHuman)

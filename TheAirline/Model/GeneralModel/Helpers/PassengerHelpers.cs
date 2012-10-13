@@ -130,7 +130,7 @@ If an airline wants to increase its market share on a route that is already at c
                      
 
             
-            double randomPax = rnd.Next(97, 103)/100;
+            double randomPax = Convert.ToDouble(rnd.Next(97, 103))/100;
 
 
             return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax);

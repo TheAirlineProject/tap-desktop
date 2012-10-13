@@ -47,10 +47,8 @@ namespace TheAirline.Model.AirlinerModel
 
             double months = 20 * 15;
             double rate = 1.20;
-            Random rnd = new Random();
-            double damage = rnd.Next(90, 100);
-            damage /= 100;
-            double leasingPrice = (this.getPrice()*rate*damage / months);
+          
+            double leasingPrice = (this.getPrice()*rate / months);
             return Convert.ToInt64(leasingPrice);
         }
         //gets the age of the airliner
