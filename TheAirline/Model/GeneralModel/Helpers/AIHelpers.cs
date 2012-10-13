@@ -19,7 +19,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //updates a cpu airline
         public static void UpdateCPUAirline(Airline airline)
         {
-           
             CheckForNewRoute(airline);
          
             CheckForNewHub(airline);
