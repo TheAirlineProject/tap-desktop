@@ -59,10 +59,6 @@ namespace TheAirline.Model.AirlinerModel
         public long getPrice()
         {
             double basePrice = this.Type.Price;
-            double damage = rnd.Next(90, 100) / 100;
-            basePrice *= damage;
-
-            
 
             double facilityPrice = 0;
 
@@ -78,6 +74,7 @@ namespace TheAirline.Model.AirlinerModel
 
                 facilityPrice += audioPrice + videoPrice + seatPrice;
             }
+
 
             basePrice += facilityPrice;
 
