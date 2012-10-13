@@ -55,9 +55,14 @@ namespace TheAirline.Model.AirlinerModel
       
         }
         //gets the price for the airliner based on age
+        Random rnd = new Random();
         public long getPrice()
         {
             double basePrice = this.Type.Price;
+            double damage = rnd.Next(90, 100) / 100;
+            basePrice *= damage;
+
+            
 
             double facilityPrice = 0;
 
@@ -79,11 +84,8 @@ namespace TheAirline.Model.AirlinerModel
             int age=getAge();
             double devaluationPercent = 1 - (0.02 * (double)age);
 
-            Random ran = new Random();
-            double randPrice = ran.Next(95, 105);
-            randPrice = randPrice / 100;
             
-            return Convert.ToInt64(basePrice * devaluationPercent * randPrice);
+            return Convert.ToInt64(basePrice * devaluationPercent);
         }
         
         
