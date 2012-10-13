@@ -19,6 +19,7 @@ namespace TheAirline.Model.AirlinerModel
         public long Price { get { return getPrice(); } private set { } }
         public long LeasingPrice { get { return getLeasingPrice(); } private set { } }
         public long FuelCapacity { get; set; }
+        public double Damaged { get; set; }
         public int Age { get { return getAge(); } private set { } }
         public List<AirlinerClass> Classes { get; set; }
         public Airliner(AirlinerType type, string tailNumber, DateTime builtDate)
@@ -28,6 +29,7 @@ namespace TheAirline.Model.AirlinerModel
             this.LastServiceCheck = 0;
             this.TailNumber = tailNumber;
             this.Flown = 0;
+            this.Damaged = rnd.Next(90, 100);
             this.Classes = new List<AirlinerClass>();
             
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
@@ -45,7 +47,10 @@ namespace TheAirline.Model.AirlinerModel
 
             double months = 20 * 15;
             double rate = 1.20;
-            double leasingPrice = (this.getPrice()*rate / months);
+            Random rnd = new Random();
+            double damage = rnd.Next(90, 100);
+            damage /= 100;
+            double leasingPrice = (this.getPrice()*rate*damage / months);
             return Convert.ToInt64(leasingPrice);
         }
         //gets the age of the airliner
@@ -82,7 +87,7 @@ namespace TheAirline.Model.AirlinerModel
             double devaluationPercent = 1 - (0.02 * (double)age);
 
             
-            return Convert.ToInt64(basePrice * devaluationPercent);
+            return Convert.ToInt64(basePrice * devaluationPercent * (this.Damaged/100));
         }
         
         
