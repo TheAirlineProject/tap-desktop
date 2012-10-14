@@ -18,6 +18,7 @@ using TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 {
@@ -132,6 +133,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             panelQuickInfo.Children.Add(lbQuickInfo);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1002"), UICreator.CreateTextBlock(this.Airline.Profile.Name)));
+
+            if (this.Airline.IsSubsidiary)
+            {
+                ContentControl ccParent = new ContentControl();
+                ccParent.SetResourceReference(ContentControl.ContentTemplateProperty, "AirlineLogoLink");
+                ccParent.Content = ((SubsidiaryAirline)this.Airline).Airline;
+                    
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1021"), ccParent));
+
+            }
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1003"), UICreator.CreateTextBlock(this.Airline.Profile.IATACode)));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1004"), UICreator.CreateTextBlock(this.Airline.Profile.CEO)));
 

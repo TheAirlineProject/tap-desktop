@@ -575,6 +575,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Airline.AirlineMarket marketFocus = airline.MarketFocus;
 
+           
             if (airline.Airports.Count < 4)
             {
                 List<Airline.AirlineMarket> focuses = new List<Airline.AirlineMarket>();

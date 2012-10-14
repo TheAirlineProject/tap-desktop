@@ -25,6 +25,8 @@ using TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlin
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 {
@@ -212,13 +214,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         //creates the quick info panel for the fleet airliner
         private Panel createQuickInfoPanel()
         {
-            Image imgEditName = new Image();
-            imgEditName.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
-            imgEditName.Width = 16;
-           
-            RenderOptions.SetBitmapScalingMode(imgEditName, BitmapScalingMode.HighQuality);
-
-
+         
             StackPanel panelInfo = new StackPanel();
 
             TextBlock txtHeader = new TextBlock();
@@ -260,6 +256,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             txtName.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             panelName.Children.Add(txtName);
 
+            Image imgEditName = new Image();
+            imgEditName.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
+            imgEditName.Width = 16;
+
+            RenderOptions.SetBitmapScalingMode(imgEditName, BitmapScalingMode.HighQuality);
+
             Button btnEditName = new Button();
             btnEditName.Background = Brushes.Transparent;
             btnEditName.Margin = new Thickness(5, 0, 0, 0);
@@ -271,9 +273,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1002"), panelName));
 
+            DockPanel panelOwner = new DockPanel(); 
+
             TextBlock lnkOwner = UICreator.CreateLink(this.Airliner.Airliner.Airline.Profile.Name);
+            lnkOwner.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             ((Hyperlink)lnkOwner.Inlines.FirstInline).Click += new RoutedEventHandler(PageFleetAirliner_Click);
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1017"), lnkOwner));
+
+            panelOwner.Children.Add(lnkOwner);
+
+            Image imgEditOwner = new Image();
+            imgEditOwner.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
+            imgEditOwner.Width = 16;
+            RenderOptions.SetBitmapScalingMode(imgEditOwner, BitmapScalingMode.HighQuality);
+
+            Button btnEditOwner = new Button();
+            btnEditOwner.Background = Brushes.Transparent;
+            btnEditOwner.Margin = new Thickness(5, 0, 0, 0);
+            btnEditOwner.Visibility = this.Airliner.Airliner.Airline.IsHuman && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped && GameObject.GetInstance().MainAirline.Subsidiaries.Count > 0 && !this.Airliner.HasRoute ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            btnEditOwner.Click += new RoutedEventHandler(btnEditOwner_Click);
+            btnEditOwner.Content = imgEditOwner;
+
+            panelOwner.Children.Add(btnEditOwner);
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1017"), panelOwner));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1025"), UICreator.CreateTextBlock(this.Airliner.PurchasedDate.ToShortDateString())));
 
@@ -344,13 +366,43 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
         }
 
+        private void btnEditOwner_Click(object sender, RoutedEventArgs e)
+        {
+            
+            ComboBox cbAirlines = new ComboBox();
+            cbAirlines.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAirlines.SetResourceReference(ComboBox.ItemTemplateProperty, "AirlineLogoItem");
+            cbAirlines.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAirlines.Width = 200;
+
+            cbAirlines.Items.Add(GameObject.GetInstance().MainAirline);
+
+            foreach (SubsidiaryAirline airline in GameObject.GetInstance().MainAirline.Subsidiaries)
+                cbAirlines.Items.Add(airline);
+
+            cbAirlines.Items.Remove(this.Airliner.Airliner.Airline);
+
+            cbAirlines.SelectedIndex = 0;
+            
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageFleetAirliner", "1028"), cbAirlines) == PopUpSingleElement.ButtonSelected.OK && cbAirlines.SelectedItem != null)
+            {
+                Airline airline = (Airline)cbAirlines.SelectedItem;
+                
+                this.Airliner.Airliner.Airline.removeAirliner(this.Airliner);
+                airline.addAirliner(this.Airliner);
+                this.Airliner.Airliner.Airline = airline;
+
+                PageNavigator.NavigateTo(new PageFleetAirliner(this.Airliner));
+            }
+        }
+
         private void btnEditName_Click(object sender, RoutedEventArgs e)
         {
-            String s = (String)PopUpEditAirlinerName.ShowPopUp(this.Airliner);
+            string name = (string)PopUpEditAirlinerName.ShowPopUp(this.Airliner);
 
-            if (s != null)
+            if (name != null)
             {
-                this.Airliner.Name = s;
+                this.Airliner.Name = name;
 
                 txtName.Text = this.Airliner.Name;
             }
