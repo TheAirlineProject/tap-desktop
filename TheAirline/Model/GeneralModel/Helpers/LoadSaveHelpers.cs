@@ -94,8 +94,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string last_service = airlinerNode.Attributes["last_service"].Value;
                 DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
                 double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
+                double damaged = Convert.ToDouble(airlinerNode.Attributes["damaged"].Value);
 
                 Airliner airliner = new Airliner(type, tailnumber, built);
+                airliner.Damaged = damaged;
                 airliner.Flown = flown;
                 airliner.clearAirlinerClasses();
 
@@ -330,7 +332,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         route.addRouteAirlinerClass(rClass);
 
                     }
-
+                  
                     RouteTimeTable timeTable = new RouteTimeTable(route);
 
                     XmlNodeList timetableList = routeNode.SelectNodes("timetable/timetableentry");
@@ -789,6 +791,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToShortDateString());
                 airlinerNode.SetAttribute("flown", string.Format("{0:0}", airliner.Flown));
+                airlinerNode.SetAttribute("damaged", airliner.Damaged.ToString());
 
                 XmlElement airlinerClassesNode = xmlDoc.CreateElement("classes");
                 foreach (AirlinerClass aClass in airliner.Classes)

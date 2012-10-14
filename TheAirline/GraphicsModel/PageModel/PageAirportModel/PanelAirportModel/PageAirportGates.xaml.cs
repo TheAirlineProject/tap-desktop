@@ -276,6 +276,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             Boolean isRentable = this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
+            if (!isRentable)
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2217"), Translator.GetInstance().GetString("MessageBox", "2217", "message"), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    
+                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                    this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+                                                      
+                    isRentable = true;
+                }
+            }
+
             if (isRentable)
             {
                 Terminal terminal = (Terminal)((Button)sender).Tag;
@@ -285,9 +301,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 showTerminals();
                 showHubs();
             }
-            else
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2217"), Translator.GetInstance().GetString("MessageBox", "2217", "message"), WPFMessageBoxButtons.Ok);
-  
+      
         }
 
         private void btnReleaseGate_Click(object sender, RoutedEventArgs e)
