@@ -495,6 +495,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.CurrentFlight == null)
             {
                 Route route = GetNextRoute(airliner);
+                
                 airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
             }
             Coordinates destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
@@ -861,8 +862,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the next route for an airliner 
         private static Route GetNextRoute(FleetAirliner airliner)
         {
-
-            var entries = from e in airliner.Routes.Select(r => r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner)) orderby MathHelpers.ConvertEntryToDate(e) select e;
+           
+            var entries = from e in airliner.Routes.Select(r => r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner)) where e != null orderby MathHelpers.ConvertEntryToDate(e) select e;
 
             return entries.FirstOrDefault().TimeTable.Route;
 
