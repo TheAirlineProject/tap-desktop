@@ -344,6 +344,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (FleetAirliner airliner in airline.Fleet)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -airliner.Airliner.Type.getMaintenance());
             }
+            
+            //creates some new used airliners for the year
+            int airliners = rnd.Next(5,10);
+
+            for (int i=0;i<airliners;i++)
+                Airliners.AddAirliner(AirlinerHelpers.CreateAirlinerFromYear(GameObject.GetInstance().GameTime.Year - 1));
+
+            //deletes all used airliners older than 30 years
+            List<Airliner> oldAirliners = new List<Airliner>(Airliners.GetAirlinersForSale(a => a.BuiltDate.Year == GameObject.GetInstance().GameTime.Year - 31));
+
+            foreach (Airliner airliner in oldAirliners)
+                Airliners.RemoveAirliner(airliner);
         }
         //do the monthly update
         private static void DoMonthlyUpdate()

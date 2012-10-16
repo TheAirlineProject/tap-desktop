@@ -24,6 +24,7 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -341,7 +342,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 PassengerHelpers.CreateDestinationPassengers();
 
-                Setup.CreateAirliners();
+                AirlinerHelpers.CreateStartUpAirliners();
 
                 Setup.SetupTestGame(opponents);
 

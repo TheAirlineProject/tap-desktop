@@ -155,7 +155,11 @@ namespace TheAirline.Model.AirlinerModel
         {
             return airliners.FindAll(a => a.Airline == null).FindAll(match);
         }
-       
+        //removes an airliner from the list
+        public static void RemoveAirliner(Airliner airliner)
+        {
+            airliners.Remove(airliner);
+        }
   
        
     }
