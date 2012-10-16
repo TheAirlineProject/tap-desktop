@@ -135,8 +135,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1004"), UICreator.CreateTextBlock(this.Airline.Routes.Count.ToString())));
 
-            double maxDistance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Max(r=>MathHelpers.GetDistance(r.Destination1,r.Destination2));
-            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1005"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance), new StringToLanguageConverter().Convert("km.")))));
+            Route maxDistanceRoute = this.Airline.Routes.Count>0 ? (from r in this.Airline.Routes orderby MathHelpers.GetDistance(r.Destination1,r.Destination2) descending select r).First() : null;
+            
+            if (maxDistanceRoute != null)
+                lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1005"), UICreator.CreateTextBlock(string.Format("{0:0} {1} ({2}<->{3})", new NumberToUnitConverter().Convert(MathHelpers.GetDistance(maxDistanceRoute.Destination1,maxDistanceRoute.Destination2)), new StringToLanguageConverter().Convert("km."),new AirportCodeConverter().Convert(maxDistanceRoute.Destination1).ToString(),new AirportCodeConverter().Convert(maxDistanceRoute.Destination2).ToString()))));
 
             double avgBalance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.Balance);
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"), UICreator.CreateTextBlock(string.Format("{0:C}", avgBalance))));
@@ -151,7 +153,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1009"), UICreator.CreateTextBlock(totalPassengers.ToString())));
 
             Airport largestGateAirport = this.Airline.Airports.OrderByDescending(a => a.Terminals.getNumberOfGates(this.Airline) / Convert.ToDouble(a.Terminals.getUsedGates().Count)).FirstOrDefault();
-
+      
             ContentControl ccLargestAirport = new ContentControl();
             ccLargestAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryLink");
             ccLargestAirport.Content = largestGateAirport;

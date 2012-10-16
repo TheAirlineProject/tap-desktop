@@ -94,7 +94,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (((Airport)this.Selected).getCurrentAirportFacility(this.Airliner.Airliner.Airline, AirportFacility.FacilityType.Service).TypeLevel == 0)
             {
                 AirportFacility facility = Hub.MinimumServiceFacility;
-                airport.setAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                airport.addAirportFacility(this.Airliner.Airliner.Airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 

@@ -110,13 +110,17 @@ namespace TheAirline.Model.AirportModel
             long sizeValue = 151 * ((int)this.Profile.Size + 1);
             return GeneralHelpers.GetInflationPrice(sizeValue);
         }
-        //sets a facility to an airline
+        //adds a facility to an airline
+        public void addAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
+        {
+            this.Facilities.Add(new AirlineAirportFacility(airline,this, facility, finishedDate));
+        }
+        //sets the facility for an airline
         public void setAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
-          
-                this.Facilities.Add(new AirlineAirportFacility(airline,this, facility, finishedDate));
-         }
-      
+            this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
+            this.Facilities.Add(new AirlineAirportFacility(airline,this, facility, finishedDate));
+        }
         //returns the facility of a specific type for an airline
         public AirportFacility getAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
@@ -197,7 +201,7 @@ namespace TheAirline.Model.AirportModel
 
             int index = facilities.IndexOf(getAirportFacility(airline, type));
 
-            setAirportFacility(airline, facilities[index - 1],GameObject.GetInstance().GameTime);
+            addAirportFacility(airline, facilities[index - 1],GameObject.GetInstance().GameTime);
 
             this.Facilities.Remove(aaf);
 

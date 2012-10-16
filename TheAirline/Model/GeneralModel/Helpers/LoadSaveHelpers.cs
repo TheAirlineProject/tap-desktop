@@ -462,7 +462,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     string ss = airline.Profile.Name;
 
-                    airport.setAirportFacility(airline, airportFacility, finishedDate);
+                    airport.addAirportFacility(airline, airportFacility, finishedDate);
                 }
                 airport.Terminals.clear();
 

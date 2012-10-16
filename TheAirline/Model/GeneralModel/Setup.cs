@@ -1180,7 +1180,7 @@ namespace TheAirline.Model.GeneralModel
                     {
                         AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
-                        airport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+                        airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                     }
                 }
             }
@@ -1250,8 +1250,8 @@ namespace TheAirline.Model.GeneralModel
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-            airportHomeBase.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
-            airportHomeBase.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+            airportHomeBase.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            airportHomeBase.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
             List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
 
@@ -1282,7 +1282,7 @@ namespace TheAirline.Model.GeneralModel
 
 
                 airportDestination.Terminals.rentGate(airline);
-                airportDestination.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
 
                 double price = PassengerHelpers.GetPassengerPrice(airportDestination, airline.Airports[0]);

@@ -537,13 +537,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                 {
-                    destination.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                 }
                 if (airport.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                 {
-                    airport.setAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    airport.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                 }
@@ -687,7 +687,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (homebase.getAirportFacility(airliner.Airliner.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                 {
-                    homebase.setAirportFacility(airliner.Airliner.Airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    homebase.addAirportFacility(airliner.Airliner.Airline, checkinFacility, GameObject.GetInstance().GameTime);
                     AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                 }
@@ -708,7 +708,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airport airport = airports.First();
 
-                airport.setAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
                 double price = facility.Price;
 

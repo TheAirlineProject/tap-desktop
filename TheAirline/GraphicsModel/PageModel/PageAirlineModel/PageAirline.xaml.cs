@@ -19,6 +19,10 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 {
@@ -49,6 +53,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             if (this.Airline.IsHuman)
                 airportPanel.Children.Add(createHumanControllingPanel());
+
+            if (!this.Airline.IsHuman)
+                airportPanel.Children.Add(createPurchaseAirlinePanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -165,8 +172,41 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             return panelInfo;
         }
+        //creates the panel for purchasing an airline
+        private StackPanel createPurchaseAirlinePanel()
+        {
+            double buyingPrice = this.Airline.getValue() * 1.10;
+            StackPanel purchasePanel = new StackPanel();
+            purchasePanel.Margin = new Thickness(5, 10, 10, 10);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1022";
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
+            txtHeader.TextAlignment = TextAlignment.Left;
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = string.Format("{0} ({1:C})",Translator.GetInstance().GetString("PageAirline", txtHeader.Uid),buyingPrice);
+
+            purchasePanel.Children.Add(txtHeader);
+
+            Button btnPurchase = new Button();
+            btnPurchase.Uid = "1023";
+            btnPurchase.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnPurchase.Height = Double.NaN;
+            btnPurchase.Width = Double.NaN;
+            btnPurchase.Content = Translator.GetInstance().GetString("PageAirline", btnPurchase.Uid);
+            btnPurchase.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnPurchase.IsEnabled = GameObject.GetInstance().HumanAirline.Money > buyingPrice;
+            btnPurchase.Click += new RoutedEventHandler(btnPurchase_Click);
+            btnPurchase.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+            purchasePanel.Children.Add(btnPurchase);
+
+            return purchasePanel;
+    
+        }
+
        
-        
         //creates the panel for airline value
         private WrapPanel createAirlineValuePanel()
         {
@@ -282,6 +322,64 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             if (airline != GameObject.GetInstance().HumanAirline)
             {
                 GameObject.GetInstance().HumanAirline = airline;
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+            }
+        }
+        private void btnPurchase_Click(object sender, RoutedEventArgs e)
+        {
+            double buyingPrice = this.Airline.getValue() * 1.10;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2113"), string.Format(Translator.GetInstance().GetString("MessageBox", "2113", "message"), this.Airline.Profile.Name,buyingPrice), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+
+                while (this.Airline.Facilities.Count > 0)
+                {
+                    AirlineFacility airlineFacility = this.Airline.Facilities[0];
+                    this.Airline.removeFacility(airlineFacility);
+                    GameObject.GetInstance().HumanAirline.addFacility(airlineFacility);
+                }
+
+
+                while (this.Airline.getFleetSize() > 0)
+                {
+                    FleetAirliner airliner = this.Airline.Fleet[0];
+                    this.Airline.removeAirliner(airliner);
+                    GameObject.GetInstance().HumanAirline.addAirliner(airliner);
+                    airliner.Airliner.Airline = GameObject.GetInstance().HumanAirline;
+                }
+
+                while (this.Airline.Routes.Count > 0)
+                {
+                    Route route = this.Airline.Routes[0];
+                    route.Airline = GameObject.GetInstance().HumanAirline;
+
+                    this.Airline.removeRoute(route);
+                    GameObject.GetInstance().HumanAirline.addRoute(route);
+                }
+
+                while (this.Airline.Airports.Count > 0)
+                {
+                    Airport airport = this.Airline.Airports[0];
+                    airport.Terminals.switchAirline(this.Airline, GameObject.GetInstance().HumanAirline);
+
+                    foreach (AirportFacility facility in airport.getCurrentAirportFacilities(this.Airline))
+                    {
+                        if (facility.TypeLevel > airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, facility.Type).TypeLevel)
+                            airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
+
+                        AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
+
+                        airport.setAirportFacility(this.Airline, noneFacility, GameObject.GetInstance().GameTime);
+
+                    }
+                }
+
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
+
+                Airlines.RemoveAirline(this.Airline);
+
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
             }
         }

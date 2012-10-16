@@ -150,7 +150,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases,-price);
                     
-                    this.Airport.setAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility,GameObject.GetInstance().GameTime.AddDays(type.NextFacility.BuildingDays));
+                    this.Airport.addAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility,GameObject.GetInstance().GameTime.AddDays(type.NextFacility.BuildingDays));
 
                     showFacilitiesInformation();
                 }
