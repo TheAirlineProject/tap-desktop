@@ -172,7 +172,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int subAirlines = airline.Subsidiaries.Count; 
 
-            int newSubInterval = 0;
+            double newSubInterval = 0;
             switch (airline.Mentality)
             {
                 case Airline.AirlineMentality.Aggressive:
@@ -186,12 +186,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
             if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
-                newSubInterval *= (4 / 3);
+                newSubInterval *= 1.25;
             if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
-            newSubInterval *= ( 3 / 4 );
+                newSubInterval *= 0.75;
 
 
-            Boolean newSub = !airline.IsSubsidiary && rnd.Next(newSubInterval * (subAirlines+1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money>airline.StartMoney/5;
+            Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines+1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money>airline.StartMoney/5;
 
             if (newSub)
             {
@@ -550,17 +550,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             
         }
-        //returns an airliner from the fleet which fits a route
-        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
-        {
-            //Order new airliner
-            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
-
-            if (fleet.Count > 0)
-                return (from f in fleet orderby f.Airliner.Type.Range select f).First();
-            else
-                return null;
-        }
+       
         //returns the sorted list of possible destinations for an airline with a start airport
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
@@ -630,6 +620,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
 
+        }
+        //returns an airliner from the fleet which fits a route
+        private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
+        {
+            //Order new airliner
+            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+            
+            if (fleet.Count > 0)
+                return (from f in fleet orderby f.Airliner.Type.Range select f).First();
+            else
+                return null;
         }
         //returns the best fit for an airliner for sale for a route true for loan
         public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
