@@ -258,6 +258,9 @@ namespace TheAirline.Model.AirlineModel
             {
                 value -= loan.PaymentLeft;
             }
+            foreach (SubsidiaryAirline subAirline in this.Subsidiaries)
+                value += subAirline.getValue();
+
             return value;
            
         }

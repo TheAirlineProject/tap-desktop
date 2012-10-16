@@ -54,7 +54,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             if (this.Airline.IsHuman)
                 airportPanel.Children.Add(createHumanControllingPanel());
 
-            if (!this.Airline.IsHuman)
+            if (GameObject.GetInstance().HumanAirline == GameObject.GetInstance().MainAirline && !this.Airline.IsHuman && !this.Airline.IsSubsidiary)
                 airportPanel.Children.Add(createPurchaseAirlinePanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
@@ -333,54 +333,75 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-
-                while (this.Airline.Facilities.Count > 0)
+                while (this.Airline.Subsidiaries.Count>0)
                 {
-                    AirlineFacility airlineFacility = this.Airline.Facilities[0];
-                    this.Airline.removeFacility(airlineFacility);
-                    GameObject.GetInstance().HumanAirline.addFacility(airlineFacility);
+                    SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
+                    subAirline.Profile.CEO = GameObject.GetInstance().HumanAirline.Profile.CEO;
+
+                    subAirline.Airline = GameObject.GetInstance().HumanAirline;
+                    this.Airline.removeSubsidiaryAirline(subAirline);
+                    GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(subAirline);
+
                 }
 
-
-                while (this.Airline.getFleetSize() > 0)
-                {
-                    FleetAirliner airliner = this.Airline.Fleet[0];
-                    this.Airline.removeAirliner(airliner);
-                    GameObject.GetInstance().HumanAirline.addAirliner(airliner);
-                    airliner.Airliner.Airline = GameObject.GetInstance().HumanAirline;
-                }
-
-                while (this.Airline.Routes.Count > 0)
-                {
-                    Route route = this.Airline.Routes[0];
-                    route.Airline = GameObject.GetInstance().HumanAirline;
-
-                    this.Airline.removeRoute(route);
-                    GameObject.GetInstance().HumanAirline.addRoute(route);
-                }
-
-                while (this.Airline.Airports.Count > 0)
-                {
-                    Airport airport = this.Airline.Airports[0];
-                    airport.Terminals.switchAirline(this.Airline, GameObject.GetInstance().HumanAirline);
-
-                    foreach (AirportFacility facility in airport.getCurrentAirportFacilities(this.Airline))
-                    {
-                        if (facility.TypeLevel > airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, facility.Type).TypeLevel)
-                            airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
-
-                        AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
-
-                        airport.setAirportFacility(this.Airline, noneFacility, GameObject.GetInstance().GameTime);
-
-                    }
-                }
+                switchAirline(this.Airline);
 
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
 
                 Airlines.RemoveAirline(this.Airline);
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+            }
+        }
+        //switches from one airline to the human airline
+        private void switchAirline(Airline airline)
+        {
+            while (airline.Alliances.Count > 0)
+            {
+                Alliance alliance = airline.Alliances[0];
+                alliance.removeMember(airline);
+                alliance.addMember(GameObject.GetInstance().HumanAirline);
+            }
+            while (airline.Facilities.Count > 0)
+            {
+                AirlineFacility airlineFacility = airline.Facilities[0];
+                airline.removeFacility(airlineFacility);
+                GameObject.GetInstance().HumanAirline.addFacility(airlineFacility);
+            }
+
+
+            while (airline.getFleetSize() > 0)
+            {
+                FleetAirliner airliner = airline.Fleet[0];
+                airline.removeAirliner(airliner);
+                GameObject.GetInstance().HumanAirline.addAirliner(airliner);
+                airliner.Airliner.Airline = GameObject.GetInstance().HumanAirline;
+            }
+
+            while (airline.Routes.Count > 0)
+            {
+                Route route = airline.Routes[0];
+                route.Airline = GameObject.GetInstance().HumanAirline;
+
+                airline.removeRoute(route);
+                GameObject.GetInstance().HumanAirline.addRoute(route);
+            }
+
+            while (airline.Airports.Count > 0)
+            {
+                Airport airport = airline.Airports[0];
+                airport.Terminals.switchAirline(airline, GameObject.GetInstance().HumanAirline);
+
+                foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airline))
+                {
+                    if (facility.TypeLevel > airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, facility.Type).TypeLevel)
+                        airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
+
+                    AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
+
+                    airport.setAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
+
+                }
             }
         }
         public override void updatePage()
