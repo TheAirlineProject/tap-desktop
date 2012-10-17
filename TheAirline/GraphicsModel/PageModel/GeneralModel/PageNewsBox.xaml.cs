@@ -17,6 +17,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -168,6 +169,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     o = Airports.GetAirport(linkObject);
                     objectText = ((Airport)o).Profile.Name;
                     break;
+                     
             }
 
             

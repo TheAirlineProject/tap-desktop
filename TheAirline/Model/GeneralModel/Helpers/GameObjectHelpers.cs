@@ -93,9 +93,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Airport reallocatedAirport = openingAirports.Find(a => a.Profile.Town == airport.Profile.Town);
 
                 if (reallocatedAirport == null)
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString())));
                 else
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport {0}({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
 
 
             }
@@ -115,10 +115,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (count == 1)
                 {
                     Airport allocateFromAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
                 }
                 else
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport {0}({1}) is opened in {2}, {3}", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
 
 
 
@@ -138,7 +138,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlineHelpers.ReallocateAirport(airport, reallocatedAirport, airline);
 
                         if (airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport operations changed", string.Format("All your gates, routes and facilities has been moved from {0}({1}) to {2}({3})", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport operations changed", string.Format("All your gates, routes and facilities has been moved from {0}({1}) to [LI airport={2}]({3})", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.IATACode, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
                     }
                 }
 
@@ -186,7 +186,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
           
             foreach (AirlineAirportFacility facility in humanAirportFacilities)
             {
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at {1} is now finished building", facility.Facility.Name, facility.Airport.Profile.Name)));
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at [LI airport={1}] is now finished building", facility.Facility.Name, facility.Airport.Profile.IATACode)));
 
             }
             //checks for changed flight restrictions
@@ -256,7 +256,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month && terminal.DeliveryDate.Day == GameObject.GetInstance().GameTime.Day)
                     {
                         if (terminal.Airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at {0}, {1} is now finished and ready for use.", airport.Profile.Name, airport.Profile.Country.Name)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at [LI airport={0}], {1} is now finished and ready for use.", airport.Profile.IATACode, airport.Profile.Country.Name)));
 
                         //moves the "old" rented gates into the new terminal
                         foreach (Terminal tTerminal in airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
