@@ -37,10 +37,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         private ListSortDirection sortDirection = ListSortDirection.Ascending;
         public PageRoutes()
         {
+
+           // Page show routes
             InitializeComponent();
 
-            this.Uid = "1000";
-            this.Title = Translator.GetInstance().GetString("PageRoutes", this.Uid);
+            this.Uid = "1003";
+            this.Title = string.Format(Translator.GetInstance().GetString("PageRoutes", this.Uid),GameObject.GetInstance().HumanAirline.Profile.Name);
 
             StackPanel routesPanel = new StackPanel();
             routesPanel.Margin = new Thickness(10, 0, 10, 0);
