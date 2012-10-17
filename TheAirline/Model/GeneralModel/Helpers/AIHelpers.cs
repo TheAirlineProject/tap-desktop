@@ -190,7 +190,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
                 newSubInterval *= 0.75;
 
+          
             Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines+1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money>airline.StartMoney/5;
+
+         
 
             if (newSub)
             {
@@ -211,7 +214,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             CreateNewRoute(sAirline);
 
-            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Created subsidiary", string.Format("{0} has created a new subsidiary airline {1}", airline.Profile.Name, sAirline.Profile.Name)));
+            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Created subsidiary", string.Format("[LI airline={0}] has created a new subsidiary airline [LI airline={1}]", airline.Profile.IATACode, sAirline.Profile.IATACode)));
             
          
         }
@@ -241,7 +244,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         if (alliance.Members.Contains(GameObject.GetInstance().HumanAirline))
                         {
                             alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime, alliance, airline, PendingAllianceMember.AcceptType.Request));
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Request to join alliance", string.Format("{0} has requested to joined {1}. The request can be accepted or declined on the alliance page", airline.Profile.Name, alliance.Name)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Request to join alliance", string.Format("[LI airline={0}] has requested to joined {1}. The request can be accepted or declined on the alliance page", airline.Profile.IATACode, alliance.Name)));
 
                         }
                         else
@@ -249,7 +252,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (CanJoinAlliance(airline, alliance))
                             {
                                 alliance.addMember(airline);
-                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("{0} has joined {1}", airline.Profile.Name, alliance.Name)));
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("[LI airline={0}] has joined {1}", airline.Profile.IATACode, alliance.Name)));
                             }
                         }
                     }
@@ -283,14 +286,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (bestFitAirline == GameObject.GetInstance().HumanAirline)
                 {
                     alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime, alliance, bestFitAirline, PendingAllianceMember.AcceptType.Invitation));
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Invitation to join alliance", string.Format("{0} has invited you to join {1}. The invitation can be accepted or declined on the alliance page", airline.Profile.Name, alliance.Name)));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Invitation to join alliance", string.Format("[LI airline={0}] has invited you to join {1}. The invitation can be accepted or declined on the alliance page", airline.Profile.IATACode, alliance.Name)));
 
                 }
                 else
                 {
                     if (DoAcceptAllianceInvitation(bestFitAirline, alliance))
                     {
-                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("{0} has joined {1}", bestFitAirline.Profile.Name, alliance.Name)));
+                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("[LI airline={0}] has joined {1}", bestFitAirline.Profile.IATACode, alliance.Name)));
                         alliance.addMember(bestFitAirline);
                     }
                 }
@@ -342,7 +345,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Alliances.AddAlliance(alliance);
 
-            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "New alliance", string.Format("A new alliance: {0} has been created by {1}", name, airline.Profile.Name)));
+            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "New alliance", string.Format("A new alliance: {0} has been created by [LI airline={1}]", name, airline.Profile.IATACode)));
 
             InviteToAlliance(airline, alliance);
 

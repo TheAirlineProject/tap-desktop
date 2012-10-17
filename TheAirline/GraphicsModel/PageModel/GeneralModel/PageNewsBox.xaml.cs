@@ -18,6 +18,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -169,7 +170,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     o = Airports.GetAirport(linkObject);
                     objectText = ((Airport)o).Profile.Name;
                     break;
-                     
+                case "airliner":
+                    o = Airlines.GetAllAirlines().SelectMany(a => a.Fleet).ToList().Find(f=>f.Airliner.TailNumber== linkObject);
+                    objectText = ((FleetAirliner)o).Name;
+                    break;
             }
 
             
@@ -177,6 +181,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Hyperlink hyperLink = new Hyperlink(run);
             hyperLink.Tag = o;
+            hyperLink.TextDecorations = TextDecorations.Underline;
             hyperLink.TargetName = linkType;
             hyperLink.Click += new RoutedEventHandler(hyperLink_Click);
 
@@ -195,6 +200,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     break;
                 case "airport":
                     PageNavigator.NavigateTo(new PageAirport((Airport)o));
+                    break;
+                case "airliner":
+                    PageNavigator.NavigateTo(new PageFleetAirliner((FleetAirliner)o));
                     break;
             }
 
