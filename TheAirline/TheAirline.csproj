@@ -782,22 +782,6 @@
   <ItemGroup>
     <Resource Include="Data\images\start.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\languages.xml">
-      <Link>Data\languages.xml</Link>
-      <SubType>Designer</SubType>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\addons\airlines\Cathay_Pacific.xml">
-      <Link>Data\Cathay_Pacific.xml</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\graphics\airlinelogos\CP.png">
-      <Link>Data\CP.png</Link>
-    </Resource>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

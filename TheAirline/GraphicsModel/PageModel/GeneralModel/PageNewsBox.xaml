@@ -5,10 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"  
                    xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+                   xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageNewsBox">
     <Page.Resources>
+        <local:NewsTextConverter x:Key="newsTextConverter"></local:NewsTextConverter>
         <c:LanguageTranslationConverter x:Key="languageTranslationConverter"></c:LanguageTranslationConverter>
         <c:BooleanToBold x:Key="booleanToBold"></c:BooleanToBold>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
@@ -20,7 +22,8 @@
                     <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy HH:mm}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                 </WrapPanel>
                 <Separator/>
-                <TextBlock Text="{Binding Body}" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" FontWeight="Bold"></TextBlock>
+              <!--  <TextBlock Text="{Binding Body}" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" FontWeight="Bold"></TextBlock>-->
+                <ContentControl Content="{Binding Body,Converter={StaticResource newsTextConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></ContentControl>
             </StackPanel>
         </DataTemplate>
             <DataTemplate x:Key="NewsHeader">
