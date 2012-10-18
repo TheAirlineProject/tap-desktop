@@ -229,6 +229,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageFlightsModel\PageFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -495,6 +499,9 @@
       <DependentUpon>PageFleetTimeslot.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PanelFleetAirliner.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageFlightsModel\PageFlights.xaml.cs">
+      <DependentUpon>PageFlights.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml.cs">
       <DependentUpon>PageFrontMenu.xaml</DependentUpon>
     </Compile>

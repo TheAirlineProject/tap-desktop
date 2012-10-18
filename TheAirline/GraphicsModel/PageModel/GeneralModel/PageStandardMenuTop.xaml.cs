@@ -27,6 +27,7 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.GraphicsModel.PageModel.PageAlliancesModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.GraphicsModel.PageModel.PageFlightsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -124,7 +125,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 PageNavigator.NavigateTo(new PageNewGame());
             }
         }
-
+        private void lnkFlights_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageFlights());
+        }
         private void lnkTest_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageTest());
