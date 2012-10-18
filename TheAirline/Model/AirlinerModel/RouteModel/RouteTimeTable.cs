@@ -62,10 +62,25 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 this.Entries.Add(entry);
             }
         }
+      
         //adds entries for a specific destination and time for each day of the week
         public void addDailyEntries(RouteEntryDestination destination, TimeSpan time)
         {
             addDailyEntries(destination, time, null);
+        }
+        //adds entries for a specific destination and for each weekday of the week assinged to an airliner
+        public void addWeekDailyEntries(RouteEntryDestination destination, TimeSpan time)
+        {
+            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            {
+                if (day != DayOfWeek.Saturday && day != DayOfWeek.Sunday)
+                {
+                    RouteTimeTableEntry entry = new RouteTimeTableEntry(this, day, time, destination);
+                    entry.Airliner = null;
+
+                    this.Entries.Add(entry);
+                }
+            }
         }
         //returns all entries for a specific airliner
         public List<RouteTimeTableEntry> getEntries(FleetAirliner airliner)

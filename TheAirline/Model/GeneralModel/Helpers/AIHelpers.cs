@@ -873,11 +873,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             for (int i = 0; i < flightsPerDay; i++)
             {
 
-                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
+                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
 
-                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
+                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
             }
@@ -887,11 +887,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             for (int i = 0; i < flightsPerDay; i++)
             {
 
-                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
+                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
 
-                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
+                timeTable.addWeekDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
                 flightTime = flightTime.Add(minFlightTime);
             }
