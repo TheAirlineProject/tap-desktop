@@ -56,7 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
 
             showPage(this);
 
-            showDayEntries(DayOfWeek.Monday);
+            showDayEntries(GameObject.GetInstance().GameTime.DayOfWeek);
 
           
 
@@ -74,7 +74,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
                 sbDay.Content = day.ToString();
                 sbDay.Click += new RoutedEventHandler(sbDay_Click);
                 sbDay.Tag = day;
-                sbDay.IsSelected = day == DayOfWeek.Monday;
+                sbDay.IsSelected = day == GameObject.GetInstance().GameTime.DayOfWeek;
                 
                 panelButtons.Children.Add(sbDay);
             }

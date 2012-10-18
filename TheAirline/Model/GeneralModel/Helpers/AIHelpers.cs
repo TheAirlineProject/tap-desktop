@@ -20,14 +20,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void UpdateCPUAirline(Airline airline)
         {
             CheckForNewRoute(airline);
-         
+
             CheckForNewHub(airline);
-             CheckForUpdateRoute(airline);
+            CheckForUpdateRoute(airline);
             //CheckForOrderOfAirliners(airline);
             CheckForAirlinersWithoutRoutes(airline);
             CheckForAirlineAlliance(airline);
             CheckForSubsidiaryAirline(airline);
-        
+
         }
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)
@@ -170,7 +170,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for the creation of a subsidiary airline for an airline
         private static void CheckForSubsidiaryAirline(Airline airline)
         {
-            int subAirlines = airline.Subsidiaries.Count; 
+            int subAirlines = airline.Subsidiaries.Count;
 
             double newSubInterval = 0;
             switch (airline.Mentality)
@@ -190,10 +190,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
                 newSubInterval *= 0.75;
 
-          
-            Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines+1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money>airline.StartMoney/5;
 
-         
+            Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines + 1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money > airline.StartMoney / 5;
+
+
 
             if (newSub)
             {
@@ -215,8 +215,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             CreateNewRoute(sAirline);
 
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Created subsidiary", string.Format("[LI airline={0}] has created a new subsidiary airline [LI airline={1}]", airline.Profile.IATACode, sAirline.Profile.IATACode)));
-            
-         
+
+
         }
         //checks for the creation of alliance / join existing alliance for an airline
         private static void CheckForAirlineAlliance(Airline airline)
@@ -376,7 +376,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (route.HasAirliner)
                                 route.getAirliners().ForEach(a => a.removeRoute(route));
 
-                            route.Destination1.Terminals.getUsedGate(airline).HasRoute = false; 
+                            route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
                             route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
 
                             if (airline.Routes.Count == 0)
@@ -432,29 +432,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new route for an airline
         private static void CreateNewRoute(Airline airline)
         {
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
-            homeAirports.AddRange(airline.Airports.FindAll(a => a.Hubs.Count(h => h.Airline == airline) > 0)); //hubs
 
-            Airport airport = homeAirports.Find(a => a.Terminals.getFreeGates(airline) > 0);
-
-            if (airport == null)
-            {
-                airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
-                if (airport != null)
-                    airport.Terminals.rentGate(airline);
-                else
-                {
-                    airport = GetServiceAirport(airline);
-                    if (airport != null)
-                        airport.Terminals.rentGate(airline);
-                }
-
-            }
+            Airport airport = GetRouteStartDestination(airline);
 
             if (airport != null)
             {
-                Airport destination = GetDestinationAirport(airline, airport);
 
+
+                Airport destination;
+
+                destination = GetDestinationAirport(airline, airport);
 
                 if (destination != null)
                 {
@@ -485,7 +472,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 route.getRouteAirlinerClass(classConfiguration.Type).addFacility(facility);
                         }
 
-                    
+
 
                         airline.addRoute(route);
 
@@ -494,8 +481,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (fAirliner == null)
                         {
-                           
-                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name) 
+
+                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
                                 airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
 
@@ -515,7 +502,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             else
                                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
-                            
+
 
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
@@ -524,16 +511,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                         }
-                      
+
                         fAirliner.addRoute(route);
-                        CreateRouteTimeTable(route, fAirliner);
+
+                        //creates a business route
+                        if (IsBusinessRoute(route,fAirliner)) 
+                            CreateBusinessRouteTimeTable(route, fAirliner);
+                        else
+                            CreateRouteTimeTable(route, fAirliner);
 
 
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
                         route.LastUpdated = GameObject.GetInstance().GameTime;
                     }
-                    
+
                 }
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -550,9 +542,41 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
             }
-            
+
         }
-       
+        //returns if a given route is a business route
+        private static Boolean IsBusinessRoute(Route route, FleetAirliner airliner)
+        {
+            double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
+
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+
+            return minFlightTime.TotalMinutes <= maxBusinessRouteTime;
+        }
+        //returns the start destination / homebase for a route
+        private static Airport GetRouteStartDestination(Airline airline)
+        {
+            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            homeAirports.AddRange(airline.Airports.FindAll(a => a.Hubs.Count(h => h.Airline == airline) > 0)); //hubs
+
+            Airport airport = homeAirports.Find(a => a.Terminals.getFreeGates(airline) > 0);
+
+            if (airport == null)
+            {
+                airport = homeAirports.Find(a => a.Terminals.getFreeGates() > 0);
+                if (airport != null)
+                    airport.Terminals.rentGate(airline);
+                else
+                {
+                    airport = GetServiceAirport(airline);
+                    if (airport != null)
+                        airport.Terminals.rentGate(airline);
+                }
+
+            }
+
+            return airport;
+        }
         //returns the sorted list of possible destinations for an airline with a start airport
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
@@ -567,7 +591,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Airline.AirlineMarket marketFocus = airline.MarketFocus;
 
-           
+
             if (airline.Airports.Count < 4)
             {
                 List<Airline.AirlineMarket> focuses = new List<Airline.AirlineMarket>();
@@ -615,6 +639,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
                 return airports[0];
         }
+
         //returns if the two destinations are in the correct area (the airport types are ok)
         public static Boolean IsRouteInCorrectArea(Airport dest1, Airport dest2)
         {
@@ -628,7 +653,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             //Order new airliner
             var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
-            
+
             if (fleet.Count > 0)
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();
             else
@@ -728,23 +753,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the time table for an route for an airliner
         public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)
         {
-     
+
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
             int maxHours = 22 - 6; //from 06.00 to 22.00
-            
+
             int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
             string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
             string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
 
 
-            route.TimeTable = CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay,flightCode1,flightCode2);
+            route.TimeTable = CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, flightCode1, flightCode2);
         }
         public static RouteTimeTable CreateAirlinerRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
         {
             RouteTimeTable timeTable = new RouteTimeTable(route);
-           
+
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
@@ -802,82 +827,85 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
             }
+            if (timeTable.Entries.Count == 0)
+                flightCode1 = "TT";
 
             foreach (RouteTimeTableEntry e in timeTable.Entries)
                 e.Airliner = airliner;
 
-            return timeTable; 
+            return timeTable;
 
         }
-        /*
-        public static void CreateRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
+        //creates the time table for a business route
+        public static void CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner)
         {
-            Random rnd = new Random();
 
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
-            
-            if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
+
+            int maxHours = 10 - 6; //from 06:00 to 10:00 and from 18:00 to 22:00
+
+            int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+
+            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+
+            route.TimeTable = CreateBusinessRouteTimeTable(route, airliner, flightsPerDay, flightCode1, flightCode2);
+        }
+        //creates a time table for a business route
+        private static RouteTimeTable CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
+        {
+            RouteTimeTable timeTable = new RouteTimeTable(route);
+
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+
+            int startHour = 6;
+            int endHour = 10;
+
+            int maxHours = endHour - startHour; //entries.Airliners == null
+
+            int startMinutes = Convert.ToInt16((maxHours * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
+
+            if (startMinutes < 0) startMinutes = 0;
+
+            //morning
+            TimeSpan flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+
+            for (int i = 0; i < flightsPerDay; i++)
             {
-                int startHour = 6;
-                int endHour = 22;
 
-                int maxHours = endHour - startHour;
-                
-        
-              
-                int startMinutes = Convert.ToInt16((maxHours * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
+                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
-                if (startMinutes < 0) startMinutes = 0;
+                flightTime = flightTime.Add(minFlightTime);
 
-                TimeSpan flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
-                for (int i = 0; i < flightsPerDay; i++)
-                {
-
-                    route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
-
-                    flightTime = flightTime.Add(minFlightTime);
-
-                    route.TimeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
-
-                    flightTime = flightTime.Add(minFlightTime);
-                }
+                flightTime = flightTime.Add(minFlightTime);
             }
-            else
+            //evening
+            startHour = 18;
+            flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+            for (int i = 0; i < flightsPerDay; i++)
             {
-                DayOfWeek day = 0;
 
-                int outTime = 15 * rnd.Next(-12, 12);
-                int homeTime = 15 * rnd.Next(-12, 12);
+                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination2, flightCode1), flightTime);
 
-             
+                flightTime = flightTime.Add(minFlightTime);
 
-                for (int i = 0; i < 3; i++)
-                {
-                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode1)));
+                timeTable.addDailyEntries(new RouteEntryDestination(route.Destination1, flightCode2), flightTime);
 
-                    day += 2;
-                }
-
-              
-
-                day = (DayOfWeek)1;
-
-                for (int i = 0; i < 3; i++)
-                {
-                    route.TimeTable.addEntry(new RouteTimeTableEntry(route.TimeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode2)));
-
-                    day += 2;
-                }
-
+                flightTime = flightTime.Add(minFlightTime);
             }
 
-            foreach (RouteTimeTableEntry e in route.TimeTable.Entries.FindAll(e => e.Airliner == null))
+            if (timeTable.Entries.Count == 0)
+                flightCode1 = "TT";
+
+            foreach (RouteTimeTableEntry e in timeTable.Entries)
                 e.Airliner = airliner;
 
+            return timeTable;
 
         }
-         * */
+
         //check if an airline can join an alliance
         public static Boolean CanJoinAlliance(Airline airline, Alliance alliance)
         {
