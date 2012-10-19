@@ -260,6 +260,11 @@ namespace TheAirline.Model.AirportModel
         {
             airports = new List<Airport>();
         }
+        //returns if a specific airport is in the list
+        public static Boolean Contains(Airport airport)
+        {
+            return airports.Contains(airport);
+        }
         //adds an airport
         public static void AddAirport(Airport airport)
         {
@@ -334,7 +339,11 @@ namespace TheAirline.Model.AirportModel
         {
             return GetAllActiveAirports().Count;
         }
-
+        //removes all airports with a specific match
+        public static void RemoveAirports(Predicate<Airport> match)
+        {
+            airports.RemoveAll(match);
+        }
     }
   
 }

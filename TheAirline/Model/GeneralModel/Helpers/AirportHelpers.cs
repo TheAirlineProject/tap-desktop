@@ -58,11 +58,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airport.Weather[maxDays - 1] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(maxDays - 1),airport.Weather[maxDays-2]);
             }
-            // intelligent vejr + pludselig uvejr + Airport.TypiskWeather/på regiono
-
+   
         }
-
-         //creates a new weather object for a specific date based on the weather for another day
+       //creates a new weather object for a specific date based on the weather for another day
         private static Weather CreateDayWeather(DateTime date, Weather previousWeather)
         {
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));

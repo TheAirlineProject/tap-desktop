@@ -196,7 +196,7 @@ namespace TheAirline.Model.GeneralModel
         //returns if an airport is active (built)
         public static Boolean IsAirportActive(Airport airport)
         {
-            return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime;
+            return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime && Airports.Contains(airport);
         }
        
         //creates the holidays for a year

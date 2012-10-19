@@ -340,13 +340,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
+                Region region = Regions.GetRegion("102");
+
                 PassengerHelpers.CreateDestinationPassengers();
+
+                //Airports.RemoveAirports(a => a.Profile.Country.Region != region);
 
                 AirlinerHelpers.CreateStartUpAirliners();
 
                 Setup.SetupTestGame(opponents);
-
-                //GameObject.GetInstance().HumanAirline.Money = 1000000000;
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 GameTimer.GetInstance().start();

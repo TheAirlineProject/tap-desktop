@@ -13,10 +13,10 @@
                 <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
                 <WrapPanel Width="550" VerticalAlignment="Bottom">
-                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding DepartureAirport}"/>
+                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}"/>
 
                 <TextBlock VerticalAlignment="Bottom" Text=" - "></TextBlock>
-                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding Destination.Airport}"/>
+                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}"/>
 
                  </WrapPanel>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Day}" Width="75"></TextBlock>
