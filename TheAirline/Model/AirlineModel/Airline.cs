@@ -393,42 +393,49 @@ namespace TheAirline.Model.AirlineModel
      
        
     }
-    //the collection of airlines
+    //the list of airlines
     public class Airlines
     {
-        private static Dictionary<string, Airline> airlines = new Dictionary<string, Airline>();
+        private static List<Airline> airlines = new List<Airline>();
         //clears the list
         public static void Clear()
         {
-            airlines = new Dictionary<string, Airline>();
+            airlines = new List<Airline>();
         }
         //adds an airline to the collection
         public static void AddAirline(Airline airline)
         {
-            airlines.Add(airline.Profile.IATACode, airline);
+            airlines.Add(airline);
         }
         //returns an airline
         public static Airline GetAirline(string iata)
         {
-            if (airlines.ContainsKey(iata))
-                return airlines[iata];
-            else
-                return null;
+            return airlines.Find(a => a.Profile.IATACode == iata);
         }
         //returns all airlines
         public static List<Airline> GetAllAirlines()
         {
-            return airlines.Values.ToList();
+            return airlines;
+        }
+        //returns all airlines for a specific region
+        public static List<Airline> GetAirlines(Region region)
+        {
+            return airlines.FindAll(a => a.Profile.Country.Region == region);
         }
         //returns a list of airlines
         public static List<Airline> GetAirlines(Predicate<Airline> match)
         {
-            return airlines.Values.ToList().FindAll(match);
+            return airlines.FindAll(match);
         }
         //removes an airline from the list
         public static void RemoveAirline(Airline airline)
         {
-            airlines.Remove(airline.Profile.IATACode);
+            airlines.Remove(airline);
+        }
+        //removes airlines from the list
+        public static void RemoveAirlines(Predicate<Airline> match)
+        {
+            airlines.RemoveAll(match);
         }
       
     }

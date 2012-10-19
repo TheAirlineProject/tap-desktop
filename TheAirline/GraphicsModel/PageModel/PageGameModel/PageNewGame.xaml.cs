@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private TextBox txtName;
         private TextBlock txtIATA;
         private ContentControl cntCountry;
-        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty;
+        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         public PageNewGame()
@@ -67,6 +67,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             panelContent.Children.Add(lbContent);
 
+            cbRegion = new ComboBox();
+            cbRegion.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbRegion.Width = 200;
+            cbRegion.DisplayMemberPath = "Name";
+            cbRegion.SelectedValuePath = "Name";
+
+            cbRegion.Items.Add(Regions.GetRegion("100"));
+            foreach (Region region in Regions.GetRegions().FindAll(r => Airlines.GetAirlines(r).Count > 0).OrderBy(r => r.Name))
+                cbRegion.Items.Add(region);
+
+            cbRegion.SelectionChanged += new SelectionChangedEventHandler(cbRegion_SelectionChanged);
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1012"), cbRegion));
             // chs, 2011-19-10 added for the possibility of creating a new airline
             WrapPanel panelAirline = new WrapPanel();
 
@@ -233,13 +246,38 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             base.setHeaderContent(Translator.GetInstance().GetString("PageNewGame", "200"));
 
-            cbAirline.SelectedIndex = 0;
+            cbRegion.SelectedIndex = 0;
 
 
             showPage(this);
 
 
 
+        }
+
+        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Region region = (Region)cbRegion.SelectedItem;
+
+            var source = cbAirline.Items as ICollectionView;
+            source.Filter = delegate(object item)
+            {
+                var airline = item as Airline;
+                return airline.Profile.Country.Region == region || region.Uid == "100";
+
+            };
+            source.Refresh();
+
+            cbAirline.SelectedIndex = 0;
+
+            //sorted all
+
+            cbOpponents.Items.Clear();
+
+            for (int i = 0; i < cbAirline.Items.Count; i++)
+                cbOpponents.Items.Add(i);
+
+            cbOpponents.SelectedIndex = Math.Min(cbOpponents.Items.Count-1, 3);
         }
 
 
@@ -269,18 +307,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
             Airline airline = (Airline)cbAirline.SelectedItem;
-            int year = (int)cbStartYear.SelectedItem;
+
+            if (airline != null)
+            {
+                int year = (int)cbStartYear.SelectedItem;
 
 
-            setAirportsView(year, airline.Profile.Country);
+                setAirportsView(year, airline.Profile.Country);
 
-            if (airline.Profile.PreferedAirport != null)
-                cbAirport.SelectedItem = airline.Profile.PreferedAirport;
+                if (airline.Profile.PreferedAirport != null)
+                    cbAirport.SelectedItem = airline.Profile.PreferedAirport;
 
-            airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
-            txtName.Text = airline.Profile.CEO;
-            txtIATA.Text = airline.Profile.IATACode;
-            cntCountry.Content = airline.Profile.Country;
+                airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
+                txtName.Text = airline.Profile.CEO;
+                txtIATA.Text = airline.Profile.IATACode;
+                cntCountry.Content = airline.Profile.Country;
+            }
 
         }
         private void btnAddAirline_Click(object sender, RoutedEventArgs e)
@@ -340,11 +382,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                Region region = Regions.GetRegion("102");
+                Region region = (Region)cbRegion.SelectedItem;
+
+                if (region.Uid != "100")
+                {
+                    Airports.RemoveAirports(a => a.Profile.Country.Region != region);
+                    Airlines.RemoveAirlines(a => a.Profile.Country.Region != region);
+                }
 
                 PassengerHelpers.CreateDestinationPassengers();
-
-                //Airports.RemoveAirports(a => a.Profile.Country.Region != region);
 
                 AirlinerHelpers.CreateStartUpAirliners();
 
@@ -361,8 +407,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
-     //           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Test af airport link", "This is an airport link [LI airport=AAR]"));
-   //             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "Test af link in text", "This is just a test for link for [LI airline=ZA]")); 
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);

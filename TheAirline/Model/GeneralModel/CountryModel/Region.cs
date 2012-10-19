@@ -25,33 +25,30 @@ namespace TheAirline.Model.GeneralModel
         }
     }
 
-    //the collection of regions
+    //the list of regions
     public class Regions
     {
-        private static Dictionary<string, Region> regions = new Dictionary<string, Region>();
+        private static List<Region> regions = new List<Region>();
         //clears the list
         public static void Clear()
         {
-            regions = new Dictionary<string, Region>();
+            regions = new List<Region>();
         }
-        //adds a region to the collection
+        //adds a region to the list
         public static void AddRegion(Region region)
         {
-            regions.Add(region.Uid, region);
+            regions.Add(region);
         }
-        //returns a region from the collection
+        //returns a region from list
         public static Region GetRegion(string uid)
         {
-            if (regions.ContainsKey(uid))
-                return regions[uid];
-            else
-                return null;
+            return regions.Find(r => r.Uid == uid);
         }
 
         //returns the list of regions, without "All Regions"
         public static List<Region> GetRegions()
         {
-            List<Region> netto = regions.Values.ToList();
+            List<Region> netto = regions;
             netto.Remove(GetRegion("100"));
             return netto;
         }
@@ -59,7 +56,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the list of regions
         public static List<Region> GetAllRegions()
         {
-            return regions.Values.ToList();
+            return regions;
         }
 
     }
