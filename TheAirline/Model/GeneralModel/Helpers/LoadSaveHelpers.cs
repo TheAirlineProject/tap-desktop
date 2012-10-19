@@ -662,6 +662,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameObject.GetInstance().TimeZone = timezone;
 
             Settings.GetInstance().MailsOnLandings = Convert.ToBoolean(gameSettingsNode.Attributes["mailonlandings"].Value);
+            Settings.GetInstance().MailsOnBadWeather = Convert.ToBoolean(gameSettingsNode.Attributes["mailonbadweather"].Value);
 
             SkinObject.GetInstance().setCurrentSkin(Skins.GetSkin(gameSettingsNode.Attributes["skin"].Value));
             Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)Enum.Parse(typeof(Settings.AirportCode), gameSettingsNode.Attributes["airportcode"].Value);
@@ -1318,6 +1319,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("fuelprice", GameObject.GetInstance().FuelPrice.ToString());
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
+            gameSettingsNode.SetAttribute("mailonbadweather", Settings.GetInstance().MailsOnBadWeather.ToString());
             gameSettingsNode.SetAttribute("skin", SkinObject.GetInstance().CurrentSkin.Name);
             gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());
             gameSettingsNode.SetAttribute("gamespeed", GameTimer.GetInstance().GameSpeed.ToString());

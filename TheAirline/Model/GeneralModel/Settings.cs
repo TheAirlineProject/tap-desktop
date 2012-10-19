@@ -15,6 +15,7 @@ namespace TheAirline.Model.GeneralModel
         public Difficulty DifficultyDisplay { get; set; }
         //the setting for receiving mails on landings
         public Boolean MailsOnLandings { get; set; }
+        public Boolean MailsOnBadWeather { get; set; }
         public int MinutesPerTurn { get; set; }
         public enum Difficulty { Easy, Normal, Hard }
 
@@ -23,6 +24,7 @@ namespace TheAirline.Model.GeneralModel
             this.AirportCodeDisplay = AirportCode.IATA;
             this.DifficultyDisplay = Difficulty.Normal;
             this.MailsOnLandings = false;
+            this.MailsOnBadWeather = true;
             this.MinutesPerTurn = 60;
         }
         //returns the settings instance

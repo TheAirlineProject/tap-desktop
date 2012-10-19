@@ -26,7 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private TextBlock txtGameSpeed;
         private ComboBox cbLanguage;
         private ComboBox cbTurnMinutes;
-        private CheckBox cbMailOnLandings;
+        private CheckBox cbMailOnLandings, cbMailOnBadWeather;
         private RadioButton[] rbAirportCodes;
         public PageSettings()
         {
@@ -113,8 +113,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             cbMailOnLandings = new CheckBox();
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
-
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1004"), cbMailOnLandings));
+
+            cbMailOnBadWeather = new CheckBox();
+            cbMailOnBadWeather.IsChecked = Settings.GetInstance().MailsOnBadWeather;
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1007"),cbMailOnBadWeather));
 
             rbAirportCodes = new RadioButton[Enum.GetValues(typeof(Settings.AirportCode)).Length];
 
@@ -183,6 +186,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
             cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
+            cbMailOnBadWeather.IsChecked = Settings.GetInstance().MailsOnBadWeather;
             cbTurnMinutes.SelectedItem = Settings.GetInstance().MinutesPerTurn;
             
         }
@@ -199,6 +203,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Language language = (Language)cbLanguage.SelectedItem;
             AppSettings.GetInstance().setLanguage(language);
             Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;
+            Settings.GetInstance().MailsOnBadWeather = cbMailOnBadWeather.IsChecked.Value;
             Settings.GetInstance().MinutesPerTurn = (int)cbTurnMinutes.SelectedItem;
 
            

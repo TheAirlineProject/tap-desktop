@@ -48,7 +48,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 for (int i = 0; i < maxDays; i++)
                 {
 
-                    airport.Weather[i] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(i));
+                    airport.Weather[i] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(i),i>0 ? airport.Weather[i-1] : null);
                 }
             }
             else
@@ -56,21 +56,39 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 for (int i = 1; i < maxDays; i++)
                     airport.Weather[i - 1] = airport.Weather[i];
 
-                airport.Weather[maxDays - 1] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(maxDays - 1));
+                airport.Weather[maxDays - 1] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(maxDays - 1),airport.Weather[maxDays-2]);
             }
-             
+            // intelligent vejr + pludselig uvejr + Airport.TypiskWeather/på regiono
 
         }
-         //creates a new weather object for a specific date
-        private static Weather CreateDayWeather(DateTime date)
+
+         //creates a new weather object for a specific date based on the weather for another day
+        private static Weather CreateDayWeather(DateTime date, Weather previousWeather)
         {
-            Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
-            Weather.eWindSpeed windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];
-
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
-            Weather.WindDirection windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
+            Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
+            Weather.WindDirection windDirection;
+            Weather.eWindSpeed windSpeed;
 
+            windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
+      
+            if (previousWeather == null)
+            {
+                windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];
+             }
+            else
+            {
+                int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
+                windSpeed = windSpeedValues[rnd.Next(Math.Max(0, windIndex - 2), Math.Min(windIndex + 2, windSpeedValues.Length))];
+            }
             return new Weather(date, windSpeed, windDirection);
+   
+
+        }
+        //returns if there is bad weather at an airport
+        public static Boolean HasBadWeather(Airport airport)
+        {
+            return airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
     }
    
