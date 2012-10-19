@@ -17,11 +17,11 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
         }
         public override bool isHuman()
         {
-            return this.Airline.isHuman();
+            return this.Airline != null && this.Airline.isHuman();
         }
         public override bool isSubsidiaryAirline()
         {
-            return true;
+            return this.Airline != null;
         }
    
     }

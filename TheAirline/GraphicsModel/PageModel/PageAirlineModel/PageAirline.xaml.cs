@@ -333,15 +333,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                while (this.Airline.Subsidiaries.Count>0)
+                result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2114"), string.Format(Translator.GetInstance().GetString("MessageBox", "2114", "message"), this.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
                 {
-                    SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
-                    subAirline.Profile.CEO = GameObject.GetInstance().HumanAirline.Profile.CEO;
+                    while (this.Airline.Subsidiaries.Count > 0)
+                    {
+                        SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
+                        subAirline.Profile.CEO = GameObject.GetInstance().HumanAirline.Profile.CEO;
 
-                    subAirline.Airline = GameObject.GetInstance().HumanAirline;
-                    this.Airline.removeSubsidiaryAirline(subAirline);
-                    GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(subAirline);
+                        subAirline.Airline = GameObject.GetInstance().HumanAirline;
+                        this.Airline.removeSubsidiaryAirline(subAirline);
+                        GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(subAirline);
 
+                    }
+                }
+                else
+                {
+                    while (this.Airline.Subsidiaries.Count > 0)
+                    {
+                        SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
+
+                        subAirline.Airline = null;
+
+                        this.Airline.removeSubsidiaryAirline(subAirline);
+                    }
                 }
 
                 switchAirline(this.Airline);
