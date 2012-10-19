@@ -60,9 +60,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             
             panelStatistics.Children.Add(panelStats);
 
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
+           // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
 
-            this.Unloaded += new RoutedEventHandler(PageAirlinesExtendedStatistics_Unloaded);
+           // this.Unloaded += new RoutedEventHandler(PageAirlinesExtendedStatistics_Unloaded);
 
             scroller.Content = panelStatistics;
 

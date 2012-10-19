@@ -10,9 +10,9 @@
     <Page.Resources>
         <DataTemplate x:Key="FlightItem">
             <WrapPanel>
-                <ContentControl ContentTemplate="{DynamicResource AirlineLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="150"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
-                <WrapPanel Width="550">
+                <WrapPanel Width="550" VerticalAlignment="Bottom">
                     <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding DepartureAirport}"/>
 
                 <TextBlock VerticalAlignment="Bottom" Text=" - "></TextBlock>
@@ -27,7 +27,7 @@
         </DataTemplate>
         <DataTemplate x:Key="FlightsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
-                <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="200" FontWeight="Bold"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="Flight" Width="75" FontWeight="Bold"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="Port" Width="550" FontWeight="Bold"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="Day" Width="75" FontWeight="Bold"></TextBlock>

@@ -19,6 +19,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -161,7 +162,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
           
             Dictionary<Airport, int> destinations = new Dictionary<Airport, int>();
-            foreach (Route route in GeneralHelpers.GetAirportRoutes(this.Airport).FindAll(r=>r.getAirliners().Count>0))
+            foreach (Route route in AirportHelpers.GetAirportRoutes(this.Airport).FindAll(r=>r.getAirliners().Count>0))
             {
                 if (route.Destination1 != this.Airport)
                 {

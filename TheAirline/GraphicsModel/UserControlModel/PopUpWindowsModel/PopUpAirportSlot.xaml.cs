@@ -14,6 +14,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -104,7 +105,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             while (time.Day<2)
             {
                 TimeSpan ts = new TimeSpan(time.Hour, time.Minute, 0);
-                values.Add(ts, new KeyValuePair<int,int>(GeneralHelpers.GetAirportTakeoffs(this.Airport, day, ts, ts.Add(new TimeSpan(0, 15, 0))).Count, GeneralHelpers.GetAirportLandings(this.Airport,day,ts,ts.Add(new TimeSpan(0,15,0))).Count));
+                values.Add(ts, new KeyValuePair<int,int>(AirportHelpers.GetAirportTakeoffs(this.Airport, day, ts, ts.Add(new TimeSpan(0, 15, 0))).Count,AirportHelpers.GetAirportLandings(this.Airport,day,ts,ts.Add(new TimeSpan(0,15,0))).Count));
 
                 time = time.AddMinutes(15);
             }

@@ -20,7 +20,7 @@ namespace TheAirline.Model.AirportModel
         private Dictionary<Airport, long> DestinationStatistics { get; set; }
         private List<AirlineAirportFacility> Facilities;
         public AirportStatistics Statistics { get; set; }
-        public Weather Weather { get; set; }
+        public Weather[] Weather { get; set; }
         public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
         public List<Hub> Hubs { get; set; }
@@ -33,7 +33,7 @@ namespace TheAirline.Model.AirportModel
             this.DestinationPassengers = new List<DestinationPassengers>();
             this.Facilities = new List<AirlineAirportFacility>();
             this.Statistics = new AirportStatistics();
-            this.Weather = new Weather();
+            this.Weather = new Weather[5];
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
             this.Hubs = new List<Hub>();

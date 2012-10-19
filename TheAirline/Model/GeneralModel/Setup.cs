@@ -1146,6 +1146,7 @@ namespace TheAirline.Model.GeneralModel
                         airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                     }
                 }
+                AirportHelpers.CreateAirportWeather(airport);
             }
 
             foreach (Airline airline in Airlines.GetAllAirlines())
@@ -1197,7 +1198,7 @@ namespace TheAirline.Model.GeneralModel
                     airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
                 Dictionary<Airport, int> list = new Dictionary<Airport, int>();
-                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * GeneralHelpers.GetAirportsNearAirport(a).Count));
+                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * AirportHelpers.GetAirportsNearAirport(a).Count));
 
                 return AIHelpers.GetRandomItem(list);
             }

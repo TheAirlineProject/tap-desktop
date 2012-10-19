@@ -241,15 +241,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //updates airports
             foreach (Airport airport in Airports.GetAllActiveAirports())
             {
-                Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
-                Weather.eWindSpeed windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];
-
-                Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
-                Weather.WindDirection windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
-
-                airport.Weather.WindSpeed = windSpeed;
-                airport.Weather.Direction = windDirection;
-
+                AirportHelpers.CreateAirportWeather(airport);
                 // chs, 2011-01-11 changed for delivery of terminals
                 foreach (Terminal terminal in airport.Terminals.getTerminals())
                 {
@@ -825,11 +817,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double totalDistance = MathHelpers.GetDistance(dept.Profile.Coordinates, dest.Profile.Coordinates);
 
-            Weather tWeather = new Weather();
-            tWeather.WindSpeed = Weather.eWindSpeed.Calm;
-            tWeather.Direction = Weather.WindDirection.Head;
-
-            return distance > totalDistance / 2 ? dept.Weather : dest.Weather;
+            return distance > totalDistance / 2 ? dept.Weather[0] : dest.Weather[0];
         }
         //sets the next flight for a route airliner
         private static void SetNextFlight(FleetAirliner airliner)

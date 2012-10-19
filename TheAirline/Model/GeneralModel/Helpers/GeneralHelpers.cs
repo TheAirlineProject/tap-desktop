@@ -11,6 +11,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -26,7 +27,7 @@ namespace TheAirline.Model.GeneralModel
         public static List<RouteTimeTableEntry> GetAirportFlights(Airport fAirport, Airport tAirport, Boolean arrivals)
         {
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
-            foreach (Route route in GetAirportRoutes(fAirport))
+            foreach (Route route in AirportHelpers.GetAirportRoutes(fAirport))
             {
                 if (route.HasAirliner && (route.Destination1 == tAirport || route.Destination2 == tAirport))
                 {
@@ -56,7 +57,7 @@ namespace TheAirline.Model.GeneralModel
         {
 
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
-            foreach (Route route in GetAirportRoutes(airport))
+            foreach (Route route in AirportHelpers.GetAirportRoutes(airport))
             {
                 if (route.HasAirliner && route.getCurrentAirliner()!=null)
                 {
@@ -80,7 +81,7 @@ namespace TheAirline.Model.GeneralModel
         {
             
             List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
-            foreach (Route route in GetAirportRoutes(airport))
+            foreach (Route route in AirportHelpers.GetAirportRoutes(airport))
             {
                 if (route.HasAirliner && route.getCurrentAirliner() != null)
                 {
@@ -113,11 +114,7 @@ namespace TheAirline.Model.GeneralModel
                 return 1.75 * ((double)Airline.AirlineValue.Very_high + 1 - value);
             else return 1.5 * ((double)Airline.AirlineValue.Very_high + 1 - value);
         }
-        //finds all airports in a radius of 1000 km from a airport
-        public static List<Airport> GetAirportsNearAirport(Airport airport)
-        {
-            return Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < 1000 && airport != a);
-        }
+  
         //creates the big image map
         public static void CreateBigImageCanvas()
         {
@@ -183,28 +180,7 @@ namespace TheAirline.Model.GeneralModel
            else
                 return 0;
         }
-        //returns all routes from an airport for an airline
-        public static List<Route> GetAirportRoutes(Airport airport, Airline airline)
-        {
-            return airline.Routes.FindAll(r => r.Destination2 == airport || r.Destination1 == airport);
-        }
-        //returns all routes from an airport
-        public static List<Route> GetAirportRoutes(Airport airport)
-        {
-            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes).Where(r => r.Destination1 == airport || r.Destination2 == airport);
-
-            return routes.ToList();
-        }
-        //returns all entries for a specific airport with take off in a time span for a day
-        public static List<RouteTimeTableEntry> GetAirportTakeoffs(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
-        {
-             return GetAirportRoutes(airport).SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null && e.DepartureAirport == airport && e.Time>=startTime && e.Time<endTime && e.Day == day)).ToList();
-        }
-        //returns all entries for a specific airport with landings in a time span for a day
-        public static List<RouteTimeTableEntry> GetAirportLandings(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
-        {
-            return GetAirportRoutes(airport).SelectMany(r=> r.TimeTable.Entries.FindAll(e=> e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates,e.DepartureAirport.Profile.Coordinates,e.Airliner.Airliner.Type))>=startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates,e.DepartureAirport.Profile.Coordinates,e.Airliner.Airliner.Type))<endTime && e.Day == day)).ToList();
-        }
+       
         //the converter for a price based on inflation
         public static double GetInflationPrice(double price)
         {
@@ -222,6 +198,7 @@ namespace TheAirline.Model.GeneralModel
         {
             return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime;
         }
+       
         //creates the holidays for a year
         public static void CreateHolidays(int startYear)
         {
