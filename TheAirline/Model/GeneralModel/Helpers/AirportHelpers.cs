@@ -81,8 +81,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             return new Weather(date, windSpeed, windDirection);
    
-
-        }
+          }
         //returns if there is bad weather at an airport
         public static Boolean HasBadWeather(Airport airport)
         {

@@ -48,7 +48,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the list of regions, without "All Regions"
         public static List<Region> GetRegions()
         {
-            List<Region> netto = regions;
+            List<Region> netto = new List<Region>(regions);
             netto.Remove(GetRegion("100"));
             return netto;
         }
