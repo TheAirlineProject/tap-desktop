@@ -27,9 +27,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
     {
         private ListBox lbFlights;
         private List<RouteTimeTableEntry> Entries;
+        private string sortCriteria;
+        private DayOfWeek day;
+     
         public PageFlights()
         {
-            this.Entries = Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).OrderBy(e => e.Time).ToList();
+            this.Entries = Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r => r.TimeTable.Entries)).ToList();//.OrderBy(e => e.Time).ToList();
+            sortCriteria = "Time";
 
             InitializeComponent();
 
@@ -56,12 +60,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
 
             showPage(this);
 
-            showDayEntries(GameObject.GetInstance().GameTime.DayOfWeek);
+            day = GameObject.GetInstance().GameTime.DayOfWeek;
+            showDayEntries();
 
           
 
-            //   Page show routes for All airlines + Per dag 
-        }
+          }
         //creates the panel for the day buttons
         private WrapPanel createDaysButtonsPanel()
         {
@@ -109,7 +113,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
             
         }
         //shows the entries for a specific day
-        private void showDayEntries(DayOfWeek day)
+        private void showDayEntries()
         {
             var source = lbFlights.Items as ICollectionView;
             source.Filter = delegate(object item)
@@ -118,13 +122,46 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
                 return i.Day == day;
 
             };
+            source.SortDescriptions.Clear();
+            source.SortDescriptions.Add(new SortDescription(sortCriteria, ListSortDirection.Ascending));
             source.Refresh();
         }
         private void sbDay_Click(object sender, RoutedEventArgs e)
         {
-            DayOfWeek day = (DayOfWeek)((ucSelectButton)sender).Tag;
+            day = (DayOfWeek)((ucSelectButton)sender).Tag;
 
-            showDayEntries(day);
+            sortCriteria = "Time";
+          
+            showDayEntries();
+        }
+        private void Header_Click(object sender, RoutedEventArgs e)
+        {
+            string type = (string)((Hyperlink)sender).Tag;
+            
+            switch (type)
+            {
+                case "Airline":
+                    sortCriteria = "Airliner.Airliner.Airline.Profile.Name";
+                    showDayEntries();
+                    break;
+                case "Flight":
+                    sortCriteria = "Destination.FlightCode";
+                    showDayEntries();
+                    break;
+                case "Origin":
+                    sortCriteria = "DepartureAirport.Profile.Name";
+                    showDayEntries();
+                    break;
+                case "Destination":
+                    sortCriteria = "Destination.Airport.Profile.Name";
+                    showDayEntries();
+                    break;
+                case "Time":
+                    sortCriteria = "Time";
+                    showDayEntries();
+                    break;
+            }
+             
         }
     }
 }

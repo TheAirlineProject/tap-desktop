@@ -7,6 +7,7 @@
     <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
     <local:RouteClassFacilityConverter x:Key="routeClassFacilityConverter"></local:RouteClassFacilityConverter>
     <local:WifiEnabledConverter x:Key="wifiEnabledConverter"></local:WifiEnabledConverter>
+
     <DataTemplate x:Key="CountryFlag">
         <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
     </DataTemplate>

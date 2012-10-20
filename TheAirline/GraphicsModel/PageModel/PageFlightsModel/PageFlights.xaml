@@ -12,27 +12,42 @@
             <WrapPanel>
                 <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
-                <WrapPanel Width="550" VerticalAlignment="Bottom">
-                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}"/>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="250"/>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="250"/>
 
-                <TextBlock VerticalAlignment="Bottom" Text=" - "></TextBlock>
-                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}"/>
-
-                 </WrapPanel>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Day}" Width="75"></TextBlock>
-     
+             
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75"></TextBlock>
       
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="FlightsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
-                <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="200" FontWeight="Bold"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="Flight" Width="75" FontWeight="Bold"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="Port" Width="550" FontWeight="Bold"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="Day" Width="75" FontWeight="Bold"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="Dept. Time" Width="75" FontWeight="Bold"></TextBlock>
-            </WrapPanel>
+                <TextBlock Width="200" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Airline" Click="Header_Click">
+                        <Run Text="Airline"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="75" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Flight" Click="Header_Click">
+                        <Run Text="Flight"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Origin" Click="Header_Click">
+                        <Run Text="Origin"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Destination" Click="Header_Click">
+                        <Run Text="Destination"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Time" Click="Header_Click">
+                        <Run Text="Dept.Time"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                  </WrapPanel>
         </DataTemplate>
     </Page.Resources>
         <Grid>
