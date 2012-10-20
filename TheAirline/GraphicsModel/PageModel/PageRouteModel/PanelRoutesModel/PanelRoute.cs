@@ -258,7 +258,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             {
                 this.Route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
 
-                foreach (RouteFacility facility in aClass.getFacilities())
+                List<RouteFacility> facilities = new List<RouteFacility>(aClass.getFacilities());
+                foreach (RouteFacility facility in facilities)
                     this.Route.getRouteAirlinerClass(aClass.Type).addFacility(facility);
              
 
