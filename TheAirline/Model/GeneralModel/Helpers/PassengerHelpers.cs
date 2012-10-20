@@ -78,7 +78,7 @@ namespace TheAirline.Model.GeneralModel
 
             var currentRoute = airliner.Routes.Find(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
 
-            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2);
+            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2,type);
             double routePrice = currentRoute.getFarePrice(type);
 
             double priceDiff = basicPrice / routePrice;
@@ -133,8 +133,8 @@ If an airline wants to increase its market share on a route that is already at c
             double randomPax = Convert.ToDouble(rnd.Next(97, 103))/100;
 
 
-            return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax);
-
+            return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity,(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
+            //return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
 
 
         }
@@ -187,6 +187,12 @@ If an airline wants to increase its market share on a route that is already at c
                 ticketPrice = minimumTicketPrice + (ticketPrice / 4);
 
             return ticketPrice;
+        }
+        public static double GetPassengerPrice(Airport dest1, Airport dest2,AirlinerClass.ClassType type)
+        {
+           
+
+            return GetPassengerPrice(dest1, dest2) * GeneralHelpers.ClassToPriceFactor(type);
         }
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
