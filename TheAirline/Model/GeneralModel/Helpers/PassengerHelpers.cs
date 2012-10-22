@@ -686,8 +686,7 @@ If an airline wants to increase its market share on a route that is already at c
                     value = value / (int)classType;
 
 
-                GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.ToObject(typeof(GeneralHelpers.Rate), (int)value);
-
+                ushort rate = (ushort)value;
                 airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
             }
         }

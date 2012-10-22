@@ -52,13 +52,10 @@ namespace TheAirline.Model.AirportModel
 
         }
         //returns the destination passengers for a specific destination for a class
-        public GeneralHelpers.Rate getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
+        public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationPassengers destPax = this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type);
-            if (destPax == null)
-                return GeneralHelpers.Rate.None;
-            else
-                return destPax.Rate;
+            return this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type).Rate;
+         
         }
         //adds a rate for a destination
         public void addDestinationPassengersRate(DestinationPassengers passengers)

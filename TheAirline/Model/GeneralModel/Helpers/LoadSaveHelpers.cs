@@ -527,7 +527,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (destAirport != null)
                         {
-                            GeneralHelpers.Rate rate = (GeneralHelpers.Rate)Enum.Parse(typeof(GeneralHelpers.Rate), destinationElement.Attributes["rate"].Value);
+                            ushort rate = ushort.Parse(destinationElement.Attributes["rate"].Value);
                             AirlinerClass.ClassType classtype = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), destinationElement.Attributes["classtype"].Value);
                             long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
