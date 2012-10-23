@@ -1049,8 +1049,8 @@ namespace TheAirline.Model.GeneralModel
             Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
             string ceo = profileElement.Attributes["CEO"].Value;
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
-            Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), profileElement.Attributes["market"].Value);
-
+            Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
+          
             Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo), mentality, market);
             if (profileElement.HasAttribute("preferedairport"))
             {
@@ -1067,7 +1067,7 @@ namespace TheAirline.Model.GeneralModel
                     string subIATA = subsidiaryElement.Attributes["IATA"].Value;
                     Airport subAirport = Airports.GetAirport(subsidiaryElement.Attributes["homebase"].Value);
                     Airline.AirlineMentality subMentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), subsidiaryElement.Attributes["mentality"].Value);
-                    Airline.AirlineMarket subMarket = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), subsidiaryElement.Attributes["market"].Value);
+                    Airline.AirlineFocus subMarket = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
                     string subLogo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + subsidiaryElement.Attributes["logo"].Value + ".png";
 
                     airline.FutureAirlines.Add(new FutureSubsidiaryAirline(subName, subIATA, subAirport, subMentality, subMarket, subLogo));

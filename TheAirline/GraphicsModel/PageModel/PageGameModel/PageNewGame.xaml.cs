@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private TextBox txtName;
         private TextBlock txtIATA;
         private ContentControl cntCountry;
-        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion;
+        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         public PageNewGame()
@@ -197,6 +197,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), cbDifficulty));
 
+            cbFocus = new ComboBox();
+            cbFocus.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbFocus.Width = 100;
+
+            foreach (Airline.AirlineFocus focus in Enum.GetValues(typeof(Airline.AirlineFocus)))
+                cbFocus.Items.Add(focus);
+
+            cbFocus.SelectedIndex = 0;
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1013"), cbFocus));
+            
             cbOpponents = new ComboBox();
             cbOpponents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbOpponents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;

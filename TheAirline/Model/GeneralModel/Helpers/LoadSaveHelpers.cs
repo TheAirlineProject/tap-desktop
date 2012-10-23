@@ -146,8 +146,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
                 int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
                 Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
-                Airline.AirlineMarket market = (Airline.AirlineMarket)Enum.Parse(typeof(Airline.AirlineMarket), airlineNode.Attributes["market"].Value);
-
+                Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
+            
                 Airline airline;
                 if (airlineIsSubsidiary)
                 {
@@ -847,7 +847,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
                 airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
-
+              
                 if (airline.Contract != null)
                 {
                     XmlElement airlineContractNode = xmlDoc.CreateElement("contract");

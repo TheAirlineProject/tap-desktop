@@ -588,15 +588,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<Airport> airports = Airports.GetAirports(a => airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null && !FlightRestrictions.HasRestriction(a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline, a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime));
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
-            Airline.AirlineMarket marketFocus = airline.MarketFocus;
+            Airline.AirlineFocus marketFocus = airline.MarketFocus;
 
 
             if (airline.Airports.Count < 4)
             {
-                List<Airline.AirlineMarket> focuses = new List<Airline.AirlineMarket>();
-                focuses.Add(Airline.AirlineMarket.Local);
-                focuses.Add(Airline.AirlineMarket.Local);
-                focuses.Add(Airline.AirlineMarket.Local);
+                List<Airline.AirlineFocus> focuses = new List<Airline.AirlineFocus>();
+                focuses.Add(Airline.AirlineFocus.Local);
+                focuses.Add(Airline.AirlineFocus.Local);
+                focuses.Add(Airline.AirlineFocus.Local);
                 focuses.Add(marketFocus);
 
                 marketFocus = focuses[rnd.Next(focuses.Count)];
@@ -604,16 +604,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             switch (marketFocus)
             {
-                case Airline.AirlineMarket.Domestic:
+                case Airline.AirlineFocus.Domestic:
                     airports = airports.FindAll(a => a.Profile.Country == airport.Profile.Country);
                     break;
-                case Airline.AirlineMarket.Global:
+                case Airline.AirlineFocus.Global:
                     airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
-                case Airline.AirlineMarket.Local:
+                case Airline.AirlineFocus.Local:
                     airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
                     break;
-                case Airline.AirlineMarket.Regional:
+                case Airline.AirlineFocus.Regional:
                     airports = airports.FindAll(a => a.Profile.Country.Region == airport.Profile.Country.Region && AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
                     break;
             }

@@ -17,8 +17,8 @@ namespace TheAirline.Model.AirlineModel
     {
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Aggressive, Moderate, Safe}
-        public enum AirlineMarket { Global, Regional, Local, Domestic }
-        public AirlineMarket MarketFocus { get; set; }
+        public enum AirlineFocus { Global, Regional, Local, Domestic }
+        public AirlineFocus MarketFocus { get; set; }
         public AirlineMentality Mentality { get; set; }
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
         public List<Airport> Airports { get; set; }
@@ -41,7 +41,7 @@ namespace TheAirline.Model.AirlineModel
         public List<Alliance> Alliances { get; set; }
         public ManufacturerContract Contract { get; set; }
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
-        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineMarket marketFocus)
+        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
@@ -58,8 +58,7 @@ namespace TheAirline.Model.AirlineModel
             this.Alliances = new List<Alliance>();
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
-  
-            this.FlightCodes = new List<string>();
+                   this.FlightCodes = new List<string>();
 
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));

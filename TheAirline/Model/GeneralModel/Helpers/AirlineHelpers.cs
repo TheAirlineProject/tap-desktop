@@ -205,16 +205,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //creates a subsidiary airline for an airline
-        public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineMarket market, Airport homebase)
+        public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineFocus market, Airport homebase)
         {
             AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.Country, airline.Profile.CEO);
-          
+
+         
             SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market);
 
             AddSubsidiaryAirline(airline, sAirline,money,homebase);
 
             return sAirline;
         }
+        
         
     }
 }

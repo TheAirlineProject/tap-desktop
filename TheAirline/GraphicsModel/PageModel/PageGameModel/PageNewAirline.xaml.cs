@@ -233,10 +233,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             AirlineProfile profile = new AirlineProfile(name, iata, color, country, "Unknown");
             profile.Logo = logoPath;
-
-         
-
-            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineMarket.Local);
+            
+            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local);
 
             Airlines.AddAirline(airline);
 

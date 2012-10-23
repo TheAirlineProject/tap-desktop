@@ -9,7 +9,7 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
     public class SubsidiaryAirline : Airline
     {
         public Airline Airline { get; set; }
-        public SubsidiaryAirline(Airline airline, AirlineProfile profile, AirlineMentality mentality, AirlineMarket market)
+        public SubsidiaryAirline(Airline airline, AirlineProfile profile, AirlineMentality mentality, AirlineFocus market)
             : base(profile, mentality, market)
         {
             this.Airline = airline;
