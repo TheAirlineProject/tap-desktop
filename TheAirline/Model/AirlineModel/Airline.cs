@@ -17,7 +17,7 @@ namespace TheAirline.Model.AirlineModel
     {
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Aggressive, Moderate, Safe}
-        public enum AirlineFocus { Global, Regional, Local, Domestic }
+        public enum AirlineFocus { Global, Regional,Domestic, Local }
         public AirlineFocus MarketFocus { get; set; }
         public AirlineMentality Mentality { get; set; }
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 

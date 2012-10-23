@@ -407,6 +407,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Setup.SetupTestGame(opponents);
 
+                airline.MarketFocus = (Airline.AirlineFocus)cbFocus.SelectedItem;
+
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 GameTimer.GetInstance().start();
                // AIWorker.GetInstance().start();

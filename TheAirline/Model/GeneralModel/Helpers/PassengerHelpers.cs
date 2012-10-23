@@ -72,24 +72,18 @@ namespace TheAirline.Model.GeneralModel
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
 
-
             Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
+            double distance = MathHelpers.GetDistance(airportCurrent,airportDestination);
+        
             var currentRoute = airliner.Routes.Find(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
 
             double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2,type);
             double routePrice = currentRoute.getFarePrice(type);
 
             double priceDiff = basicPrice / routePrice;
-            /*
-             * If the capacity is less than the demand, fill the airliner and decrease airline happiness. 
-
-If an airline wants to increase its market share on a route that is already at capacity, it would have two options.
-             * It could either increase the level of service or more likely lower the price.
-             * If the other airlines do not do the same thing, they would begin to loose passengers to the other airline. 
-             * The AI would have to be programmed to understand this. 
-             * The current prices charged by airlines on the route would to be displayed somewhere so player knows what to charge.*/
+    
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
             double passengerDemand = demand * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
@@ -104,6 +98,18 @@ If an airline wants to increase its market share on a route that is already at c
 
             else if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
             { passengerDemand = passengerDemand * (175 / 100); }
+
+            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000 &&  airportCurrent.Profile.Country != airportDestination.Profile.Country)
+                passengerDemand = passengerDemand * (115 / 100);
+            
+            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Regional && distance < 1500)
+                passengerDemand = passengerDemand * (115 / 100);
+
+            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Domestic && distance < 1500 && airportDestination.Profile.Country == airportCurrent.Profile.Country)
+                passengerDemand = passengerDemand * (115 / 100);
+
+            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Local && distance < 1000)
+                passengerDemand = passengerDemand * (115 / 100);
 
             var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
 
