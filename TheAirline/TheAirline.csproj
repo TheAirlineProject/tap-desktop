@@ -790,6 +790,21 @@
   <ItemGroup>
     <Resource Include="Data\images\start.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\addons\airliners\let.xml">
+      <Link>let.xml</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\graphics\manufacturerlogos\Let.png">
+      <Link>Let.png</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\graphics\manufacturerlogos\Aerospatiale.png">
+      <Link>Aerospatiale.png</Link>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
