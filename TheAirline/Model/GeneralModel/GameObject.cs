@@ -40,7 +40,7 @@ namespace TheAirline.Model.GeneralModel
             
             double baseStartMoney = 12500000;
             if (this.Difficulty == DifficultyLevel.Easy)
-            { baseStartMoney *= 1.5; }
+            { baseStartMoney *= 100.5; }
             else if (this.Difficulty == DifficultyLevel.Normal)
             { baseStartMoney *= 1;}
             else if (this.Difficulty == DifficultyLevel.Hard)
