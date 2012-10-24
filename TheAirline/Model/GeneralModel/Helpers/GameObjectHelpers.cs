@@ -38,14 +38,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             var airlines = new List<Airline>(Airlines.GetAllAirlines());
 
+            int airlineCounter = 0;
             foreach (Airline airline in airlines)
             {
 
                 
-                if (GameObject.GetInstance().GameTime.Hour % 3 == 0 && GameObject.GetInstance().GameTime.Minute == 0)
+                if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
                 {
                     if (!airline.IsHuman)
                         AIHelpers.UpdateCPUAirline(airline);
+
                 }
 
                 int airlineCount = airline.Fleet.Count;
@@ -53,7 +55,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 for (int i = 0; i < airlineCount; i++)
                     UpdateAirliner(airline.Fleet[i]);
 
-
+                airlineCounter++;
             }
 
             GC.Collect();
