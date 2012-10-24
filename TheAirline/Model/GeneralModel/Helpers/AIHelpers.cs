@@ -40,7 +40,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 CreateNewRoute(airline);
                 i++;
             }
-
+            
         }
         //checks for ordering new airliners
         private static void CheckForOrderOfAirliners(Airline airline)
@@ -189,10 +189,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 newSubInterval *= 1.25;
             if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
                 newSubInterval *= 0.75;
+            
+            //newSubInterval = 0;
 
             Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines + 1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money > airline.StartMoney / 5;
 
-
+          
 
             if (newSub)
             {

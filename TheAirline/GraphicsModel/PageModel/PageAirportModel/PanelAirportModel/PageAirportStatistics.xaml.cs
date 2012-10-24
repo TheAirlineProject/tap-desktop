@@ -58,9 +58,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelStatistics.Children.Add(panelStats);
 
-            GameTimer.GetInstance().OnTimeChanged+=new GameTimer.TimeChanged(PageAirportStatistics_OnTimeChanged);
+            //GameTimer.GetInstance().OnTimeChanged+=new GameTimer.TimeChanged(PageAirportStatistics_OnTimeChanged);
 
-            this.Unloaded += new RoutedEventHandler(PageAirportStatistics_Unloaded);
+            //this.Unloaded += new RoutedEventHandler(PageAirportStatistics_Unloaded);
 
             svStatistics.Content = panelStatistics;
 

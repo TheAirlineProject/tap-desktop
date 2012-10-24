@@ -132,9 +132,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.Content = panelFinances;
 
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFinances_OnTimeChanged);
+            //GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFinances_OnTimeChanged);
 
-            this.Unloaded += new RoutedEventHandler(PageAirlineFinances_Unloaded);
+            //this.Unloaded += new RoutedEventHandler(PageAirlineFinances_Unloaded);
         }
 
         private void PageAirlineFinances_Unloaded(object sender, RoutedEventArgs e)

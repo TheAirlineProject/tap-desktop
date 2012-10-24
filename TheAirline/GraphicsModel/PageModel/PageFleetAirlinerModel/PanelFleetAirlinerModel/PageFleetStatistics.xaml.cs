@@ -60,9 +60,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
 
 
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetStatistics_OnTimeChanged);
+            //GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetStatistics_OnTimeChanged);
 
-            this.Unloaded += new RoutedEventHandler(PageFleetStatistics_Unloaded);
+            //this.Unloaded += new RoutedEventHandler(PageFleetStatistics_Unloaded);
 
             this.Content = panelStatistics;
         }

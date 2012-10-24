@@ -36,7 +36,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
-            foreach (Airline airline in Airlines.GetAllAirlines())
+            var airlines = new List<Airline>(Airlines.GetAllAirlines());
+
+            foreach (Airline airline in airlines)
             {
 
                 
@@ -620,7 +622,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 tax = 2 * tax;
 
             double ticketsIncome = 0;
-
+            
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                 ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
 
