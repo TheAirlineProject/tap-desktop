@@ -509,32 +509,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Route route = GetNextRoute(airliner);
 
-                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+                if (route == null)
+                {
+                    airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
+                }
+                else
+                {
+
+                    airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+                }
             }
-            Coordinates destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
-
-            double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
-
-            double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
             if (airliner.CurrentFlight != null)
             {
-                Weather currentWeather = GetAirlinerWeather(airliner);
-                int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn) : -(int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
-                speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
+                Coordinates destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
+
+                double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+
+                double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                if (airliner.CurrentFlight != null)
+                {
+                    Weather currentWeather = GetAirlinerWeather(airliner);
+                    int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn) : -(int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                    speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
+
+                }
+                if (adistance > 4)
+                    MathHelpers.MoveObject(airliner.CurrentPosition, destination, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, destination)));
+
+                double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+
+                if (MathHelpers.GetDistance(airliner.CurrentPosition, destination) < 5)
+                {
+                    airliner.Status = FleetAirliner.AirlinerStatus.Resting;
+                    airliner.CurrentPosition = new Coordinates(destination.Latitude, destination.Longitude);
+
+                }
 
             }
-            if (adistance > 4)
-                MathHelpers.MoveObject(airliner.CurrentPosition, destination, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, destination)));
-
-            double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
-
-            if (MathHelpers.GetDistance(airliner.CurrentPosition, destination) < 5)
+            else
             {
-                airliner.Status = FleetAirliner.AirlinerStatus.Resting;
-                airliner.CurrentPosition = new Coordinates(destination.Latitude, destination.Longitude);
-
+                airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
             }
-
 
 
         }
@@ -886,7 +901,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             var entries = from e in airliner.Routes.Select(r => r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner)) where e != null orderby MathHelpers.ConvertEntryToDate(e) select e;
 
-            return entries.FirstOrDefault().TimeTable.Route;
+            if (entries.Count() > 0)
+                return entries.First().TimeTable.Route;
+            else
+                return null;
 
         }
         //handles an influence for a historic event
