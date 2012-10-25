@@ -131,296 +131,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Airlines.Clear();
 
-            XmlNodeList airlinesList = root.SelectNodes("//airlines/airline");
+            XmlNodeList airlinesList = root.SelectNodes("//airlines/airline[@subsidiary='False']");
 
             foreach (XmlElement airlineNode in airlinesList)
-            {
-                // chs, 2011-21-10 changed for the possibility of creating a new airline
-                string airlineName = airlineNode.Attributes["name"].Value;
-                string airlineIATA = airlineNode.Attributes["code"].Value;
-                Boolean airlineIsSubsidiary = Convert.ToBoolean(airlineNode.Attributes["subsidiary"].Value);
-                Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
-                string color = airlineNode.Attributes["color"].Value;
-                string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
-                string airlineCEO = airlineNode.Attributes["CEO"].Value;
-                double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
-                int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
-                Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
-                Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
+                LoadAirline(airlineNode);
+
+            XmlNodeList subsidiaryList = root.SelectNodes("//airlines/airline[@subsidiary='True']");
+
+            foreach (XmlElement airlineNode in subsidiaryList)
+                LoadAirline(airlineNode);
+         
             
-                Airline airline;
-                if (airlineIsSubsidiary)
-                {
-                    Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                    airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
-                    parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
-                }
-                else
-                    airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
-
-                airline.Profile.Logo = logo;
-                airline.Fleet.Clear();
-                airline.Airports.Clear();
-                airline.Routes.Clear();
-
-                airline.Money = money;
-                airline.Reputation = reputation;
-
-                XmlElement airlineContractNode = (XmlElement)airlineNode.SelectSingleNode("contract");
-                if (airlineContractNode != null)
-                {
-                    Manufacturer contractManufacturer = Manufacturers.GetManufacturer(airlineContractNode.Attributes["manufacturer"].Value);
-                    DateTime contractSigningDate = Convert.ToDateTime(airlineContractNode.Attributes["signingdate"].Value);
-                    int contractLength = Convert.ToInt16(airlineContractNode.Attributes["length"].Value);
-                    double contractDiscount = Convert.ToDouble(airlineContractNode.Attributes["discount"].Value);
-                    int contractAirliners = Convert.ToInt16(airlineContractNode.Attributes["airliners"].Value);
-
-                    ManufacturerContract contract = new ManufacturerContract(contractManufacturer, contractSigningDate, contractLength, contractDiscount);
-                    contract.PurchasedAirliners = contractAirliners;
-
-                    airline.Contract = contract;
-
-                }
-
-                // chs, 2011-17-10 added for loading of passenger happiness
-                XmlElement airlinePassengerNode = (XmlElement)airlineNode.SelectSingleNode("passengerhappiness");
-                double passengerHappiness = XmlConvert.ToDouble(airlinePassengerNode.Attributes["value"].Value);
-                PassengerHelpers.SetPassengerHappiness(airline, passengerHappiness);
-
-                XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facility");
-                foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
-                {
-                    string airlineFacility = airlineFacilityNode.Attributes["uid"].Value;
-
-                    airline.addFacility(AirlineFacilities.GetFacility(airlineFacility));
-                }
-
-                XmlNodeList airlineLoanList = airlineNode.SelectNodes("loans/loan");
-                foreach (XmlElement airlineLoanNode in airlineLoanList)
-                {
-                    DateTime date = Convert.ToDateTime(airlineLoanNode.Attributes["date"].Value);
-                    double rate = Convert.ToDouble(airlineLoanNode.Attributes["rate"].Value, new CultureInfo("de-DE", false));
-                    double amount = XmlConvert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
-                    int length = Convert.ToInt16(airlineLoanNode.Attributes["length"].Value);
-                    double payment = XmlConvert.ToDouble(airlineLoanNode.Attributes["payment"].Value);
-
-                    Loan loan = new Loan(date, amount, length, rate);
-                    loan.PaymentLeft = payment;
-
-                    airline.addLoan(loan);
-                }
-
-                XmlNodeList airlineStatList = airlineNode.SelectNodes("stats/stat");
-                foreach (XmlElement airlineStatNode in airlineStatList)
-                {
-                    int year = Convert.ToInt32(airlineStatNode.Attributes["year"].Value);
-                    string airlineStatType = airlineStatNode.Attributes["type"].Value;
-                    int value = Convert.ToInt32(airlineStatNode.Attributes["value"].Value);
-
-                    airline.Statistics.setStatisticsValue(year, StatisticsTypes.GetStatisticsType(airlineStatType), value);
-                }
-
-                XmlNodeList airlineInvoiceList = airlineNode.SelectNodes("invoices/invoice");
-
-                foreach (XmlElement airlineInvoiceNode in airlineInvoiceList)
-                {
-                    Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), airlineInvoiceNode.Attributes["type"].Value);
-                    int invoiceYear = Convert.ToInt16(airlineInvoiceNode.Attributes["year"].Value);
-                    int invoiceMonth = Convert.ToInt16(airlineInvoiceNode.Attributes["month"].Value);
-                    double invoiceAmount = XmlConvert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
-
-                    airline.setInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
-                }
-
-                // chs, 2011-13-10 added for loading of airline advertisements
-                XmlNodeList advertisementList = airlineNode.SelectNodes("advertisements/advertisement");
-
-                foreach (XmlElement advertisementNode in advertisementList)
-                {
-                    AdvertisementType.AirlineAdvertisementType type = (AdvertisementType.AirlineAdvertisementType)Enum.Parse(typeof(AdvertisementType.AirlineAdvertisementType), advertisementNode.Attributes["type"].Value);
-                    string advertisementName = advertisementNode.Attributes["name"].Value;
-
-                    airline.setAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
-                }
-                // chs, 2011-17-10 added for loading of fees
-                AirlineFees fees = new AirlineFees();
-
-                XmlNodeList airlineFeeList = airlineNode.SelectNodes("fees/fee");
-                foreach (XmlElement feeNode in airlineFeeList)
-                {
-                    string feeType = feeNode.Attributes["type"].Value;
-                    double feeValue = Convert.ToDouble(feeNode.Attributes["value"].Value);
-
-                    fees.setValue(FeeTypes.GetType(feeType), feeValue);
-                }
-
-                airline.Fees = fees;
-
-
-                XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
-
-                foreach (XmlElement airlineAirlinerNode in airlineFleetList)
-                {
-                    Airliner airliner = Airliners.GetAirliner(airlineAirlinerNode.Attributes["airliner"].Value);
-                    string fAirlinerName = airlineAirlinerNode.Attributes["name"].Value;
-                    Airport homebase = Airports.GetAirport(airlineAirlinerNode.Attributes["homebase"].Value);
-                    FleetAirliner.PurchasedType purchasedtype = (FleetAirliner.PurchasedType)Enum.Parse(typeof(FleetAirliner.PurchasedType), airlineAirlinerNode.Attributes["purchased"].Value);
-                    DateTime purchasedDate = DateTime.Parse(airlineAirlinerNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
-                    FleetAirliner.AirlinerStatus status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), airlineAirlinerNode.Attributes["status"].Value);
-
-                    Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
-                    Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
-
-                    FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, fAirlinerName, homebase);
-                    fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
-                    fAirliner.Status = status;
-
-
-                    XmlNodeList airlinerStatList = airlineAirlinerNode.SelectNodes("stats/stat");
-
-                    foreach (XmlElement airlinerStatNode in airlinerStatList)
-                    {
-                        int year = Convert.ToInt32(airlinerStatNode.Attributes["year"].Value);
-                        string statType = airlinerStatNode.Attributes["type"].Value;
-                        double statValue = Convert.ToDouble(airlinerStatNode.Attributes["value"].Value);
-                        fAirliner.Statistics.setStatisticsValue(year, StatisticsTypes.GetStatisticsType(statType), statValue);
-                    }
-
-
-
-
-                    airline.addAirliner(fAirliner);
-
-                }
-                XmlNodeList routeList = airlineNode.SelectNodes("routes/route");
-
-                foreach (XmlElement routeNode in routeList)
-                {
-                    string id = routeNode.Attributes["id"].Value;
-                    Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
-                    Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
-                    Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
-
-                    Route route = new Route(id, dest1, dest2, 0);
-                    route.Banned = isBanned;
-                    route.Classes.Clear();
-
-
-                    XmlNodeList routeClassList = routeNode.SelectNodes("routeclasses/routeclass");
-
-                    foreach (XmlElement routeClassNode in routeClassList)
-                    {
-                        AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
-                        double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
-                        //RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; });
-                        //RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
-                        // chs, 2011-18-10 added for loading of type of seating
-                        RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);
-
-                        RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);
-                        rClass.Seating = seatingType;
-
-                        foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
-                        {
-                            if (routeClassNode.HasAttribute(ftype.ToString()))
-                            {
-                                RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
-                                rClass.addFacility(facility);
-                            }
-                        }
-
-                        route.addRouteAirlinerClass(rClass);
-
-                    }
-                  
-                    RouteTimeTable timeTable = new RouteTimeTable(route);
-
-                    XmlNodeList timetableList = routeNode.SelectNodes("timetable/timetableentry");
-
-                    foreach (XmlElement entryNode in timetableList)
-                    {
-                        Airport entryDest = Airports.GetAirport(entryNode.Attributes["destination"].Value);
-                        string flightCode = entryNode.Attributes["flightcode"].Value;
-                        DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), entryNode.Attributes["day"].Value);
-                        TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
-                        FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Name == entryNode.Attributes["airliner"].Value); ;
-
-                        RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
-
-                        entry.Airliner = airliner;
-
-                        if (airliner != null && !airliner.Routes.Contains(route))
-                            airliner.Routes.Add(route);
-
-                        timeTable.addEntry(entry);
-                    }
-                    route.TimeTable = timeTable;
-
-                    XmlNodeList routeInvoiceList = routeNode.SelectNodes("invoices/invoice");
-
-                    foreach (XmlElement routeInvoiceNode in routeInvoiceList)
-                    {
-                        Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), routeInvoiceNode.Attributes["type"].Value);
-                        int invoiceYear = Convert.ToInt16(routeInvoiceNode.Attributes["year"].Value);
-                        int invoiceMonth = Convert.ToInt16(routeInvoiceNode.Attributes["month"].Value);
-                        double invoiceAmount = XmlConvert.ToDouble(routeInvoiceNode.Attributes["amount"].Value);
-
-                        route.setRouteInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
-                    }
-
-                    airline.addRoute(route);
-                }
-
-                XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");
-                foreach (XmlElement flightNode in flightNodes)
-                {
-
-                    FleetAirliner airliner = airline.Fleet.Find(a => a.Name == flightNode.Attributes["airliner"].Value);
-                    Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
-
-                    if (route != null)
-                    {
-                        string destination = flightNode.Attributes["destination"].Value;
-
-                        DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
-                        TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
-                        DateTime flightTime = DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
-
-
-
-                        if (destination != "Service")
-                        {
-                            RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
-                            Flight currentFlight = new Flight(rtte);
-                            currentFlight.FlightTime = flightTime;
-                            currentFlight.Classes.Clear();
-
-                            XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
-
-                            foreach (XmlElement flightClassNode in flightClassList)
-                            {
-                                AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                                int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
-
-                                currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
-                            }
-                            airliner.CurrentFlight = currentFlight;
-                        }
-                        else
-                            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(flightTime, airliner));
-
-
-
-                    }
-                    else
-                        airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
-                }
-
-
-                Airlines.AddAirline(airline);
-
-
-            }
             XmlNodeList airportsList = root.SelectNodes("//airports/airport");
 
 
@@ -705,6 +426,293 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
               */
 
+        }
+        //loads an airline from the saved file
+        private static void LoadAirline(XmlElement airlineNode)
+        {
+            // chs, 2011-21-10 changed for the possibility of creating a new airline
+            string airlineName = airlineNode.Attributes["name"].Value;
+            string airlineIATA = airlineNode.Attributes["code"].Value;
+            Boolean airlineIsSubsidiary = Convert.ToBoolean(airlineNode.Attributes["subsidiary"].Value);
+            Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
+            string color = airlineNode.Attributes["color"].Value;
+            string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
+            string airlineCEO = airlineNode.Attributes["CEO"].Value;
+            double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
+            int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
+            Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
+            Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
+
+            Airline airline;
+            if (airlineIsSubsidiary)
+            {
+                Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+                parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
+            }
+            else
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+
+            airline.Profile.Logo = logo;
+            airline.Fleet.Clear();
+            airline.Airports.Clear();
+            airline.Routes.Clear();
+
+            airline.Money = money;
+            airline.Reputation = reputation;
+
+            XmlElement airlineContractNode = (XmlElement)airlineNode.SelectSingleNode("contract");
+            if (airlineContractNode != null)
+            {
+                Manufacturer contractManufacturer = Manufacturers.GetManufacturer(airlineContractNode.Attributes["manufacturer"].Value);
+                DateTime contractSigningDate = Convert.ToDateTime(airlineContractNode.Attributes["signingdate"].Value);
+                int contractLength = Convert.ToInt16(airlineContractNode.Attributes["length"].Value);
+                double contractDiscount = Convert.ToDouble(airlineContractNode.Attributes["discount"].Value);
+                int contractAirliners = Convert.ToInt16(airlineContractNode.Attributes["airliners"].Value);
+
+                ManufacturerContract contract = new ManufacturerContract(contractManufacturer, contractSigningDate, contractLength, contractDiscount);
+                contract.PurchasedAirliners = contractAirliners;
+
+                airline.Contract = contract;
+
+            }
+
+            // chs, 2011-17-10 added for loading of passenger happiness
+            XmlElement airlinePassengerNode = (XmlElement)airlineNode.SelectSingleNode("passengerhappiness");
+            double passengerHappiness = XmlConvert.ToDouble(airlinePassengerNode.Attributes["value"].Value);
+            PassengerHelpers.SetPassengerHappiness(airline, passengerHappiness);
+
+            XmlNodeList airlineFacilitiesList = airlineNode.SelectNodes("facilities/facility");
+            foreach (XmlElement airlineFacilityNode in airlineFacilitiesList)
+            {
+                string airlineFacility = airlineFacilityNode.Attributes["uid"].Value;
+
+                airline.addFacility(AirlineFacilities.GetFacility(airlineFacility));
+            }
+
+            XmlNodeList airlineLoanList = airlineNode.SelectNodes("loans/loan");
+            foreach (XmlElement airlineLoanNode in airlineLoanList)
+            {
+                DateTime date = Convert.ToDateTime(airlineLoanNode.Attributes["date"].Value);
+                double rate = Convert.ToDouble(airlineLoanNode.Attributes["rate"].Value, new CultureInfo("de-DE", false));
+                double amount = XmlConvert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
+                int length = Convert.ToInt16(airlineLoanNode.Attributes["length"].Value);
+                double payment = XmlConvert.ToDouble(airlineLoanNode.Attributes["payment"].Value);
+
+                Loan loan = new Loan(date, amount, length, rate);
+                loan.PaymentLeft = payment;
+
+                airline.addLoan(loan);
+            }
+
+            XmlNodeList airlineStatList = airlineNode.SelectNodes("stats/stat");
+            foreach (XmlElement airlineStatNode in airlineStatList)
+            {
+                int year = Convert.ToInt32(airlineStatNode.Attributes["year"].Value);
+                string airlineStatType = airlineStatNode.Attributes["type"].Value;
+                int value = Convert.ToInt32(airlineStatNode.Attributes["value"].Value);
+
+                airline.Statistics.setStatisticsValue(year, StatisticsTypes.GetStatisticsType(airlineStatType), value);
+            }
+
+            XmlNodeList airlineInvoiceList = airlineNode.SelectNodes("invoices/invoice");
+
+            foreach (XmlElement airlineInvoiceNode in airlineInvoiceList)
+            {
+                Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), airlineInvoiceNode.Attributes["type"].Value);
+                int invoiceYear = Convert.ToInt16(airlineInvoiceNode.Attributes["year"].Value);
+                int invoiceMonth = Convert.ToInt16(airlineInvoiceNode.Attributes["month"].Value);
+                double invoiceAmount = XmlConvert.ToDouble(airlineInvoiceNode.Attributes["amount"].Value);
+
+                airline.setInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
+            }
+
+            // chs, 2011-13-10 added for loading of airline advertisements
+            XmlNodeList advertisementList = airlineNode.SelectNodes("advertisements/advertisement");
+
+            foreach (XmlElement advertisementNode in advertisementList)
+            {
+                AdvertisementType.AirlineAdvertisementType type = (AdvertisementType.AirlineAdvertisementType)Enum.Parse(typeof(AdvertisementType.AirlineAdvertisementType), advertisementNode.Attributes["type"].Value);
+                string advertisementName = advertisementNode.Attributes["name"].Value;
+
+                airline.setAirlineAdvertisement(AdvertisementTypes.GetType(type, advertisementName));
+            }
+            // chs, 2011-17-10 added for loading of fees
+            AirlineFees fees = new AirlineFees();
+
+            XmlNodeList airlineFeeList = airlineNode.SelectNodes("fees/fee");
+            foreach (XmlElement feeNode in airlineFeeList)
+            {
+                string feeType = feeNode.Attributes["type"].Value;
+                double feeValue = Convert.ToDouble(feeNode.Attributes["value"].Value);
+
+                fees.setValue(FeeTypes.GetType(feeType), feeValue);
+            }
+
+            airline.Fees = fees;
+
+
+            XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
+
+            foreach (XmlElement airlineAirlinerNode in airlineFleetList)
+            {
+                Airliner airliner = Airliners.GetAirliner(airlineAirlinerNode.Attributes["airliner"].Value);
+                string fAirlinerName = airlineAirlinerNode.Attributes["name"].Value;
+                Airport homebase = Airports.GetAirport(airlineAirlinerNode.Attributes["homebase"].Value);
+                FleetAirliner.PurchasedType purchasedtype = (FleetAirliner.PurchasedType)Enum.Parse(typeof(FleetAirliner.PurchasedType), airlineAirlinerNode.Attributes["purchased"].Value);
+                DateTime purchasedDate = DateTime.Parse(airlineAirlinerNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
+                FleetAirliner.AirlinerStatus status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), airlineAirlinerNode.Attributes["status"].Value);
+
+                Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
+                Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
+
+                FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, fAirlinerName, homebase);
+                fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
+                fAirliner.Status = status;
+
+
+                XmlNodeList airlinerStatList = airlineAirlinerNode.SelectNodes("stats/stat");
+
+                foreach (XmlElement airlinerStatNode in airlinerStatList)
+                {
+                    int year = Convert.ToInt32(airlinerStatNode.Attributes["year"].Value);
+                    string statType = airlinerStatNode.Attributes["type"].Value;
+                    double statValue = Convert.ToDouble(airlinerStatNode.Attributes["value"].Value);
+                    fAirliner.Statistics.setStatisticsValue(year, StatisticsTypes.GetStatisticsType(statType), statValue);
+                }
+
+
+
+
+                airline.addAirliner(fAirliner);
+
+            }
+            XmlNodeList routeList = airlineNode.SelectNodes("routes/route");
+
+            foreach (XmlElement routeNode in routeList)
+            {
+                string id = routeNode.Attributes["id"].Value;
+                Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
+                Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
+                Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
+
+                Route route = new Route(id, dest1, dest2, 0);
+                route.Banned = isBanned;
+                route.Classes.Clear();
+
+
+                XmlNodeList routeClassList = routeNode.SelectNodes("routeclasses/routeclass");
+
+                foreach (XmlElement routeClassNode in routeClassList)
+                {
+                    AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
+                    double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
+                    //RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; });
+                    //RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
+                    // chs, 2011-18-10 added for loading of type of seating
+                    RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);
+
+                    RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);
+                    rClass.Seating = seatingType;
+
+                    foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                    {
+                        if (routeClassNode.HasAttribute(ftype.ToString()))
+                        {
+                            RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
+                            rClass.addFacility(facility);
+                        }
+                    }
+
+                    route.addRouteAirlinerClass(rClass);
+
+                }
+
+                RouteTimeTable timeTable = new RouteTimeTable(route);
+
+                XmlNodeList timetableList = routeNode.SelectNodes("timetable/timetableentry");
+
+                foreach (XmlElement entryNode in timetableList)
+                {
+                    Airport entryDest = Airports.GetAirport(entryNode.Attributes["destination"].Value);
+                    string flightCode = entryNode.Attributes["flightcode"].Value;
+                    DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), entryNode.Attributes["day"].Value);
+                    TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
+                    FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Name == entryNode.Attributes["airliner"].Value); ;
+
+                    RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
+
+                    entry.Airliner = airliner;
+
+                    if (airliner != null && !airliner.Routes.Contains(route))
+                        airliner.Routes.Add(route);
+
+                    timeTable.addEntry(entry);
+                }
+                route.TimeTable = timeTable;
+
+                XmlNodeList routeInvoiceList = routeNode.SelectNodes("invoices/invoice");
+
+                foreach (XmlElement routeInvoiceNode in routeInvoiceList)
+                {
+                    Invoice.InvoiceType type = (Invoice.InvoiceType)Enum.Parse(typeof(Invoice.InvoiceType), routeInvoiceNode.Attributes["type"].Value);
+                    int invoiceYear = Convert.ToInt16(routeInvoiceNode.Attributes["year"].Value);
+                    int invoiceMonth = Convert.ToInt16(routeInvoiceNode.Attributes["month"].Value);
+                    double invoiceAmount = XmlConvert.ToDouble(routeInvoiceNode.Attributes["amount"].Value);
+
+                    route.setRouteInvoice(type, invoiceYear, invoiceMonth, invoiceAmount);
+                }
+
+                airline.addRoute(route);
+            }
+
+            XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");
+            foreach (XmlElement flightNode in flightNodes)
+            {
+
+                FleetAirliner airliner = airline.Fleet.Find(a => a.Name == flightNode.Attributes["airliner"].Value);
+                Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
+
+                if (route != null)
+                {
+                    string destination = flightNode.Attributes["destination"].Value;
+
+                    DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), flightNode.Attributes["day"].Value);
+                    TimeSpan time = TimeSpan.Parse(flightNode.Attributes["time"].Value);
+                    DateTime flightTime = DateTime.Parse(flightNode.Attributes["flighttime"].Value, new CultureInfo("de-DE", false));
+
+
+
+                    if (destination != "Service")
+                    {
+                        RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
+                        Flight currentFlight = new Flight(rtte);
+                        currentFlight.FlightTime = flightTime;
+                        currentFlight.Classes.Clear();
+
+                        XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
+
+                        foreach (XmlElement flightClassNode in flightClassList)
+                        {
+                            AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
+                            int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+
+                            currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));/*Rettes*/
+                        }
+                        airliner.CurrentFlight = currentFlight;
+                    }
+                    else
+                        airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(flightTime, airliner));
+
+
+
+                }
+                else
+                    airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+            }
+
+
+            Airlines.AddAirline(airline);
         }
         //append a file to the list of saved files
         public static void AppendSavedFile(string name, string file)

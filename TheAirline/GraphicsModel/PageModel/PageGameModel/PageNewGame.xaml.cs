@@ -184,7 +184,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbTimeZone.SelectedItem = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1009"), cbTimeZone));
+            
+            cbFocus = new ComboBox();
+            cbFocus.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbFocus.Width = 100;
 
+            foreach (Airline.AirlineFocus focus in Enum.GetValues(typeof(Airline.AirlineFocus)))
+                cbFocus.Items.Add(focus);
+
+            cbFocus.SelectedIndex = 0;
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1013"), cbFocus));
+         
             cbDifficulty = new ComboBox();
             cbDifficulty.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDifficulty.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -197,16 +208,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), cbDifficulty));
 
-            cbFocus = new ComboBox();
-            cbFocus.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFocus.Width = 100;
-
-            foreach (Airline.AirlineFocus focus in Enum.GetValues(typeof(Airline.AirlineFocus)))
-                cbFocus.Items.Add(focus);
-
-            cbFocus.SelectedIndex = 0;
-
-            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1013"), cbFocus));
             
             cbOpponents = new ComboBox();
             cbOpponents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
