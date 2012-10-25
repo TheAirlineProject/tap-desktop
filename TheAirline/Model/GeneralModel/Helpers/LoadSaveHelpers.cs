@@ -149,7 +149,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
 
-
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
                 airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
