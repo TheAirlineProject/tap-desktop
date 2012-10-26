@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
     public partial class PageFleetAirliner : StandardPage
     {
         private FleetAirliner Airliner;
-        private TextBlock txtFlown, txtPosition, txtSinceService, txtName;
+        private TextBlock txtName;
         private ContentControl lblAirport;
         private StackPanel panelLeasedAirliner;
         public PageFleetAirliner(FleetAirliner airliner)
@@ -74,32 +74,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             showPage(this);
 
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetAirliner_OnTimeChanged);
-
-            this.Unloaded += new RoutedEventHandler(PageFleetAirliner_Unloaded);
-
+    
         }
 
-        private void PageFleetAirliner_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageFleetAirliner_OnTimeChanged);
+       
 
-        }
-
-        private void PageFleetAirliner_OnTimeChanged()
-        {
-            if (this.IsLoaded)
-            {
-
-                Airport airport = !this.Airliner.HasRoute ? null : Airports.GetAirport(this.Airliner.CurrentPosition);
-                txtFlown.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km."));
-                Run run = (Run)((Hyperlink)txtPosition.Inlines.FirstInline).Inlines.FirstInline;
-                run.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
-
-                txtSinceService.Text = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km."));
-            }
-
-        }
+       
         //creates the panel for leased airliner
         private Panel createLeasedAirlinerPanel()
         {
@@ -334,10 +314,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1019"), UICreator.CreateTextBlock(string.Format(Translator.GetInstance().GetString("PageFleetAirliner", "1020"), this.Airliner.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Airliner.Age))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1021"), UICreator.CreateTextBlock(this.Airliner.Airliner.TailNumber)));
 
-            txtFlown = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km.")));
+            TextBlock txtFlown = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.Flown), new StringToLanguageConverter().Convert("km.")));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1022"), txtFlown));
 
-            txtSinceService = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km.")));
+            TextBlock txtSinceService = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km.")));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1023"), txtSinceService));
 
 
@@ -354,11 +334,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             panelCoordinates.Children.Add(imgMap);
 
 
-            txtPosition = UICreator.CreateLink(this.Airliner.HasRoute ? this.Airliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
-            ((Hyperlink)txtPosition.Inlines.FirstInline).Click += new RoutedEventHandler(PageAirliner_Click);
-            txtPosition.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            panelCoordinates.Children.Add(txtPosition);
-
+            TextBlock txtCurrentRoute = UICreator.CreateTextBlock(this.Airliner.HasRoute && this.Airliner.CurrentFlight != null ? string.Format("{0} - {1}",this.Airliner.CurrentFlight.Entry.DepartureAirport.Profile.Name,this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name) : "-");
+            txtCurrentRoute.Margin = new Thickness(5, 0, 0, 0);
+            panelCoordinates.Children.Add(txtCurrentRoute);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1024"), panelCoordinates));
 

@@ -21,6 +21,7 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel
 {
@@ -30,7 +31,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
     public partial class PageFleetRoute : Page
     {
         private FleetAirliner Airliner;
-        private TextBlock txtStatus, txtDestination, txtPosition, txtPassengers, txtFlightTime;
+        //private TextBlock txtStatus, txtDestination, txtPosition, txtPassengers, txtFlightTime;
         private Button btnStopFlight, btnStartFlight;
         public PageFleetRoute(FleetAirliner airliner)
         {
@@ -47,7 +48,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "The airliner is not assigned to any routes";
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetRoute","1000");
 
 
 
@@ -62,36 +63,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
          
             this.Content = panelRoute;
 
-            //GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageFleetRoute_OnTimeChanged);
-
-            //this.Unloaded += new RoutedEventHandler(PageFleetRoute_Unloaded);
-
+       
+   
         }
-
-        private void PageFleetRoute_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageFleetRoute_OnTimeChanged);
-
-        }
-
-        private void PageFleetRoute_OnTimeChanged()
-        {
-
-
-            if (this.IsLoaded)
-            {
-                if (this.Airliner.HasRoute)
-                {
-                    Airport airport = Airports.GetAirport(this.Airliner.CurrentPosition);
-
-                    txtStatus.Text = new TextUnderscoreConverter().Convert(this.Airliner.Status, null, null, null).ToString();
-                    txtDestination.Text = this.Airliner.CurrentFlight == null ? "Not started" : this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name;
-                    txtPosition.Text = this.Airliner.HasRoute ? (airport == null ? this.Airliner.CurrentPosition.ToString() : airport.Profile.Name) : this.Airliner.Homebase.Profile.Name;
-                    txtPassengers.Text = string.Format("{0}", this.Airliner.CurrentFlight == null ? 0 : this.Airliner.CurrentFlight.getTotalPassengers());
-                    txtFlightTime.Text = string.Format(this.Airliner.CurrentFlight == null ? "" : this.Airliner.CurrentFlight.FlightTime.ToShortDateString() + " " + this.Airliner.CurrentFlight.FlightTime.ToShortTimeString());
-                }
-            }
-        }
+       
         
         //creates the buttons for the flight
         private WrapPanel createFlightButtons()
@@ -104,7 +79,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnStartFlight.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnStartFlight.Height = Double.NaN;
             btnStartFlight.Width = Double.NaN;
-            btnStartFlight.Content = "Start flight";
+            btnStartFlight.Content = Translator.GetInstance().GetString("PageFleetRoute","200");
             btnStartFlight.IsEnabled = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped;
             btnStartFlight.Click += new RoutedEventHandler(btnStartFligth_Click);
             btnStartFlight.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -115,7 +90,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnStopFlight.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnStopFlight.Width = Double.NaN;
             btnStopFlight.Height = Double.NaN;
-            btnStopFlight.Content = "Stop flight";
+            btnStopFlight.Content = Translator.GetInstance().GetString("PageFleetRoute", "201");
             btnStopFlight.IsEnabled = this.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped;
             btnStopFlight.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnStopFlight.Margin = new Thickness(5, 0, 0, 0);
@@ -156,7 +131,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Flight Information";
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetRoute", "1001");
             panelFlight.Children.Add(txtHeader);
 
 
@@ -164,19 +139,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             lbFlightInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFlightInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
+            string status = "Resting";
+            
+            if (this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) status = "Stopped";
+            if (this.Airliner.Status == FleetAirliner.AirlinerStatus.On_route || this.Airliner.Status == FleetAirliner.AirlinerStatus.To_route_start) status = "Active";
 
-            txtDestination = UICreator.CreateTextBlock(this.Airliner.CurrentFlight == null ? "Not started" : this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name);
-            txtStatus = UICreator.CreateTextBlock((new TextUnderscoreConverter().Convert(this.Airliner.Status, null, null, null).ToString()));
-            txtPosition = UICreator.CreateTextBlock(this.Airliner.HasRoute ? this.Airliner.CurrentPosition.ToString() : this.Airliner.Homebase.Profile.Name);
-            txtPassengers = UICreator.CreateTextBlock(string.Format("{0}", this.Airliner.CurrentFlight == null ? 0 : this.Airliner.CurrentFlight.getTotalPassengers()));
-            txtFlightTime = UICreator.CreateTextBlock(string.Format(this.Airliner.CurrentFlight == null ? "" : this.Airliner.CurrentFlight.FlightTime.ToShortDateString() + " " + this.Airliner.CurrentFlight.FlightTime.ToShortTimeString()));
+            TextBlock txtStatus = UICreator.CreateTextBlock(status);
+            TextBlock txtFlightsPerDay = UICreator.CreateTextBlock(this.Airliner.Routes.Sum(r=>r.TimeTable.Entries.FindAll(e=>e.Day == GameObject.GetInstance().GameTime.DayOfWeek).Count).ToString());
+            TextBlock txtPassengers = UICreator.CreateTextBlock(string.Format("{0:0.00}",this.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")) / this.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"))));
 
-
-            lbFlightInfo.Items.Add(new QuickInfoValue("Current status", txtStatus));
-            lbFlightInfo.Items.Add(new QuickInfoValue("Current position", txtPosition));
-            lbFlightInfo.Items.Add(new QuickInfoValue("Next destination", txtDestination));
-            lbFlightInfo.Items.Add(new QuickInfoValue("Current/next flight time", txtFlightTime)); 
-            lbFlightInfo.Items.Add(new QuickInfoValue("Passengers", txtPassengers));
+            lbFlightInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetRoute","1002"), txtStatus));
+            lbFlightInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetRoute", "1003"), txtFlightsPerDay));
+            lbFlightInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetRoute", "1004"), txtPassengers));
 
             panelFlight.Children.Add(lbFlightInfo);
 
