@@ -52,13 +52,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             ListBox lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStatistics.ItemTemplate = this.Resources["DestinationItem"] as DataTemplate;
+            lbStatistics.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
 
             foreach (Airport a in getDestinations().Keys)
                 lbStatistics.Items.Add(new DestinationFlights(a, getDestinations()[a]));
 
             panelFlights.Children.Add(lbStatistics);
 
-            panelFlights.Children.Add(createDestinationFlightsPanel());
+            //panelFlights.Children.Add(createDestinationFlightsPanel());
 
             Button btnSlotAllocation = new Button();
             btnSlotAllocation.SetResourceReference(Button.StyleProperty, "RoundedButton");
