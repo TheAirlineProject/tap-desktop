@@ -20,6 +20,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using System.ComponentModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -30,7 +31,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
     {
         private Airport Airport;
         private StackPanel panelDestinationFlights;
-        private ListBox lbDestinationArrivals, lbDestinationDepartures;
+        private ListBox lbStatistics, lbDestinationArrivals, lbDestinationDepartures;
+        private ListSortDirection sortDirection = ListSortDirection.Ascending;
         public PageAirportFlights(Airport airport)
         {
             InitializeComponent();
@@ -40,22 +42,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             StackPanel panelFlights = new StackPanel();
             panelFlights.Margin = new Thickness(0, 10, 50, 0);
 
+            ContentControl ccHeader = new ContentControl();
+            ccHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            ccHeader.ContentTemplate = this.Resources["DestinationsHeader"] as DataTemplate;
+            panelFlights.Children.Add(ccHeader);
+
+            /*
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
             txtHeader.Text = Translator.GetInstance().GetString("PageAirportFlights", txtHeader.Uid);
-
+            
             panelFlights.Children.Add(txtHeader);
+            */
 
-            ListBox lbStatistics = new ListBox();
+            lbStatistics = new ListBox();
             lbStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStatistics.ItemTemplate = this.Resources["DestinationItem"] as DataTemplate;
             lbStatistics.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
 
+            var items = new List<DestinationFlights>();
+
             foreach (Airport a in getDestinations().Keys)
-                lbStatistics.Items.Add(new DestinationFlights(a, getDestinations()[a]));
+                items.Add(new DestinationFlights(a, getDestinations()[a]));
+
+            items.OrderBy(i => i.Airport.Profile.Name);
+
+            lbStatistics.ItemsSource = items;
 
             panelFlights.Children.Add(lbStatistics);
 
@@ -212,6 +227,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 
             }
             
+        }
+        private void Header_Click(object sender, RoutedEventArgs e)
+        {
+            string type = (string)((Hyperlink)sender).Tag;
+
+            string name = "Destination";
+
+            switch (type)
+            {
+                case "Destination":
+                    name = "Airport.Profile.IATACode";
+                    break;
+                case "Flights":
+                    name = "Flights";
+                    break;
+               
+
+            }
+
+            sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
+
+            ICollectionView dataView =
+              CollectionViewSource.GetDefaultView(lbStatistics.ItemsSource);
+
+            dataView.SortDescriptions.Clear();
+            SortDescription sd = new SortDescription(name, sortDirection);
+            dataView.SortDescriptions.Add(sd);
+
         }
         //the class for a destination flight
         public class DestinationFlight

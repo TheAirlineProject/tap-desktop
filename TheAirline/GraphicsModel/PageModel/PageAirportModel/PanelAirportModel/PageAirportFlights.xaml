@@ -7,6 +7,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirportFlights">
     <Page.Resources>
+        
         <DataTemplate x:Key="AirportDestinationItem">
             <WrapPanel>
                 <ContentControl ContentTemplate="{DynamicResource AirlineLogoItem}" Content="{Binding Airline}" Width="150"></ContentControl>
@@ -15,7 +16,20 @@
                 <TextBlock Text="{Binding AirlinerType.Name}" VerticalAlignment="Bottom" Width="200"></TextBlock>
            </WrapPanel>
         </DataTemplate>
-                      
+        <DataTemplate x:Key="DestinationsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Width="300" FontWeight="Bold">
+                      <Hyperlink Tag="Destination" Click="Header_Click">
+                        <Run Text="Destination"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="50" Margin="5 0 0 0" FontWeight="Bold">
+                      <Hyperlink Tag="Flights" Click="Header_Click">
+                        <Run Text="Flights"></Run>
+                    </Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="DestinationItem">
             <WrapPanel>
                 

@@ -131,6 +131,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             return panelRestrictions;
 
         }
+        //creates the panel for the routes
+        private StackPanel createRoutesPanel()
+        {
+            StackPanel routesPanel = new StackPanel();
+
+            lbRoutes = new ListBox();
+            lbRoutes.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            lbRoutes.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbRoutes.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
+            lbRoutes.ItemsSource = GameObject.GetInstance().HumanAirline.Routes;
+
+            routesPanel.Children.Add(lbRoutes);
+
+
+
+            return routesPanel;
+        }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
         {
@@ -190,23 +207,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             GameObject.GetInstance().HumanAirline.DeliveredFleet.ForEach(f => lbFleet.Items.Add(f));
         }
-        //creates the panel for the routes
-        private StackPanel createRoutesPanel()
-        {
-            StackPanel routesPanel = new StackPanel();
-
-            lbRoutes = new ListBox();
-            lbRoutes.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
-            lbRoutes.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbRoutes.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
-            lbRoutes.ItemsSource = GameObject.GetInstance().HumanAirline.Routes;
-
-            routesPanel.Children.Add(lbRoutes);
-
-          
-
-            return routesPanel;
-        }
+      
         private void Header_Click(object sender, RoutedEventArgs e)
         {
             string type = (string)((Hyperlink)sender).Tag;
