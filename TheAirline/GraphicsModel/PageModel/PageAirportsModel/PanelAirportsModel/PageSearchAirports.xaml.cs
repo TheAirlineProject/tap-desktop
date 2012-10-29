@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsModel
 {
@@ -44,9 +45,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             panelSearch.Children.Add(txtHeader);
 
+            ListBox lbSearch = new ListBox();
+            lbSearch.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbSearch.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            panelSearch.Children.Add(lbSearch);
+            
             WrapPanel panelCheckBoxes = new WrapPanel();
-            panelSearch.Children.Add(panelCheckBoxes);
-
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports","1004"), panelCheckBoxes));
+            
             cbHumanAirports = new CheckBox();
             cbHumanAirports.Uid = "1002";
             cbHumanAirports.Content = Translator.GetInstance().GetString("PageSearchAirports", cbHumanAirports.Uid);
@@ -66,9 +72,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             panelCheckBoxes.Children.Add(cbHubs);
 
             cbRegion = new ComboBox();
-            cbRegion.Margin = new Thickness(0, 5, 0, 0);
             cbRegion.DisplayMemberPath = "Name";
             cbRegion.SelectedValuePath = "Name";
+            cbRegion.Width = 250;
             cbRegion.Background = Brushes.Transparent;
             cbRegion.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbRegion.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -84,11 +90,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             foreach (Region region in regions)
                 cbRegion.Items.Add(region);
 
-            panelSearch.Children.Add(cbRegion);
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1005"), cbRegion));
 
             cbCountry = new ComboBox();
             cbCountry.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
-            cbCountry.Margin = new Thickness(0, 5, 0, 0);
             cbCountry.Width = 250;
             //cbCountries.Style = this.Resources["ComboBoxStyle"] as Style;
             cbCountry.Background = Brushes.Transparent;
@@ -109,31 +114,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             cbCountry.SelectedItem = countryAll;
             cbRegion.SelectedItem = regionAll;
 
-            panelSearch.Children.Add(cbCountry);
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1006"), cbCountry));
 
             cbSize = new ComboBox();
             cbSize.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbSize.Background = Brushes.Transparent;
             cbSize.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbSize.Margin = new Thickness(0, 5, 0, 0);
+            cbSize.SetResourceReference(ComboBox.ItemTemplateProperty, "TextUnderscoreTextBlock");
+            cbSize.Width = 100;
 
             cbSize.Items.Add("All sizes");
 
             foreach (GeneralHelpers.Size type in Enum.GetValues(typeof(GeneralHelpers.Size)))
+            {
+              
                 cbSize.Items.Add(type);
+            }
 
             cbSize.SelectedIndex = 0;
 
-            panelSearch.Children.Add(cbSize);
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1007"), cbSize));
 
             txtTextSearch = new TextBox();
             txtTextSearch.Width = 300;
-            txtTextSearch.Margin = new Thickness(0, 5, 0, 0);
             txtTextSearch.Background = Brushes.Transparent;
             txtTextSearch.Foreground = Brushes.White;
             txtTextSearch.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            panelSearch.Children.Add(txtTextSearch);
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1008"), txtTextSearch));
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
@@ -150,7 +158,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             btnSearch.Content = Translator.GetInstance().GetString("General", btnSearch.Uid);
             btnSearch.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnSearch.Click += new RoutedEventHandler(btnSearch_Click);
-
+            
             panelButtons.Children.Add(btnSearch);
 
             Button btnClear = new Button();
@@ -167,7 +175,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             this.Content = panelSearch;
         }
-
+        
         private void cbRegions_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             cbCountry.Items.Clear();

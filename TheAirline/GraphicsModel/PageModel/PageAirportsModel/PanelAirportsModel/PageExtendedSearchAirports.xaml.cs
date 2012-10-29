@@ -25,7 +25,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
     public partial class PageExtendedSearchAirports : Page
     {
         private PageAirports ParentPage;
-        private ComboBox cbAirport, cbDistanceToAirport;
+        private ComboBox cbAirport,cbCompareDistance;
+        private TextBox txtDistance;
+        private enum CompareType { Larger_than, Lower_than, Equal_to }
         public PageExtendedSearchAirports(PageAirports parent)
         {
             this.ParentPage = parent;
@@ -50,39 +52,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             panelSearch.Children.Add(lbContent);
 
-            WrapPanel panelAirportWithin = new WrapPanel();
-
-            cbDistanceToAirport = new ComboBox();
-            cbDistanceToAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbDistanceToAirport.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
-            cbDistanceToAirport.Width = 100;
-
-            addDistanceItem(5);
-            addDistanceItem(10);
-            addDistanceItem(25);
-            addDistanceItem(50);
-            addDistanceItem(100);
-            addDistanceItem(250);
-            addDistanceItem(500);
-            addDistanceItem(1000);
-            addDistanceItem(1500);
-            addDistanceItem(2000);
-            addDistanceItem(2500);
-            addDistanceItem(5000);
-            addDistanceItem(7500);
-            addDistanceItem(10000);
-            addDistanceItem(15000);
-            cbDistanceToAirport.Items.Add(Translator.GetInstance().GetString("General", "111"));
-
-            cbDistanceToAirport.SelectedIndex = cbDistanceToAirport.Items.Count-1;
-
-            panelAirportWithin.Children.Add(cbDistanceToAirport);
-
-            TextBlock txtOf = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PageExtendedSearchAirports", "1003"));
-            txtOf.Margin = new Thickness(5,0,5,0);
-            txtOf.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            panelAirportWithin.Children.Add(txtOf);
-
+            
             cbAirport = new ComboBox();
             cbAirport.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
             cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -97,11 +67,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             cbAirport.ItemsSource = airportsView;
             cbAirport.SelectedIndex = 0;
+                        
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageExtendedSearchAirports", "1002"), cbAirport));
 
-            panelAirportWithin.Children.Add(cbAirport);
+            WrapPanel panelDistance = new WrapPanel();
 
-            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageExtendedSearchAirports", "1002"), panelAirportWithin));
-            
+            cbCompareDistance = new ComboBox();
+            createCompareComboBox(cbCompareDistance);
+            panelDistance.Children.Add(cbCompareDistance);
+
+            txtDistance = new TextBox();
+            txtDistance.PreviewTextInput += new TextCompositionEventHandler(txtDistance_PreviewTextInput);
+            txtDistance.Width = 100;
+            txtDistance.TextAlignment = TextAlignment.Right;
+            txtDistance.Background = Brushes.Transparent;
+            panelDistance.Children.Add(txtDistance);
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageExtendedSearchAirports", "1004"), panelDistance));
+
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
             panelButtons.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -125,19 +108,41 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
         }
 
+        private void txtDistance_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+             
+            try
+            {
+                double distance = Convert.ToDouble(e.Text);
+
+            }
+            catch
+            {
+                e.Handled = true;
+            }
+       
+        }
+
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-          
-            Airport airport = (Airport)cbAirport.SelectedItem;
-            double distance;
-            if (cbDistanceToAirport.SelectedItem is ComboBoxItem)
-            {
-                distance = (double)((ComboBoxItem)cbDistanceToAirport.SelectedItem).Tag;
-            }
-            else
-                distance = double.MaxValue;
 
-            List<Airport> airports = Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < distance); 
+            Airport airport = (Airport)cbAirport.SelectedItem;
+            double distance = txtDistance.Text.Length > 0 ? Convert.ToDouble(txtDistance.Text) : 0;
+            CompareType comparer = (CompareType)((ComboBoxItem)cbCompareDistance.SelectedItem).Tag;
+         
+            if (AppSettings.GetInstance().getLanguage().Unit == Model.GeneralModel.Language.UnitSystem.Imperial)
+                distance = MathHelpers.MilesToKM(distance);
+
+            List<Airport> airports = new List<Airport>();
+
+            if (comparer == CompareType.Equal_to)
+                airports = Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) == distance); 
+
+            if (comparer == CompareType.Larger_than)
+                airports = Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) > distance); 
+
+            if (comparer == CompareType.Lower_than)
+                airports = Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < distance); 
 
             this.ParentPage.showAirports(airports);
         }
@@ -148,7 +153,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             cbItem.Content = string.Format("{0} {1}",distance,new StringToLanguageConverter().Convert("km."));
             cbItem.Tag = distance;
 
-            cbDistanceToAirport.Items.Add(cbItem);
+           // cbDistanceToAirport.Items.Add(cbItem);
+        }
+        //creats a compare type combo box
+        private void createCompareComboBox(ComboBox cbCompare)
+        {
+            cbCompare.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbCompare.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbCompare.Margin = new Thickness(0, 0, 5, 0);
+            cbCompare.Width = 100;
+
+            foreach (CompareType type in Enum.GetValues(typeof(CompareType)))
+            {
+                ComboBoxItem cbItem = new ComboBoxItem();
+                cbItem.Content = new TextUnderscoreConverter().Convert(type);
+                cbItem.Tag = type;
+                cbCompare.Items.Add(cbItem);
+            }
+
+            cbCompare.SelectedIndex = cbCompare.Items.Count - 1;
+
         }
     }
 }
