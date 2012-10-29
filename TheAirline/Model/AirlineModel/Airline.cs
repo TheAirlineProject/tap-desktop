@@ -328,7 +328,12 @@ namespace TheAirline.Model.AirlineModel
             else
                 this.Advertisements[type.Type] = type;
         }
-        //returns the Advertisement for the airline for a specific type
+        //returns all advertisements for the airline
+        public List<AdvertisementType> getAirlineAdvertisements()
+        {
+            return this.Advertisements.Values.ToList();
+        }
+        //returns the advertisement for the airline for a specific type
         public AdvertisementType getAirlineAdvertisement(AdvertisementType.AirlineAdvertisementType type)
         {
             return this.Advertisements[type];

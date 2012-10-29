@@ -363,6 +363,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
+
                 //AirlineHelpers.MergeInvoicesMonthly(airline);
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
@@ -398,6 +399,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         double facilityWage = facility.NumberOfEmployees * wage * (40 * 4.33); //40 hours per week and 4.33 weeks per month
 
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
+                    }
+                    //passenger demand
+                    int advertisementFactor = airline.getAirlineAdvertisements().Sum(a=>a.ReputationLevel); 
+                    
+                    foreach (Route route in airline.Routes)
+                    {
+                        route.Destination1.getDestinationPassengersObject(route.Destination2).Rate += (ushort)(50*advertisementFactor);
+                        route.Destination2.getDestinationPassengersObject(route.Destination1).Rate += (ushort)(50*advertisementFactor);
                     }
                 }
                 foreach (Loan loan in airline.Loans)
