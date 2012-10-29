@@ -403,6 +403,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     //passenger demand
                     int advertisementFactor = airline.getAirlineAdvertisements().Sum(a=>a.ReputationLevel); 
                     
+                    //global, national, Local: alt efter homebase.
+                        //Muligt at søge på passengerdemand mellem to airports/til dine destionations (rød)
+
                     foreach (Route route in airline.Routes)
                     {
                         route.Destination1.getDestinationPassengersObject(route.Destination2).Rate += (ushort)(50*advertisementFactor);

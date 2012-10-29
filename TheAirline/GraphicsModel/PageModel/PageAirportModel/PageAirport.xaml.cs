@@ -513,6 +513,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
        
 
     }
+    public class IsHumanAirportConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            DestinationPassengers destination = (DestinationPassengers)value;
+         
+  
+            if (GameObject.GetInstance().HumanAirline.Airports.Contains(destination.Destination))
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class WindSpeedToUnitConverter : IValueConverter
     {
 
