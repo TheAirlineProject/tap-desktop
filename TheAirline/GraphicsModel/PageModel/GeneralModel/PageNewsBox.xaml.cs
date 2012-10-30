@@ -61,12 +61,24 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             lbNews = new ListBox();
             lbNews.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbNews.ItemTemplate = this.Resources["NewsItem"] as DataTemplate;
-            lbNews.MaxHeight = GraphicsHelpers.GetContentHeight()-50;
-
-            
-          
-
+            lbNews.MaxHeight = GraphicsHelpers.GetContentHeight()-100;
+     
             newsPanel.Children.Add(lbNews);
+            
+            Button btnRead = new Button();
+            btnRead.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnRead.Click += new RoutedEventHandler(btnRead_Click);
+            btnRead.Height = Double.NaN;
+            btnRead.Width = Double.NaN;
+            btnRead.Uid = "201";
+            btnRead.Content = Translator.GetInstance().GetString("PageNewsBox", btnRead.Uid);
+            btnRead.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnRead.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnRead.Margin = new Thickness(0, 5, 0, 0);
+
+            newsPanel.Children.Add(btnRead);
+            
+     
 
             
             base.setContent(panelContent);
@@ -82,6 +94,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
 
             this.Unloaded += new RoutedEventHandler(PageNewsBox_Unloaded);
+        }
+
+        private void btnRead_Click(object sender, RoutedEventArgs e)
+        {
+            List<News> news = new List<News>(GameObject.GetInstance().NewsBox.getUnreadNews());
+
+            news.ForEach(n => n.IsRead = true);
+
+            showNews(true);
         }
 
         private void PageNewsBox_Unloaded(object sender, RoutedEventArgs e)
