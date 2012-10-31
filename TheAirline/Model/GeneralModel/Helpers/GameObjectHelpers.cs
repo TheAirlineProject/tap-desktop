@@ -401,12 +401,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
                     }
                     //passenger demand
-                    int advertisementFactor = airline.getAirlineAdvertisements().Sum(a=>a.ReputationLevel); 
-                    
+                    int advertisementFactor = airline.getAirlineAdvertisements().Sum(a=>a.ReputationLevel);
+
+                    if (advertisementFactor > 0)
+                        advertisementFactor = 10;
+
                     foreach (Route route in airline.Routes)
                     {
-                        route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(50 * advertisementFactor));
-                        route.Destination2.addDestinationPassengersRate(route.Destination1, AirlinerClass.ClassType.Economy_Class, (ushort)(50 * advertisementFactor));
+                        route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(10 * advertisementFactor));
+                        route.Destination2.addDestinationPassengersRate(route.Destination1, AirlinerClass.ClassType.Economy_Class, (ushort)(10 * advertisementFactor));
        
                     }
                 }

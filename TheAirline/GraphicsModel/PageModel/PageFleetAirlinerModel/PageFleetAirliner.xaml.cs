@@ -148,7 +148,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             imgAirlinerImage.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
             imgAirlinerImage.Height = 16;
             imgAirlinerImage.Tag = airliner;
-            imgAirlinerImage.Visibility = airliner.Image == null ? Visibility.Collapsed : Visibility.Visible;
+            imgAirlinerImage.Visibility = airliner.Image == null || airliner.Image.Length<2 ? Visibility.Collapsed : Visibility.Visible;
             imgAirlinerImage.Margin = new Thickness(5, 0, 0, 0);
             imgAirlinerImage.MouseDown += new System.Windows.Input.MouseButtonEventHandler(imgAirlinerImage_MouseDown);
 
@@ -210,7 +210,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             grdQuickInfo.Margin = new Thickness(0, 5, 0, 0);
 
             panelInfo.Children.Add(grdQuickInfo);
-
 
             Image imgLogo = new Image();
             imgLogo.Source = new BitmapImage(new Uri(this.Airliner.Airliner.Airline.Profile.Logo, UriKind.RelativeOrAbsolute));
