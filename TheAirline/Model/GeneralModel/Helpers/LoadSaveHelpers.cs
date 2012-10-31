@@ -1147,15 +1147,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         foreach (int year in airport.Statistics.getYears())
                         {
-                            XmlElement airportStatNode = xmlDoc.CreateElement("stat");
-
                             double value = airport.Statistics.getStatisticsValue(year, airline, type);
-                            airportStatNode.SetAttribute("year", year.ToString());
-                            airportStatNode.SetAttribute("airline", airline.Profile.IATACode);
-                            airportStatNode.SetAttribute("type", type.Shortname);
-                            airportStatNode.SetAttribute("value", value.ToString());
+                            
+                            if (value > 0)
+                            {
+                                XmlElement airportStatNode = xmlDoc.CreateElement("stat");
 
-                            airportStatsNode.AppendChild(airportStatNode);
+                                airportStatNode.SetAttribute("year", year.ToString());
+                                airportStatNode.SetAttribute("airline", airline.Profile.IATACode);
+                                airportStatNode.SetAttribute("type", type.Shortname);
+                                airportStatNode.SetAttribute("value", value.ToString());
+
+                                airportStatsNode.AppendChild(airportStatNode);
+                            }
                         }
                     }
                 }
