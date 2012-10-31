@@ -160,6 +160,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airport.Hubs.Add(new Hub(airline));
                 }
 
+                XmlNodeList airportWeatherList = airportNode.SelectNodes("weathers/weather");
+
+                for (int i=0;i<airportWeatherList.Count;i++)
+                {
+                    XmlElement airportWeatherElement = airportWeatherList[i] as XmlElement;
+
+                    DateTime weatherDate = DateTime.Parse(airportWeatherElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
+                    Weather.WindDirection windDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection), airportWeatherElement.Attributes["direction"].Value);
+                    Weather.eWindSpeed windSpeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
+                    
+                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection);
+                }
+
+                
                 XmlNodeList airportStatList = airportNode.SelectNodes("stats/stat");
 
                 foreach (XmlElement airportStatNode in airportStatList)
@@ -1114,6 +1128,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airportNode.AppendChild(airportHubsNode);
 
+                XmlElement airportWeathersNode = xmlDoc.CreateElement("weathers");
+                foreach (Weather weather in airport.Weather)
+                {
+                    XmlElement airportWeatherNode = xmlDoc.CreateElement("weather");
+                    airportWeatherNode.SetAttribute("date", weather.Date.ToString(new CultureInfo("de-DE")));
+                    airportWeatherNode.SetAttribute("direction", weather.Direction.ToString());
+                    airportWeatherNode.SetAttribute("windspeed", weather.WindSpeed.ToString());
+
+                    airportWeathersNode.AppendChild(airportWeatherNode);
+                }
+                airportNode.AppendChild(airportWeathersNode);
+
                 XmlElement airportStatsNode = xmlDoc.CreateElement("stats");
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
@@ -1192,7 +1218,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportDestinationNode.SetAttribute("id", airport.Profile.IATACode);
 
                 XmlElement destinationsNode = xmlDoc.CreateElement("destinations");
-                foreach (Airport dest in Airports.GetAirports(a => a != airport))
+                foreach (Airport dest in Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a))))
                 {
                     foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                     {

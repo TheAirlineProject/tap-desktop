@@ -696,7 +696,9 @@ namespace TheAirline.Model.GeneralModel
 
 
                 ushort rate = (ushort)value;
-                airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
+
+                if (rate>0)
+                    airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
             }
         }
 

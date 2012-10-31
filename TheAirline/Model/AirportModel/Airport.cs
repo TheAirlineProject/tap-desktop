@@ -65,6 +65,11 @@ namespace TheAirline.Model.AirportModel
         {
             this.DestinationPassengers.Add(passengers);
         }
+        //returns if the destination has passengers rate
+        public Boolean hasDestinationPassengersRate(Airport destination)
+        {
+            return this.DestinationPassengers.Exists(a => a.Destination == destination);
+        }
         //returns a destination passengers object
         public DestinationPassengers getDestinationPassengersObject(Airport destination)
         {
@@ -97,7 +102,11 @@ namespace TheAirline.Model.AirportModel
             else
                 return 0;
         }
-       
+        //returns if the destination have statistics
+        public Boolean hasDestinationStatistics(Airport destination)
+        {
+            return this.DestinationStatistics.ContainsKey(destination);
+        }
         //returns the price for a gate
         public long getGatePrice()
         {
