@@ -405,8 +405,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     
                     foreach (Route route in airline.Routes)
                     {
-                        route.Destination1.getDestinationPassengersObject(route.Destination2).Rate += (ushort)(50*advertisementFactor);
-                        route.Destination2.getDestinationPassengersObject(route.Destination1).Rate += (ushort)(50*advertisementFactor);
+                        route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(50 * advertisementFactor));
+                        route.Destination2.addDestinationPassengersRate(route.Destination1, AirlinerClass.ClassType.Economy_Class, (ushort)(50 * advertisementFactor));
+       
                     }
                 }
                 foreach (Loan loan in airline.Loans)

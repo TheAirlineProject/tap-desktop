@@ -65,15 +65,25 @@ namespace TheAirline.Model.AirportModel
         {
             this.DestinationPassengers.Add(passengers);
         }
+        //adds a rate valu to a destination
+        public void addDestinationPassengersRate(Airport destination,AirlinerClass.ClassType type, ushort rate)
+        {
+            DestinationPassengers destinationPassengers = getDestinationPassengersObject(destination,type);
+
+            if (destinationPassengers != null)
+                destinationPassengers.Rate += rate;
+            else
+                addDestinationPassengersRate(new DestinationPassengers(type, destination, rate));
+        }
         //returns if the destination has passengers rate
         public Boolean hasDestinationPassengersRate(Airport destination)
         {
             return this.DestinationPassengers.Exists(a => a.Destination == destination);
         }
         //returns a destination passengers object
-        public DestinationPassengers getDestinationPassengersObject(Airport destination)
+        public DestinationPassengers getDestinationPassengersObject(Airport destination, AirlinerClass.ClassType type) 
         {
-            return this.DestinationPassengers.Find(a => a.Destination==destination);
+            return this.DestinationPassengers.Find(a => a.Destination==destination && a.Type==type );
         }
         //clears the destination passengers
         public void clearDestinationPassengers()

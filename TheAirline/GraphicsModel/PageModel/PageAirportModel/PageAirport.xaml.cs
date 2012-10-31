@@ -248,7 +248,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
       
             foreach (Airport airport in airports)
             {
-                DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport);
+                DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport,AirlinerClass.ClassType.Economy_Class);
 
                 //if (passengers == null)
                   //  lbPassengers.Items.Add(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, airport, GeneralHelpers.Rate.None));
