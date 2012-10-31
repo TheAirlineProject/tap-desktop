@@ -97,7 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             panelFleet.Children.Add(txtFleetHeader);
             
             lbFleet = new ListBox();
-            lbFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            lbFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 5;
             lbFleet.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFleet.ItemTemplate = this.Resources["FleetItem"] as DataTemplate;
          
@@ -120,7 +120,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             panelRestrictions.Children.Add(txtHeader);
 
             ListBox lbRestrictions = new ListBox();
-            lbRestrictions.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            lbRestrictions.MaxHeight = GraphicsHelpers.GetContentHeight() / 5;
             lbRestrictions.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRestrictions.ItemTemplate = this.Resources["RestrictionItem"] as DataTemplate;
 

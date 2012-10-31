@@ -85,7 +85,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if there is bad weather at an airport
         public static Boolean HasBadWeather(Airport airport)
         {
-            return airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
+            return false;//airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
     }
    

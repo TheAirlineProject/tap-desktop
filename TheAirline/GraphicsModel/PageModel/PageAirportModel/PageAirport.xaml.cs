@@ -96,12 +96,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         }
 
         //creates the panel for the weather
-        private Panel createWeatherPanel()
+        private ScrollViewer createWeatherPanel()
         {
+            ScrollViewer svWeather = new ScrollViewer();
+            svWeather.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+
             ccWeather = new ContentControl[this.Airport.Weather.Length];
+
 
             StackPanel panelWeather = new StackPanel();
             panelWeather.Margin = new Thickness(0, 10, 0, 0);
+            svWeather.Content = panelWeather;
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
@@ -152,7 +157,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             panelWeather.Children.Add(panelWeatherForecast);
 
      
-            return panelWeather;
+            return svWeather;
         }
 
         //creates the panel for arrivals
@@ -222,7 +227,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
-            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
             panelPassengers.Children.Add(lbPassengers);
 
             showPassengers();
@@ -444,6 +449,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1016"), panelTerminals));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1017"), UICreator.CreateTextBlock(this.Airport.Runways.Count.ToString())));
+
             return panelInfo;
         }
         //creates the town panel

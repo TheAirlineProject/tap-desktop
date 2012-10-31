@@ -288,7 +288,14 @@ namespace TheAirline.Model.AirportModel
         //returns an airport based on id
         public static Airport GetAirportFromID(string id)
         {
-            return airports.Find(a => a.Profile.ID == id);
+            Airport airport = airports.Find(a => a.Profile.ID == id);
+
+            if (airport != null)
+                return airport;
+            else
+            {
+                return airports.Find(a=>a.Profile.ID.StartsWith(id.Substring(0, id.LastIndexOf('-'))));
+            }
         }
         //returns all active airports
         public static List<Airport> GetAllActiveAirports()

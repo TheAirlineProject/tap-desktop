@@ -72,12 +72,15 @@ namespace TheAirline.Model.GeneralModel
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
 
-            Airport airportCurrent = Airports.GetAirport(airliner.CurrentPosition);
+            Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
             double distance = MathHelpers.GetDistance(airportCurrent,airportDestination);
         
             var currentRoute = airliner.Routes.Find(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
+
+            if (currentRoute == null)
+                return 0;
 
             double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2,type);
             double routePrice = currentRoute.getFarePrice(type);
