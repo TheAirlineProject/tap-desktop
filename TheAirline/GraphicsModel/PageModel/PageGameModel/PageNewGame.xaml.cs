@@ -60,7 +60,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             txtHeader.Text = Translator.GetInstance().GetString("PageNewGame", txtHeader.Uid);
             panelContent.Children.Add(txtHeader);
 
-
             ListBox lbContent = new ListBox();
             lbContent.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbContent.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
@@ -150,15 +149,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             List<Airport> airportsList = Airports.GetAllAirports();
 
-
             airportsView = CollectionViewSource.GetDefaultView(airportsList);
             airportsView.SortDescriptions.Add(new SortDescription("Profile.Name", ListSortDirection.Ascending));
 
             cbAirport.ItemsSource = airportsView;
 
-
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1007"), cbAirport));
-
 
             cbStartYear = new ComboBox();
             cbStartYear.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -295,11 +291,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         private void cbStartYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-            Airline airline = (Airline)cbAirline.SelectedItem;
+            Region region = (Region)cbRegion.SelectedItem;
             int year = (int)cbStartYear.SelectedItem;
+            
+            var source = cbAirline.Items as ICollectionView;
+            source.Filter = delegate(object item)
+            {
+                var airline = item as Airline;
+                return (airline.Profile.Country.Region == region || region.Uid == "100") && airline.Profile.Founded<=year && airline.Profile.Folded>year;
 
-            setAirportsView(year, airline.Profile.Country);
+            };
+
+            
+            source.Refresh();
+
+            cbAirline.SelectedIndex = 0;
+  
+            setAirportsView(year, ((Airline)cbAirline.SelectedItem).Profile.Country);
 
         }
 
@@ -323,7 +331,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             if (airline != null)
             {
                 int year = (int)cbStartYear.SelectedItem;
-
 
                 setAirportsView(year, airline.Profile.Country);
 

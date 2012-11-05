@@ -152,6 +152,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             }
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1003"), UICreator.CreateTextBlock(this.Airline.Profile.IATACode)));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1004"), UICreator.CreateTextBlock(this.Airline.Profile.CEO)));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1024"), UICreator.CreateTextBlock(this.Airline.Profile.Founded.ToString())));
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");

@@ -17,13 +17,19 @@ namespace TheAirline.Model.AirlineModel
         public string Color { get; set; }
         public string Logo { get; set; }
         public Airport PreferedAirport { get; set; }
-        public AirlineProfile(string name, string iata, string color, Country country, string ceo)
+        public int Founded { get; set; }
+        public int Folded { get; set; }
+        public Boolean IsReal { get; set; }
+        public AirlineProfile(string name, string iata, string color, Country country, string ceo, Boolean isReal, int founded, int folded)
         {
             this.Name = name;
             this.IATACode = iata;
             this.CEO = ceo;
             this.Color = color;
             this.Country = country;
+            this.IsReal = isReal;
+            this.Founded = founded;
+            this.Folded = folded;
         }
     }
 }

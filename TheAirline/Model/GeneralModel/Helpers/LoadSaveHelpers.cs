@@ -456,15 +456,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
 
+            Boolean isReal = Convert.ToBoolean(airlineNode.Attributes["real"].Value);
+            int founded = Convert.ToInt16(airlineNode.Attributes["founded"].Value);
+            int folded = Convert.ToInt16(airlineNode.Attributes["folded"].Value);
+      
             Airline airline;
             if (airlineIsSubsidiary)
             {
                 Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO,isReal,founded,folded), mentality, market);
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
-                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO), mentality, market);
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO,isReal,founded,folded), mentality, market);
 
             airline.Profile.Logo = logo;
             airline.Fleet.Clear();
@@ -868,6 +872,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
                 airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
+                airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
+                airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
+                airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());
               
                 if (airline.Contract != null)
                 {

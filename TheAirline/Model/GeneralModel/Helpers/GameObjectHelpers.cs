@@ -403,9 +403,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     //passenger demand
                     int advertisementFactor = airline.getAirlineAdvertisements().Sum(a=>a.ReputationLevel);
 
-                    if (advertisementFactor > 0)
-                        advertisementFactor = 10;
-
                     foreach (Route route in airline.Routes)
                     {
                         route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(10 * advertisementFactor));

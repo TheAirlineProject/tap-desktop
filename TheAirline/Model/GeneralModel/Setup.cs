@@ -1051,14 +1051,28 @@ namespace TheAirline.Model.GeneralModel
             string ceo = profileElement.Attributes["CEO"].Value;
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
-          
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo), mentality, market);
+
+            Boolean isReal = true;
+            int founded = 1950;
+            int folded = 2199;
+
+            XmlElement infoElement = (XmlElement)root.SelectSingleNode("info");
+            if (infoElement != null)
+            {
+                isReal = Convert.ToBoolean(infoElement.Attributes["real"].Value);
+                founded = Convert.ToInt16(infoElement.Attributes["from"].Value);
+                folded = Convert.ToInt16(infoElement.Attributes["to"].Value);
+            }
+
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo,isReal,founded,folded), mentality, market);
             if (profileElement.HasAttribute("preferedairport"))
             {
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
                 airline.Profile.PreferedAirport = preferedAirport;
             }
           
+         
+
             XmlNodeList subsidiariesList = root.SelectNodes("subsidiaries/subsidiary");
             if (subsidiariesList != null)
             {
