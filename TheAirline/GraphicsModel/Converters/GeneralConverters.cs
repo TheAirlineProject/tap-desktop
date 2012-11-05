@@ -137,7 +137,7 @@ namespace TheAirline.GraphicsModel.Converters
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v;
             else
-                return MathHelpers.MilesToKM(v);
+                return MathHelpers.KMToMiles(v);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
