@@ -148,12 +148,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement airportNode in airportsList)
             {
                 Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
-
+                
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
                 airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
 
                 XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
+                airport.Hubs.Clear();
+
                 foreach (XmlElement airportHubElement in airportHubsList)
                 {
                     Airline airline = Airlines.GetAirline(airportHubElement.Attributes["airline"].Value);
@@ -193,8 +195,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airline airline = Airlines.GetAirline(airportFacilityNode.Attributes["airline"].Value);
                     AirportFacility airportFacility = AirportFacilities.GetFacility(airportFacilityNode.Attributes["name"].Value);
                     DateTime finishedDate = DateTime.Parse(airportFacilityNode.Attributes["finished"].Value, new CultureInfo("de-DE", false));
-
-                    string ss = airline.Profile.Name;
 
                     airport.addAirportFacility(airline, airportFacility, finishedDate);
                 }
@@ -456,9 +456,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
 
-            Boolean isReal = Convert.ToBoolean(airlineNode.Attributes["real"].Value);
-            int founded = Convert.ToInt16(airlineNode.Attributes["founded"].Value);
-            int folded = Convert.ToInt16(airlineNode.Attributes["folded"].Value);
+            Boolean isReal = airlineNode.HasAttribute("real") ? Convert.ToBoolean(airlineNode.Attributes["real"].Value) : true;
+            int founded =airlineNode.HasAttribute("founded") ? Convert.ToInt16(airlineNode.Attributes["founded"].Value) : 1950;
+            int folded = airlineNode.HasAttribute("folded") ? Convert.ToInt16(airlineNode.Attributes["folded"].Value) : 2199;
       
             Airline airline;
             if (airlineIsSubsidiary)
@@ -510,7 +510,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlNodeList airlineLoanList = airlineNode.SelectNodes("loans/loan");
             foreach (XmlElement airlineLoanNode in airlineLoanList)
             {
-                DateTime date = Convert.ToDateTime(airlineLoanNode.Attributes["date"].Value);
+                DateTime date = DateTime.Parse(airlineLoanNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
                 double rate = Convert.ToDouble(airlineLoanNode.Attributes["rate"].Value, new CultureInfo("de-DE", false));
                 double amount = XmlConvert.ToDouble(airlineLoanNode.Attributes["amount"].Value);
                 int length = Convert.ToInt16(airlineLoanNode.Attributes["length"].Value);
@@ -1081,7 +1081,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement flightsNode = xmlDoc.CreateElement("flights");
                 foreach (FleetAirliner airliner in airline.Fleet)
                 {
-                    if (airliner.CurrentFlight != null)
+                    if (airliner.CurrentFlight != null && airliner.CurrentFlight.Entry != null)
                     {
                         XmlElement flightNode = xmlDoc.CreateElement("flight");
 

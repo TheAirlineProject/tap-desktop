@@ -42,7 +42,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airline airline in airlines)
             {
 
-                
+
                 if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
                 {
                     if (!airline.IsHuman)
@@ -400,15 +400,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
                     }
-                    //passenger demand
-                    int advertisementFactor = airline.getAirlineAdvertisements().Sum(a=>a.ReputationLevel);
 
-                    foreach (Route route in airline.Routes)
-                    {
-                        route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(10 * advertisementFactor));
-                        route.Destination2.addDestinationPassengersRate(route.Destination1, AirlinerClass.ClassType.Economy_Class, (ushort)(10 * advertisementFactor));
-       
-                    }
+                }
+                //passenger demand
+                int advertisementFactor = airline.getAirlineAdvertisements().Sum(a => a.ReputationLevel);
+
+                foreach (Route route in airline.Routes)
+                {
+                    route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(5 * advertisementFactor));
+                    route.Destination2.addDestinationPassengersRate(route.Destination1, AirlinerClass.ClassType.Economy_Class, (ushort)(5 * advertisementFactor));
+
                 }
                 foreach (Loan loan in airline.Loans)
                 {
@@ -580,18 +581,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a route airliner taking off
         private static void SimulateTakeOff(FleetAirliner airliner)
         {
-          
-           if (AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.DepartureAirport) || AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.Destination.Airport))
+
+            if (AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.DepartureAirport) || AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.Destination.Airport))
             {
                 if (airliner.Airliner.Airline.IsHuman)
                 {
                     Airport airport = AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.Destination.Airport) ? airliner.CurrentFlight.Entry.Destination.Airport : airliner.CurrentFlight.Entry.DepartureAirport;
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"),airliner.Airliner.TailNumber,airport.Profile.IATACode)));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber, airport.Profile.IATACode)));
 
                 }
                 SetNextFlight(airliner);
             }
-           else
+            else
             {
                 airliner.Status = FleetAirliner.AirlinerStatus.On_route;
 
@@ -649,7 +650,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 tax = 2 * tax;
 
             double ticketsIncome = 0;
-            
+
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                 ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
 

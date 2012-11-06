@@ -312,8 +312,8 @@ namespace TheAirline.Model.AirportModel
             if (airport != null)
                 return airport;
             else
-            {
-                return airports.Find(a=>a.Profile.ID.StartsWith(id.Substring(0, id.LastIndexOf('-'))));
+            { 
+                return airports.Find(a => a.Profile.ID.StartsWith(id.Substring(0, 8)));//airports.Find(a=>a.Profile.ID.StartsWith(id.Substring(0, id.LastIndexOf('-'))));
             }
         }
         //returns all active airports

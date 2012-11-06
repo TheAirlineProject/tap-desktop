@@ -77,11 +77,20 @@ namespace TheAirline.Model.GeneralModel
                     else
                         i++;
                 }
-                
+            
                 char replaceChar = lastCode[lastCode.Length - 1 - i];
                 replaceChar++;
 
-                return lastCode.Substring(0, chars - i - 1) + replaceChar + lastCode.Substring(chars - i);
+                if (i == 0)
+                    return lastCode.Substring(0, chars - i - 1) + replaceChar + lastCode.Substring(chars - i);
+                else
+                {
+                    string postfix = "";
+                    for (int j = 0; j < i; j++)
+                        postfix += "A";
+
+                    return lastCode.Substring(0, chars - i - 1) + replaceChar + postfix;
+                }
 
             }
         }
