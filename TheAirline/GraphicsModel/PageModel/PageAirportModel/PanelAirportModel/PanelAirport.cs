@@ -40,6 +40,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
             buttonsPanel.Children.Add(sbFacilities);
 
+            ucSelectButton sbWeather = new ucSelectButton();
+            sbWeather.Uid = "208";
+            sbWeather.Content = Translator.GetInstance().GetString("PanelAirport", sbWeather.Uid);
+            sbWeather.Click += new System.Windows.RoutedEventHandler(sbWeather_Click);
+            buttonsPanel.Children.Add(sbWeather);
+
             ucSelectButton sbStatistics = new ucSelectButton();
             sbStatistics.Uid = "203";
             sbStatistics.Content = Translator.GetInstance().GetString("PanelAirport", sbStatistics.Uid);
@@ -71,6 +77,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             frameContent.Navigate(new PageAirportGates(this.Airport));
 
             this.Children.Add(frameContent);
+        }
+
+        private void sbWeather_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageAirportWeather(this.Airport));
         }
 
         private void sbTraffic_Click(object sender, System.Windows.RoutedEventArgs e)

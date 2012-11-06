@@ -30,10 +30,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
     public partial class PageAirport : StandardPage
     {
         public Airport Airport { get; set; }
-        private TextBlock txtWind, txtLocalTime;
+        private TextBlock txtLocalTime;
         private ListBox lbArrivals, lbDepartures, lbPassengers;
-        private ContentControl[] ccWeather;
-        public PageAirport(Airport airport)
+         public PageAirport(Airport airport)
         {
             InitializeComponent();
 
@@ -46,8 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             airportPanel.Margin = new Thickness(10, 0, 10, 0);
 
             airportPanel.Children.Add(createQuickInfoPanel());
-            airportPanel.Children.Add(createWeatherPanel());
-            airportPanel.Children.Add(createPassengersPanel());
+             airportPanel.Children.Add(createPassengersPanel());
             //airportPanel.Children.Add(createArrivalsPanel());
             //airportPanel.Children.Add(createDeparturesPanel());
 
@@ -82,11 +80,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             if (this.IsLoaded)
             {
-                //txtWind.Text = string.Format("{0} ({1:0.##} {2} in {3} direction)", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather[0].WindSpeed, null, null, null), new NumberToUnitConverter().Convert((int)this.Airport.Weather[0].WindSpeed), new StringToLanguageConverter().Convert("km/t"), this.Airport.Weather[0].Direction);
-
-                for (int i = 0; i < this.Airport.Weather.Length; i++)
-                    ccWeather[i].Content = this.Airport.Weather[i];
-       
+             
                 GameTimeZone tz = this.Airport.Profile.TimeZone;
 
                 txtLocalTime.Text = string.Format("{0} {1}", MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, tz).ToShortTimeString(), tz.ShortName);
@@ -95,71 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             }
         }
 
-        //creates the panel for the weather
-        private ScrollViewer createWeatherPanel()
-        {
-            ScrollViewer svWeather = new ScrollViewer();
-            svWeather.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
-
-            ccWeather = new ContentControl[this.Airport.Weather.Length];
-
-
-            StackPanel panelWeather = new StackPanel();
-            panelWeather.Margin = new Thickness(0, 10, 0, 0);
-            svWeather.Content = panelWeather;
-
-            TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1001";
-            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
-            txtHeader.TextAlignment = TextAlignment.Left;
-            txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PageAirport", txtHeader.Uid);
-
-            panelWeather.Children.Add(txtHeader);
-
-            WrapPanel panelWind = new WrapPanel();
-            panelWeather.Children.Add(panelWind);
-
-            Image imgWind = new Image();
-            imgWind.Source = new BitmapImage(new Uri(@"/Data/images/wind.png", UriKind.RelativeOrAbsolute));
-            imgWind.Height = 24;
-            imgWind.Width = 24;
-            RenderOptions.SetBitmapScalingMode(imgWind, BitmapScalingMode.HighQuality);
-
-            panelWind.Children.Add(imgWind);
-            
-            txtWind = UICreator.CreateTextBlock(string.Format("{0} ({1:0.##} {2} in {3} direction)", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather[0].WindSpeed, null, null, null), new NumberToUnitConverter().Convert((int)this.Airport.Weather[0].WindSpeed), new StringToLanguageConverter().Convert("km/t"), this.Airport.Weather[0].Direction));//string.Format("{0} ({1} km/h) in {2} direction", new Converters.TextUnderscoreConverter().Convert(this.Airport.Weather.WindSpeed, null, null, null), (int)this.Airport.Weather.WindSpeed, this.Airport.Weather.Direction));
-            txtWind.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            txtWind.Margin = new Thickness(10, 0, 0, 0);
-
-            ccWeather[0] = new ContentControl();
-            ccWeather[0].ContentTemplate = this.Resources["TodaysWeatherItem"] as DataTemplate;
-            ccWeather[0].Content = this.Airport.Weather[0];
-            ccWeather[0].Margin = new Thickness(10, 0, 0, 0);
-            ccWeather[0].HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-
-            panelWind.Children.Add(ccWeather[0]);
-
-            panelWeather.Children.Add(new Separator());
-           // panelWind.Children.Add(txtWind);
-
-            WrapPanel panelWeatherForecast = new WrapPanel();
-            for (int i = 1; i < 5; i++)
-            {
-                ccWeather[i] = new ContentControl();
-                ccWeather[i].ContentTemplate = this.Resources["WeatherItem"] as DataTemplate;
-                ccWeather[i].Content = this.Airport.Weather[i];
-                ccWeather[i].Margin = new Thickness(0, 0, 5, 0);
-
-                panelWeatherForecast.Children.Add(ccWeather[i]);
-            }
-            panelWeather.Children.Add(panelWeatherForecast);
-
-     
-            return svWeather;
-        }
-
+       
         //creates the panel for arrivals
         private ScrollViewer createArrivalsPanel()
         {
@@ -227,7 +157,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
-            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
             panelPassengers.Children.Add(lbPassengers);
 
             showPassengers();
@@ -537,20 +467,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             throw new NotImplementedException();
         }
     }
-    public class WindSpeedToUnitConverter : IValueConverter
-    {
-
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            Weather.eWindSpeed windspeed = (Weather.eWindSpeed)value;
-
-            return string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert((int)windspeed),new StringToLanguageConverter().Convert("km/t"));
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+   
    
 }

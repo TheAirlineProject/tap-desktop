@@ -13,28 +13,7 @@
     <Page.Resources>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:NumberToUnitConverter x:Key="numberToUnitConverter"></c:NumberToUnitConverter>
-        <local:WindSpeedToUnitConverter x:Key="windSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
         <local:IsHumanAirportConverter x:Key="isHumanAirportConverter"></local:IsHumanAirportConverter>
-        <DataTemplate x:Key="TodaysWeatherItem">
-            <StackPanel Width="400">
-                <TextBlock Text="Today" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-                <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBlock Text="{Binding Direction,StringFormat={}({0}}" VerticalAlignment="Bottom" Margin="5 0 5 0"></TextBlock>
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter},StringFormat={}{0})}" VerticalAlignment="Bottom"></TextBlock>
-                </WrapPanel>
-            </StackPanel>
-        </DataTemplate>
-        <DataTemplate x:Key="WeatherItem">
-            <StackPanel Width="200">
-                <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-                <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBlock Text="{Binding Direction,StringFormat={}({0}}" VerticalAlignment="Bottom" Margin="5 0 5 0"></TextBlock>
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter},StringFormat={}{0})}" VerticalAlignment="Bottom"></TextBlock>
-                </WrapPanel>
-            </StackPanel>
-        </DataTemplate>
         <DataTemplate x:Key="FlightHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>

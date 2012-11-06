@@ -17,7 +17,7 @@
            </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="DestinationsHeader">
-            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush2}">
                 <TextBlock Width="300" FontWeight="Bold">
                       <Hyperlink Tag="Destination" Click="Header_Click">
                         <Run Text="Destination"></Run>

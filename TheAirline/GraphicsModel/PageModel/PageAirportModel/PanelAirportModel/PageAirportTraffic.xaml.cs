@@ -30,6 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             InitializeComponent();
 
             StackPanel panelTraffic = new StackPanel();
+            panelTraffic.Margin = new Thickness(0, 10, 50, 0);
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";

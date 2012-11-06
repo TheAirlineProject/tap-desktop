@@ -164,6 +164,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkHome_Click(object sender, RoutedEventArgs e)
         {
+       
             PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
         }
 
@@ -172,10 +173,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().pause();
 
             String name = (String)PopUpSave.ShowPopUp();
-
-       
+            
             if (name != null)
             {
+      
                 GameObject.GetInstance().Name = name;
 
                 string fileName;
@@ -199,8 +200,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 LoadSaveHelpers.SaveGame(fileName);
 
             }
-        
-            
+         
             GameTimer.GetInstance().start();
             
         }
