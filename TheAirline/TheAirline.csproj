@@ -691,6 +691,7 @@
     <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
     <Compile Include="Model\GeneralModel\Period.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
+    <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
     <Compile Include="Model\PassengerModel\DestinationPassengers.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
@@ -701,7 +702,7 @@
     <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsType.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsValue.cs" />
     <Compile Include="Model\GeneralModel\Translator.cs" />
-    <Compile Include="Model\GeneralModel\Weather.cs" />
+    <Compile Include="Model\GeneralModel\WeatherModel\Weather.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

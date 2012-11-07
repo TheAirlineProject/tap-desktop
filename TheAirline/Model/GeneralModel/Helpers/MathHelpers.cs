@@ -171,6 +171,11 @@ namespace TheAirline.Model.GeneralModel
             double aFeet = 3.2808399;
             return meter * aFeet;
         }
+        //converts celsius to fahrenheit
+        public static double CelsiusToFahrenheit(double celsius)
+        {
+            return celsius * 1.8 + 32;
+        }
         //converts a radian to angle
         public static double RadianToDegree(double radian)
         {

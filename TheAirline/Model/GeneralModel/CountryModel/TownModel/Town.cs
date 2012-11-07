@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
-    //the class for a town / class
+    //the class for a town / city
     public class Town
     {
         public string Name { get; set; }
@@ -22,6 +23,19 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
             this.State = state;
         }
       
+    }
+    //the class which finds a town based on name
+    public class Towns
+    {
+        public static Town GetTown(string name)
+        {
+            
+            return Airports.GetAirport(a => a.Profile.Town.Name == name).Profile.Town;
+        }
+        public static Town GetTown(string name, State state)
+        {
+            return Airports.GetAirport(a => a.Profile.Town.Name == name && a.Profile.Town.State == state).Profile.Town;
+        }
     }
    
 }

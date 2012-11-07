@@ -10,33 +10,31 @@
 	Title="PageAirportWeather">
     <Page.Resources>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:TemperatureToTextConverter x:Key="temperatureToTextConverter"></c:TemperatureToTextConverter>
         <local:WindSpeedToUnitConverter x:Key="windSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
-
-        <DataTemplate x:Key="WeatherItem">
-            <StackPanel Width="200">
-                <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-                <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBlock Text="{Binding Direction,StringFormat={}({0}}" VerticalAlignment="Bottom" Margin="5 0 5 0"></TextBlock>
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter},StringFormat={}{0})}" VerticalAlignment="Bottom"></TextBlock>
-                </WrapPanel>
-            </StackPanel>
-        </DataTemplate>
+        <local:WeatherImageConverter x:Key="weatherImageConverter"></local:WeatherImageConverter>
+          
         <DataTemplate x:Key="WeatherForecastItem">
             <StackPanel Width="100">
                 <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-                <TextBlock Text="{Binding Direction}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <Image Source="{Binding Converter={StaticResource weatherImageConverter}}" Height="48" Width="48"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Image>
+                <TextBlock Text="{Binding Temperature,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
                 <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-
+           
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="TodaysWeatherItem">
             <StackPanel Width="400">
-                <TextBlock Text="Today" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
-                <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBlock Text="{Binding Direction,StringFormat={}({0}}" VerticalAlignment="Bottom" Margin="5 0 5 0"></TextBlock>
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter},StringFormat={}{0})}" VerticalAlignment="Bottom"></TextBlock>
+                <WrapPanel>
+                <Image Source="{Binding Converter={StaticResource weatherImageConverter}}" Height="64" Width="64"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Image>
+                    <StackPanel Margin="5 0 0 0">
+                        <TextBlock Text="{Binding Temperature,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        <TextBlock Text="{Binding WindSpeed,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        <WrapPanel HorizontalAlignment="Left">
+                     <TextBlock Text="{Binding Direction}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>
+                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        </WrapPanel>
+                    </StackPanel>
                 </WrapPanel>
             </StackPanel>
         </DataTemplate>

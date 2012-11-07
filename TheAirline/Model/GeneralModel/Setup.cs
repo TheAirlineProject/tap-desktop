@@ -20,6 +20,7 @@ using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.GeneralModel.HistoricEventModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -62,12 +63,15 @@ namespace TheAirline.Model.GeneralModel
                 LoadInflationYears();
                 LoadHolidays();
                 LoadHistoricEvents();
+                LoadWeatherAverages();
+
                 SetupStatisticsTypes();
 
                 CreateAdvertisementTypes();
                 CreateTimeZones();
                 CreateFeeTypes();
                 CreateFlightFacilities();
+                
 
                 LoadStandardConfigurations();
 
@@ -1011,6 +1015,71 @@ namespace TheAirline.Model.GeneralModel
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
+        /*! loads all weather averages
+         */
+        private static void LoadWeatherAverages()
+        {
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\weather");
+
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadWeatherAverages(file.FullName);
+            }
+        }
+        /*! loads a weather averages
+       */
+        private static void LoadWeatherAverages(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+            XmlElement root = doc.DocumentElement;
+
+            Country country=null;
+            Region region=null;
+            Town town=null;
+
+            string type = root.Attributes["type"].Value;
+            string value = root.Attributes["value"].Value;
+
+            if (type == "country")
+                country = Countries.GetCountry(value);
+
+            if (type == "town")
+                town = Towns.GetTown(value);
+
+            if (type == "region")
+                region = Regions.GetRegion(value);
+
+
+            XmlNodeList monthsList = root.SelectNodes("months/month");
+
+            foreach (XmlElement monthElement in monthsList)
+            {
+              
+                int month = Convert.ToInt16(monthElement.Attributes["month"].Value);
+                int precipitation = Convert.ToInt16(monthElement.Attributes["precipitation"].Value);
+
+                XmlElement tempElement = (XmlElement)monthElement.SelectSingleNode("temp");
+                double minTemp = Convert.ToDouble(tempElement.Attributes["min"].Value);
+                double maxTemp = Convert.ToDouble(tempElement.Attributes["max"].Value);
+
+                XmlElement windElement = (XmlElement)monthElement.SelectSingleNode("wind");
+                Weather.eWindSpeed minWind = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), windElement.Attributes["min"].Value);
+                Weather.eWindSpeed maxWind = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), windElement.Attributes["max"].Value);
+
+                if (country != null)
+                    WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, country));
+
+                if (region != null)
+                    WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, region));
+
+                if (town != null)
+                    WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, town));
+       
+            }
+   
+        }
+       
         /*loads the airlines
          */
         private static void LoadAirlines()
@@ -1385,7 +1454,7 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.WiFi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.5, null, AirlineFacilities.GetFacility("107")));
 
         }
-
+       
         /*! creates the Fee types.
          */
         private static void CreateFeeTypes()

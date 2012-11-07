@@ -14,6 +14,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.HistoricEventModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {

@@ -15,6 +15,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -119,6 +120,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             return panelForecast;
 
+        }
+    }
+    public class WeatherImageConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Weather weather = (Weather)value;
+
+            string weatherType = "clear";
+
+            if (weather.Cover == Weather.CloudCover.Overcast)
+                weatherType = weather.Precip.ToString();
+            else
+                weatherType = weather.Cover.ToString();
+
+            return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherType + ".png";
+
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
     public class WindSpeedToUnitConverter : IValueConverter

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace TheAirline.Model.GeneralModel
+namespace TheAirline.Model.GeneralModel.WeatherModel
 {
     //the class for the weather for a specific date
     public class Weather
@@ -12,13 +12,21 @@ namespace TheAirline.Model.GeneralModel
         public eWindSpeed WindSpeed { get; set; }
         public enum WindDirection { Tail, Head }
         public WindDirection Direction { get; set; }
+        public enum Precipitation { None,Fog, Light_rain, Heavy_rain, Snow, Hail,Sleet,Freezing_rain}
+        public Precipitation Precip { get; set; }
+        public enum CloudCover {Clear, Broken, Overcast}
+        public CloudCover Cover { get; set; }
         public DateTime Date { get; set; }  
         public enum Season { All_Year, Winter, Summer }
-        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction)
+        public double Temperature { get; set; }
+        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, double temperature)
         {
             this.Date = date;
             this.WindSpeed = windspeed;
             this.Direction = direction;
+            this.Cover = cover;
+            this.Precip = precip;
+            this.Temperature = temperature;
         }
     }
     

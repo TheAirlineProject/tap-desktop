@@ -5,6 +5,7 @@ using System.Text;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -48,7 +49,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 for (int i = 0; i < maxDays; i++)
                 {
 
-                    airport.Weather[i] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(i),i>0 ? airport.Weather[i-1] : null);
+                    airport.Weather[i] = CreateDayWeather(airport, GameObject.GetInstance().GameTime.AddDays(i),i>0 ? airport.Weather[i-1] : null);
                 }
             }
             else
@@ -56,32 +57,130 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 for (int i = 1; i < maxDays; i++)
                     airport.Weather[i - 1] = airport.Weather[i];
 
-                airport.Weather[maxDays - 1] = CreateDayWeather(GameObject.GetInstance().GameTime.AddDays(maxDays - 1),airport.Weather[maxDays-2]);
+                airport.Weather[maxDays - 1] = CreateDayWeather(airport, GameObject.GetInstance().GameTime.AddDays(maxDays - 1),airport.Weather[maxDays-2]);
             }
    
         }
        //creates a new weather object for a specific date based on the weather for another day
-        private static Weather CreateDayWeather(DateTime date, Weather previousWeather)
+        private static Weather CreateDayWeather(Airport airport,DateTime date, Weather previousWeather)
         {
+            WeatherAverage average = WeatherAverages.GetWeatherAverage(date.Month, airport.Profile.Town);
+
+            if (average != null)
+                return CreateDayWeather(date, previousWeather, average);
+
+            Weather.Precipitation[] precipitationValues = (Weather.Precipitation[])Enum.GetValues(typeof(Weather.Precipitation));
+            Weather.CloudCover[] coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
             Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
             Weather.WindDirection windDirection;
             Weather.eWindSpeed windSpeed;
+            double temperature;
 
             windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
       
             if (previousWeather == null)
             {
                 windSpeed = windSpeedValues[rnd.Next(windSpeedValues.Length)];
+
+                double maxTemp = 40;
+                double minTemp = -20;
+
+                temperature = rnd.NextDouble() * (maxTemp - minTemp) + minTemp;
              }
             else
             {
                 int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
                 windSpeed = windSpeedValues[rnd.Next(Math.Max(0, windIndex - 2), Math.Min(windIndex + 2, windSpeedValues.Length))];
+
+                double maxTemp = Math.Min(40, previousWeather.Temperature + 5);
+                double minTemp = Math.Max(-20, previousWeather.Temperature - 5);
+
+                temperature = rnd.NextDouble() * (maxTemp - minTemp) + minTemp;
             }
-            return new Weather(date, windSpeed, windDirection);
+
+            Weather.CloudCover cover = coverValues[rnd.Next(coverValues.Length)];
+            Weather.Precipitation precip = Weather.Precipitation.None;
+            if (cover == Weather.CloudCover.Overcast)
+                precip = precipitationValues[rnd.Next(precipitationValues.Length)];
+
+     
+        
+            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature);
+
+       
+            return weather;
    
           }
+        //creates the weather from an average
+        private static Weather CreateDayWeather(DateTime date, Weather previousWeather, WeatherAverage average)
+        {
+            Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
+            Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
+
+            Weather.WindDirection windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
+            Weather.CloudCover cover;
+            Weather.Precipitation precip = Weather.Precipitation.None;
+            Weather.eWindSpeed windSpeed;
+            double temperature;
+
+          
+
+            int windIndexMin =  windSpeedValues.ToList().IndexOf(average.WindSpeedMin);
+            int windIndexMax = windSpeedValues.ToList().IndexOf(average.WindSpeedMax);
+
+            if (previousWeather == null)
+            {
+                windSpeed = windSpeedValues[rnd.Next(windIndexMin,windIndexMax)];
+                temperature = rnd.NextDouble() * (average.TemperatureMax - average.TemperatureMin) + average.TemperatureMin;
+            }
+            else
+            {
+                int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
+                windSpeed = windSpeedValues[rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
+
+                double maxTemp = Math.Min(average.TemperatureMax+5, previousWeather.Temperature + 5);
+                double minTemp = Math.Max(average.TemperatureMin-5, previousWeather.Temperature - 5);
+
+                temperature = rnd.NextDouble() * (maxTemp - minTemp) +minTemp;
+
+            }
+            Boolean isOvercast = rnd.Next(100) < average.Precipitation;
+            if (isOvercast)
+            {
+                cover = Weather.CloudCover.Overcast;
+                precip = GetPrecipitation(average, temperature);
+
+            }
+            else
+                cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Broken;
+
+            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature);
+
+         
+            return weather;
+        }
+        //returns the precipitation for an average at a temperature
+        private static Weather.Precipitation GetPrecipitation(WeatherAverage average, double temperature)
+        {
+            if (temperature > 5)
+            {
+                Weather.Precipitation[] values = { Weather.Precipitation.Heavy_rain,Weather.Precipitation.Light_rain };
+                return values[rnd.Next(values.Length)];
+
+            }
+            if (temperature <= 5 && temperature >= -3)
+            {
+                Weather.Precipitation[] values = {Weather.Precipitation.Freezing_rain,Weather.Precipitation.Hail,Weather.Precipitation.Sleet,Weather.Precipitation.Snow};
+                return values[rnd.Next(values.Length)];
+
+            }
+            if (temperature < -3)
+            {
+                return Weather.Precipitation.Snow;
+            }
+            return Weather.Precipitation.Light_rain;
+        }
         //returns if there is bad weather at an airport
         public static Boolean HasBadWeather(Airport airport)
         {

@@ -123,6 +123,27 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
+    //the converter for the temperature (in celsius) to text
+    public class TemperatureToTextConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double temperature = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:0.0} C°",temperature);
+            else
+                return string.Format("{0:0.0} F°",MathHelpers.CelsiusToFahrenheit(temperature));
+
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a number (in km) to the selected unit
     public class NumberToUnitConverter : IValueConverter
     {

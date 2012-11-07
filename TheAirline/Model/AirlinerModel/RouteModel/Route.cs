@@ -7,6 +7,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {

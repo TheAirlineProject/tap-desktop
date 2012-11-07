@@ -7,6 +7,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 
 namespace TheAirline.Model.AirportModel
@@ -303,6 +304,11 @@ namespace TheAirline.Model.AirportModel
                 return null;
             else
                 return tAirport;
+        }
+        //returns an airport based on match
+        public static Airport GetAirport(Predicate<Airport> match)
+        {
+            return airports.Find(match);
         }
         //returns an airport based on id
         public static Airport GetAirportFromID(string id)

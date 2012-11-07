@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirportModel
 {

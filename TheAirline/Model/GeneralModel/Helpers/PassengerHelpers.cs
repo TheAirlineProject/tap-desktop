@@ -10,6 +10,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel
 {

@@ -16,6 +16,7 @@ using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -171,8 +172,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     DateTime weatherDate = DateTime.Parse(airportWeatherElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
                     Weather.WindDirection windDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection), airportWeatherElement.Attributes["direction"].Value);
                     Weather.eWindSpeed windSpeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
-                    
-                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection);
+                    Weather.CloudCover cover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover),airportWeatherElement.Attributes["cover"].Value);
+                    Weather.Precipitation precip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value);
+                    double temperature = Convert.ToDouble(airportWeatherElement.Attributes["temperature"].Value);
+               
+                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection,cover,precip,temperature);
                 }
 
                 
@@ -1142,6 +1146,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airportWeatherNode.SetAttribute("date", weather.Date.ToString(new CultureInfo("de-DE")));
                     airportWeatherNode.SetAttribute("direction", weather.Direction.ToString());
                     airportWeatherNode.SetAttribute("windspeed", weather.WindSpeed.ToString());
+                    airportWeatherNode.SetAttribute("cover", weather.Cover.ToString());
+                    airportWeatherNode.SetAttribute("precip", weather.Precip.ToString());
+                    airportWeatherNode.SetAttribute("temperature", weather.Temperature.ToString());
 
                     airportWeathersNode.AppendChild(airportWeatherNode);
                 }
