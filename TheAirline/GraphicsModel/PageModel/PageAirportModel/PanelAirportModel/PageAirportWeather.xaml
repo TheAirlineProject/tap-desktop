@@ -19,8 +19,8 @@
                 <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
                 <Image Source="{Binding Converter={StaticResource weatherImageConverter}}" Height="48" Width="48"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Image>
                 <WrapPanel HorizontalAlignment="Center">
-                    <TextBlock Text="{Binding TemperatureLow,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom" ></TextBlock>
-                    <TextBlock Text="{Binding TemperatureHigh,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                    <TextBlock Text="{Binding TemperatureLow,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom" Foreground="DarkBlue"></TextBlock>
+                    <TextBlock Text="{Binding TemperatureHigh,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0" Foreground="DarkRed"></TextBlock>
 
                 </WrapPanel>
                     <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>

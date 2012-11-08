@@ -125,25 +125,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Weather.eWindSpeed windSpeed;
             double temperature, temperatureLow, temperatureHigh;
 
+          
             int windIndexMin =  windSpeedValues.ToList().IndexOf(average.WindSpeedMin);
             int windIndexMax = windSpeedValues.ToList().IndexOf(average.WindSpeedMax);
 
             if (previousWeather == null)
             {
                 windSpeed = windSpeedValues[rnd.Next(windIndexMin,windIndexMax)];
-                temperature = rnd.NextDouble() * (average.TemperatureMax - average.TemperatureMin) + average.TemperatureMin;
+      
+                temperatureLow = rnd.NextDouble()*((average.TemperatureMin+5)- (average.TemperatureMin - 5))+ (average.TemperatureMin - 5);
+                temperatureHigh = rnd.NextDouble() * ((average.TemperatureMax + 5) - Math.Max(average.TemperatureMax - 5, temperatureLow + 1)) + Math.Max(average.TemperatureMax - 5, temperatureLow + 1);
+     
             }
             else
             {
                 int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
                 windSpeed = windSpeedValues[rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
 
-                double maxTemp = Math.Min(average.TemperatureMax+5, previousWeather.Temperature + 5);
-                double minTemp = Math.Max(average.TemperatureMin-5, previousWeather.Temperature - 5);
+                double minTemp = Math.Max(average.TemperatureMin, previousWeather.Temperature - 5);
 
-                temperature = rnd.NextDouble() * (maxTemp - minTemp) +minTemp;
+                temperatureLow = rnd.NextDouble() * ((minTemp + 5) - (minTemp - 5)) + (minTemp - 5);
 
+                double maxTemp = Math.Min(average.TemperatureMax, previousWeather.Temperature + 5);
+                temperatureHigh = rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5,temperatureLow+1)) + Math.Max(maxTemp - 5,temperatureLow+1);
+     
+      
             }
+            temperature = (temperatureLow + temperatureHigh)/2;
+
             Boolean isOvercast = rnd.Next(100) < average.Precipitation;
             if (isOvercast)
             {
@@ -154,10 +163,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
                 cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Broken;
 
-            temperatureLow = temperature - rnd.Next(1, 10);
-            temperatureHigh = temperature + rnd.Next(1, 10);
         
-
+            //weather som weather[24] for temperate hver time, gæt weather Local time
             Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature,temperatureLow,temperatureHigh);
 
          
