@@ -115,6 +115,7 @@ namespace TheAirline.Model.GeneralModel
             Holidays.Clear();
             Configurations.Clear();
             HistoricEvents.Clear();
+            WeatherAverages.Clear();
         }
         /*! creates the Advertisement types
          */
@@ -1035,7 +1036,7 @@ namespace TheAirline.Model.GeneralModel
             XmlElement root = doc.DocumentElement;
 
             Country country=null;
-            Region region=null;
+            Airport airport=null;
             Town town=null;
 
             string type = root.Attributes["type"].Value;
@@ -1047,8 +1048,8 @@ namespace TheAirline.Model.GeneralModel
             if (type == "town")
                 town = Towns.GetTown(value);
 
-            if (type == "region")
-                region = Regions.GetRegion(value);
+            if (type == "airport")
+                airport = Airports.GetAirport(value);
 
 
             XmlNodeList monthsList = root.SelectNodes("months/month");
@@ -1070,11 +1071,13 @@ namespace TheAirline.Model.GeneralModel
                 if (country != null)
                     WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, country));
 
-                if (region != null)
-                    WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, region));
-
                 if (town != null)
                     WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, town));
+
+                if (airport != null)
+                    WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, airport));
+
+            
        
             }
    

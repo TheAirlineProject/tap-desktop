@@ -19,7 +19,9 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public DateTime Date { get; set; }  
         public enum Season { All_Year, Winter, Summer }
         public double Temperature { get; set; }
-        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, double temperature)
+        public double TemperatureHigh { get; set; }
+        public double TemperatureLow { get; set; }
+        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, double temperature,double temperatureLow, double temperatureHigh)
         {
             this.Date = date;
             this.WindSpeed = windspeed;
@@ -27,6 +29,8 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
             this.Cover = cover;
             this.Precip = precip;
             this.Temperature = temperature;
+            this.TemperatureLow = temperatureLow;
+            this.TemperatureHigh = temperatureHigh;
         }
     }
     

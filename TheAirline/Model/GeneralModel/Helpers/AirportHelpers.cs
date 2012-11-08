@@ -64,7 +64,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
        //creates a new weather object for a specific date based on the weather for another day
         private static Weather CreateDayWeather(Airport airport,DateTime date, Weather previousWeather)
         {
-            WeatherAverage average = WeatherAverages.GetWeatherAverage(date.Month, airport.Profile.Town);
+            WeatherAverage average = WeatherAverages.GetWeatherAverage(date.Month, airport);
 
             if (average != null)
                 return CreateDayWeather(date, previousWeather, average);
@@ -75,7 +75,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
             Weather.WindDirection windDirection;
             Weather.eWindSpeed windSpeed;
-            double temperature;
+            double temperature, temperatureLow, temperatureHigh;
 
             windDirection = windDirectionValues[rnd.Next(windDirectionValues.Length)];
       
@@ -104,9 +104,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (cover == Weather.CloudCover.Overcast)
                 precip = precipitationValues[rnd.Next(precipitationValues.Length)];
 
-     
+            temperatureLow = temperature - rnd.Next(1, 10);
+            temperatureHigh = temperature + rnd.Next(1, 10);
         
-            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature);
+            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature,temperatureLow,temperatureHigh);
 
        
             return weather;
@@ -122,9 +123,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Weather.CloudCover cover;
             Weather.Precipitation precip = Weather.Precipitation.None;
             Weather.eWindSpeed windSpeed;
-            double temperature;
-
-          
+            double temperature, temperatureLow, temperatureHigh;
 
             int windIndexMin =  windSpeedValues.ToList().IndexOf(average.WindSpeedMin);
             int windIndexMax = windSpeedValues.ToList().IndexOf(average.WindSpeedMax);
@@ -155,7 +154,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
                 cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Broken;
 
-            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature);
+            temperatureLow = temperature - rnd.Next(1, 10);
+            temperatureHigh = temperature + rnd.Next(1, 10);
+        
+
+            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature,temperatureLow,temperatureHigh);
 
          
             return weather;

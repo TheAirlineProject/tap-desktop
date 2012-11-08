@@ -175,8 +175,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Weather.CloudCover cover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover),airportWeatherElement.Attributes["cover"].Value);
                     Weather.Precipitation precip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value);
                     double temperature = Convert.ToDouble(airportWeatherElement.Attributes["temperature"].Value);
-               
-                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection,cover,precip,temperature);
+                    double temperatureLow = Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value);
+                    double temperatureHigh = Convert.ToDouble(airportWeatherElement.Attributes["temperaturehigh"].Value);
+
+                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection,cover,precip,temperature,temperatureLow,temperatureHigh);
                 }
 
                 
@@ -1149,6 +1151,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airportWeatherNode.SetAttribute("cover", weather.Cover.ToString());
                     airportWeatherNode.SetAttribute("precip", weather.Precip.ToString());
                     airportWeatherNode.SetAttribute("temperature", weather.Temperature.ToString());
+                    airportWeatherNode.SetAttribute("temperaturelow", weather.TemperatureLow.ToString());
+                    airportWeatherNode.SetAttribute("temperaturehigh", weather.TemperatureHigh.ToString());
 
                     airportWeathersNode.AppendChild(airportWeatherNode);
                 }

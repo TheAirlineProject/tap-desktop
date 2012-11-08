@@ -132,9 +132,9 @@ namespace TheAirline.GraphicsModel.Converters
             double temperature = Double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:0.0} C°",temperature);
+                return string.Format("{0:0.0}°C",temperature);
             else
-                return string.Format("{0:0.0} F°",MathHelpers.CelsiusToFahrenheit(temperature));
+                return string.Format("{0:0}°F",MathHelpers.CelsiusToFahrenheit(temperature));
 
 
         }
