@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Windows.Threading;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -66,10 +67,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             if (this.IsLoaded)
             {
-
+                
                 for (int i = 0; i < this.Airport.Weather.Length; i++)
+                {
                     ccWeather[i].Content = this.Airport.Weather[i];
-         
+                    
+           
+                }
+                ccWeather[0].Content = this.Airport.Weather[1];
+                ccWeather[0].Content = this.Airport.Weather[0];
             }
         
         }
@@ -158,6 +164,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             return weatherCondition;
 
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CurrentTemperatureConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Weather weather = (Weather)value;
+
+            int currentHour = GameObject.GetInstance().GameTime.Hour;
+
+            return new TemperatureToTextConverter().Convert(weather.Temperatures[currentHour]);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

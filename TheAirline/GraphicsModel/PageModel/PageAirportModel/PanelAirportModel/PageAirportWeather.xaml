@@ -13,6 +13,7 @@
         <c:TemperatureToTextConverter x:Key="temperatureToTextConverter"></c:TemperatureToTextConverter>
         <local:WindSpeedToUnitConverter x:Key="windSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
         <local:WeatherImageConverter x:Key="weatherImageConverter"></local:WeatherImageConverter>
+        <local:CurrentTemperatureConverter x:Key="currentTemperatureConverter"></local:CurrentTemperatureConverter>
         <local:WeatherConditionConverter x:Key="weatherConditionConverter"></local:WeatherConditionConverter>
             <DataTemplate x:Key="WeatherForecastItem">
             <StackPanel Width="100">
@@ -32,7 +33,7 @@
                 <WrapPanel>
                 <Image Source="{Binding Converter={StaticResource weatherImageConverter}}" Height="64" Width="64"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Image>
                     <StackPanel Margin="5 0 0 0">
-                        <TextBlock Text="{Binding Temperature,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        <TextBlock Text="{Binding Converter={StaticResource currentTemperatureConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         <TextBlock Text="{Binding Converter={StaticResource weatherConditionConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         <WrapPanel HorizontalAlignment="Left">
                      <TextBlock Text="{Binding Direction}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>

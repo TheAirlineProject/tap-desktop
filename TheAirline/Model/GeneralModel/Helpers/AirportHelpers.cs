@@ -93,8 +93,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
                 windSpeed = windSpeedValues[rnd.Next(Math.Max(0, windIndex - 2), Math.Min(windIndex + 2, windSpeedValues.Length))];
 
-                double maxTemp = Math.Min(40, previousWeather.Temperature + 5);
-                double minTemp = Math.Max(-20, previousWeather.Temperature - 5);
+                double previousTemperature = (previousWeather.TemperatureHigh + previousWeather.TemperatureLow) / 2;
+             
+                double maxTemp = Math.Min(40, previousTemperature+ 5);
+                double minTemp = Math.Max(-20, previousTemperature - 5);
 
                 temperature = rnd.NextDouble() * (maxTemp - minTemp) + minTemp;
             }
@@ -106,8 +108,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             temperatureLow = temperature - rnd.Next(1, 10);
             temperatureHigh = temperature + rnd.Next(1, 10);
-        
-            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature,temperatureLow,temperatureHigh);
+
+            double[] hourlyTemperature = new double[24];
+            hourlyTemperature[0] = temperatureLow;
+
+            double steps = (temperatureHigh - temperatureLow) / 12;
+
+            for (int i = 1; i < hourlyTemperature.Length; i++)
+            {
+                hourlyTemperature[i] = hourlyTemperature[i - 1] + (i < 12 ? steps : -steps);
+            }
+            
+            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,hourlyTemperature,temperatureLow,temperatureHigh);
 
        
             return weather;
@@ -139,15 +151,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else
             {
+                double previousTemperature = (previousWeather.TemperatureHigh + previousWeather.TemperatureLow) / 2;
                 int windIndex = windSpeedValues.ToList().IndexOf(previousWeather.WindSpeed);
                 windSpeed = windSpeedValues[rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
 
-                double minTemp = Math.Max(average.TemperatureMin, previousWeather.Temperature - 5);
-
+                double minTemp = Math.Max(average.TemperatureMin, previousTemperature - 5);
                 temperatureLow = rnd.NextDouble() * ((minTemp + 5) - (minTemp - 5)) + (minTemp - 5);
 
-                double maxTemp = Math.Min(average.TemperatureMax, previousWeather.Temperature + 5);
-                temperatureHigh = rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5,temperatureLow+1)) + Math.Max(maxTemp - 5,temperatureLow+1);
+                double maxTemp = Math.Min(average.TemperatureMax, previousTemperature + 5);
+                temperatureHigh = rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5,temperatureLow+2)) + Math.Max(maxTemp - 5,temperatureLow+2);
      
       
             }
@@ -163,9 +175,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
                 cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Broken;
 
+            double[] hourlyTemperature = new double[24];
+            
+            double steps = (temperatureHigh - temperatureLow) / 12;
+
+            hourlyTemperature[0] = temperatureLow;
+            for (int i=1;i<hourlyTemperature.Length;i++)
+            {
+
+                hourlyTemperature[i] = hourlyTemperature[i - 1] + (i < 12 ? steps : -steps);
+            }
         
-            //weather som weather[24] for temperate hver time, gæt weather Local time
-            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,temperature,temperatureLow,temperatureHigh);
+            Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,hourlyTemperature,temperatureLow,temperatureHigh);
 
          
             return weather;

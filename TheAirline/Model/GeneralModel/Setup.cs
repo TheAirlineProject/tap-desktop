@@ -636,6 +636,17 @@ namespace TheAirline.Model.GeneralModel
             {
                 string s = e.ToString();
             }
+            /*
+            var airports = Airports.GetAllAirports().GroupBy(a => a.Profile.Town.Name).Select(g=>new {g.Key,records=g});
+            airports = airports.OrderByDescending(a => a.records.Count());
+
+            foreach (var result in airports.Where(a=>a.records.Count() > 1))
+            {
+                Console.WriteLine("City: {0} Count: {1},", result.Key, result.records.Count());
+            }
+      
+            int count = airports.Count();
+             * */
         
         }
         private static void LoadAirports(string file)

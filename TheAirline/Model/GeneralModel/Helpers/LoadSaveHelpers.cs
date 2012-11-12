@@ -174,11 +174,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Weather.eWindSpeed windSpeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
                     Weather.CloudCover cover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover),airportWeatherElement.Attributes["cover"].Value);
                     Weather.Precipitation precip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value);
-                    double temperature = Convert.ToDouble(airportWeatherElement.Attributes["temperature"].Value);
                     double temperatureLow = Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value);
                     double temperatureHigh = Convert.ToDouble(airportWeatherElement.Attributes["temperaturehigh"].Value);
 
-                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection,cover,precip,temperature,temperatureLow,temperatureHigh);
+                    XmlNodeList airportTemperatureList = airportNode.SelectNodes("temperatures/temperature");
+                    double[] temperatures = new double[airportTemperatureList.Count];
+              
+                    int t=0;
+                    foreach (XmlElement airportTemperatureNode in airportTemperatureList)
+                    {
+                        temperatures[t] = Convert.ToDouble(airportTemperatureNode.Attributes["value"].Value);
+                        t++;
+                    }
+                   
+                 
+                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection,cover,precip,temperatures,temperatureLow,temperatureHigh);
                 }
 
                 
@@ -1150,9 +1160,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airportWeatherNode.SetAttribute("windspeed", weather.WindSpeed.ToString());
                     airportWeatherNode.SetAttribute("cover", weather.Cover.ToString());
                     airportWeatherNode.SetAttribute("precip", weather.Precip.ToString());
-                    airportWeatherNode.SetAttribute("temperature", weather.Temperature.ToString());
                     airportWeatherNode.SetAttribute("temperaturelow", weather.TemperatureLow.ToString());
                     airportWeatherNode.SetAttribute("temperaturehigh", weather.TemperatureHigh.ToString());
+
+                    XmlElement temperaturesNode = xmlDoc.CreateElement("temperatures");
+                    for (int i = 0; i < weather.Temperatures.Length; i++)
+                    {
+                        XmlElement temperatureNode = xmlDoc.CreateElement("temperature");
+                        temperatureNode.SetAttribute("value", weather.Temperatures[i].ToString());
+
+                        temperaturesNode.AppendChild(temperatureNode);
+                
+                    }
+                    airportWeatherNode.AppendChild(temperaturesNode);
 
                     airportWeathersNode.AppendChild(airportWeatherNode);
                 }
