@@ -41,6 +41,7 @@ namespace TheAirline.Model.AirlineModel
         public List<Alliance> Alliances { get; set; }
         public ManufacturerContract Contract { get; set; }
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
+        public List<AirlinePolicy> Policies { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus)
         {
             this.Airports = new List<Airport>();
@@ -53,12 +54,13 @@ namespace TheAirline.Model.AirlineModel
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new Invoices();
             this.Profile = profile;
-             this.Loans = new List<Loan>();
+            this.Loans = new List<Loan>();
             this.Reputation = 50;
             this.Alliances = new List<Alliance>();
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
-                   this.FlightCodes = new List<string>();
+            this.FlightCodes = new List<string>();
+            this.Policies = new List<AirlinePolicy>();
 
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
@@ -394,6 +396,16 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Subsidiaries.Remove(subsidiary);
         }
+        //adds a policy to the airline
+        public void addAirlinePolicy(AirlinePolicy policy)
+        {
+            this.Policies.Add(policy);
+        }
+        //returns a policy for the airline
+        public AirlinePolicy getAirlinePolicy(string name)
+        {
+            return this.Policies.Find(p => p.Name == name);
+        }
      
        
     }
@@ -441,6 +453,7 @@ namespace TheAirline.Model.AirlineModel
         {
             airlines.RemoveAll(match);
         }
+      
       
     }
 

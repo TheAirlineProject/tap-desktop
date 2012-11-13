@@ -13,8 +13,10 @@
         <c:TemperatureToTextConverter x:Key="temperatureToTextConverter"></c:TemperatureToTextConverter>
         <local:WindSpeedToUnitConverter x:Key="windSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
         <local:WeatherImageConverter x:Key="weatherImageConverter"></local:WeatherImageConverter>
+        <local:CurrentWeatherImageConverter x:Key="currentWeatherImageConverter"></local:CurrentWeatherImageConverter>
         <local:CurrentTemperatureConverter x:Key="currentTemperatureConverter"></local:CurrentTemperatureConverter>
         <local:WeatherConditionConverter x:Key="weatherConditionConverter"></local:WeatherConditionConverter>
+        <local:CurrentWeatherConditionConverter x:Key="currentWeatherConditionConverter"></local:CurrentWeatherConditionConverter>
             <DataTemplate x:Key="WeatherForecastItem">
             <StackPanel Width="100">
                 <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
@@ -31,10 +33,10 @@
         <DataTemplate x:Key="TodaysWeatherItem">
             <StackPanel Width="400">
                 <WrapPanel>
-                <Image Source="{Binding Converter={StaticResource weatherImageConverter}}" Height="64" Width="64"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Image>
+                <Image Source="{Binding Converter={StaticResource currentWeatherImageConverter}}" Height="64" Width="64"  RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom" HorizontalAlignment="Center"></Image>
                     <StackPanel Margin="5 0 0 0">
                         <TextBlock Text="{Binding Converter={StaticResource currentTemperatureConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                        <TextBlock Text="{Binding Converter={StaticResource weatherConditionConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        <TextBlock Text="{Binding Converter={StaticResource currentWeatherConditionConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         <WrapPanel HorizontalAlignment="Left">
                      <TextBlock Text="{Binding Direction}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>
                     <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>

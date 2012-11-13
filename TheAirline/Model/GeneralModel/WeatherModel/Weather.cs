@@ -18,10 +18,10 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public CloudCover Cover { get; set; }
         public DateTime Date { get; set; }  
         public enum Season { All_Year, Winter, Summer }
-        public double[] Temperatures { get; set; }
+        public HourlyWeather[] Temperatures { get; set; }
         public double TemperatureHigh { get; set; }
         public double TemperatureLow { get; set; }
-        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, double[] temperatures,double temperatureLow, double temperatureHigh)
+        public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, HourlyWeather[] temperatures,double temperatureLow, double temperatureHigh)
         {
             this.Date = date;
             this.WindSpeed = windspeed;

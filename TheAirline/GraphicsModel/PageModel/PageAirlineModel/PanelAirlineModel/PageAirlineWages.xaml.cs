@@ -31,7 +31,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineWages : Page
     {
         private Airline Airline;
-        private StackPanel panelWages, panelEmployees, panelInflightServices, panelAirlineServices, panelAdvertisement;
+        private StackPanel panelWages, panelEmployees, panelInflightServices, panelAirlineServices, panelAdvertisement, panelAirlinePolicies;
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees,lbDiscounts, lbFoodDrinks;
         private ListBox lbNewFacilities, lbFacilities, lbAdvertisement;
@@ -84,6 +84,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbAdvertisement.Click += new RoutedEventHandler(sbAdvertisement_Click);
             panelMenuButtons.Children.Add(sbAdvertisement);
 
+            ucSelectButton sbPolicies = new ucSelectButton();
+            sbPolicies.Uid = "1016";
+            sbPolicies.Content = Translator.GetInstance().GetString("PageAirlineWages", sbPolicies.Uid);
+            sbPolicies.Click += new RoutedEventHandler(sbPolicies_Click);
+            panelMenuButtons.Children.Add(sbPolicies);
+
             panelWages = createWagesPanel();
             panelWagesAndEmployees.Children.Add(panelWages);
 
@@ -102,9 +108,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelAdvertisement = createAdvertisementPanel();
             panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
             panelWagesAndEmployees.Children.Add(panelAdvertisement);
+
+            panelAirlinePolicies = createPoliciesPanel();
+            panelAirlinePolicies.Visibility = System.Windows.Visibility.Collapsed;
+            panelWagesAndEmployees.Children.Add(panelAirlinePolicies);
      
             this.Content = panelWagesAndEmployees;
         }
+
+        
         //creates the for the panel advertisement
         private StackPanel createAdvertisementPanel()
         {
@@ -335,6 +347,32 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             return panelEmployees;
         }
+        //creates the policies panel
+        private StackPanel createPoliciesPanel()
+        {
+            StackPanel panelPolicies = new StackPanel();
+
+            TextBlock txtHeaderPolicies = new TextBlock();
+            txtHeaderPolicies.Uid = "1016";
+            //txtHeaderFoods.Margin = new Thickness(0, 5, 0, 0);
+            txtHeaderPolicies.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeaderPolicies.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeaderPolicies.FontWeight = FontWeights.Bold;
+            txtHeaderPolicies.Text = Translator.GetInstance().GetString("PageAirlineWages", txtHeaderPolicies.Uid);
+
+            panelPolicies.Children.Add(txtHeaderPolicies);
+
+            ListBox lbPolicies = new ListBox();
+            lbPolicies.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbPolicies.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            panelPolicies.Children.Add(lbPolicies);
+
+            lbPolicies.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineWages","1017"),UICreator.CreateTextBlock(string.Format("{0} minutes",GameObject.GetInstance().HumanAirline.getAirlinePolicy("Cancellation Minutes").PolicyValue)))); 
+
+
+            return panelPolicies;
+
+        }
         //creates the wage panel
         private StackPanel createWagesPanel()
         {
@@ -422,7 +460,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
              panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
              panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
              panelAdvertisement.Visibility = System.Windows.Visibility.Visible;
-
+             panelAirlinePolicies.Visibility = System.Windows.Visibility.Collapsed;
+       
              showAdvertisements();
          }
    
@@ -433,7 +472,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
             panelAirlineServices.Visibility = System.Windows.Visibility.Visible;
             panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
-            
+            panelAirlinePolicies.Visibility = System.Windows.Visibility.Collapsed;
+                   
             showFacilities();
      
         }
@@ -444,7 +484,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
             panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
             panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
-  
+            panelAirlinePolicies.Visibility = System.Windows.Visibility.Collapsed;
+         
             undoSettings();
         }
 
@@ -454,7 +495,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
             panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
             panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
-            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed; 
+            panelAirlinePolicies.Visibility = System.Windows.Visibility.Collapsed;
+       
   
             undoSettings();
         }
@@ -465,9 +508,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelInflightServices.Visibility = System.Windows.Visibility.Visible;
             panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
             panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
-  
+            panelAirlinePolicies.Visibility = System.Windows.Visibility.Collapsed;
        
            
+        }
+        private void sbPolicies_Click(object sender, RoutedEventArgs e)
+        {
+            panelWages.Visibility = System.Windows.Visibility.Collapsed;
+            panelEmployees.Visibility = System.Windows.Visibility.Collapsed;
+            panelInflightServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
+            panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
+            panelAirlinePolicies.Visibility = System.Windows.Visibility.Visible;
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()

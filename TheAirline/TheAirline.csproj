@@ -621,6 +621,7 @@
     <Compile Include="Model\AirlineModel\AdvertisementType.cs" />
     <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
+    <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />
     <Compile Include="Model\AirlineModel\FeeType.cs" />
@@ -691,6 +692,7 @@
     <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
     <Compile Include="Model\GeneralModel\Period.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
+    <Compile Include="Model\GeneralModel\WeatherModel\HourlyWeather.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
     <Compile Include="Model\PassengerModel\DestinationPassengers.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />

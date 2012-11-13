@@ -109,14 +109,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureLow = temperature - rnd.Next(1, 10);
             temperatureHigh = temperature + rnd.Next(1, 10);
 
-            double[] hourlyTemperature = new double[24];
-            hourlyTemperature[0] = temperatureLow;
-
+            HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
+            hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None);
+         
             double steps = (temperatureHigh - temperatureLow) / 12;
 
             for (int i = 1; i < hourlyTemperature.Length; i++)
             {
-                hourlyTemperature[i] = hourlyTemperature[i - 1] + (i < 12 ? steps : -steps);
+                double temp = hourlyTemperature[i - 1].Temperature + (i < 12 ? steps : -steps);
+                hourlyTemperature[i] = new HourlyWeather(temp, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temp) : Weather.Precipitation.None);
+  
             }
             
             Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,hourlyTemperature,temperatureLow,temperatureHigh);
@@ -169,21 +171,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (isOvercast)
             {
                 cover = Weather.CloudCover.Overcast;
-                precip = GetPrecipitation(average, temperature);
+                precip = GetPrecipitation(temperature);
 
             }
             else
                 cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Broken;
 
-            double[] hourlyTemperature = new double[24];
+            HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
             
             double steps = (temperatureHigh - temperatureLow) / 12;
 
-            hourlyTemperature[0] = temperatureLow;
+            hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None);
             for (int i=1;i<hourlyTemperature.Length;i++)
             {
-
-                hourlyTemperature[i] = hourlyTemperature[i - 1] + (i < 12 ? steps : -steps);
+                double temp = hourlyTemperature[i - 1].Temperature + (i < 12 ? steps : -steps);
+                hourlyTemperature[i] = new HourlyWeather(temp, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temp) : Weather.Precipitation.None);
             }
         
             Weather weather = new Weather(date, windSpeed, windDirection, cover,precip,hourlyTemperature,temperatureLow,temperatureHigh);
@@ -191,8 +193,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
          
             return weather;
         }
-        //returns the precipitation for an average at a temperature
-        private static Weather.Precipitation GetPrecipitation(WeatherAverage average, double temperature)
+        //returns the precipitation for a temperature
+        private static Weather.Precipitation GetPrecipitation(double temperature)
         {
             if (temperature > 5)
             {

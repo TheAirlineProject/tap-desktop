@@ -171,6 +171,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             throw new NotImplementedException();
         }
     }
+    public class CurrentWeatherConditionConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Weather weather = (Weather)value;
+
+            int currentHour = GameObject.GetInstance().GameTime.Hour; 
+
+            string weatherCondition = "clear";
+
+            if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+                weatherCondition = weather.Temperatures[currentHour].Precip.ToString();
+            else
+                weatherCondition = weather.Temperatures[currentHour].Cover.ToString();
+
+            return weatherCondition;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class CurrentTemperatureConverter : IValueConverter
     {
 
@@ -178,9 +202,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             Weather weather = (Weather)value;
 
-            int currentHour = GameObject.GetInstance().GameTime.Hour;
+            int currentHour = GameObject.GetInstance().GameTime.Hour; 
 
-            return new TemperatureToTextConverter().Convert(weather.Temperatures[currentHour]);
+            return new TemperatureToTextConverter().Convert(weather.Temperatures[currentHour].Temperature);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    public class CurrentWeatherImageConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string weatherCondition = new CurrentWeatherConditionConverter().Convert(value, targetType, parameter, culture).ToString();
+
+            return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

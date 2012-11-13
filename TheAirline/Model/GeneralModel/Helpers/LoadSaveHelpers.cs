@@ -172,18 +172,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     DateTime weatherDate = DateTime.Parse(airportWeatherElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
                     Weather.WindDirection windDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection), airportWeatherElement.Attributes["direction"].Value);
                     Weather.eWindSpeed windSpeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
-                    Weather.CloudCover cover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover),airportWeatherElement.Attributes["cover"].Value);
-                    Weather.Precipitation precip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value);
-                    double temperatureLow = Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value);
-                    double temperatureHigh = Convert.ToDouble(airportWeatherElement.Attributes["temperaturehigh"].Value);
+                    Weather.CloudCover cover = airportWeatherElement.HasAttribute("cover")? (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover),airportWeatherElement.Attributes["cover"].Value) : Weather.CloudCover.Clear;
+                    Weather.Precipitation precip = airportWeatherElement.HasAttribute("precip") ? (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value) : Weather.Precipitation.None;
+                    double temperatureLow =  airportWeatherElement.HasAttribute("temperatureLow") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value) : 0;
+                    double temperatureHigh = airportWeatherElement.HasAttribute("temperatureHigh") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturehigh"].Value) : 20;
 
                     XmlNodeList airportTemperatureList = airportNode.SelectNodes("temperatures/temperature");
-                    double[] temperatures = new double[airportTemperatureList.Count];
+                    HourlyWeather[] temperatures = new HourlyWeather[airportTemperatureList.Count];
               
                     int t=0;
                     foreach (XmlElement airportTemperatureNode in airportTemperatureList)
                     {
-                        temperatures[t] = Convert.ToDouble(airportTemperatureNode.Attributes["value"].Value);
+                        double hourlyTemperature = Convert.ToDouble(airportTemperatureNode.Attributes["temp"].Value);
+                        Weather.CloudCover hourlyCover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover), airportTemperatureNode.Attributes["cover"].Value);
+                        Weather.Precipitation hourlyPrecip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportTemperatureNode.Attributes["precip"].Value);
+
+                        temperatures[t] = new HourlyWeather(hourlyTemperature, hourlyCover, hourlyPrecip);
                         t++;
                     }
                    
@@ -719,6 +723,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (destination != "Service")
                     {
                         RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
+
                         Flight currentFlight = new Flight(rtte);
                         currentFlight.FlightTime = flightTime;
                         currentFlight.Classes.Clear();
@@ -735,7 +740,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airliner.CurrentFlight = currentFlight;
                     }
                     else
-                        airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(flightTime, airliner));
+                    {
+                        
+                        airliner.CurrentFlight = new Flight(new RouteTimeTableEntry(route.TimeTable, GameObject.GetInstance().GameTime.DayOfWeek, GameObject.GetInstance().GameTime.TimeOfDay, new RouteEntryDestination(airliner.Homebase, "Service")));
+
+                        airliner.Status = FleetAirliner.AirlinerStatus.On_service;
+                    }
 
 
 
@@ -1167,7 +1177,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     for (int i = 0; i < weather.Temperatures.Length; i++)
                     {
                         XmlElement temperatureNode = xmlDoc.CreateElement("temperature");
-                        temperatureNode.SetAttribute("value", weather.Temperatures[i].ToString());
+                        temperatureNode.SetAttribute("temp", weather.Temperatures[i].ToString());
+                        temperatureNode.SetAttribute("cover", weather.Temperatures[i].Cover.ToString());
+                        temperatureNode.SetAttribute("precip", weather.Temperatures[i].Precip.ToString());
 
                         temperaturesNode.AppendChild(temperatureNode);
                 

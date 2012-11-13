@@ -1252,6 +1252,7 @@ namespace TheAirline.Model.GeneralModel
                 airline.Money = GameObject.GetInstance().StartMoney;
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();
+                airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 60));
 
                 if (!airline.IsHuman)
                     CreateComputerRoutes(airline);
