@@ -204,13 +204,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (temperature <= 5 && temperature >= -3)
             {
-                Weather.Precipitation[] values = {Weather.Precipitation.Freezing_rain,Weather.Precipitation.Hail,Weather.Precipitation.Sleet,Weather.Precipitation.Snow};
+                Weather.Precipitation[] values = {Weather.Precipitation.Freezing_rain,Weather.Precipitation.Hail,Weather.Precipitation.Sleet,Weather.Precipitation.Light_snow};
                 return values[rnd.Next(values.Length)];
 
             }
             if (temperature < -3)
             {
-                return Weather.Precipitation.Snow;
+                Weather.Precipitation[] values = { Weather.Precipitation.Heavy_snow, Weather.Precipitation.Light_snow };
+                return values[rnd.Next(values.Length)];
+
             }
             return Weather.Precipitation.Light_rain;
         }

@@ -18,6 +18,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public FleetAirliner Airliner { get; set; }
         public Boolean IsOnTime { get; set; }
         public DateTime FlightTime { get; set; }
+        public DateTime ExpectedLanding { get { return getExpectedLandingTime(); } set { ;} }
         public Flight(RouteTimeTableEntry entry)
         {
          
@@ -37,13 +38,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the expected time of landing
         public DateTime getExpectedLandingTime()
         {
-            FleetAirliner airliner = this.Airliner;
-            double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
-            TimeSpan flightTime = MathHelpers.GetFlightTime(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type);
-
-            DateTime time = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day, GameObject.GetInstance().GameTime.Hour, GameObject.GetInstance().GameTime.Minute, 0);
-
-            return time.AddTicks(flightTime.Ticks);
+            return this.FlightTime.Add(MathHelpers.GetFlightTime(this.Entry.DepartureAirport.Profile.Coordinates, this.Entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type));
 
 
         }

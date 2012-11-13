@@ -37,8 +37,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
            switch (departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip)
            {
-               case WeatherModel.Weather.Precipitation.Snow:
+               case WeatherModel.Weather.Precipitation.Light_snow:
                    weatherFactor = 1;
+                   break;
+               case WeatherModel.Weather.Precipitation.Heavy_snow:
+                   weatherFactor = 3;
                    break;
                case WeatherModel.Weather.Precipitation.Fog:
                    weatherFactor = 2;

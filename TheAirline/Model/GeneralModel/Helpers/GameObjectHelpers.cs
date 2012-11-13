@@ -637,8 +637,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateLanding(FleetAirliner airliner)
         {
             TimeSpan flighttime = GameObject.GetInstance().GameTime.Subtract(airliner.CurrentFlight.FlightTime);
-
-
+            
             airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = FleetAirliner.AirlinerStatus.Resting;
 
@@ -713,7 +712,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             dest.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getTotalPassengers());
             dest.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
 
-            if (airliner.CurrentFlight.IsOnTime) airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time"), 1);
+            Boolean isOnTime = airliner.CurrentFlight.IsOnTime;//airliner.CurrentFlight.ExpectedLanding >= GameObject.GetInstance().GameTime;
+
+            if (isOnTime)
+                airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time"), 1);
+            
             airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
 
             double onTimePercent = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time")) / airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -886,16 +889,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int airlinerAgeDelay = FleetAirlinerHelpers.GetAirlinerAgeDelay(airliner);
             int airlinerWeatherDelay = FleetAirlinerHelpers.GetAirlinerWeatherDelay(airliner);
 
-            return Math.Max(airlinerAgeDelay, airlinerWeatherDelay);
-
-            int delayedMinutes = 0;
-
-            delayedMinutes = rnd.Next(0, 61);
+            int delayedMinutes = Math.Max(airlinerAgeDelay, airlinerWeatherDelay);
 
             if (delayedMinutes > 0)
                 airliner.CurrentFlight.IsOnTime = false;
 
             return delayedMinutes;
+
+           
         }
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
