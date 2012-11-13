@@ -588,7 +588,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airliner.Airliner.Airline.IsHuman)
                 {
                     Airport airport = AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.Destination.Airport) ? airliner.CurrentFlight.Entry.Destination.Airport : airliner.CurrentFlight.Entry.DepartureAirport;
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber, airport.Profile.IATACode)));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber, airport.Profile.IATACode)));
 
                 }
                 SetNextFlight(airliner);
@@ -876,14 +876,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
         }
+        //returns the number of delay minutes (0 if not delayed)
+        private static int GetDelayedMinutes(FleetAirliner airliner)
+        {
+            //has already been delayed
+            if (!airliner.CurrentFlight.IsOnTime)
+                return 0;
 
+            int airlinerAgeDelay = FleetAirlinerHelpers.GetAirlinerAgeDelay(airliner);
+            int airlinerWeatherDelay = FleetAirlinerHelpers.GetAirlinerWeatherDelay(airliner);
+
+            return Math.Max(airlinerAgeDelay, airlinerWeatherDelay);
+
+            int delayedMinutes = 0;
+
+            delayedMinutes = rnd.Next(0, 61);
+
+            if (delayedMinutes > 0)
+                airliner.CurrentFlight.IsOnTime = false;
+
+            return delayedMinutes;
+        }
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
+            int delayedMinutes = GetDelayedMinutes(airliner);
+            
+            //cancelled
+            if (delayedMinutes >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
+            {
+                if (airliner.Airliner.Airline.IsHuman)
+                {
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber)));
+                }
+                SetNextFlight(airliner);
+                return airliner.CurrentFlight.FlightTime;
+            }
+
             if (airliner.CurrentFlight == null)
             {
                 SetNextFlight(airliner);
-                return airliner.CurrentFlight.FlightTime;
+                return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes);
             }
             else
                 if (airliner.CurrentFlight.Entry.TimeTable.Route.Banned)
@@ -896,10 +929,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
                     else
-                        return airliner.CurrentFlight.FlightTime;
+                        return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes);
                 }
                 else
-                    return airliner.CurrentFlight.FlightTime;
+                    return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes) ;
 
         }
         //returns the passengers for an airliner

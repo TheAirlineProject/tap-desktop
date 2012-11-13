@@ -20,11 +20,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public DateTime FlightTime { get; set; }
         public Flight(RouteTimeTableEntry entry)
         {
-            string s;
-            if (entry == null)
-            {
-                s = ",,";
-            }
+         
             this.Entry = entry;
             this.Classes = new List<FlightAirlinerClass>();
 

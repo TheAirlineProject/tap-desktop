@@ -671,6 +671,7 @@
     <Compile Include="Model\GeneralModel\Helpers\AirlineHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AirlinerHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AirportHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\FleetAirlinerHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />
