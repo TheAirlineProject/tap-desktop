@@ -254,7 +254,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (var airport in airports)
                     weatherAirports.Remove(airport);
-              
+
             }
             foreach (WeatherAverage average in WeatherAverages.GetWeatherAverages(w => w.Town != null && w.Month == GameObject.GetInstance().GameTime.Month))
             {
@@ -670,7 +670,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateLanding(FleetAirliner airliner)
         {
             TimeSpan flighttime = GameObject.GetInstance().GameTime.Subtract(airliner.CurrentFlight.FlightTime);
-            
+
             airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = FleetAirliner.AirlinerStatus.Resting;
 
@@ -749,7 +749,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (isOnTime)
                 airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time"), 1);
-            
+
             airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"), 1);
 
             double onTimePercent = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time")) / airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
@@ -912,36 +912,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
         }
-        //returns the number of delay minutes (0 if not delayed)
-        private static int GetDelayedMinutes(FleetAirliner airliner)
-        {
-            //has already been delayed
-            if (!airliner.CurrentFlight.IsOnTime)
-                return 0;
 
-            int airlinerAgeDelay = FleetAirlinerHelpers.GetAirlinerAgeDelay(airliner);
-            int airlinerWeatherDelay = FleetAirlinerHelpers.GetAirlinerWeatherDelay(airliner);
-
-            int delayedMinutes = Math.Max(airlinerAgeDelay, airlinerWeatherDelay);
-
-            if (delayedMinutes > 0)
-                airliner.CurrentFlight.IsOnTime = false;
-
-            return delayedMinutes;
-
-           
-        }
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-            int delayedMinutes = GetDelayedMinutes(airliner);
-            
+            KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes = FleetAirlinerHelpers.GetDelayedMinutes(airliner);
+
             //cancelled
-            if (delayedMinutes >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
+            if (delayedMinutes.Value >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
             {
                 if (airliner.Airliner.Airline.IsHuman)
                 {
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), airliner.Airliner.TailNumber)));
+                    switch (delayedMinutes.Key)
+                    {
+                        case FleetAirlinerHelpers.DelayType.Airliner_problems:
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), airliner.Airliner.TailNumber)));
+                            break;
+                        case FleetAirlinerHelpers.DelayType.Bad_weather:
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), airliner.Airliner.TailNumber)));
+                            break;
+                    }
                 }
                 SetNextFlight(airliner);
                 return airliner.CurrentFlight.FlightTime;
@@ -950,7 +940,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.CurrentFlight == null)
             {
                 SetNextFlight(airliner);
-                return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes);
+                return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
             }
             else
                 if (airliner.CurrentFlight.Entry.TimeTable.Route.Banned)
@@ -963,10 +953,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
                     else
-                        return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes);
+                        return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
                 }
                 else
-                    return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes) ;
+                    return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
 
         }
         //returns the passengers for an airliner

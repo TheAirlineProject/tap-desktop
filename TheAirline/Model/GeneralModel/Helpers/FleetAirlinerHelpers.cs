@@ -11,6 +11,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class FleetAirlinerHelpers
     {
         private static Random rnd = new Random();
+        public enum DelayType { None,Airliner_problems, Bad_weather }
+        //returns the number of delay minutes (0 if not delayed) for an airliner
+        public static KeyValuePair<DelayType,int> GetDelayedMinutes(FleetAirliner airliner)
+        {
+            //has already been delayed
+            if (!airliner.CurrentFlight.IsOnTime)
+                return new KeyValuePair<DelayType,int>(DelayType.None,0);
+
+            Dictionary<DelayType, int> delays = new Dictionary<DelayType, int>();
+
+            delays.Add(DelayType.Airliner_problems,GetAirlinerAgeDelay(airliner));
+            delays.Add(DelayType.Bad_weather,GetAirlinerWeatherDelay(airliner));
+
+            KeyValuePair<DelayType, int> delay = new KeyValuePair<DelayType,int>(DelayType.None,0);
+            foreach (var d in delays)
+            {
+                if (d.Value > delay.Value)
+                    delay = d;
+      
+            }
+            if (delay.Value > 0)
+                airliner.CurrentFlight.IsOnTime = false;
+
+            return delay;
+
+
+        }
+
         //returns the delay time because of the age of an airliner
         public static int GetAirlinerAgeDelay(FleetAirliner airliner)
         {
