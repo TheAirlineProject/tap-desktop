@@ -72,6 +72,11 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         
             return null;
         }
+        //returns all weather averages with a specific match
+        public static List<WeatherAverage> GetWeatherAverages(Predicate<WeatherAverage> match)
+        {
+            return averages.FindAll(match);
+        }
         //clears the list of weather averages
         public static void Clear()
         {

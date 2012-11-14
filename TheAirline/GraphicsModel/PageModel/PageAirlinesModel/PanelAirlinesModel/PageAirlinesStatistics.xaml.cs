@@ -234,7 +234,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             if (year == 0 || year == -1)
             {
                 int currentYear = GameObject.GetInstance().GameTime.Year + year;
-                return string.Format("{0}", aa.Key.Statistics.getStatisticsValue(currentYear, aa.Value));
+                return string.Format("{0:0.#}", aa.Key.Statistics.getStatisticsValue(currentYear, aa.Value));
             }
             else
             {
