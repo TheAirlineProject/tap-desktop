@@ -941,7 +941,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (airliner.Airliner.Airline.IsHuman)
                 {
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber)));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), airliner.Airliner.TailNumber)));
                 }
                 SetNextFlight(airliner);
                 return airliner.CurrentFlight.FlightTime;
