@@ -181,7 +181,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             string weatherCondition = "clear";
 
-            if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+            if (weather.Temperatures[currentHour].Cover == Weather.CloudCover.Overcast && weather.Temperatures[currentHour].Precip != Weather.Precipitation.None)
                 weatherCondition = weather.Temperatures[currentHour].Precip.ToString();
             else
                 weatherCondition = weather.Temperatures[currentHour].Cover.ToString();
@@ -223,13 +223,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             string weatherCondition = "clear";
 
-            if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+            if (weather.Temperatures[currentHour].Cover == Weather.CloudCover.Overcast && weather.Temperatures[currentHour].Precip != Weather.Precipitation.None)
                 weatherCondition = weather.Temperatures[currentHour].Precip.ToString();
             else
                 weatherCondition = weather.Temperatures[currentHour].Cover.ToString();
 
           
-            if (GameObject.GetInstance().GameTime.Hour < Weather.Sunrise || GameObject.GetInstance().GameTime.Hour > Weather.Sunset)
+            if (currentHour < Weather.Sunrise || currentHour > Weather.Sunset)
                 weatherCondition += "-night";
 
             return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
