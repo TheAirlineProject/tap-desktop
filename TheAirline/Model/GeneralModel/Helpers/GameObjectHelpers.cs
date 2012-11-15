@@ -908,7 +908,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             Route route = GetNextRoute(airliner);
-            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
         }

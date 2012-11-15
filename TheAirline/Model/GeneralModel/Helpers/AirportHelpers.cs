@@ -139,6 +139,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
             hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None);
 
+
+
             double steps = (temperatureHigh - temperatureLow) / 12;
 
             for (int i = 1; i < hourlyTemperature.Length; i++)

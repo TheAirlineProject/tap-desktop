@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -58,7 +59,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
            Airport departureAirport = airliner.CurrentFlight.getDepartureAirport();
 
-           if (departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip == WeatherModel.Weather.Precipitation.None || departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip == WeatherModel.Weather.Precipitation.Light_rain)
+           int windFactor=0;
+
+           switch (departureAirport.Weather[0].WindSpeed)
+           {
+               case Weather.eWindSpeed.Storm:
+                   windFactor = 2;
+                   break;
+               case Weather.eWindSpeed.Violent_Storm:
+                   windFactor = 4;
+                   break;
+               case Weather.eWindSpeed.Hurricane:
+                   windFactor = 6;
+                   break;
+           }
+           
+
+           if ((departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip ==Weather.Precipitation.None || departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip == Weather.Precipitation.Light_rain) && windFactor == 0)
                return 0;
 
            int weatherFactor = 0;
@@ -88,7 +105,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                    break;
            }
 
-           int delayTime = rnd.Next(weatherFactor, weatherFactor * 20);
+           int delayTime = rnd.Next((weatherFactor+windFactor),(weatherFactor+windFactor) * 20);
 
            return delayTime;
         }

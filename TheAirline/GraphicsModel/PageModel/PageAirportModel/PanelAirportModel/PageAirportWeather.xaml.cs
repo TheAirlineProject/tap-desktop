@@ -186,7 +186,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             else
                 weatherCondition = weather.Temperatures[currentHour].Cover.ToString();
 
-            return weatherCondition;
+            return new TextUnderscoreConverter().Convert(weatherCondition).ToString();
 
         }
 
@@ -217,7 +217,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            string weatherCondition = new CurrentWeatherConditionConverter().Convert(value, targetType, parameter, culture).ToString();
+            Weather weather = (Weather)value;
+
+            int currentHour = GameObject.GetInstance().GameTime.Hour;
+
+            string weatherCondition = "clear";
+
+            if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+                weatherCondition = weather.Temperatures[currentHour].Precip.ToString();
+            else
+                weatherCondition = weather.Temperatures[currentHour].Cover.ToString();
+
+          
+            if (GameObject.GetInstance().GameTime.Hour < Weather.Sunrise || GameObject.GetInstance().GameTime.Hour > Weather.Sunset)
+                weatherCondition += "-night";
 
             return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
 
