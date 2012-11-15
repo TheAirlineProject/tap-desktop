@@ -186,8 +186,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         double hourlyTemperature = Convert.ToDouble(airportTemperatureNode.Attributes["temp"].Value);
                         Weather.CloudCover hourlyCover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover), airportTemperatureNode.Attributes["cover"].Value);
                         Weather.Precipitation hourlyPrecip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportTemperatureNode.Attributes["precip"].Value);
+                        Weather.eWindSpeed hourlyWindspeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed),airportTemperatureNode.Attributes["windspeed"].Value);
+                        Weather.WindDirection hourlyDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection),airportTemperatureNode.Attributes["direction"].Value);
 
-                        temperatures[t] = new HourlyWeather(hourlyTemperature, hourlyCover, hourlyPrecip);
+                        temperatures[t] = new HourlyWeather(hourlyTemperature, hourlyCover, hourlyPrecip,hourlyWindspeed,hourlyDirection);
                         t++;
                     }
                    
@@ -1180,6 +1182,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         temperatureNode.SetAttribute("temp", weather.Temperatures[i].ToString());
                         temperatureNode.SetAttribute("cover", weather.Temperatures[i].Cover.ToString());
                         temperatureNode.SetAttribute("precip", weather.Temperatures[i].Precip.ToString());
+                        temperatureNode.SetAttribute("windspeed", weather.Temperatures[i].WindSpeed.ToString());
+                        temperatureNode.SetAttribute("direction", weather.Temperatures[i].Direction.ToString());
 
                         temperaturesNode.AppendChild(temperatureNode);
                 

@@ -137,7 +137,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureHigh = temperature + rnd.Next(1, 10);
 
             HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
-            hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None);
+            hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None,windSpeed,windDirection);
 
          
 
@@ -147,8 +147,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 double temp = hourlyTemperature[i - 1].Temperature + (i < 12 ? steps : -steps);
                 Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
-          
-                hourlyTemperature[i] = new HourlyWeather(temp, hourlyCover, hourlyCover == Weather.CloudCover.Overcast ? GetPrecipitation(temp) : Weather.Precipitation.None);
+
+                int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
+                Weather.eWindSpeed[] hourlyWindspeedValues = new Weather.eWindSpeed[] { windSpeed, windSpeed, windSpeed, hourlyTemperature[i - 1].WindSpeed, windspeedIndex > 0 ? (Weather.eWindSpeed)windspeedIndex - 1 : (Weather.eWindSpeed)windspeedIndex + 1, windspeedIndex < windSpeedValues.Length - 1 ? (Weather.eWindSpeed)windspeedIndex + 1 : (Weather.eWindSpeed)windspeedIndex - 1 };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+
+                hourlyTemperature[i] = new HourlyWeather(temp, hourlyCover, hourlyCover == Weather.CloudCover.Overcast ? GetPrecipitation(temp) : Weather.Precipitation.None,hourlyWindspeed,windDirection);
 
             }
 
@@ -212,12 +216,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double steps = (temperatureHigh - temperatureLow) / 12;
 
-            hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None);
+            hourlyTemperature[0] = new HourlyWeather(temperatureLow, cover, cover == Weather.CloudCover.Overcast ? GetPrecipitation(temperatureLow) : Weather.Precipitation.None,windSpeed,windDirection);
             for (int i = 1; i < hourlyTemperature.Length; i++)
             {
                 double temp = hourlyTemperature[i - 1].Temperature + (i < 12 ? steps : -steps);
                 Weather.CloudCover hourlyCover = rnd.Next(3)==0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
-                hourlyTemperature[i] = new HourlyWeather(temp, hourlyCover, hourlyCover == Weather.CloudCover.Overcast ? GetPrecipitation(temp) : Weather.Precipitation.None);
+
+                int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
+                Weather.eWindSpeed[] hourlyWindspeedValues = new Weather.eWindSpeed[] { windSpeed, windSpeed,windSpeed,hourlyTemperature[i-1].WindSpeed,windspeedIndex>0 ? (Weather.eWindSpeed)windspeedIndex-1 : (Weather.eWindSpeed)windspeedIndex+1,windspeedIndex<windSpeedValues.Length-1 ? (Weather.eWindSpeed)windspeedIndex+1 : (Weather.eWindSpeed)windspeedIndex-1 };
+                Weather.eWindSpeed hourlyWindspeed = hourlyWindspeedValues[rnd.Next(hourlyWindspeedValues.Length)];
+
+                hourlyTemperature[i] = new HourlyWeather(temp, hourlyCover, hourlyCover == Weather.CloudCover.Overcast ? GetPrecipitation(temp) : Weather.Precipitation.None,hourlyWindspeed,windDirection);
             }
 
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);

@@ -149,6 +149,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         }
     }
+    public class CurrentWindConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+                Weather weather = (Weather)value;
+
+            int currentHour = GameObject.GetInstance().GameTime.Hour;
+
+            Weather.eWindSpeed windspeed = weather.Temperatures[currentHour].WindSpeed;
+            Weather.WindDirection direction = weather.Temperatures[currentHour].Direction;
+
+            return string.Format("{0} {1}", new EnumLanguageConverter().Convert(direction), new WindSpeedToUnitConverter().Convert(windspeed));
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     public class WeatherConditionConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -275,7 +296,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             return string.Format("{0:0} {1}", new NumberToUnitConverter().Convert((int)windspeed), new StringToLanguageConverter().Convert("km/t"));
         }
-
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();

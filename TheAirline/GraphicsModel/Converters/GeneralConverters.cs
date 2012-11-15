@@ -510,7 +510,10 @@ namespace TheAirline.GraphicsModel.Converters
 
             return Translator.GetInstance().GetString(region, enumValue);
         }
-
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

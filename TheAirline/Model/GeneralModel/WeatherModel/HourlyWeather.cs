@@ -11,11 +11,15 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public double Temperature { get; set; }
         public Weather.Precipitation Precip { get; set; }
         public Weather.CloudCover Cover { get; set; }
-        public HourlyWeather(double Temperature, Weather.CloudCover cover, Weather.Precipitation precip)
+        public Weather.WindDirection Direction { get; set; }
+        public Weather.eWindSpeed WindSpeed { get; set; }
+        public HourlyWeather(double Temperature, Weather.CloudCover cover, Weather.Precipitation precip, Weather.eWindSpeed windspeed, Weather.WindDirection direction)
         {
             this.Temperature = Temperature;
             this.Precip = precip;
             this.Cover = cover;
+            this.WindSpeed = windspeed;
+            this.Direction = direction;
         }
     }
 }

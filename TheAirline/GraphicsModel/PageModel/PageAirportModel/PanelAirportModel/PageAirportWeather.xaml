@@ -16,6 +16,7 @@
         <local:WeatherImageConverter x:Key="weatherImageConverter"></local:WeatherImageConverter>
         <local:CurrentWeatherImageConverter x:Key="currentWeatherImageConverter"></local:CurrentWeatherImageConverter>
         <local:CurrentTemperatureConverter x:Key="currentTemperatureConverter"></local:CurrentTemperatureConverter>
+        <local:CurrentWindConverter x:Key="currentWindConverter"></local:CurrentWindConverter>
         <local:WeatherConditionConverter x:Key="weatherConditionConverter"></local:WeatherConditionConverter>
         <local:CurrentWeatherConditionConverter x:Key="currentWeatherConditionConverter"></local:CurrentWeatherConditionConverter>
             <DataTemplate x:Key="WeatherForecastItem">
@@ -41,11 +42,9 @@
                     <StackPanel Margin="5 0 0 0">
                         <TextBlock Text="{Binding Converter={StaticResource currentTemperatureConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         <TextBlock Text="{Binding Converter={StaticResource currentWeatherConditionConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                        <WrapPanel HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding Direction,Converter={StaticResource enumLanguageConverter}}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                        </WrapPanel>
-                    </StackPanel>
+                        <TextBlock Text="{Binding Converter={StaticResource currentWindConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Left"></TextBlock>
+
+                         </StackPanel>
                 </WrapPanel>
             </StackPanel>
         </DataTemplate>
