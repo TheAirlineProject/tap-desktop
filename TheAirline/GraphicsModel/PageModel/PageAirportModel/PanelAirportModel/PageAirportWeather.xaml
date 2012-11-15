@@ -10,6 +10,7 @@
 	Title="PageAirportWeather">
     <Page.Resources>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:EnumLanguageConverter x:Key="enumLanguageConverter"></c:EnumLanguageConverter>
         <c:TemperatureToTextConverter x:Key="temperatureToTextConverter"></c:TemperatureToTextConverter>
         <local:WindSpeedToUnitConverter x:Key="windSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
         <local:WeatherImageConverter x:Key="weatherImageConverter"></local:WeatherImageConverter>
@@ -26,8 +27,11 @@
                     <TextBlock Text="{Binding TemperatureHigh,Converter={StaticResource temperatureToTextConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0" Foreground="DarkRed"></TextBlock>
 
                 </WrapPanel>
-                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-           
+                <WrapPanel HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Direction,Converter={StaticResource enumLanguageConverter}}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>
+                    <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+            
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="TodaysWeatherItem">
@@ -38,7 +42,7 @@
                         <TextBlock Text="{Binding Converter={StaticResource currentTemperatureConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         <TextBlock Text="{Binding Converter={StaticResource currentWeatherConditionConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         <WrapPanel HorizontalAlignment="Left">
-                     <TextBlock Text="{Binding Direction}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>
+                            <TextBlock Text="{Binding Direction,Converter={StaticResource enumLanguageConverter}}" VerticalAlignment="Bottom" Margin="0 0 5 0"></TextBlock>
                     <TextBlock Text="{Binding WindSpeed,Converter={StaticResource windSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </WrapPanel>
                     </StackPanel>

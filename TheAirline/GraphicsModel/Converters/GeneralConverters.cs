@@ -499,7 +499,24 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-    //ther converte for the language translation
+    //the converter from enum to language
+    public class EnumLanguageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string enumValue = value.ToString();
+
+            string region = "Enums";
+
+            return Translator.GetInstance().GetString(region, enumValue);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the language translation
     public class LanguageTranslationConverter : IValueConverter
     {
 

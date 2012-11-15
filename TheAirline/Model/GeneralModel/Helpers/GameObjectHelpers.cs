@@ -524,7 +524,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.CurrentFlight != null)
             {
                 Weather currentWeather = GetAirlinerWeather(airliner);
-                int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn) : -(int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                //int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn) : -(int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                int wind = GetWindInfluence(airliner) * ((int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn));
+                 
                 speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
 
             }
@@ -574,7 +576,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airliner.CurrentFlight != null)
                 {
                     Weather currentWeather = GetAirlinerWeather(airliner);
-                    int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn) : -(int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+  
+                    int wind = GetWindInfluence(airliner) * ((int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn));
                     speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
 
                 }
@@ -911,7 +914,38 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
         }
+        //returns if the wind is tail (1), head (-1), or from side (0)
+        private static int GetWindInfluence(FleetAirliner airliner)
+        {
+            double direction = MathHelpers.GetDirection(airliner.CurrentPosition, airliner.CurrentFlight.getNextDestination().Profile.Coordinates);
 
+            Weather.WindDirection windDirection = MathHelpers.GetWindDirectionFromDirection(direction);
+
+            Weather currentWeather = GetAirlinerWeather(airliner);
+            //W+E = 0+4= 5, N+S=2+6 - = Abs(Count/2) -> Head, Abs(0) -> Tail -> if ends/starts with same => tail, indexof +-1 -> tail, (4+(indexof))+-1 -> head 
+
+            int windDirectionLenght = Enum.GetValues(typeof(Weather.WindDirection)).Length;
+            int indexCurrentPosition = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)), windDirection);
+            //int indexWeather = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)),currentWeather.WindSpeed);
+
+            //check for tail wind
+            Weather.WindDirection windTailLeft = indexCurrentPosition > 0 ? (Weather.WindDirection)indexCurrentPosition - 1 : (Weather.WindDirection)windDirectionLenght - 1;
+            Weather.WindDirection windTailRight = indexCurrentPosition < windDirectionLenght - 1 ? (Weather.WindDirection)indexCurrentPosition + 1 : (Weather.WindDirection)0;
+
+            if (windTailLeft == currentWeather.Direction || windTailRight == currentWeather.Direction || windDirection == currentWeather.Direction)
+                return 1;
+
+            Weather.WindDirection windOpposite = indexCurrentPosition - (windDirectionLenght / 2) > 0 ? (Weather.WindDirection)indexCurrentPosition - (windDirectionLenght / 2) : (Weather.WindDirection)windDirectionLenght - 1 - indexCurrentPosition - (windDirectionLenght / 2);
+            int indexOpposite = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)), windOpposite);
+            
+            Weather.WindDirection windHeadLeft = indexOpposite > 0 ? (Weather.WindDirection)indexOpposite - 1 : (Weather.WindDirection)windDirectionLenght - 1;
+            Weather.WindDirection windHeadRight = indexOpposite < windDirectionLenght - 1 ? (Weather.WindDirection)indexOpposite + 1 : (Weather.WindDirection)0;
+
+            if (windHeadLeft == currentWeather.Direction || windHeadRight == currentWeather.Direction || windOpposite == currentWeather.Direction)
+                return -1;
+
+            return 0;
+        }
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {

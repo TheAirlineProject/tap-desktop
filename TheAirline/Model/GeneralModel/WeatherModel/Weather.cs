@@ -12,7 +12,7 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public const int Sunrise = 6;
         public enum eWindSpeed { Calm = 0,Light_Air=4, Light_Breeze = 8,Gentle_Breeze=12, Moderate_Breeze = 15,Fresh_Breeze=27,Strong_Breeze=45,Near_Gale=52, Gale = 60, Strong_Gale=72, Storm = 90,Violent_Storm=102, Hurricane=114  }
         public eWindSpeed WindSpeed { get; set; }
-        public enum WindDirection { Tail, Head }
+        public enum WindDirection { E, NE, N, NW, W, SW,S, SE }
         public WindDirection Direction { get; set; }
         public enum Precipitation { None,Fog, Light_rain, Heavy_rain, Light_snow,Heavy_snow, Hail,Sleet,Freezing_rain}
         public Precipitation Precip { get; set; }

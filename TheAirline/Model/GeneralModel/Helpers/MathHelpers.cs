@@ -6,6 +6,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using System.Globalization;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -60,6 +61,28 @@ namespace TheAirline.Model.GeneralModel
 
             return (RadianToDegree(Math.Atan2(y, x)) + 360) % 360;
 
+        }
+        //retuns the wind direction from a direction
+        public static Weather.WindDirection GetWindDirectionFromDirection(double direction)
+        {
+            if (direction < 45)
+                return Weather.WindDirection.E;
+            if (direction >= 45 && direction < 90)
+                return Weather.WindDirection.NE;
+            if (direction >= 90 && direction < 135)
+                return Weather.WindDirection.N;
+            if (direction >= 135 && direction < 180)
+                return Weather.WindDirection.NW;
+            if (direction >= 180 && direction < 225)
+                return Weather.WindDirection.W;
+            if (direction >= 225 && direction < 270)
+                return Weather.WindDirection.SW;
+            if (direction >= 270 && direction < 315)
+                return Weather.WindDirection.S;
+            if (direction >= 315 && direction < 360)
+                return Weather.WindDirection.SE;
+
+            return Weather.WindDirection.E;
         }
         //gets the distance between two airports in kilometers
         public static double GetDistance(Airport airport1, Airport airport2)
