@@ -237,6 +237,12 @@ namespace TheAirline.Model.GeneralModel
         {
             return date.TimeOfDay.Equals(new TimeSpan(0, 0, 0));
         }
+        //returns a random double
+        public static double GetRandomNumber(double minimum, double maximum)
+        {
+            Random random = new Random();
+            return random.NextDouble() * (maximum - minimum) + minimum;
+        }
         //converts a route time table entry to datetime
         public static DateTime ConvertEntryToDate(RouteTimeTableEntry entry)
         {
