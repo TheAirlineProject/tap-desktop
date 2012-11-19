@@ -913,6 +913,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Route route = GetNextRoute(airliner);
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
+            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+
+            KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes = FleetAirlinerHelpers.GetDelayedMinutes(airliner);
+
+            //cancelled/delay
+            if (delayedMinutes.Value >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
+            {
+                if (airliner.Airliner.Airline.IsHuman)
+                {
+                    switch (delayedMinutes.Key)
+                    {
+                        case FleetAirlinerHelpers.DelayType.Airliner_problems:
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), airliner.Airliner.TailNumber)));
+                            break;
+                        case FleetAirlinerHelpers.DelayType.Bad_weather:
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), airliner.Airliner.TailNumber)));
+                            break;
+                    }
+                }
+                SetNextFlight(airliner);
+
+            }
+            else
+                airliner.CurrentFlight.FlightTime = airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
+
         }
         //returns if the wind is tail (1), head (-1), or from side (0)
         private static int GetWindInfluence(FleetAirliner airliner)
@@ -949,31 +974,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-            KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes = FleetAirlinerHelpers.GetDelayedMinutes(airliner);
-
-            //cancelled
-            if (delayedMinutes.Value >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
-            {
-                if (airliner.Airliner.Airline.IsHuman)
-                {
-                    switch (delayedMinutes.Key)
-                    {
-                        case FleetAirlinerHelpers.DelayType.Airliner_problems:
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), airliner.Airliner.TailNumber)));
-                            break;
-                        case FleetAirlinerHelpers.DelayType.Bad_weather:
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), airliner.Airliner.TailNumber)));
-                            break;
-                    }
-                }
-                SetNextFlight(airliner);
-                return airliner.CurrentFlight.FlightTime;
-            }
-
+         
             if (airliner.CurrentFlight == null)
             {
                 SetNextFlight(airliner);
-                return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
+                return airliner.CurrentFlight.FlightTime;
             }
             else
                 if (airliner.CurrentFlight.Entry.TimeTable.Route.Banned)
@@ -986,10 +991,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
                     else
-                        return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
+                        return airliner.CurrentFlight.FlightTime;
                 }
                 else
-                    return airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
+                    return airliner.CurrentFlight.FlightTime;
 
         }
         //returns the passengers for an airliner
