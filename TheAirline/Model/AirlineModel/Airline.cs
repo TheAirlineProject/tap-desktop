@@ -401,6 +401,11 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Policies.Add(policy);
         }
+        //sets the policy for the airline
+        public void setAirlinePolicy(string name, object value)
+        {
+            this.Policies.Find(p => p.Name == name).PolicyValue = value;
+        }
         //returns a policy for the airline
         public AirlinePolicy getAirlinePolicy(string name)
         {

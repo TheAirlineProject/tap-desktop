@@ -35,6 +35,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees,lbDiscounts, lbFoodDrinks;
         private ListBox lbNewFacilities, lbFacilities, lbAdvertisement;
+        private ComboBox cbCancellationPolicy;
         private Dictionary<AdvertisementType.AirlineAdvertisementType, ComboBox> cbAdvertisements;
         private Dictionary<AirlinerClass.ClassType, List<RouteFacility>> Facilities;
         private Dictionary<AirlinerClass.ClassType,List<ComboBox>> cbFacilities;
@@ -367,8 +368,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbPolicies.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             panelPolicies.Children.Add(lbPolicies);
 
-            lbPolicies.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineWages","1017"),UICreator.CreateTextBlock(string.Format("{0} minutes",GameObject.GetInstance().HumanAirline.getAirlinePolicy("Cancellation Minutes").PolicyValue)))); 
+            cbCancellationPolicy = new ComboBox();
+            cbCancellationPolicy.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbCancellationPolicy.Width = 200;
+            cbCancellationPolicy.ItemStringFormat = "{0} minutes";
 
+            for (int i = 15; i < 150; i += 15)
+                cbCancellationPolicy.Items.Add(i);
+
+            cbCancellationPolicy.SelectedItem = GameObject.GetInstance().HumanAirline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
+
+            lbPolicies.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineWages","1017"),cbCancellationPolicy));
+
+            Button btnOk = new Button();
+            btnOk.Uid = "100";
+            btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnOk.Height = Double.NaN;
+            btnOk.Width = Double.NaN;
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
+            btnOk.Click += new RoutedEventHandler(btnOkCancellation_Click);
+            btnOk.Margin = new Thickness(0, 5, 0, 0);
+            btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+
+            panelPolicies.Children.Add(btnOk);
 
             return panelPolicies;
 
@@ -520,6 +543,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelAirlineServices.Visibility = System.Windows.Visibility.Collapsed;
             panelAdvertisement.Visibility = System.Windows.Visibility.Collapsed;
             panelAirlinePolicies.Visibility = System.Windows.Visibility.Visible;
+
+            cbCancellationPolicy.SelectedItem = GameObject.GetInstance().HumanAirline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
+   
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
@@ -582,13 +608,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 this.FeeValues[type] = this.Airline.Fees.getValue(type);
                 lbDiscounts.Items.Add(new QuickInfoValue(type.Name, createDiscountSlider(type)));
             }
-            
+
+             
         }
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             undoSettings();
         }
+        private void btnOkCancellation_Click(object sender, RoutedEventArgs e)
+        {
+            int cancellationMinutes = (int)cbCancellationPolicy.SelectedItem;
 
+            GameObject.GetInstance().HumanAirline.setAirlinePolicy("Cancellation Minutes",cancellationMinutes);
+          }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2108"), Translator.GetInstance().GetString("MessageBox", "2108", "message"), WPFMessageBoxButtons.YesNo);
