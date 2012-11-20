@@ -177,7 +177,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     double temperatureLow =  airportWeatherElement.HasAttribute("temperatureLow") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value) : 0;
                     double temperatureHigh = airportWeatherElement.HasAttribute("temperatureHigh") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturehigh"].Value) : 20;
 
-                    XmlNodeList airportTemperatureList = airportNode.SelectNodes("temperatures/temperature");
+                    XmlNodeList airportTemperatureList = airportWeatherElement.SelectNodes("temperatures/temperature");
                     HourlyWeather[] temperatures = new HourlyWeather[airportTemperatureList.Count];
               
                     int t=0;
@@ -529,6 +529,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airline.addFacility(AirlineFacilities.GetFacility(airlineFacility));
             }
 
+            XmlNodeList airlinePoliciesList = airlineNode.SelectNodes("policies/policy");
+
+            foreach (XmlElement airlinePolicyNode in airlinePoliciesList)
+            {
+                string policyName = airlinePolicyNode.Attributes["name"].Value;
+                object policyValue = (object)airlinePolicyNode.Attributes["value"].Value;
+
+                int number;
+                if (int.TryParse(policyValue.ToString(),out number))
+                    airline.addAirlinePolicy(new AirlinePolicy(policyName, number));
+                else
+                    airline.addAirlinePolicy(new AirlinePolicy(policyName, policyValue));
+            }
+
             XmlNodeList airlineLoanList = airlineNode.SelectNodes("loans/loan");
             foreach (XmlElement airlineLoanNode in airlineLoanList)
             {
@@ -549,7 +563,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 int year = Convert.ToInt32(airlineStatNode.Attributes["year"].Value);
                 string airlineStatType = airlineStatNode.Attributes["type"].Value;
-                int value = Convert.ToInt32(airlineStatNode.Attributes["value"].Value);
+                double value = Convert.ToDouble(airlineStatNode.Attributes["value"].Value); 
 
                 airline.Statistics.setStatisticsValue(year, StatisticsTypes.GetStatisticsType(airlineStatType), value);
             }
@@ -903,7 +917,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
                 airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
                 airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());
-              
+             
                 if (airline.Contract != null)
                 {
                     XmlElement airlineContractNode = xmlDoc.CreateElement("contract");
@@ -933,6 +947,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 airlineNode.AppendChild(airlineFacilitiesNode);
 
+                XmlElement airlinePoliciesNode = xmlDoc.CreateElement("policies");
+
+                foreach (AirlinePolicy policy in airline.Policies)
+                {
+                    XmlElement airlinePolicyNode = xmlDoc.CreateElement("policy");
+
+                    airlinePolicyNode.SetAttribute("name", policy.Name);
+                    airlinePolicyNode.SetAttribute("value", policy.PolicyValue.ToString());
+
+                    airlinePoliciesNode.AppendChild(airlinePolicyNode);
+                }
+
+                airlineNode.AppendChild(airlinePoliciesNode);
 
                 XmlElement loansNode = xmlDoc.CreateElement("loans");
                 foreach (Loan loan in airline.Loans)
@@ -1179,7 +1206,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     for (int i = 0; i < weather.Temperatures.Length; i++)
                     {
                         XmlElement temperatureNode = xmlDoc.CreateElement("temperature");
-                        temperatureNode.SetAttribute("temp", weather.Temperatures[i].ToString());
+                        temperatureNode.SetAttribute("temp", weather.Temperatures[i].Temperature.ToString());
                         temperatureNode.SetAttribute("cover", weather.Temperatures[i].Cover.ToString());
                         temperatureNode.SetAttribute("precip", weather.Temperatures[i].Precip.ToString());
                         temperatureNode.SetAttribute("windspeed", weather.Temperatures[i].WindSpeed.ToString());

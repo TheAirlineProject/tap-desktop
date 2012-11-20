@@ -371,7 +371,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             cbCancellationPolicy = new ComboBox();
             cbCancellationPolicy.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbCancellationPolicy.Width = 200;
-            cbCancellationPolicy.ItemStringFormat = "{0} minutes";
+            cbCancellationPolicy.ItemStringFormat = "{0} " + Translator.GetInstance().GetString("PageAirlineWages","1018"); 
 
             for (int i = 15; i < 150; i += 15)
                 cbCancellationPolicy.Items.Add(i);
