@@ -168,8 +168,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = Weather.Sunrise + 1; i < Weather.Sunset; i++)
             {
+                 Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
-                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
+                    temp -= 2;
+                 if (hourlyCover != hourlyTemperature[i-1].Cover && hourlyTemperature[i-1].Cover == Weather.CloudCover.Overcast)
+                    temp +=2;
+            
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues = new Weather.eWindSpeed[] { windSpeed, windSpeed, windSpeed, hourlyTemperature[i - 1].WindSpeed, windspeedIndex > 0 ? (Weather.eWindSpeed)windspeedIndex - 1 : (Weather.eWindSpeed)windspeedIndex + 1, windspeedIndex < windSpeedValues.Length - 1 ? (Weather.eWindSpeed)windspeedIndex + 1 : (Weather.eWindSpeed)windspeedIndex - 1 };
@@ -286,8 +292,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = Weather.Sunrise + 1; i < Weather.Sunset; i++)
             {
-                double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+
+                double temp = hourlyTemperature[i - 1].Temperature + daySteps;
+                if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
+                    temp -= 2;
+                if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyTemperature[i - 1].Cover == Weather.CloudCover.Overcast)
+                    temp += 2;
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues = new Weather.eWindSpeed[] { windSpeed, windSpeed, windSpeed, hourlyTemperature[i - 1].WindSpeed, windspeedIndex > 0 ? (Weather.eWindSpeed)windspeedIndex - 1 : (Weather.eWindSpeed)windspeedIndex + 1, windspeedIndex < windSpeedValues.Length - 1 ? (Weather.eWindSpeed)windspeedIndex + 1 : (Weather.eWindSpeed)windspeedIndex - 1 };
