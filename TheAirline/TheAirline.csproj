@@ -656,6 +656,7 @@
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
+    <Compile Include="Model\GeneralModel\DifficultyLevel.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />
     <Compile Include="Model\GeneralModel\Configuration.cs" />
     <Compile Include="Model\GeneralModel\Coordinates.cs" />

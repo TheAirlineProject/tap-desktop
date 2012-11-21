@@ -180,9 +180,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             {
                 DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport,AirlinerClass.ClassType.Economy_Class);
 
-                //if (passengers == null)
-                  //  lbPassengers.Items.Add(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, airport, GeneralHelpers.Rate.None));
-                //else
                 if (passengers!=null && passengers.Rate>0)
                     lbPassengers.Items.Add(passengers);
              }

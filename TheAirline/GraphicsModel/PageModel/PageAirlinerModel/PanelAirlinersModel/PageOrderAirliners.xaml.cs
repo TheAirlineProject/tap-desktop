@@ -293,19 +293,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 double downpaymentPrice = 0;
 
-                if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
-                
-                    downpaymentPrice = totalPrice * 0.05;
-                
-                else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
-                 
-                    downpaymentPrice = totalPrice * 0.075;
-                
-                else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
-                
-                    downpaymentPrice = totalPrice * 0.10;
-                
-                
+                downpaymentPrice = totalPrice * (GameObject.GetInstance().Difficulty.PriceLevel / 10); 
+
+                           
                 if (cbDownPayment.IsChecked.Value)
                 {
 

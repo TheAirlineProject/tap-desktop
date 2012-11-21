@@ -94,14 +94,7 @@ namespace TheAirline.Model.GeneralModel
 
             passengerDemand = passengerDemand * (GameObject.GetInstance().PassengerDemandFactor / 100.0);
 
-            if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
-            { passengerDemand = passengerDemand * (125 / 100); }
-
-            else if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
-            { passengerDemand = passengerDemand * (150 / 100); }
-
-            else if (airportCurrent.IsHub && GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
-            { passengerDemand = passengerDemand * (175 / 100); }
+            passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000 &&  airportCurrent.Profile.Country != airportDestination.Profile.Country)
                 passengerDemand = passengerDemand * (115 / 100);
@@ -131,13 +124,9 @@ namespace TheAirline.Model.GeneralModel
             double routeRatioPercent = rations[currentRoute] / totalRatio;
 
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
-            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
-            { routePriceDiff *= 1.2; }
-            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
-            { routePriceDiff *= 1.1; }
-            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
-            { routePriceDiff *= 1.0; }
-                     
+
+            routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
+                       
 
             
             double randomPax = Convert.ToDouble(rnd.Next(97, 103))/100;
@@ -679,13 +668,8 @@ namespace TheAirline.Model.GeneralModel
                     estimatedPassengerLevel = 3570;
             }
 
-            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
-            { estimatedPassengerLevel *= 1.0; }
-            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
-            { estimatedPassengerLevel *= 1.2; }
-            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
-            { estimatedPassengerLevel *= 1.5; }
-
+            estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+         
             double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
             foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
@@ -694,7 +678,6 @@ namespace TheAirline.Model.GeneralModel
 
                 if ((classType == AirlinerClass.ClassType.Economy_Class || classType == AirlinerClass.ClassType.Business_Class) && distance<7500)
                     value = value / (int)classType;
-
 
                 ushort rate = (ushort)value;
 

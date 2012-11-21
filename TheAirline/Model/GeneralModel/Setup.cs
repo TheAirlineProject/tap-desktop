@@ -66,6 +66,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadWeatherAverages();
 
                 SetupStatisticsTypes();
+                SetupDifficultyLevels();
 
                 CreateAdvertisementTypes();
                 CreateTimeZones();
@@ -1211,6 +1212,16 @@ namespace TheAirline.Model.GeneralModel
 
             }
         }
+        /*! sets up the difficulty levels
+         */
+        private static void SetupDifficultyLevels()
+        {
+
+            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Easy", 1.5, 0.75, 1.5, 1, 1.25));
+            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Normal", 1, 1, 1.2, 1.1, 1));
+            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Hard", 0.5, 1.25, 1, 1.2, 0.75));
+
+        }
         /*! sets up the statistics types.
          */
         private static void SetupStatisticsTypes()
@@ -1223,6 +1234,8 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.AddStatisticsType(new StatisticsType("Airliner Income", "Airliner_Income"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("On-Time flights", "On-Time"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Flights On-Time", "On-Time%"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Cancellations", "Cancellations"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Cancellation Percent", "Cancellation%"));
         }
 
   

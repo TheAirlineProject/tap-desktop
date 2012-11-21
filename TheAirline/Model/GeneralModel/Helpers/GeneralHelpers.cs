@@ -106,13 +106,8 @@ namespace TheAirline.Model.GeneralModel
         {
             double value = (double)airline.getAirlineValue();
 
-            if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
-                return 1.25 * ((double)Airline.AirlineValue.Very_high + 1 - value);
-            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Normal)
-                return 1.5 * ((double)Airline.AirlineValue.Very_high + 1 - value);
-            else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Hard)
-                return 1.75 * ((double)Airline.AirlineValue.Very_high + 1 - value);
-            else return 1.5 * ((double)Airline.AirlineValue.Very_high + 1 - value);
+            return (GameObject.GetInstance().Difficulty.LoanLevel + 0.5) *((double)Airline.AirlineValue.Very_high + 1 - value);
+         
         }
   
         //creates the big image map

@@ -26,6 +26,7 @@ using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.Helpers;
 
+
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
     /// <summary>
@@ -196,10 +197,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbDifficulty.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDifficulty.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbDifficulty.Width = 100;
-            
-            foreach (GameObject.DifficultyLevel difficulty in Enum.GetValues(typeof(GameObject.DifficultyLevel)))
-                 cbDifficulty.Items.Add(difficulty);
+            cbDifficulty.DisplayMemberPath = "Name";
+            cbDifficulty.SelectedValuePath = "Name";
 
+            foreach (DifficultyLevel difficulty in DifficultyLevels.GetDifficultyLevels())
+                cbDifficulty.Items.Add(difficulty);
+         
             cbDifficulty.SelectedIndex = 0;
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), cbDifficulty));
@@ -375,7 +378,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             {
                 GameTimeZone gtz = (GameTimeZone)cbTimeZone.SelectedItem;
                 GameObject.GetInstance().TimeZone = gtz;
-                GameObject.GetInstance().Difficulty = (GameObject.DifficultyLevel)cbDifficulty.SelectedItem;
+                GameObject.GetInstance().Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem;
                 int startYear = (int)cbStartYear.SelectedItem;
                 GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
                 GameObject.GetInstance().StartDate = GameObject.GetInstance().GameTime;

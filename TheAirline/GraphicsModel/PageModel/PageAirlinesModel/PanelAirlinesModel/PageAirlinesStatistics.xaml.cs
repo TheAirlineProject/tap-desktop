@@ -88,6 +88,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("On-Time%"), true));
+            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Cancellation%"), true));
 
 
         }

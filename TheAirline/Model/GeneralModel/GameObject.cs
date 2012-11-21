@@ -21,7 +21,7 @@ namespace TheAirline.Model.GeneralModel
         public long StartMoney { get { return getStartMoney(); } set { ;} }
         public GameTimeZone TimeZone { get; set; }
         public string Name { get; set; }
-        public enum DifficultyLevel { Easy, Normal, Hard }
+       // public enum DifficultyLevel { Easy, Normal, Hard } 
         public DifficultyLevel Difficulty { get; set; }
         public double PassengerDemandFactor { get; set; }
         public const int StartYear = 1960;
@@ -30,7 +30,7 @@ namespace TheAirline.Model.GeneralModel
             this.PassengerDemandFactor = 100;
             this.GameTime = new DateTime(2007, 12, 31, 10, 0, 0);
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
-            this.Difficulty = DifficultyLevel.Easy;
+            this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
         }
 
@@ -40,13 +40,9 @@ namespace TheAirline.Model.GeneralModel
         {
             
             double baseStartMoney = 12500000;
-            if (this.Difficulty == DifficultyLevel.Easy)
-            { baseStartMoney *= 1.5; }
-            else if (this.Difficulty == DifficultyLevel.Normal)
-            { baseStartMoney *= 1;}
-            else if (this.Difficulty == DifficultyLevel.Hard)
-            { baseStartMoney *= 0.5;}
 
+            baseStartMoney *= this.Difficulty.MoneyLevel;
+          
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(baseStartMoney));
         }
 

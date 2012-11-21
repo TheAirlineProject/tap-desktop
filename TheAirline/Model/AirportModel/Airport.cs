@@ -91,6 +91,11 @@ namespace TheAirline.Model.AirportModel
         {
             this.DestinationPassengers.Clear();
         }
+        //returns all destination passengers
+        public List<DestinationPassengers> getDestinationsPassengers()
+        {
+            return this.DestinationPassengers;
+        }
         //adds a number of passengers to destination to the statistics
         public void addDestinationStatistics(Airport destination, long passengers)
         {
@@ -100,6 +105,7 @@ namespace TheAirline.Model.AirportModel
                 this.DestinationStatistics[destination] += passengers;
 
         }
+        
         //clears the destination statistics
         public void clearDestinationStatistics()
         {
