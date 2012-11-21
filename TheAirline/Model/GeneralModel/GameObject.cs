@@ -24,6 +24,7 @@ namespace TheAirline.Model.GeneralModel
         public enum DifficultyLevel { Easy, Normal, Hard }
         public DifficultyLevel Difficulty { get; set; }
         public double PassengerDemandFactor { get; set; }
+        public const int StartYear = 1960;
         private GameObject()
         {
             this.PassengerDemandFactor = 100;

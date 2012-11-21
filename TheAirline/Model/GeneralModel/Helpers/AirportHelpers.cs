@@ -133,8 +133,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureHigh = temperature + rnd.Next(1, 10);
 
             double tempDiff = temperatureHigh - temperatureLow;
-            temperatureSunrise = temperatureLow + MathHelpers.GetRandomNumber(-2, Math.Min(tempDiff, 2));
-            temperatureSunset = temperatureHigh - MathHelpers.GetRandomNumber(-2, Math.Min(tempDiff, 2));
+            temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
+            temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
             temperatureDayend = temperatureLow + rnd.Next(-2, 2);
 
             Weather.CloudCover cover = coverValues[rnd.Next(coverValues.Length)];
@@ -172,9 +172,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
-                    temp -= 2;
+                    temp -= MathHelpers.GetRandomDoubleNumber(1, 4);
                  if (hourlyCover != hourlyTemperature[i-1].Cover && hourlyTemperature[i-1].Cover == Weather.CloudCover.Overcast)
-                    temp +=2;
+                     temp += MathHelpers.GetRandomDoubleNumber(1, 4);
             
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
@@ -251,8 +251,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             double tempDiff = temperatureHigh - temperatureLow;
-            temperatureSunrise = temperatureLow + MathHelpers.GetRandomNumber(-2, Math.Min(tempDiff, 2));
-            temperatureSunset = temperatureHigh - MathHelpers.GetRandomNumber(-2, Math.Min(tempDiff, 2));
+            temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
+            temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
             temperatureDayend = temperatureLow + rnd.Next(-2, 2);
 
             temperature = (temperatureLow + temperatureHigh) / 2;
@@ -296,9 +296,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
-                    temp -= 2;
+                    temp -= MathHelpers.GetRandomDoubleNumber(1,4);
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyTemperature[i - 1].Cover == Weather.CloudCover.Overcast)
-                    temp += 2;
+                    temp += MathHelpers.GetRandomDoubleNumber(1, 4);
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues = new Weather.eWindSpeed[] { windSpeed, windSpeed, windSpeed, hourlyTemperature[i - 1].WindSpeed, windspeedIndex > 0 ? (Weather.eWindSpeed)windspeedIndex - 1 : (Weather.eWindSpeed)windspeedIndex + 1, windspeedIndex < windSpeedValues.Length - 1 ? (Weather.eWindSpeed)windspeedIndex + 1 : (Weather.eWindSpeed)windspeedIndex - 1 };

@@ -686,7 +686,7 @@ namespace TheAirline.Model.GeneralModel
             else if (GameObject.GetInstance().Difficulty == GameObject.DifficultyLevel.Easy)
             { estimatedPassengerLevel *= 1.5; }
 
-            double value = estimatedPassengerLevel;
+            double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
             foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
@@ -701,6 +701,14 @@ namespace TheAirline.Model.GeneralModel
                 if (rate>0)
                     airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
             }
+        }
+        //returns the demand factor based on the year of playing
+        private static double GetDemandYearFactor(int year)
+        {
+           double yearDiff = Convert.ToDouble(year - GameObject.StartYear)/10; 
+
+           return 0.15 * (yearDiff+1);
+
         }
 
     }

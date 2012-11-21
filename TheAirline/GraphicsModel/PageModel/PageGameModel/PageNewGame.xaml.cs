@@ -159,7 +159,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbStartYear = new ComboBox();
             cbStartYear.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbStartYear.Width = 60;
-            for (int i = 1960; i < DateTime.Now.Year + 2; i++)
+            for (int i = GameObject.StartYear; i < DateTime.Now.Year + 2; i++)
                 cbStartYear.Items.Add(i);
 
             cbStartYear.SelectedItem = DateTime.Now.Year;
