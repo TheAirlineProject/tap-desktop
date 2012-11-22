@@ -22,15 +22,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
     
         private Slider slMoney, slLoan, slPassengers, slPrice, slAI;
-        public static object ShowPopUp()
+        private DifficultyLevel Level;
+        public static object ShowPopUp(DifficultyLevel level)
         {
-            PopUpWindow window = new  PopUpDifficulty();
+            PopUpWindow window = new  PopUpDifficulty(level);
             window.ShowDialog();
 
             return window.Selected;
         }
-        public PopUpDifficulty()
+        public PopUpDifficulty(DifficultyLevel level)
         {
+            this.Level = level;
+
             InitializeComponent();
 
             this.Uid = "1000";
@@ -55,11 +58,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             DifficultyLevel normalLevel = DifficultyLevels.GetDifficultyLevel("Normal");
             DifficultyLevel hardLevel = DifficultyLevels.GetDifficultyLevel("Hard");
 
-            slMoney = createDifficultySlider(easyLevel.MoneyLevel, normalLevel.MoneyLevel, hardLevel.MoneyLevel);
-            slLoan = createDifficultySlider(easyLevel.LoanLevel, normalLevel.LoanLevel, hardLevel.LoanLevel);
-            slAI = createDifficultySlider(easyLevel.AILevel, normalLevel.AILevel, hardLevel.AILevel);
-            slPassengers = createDifficultySlider(easyLevel.PassengersLevel, normalLevel.PassengersLevel, hardLevel.PassengersLevel);
-            slPrice = createDifficultySlider(easyLevel.PriceLevel, normalLevel.PriceLevel, hardLevel.PriceLevel);
+            slMoney = createDifficultySlider(easyLevel.MoneyLevel, normalLevel.MoneyLevel, hardLevel.MoneyLevel,level.MoneyLevel);
+            slLoan = createDifficultySlider(easyLevel.LoanLevel, normalLevel.LoanLevel, hardLevel.LoanLevel,level.LoanLevel);
+            slAI = createDifficultySlider(easyLevel.AILevel, normalLevel.AILevel, hardLevel.AILevel,level.AILevel);
+            slPassengers = createDifficultySlider(easyLevel.PassengersLevel, normalLevel.PassengersLevel, hardLevel.PassengersLevel,level.PassengersLevel);
+            slPrice = createDifficultySlider(easyLevel.PriceLevel, normalLevel.PriceLevel, hardLevel.PriceLevel,level.PriceLevel);
 
             lbContent.Items.Add(new QuickInfoValue("", createIndicator()));
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpDifficulty","200"), slMoney));
@@ -127,18 +130,31 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             return grdIndicator;
         }
         //returns a slider
-        private Slider createDifficultySlider(double easyLevel, double normalLevel, double hardLevel)
+        private Slider createDifficultySlider(double easyLevel, double normalLevel, double hardLevel, double value)
         {
             Slider slDifficulty = new Slider();
             slDifficulty.Minimum = Math.Min(hardLevel, easyLevel);
             slDifficulty.Maximum = Math.Max(hardLevel, easyLevel) ;
-            slDifficulty.Value = normalLevel;
-            slDifficulty.TickFrequency =(Math.Max(hardLevel,easyLevel) - Math.Min(hardLevel,easyLevel))/7;
+            slDifficulty.Value = value;
+            //slDifficulty.TickFrequency =(Math.Max(hardLevel,easyLevel) - Math.Min(hardLevel,easyLevel))/7;
             slDifficulty.Width = 200;
             slDifficulty.IsSnapToTickEnabled = true;
             slDifficulty.IsMoveToPointEnabled = true;
-            slDifficulty.IsDirectionReversed = true;// easyLevel > hardLevel;
-       
+            slDifficulty.IsDirectionReversed = easyLevel > hardLevel;
+
+            double stepValue = (normalLevel - Math.Min(hardLevel,easyLevel)) / 3;
+
+            for (double tick = Math.Min(hardLevel, easyLevel); tick < normalLevel;tick+=stepValue )
+                slDifficulty.Ticks.Add(tick);
+
+            stepValue = (Math.Max(hardLevel, easyLevel) - normalLevel) / 3;
+
+            for (double tick = normalLevel; tick <= Math.Max(hardLevel, easyLevel); tick += stepValue)
+                slDifficulty.Ticks.Add(tick);
+
+            if (!slDifficulty.Ticks.Contains(value))
+                slDifficulty.Ticks.Add(value);
+     
             return slDifficulty;
 
         }

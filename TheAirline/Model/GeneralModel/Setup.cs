@@ -117,6 +117,7 @@ namespace TheAirline.Model.GeneralModel
             Configurations.Clear();
             HistoricEvents.Clear();
             WeatherAverages.Clear();
+            DifficultyLevels.Clear();
         }
         /*! creates the Advertisement types
          */

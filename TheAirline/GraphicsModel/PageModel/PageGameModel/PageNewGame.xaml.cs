@@ -375,7 +375,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private void btnAddDifficulty_Click(object sender, RoutedEventArgs e)
         {
 
-           object o = PopUpDifficulty.ShowPopUp();
+           object o = PopUpDifficulty.ShowPopUp((DifficultyLevel)cbDifficulty.SelectedItem);
 
            if (o != null && o is DifficultyLevel)
            {

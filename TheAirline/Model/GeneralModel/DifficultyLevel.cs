@@ -48,5 +48,10 @@ namespace TheAirline.Model.GeneralModel
         {
             levels.Remove(level);
         }
+        //clears the list of difficulties
+        public static void Clear()
+        {
+            levels = new List<DifficultyLevel>();
+        }
     }
 }
