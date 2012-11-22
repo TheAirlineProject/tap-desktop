@@ -155,7 +155,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Create New Game");
+            base.setHeaderContent("Create New Airline");
 
             showPage(this);
 

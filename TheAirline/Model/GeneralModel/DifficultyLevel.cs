@@ -43,5 +43,10 @@ namespace TheAirline.Model.GeneralModel
         {
             return levels.Find(l => l.Name == name);
         }
+        //removes a difficulty level
+        public static void RemoveDifficultyLevel(DifficultyLevel level)
+        {
+            levels.Remove(level);
+        }
     }
 }

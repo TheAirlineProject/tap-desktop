@@ -25,6 +25,7 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
@@ -192,7 +193,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbFocus.SelectedIndex = 0;
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1013"), cbFocus));
-         
+
+            WrapPanel panelDifficulty = new WrapPanel();
+
             cbDifficulty = new ComboBox();
             cbDifficulty.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDifficulty.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -205,7 +208,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
          
             cbDifficulty.SelectedIndex = 0;
 
-            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), cbDifficulty));
+            panelDifficulty.Children.Add(cbDifficulty);
+
+            Button btnAddDifficulty = new Button();
+            btnAddDifficulty.Margin = new Thickness(5, 0, 0, 0);
+            btnAddDifficulty.Background = Brushes.Transparent;
+            btnAddDifficulty.Click += new RoutedEventHandler(btnAddDifficulty_Click);
+          
+            Image imgAddDifficulty = new Image();
+            imgAddDifficulty.Source = new BitmapImage(new Uri(@"/Data/images/add.png", UriKind.RelativeOrAbsolute));
+            imgAddDifficulty.Height = 16;
+            RenderOptions.SetBitmapScalingMode(imgAddDifficulty, BitmapScalingMode.HighQuality);
+
+            btnAddDifficulty.Content = imgAddDifficulty;
+
+            panelDifficulty.Children.Add(btnAddDifficulty);
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), panelDifficulty));
 
             
             cbOpponents = new ComboBox();
@@ -266,6 +285,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
+      
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Region region = (Region)cbRegion.SelectedItem;
@@ -351,6 +371,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         {
             PageNavigator.NavigateTo(new PageNewAirline());
 
+        }
+        private void btnAddDifficulty_Click(object sender, RoutedEventArgs e)
+        {
+
+           object o = PopUpDifficulty.ShowPopUp();
+
+           if (o != null && o is DifficultyLevel)
+           {
+               DifficultyLevel level = (DifficultyLevel)o;
+
+               if (DifficultyLevels.GetDifficultyLevel("Custom") != null)
+               {
+                   DifficultyLevel customLevel = DifficultyLevels.GetDifficultyLevel("Custom");
+
+                   DifficultyLevels.RemoveDifficultyLevel(customLevel);
+                   cbDifficulty.Items.Remove(customLevel);
+               }
+
+               DifficultyLevels.AddDifficultyLevel(level);
+
+               cbDifficulty.Items.Add(level);
+               cbDifficulty.SelectedItem = level;
+           }
         }
 
 
