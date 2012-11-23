@@ -396,8 +396,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Configurations.AddConfiguration(classesConfiguration);
             }
+       
+            XmlElement difficultyNode = (XmlElement)root.SelectSingleNode("//difficulty");
+            string difficultyName = difficultyNode.Attributes["name"].Value;
+            double moneyLevel = Convert.ToDouble(difficultyNode.Attributes["money"].Value);
+            double priceLevel = Convert.ToDouble(difficultyNode.Attributes["price"].Value);
+            double loanLevel = Convert.ToDouble(difficultyNode.Attributes["loan"].Value);
+            double passengersLevel = Convert.ToDouble(difficultyNode.Attributes["passengers"].Value);
+            double aiLevel = Convert.ToDouble(difficultyNode.Attributes["ai"].Value);
 
-
+            GameObject.GetInstance().Difficulty = new DifficultyLevel(difficultyName, moneyLevel, loanLevel, passengersLevel, priceLevel, aiLevel);
 
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
 
@@ -1428,6 +1436,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             root.AppendChild(routeConfigurationsNode);
+
+            XmlElement difficultyNode = xmlDoc.CreateElement("difficulty");
+            difficultyNode.SetAttribute("name", GameObject.GetInstance().Difficulty.Name);
+            difficultyNode.SetAttribute("money", GameObject.GetInstance().Difficulty.MoneyLevel.ToString());
+            difficultyNode.SetAttribute("price", GameObject.GetInstance().Difficulty.PriceLevel.ToString());
+            difficultyNode.SetAttribute("loan", GameObject.GetInstance().Difficulty.LoanLevel.ToString());
+            difficultyNode.SetAttribute("passengers", GameObject.GetInstance().Difficulty.PassengersLevel.ToString());
+            difficultyNode.SetAttribute("ai", GameObject.GetInstance().Difficulty.AILevel.ToString());
+
+            root.AppendChild(difficultyNode);
 
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("passengerdemand", GameObject.GetInstance().PassengerDemandFactor.ToString());
