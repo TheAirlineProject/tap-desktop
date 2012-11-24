@@ -16,7 +16,7 @@
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airliner.Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
                            <Image Source="/data/images/delete.png"></Image>
                         </Button>
                     </DataTemplate>
@@ -60,7 +60,7 @@
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airliner.Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
                             <Image Source="/data/images/delete.png"></Image>
                         </Button>
                     </DataTemplate>
