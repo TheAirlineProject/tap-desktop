@@ -18,6 +18,7 @@ using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using System.Threading;
 using System.Globalization;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline
 {
@@ -58,7 +59,13 @@ namespace TheAirline
         private void Window_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Escape)
-                this.Close();
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                    this.Close();
+            }
+        
         }
 
         //clears the navigator
