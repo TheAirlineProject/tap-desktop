@@ -109,7 +109,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
         private void txtAllianceName_TextChanged(object sender, TextChangedEventArgs e)
         {
             
-            btnCreate.IsEnabled = txtAllianceName.Text.Trim().Length > 0;
+            btnCreate.IsEnabled = txtAllianceName.Text.Trim().Length > 0 && !Alliances.GetAlliances().Exists(a=>a.Name.ToUpper()==txtAllianceName.Text.Trim().ToUpper());
         }
     }
 }
