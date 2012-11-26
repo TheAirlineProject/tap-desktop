@@ -9,6 +9,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using System.Threading.Tasks;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -82,16 +83,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
 
             Dictionary<Airport, int> airportsList = new Dictionary<Airport, int>();
-            homeAirports.ForEach(a => airportsList.Add(a, (int)a.Profile.Size));
-
+            Parallel.ForEach(homeAirports, a =>
+                {
+                    airportsList.Add(a, (int)a.Profile.Size);
+                });
+     
             Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
 
             List<AirlinerType> types = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
             types = types.OrderBy(t => t.Price).ToList();
 
             Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
-            types.ForEach(t => list.Add(t, (int)((t.Range / (t.Price / 100000)))));
-
+            Parallel.ForEach(types,t=>
+                {
+                    list.Add(t, (int)((t.Range / (t.Price / 100000))));
+                });
+         
             if (list.Keys.Count > 0)
             {
                 AirlinerType type = AIHelpers.GetRandomItem(list);

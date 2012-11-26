@@ -12,6 +12,8 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
+using System.Threading;
+using System.Diagnostics;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -205,10 +207,14 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()
         {
+            Stopwatch stopwatch = new Stopwatch();
+            stopwatch.Start();
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
             {
-             CreateDestinationPassengers(airport);
+              CreateDestinationPassengers(airport);
             });
+            stopwatch.Stop();
+            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
 
         }
         //creates the airport destinations passengers between two destinations 
