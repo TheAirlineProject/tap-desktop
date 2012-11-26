@@ -309,22 +309,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             brdSplasInner.Child = brdSplashOuter;
 
-            StackPanel panelPopUp = new StackPanel();
-            panelPopUp.SetResourceReference(StackPanel.BackgroundProperty, "HeaderBackgroundBrush2");
-            panelPopUp.Width = 300;
-            panelPopUp.Height = 150;
-            
-            brdSplashOuter.Child = panelPopUp;
+            Image imgSplash = new Image();
+            imgSplash.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\TheAirlne_Splash.jpg", UriKind.RelativeOrAbsolute));
+            imgSplash.Height = 200;
+            imgSplash.Width = 400;
+            RenderOptions.SetBitmapScalingMode(imgSplash, BitmapScalingMode.HighQuality);
 
-            TextBlock txtVisitForum = UICreator.CreateTextBlock("Creating game.........\n\nPlease visit our forum at \nhttp://www.theairlineproject.com/forum/");
-            txtVisitForum.FontWeight = FontWeights.Bold;
-            txtVisitForum.FontSize = 16;
-            txtVisitForum.TextWrapping = TextWrapping.Wrap;
-            txtVisitForum.VerticalAlignment = System.Windows.VerticalAlignment.Center;
-            txtVisitForum.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            brdSplashOuter.Child = imgSplash;
 
-            panelPopUp.Children.Add(txtVisitForum);
-
+         
             return brdSplasInner;
 
         }
