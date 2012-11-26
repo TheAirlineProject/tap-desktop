@@ -11,6 +11,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Threading.Tasks;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -76,18 +77,18 @@ namespace TheAirline.Model.GeneralModel
             Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
-            double distance = MathHelpers.GetDistance(airportCurrent,airportDestination);
-        
+            double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
+
             var currentRoute = airliner.Routes.Find(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
 
             if (currentRoute == null)
                 return 0;
 
-            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2,type);
+            double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2, type);
             double routePrice = currentRoute.getFarePrice(type);
 
             double priceDiff = basicPrice / routePrice;
-    
+
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
             double passengerDemand = demand * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
@@ -96,9 +97,9 @@ namespace TheAirline.Model.GeneralModel
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000 &&  airportCurrent.Profile.Country != airportDestination.Profile.Country)
+            if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000 && airportCurrent.Profile.Country != airportDestination.Profile.Country)
                 passengerDemand = passengerDemand * (115 / 100);
-            
+
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Regional && distance < 1500)
                 passengerDemand = passengerDemand * (115 / 100);
 
@@ -126,13 +127,13 @@ namespace TheAirline.Model.GeneralModel
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
-                       
-
-            
-            double randomPax = Convert.ToDouble(rnd.Next(97, 103))/100;
 
 
-            return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity,(airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
+
+            double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
+
+
+            return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
             //return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
 
 
@@ -187,9 +188,9 @@ namespace TheAirline.Model.GeneralModel
 
             return ticketPrice;
         }
-        public static double GetPassengerPrice(Airport dest1, Airport dest2,AirlinerClass.ClassType type)
+        public static double GetPassengerPrice(Airport dest1, Airport dest2, AirlinerClass.ClassType type)
         {
-           
+
 
             return GetPassengerPrice(dest1, dest2) * GeneralHelpers.ClassToPriceFactor(type);
         }
@@ -204,8 +205,11 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()
         {
-            foreach (Airport airport in Airports.GetAllActiveAirports())
-                CreateDestinationPassengers(airport);
+            Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
+            {
+             CreateDestinationPassengers(airport);
+            });
+
         }
         //creates the airport destinations passengers between two destinations 
         public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
@@ -669,28 +673,28 @@ namespace TheAirline.Model.GeneralModel
             }
 
             estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-         
+
             double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
             foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                double distance = MathHelpers.GetDistance(airport,dAirport);
+                double distance = MathHelpers.GetDistance(airport, dAirport);
 
-                if ((classType == AirlinerClass.ClassType.Economy_Class || classType == AirlinerClass.ClassType.Business_Class) && distance<7500)
+                if ((classType == AirlinerClass.ClassType.Economy_Class || classType == AirlinerClass.ClassType.Business_Class) && distance < 7500)
                     value = value / (int)classType;
 
                 ushort rate = (ushort)value;
 
-                if (rate>0)
+                if (rate > 0)
                     airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
             }
         }
         //returns the demand factor based on the year of playing
         private static double GetDemandYearFactor(int year)
         {
-           double yearDiff = Convert.ToDouble(year - GameObject.StartYear)/10; 
+            double yearDiff = Convert.ToDouble(year - GameObject.StartYear) / 10;
 
-           return 0.15 * (yearDiff+1);
+            return 0.15 * (yearDiff + 1);
 
         }
 
