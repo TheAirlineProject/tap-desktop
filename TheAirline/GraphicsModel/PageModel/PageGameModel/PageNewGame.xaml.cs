@@ -26,6 +26,9 @@ using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using System.Windows.Controls.Primitives;
+using System.Threading;
+using System.Windows.Threading;
 
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
@@ -41,9 +44,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
+        private Popup popUpSplash;
         public PageNewGame()
         {
             InitializeComponent();
+
+            popUpSplash = new Popup();
+
+            popUpSplash.Child = createSplashWindow();
+            popUpSplash.Placement = PlacementMode.Center;
+            popUpSplash.PlacementTarget = PageNavigator.MainWindow;
+            popUpSplash.IsOpen = false;
 
             StackPanel panelContent = new StackPanel();
             panelContent.Margin = new Thickness(10, 0, 10, 0);
@@ -284,7 +295,39 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
         }
+        //creates the splash window
+        private Border createSplashWindow()
+        {
+        
+            Border brdSplasInner = new Border();
+            brdSplasInner.BorderBrush = Brushes.Black;
+            brdSplasInner.BorderThickness = new Thickness(2, 2, 0, 0);
 
+            Border brdSplashOuter = new Border();
+            brdSplashOuter.BorderBrush = Brushes.White;
+            brdSplashOuter.BorderThickness = new Thickness(0,0,2,2);
+
+            brdSplasInner.Child = brdSplashOuter;
+
+            StackPanel panelPopUp = new StackPanel();
+            panelPopUp.SetResourceReference(StackPanel.BackgroundProperty, "HeaderBackgroundBrush2");
+            panelPopUp.Width = 300;
+            panelPopUp.Height = 150;
+            
+            brdSplashOuter.Child = panelPopUp;
+
+            TextBlock txtVisitForum = UICreator.CreateTextBlock("Creating game.........\n\nPlease visit our forum at \nhttp://www.theairlineproject.com/forum/");
+            txtVisitForum.FontWeight = FontWeights.Bold;
+            txtVisitForum.FontSize = 16;
+            txtVisitForum.TextWrapping = TextWrapping.Wrap;
+            txtVisitForum.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            txtVisitForum.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+
+            panelPopUp.Children.Add(txtVisitForum);
+
+            return brdSplasInner;
+
+        }
       
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -414,11 +457,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             PageNavigator.NavigateTo(new PageFrontMenu());
 
         }
-
+        public void DoEvents()
+        {
+            DispatcherFrame f = new DispatcherFrame();
+            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background,
+            (SendOrPostCallback)delegate(object arg)
+            {
+                DispatcherFrame fr = arg as DispatcherFrame;
+                fr.Continue = false;
+            }, f);
+            Dispatcher.PushFrame(f); 
+        }
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
+
             if (txtName.Text.Trim().Length > 2)
             {
+                popUpSplash.IsOpen = true;
+
+                DoEvents();
+ 
                 GameTimeZone gtz = (GameTimeZone)cbTimeZone.SelectedItem;
                 GameObject.GetInstance().TimeZone = gtz;
                 GameObject.GetInstance().Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem;
@@ -474,6 +532,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                // GameObject.GetInstance().HumanAirline.Money = 1000000000;
 
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
+
+                popUpSplash.IsOpen = false;
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);
