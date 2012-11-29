@@ -39,10 +39,13 @@ namespace TheAirline.Model.GeneralModel
         //adds happiness to an airline
         public static void AddPassengerHappiness(Airline airline)
         {
-            if (HappinessPercent.ContainsKey(airline))
-                HappinessPercent[airline] += 1;
-            else
-                HappinessPercent.Add(airline, 1);
+            lock (HappinessPercent)
+            {
+                if (HappinessPercent.ContainsKey(airline))
+                    HappinessPercent[airline] += 1;
+                else
+                    HappinessPercent.Add(airline, 1);
+            }
         }
         // chs, 2011-13-10 added for loading of passenger happiness
         public static void SetPassengerHappiness(Airline airline, double value)
@@ -199,10 +202,11 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
-            foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50))
+            var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+            Parallel.ForEach(airports, dAirport =>
             {
                 CreateDestinationPassengers(airport, dAirport);
-            }
+            });
         }
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()

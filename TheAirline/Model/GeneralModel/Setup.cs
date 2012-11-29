@@ -21,6 +21,7 @@ using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.GeneralModel.HistoricEventModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Threading.Tasks;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -1247,7 +1248,7 @@ namespace TheAirline.Model.GeneralModel
             RemoveAirlines(opponents);
 
             //sets all the facilities at an airport to none for all airlines
-            foreach (Airport airport in Airports.GetAllAirports())
+            Parallel.ForEach(Airports.GetAllAirports(), airport =>
             {
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
@@ -1259,7 +1260,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
                 AirportHelpers.CreateAirportWeather(airport);
-            }
+            });
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {

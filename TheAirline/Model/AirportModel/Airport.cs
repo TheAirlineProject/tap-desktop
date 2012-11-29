@@ -64,7 +64,10 @@ namespace TheAirline.Model.AirportModel
         //adds a rate for a destination
         public void addDestinationPassengersRate(DestinationPassengers passengers)
         {
-            this.DestinationPassengers.Add(passengers);
+            lock (this.DestinationPassengers)
+            {
+                this.DestinationPassengers.Add(passengers);
+            }
         }
         //adds a rate valu to a destination
         public void addDestinationPassengersRate(Airport destination,AirlinerClass.ClassType type, ushort rate)

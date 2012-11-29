@@ -51,10 +51,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
                 int airlineCount = airline.Fleet.Count;
-
+                
+                Parallel.ForEach(airline.Fleet, airliner =>
+                    {
+                        UpdateAirliner(airliner);
+                    });
+                
+                /*
                 for (int i = 0; i < airlineCount; i++)
                     UpdateAirliner(airline.Fleet[i]);
-
+                */
                 airlineCounter++;
             });
             /*
