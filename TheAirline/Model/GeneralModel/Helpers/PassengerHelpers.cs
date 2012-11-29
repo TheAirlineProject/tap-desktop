@@ -35,6 +35,7 @@ namespace TheAirline.Model.GeneralModel
             else
                 return value / passengers * 100.0;
 
+           
         }
         //adds happiness to an airline
         public static void AddPassengerHappiness(Airline airline)

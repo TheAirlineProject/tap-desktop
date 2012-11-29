@@ -101,7 +101,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Weather.CloudCover[] coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
             Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
-            Weather.WindDirection windDirection;
+            Weather.WindDirection windDirection; 
             Weather.eWindSpeed windSpeed;
             double temperature, temperatureLow, temperatureHigh, temperatureSunrise, temperatureSunset, temperatureDayend;
 
