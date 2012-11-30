@@ -14,11 +14,13 @@ namespace TheAirline.Model.GeneralModel
         private Dictionary<string, string> Words;
         public string CultureInfo { get; set; }
         public string ImageFile { get; set; }
-        public Language(string name,string cultureInfo)
+        public Boolean IsEnabled { get; set; }
+        public Language(string name,string cultureInfo, Boolean isEnabled)
         {
             this.Name = name;
             this.Unit = UnitSystem.Metric;
             this.CultureInfo = cultureInfo;
+            this.IsEnabled = isEnabled;
             this.Words = new Dictionary<string, string>();
         }
         //adds a word to the language

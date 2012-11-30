@@ -171,7 +171,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     foreach (XmlNode language in LanguageNode.ChildNodes)
                     {
-                        Language read = new Language(language.Attributes["name"].Value, language.Attributes["culture"].Value);
+                        Language read = new Language(language.Attributes["name"].Value, language.Attributes["culture"].Value,Convert.ToBoolean(language.Attributes["isEnabled"].Value));
                         // chs, 2011-10-11 changed to display flag together with language
                         read.ImageFile = AppSettings.getDataPath() + @"\graphics\flags\" + language.Attributes["flag"].Value;
                         if( language.Attributes["UnitSystem"].Value == Language.UnitSystem.Metric.ToString())

@@ -90,7 +90,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbLanguage.ItemTemplate = this.Resources["LanguageItem"] as DataTemplate;
           
             
-            foreach (Language language in Languages.GetLanguages())
+            foreach (Language language in Languages.GetLanguages().FindAll(l=>l.IsEnabled))
                 cbLanguage.Items.Add(language);
 
             cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
