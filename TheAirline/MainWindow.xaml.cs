@@ -45,7 +45,8 @@ namespace TheAirline
 
             frameMain = new Frame();
             frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            frameMain.Navigate(new PageNewGame());
+            //frameMain.Navigate(new PageNewGame());
+            frameMain.Navigate(new PageSelectLanguage());
 
             Canvas.SetTop(frameMain, 0);
             Canvas.SetLeft(frameMain, 0);
