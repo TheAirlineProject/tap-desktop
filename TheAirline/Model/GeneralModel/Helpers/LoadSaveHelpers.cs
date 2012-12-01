@@ -973,7 +973,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Loan loan in airline.Loans)
                 {
                     XmlElement loanNode = xmlDoc.CreateElement("loan");
-                    loanNode.SetAttribute("date", loan.Date.ToShortDateString());
+                    loanNode.SetAttribute("date", loan.Date.ToString(new CultureInfo("de-DE")));
                     loanNode.SetAttribute("rate", loan.Rate.ToString());
                     loanNode.SetAttribute("amount", loan.Amount.ToString());
                     loanNode.SetAttribute("length", loan.Length.ToString());
