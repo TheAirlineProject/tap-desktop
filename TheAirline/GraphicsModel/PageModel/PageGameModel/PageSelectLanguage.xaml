@@ -10,7 +10,7 @@
     <Page.Resources>
         <DataTemplate x:Key="LanguageItem">
             <StackPanel>
-                <Button Click="Button_Click" Height="64" Width="64" Background="Transparent" Tag="{Binding}">
+                <Button Click="Button_Click" Height="96" Width="96" Background="Transparent" Tag="{Binding}">
                     <Image Source="{Binding ImageFile}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
                 <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
