@@ -22,10 +22,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void UpdateCPUAirline(Airline airline)
         {
            
-           
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-           
+             /*
             CheckForNewRoute(airline);
             CheckForNewHub(airline);
             CheckForUpdateRoute(airline);
@@ -33,13 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             CheckForAirlinersWithoutRoutes(airline);
             CheckForAirlineAlliance(airline);
             CheckForSubsidiaryAirline(airline);
-            
-            stopwatch.Stop();
-            long msStandard = stopwatch.ElapsedMilliseconds;
-            /* 
-            stopwatch = new Stopwatch();
-            stopwatch.Start();
-
+       */
             
             Parallel.Invoke(() =>
             {
@@ -72,11 +63,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             } 
                         ); //close parallel.invoke
 
-            stopwatch.Stop();
-            long msParallel = stopwatch.ElapsedMilliseconds;
-            */
-            //Console.WriteLine("Classic: {0} ms. Parallel: {1} ms.", msStandard, msParallel);
-
+        
         }
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)

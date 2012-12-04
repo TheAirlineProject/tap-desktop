@@ -82,8 +82,14 @@ namespace TheAirline.Model.GeneralModel
         {
             this.Language = language;
 
-            System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.CultureInfo, true);
+            CultureInfo ci = new CultureInfo(language.CultureInfo, true);
+            //ci.NumberFormat.CurrencySymbol = "TT";
+
+            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+            System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
+
+           // System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);
+          //  System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.CultureInfo, true);
         }
 
         //returns the current language

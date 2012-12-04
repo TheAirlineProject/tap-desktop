@@ -45,7 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             airportPanel.Margin = new Thickness(10, 0, 10, 0);
 
             airportPanel.Children.Add(createQuickInfoPanel());
-             airportPanel.Children.Add(createPassengersPanel());
+           airportPanel.Children.Add(createPassengersPanel());
             //airportPanel.Children.Add(createArrivalsPanel());
             //airportPanel.Children.Add(createDeparturesPanel());
 
@@ -97,7 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             svArrivals.Margin = new Thickness(0, 10, 0, 0);
             svArrivals.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             svArrivals.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            svArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 6;
+            svArrivals.MaxHeight = GraphicsHelpers.GetContentHeight() / 3;
 
             StackPanel panelArrivals = new StackPanel();
             panelArrivals.Margin = new Thickness(0, 10, 0, 0);
@@ -265,9 +265,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         }
 
         //creates the quick info panel for the airport
-        private Panel createQuickInfoPanel()
+        private ScrollViewer createQuickInfoPanel()
         {
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() /2;
+
             StackPanel panelInfo = new StackPanel();
+            scroller.Content = panelInfo;
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1006";
@@ -377,7 +383,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1017"), UICreator.CreateTextBlock(this.Airport.Runways.Count.ToString())));
 
-            return panelInfo;
+            return scroller;
         }
         //creates the town panel
         private WrapPanel createTownPanel()
