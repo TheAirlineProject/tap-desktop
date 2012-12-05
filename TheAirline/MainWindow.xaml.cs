@@ -20,6 +20,7 @@ using System.Threading;
 using System.Globalization;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
+
 namespace TheAirline
 {
     /// <summary>
@@ -101,9 +102,11 @@ namespace TheAirline
         //navigates to a new page
         public void navigateTo(Page page)
         {
+          
             frameMain.Navigate(page);
             frameMain.NavigationService.RemoveBackEntry();
 
+          
         }
 
         //moves the navigator forward

@@ -212,15 +212,11 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()
         {
-            Stopwatch stopwatch = new Stopwatch();
-            stopwatch.Start();
-            Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
+             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
             {
               CreateDestinationPassengers(airport);
             });
-            stopwatch.Stop();
-            Console.WriteLine("Time elapsed: {0}", stopwatch.Elapsed);
-
+  
         }
         //creates the airport destinations passengers between two destinations 
         public static void CreateDestinationPassengers(Airport airport, Airport dAirport)

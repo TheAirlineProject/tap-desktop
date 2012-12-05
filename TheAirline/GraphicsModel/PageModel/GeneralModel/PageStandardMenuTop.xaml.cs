@@ -234,5 +234,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
            
         }
 
+        private void lnkPerformance_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PagePerformance());
+        }
+
     }
 }

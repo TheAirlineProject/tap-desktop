@@ -345,23 +345,15 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-    //the converter for checking for existing assembly of AirportsCSVReader (Airport Editor visible)
-    public class IsAirportEditorVisibleConverter : IValueConverter
+    //the converter for checking if performance counters is enabled
+    public class PerformanceEnabledConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             try
             {
-                /*
-                Assembly assembly = Assembly.LoadFrom(Environment.CurrentDirectory + "\\data\\plugins\\AirportCSVReader.dll");
-                if (assembly != null)
-                    return Visibility.Collapsed;//Visibility.Visible;
-                else
-                    return Visibility.Collapsed;
-                 * */
-
-                return Visibility.Collapsed;
+                return GameObject.GetInstance().PagePerformanceCounterEnabled ? Visibility.Visible : Visibility.Collapsed;
             }
             catch
             {

@@ -12,6 +12,7 @@ namespace TheAirline.Model.GeneralModel
     public class GameObject
     {
         private static GameObject GameInstance;
+        public Boolean PagePerformanceCounterEnabled { get; set; }
         public DateTime GameTime { get; set; }
         public DateTime StartDate { get; set; }
         public Airline HumanAirline { get; set; }
@@ -32,6 +33,7 @@ namespace TheAirline.Model.GeneralModel
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
+            this.PagePerformanceCounterEnabled = false;
         }
 
         //returns the start money based on year of start

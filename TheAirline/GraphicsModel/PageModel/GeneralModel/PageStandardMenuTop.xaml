@@ -10,7 +10,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageStandardMenuTop">
     <Page.Resources>
-        <c:IsAirportEditorVisibleConverter x:Key="isAirportEditorVisibleConverter"></c:IsAirportEditorVisibleConverter>
+        <c:PerformanceEnabledConverter x:Key="performanceEnabledConverter"></c:PerformanceEnabledConverter>
         <c:TranslatorConverter x:Key="translatorConverter"></c:TranslatorConverter>
         <Style x:Key="MenuHeaderStyle" TargetType="MenuItem" >
             <Setter Property="FontFamily" Value="{DynamicResource NormalFont}"></Setter>
@@ -57,9 +57,9 @@
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuNewGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkNewGame_Click"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageSettings}" Style="{DynamicResource MenuItemStyle}" Click="lnkSettings_Click"></MenuItem>
+                <MenuItem Header="Performance counters" Visibility="{Binding Converter={StaticResource performanceEnabledConverter}}" Style="{DynamicResource MenuItemStyle}" Click="lnkPerformance_Click"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuExitGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkExit_Click"></MenuItem>
-                <MenuItem Header="Airport Editor" Style="{DynamicResource MenuItemStyle}" Visibility="{Binding Converter={StaticResource isAirportEditorVisibleConverter}}" Click="lnkTest_Click"></MenuItem>
             </MenuItem>
                
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2"/>

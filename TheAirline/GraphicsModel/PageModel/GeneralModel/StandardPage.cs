@@ -14,6 +14,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.AirlineModel;
+using System.Diagnostics;
+using TheAirline.Model.GeneralModel.Helpers;
 
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -27,8 +29,21 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private Frame frameTopMenu, frameBottomMenu, frameInformation;
 
         private Button btnPrevious, btnNext, btnPause, btnStart;
+        private Stopwatch sw;
         public StandardPage()
         {
+         
+            if (GameObject.GetInstance().PagePerformanceCounterEnabled)
+            {
+                sw = new Stopwatch();
+                sw.Start();
+
+                this.Loaded += new RoutedEventHandler(StandardPage_Loaded);
+           
+            }
+
+
+   
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
 
@@ -154,6 +169,18 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             mainPanel.Children.Add(frameBottomMenu);
 
             this.Content = this.mainPanel;
+        }
+
+        private void StandardPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            sw.Stop();
+
+            long counter = sw.ElapsedMilliseconds;
+
+            string pageName = this.ToString().Substring(this.ToString().LastIndexOf(".") + 1);
+
+            PerformanceCounters.AddPerformanceCounter(new PagePerformanceCounter(pageName, GameObject.GetInstance().GameTime, counter));
         }
 
         private void frameContent_SizeChanged(object sender, SizeChangedEventArgs e)

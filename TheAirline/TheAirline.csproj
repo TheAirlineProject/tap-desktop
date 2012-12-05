@@ -86,6 +86,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PagePerformance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\GeneralModel\PageSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -394,6 +398,9 @@
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageNewsBox.xaml.cs">
       <DependentUpon>PageNewsBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PagePerformance.xaml.cs">
+      <DependentUpon>PagePerformance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageSettings.xaml.cs">
       <DependentUpon>PageSettings.xaml</DependentUpon>
     </Compile>
@@ -690,6 +697,7 @@
     <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\PerformanceCounter.cs" />
     <Compile Include="Model\GeneralModel\Helpers\WorkersModel\AIWorker.cs" />
     <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEvent.cs" />
     <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEventInfluence.cs" />

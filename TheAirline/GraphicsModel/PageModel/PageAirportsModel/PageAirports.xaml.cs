@@ -83,7 +83,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             base.setHeaderContent(this.Title);
 
-     
             showPage(this);
         }
 
