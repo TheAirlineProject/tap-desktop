@@ -7,6 +7,8 @@ using System.Windows.Navigation;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using System.Diagnostics;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -16,6 +18,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private Airport Airport;
         public PanelAirport(Airport airport)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             this.Airport = airport;
 
             WrapPanel buttonsPanel = new WrapPanel();
@@ -77,6 +82,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             frameContent.Navigate(new PageAirportGates(this.Airport));
 
             this.Children.Add(frameContent);
+
+            sw.Stop();
+            PerformanceCounters.AddPerformanceCounter(new PagePerformanceCounter("PanelAirport", GameObject.GetInstance().GameTime, sw.ElapsedMilliseconds));
         }
 
         private void sbWeather_Click(object sender, System.Windows.RoutedEventArgs e)

@@ -45,7 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             airportPanel.Margin = new Thickness(10, 0, 10, 0);
 
             airportPanel.Children.Add(createQuickInfoPanel());
-           airportPanel.Children.Add(createPassengersPanel());
+            airportPanel.Children.Add(createPassengersPanel());
             //airportPanel.Children.Add(createArrivalsPanel());
             //airportPanel.Children.Add(createDeparturesPanel());
 
@@ -89,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             }
         }
 
-       
+     
         //creates the panel for arrivals
         private ScrollViewer createArrivalsPanel()
         {

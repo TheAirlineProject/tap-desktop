@@ -20,6 +20,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.Converters;
+using System.Diagnostics;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 {
@@ -34,6 +35,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private Button btnHub;
         public PageAirportGates(Airport airport)
         {
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
             this.Airport = airport;
 
             InitializeComponent();
@@ -120,6 +124,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             showGatesInformation();
             showTerminals();
             showHubs();
+            sw.Stop();
+
+            PerformanceCounters.AddPerformanceCounter(new PagePerformanceCounter("PageAirportGate", GameObject.GetInstance().GameTime, sw.ElapsedMilliseconds));
+           
         }
 
        

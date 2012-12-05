@@ -13,9 +13,9 @@
         <DataTemplate x:Key="PerformanceItem">
             <WrapPanel>
                 <TextBlock Text="{Binding}" Width="200" VerticalAlignment="Bottom"></TextBlock>
-                <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='A',StringFormat={}{0} ms.}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
-                <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='H',StringFormat={}{0} ms.}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
-                <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='L',StringFormat={}{0} ms.}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='A',StringFormat={}{0:0} ms.}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='H',StringFormat={}{0:0} ms.}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='L',StringFormat={}{0:0} ms.}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Converter={StaticResource performanceCountersConverter},ConverterParameter='C'}" TextAlignment="Right" Width="75" VerticalAlignment="Bottom"></TextBlock>
 
             </WrapPanel>
