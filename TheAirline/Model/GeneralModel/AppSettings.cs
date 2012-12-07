@@ -84,8 +84,7 @@ namespace TheAirline.Model.GeneralModel
 
             CultureInfo ci = new CultureInfo(language.CultureInfo, true);
             //ci.NumberFormat.CurrencySymbol = "TT";
-
-            System.Threading.Thread.CurrentThread.CurrentCulture = ci;
+             System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
 
            // System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);

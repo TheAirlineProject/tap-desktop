@@ -28,6 +28,8 @@ using TheAirline.GraphicsModel.PageModel.PageAlliancesModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageFlightsModel;
+using System.Windows.Threading;
+using System.Threading;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -172,11 +174,20 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             GameTimer.GetInstance().pause();
 
+            Popup popUpSplash = new Popup();
+            popUpSplash.Child = createSplashWindow("Saving.........");
+            popUpSplash.Placement = PlacementMode.Center;
+            popUpSplash.PlacementTarget = PageNavigator.MainWindow;
+            popUpSplash.IsOpen = false;
+   
+
             String name = (String)PopUpSave.ShowPopUp();
             
             if (name != null)
             {
-      
+                popUpSplash.IsOpen = true;
+                DoEvents();
+
                 GameObject.GetInstance().Name = name;
 
                 string fileName;
@@ -199,6 +210,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 
                 LoadSaveHelpers.SaveGame(fileName);
 
+                popUpSplash.IsOpen = false;
             }
          
             GameTimer.GetInstance().start();
@@ -207,6 +219,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {
+       
+
+            Popup popUpSplash = new Popup();
+            popUpSplash.Child = createSplashWindow("Loading.........");
+            popUpSplash.Placement = PlacementMode.Center;
+            popUpSplash.PlacementTarget = PageNavigator.MainWindow;
+            popUpSplash.IsOpen = false;
+     
             GameTimer.GetInstance().pause();
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1002"), Translator.GetInstance().GetString("MessageBox", "1002", "message"), WPFMessageBoxButtons.YesNo);
@@ -217,7 +237,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
                 if (file != null)
                 {
-
+                    popUpSplash.IsOpen = true;
+                    DoEvents();
                    
                     LoadSaveHelpers.LoadGame(file);
 
@@ -226,6 +247,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     HolidayYear.Clear();
 
                     GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+
+                    popUpSplash.IsOpen = false;
                 }
               
             }
@@ -238,6 +261,45 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             PageNavigator.NavigateTo(new PagePerformance());
         }
+        public void DoEvents()
+        {
+            DispatcherFrame f = new DispatcherFrame();
+            Dispatcher.CurrentDispatcher.BeginInvoke(DispatcherPriority.Background,
+            (SendOrPostCallback)delegate(object arg)
+            {
+                DispatcherFrame fr = arg as DispatcherFrame;
+                fr.Continue = false;
+            }, f);
+            Dispatcher.PushFrame(f);
+        }
+        //creates a popup with a text
+        //creates the splash window
+        private Border createSplashWindow(string text)
+        {
 
+            Border brdSplasInner = new Border();
+            brdSplasInner.BorderBrush = Brushes.Black;
+            brdSplasInner.BorderThickness = new Thickness(2, 2, 0, 0);
+
+            Border brdSplashOuter = new Border();
+            brdSplashOuter.BorderBrush = Brushes.White;
+            brdSplashOuter.BorderThickness = new Thickness(0, 0, 2, 2);
+
+            brdSplasInner.Child = brdSplashOuter;
+
+            TextBlock txtSplash = UICreator.CreateTextBlock(text);
+            txtSplash.Width = 200;
+            txtSplash.Height = 100;
+            txtSplash.TextAlignment = TextAlignment.Center;
+            txtSplash.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtSplash.FontWeight = FontWeights.Bold;
+
+            brdSplashOuter.Child = txtSplash;
+
+
+            return brdSplasInner;
+
+        }
+      
     }
 }
