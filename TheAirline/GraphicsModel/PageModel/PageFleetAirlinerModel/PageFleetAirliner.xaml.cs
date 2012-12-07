@@ -81,8 +81,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
        
         //creates the panel for leased airliner
-        private Panel createLeasedAirlinerPanel()
+        private ScrollViewer createLeasedAirlinerPanel()
         {
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() / 5;
+          
             panelLeasedAirliner = new StackPanel();
             panelLeasedAirliner.Margin = new Thickness(0, 10, 0, 0);
 
@@ -91,7 +96,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1001");
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1029");
 
             panelLeasedAirliner.Children.Add(txtHeader);
 
@@ -116,17 +121,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             btnBuy.Click += new System.Windows.RoutedEventHandler(btnBuy_Click);
             panelLeasedAirliner.Children.Add(btnBuy);
 
-            return panelLeasedAirliner;
+            scroller.Content = panelLeasedAirliner;
+
+            return scroller;
 
         }
         //creates the info panel for the airliner type
-        private Panel createAirlinerTypePanel()
+        private ScrollViewer createAirlinerTypePanel()
         {
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            scroller.Margin = new Thickness(0, 10, 0, 0);
+          
             AirlinerType airliner = this.Airliner.Airliner.Type;
 
             StackPanel panelAirlinerType = new StackPanel();
-            panelAirlinerType.Margin = new Thickness(0, 10, 0, 0);
-
+         
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
@@ -188,13 +200,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1014"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1015"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1027"), UICreator.CreateTextBlock(string.Format("{0:0.#} {1}", new FuelUnitGtLConverter().Convert(airliner.FuelCapacity), new StringToLanguageConverter().Convert("gallons")))));
-            return panelAirlinerType;
+
+            scroller.Content = panelAirlinerType;
+            
+            return scroller;
 
         }
         //creates the quick info panel for the fleet airliner
-        private Panel createQuickInfoPanel()
+        private ScrollViewer createQuickInfoPanel()
         {
-         
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() / 3;
+            
             StackPanel panelInfo = new StackPanel();
 
             TextBlock txtHeader = new TextBlock();
@@ -202,7 +221,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush");
             txtHeader.TextAlignment = TextAlignment.Left;
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1016");
+            txtHeader.Text = Translator.GetInstance().GetString("PageFleetAirliner", "1030");
 
             panelInfo.Children.Add(txtHeader);
 
@@ -339,7 +358,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1024"), panelCoordinates));
 
-            return panelInfo;
+            scroller.Content = panelInfo;
+
+            return scroller;
 
         }
 

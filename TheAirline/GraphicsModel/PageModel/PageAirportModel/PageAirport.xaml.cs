@@ -46,15 +46,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             airportPanel.Children.Add(createQuickInfoPanel());
             airportPanel.Children.Add(createPassengersPanel());
-            //airportPanel.Children.Add(createArrivalsPanel());
-            //airportPanel.Children.Add(createDeparturesPanel());
-
-            //showFlights();
-
+         
             StandardContentPanel panelContent = new StandardContentPanel();
 
             panelContent.setContentPage(airportPanel, StandardContentPanel.ContentLocation.Left);
-
 
             StackPanel panelSideMenu = new PanelAirport(this.Airport);
 
