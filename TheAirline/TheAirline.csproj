@@ -258,6 +258,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageRouteModel\PageRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -536,6 +540,9 @@
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml.cs">
+      <DependentUpon>PagePilots.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageRouteModel\PageRoutes.xaml.cs">
       <DependentUpon>PageRoutes.xaml</DependentUpon>

@@ -31,7 +31,8 @@ namespace TheAirline.Model.AirportModel
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
         public Period Period { get; set; }
         public string ID { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, Weather.Season season)
+        public double Pax{ get; set; }
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, double pax, Weather.Season season)
         {
             this.Name = name;
             this.Period = period;
@@ -41,6 +42,7 @@ namespace TheAirline.Model.AirportModel
             this.Town = town;
             this.Coordinates = coordinates;
             this.Size = size;
+            this.Pax = pax;
             this.Cargo = cargo;
             this.Logo = "";
             this.OffsetDST = offsetDST;
