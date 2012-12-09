@@ -6,6 +6,8 @@ using System.Globalization;
 using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 
+//locked for verison 0.3.6 (this serves no purpose whatsoever)
+
 namespace TheAirline.Model.GeneralModel
 {
     //the class for the game object
@@ -33,7 +35,7 @@ namespace TheAirline.Model.GeneralModel
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
-            this.PagePerformanceCounterEnabled = false;
+            this.PagePerformanceCounterEnabled = true;
         }
 
         //returns the start money based on year of start
