@@ -9,8 +9,10 @@
     <SolidColorBrush x:Key="BackgroundTransparentBrush" Opacity="0.5" Color="Black"></SolidColorBrush>
     <SolidColorBrush x:Key="HeaderBackgroundBrush2" Color="#324D6A"></SolidColorBrush>
     <SolidColorBrush x:Key="ButtonBrush" Color="DarkBlue" Opacity="0.8"></SolidColorBrush>
+    <SolidColorBrush x:Key="ButtonTextColor" Color="DarkRed"></SolidColorBrush>
     <SolidColorBrush x:Key="TextColor" Color="White"></SolidColorBrush>
     <SolidColorBrush x:Key="HeaderTextColor" Color="Yellow"></SolidColorBrush>
+
 
     <BitmapImage x:Key="BackgroundImage" UriSource="pack://application:,,,/Data/images/BlankImage.png">
        
@@ -231,7 +233,8 @@ VerticalAlignment="Center"/>
 
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
         <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}"/>
-        <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
+     <!--   <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->
+        <Setter Property="Foreground" Value="{StaticResource ButtonTextColor}"></Setter>
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>

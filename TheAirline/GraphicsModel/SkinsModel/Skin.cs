@@ -60,7 +60,7 @@ namespace TheAirline.GraphicsModel.SkinsModel
         public static void Init()
         {
             LoadAvailableSkins();
-            SkinObject.GetInstance().setCurrentSkin(Skins.GetSkins()[1]);
+            SkinObject.GetInstance().setCurrentSkin(Skins.GetSkins()[Skins.GetSkins().Count-1]);
         }
         // loads all skins out of the skin directory
         public static void LoadAvailableSkins()

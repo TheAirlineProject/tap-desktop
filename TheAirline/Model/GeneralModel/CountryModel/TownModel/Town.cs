@@ -27,9 +27,14 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
     //the class which finds a town based on name
     public class Towns
     {
+        //returns all towns
+        public static List<Town> GetTowns()
+        {
+            return Airports.GetAllAirports().Select(a => a.Profile.Town).Distinct().ToList();
+        }
+        //returns a town
         public static Town GetTown(string name)
         {
-            
             return Airports.GetAirport(a => a.Profile.Town.Name == name).Profile.Town;
         }
         public static Town GetTown(string name, State state)

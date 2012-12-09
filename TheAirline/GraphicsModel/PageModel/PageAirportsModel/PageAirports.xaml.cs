@@ -17,6 +17,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 {
@@ -146,5 +148,64 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                     break;
             }
         }
+
+        private void btnRent_Click(object sender, RoutedEventArgs e)
+        {
+            Airport airport = (Airport)((Button)sender).Tag;
+            Boolean isRentable = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
+
+            if (!isRentable)
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2217"), Translator.GetInstance().GetString("MessageBox", "2217", "message"), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+
+                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                    airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+                    isRentable = true;
+                }
+            }
+
+            if (isRentable)
+            {
+                airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
+
+                showAirports();
+            }
+      
+        }
     }
+    //the converter for renting a gate    
+    public class RentingGateVisibility : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Visibility rv = Visibility.Collapsed;
+            try
+            {
+                Airport airport = (Airport)value;
+
+                Boolean isEnabled = isEnabled = airport.Terminals.getFreeGates() > 0;
+    
+             
+                rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return rv;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    
 }

@@ -22,6 +22,7 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.GeneralModel.HistoricEventModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -73,8 +74,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateTimeZones();
                 CreateFeeTypes();
                 CreateFlightFacilities();
-                
-
+           
                 LoadStandardConfigurations();
 
                 LoadAirlines();
@@ -119,6 +119,36 @@ namespace TheAirline.Model.GeneralModel
             HistoricEvents.Clear();
             WeatherAverages.Clear();
             DifficultyLevels.Clear();
+            Pilots.Clear();
+        }
+        /*! creates some pilots
+         */
+        private static void CreatePilots()
+        {
+            List<Town> towns = Towns.GetTowns();
+
+            int pilotsPool = 100;
+
+            for (int i = 0; i < pilotsPool; i++)
+            {
+                Town town = towns[rnd.Next(towns.Count)];
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55),GameObject.GetInstance().GameTime.AddYears(-23));
+                PilotProfile profile = new PilotProfile("John","Doe"+(i+1),birthdate,town);
+
+                Dictionary<Pilot.PilotRanking,int> rankings = new Dictionary<Pilot.PilotRanking,int>();
+                rankings.Add(Pilot.PilotRanking.A,10);
+                rankings.Add(Pilot.PilotRanking.B,20);
+                rankings.Add(Pilot.PilotRanking.C,40);
+                rankings.Add(Pilot.PilotRanking.D,20);
+                rankings.Add(Pilot.PilotRanking.E,10);
+
+                 Pilot.PilotRanking ranking = AIHelpers.GetRandomItem<Pilot.PilotRanking>(rankings);
+
+                DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23),birthdate.AddYears(55));
+                Pilot pilot = new Pilot(profile,educationTime,ranking);
+
+                Pilots.AddPilot(pilot);
+            }
         }
         /*! creates the Advertisement types
          */
@@ -1245,6 +1275,8 @@ namespace TheAirline.Model.GeneralModel
          */
         public static void SetupTestGame(int opponents)
         {
+            CreatePilots();   
+
             RemoveAirlines(opponents);
 
             //sets all the facilities at an airport to none for all airlines

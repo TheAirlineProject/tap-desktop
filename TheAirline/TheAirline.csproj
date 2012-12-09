@@ -729,6 +729,8 @@
     <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsValue.cs" />
     <Compile Include="Model\GeneralModel\Translator.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\Weather.cs" />
+    <Compile Include="Model\PilotModel\Pilot.cs" />
+    <Compile Include="Model\PilotModel\PilotProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

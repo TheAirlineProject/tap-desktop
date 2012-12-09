@@ -12,7 +12,19 @@ namespace TheAirline.Model.GeneralModel
 {
     public class MathHelpers
     {
+        private static Random rnd = new Random();
+        //returns a random date 
+        public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
+        {
 
+            TimeSpan timeSpan = maxDate - minDate;
+            TimeSpan randomSpan = new TimeSpan((long)(timeSpan.Ticks * rnd.NextDouble()));
+
+            DateTime rDate = (minDate + randomSpan).Date;
+
+            return rDate;
+
+        }
         //moves a object with coordinates in a direction for a specific distance in kilometers
         public static void MoveObject(Coordinates coordinates, Coordinates destination, double dist)
         {
