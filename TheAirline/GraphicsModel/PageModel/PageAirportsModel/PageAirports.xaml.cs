@@ -156,18 +156,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             if (!isRentable)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2217"), Translator.GetInstance().GetString("MessageBox", "2217", "message"), WPFMessageBoxButtons.YesNo);
-
-                if (result == WPFMessageBoxResult.Yes)
-                {
-
                     AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
                     airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                     isRentable = true;
-                }
             }
 
             if (isRentable)
