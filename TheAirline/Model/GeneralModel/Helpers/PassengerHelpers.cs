@@ -128,7 +128,10 @@ namespace TheAirline.Model.GeneralModel
 
             double totalRatio = rations.Values.Sum();
 
-            double routeRatioPercent = rations[currentRoute] / totalRatio;
+            double routeRatioPercent = 1;
+
+            if (rations.ContainsKey(currentRoute))
+                routeRatioPercent = rations[currentRoute] / totalRatio;
 
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
 
