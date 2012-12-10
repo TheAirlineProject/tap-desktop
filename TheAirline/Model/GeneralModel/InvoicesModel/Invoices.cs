@@ -20,16 +20,18 @@ namespace TheAirline.Model.GeneralModel.InvoicesModel
         }
         public void addInvoice(Invoice.InvoiceType type, int year, int month, double amount)
         {
-         
-            if (contains(type, year, month))
+            lock (this.MonthlyInvoices)
             {
-                MonthlyInvoice mInvoice = this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type);
-                mInvoice.Amount += amount;
-            }
-            else
-            {
-                MonthlyInvoice mInvoice = new MonthlyInvoice(type, year, month, amount);
-                this.MonthlyInvoices.Add(mInvoice);
+                if (contains(type, year, month))
+                {
+                    MonthlyInvoice mInvoice = this.MonthlyInvoices.Find(m => m.Month == month && m.Year == year && m.Type == type);
+                    mInvoice.Amount += amount;
+                }
+                else
+                {
+                    MonthlyInvoice mInvoice = new MonthlyInvoice(type, year, month, amount);
+                    this.MonthlyInvoices.Add(mInvoice);
+                }
             }
         }
         //returns the yearly amount for a given type and year
@@ -71,7 +73,10 @@ namespace TheAirline.Model.GeneralModel.InvoicesModel
         //returns if the invoices contains a month, year and type element
         public Boolean contains(Invoice.InvoiceType type,int year, int month)
         {
-            return this.MonthlyInvoices.Exists(m=>m.Month == month && m.Year == year && m.Type == type);
+            lock (this.MonthlyInvoices)
+            {
+                return this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year && m.Type == type);
+            }
         }
     }
 }

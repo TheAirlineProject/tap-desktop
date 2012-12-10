@@ -125,6 +125,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreatePilots()
         {
+            /*
             List<Town> towns = Towns.GetTowns();
 
             int pilotsPool = 100;
@@ -149,6 +150,7 @@ namespace TheAirline.Model.GeneralModel
 
                 Pilots.AddPilot(pilot);
             });
+             * */
         }
         /*! creates the Advertisement types
          */

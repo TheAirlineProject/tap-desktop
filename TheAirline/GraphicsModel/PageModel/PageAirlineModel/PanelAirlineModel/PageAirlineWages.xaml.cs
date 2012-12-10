@@ -376,7 +376,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             for (int i = 15; i < 150; i += 15)
                 cbCancellationPolicy.Items.Add(i);
 
-            cbCancellationPolicy.SelectedItem = GameObject.GetInstance().HumanAirline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
+            cbCancellationPolicy.SelectedItem = this.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
 
             lbPolicies.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineWages","1017"),cbCancellationPolicy));
 

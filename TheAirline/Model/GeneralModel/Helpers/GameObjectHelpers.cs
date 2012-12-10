@@ -552,37 +552,44 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.CurrentFlight == null)
             {
                 Route route = GetNextRoute(airliner);
-                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
-            }
-            double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
-            double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                if (route == null || route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition) == null)
+                    airliner.CurrentFlight = null;
+                else
+                    airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
+            }
             if (airliner.CurrentFlight != null)
             {
+                double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+
+                double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+
                 Weather currentWeather = GetAirlinerWeather(airliner);
                 //int wind = currentWeather.Direction == Weather.WindDirection.Tail ? (int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn) : -(int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
                 int wind = GetWindInfluence(airliner) * ((int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn));
 
                 speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
 
+
+                if (adistance > 4)
+                    MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates)));
+
+                double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+
+                if (MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates) < 5)
+                {
+                    if (airliner.Status == FleetAirliner.AirlinerStatus.On_route)
+                        SimulateLanding(airliner);
+                    else if (airliner.Status == FleetAirliner.AirlinerStatus.On_service)
+                        SimulateService(airliner);
+                    else if (airliner.Status == FleetAirliner.AirlinerStatus.To_homebase)
+                        SimulateToHomebase(airliner);
+                    //else if (airliner.Status == FleetAirliner.AirlinerStatus.To_route_start)
+                    //  SimulateRouteStart(airliner);
+                }
             }
-            if (adistance > 4)
-                MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates)));
-
-            double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
-
-            if (MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates) < 5)
-            {
-                if (airliner.Status == FleetAirliner.AirlinerStatus.On_route)
-                    SimulateLanding(airliner);
-                else if (airliner.Status == FleetAirliner.AirlinerStatus.On_service)
-                    SimulateService(airliner);
-                else if (airliner.Status == FleetAirliner.AirlinerStatus.To_homebase)
-                    SimulateToHomebase(airliner);
-                //else if (airliner.Status == FleetAirliner.AirlinerStatus.To_route_start)
-                //  SimulateRouteStart(airliner);
-            }
-
+            else
+                airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
         }
         //the method for updating a route airliner with status toroutestart

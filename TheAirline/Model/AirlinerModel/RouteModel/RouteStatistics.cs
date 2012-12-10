@@ -36,11 +36,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //adds the value for a statistics type to a route class
         public void addStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
         {
-            if (!this.Stats.ContainsKey(aClass))
-                this.Stats.Add(aClass, new Dictionary<StatisticsType, int>());
-            if (!this.Stats[aClass].ContainsKey(type))
-                this.Stats[aClass].Add(type, 0);
-            this.Stats[aClass][type] += value;
+            lock (this.Stats)
+            {
+                if (!this.Stats.ContainsKey(aClass))
+                    this.Stats.Add(aClass, new Dictionary<StatisticsType, int>());
+                if (!this.Stats[aClass].ContainsKey(type))
+                    this.Stats[aClass].Add(type, 0);
+                this.Stats[aClass][type] += value;
+            }
         }
         //sets the value for a statistics type to a route class
         public void setStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
