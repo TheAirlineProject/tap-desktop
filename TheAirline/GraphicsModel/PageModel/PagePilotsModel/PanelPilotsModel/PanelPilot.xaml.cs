@@ -44,7 +44,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             ListBox lbPilotInformation = new ListBox();
             lbPilotInformation.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             lbPilotInformation.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-
+            
             lbPilotInformation.Items.Add(new QuickInfoValue("Name", UICreator.CreateTextBlock(this.Pilot.Profile.Name)));
             lbPilotInformation.Items.Add(new QuickInfoValue("Date of birth", UICreator.CreateTextBlock(this.Pilot.Profile.Birthdate.ToShortDateString())));
             lbPilotInformation.Items.Add(new QuickInfoValue("Town", UICreator.CreateTownPanel(this.Pilot.Profile.Town)));

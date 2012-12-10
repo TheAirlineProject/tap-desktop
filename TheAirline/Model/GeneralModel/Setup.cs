@@ -638,7 +638,7 @@ namespace TheAirline.Model.GeneralModel
                     if (airliner.HasAttribute("image"))
                         type.Image = dir + airliner.Attributes["image"].Value + ".png";
 
-                    if (type != null)
+                    if (type != null && airlinerType == AirlinerType.TypeOfAirliner.Passenger)
                         AirlinerTypes.AddType(type);
                 }
             }
