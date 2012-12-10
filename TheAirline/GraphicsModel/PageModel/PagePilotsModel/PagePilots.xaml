@@ -7,8 +7,31 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PagePilots">
+    <Page.Resources>
+        <DataTemplate x:Key="PilotsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="Name" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Age" Width="50" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Ranking" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Country" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
 
-    <Grid>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="PilotItem">
+            <WrapPanel>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding }" Click="lnkPilot_Click">
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Ranking}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}"></ContentControl>
+
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
         
     </Grid>
 </page:StandardPage>

@@ -12,6 +12,7 @@ using System.Windows.Media.Effects;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -127,6 +128,36 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             panelLogo.Children.Add(imgLogo);
 
             return panelLogo;
+        }
+        //creates the a town panel
+        public static WrapPanel CreateTownPanel(Town town)
+        {
+            WrapPanel townPanel = new WrapPanel();
+
+            if (town.State != null)
+            {
+                TextBlock txtTown = UICreator.CreateTextBlock(string.Format("{0}, {1}", town.Name, town.State.ShortName));
+                txtTown.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+                townPanel.Children.Add(txtTown);
+
+                if (town.State.Flag != null)
+                {
+                    Image imgFlag = new Image();
+                    imgFlag.Source = new BitmapImage(new Uri(town.State.Flag, UriKind.RelativeOrAbsolute));
+                    imgFlag.Height = 24;
+                    RenderOptions.SetBitmapScalingMode(imgFlag, BitmapScalingMode.HighQuality);
+
+                    imgFlag.Margin = new Thickness(5, 0, 0, 0);
+
+                    townPanel.Children.Add(imgFlag);
+                }
+
+            }
+            else
+                townPanel.Children.Add(UICreator.CreateTextBlock(town.Name));
+
+            return townPanel;
         }
         /*! creates an image button
          */

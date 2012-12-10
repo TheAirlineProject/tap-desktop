@@ -299,34 +299,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             DockPanel panelHomeBase = new DockPanel();
 
-            lblAirport = new ContentControl();
-            lblAirport.MouseDown += new MouseButtonEventHandler(lblAirport_MouseDown);
-            lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItem");
-            lblAirport.Content = this.Airliner.Homebase;
-
-            panelHomeBase.Children.Add(lblAirport);
-
             Button btnEditHomeBase = new Button();
             btnEditHomeBase.Background = Brushes.Transparent;
             btnEditHomeBase.Click += new RoutedEventHandler(btnEditHomeBase_Click);
+            btnEditHomeBase.Margin = new Thickness(0, 0, 5, 0);
 
             Image imgEdit = new Image();
             imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
             imgEdit.Width = 16;
             RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
-
-
+            
             btnEditHomeBase.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
             btnEditHomeBase.Content = imgEdit;
 
             panelHomeBase.Children.Add(btnEditHomeBase);
 
+            lblAirport = new ContentControl();
+            lblAirport.MouseDown += new MouseButtonEventHandler(lblAirport_MouseDown);
+            lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItem");
+            lblAirport.Content = this.Airliner.Homebase;
 
-
-
-
-
+            panelHomeBase.Children.Add(lblAirport);
+            
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1018"), panelHomeBase));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1019"), UICreator.CreateTextBlock(string.Format(Translator.GetInstance().GetString("PageFleetAirliner", "1020"), this.Airliner.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Airliner.Age))));

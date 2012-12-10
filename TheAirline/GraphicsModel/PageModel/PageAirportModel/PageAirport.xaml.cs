@@ -309,24 +309,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1009"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Type).ToString())));
     
 
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"),createTownPanel()));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"),UICreator.CreateTownPanel(this.Airport.Profile.Town)));
     
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1022"), UICreator.CreateTextBlock(this.Airport.Profile.Period.From.ToShortDateString())));
-
-            if (GameObject.GetInstance().GameTime.AddDays(14) > this.Airport.Profile.Period.To)
-            {
-            
-                TextBlock txtClosingDate = UICreator.CreateTextBlock(this.Airport.Profile.Period.To.ToShortDateString());
-                txtClosingDate.Foreground = Brushes.DarkRed;
-
-                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1024"),txtClosingDate ));
-            }
+          
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
             lblFlag.Content = new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country);//this.Airport.Profile.Country is TemporaryCountry ? ((TemporaryCountry)this.Airport.Profile.Country).getCurrentCountry(GameObject.GetInstance().GameTime) : this.Airport.Profile.Country;
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1011"), lblFlag));
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1022"), UICreator.CreateTextBlock(this.Airport.Profile.Period.From.ToShortDateString())));
+
+            if (GameObject.GetInstance().GameTime.AddDays(14) > this.Airport.Profile.Period.To)
+            {
+
+                TextBlock txtClosingDate = UICreator.CreateTextBlock(this.Airport.Profile.Period.To.ToShortDateString());
+                txtClosingDate.Foreground = Brushes.DarkRed;
+
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1024"), txtClosingDate));
+            }
 
             GameTimeZone tz = this.Airport.Profile.TimeZone;
 
@@ -380,38 +382,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             return scroller;
         }
-        //creates the town panel
-        private WrapPanel createTownPanel()
-        {
-            WrapPanel townPanel = new WrapPanel();
-
-         
-            if (this.Airport.Profile.Town.State != null)
-            {
-                TextBlock txtTown = UICreator.CreateTextBlock(string.Format("{0}, {1}",this.Airport.Profile.Town.Name, this.Airport.Profile.Town.State.ShortName));
-                txtTown.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-                townPanel.Children.Add(txtTown);
-
-                if (this.Airport.Profile.Town.State.Flag != null)
-                {
-                    Image imgFlag = new Image();
-                    imgFlag.Source = new BitmapImage(new Uri(this.Airport.Profile.Town.State.Flag, UriKind.RelativeOrAbsolute));
-                    imgFlag.Height = 24;
-                    imgFlag.MouseDown += new MouseButtonEventHandler(imgMap_MouseDown);
-                    RenderOptions.SetBitmapScalingMode(imgFlag, BitmapScalingMode.HighQuality);
-
-                    imgFlag.Margin = new Thickness(5, 0, 0, 0);
-
-                    townPanel.Children.Add(imgFlag);
-                }
-
-            }
-            else
-                townPanel.Children.Add(UICreator.CreateTextBlock(this.Airport.Profile.Town.Name));
-
-            return townPanel;
-        }
+        
         private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PopUpAirportMap.ShowPopUp(this.Airport);

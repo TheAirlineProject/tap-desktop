@@ -30,6 +30,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageFlightsModel;
 using System.Windows.Threading;
 using System.Threading;
+using TheAirline.GraphicsModel.PageModel.PagePilotsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -216,7 +217,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().start();
             
         }
-
+        private void lnkPilots_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PagePilots());
+        }
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {
        
@@ -300,6 +304,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             return brdSplasInner;
 
         }
+
+       
       
     }
 }

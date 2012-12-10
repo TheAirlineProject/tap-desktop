@@ -47,5 +47,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             if (ContentHeight < 1)
                 ContentHeight = height;
         }
+       
     }
 }

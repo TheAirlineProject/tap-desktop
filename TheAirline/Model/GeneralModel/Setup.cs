@@ -129,26 +129,26 @@ namespace TheAirline.Model.GeneralModel
 
             int pilotsPool = 100;
 
-            for (int i = 0; i < pilotsPool; i++)
+            Parallel.For(0, pilotsPool, i =>
             {
                 Town town = towns[rnd.Next(towns.Count)];
-                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55),GameObject.GetInstance().GameTime.AddYears(-23));
-                PilotProfile profile = new PilotProfile("John","Doe"+(i+1),birthdate,town);
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                PilotProfile profile = new PilotProfile("John", "Doe" + (i + 1), birthdate, town);
 
-                Dictionary<Pilot.PilotRanking,int> rankings = new Dictionary<Pilot.PilotRanking,int>();
-                rankings.Add(Pilot.PilotRanking.A,10);
-                rankings.Add(Pilot.PilotRanking.B,20);
-                rankings.Add(Pilot.PilotRanking.C,40);
-                rankings.Add(Pilot.PilotRanking.D,20);
-                rankings.Add(Pilot.PilotRanking.E,10);
+                Dictionary<Pilot.PilotRanking, int> rankings = new Dictionary<Pilot.PilotRanking, int>();
+                rankings.Add(Pilot.PilotRanking.A, 10);
+                rankings.Add(Pilot.PilotRanking.B, 20);
+                rankings.Add(Pilot.PilotRanking.C, 40);
+                rankings.Add(Pilot.PilotRanking.D, 20);
+                rankings.Add(Pilot.PilotRanking.E, 10);
 
-                 Pilot.PilotRanking ranking = AIHelpers.GetRandomItem<Pilot.PilotRanking>(rankings);
+                Pilot.PilotRanking ranking = AIHelpers.GetRandomItem<Pilot.PilotRanking>(rankings);
 
-                DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23),birthdate.AddYears(55));
-                Pilot pilot = new Pilot(profile,educationTime,ranking);
+                DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), birthdate.AddYears(55));
+                Pilot pilot = new Pilot(profile, educationTime, ranking);
 
                 Pilots.AddPilot(pilot);
-            }
+            });
         }
         /*! creates the Advertisement types
          */

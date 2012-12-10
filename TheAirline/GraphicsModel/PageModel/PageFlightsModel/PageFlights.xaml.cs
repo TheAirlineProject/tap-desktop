@@ -93,6 +93,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
         {
             StackPanel panelFlights = new StackPanel();
             panelFlights.Margin = new Thickness(0, 5, 0, 0);
+
             ContentControl txtHeader = new ContentControl();
             txtHeader.ContentTemplate = this.Resources["FlightsHeader"] as DataTemplate;
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;

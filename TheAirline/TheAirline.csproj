@@ -262,6 +262,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelPilot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageRouteModel\PageRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -543,6 +547,9 @@
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml.cs">
       <DependentUpon>PagePilots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelPilot.xaml.cs">
+      <DependentUpon>PanelPilot.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageRouteModel\PageRoutes.xaml.cs">
       <DependentUpon>PageRoutes.xaml</DependentUpon>

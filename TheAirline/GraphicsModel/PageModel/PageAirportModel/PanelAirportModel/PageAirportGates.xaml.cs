@@ -57,7 +57,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             svTerminals.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
 
             StackPanel panelTerminals = new StackPanel();
-           
+
             TextBlock txtTerminalsInfoHeader = new TextBlock();
             txtTerminalsInfoHeader.Uid = "1001";
             txtTerminalsInfoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -80,7 +80,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
             panelGatesTerminals.Children.Add(panelButtons);
-            
+
 
             Button btnTerminal = new Button();
             btnTerminal.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -104,8 +104,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnHub.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             panelButtons.Children.Add(btnHub);
 
-            Airport allocateToAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Profile.Period.From.AddDays(30)>GameObject.GetInstance().GameTime).FirstOrDefault();
-            
+            Airport allocateToAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Profile.Period.From.AddDays(30) > GameObject.GetInstance().GameTime).FirstOrDefault();
+
             Button btnReallocate = new Button();
             btnReallocate.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnReallocate.Uid = "205";
@@ -113,12 +113,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnReallocate.Height = Double.NaN;
             btnReallocate.Tag = allocateToAirport;
             btnReallocate.Content = string.Format(Translator.GetInstance().GetString("PageAirportGates", btnReallocate.Uid), allocateToAirport == null ? "" : new AirportCodeConverter().Convert(allocateToAirport).ToString());
-            btnReallocate.Visibility = allocateToAirport == null || this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)==0 ? Visibility.Collapsed : Visibility.Visible;
+            btnReallocate.Visibility = allocateToAirport == null || this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 0 ? Visibility.Collapsed : Visibility.Visible;
             btnReallocate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnReallocate.Margin = new Thickness(5, 0, 0, 0);
             btnReallocate.Click += new RoutedEventHandler(btnReallocate_Click);
             panelButtons.Children.Add(btnReallocate);
-      
+
             this.Content = panelGatesTerminals;
 
             showGatesInformation();
@@ -127,11 +127,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             sw.Stop();
 
             PerformanceCounters.AddPerformanceCounter(new PagePerformanceCounter("PageAirportGate", GameObject.GetInstance().GameTime, sw.ElapsedMilliseconds));
-           
+
         }
 
-       
-       
+
+
         //shows the hubs
         private void showHubs()
         {
@@ -140,16 +140,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             foreach (Hub hub in this.Airport.Hubs)
                 lbHubs.Items.Add(hub);
 
-            int airlineValue = (int)GameObject.GetInstance().HumanAirline.getAirlineValue()+1;
+            int airlineValue = (int)GameObject.GetInstance().HumanAirline.getAirlineValue() + 1;
 
             int totalHumanHubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline));
             double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
             Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
-            
+
             Boolean isBuyHubEnabled = (GameObject.GetInstance().HumanAirline.Money > this.Airport.getHubPrice()) && (!humanHub) && (humanGatesPercent > 20) && (totalHumanHubs < airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= Hub.MinimumServiceFacility.TypeLevel);
             btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-        
+
         }
         // chs, 2011-28-10 changed to show all terminals
         //shows the terminals
@@ -192,7 +192,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             panelGates.Children.Add(grdGatesHubs);
 
             StackPanel panelAirlineGates = new StackPanel();
-            panelAirlineGates.Margin = new Thickness(0,0,5,0);
+            panelAirlineGates.Margin = new Thickness(0, 0, 5, 0);
 
             TextBlock txtGatesHeader = new TextBlock();
             txtGatesHeader.Uid = "1007";
@@ -207,15 +207,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbAirlineGates.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbAirlineGates.ItemTemplate = this.Resources["AirlineGatesItem"] as DataTemplate;
             lbAirlineGates.Height = GraphicsHelpers.GetContentHeight() / 4;
-            
+
             panelAirlineGates.Children.Add(lbAirlineGates);
 
             List<Airline> airlines = (from a in Airlines.GetAllAirlines() where this.Airport.Terminals.getNumberOfGates(a) > 0 orderby a.Profile.Name select a).ToList();
-           
+
             foreach (Airline airline in airlines)
                 lbAirlineGates.Items.Add(new AirlineGates(airline, this.Airport.Terminals.getNumberOfGates(airline), this.Airport.Terminals.getNumberOfGates(airline) - this.Airport.Terminals.getFreeGates(airline)));
 
-            Grid.SetColumn(panelAirlineGates,0);
+            Grid.SetColumn(panelAirlineGates, 0);
             grdGatesHubs.Children.Add(panelAirlineGates);
 
             StackPanel panelHubs = new StackPanel();
@@ -262,7 +262,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                     if (result == WPFMessageBoxResult.Yes)
                     {
 
-                       
+
 
                         this.Airport.addTerminal(terminal);
                         showGatesInformation();
@@ -270,14 +270,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                         AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
 
-                        
-           
+
+
                     }
                 }
             }
         }
-        
-       
+
+
         private void btnRentGate_Click(object sender, RoutedEventArgs e)
         {
 
@@ -286,18 +286,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if (!isRentable)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2217"), Translator.GetInstance().GetString("MessageBox", "2217", "message"), WPFMessageBoxButtons.YesNo);
 
-                if (result == WPFMessageBoxResult.Yes)
-                {
-                    
-                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                    this.Airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
-                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
-                                                      
-                    isRentable = true;
-                }
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                this.Airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+                isRentable = true;
+
             }
 
             if (isRentable)
@@ -309,18 +306,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 showTerminals();
                 showHubs();
             }
-      
+
         }
 
         private void btnReleaseGate_Click(object sender, RoutedEventArgs e)
         {
-            double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)-1) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
+            double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) - 1) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
             Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             if (humanGatesPercent < 20 && humanHub)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2215"), Translator.GetInstance().GetString("MessageBox", "2215", "message"), WPFMessageBoxButtons.Ok);
-    
+
             }
             else
             {
@@ -348,29 +345,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         }
         private void btnHub_Click(object sender, RoutedEventArgs e)
         {
-            
 
-              if (this.Airport.getHubPrice() > GameObject.GetInstance().HumanAirline.Money)
-              {
-                  WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2212"), Translator.GetInstance().GetString("MessageBox", "2212", "message"), WPFMessageBoxButtons.Ok);
-              }
-              else
-              {
-                  WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2213"), string.Format(Translator.GetInstance().GetString("MessageBox", "2213", "message"), this.Airport.getHubPrice()), WPFMessageBoxButtons.YesNo);
 
-                  if (result == WPFMessageBoxResult.Yes)
-                  {
-                      this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
+            if (this.Airport.getHubPrice() > GameObject.GetInstance().HumanAirline.Money)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2212"), Translator.GetInstance().GetString("MessageBox", "2212", "message"), WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2213"), string.Format(Translator.GetInstance().GetString("MessageBox", "2213", "message"), this.Airport.getHubPrice()), WPFMessageBoxButtons.YesNo);
 
-                      showHubs();
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
 
-                      AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airport.getHubPrice());
+                    showHubs();
 
-         
-        
-                  }
-              }
-           
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airport.getHubPrice());
+
+
+
+                }
+            }
+
         }
 
         private void Hyperlink_Click(object sender, RoutedEventArgs e)
@@ -432,18 +429,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             Terminal terminal = (Terminal)((Button)sender).Tag;
 
-            long price= terminal.Gates.NumberOfGates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
+            long price = terminal.Gates.NumberOfGates * this.Airport.getTerminalGatePrice() + this.Airport.getTerminalPrice();
 
             if (price > GameObject.GetInstance().HumanAirline.Money)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2205"), Translator.GetInstance().GetString("MessageBox", "2205", "message"), WPFMessageBoxButtons.Ok);
-      
+
             }
             else
             {
-                
-                WPFMessageBoxResult result =  WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2211"), string.Format(Translator.GetInstance().GetString("MessageBox", "2211", "message"), price), WPFMessageBoxButtons.YesNo);
-      
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2211"), string.Format(Translator.GetInstance().GetString("MessageBox", "2211", "message"), price), WPFMessageBoxButtons.YesNo);
+
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     terminal.purchaseTerminal(GameObject.GetInstance().HumanAirline);
@@ -453,7 +450,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
 
-              }
+            }
 
 
         }
@@ -474,7 +471,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                     int gates = (int)o;
 
                     long price = gates * this.Airport.getTerminalGatePrice();
-                    
+
                     terminal.extendTerminal(gates);
 
                     showTerminals();
@@ -482,10 +479,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
 
-                    
+
                 }
             }
-           
+
         }
         //the class for the gates at an airport
         private class AirlineGates
@@ -502,10 +499,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             }
         }
 
-     
 
-        
-      
+
+
+
 
     }
     // chs 11-10-11: added for rent and releasing gates at a specific terminal
@@ -524,20 +521,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 if (type == "Rent")
                 {
-                    isEnabled = terminal.Gates.getFreeGates() > 0 && terminal.Airline == null; 
-                   
+                    isEnabled = terminal.Gates.getFreeGates() > 0 && terminal.Airline == null;
+
                 }
                 if (type == "Release")
                 {
-                    Boolean hasFacilities = terminal.Airport.hasFacilities(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.CheckIn);
-                    isEnabled = terminal.Gates.getFreeGates(GameObject.GetInstance().HumanAirline)>0 && terminal.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && terminal.Airline == null && !(hasFacilities && terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && terminal.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && GameObject.GetInstance().HumanAirline.Airports.Count == 1) && !(AirportHelpers.GetAirportRoutes(terminal.Airport, GameObject.GetInstance().HumanAirline).Count > 0 && terminal.Airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline) == 0);
+                    Boolean hasFacilities = terminal.Airport.hasFacilities(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn);
+                    isEnabled = terminal.Gates.getFreeGates(GameObject.GetInstance().HumanAirline) > 0 && terminal.Gates.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && terminal.Airline == null && !(hasFacilities && terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && terminal.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)) && !(terminal.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 1 && GameObject.GetInstance().HumanAirline.Airports.Count == 1) && !(AirportHelpers.GetAirportRoutes(terminal.Airport, GameObject.GetInstance().HumanAirline).Count > 0 && terminal.Airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline) == 0);
                 }
-                rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled,null,null,null);
-              
+                rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);
+
             }
             catch (Exception)
             {
-               
+
             }
             return rv;
         }
@@ -547,5 +544,5 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             throw new NotImplementedException();
         }
     }
-    
+
 }

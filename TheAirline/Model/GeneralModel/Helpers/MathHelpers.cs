@@ -25,6 +25,17 @@ namespace TheAirline.Model.GeneralModel
             return rDate;
 
         }
+        //returns the age 
+        public static int GetAge(DateTime date)
+        {
+            int years = GameObject.GetInstance().GameTime.Year - date.Year;
+
+            date = date.AddYears(years);
+
+            if (GameObject.GetInstance().GameTime.CompareTo(date) < 0) { years--; }
+
+            return years;
+        }
         //moves a object with coordinates in a direction for a specific distance in kilometers
         public static void MoveObject(Coordinates coordinates, Coordinates destination, double dist)
         {

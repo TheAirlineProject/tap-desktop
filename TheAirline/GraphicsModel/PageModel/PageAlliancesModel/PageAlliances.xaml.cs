@@ -24,7 +24,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
     /// </summary>
     public partial class PageAlliances : StandardPage
     {
-        private Frame panelSidePanel;
+        private Frame panelSideMenu;
         private ListBox lbAlliances, lbRequests;
         public PageAlliances()
         {
@@ -76,9 +76,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
 
             panelContent.setContentPage(alliancesPanel, StandardContentPanel.ContentLocation.Left);
                      
-            panelSidePanel = new Frame();
+            panelSideMenu = new Frame();
 
-            panelContent.setContentPage(panelSidePanel, StandardContentPanel.ContentLocation.Right);
+            panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
 
             base.setContent(panelContent);
 
@@ -109,14 +109,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-            panelSidePanel.Content = new PanelNewAlliance();
+            panelSideMenu.Content = new PanelNewAlliance();
         }
       
 
         private void lnkAlliance_Click(object sender, RoutedEventArgs e)
         {
             Alliance alliance = (Alliance)((Hyperlink)sender).Tag;
-            panelSidePanel.Content = new PanelAlliance(this,alliance);
+            panelSideMenu.Content = new PanelAlliance(this,alliance);
         }
         private void btnAccept_Click(object sender, RoutedEventArgs e)
         {
@@ -139,7 +139,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
 
         public override void updatePage()
         {
-            panelSidePanel.Content = null;
+            panelSideMenu.Content = null;
 
             lbAlliances.Items.Refresh();
             
