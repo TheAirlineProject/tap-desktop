@@ -993,7 +993,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Route route = GetNextRoute(airliner);
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
-            airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+            if (route != null)
+                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+            else
+                airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
 
 
 

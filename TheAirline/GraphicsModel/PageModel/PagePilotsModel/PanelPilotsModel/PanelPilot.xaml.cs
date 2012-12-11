@@ -15,6 +15,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 {
@@ -88,7 +89,12 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-           
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2108"), Translator.GetInstance().GetString("MessageBox", "2108", "message"), WPFMessageBoxButtons.YesNo);
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                //foreach (FeeType type in this.FeeValues.Keys)
+                  //  this.Airline.Fees.setValue(type, this.FeeValues[type]);
+            }
         }
     }
 }

@@ -234,6 +234,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             double price = 0;
             int airliners = 0;
+            Boolean contractedOrder=false;
 
             lbOrders.Items.Clear();
 
@@ -245,9 +246,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 airliners += order.Value;
             }
         
+             if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Manufacturer)
+                contractedOrder = true;
+            
+             double discount = price *  (GeneralHelpers.GetAirlinerOrderDiscount(airliners) / 100); //price- price * + (GeneralHelpers.GetAirlinerOrderDiscount(airliners));<
+            
+             if (contractedOrder)
+                    discount += price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100);
 
-            txtDiscount.Text = string.Format("{0:C}", price * + (GeneralHelpers.GetAirlinerOrderDiscount(airliners)));
-            txtTotalPrice.Text = string.Format("{0:C}", price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(airliners))));
+         
+
+            txtDiscount.Text = string.Format("{0:C}", discount);
+            txtTotalPrice.Text = string.Format("{0:C}", price - discount);
 
 
 

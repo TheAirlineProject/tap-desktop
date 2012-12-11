@@ -80,7 +80,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement tailnumberNode in tailnumbersList)
             {
                 Country country = Countries.GetCountry(tailnumberNode.Attributes["country"].Value);
-                country.TailNumbers.LastTailNumber = tailnumberNode.Attributes["value"].Value;
+
+                if (country != null)
+                    country.TailNumbers.LastTailNumber = tailnumberNode.Attributes["value"].Value;
 
             }
 
@@ -91,42 +93,45 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement airlinerNode in airlinersList)
             {
                 AirlinerType type = AirlinerTypes.GetType(airlinerNode.Attributes["type"].Value);
-                string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
-                string last_service = airlinerNode.Attributes["last_service"].Value;
-                DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
-                double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
-                double damaged = Convert.ToDouble(airlinerNode.Attributes["damaged"].Value);
 
-                Airliner airliner = new Airliner(type, tailnumber, built);
-                airliner.Damaged = damaged;
-                airliner.Flown = flown;
-                airliner.clearAirlinerClasses();
-
-                XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
-
-                foreach (XmlElement airlinerClassNode in airlinerClassList)
+                if (type != null)
                 {
-                    AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), airlinerClassNode.Attributes["type"].Value);
-                    int airlinerClassSeating = Convert.ToInt16(airlinerClassNode.Attributes["seating"].Value);
+                    string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
+                    string last_service = airlinerNode.Attributes["last_service"].Value;
+                    DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
+                    double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
+                    double damaged = Convert.ToDouble(airlinerNode.Attributes["damaged"].Value);
 
-                    AirlinerClass aClass = new AirlinerClass(airliner, airlinerClassType, airlinerClassSeating);
-                    // chs, 2011-13-10 added for loading of airliner facilities
-                    XmlNodeList airlinerClassFacilitiesList = airlinerClassNode.SelectNodes("facilities/facility");
-                    foreach (XmlElement airlinerClassFacilityNode in airlinerClassFacilitiesList)
+                    Airliner airliner = new Airliner(type, tailnumber, built);
+                    airliner.Damaged = damaged;
+                    airliner.Flown = flown;
+                    airliner.clearAirlinerClasses();
+
+                    XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
+
+                    foreach (XmlElement airlinerClassNode in airlinerClassList)
                     {
-                        AirlinerFacility.FacilityType airlinerFacilityType = (AirlinerFacility.FacilityType)Enum.Parse(typeof(AirlinerFacility.FacilityType), airlinerClassFacilityNode.Attributes["type"].Value);
+                        AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), airlinerClassNode.Attributes["type"].Value);
+                        int airlinerClassSeating = Convert.ToInt16(airlinerClassNode.Attributes["seating"].Value);
 
-                        AirlinerFacility aFacility = AirlinerFacilities.GetFacility(airlinerFacilityType, airlinerClassFacilityNode.Attributes["uid"].Value);
-                        aClass.forceSetFacility(aFacility);
+                        AirlinerClass aClass = new AirlinerClass(airliner, airlinerClassType, airlinerClassSeating);
+                        // chs, 2011-13-10 added for loading of airliner facilities
+                        XmlNodeList airlinerClassFacilitiesList = airlinerClassNode.SelectNodes("facilities/facility");
+                        foreach (XmlElement airlinerClassFacilityNode in airlinerClassFacilitiesList)
+                        {
+                            AirlinerFacility.FacilityType airlinerFacilityType = (AirlinerFacility.FacilityType)Enum.Parse(typeof(AirlinerFacility.FacilityType), airlinerClassFacilityNode.Attributes["type"].Value);
+
+                            AirlinerFacility aFacility = AirlinerFacilities.GetFacility(airlinerFacilityType, airlinerClassFacilityNode.Attributes["uid"].Value);
+                            aClass.forceSetFacility(aFacility);
+                        }
+
+
+                        airliner.addAirlinerClass(aClass);
                     }
 
 
-                    airliner.addAirlinerClass(aClass);
+                    Airliners.AddAirliner(airliner);
                 }
-
-
-                Airliners.AddAirliner(airliner);
-
             }
 
 
