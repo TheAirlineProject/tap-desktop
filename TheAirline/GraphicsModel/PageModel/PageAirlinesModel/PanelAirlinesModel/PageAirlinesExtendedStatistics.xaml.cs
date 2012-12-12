@@ -26,11 +26,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
     /// </summary>
     public partial class PageAirlinesExtendedStatistics : Page
     {
-        public enum ViewType { Fleet=1001, Financial=1002 }
+        public enum ViewType { Fleet = 1001, Financial = 1002 }
         public ViewType View { get; set; }
         private StackPanel panelStats;
         private int StatWidth = 200;
-      
+
         public PageAirlinesExtendedStatistics(ViewType view)
         {
             this.View = view;
@@ -51,18 +51,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = string.Format(Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics",((int)this.View).ToString()));
+            txtHeader.Text = string.Format(Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", ((int)this.View).ToString()));
 
             panelStatistics.Children.Add(txtHeader);
 
             panelStats = new StackPanel();
 
-            
+
             panelStatistics.Children.Add(panelStats);
 
-           // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
+            // GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
 
-           // this.Unloaded += new RoutedEventHandler(PageAirlinesExtendedStatistics_Unloaded);
+            // this.Unloaded += new RoutedEventHandler(PageAirlinesExtendedStatistics_Unloaded);
 
             scroller.Content = panelStatistics;
 
@@ -83,13 +83,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             if (this.View == ViewType.Fleet)
             {
-                panelStats.Children.Add(createStatisticsPanel("getFleetSize", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1003"),false));
-                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge",Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1004"),false));
+                panelStats.Children.Add(createStatisticsPanel("getFleetSize", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1003"), false));
+                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1004"), false));
             }
             else if (this.View == ViewType.Financial)
             {
-                panelStats.Children.Add(createStatisticsPanel("getProfit", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1005"),true));
-                panelStats.Children.Add(createStatisticsPanel("getValue", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics","1006"),true));
+                panelStats.Children.Add(createStatisticsPanel("getProfit", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1005"), true));
+                panelStats.Children.Add(createStatisticsPanel("getValue", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1006"), true));
             }
 
         }
@@ -116,27 +116,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 lbStatistics.ItemTemplate = this.Resources["AirlineFinancialStatItem"] as DataTemplate;
             else
                 lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
-            
+
 
             double maxValue = getMaxValue(methodName);
 
             double coff = this.StatWidth / maxValue;
 
-            List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a=>!a.IsSubsidiary);
+            List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary);
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)
             {
 
                 MethodInfo method = typeof(Airline).GetMethod(methodName);
-                double value = (double)method.Invoke(airline, null);
+                long value = Convert.ToInt64(method.Invoke(airline, null));
 
                 lbStatistics.Items.Add(new AirlineStatisticsItem(airline, (int)value, Math.Max(1, (int)Convert.ToDouble(value * coff))));
 
                 foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
                 {
-                    double sValue = (double)method.Invoke(sAirline, null);
-                    lbStatistics.Items.Add(new AirlineStatisticsItem(sAirline,(int)sValue,Math.Max(1, (int)Convert.ToDouble(sValue * coff))));
+                    long sValue = Convert.ToInt64(method.Invoke(sAirline, null));
+                    lbStatistics.Items.Add(new AirlineStatisticsItem(sAirline, (int)sValue, Math.Max(1, (int)Convert.ToDouble(sValue * coff))));
                 }
 
             }
@@ -147,17 +147,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
         }
         //finds the maximum value for a type
-        private double getMaxValue(string methodName)
+        private long getMaxValue(string methodName)
         {
-            double value = 1;
+            long value = 1;
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
 
                 MethodInfo method = typeof(Airline).GetMethod(methodName);
-                double aValue = (double)method.Invoke(airline, null);
+                object v = method.Invoke(airline, null);
 
-                if (aValue > value)
-                    value = aValue;
+
+
+                if (Convert.ToInt64(v) > value)
+                    value = Convert.ToInt64(v);
+
+
             }
 
             return value;

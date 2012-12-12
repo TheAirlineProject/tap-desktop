@@ -68,6 +68,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
         //shows the list of pilots
         private void showPilots()
         {
+            lbPilots.Items.Clear();
+
             foreach (Pilot pilot in Pilots.GetUnassignedPilots())
             {
                 lbPilots.Items.Add(pilot);
@@ -77,8 +79,12 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
         private void lnkPilot_Click(object sender, RoutedEventArgs e)
         {
             Pilot pilot = (Pilot)((Hyperlink)sender).Tag;
-            panelSideMenu.Content = new PanelPilot(pilot);
+            panelSideMenu.Content = new PanelPilot(this,pilot);
           
+        }
+        public override void updatePage()
+        {
+            showPilots();
         }
     }
 }

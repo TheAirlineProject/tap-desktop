@@ -15,6 +15,7 @@ namespace TheAirline.Model.GeneralModel
     {
         private static GameObject GameInstance;
         public Boolean PagePerformanceCounterEnabled { get; set; }
+        public Boolean PilotsEnabled { get; set; }
         public DateTime GameTime { get; set; }
         public DateTime StartDate { get; set; }
         public Airline HumanAirline { get; set; }
@@ -36,6 +37,7 @@ namespace TheAirline.Model.GeneralModel
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
             this.PagePerformanceCounterEnabled = true;
+            this.PilotsEnabled = true;
         }
 
         //returns the start money based on year of start

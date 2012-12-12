@@ -238,7 +238,7 @@ namespace TheAirline.Model.AirlineModel
      
        
         //returns the value of the airline in "money"
-        public double getValue()
+        public long getValue()
         {
             double value = 0;
             value += this.Money;
@@ -261,8 +261,8 @@ namespace TheAirline.Model.AirlineModel
             }
             foreach (SubsidiaryAirline subAirline in this.Subsidiaries)
                 value += subAirline.getValue();
-
-            return value;
+            
+            return Convert.ToInt64(value);
            
         }
        

@@ -25,8 +25,10 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
     public partial class PanelPilot : Page
     {
         private Pilot Pilot;
-        public PanelPilot(Pilot pilot)
+        private PagePilots ParentPage;
+        public PanelPilot(PagePilots parent, Pilot pilot)
         {
+            this.ParentPage = parent;
             this.Pilot = pilot;
 
             InitializeComponent();
@@ -92,8 +94,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2108"), Translator.GetInstance().GetString("MessageBox", "2108", "message"), WPFMessageBoxButtons.YesNo);
             if (result == WPFMessageBoxResult.Yes)
             {
-                //foreach (FeeType type in this.FeeValues.Keys)
-                  //  this.Airline.Fees.setValue(type, this.FeeValues[type]);
+                //GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
+                this.ParentPage.updatePage();
             }
         }
     }
