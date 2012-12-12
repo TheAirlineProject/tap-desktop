@@ -714,14 +714,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return new KeyValuePair<Airliner, Boolean>((from a in airliners orderby a.Type.Range select a).First(), false);
             else
             {
-                if (airline.Mentality == Airline.AirlineMentality.Aggressive)
+                if (airline.Mentality == Airline.AirlineMentality.Aggressive || airline.Fleet.Count == 0)
                 {
                     double airlineLoanTotal = airline.Loans.Sum(l => l.PaymentLeft);
 
                     if (airlineLoanTotal < maxLoanTotal)
                     {
-                        List<Airliner> loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
-
+                        var loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
+                  
                         if (loanAirliners.Count > 0)
                             return new KeyValuePair<Airliner, Boolean>((from a in loanAirliners orderby a.Price select a).First(), true);
                         else
