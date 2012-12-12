@@ -337,8 +337,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbAirline.SelectedIndex = 0;
 
-            //sorted all
-
+        
             cbOpponents.Items.Clear();
 
             for (int i = 0; i < cbAirline.Items.Count; i++)
@@ -368,6 +367,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
   
             setAirportsView(year, ((Airline)cbAirline.SelectedItem).Profile.Country);
 
+            cbOpponents.Items.Clear();
+
+            for (int i = 0; i < cbAirline.Items.Count; i++)
+                cbOpponents.Items.Add(i);
+
+            cbOpponents.SelectedIndex = Math.Min(cbOpponents.Items.Count - 1, 3);
+
         }
 
         private void cbDifficulty_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -393,8 +399,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 setAirportsView(year, airline.Profile.Country);
 
-                if (airline.Profile.PreferedAirport != null)
+                if (airline.Profile.PreferedAirport != null && cbAirport.Items.Contains(airline.Profile.PreferedAirport))
                     cbAirport.SelectedItem = airline.Profile.PreferedAirport;
+                else
+                {
+                    var aa = cbAirport.Items.Cast<Airport>().ToList();
+                    Airport homeAirport =  aa.Find(a => a.Profile.Country == airline.Profile.Country);
+                    cbAirport.SelectedItem = homeAirport;
+                }
 
                 airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
                 txtName.Text = airline.Profile.CEO;
@@ -542,7 +554,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airportsView.Filter = o =>
                 {
                     Airport a = o as Airport;
-                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == country && GeneralHelpers.IsAirportActive(a);// && a.Terminals.getNumberOfGates() > 10 //a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
+                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == (Country)new CountryCurrentCountryConverter().Convert(country) && GeneralHelpers.IsAirportActive(a);// && a.Terminals.getNumberOfGates() > 10 //a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
                 };
             }
             catch (Exception ex)
