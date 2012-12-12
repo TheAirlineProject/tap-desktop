@@ -23,6 +23,7 @@ using TheAirline.Model.GeneralModel.HistoricEventModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
+using System.Globalization;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -938,8 +939,8 @@ namespace TheAirline.Model.GeneralModel
                 TemporaryCountry.TemporaryType tempType = (TemporaryCountry.TemporaryType)Enum.Parse(typeof(TemporaryCountry.TemporaryType), element.Attributes["type"].Value);
 
                 XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
-                DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value);
-                DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value);
+                DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value, new CultureInfo("en-US",false));
+                DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value, new CultureInfo("en-US",false));
 
                 Country country = new Country(section, uid, shortname, region, tailformat);
 
