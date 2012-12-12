@@ -213,6 +213,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the weather from an average
         private static Weather CreateDayWeather(DateTime date, Weather previousWeather, WeatherAverage average)
         {
+            
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
             Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
             Weather.CloudCover[] coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
@@ -244,7 +245,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 temperatureLow = rnd.NextDouble() * ((minTemp + 5) - (minTemp - 5)) + (minTemp - 5);
 
                 double maxTemp = Math.Min(average.TemperatureMax, previousTemperature + 5);
-                temperatureHigh = rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
+
+                temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);//rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
 
 
 
@@ -325,6 +327,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureLow = hourlyTemperature.Min(t => t.Temperature);
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
 
+            /*
+            double coverValue = hourlyTemperature.Average(t => (double)t.Cover);
+            double precipValue = hourlyTemperature.Average(t => (double)t.Precip);
+
+            cover = (Weather.CloudCover)Enum.ToObject(typeof(Weather.CloudCover), (int)coverValue);
+            precip = (Weather.Precipitation)Enum.ToObject(typeof(Weather.Precipitation), (int)precipValue);
+  */
 
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);
 
