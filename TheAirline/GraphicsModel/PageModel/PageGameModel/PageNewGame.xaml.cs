@@ -137,7 +137,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbLocalCurrency = new CheckBox();
             qivLocalCurrency = new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1014"), cbLocalCurrency);
-            //lbContent.Items.Add(qivLocalCurrency);
+            //lbContent.Items.Add(qivLocalCurrency); //+ weather
 
             txtName = new TextBox();
             txtName.Background = Brushes.Transparent;

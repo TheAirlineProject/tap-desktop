@@ -45,6 +45,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             StackPanel panelMain = new StackPanel();
+          
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.MaxHeight = this.Height - 50;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+
+            panelMain.Children.Add(scroller);
+
+            StackPanel panelAirlines = new StackPanel();
+            scroller.Content = panelAirlines;
 
             var airlines = from a in Airlines.GetAllAirlines() where !this.Alliance.Members.Contains(a) select a;
 
@@ -68,7 +78,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 panelAirline.Children.Add(cbAirline);
 
-                panelMain.Children.Add(panelAirline);
+                panelAirlines.Children.Add(panelAirline);
             }
 
             panelMain.Children.Add(createButtonsPanel());
