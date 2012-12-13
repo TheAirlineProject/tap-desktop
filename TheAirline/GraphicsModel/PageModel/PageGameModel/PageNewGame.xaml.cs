@@ -45,7 +45,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         private Popup popUpSplash;
-        private QuickInfoValue qivLocalCurrency;
         private CheckBox cbLocalCurrency;
         public PageNewGame()
         {
@@ -130,15 +129,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             txtIATA = UICreator.CreateTextBlock("");
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1003"), txtIATA));
 
+            StackPanel panelCountry = new StackPanel();
             cntCountry = new ContentControl();
             cntCountry.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
 
-            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1004"), cntCountry));
+            panelCountry.Children.Add(cntCountry);
 
             cbLocalCurrency = new CheckBox();
-            qivLocalCurrency = new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1014"), cbLocalCurrency);
-            //lbContent.Items.Add(qivLocalCurrency); //+ weather
+            cbLocalCurrency.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            cbLocalCurrency.Content = Translator.GetInstance().GetString("PageNewGame", "1014");
+            cbLocalCurrency.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
 
+            panelCountry.Children.Add(cbLocalCurrency);
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1004"), panelCountry));
+
+         
             txtName = new TextBox();
             txtName.Background = Brushes.Transparent;
             txtName.BorderBrush = Brushes.Black;
@@ -417,6 +423,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 txtName.Text = airline.Profile.CEO;
                 txtIATA.Text = airline.Profile.IATACode;
                 cntCountry.Content = airline.Profile.Country;
+                cbLocalCurrency.Visibility = airline.Profile.Country.CurrencyFormat != null ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+                
             }
 
         }
@@ -503,6 +511,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GameObject.GetInstance().HumanAirline = airline;
                 GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
+
+                if (cbLocalCurrency.IsChecked.Value && airline.Profile.Country.CurrencyFormat != null)
+                    AppSettings.GetInstance().setCurrencyFormat(airline.Profile.Country.CurrencyFormat);
+                else
+                    AppSettings.GetInstance().resetCurrencyFormat();
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
 

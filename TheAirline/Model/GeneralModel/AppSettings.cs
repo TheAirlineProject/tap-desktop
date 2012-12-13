@@ -6,10 +6,10 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel
 {
-    class AppSettings
+    public class AppSettings
     {
         private static AppSettings AppSettingsInstance;
-
+        private string OriginalFormat; 
         private Language Language;
 
         /*! private static variable basePath.
@@ -87,10 +87,21 @@ namespace TheAirline.Model.GeneralModel
              System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
 
-           // System.Threading.Thread.CurrentThread.CurrentCulture = new CultureInfo(language.CultureInfo, true);
-          //  System.Threading.Thread.CurrentThread.CurrentUICulture = new CultureInfo(language.CultureInfo, true);
+            this.OriginalFormat = ci.NumberFormat.CurrencySymbol;
         }
-
+        //sets the currency format
+        public void setCurrencyFormat(string format)
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencySymbol = format;
+            System.Threading.Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencySymbol = format;
+        }
+        //reset the currency format
+        public void resetCurrencyFormat()
+        {
+            System.Threading.Thread.CurrentThread.CurrentCulture.NumberFormat.CurrencySymbol = this.OriginalFormat;
+            System.Threading.Thread.CurrentThread.CurrentUICulture.NumberFormat.CurrencySymbol = this.OriginalFormat;
+      
+        }
         //returns the current language
         public Language getLanguage()
         {
