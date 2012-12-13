@@ -31,6 +31,8 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
     <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
@@ -61,7 +63,6 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <StartAction>Project</StartAction>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <RegisterForComInterop>False</RegisterForComInterop>
@@ -775,12 +776,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="..\Data\addons\airliners\let.xml">
-      <Link>let.xml</Link>
-    </None>
-    <None Include="..\Data\graphics\manufacturerlogos\Let.png">
-      <Link>Let.png</Link>
-    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
@@ -859,6 +854,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\addons\airliners\let.xml">
+      <Link>let.xml</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\graphics\manufacturerlogos\Let.png">
+      <Link>Let.png</Link>
+    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="..\Data\graphics\manufacturerlogos\Aerospatiale.png">
