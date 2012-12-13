@@ -45,6 +45,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         private Popup popUpSplash;
+        private QuickInfoValue qivLocalCurrency;
+        private CheckBox cbLocalCurrency;
         public PageNewGame()
         {
             InitializeComponent();
@@ -133,6 +135,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1004"), cntCountry));
 
+            cbLocalCurrency = new CheckBox();
+            qivLocalCurrency = new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1014"), cbLocalCurrency);
+            //lbContent.Items.Add(qivLocalCurrency);
 
             txtName = new TextBox();
             txtName.Background = Brushes.Transparent;

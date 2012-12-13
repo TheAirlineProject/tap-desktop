@@ -152,8 +152,9 @@ namespace TheAirline.Model.AirportModel
         //removes a terminal from the list
         public void removeTerminal(Terminal terminal)
         {
-            for (int i = 0; i < terminal.Gates.getGates().Count; i++)
+            while (terminal.Gates.getFreeGates(terminal.Airline) > 0)
                 terminal.Gates.releaseGate(terminal.Airline);
+                 
             this.AirportTerminals.Remove(terminal);
             
         }

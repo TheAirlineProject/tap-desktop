@@ -156,8 +156,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 MethodInfo method = typeof(Airline).GetMethod(methodName);
                 object v = method.Invoke(airline, null);
 
-
-
                 if (Convert.ToInt64(v) > value)
                     value = Convert.ToInt64(v);
 

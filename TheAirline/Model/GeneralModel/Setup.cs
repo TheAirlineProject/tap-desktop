@@ -888,6 +888,14 @@ namespace TheAirline.Model.GeneralModel
                     country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
                     Countries.AddCountry(country);
 
+                    if (element.SelectSingleNode("currency") != null)
+                    {
+                        XmlElement currencyElement = (XmlElement)element.SelectSingleNode("currency");
+
+                        country.CurrencyFormat = currencyElement.Attributes["format"].Value;
+                        country.CurrencyRate = Convert.ToDouble(currencyElement.Attributes["rate"].Value);
+                    }
+
                     if (element.SelectSingleNode("translations") != null)
                         Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
                 }

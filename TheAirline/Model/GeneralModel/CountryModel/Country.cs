@@ -17,6 +17,8 @@ namespace TheAirline.Model.GeneralModel
         //the format used for the tail number
         public string TailNumberFormat { get; set; }
         public CountryTailNumber TailNumbers { get; set; }
+        public string CurrencyFormat { get; set; }
+        public double CurrencyRate { get; set; }
         public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {
             Country.Section = section;
