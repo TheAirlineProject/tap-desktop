@@ -321,7 +321,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                    {
                        if (terminal.Airline.IsHuman)
                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at [LI airport={0}], {1} is now finished and ready for use.", airport.Profile.IATACode, airport.Profile.Country.Name)));
-
+                       
                        //moves the "old" rented gates into the new terminal
                        foreach (Terminal tTerminal in airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
                        {
@@ -338,6 +338,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                            }
+
+                       }
+                       while (terminal.Gates.getFreeGates() > 0)
+                           terminal.Gates.rentGate(terminal.Airline);
+
+                     
+                       if (terminal.Airport.getAirportFacility(terminal.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                       {
+
+
+                           AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                           terminal.Airport.addAirportFacility(terminal.Airline, checkinFacility, GameObject.GetInstance().GameTime);
+                       
+                  
 
                        }
 
