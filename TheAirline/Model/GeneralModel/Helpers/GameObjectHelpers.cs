@@ -283,6 +283,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             foreach (WeatherAverage average in WeatherAverages.GetWeatherAverages(w => w.Town != null && w.Month == GameObject.GetInstance().GameTime.Month))
             {
+                
                 var airports = weatherAirports.FindAll(a => a.Profile.Town == average.Town);
 
                 AirportHelpers.CreateAirportsWeather(airports.ToList(), average);

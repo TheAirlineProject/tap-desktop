@@ -22,7 +22,28 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
             this.Country = country;
             this.State = state;
         }
-      
+        public static bool operator ==(Town a, Town b)
+        {
+            // If both are null, or both are same instance, return true.
+            if (System.Object.ReferenceEquals(a, b))
+            {
+                return true;
+            }
+
+            // If one is null, but not both, return false.
+            if (((object)a == null) || ((object)b == null))
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return a.Name == b.Name && a.Country == b.Country;
+        }
+        public static bool operator !=(Town a,Town b)
+        {
+            return !(a == b);
+        }
+
     }
     //the class which finds a town based on name
     public class Towns
