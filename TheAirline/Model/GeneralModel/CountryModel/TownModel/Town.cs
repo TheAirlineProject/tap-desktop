@@ -37,11 +37,27 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
             }
 
             // Return true if the fields match:
-            return a.Name == b.Name && a.Country == b.Country;
+            return a.Name == b.Name && a.Name == b.Name && ((a.State == null && b.State == null) || (a.State == b.State));
         }
         public static bool operator !=(Town a,Town b)
         {
             return !(a == b);
+        }
+        public override int GetHashCode()
+        {
+            return this.Name.GetHashCode() ^ this.Country.GetHashCode();
+        }
+        public override bool Equals(object u)
+        {
+
+            // If parameter is null return false:
+            if (u == null)
+            {
+                return false;
+            }
+
+            // Return true if the fields match:
+            return (this == (Town)u);
         }
 
     }

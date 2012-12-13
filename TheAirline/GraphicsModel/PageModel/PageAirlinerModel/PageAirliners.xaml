@@ -6,11 +6,14 @@
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
                    xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+                   xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirlinerModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirliner">
     <Page.Resources>
+        <local:HasContractConverter x:Key="hasContractConverter"></local:HasContractConverter>
         <c:CultureInfoConverter x:Key="cultureInfoConverter"></c:CultureInfoConverter>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
           <DataTemplate x:Key="ManufacturerItem">
@@ -23,8 +26,10 @@
                         <Run Text="{Binding Name}"></Run>
                     </Hyperlink>
             </TextBlock>
+                
                 </WrapPanel>
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+                <Image Source="/Data/images/contract.png" Height="16" Width="16" Margin="10 0 0 0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Converter={StaticResource hasContractConverter}}"></Image>
 
             </WrapPanel>
         </DataTemplate>

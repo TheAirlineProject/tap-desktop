@@ -28,7 +28,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
     /// </summary>
     public partial class PageAirliners : StandardPage
     {
-        private ListBox lbUsedAirliners;//, lbNewAirliners;
+        private ListBox lbUsedAirliners, lbManufacturers;
         private Comparison<Airliner> sortCriteriaUsed;
         private Frame sideFrame;
         private List<Airliner> airliners;
@@ -71,13 +71,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             ccManufacturerHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             panelScroller.Children.Add(ccManufacturerHeader);
 
-            ListBox lbManufacturers = new ListBox();
+            lbManufacturers = new ListBox();
             lbManufacturers.ItemTemplate = this.Resources["ManufacturerItem"] as DataTemplate;
             lbManufacturers.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             lbManufacturers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => lbManufacturers.Items.Add(m));
-            panelScroller.Children.Add(lbManufacturers);
+             panelScroller.Children.Add(lbManufacturers);
 
             TextBlock txtUsedHeader = new TextBlock();
             txtUsedHeader.Uid = "1002";
@@ -133,9 +132,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
 
             showPage(this);
+
+            showManufacturers();
         }
 
-     
+     //shows the list of manufacturers
+        private void showManufacturers()
+        {
+            lbManufacturers.Items.Clear();
+            (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => lbManufacturers.Items.Add(m));
+         
+        }
 
      
         //shows the list of used airliners for sale
@@ -157,7 +164,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
         private void lnkManufacturer_Click(object sender, RoutedEventArgs e)
         {
             Manufacturer manufacturer = (Manufacturer)((Hyperlink)sender).Tag;
-            sideFrame.Content = new PageOrderAirliners(manufacturer);
+            sideFrame.Content = new PageOrderAirliners(this,manufacturer);
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
@@ -203,6 +210,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
                     break;
             }
         }
+        public override void updatePage()
+        {
+            showManufacturers();
+        }
 
+    }
+    public class HasContractConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Manufacturer manufacturer = (Manufacturer)value;
+
+            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == manufacturer)
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -36,8 +36,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private Dictionary<AirlinerType, int> orders;
         private DatePicker dpDate;
         private Manufacturer Manufacturer;
-        public PageOrderAirliners(Manufacturer manufacturer)
+        private PageAirliners ParentPage;
+        public PageOrderAirliners(PageAirliners parent, Manufacturer manufacturer)
         {
+            this.ParentPage = parent;
             this.Manufacturer = manufacturer;
 
             this.orders = new Dictionary<AirlinerType, int>();
@@ -372,6 +374,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     }
                 }
             }
+            this.ParentPage.updatePage();
+    
         }
         private void btnContract_Click(object sender, RoutedEventArgs e)
         {
@@ -460,6 +464,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     GameObject.GetInstance().HumanAirline.Contract = contract;
                 }
             }
+            this.ParentPage.updatePage();
         }
         //adds a contract item
         private ComboBoxItem createLengthItem(int years)
