@@ -37,7 +37,7 @@ namespace TheAirline.Model.GeneralModel
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
             this.PagePerformanceCounterEnabled = true;
-            this.PilotsEnabled = true;
+            this.PilotsEnabled = false;
         }
 
         //returns the start money based on year of start
