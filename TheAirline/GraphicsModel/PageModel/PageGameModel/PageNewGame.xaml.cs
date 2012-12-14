@@ -57,6 +57,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;
             popUpSplash.IsOpen = false;
 
+            TextBox txtNarrative = new TextBox();
+            txtNarrative.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            txtNarrative.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+            txtNarrative.SetResourceReference(TextBox.BackgroundProperty, "HeaderBackgroundBrush3");
+            txtNarrative.FontWeight = FontWeights.Normal;
+            txtNarrative.FontStyle = FontStyles.Italic;
+            txtNarrative.Width = 300;
+            txtNarrative.Height = 100;
+            txtNarrative.Uid = "1015";
+            txtNarrative.IsReadOnly = true;
+            txtNarrative.Text = Translator.GetInstance().GetString("PageNewGame", txtNarrative.Uid);
+
             StackPanel panelContent = new StackPanel();
             panelContent.Margin = new Thickness(10, 0, 10, 0);
             panelContent.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
@@ -77,6 +89,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             ListBox lbContent = new ListBox();
             lbContent.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbContent.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            
+            panelContent.Children.Add(txtNarrative);
 
             panelContent.Children.Add(lbContent);
 
@@ -109,6 +123,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbAirline.ItemsSource = airlines;
 
             panelAirline.Children.Add(cbAirline);
+
+           
 
             Button btnAddAirline = new Button();
             btnAddAirline.Margin = new Thickness(5, 0, 0, 0);
