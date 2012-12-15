@@ -20,6 +20,7 @@ namespace TheAirline.Model.AirlineModel
         public int Founded { get; set; }
         public int Folded { get; set; }
         public Boolean IsReal { get; set; }
+        public string Narrative { get; set; }
         public AirlineProfile(string name, string iata, string color, Country country, string ceo, Boolean isReal, int founded, int folded)
         {
             this.Name = name;

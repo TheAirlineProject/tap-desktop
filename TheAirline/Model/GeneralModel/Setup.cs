@@ -1181,10 +1181,19 @@ namespace TheAirline.Model.GeneralModel
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
 
+            XmlElement narrativeElement = (XmlElement)profileElement.SelectSingleNode("narrative");
+
+            string narrative ="";
+            if (narrativeElement != null)
+            {
+                narrative = narrativeElement.Attributes["narrative"].Value;
+            }
+
+
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
-
+            
             XmlElement infoElement = (XmlElement)root.SelectSingleNode("info");
             if (infoElement != null)
             {
@@ -1218,6 +1227,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
+            airline.Profile.Narrative = narrative;
 
             Airlines.AddAirline(airline);
 
