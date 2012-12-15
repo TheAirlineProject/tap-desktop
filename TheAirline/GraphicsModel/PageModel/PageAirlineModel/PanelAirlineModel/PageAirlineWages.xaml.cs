@@ -681,7 +681,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                      foreach (RouteFacility facility in classConfiguration.getFacilities())
                      {
                          ComboBox cbFacility = cbFacilities[classConfiguration.Type].Find(cb => ((RouteFacility)cb.SelectedItem).Type == facility.Type);
-                         cbFacility.SelectedItem = facility;
+
+                         if (GameObject.GetInstance().GameTime.Year >= (int)facility.Type)
+                            cbFacility.SelectedItem = facility;
                      }
                  }
             }
