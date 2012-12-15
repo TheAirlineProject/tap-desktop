@@ -39,13 +39,16 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         //adds the value for a statistics type for a year
         public void addStatisticsValue(int year, StatisticsType type, double value)
         {
-            if (!this.StatValues.ContainsKey(year))
-                this.StatValues.Add(year, new List<StatisticsValue>());
-            StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
-            if (statValue != null)
-                statValue.Value += value;
-            else
-                this.StatValues[year].Add(new StatisticsValue(type, value));
+            lock (this.StatValues)
+            {
+                if (!this.StatValues.ContainsKey(year))
+                    this.StatValues.Add(year, new List<StatisticsValue>());
+                StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
+                if (statValue != null)
+                    statValue.Value += value;
+                else
+                    this.StatValues[year].Add(new StatisticsValue(type, value));
+            }
         }
         //sets the value for a statistics type for a year
         public void setStatisticsValue(int year, StatisticsType type, double value)

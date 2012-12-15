@@ -75,7 +75,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateTimeZones();
                 CreateFeeTypes();
                 CreateFlightFacilities();
-           
+
                 LoadStandardConfigurations();
 
                 LoadAirlines();
@@ -203,7 +203,7 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("Afghanistan Time", "AFT", new TimeSpan(4, 30, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("West Asia Standard Time", "WAST", new TimeSpan(5, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Indian Standard Time", "IST", new TimeSpan(5, 30, 0)));
-            TimeZones.AddTimeZone(new GameTimeZone("Nepal Standard Time", "NPT", new TimeSpan(5, 45, 0))); 
+            TimeZones.AddTimeZone(new GameTimeZone("Nepal Standard Time", "NPT", new TimeSpan(5, 45, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Asia Standard Time", "ASST", new TimeSpan(6, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Central Asia Standard Time", "CEST", new TimeSpan(7, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("China Standard Time", "CST", new TimeSpan(8, 0, 0)));
@@ -230,7 +230,7 @@ namespace TheAirline.Model.GeneralModel
                 foreach (XmlElement element in configurationsList)
                 {
                     string type = element.Attributes["type"].Value;
-                    
+
                     if (type == "Route")
                         Configurations.AddConfiguration(LoadRouteClassesConfiguration(element));
                     if (type == "Airliner")
@@ -253,9 +253,9 @@ namespace TheAirline.Model.GeneralModel
 
             XmlNodeList classesList = element.SelectNodes("classes/class");
 
-            AirlinerConfiguration configuration = new AirlinerConfiguration(name,minimumSeats, true);
+            AirlinerConfiguration configuration = new AirlinerConfiguration(name, minimumSeats, true);
             configuration.ID = id;
-                  
+
             foreach (XmlElement classElement in classesList)
             {
                 int seating = Convert.ToInt16(classElement.Attributes["seating"].Value);
@@ -326,7 +326,7 @@ namespace TheAirline.Model.GeneralModel
             XmlDocument doc = new XmlDocument();
             doc.Load(filename);
             XmlElement root = doc.DocumentElement;
-            
+
             string name = root.Attributes["name"].Value;
             string text = root.Attributes["text"].Value;
             DateTime eventDate = Convert.ToDateTime(root.Attributes["date"].Value);
@@ -346,7 +346,7 @@ namespace TheAirline.Model.GeneralModel
 
             HistoricEvents.AddHistoricEvent(historicEvent);
 
-           
+
         }
         /*! loads the holidays
          */
@@ -684,7 +684,7 @@ namespace TheAirline.Model.GeneralModel
       
             int count = airports.Count();
              * */
-        
+
         }
         private static void LoadAirports(string file)
         {
@@ -749,7 +749,7 @@ namespace TheAirline.Model.GeneralModel
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size,pax, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, pax, season);
 
                     Airport airport = new Airport(profile);
 
@@ -948,8 +948,8 @@ namespace TheAirline.Model.GeneralModel
                 TemporaryCountry.TemporaryType tempType = (TemporaryCountry.TemporaryType)Enum.Parse(typeof(TemporaryCountry.TemporaryType), element.Attributes["type"].Value);
 
                 XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
-                DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value, new CultureInfo("en-US",false));
-                DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value, new CultureInfo("en-US",false));
+                DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value, new CultureInfo("en-US", false));
+                DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value, new CultureInfo("en-US", false));
 
                 Country country = new Country(section, uid, shortname, region, tailformat);
 
@@ -1092,9 +1092,9 @@ namespace TheAirline.Model.GeneralModel
             doc.Load(path);
             XmlElement root = doc.DocumentElement;
 
-            Country country=null;
-            Airport airport=null;
-            Town town=null;
+            Country country = null;
+            Airport airport = null;
+            Town town = null;
 
             string type = root.Attributes["type"].Value;
             string value = root.Attributes["value"].Value;
@@ -1113,7 +1113,7 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (XmlElement monthElement in monthsList)
             {
-              
+
                 int month = Convert.ToInt16(monthElement.Attributes["month"].Value);
                 int precipitation = Convert.ToInt16(monthElement.Attributes["precipitation"].Value);
 
@@ -1134,12 +1134,12 @@ namespace TheAirline.Model.GeneralModel
                 if (airport != null)
                     WeatherAverages.AddWeatherAverage(new WeatherAverage(month, minTemp, maxTemp, precipitation, minWind, maxWind, airport));
 
-            
-       
+
+
             }
-   
+
         }
-       
+
         /*loads the airlines
          */
         private static void LoadAirlines()
@@ -1183,7 +1183,7 @@ namespace TheAirline.Model.GeneralModel
 
             XmlElement narrativeElement = (XmlElement)profileElement.SelectSingleNode("narrative");
 
-            string narrative ="";
+            string narrative = "";
             if (narrativeElement != null)
             {
                 narrative = narrativeElement.Attributes["narrative"].Value;
@@ -1193,7 +1193,7 @@ namespace TheAirline.Model.GeneralModel
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
-            
+
             XmlElement infoElement = (XmlElement)root.SelectSingleNode("info");
             if (infoElement != null)
             {
@@ -1202,14 +1202,14 @@ namespace TheAirline.Model.GeneralModel
                 folded = Convert.ToInt16(infoElement.Attributes["to"].Value);
             }
 
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo,isReal,founded,folded), mentality, market);
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo, isReal, founded, folded), mentality, market);
             if (profileElement.HasAttribute("preferedairport"))
             {
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
                 airline.Profile.PreferedAirport = preferedAirport;
             }
-          
-         
+
+
 
             XmlNodeList subsidiariesList = root.SelectNodes("subsidiaries/subsidiary");
             if (subsidiariesList != null)
@@ -1225,6 +1225,38 @@ namespace TheAirline.Model.GeneralModel
 
                     airline.FutureAirlines.Add(new FutureSubsidiaryAirline(subName, subIATA, subAirport, subMentality, subMarket, subLogo));
                 }
+            }
+
+            XmlElement startDataElement = (XmlElement)root.SelectSingleNode("startdata");
+            if (startDataElement != null)
+            {
+                AirlineStartData startData = new AirlineStartData(airline);
+
+                XmlNodeList routesList = startDataElement.SelectNodes("routes/route");
+                foreach (XmlElement routeElement in routesList)
+                {
+                    string dest1 = routeElement.Attributes["destination1"].Value;
+                    string dest2 = routeElement.Attributes["destination2"].Value;
+                    int opened = Convert.ToInt16(routeElement.Attributes["opened"].Value);
+                    int closed = Convert.ToInt16(routeElement.Attributes["closed"].Value);
+
+                    startData.addRoute(new StartDataRoute(dest1, dest2, opened, closed));
+                }
+
+                XmlNodeList airlinersList = startDataElement.SelectNodes("airliners/airliner");
+
+                foreach (XmlElement airlinerElement in airlinersList)
+                {
+                    string type = airlinerElement.Attributes["type"].Value;
+                    int early = Convert.ToInt16(airlinerElement.Attributes["early"].Value);
+                    int late = Convert.ToInt16(airlinerElement.Attributes["late"].Value);
+
+                    startData.addAirliners(new StartDataAirliners(type, early, late));
+                }
+
+           
+
+                AirlineStartDatas.AddStartData(startData);
             }
 
             airline.Profile.Narrative = narrative;
@@ -1293,12 +1325,12 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.AddStatisticsType(new StatisticsType("Cancellation Percent", "Cancellation%"));
         }
 
-  
+
         /*! sets up test game.
          */
         public static void SetupTestGame(int opponents)
         {
-            CreatePilots();   
+            CreatePilots();
 
             RemoveAirlines(opponents);
 
@@ -1327,8 +1359,8 @@ namespace TheAirline.Model.GeneralModel
                 if (!airline.IsHuman)
                     CreateComputerRoutes(airline);
 
-                     
-                
+
+
 
             }
 
@@ -1339,7 +1371,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void RemoveAirlines(int opponnents)
         {
-            Airline lot = Airlines.GetAirline("LO");
+            Airline lot = Airlines.GetAirline("DA");
             int count = Airlines.GetAirlines(a => !a.IsHuman).Count;
 
             for (int i = 0; i < count - opponnents; i++)
@@ -1348,8 +1380,8 @@ namespace TheAirline.Model.GeneralModel
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
-           //if (!Airlines.GetAllAirlines().Contains(lot))
-            //    Airlines.AddAirline(lot);
+            if (!Airlines.GetAllAirlines().Contains(lot))
+                Airlines.AddAirline(lot);
 
         }
         //finds the home base for a computer airline
@@ -1380,58 +1412,134 @@ namespace TheAirline.Model.GeneralModel
         {
             Airport airportHomeBase = FindComputerHomeBase(airline);
 
-            AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
+            AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-            airportHomeBase.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime);
+            airportHomeBase.addAirportFacility(airline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-            List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
+            AirlineStartData startData = AirlineStartDatas.GetAirlineStartData(airline);
 
-            KeyValuePair<Airliner, Boolean>? airliner = null;
-            Airport airportDestination = null;
-
-            int counter = 0;
-
-            while (airportDestination == null || airliner == null || !airliner.HasValue)
+            //creates the start data for an airline
+            if (startData != null)
             {
-                airportDestination = airportDestinations[counter];
+                airportHomeBase.Terminals.rentGate(airline);
+                airportHomeBase.Terminals.rentGate(airline);
 
-                airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
-
-                counter++;
-            }
-
-            if (airportDestination == null || !airliner.HasValue)
-            {
-
-                CreateComputerRoutes(airline);
-
+                CreateAirlineStartData(airline, startData);
             }
             else
             {
-                airportHomeBase.Terminals.rentGate(airline);
-                airportHomeBase.Terminals.rentGate(airline);
+                List<Airport> airportDestinations = AIHelpers.GetDestinationAirports(airline, airportHomeBase);
+
+                KeyValuePair<Airliner, Boolean>? airliner = null;
+                Airport airportDestination = null;
+
+                int counter = 0;
+
+                while (airportDestination == null || airliner == null || !airliner.HasValue)
+                {
+                    airportDestination = airportDestinations[counter];
+
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
+
+                    counter++;
+                }
+
+                if (airportDestination == null || !airliner.HasValue)
+                {
+
+                    CreateComputerRoutes(airline);
+
+                }
+                else
+                {
+                    airportHomeBase.Terminals.rentGate(airline);
+                    airportHomeBase.Terminals.rentGate(airline);
 
 
-                airportDestination.Terminals.rentGate(airline);
-                airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    airportDestination.Terminals.rentGate(airline);
+                    airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
 
-                double price = PassengerHelpers.GetPassengerPrice(airportDestination, airline.Airports[0]);
+                    double price = PassengerHelpers.GetPassengerPrice(airportDestination, airline.Airports[0]);
+
+                    Guid id = Guid.NewGuid();
+
+                    Route route = new Route(id.ToString(), airportDestination, airline.Airports[0], price);
+
+                    FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportHomeBase);
+                    fAirliner.addRoute(route);
+                    fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+
+                    AIHelpers.CreateAirlinerClasses(fAirliner);
+
+                    route.LastUpdated = GameObject.GetInstance().GameTime;
+
+                    RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
+
+                    foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                    {
+                        route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+
+                        foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                            route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rFacility);
+                    }
+
+                    airline.addRoute(route);
+
+                    airportDestination.Terminals.getEmptyGate(airline).HasRoute = true;
+                    airline.Airports[0].Terminals.getEmptyGate(airline).HasRoute = true;
+
+                    AIHelpers.CreateRouteTimeTable(route, fAirliner);
+
+
+                }
+            }
+        }
+        /*!creates the start data for an airline
+         */
+        private static void CreateAirlineStartData(Airline airline, AirlineStartData startData)
+        {
+            AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+            //creates the routes
+            foreach (StartDataRoute startRoute in startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year))
+            {
+                Airport dest1 = Airports.GetAirport(startRoute.Destination1);
+                Airport dest2 = Airports.GetAirport(startRoute.Destination2);
+
+                if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                    dest1.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+
+                if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                    dest2.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+
+                if (dest1.Terminals.getEmptyGate(airline)== null)
+                    dest1.Terminals.rentGate(airline);
+
+                if (dest2.Terminals.getEmptyGate(airline) == null)
+                    dest2.Terminals.rentGate(airline);
+
+                dest1.Terminals.getEmptyGate(airline).HasRoute = true;
+                dest2.Terminals.getEmptyGate(airline).HasRoute = true;
+
+                double price = PassengerHelpers.GetPassengerPrice(dest1, dest2);
 
                 Guid id = Guid.NewGuid();
 
-                Route route = new Route(id.ToString(), airportDestination, airline.Airports[0], price);
+                Route route = new Route(id.ToString(), dest1, dest2, price);
 
-                FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportHomeBase);
+                KeyValuePair<Airliner,Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1);
+
+                FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key,airline.Airports[0]);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
                 AIHelpers.CreateAirlinerClasses(fAirliner);
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;
-                
+
                 RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
@@ -1443,12 +1551,49 @@ namespace TheAirline.Model.GeneralModel
                 }
 
                 airline.addRoute(route);
-
-                airportDestination.Terminals.getEmptyGate(airline).HasRoute = true;
-                airline.Airports[0].Terminals.getEmptyGate(airline).HasRoute = true;
-
+                                 
                 AIHelpers.CreateRouteTimeTable(route, fAirliner);
 
+
+            }
+            //adds the airliners
+            foreach (StartDataAirliners airliners in startData.Airliners)
+            {
+                AirlinerType type = AirlinerTypes.GetType(airliners.Type);
+                
+                int totalSpan = 2010 - 1960;
+                int yearSpan = GameObject.GetInstance().GameTime.Year - 1960;
+                double valueSpan = Convert.ToDouble(airliners.AirlinersLate - airliners.AirlinersEarly);
+                double span = valueSpan / Convert.ToDouble(totalSpan);
+
+                int numbers = Convert.ToInt16(span * yearSpan);
+
+                if (type.Produced.From <= GameObject.GetInstance().GameTime)
+                {
+                    for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)
+                    {
+                        int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
+                        Country country = Countries.GetCountries()[countryNumber];
+
+                        int builtYear = rnd.Next(Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
+
+                        Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
+
+                        int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
+
+                        long kmPerYear = rnd.Next(100000, 1000000);
+                        long km = kmPerYear * age;
+
+                        airliner.Flown = km;
+
+                        Airliners.AddAirliner(airliner);
+
+                        FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner, airline.Airports[0]);
+                        fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+
+                        AIHelpers.CreateAirlinerClasses(fAirliner);
+                    }
+                }
 
             }
         }
@@ -1539,7 +1684,7 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.WiFi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.5, null, AirlineFacilities.GetFacility("107")));
 
         }
-       
+
         /*! creates the Fee types.
          */
         private static void CreateFeeTypes()
@@ -1549,20 +1694,20 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Maintenance wage", 3.95, 3.0, 4.25, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support wage", 2.65, 1, 3, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
-           
+
             //food and drinks
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Alcholic Drinks", 0.75, 0.5, 1.1, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.2, 0.1, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 1.40, 1.25, 2, 50));
-            
+
             //fees
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 5, 95));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 0, 0, 5.25, 25));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 0, 0, 6, 2));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 18, 1));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25, 2007));
-            
+
             //discounts
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Employee discount", 0, 0, 100, 1));
         }

@@ -27,12 +27,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner BuyAirliner(Airline airline, Airliner airliner, Airport airport, double discount)
         {
-            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
-                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
-
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airport);
-
-            airline.addAirliner(fAirliner);
+            FleetAirliner fAirliner = AddAirliner(airline, airliner, airport);
 
             double price = airliner.getPrice() * ((100 - discount) / 100);
 
@@ -40,6 +35,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return fAirliner;
 
+        }
+        public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport)
+        {
+            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
+                airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airport);
+
+            airline.addAirliner(fAirliner);
+
+            return fAirliner;
         }
         //orders a number of airliners for an airline
         public static void OrderAirliners(Airline airline, Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate)

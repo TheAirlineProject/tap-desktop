@@ -672,6 +672,7 @@
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
     <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
+    <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />
     <Compile Include="Model\AirlineModel\FeeType.cs" />
     <Compile Include="Model\AirlineModel\SubsidiaryModel\FutureSubsidiaryAirline.cs" />

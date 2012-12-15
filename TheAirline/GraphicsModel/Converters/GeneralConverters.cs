@@ -345,20 +345,21 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-    //the converter for checking if performance counters is enabled
-    public class PerformanceEnabledConverter : IValueConverter
+    //the converter for checking if menu is enabled
+    public class MenuEnabledConverter : IValueConverter
     {
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            try
-            {
+            string parameterValue = parameter.ToString();
+
+            if (parameterValue == "Pilots")
+                return GameObject.GetInstance().PilotsEnabled ? Visibility.Visible : Visibility.Collapsed;
+            
+            if (parameterValue == "Performance")
                 return GameObject.GetInstance().PagePerformanceCounterEnabled ? Visibility.Visible : Visibility.Collapsed;
-            }
-            catch
-            {
-                return Visibility.Collapsed;
-            }
+
+            return Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
