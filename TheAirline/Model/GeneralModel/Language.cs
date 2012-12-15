@@ -52,7 +52,13 @@ namespace TheAirline.Model.GeneralModel
         //returns a language 
         public static Language GetLanguage(string name)
         {
-            return languages[name];
+            if (languages.ContainsKey(name))
+                return languages[name];
+            else
+            {
+                string shortname = name.Substring(name.IndexOf("("));
+                return languages.Values.ToList().Find(l => l.Name.Contains(shortname));
+            }
         }
         //returns the list of languages
         public static List<Language> GetLanguages()

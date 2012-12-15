@@ -327,6 +327,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureLow = hourlyTemperature.Min(t => t.Temperature);
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
 
+           // cover = (from t in hourlyTemperature select t.Cover).Count( 
             /*
             double coverValue = hourlyTemperature.Average(t => (double)t.Cover);
             double precipValue = hourlyTemperature.Average(t => (double)t.Precip);

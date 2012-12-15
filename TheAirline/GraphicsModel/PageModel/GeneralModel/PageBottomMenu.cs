@@ -16,7 +16,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private TextBlock txtMoney, txtTime;
         public PageBottomMenu()
         {
-        
+
             this.SetResourceReference(Page.BackgroundProperty, "BackgroundBottom");
 
             Border frameBorder = new Border();
@@ -29,14 +29,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             TextBlock txtHuman = new TextBlock();
             txtHuman.FontWeight = FontWeights.Bold;
-            txtHuman.Text = string.Format("{0} CEO of {1}",GameObject.GetInstance().HumanAirline.Profile.CEO,GameObject.GetInstance().HumanAirline.Profile.Name);
+
+            txtHuman.Text = string.Format("{0} CEO of {1}", GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name);
 
             Grid.SetColumn(txtHuman, 0);
             panelMain.Children.Add(txtHuman);
 
 
             txtTime = new TextBlock();
+
             txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;//GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
+
             txtTime.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             txtTime.FontWeight = FontWeights.Bold;
 
@@ -44,9 +47,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             panelMain.Children.Add(txtTime);
 
             txtMoney = new TextBlock();
+
             txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
-            txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;            
- 
+            txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
+
             txtMoney.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
             txtMoney.FontWeight = FontWeights.Bold;
 
@@ -64,10 +68,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void PageBottomMenu_Unloaded(object sender, RoutedEventArgs e)
         {
-             
+
             GameTimer.GetInstance().OnTimeChangedForced -= new GameTimer.TimeChanged(PageBottomMenu_OnTimeChanged);
         }
-       
+
 
         private void PageBottomMenu_OnTimeChanged()
         {
@@ -75,8 +79,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             {
                 txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
                 txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
-                txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;            
- 
+                txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
+
             }
 
         }

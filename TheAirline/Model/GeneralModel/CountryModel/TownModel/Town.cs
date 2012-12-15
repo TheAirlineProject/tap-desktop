@@ -72,6 +72,9 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         //returns a town
         public static Town GetTown(string name)
         {
+            if (Airports.GetAirport(a => a.Profile.Town.Name == name) == null)
+                return null;
+
             return Airports.GetAirport(a => a.Profile.Town.Name == name).Profile.Town;
         }
         public static Town GetTown(string name, State state)

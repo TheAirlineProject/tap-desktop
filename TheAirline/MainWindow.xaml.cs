@@ -32,30 +32,36 @@ namespace TheAirline
 
         public MainWindow()
         {
-
+           
             InitializeComponent();
 
-            Setup.SetupGame();
+            try
+            {
+                Setup.SetupGame();
 
-            PageNavigator.MainWindow = this;
+                PageNavigator.MainWindow = this;
 
-            this.Width = SystemParameters.PrimaryScreenWidth;
-            this.Height = SystemParameters.PrimaryScreenHeight;
+                this.Width = SystemParameters.PrimaryScreenWidth;
+                this.Height = SystemParameters.PrimaryScreenHeight;
 
-            Canvas mainPanel = new Canvas();
+                Canvas mainPanel = new Canvas();
 
-            frameMain = new Frame();
-            frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            //frameMain.Navigate(new PageNewGame());
-            frameMain.Navigate(new PageSelectLanguage());
+                frameMain = new Frame();
+                frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
+                //frameMain.Navigate(new PageNewGame());
+                frameMain.Navigate(new PageSelectLanguage());
 
-            Canvas.SetTop(frameMain, 0);
-            Canvas.SetLeft(frameMain, 0);
+                Canvas.SetTop(frameMain, 0);
+                Canvas.SetLeft(frameMain, 0);
 
-            mainPanel.Children.Add(frameMain);
+                mainPanel.Children.Add(frameMain);
 
-            this.Content = mainPanel;
-
+                this.Content = mainPanel;
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+            }
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
