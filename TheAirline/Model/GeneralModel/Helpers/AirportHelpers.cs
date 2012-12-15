@@ -202,6 +202,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             temperatureLow = hourlyTemperature.Min(t => t.Temperature);
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
+            cover = (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Cover;
+            precip = (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Precip;
+          
 
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);
 
@@ -327,15 +330,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureLow = hourlyTemperature.Min(t => t.Temperature);
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
 
-           // cover = (from t in hourlyTemperature select t.Cover).Count( 
-            /*
-            double coverValue = hourlyTemperature.Average(t => (double)t.Cover);
-            double precipValue = hourlyTemperature.Average(t => (double)t.Precip);
-
-            cover = (Weather.CloudCover)Enum.ToObject(typeof(Weather.CloudCover), (int)coverValue);
-            precip = (Weather.Precipitation)Enum.ToObject(typeof(Weather.Precipitation), (int)precipValue);
-  */
-
+            cover = (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() }).OrderByDescending(g=>g.Qty).First().Cover;
+            precip = (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Precip;
+          
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);
 
 

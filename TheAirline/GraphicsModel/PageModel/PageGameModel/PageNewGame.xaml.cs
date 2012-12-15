@@ -83,7 +83,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             txtNarrative.VerticalAlignment = System.Windows.VerticalAlignment.Center;
             txtNarrative.Background = Brushes.Transparent;
             txtNarrative.TextWrapping = TextWrapping.Wrap;
-            txtNarrative.FontWeight = FontWeights.Normal;
             txtNarrative.FontStyle = FontStyles.Italic;
             txtNarrative.Width = 300;
             txtNarrative.Height = 100;
