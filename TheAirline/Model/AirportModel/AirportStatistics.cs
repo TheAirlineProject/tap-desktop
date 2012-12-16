@@ -37,13 +37,16 @@ namespace TheAirline.Model.AirportModel
         //adds the value for a statistics type to an airline for a year
             public void addStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
-            if (!(this.Stats.ContainsKey(year)))
-                this.Stats.Add(year,new List<AirportStatisticsValue>());
-            AirportStatisticsValue statValue = this.Stats[year].Find(asv => asv.Airline == airline && asv.Stat == type);
-            if (statValue != null)
-                statValue.Value += value;
-            else
-                this.Stats[year].Add(new AirportStatisticsValue(airline, type, value));
+            lock (this.Stats)
+            {
+                if (!(this.Stats.ContainsKey(year)))
+                    this.Stats.Add(year, new List<AirportStatisticsValue>());
+                AirportStatisticsValue statValue = this.Stats[year].Find(asv => asv.Airline == airline && asv.Stat == type);
+                if (statValue != null)
+                    statValue.Value += value;
+                else
+                    this.Stats[year].Add(new AirportStatisticsValue(airline, type, value));
+            }
                     
          
         }
