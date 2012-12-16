@@ -373,7 +373,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             cbCancellationPolicy.Width = 200;
             cbCancellationPolicy.ItemStringFormat = "{0} " + Translator.GetInstance().GetString("PageAirlineWages","1018"); 
 
-            for (int i = 15; i < 150; i += 15)
+            for (int i = 120; i < 300; i += 15)
                 cbCancellationPolicy.Items.Add(i);
 
             cbCancellationPolicy.SelectedItem = this.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;

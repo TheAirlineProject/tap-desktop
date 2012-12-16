@@ -1354,7 +1354,7 @@ namespace TheAirline.Model.GeneralModel
                 airline.Money = GameObject.GetInstance().StartMoney;
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();
-                airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 60));
+                airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 120));
 
                 if (!airline.IsHuman)
                     CreateComputerRoutes(airline);
@@ -1380,8 +1380,8 @@ namespace TheAirline.Model.GeneralModel
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
-           // if (!Airlines.GetAllAirlines().Contains(lot))
-         //       Airlines.AddAirline(lot);
+            if (!Airlines.GetAllAirlines().Contains(lot))
+                Airlines.AddAirline(lot);
 
         }
         //finds the home base for a computer airline
