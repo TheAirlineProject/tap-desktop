@@ -77,6 +77,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             ListBox lbContent = new ListBox();
             lbContent.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbContent.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+            lbContent.MaxHeight = GraphicsHelpers.GetContentHeight()/2;
 
             txtNarrative = new TextBox();
             txtNarrative.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
