@@ -509,6 +509,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airline.Fleet.Clear();
             airline.Airports.Clear();
             airline.Routes.Clear();
+            airline.Alliances.Clear();
 
             airline.Money = money;
             airline.Reputation = reputation;
