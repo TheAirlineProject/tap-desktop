@@ -17,6 +17,7 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Threading.Tasks;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -150,11 +151,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             XmlNodeList airportsList = root.SelectNodes("//airports/airport");
 
-
             foreach (XmlElement airportNode in airportsList)
             {
                 Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
-                
+
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
                 airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
@@ -170,39 +170,39 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlNodeList airportWeatherList = airportNode.SelectNodes("weathers/weather");
 
-                for (int i=0;i<airportWeatherList.Count;i++)
+                for (int i = 0; i < airportWeatherList.Count; i++)
                 {
                     XmlElement airportWeatherElement = airportWeatherList[i] as XmlElement;
 
                     DateTime weatherDate = DateTime.Parse(airportWeatherElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
                     Weather.WindDirection windDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection), airportWeatherElement.Attributes["direction"].Value);
                     Weather.eWindSpeed windSpeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), airportWeatherElement.Attributes["windspeed"].Value);
-                    Weather.CloudCover cover = airportWeatherElement.HasAttribute("cover")? (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover),airportWeatherElement.Attributes["cover"].Value) : Weather.CloudCover.Clear;
+                    Weather.CloudCover cover = airportWeatherElement.HasAttribute("cover") ? (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover), airportWeatherElement.Attributes["cover"].Value) : Weather.CloudCover.Clear;
                     Weather.Precipitation precip = airportWeatherElement.HasAttribute("precip") ? (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportWeatherElement.Attributes["precip"].Value) : Weather.Precipitation.None;
-                    double temperatureLow =  airportWeatherElement.HasAttribute("temperatureLow") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value) : 0;
+                    double temperatureLow = airportWeatherElement.HasAttribute("temperatureLow") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturelow"].Value) : 0;
                     double temperatureHigh = airportWeatherElement.HasAttribute("temperatureHigh") ? Convert.ToDouble(airportWeatherElement.Attributes["temperaturehigh"].Value) : 20;
 
                     XmlNodeList airportTemperatureList = airportWeatherElement.SelectNodes("temperatures/temperature");
                     HourlyWeather[] temperatures = new HourlyWeather[airportTemperatureList.Count];
-              
-                    int t=0;
+
+                    int t = 0;
                     foreach (XmlElement airportTemperatureNode in airportTemperatureList)
                     {
                         double hourlyTemperature = Convert.ToDouble(airportTemperatureNode.Attributes["temp"].Value);
                         Weather.CloudCover hourlyCover = (Weather.CloudCover)Enum.Parse(typeof(Weather.CloudCover), airportTemperatureNode.Attributes["cover"].Value);
                         Weather.Precipitation hourlyPrecip = (Weather.Precipitation)Enum.Parse(typeof(Weather.Precipitation), airportTemperatureNode.Attributes["precip"].Value);
-                        Weather.eWindSpeed hourlyWindspeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed),airportTemperatureNode.Attributes["windspeed"].Value);
-                        Weather.WindDirection hourlyDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection),airportTemperatureNode.Attributes["direction"].Value);
+                        Weather.eWindSpeed hourlyWindspeed = (Weather.eWindSpeed)Enum.Parse(typeof(Weather.eWindSpeed), airportTemperatureNode.Attributes["windspeed"].Value);
+                        Weather.WindDirection hourlyDirection = (Weather.WindDirection)Enum.Parse(typeof(Weather.WindDirection), airportTemperatureNode.Attributes["direction"].Value);
 
-                        temperatures[t] = new HourlyWeather(hourlyTemperature, hourlyCover, hourlyPrecip,hourlyWindspeed,hourlyDirection);
+                        temperatures[t] = new HourlyWeather(hourlyTemperature, hourlyCover, hourlyPrecip, hourlyWindspeed, hourlyDirection);
                         t++;
                     }
-                   
-                 
-                    airport.Weather[i] = new Weather(weatherDate,windSpeed,windDirection,cover,precip,temperatures,temperatureLow,temperatureHigh);
+
+
+                    airport.Weather[i] = new Weather(weatherDate, windSpeed, windDirection, cover, precip, temperatures, temperatureLow, temperatureHigh);
                 }
 
-                
+
                 XmlNodeList airportStatList = airportNode.SelectNodes("stats/stat");
 
                 foreach (XmlElement airportStatNode in airportStatList)

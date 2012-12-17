@@ -85,7 +85,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             txtNarrative.Background = Brushes.Transparent;
             txtNarrative.TextWrapping = TextWrapping.Wrap;
             txtNarrative.FontStyle = FontStyles.Italic;
-            txtNarrative.Width = 400;
+            txtNarrative.Width = 500;
             txtNarrative.Height = 100;
             txtNarrative.Uid = "1015";
             txtNarrative.IsReadOnly = true;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -10,12 +11,19 @@ namespace TheAirline.Model.AirlineModel
     {
         public Airline Airline { get; set; }
         public List<StartDataRoute> Routes { get; private set; }
+        public List<StartDataRoutes> OriginRoutes { get; private set; }
         public List<StartDataAirliners> Airliners { get; private set; }
         public AirlineStartData(Airline airline)
         {
             this.Airline = airline;
             this.Routes = new List<StartDataRoute>();
             this.Airliners = new List<StartDataAirliners>();
+            this.OriginRoutes = new List<StartDataRoutes>();
+        }
+        //adds origin routes to the list
+        public void addOriginRoutes(StartDataRoutes route)
+        {
+            this.OriginRoutes.Add(route);
         }
         //adds a route to the list
         public void addRoute(StartDataRoute route)
@@ -39,6 +47,26 @@ namespace TheAirline.Model.AirlineModel
             this.Type = type;
             this.AirlinersEarly = airlinersEarly;
             this.AirlinersLate = airlinersLate;
+        }
+    }
+    //the routes for the start data
+    public class StartDataRoutes
+    {
+        public List<Country> Countries { get; set; }
+        public string Origin { get; set; }
+        public int Destinations { get; set; }
+        public GeneralHelpers.Size MinimumSize { get; set; }
+        public StartDataRoutes(string origin, int destinations, GeneralHelpers.Size minimumsize)
+        {
+            this.Countries = new List<Country>();
+            this.Origin = origin;
+            this.Destinations = destinations;
+            this.MinimumSize = minimumsize;
+        }
+        //adds a country to the routes
+        public void addCountry(Country country)
+        {
+            this.Countries.Add(country);
         }
     }
     //the route for the start data

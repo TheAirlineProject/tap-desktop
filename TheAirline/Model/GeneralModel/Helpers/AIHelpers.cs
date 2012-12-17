@@ -512,7 +512,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
 
+                        
                         airline.addRoute(route);
+
+
+                        if (airport.Terminals.getEmptyGate(airline) == null)
+                            airport.Terminals.rentGate(airline);
+
+                        if (destination.Terminals.getEmptyGate(airline) == null)
+                            destination.Terminals.rentGate(airline);
+
 
                         airport.Terminals.getEmptyGate(airline).HasRoute = true;
                         destination.Terminals.getEmptyGate(airline).HasRoute = true;

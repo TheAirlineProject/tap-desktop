@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.Converters;
 using System.Globalization;
 using TheAirline.Model.GeneralModel.Helpers;
+using System.Threading.Tasks;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -269,7 +270,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbRoute_SelectionChanged);
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned))
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned).OrderBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
@@ -403,7 +404,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             entries.RemoveAll(e => this.EntriesToDelete.Keys.SelectMany(r => this.EntriesToDelete[r]).ToList().Find(te => te == e) == e);
 
             foreach (RouteTimeTableEntry e in entries)
-            {
+             {
                 double maxTime = new TimeSpan(24, 0, 0).Subtract(e.Time).TotalMinutes;
 
                 TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
@@ -477,7 +478,25 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             List<RouteTimeTableEntry> airlinerEntries = this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner == this.Airliner)).ToList();
             airlinerEntries.AddRange(this.Entries.Keys.SelectMany(r => this.Entries[r]));
-            airlinerEntries.RemoveAll(e => this.EntriesToDelete.Keys.SelectMany(r => this.Entries[r]).Contains(e));
+
+            //var deletable = this.EntriesToDelete.Keys.SelectMany(r => this.Entries.ContainsKey(r) ? this.Entries[r] : null);
+            List<RouteTimeTableEntry> deletable = new List<RouteTimeTableEntry>();
+            deletable.AddRange(this.EntriesToDelete.Keys.SelectMany(r => this.EntriesToDelete[r]));
+
+            foreach (Route route in this.EntriesToDelete.Keys)
+            {
+                if (this.Entries.ContainsKey(route))
+                    deletable.AddRange(this.Entries[route]);
+
+                
+            }
+            
+       
+
+            foreach (RouteTimeTableEntry e in deletable)
+                if (airlinerEntries.Contains(e))
+                    airlinerEntries.Remove(e);
+       
             airlinerEntries.AddRange(entry.TimeTable.Entries.FindAll(e => e.Destination.Airport == entry.Destination.Airport));
 
             foreach (RouteTimeTableEntry e in airlinerEntries)
