@@ -1354,17 +1354,11 @@ namespace TheAirline.Model.GeneralModel
                 airline.Money = GameObject.GetInstance().StartMoney;
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();
-                airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 120));
+                airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
 
                 if (!airline.IsHuman)
                     CreateComputerRoutes(airline);
-
-
-
-
             }
-
-
         }
 
         /*! removes some random airlines from the list bases on number of opponents.

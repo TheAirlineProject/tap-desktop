@@ -272,15 +272,15 @@ namespace TheAirline.Model.AirlineModel
             double value = getValue();
             double startMoney = this.StartMoney;
             
-            if (value < startMoney / 4)
+            if (value <= GeneralHelpers.GetInflationPrice(startMoney))
                 return AirlineValue.Very_low;
-            if (value >= startMoney / 4 && value < startMoney / 2)
+            if (value > GeneralHelpers.GetInflationPrice(startMoney) && value < GeneralHelpers.GetInflationPrice(startMoney) * 3)
                 return AirlineValue.Low;
-            if (value >= startMoney / 2 && value < startMoney * 2)
+            if (value >= GeneralHelpers.GetInflationPrice(startMoney) * 3 && value < GeneralHelpers.GetInflationPrice(startMoney) * 9)
                 return AirlineValue.Normal;
-            if (value >= startMoney * 2 && value < startMoney * 4)
+            if (value >= GeneralHelpers.GetInflationPrice(startMoney) * 9 && value < GeneralHelpers.GetInflationPrice(startMoney) * 18)
                 return AirlineValue.High;
-            if (value >= startMoney * 4)
+            if (value >= GeneralHelpers.GetInflationPrice(startMoney) * 18)
                 return AirlineValue.Very_high;
 
             return AirlineValue.Normal;

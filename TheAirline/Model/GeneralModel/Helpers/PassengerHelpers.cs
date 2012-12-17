@@ -137,15 +137,10 @@ namespace TheAirline.Model.GeneralModel
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
 
-
-
             double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
-
 
             return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
             //return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
-
-
         }
         //returns the holiday factor for an airport
         private static double GetHolidayFactor(Airport airport)
@@ -184,14 +179,6 @@ namespace TheAirline.Model.GeneralModel
 
             double minimumTicketPrice = GeneralHelpers.GetInflationPrice(18);
 
-            Boolean isSameContinent = dest1.Profile.Country.Region == dest2.Profile.Country.Region;
-            Boolean isSameCountry = dest1.Profile.Country == dest2.Profile.Country;
-
-            if (!isSameCountry && !isSameContinent)
-                ticketPrice = ticketPrice * 1.9;
-            if (!isSameCountry && isSameContinent)
-                ticketPrice = ticketPrice * 1.35;
-
             if (ticketPrice < minimumTicketPrice)
                 ticketPrice = minimumTicketPrice + (ticketPrice / 4);
 
@@ -199,8 +186,6 @@ namespace TheAirline.Model.GeneralModel
         }
         public static double GetPassengerPrice(Airport dest1, Airport dest2, AirlinerClass.ClassType type)
         {
-
-
             return GetPassengerPrice(dest1, dest2) * GeneralHelpers.ClassToPriceFactor(type);
         }
         //creates the airport destination passengers a destination

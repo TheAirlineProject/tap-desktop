@@ -12,7 +12,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class FleetAirlinerHelpers
     {
         private static Random rnd = new Random();
-        public enum DelayType { None,Airliner_problems, Bad_weather }
+        public enum DelayType { None, Airliner_problems, Bad_weather, Airport_Traffic }
         //returns the number of delay minutes (0 if not delayed) for an airliner
         public static KeyValuePair<DelayType,int> GetDelayedMinutes(FleetAirliner airliner)
         {
@@ -30,14 +30,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (d.Value > delay.Value)
                     delay = d;
-      
             }
             if (delay.Value > 0)
                 airliner.CurrentFlight.IsOnTime = false;
 
             return delay;
-
-
         }
 
         //returns the delay time because of the age of an airliner
@@ -63,17 +60,28 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
            switch (departureAirport.Weather[0].WindSpeed)
            {
-               case Weather.eWindSpeed.Storm:
+               case Weather.eWindSpeed.Strong_Breeze:
                    windFactor = 2;
                    break;
-               case Weather.eWindSpeed.Violent_Storm:
+           	   case Weather.eWindSpeed.Near_Gale:
                    windFactor = 4;
                    break;
-               case Weather.eWindSpeed.Hurricane:
+           	   case Weather.eWindSpeed.Gale:
                    windFactor = 6;
                    break;
+           	   case Weather.eWindSpeed.Strong_Gale:
+                   windFactor = 8;
+                   break;
+           	   case Weather.eWindSpeed.Storm:
+                   windFactor = 10;
+                   break;
+               case Weather.eWindSpeed.Violent_Storm:
+                   windFactor = 12;
+                   break;
+               case Weather.eWindSpeed.Hurricane:
+                   windFactor = 14;
+                   break;
            }
-           
 
            if ((departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip ==Weather.Precipitation.None || departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip == Weather.Precipitation.Light_rain) && windFactor == 0)
                return 0;
@@ -83,29 +91,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
            switch (departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip)
            {
                case WeatherModel.Weather.Precipitation.Light_snow:
-                   weatherFactor = 1;
+                   weatherFactor = 4;
                    break;
                case WeatherModel.Weather.Precipitation.Heavy_snow:
-                   weatherFactor = 3;
+                   weatherFactor = 8;
                    break;
                case WeatherModel.Weather.Precipitation.Fog:
-                   weatherFactor = 2;
+                   weatherFactor = 4;
                    break;
                case WeatherModel.Weather.Precipitation.Freezing_rain:
-                   weatherFactor = 4;
+                   weatherFactor = 6;
                    break;
                case WeatherModel.Weather.Precipitation.Hail:
-                   weatherFactor = 4;
+                   weatherFactor = 6;
+                   break;
+               case WeatherModel.Weather.Precipitation.Light_rain:
+                   weatherFactor = 1;
                    break;
                case WeatherModel.Weather.Precipitation.Heavy_rain:
-                   weatherFactor = 3;
+                   weatherFactor = 4;
                    break;
                case WeatherModel.Weather.Precipitation.Sleet:
-                   weatherFactor = 1;
+                   weatherFactor = 4;
                    break;
            }
 
-           int delayTime = rnd.Next((weatherFactor+windFactor),(weatherFactor+windFactor) * 20);
+           int delayTime = rnd.Next((weatherFactor+windFactor),(weatherFactor+windFactor) * 12);
 
            return delayTime;
         }
