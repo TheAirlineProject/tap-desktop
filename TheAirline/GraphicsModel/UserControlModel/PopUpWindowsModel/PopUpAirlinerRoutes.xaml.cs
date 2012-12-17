@@ -56,11 +56,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Width = 1200;
 
             this.Height = this.IsEditable ? 325 : 250;
-
+          
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+
+            ScrollViewer scroller = new ScrollViewer();
+            //scroller.Margin = new Thickness(10, 10, 10, 10);
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = this.Height;
 
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
+            scroller.Content = mainPanel;
+
 
             Grid grdFlights = UICreator.CreateGrid(2);
             grdFlights.ColumnDefinitions[1].Width = new GridLength(200);
@@ -86,7 +94,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             }
 
-            this.Content = mainPanel;
+            this.Content = scroller;
 
             showFlights();
         }

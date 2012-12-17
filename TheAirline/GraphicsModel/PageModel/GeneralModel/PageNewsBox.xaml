@@ -28,13 +28,14 @@
         </DataTemplate>
             <DataTemplate x:Key="NewsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1000'}" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Margin="20 0 0 0" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1000'}" Width="100" FontWeight="Bold"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1001'}" Width="200" FontWeight="Bold" Margin="0 0 5 0"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1002'}" FontWeight="Bold"></TextBlock>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="NewsItem">
             <WrapPanel>
+                <CheckBox VerticalAlignment="Bottom" IsChecked="False" Width="20" Checked="cbNews_Checked" Unchecked="cbNews_Unchecked" Tag="{Binding}"></CheckBox>
                  <TextBlock VerticalAlignment="Bottom" Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" Width="100" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
                 <TextBlock VerticalAlignment="Bottom" Width="200" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}" Margin="0 0 5 0">
                     <Hyperlink Tag="{Binding}" Click="LnkNews_Click">

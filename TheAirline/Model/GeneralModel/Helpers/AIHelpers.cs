@@ -68,14 +68,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)
         {
-            int i = 0;
-
+           
             int max = airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute).Count;
-            while (i < max && airline.Fleet.FindAll(a => !a.HasRoute).Count > 0)
-            {
+
+            if (max > 0)
                 CreateNewRoute(airline);
-                i++;
-            }
+          
             
         }
         //checks for ordering new airliners

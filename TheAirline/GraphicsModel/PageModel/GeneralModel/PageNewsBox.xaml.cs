@@ -29,8 +29,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     {
         private ContentControl ccNews;
         private ListBox lbNews;
+        private List<News> selectedNews;
         public PageNewsBox()
         {
+            this.selectedNews = new List<News>();
+
             InitializeComponent();
 
             this.Uid = "1000";
@@ -64,6 +67,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             lbNews.MaxHeight = GraphicsHelpers.GetContentHeight()-100;
      
             newsPanel.Children.Add(lbNews);
+
+            WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Margin = new Thickness(0, 5, 0, 0);
             
             Button btnRead = new Button();
             btnRead.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -74,9 +80,20 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnRead.Content = Translator.GetInstance().GetString("PageNewsBox", btnRead.Uid);
             btnRead.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnRead.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnRead.Margin = new Thickness(0, 5, 0, 0);
+            panelButtons.Children.Add(btnRead);
 
-            newsPanel.Children.Add(btnRead);
+            Button btnDelete = new Button();
+            btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnDelete.Height = Double.NaN;
+            btnDelete.Width = Double.NaN;
+            btnDelete.Uid = "202";
+            btnDelete.Margin = new Thickness(5, 0, 0, 0);
+            btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
+            btnDelete.Content = Translator.GetInstance().GetString("PageNewsBox", btnDelete.Uid);
+            btnDelete.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            panelButtons.Children.Add(btnDelete);
+
+            newsPanel.Children.Add(panelButtons);
             
      
 
@@ -94,6 +111,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
 
             this.Unloaded += new RoutedEventHandler(PageNewsBox_Unloaded);
+        }
+
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            
+      
+            GameObject.GetInstance().NewsBox.getNews().RemoveAll(n => this.selectedNews.Contains(n));
+
+            this.selectedNews.Clear();
+
+            showNews(true);
         }
 
         private void btnRead_Click(object sender, RoutedEventArgs e)
@@ -141,6 +169,19 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             ccNews.Visibility = System.Windows.Visibility.Visible;
 
             showNews(true);
+        }
+
+        private void cbNews_Checked(object sender, RoutedEventArgs e)
+        {
+            News news = (News)((CheckBox)sender).Tag;
+            this.selectedNews.Add(news);
+        }
+
+        private void cbNews_Unchecked(object sender, RoutedEventArgs e)
+        {
+            News news = (News)((CheckBox)sender).Tag;
+            this.selectedNews.Remove(news);
+    
         }
     }
     public class NewsTextConverter : IValueConverter
