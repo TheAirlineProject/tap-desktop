@@ -302,6 +302,7 @@ namespace TheAirline.Model.AirportModel
     public class Airports
     {
         private static List<Airport> airports = new List<Airport>();
+        public static int LargestAirports = 0;
         //clears the list
         public static void Clear()
         {
@@ -397,6 +398,11 @@ namespace TheAirline.Model.AirportModel
         public static int Count()
         {
             return GetAllActiveAirports().Count;
+        }
+        //returns the total number of airports with size large
+        public static int CountLargest()
+        {
+            return LargestAirports;
         }
         //removes all airports with a specific match
         public static void RemoveAirports(Predicate<Airport> match)

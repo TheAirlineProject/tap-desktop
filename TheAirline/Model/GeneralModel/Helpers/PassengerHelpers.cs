@@ -218,14 +218,14 @@ namespace TheAirline.Model.GeneralModel
             String dAirportSize = dAirport.Profile.Size.ToString();
             String airportSize = airport.Profile.Size.ToString();
 
-            /*
+          
             if (airport.Profile.Pax != 0 || dAirport.Profile.Pax != 0)
             {
                 
-                double paxLargest= (Math.Max(airport.Profile.Pax,dAirport.Profile.Pax) * 0.25) / Airports.GetAirports(a=>a.Profile.Size == GeneralHelpers.Size.Largest).Count;
+                double paxLargest= (Math.Max(airport.Profile.Pax,dAirport.Profile.Pax) * 0.25) / Airports.LargestAirports;
                 paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.10);
                 estimatedPassengerLevel = ((airport.Profile.Pax + dAirport.Profile.Pax) / 2) / 365;
-            }*/
+            }
             //else
             {
                 //Smallest Airports
