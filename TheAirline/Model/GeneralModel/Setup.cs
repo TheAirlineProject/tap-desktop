@@ -48,6 +48,11 @@ namespace TheAirline.Model.GeneralModel
                 GeneralHelpers.CreateBigImageCanvas();
                 ClearLists();
 
+                CreateTimeZones();
+                SetupDifficultyLevels();
+                SetupStatisticsTypes();
+         
+
                 LoadRegions();
                 LoadCountries();
                 LoadStates();
@@ -68,11 +73,8 @@ namespace TheAirline.Model.GeneralModel
                 LoadHistoricEvents();
                 LoadWeatherAverages();
 
-                SetupStatisticsTypes();
-                SetupDifficultyLevels();
-
+           
                 CreateAdvertisementTypes();
-                CreateTimeZones();
                 CreateFeeTypes();
                 CreateFlightFacilities();
 
@@ -239,6 +241,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                
                 string s = e.ToString();
             }
 
@@ -734,7 +737,7 @@ namespace TheAirline.Model.GeneralModel
 
                     XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
-                    int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt16(sizeElement.Attributes["pax"].Value) : 0;
+                    int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
 
                     Town eTown = null;
                     if (town.Contains(","))
@@ -1154,7 +1157,9 @@ namespace TheAirline.Model.GeneralModel
                     f = file.Name;
                     LoadAirline(file.FullName);
                 }
-
+                GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
+                GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
+  
                 CreateAirlineLogos();
 
                }
@@ -1162,9 +1167,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 string s = e.ToString();
             }
-            GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
-            GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
-  
+      
         }
         /*loads an airline
          */
