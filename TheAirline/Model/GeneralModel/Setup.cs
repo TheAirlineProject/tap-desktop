@@ -1399,8 +1399,10 @@ namespace TheAirline.Model.GeneralModel
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
-            if (!Airlines.GetAllAirlines().Contains(lot))
-                Airlines.AddAirline(lot);
+            if (Airlines.GetAllAirlines().Contains(lot))
+                Airlines.RemoveAirline(lot);
+            //if (!Airlines.GetAllAirlines().Contains(lot))
+          //      Airlines.AddAirline(lot);
 
         }
         //finds the home base for a computer airline
