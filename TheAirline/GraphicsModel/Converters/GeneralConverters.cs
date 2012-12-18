@@ -538,7 +538,10 @@ namespace TheAirline.GraphicsModel.Converters
 
             Country country = (Country)value;
 
-          
+            if (country is TerritoryCountry)
+            {
+                return ((TerritoryCountry)country).MainCountry;
+            }
             if (!(country is TemporaryCountry))
             {
                 TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country,GameObject.GetInstance().GameTime);

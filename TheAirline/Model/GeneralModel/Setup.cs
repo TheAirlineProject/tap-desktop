@@ -1144,24 +1144,27 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadAirlines()
         {
+            string f = "";
             try
             {
                 DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airlines");
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
+                    f = file.Name;
                     LoadAirline(file.FullName);
                 }
 
                 CreateAirlineLogos();
 
-                GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
-                GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
-            }
+               }
             catch (Exception e)
             {
                 string s = e.ToString();
             }
+            GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
+            GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
+  
         }
         /*loads an airline
          */
