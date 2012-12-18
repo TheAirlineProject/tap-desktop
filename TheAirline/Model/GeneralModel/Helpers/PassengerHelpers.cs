@@ -140,7 +140,7 @@ namespace TheAirline.Model.GeneralModel
             double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
 
             return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
-            //return (int)(airliner.Airliner.getAirlinerClass(type).SeatingCapacity);
+     
         }
         //returns the holiday factor for an airport
         private static double GetHolidayFactor(Airport airport)

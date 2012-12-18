@@ -18,14 +18,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
     public class UICreator
     {
-         /*!creates a standard text block. Font size 0 for default
-          * */
+        /*!creates a standard text block. Font size 0 for default
+         * */
         public static TextBlock CreateTextBlock(string text)
         {
             TextBlock txtText = new TextBlock();
             txtText.Text = text;
-            
-          
+
+
             return txtText;
         }
         /*!creates a color rect
@@ -56,7 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
          */
         public static LinearGradientBrush CreateGradientBrush(Color baseColor)
         {
-           
+
             Color c2 = Color.FromArgb(25, baseColor.R, baseColor.G, baseColor.B);
 
             LinearGradientBrush colorBrush = new LinearGradientBrush();
@@ -72,7 +72,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
          */
         public static Panel CreateGameLogo()
         {
-       
+
             StackPanel panelLogo = new StackPanel();
 
             string image = AppSettings.getDataPath() + "\\graphics\\TheAirlineLogo.png";
@@ -153,6 +153,23 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     townPanel.Children.Add(imgFlag);
                 }
 
+
+            }
+            else if (town.Country is TerritoryCountry && town.State == null)
+            {
+                TextBlock txtTown = UICreator.CreateTextBlock(string.Format("{0}", town.Name));
+                txtTown.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+                townPanel.Children.Add(txtTown);
+
+                Image imgFlag = new Image();
+                imgFlag.Source = new BitmapImage(new Uri(town.Country.Flag, UriKind.RelativeOrAbsolute));
+                imgFlag.Height = 24;
+                RenderOptions.SetBitmapScalingMode(imgFlag, BitmapScalingMode.HighQuality);
+
+                imgFlag.Margin = new Thickness(5, 0, 0, 0);
+
+                townPanel.Children.Add(imgFlag);
             }
             else
                 townPanel.Children.Add(UICreator.CreateTextBlock(town.Name));
@@ -164,44 +181,44 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         public static Button CreateImageButton(string name, string image, int size)
         {
 
-           
-                Button btnButton = new Button();
-                btnButton.Name = name;
-                btnButton.Width = size;
-                btnButton.Height = size;
-                btnButton.Background = null;
-           
 
-                Image img = new Image();
+            Button btnButton = new Button();
+            btnButton.Name = name;
+            btnButton.Width = size;
+            btnButton.Height = size;
+            btnButton.Background = null;
 
-                img.Source = new BitmapImage(
-                    new Uri(image, UriKind.Relative));
-                img.Stretch = Stretch.Fill;
-                RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
 
-                btnButton.Content = img;
+            Image img = new Image();
 
-                return btnButton;
+            img.Source = new BitmapImage(
+                new Uri(image, UriKind.Relative));
+            img.Stretch = Stretch.Fill;
+            RenderOptions.SetBitmapScalingMode(img, BitmapScalingMode.HighQuality);
+
+            btnButton.Content = img;
+
+            return btnButton;
 
 
 
         }
         /*!creates a link
-         */ 
+         */
         public static TextBlock CreateLink(string text)
         {
-           
+
             TextBlock txtBlock = new TextBlock();
-       
+
             Run run = new Run(text);
-           
+
             Hyperlink hyperLink = new Hyperlink(run);
             txtBlock.Inlines.Add(hyperLink);
             return txtBlock;
 
         }
         /*!creates a grid with x-columns
-         */ 
+         */
         public static Grid CreateGrid(int columns)
         {
             Grid grid = new Grid();
@@ -306,7 +323,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
                 st.Resources.Add(SystemColors.HighlightBrushKey, brush);
                 st.Resources.Add(SystemColors.ControlBrushKey, brush);
-                
+
             }
             else
             {
@@ -314,7 +331,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 brush.Opacity = 0.50;
 
                 backGroundSetter.Value = brush;
-      
+
                 st.Resources.Add(SystemColors.HighlightBrushKey, brush);
                 st.Resources.Add(SystemColors.ControlBrushKey, brush);
             }
@@ -327,5 +344,5 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             return st;
         }
     }
-    
+
 }

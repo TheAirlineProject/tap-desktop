@@ -687,13 +687,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (airliner.Airliner.Airline.IsHuman)
                 {
+                    Flight flight = airliner.CurrentFlight;
+              
                     switch (delayedMinutes.Key)
                     {
                         case FleetAirlinerHelpers.DelayType.Airliner_problems:
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), airliner.Airliner.TailNumber)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IATACode,flight.Entry.Destination.Airport.Profile.IATACode)));
                             break;
                         case FleetAirlinerHelpers.DelayType.Bad_weather:
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), airliner.Airliner.TailNumber)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IATACode, flight.Entry.Destination.Airport.Profile.IATACode)));
                             break;
                     }
                 }
