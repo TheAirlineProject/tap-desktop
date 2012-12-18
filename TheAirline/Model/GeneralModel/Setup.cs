@@ -677,6 +677,12 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
             Airports.LargestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest).Count;
+            Airports.VeryLargeAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_large).Count;
+            Airports.LargeAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Large).Count;
+            Airports.MediumAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Medium).Count;
+            Airports.SmallAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Small).Count;
+            Airports.VerySmallAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_small).Count;
+            Airports.SmallestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Smallest).Count;
 
         }
         private static void LoadAirports(string file)
