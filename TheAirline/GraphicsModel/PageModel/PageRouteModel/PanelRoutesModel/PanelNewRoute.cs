@@ -26,7 +26,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
     {
         private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates;
         private ComboBox cbDestination1, cbDestination2;
-        private ComboBox cbAircraft;
         private Button btnSave, btnLoad;
         private PageRoutes ParentPage;
         private double MaxDistance;

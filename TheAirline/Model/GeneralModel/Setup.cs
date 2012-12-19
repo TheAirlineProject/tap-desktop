@@ -1762,7 +1762,10 @@ namespace TheAirline.Model.GeneralModel
             RouteFacilities.AddFacility(new RouteFacility("112", RouteFacility.FacilityType.WiFi, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
             RouteFacilities.AddFacility(new RouteFacility("113", RouteFacility.FacilityType.WiFi, "Buyable", 40, RouteFacility.ExpenseType.Random, 0.5, FeeTypes.GetType("WiFi"), AirlineFacilities.GetFacility("107")));
             RouteFacilities.AddFacility(new RouteFacility("114", RouteFacility.FacilityType.WiFi, "Free", 100, RouteFacility.ExpenseType.Fixed, 0.5, null, AirlineFacilities.GetFacility("107")));
-
+            RouteFacilities.AddFacility(new RouteFacility("115", RouteFacility.FacilityType.Magazines, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("116", RouteFacility.FacilityType.Magazines, "Available", 40, RouteFacility.ExpenseType.Fixed, 0, null, AirlineFacilities.GetFacility("101")));
+            RouteFacilities.AddFacility(new RouteFacility("117", RouteFacility.FacilityType.Newspapers, "None", 0, RouteFacility.ExpenseType.Fixed, 0, null));
+            RouteFacilities.AddFacility(new RouteFacility("118", RouteFacility.FacilityType.Newspapers, "Available", 35, RouteFacility.ExpenseType.Fixed, 0, null, AirlineFacilities.GetFacility("102")));
         }
 
         /*! creates the Fee types.
@@ -1770,10 +1773,10 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateFeeTypes()
         {
             //wages
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit wage", 4.11, 3.75, 12.75, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Maintenance wage", 3.95, 3.0, 4.25, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support wage", 2.65, 1, 3, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin wage", 1.9, 1, 4, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cockpit Wage", 4.11, 3.75, 12.75, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Maintenance Wage", 3.95, 3.0, 4.25, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support Wage", 2.65, 1, 3, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin Wage", 1.9, 1, 4, 100));
 
             //food and drinks
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Alcholic Drinks", 0.75, 0.5, 1.1, 75));
@@ -1789,7 +1792,9 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 1.4, 6.25, 25, 2007));
 
             //discounts
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Employee discount", 0, 0, 100, 1));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Employee Discount", 0, 0, 100, 1));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Government Discount", 0, 0, 100, 3));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Military Discount", 0, 0, 100, 1));
         }
     }
 }
