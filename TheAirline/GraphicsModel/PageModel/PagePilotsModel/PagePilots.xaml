@@ -11,7 +11,7 @@
         <DataTemplate x:Key="InstructorItem">
             <WrapPanel>
                 <TextBlock Width="150" VerticalAlignment="Bottom">
-                    <Hyperlink Tag="{Binding }" Click="lnkPilot_Click">
+                    <Hyperlink Tag="{Binding }" Click="lnkInstructor_Click">
                         <Run Text="{Binding Profile.Name}"></Run>
                     </Hyperlink>
                 </TextBlock>

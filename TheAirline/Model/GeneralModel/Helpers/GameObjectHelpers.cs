@@ -27,63 +27,84 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a "turn"
         public static void SimulateTurn()
         {
-
-            GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);
-
-            CalibrateTime();
-
-            if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
-
-            if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
-
-            if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
-
-            var airlines = new List<Airline>(Airlines.GetAllAirlines());
-
-            int airlineCounter = 0;
-            Parallel.ForEach(airlines, airline =>
+            if (GameObject.GetInstance().DayRoundEnabled)
             {
-                if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddDays(1);
+
+                DoDailyUpdate();
+
+                if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
+
+                if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
+
+                foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     if (!airline.IsHuman)
                         AIHelpers.UpdateCPUAirline(airline);
 
+                    DayTurnHelpers.SimulateAirlineFlights(airline);
                 }
 
-                int airlineCount = airline.Fleet.Count;
-                
-                Parallel.ForEach(airline.Fleet, airliner =>
-                    {
-                        UpdateAirliner(airliner);
-                    });
-                
-                /*
-                for (int i = 0; i < airlineCount; i++)
-                    UpdateAirliner(airline.Fleet[i]);
-                */
-                airlineCounter++;
-            });
-            /*
-            int airlineCounter = 0;
-            foreach (Airline airline in airlines)
-            {
-
-
-                if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
-                {
-                    if (!airline.IsHuman)
-                        AIHelpers.UpdateCPUAirline(airline);
-
-                }
-
-                int airlineCount = airline.Fleet.Count;
-
-                for (int i = 0; i < airlineCount; i++)
-                    UpdateAirliner(airline.Fleet[i]);
-
-                airlineCounter++;
             }
-            */
+            else
+            {
+                GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);
+
+                CalibrateTime();
+
+                if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
+
+                if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
+
+                if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
+
+                var airlines = new List<Airline>(Airlines.GetAllAirlines());
+
+                int airlineCounter = 0;
+                Parallel.ForEach(airlines, airline =>
+                {
+                    if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                    {
+                        if (!airline.IsHuman)
+                            AIHelpers.UpdateCPUAirline(airline);
+
+                    }
+
+                    int airlineCount = airline.Fleet.Count;
+
+                    Parallel.ForEach(airline.Fleet, airliner =>
+                        {
+                            UpdateAirliner(airliner);
+                        });
+
+                    /*
+                    for (int i = 0; i < airlineCount; i++)
+                        UpdateAirliner(airline.Fleet[i]);
+                    */
+                    airlineCounter++;
+                });
+                /*
+                int airlineCounter = 0;
+                foreach (Airline airline in airlines)
+                {
+
+
+                    if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                    {
+                        if (!airline.IsHuman)
+                            AIHelpers.UpdateCPUAirline(airline);
+
+                    }
+
+                    int airlineCount = airline.Fleet.Count;
+
+                    for (int i = 0; i < airlineCount; i++)
+                        UpdateAirliner(airline.Fleet[i]);
+
+                    airlineCounter++;
+                }
+                */
+            }
             GC.Collect();
             GC.WaitForPendingFinalizers();
             GC.Collect();
@@ -480,9 +501,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         double wage = 0;
 
                         if (facility.EmployeeType == AirportFacility.EmployeeTypes.Maintenance)
-                            wage = airline.Fees.getValue(FeeTypes.GetType("Maintenance wage"));
+                            wage = airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
                         if (facility.EmployeeType == AirportFacility.EmployeeTypes.Support)
-                            wage = airline.Fees.getValue(FeeTypes.GetType("Support wage"));
+                            wage = airline.Fees.getValue(FeeTypes.GetType("Support Wage"));
 
                         double facilityWage = facility.NumberOfEmployees * wage * (40 * 4.33); //40 hours per week and 4.33 weeks per month
 
@@ -765,7 +786,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
         }
         //simulates a route airliner landing
-        private static void SimulateLanding(FleetAirliner airliner)
+        public static void SimulateLanding(FleetAirliner airliner)
         {
             TimeSpan flighttime = GameObject.GetInstance().GameTime.Subtract(airliner.CurrentFlight.FlightTime);
 

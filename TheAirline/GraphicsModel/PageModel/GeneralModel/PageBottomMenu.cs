@@ -38,7 +38,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             txtTime = new TextBlock();
 
-            txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;//GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
+            if (GameObject.GetInstance().DayRoundEnabled)
+                txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
+            else
+                txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;//GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
 
             txtTime.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             txtTime.FontWeight = FontWeights.Bold;
@@ -77,7 +80,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             if (this.IsLoaded)
             {
-                txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
+                if (GameObject.GetInstance().DayRoundEnabled)
+                    txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
+                else
+                    txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;//GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
+
                 txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
                 txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
 

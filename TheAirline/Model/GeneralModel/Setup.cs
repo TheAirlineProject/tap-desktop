@@ -137,7 +137,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     Town town = towns[rnd.Next(towns.Count)];
                     DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                    PilotProfile profile = new PilotProfile("John", "Doe" + (i + 1), birthdate, town);
+                    PilotProfile profile = new PilotProfile("Pilot", "Doe" + (i + 1), birthdate, town);
 
                     Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
                     rankings.Add(Pilot.PilotRating.A, 10);
@@ -160,7 +160,7 @@ namespace TheAirline.Model.GeneralModel
                     {
                         Town town = towns[rnd.Next(towns.Count)];
                         DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                        PilotProfile profile = new PilotProfile("John", "Doe" + (i + 1), birthdate, town);
+                        PilotProfile profile = new PilotProfile("Instructor", "Doe" + (i + 1), birthdate, town);
 
                         Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
                         rankings.Add(Pilot.PilotRating.A, 10);

@@ -39,11 +39,20 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
             panelContent.setContentPage(pilotsPanel, StandardContentPanel.ContentLocation.Left);
 
-            ContentControl txtPilotsHeader = new ContentControl();
-            txtPilotsHeader.ContentTemplate = this.Resources["PilotsHeader"] as DataTemplate;
+            TextBlock txtPilotsHeader = new TextBlock();
+            txtPilotsHeader.Uid = "1001";
             txtPilotsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtPilotsHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtPilotsHeader.FontWeight = FontWeights.Bold;
+            txtPilotsHeader.Text = Translator.GetInstance().GetString("PagePilots", txtPilotsHeader.Uid);
 
             pilotsPanel.Children.Add(txtPilotsHeader);
+            
+            ContentControl ccPilotsHeader = new ContentControl();
+            ccPilotsHeader.ContentTemplate = this.Resources["PilotsHeader"] as DataTemplate;
+            ccPilotsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+
+            pilotsPanel.Children.Add(ccPilotsHeader);
 
             lbPilots = new ListBox();
             lbPilots.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -52,12 +61,22 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
             pilotsPanel.Children.Add(lbPilots);
 
-            ContentControl txtInstructorsHeader = new ContentControl();
-            txtInstructorsHeader.ContentTemplate = this.Resources["InstructorsHeader"] as DataTemplate;
+            TextBlock txtInstructorsHeader = new TextBlock();
+            txtInstructorsHeader.Uid = "1002";
             txtInstructorsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtInstructorsHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtInstructorsHeader.FontWeight = FontWeights.Bold;
+            txtInstructorsHeader.Text = Translator.GetInstance().GetString("PagePilots", txtInstructorsHeader.Uid);
             txtInstructorsHeader.Margin = new Thickness(0, 10, 0, 0);
 
             pilotsPanel.Children.Add(txtInstructorsHeader);
+
+
+            ContentControl ccInstructorsHeader = new ContentControl();
+            ccInstructorsHeader.ContentTemplate = this.Resources["InstructorsHeader"] as DataTemplate;
+            ccInstructorsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+         
+            pilotsPanel.Children.Add(ccInstructorsHeader);
 
             lbInstructors = new ListBox();
             lbInstructors.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -66,12 +85,22 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
             pilotsPanel.Children.Add(lbInstructors);
 
-            ContentControl txtFlightSchoolHeader = new ContentControl();
-            txtFlightSchoolHeader.ContentTemplate = this.Resources["FlightSchoolsHeader"] as DataTemplate;
-            txtFlightSchoolHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtFlightSchoolHeader.Margin = new Thickness(0, 10, 0, 0);
+            TextBlock txtFlightSchoolsHeader = new TextBlock();
+            txtFlightSchoolsHeader.Uid = "1003";
+            txtFlightSchoolsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtFlightSchoolsHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtFlightSchoolsHeader.FontWeight = FontWeights.Bold;
+            txtFlightSchoolsHeader.Text = Translator.GetInstance().GetString("PagePilots", txtInstructorsHeader.Uid);
+            txtFlightSchoolsHeader.Margin = new Thickness(0, 10, 0, 0);
 
-            pilotsPanel.Children.Add(txtFlightSchoolHeader);
+            pilotsPanel.Children.Add(txtFlightSchoolsHeader);
+
+            ContentControl ccFlightSchoolHeader = new ContentControl();
+            ccFlightSchoolHeader.ContentTemplate = this.Resources["FlightSchoolsHeader"] as DataTemplate;
+            ccFlightSchoolHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+         
+
+            pilotsPanel.Children.Add(ccFlightSchoolHeader);
 
             lbFlightSchools = new ListBox();
             lbFlightSchools.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -132,9 +161,17 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             panelSideMenu.Content = new PanelPilot(this,pilot);
           
         }
+        private void lnkInstructor_Click(object sender, RoutedEventArgs e)
+        {
+            Instructor instructor = (Instructor)((Hyperlink)sender).Tag;
+            panelSideMenu.Content = new PanelInstructor(this,instructor);
+
+        }
         public override void updatePage()
         {
             showPilots();
+
+            showInstructors();
         }
     }
 }

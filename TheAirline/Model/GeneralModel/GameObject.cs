@@ -16,6 +16,7 @@ namespace TheAirline.Model.GeneralModel
         private static GameObject GameInstance;
         public Boolean PagePerformanceCounterEnabled { get; set; }
         public Boolean PilotsEnabled { get; set; }
+        public Boolean DayRoundEnabled { get; set; }
         public DateTime GameTime { get; set; }
         public DateTime StartDate { get; set; }
         public Airline HumanAirline { get; set; }
@@ -36,8 +37,9 @@ namespace TheAirline.Model.GeneralModel
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
-            this.PagePerformanceCounterEnabled = true;
+            this.PagePerformanceCounterEnabled = false;
             this.PilotsEnabled = false;
+            this.DayRoundEnabled = false;
         }
 
         //returns the start money based on year of start

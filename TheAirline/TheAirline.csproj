@@ -280,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelInstructor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelPilot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -570,6 +574,9 @@
     <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml.cs">
       <DependentUpon>PagePilots.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelInstructor.xaml.cs">
+      <DependentUpon>PanelInstructor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelPilot.xaml.cs">
       <DependentUpon>PanelPilot.xaml</DependentUpon>
     </Compile>
@@ -733,6 +740,7 @@
     <Compile Include="Model\GeneralModel\Helpers\AirlineHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AirlinerHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AirportHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\DayTurnHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\FleetAirlinerHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
