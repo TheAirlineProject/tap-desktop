@@ -40,28 +40,28 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PageAirliners", txtHeader.Uid);
+            txtHeader.Text = Translator.GetInstance().GetString("PanelPilot", txtHeader.Uid);
 
             panelPilot.Children.Add(txtHeader);
 
             ListBox lbPilotInformation = new ListBox();
             lbPilotInformation.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             lbPilotInformation.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            
-            lbPilotInformation.Items.Add(new QuickInfoValue("Name", UICreator.CreateTextBlock(this.Pilot.Profile.Name)));
-            lbPilotInformation.Items.Add(new QuickInfoValue("Date of birth", UICreator.CreateTextBlock(this.Pilot.Profile.Birthdate.ToShortDateString())));
-            lbPilotInformation.Items.Add(new QuickInfoValue("Town", UICreator.CreateTownPanel(this.Pilot.Profile.Town)));
+
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot","1002"), UICreator.CreateTextBlock(this.Pilot.Profile.Name)));
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1003"), UICreator.CreateTextBlock(this.Pilot.Profile.Birthdate.ToShortDateString())));
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1004"), UICreator.CreateTownPanel(this.Pilot.Profile.Town)));
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
             lblFlag.Content = new CountryCurrentCountryConverter().Convert(this.Pilot.Profile.Town.Country);
 
-            lbPilotInformation.Items.Add(new QuickInfoValue("Country", lblFlag));
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1005"), lblFlag));
 
-            lbPilotInformation.Items.Add(new QuickInfoValue("Year of education", UICreator.CreateTextBlock(this.Pilot.EducationTime.ToShortDateString())));
-            lbPilotInformation.Items.Add(new QuickInfoValue("Ranking", UICreator.CreateTextBlock(this.Pilot.Ranking.ToString())));
-            lbPilotInformation.Items.Add(new QuickInfoValue("Monthly salary", UICreator.CreateTextBlock(string.Format("{0:C}", ((int)this.Pilot.Ranking) * 1000))));
-
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1006"), UICreator.CreateTextBlock(this.Pilot.EducationTime.ToShortDateString())));
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1007"), UICreator.CreateTextBlock(this.Pilot.Rating.ToString())));
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(string.Format("{0:C}", ((int)this.Pilot.Rating) * 1000))));
+            
             panelPilot.Children.Add(lbPilotInformation);
 
             panelPilot.Children.Add(createButtonsPanel());
@@ -79,7 +79,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             btnHire.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnHire.Height = Double.NaN;
             btnHire.Width = Double.NaN;
-            btnHire.Content = Translator.GetInstance().GetString("PageAlliances", btnHire.Uid);
+            btnHire.Content = Translator.GetInstance().GetString("PanelPilot", btnHire.Uid);
             btnHire.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnHire.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnHire.Click += new RoutedEventHandler(btnHire_Click);
@@ -91,10 +91,10 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2108"), Translator.GetInstance().GetString("MessageBox", "2108", "message"), WPFMessageBoxButtons.YesNo);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
             if (result == WPFMessageBoxResult.Yes)
             {
-                //GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
+                GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
                 this.ParentPage.updatePage();
             }
         }

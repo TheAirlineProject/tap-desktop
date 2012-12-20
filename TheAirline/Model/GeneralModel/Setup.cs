@@ -52,7 +52,6 @@ namespace TheAirline.Model.GeneralModel
                 SetupDifficultyLevels();
                 SetupStatisticsTypes();
          
-
                 LoadRegions();
                 LoadCountries();
                 LoadStates();
@@ -72,8 +71,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadHolidays();
                 LoadHistoricEvents();
                 LoadWeatherAverages();
-
-           
+                           
                 CreateAdvertisementTypes();
                 CreateFeeTypes();
                 CreateFlightFacilities();
@@ -123,6 +121,7 @@ namespace TheAirline.Model.GeneralModel
             WeatherAverages.Clear();
             DifficultyLevels.Clear();
             Pilots.Clear();
+            Instructors.Clear();
         }
         /*! creates some pilots
          */
@@ -140,20 +139,42 @@ namespace TheAirline.Model.GeneralModel
                     DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
                     PilotProfile profile = new PilotProfile("John", "Doe" + (i + 1), birthdate, town);
 
-                    Dictionary<Pilot.PilotRanking, int> rankings = new Dictionary<Pilot.PilotRanking, int>();
-                    rankings.Add(Pilot.PilotRanking.A, 10);
-                    rankings.Add(Pilot.PilotRanking.B, 20);
-                    rankings.Add(Pilot.PilotRanking.C, 40);
-                    rankings.Add(Pilot.PilotRanking.D, 20);
-                    rankings.Add(Pilot.PilotRanking.E, 10);
+                    Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
+                    rankings.Add(Pilot.PilotRating.A, 10);
+                    rankings.Add(Pilot.PilotRating.B, 20);
+                    rankings.Add(Pilot.PilotRating.C, 40);
+                    rankings.Add(Pilot.PilotRating.D, 20);
+                    rankings.Add(Pilot.PilotRating.E, 10);
 
-                    Pilot.PilotRanking ranking = AIHelpers.GetRandomItem<Pilot.PilotRanking>(rankings);
+                    Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
 
                     DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), birthdate.AddYears(55));
                     Pilot pilot = new Pilot(profile, educationTime, ranking);
 
                     Pilots.AddPilot(pilot);
                 });
+
+                int instructorsPool = 100;
+
+                Parallel.For(0, instructorsPool, i =>
+                    {
+                        Town town = towns[rnd.Next(towns.Count)];
+                        DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                        PilotProfile profile = new PilotProfile("John", "Doe" + (i + 1), birthdate, town);
+
+                        Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
+                        rankings.Add(Pilot.PilotRating.A, 10);
+                        rankings.Add(Pilot.PilotRating.B, 20);
+                        rankings.Add(Pilot.PilotRating.C, 40);
+                        rankings.Add(Pilot.PilotRating.D, 20);
+                        rankings.Add(Pilot.PilotRating.E, 10);
+
+                        Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+
+                        Instructor instructor = new Instructor(profile, ranking);
+
+                        Instructors.AddInstructor(instructor);
+                    });
             }
         }
         /*! creates the Advertisement types
@@ -770,7 +791,7 @@ namespace TheAirline.Model.GeneralModel
                         long runwayLength = XmlConvert.ToInt32(runwayNode.Attributes["length"].Value);
                         Runway.SurfaceType surface = (Runway.SurfaceType)Enum.Parse(typeof(Runway.SurfaceType), runwayNode.Attributes["surface"].Value);
 
-                        airport.Runways.Add(new Runway(runwayName, runwayLength, surface));
+                        airport.Runways.Add(new Runway(runwayName, runwayLength, surface, new DateTime(1900,1,1),true));
 
                     }
                     Airports.AddAirport(airport);

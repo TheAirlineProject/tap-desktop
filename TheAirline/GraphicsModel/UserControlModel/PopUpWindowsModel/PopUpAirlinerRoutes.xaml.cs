@@ -110,7 +110,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel panelRoutes = new StackPanel();
             panelRoutes.Margin = new Thickness(5, 0, 0, 0);
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates)))
+            long requiredRunway= this.Airliner.Airliner.Type.MinRunwaylength;
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength()>=requiredRunway && r.Destination2.getMaxRunwayLength()>=requiredRunway ))
             {
                 Border brdRoute = new Border();
                 brdRoute.BorderBrush = Brushes.Black;
@@ -252,7 +253,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             long maxDistance = this.Airliner.Airliner.Type.Range;
 
-            return GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => MathHelpers.GetDistance(r.Destination1, r.Destination2)) <= maxDistance);
+            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+
+            return GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => MathHelpers.GetDistance(r.Destination1, r.Destination2)) <= maxDistance );
         }
         //creates the panel for adding a new entry
         private StackPanel createNewEntryPanel()
@@ -270,7 +273,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbRoute_SelectionChanged);
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned).OrderBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
+            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination2)))
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);

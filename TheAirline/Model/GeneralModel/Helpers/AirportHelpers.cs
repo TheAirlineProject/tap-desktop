@@ -13,6 +13,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class AirportHelpers
     {
         private static Random rnd = new Random();
+        //returns the price for a runway at an airport
+        public static double GetAirportRunwayPrice(Airport airport, long lenght)
+        {
+            double pricePerMeter = 0;
+            if (airport.Profile.Size == GeneralHelpers.Size.Very_large || airport.Profile.Size == GeneralHelpers.Size.Largest)
+                pricePerMeter = 30000;
+            if (airport.Profile.Size == GeneralHelpers.Size.Large || airport.Profile.Size == GeneralHelpers.Size.Medium)
+                pricePerMeter = 24000;
+            if (airport.Profile.Size == GeneralHelpers.Size.Small)
+                pricePerMeter = 18000;
+            if (airport.Profile.Size == GeneralHelpers.Size.Smallest || airport.Profile.Size == GeneralHelpers.Size.Very_small)
+                pricePerMeter = 12000;
+
+            return pricePerMeter * lenght;
+        }
         //finds all airports in a radius of 1000 km from a airport
         public static List<Airport> GetAirportsNearAirport(Airport airport)
         {

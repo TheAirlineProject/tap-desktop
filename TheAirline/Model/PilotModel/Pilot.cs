@@ -9,18 +9,18 @@ namespace TheAirline.Model.PilotModel
     //the class for a pilot
     public class Pilot
     {
-        public enum PilotRanking { A=3, B=4, C=5, D=7, E=10 } 
-        public PilotRanking Ranking { get; set; }
+        public enum PilotRating { A=3, B=4, C=5, D=7, E=10 } 
+        public PilotRating Rating { get; set; }
         public PilotProfile Profile { get; set; }
         public Airline Airline { get; set; }
         public DateTime AirlineSignedDate { get; set; }
         public DateTime EducationTime { get; set; }
         
-         public Pilot(PilotProfile profile, DateTime educationTime, PilotRanking ranking)
+         public Pilot(PilotProfile profile, DateTime educationTime, PilotRating rating)
         {
             this.Profile = profile;
             this.EducationTime = educationTime;
-            this.Ranking = ranking;
+            this.Rating = rating;
         }
         //sets the airline for a pilot
         public void setAirline(Airline airline, DateTime signDate)

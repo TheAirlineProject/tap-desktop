@@ -263,7 +263,6 @@ namespace TheAirline.Model.GeneralModel
         //returns a random double
         public static double GetRandomDoubleNumber(double minimum, double maximum)
         {
-            Random random = new Random();
             return rnd.NextDouble() * (maximum - minimum) + minimum;
         }
         //converts a route time table entry to datetime

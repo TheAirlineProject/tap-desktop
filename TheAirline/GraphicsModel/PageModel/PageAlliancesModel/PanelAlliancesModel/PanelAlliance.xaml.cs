@@ -263,6 +263,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
                         WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2606"), string.Format(Translator.GetInstance().GetString("MessageBox", "2606", "message"), airline.Profile.Name, this.Alliance.Name), WPFMessageBoxButtons.Ok);
 
                     }
+
+                    this.Alliance.addMember(airline);
                 }
 
                 createPanel();

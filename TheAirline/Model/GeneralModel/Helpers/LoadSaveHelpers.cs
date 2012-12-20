@@ -159,6 +159,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airport.Profile.Size = airportSize;
                 airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
 
+                XmlNodeList runwaysList = airportNode.SelectNodes("runways/runway");
+
+                foreach (XmlElement runwayElement in runwaysList)
+                {
+                    string runwayName = runwayElement.Attributes["name"].Value;
+                    long runwayLenght = Convert.ToInt64(runwayElement.Attributes["lenght"].Value);
+                    Runway.SurfaceType runwaySurface = (Runway.SurfaceType)Enum.Parse(typeof(Runway.SurfaceType),runwayElement.Attributes["surface"].Value);
+                    DateTime runwayDate = DateTime.Parse(runwayElement.Attributes["date"].Value);
+
+                    airport.Runways.Add(new Runway(runwayName, runwayLenght, runwaySurface, runwayDate,false));
+                }
+
                 XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
                 airport.Hubs.Clear();
 
@@ -312,14 +324,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Alliance alliance = new Alliance(formationDate, allianceType, allianceName, allianceHeadquarter);
 
-                XmlNodeList membersList = allianceNode.SelectNodes("//members/member");
+                XmlNodeList membersList = allianceNode.SelectNodes("members/member");
 
                 foreach (XmlElement memberNode in membersList)
                 {
                     alliance.addMember(Airlines.GetAirline(memberNode.Attributes["iata"].Value));
                 }
 
-                XmlNodeList pendingsList = allianceNode.SelectNodes("//pendings/pending");
+                XmlNodeList pendingsList = allianceNode.SelectNodes("pendings/pending");
 
                 foreach (XmlElement pendingNode in pendingsList)
                 {
@@ -1193,6 +1205,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportNode.SetAttribute("size", airport.Profile.Size.ToString());
                 airportNode.SetAttribute("income", airport.Income.ToString());
 
+                XmlElement airportRunwaysNode = xmlDoc.CreateElement("runways");
+
+                foreach (Runway runway in airport.Runways.FindAll(r=>!r.Standard))
+                {
+                    XmlElement airportRunwayNode = xmlDoc.CreateElement("runway");
+                    airportRunwayNode.SetAttribute("name", runway.Name);
+                    airportRunwayNode.SetAttribute("lenght", runway.Length.ToString());
+                    airportRunwayNode.SetAttribute("surface", runway.Surface.ToString());
+                    airportRunwayNode.SetAttribute("date", runway.BuiltDate.ToShortDateString());
+
+                    airportRunwaysNode.AppendChild(airportRunwayNode);
+                }
+
+                airportNode.AppendChild(airportRunwaysNode);
+
                 XmlElement airportHubsNode = xmlDoc.CreateElement("hubs");
                 foreach (Hub hub in airport.Hubs)
                 {
@@ -1207,31 +1234,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airportWeathersNode = xmlDoc.CreateElement("weathers");
                 foreach (Weather weather in airport.Weather)
                 {
-                    XmlElement airportWeatherNode = xmlDoc.CreateElement("weather");
-                    airportWeatherNode.SetAttribute("date", weather.Date.ToString(new CultureInfo("de-DE")));
-                    airportWeatherNode.SetAttribute("direction", weather.Direction.ToString());
-                    airportWeatherNode.SetAttribute("windspeed", weather.WindSpeed.ToString());
-                    airportWeatherNode.SetAttribute("cover", weather.Cover.ToString());
-                    airportWeatherNode.SetAttribute("precip", weather.Precip.ToString());
-                    airportWeatherNode.SetAttribute("temperaturelow", weather.TemperatureLow.ToString());
-                    airportWeatherNode.SetAttribute("temperaturehigh", weather.TemperatureHigh.ToString());
-
-                    XmlElement temperaturesNode = xmlDoc.CreateElement("temperatures");
-                    for (int i = 0; i < weather.Temperatures.Length; i++)
+                    if (weather != null)
                     {
-                        XmlElement temperatureNode = xmlDoc.CreateElement("temperature");
-                        temperatureNode.SetAttribute("temp", weather.Temperatures[i].Temperature.ToString());
-                        temperatureNode.SetAttribute("cover", weather.Temperatures[i].Cover.ToString());
-                        temperatureNode.SetAttribute("precip", weather.Temperatures[i].Precip.ToString());
-                        temperatureNode.SetAttribute("windspeed", weather.Temperatures[i].WindSpeed.ToString());
-                        temperatureNode.SetAttribute("direction", weather.Temperatures[i].Direction.ToString());
+                        XmlElement airportWeatherNode = xmlDoc.CreateElement("weather");
+                        airportWeatherNode.SetAttribute("date", weather.Date.ToString(new CultureInfo("de-DE")));
+                        airportWeatherNode.SetAttribute("direction", weather.Direction.ToString());
+                        airportWeatherNode.SetAttribute("windspeed", weather.WindSpeed.ToString());
+                        airportWeatherNode.SetAttribute("cover", weather.Cover.ToString());
+                        airportWeatherNode.SetAttribute("precip", weather.Precip.ToString());
+                        airportWeatherNode.SetAttribute("temperaturelow", weather.TemperatureLow.ToString());
+                        airportWeatherNode.SetAttribute("temperaturehigh", weather.TemperatureHigh.ToString());
 
-                        temperaturesNode.AppendChild(temperatureNode);
-                
+                        XmlElement temperaturesNode = xmlDoc.CreateElement("temperatures");
+                        for (int i = 0; i < weather.Temperatures.Length; i++)
+                        {
+                            XmlElement temperatureNode = xmlDoc.CreateElement("temperature");
+                            temperatureNode.SetAttribute("temp", weather.Temperatures[i].Temperature.ToString());
+                            temperatureNode.SetAttribute("cover", weather.Temperatures[i].Cover.ToString());
+                            temperatureNode.SetAttribute("precip", weather.Temperatures[i].Precip.ToString());
+                            temperatureNode.SetAttribute("windspeed", weather.Temperatures[i].WindSpeed.ToString());
+                            temperatureNode.SetAttribute("direction", weather.Temperatures[i].Direction.ToString());
+
+                            temperaturesNode.AppendChild(temperatureNode);
+
+                        }
+                        airportWeatherNode.AppendChild(temperaturesNode);
+
+                        airportWeathersNode.AppendChild(airportWeatherNode);
                     }
-                    airportWeatherNode.AppendChild(temperaturesNode);
-
-                    airportWeathersNode.AppendChild(airportWeatherNode);
                 }
                 airportNode.AppendChild(airportWeathersNode);
 

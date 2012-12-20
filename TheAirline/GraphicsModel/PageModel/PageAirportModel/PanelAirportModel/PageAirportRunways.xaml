@@ -16,6 +16,14 @@
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Surface}"/>
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="RunwayBuildItem">
+            <WrapPanel>
+                <TextBlock Width="100" VerticalAlignment="Bottom" Text="{Binding Name}"/>
+                <TextBlock Width="75" VerticalAlignment="Bottom" Text="{Binding Length,Converter={StaticResource numberMeterToUnitConverter}}"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Surface}" Width="100"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding BuiltDate, StringFormat=d}"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
     </Page.Resources>
     <Grid>
         

@@ -8,11 +8,45 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PagePilots">
     <Page.Resources>
+        <DataTemplate x:Key="InstructorItem">
+            <WrapPanel>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding }" Click="lnkPilot_Click">
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Rating}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}"></ContentControl>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="InstructorsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="Name" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Age" Width="50" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Rating" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Country" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightSchoolItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding NumberOfInstructors}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding NumberOfStudents}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightSchoolsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="School" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Instructors" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Students" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
         <DataTemplate x:Key="PilotsHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Name" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="Age" Width="50" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="Ranking" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Rating" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="Country" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
 
             </WrapPanel>
@@ -25,7 +59,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
-                <TextBlock Text="{Binding Ranking}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Rating}" Width="75" VerticalAlignment="Bottom"></TextBlock>
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}"></ContentControl>
 
             </WrapPanel>

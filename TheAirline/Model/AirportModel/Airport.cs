@@ -46,7 +46,7 @@ namespace TheAirline.Model.AirportModel
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
         {
-            var query = from r in this.Runways
+            var query = from r in this.Runways where r.BuiltDate<= GameObject.GetInstance().GameTime
                         select r.Length;
             return query.Max();
        

@@ -98,7 +98,7 @@ namespace TheAirline.Model.GeneralModel
 		/// </summary>
 		/// <returns></returns>
 		public static Translator GetInstance() {
-
+            
 			// Erstelle Cache-Objekt wenn noch keins existiert
 			if( null == stCache )
                 stCache = new MemoryCache(CACHE_KEY);

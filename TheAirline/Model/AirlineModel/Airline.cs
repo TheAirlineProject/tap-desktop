@@ -9,6 +9,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.AirlineModel
 {
@@ -42,6 +43,9 @@ namespace TheAirline.Model.AirlineModel
         public ManufacturerContract Contract { get; set; }
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
         public List<AirlinePolicy> Policies { get; set; }
+
+        public List<Pilot> Pilots { get; set; }
+        public List<FlightSchool> FlightSchools { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus)
         {
             this.Airports = new List<Airport>();
@@ -66,8 +70,34 @@ namespace TheAirline.Model.AirlineModel
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
 
             createStandardAdvertisement();
-        }
 
+            this.Pilots = new List<Pilot>();
+            this.FlightSchools = new List<FlightSchool>();
+        }
+        //adds a pilot to the airline
+        public void addPilot(Pilot pilot)
+        {
+            this.Pilots.Add(pilot);
+            pilot.Airline = this;
+        }
+        //removes a pilot from the airline
+        public void removePilot(Pilot pilot)
+        {
+            this.Pilots.Remove(pilot);
+            pilot.Airline = null;
+        }
+        //adds a flight school to the airline
+        public void addFlightSchool(FlightSchool school)
+        {
+            this.FlightSchools.Add(school);
+        }
+        public void removeFlightSchool(FlightSchool school)
+        {
+            this.FlightSchools.Remove(school);
+
+            foreach (Instructor instructor in school.Instructors)
+                instructor.FlightSchool = null;
+        }
         //adds a route to the airline
         public void addRoute(Route route)
         {
