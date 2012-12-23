@@ -217,6 +217,7 @@ namespace TheAirline.Model.GeneralModel
 
             String dAirportSize = dAirport.Profile.Size.ToString();
             String airportSize = airport.Profile.Size.ToString();
+            double dist = MathHelpers.GetDistance(dAirport, airport);
 
 
 
@@ -407,7 +408,10 @@ namespace TheAirline.Model.GeneralModel
 
                 if (dAirportSize.Equals("Smallest") && airportSize.Equals("Largest"))
                 {
-                    if (airport.Profile.Pax == 0)
+                    if (dist > 1600)
+                    { estimatedPassengerLevel = 0; }
+
+                    else if (airport.Profile.Pax == 0)
                     {
                         double paxSmallest = 40000 * 0.02 / Airports.SmallestAirports;
                         paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -618,7 +622,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Smallest") && airportSize.Equals("Very_large"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 800)
+                { estimatedPassengerLevel = 0; }
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmallest = 20000 * 0.02 / Airports.SmallestAirports;
                     paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -829,7 +836,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Smallest") && airportSize.Equals("Large"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 800)
+                { estimatedPassengerLevel = 0; }
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmallest = 10000 * 0.02 / Airports.SmallestAirports;
                     paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -1009,7 +1019,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Very_small") && airportSize.Equals("Medium"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 800)
+                { estimatedPassengerLevel = 0; }
+                
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxVery_small = 6000 * 0.04 / Airports.VerySmallAirports;
                     paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
@@ -1039,7 +1052,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Smallest") && airportSize.Equals("Medium"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 1200 )
+                { estimatedPassengerLevel = 0; }
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmallest = 6000 * 0.02 / Airports.SmallestAirports;
                     paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -1189,7 +1205,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Small") && airportSize.Equals("Small"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 1600)
+                { estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmall = 1250 / Airports.SmallAirports;
                     paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
@@ -1219,7 +1238,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Very_small") && airportSize.Equals("Small"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 1200)
+                {estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxVery_small = 1250 / Airports.VerySmallAirports;
                     paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
@@ -1249,7 +1271,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Smallest") && airportSize.Equals("Small"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 800)
+                { estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmallest = 0 * 0.02 / Airports.SmallestAirports;
                     paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -1369,7 +1394,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Medium") && airportSize.Equals("Very_small"))
             {
-                if (airport.Profile.Pax == 0)
+                if ( dist > 1600)
+                { estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxMedium = 350 * 0.15 / Airports.MediumAirports;
                     paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
@@ -1399,7 +1427,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Small") && airportSize.Equals("Very_small"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 1200 )
+                { estimatedPassengerLevel = 0; }
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmall = 350 * 0.10 / Airports.SmallAirports;
                     paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
@@ -1429,7 +1460,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Very_small") && airportSize.Equals("Very_small"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 800)
+                { estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxVery_small = 350 * 0 / Airports.VerySmallAirports;
                     paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
@@ -1459,7 +1493,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Smallest") && airportSize.Equals("Very_small"))
             {
-                if (airport.Profile.Pax == 0)
+                if ( dist > 800)
+                {estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmallest = 350 * 0 / Airports.SmallestAirports;
                     paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -1515,6 +1552,12 @@ namespace TheAirline.Model.GeneralModel
                     if (!isSameContinent && !isSameCountry)
                         estimatedPassengerLevel *= 0.55;
                 }
+                if (dist < 1600)
+                { estimatedPassengerLevel *= 2; }
+                else if (dist < 2400)
+                { estimatedPassengerLevel *= 0.5; }
+                else
+                { estimatedPassengerLevel = 0; }
             }
 
             if (dAirportSize.Equals("Very_large") && airportSize.Equals("Smallest"))
@@ -1545,6 +1588,12 @@ namespace TheAirline.Model.GeneralModel
                     if (!isSameContinent && !isSameCountry)
                         estimatedPassengerLevel *= 0.55;
                 }
+                if (dist < 1600)
+                { estimatedPassengerLevel *= 2; }
+                else if (dist < 2400)
+                { estimatedPassengerLevel *= 0.5; }
+                else
+                { estimatedPassengerLevel = 0; }
             }
 
             if (dAirportSize.Equals("Large") && airportSize.Equals("Smallest"))
@@ -1575,16 +1624,26 @@ namespace TheAirline.Model.GeneralModel
                     if (!isSameContinent && !isSameCountry)
                         estimatedPassengerLevel *= 0.55;
                 }
+                if (dist < 1600)
+                { estimatedPassengerLevel *= 2; }
+                else if (dist < 2400)
+                { estimatedPassengerLevel *= 0.5; }
+                else
+                { estimatedPassengerLevel = 0; }
             }
 
             if (dAirportSize.Equals("Medium") && airportSize.Equals("Smallest"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 1600)
+                {estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxMedium = 50 * 0.15 / Airports.MediumAirports;
                     paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
                     estimatedPassengerLevel = (paxMedium * 1000) / 365;
                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                    estimatedPassengerLevel *= 2;
                     if (isSameCountry)
                         estimatedPassengerLevel *= 1.67;
                     if (isSameContinent)
@@ -1598,6 +1657,7 @@ namespace TheAirline.Model.GeneralModel
                     paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
                     estimatedPassengerLevel = (paxMedium * 1000) / 365;
                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                    estimatedPassengerLevel *= 2;
                     if (isSameCountry)
                         estimatedPassengerLevel *= 1.67;
                     if (isSameContinent)
@@ -1609,12 +1669,16 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Small") && airportSize.Equals("Smallest"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 1200)
+                {estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmall = 50 * 0 / Airports.SmallAirports;
                     paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
                     estimatedPassengerLevel = (paxSmall * 1000) / 365;
                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                    estimatedPassengerLevel *= 1.2;
                     if (isSameCountry)
                         estimatedPassengerLevel *= 2.0;
                     if (isSameContinent)
@@ -1628,6 +1692,7 @@ namespace TheAirline.Model.GeneralModel
                     paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
                     estimatedPassengerLevel = (paxSmall * 1000) / 365;
                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                    estimatedPassengerLevel *= 1.2;
                     if (isSameCountry)
                         estimatedPassengerLevel *= 2.0;
                     if (isSameContinent)
@@ -1639,7 +1704,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Very_small") && airportSize.Equals("Smallest"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 800)
+                {estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxVery_small = 50 * 0 / Airports.VerySmallAirports;
                     paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
@@ -1669,7 +1737,10 @@ namespace TheAirline.Model.GeneralModel
 
             if (dAirportSize.Equals("Smallest") && airportSize.Equals("Smallest"))
             {
-                if (airport.Profile.Pax == 0)
+                if (dist > 600)
+                {estimatedPassengerLevel = 0;}
+
+                else if (airport.Profile.Pax == 0)
                 {
                     double paxSmallest = 50 * 0 / Airports.SmallestAirports;
                     paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
@@ -1678,7 +1749,7 @@ namespace TheAirline.Model.GeneralModel
                     if (isSameCountry)
                         estimatedPassengerLevel *= 2.5;
                     if (isSameContinent)
-                        estimatedPassengerLevel *= 0.5;
+                        estimatedPassengerLevel *= 0;
                     if (!isSameContinent && !isSameCountry)
                         estimatedPassengerLevel *= 0;
                 }
