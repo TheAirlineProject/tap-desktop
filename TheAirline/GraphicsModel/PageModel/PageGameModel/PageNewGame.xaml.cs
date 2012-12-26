@@ -202,8 +202,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbStartYear.Width = 60;
             for (int i = GameObject.StartYear; i < DateTime.Now.Year + 2; i++)
                 cbStartYear.Items.Add(i);
-
-            cbStartYear.SelectedItem = DateTime.Now.Year;
+          
             cbStartYear.SelectionChanged += new SelectionChangedEventHandler(cbStartYear_SelectionChanged);
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1008"), cbStartYear));
@@ -315,9 +314,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             base.setHeaderContent(Translator.GetInstance().GetString("PageNewGame", "200"));
 
-            cbRegion.SelectedIndex = 0;
-
-
+            cbStartYear.SelectedItem = DateTime.Now.Year;
+        
+          
+        
             showPage(this);
 
 
@@ -354,6 +354,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         {
             Region region = (Region)cbRegion.SelectedItem;
 
+            if (region == null)
+            {
+                cbRegion.SelectedIndex = 0;
+                region = (Region)cbRegion.SelectedItem;
+            }
+
             var source = cbAirline.Items as ICollectionView;
             source.Filter = delegate(object item)
             {
@@ -378,6 +384,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private void cbStartYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Region region = (Region)cbRegion.SelectedItem;
+            if (region == null)
+            {
+                cbRegion.SelectedIndex = 0;
+                region = (Region)cbRegion.SelectedItem;
+            }
+            
             int year = (int)cbStartYear.SelectedItem;
             
             var source = cbAirline.Items as ICollectionView;
@@ -433,14 +445,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 {
                     var aa = cbAirport.Items.Cast<Airport>().ToList();
                     Airport homeAirport =  aa.Find(a => a.Profile.Country == airline.Profile.Country);
-                    cbAirport.SelectedItem = homeAirport;
+
+                    cbAirport.SelectedItem = homeAirport == null ? cbAirport.Items[0] : homeAirport;
                 }
 
                 airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
                 txtName.Text = airline.Profile.CEO;
                 txtIATA.Text = airline.Profile.IATACode;
                 cntCountry.Content = airline.Profile.Country;
-                cbLocalCurrency.Visibility = airline.Profile.Country.CurrencyFormat != null ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+                cbLocalCurrency.Visibility = airline.Profile.Country.Currencies.Count > 0  ? Visibility.Visible : System.Windows.Visibility.Collapsed;
                 txtNarrative.Text = airline.Profile.Narrative;    
             }
 
@@ -529,13 +542,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GameObject.GetInstance().HumanAirline = airline;
                 GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
 
-                if (cbLocalCurrency.IsChecked.Value && airline.Profile.Country.CurrencyFormat != null)
-                    AppSettings.GetInstance().setCurrencyFormat(airline.Profile.Country.CurrencyFormat);
-                else
-                    AppSettings.GetInstance().resetCurrencyFormat();
+                if (cbLocalCurrency.IsChecked.Value)
+                    GameObject.GetInstance().CurrencyCountry = airline.Profile.Country;
+               // AppSettings.GetInstance().resetCurrencyFormat();
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
-
+                
                 airport.Terminals.rentGate(airline);
                 airport.Terminals.rentGate(airline);
 

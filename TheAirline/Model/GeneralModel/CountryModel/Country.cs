@@ -17,14 +17,27 @@ namespace TheAirline.Model.GeneralModel
         //the format used for the tail number
         public string TailNumberFormat { get; set; }
         public CountryTailNumber TailNumbers { get; set; }
-        public string CurrencyFormat { get; set; }
-        public double CurrencyRate { get; set; }
+        public List<CountryCurrency> Currencies { get; set; }
         public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {
             Country.Section = section;
             this.Region = region;
             this.TailNumberFormat = tailNumberFormat;
             this.TailNumbers = new CountryTailNumber(this);
+            this.Currencies = new List<CountryCurrency>();
+        }
+        //adds a currency to the country
+        public void addCurrency(CountryCurrency currency)
+        {
+            this.Currencies.Add(currency);
+        }
+        //returns the current currency
+        public CountryCurrency getCurrency(DateTime date)
+        {
+            if (this.Currencies.Exists(c => c.DateFrom <= date && c.DateTo > date))
+                return this.Currencies.Find(c => c.DateFrom <= date && c.DateTo > date);
+
+            return null;
         }
         public override string Name
         {

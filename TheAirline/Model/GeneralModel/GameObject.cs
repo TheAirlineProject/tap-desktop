@@ -14,6 +14,7 @@ namespace TheAirline.Model.GeneralModel
     public class GameObject
     {
         private static GameObject GameInstance;
+        public Country CurrencyCountry { get; set; }
         public Boolean PagePerformanceCounterEnabled { get; set; }
         public Boolean PilotsEnabled { get; set; }
         public Boolean DayRoundEnabled { get; set; }
@@ -30,6 +31,7 @@ namespace TheAirline.Model.GeneralModel
         public DifficultyLevel Difficulty { get; set; }
         public double PassengerDemandFactor { get; set; }
         public const int StartYear = 1960;
+        
         private GameObject()
         {
             this.PassengerDemandFactor = 100;

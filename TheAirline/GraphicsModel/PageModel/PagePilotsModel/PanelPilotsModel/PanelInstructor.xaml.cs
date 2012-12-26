@@ -95,6 +95,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             if (result == WPFMessageBoxResult.Yes)
             {
                 GameObject.GetInstance().HumanAirline.FlightSchools[0].addInstructor(this.Instructor);
+                this.Instructor.FlightSchool = GameObject.GetInstance().HumanAirline.FlightSchools[0];
+                
                 this.ParentPage.updatePage();
             }
         }

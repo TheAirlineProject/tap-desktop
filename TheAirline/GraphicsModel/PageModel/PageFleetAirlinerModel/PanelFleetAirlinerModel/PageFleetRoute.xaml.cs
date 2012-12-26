@@ -104,7 +104,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnStopFlight_Click(object sender, RoutedEventArgs e)
         {
-            this.Airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
+            if (GameObject.GetInstance().DayRoundEnabled)
+                this.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+            else
+                this.Airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
 
             btnStartFlight.IsEnabled = true;
 
@@ -113,7 +116,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnStartFligth_Click(object sender, RoutedEventArgs e)
         {
-            this.Airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+            if (GameObject.GetInstance().DayRoundEnabled)
+                this.Airliner.Status = FleetAirliner.AirlinerStatus.On_route;
+            else
+                this.Airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
             btnStartFlight.IsEnabled = false;
 

@@ -280,6 +280,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelFlightSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelInstructor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -574,6 +578,9 @@
     <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml.cs">
       <DependentUpon>PagePilots.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelFlightSchool.xaml.cs">
+      <DependentUpon>PanelFlightSchool.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelInstructor.xaml.cs">
       <DependentUpon>PanelInstructor.xaml</DependentUpon>
     </Compile>
@@ -724,6 +731,7 @@
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\CountryCurrency.cs" />
     <Compile Include="Model\GeneralModel\DifficultyLevel.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />
     <Compile Include="Model\GeneralModel\Configuration.cs" />

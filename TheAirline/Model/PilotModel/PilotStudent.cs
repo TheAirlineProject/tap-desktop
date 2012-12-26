@@ -10,10 +10,12 @@ namespace TheAirline.Model.PilotModel
     {
         public PilotProfile Profile { get; set; }
         public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public PilotStudent(PilotProfile profile, DateTime startDate)
         {
             this.Profile = profile;
             this.StartDate = startDate;
+            this.EndDate = this.StartDate.AddDays(90);
         }
     }
 }

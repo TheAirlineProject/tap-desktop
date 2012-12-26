@@ -30,7 +30,11 @@
         </DataTemplate>
         <DataTemplate x:Key="FlightSchoolItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding }" Click="lnkFlightSchool_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
                 <TextBlock Text="{Binding NumberOfInstructors}" Width="75" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding NumberOfStudents}" Width="75" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>

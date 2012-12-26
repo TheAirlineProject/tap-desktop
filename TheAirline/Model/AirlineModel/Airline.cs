@@ -272,24 +272,36 @@ namespace TheAirline.Model.AirlineModel
         {
             double value = 0;
             value += this.Money;
-            foreach (FleetAirliner airliner in this.Fleet)
+
+            var fleet = new List<FleetAirliner>(this.Fleet);
+
+            foreach (FleetAirliner airliner in fleet)
             {
                 value += airliner.Airliner.getPrice();
             }
-            foreach (AirlineFacility facility in this.Facilities)
+
+            var facilities = new List<AirlineFacility>(this.Facilities);
+            foreach (AirlineFacility facility in facilities)
             {
                 value += facility.Price;
             }
-            foreach (Airport airport in this.Airports)
+
+            var airports = new List<Airport>(this.Airports);
+            foreach (Airport airport in airports)
             {
-                foreach (AirlineAirportFacility facility in airport.getAirportFacilities(this))
+                var aFacilities = new List<AirlineAirportFacility>(airport.getAirportFacilities(this));
+                foreach (AirlineAirportFacility facility in aFacilities)
                     value += facility.Facility.Price;
             }
-            foreach (Loan loan in this.Loans)
+
+            var loans = new List<Loan>(this.Loans);
+            foreach (Loan loan in loans)
             {
                 value -= loan.PaymentLeft;
             }
-            foreach (SubsidiaryAirline subAirline in this.Subsidiaries)
+
+            var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
+            foreach (SubsidiaryAirline subAirline in subs)
                 value += subAirline.getValue();
             
             return Convert.ToInt64(value);
@@ -335,7 +347,10 @@ namespace TheAirline.Model.AirlineModel
         public List<string> getFlightCodes()
         {
             List<string> codes = new List<string>(this.FlightCodes);
-            foreach (RouteTimeTableEntry entry in this.Routes.SelectMany(r => r.TimeTable.Entries))
+
+            var entries = this.Routes.SelectMany(r => r.TimeTable.Entries);
+            
+            foreach (RouteTimeTableEntry entry in entries)
             {
                 if (codes.Contains(entry.Destination.FlightCode))
                     codes.Remove(entry.Destination.FlightCode);

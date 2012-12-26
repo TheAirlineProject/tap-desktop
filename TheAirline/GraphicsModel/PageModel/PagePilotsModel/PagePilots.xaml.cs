@@ -99,7 +99,6 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             ccFlightSchoolHeader.ContentTemplate = this.Resources["FlightSchoolsHeader"] as DataTemplate;
             ccFlightSchoolHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
          
-
             pilotsPanel.Children.Add(ccFlightSchoolHeader);
 
             lbFlightSchools = new ListBox();
@@ -108,6 +107,23 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             lbFlightSchools.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
 
             pilotsPanel.Children.Add(lbFlightSchools);
+
+            WrapPanel buttonsPanel = new WrapPanel();
+            buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
+
+            Button btnBuild = new Button();
+            btnBuild.Uid = "200";
+            btnBuild.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnBuild.Height = Double.NaN;
+            btnBuild.Width = Double.NaN;
+            btnBuild.Content = Translator.GetInstance().GetString("PagePilots", btnBuild.Uid);
+            btnBuild.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnBuild.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnBuild.Click += new RoutedEventHandler(btnBuild_Click);
+          
+            buttonsPanel.Children.Add(btnBuild);
+
+            pilotsPanel.Children.Add(buttonsPanel);
 
             panelSideMenu = new Frame();
             
@@ -125,6 +141,15 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
             showInstructors();
 
+        }
+
+        private void btnBuild_Click(object sender, RoutedEventArgs e)
+        {
+            FlightSchool fs = new FlightSchool(string.Format("Flight School {0}", GameObject.GetInstance().HumanAirline.FlightSchools.Count + 1));
+
+            GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
+
+            showFlightSchools();
         }
         //shwos the list of instructors
         private void showInstructors()
@@ -167,11 +192,19 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             panelSideMenu.Content = new PanelInstructor(this,instructor);
 
         }
+        private void lnkFlightSchool_Click(object sender, RoutedEventArgs e)
+        {
+            FlightSchool fs = (FlightSchool)((Hyperlink)sender).Tag;
+            panelSideMenu.Content = new PanelFlightSchool(this, fs);
+
+        }
         public override void updatePage()
         {
             showPilots();
 
             showInstructors();
+
+            showFlightSchools();
         }
     }
 }

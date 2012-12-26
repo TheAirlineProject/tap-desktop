@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System;using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
@@ -16,13 +15,13 @@ namespace TheAirline.Model.GeneralModel
         //returns a random date 
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {
+         
+            int range = ((TimeSpan)(maxDate - minDate)).Days;
 
-            TimeSpan timeSpan = maxDate - minDate;
-            TimeSpan randomSpan = new TimeSpan((long)(timeSpan.Ticks * rnd.NextDouble()));
+            int days = rnd.Next(0,range);
+          
+            return new DateTime(minDate.AddDays(days).Year,minDate.AddDays(days).Month,minDate.AddDays(days).Day);
 
-            DateTime rDate = (minDate + randomSpan).Date;
-
-            return rDate;
 
         }
         //returns the age 

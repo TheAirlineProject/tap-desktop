@@ -45,6 +45,39 @@ namespace TheAirline.GraphicsModel.Converters
             return value;
         }
     }
+    //the converter for a value to the current currency
+    public class ValueCurrencyConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                double v = (double)value;
+
+                CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+
+                if (currency == null)
+                {
+                    return v.ToString("C");
+                }
+                else
+                {
+
+                    return string.Format("{0:00} {1}", v * currency.Rate, currency.CurrencySymbol);
+                }
+            }
+            catch (Exception e)
+            {
+                return value;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for fuel unit to selected unit
     public class FuelUnitConverter : IValueConverter
     {
@@ -132,9 +165,9 @@ namespace TheAirline.GraphicsModel.Converters
             double temperature = Double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:0.0}°C",temperature);
+                return string.Format("{0:0.0}°C", temperature);
             else
-                return string.Format("{0:0}°F",MathHelpers.CelsiusToFahrenheit(temperature));
+                return string.Format("{0:0}°F", MathHelpers.CelsiusToFahrenheit(temperature));
 
 
         }
@@ -355,7 +388,7 @@ namespace TheAirline.GraphicsModel.Converters
 
             if (parameterValue == "Pilots")
                 return GameObject.GetInstance().PilotsEnabled ? Visibility.Visible : Visibility.Collapsed;
-            
+
             if (parameterValue == "Performance")
                 return GameObject.GetInstance().PagePerformanceCounterEnabled ? Visibility.Visible : Visibility.Collapsed;
 
@@ -448,7 +481,7 @@ namespace TheAirline.GraphicsModel.Converters
 
             try
             {
-              
+
                 DateTime time = new DateTime(2000, 1, 1, timespan.Hours, timespan.Minutes, 0);
 
                 return time.ToShortTimeString();
@@ -544,22 +577,22 @@ namespace TheAirline.GraphicsModel.Converters
             }
             if (!(country is TemporaryCountry))
             {
-                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country,GameObject.GetInstance().GameTime);
+                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country, GameObject.GetInstance().GameTime);
 
                 if (tempCountry == null)
                     return country;
                 else
                 {
-                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime,country) == null)
+                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
                         return country;
                     else
-                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime,country);
+                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country);
                 }
             }
             else
             {
-                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime,country);
-    
+                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime, country);
+
             }
             //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
         }

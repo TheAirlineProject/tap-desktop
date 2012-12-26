@@ -35,16 +35,38 @@ namespace TheAirline.Model.GeneralModel.Helpers
             FleetAirliner airliner = entry.Airliner;
             entry.Airliner.CurrentFlight = new Flight(entry);
 
-            foreach (AirlinerClass aClass in airliner.Airliner.Classes)
-            {
-                airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
-            }
+             KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes = FleetAirlinerHelpers.GetDelayedMinutes(airliner);
 
-            SetTakeoffStatistics(airliner);
+            //cancelled/delay
+             if (delayedMinutes.Value >= Convert.ToInt16(airliner.Airliner.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue))
+             {
+                 if (airliner.Airliner.Airline.IsHuman)
+                 {
+                     Flight flight = airliner.CurrentFlight;
 
-            if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
-                SimulateLanding(airliner);
+                     switch (delayedMinutes.Key)
+                     {
+                         case FleetAirlinerHelpers.DelayType.Airliner_problems:
+                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IATACode, flight.Entry.Destination.Airport.Profile.IATACode)));
+                             break;
+                         case FleetAirlinerHelpers.DelayType.Bad_weather:
+                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IATACode, flight.Entry.Destination.Airport.Profile.IATACode)));
+                             break;
+                     }
+                 }
+             }
+             else
+             {
+                 foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                 {
+                     airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
+                 }
 
+                 SetTakeoffStatistics(airliner);
+
+                 if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
+                     SimulateLanding(airliner);
+             }
         }
         //simulates the landing of a flight
         private static void SimulateLanding(FleetAirliner airliner)
@@ -219,7 +241,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double destPassengers = airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers"));
             double destDepartures = airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Arrivals"));
             airport.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, airliner.Airliner.Airline, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(destPassengers / destDepartures));
-
 
 
             airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"), 1);
