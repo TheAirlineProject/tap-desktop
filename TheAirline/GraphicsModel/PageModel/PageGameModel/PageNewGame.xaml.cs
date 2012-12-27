@@ -577,6 +577,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 GameTimer.GetInstance().start();
+                GameObjectWorker.GetInstance().start();
                // AIWorker.GetInstance().start();
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));

@@ -2,24 +2,29 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Windows.Forms;
+
 using TheAirline.Model.GeneralModel.Helpers;
+using System.Windows.Threading;
+
 
 namespace TheAirline.Model.GeneralModel
 {
+
     /*! GameTimer.
 * This is used for the game timer which simulates a game "round"
 * The class needs no parameters
 */
+   
+     
     public class GameTimer
     {
         private static GameTimer gameTimer;
 
         public GeneralHelpers.GameSpeedValue GameSpeed { get; private set; }
-        private Timer Timer;
+        private DispatcherTimer Timer;
         public delegate void TimeChanged();
         public event TimeChanged OnTimeChanged;
-        public event TimeChanged OnTimeChangedForced; //will be forced to update eventhough the game is pausd
+        public event TimeChanged OnTimeChangedForced; //will be forced to update eventhough the game is paused
         private Boolean IsPaused;
         private GameTimer()
         {
@@ -27,11 +32,11 @@ namespace TheAirline.Model.GeneralModel
                 this.GameSpeed = GeneralHelpers.GameSpeedValue.Slowest;
             else
                 this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
-            this.Timer = new Timer();
-            this.Timer.Interval = (int)this.GameSpeed;
+            this.Timer = new DispatcherTimer();
+            this.Timer.Interval = new TimeSpan(0, 0, 0, 0, (int)this.GameSpeed);//(int)this.GameSpeed;
             this.Timer.Tick += new EventHandler(Timer_Tick);
             this.OnTimeChanged += new TimeChanged(GameTimer_OnTimeChanged);
-            this.Timer.Enabled = false;
+            this.Timer.IsEnabled = false;
             this.IsPaused = false;
         }
         //returns if the game is paused
@@ -48,8 +53,8 @@ namespace TheAirline.Model.GeneralModel
         //(re)start the game 
         public void start()
         {
-            if (!this.Timer.Enabled)
-                this.Timer.Enabled = true;
+            if (!this.Timer.IsEnabled)
+                this.Timer.IsEnabled = true;
 
             this.IsPaused = false;
         }
@@ -57,11 +62,11 @@ namespace TheAirline.Model.GeneralModel
         public void setGameSpeed(GeneralHelpers.GameSpeedValue gameSpeed)
         {
             this.GameSpeed = gameSpeed;
-            this.Timer.Interval = (int)this.GameSpeed;
+            this.Timer.Interval = new TimeSpan(0, 0, 0, 0, (int)this.GameSpeed); 
         }
         private void GameTimer_OnTimeChanged()
         {
-            GameObjectHelpers.SimulateTurn();
+            
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -95,4 +100,5 @@ namespace TheAirline.Model.GeneralModel
 
 
     }
+     
 }

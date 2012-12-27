@@ -23,9 +23,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airliner.CurrentFlight != null)
                     SimulateLanding(airliner);
 
-                var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek));
+                var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e=>e.Airliner == airliner).OrderBy(e=>e.Time);
 
-                foreach (RouteTimeTableEntry entry in dayEntries.Where(e => e.Airliner == airliner).OrderBy(e => e.Time))
+                foreach (RouteTimeTableEntry entry in dayEntries)
                     SimulateFlight(entry);
             }
         }
@@ -54,6 +54,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                              break;
                      }
                  }
+                 airliner.CurrentFlight = null;
              }
              else
              {

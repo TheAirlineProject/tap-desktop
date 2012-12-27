@@ -755,6 +755,7 @@
     <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\PerformanceCounter.cs" />
     <Compile Include="Model\GeneralModel\Helpers\WorkersModel\AIWorker.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\WorkersModel\GameObjectWorker.cs" />
     <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEvent.cs" />
     <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEventInfluence.cs" />
     <Compile Include="Model\GeneralModel\HolidaysModel\Holiday.cs" />

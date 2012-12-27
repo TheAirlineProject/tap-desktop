@@ -37,13 +37,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
-                foreach (Airline airline in Airlines.GetAllAirlines())
+                Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
+                // foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     if (!airline.IsHuman)
                         AIHelpers.UpdateCPUAirline(airline);
 
                     DayTurnHelpers.SimulateAirlineFlights(airline);
-                }
+                });
 
             }
             else
