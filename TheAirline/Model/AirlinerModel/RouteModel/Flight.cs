@@ -40,7 +40,6 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return this.FlightTime.Add(MathHelpers.GetFlightTime(this.Entry.DepartureAirport.Profile.Coordinates, this.Entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type));
 
-
         }
         //returns the total number of passengers
         public int getTotalPassengers()

@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel
             else
                 this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             this.Timer = new DispatcherTimer();
-            this.Timer.Interval = new TimeSpan(0, 0, 0, 0, (int)this.GameSpeed);//(int)this.GameSpeed;
+            this.Timer.Interval = new TimeSpan(0, 0, 0, 0,100);//(int)this.GameSpeed;
             this.Timer.Tick += new EventHandler(Timer_Tick);
             this.OnTimeChanged += new TimeChanged(GameTimer_OnTimeChanged);
             this.Timer.IsEnabled = false;
@@ -62,7 +62,6 @@ namespace TheAirline.Model.GeneralModel
         public void setGameSpeed(GeneralHelpers.GameSpeedValue gameSpeed)
         {
             this.GameSpeed = gameSpeed;
-            this.Timer.Interval = new TimeSpan(0, 0, 0, 0, (int)this.GameSpeed); 
         }
         private void GameTimer_OnTimeChanged()
         {

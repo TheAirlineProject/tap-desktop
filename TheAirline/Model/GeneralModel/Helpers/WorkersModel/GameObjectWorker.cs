@@ -13,6 +13,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
     {
         private static GameObjectWorker Instance;
         private BackgroundWorker Worker;
+        private Boolean Cancelled;
         private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
@@ -22,7 +23,8 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             this.Worker.DoWork += new DoWorkEventHandler(bw_DoWork);
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
-
+            this.Cancelled = false;
+  
         }
         //returns the instance
         public static GameObjectWorker GetInstance()
@@ -43,7 +45,16 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         public void start()
         {
             if (!this.Worker.IsBusy)
+            {
+                this.Cancelled = false;
+  
                 this.Worker.RunWorkerAsync();
+            }
+        }
+        //returns if the worker is busy
+        public Boolean isBusy()
+        {
+            return this.Cancelled;
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -53,9 +64,9 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             GameObjectHelpers.SimulateTurn();
             sw.Stop();
 
-            long waittime = 1000 - (sw.ElapsedMilliseconds);
+            long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
 
-            if (waittime>0 && !e.Cancel)
+            if (waittime > 0 && !e.Cancel)
                 Thread.Sleep((int)waittime);
 
         }
@@ -63,11 +74,13 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         {
             if ((e.Cancelled == true))
             {
+                this.Cancelled = true;
                 Console.WriteLine("Canceled!");
             }
 
             else if (!(e.Error == null))
             {
+                this.Cancelled = true;
                 Console.WriteLine("Error: " + e.Error.Message);
             }
 
@@ -76,6 +89,6 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 this.Worker.RunWorkerAsync();
             }
         }
-      
+
     }
 }

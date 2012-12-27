@@ -31,6 +31,7 @@ using TheAirline.GraphicsModel.PageModel.PageFlightsModel;
 using System.Windows.Threading;
 using System.Threading;
 using TheAirline.GraphicsModel.PageModel.PagePilotsModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -123,7 +124,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                 GameObject.RestartInstance();
+                GameObjectWorker.GetInstance().cancel();
+
+                while (GameObjectWorker.GetInstance().isBusy())
+                {
+                }
+
+                GameObject.RestartInstance();
                 GameTimer.RestartInstance();
                 Setup.SetupGame();
                 PageNavigator.NavigateTo(new PageNewGame());
@@ -174,6 +181,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
             GameTimer.GetInstance().pause();
+            GameObjectWorker.GetInstance().cancel();
+
+            while (GameObjectWorker.GetInstance().isBusy())
+            {
+            }
 
             Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Saving.........");
@@ -215,6 +227,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
          
             GameTimer.GetInstance().start();
+            GameObjectWorker.GetInstance().start();
+
             
         }
         private void lnkPilots_Click(object sender, RoutedEventArgs e)
@@ -223,7 +237,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {
-       
 
             Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Loading.........");
@@ -232,6 +245,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             popUpSplash.IsOpen = false;
      
             GameTimer.GetInstance().pause();
+            GameObjectWorker.GetInstance().cancel();
+
+            while (GameObjectWorker.GetInstance().isBusy())
+            {
+            }
+           
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1002"), Translator.GetInstance().GetString("MessageBox", "1002", "message"), WPFMessageBoxButtons.YesNo);
 
@@ -258,6 +277,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
 
             GameTimer.GetInstance().start();
+            GameObjectWorker.GetInstance().start();
            
         }
 

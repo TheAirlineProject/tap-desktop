@@ -1045,7 +1045,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //returns if the wind is tail (1), head (-1), or from side (0)
-        private static int GetWindInfluence(FleetAirliner airliner)
+        public static int GetWindInfluence(FleetAirliner airliner)
         {
             double direction = MathHelpers.GetDirection(airliner.CurrentPosition, airliner.CurrentFlight.getNextDestination().Profile.Coordinates);
 

@@ -58,6 +58,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
              }
              else
              {
+                 airliner.CurrentFlight.FlightTime = airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
                  foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                  {
                      airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
@@ -72,7 +73,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates the landing of a flight
         private static void SimulateLanding(FleetAirliner airliner)
         {
-            TimeSpan flighttime = airliner.CurrentFlight.ExpectedLanding.Subtract(airliner.CurrentFlight.FlightTime);
+
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type));
+            landingTime.Add(GetFlightWindInfluence(airliner));
+
+            TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
             double groundTaxPerPassenger = 5;
 
             double tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
@@ -190,8 +195,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             long airportIncome = Convert.ToInt64(dest.getLandingFee());
             dest.Income += airportIncome;
 
-
-
             Airline airline = airliner.Airliner.Airline;
 
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Flight_Expenses, -expenses);
@@ -226,7 +229,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IATACode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IATACode, dept.Profile.Country.Name })));
 
             airliner.CurrentFlight = null;
-            //CreatePassengersHappiness(airliner);
+            CreatePassengersHappiness(airliner);
 
 
 
@@ -262,6 +265,40 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Departures"));
             airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
+        }
+        //creates the happiness for a landed route airliner
+        private static void CreatePassengersHappiness(FleetAirliner airliner)
+        {
+            int serviceLevel = 0;//airliner.Route.DrinksFacility.ServiceLevel + airliner.Route.FoodFacility.ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Audio).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Seat).ServiceLevel + airliner.Airliner.Airliner.getFacility(AirlinerFacility.FacilityType.Video).ServiceLevel;
+            int happyValue = airliner.CurrentFlight.IsOnTime ? 10 : 20;
+            happyValue -= (serviceLevel / 25);
+            for (int i = 0; i < airliner.CurrentFlight.getTotalPassengers(); i++)
+            {
+                Boolean isHappy = rnd.Next(100) > happyValue;
+
+
+                if (isHappy) PassengerHelpers.AddPassengerHappiness(airliner.Airliner.Airline);
+            }
+        }
+        //returns the wind influence for a flight
+        private static TimeSpan GetFlightWindInfluence(FleetAirliner airliner)
+        {
+            double distance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates,airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+            Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
+            Airport dept = airliner.CurrentFlight.getDepartureAirport();
+
+            double totalDistance = MathHelpers.GetDistance(dept.Profile.Coordinates, dest.Profile.Coordinates);
+
+            double windFirstHalf = ((int)dept.Weather[0].WindSpeed) * (distance / 2) / 100 * GameObjectHelpers.GetWindInfluence(airliner);
+
+            
+
+            double windSecondHalf = ((int)dest.Weather[0].WindSpeed) * (distance / 2) / 100 * GameObjectHelpers.GetWindInfluence(airliner);
+
+            //return new TimeSpan(0,(int)(windFirstHalf + windSecondHalf),0);<
+
+            return new TimeSpan(0, 0, 0);
+    
         }
     }
 }
