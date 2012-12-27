@@ -124,14 +124,18 @@ namespace TheAirline.Model.GeneralModel
             Dictionary<Route, double> rations = new Dictionary<Route, double>();
 
             foreach (Route route in routes)
-                rations.Add(route, route.getServiceLevel(type) / route.getFarePrice(type));
+            {
+                double level = route.getServiceLevel(type) / route.getFarePrice(type);
+
+                rations.Add(route,level);
+            }
 
             double totalRatio = rations.Values.Sum();
 
             double routeRatioPercent = 1;
 
             if (rations.ContainsKey(currentRoute))
-                routeRatioPercent = rations[currentRoute] / Math.Max(1,totalRatio);
+                routeRatioPercent = Math.Max(1,rations[currentRoute] / Math.Max(1,totalRatio));
 
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
 
@@ -139,7 +143,7 @@ namespace TheAirline.Model.GeneralModel
 
             double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
 
-            int pax= (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
+            int pax = (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
      
             if (pax<0)
                 totalCapacity = 100;

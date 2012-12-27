@@ -53,26 +53,30 @@ namespace TheAirline.GraphicsModel.Converters
         {
             try
             {
-                double v = (double)value;
+                double v = Double.Parse(value.ToString());
 
                 CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
 
                 if (currency == null)
                 {
-                    return v.ToString("C");
+                    return string.Format("{0:C}",value);
                 }
                 else
                 {
 
-                    return string.Format("{0:00} {1}", v * currency.Rate, currency.CurrencySymbol);
+                    return string.Format("{0:#,0} {1}", v * currency.Rate, currency.CurrencySymbol);
                 }
             }
             catch (Exception e)
             {
-                return value;
+                return string.Format("{0:C}", value);
+       
             }
         }
-
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

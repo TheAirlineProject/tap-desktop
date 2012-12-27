@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1005"), lblFlag));
 
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1007"), UICreator.CreateTextBlock(this.Instructor.Rating.ToString())));
-            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(string.Format("{0:C}", ((int)this.Instructor.Rating) * 2000))));
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(((int)this.Instructor.Rating) * 2000).ToString())));//string.Format("{0:C}", ((int)this.Instructor.Rating) * 2000))));
 
             panelInstructor.Children.Add(lbPilotInformation);
 

@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using TheAirline.Model.GeneralModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -51,7 +52,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             txtMoney = new TextBlock();
 
-            txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
+            //txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
+            txtMoney.Text = new ValueCurrencyConverter().Convert(GameObject.GetInstance().HumanAirline.Money).ToString();
             txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
 
             txtMoney.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
@@ -85,7 +87,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 else
                     txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;//GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
 
-                txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
+               // txtMoney.Text = string.Format("{0:c}", GameObject.GetInstance().HumanAirline.Money);
+                txtMoney.Text = new ValueCurrencyConverter().Convert(GameObject.GetInstance().HumanAirline.Money).ToString();
                 txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
 
             }

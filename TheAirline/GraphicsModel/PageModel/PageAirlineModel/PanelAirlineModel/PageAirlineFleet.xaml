@@ -12,6 +12,7 @@
         <local:FillingDegreeConverter x:Key="fillingDegreeConverter"></local:FillingDegreeConverter>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
             <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
         <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetRouteViewItem">
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
@@ -36,14 +37,14 @@
             <GridViewColumn Width="100" Header="Balance">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Statistics.Balance, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding Statistics.Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                        <TextBlock Text="{Binding Statistics.Balance,Converter={StaticResource valueCurrencyConverter}}" VerticalAlignment="Bottom" Foreground="{Binding Statistics.Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
             <GridViewColumn Width="100" Header="Per passenger">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding Statistics.IncomePerPassenger, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Foreground="{Binding Statistics.IncomePerPassenger,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                        <TextBlock Text="{Binding Statistics.IncomePerPassenger,Converter={StaticResource valueCurrencyConverter}}" VerticalAlignment="Bottom" Foreground="{Binding Statistics.IncomePerPassenger,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>

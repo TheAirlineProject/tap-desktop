@@ -174,7 +174,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private void addPriceItem(long price)
         {
             ComboBoxItem cbItem = new ComboBoxItem();
-            cbItem.Content = string.Format("{0:c}", price);
+            cbItem.Content = new ValueCurrencyConverter().Convert(price).ToString();//string.Format("{0:c}", price);
             cbItem.Tag = price;
 
             cbPrice.Items.Add(cbItem);

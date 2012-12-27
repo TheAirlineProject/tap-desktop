@@ -20,6 +20,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -64,12 +65,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbSummary.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             panelFinances.Children.Add(lbSummary);
 
-            txtCurrentMoney = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money));
+            //txtCurrentMoney = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money));
+            txtCurrentMoney = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airline.Money).ToString());
             txtCurrentMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money, null, null, null) as Brush;
 
             lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1003"), txtCurrentMoney));
 
-            txtBalance = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money - this.Airline.StartMoney));
+            //txtBalance = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money - this.Airline.StartMoney));
+            txtBalance = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airline.Money - this.Airline.StartMoney).ToString());
             txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - this.Airline.StartMoney, null, null, null) as Brush;
             lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1004"), txtBalance));
 

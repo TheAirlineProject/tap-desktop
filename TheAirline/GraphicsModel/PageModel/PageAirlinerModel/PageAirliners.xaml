@@ -15,6 +15,7 @@
         <c:CultureInfoConverter x:Key="cultureInfoConverter"></c:CultureInfoConverter>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
           <DataTemplate x:Key="ManufacturerItem">
             <WrapPanel>
@@ -73,7 +74,7 @@
                     </Hyperlink>
                 </TextBlock>
                 <TextBlock Text="{Binding BuiltDate, StringFormat={}{0:yyyy}}" Width="75" TextAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
-                <TextBlock Text="{Binding Price, StringFormat={}{0:c}, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="100" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding Price,Converter={StaticResource valueCurrencyConverter}}" VerticalAlignment="Bottom" Width="100" TextAlignment="Right"></TextBlock>
                 <TextBlock Text="{Binding Type.RangeType,Converter={StaticResource textUnderscoreConverter}}" Margin="10 0 0 0" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>

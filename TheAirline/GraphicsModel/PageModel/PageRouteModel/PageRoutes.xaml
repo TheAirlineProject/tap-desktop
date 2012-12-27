@@ -14,6 +14,7 @@
     <Page.Resources>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <local:StartFlightBooleanToVisibility x:Key="startFlightBooleanToVisibility"></local:StartFlightBooleanToVisibility>
@@ -90,7 +91,7 @@
                     </Hyperlink>
                     </TextBlock>
                     <TextBlock VerticalAlignment="Bottom" Text="{Binding FlightCodes}" Width="100"></TextBlock>
-                    <TextBlock Margin="10 0 0 0" VerticalAlignment="Bottom" Text="{Binding Balance, StringFormat={}{0:c}}" Foreground="{Binding Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                    <TextBlock Margin="10 0 0 0" VerticalAlignment="Bottom" Text="{Binding Balance,Converter={StaticResource valueCurrencyConverter}}" Foreground="{Binding Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
                     <Image Source="/Data/images/info.png" Height="16" Width="16" VerticalAlignment="Bottom"  RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Banned,Converter={StaticResource booleanToVisibility}}">
                         <Image.ToolTip>
                             <Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">

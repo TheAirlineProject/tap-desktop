@@ -732,7 +732,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             WrapPanel sliderPanel = new WrapPanel();
 
-            TextBlock txtValue = UICreator.CreateTextBlock(string.Format("{0:C}", this.FeeValues[type]));
+            TextBlock txtValue = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.FeeValues[type]).ToString());//UICreator.CreateTextBlock(string.Format("{0:C}", this.FeeValues[type]));
             txtValue.VerticalAlignment = VerticalAlignment.Bottom;
             txtValue.Margin = new Thickness(5, 0, 0, 0);
             txtValue.Tag = type;
@@ -758,7 +758,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             Slider slider = (Slider)sender;
             TextBlock txtBlock = (TextBlock)slider.Tag;
-            txtBlock.Text = string.Format("{0:C}", slider.Value);
+            txtBlock.Text = new ValueCurrencyConverter().Convert(slider.Value).ToString();// string.Format("{0:C}", slider.Value);
 
             FeeType type = (FeeType)txtBlock.Tag;
 

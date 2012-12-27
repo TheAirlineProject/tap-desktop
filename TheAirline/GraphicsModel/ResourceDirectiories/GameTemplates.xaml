@@ -6,6 +6,7 @@
     <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
     <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
     <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+    <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
     <local:RouteClassFacilityConverter x:Key="routeClassFacilityConverter"></local:RouteClassFacilityConverter>
     <local:WifiEnabledConverter x:Key="wifiEnabledConverter"></local:WifiEnabledConverter>
     <DataTemplate x:Key="TextUnderscoreTextBlock">
@@ -75,7 +76,7 @@
         <StackPanel>
             <WrapPanel>
                 <TextBlock Text="Fare price: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding FarePrice, StringFormat={}{0:c}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding FarePrice,Converter={StaticResource valueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel>
                 <TextBlock Text="Food on class: " VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>

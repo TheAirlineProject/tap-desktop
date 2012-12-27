@@ -10,6 +10,7 @@
 	Title="PageAirlinesExtendedStatistics">
     <Page.Resources>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
+        <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
             <DataTemplate x:Key="AirlineStatItem">
             <WrapPanel>
@@ -37,7 +38,7 @@
                 <Rectangle Width="{Binding Width}"  Fill="{Binding Airline,Converter={StaticResource airlineBrushConverter}}" Height="10" Margin="0 2 0 2">
 
                 </Rectangle>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Value, StringFormat={}{0:c}, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"  Foreground="{Binding Value,Converter={StaticResource valueIsMinusConverter}}" Margin="5 0 0 0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Value,Converter={StaticResource valueCurrencyConverter}, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"  Foreground="{Binding Value,Converter={StaticResource valueIsMinusConverter}}" Margin="5 0 0 0"></TextBlock>
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>

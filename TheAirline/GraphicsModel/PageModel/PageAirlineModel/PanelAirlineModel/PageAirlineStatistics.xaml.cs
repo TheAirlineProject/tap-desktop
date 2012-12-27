@@ -100,7 +100,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             if (year == 0 || year == -1)
             {
                 int currentYear = GameObject.GetInstance().GameTime.Year + year;
-                return string.Format("{0:0,0}", sa.Key.Statistics.getStatisticsValue(currentYear, sa.Value));
+                return string.Format("{0:#,0}", sa.Key.Statistics.getStatisticsValue(currentYear, sa.Value));
             }
             else
             {

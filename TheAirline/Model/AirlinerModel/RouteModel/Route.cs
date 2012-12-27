@@ -69,7 +69,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public RouteAirlinerClass getRouteAirlinerClass(AirlinerClass.ClassType type)
         {
             RouteAirlinerClass rac = this.Classes.Find(cl => cl.Type == type);
-            return this.Classes.Find((delegate(RouteAirlinerClass c) { return c.Type == type; }));
+            return rac;
         }
         //returns the total number of cabin crew for the route based on airliner
         public int getTotalCabinCrew()

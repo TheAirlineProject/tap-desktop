@@ -16,6 +16,7 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlineModel;
 using System.Reflection;
 using TheAirline.Model.AirportModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -174,7 +175,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             double maxValue = GameObject.GetInstance().MainAirline.Money / 2;
             WrapPanel sliderPanel = new WrapPanel();
 
-            TextBlock txtValue = UICreator.CreateTextBlock(string.Format("{0:C}", minValue));
+            TextBlock txtValue = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(minValue).ToString());//UICreator.CreateTextBlock(string.Format("{0:C}", minValue));
             txtValue.VerticalAlignment = VerticalAlignment.Bottom;
             txtValue.Margin = new Thickness(5, 0, 0, 0);
         
@@ -199,7 +200,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             Slider slider = (Slider)sender;
             TextBlock txtBlock = (TextBlock)slider.Tag;
-            txtBlock.Text = string.Format("{0:C}", slider.Value);
+            txtBlock.Text = new ValueCurrencyConverter().Convert(slider.Value).ToString();//string.Format("{0:C}", slider.Value);
 
         }
         private void txtIATA_TextChanged(object sender, TextChangedEventArgs e)

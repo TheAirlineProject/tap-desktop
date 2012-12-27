@@ -14,7 +14,7 @@
             <WrapPanel>
                 <TextBlock Text="{Binding Key.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                 <TextBlock Text="{Binding Value,StringFormat=Amount: {0}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                <TextBlock Text="{Binding Converter={StaticResource airlinersPriceConverter},StringFormat={}{0:c}}" TextAlignment="Right" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airlinersPriceConverter}}" TextAlignment="Right" VerticalAlignment="Bottom" Width="100"></TextBlock>
                 <Button Background="Transparent" Tag="{Binding Key}" Click="btnRemove_Click" Margin="5 0 0 0">
                     <Image Source="/Data/images/delete.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>

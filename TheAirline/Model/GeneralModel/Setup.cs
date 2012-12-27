@@ -1424,15 +1424,24 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void RemoveAirlines(int opponnents)
         {
-            Airline lot = Airlines.GetAirline("DA");
-            int count = Airlines.GetAirlines(a => !a.IsHuman).Count;
+            int year = GameObject.GetInstance().GameTime.Year;
 
+            var notAvailableAirlines = Airlines.GetAirlines(a => !(a.Profile.Founded <= year && a.Profile.Folded > year));
+
+            foreach (Airline airline in notAvailableAirlines)
+                Airlines.RemoveAirline(airline);
+    
+            Airline lot = Airlines.GetAirline("DA");
+            int count = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year).Count;
+   
             for (int i = 0; i < count - opponnents; i++)
             {
-                List<Airline> airlines = Airlines.GetAirlines(a => !a.IsHuman);
+                List<Airline> airlines = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year); 
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
+
+           
             if (Airlines.GetAllAirlines().Contains(lot))
                 Airlines.RemoveAirline(lot);
             //if (!Airlines.GetAllAirlines().Contains(lot))
@@ -1630,7 +1639,7 @@ namespace TheAirline.Model.GeneralModel
                         int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
                         Country country = Countries.GetCountries()[countryNumber];
 
-                        int builtYear = rnd.Next(Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
+                        int builtYear = rnd.Next(type.Produced.From.Year, Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
 
                         Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
 

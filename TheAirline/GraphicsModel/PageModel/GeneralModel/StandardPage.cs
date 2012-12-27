@@ -325,7 +325,7 @@ public class PageInformation : Page
 
         panelContent.Children.Add(imgLogo);
 
-        txtGasPrice = UICreator.CreateTextBlock(string.Format("{0:c}/{1}.", new FuelUnitConverter().Convert(GameObject.GetInstance().FuelPrice), new StringToLanguageConverter().Convert("ltr")));
+        txtGasPrice = UICreator.CreateTextBlock(string.Format("{0}/{1}.", new ValueCurrencyConverter().Convert(new FuelUnitConverter().Convert(GameObject.GetInstance().FuelPrice)), new StringToLanguageConverter().Convert("ltr")));
         txtGasPrice.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
         txtGasPrice.FontWeight = FontWeights.Bold;
         txtGasPrice.Margin = new Thickness(5, 0, 0, 0);

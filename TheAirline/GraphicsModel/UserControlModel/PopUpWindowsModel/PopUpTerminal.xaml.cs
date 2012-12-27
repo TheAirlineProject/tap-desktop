@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -85,14 +86,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             nudGates.MinValue = 1;
 
             lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1001"), nudGates));
-
+            /*
             lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1002"), UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalPrice()))));
             lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1003"), UICreator.CreateTextBlock(string.Format("{0:C}",this.Airport.getTerminalGatePrice()))));
+            */
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1002"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.getTerminalPrice()).ToString())));
+            lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1003"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.getTerminalGatePrice()).ToString())));
 
             txtDaysToCreate = UICreator.CreateTextBlock("0 days");
             lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1004"), txtDaysToCreate));
 
-            txtTotalPrice = UICreator.CreateTextBlock(string.Format("{0:C}", 0));
+            txtTotalPrice = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(0).ToString());//UICreator.CreateTextBlock(string.Format("{0:C}", 0));
             lbTerminal.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpTerminal", "1005"), txtTotalPrice));
 
             mainPanel.Children.Add(createButtonsPanel());
@@ -150,7 +154,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             txtDaysToCreate = UICreator.CreateTextBlock("0 days");
             lbTerminal.Items.Add(new QuickInfoValue("Days to extend terminal", txtDaysToCreate));
 
-            txtTotalPrice = UICreator.CreateTextBlock(string.Format("{0:C}", 0));
+            txtTotalPrice = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(0).ToString());//UICreator.CreateTextBlock(string.Format("{0:C}", 0));
             lbTerminal.Items.Add(new QuickInfoValue("Price for extending", txtTotalPrice));
 
 
@@ -176,7 +180,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             else
                 price = gates * this.Terminal.Airport.getTerminalGatePrice();
 
-            txtTotalPrice.Text = string.Format("{0:C}", price);
+            txtTotalPrice.Text = new ValueCurrencyConverter().Convert(price).ToString();//string.Format("{0:C}", price);
 
         }
         //creates the button panel

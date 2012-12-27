@@ -19,6 +19,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersModel
 {
@@ -205,7 +206,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             panelOrderType.Children.Add(nudAirliners);
 
             txtPrice = new TextBlock();
-            txtPrice.Text = string.Format("{0:C}", 0);
+            txtPrice.Text = new ValueCurrencyConverter().Convert(0).ToString();//string.Format("{0:C}", 0);
             txtPrice.TextAlignment = TextAlignment.Right;
             txtPrice.Width = 100;
             txtPrice.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
@@ -256,10 +257,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
              if (contractedOrder)
                     discount += price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100);
 
-         
 
-            txtDiscount.Text = string.Format("{0:C}", discount);
-            txtTotalPrice.Text = string.Format("{0:C}", price - discount);
+
+             txtDiscount.Text = new ValueCurrencyConverter().Convert(discount).ToString();// string.Format("{0:C}", discount);
+             txtTotalPrice.Text = new ValueCurrencyConverter().Convert(price - discount).ToString();// string.Format("{0:C}", price - discount);
 
 
 
@@ -484,7 +485,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             {
                 int number = Convert.ToInt16(nudAirliners.Value);
 
-                txtPrice.Text = string.Format("{0:C}", type.Price * number);
+                txtPrice.Text = new ValueCurrencyConverter().Convert(type.Price * number).ToString();//string.Format("{0:C}", type.Price * number);
 
                 frameAirlinerInfo.Content = PanelAirliner.createQuickInfoPanel(type);
             }
@@ -497,7 +498,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             int number = Convert.ToInt16(nudAirliners.Value);
 
-            txtPrice.Text = string.Format("{0:C}", type.Price * number);
+            txtPrice.Text = new ValueCurrencyConverter().Convert(type.Price * number).ToString(); //txtPrice.Text = string.Format("{0:C}", type.Price * number);
 
         }
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
@@ -531,7 +532,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             KeyValuePair<AirlinerType, int> airliners = (KeyValuePair<AirlinerType, int>)value;
 
-            return airliners.Key.Price * airliners.Value;
+            return new ValueCurrencyConverter().Convert(airliners.Key.Price * airliners.Value);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

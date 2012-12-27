@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -110,7 +111,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             double amount = Convert.ToDouble(cbAmount.SelectedItem);
             int length = Convert.ToInt16(cblength.SelectedItem) * 12;
 
-            txtMonthlyPayment.Text = string.Format("{0:c}",MathHelpers.GetMonthlyPayment(amount,GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline),length));
+            txtMonthlyPayment.Text = new ValueCurrencyConverter().Convert(MathHelpers.GetMonthlyPayment(amount, GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline), length)).ToString();//string.Format("{0:c}",MathHelpers.GetMonthlyPayment(amount,GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline),length));
      
         }
           //creates the button panel

@@ -99,9 +99,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             this.addObject(lbPriceInfo);
 
+            /*
             lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1102"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.Price))));
             lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1103"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.LeasingPrice))));
             lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1104"), UICreator.CreateTextBlock(string.Format("{0:c}", this.Airliner.Type.getMaintenance()))));
+            */
+
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1102"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(Airliner.Price).ToString())));
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1103"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airliner.LeasingPrice).ToString())));
+            lbPriceInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelUsedAirliner", "1104"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airliner.Type.getMaintenance()).ToString())));
 
 
             cbAirport = new ComboBox();

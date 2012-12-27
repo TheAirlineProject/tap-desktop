@@ -156,7 +156,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbLocalCurrency.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             cbLocalCurrency.Content = Translator.GetInstance().GetString("PageNewGame", "1014");
             cbLocalCurrency.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
+  
             panelCountry.Children.Add(cbLocalCurrency);
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1004"), panelCountry));
@@ -454,6 +454,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 txtIATA.Text = airline.Profile.IATACode;
                 cntCountry.Content = airline.Profile.Country;
                 cbLocalCurrency.Visibility = airline.Profile.Country.Currencies.Count > 0  ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+                cbLocalCurrency.IsChecked = airline.Profile.Country.Currencies.Count>0;
+
                 txtNarrative.Text = airline.Profile.Narrative;    
             }
 

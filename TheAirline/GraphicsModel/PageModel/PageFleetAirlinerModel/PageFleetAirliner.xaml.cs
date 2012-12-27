@@ -105,7 +105,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1025"), UICreator.CreateTextBlock(this.Airliner.PurchasedDate.ToShortDateString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(string.Format("{0:C}", this.Airliner.Airliner.getPrice()))));
+           // lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(string.Format("{0:C}", this.Airliner.Airliner.getPrice()))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airliner.Airliner.getPrice()).ToString())));
 
             panelLeasedAirliner.Children.Add(lbQuickInfo);
 

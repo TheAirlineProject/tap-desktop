@@ -202,7 +202,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             lbRouteFinances.Items.Clear();
 
             foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
-                 lbRouteFinances.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type,null,null,null).ToString(),UICreator.CreateTextBlock(string.Format("{0:C}", this.Route.getRouteInvoiceAmount(type)))));
+                 lbRouteFinances.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type,null,null,null).ToString(),UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Route.getRouteInvoiceAmount(type)).ToString())));//string.Format("{0:C}", this.Route.getRouteInvoiceAmount(type)))));
 
             
         }

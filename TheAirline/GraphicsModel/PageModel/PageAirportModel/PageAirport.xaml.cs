@@ -359,7 +359,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1021"),UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1023"),UICreator.CreateTextBlock(string.Format("{0:C}", this.Airport.Income))));
+          //  lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1023"),UICreator.CreateTextBlock(string.Format("{0:C}", this.Airport.Income))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1023"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString())));
 
             WrapPanel panelTerminals = new WrapPanel();
 
