@@ -8,6 +8,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -74,9 +75,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateLanding(FleetAirliner airliner)
         {
 
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type));
-            landingTime.Add(GetFlightWindInfluence(airliner));
-
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates,GetCruisingSpeed(airliner)));
+          
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
             double groundTaxPerPassenger = 5;
 
@@ -281,24 +281,51 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (isHappy) PassengerHelpers.AddPassengerHappiness(airliner.Airliner.Airline);
             }
         }
-        //returns the wind influence for a flight
-        private static TimeSpan GetFlightWindInfluence(FleetAirliner airliner)
+        //returns the flight crusing speed based on the wind
+        private static int GetCruisingSpeed(FleetAirliner airliner)
         {
-            double distance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates,airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.getDepartureAirport();
+ 
+            double windFirstHalf = ((int)dept.Weather[0].WindSpeed) * GetWindInfluence(airliner,dept.Weather[0]);
 
-            double totalDistance = MathHelpers.GetDistance(dept.Profile.Coordinates, dest.Profile.Coordinates);
+            double windSecondHalf = ((int)dest.Weather[0].WindSpeed) * GetWindInfluence(airliner,dest.Weather[0]);
 
-            double windFirstHalf = ((int)dept.Weather[0].WindSpeed) * (distance / 2) / 100 * GameObjectHelpers.GetWindInfluence(airliner);
+            int speed = Convert.ToInt32(((airliner.Airliner.Type.CruisingSpeed + windFirstHalf) + (airliner.Airliner.Type.CruisingSpeed + windSecondHalf))/2);
 
-            
-
-            double windSecondHalf = ((int)dest.Weather[0].WindSpeed) * (distance / 2) / 100 * GameObjectHelpers.GetWindInfluence(airliner);
-
-            return new TimeSpan(0,(int)(windFirstHalf + windSecondHalf),0);
-
+            return speed;
         
+        }
+        //returns if the wind is tail (1), head (-1), or from side (0)
+        private static int GetWindInfluence(FleetAirliner airliner, Weather currentWeather)
+        {
+            double direction = MathHelpers.GetDirection(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates, airliner.CurrentFlight.getNextDestination().Profile.Coordinates);
+
+            Weather.WindDirection windDirection = MathHelpers.GetWindDirectionFromDirection(direction);
+
+             //W+E = 0+4= 5, N+S=2+6 - = Abs(Count/2) -> Head, Abs(0) -> Tail -> if ends/starts with same => tail, indexof +-1 -> tail, (4+(indexof))+-1 -> head 
+
+            int windDirectionLenght = Enum.GetValues(typeof(Weather.WindDirection)).Length;
+            int indexCurrentPosition = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)), windDirection);
+            //int indexWeather = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)),currentWeather.WindSpeed);
+
+            //check for tail wind
+            Weather.WindDirection windTailLeft = indexCurrentPosition > 0 ? (Weather.WindDirection)indexCurrentPosition - 1 : (Weather.WindDirection)windDirectionLenght - 1;
+            Weather.WindDirection windTailRight = indexCurrentPosition < windDirectionLenght - 1 ? (Weather.WindDirection)indexCurrentPosition + 1 : (Weather.WindDirection)0;
+
+            if (windTailLeft == currentWeather.Direction || windTailRight == currentWeather.Direction || windDirection == currentWeather.Direction)
+                return 1;
+
+            Weather.WindDirection windOpposite = indexCurrentPosition - (windDirectionLenght / 2) > 0 ? (Weather.WindDirection)indexCurrentPosition - (windDirectionLenght / 2) : (Weather.WindDirection)windDirectionLenght - 1 - indexCurrentPosition - (windDirectionLenght / 2);
+            int indexOpposite = Array.IndexOf(Enum.GetValues(typeof(Weather.WindDirection)), windOpposite);
+
+            Weather.WindDirection windHeadLeft = indexOpposite > 0 ? (Weather.WindDirection)indexOpposite - 1 : (Weather.WindDirection)windDirectionLenght - 1;
+            Weather.WindDirection windHeadRight = indexOpposite < windDirectionLenght - 1 ? (Weather.WindDirection)indexOpposite + 1 : (Weather.WindDirection)0;
+
+            if (windHeadLeft == currentWeather.Direction || windHeadRight == currentWeather.Direction || windOpposite == currentWeather.Direction)
+                return -1;
+
+            return 0;
         }
     }
 }
