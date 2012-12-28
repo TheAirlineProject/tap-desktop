@@ -40,7 +40,7 @@ namespace TheAirline.Model.GeneralModel
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
             this.PagePerformanceCounterEnabled = false;
-            this.PilotsEnabled = false;
+            this.PilotsEnabled = true;
             this.DayRoundEnabled = false;
         }
 
