@@ -45,7 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         private Popup popUpSplash;
-        private CheckBox cbLocalCurrency;
+        private CheckBox cbLocalCurrency, cbDayTurnEnabled;
         public PageNewGame()
         {
             InitializeComponent();
@@ -277,6 +277,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), cbOpponents));
 
+            cbDayTurnEnabled = new CheckBox();
+            cbDayTurnEnabled.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1016"), cbDayTurnEnabled));
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
@@ -527,7 +531,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 DoEvents();
  
+
+
                 GameTimeZone gtz = (GameTimeZone)cbTimeZone.SelectedItem;
+                GameObject.GetInstance().DayRoundEnabled = cbDayTurnEnabled.IsChecked.Value;
                 GameObject.GetInstance().TimeZone = gtz;
                 GameObject.GetInstance().Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem;
                 int startYear = (int)cbStartYear.SelectedItem;
