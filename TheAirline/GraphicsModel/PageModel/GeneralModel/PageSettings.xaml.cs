@@ -77,10 +77,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbTurnMinutes.Items.Add(15);
             cbTurnMinutes.Items.Add(30);
             cbTurnMinutes.Items.Add(60);
-
+          
             cbTurnMinutes.SelectedItem = Settings.GetInstance().MinutesPerTurn;
 
-            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1006"),cbTurnMinutes));
+            if (!GameObject.GetInstance().DayRoundEnabled)
+                lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1006"),cbTurnMinutes));
             
 
             cbLanguage = new ComboBox();
