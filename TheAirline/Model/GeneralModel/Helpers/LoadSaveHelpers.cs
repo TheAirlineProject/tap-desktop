@@ -450,6 +450,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameTimer.GetInstance().setGameSpeed((GeneralHelpers.GameSpeedValue)Enum.Parse(typeof(GeneralHelpers.GameSpeedValue), gameSettingsNode.Attributes["gamespeed"].Value));
             if (gameSettingsNode.HasAttribute("minutesperturn")) Settings.GetInstance().MinutesPerTurn = Convert.ToInt16(gameSettingsNode.Attributes["minutesperturn"].Value);
             AppSettings.GetInstance().setLanguage(Languages.GetLanguage(gameSettingsNode.Attributes["language"].Value));
+            GameObject.GetInstance().DayRoundEnabled = Convert.ToBoolean(gameSettingsNode.Attributes["dayround"].Value);
 
             XmlNodeList newsList = gameSettingsNode.SelectNodes("news/new");
             GameObject.GetInstance().NewsBox.clear();
@@ -641,6 +642,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 FleetAirliner.PurchasedType purchasedtype = (FleetAirliner.PurchasedType)Enum.Parse(typeof(FleetAirliner.PurchasedType), airlineAirlinerNode.Attributes["purchased"].Value);
                 DateTime purchasedDate = DateTime.Parse(airlineAirlinerNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
                 FleetAirliner.AirlinerStatus status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), airlineAirlinerNode.Attributes["status"].Value);
+                DateTime groundedDate = DateTime.Parse(airlineAirlinerNode.Attributes["groundeddate"].Value, new CultureInfo("de-DE", false));
 
                 Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
                 Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
@@ -648,7 +650,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, fAirlinerName, homebase);
                 fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
                 fAirliner.Status = status;
-
+                fAirliner.GroundedToDate = groundedDate;
 
                 XmlNodeList airlinerStatList = airlineAirlinerNode.SelectNodes("stats/stat");
 
@@ -1069,6 +1071,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IATACode);
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
                     fleetAirlinerNode.SetAttribute("date", airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
+                    fleetAirlinerNode.SetAttribute("groundeddate", airliner.GroundedToDate.ToString(new CultureInfo("de-DE")));
+     
                     fleetAirlinerNode.SetAttribute("status", airliner.Status.ToString());
                     fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
                     fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());
@@ -1497,6 +1501,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("gamespeed", GameTimer.GetInstance().GameSpeed.ToString());
             gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString());
             gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().getLanguage().Name);
+            gameSettingsNode.SetAttribute("dayround", GameObject.GetInstance().DayRoundEnabled.ToString());
 
             XmlElement newsNodes = xmlDoc.CreateElement("news");
 

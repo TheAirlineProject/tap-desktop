@@ -27,7 +27,7 @@ namespace TheAirline.Model.AirlinerModel
         public Coordinates CurrentPosition { get; set; }
         public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
-        
+        public DateTime GroundedToDate { get; set; }
         public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,string name, Airport homebase)
         {
             this.Airliner = airliner;

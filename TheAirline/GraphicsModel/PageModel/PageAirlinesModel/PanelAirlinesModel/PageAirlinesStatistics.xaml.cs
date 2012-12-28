@@ -227,8 +227,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            DateTime timestart = DateTime.Now;
-            KeyValuePair<Airline, StatisticsType> aa = (KeyValuePair<Airline, StatisticsType>)value;
+             KeyValuePair<Airline, StatisticsType> aa = (KeyValuePair<Airline, StatisticsType>)value;
 
             int year = Int16.Parse(parameter.ToString());
             
@@ -252,7 +251,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 if (double.IsNaN(changePercent))
                     return "-";
 
-                Console.WriteLine(DateTime.Now.Subtract(timestart).TotalMilliseconds);
+             
 
                 return string.Format("{0:0.00} %", changePercent * 100);
             }

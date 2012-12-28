@@ -26,8 +26,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e=>e.Airliner == airliner).OrderBy(e=>e.Time);
 
-                foreach (RouteTimeTableEntry entry in dayEntries)
-                    SimulateFlight(entry);
+                if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
+                {
+                    foreach (RouteTimeTableEntry entry in dayEntries)
+                        SimulateFlight(entry);
+                    CheckForService(airliner);
+                }
+               
             }
         }
         //simulates a flight
@@ -76,6 +81,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
                      SimulateLanding(airliner);
              }
+        }
+        //simulates the service of a flight
+        private static void SimulateService(FleetAirliner airliner)
+        {
+
+            double servicePrice = 100000;
+      
+            airliner.Airliner.LastServiceCheck = airliner.Airliner.Flown;
+
+            AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -servicePrice);
+
+             airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Airliner_Income"), -servicePrice);
+
+            airliner.GroundedToDate = GameObject.GetInstance().GameTime.AddDays(90);
         }
         //simulates the landing of a flight
         private static void SimulateLanding(FleetAirliner airliner)
@@ -284,6 +303,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (isHappy) PassengerHelpers.AddPassengerHappiness(airliner.Airliner.Airline);
             }
+        }
+        //checks for an airliner should go to service
+        private static void CheckForService(FleetAirliner airliner)
+        {
+            double serviceCheck = 500000000;
+            double sinceLastService = airliner.Airliner.Flown - airliner.Airliner.LastServiceCheck;
+
+            if (sinceLastService > serviceCheck)
+                SimulateService(airliner);
+
+
         }
         //returns the flight crusing speed based on the wind
         private static int GetCruisingSpeed(FleetAirliner airliner)

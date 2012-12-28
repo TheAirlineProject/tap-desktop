@@ -42,7 +42,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
             FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airport);
-
+             
             airline.addAirliner(fAirliner);
 
             return fAirliner;
