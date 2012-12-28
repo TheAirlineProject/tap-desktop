@@ -66,6 +66,12 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
             long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
 
+            if ((this.Worker.CancellationPending == true))
+            {
+                e.Cancel = true;
+                
+            }
+
             if (waittime > 0 && !e.Cancel)
                 Thread.Sleep((int)waittime);
 

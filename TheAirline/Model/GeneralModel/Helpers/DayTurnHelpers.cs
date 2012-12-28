@@ -228,9 +228,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IATACode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IATACode, dept.Profile.Country.Name })));
 
-            airliner.CurrentFlight = null;
             CreatePassengersHappiness(airliner);
 
+            airliner.CurrentFlight = null;
+         
 
 
 
@@ -295,10 +296,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double windSecondHalf = ((int)dest.Weather[0].WindSpeed) * (distance / 2) / 100 * GameObjectHelpers.GetWindInfluence(airliner);
 
-            //return new TimeSpan(0,(int)(windFirstHalf + windSecondHalf),0);<
+            return new TimeSpan(0,(int)(windFirstHalf + windSecondHalf),0);
 
-            return new TimeSpan(0, 0, 0);
-    
+        
         }
     }
 }

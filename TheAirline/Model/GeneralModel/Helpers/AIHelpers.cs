@@ -382,7 +382,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             alliance.addMember(airline);
 
             Alliances.AddAlliance(alliance);
-
+         
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "New alliance", string.Format("A new alliance: {0} has been created by [LI airline={1}]", name, airline.Profile.IATACode)));
 
             InviteToAlliance(airline, alliance);

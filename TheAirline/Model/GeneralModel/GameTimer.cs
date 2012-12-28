@@ -47,7 +47,7 @@ namespace TheAirline.Model.GeneralModel
         //pause the game
         public void pause()
         {
-            //this.Timer.Enabled = false;
+            this.Timer.IsEnabled = false;
             this.IsPaused = true;
         }
         //(re)start the game 
