@@ -64,7 +64,7 @@ namespace TheAirline.GraphicsModel.Converters
                 else
                 {
 
-                    return string.Format("{0:#,0} {1}", v * currency.Rate, currency.CurrencySymbol);
+                    return string.Format("{0:#,0.##} {1}", v * currency.Rate, currency.CurrencySymbol);
                 }
             }
             catch (Exception e)
