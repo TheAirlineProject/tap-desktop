@@ -18,7 +18,7 @@ namespace TheAirline.Model.GeneralModel
     //class for some general helpers
     public class GeneralHelpers
     {
-        public enum GameSpeedValue { Slowest = 700, Slow = 550, Normal = 400, Fast = 250, Fastest = 100 }
+        public enum GameSpeedValue { Slowest = 1000, Slow = 550, Normal = 400, Fast = 250, Fastest = 100 }
         public enum Size { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
        // public enum Rate { None }
         public static string BigMapXaml;

@@ -31,9 +31,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (d.Value > delay.Value)
                     delay = d;
             }
-            if (delay.Value > 0)
-                airliner.CurrentFlight.IsOnTime = false;
-
+          
             return delay;
         }
 

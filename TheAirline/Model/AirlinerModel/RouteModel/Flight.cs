@@ -18,6 +18,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public FleetAirliner Airliner { get; set; }
         public Boolean IsOnTime { get; set; }
         public DateTime FlightTime { get; set; }
+        public DateTime ScheduledFlightTime { get; set; }
         public DateTime ExpectedLanding { get { return getExpectedLandingTime(); } set { ;} }
         public Flight(RouteTimeTableEntry entry)
         {
@@ -29,11 +30,18 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             {
                 this.Airliner = this.Entry.Airliner;
                 this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
+                this.ScheduledFlightTime = this.FlightTime;
             }
             
             this.IsOnTime = true;
 
          
+        }
+        //returns the scheduled expected landing time
+        public DateTime getScheduledLandingTime()
+        {
+            return this.ScheduledFlightTime.Add(MathHelpers.GetFlightTime(this.Entry.DepartureAirport.Profile.Coordinates, this.Entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type));
+
         }
         //returns the expected time of landing
         public DateTime getExpectedLandingTime()

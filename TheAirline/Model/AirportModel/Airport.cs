@@ -102,10 +102,13 @@ namespace TheAirline.Model.AirportModel
         //adds a number of passengers to destination to the statistics
         public void addDestinationStatistics(Airport destination, long passengers)
         {
-            if (!this.DestinationStatistics.ContainsKey(destination))
-                this.DestinationStatistics.Add(destination, passengers);
-            else
-                this.DestinationStatistics[destination] += passengers;
+            lock (this.DestinationStatistics)
+            {
+                if (!this.DestinationStatistics.ContainsKey(destination))
+                    this.DestinationStatistics.Add(destination, passengers);
+                else
+                    this.DestinationStatistics[destination] += passengers;
+            }
 
         }
         
