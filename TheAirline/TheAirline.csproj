@@ -766,6 +766,7 @@
     <Compile Include="Model\GeneralModel\InvoicesModel\MonthlyInvoice.cs" />
     <Compile Include="Model\GeneralModel\Language.cs" />
     <Compile Include="Model\GeneralModel\Loan.cs" />
+    <Compile Include="Model\GeneralModel\Names.cs" />
     <Compile Include="Model\GeneralModel\NewsBox.cs" />
     <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />

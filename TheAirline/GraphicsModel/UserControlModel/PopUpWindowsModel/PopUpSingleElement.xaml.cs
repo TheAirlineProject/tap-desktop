@@ -38,7 +38,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 400;
 
-            this.Height = 100;
+            this.Height = 125;
 
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 

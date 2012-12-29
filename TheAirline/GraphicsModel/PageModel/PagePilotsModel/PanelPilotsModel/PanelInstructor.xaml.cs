@@ -98,6 +98,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
                 this.Instructor.FlightSchool = GameObject.GetInstance().HumanAirline.FlightSchools[0];
                 
                 this.ParentPage.updatePage();
+
+                this.ParentPage.unloadSideMenu();
             }
         }
     }

@@ -15,6 +15,7 @@ using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 {
@@ -26,6 +27,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         private PagePilots ParentPage;
         private FlightSchool FlightSchool;
         private ListBox lbInstructors, lbStudents;
+        private TextBlock txtStudents;
         public PanelFlightSchool(PagePilots parent, FlightSchool flighschool)
         {
             this.ParentPage = parent;
@@ -50,7 +52,9 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1002"), UICreator.CreateTextBlock(this.FlightSchool.Name)));
             lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1003"), UICreator.CreateTextBlock(this.FlightSchool.NumberOfInstructors.ToString())));
-            lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1004"), UICreator.CreateTextBlock(this.FlightSchool.NumberOfStudents.ToString())));
+
+            txtStudents = UICreator.CreateTextBlock(this.FlightSchool.NumberOfStudents.ToString());
+            lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1004"),txtStudents));
 
             panelFlightSchool.Children.Add(lbFSInformation);
             panelFlightSchool.Children.Add(createInstructorsPanel());
@@ -128,6 +132,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             btnHire.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnHire.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnHire.Click += new RoutedEventHandler(btnHire_Click);
+            btnHire.IsEnabled = this.FlightSchool.Instructors.Count > 0;
 
             buttonsPanel.Children.Add(btnHire);
 
@@ -152,22 +157,42 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
             Random rnd = new Random();
-            List<Town> towns = Towns.GetTowns();
+        
+            ComboBox cbStudents = new ComboBox();
+            cbStudents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbStudents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbStudents.Width = 100;
 
-            int students = 3;
+            int maxStudents = (this.FlightSchool.NumberOfInstructors*FlightSchool.NumberOfStudentsPerInstructor) - this.FlightSchool.NumberOfStudents;
 
-            for (int i = 0; i < students; i++)
+            for (int i = 1; i < maxStudents+1; i++)
+                cbStudents.Items.Add(i);
+
+            cbStudents.SelectedIndex = 0;
+            
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbStudents) == PopUpSingleElement.ButtonSelected.OK && cbStudents.SelectedItem != null)
             {
-                Town town = towns[rnd.Next(towns.Count)];
-                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                PilotProfile profile = new PilotProfile("Student", "Doe" + (i + 1), birthdate, town);
+                int students = (int)cbStudents.SelectedItem;
 
-                this.FlightSchool.addStudent(new PilotStudent(profile, GameObject.GetInstance().GameTime));
+                List<Town> towns = Towns.GetTowns();
 
+                for (int i = 0; i < students; i++)
+                {
+                    Town town = towns[rnd.Next(towns.Count)];
+                    DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                    PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+
+                    this.FlightSchool.addStudent(new PilotStudent(profile, GameObject.GetInstance().GameTime));
+
+                }
+                showStudents();
+
+                this.ParentPage.updatePage();
+
+                txtStudents.Text = this.FlightSchool.NumberOfStudents.ToString();
             }
-            showStudents();
-
-            this.ParentPage.updatePage();
+     
         }
     }
 }

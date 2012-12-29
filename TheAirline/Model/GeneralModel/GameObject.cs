@@ -41,7 +41,7 @@ namespace TheAirline.Model.GeneralModel
             this.NewsBox = new NewsBox();
             this.PagePerformanceCounterEnabled = false;
             this.PilotsEnabled = true;
-            this.DayRoundEnabled = false;
+            this.DayRoundEnabled = true;
         }
 
         //returns the start money based on year of start

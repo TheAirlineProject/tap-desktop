@@ -138,7 +138,7 @@ namespace TheAirline.Model.GeneralModel
 
                     Town town = towns[rnd.Next(towns.Count)];
                     DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                    PilotProfile profile = new PilotProfile("Pilot", "Doe" + (i + 1), birthdate, town);
+                    PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
 
                     Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
                     rankings.Add(Pilot.PilotRating.A, 10);
@@ -149,7 +149,10 @@ namespace TheAirline.Model.GeneralModel
 
                     Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
 
-                    DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), birthdate.AddYears(55));
+                    int fromYear = Math.Min(GameObject.GetInstance().GameTime.Year-1, birthdate.AddYears(23).Year);
+                    int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(55).Year);
+
+                    DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear,1,1));
                     Pilot pilot = new Pilot(profile, educationTime, ranking);
 
                     Pilots.AddPilot(pilot);
@@ -161,7 +164,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                         Town town = towns[rnd.Next(towns.Count)];
                         DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                        PilotProfile profile = new PilotProfile("Instructor", "Doe" + (i + 1), birthdate, town);
+                        PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
 
                         Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
                         rankings.Add(Pilot.PilotRating.A, 10);
@@ -1566,9 +1569,13 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateAirlineStartData(Airline airline, AirlineStartData startData)
         {
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
-
+            
+            int difficultyFactor = GameObject.GetInstance().Difficulty.AILevel > 1 ? 2 : 1; //level easy
+     
+            var startroutes = startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year);
+             
             //creates the routes
-            foreach (StartDataRoute startRoute in startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year))
+            foreach (StartDataRoute startRoute in startroutes.GetRange(0,startroutes.Count / difficultyFactor))
             {
                 Airport dest1 = Airports.GetAirport(startRoute.Destination1);
                 Airport dest2 = Airports.GetAirport(startRoute.Destination2);
@@ -1620,8 +1627,9 @@ namespace TheAirline.Model.GeneralModel
 
 
             }
+         
             //adds the airliners
-            foreach (StartDataAirliners airliners in startData.Airliners)
+            foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0,startData.Airliners.Count / difficultyFactor))
             {
                 AirlinerType type = AirlinerTypes.GetType(airliners.Type);
 
@@ -1661,7 +1669,7 @@ namespace TheAirline.Model.GeneralModel
 
             }
             //the origin routes
-            foreach (StartDataRoutes routes in startData.OriginRoutes)
+            foreach (StartDataRoutes routes in startData.OriginRoutes.GetRange(0,startData.OriginRoutes.Count / difficultyFactor))
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
 

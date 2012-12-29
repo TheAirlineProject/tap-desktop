@@ -97,6 +97,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             {
                 GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
                 this.ParentPage.updatePage();
+
+                this.ParentPage.unloadSideMenu();
             }
         }
     }

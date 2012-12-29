@@ -15,6 +15,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.PilotModel;
 using TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 {
@@ -47,7 +49,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             txtPilotsHeader.Text = Translator.GetInstance().GetString("PagePilots", txtPilotsHeader.Uid);
 
             pilotsPanel.Children.Add(txtPilotsHeader);
-            
+
             ContentControl ccPilotsHeader = new ContentControl();
             ccPilotsHeader.ContentTemplate = this.Resources["PilotsHeader"] as DataTemplate;
             ccPilotsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -57,7 +59,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             lbPilots = new ListBox();
             lbPilots.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPilots.ItemTemplate = this.Resources["PilotItem"] as DataTemplate;
-            lbPilots.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100)/3;
+            lbPilots.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
 
             pilotsPanel.Children.Add(lbPilots);
 
@@ -75,7 +77,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             ContentControl ccInstructorsHeader = new ContentControl();
             ccInstructorsHeader.ContentTemplate = this.Resources["InstructorsHeader"] as DataTemplate;
             ccInstructorsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-         
+
             pilotsPanel.Children.Add(ccInstructorsHeader);
 
             lbInstructors = new ListBox();
@@ -98,7 +100,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             ContentControl ccFlightSchoolHeader = new ContentControl();
             ccFlightSchoolHeader.ContentTemplate = this.Resources["FlightSchoolsHeader"] as DataTemplate;
             ccFlightSchoolHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-         
+
             pilotsPanel.Children.Add(ccFlightSchoolHeader);
 
             lbFlightSchools = new ListBox();
@@ -120,15 +122,15 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             btnBuild.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnBuild.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnBuild.Click += new RoutedEventHandler(btnBuild_Click);
-          
+
             buttonsPanel.Children.Add(btnBuild);
 
             pilotsPanel.Children.Add(buttonsPanel);
 
             panelSideMenu = new Frame();
-            
+
             panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
-            
+
             base.setContent(panelContent);
 
             base.setHeaderContent(this.Title);
@@ -145,11 +147,19 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
         private void btnBuild_Click(object sender, RoutedEventArgs e)
         {
-            FlightSchool fs = new FlightSchool(string.Format("Flight School {0}", GameObject.GetInstance().HumanAirline.FlightSchools.Count + 1));
+            double price = 20000000;
 
-            GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2803"), string.Format(Translator.GetInstance().GetString("MessageBox", "2803", "message"), price), WPFMessageBoxButtons.YesNo);
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                FlightSchool fs = new FlightSchool(string.Format("Flight School"));
 
-            showFlightSchools();
+                GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
+
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, price);
+
+                showFlightSchools();
+            }
         }
         //shwos the list of instructors
         private void showInstructors()
@@ -183,13 +193,13 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
         private void lnkPilot_Click(object sender, RoutedEventArgs e)
         {
             Pilot pilot = (Pilot)((Hyperlink)sender).Tag;
-            panelSideMenu.Content = new PanelPilot(this,pilot);
-          
+            panelSideMenu.Content = new PanelPilot(this, pilot);
+
         }
         private void lnkInstructor_Click(object sender, RoutedEventArgs e)
         {
             Instructor instructor = (Instructor)((Hyperlink)sender).Tag;
-            panelSideMenu.Content = new PanelInstructor(this,instructor);
+            panelSideMenu.Content = new PanelInstructor(this, instructor);
 
         }
         private void lnkFlightSchool_Click(object sender, RoutedEventArgs e)
@@ -205,6 +215,11 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             showInstructors();
 
             showFlightSchools();
+        }
+        //unloads the side menu
+        public void unloadSideMenu()
+        {
+            panelSideMenu.Content = null;
         }
     }
 }
