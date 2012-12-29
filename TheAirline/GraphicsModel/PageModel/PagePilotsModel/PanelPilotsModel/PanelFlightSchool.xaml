@@ -12,7 +12,8 @@
                 <TextBlock  Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}" Width="50"></ContentControl>
-                <TextBlock Text="{Binding EndDate, StringFormat=d}" VerticalAlignment="Bottom" Margin="10 0 0 0"></TextBlock>
+                <TextBlock Text="{Binding EndDate, StringFormat=d}" VerticalAlignment="Bottom" Margin="10 0 0 0" Width="70"></TextBlock>
+                <TextBlock Text="{Binding Instructor.Profile.Name}" VerticalAlignment="Bottom"></TextBlock>
 
             </WrapPanel>
         </DataTemplate>
@@ -20,7 +21,7 @@
             <WrapPanel>
                 <TextBlock  Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
-                <TextBlock Text="{Binding Rating}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Rating}" Width="25" VerticalAlignment="Bottom"></TextBlock>
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}"></ContentControl>
             </WrapPanel>
         </DataTemplate>

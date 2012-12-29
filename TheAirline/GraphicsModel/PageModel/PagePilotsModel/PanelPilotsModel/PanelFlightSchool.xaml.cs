@@ -54,7 +54,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1003"), UICreator.CreateTextBlock(this.FlightSchool.NumberOfInstructors.ToString())));
 
             txtStudents = UICreator.CreateTextBlock(this.FlightSchool.NumberOfStudents.ToString());
-            lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1004"),txtStudents));
+            lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1006"), txtStudents));
 
             panelFlightSchool.Children.Add(lbFSInformation);
             panelFlightSchool.Children.Add(createInstructorsPanel());
@@ -72,7 +72,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         {
             StackPanel panelStudents = new StackPanel();
             panelStudents.Margin = new Thickness(0, 5, 0, 0);
-            
+
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1004";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -98,7 +98,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             panelInstructors.Margin = new Thickness(0, 5, 0, 0);
 
             TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1003";
+            txtHeader.Uid = "1007";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
@@ -157,42 +157,37 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
             Random rnd = new Random();
-        
-            ComboBox cbStudents = new ComboBox();
-            cbStudents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbStudents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbStudents.Width = 100;
 
-            int maxStudents = (this.FlightSchool.NumberOfInstructors*FlightSchool.NumberOfStudentsPerInstructor) - this.FlightSchool.NumberOfStudents;
+            ComboBox cbInstructor = new ComboBox();
+            cbInstructor.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbInstructor.Width = 200;
+            cbInstructor.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbInstructor.DisplayMemberPath = "Profile.Name";
+            cbInstructor.SelectedValuePath = "Profile.Name";
 
-            for (int i = 1; i < maxStudents+1; i++)
-                cbStudents.Items.Add(i);
+            foreach (Instructor instructor in this.FlightSchool.Instructors.Where(i => i.Students.Count < FlightSchool.MaxNumberOfStudentsPerInstructor))
+                cbInstructor.Items.Add(instructor);
 
-            cbStudents.SelectedIndex = 0;
-            
+            cbInstructor.SelectedIndex = 0;
 
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbStudents) == PopUpSingleElement.ButtonSelected.OK && cbStudents.SelectedItem != null)
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
-                int students = (int)cbStudents.SelectedItem;
 
                 List<Town> towns = Towns.GetTowns();
 
-                for (int i = 0; i < students; i++)
-                {
-                    Town town = towns[rnd.Next(towns.Count)];
-                    DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                    PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+                Town town = towns[rnd.Next(towns.Count)];
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
 
-                    this.FlightSchool.addStudent(new PilotStudent(profile, GameObject.GetInstance().GameTime));
+                this.FlightSchool.addStudent(new PilotStudent(profile, GameObject.GetInstance().GameTime, (Instructor)cbInstructor.SelectedItem));
 
-                }
                 showStudents();
 
                 this.ParentPage.updatePage();
 
                 txtStudents.Text = this.FlightSchool.NumberOfStudents.ToString();
             }
-     
+
         }
     }
 }

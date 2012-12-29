@@ -147,16 +147,16 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
         private void btnBuild_Click(object sender, RoutedEventArgs e)
         {
-            double price = 20000000;
+            double price = 2000000;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2803"), string.Format(Translator.GetInstance().GetString("MessageBox", "2803", "message"), price), WPFMessageBoxButtons.YesNo);
             if (result == WPFMessageBoxResult.Yes)
             {
-                FlightSchool fs = new FlightSchool(string.Format("Flight School"));
+                FlightSchool fs = new FlightSchool(string.Format("Flight School {0}",GameObject.GetInstance().HumanAirline.FlightSchools.Count+1));
 
                 GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
 
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, price);
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -price);
 
                 showFlightSchools();
             }

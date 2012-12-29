@@ -11,10 +11,22 @@ namespace TheAirline.Model.PilotModel
         public PilotProfile Profile { get; set; }
         public Pilot.PilotRating Rating { get; set; }
         public FlightSchool FlightSchool { get; set; }
+        public List<PilotStudent> Students { get; set; }
         public Instructor(PilotProfile profile, Pilot.PilotRating rating)
         {
             this.Profile = profile;
             this.Rating = rating;
+            this.Students = new List<PilotStudent>();
+        }
+        //adds a student to the instructor
+        public void addStudent(PilotStudent student)
+        {
+            this.Students.Add(student);
+        }
+        //removes a students from the instructor
+        public void removeStudent(PilotStudent student)
+        {
+            this.Students.Remove(student);
         }
     }
     //the list of flight school instructors

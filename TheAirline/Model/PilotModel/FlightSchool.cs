@@ -8,7 +8,8 @@ namespace TheAirline.Model.PilotModel
     //the class for a flight school
     public class FlightSchool
     {
-        public const int NumberOfStudentsPerInstructor = 2;
+        public const int MaxNumberOfStudentsPerInstructor = 2;
+        public const int MaxNumberOfInstructors = 15;
         public string Name { get; set; }
         public int NumberOfInstructors { get { return this.Instructors.Count; } set { ;} }
         public int NumberOfStudents { get { return this.Students.Count; } set { ;} }

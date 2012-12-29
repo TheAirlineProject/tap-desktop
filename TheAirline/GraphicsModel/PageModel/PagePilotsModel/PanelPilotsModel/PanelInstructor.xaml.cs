@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 {
@@ -91,16 +92,30 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
-            if (result == WPFMessageBoxResult.Yes)
+            ComboBox cbFlightSchools = new ComboBox();
+            cbFlightSchools.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbFlightSchools.Width = 200;
+            cbFlightSchools.SelectedValuePath = "Name";
+            cbFlightSchools.DisplayMemberPath = "Name";
+            cbFlightSchools.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+            foreach (FlightSchool fs in GameObject.GetInstance().HumanAirline.FlightSchools.Where(f=>f.NumberOfInstructors <  FlightSchool.MaxNumberOfInstructors))
+                cbFlightSchools.Items.Add(fs);
+
+            cbFlightSchools.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1002"), cbFlightSchools) == PopUpSingleElement.ButtonSelected.OK && cbFlightSchools.SelectedItem != null)
             {
-                GameObject.GetInstance().HumanAirline.FlightSchools[0].addInstructor(this.Instructor);
-                this.Instructor.FlightSchool = GameObject.GetInstance().HumanAirline.FlightSchools[0];
-                
+                FlightSchool flightSchool = (FlightSchool)cbFlightSchools.SelectedItem;
+
+                flightSchool.addInstructor(this.Instructor);
+                this.Instructor.FlightSchool = flightSchool;
+
                 this.ParentPage.updatePage();
 
                 this.ParentPage.unloadSideMenu();
             }
+           
         }
     }
 }
