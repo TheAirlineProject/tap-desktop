@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel.HistoricEventModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -432,7 +433,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airline.Contract = null;
 
                 }
+                //checks for students educated
+            var educatedStudents =airline.FlightSchools.SelectMany(f=>f.Students.FindAll(s=>s.EndDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()));
+
+            foreach (PilotStudent student in educatedStudents)
+            {
+                Pilot pilot = new Pilot(student.Profile, GameObject.GetInstance().GameTime,GeneralHelpers.GetPilotStudentRanking(student));
+                student.Instructor.removeStudent(student);
+                student.Instructor = null;
+
+                airline.addPilot(pilot);
+
+                if (airline.IsHuman)
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1006"), string.Format(Translator.GetInstance().GetString("News", "1006", "message"), pilot.Profile.Name)));
+               
+                
+
             }
+
+            }
+            
             );
 
 

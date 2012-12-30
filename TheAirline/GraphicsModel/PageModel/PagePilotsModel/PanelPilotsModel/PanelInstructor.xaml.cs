@@ -103,8 +103,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
                 cbFlightSchools.Items.Add(fs);
 
             cbFlightSchools.SelectedIndex = 0;
-
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1002"), cbFlightSchools) == PopUpSingleElement.ButtonSelected.OK && cbFlightSchools.SelectedItem != null)
+            
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1008"), cbFlightSchools) == PopUpSingleElement.ButtonSelected.OK && cbFlightSchools.SelectedItem != null)
             {
                 FlightSchool flightSchool = (FlightSchool)cbFlightSchools.SelectedItem;
 

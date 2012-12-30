@@ -12,6 +12,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -226,6 +227,22 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
             
+        }
+        //creates the pilot ranking for a pilot student
+        public static Pilot.PilotRating GetPilotStudentRanking(PilotStudent student)
+        {
+            
+          
+            Pilot.PilotRating instructorRanking = student.Instructor.Rating;
+
+            int instructorRankingIndex = Array.IndexOf(Enum.GetValues(typeof(Pilot.PilotRating)), instructorRanking);
+            Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
+            rankings.Add(instructorRanking, 50);
+
+            if (instructorRankingIndex > 0) rankings.Add((Pilot.PilotRating)instructorRankingIndex - 1, 35);
+            if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1) rankings.Add((Pilot.PilotRating)instructorRankingIndex + 1, 15);
+
+            return AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
         }
   
     }

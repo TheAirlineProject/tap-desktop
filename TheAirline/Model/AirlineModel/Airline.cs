@@ -348,7 +348,7 @@ namespace TheAirline.Model.AirlineModel
         {
             List<string> codes = new List<string>(this.FlightCodes);
 
-            var entries = this.Routes.SelectMany(r => r.TimeTable.Entries);
+            var entries = new List<RouteTimeTableEntry>(this.Routes.SelectMany(r => r.TimeTable.Entries));
             
             foreach (RouteTimeTableEntry entry in entries)
             {

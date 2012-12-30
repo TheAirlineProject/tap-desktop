@@ -31,5 +31,10 @@ namespace TheAirline.Model.PilotModel
         {
             this.Students.Add(student);
         }
+        //removes a student from the flight school
+        public void removeStudent(PilotStudent student)
+        {
+            this.Students.Remove(student);
+        }
     }
 }

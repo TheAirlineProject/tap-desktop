@@ -18,6 +18,6 @@ namespace TheAirline.Model.PilotModel
             this.StartDate = startDate;
             this.EndDate = this.StartDate.AddDays(90);
             this.Instructor = instructor;
-        }
+         }
     }
 }
