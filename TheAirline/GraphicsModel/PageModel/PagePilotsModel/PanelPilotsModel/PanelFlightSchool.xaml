@@ -3,10 +3,25 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PanelFlightSchool">
     <Page.Resources>
+        <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
+        <DataTemplate x:Key="TrainingAircraftTypeItem">
+            <WrapPanel>
+                <TextBlock  Text="{Binding Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Price,Converter={StaticResource valueCurrencyConverter},StringFormat=({0})}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="TrainingAircraftItem">
+            <WrapPanel>
+                <TextBlock  Text="{Binding Type.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Age,StringFormat={}{0} years old}" Width="100" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+       
         <DataTemplate x:Key="StudentItem">
             <WrapPanel>
                 <TextBlock  Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>

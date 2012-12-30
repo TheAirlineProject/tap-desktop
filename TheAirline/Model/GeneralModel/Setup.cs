@@ -187,8 +187,8 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateTrainingAircraftTypes()
         {
-            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705));
-            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520));
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705,2));
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520,12));
         
         }
         /*! creates the Advertisement types

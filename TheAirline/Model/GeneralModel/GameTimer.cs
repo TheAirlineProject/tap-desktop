@@ -28,10 +28,8 @@ namespace TheAirline.Model.GeneralModel
         private Boolean IsPaused;
         private GameTimer()
         {
-            if (GameObject.GetInstance().DayRoundEnabled)
-                this.GameSpeed = GeneralHelpers.GameSpeedValue.Slowest;
-            else
-                this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
+
+            this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             this.Timer = new DispatcherTimer();
             this.Timer.Interval = new TimeSpan(0, 0, 0, 0,100);//(int)this.GameSpeed;
             this.Timer.Tick += new EventHandler(Timer_Tick);

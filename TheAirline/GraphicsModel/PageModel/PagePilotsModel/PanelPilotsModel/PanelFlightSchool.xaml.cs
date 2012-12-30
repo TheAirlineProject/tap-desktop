@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 {
@@ -26,8 +27,9 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
     {
         private PagePilots ParentPage;
         private FlightSchool FlightSchool;
-        private ListBox lbInstructors, lbStudents;
-        private TextBlock txtStudents;
+        private ListBox lbInstructors, lbStudents, lbTrainingAircrafts;
+        private TextBlock txtStudents, txtTrainingAircrafts;
+        private Button btnHire;
         public PanelFlightSchool(PagePilots parent, FlightSchool flighschool)
         {
             this.ParentPage = parent;
@@ -56,8 +58,12 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             txtStudents = UICreator.CreateTextBlock(this.FlightSchool.NumberOfStudents.ToString());
             lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1006"), txtStudents));
 
+            txtTrainingAircrafts = UICreator.CreateTextBlock(this.FlightSchool.TrainingAircrafts.Count.ToString());
+            lbFSInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelFlightSchool", "1009"), txtTrainingAircrafts));
+
             panelFlightSchool.Children.Add(lbFSInformation);
             panelFlightSchool.Children.Add(createInstructorsPanel());
+            panelFlightSchool.Children.Add(createTrainingAircraftsPanel());
             panelFlightSchool.Children.Add(createStudentsPanel());
 
             panelFlightSchool.Children.Add(createButtonsPanel());
@@ -66,6 +72,31 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             showInstructors();
             showStudents();
+            showTrainingAircrafts();
+        }
+        //creates the training aircrafts panel 
+        private StackPanel createTrainingAircraftsPanel()
+        {
+            StackPanel panelAircrafts = new StackPanel();
+            panelAircrafts.Margin = new Thickness(0, 5, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1009";
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PanelFlightSchool", txtHeader.Uid);
+
+            panelAircrafts.Children.Add(txtHeader);
+
+            lbTrainingAircrafts = new ListBox();
+            lbTrainingAircrafts.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbTrainingAircrafts.ItemTemplate = this.Resources["TrainingAircraftItem"] as DataTemplate;
+            lbTrainingAircrafts.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+
+            panelAircrafts.Children.Add(lbTrainingAircrafts);
+
+            return panelAircrafts;
         }
         //creates the students panel
         private StackPanel createStudentsPanel()
@@ -120,10 +151,12 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
         {
+            int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f=>f.Type.MaxNumberOfStudents));
+
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
-            Button btnHire = new Button();
+            btnHire = new Button();
             btnHire.Uid = "200";
             btnHire.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnHire.Height = Double.NaN;
@@ -132,12 +165,27 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             btnHire.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnHire.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnHire.Click += new RoutedEventHandler(btnHire_Click);
-            btnHire.IsEnabled = this.FlightSchool.Instructors.Count > 0;
+            btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count ;
 
             buttonsPanel.Children.Add(btnHire);
 
+            Button btnAircraft = new Button();
+            btnAircraft.Uid = "201";
+            btnAircraft.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnAircraft.Height = Double.NaN;
+            btnAircraft.Width = Double.NaN;
+            btnAircraft.Content = Translator.GetInstance().GetString("PanelFlightSchool", btnAircraft.Uid);
+            btnAircraft.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnAircraft.Margin = new Thickness(5, 0, 0, 0);
+            btnAircraft.Click += btnAircraft_Click;
+
+            buttonsPanel.Children.Add(btnAircraft);
+
+
             return buttonsPanel;
         }
+
+        
         //shows the students
         private void showStudents()
         {
@@ -153,6 +201,46 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             foreach (Instructor instructor in this.FlightSchool.Instructors)
                 lbInstructors.Items.Add(instructor);
+        }
+        //shows the training aircrafts
+        private void showTrainingAircrafts()
+        {
+            lbTrainingAircrafts.Items.Clear();
+
+            foreach (TrainingAircraft aircraft in this.FlightSchool.TrainingAircrafts)
+                lbTrainingAircrafts.Items.Add(aircraft);
+        }
+        private void btnAircraft_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbAircraft = new ComboBox();
+            cbAircraft.SetResourceReference(ComboBox.StyleProperty,"ComboBoxTransparentStyle");
+            cbAircraft.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAircraft.ItemTemplate = this.Resources["TrainingAircraftTypeItem"] as DataTemplate;
+            cbAircraft.Width = 300;
+
+            foreach (TrainingAircraftType type in TrainingAircraftTypes.GetAircraftTypes().FindAll(t => GeneralHelpers.GetInflationPrice(t.Price) < GameObject.GetInstance().HumanAirline.Money))
+                cbAircraft.Items.Add(type);
+
+            cbAircraft.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbAircraft) == PopUpSingleElement.ButtonSelected.OK && cbAircraft.SelectedItem != null)
+            {
+                int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
+
+                TrainingAircraftType aircraft = (TrainingAircraftType)cbAircraft.SelectedItem;
+                double price = aircraft.Price;
+
+                this.FlightSchool.addTrainingAircraft(new TrainingAircraft(aircraft, GameObject.GetInstance().GameTime, this.FlightSchool));
+
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -price);
+
+                txtTrainingAircrafts.Text = this.FlightSchool.TrainingAircrafts.Count.ToString();
+
+                showTrainingAircrafts();
+
+                btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count;
+
+            }
         }
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
@@ -172,6 +260,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
+                int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
 
                 List<Town> towns = Towns.GetTowns();
 
@@ -189,6 +278,9 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
                 this.ParentPage.updatePage();
 
                 txtStudents.Text = this.FlightSchool.NumberOfStudents.ToString();
+
+                btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count;
+
             }
 
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.PilotModel
 {
@@ -9,11 +10,14 @@ namespace TheAirline.Model.PilotModel
     public class TrainingAircraftType
     {
         public string Name { get; set; }
-        public double Price { get; set; }
-        public TrainingAircraftType(string name, double price)
+        private double APrice;
+        public double Price { get{return GeneralHelpers.GetInflationPrice(this.APrice);} private set { ;} }
+        public int MaxNumberOfStudents { get; set; }
+        public TrainingAircraftType(string name, double price, int maxnumberofstudents)
         {
             this.Name = name;
-            this.Price = price;
+            this.APrice = price;
+            this.MaxNumberOfStudents = maxnumberofstudents;
         }
     }
     //the list of training aircrafts types
