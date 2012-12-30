@@ -792,6 +792,8 @@
     <Compile Include="Model\PilotModel\Pilot.cs" />
     <Compile Include="Model\PilotModel\PilotProfile.cs" />
     <Compile Include="Model\PilotModel\PilotStudent.cs" />
+    <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
+    <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

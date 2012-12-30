@@ -15,11 +15,18 @@ namespace TheAirline.Model.PilotModel
         public int NumberOfStudents { get { return this.Students.Count; } set { ;} }
         public List<PilotStudent> Students { get; set; }
         public List<Instructor> Instructors { get; set; }
+        public List<TrainingAircraft> TrainingAircrafts { get; set; }
         public FlightSchool(string name)
         {
             this.Name = name;
             this.Students = new List<PilotStudent>();
             this.Instructors = new List<Instructor>();
+            this.TrainingAircrafts = new List<TrainingAircraft>();
+        }
+        //adds a training aircraft to the flights school
+        public void addTrainingAircraft(TrainingAircraft aircraft)
+        {
+            this.TrainingAircrafts.Add(aircraft);
         }
         //adds an instructor to the flight school
         public void addInstructor(Instructor instructor)

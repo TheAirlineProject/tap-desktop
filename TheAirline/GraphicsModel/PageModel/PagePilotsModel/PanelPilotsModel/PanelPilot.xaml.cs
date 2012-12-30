@@ -61,7 +61,10 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1006"), UICreator.CreateTextBlock(this.Pilot.EducationTime.ToShortDateString())));
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1007"), UICreator.CreateTextBlock(this.Pilot.Rating.ToString())));
            // lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(string.Format("{0:C}", ((int)this.Pilot.Rating) * 1000))));
-            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(((int)this.Pilot.Rating) * 1000).ToString())));
+
+            double pilotBasePrice = GeneralHelpers.GetInflationPrice(133.53);
+
+            lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(((int)this.Pilot.Rating) * pilotBasePrice).ToString())));
             
             panelPilot.Children.Add(lbPilotInformation);
 

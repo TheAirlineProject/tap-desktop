@@ -147,7 +147,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 
         private void btnBuild_Click(object sender, RoutedEventArgs e)
         {
-            double price = 2000000;
+            double price = GeneralHelpers.GetInflationPrice(267050);
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2803"), string.Format(Translator.GetInstance().GetString("MessageBox", "2803", "message"), price), WPFMessageBoxButtons.YesNo);
             if (result == WPFMessageBoxResult.Yes)

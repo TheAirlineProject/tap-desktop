@@ -75,6 +75,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateAdvertisementTypes();
                 CreateFeeTypes();
                 CreateFlightFacilities();
+                CreateTrainingAircraftTypes();
 
                 LoadStandardConfigurations();
 
@@ -122,6 +123,7 @@ namespace TheAirline.Model.GeneralModel
             DifficultyLevels.Clear();
             Pilots.Clear();
             Instructors.Clear();
+            TrainingAircraftTypes.Clear();
         }
         /*! creates some pilots
          */
@@ -180,6 +182,14 @@ namespace TheAirline.Model.GeneralModel
                         Instructors.AddInstructor(instructor);
                     }
             }
+        }
+        /*! creates the training aircraft types
+         */
+        private static void CreateTrainingAircraftTypes()
+        {
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705));
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520));
+        
         }
         /*! creates the Advertisement types
          */
