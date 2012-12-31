@@ -463,10 +463,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //updates holidays 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
 
+            double yearlyRaise = 1.03; //3 % 
+          
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (FleetAirliner airliner in airline.Fleet)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -airliner.Airliner.Type.getMaintenance());
+
+
+                foreach (FeeType feeType in FeeTypes.GetTypes())
+                    airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);                   
+                    
             }
 
             //creates some new used airliners for the year
