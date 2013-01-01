@@ -120,6 +120,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkNewGame_Click(object sender, RoutedEventArgs e)
         {
+           
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1001"), Translator.GetInstance().GetString("MessageBox", "1001", "message"), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)

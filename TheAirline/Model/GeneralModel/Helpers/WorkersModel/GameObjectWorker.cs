@@ -14,6 +14,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private static GameObjectWorker Instance;
         private BackgroundWorker Worker;
         private Boolean Cancelled;
+        private Boolean CancelWorker;
         private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
@@ -24,7 +25,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             //bw.ProgressChanged += new ProgressChangedEventHandler(bw_ProgressChanged);
             this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             this.Cancelled = false;
-  
+            this.CancelWorker = false;
         }
         //returns the instance
         public static GameObjectWorker GetInstance()
@@ -37,9 +38,9 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         //cancels the worker
         public void cancel()
         {
-            if (this.Worker.WorkerSupportsCancellation)
-                this.Worker.CancelAsync();
-
+            //if (this.Worker.WorkerSupportsCancellation)
+                //this.Worker.CancelAsync();
+            this.CancelWorker = true;
         }
         //starts the worker
         public void start()
@@ -47,6 +48,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             if (!this.Worker.IsBusy)
             {
                 this.Cancelled = false;
+                this.CancelWorker = false;
   
                 this.Worker.RunWorkerAsync();
             }
@@ -66,19 +68,20 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
             long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
 
+            /*
             if ((this.Worker.CancellationPending == true))
             {
                 e.Cancel = true;
                 
-            }
+            }*/
 
-            if (waittime > 0 && !e.Cancel)
+            if (waittime > 0 && !this.CancelWorker)
                 Thread.Sleep((int)waittime);
 
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            if ((e.Cancelled == true))
+            if ((this.CancelWorker))
             {
                 this.Cancelled = true;
                 Console.WriteLine("Canceled!");
