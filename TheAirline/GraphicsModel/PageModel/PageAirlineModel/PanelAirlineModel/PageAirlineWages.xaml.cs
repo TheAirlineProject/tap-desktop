@@ -328,9 +328,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbEmployees.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbEmployees.ItemTemplate = this.Resources["EmployeeItem"] as DataTemplate;
 
-            int cockpitCrew = this.Airline.Fleet.Sum(f => f.Airliner.Type.CockpitCrew);
+            int cockpitCrew = this.Airline.Pilots.Count;//this.Airline.Fleet.Sum(f => f.Airliner.Type.CockpitCrew);
 
-            var list = (from r in this.Airline.Fleet.SelectMany(f => f.Routes) select r);
+            //var list = (from r in this.Airline.Fleet.SelectMany(f => f.Routes) select r);
 
             int cabinCrew = this.Airline.Routes.Sum(r => r.getTotalCabinCrew());
 

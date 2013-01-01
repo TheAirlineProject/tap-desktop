@@ -63,8 +63,12 @@ namespace TheAirline.GraphicsModel.Converters
                 }
                 else
                 {
+                    double currencyValue = v * currency.Rate;
 
-                    return string.Format("{0:#,0.##} {1}", v * currency.Rate, currency.CurrencySymbol);
+                    if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                        return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                    else
+                        return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
                 }
             }
             catch (Exception e)

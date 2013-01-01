@@ -808,8 +808,9 @@ namespace TheAirline.Model.GeneralModel
                         airport.Runways.Add(new Runway(runwayName, runwayLength, surface, new DateTime(1900, 1, 1), true));
 
                     }
-                   
-                    Airports.AddAirport(airport);
+                    
+                    if (Airports.GetAirport(a=>a.Profile.ID == airport.Profile.ID) == null)
+                        Airports.AddAirport(airport);
 
                 }
             }
@@ -927,8 +928,9 @@ namespace TheAirline.Model.GeneralModel
 
                     foreach (XmlElement currencyElement in currenciesList)
                     {
-                        string currencySymbol = currencyElement.Attributes["format"].Value; ;
+                        string currencySymbol = currencyElement.Attributes["symbol"].Value; ;
                         double currencyRate =  Convert.ToDouble(currencyElement.Attributes["rate"].Value);
+                        CountryCurrency.CurrencyPosition currencyPosition = (CountryCurrency.CurrencyPosition)Enum.Parse(typeof(CountryCurrency.CurrencyPosition), currencyElement.Attributes["position"].Value);
 
                         DateTime currencyFromDate = new DateTime(1900,1,1);
                         DateTime currencyToDate = new DateTime(2199,12,31);
@@ -939,7 +941,7 @@ namespace TheAirline.Model.GeneralModel
                         if (currencyElement.HasAttribute("to"))
                             currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value);
 
-                        country.addCurrency(new CountryCurrency(currencyFromDate, currencyToDate, currencySymbol, currencyRate));
+                        country.addCurrency(new CountryCurrency(currencyFromDate, currencyToDate, currencySymbol,currencyPosition, currencyRate));
                     }
                     
 
@@ -1842,6 +1844,8 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Maintenance Wage", 3.95, 3.0, 4.25, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support Wage", 2.65, 1, 3, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin Wage", 1.9, 1, 4, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Instructor Base Salary", 267.00, 200, 300, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Pilot Base Salary", 133.53,100, 150, 100));
 
             //food and drinks
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Alcholic Drinks", 0.75, 0.5, 1.1, 75));

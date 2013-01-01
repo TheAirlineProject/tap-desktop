@@ -469,10 +469,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 foreach (FleetAirliner airliner in airline.Fleet)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -airliner.Airliner.Type.getMaintenance());
-
-
+                
                 foreach (FeeType feeType in FeeTypes.GetTypes())
-                    airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);                   
+                    airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);    
+               
+                foreach (Pilot pilot in airline.Pilots)
+                {
+                    double salary = ((int)pilot.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
+                }
+
+                foreach (Instructor instructor in airline.FlightSchools.SelectMany(f=>f.Instructors))
+                {
+                    double salary = ((int)instructor.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Instructors Base Salary"));
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
+    
+                }
                     
             }
 
@@ -961,7 +973,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int cabinCrew = ((AirlinerPassengerType)airliner.Airliner.Type).CabinCrew;
 
-            double wages = airliner.Airliner.Type.CockpitCrew * flighttime.TotalHours * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit Wage")) + cabinCrew * flighttime.TotalHours * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));// +(airliner.CurrentFlight.Entry.TimeTable.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin kilometer rate")) * fdistance) + (airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit kilometer rate")) * fdistance);
+            double wages =cabinCrew * flighttime.TotalHours * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));// +(airliner.CurrentFlight.Entry.TimeTable.Route.getTotalCabinCrew() * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cabin kilometer rate")) * fdistance) + (airliner.Airliner.Type.CockpitCrew * airliner.Airliner.Airline.Fees.getValue(FeeTypes.GetType("Cockpit kilometer rate")) * fdistance);
             //wages
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -wages);
 

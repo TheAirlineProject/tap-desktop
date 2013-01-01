@@ -165,7 +165,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             btnHire.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnHire.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnHire.Click += new RoutedEventHandler(btnHire_Click);
-            btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count ;
+            btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
 
             buttonsPanel.Children.Add(btnHire);
 
@@ -238,7 +238,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
                 showTrainingAircrafts();
 
-                btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count;
+                btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
+
 
             }
         }
@@ -279,8 +280,11 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
                 txtStudents.Text = this.FlightSchool.NumberOfStudents.ToString();
 
-                btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count;
+                double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
 
+                btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > studentPrice;
+
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -studentPrice);
             }
 
         }

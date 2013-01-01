@@ -7,6 +7,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
@@ -28,6 +29,7 @@ namespace TheAirline.Model.AirlinerModel
         public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
         public DateTime GroundedToDate { get; set; }
+        public List<Pilot> Pilots { get; set; }
         public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,string name, Airport homebase)
         {
             this.Airliner = airliner;
@@ -43,6 +45,17 @@ namespace TheAirline.Model.AirlinerModel
             this.CurrentPosition = new Coordinates(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);
 
             this.Routes = new List<Route>();
+            this.Pilots = new List<Pilot>();
+        }
+        //adds a pilot to the airliner
+        public void addPilot(Pilot pilot)
+        {
+            this.Pilots.Add(pilot);
+        }
+        //removes a pilot from the airliner
+        public void removePilot(Pilot pilot)
+        {
+            this.Pilots.Remove(pilot);
         }
         //adds a route to the airliner
         public void addRoute(Route route)

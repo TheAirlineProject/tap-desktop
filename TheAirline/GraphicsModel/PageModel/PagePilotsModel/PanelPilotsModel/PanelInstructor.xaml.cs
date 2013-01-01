@@ -17,6 +17,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 {
@@ -59,7 +60,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1005"), lblFlag));
 
-            double instructorBasePrice =GeneralHelpers.GetInflationPrice(267.00);
+            double instructorBasePrice = GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
 
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1007"), UICreator.CreateTextBlock(this.Instructor.Rating.ToString())));
             lbPilotInformation.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelPilot", "1008"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(((int)this.Instructor.Rating) * instructorBasePrice).ToString())));//string.Format("{0:C}", ((int)this.Instructor.Rating) * 2000))));

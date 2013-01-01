@@ -136,6 +136,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlinePilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -462,6 +466,9 @@
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineFleet.xaml.cs">
       <DependentUpon>PageAirlineFleet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlinePilots.xaml.cs">
+      <DependentUpon>PageAirlinePilots.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineStatistics.xaml.cs">
       <DependentUpon>PageAirlineStatistics.xaml</DependentUpon>
@@ -907,6 +914,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Pilot.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

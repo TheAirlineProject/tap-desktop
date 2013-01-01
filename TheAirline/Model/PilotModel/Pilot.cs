@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.Model.PilotModel
 {
@@ -15,12 +16,13 @@ namespace TheAirline.Model.PilotModel
         public Airline Airline { get; set; }
         public DateTime AirlineSignedDate { get; set; }
         public DateTime EducationTime { get; set; }
-        
+        public FleetAirliner Airliner { get; set; }
          public Pilot(PilotProfile profile, DateTime educationTime, PilotRating rating)
         {
             this.Profile = profile;
             this.EducationTime = educationTime;
             this.Rating = rating;
+    
         }
         //sets the airline for a pilot
         public void setAirline(Airline airline, DateTime signDate)

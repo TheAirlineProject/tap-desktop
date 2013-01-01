@@ -12,6 +12,7 @@ namespace TheAirline.Model.PilotModel
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
         public Instructor Instructor { get; set; }
+        public const double StudentCost = 33381.69;
         public PilotStudent(PilotProfile profile, DateTime startDate, Instructor instructor)
         {
             this.Profile = profile;
