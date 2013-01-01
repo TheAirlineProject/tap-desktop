@@ -225,8 +225,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbAircraft) == PopUpSingleElement.ButtonSelected.OK && cbAircraft.SelectedItem != null)
             {
-                int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
-
+              
                 TrainingAircraftType aircraft = (TrainingAircraftType)cbAircraft.SelectedItem;
                 double price = aircraft.Price;
 
@@ -237,6 +236,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
                 txtTrainingAircrafts.Text = this.FlightSchool.TrainingAircrafts.Count.ToString();
 
                 showTrainingAircrafts();
+
+                int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
 
                 btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
 
@@ -261,8 +262,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
-                int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
-
+              
                 List<Town> towns = Towns.GetTowns();
 
                 Town town = towns[rnd.Next(towns.Count)];
@@ -281,6 +281,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
                 txtStudents.Text = this.FlightSchool.NumberOfStudents.ToString();
 
                 double studentPrice = GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
+
+                int studentsCapacity = Math.Min(this.FlightSchool.Instructors.Count * FlightSchool.MaxNumberOfStudentsPerInstructor, this.FlightSchool.TrainingAircrafts.Sum(f => f.Type.MaxNumberOfStudents));
 
                 btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > studentPrice;
 

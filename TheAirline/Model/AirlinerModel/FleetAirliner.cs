@@ -30,6 +30,7 @@ namespace TheAirline.Model.AirlinerModel
         public Flight CurrentFlight { get; set; }
         public DateTime GroundedToDate { get; set; }
         public List<Pilot> Pilots { get; set; }
+        public int NumberOfPilots {get {return this.Pilots.Count;} private set {;}}
         public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,string name, Airport homebase)
         {
             this.Airliner = airliner;

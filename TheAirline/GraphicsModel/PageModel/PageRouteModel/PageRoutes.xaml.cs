@@ -38,11 +38,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         public PageRoutes()
         {
 
-         
+
             InitializeComponent();
 
             this.Uid = "1003";
-            this.Title = string.Format(Translator.GetInstance().GetString("PageRoutes", this.Uid),GameObject.GetInstance().HumanAirline.Profile.Name);
+            this.Title = string.Format(Translator.GetInstance().GetString("PageRoutes", this.Uid), GameObject.GetInstance().HumanAirline.Profile.Name);
 
             StackPanel routesPanel = new StackPanel();
             routesPanel.Margin = new Thickness(10, 0, 10, 0);
@@ -95,14 +95,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             txtFleetHeader.ContentTemplate = this.Resources["FleetHeader"] as DataTemplate;
             txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             panelFleet.Children.Add(txtFleetHeader);
-            
+
             lbFleet = new ListBox();
             lbFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 5;
             lbFleet.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFleet.ItemTemplate = this.Resources["FleetItem"] as DataTemplate;
-         
+
             panelFleet.Children.Add(lbFleet);
-            
+
             return panelFleet;
         }
         //creates the panel for restrictions
@@ -124,7 +124,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             lbRestrictions.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRestrictions.ItemTemplate = this.Resources["RestrictionItem"] as DataTemplate;
 
-            lbRestrictions.ItemsSource = FlightRestrictions.GetRestrictions().FindAll(r=>r.StartDate<GameObject.GetInstance().GameTime && r.EndDate>GameObject.GetInstance().GameTime);
+            lbRestrictions.ItemsSource = FlightRestrictions.GetRestrictions().FindAll(r => r.StartDate < GameObject.GetInstance().GameTime && r.EndDate > GameObject.GetInstance().GameTime);
 
             panelRestrictions.Children.Add(lbRestrictions);
 
@@ -187,7 +187,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
-        
+
             panelSideMenu.Children.Clear();
 
             panelSideMenu.Children.Add(new PanelNewRoute(this));
@@ -195,7 +195,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         //shows the routes for the human airline
         public void showRoutes()
         {
-           
+
             ICollectionView dataView =
             CollectionViewSource.GetDefaultView(lbRoutes.ItemsSource);
             dataView.Refresh();
@@ -207,7 +207,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             GameObject.GetInstance().HumanAirline.DeliveredFleet.ForEach(f => lbFleet.Items.Add(f));
         }
-      
+
         private void Header_Click(object sender, RoutedEventArgs e)
         {
             string type = (string)((Hyperlink)sender).Tag;
@@ -228,9 +228,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                 case "Balance":
                     name = "Balance";
                     break;
-            
+
             }
-            
+
             sortDirection = sortDirection == ListSortDirection.Ascending ? ListSortDirection.Descending : ListSortDirection.Ascending;
 
             ICollectionView dataView =
@@ -239,7 +239,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             dataView.SortDescriptions.Clear();
             SortDescription sd = new SortDescription(name, sortDirection);
             dataView.SortDescriptions.Add(sd);
-  
+
         }
         private void LnkAirport_Click(object sender, RoutedEventArgs e)
         {
@@ -273,13 +273,44 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
         private void lnkAirline_Click(object sender, RoutedEventArgs e)
         {
-            panelSideMenu.Children.Clear();
-
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
 
-            PopUpAirlinerRoutes.ShowPopUp(airliner,true);
+            panelSideMenu.Children.Clear();
 
-            showFleet();
+            if (airliner.NumberOfPilots == airliner.Airliner.Type.CockpitCrew)
+            {
+
+                PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+
+                showFleet();
+            }
+            else
+            {
+                int missingPilots = airliner.Airliner.Type.CockpitCrew - airliner.NumberOfPilots;
+                if (GameObject.GetInstance().HumanAirline.Pilots.FindAll(p => p.Airliner == null).Count >= missingPilots)
+                {
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2505"), string.Format(Translator.GetInstance().GetString("MessageBox", "2505", "message")), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        var unassignedPilots = GameObject.GetInstance().HumanAirline.Pilots.FindAll(p => p.Airliner == null).ToList();
+
+                        for (int i = 0; i < missingPilots; i++)
+                        {
+                            unassignedPilots[i].Airliner = airliner;
+                            airliner.addPilot(unassignedPilots[i]);
+                        }
+                       
+                        PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+
+                        showFleet();
+                    }
+                }
+                else
+                {
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2506"), string.Format(Translator.GetInstance().GetString("MessageBox", "2506", "message")), WPFMessageBoxButtons.Ok);
+                }
+            }
         }
 
         private void btnStartFlight_Click(object sender, RoutedEventArgs e)
@@ -289,10 +320,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
             showFleet();
-     
+
         }
 
-       
+
     }
     //the converter for an unions member
     public class UnionMemberConverter : IValueConverter
@@ -304,7 +335,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             if (unit is Union)
             {
-                return string.Join("\r\n", from m in ((Union)unit).Members where GameObject.GetInstance().GameTime>=m.MemberFromDate && GameObject.GetInstance().GameTime<=m.MemberToDate select m.Country.Name);
+                return string.Join("\r\n", from m in ((Union)unit).Members where GameObject.GetInstance().GameTime >= m.MemberFromDate && GameObject.GetInstance().GameTime <= m.MemberToDate select m.Country.Name);
             }
             else
                 return unit.Name;
@@ -320,15 +351,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-       
+
             FleetAirliner airliner = (FleetAirliner)value;
 
             if (airliner.HasRoute && airliner.Status == FleetAirliner.AirlinerStatus.Stopped)
                 return Visibility.Visible;
             else
                 return Visibility.Collapsed;
-        
-          
+
+
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

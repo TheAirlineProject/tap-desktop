@@ -23,6 +23,7 @@ using TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -303,8 +304,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
               
                     _FleetDelivered.Remove(airliner);
+                    
+                    foreach (Pilot pilot in airliner.Pilots)
+                        pilot.Airliner = null;
+
+                    airliner.Pilots.Clear();
 
                     showFleet();
+
                 }
             }
             else
@@ -321,7 +328,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
                     _FleetDelivered.Remove(airliner);
 
+                    
+                    foreach (Pilot pilot in airliner.Pilots)
+                        pilot.Airliner = null;
+
+                    airliner.Pilots.Clear();
+
                     showFleet();
+
                 }
             }
         }

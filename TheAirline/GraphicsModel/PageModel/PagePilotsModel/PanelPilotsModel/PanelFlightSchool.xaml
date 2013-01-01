@@ -26,7 +26,7 @@
             <WrapPanel>
                 <TextBlock  Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
-                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}" Width="50"></ContentControl>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}" Width="55" VerticalAlignment="Bottom" HorizontalAlignment="Left"></ContentControl>
                 <TextBlock Text="{Binding EndDate, StringFormat=d}" VerticalAlignment="Bottom" Margin="10 0 0 0" Width="70"></TextBlock>
                 <TextBlock Text="{Binding Instructor.Profile.Name}" VerticalAlignment="Bottom"></TextBlock>
 

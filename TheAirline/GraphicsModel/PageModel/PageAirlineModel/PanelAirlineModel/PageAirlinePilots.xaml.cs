@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
@@ -84,12 +85,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 cbAirliners.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                 cbAirliners.Width = 200;
 
-                foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll(f => f.Pilots.Count < 2))
+                foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll(f => f.Pilots.Count < f.Airliner.Type.CockpitCrew))
                     cbAirliners.Items.Add(airliner);
 
                  cbAirliners.SelectedIndex = 0;
                 
-                if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
+                if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlinePilots", "1002"), cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
                 {
                     FleetAirliner airliner = (FleetAirliner)cbAirliners.SelectedItem;
                     airliner.addPilot(pilot);
@@ -100,6 +101,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             }
             else
             {
+                if (pilot.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped)
+                {
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2115"), Translator.GetInstance().GetString("MessageBox", "2115", "message"), WPFMessageBoxButtons.Ok);
+                }
+                else
+                {
+                    ComboBox cbAirliners = new ComboBox();
+                    cbAirliners.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                    cbAirliners.SelectedValuePath = "Name";
+                    cbAirliners.DisplayMemberPath = "Name";
+                    cbAirliners.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                    cbAirliners.Width = 200;
+
+                    foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll(f => f.Pilots.Count < f.Airliner.Type.CockpitCrew && f!=pilot.Airliner))
+                        cbAirliners.Items.Add(airliner);
+
+                    cbAirliners.SelectedIndex = 0;
+
+                    if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlinePilots", "1002"), cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
+                    {
+                        pilot.Airliner.removePilot(pilot);
+
+                        FleetAirliner airliner = (FleetAirliner)cbAirliners.SelectedItem;
+                        airliner.addPilot(pilot);
+
+                        pilot.Airliner = airliner;
+
+                    }
+                }
             }
 
             showPilots();

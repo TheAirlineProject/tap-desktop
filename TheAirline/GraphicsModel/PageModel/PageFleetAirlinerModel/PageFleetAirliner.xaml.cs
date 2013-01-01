@@ -334,9 +334,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             TextBlock txtSinceService = UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(this.Airliner.Airliner.LastServiceCheck), new StringToLanguageConverter().Convert("km.")));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1023"), txtSinceService));
 
-
             WrapPanel panelCoordinates = new WrapPanel();
-
 
             Image imgMap = new Image();
             imgMap.Source = new BitmapImage(new Uri(@"/Data/images/map.png", UriKind.RelativeOrAbsolute));

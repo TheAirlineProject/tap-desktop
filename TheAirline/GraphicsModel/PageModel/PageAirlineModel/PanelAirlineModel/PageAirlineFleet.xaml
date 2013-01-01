@@ -83,12 +83,12 @@
             <GridViewColumn Header="Route" >
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="50" Visibility="{Binding HasRoute,Converter={StaticResource booleanToVisibility}}"></TextBlock>
+                        <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="75" Visibility="{Binding HasRoute,Converter={StaticResource booleanToVisibility}}"></TextBlock>
 
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
-
+            <GridViewColumn Header="Pilots" DisplayMemberBinding="{Binding NumberOfPilots}"  />
 
         </GridView>
       
