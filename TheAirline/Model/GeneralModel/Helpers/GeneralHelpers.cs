@@ -255,7 +255,7 @@ namespace TheAirline.Model.GeneralModel
             {
 
                 Town town = towns[rnd.Next(towns.Count)];
-                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge), GameObject.GetInstance().GameTime.AddYears(-23));
                 PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
 
                 Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
@@ -268,7 +268,7 @@ namespace TheAirline.Model.GeneralModel
                 Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
 
                 int fromYear = Math.Min(GameObject.GetInstance().GameTime.Year - 1, birthdate.AddYears(23).Year);
-                int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(55).Year);
+                int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(Pilot.RetirementAge).Year);
 
                 DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear, 1, 1));
                 Pilot pilot = new Pilot(profile, educationTime, ranking);
@@ -285,7 +285,7 @@ namespace TheAirline.Model.GeneralModel
             for (int i = 0; i < count; i++)
             {
                 Town town = towns[rnd.Next(towns.Count)];
-                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge), GameObject.GetInstance().GameTime.AddYears(-23));
                 PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
 
                 Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();

@@ -246,7 +246,7 @@ namespace TheAirline.Model.GeneralModel
 		/// <returns>String</returns>
 		public string GetString(string region, string uid, string attribute = "name") 
 		{
-            string culture = System.Threading.Thread.CurrentThread.CurrentUICulture.ToString();
+            string culture = AppSettings.GetInstance().getLanguage().CultureInfo;
             
             string text = null;
 

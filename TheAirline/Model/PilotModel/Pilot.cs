@@ -17,6 +17,7 @@ namespace TheAirline.Model.PilotModel
         public DateTime AirlineSignedDate { get; set; }
         public DateTime EducationTime { get; set; }
         public FleetAirliner Airliner { get; set; }
+        public const int RetirementAge = 55;
          public Pilot(PilotProfile profile, DateTime educationTime, PilotRating rating)
         {
             this.Profile = profile;
@@ -54,6 +55,11 @@ namespace TheAirline.Model.PilotModel
         public static void RemovePilot(Pilot pilot)
         {
             pilots.Remove(pilot);
+        }
+        //counts the number of unassigned pilots
+        public static int GetNumberOfUnassignedPilots()
+        {
+            return pilots.FindAll(p => p.Airline == null).Count;
         }
     }
 }

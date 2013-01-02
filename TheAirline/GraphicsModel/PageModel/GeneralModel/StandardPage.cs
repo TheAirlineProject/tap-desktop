@@ -151,7 +151,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             frameInformation = new Frame();
             frameInformation.Height = frameTopMenu.Height;
-            frameInformation.Width = 100;
+            frameInformation.Width = 125;
             frameInformation.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             frameInformation.Navigate(new PageInformation());
 
@@ -317,7 +317,7 @@ public class PageInformation : Page
 
         WrapPanel panelContent = new WrapPanel();
         panelContent.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
-        panelContent.VerticalAlignment = System.Windows.VerticalAlignment.Center;
+        panelContent.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
         panelContent.Margin = new Thickness(0, 0, 5, 0);
 
       
@@ -332,7 +332,7 @@ public class PageInformation : Page
         txtGasPrice.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
         txtGasPrice.FontWeight = FontWeights.Bold;
         txtGasPrice.Margin = new Thickness(5, 0, 0, 0);
-
+       
         panelContent.Children.Add(txtGasPrice);
 
         this.Content = panelContent;
@@ -354,7 +354,7 @@ public class PageInformation : Page
        
         if (this.IsLoaded)
         {
-            txtGasPrice.Text = string.Format("{0:c}/{1}.", new FuelUnitConverter().Convert(GameObject.GetInstance().FuelPrice), new StringToLanguageConverter().Convert("ltr"));
+            txtGasPrice.Text = string.Format("{0}/{1}.", new ValueCurrencyConverter().Convert(new FuelUnitConverter().Convert(GameObject.GetInstance().FuelPrice)), new StringToLanguageConverter().Convert("ltr"));
             
      
 

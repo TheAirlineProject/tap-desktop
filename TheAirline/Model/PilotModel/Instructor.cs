@@ -27,7 +27,7 @@ namespace TheAirline.Model.PilotModel
         public void removeStudent(PilotStudent student)
         {
             this.Students.Remove(student);
-            this.FlightSchool.removeStudent(student);
+     
         }
     }
     //the list of flight school instructors
@@ -58,6 +58,11 @@ namespace TheAirline.Model.PilotModel
         public static void RemoveInstructor(Instructor instructor)
         {
             instructors.Remove(instructor);
+        }
+        //counts the number of unassigned instructors
+        public static int GetNumberOfUnassignedInstructors()
+        {
+            return instructors.FindAll(i => i.FlightSchool == null).Count;
         }
     }
 }
