@@ -16,7 +16,6 @@ namespace TheAirline.Model.GeneralModel
         private static GameObject GameInstance;
         public Country CurrencyCountry { get; set; }
         public Boolean PagePerformanceCounterEnabled { get; set; }
-        public Boolean PilotsEnabled { get; set; }
         public Boolean DayRoundEnabled { get; set; }
         public DateTime GameTime { get; set; }
         public DateTime StartDate { get; set; }
@@ -40,7 +39,6 @@ namespace TheAirline.Model.GeneralModel
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
             this.NewsBox = new NewsBox();
             this.PagePerformanceCounterEnabled = false;
-            this.PilotsEnabled = true;
             this.DayRoundEnabled = true;
         }
 

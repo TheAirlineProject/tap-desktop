@@ -394,9 +394,6 @@ namespace TheAirline.GraphicsModel.Converters
         {
             string parameterValue = parameter.ToString();
 
-            if (parameterValue == "Pilots")
-                return GameObject.GetInstance().PilotsEnabled ? Visibility.Visible : Visibility.Collapsed;
-
             if (parameterValue == "Performance")
                 return GameObject.GetInstance().PagePerformanceCounterEnabled ? Visibility.Visible : Visibility.Collapsed;
 

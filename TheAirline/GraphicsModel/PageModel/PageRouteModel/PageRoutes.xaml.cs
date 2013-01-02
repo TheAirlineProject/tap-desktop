@@ -300,7 +300,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                             unassignedPilots[i].Airliner = airliner;
                             airliner.addPilot(unassignedPilots[i]);
                         }
-                       
+
                         PopUpAirlinerRoutes.ShowPopUp(airliner, true);
 
                         showFleet();
@@ -317,9 +317,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         {
             FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
 
-            airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+            if (airliner.Pilots.Count == airliner.Airliner.Type.CockpitCrew)
+            {
+                if (GameObject.GetInstance().DayRoundEnabled)
+                    airliner.Status = FleetAirliner.AirlinerStatus.On_route;
+                else
+                    airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
-            showFleet();
+                showFleet();
+            }
+            else
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2507"), string.Format(Translator.GetInstance().GetString("MessageBox", "2507", "message")), WPFMessageBoxButtons.Ok);
+
 
         }
 

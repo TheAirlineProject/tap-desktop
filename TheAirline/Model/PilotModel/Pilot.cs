@@ -50,5 +50,10 @@ namespace TheAirline.Model.PilotModel
         {
             return pilots.FindAll(p => p.Airline == null);
         }
+        //removes a pilot from the list
+        public static void RemovePilot(Pilot pilot)
+        {
+            pilots.Remove(pilot);
+        }
     }
 }

@@ -22,6 +22,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel
 {
@@ -116,14 +117,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnStartFligth_Click(object sender, RoutedEventArgs e)
         {
-            if (GameObject.GetInstance().DayRoundEnabled)
-                this.Airliner.Status = FleetAirliner.AirlinerStatus.On_route;
+            if (this.Airliner.Pilots.Count == this.Airliner.Airliner.Type.CockpitCrew)
+            {
+
+                if (GameObject.GetInstance().DayRoundEnabled)
+                    this.Airliner.Status = FleetAirliner.AirlinerStatus.On_route;
+                else
+                    this.Airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+
+                btnStartFlight.IsEnabled = false;
+
+                btnStopFlight.IsEnabled = true;
+            }
             else
-                this.Airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
-
-            btnStartFlight.IsEnabled = false;
-
-            btnStopFlight.IsEnabled = true;
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2507"), string.Format(Translator.GetInstance().GetString("MessageBox", "2507", "message")), WPFMessageBoxButtons.Ok);
+       
         }
         
         //creates the flight details

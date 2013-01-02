@@ -54,5 +54,10 @@ namespace TheAirline.Model.PilotModel
         {
             instructors.Clear();
         }
+        //removes an instructor from the list
+        public static void RemoveInstructor(Instructor instructor)
+        {
+            instructors.Remove(instructor);
+        }
     }
 }

@@ -13,6 +13,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -243,6 +244,63 @@ namespace TheAirline.Model.GeneralModel
             if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1) rankings.Add((Pilot.PilotRating)instructorRankingIndex + 1, 15);
 
             return AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+        }
+        //creates a number of pilots
+        public static void CreatePilots(int count)
+        {
+            List<Town> towns = Towns.GetTowns();
+                       
+            Random rnd = new Random();
+            for (int i = 0; i < count; i++)
+            {
+
+                Town town = towns[rnd.Next(towns.Count)];
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+
+                Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
+                rankings.Add(Pilot.PilotRating.A, 10);
+                rankings.Add(Pilot.PilotRating.B, 20);
+                rankings.Add(Pilot.PilotRating.C, 40);
+                rankings.Add(Pilot.PilotRating.D, 20);
+                rankings.Add(Pilot.PilotRating.E, 10);
+
+                Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+
+                int fromYear = Math.Min(GameObject.GetInstance().GameTime.Year - 1, birthdate.AddYears(23).Year);
+                int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(55).Year);
+
+                DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear, 1, 1));
+                Pilot pilot = new Pilot(profile, educationTime, ranking);
+
+                Pilots.AddPilot(pilot);
+            }
+        }
+        //creates a number of instructors
+        public static void CreateInstructors(int count)
+        {
+            List<Town> towns = Towns.GetTowns();
+
+            Random rnd = new Random();
+            for (int i = 0; i < count; i++)
+            {
+                Town town = towns[rnd.Next(towns.Count)];
+                DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
+                PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+
+                Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
+                rankings.Add(Pilot.PilotRating.A, 10);
+                rankings.Add(Pilot.PilotRating.B, 20);
+                rankings.Add(Pilot.PilotRating.C, 40);
+                rankings.Add(Pilot.PilotRating.D, 20);
+                rankings.Add(Pilot.PilotRating.E, 10);
+
+                Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+
+                Instructor instructor = new Instructor(profile, ranking);
+
+                Instructors.AddInstructor(instructor);
+            }
         }
   
     }

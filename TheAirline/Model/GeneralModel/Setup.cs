@@ -129,67 +129,22 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreatePilots()
         {
-            if (GameObject.GetInstance().PilotsEnabled)
-            {
-                List<Town> towns = Towns.GetTowns();
+             int pilotsPool = 500;
 
-                int pilotsPool = 100;
+            GeneralHelpers.CreatePilots(pilotsPool);
 
-                for (int i = 0; i < pilotsPool; i++)
-                {
+            int instructorsPool = 250;
 
-                    Town town = towns[rnd.Next(towns.Count)];
-                    DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                    PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
+            GeneralHelpers.CreateInstructors(instructorsPool);
 
-                    Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
-                    rankings.Add(Pilot.PilotRating.A, 10);
-                    rankings.Add(Pilot.PilotRating.B, 20);
-                    rankings.Add(Pilot.PilotRating.C, 40);
-                    rankings.Add(Pilot.PilotRating.D, 20);
-                    rankings.Add(Pilot.PilotRating.E, 10);
-
-                    Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
-
-                    int fromYear = Math.Min(GameObject.GetInstance().GameTime.Year-1, birthdate.AddYears(23).Year);
-                    int toYear = Math.Min(GameObject.GetInstance().GameTime.Year, birthdate.AddYears(55).Year);
-
-                    DateTime educationTime = MathHelpers.GetRandomDate(birthdate.AddYears(23), new DateTime(toYear,1,1));
-                    Pilot pilot = new Pilot(profile, educationTime, ranking);
-
-                    Pilots.AddPilot(pilot);
-                }
-
-                int instructorsPool = 100;
-
-                 for (int i = 0; i < instructorsPool; i++)
-                {
-                        Town town = towns[rnd.Next(towns.Count)];
-                        DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));
-                        PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
-
-                        Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
-                        rankings.Add(Pilot.PilotRating.A, 10);
-                        rankings.Add(Pilot.PilotRating.B, 20);
-                        rankings.Add(Pilot.PilotRating.C, 40);
-                        rankings.Add(Pilot.PilotRating.D, 20);
-                        rankings.Add(Pilot.PilotRating.E, 10);
-
-                        Pilot.PilotRating ranking = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
-
-                        Instructor instructor = new Instructor(profile, ranking);
-
-                        Instructors.AddInstructor(instructor);
-                    }
-            }
         }
         /*! creates the training aircraft types
          */
         private static void CreateTrainingAircraftTypes()
         {
-            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705,2));
-            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520,12));
-        
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Cessna 172", 26705, 2));
+            TrainingAircraftTypes.AddAircraftType(new TrainingAircraftType("Beechcraft King Air 350", 129520, 12));
+
         }
         /*! creates the Advertisement types
          */
@@ -808,8 +763,8 @@ namespace TheAirline.Model.GeneralModel
                         airport.Runways.Add(new Runway(runwayName, runwayLength, surface, new DateTime(1900, 1, 1), true));
 
                     }
-                    
-                    if (Airports.GetAirport(a=>a.Profile.ID == airport.Profile.ID) == null)
+
+                    if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
                         Airports.AddAirport(airport);
 
                 }
@@ -929,26 +884,26 @@ namespace TheAirline.Model.GeneralModel
                     foreach (XmlElement currencyElement in currenciesList)
                     {
                         string currencySymbol = currencyElement.Attributes["symbol"].Value; ;
-                        double currencyRate =  Convert.ToDouble(currencyElement.Attributes["rate"].Value);
+                        double currencyRate = Convert.ToDouble(currencyElement.Attributes["rate"].Value);
                         CountryCurrency.CurrencyPosition currencyPosition = (CountryCurrency.CurrencyPosition)Enum.Parse(typeof(CountryCurrency.CurrencyPosition), currencyElement.Attributes["position"].Value);
 
-                        DateTime currencyFromDate = new DateTime(1900,1,1);
-                        DateTime currencyToDate = new DateTime(2199,12,31);
+                        DateTime currencyFromDate = new DateTime(1900, 1, 1);
+                        DateTime currencyToDate = new DateTime(2199, 12, 31);
 
                         if (currencyElement.HasAttribute("from"))
                             currencyFromDate = Convert.ToDateTime(currencyElement.Attributes["from"].Value);
-                        
+
                         if (currencyElement.HasAttribute("to"))
                             currencyToDate = Convert.ToDateTime(currencyElement.Attributes["to"].Value);
 
-                        country.addCurrency(new CountryCurrency(currencyFromDate, currencyToDate, currencySymbol,currencyPosition, currencyRate));
+                        country.addCurrency(new CountryCurrency(currencyFromDate, currencyToDate, currencySymbol, currencyPosition, currencyRate));
                     }
-                    
+
 
                     if (element.SelectSingleNode("translations") != null)
                         Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
 
-                
+
                 }
             }
             //reads all countries which is a territory for another
@@ -1445,18 +1400,18 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (Airline airline in notAvailableAirlines)
                 Airlines.RemoveAirline(airline);
-    
+
             Airline lot = Airlines.GetAirline("DA");
             int count = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year).Count;
-   
+
             for (int i = 0; i < count - opponnents; i++)
             {
-                List<Airline> airlines = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year); 
+                List<Airline> airlines = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year);
 
                 Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
             }
 
-           
+
             if (Airlines.GetAllAirlines().Contains(lot))
                 Airlines.RemoveAirline(lot);
             //if (!Airlines.GetAllAirlines().Contains(lot))
@@ -1581,13 +1536,13 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateAirlineStartData(Airline airline, AirlineStartData startData)
         {
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
-            
+
             int difficultyFactor = GameObject.GetInstance().Difficulty.AILevel > 1 ? 2 : 1; //level easy
-     
+
             var startroutes = startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year);
-             
+
             //creates the routes
-            foreach (StartDataRoute startRoute in startroutes.GetRange(0,startroutes.Count / difficultyFactor))
+            foreach (StartDataRoute startRoute in startroutes.GetRange(0, startroutes.Count / difficultyFactor))
             {
                 Airport dest1 = Airports.GetAirport(startRoute.Destination1);
                 Airport dest2 = Airports.GetAirport(startRoute.Destination2);
@@ -1639,9 +1594,9 @@ namespace TheAirline.Model.GeneralModel
 
 
             }
-         
+
             //adds the airliners
-            foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0,startData.Airliners.Count / difficultyFactor))
+            foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor))
             {
                 AirlinerType type = AirlinerTypes.GetType(airliners.Type);
 
@@ -1681,7 +1636,7 @@ namespace TheAirline.Model.GeneralModel
 
             }
             //the origin routes
-            foreach (StartDataRoutes routes in startData.OriginRoutes.GetRange(0,startData.OriginRoutes.Count / difficultyFactor))
+            foreach (StartDataRoutes routes in startData.OriginRoutes.GetRange(0, startData.OriginRoutes.Count / difficultyFactor))
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
 
@@ -1845,7 +1800,7 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Support Wage", 2.65, 1, 3, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Cabin Wage", 1.9, 1, 4, 100));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Instructor Base Salary", 267.00, 200, 300, 100));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Pilot Base Salary", 133.53,100, 150, 100));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Wage, "Pilot Base Salary", 133.53, 100, 150, 100));
 
             //food and drinks
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Alcholic Drinks", 0.75, 0.5, 1.1, 75));

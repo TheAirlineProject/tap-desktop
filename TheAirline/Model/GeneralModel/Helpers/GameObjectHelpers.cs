@@ -506,14 +506,42 @@ namespace TheAirline.Model.GeneralModel.Helpers
                       foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
                         destPax.Rate = (ushort)(destPax.Rate * 1.05);
                 });
+
+            //removes the oldest pilots/instructors and creates some new ones
+            var oldPilots = Pilots.GetUnassignedPilots().OrderByDescending(p => p.Profile.Age).ToList();
+            var oldInstructors = Instructors.GetUnassignedInstructors().OrderByDescending(i => i.Profile.Age).ToList();
+
+            for (int i = 0; i < Math.Min(15, oldPilots.Count); i++)
+                Pilots.RemovePilot(oldPilots[i]);
+
+            for (int i = 0; i < Math.Min(10, oldInstructors.Count); i++)
+                Instructors.RemoveInstructor(oldInstructors[i]);
+
+            GeneralHelpers.CreatePilots(15);
+            GeneralHelpers.CreateInstructors(10);
         }
         //do the monthly update
         private static void DoMonthlyUpdate()
         {
+            int retirementAge = 54;
+
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
             {
+                var pilotsToRetire = airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1)<GameObject.GetInstance().GameTime);
+                var pilotsToRetirement = airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime);
 
-                //AirlineHelpers.MergeInvoicesMonthly(airline);
+                var instructorsToRetire = airline.FlightSchools.SelectMany(f => f.Instructors).Where(i => i.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1)< GameObject.GetInstance().GameTime);
+                var instructorsToRetirement = airline.FlightSchools.SelectMany(f => f.Instructors).Where(i => i.Profile.Birthdate.AddYears(retirementAge)< GameObject.GetInstance().GameTime);
+
+                foreach (Pilot pilot in pilotsToRetire)
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, "Pilot to retire", string.Format("Pilot {0} soon aged {1} is to retire by the end of the month", pilot.Profile.Name, pilot.Profile.Age+1)));// Translator.GetInstance().GetString("News", "1007"), string.Format(Translator.GetInstance().GetString("News", "1007", "message"), pilot.Profile.Name, pilot.Profile.Age + 1)));
+               
+                    //GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1007"), string.Format(Translator.GetInstance().GetString("News", "1007", "message"), pilot.Profile.Name,pilot.Profile.Age+1)));
+               
+              //  foreach (Instructor instructor in instructorsToRetire)
+                //    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1008"), string.Format(Translator.GetInstance().GetString("News", "1008", "message"), instructor.Profile.Name,instructor.Profile.Age+1)));
+               
+                
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
 
