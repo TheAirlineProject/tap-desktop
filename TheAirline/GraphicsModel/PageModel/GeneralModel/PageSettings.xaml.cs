@@ -55,12 +55,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             slGameSpeed.Maximum = (int)GeneralHelpers.GameSpeedValue.Slowest;
             slGameSpeed.Width = 100;
             slGameSpeed.IsDirectionReversed = true;
-            slGameSpeed.TickFrequency = 150;
             slGameSpeed.IsSnapToTickEnabled = true;
             slGameSpeed.IsMoveToPointEnabled = true;
+            slGameSpeed.TickFrequency = 250;
+
+           
             slGameSpeed.ValueChanged += new RoutedPropertyChangedEventHandler<double>(slGameSpeed_ValueChanged);
 
-             panelSpeed.Children.Add(slGameSpeed);
+           
+
+
+            panelSpeed.Children.Add(slGameSpeed);
             
             txtGameSpeed = UICreator.CreateTextBlock(GameTimer.GetInstance().GameSpeed.ToString());
             txtGameSpeed.Margin = new Thickness(5, 0, 0, 0);

@@ -72,6 +72,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 lbPilots.Items.Add(pilot);
 
         }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            Pilot pilot = (Pilot)((Button)sender).Tag;
+
+            if (pilot.Airliner == null)
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2117"), string.Format(Translator.GetInstance().GetString("MessageBox", "2117", "message"),pilot.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    pilot.Airline.removePilot(pilot);
+
+                    showPilots();
+                }
+                
+      
+            }
+            else
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2116"), string.Format(Translator.GetInstance().GetString("MessageBox", "2116", "message"),pilot.Profile.Name), WPFMessageBoxButtons.Ok);
+      
+            }
+        }
         private void lnk_Pilot(object sender, RoutedEventArgs e)
         {
             Pilot pilot = (Pilot)((Hyperlink)sender).Tag;

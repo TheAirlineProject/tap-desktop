@@ -152,7 +152,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2803"), string.Format(Translator.GetInstance().GetString("MessageBox", "2803", "message"), price), WPFMessageBoxButtons.YesNo);
             if (result == WPFMessageBoxResult.Yes)
             {
-                FlightSchool fs = new FlightSchool(string.Format("Flight School {0}",GameObject.GetInstance().HumanAirline.FlightSchools.Count+1));
+                int nextNumber = GameObject.GetInstance().HumanAirline.FlightSchools.Count > 0 ? GameObject.GetInstance().HumanAirline.FlightSchools.Max(f => Convert.ToInt32(f.Name.Substring(f.Name.Length - 1))) : 0;
+                FlightSchool fs = new FlightSchool(string.Format("Flight School {0}",nextNumber+1));
 
                 GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
 
@@ -189,7 +190,21 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
                 lbPilots.Items.Add(pilot);
             }
         }
+        private void btnDelete_Click(object sender, RoutedEventArgs e)
+        {
+            FlightSchool fs = (FlightSchool)((Button)sender).Tag;
 
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2804"), string.Format(Translator.GetInstance().GetString("MessageBox", "2804", "message"), fs.Name), WPFMessageBoxButtons.YesNo);
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                foreach (Instructor instructor in fs.Instructors)
+                    instructor.FlightSchool = null;
+
+                GameObject.GetInstance().HumanAirline.removeFlightSchool(fs);
+
+                showFlightSchools();
+            }
+        }
         private void lnkPilot_Click(object sender, RoutedEventArgs e)
         {
             Pilot pilot = (Pilot)((Hyperlink)sender).Tag;
