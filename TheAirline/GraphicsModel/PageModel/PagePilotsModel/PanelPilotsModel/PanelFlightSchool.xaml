@@ -24,16 +24,26 @@
        
         <DataTemplate x:Key="StudentItem">
             <WrapPanel>
+                <Button Click="btnDeleteStudent_Click"  Height="16" Width="16" Margin="0 0 5 0" VerticalAlignment="Bottom" Background="Transparent" Tag="{Binding}">
+                    <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
                 <TextBlock  Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}" Width="55" VerticalAlignment="Bottom" HorizontalAlignment="Left"></ContentControl>
                 <TextBlock Text="{Binding EndDate, StringFormat=d}" VerticalAlignment="Bottom" Margin="10 0 0 0" Width="70"></TextBlock>
-                <TextBlock Text="{Binding Instructor.Profile.Name}" VerticalAlignment="Bottom"></TextBlock>
-
+                <TextBlock Width="100" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding}" Click="lnkStudent_Click">
+                        <Run Text="{Binding Instructor.Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+         
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="InstructorItem">
             <WrapPanel>
+                <Button Click="btnDeleteInstructor_Click"  Height="16" Width="16" Margin="0 0 5 0" VerticalAlignment="Bottom" Background="Transparent" Tag="{Binding}">
+                    <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
                 <TextBlock  Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="{Binding Rating}" Width="25" VerticalAlignment="Bottom"></TextBlock>

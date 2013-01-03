@@ -17,6 +17,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 {
@@ -242,6 +243,69 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
                 btnHire.IsEnabled = studentsCapacity > this.FlightSchool.Students.Count && GameObject.GetInstance().HumanAirline.Money > GeneralHelpers.GetInflationPrice(PilotStudent.StudentCost);
 
 
+            }
+        }
+        private void btnDeleteStudent_Click(object sender, RoutedEventArgs e)
+        {
+            PilotStudent student = (PilotStudent)((Button)sender).Tag;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2807"), string.Format(Translator.GetInstance().GetString("MessageBox", "2807", "message"), student.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.FlightSchool.removeStudent(student);
+                student.Instructor.removeStudent(student);
+                student.Instructor = null;
+
+                showStudents();
+
+                this.ParentPage.updatePage();
+
+            }
+        }
+        private void btnDeleteInstructor_Click(object sender, RoutedEventArgs e)
+        {
+            Instructor instructor = (Instructor)((Button)sender).Tag;
+
+            if (instructor.Students.Count > 0)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2805"), string.Format(Translator.GetInstance().GetString("MessageBox", "2805", "message"), instructor.Profile.Name), WPFMessageBoxButtons.Ok);
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2806"), string.Format(Translator.GetInstance().GetString("MessageBox", "2806", "message"), instructor.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.FlightSchool.removeInstructor(instructor);
+
+                    instructor.FlightSchool = null;
+                    showInstructors();
+
+                    this.ParentPage.updatePage();
+
+                }
+            }
+        }
+        private void lnkStudent_Click(object sender, RoutedEventArgs e)
+        {
+            PilotStudent student = (PilotStudent)((Hyperlink)sender).Tag;
+             ComboBox cbInstructor = new ComboBox();
+            cbInstructor.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbInstructor.Width = 200;
+            cbInstructor.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbInstructor.DisplayMemberPath = "Profile.Name";
+            cbInstructor.SelectedValuePath = "Profile.Name";
+
+            foreach (Instructor instructor in this.FlightSchool.Instructors.Where(i => i.Students.Count < FlightSchool.MaxNumberOfStudentsPerInstructor && i!=student.Instructor))
+                cbInstructor.Items.Add(instructor);
+
+            cbInstructor.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
+            {
+                student.Instructor.removeStudent(student);
+                student.Instructor = (Instructor)cbInstructor.SelectedItem;
+
+                showStudents();
             }
         }
         private void btnHire_Click(object sender, RoutedEventArgs e)

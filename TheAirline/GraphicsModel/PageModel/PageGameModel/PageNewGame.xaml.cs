@@ -45,7 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         private Popup popUpSplash;
-        private CheckBox cbLocalCurrency, cbDayTurnEnabled;
+        private CheckBox cbLocalCurrency, cbDayTurnEnabled, cbSameRegion;
         public PageNewGame()
         {
             InitializeComponent();
@@ -264,7 +264,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1011"), panelDifficulty));
 
-            
+            WrapPanel panelOpponents = new WrapPanel();
+
             cbOpponents = new ComboBox();
             cbOpponents.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbOpponents.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -275,7 +276,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbOpponents.SelectedIndex = 3;
 
-            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), cbOpponents));
+            panelOpponents.Children.Add(cbOpponents);
+
+            cbSameRegion = new CheckBox();
+            cbSameRegion.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            cbSameRegion.Content = Translator.GetInstance().GetString("PageNewGame", "1017");
+            cbSameRegion.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            cbSameRegion.Margin = new Thickness(5, 0, 0, 0);
+
+            panelOpponents.Children.Add(cbSameRegion);
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1010"), panelOpponents));
 
             cbDayTurnEnabled = new CheckBox();
             cbDayTurnEnabled.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
@@ -578,7 +589,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 AirlinerHelpers.CreateStartUpAirliners();
 
-                Setup.SetupTestGame(opponents);
+                Setup.SetupTestGame(opponents,cbSameRegion.IsChecked.Value);
 
                 airline.MarketFocus = (Airline.AirlineFocus)cbFocus.SelectedItem;
 

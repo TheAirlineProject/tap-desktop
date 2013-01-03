@@ -6,12 +6,32 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using System.Globalization;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Security.Cryptography;
 
 namespace TheAirline.Model.GeneralModel
 {
     public class MathHelpers
     {
         private static Random rnd = new Random();
+        //shuffles a list of items
+        public static List<T> Shuffle<T>(List<T> list)
+        {
+            RNGCryptoServiceProvider provider = new RNGCryptoServiceProvider();
+            int n = list.Count;
+            while (n > 1)
+            {
+                byte[] box = new byte[1];
+                do provider.GetBytes(box);
+                while (!(box[0] < n * (Byte.MaxValue / n)));
+                int k = (box[0] % n);
+                n--;
+                T value = list[k];
+                list[k] = list[n];
+                list[n] = value;
+            }
+
+            return list;
+        }
         //returns a random date 
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {
@@ -119,11 +139,14 @@ namespace TheAirline.Model.GeneralModel
         //gets the distance between two airports in kilometers
         public static double GetDistance(Airport airport1, Airport airport2)
         {
+            if (airport1 == null || airport2 == null)
+                return Double.MaxValue;
             return GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
         }
         //gets the distance in kilometers between two coordinates
         public static double GetDistance(Coordinates coordinates1, Coordinates coordinates2)
         {
+           
             long circumference = 40074;
 
             double lat1 = coordinates1.Latitude.toDecimal();

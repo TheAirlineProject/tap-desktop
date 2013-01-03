@@ -231,8 +231,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines + 1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money > airline.StartMoney / 5;
 
-          
-
             if (newSub)
             {
                 //creates a new subsidiary airline for the airline
@@ -569,6 +567,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                         fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                        AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                         route.LastUpdated = GameObject.GetInstance().GameTime;
                     }

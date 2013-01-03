@@ -87,6 +87,11 @@ namespace TheAirline.Model.GeneralModel
             {
                 string s = e.ToString();
             }
+
+            Console.WriteLine(Airports.GetAllAirports().Count);
+            Console.WriteLine(Airlines.GetAllAirlines().Count);
+
+
         }
 
         /*! private static method ClearLists().
@@ -129,11 +134,11 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreatePilots()
         {
-             int pilotsPool = 500;
+            int pilotsPool = 100 * Airlines.GetAllAirlines().Count ;
 
             GeneralHelpers.CreatePilots(pilotsPool);
 
-            int instructorsPool = 250;
+            int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
 
             GeneralHelpers.CreateInstructors(instructorsPool);
 
@@ -1357,11 +1362,12 @@ namespace TheAirline.Model.GeneralModel
 
         /*! sets up test game.
          */
-        public static void SetupTestGame(int opponents)
+        public static void SetupTestGame(int opponents, Boolean sameRegion)
         {
-            CreatePilots();
+          
+            RemoveAirlines(opponents, sameRegion);
 
-            RemoveAirlines(opponents);
+            CreatePilots();
 
             //sets all the facilities at an airport to none for all airlines
             Parallel.ForEach(Airports.GetAllAirports(), airport =>
@@ -1392,8 +1398,9 @@ namespace TheAirline.Model.GeneralModel
 
         /*! removes some random airlines from the list bases on number of opponents.
          */
-        private static void RemoveAirlines(int opponnents)
+        private static void RemoveAirlines(int opponnents, Boolean sameRegion)
         {
+            Airport humanAirport = GameObject.GetInstance().HumanAirline.Airports[0];
             int year = GameObject.GetInstance().GameTime.Year;
 
             var notAvailableAirlines = Airlines.GetAirlines(a => !(a.Profile.Founded <= year && a.Profile.Folded > year));
@@ -1404,17 +1411,24 @@ namespace TheAirline.Model.GeneralModel
             Airline lot = Airlines.GetAirline("DA");
             int count = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year).Count;
 
+            List<Airline> airlines = new List<Airline>(Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year));
+
+            if (sameRegion)
+                airlines.Sort(delegate(Airline a1, Airline a2) { return MathHelpers.GetDistance(a2.Profile.PreferedAirport,humanAirport).CompareTo(MathHelpers.GetDistance(a1.Profile.PreferedAirport,humanAirport)); });
+            else
+               airlines = MathHelpers.Shuffle(airlines);
+
+     
             for (int i = 0; i < count - opponnents; i++)
             {
-                List<Airline> airlines = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year);
-
-                Airlines.RemoveAirline(airlines[rnd.Next(airlines.Count)]);
+               
+                Airlines.RemoveAirline(airlines[i]);
             }
 
 
-            if (Airlines.GetAllAirlines().Contains(lot))
-                Airlines.RemoveAirline(lot);
-            //if (!Airlines.GetAllAirlines().Contains(lot))
+               
+            
+             //if (!Airlines.GetAllAirlines().Contains(lot))
             //      Airlines.AddAirline(lot);
 
         }
@@ -1505,6 +1519,7 @@ namespace TheAirline.Model.GeneralModel
                     FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportHomeBase);
                     fAirliner.addRoute(route);
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                    AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                     AIHelpers.CreateAirlinerClasses(fAirliner);
 
@@ -1573,6 +1588,7 @@ namespace TheAirline.Model.GeneralModel
                 FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                 AIHelpers.CreateAirlinerClasses(fAirliner);
 
@@ -1629,6 +1645,7 @@ namespace TheAirline.Model.GeneralModel
 
                         FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner, airline.Airports[0]);
                         fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+                        AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                         AIHelpers.CreateAirlinerClasses(fAirliner);
                     }
@@ -1670,6 +1687,7 @@ namespace TheAirline.Model.GeneralModel
                     FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                     fAirliner.addRoute(route);
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                    AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                     AIHelpers.CreateAirlinerClasses(fAirliner);
 

@@ -8,6 +8,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -228,7 +229,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return sAirline;
         }
-        
+        //hires the pilots for a specific airliner
+        public static void HireAirlinerPilots(FleetAirliner airliner)
+        {
+            while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
+           {
+                Pilot pilot = Pilots.GetUnassignedPilots().OrderByDescending(p => p.Rating).First();
+                airliner.Airliner.Airline.addPilot(pilot);
+
+                pilot.Airliner = airliner;
+                airliner.addPilot(pilot);
+            }
+            
+        }
         
     }
 }
