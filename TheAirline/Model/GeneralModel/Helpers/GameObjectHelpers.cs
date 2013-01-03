@@ -414,6 +414,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
                 }
+
+               
+
                 if (airline.Contract != null && airline.Contract.ExpireDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
                 {
                     int missingAirliners = airline.Contract.Airliners - airline.Contract.PurchasedAirliners;
@@ -474,18 +477,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (FeeType feeType in FeeTypes.GetTypes())
                     airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
 
-                foreach (Pilot pilot in airline.Pilots)
-                {
-                    double salary = ((int)pilot.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));
-                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
-                }
-
-                foreach (Instructor instructor in airline.FlightSchools.SelectMany(f => f.Instructors))
-                {
-                    double salary = ((int)instructor.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Instructors Base Salary"));
-                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
-
-                }
+               
 
             }
 
@@ -633,6 +625,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     instructor.FlightSchool = null;
 
                     Instructors.RemoveInstructor(instructor);
+
+                }
+
+                //wages
+                foreach (Pilot pilot in airline.Pilots)
+                {
+                    double salary = ((int)pilot.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
+                }
+
+                foreach (Instructor instructor in airline.FlightSchools.SelectMany(f => f.Instructors))
+                {
+                    double salary = ((int)instructor.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Instructors Base Salary"));
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
 
                 }
 

@@ -34,10 +34,16 @@ namespace TheAirline.Model.PilotModel
         {
             return types;
         }
+        //returns an aircraft type
+        public static TrainingAircraftType GetAircraftType(string name)
+        {
+            return types.Find(t => t.Name == name);
+        }
         //clears the list of aircrafts 
         public static void Clear()
         {
             types.Clear();
         }
+       
     }
 }

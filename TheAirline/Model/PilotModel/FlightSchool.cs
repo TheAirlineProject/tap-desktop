@@ -11,6 +11,7 @@ namespace TheAirline.Model.PilotModel
         public const int MaxNumberOfStudentsPerInstructor = 2;
         public const int MaxNumberOfInstructors = 15;
         public string Name { get; set; }
+        public string ID { get; set; }
         public int NumberOfInstructors { get { return this.Instructors.Count; } set { ;} }
         public int NumberOfStudents { get { return this.Students.Count; } set { ;} }
         public List<PilotStudent> Students { get; set; }
@@ -18,10 +19,13 @@ namespace TheAirline.Model.PilotModel
         public List<TrainingAircraft> TrainingAircrafts { get; set; }
         public FlightSchool(string name)
         {
+            Guid id = Guid.NewGuid();
+
             this.Name = name;
             this.Students = new List<PilotStudent>();
             this.Instructors = new List<Instructor>();
             this.TrainingAircrafts = new List<TrainingAircraft>();
+            this.ID = id.ToString();
         }
         //adds a training aircraft to the flights school
         public void addTrainingAircraft(TrainingAircraft aircraft)

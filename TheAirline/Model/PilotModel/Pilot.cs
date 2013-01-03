@@ -46,6 +46,11 @@ namespace TheAirline.Model.PilotModel
         {
             pilots.Clear();
         }
+        //returns all pilots
+        public static List<Pilot> GetPilots()
+        {
+            return pilots;
+        }
         //returns all unassigned pilots
         public static List<Pilot> GetUnassignedPilots()
         {
@@ -60,6 +65,11 @@ namespace TheAirline.Model.PilotModel
         public static int GetNumberOfUnassignedPilots()
         {
             return pilots.FindAll(p => p.Airline == null).Count;
+        }
+        //counts the number of pilots
+        public static int GetNumberOfPilots() 
+        {
+            return pilots.Count;
         }
     }
 }

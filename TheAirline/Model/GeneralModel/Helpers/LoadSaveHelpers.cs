@@ -18,6 +18,8 @@ using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
+using TheAirline.Model.PilotModel;
+using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -310,7 +312,92 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                 }
             }
+            Instructors.Clear();
 
+            XmlNodeList instructorsList = root.SelectNodes("//instructors/instructor");
+
+            foreach (XmlElement instructorNode in instructorsList)
+            {
+                string firstname = instructorNode.Attributes["firstname"].Value;
+                string lastname = instructorNode.Attributes["lastname"].Value;
+                DateTime birthdate = DateTime.Parse(instructorNode.Attributes["birthdate"].Value, new CultureInfo("de-DE", false));
+                Town town = Towns.GetTown(instructorNode.Attributes["town"].Value);
+                Pilot.PilotRating rating = (Pilot.PilotRating)Enum.Parse(typeof(Pilot.PilotRating), instructorNode.Attributes["rating"].Value);
+                string id = instructorNode.Attributes["id"].Value;
+
+                Instructor instructor = new Instructor(new PilotProfile(firstname, lastname, birthdate, town),rating);
+
+                if (id != "-")
+                {
+                    FlightSchool fs = Airlines.GetAllAirlines().SelectMany(a => a.FlightSchools).Where(f => f.ID == id).FirstOrDefault();
+                    instructor.FlightSchool = fs;
+                }
+
+                XmlNodeList studentsList = instructorNode.SelectNodes("students/student");
+
+                foreach (XmlElement studentNode in studentsList)
+                {
+                    PilotStudent student = instructor.FlightSchool.Students.Find(s => s.Profile.Name == studentNode.Attributes["name"].Value);
+                    student.Instructor = instructor;
+                    instructor.addStudent(student);
+                }
+
+                Instructors.AddInstructor(instructor);
+            }
+
+            if (Instructors.GetInstructors().Count == 0)
+                GeneralHelpers.CreateInstructors(75 * Airlines.GetAllAirlines().Count);
+
+            Pilots.Clear();
+
+            XmlNodeList pilotsList = root.SelectNodes("//pilots/pilot");
+
+            foreach (XmlElement pilotNode in pilotsList)
+            {
+                string firstname =pilotNode.Attributes["firstname"].Value;
+                string lastname = pilotNode.Attributes["lastname"].Value;
+                DateTime birthdate = DateTime.Parse(pilotNode.Attributes["birthdate"].Value, new CultureInfo("de-DE", false));
+                Town town = Towns.GetTown(pilotNode.Attributes["town"].Value);
+                DateTime educationdate = DateTime.Parse(pilotNode.Attributes["education"].Value,new CultureInfo("de-DE",false));
+
+                Pilot.PilotRating rating = (Pilot.PilotRating)Enum.Parse(typeof(Pilot.PilotRating),pilotNode.Attributes["rating"].Value);
+
+                Pilot pilot = new Pilot(new PilotProfile(firstname, lastname, birthdate, town), educationdate, rating);
+        
+                if (pilotNode.Attributes["airline"].Value != "-")
+                {
+                    Airline pilotAirline = Airlines.GetAirline(pilotNode.Attributes["airline"].Value);
+                    DateTime airlinesigneddate = DateTime.Parse(pilotNode.Attributes["airlinesigneddate"].Value, new CultureInfo("de-DE", false));
+
+                    pilot.Airline = pilotAirline;
+                    pilot.AirlineSignedDate = airlinesigneddate;
+
+                    if (pilotNode.Attributes["airliner"].Value != "-")
+                    {
+                        FleetAirliner airliner = pilotAirline.Fleet.Find(f => f.Name == pilotNode.Attributes["airliner"].Value);
+                        pilot.Airliner = airliner;
+                        airliner.addPilot(pilot);
+                    }
+                }
+
+                Pilots.AddPilot(pilot);
+            }
+            
+            if (Pilots.GetNumberOfPilots() == 0)
+            {
+                Random rnd = new Random();
+
+                GeneralHelpers.CreatePilots(100 * Airlines.GetAllAirlines().Count);
+
+                foreach (FleetAirliner airliner in Airlines.GetAllAirlines().SelectMany(a => a.Fleet))
+                {
+                    Pilot pilot = Pilots.GetPilots()[rnd.Next(Pilots.GetNumberOfPilots())];
+                    airliner.Airliner.Airline.addPilot(pilot);
+                    pilot.Airliner = airliner;
+                    airliner.addPilot(pilot);
+                }
+            }
+            
             Alliances.Clear();
 
             XmlNodeList alliancesList = root.SelectNodes("//alliances/alliance");
@@ -631,6 +718,41 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.Fees = fees;
 
+            XmlNodeList flightschoolsList = airlineNode.SelectNodes("flightschools/flightschool");
+
+            foreach (XmlElement flightschoolNode in flightschoolsList)
+            {
+                string fsID = flightschoolNode.Attributes["id"].Value;
+                string fsName = flightschoolNode.Attributes["name"].Value;
+
+                FlightSchool fs = new FlightSchool(fsName);
+                fs.ID = fsID;
+
+                XmlNodeList aircraftsList = flightschoolNode.SelectNodes("trainingaircrafts/trainingaircraft");
+
+                foreach (XmlElement aircraftNode in aircraftsList)
+                {
+                    TrainingAircraftType aircraftType = TrainingAircraftTypes.GetAircraftType(aircraftNode.Attributes["type"].Value);
+                    DateTime aircraftDate = DateTime.Parse(aircraftNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
+
+                    fs.addTrainingAircraft(new TrainingAircraft(aircraftType, aircraftDate, fs));
+                }
+
+                XmlNodeList studentsList = flightschoolNode.SelectNodes("students/student");
+
+                foreach (XmlElement studentNode in studentsList)
+                {
+                    string firstname = studentNode.Attributes["firstname"].Value;
+                    string lastname = studentNode.Attributes["lastname"].Value;
+                    DateTime birthdate = DateTime.Parse(studentNode.Attributes["birthdate"].Value, new CultureInfo("de-DE", false));
+                    Town town = Towns.GetTown(studentNode.Attributes["town"].Value);
+                    DateTime startdate = DateTime.Parse(studentNode.Attributes["startdate"].Value,new CultureInfo("de-DE",false));
+
+                    fs.addStudent(new PilotStudent(new PilotProfile(firstname,lastname,birthdate,town),startdate,null));
+                }
+
+                airline.addFlightSchool(fs);
+            }
 
             XmlNodeList airlineFleetList = airlineNode.SelectNodes("fleet/airliner");
 
@@ -1058,9 +1180,46 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     feesNode.AppendChild(feeNode);
                 }
 
-
-
                 airlineNode.AppendChild(feesNode);
+
+                XmlElement flightSchoolsNode = xmlDoc.CreateElement("flightschools");
+                foreach (FlightSchool fs in airline.FlightSchools)
+                {
+                    XmlElement flightSchoolNode = xmlDoc.CreateElement("flightschool");
+                    flightSchoolNode.SetAttribute("id", fs.ID);
+                    flightSchoolNode.SetAttribute("name", fs.Name);
+
+                    XmlElement trainingAircraftsNode = xmlDoc.CreateElement("trainingaircrafts");
+                    foreach (TrainingAircraft aircraft in fs.TrainingAircrafts)
+                    {
+                        XmlElement trainingAircraftNode = xmlDoc.CreateElement("trainingaircraft");
+                        trainingAircraftNode.SetAttribute("type", aircraft.Type.Name);
+                        trainingAircraftNode.SetAttribute("date",aircraft.BoughtDate.ToString(new CultureInfo("de-DE")));
+           
+                        trainingAircraftsNode.AppendChild(trainingAircraftNode);
+                    }
+
+                    flightSchoolNode.AppendChild(trainingAircraftsNode);
+
+                    XmlElement studentsNode = xmlDoc.CreateElement("students");
+                    foreach (PilotStudent student in fs.Students)
+                    {
+                        XmlElement studentNode = xmlDoc.CreateElement("student");
+                      
+                        studentNode.SetAttribute("firstname",student.Profile.Firstname);
+                        studentNode.SetAttribute("lastname",student.Profile.Lastname);
+                        studentNode.SetAttribute("birthdate",student.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
+                        studentNode.SetAttribute("town", student.Profile.Town.Name);
+                        studentNode.SetAttribute("startdate", student.StartDate.ToString(new CultureInfo("de-DE")));
+
+                        studentsNode.AppendChild(studentNode);
+                    }
+
+                    flightSchoolNode.AppendChild(studentsNode);
+                    flightSchoolsNode.AppendChild(flightSchoolNode);
+                  }
+
+                airlineNode.AppendChild(flightSchoolsNode);
 
                 XmlElement fleetNode = xmlDoc.CreateElement("fleet");
                 foreach (FleetAirliner airliner in airline.Fleet)
@@ -1370,7 +1529,55 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             root.AppendChild(airportDestinationsNode);
 
+            XmlElement instructorsNode = xmlDoc.CreateElement("instructors");
 
+            foreach (Instructor instructor in Instructors.GetInstructors())
+            {
+                XmlElement instructorNode = xmlDoc.CreateElement("instructor");
+                instructorNode.SetAttribute("firstname", instructor.Profile.Firstname);
+                instructorNode.SetAttribute("lastname", instructor.Profile.Lastname);
+                instructorNode.SetAttribute("birthdate", instructor.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
+                instructorNode.SetAttribute("town", instructor.Profile.Town.Name);
+                instructorNode.SetAttribute("rating", instructor.Rating.ToString());
+                instructorNode.SetAttribute("id",instructor.FlightSchool == null ? "-" : instructor.FlightSchool.ID);
+
+                XmlElement studentsNode = xmlDoc.CreateElement("students");
+
+                foreach (PilotStudent student in instructor.Students)
+                {
+                    XmlElement studentNode = xmlDoc.CreateElement("student");
+                    studentNode.SetAttribute("name", student.Profile.Name);
+
+                    studentsNode.AppendChild(studentNode);
+                }
+
+                instructorNode.AppendChild(studentsNode);
+
+                instructorsNode.AppendChild(instructorNode);
+            }
+
+            root.AppendChild(instructorsNode);
+
+            XmlElement pilotsNode = xmlDoc.CreateElement("pilots");
+
+            foreach (Pilot pilot in Pilots.GetPilots())
+            {
+                XmlElement pilotNode = xmlDoc.CreateElement("pilot");
+                pilotNode.SetAttribute("firstname", pilot.Profile.Firstname);
+                pilotNode.SetAttribute("lastname", pilot.Profile.Lastname);
+                pilotNode.SetAttribute("birthdate", pilot.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
+                pilotNode.SetAttribute("town", pilot.Profile.Town.Name);
+                pilotNode.SetAttribute("education",pilot.EducationTime.ToString(new CultureInfo("de-DE")));
+                pilotNode.SetAttribute("rating", pilot.Rating.ToString());
+                pilotNode.SetAttribute("airline", pilot.Airline == null ? "-" : pilot.Airline.Profile.IATACode);
+                pilotNode.SetAttribute("airlinesigned", pilot.AirlineSignedDate.ToString(new CultureInfo("de-DE")));
+                pilotNode.SetAttribute("airliner", pilot.Airliner == null ? "-" : pilot.Airliner.Name);
+
+                pilotsNode.AppendChild(pilotNode);
+            }
+
+            root.AppendChild(pilotsNode);
+            
             XmlElement alliancesNode = xmlDoc.CreateElement("alliances");
             foreach (Alliance alliance in Alliances.GetAlliances())
             {
