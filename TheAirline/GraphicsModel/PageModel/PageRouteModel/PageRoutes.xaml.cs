@@ -24,6 +24,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 {
@@ -308,7 +309,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                 }
                 else
                 {
-                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2506"), string.Format(Translator.GetInstance().GetString("MessageBox", "2506", "message")), WPFMessageBoxButtons.Ok);
+                    Random rnd = new Random();
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2506"), string.Format(Translator.GetInstance().GetString("MessageBox", "2506", "message"), missingPilots), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
+                        {
+                            Pilot pilot = Pilots.GetPilots()[rnd.Next(Pilots.GetNumberOfPilots())];
+                            airliner.Airliner.Airline.addPilot(pilot);
+                            pilot.Airliner = airliner;
+                            airliner.addPilot(pilot);
+                        }
+
+                    }
                 }
             }
         }
