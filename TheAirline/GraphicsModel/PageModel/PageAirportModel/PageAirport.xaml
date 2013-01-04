@@ -35,10 +35,11 @@
         </DataTemplate>
         <DataTemplate x:Key="PassengersItem">
             <WrapPanel>
-            <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination}" VerticalAlignment="Bottom" Width="250" Foreground="DarkRed"></ContentControl>
-                <TextBlock Text="{Binding Rate}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
-                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Converter={StaticResource isHumanAirportConverter}}"></Image>
-
+            <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Key.Destination}" VerticalAlignment="Bottom" Width="250" Foreground="DarkRed"></ContentControl>
+                <TextBlock Text="{Binding Key.Rate}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom"></TextBlock>
+                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Key,Converter={StaticResource isHumanAirportConverter}}"></Image>
+                
             </WrapPanel>
         </DataTemplate>
        

@@ -322,6 +322,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                             airliner.addPilot(pilot);
                         }
 
+                        PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+
+                        showFleet();
+            
+
                     }
                 }
             }

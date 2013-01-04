@@ -21,6 +21,8 @@ using TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 {
@@ -32,7 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         public Airport Airport { get; set; }
         private TextBlock txtLocalTime;
         private ListBox lbArrivals, lbDepartures, lbPassengers;
-         public PageAirport(Airport airport)
+        public PageAirport(Airport airport)
         {
             InitializeComponent();
 
@@ -46,7 +48,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             airportPanel.Children.Add(createQuickInfoPanel());
             airportPanel.Children.Add(createPassengersPanel());
-         
+
             StandardContentPanel panelContent = new StandardContentPanel();
 
             panelContent.setContentPage(airportPanel, StandardContentPanel.ContentLocation.Left);
@@ -75,16 +77,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             if (this.IsLoaded)
             {
-             
+
                 GameTimeZone tz = this.Airport.Profile.TimeZone;
 
                 txtLocalTime.Text = string.Format("{0} {1}", MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, tz).ToShortTimeString(), tz.ShortName);
 
-         
+
             }
         }
 
-     
+
         //creates the panel for arrivals
         private ScrollViewer createArrivalsPanel()
         {
@@ -139,7 +141,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             StackPanel panelPassengers = new StackPanel();
             panelPassengers.Margin = new Thickness(0, 10, 0, 0);
-            
+
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1020";
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -175,8 +177,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             {
                 DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport,AirlinerClass.ClassType.Economy_Class);
 
-                if (passengers!=null && passengers.Rate>0)
-                    lbPassengers.Items.Add(passengers);
+                if (passengers != null && passengers.Rate > 0)
+                {
+                    int demand = passengers.Rate;
+                    int covered = 0;
+
+                    List<Route> routes = AirportHelpers.GetAirportRoutes(airport, this.Airport);
+
+                    foreach (Route route in routes)
+                    {
+                         RouteAirlinerClass raClass = route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+
+                        double avgPassengers = route.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers%"));
+                        double flights = route.TimeTable.Entries.Count;
+
+                        double routeCovered = avgPassengers / (7.0 / flights);
+
+                        covered += (int)routeCovered;
+                    }
+                  
+
+                    lbPassengers.Items.Add(new KeyValuePair<DestinationPassengers, int>(passengers, demand - covered));
+                }
              }
           
 
@@ -265,7 +287,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             ScrollViewer scroller = new ScrollViewer();
             scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() /2;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
 
             StackPanel panelInfo = new StackPanel();
             scroller.Content = panelInfo;
@@ -304,14 +326,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             panelQuickInfo.Children.Add(lbQuickInfo);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1007"), UICreator.CreateTextBlock(this.Airport.Profile.Name)));
-                 
+
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1008"), UICreator.CreateTextBlock(new AirportCodeConverter().Convert(this.Airport).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1009"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Type).ToString())));
-    
 
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"),UICreator.CreateTownPanel(this.Airport.Profile.Town)));
-    
-          
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1010"), UICreator.CreateTownPanel(this.Airport.Profile.Town)));
+
+
 
             ContentControl lblFlag = new ContentControl();
             lblFlag.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
@@ -358,8 +380,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1021"),UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
-          //  lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport","1023"),UICreator.CreateTextBlock(string.Format("{0:C}", this.Airport.Income))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1021"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1023"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString())));
 
             WrapPanel panelTerminals = new WrapPanel();
@@ -383,7 +404,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             return scroller;
         }
-        
+
         private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PopUpAirportMap.ShowPopUp(this.Airport);
@@ -416,7 +437,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 this.Status = status;
             }
         }
-       
+
 
     }
     public class IsHumanAirportConverter : IValueConverter
@@ -424,8 +445,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             DestinationPassengers destination = (DestinationPassengers)value;
-         
-  
+
+
             if (GameObject.GetInstance().HumanAirline.Airports.Contains(destination.Destination))
                 return Visibility.Visible;
             else
@@ -437,6 +458,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             throw new NotImplementedException();
         }
     }
-   
-   
+
+
 }

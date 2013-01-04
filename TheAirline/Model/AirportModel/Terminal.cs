@@ -264,6 +264,7 @@ namespace TheAirline.Model.AirportModel
         {
             return this.AirportTerminals.SelectMany(a => a.Gates.getGates()).Where(g=>g.HasRoute).Count();
         }
+       
         //switches all gates from one airline to another
         public void switchAirline(Airline airlineFrom, Airline airlineTo)
         {
@@ -276,6 +277,7 @@ namespace TheAirline.Model.AirportModel
             airlineTo.addAirport(this.Airport);
       
         }
+       
         /*
         //finds the routes assigned to the gates
         public List<Route> getRoutes()

@@ -556,12 +556,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (airline.IsHuman)
                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1010"), string.Format(Translator.GetInstance().GetString("News", "1010", "message"), pilot.Profile.Name, pilot.Airliner.Name)));
-
+                       
+                        pilot.Airliner.removePilot(pilot);
+               
                     }
                     else
                         GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1009"), string.Format(Translator.GetInstance().GetString("News", "1009", "message"), pilot.Profile.Name)));
 
-                    pilot.Airliner.removePilot(pilot);
                     airline.removePilot(pilot);
                     pilot.Airline = null;
                     Pilots.RemovePilot(pilot);

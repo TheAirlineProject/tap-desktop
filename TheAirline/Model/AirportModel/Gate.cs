@@ -155,19 +155,23 @@ namespace TheAirline.Model.AirportModel
             }
             return number;
         }
-        /*
+       /*
         //finds the routes assigned to the gates
         public List<Route> getRoutes()
         {
             List<Route> routes = new List<Route>();
             foreach (Gate gate in getDeliveredGates())
             {
-                if (gate.HasRoute != null)
+                if (gate.HasRoute)
+                {
+                    gate.Airline.Routes.FindAll(
                     routes.Add(gate.HasRoute);
+                }
          
             }
             return routes;
         }
+        /*
         public List<Route> getRoutes(Airline airline)
         {
             List<Route> routes = new List<Route>();

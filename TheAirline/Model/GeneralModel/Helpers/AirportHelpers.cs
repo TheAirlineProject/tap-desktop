@@ -45,6 +45,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return routes.ToList();
         }
+        //returns all routes between two airports
+        public static List<Route> GetAirportRoutes(Airport airport1, Airport airport2)
+        {
+            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes).Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1));
+
+            return routes.ToList();
+        }
         //returns all entries for a specific airport with take off in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportTakeoffs(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {
