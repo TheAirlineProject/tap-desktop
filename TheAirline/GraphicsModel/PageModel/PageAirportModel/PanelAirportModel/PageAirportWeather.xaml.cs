@@ -154,9 +154,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-                Weather weather = (Weather)value;
+            Weather weather = (Weather)value;
 
-            int currentHour = GameObject.GetInstance().GameTime.Hour;
+            int currentHour;
+           
+            if (GameObject.GetInstance().DayRoundEnabled)
+                currentHour = 12;
+            else
+                currentHour = GameObject.GetInstance().GameTime.Hour;
 
             Weather.eWindSpeed windspeed = weather.Temperatures[currentHour].WindSpeed;
             Weather.WindDirection direction = weather.Temperatures[currentHour].Direction;
@@ -223,7 +228,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             Weather weather = (Weather)value;
 
-            int currentHour = GameObject.GetInstance().GameTime.Hour; 
+            int currentHour;
+            if (GameObject.GetInstance().DayRoundEnabled)
+                currentHour = 12;
+            else
+                currentHour = GameObject.GetInstance().GameTime.Hour;
 
             return new TemperatureToTextConverter().Convert(weather.Temperatures[currentHour].Temperature);
         }
@@ -240,7 +249,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             Weather weather = (Weather)value;
 
-            int currentHour = GameObject.GetInstance().GameTime.Hour;
+            int currentHour;
+            
+            if (GameObject.GetInstance().DayRoundEnabled)
+                currentHour = 12;
+            else
+                currentHour= GameObject.GetInstance().GameTime.Hour;
 
             string weatherCondition = "clear";
 

@@ -1653,11 +1653,11 @@ namespace TheAirline.Model.GeneralModel
 
             }
             //the origin routes
-            foreach (StartDataRoutes routes in startData.OriginRoutes.GetRange(0, startData.OriginRoutes.Count / difficultyFactor))
+            foreach (StartDataRoutes routes in startData.OriginRoutes)
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
 
-                for (int i = 0; i < Math.Min(routes.Destinations, origin.Terminals.getFreeGates()); i++)
+                for (int i = 0; i < Math.Min(routes.Destinations/difficultyFactor, origin.Terminals.getFreeGates()); i++)
                 {
                     if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                         origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);

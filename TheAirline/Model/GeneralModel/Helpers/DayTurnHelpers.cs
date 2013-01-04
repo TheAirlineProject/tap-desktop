@@ -130,15 +130,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double feesIncome = 0;
             foreach (FeeType feeType in FeeTypes.GetTypes(FeeType.eFeeType.Fee))
             {
-                foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                if (GameObject.GetInstance().GameTime.Year >= feeType.FromYear)
                 {
-                    double percent = 0.10;
-                    double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
-                    double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
+                    foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                    {
+                        double percent = 0.10;
+                        double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
+                        double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
 
-                    double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
+                        double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                    feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                        feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                    }
                 }
             }
 

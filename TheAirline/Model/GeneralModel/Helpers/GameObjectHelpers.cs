@@ -415,7 +415,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                 }
 
-               
+
 
                 if (airline.Contract != null && airline.Contract.ExpireDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
                 {
@@ -477,7 +477,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (FeeType feeType in FeeTypes.GetTypes())
                     airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
 
-               
+
 
             }
 
@@ -535,7 +535,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             Pilot newPilot = Pilots.GetUnassignedPilots().Find(p => p.Rating == pilot.Rating);
                             airline.addPilot(newPilot);
-                            
+
                             newPilot.Airliner = pilot.Airliner;
                             newPilot.Airliner.addPilot(newPilot);
 
@@ -998,17 +998,27 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double dist = MathHelpers.GetDistance(dest.Profile.Coordinates, dept.Profile.Coordinates);
 
             double feesIncome = 0;
+            double t = 0;
             foreach (FeeType feeType in FeeTypes.GetTypes(FeeType.eFeeType.Fee))
             {
-                foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                if (GameObject.GetInstance().GameTime.Year >= feeType.FromYear)
                 {
-                    double percent = 0.10;
-                    double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
-                    double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
+                    foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                    {
+                        double percent = 0.10;
+                        double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
+                        double minValue = Convert.ToDouble(feeType.Percentage) * (1 - percent);
 
-                    double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
+                        double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                    feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                        if (airliner.Airliner.Airline.IsHuman)
+                        {
+                            t = airliner.Airliner.Airline.Fees.getValue(feeType);
+
+                        }
+
+                        feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                    }
                 }
             }
 
