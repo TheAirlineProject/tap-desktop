@@ -17,6 +17,7 @@ namespace TheAirline.Model.GeneralModel
         public Boolean MailsOnLandings { get; set; }
         public Boolean MailsOnBadWeather { get; set; }
         public int MinutesPerTurn { get; set; }
+        public Boolean CurrencyShorten { get; set; }
         public enum Difficulty { Easy, Normal, Hard }
 
         private Settings()
@@ -26,6 +27,7 @@ namespace TheAirline.Model.GeneralModel
             this.MailsOnLandings = false;
             this.MailsOnBadWeather = true;
             this.MinutesPerTurn = 60;
+            this.CurrencyShorten = true;
         }
         //returns the settings instance
         public static Settings GetInstance()

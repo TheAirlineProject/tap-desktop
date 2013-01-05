@@ -57,24 +57,66 @@ namespace TheAirline.GraphicsModel.Converters
 
                 CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
 
+
                 if (currency == null)
                 {
-                    return string.Format("{0:C}",value);
+                    if (Settings.GetInstance().CurrencyShorten)
+                    {
+                        if (v > 1000000000)
+                            return string.Format("{0:C} {1}", v / 1000000000, Translator.GetInstance().GetString("General", "2001"));
+                        if (v > 1000000)
+                            return string.Format("{0:C} {1}", v / 1000000, Translator.GetInstance().GetString("General", "2000"));
+                        return string.Format("{0:C}", value);
+                    }
+                    else
+                        return string.Format("{0:C}", value);
                 }
                 else
                 {
                     double currencyValue = v * currency.Rate;
 
-                    if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                        return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                    if (Settings.GetInstance().CurrencyShorten)
+                    {
+                        if (currencyValue > 1000000)
+                        {
+                            double sValue = currencyValue / 1000000;
+                            string sFormat = Translator.GetInstance().GetString("General", "2000");
+                            
+                            if (currencyValue > 1000000000)
+                            {
+                                sValue = currencyValue / 1000000000;
+                                sFormat = Translator.GetInstance().GetString("General", "2001");
+                            }
+
+                            if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                return string.Format("{0:#,0.##} {2} {1}",sValue, currency.CurrencySymbol,sFormat);
+                            else
+                                return string.Format("{1}{0:#,0.##} {2}", sValue, currency.CurrencySymbol,sFormat);
+
+                        }
+                        else
+                        {
+                            if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                            else
+                                return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+
+                        }
+                    }
                     else
-                        return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+                    {
+
+                        if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                            return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                        else
+                            return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+                    }
                 }
             }
             catch (Exception e)
             {
                 return string.Format("{0:C}", value);
-       
+
             }
         }
         public object Convert(object value)
