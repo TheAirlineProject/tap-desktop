@@ -28,7 +28,7 @@ namespace TheAirline.GraphicsModel.UserControlModel
             this.MinValue = 0;
         }
         /// <summary>
-        /// Identifies the max value dependency property.
+        /// Identifies the mix value dependency property.
         /// </summary>
         public static readonly DependencyProperty MinValueProperty =
                                 DependencyProperty.Register("MinValue",

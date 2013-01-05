@@ -56,7 +56,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 1200;
 
-            this.Height = this.IsEditable ? 325 : 250;
+            this.Height = this.IsEditable ? 325 : 275;
           
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 

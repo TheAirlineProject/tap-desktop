@@ -35,8 +35,11 @@
                 </TextBlock>
                 <TextBlock Text="{Binding Airliner.Type.Name}" Width="150"  VerticalAlignment="Bottom"></TextBlock>
                 <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="50" Visibility="{Binding HasRoute,Converter={StaticResource booleanToVisibility}}"></TextBlock>
-                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnStartFlight_Click" Background="Transparent" Visibility="{Binding Converter={StaticResource startFlightBooleanToVisibility}}">
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnStartFlight_Click" Background="Transparent" Visibility="{Binding Converter={StaticResource startFlightBooleanToVisibility},ConverterParameter='start'}">
                     <Image Source="/Data/images/start.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                  </Button>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnStopFlight_Click" Background="Transparent" Visibility="{Binding Converter={StaticResource startFlightBooleanToVisibility},ConverterParameter='stop'}">
+                    <Image Source="/Data/images/stop.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
             </WrapPanel>
             </DataTemplate>

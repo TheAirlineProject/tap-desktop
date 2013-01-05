@@ -331,7 +331,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                 }
             }
         }
+        private void btnStopFlight_Click(object sender, RoutedEventArgs e)
+        {
+            FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
 
+            airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+
+            showFleet();
+           
+        }
         private void btnStartFlight_Click(object sender, RoutedEventArgs e)
         {
             FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
@@ -380,13 +388,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
 
+
             FleetAirliner airliner = (FleetAirliner)value;
 
-            if (airliner.HasRoute && airliner.Status == FleetAirliner.AirlinerStatus.Stopped)
-                return Visibility.Visible;
-            else
-                return Visibility.Collapsed;
+            if (parameter.ToString() == "start")
+            {
+                if (airliner.HasRoute && airliner.Status == FleetAirliner.AirlinerStatus.Stopped)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
 
+            if (parameter.ToString() == "stop")
+            {
+                if (airliner.HasRoute && airliner.Status != FleetAirliner.AirlinerStatus.Stopped)
+                    return Visibility.Visible;
+                else
+                    return Visibility.Collapsed;
+            }
+
+            return Visibility.Collapsed;
 
         }
 
