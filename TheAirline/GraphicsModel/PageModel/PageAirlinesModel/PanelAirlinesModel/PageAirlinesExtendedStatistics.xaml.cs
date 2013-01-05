@@ -17,6 +17,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel
 {
@@ -83,18 +84,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             if (this.View == ViewType.Fleet)
             {
-                panelStats.Children.Add(createStatisticsPanel("getFleetSize", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1003"), false));
-                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1004"), false));
+                panelStats.Children.Add(createStatisticsPanel("getFleetSize", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1003"), false,false));
+                panelStats.Children.Add(createStatisticsPanel("getAverageFleetAge", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1004"), false,false));
             }
             else if (this.View == ViewType.Financial)
             {
-                panelStats.Children.Add(createStatisticsPanel("getProfit", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1005"), true));
-                panelStats.Children.Add(createStatisticsPanel("getValue", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1006"), true));
+                panelStats.Children.Add(createStatisticsPanel("getProfit", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1005"), true,false));
+                panelStats.Children.Add(createStatisticsPanel("getValue", Translator.GetInstance().GetString("PanelAirlinesExtendedStatistics", "1006"), true,true));
             }
 
         }
         //creates the airlines statistics
-        private StackPanel createStatisticsPanel(string methodName, string name, Boolean financial)
+        private StackPanel createStatisticsPanel(string methodName, string name, Boolean financial, Boolean thousands)
         {
             StackPanel panelStatistics = new StackPanel();
             panelStatistics.Margin = new Thickness(0, 0, 0, 5);
@@ -112,14 +113,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
 
             // chs, 2011-22-10 changed so financial statistics are shown in currency
-            if (financial)
+            if (financial && !thousands)
                 lbStatistics.ItemTemplate = this.Resources["AirlineFinancialStatItem"] as DataTemplate;
+            else if (financial && thousands)
+                lbStatistics.ItemTemplate = this.Resources["AirlineThousandsStatItem"] as DataTemplate;
             else
                 lbStatistics.ItemTemplate = this.Resources["AirlineStatItem"] as DataTemplate;
 
 
             double maxValue = getMaxValue(methodName);
 
+     
             double coff = this.StatWidth / maxValue;
 
             List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary);
@@ -132,10 +136,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 long value = Convert.ToInt64(method.Invoke(airline, null));
 
                 lbStatistics.Items.Add(new AirlineStatisticsItem(airline, (int)value, Math.Max(1, (int)Convert.ToDouble(value * coff))));
-
+               
                 foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
                 {
                     long sValue = Convert.ToInt64(method.Invoke(sAirline, null));
+
                     lbStatistics.Items.Add(new AirlineStatisticsItem(sAirline, (int)sValue, Math.Max(1, (int)Convert.ToDouble(sValue * coff))));
                 }
 
@@ -162,7 +167,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             }
 
-            return value;
+           return value;
         }
         private void PageAirlinesStatistics_OnTimeChanged()
         {
@@ -178,6 +183,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
 
         }
+       
         private class AirlineStatisticsItem
         {
             public Airline Airline { get; set; }
@@ -189,6 +195,39 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
                 this.Value = value;
                 this.Width = Width;
             }
+        }
+    }
+    public class FinancialThousandConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            int amount = (int)value;
+
+            CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+
+            if (currency == null)
+            {
+                return string.Format("{0:C}", value);
+            }
+
+            else
+            {
+                string sFormat = Translator.GetInstance().GetString("General", "2000");
+                
+                double v = amount * currency.Rate;
+
+                if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                    return string.Format("{0:#,0.##} {2} {1}", v, currency.CurrencySymbol, sFormat);
+                else
+                    return string.Format("{1}{0:#,0.##} {2}", v, currency.CurrencySymbol, sFormat);
+
+            }
+              
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

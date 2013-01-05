@@ -62,9 +62,9 @@ namespace TheAirline.GraphicsModel.Converters
                 {
                     if (Settings.GetInstance().CurrencyShorten)
                     {
-                        if (v > 1000000000)
+                        if (v >= 1000000000 || v <= -1000000000)
                             return string.Format("{0:C} {1}", v / 1000000000, Translator.GetInstance().GetString("General", "2001"));
-                        if (v > 1000000)
+                        if (v >= 1000000 || v<= -1000000)
                             return string.Format("{0:C} {1}", v / 1000000, Translator.GetInstance().GetString("General", "2000"));
                         return string.Format("{0:C}", value);
                     }
@@ -77,12 +77,12 @@ namespace TheAirline.GraphicsModel.Converters
 
                     if (Settings.GetInstance().CurrencyShorten)
                     {
-                        if (currencyValue > 1000000)
+                        if (currencyValue >= 1000000 || currencyValue <= -1000000 )
                         {
                             double sValue = currencyValue / 1000000;
                             string sFormat = Translator.GetInstance().GetString("General", "2000");
-                            
-                            if (currencyValue > 1000000000)
+
+                            if (currencyValue >= 1000000000 || currencyValue <= -1000000000)
                             {
                                 sValue = currencyValue / 1000000000;
                                 sFormat = Translator.GetInstance().GetString("General", "2001");

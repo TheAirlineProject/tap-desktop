@@ -240,7 +240,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (AirlineAirportFacility facility in humanAirportFacilities)
             {
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at [LI airport={1}] is now finished building", facility.Facility.Name, facility.Airport.Profile.IATACode)));
-
+                facility.FinishedDate = GameObject.GetInstance().GameTime;
             }
             //checks for changed flight restrictions
             foreach (FlightRestriction restriction in FlightRestrictions.GetRestrictions().FindAll(r => r.StartDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString() || r.EndDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()))

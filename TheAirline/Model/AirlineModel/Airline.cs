@@ -303,7 +303,8 @@ namespace TheAirline.Model.AirlineModel
             var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
             foreach (SubsidiaryAirline subAirline in subs)
                 value += subAirline.getValue();
-            
+
+            value = value / 1000000;
             return Convert.ToInt64(value);
            
         }
@@ -311,18 +312,18 @@ namespace TheAirline.Model.AirlineModel
         //returns the "value" of the airline
         public AirlineValue getAirlineValue()
         {
-            double value = getValue();
-            double startMoney = this.StartMoney;
+            double value =GeneralHelpers.GetInflationPrice(getValue() * 1000000);
+            double startMoney = GeneralHelpers.GetInflationPrice(this.StartMoney);
             
-            if (value <= GeneralHelpers.GetInflationPrice(startMoney))
+            if (value <= startMoney)
                 return AirlineValue.Very_low;
-            if (value > GeneralHelpers.GetInflationPrice(startMoney) && value < GeneralHelpers.GetInflationPrice(startMoney) * 3)
+            if (value > startMoney && value < startMoney * 3)
                 return AirlineValue.Low;
-            if (value >= GeneralHelpers.GetInflationPrice(startMoney) * 3 && value < GeneralHelpers.GetInflationPrice(startMoney) * 9)
+            if (value >= startMoney * 3 && value < startMoney * 9)
                 return AirlineValue.Normal;
-            if (value >= GeneralHelpers.GetInflationPrice(startMoney) * 9 && value < GeneralHelpers.GetInflationPrice(startMoney) * 18)
+            if (value >= startMoney * 9 && value < startMoney * 18)
                 return AirlineValue.High;
-            if (value >= GeneralHelpers.GetInflationPrice(startMoney) * 18)
+            if (value >=startMoney * 18)
                 return AirlineValue.Very_high;
 
             return AirlineValue.Normal;

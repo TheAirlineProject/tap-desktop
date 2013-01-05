@@ -176,7 +176,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
         //creates the panel for purchasing an airline
         private StackPanel createPurchaseAirlinePanel()
         {
-            double buyingPrice = this.Airline.getValue() * 1.10;
+            double buyingPrice = this.Airline.getValue()* 1000000 * 1.10;
             StackPanel purchasePanel = new StackPanel();
             purchasePanel.Margin = new Thickness(5, 10, 10, 10);
 
@@ -233,7 +233,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             }
             // chs, 2011-13-10 added value in $ of an airline to the value text
          //   TextBlock txtValue = UICreator.CreateTextBlock(string.Format(" ({0})", string.Format("{0:c}", this.Airline.getValue())));
-            TextBlock txtValue = UICreator.CreateTextBlock(string.Format(" ({0})", new ValueCurrencyConverter().Convert(this.Airline.getValue()).ToString()));
+            TextBlock txtValue = UICreator.CreateTextBlock(string.Format(" ({0})", new ValueCurrencyConverter().Convert(this.Airline.getValue()  *1000000).ToString()));
          
             txtValue.FontStyle = FontStyles.Italic;
             panelValue.Children.Add(txtValue);
@@ -330,7 +330,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
         }
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
-            double buyingPrice = this.Airline.getValue() * 1.10;
+            double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2113"), string.Format(Translator.GetInstance().GetString("MessageBox", "2113", "message"), this.Airline.Profile.Name,buyingPrice), WPFMessageBoxButtons.YesNo);
 

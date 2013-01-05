@@ -5,10 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
        xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
+      xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlinesExtendedStatistics">
     <Page.Resources>
+        <local:FinancialThousandConverter x:Key="financialThousandConverter"></local:FinancialThousandConverter>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
         <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
@@ -26,8 +28,21 @@
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Value, StringFormat={}{0:N0}}" Margin="5 0 0 0"></TextBlock>
             </WrapPanel>
         </DataTemplate>
-        
-        <DataTemplate x:Key="AirlineFinancialStatItem">
+        <DataTemplate x:Key="AirlineThousandsStatItem">
+            <WrapPanel>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Airline}" Click="LnkAirline_Click">
+                        <Run Text="{Binding Airline.Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+
+                <Rectangle Width="{Binding Width}"  Fill="{Binding Airline,Converter={StaticResource airlineBrushConverter}}" Height="10" Margin="0 2 0 2">
+
+                </Rectangle>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Value,Converter={StaticResource financialThousandConverter}, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}"  Foreground="{Binding Value,Converter={StaticResource valueIsMinusConverter}}" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+         <DataTemplate x:Key="AirlineFinancialStatItem">
             <WrapPanel>
                 <TextBlock Width="150" VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding Airline}" Click="LnkAirline_Click">
