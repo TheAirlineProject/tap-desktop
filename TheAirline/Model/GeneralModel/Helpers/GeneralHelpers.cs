@@ -235,13 +235,14 @@ namespace TheAirline.Model.GeneralModel
             
           
             Pilot.PilotRating instructorRanking = student.Instructor.Rating;
+            int aircraftCoeff = student.Instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5) ? 10 : 0;
 
             int instructorRankingIndex = Array.IndexOf(Enum.GetValues(typeof(Pilot.PilotRating)), instructorRanking);
             Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
             rankings.Add(instructorRanking, 50);
 
-            if (instructorRankingIndex > 0) rankings.Add((Pilot.PilotRating)instructorRankingIndex - 1, 35);
-            if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1) rankings.Add((Pilot.PilotRating)instructorRankingIndex + 1, 15);
+            if (instructorRankingIndex > 0) rankings.Add((Pilot.PilotRating)instructorRankingIndex - 1, 35-aircraftCoeff);
+            if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1) rankings.Add((Pilot.PilotRating)instructorRankingIndex + 1, 15+aircraftCoeff);
 
             return AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
         }

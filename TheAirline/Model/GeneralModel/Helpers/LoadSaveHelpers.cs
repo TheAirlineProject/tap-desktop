@@ -331,6 +331,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     FlightSchool fs = Airlines.GetAllAirlines().SelectMany(a => a.FlightSchools).Where(f => f.ID == id).FirstOrDefault();
                     instructor.FlightSchool = fs;
+                    fs.addInstructor(instructor);
                 }
 
                 XmlNodeList studentsList = instructorNode.SelectNodes("students/student");
@@ -367,7 +368,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (pilotNode.Attributes["airline"].Value != "-")
                 {
                     Airline pilotAirline = Airlines.GetAirline(pilotNode.Attributes["airline"].Value);
-                    DateTime airlinesigneddate = DateTime.Parse(pilotNode.Attributes["airlinesigneddate"].Value, new CultureInfo("de-DE", false));
+                    DateTime airlinesigneddate = DateTime.Parse(pilotNode.Attributes["airlinesigned"].Value, new CultureInfo("de-DE", false));
 
                     pilot.Airline = pilotAirline;
                     pilot.AirlineSignedDate = airlinesigneddate;

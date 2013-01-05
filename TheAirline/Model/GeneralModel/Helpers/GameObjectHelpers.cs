@@ -638,7 +638,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (Instructor instructor in airline.FlightSchools.SelectMany(f => f.Instructors))
                 {
-                    double salary = ((int)instructor.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Instructors Base Salary"));
+                    double salary = ((int)instructor.Rating) * GameObject.GetInstance().HumanAirline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
 
                 }
