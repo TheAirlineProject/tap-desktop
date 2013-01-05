@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.PilotModel
 {
@@ -11,17 +12,19 @@ namespace TheAirline.Model.PilotModel
         public const int MaxNumberOfStudentsPerInstructor = 2;
         public const int MaxNumberOfInstructors = 15;
         public string Name { get; set; }
+        public Airport Airport { get; set; }
         public string ID { get; set; }
         public int NumberOfInstructors { get { return this.Instructors.Count; } set { ;} }
         public int NumberOfStudents { get { return this.Students.Count; } set { ;} }
         public List<PilotStudent> Students { get; set; }
         public List<Instructor> Instructors { get; set; }
         public List<TrainingAircraft> TrainingAircrafts { get; set; }
-        public FlightSchool(string name)
+        public FlightSchool(Airport airport)
         {
             Guid id = Guid.NewGuid();
 
-            this.Name = name;
+            this.Airport = airport;
+            this.Name = string.Format("Flight School {0}", this.Airport.Profile.Town.Name);
             this.Students = new List<PilotStudent>();
             this.Instructors = new List<Instructor>();
             this.TrainingAircrafts = new List<TrainingAircraft>();

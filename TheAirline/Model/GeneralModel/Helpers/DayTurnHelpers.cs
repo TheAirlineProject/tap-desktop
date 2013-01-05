@@ -9,6 +9,9 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Threading.Tasks;
+using System.Diagnostics;
+using System.IO;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -19,12 +22,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates all flight for an airline for the current day
         public static void SimulateAirlineFlights(Airline airline)
         {
-            foreach (FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped))
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+            //foreach (FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped))
+            Parallel.ForEach(airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped), airliner =>
             {
                 if (airliner.CurrentFlight != null)
                     SimulateLanding(airliner);
 
-                var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e=>e.Airliner == airliner).OrderBy(e=>e.Time);
+                var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner).OrderBy(e => e.Time);
 
                 if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
                 {
@@ -32,9 +38,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         SimulateFlight(entry);
                     CheckForService(airliner);
                 }
-               
+
+            });
+            sw.Stop();
+            /*
+            using (StreamWriter w = File.AppendText("c:\\bbm\\log.txt"))
+            {
+                
+                w.WriteLine("{0} - {1}: Airliners: {2} Time: {3} ms.", GameObject.GetInstance().GameTime.ToShortDateString(),airline.Profile.Name, airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped).Count, sw.ElapsedMilliseconds);
+ 
             }
-        }
+             * */
+
+              }
         //simulates a flight
         private static void SimulateFlight(RouteTimeTableEntry entry)
         {

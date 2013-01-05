@@ -723,9 +723,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (XmlElement flightschoolNode in flightschoolsList)
             {
                 string fsID = flightschoolNode.Attributes["id"].Value;
-                string fsName = flightschoolNode.Attributes["name"].Value;
+                Airport fsAirport = Airports.GetAirportFromID(flightschoolNode.Attributes["airport"].Value);
 
-                FlightSchool fs = new FlightSchool(fsName);
+                FlightSchool fs = new FlightSchool(fsAirport);
                 fs.ID = fsID;
 
                 XmlNodeList aircraftsList = flightschoolNode.SelectNodes("trainingaircrafts/trainingaircraft");
@@ -1187,7 +1187,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement flightSchoolNode = xmlDoc.CreateElement("flightschool");
                     flightSchoolNode.SetAttribute("id", fs.ID);
-                    flightSchoolNode.SetAttribute("name", fs.Name);
+                    flightSchoolNode.SetAttribute("airport", fs.Airport.Profile.ID);
 
                     XmlElement trainingAircraftsNode = xmlDoc.CreateElement("trainingaircrafts");
                     foreach (TrainingAircraft aircraft in fs.TrainingAircrafts)

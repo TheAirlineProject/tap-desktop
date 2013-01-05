@@ -17,6 +17,8 @@ using TheAirline.Model.PilotModel;
 using TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.AirportModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
 {
@@ -27,6 +29,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
     {
         private ListBox lbPilots, lbFlightSchools, lbInstructors;
         private Frame panelSideMenu;
+        private Button btnBuild;
         public PagePilots()
         {
             InitializeComponent();
@@ -59,7 +62,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             lbPilots = new ListBox();
             lbPilots.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPilots.ItemTemplate = this.Resources["PilotItem"] as DataTemplate;
-            lbPilots.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbPilots.MaxHeight = (GraphicsHelpers.GetContentHeight() - 200) / 3;
 
             pilotsPanel.Children.Add(lbPilots);
 
@@ -83,7 +86,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             lbInstructors = new ListBox();
             lbInstructors.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbInstructors.ItemTemplate = this.Resources["InstructorItem"] as DataTemplate;
-            lbInstructors.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbInstructors.MaxHeight = (GraphicsHelpers.GetContentHeight() - 200) / 3;
 
             pilotsPanel.Children.Add(lbInstructors);
 
@@ -106,14 +109,14 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             lbFlightSchools = new ListBox();
             lbFlightSchools.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFlightSchools.ItemTemplate = this.Resources["FlightSchoolItem"] as DataTemplate;
-            lbFlightSchools.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
+            lbFlightSchools.MaxHeight = (GraphicsHelpers.GetContentHeight() - 200) / 3;
 
             pilotsPanel.Children.Add(lbFlightSchools);
 
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
-            Button btnBuild = new Button();
+            btnBuild = new Button();
             btnBuild.Uid = "200";
             btnBuild.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnBuild.Height = Double.NaN;
@@ -122,7 +125,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
             btnBuild.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnBuild.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnBuild.Click += new RoutedEventHandler(btnBuild_Click);
-
+           
             buttonsPanel.Children.Add(btnBuild);
 
             pilotsPanel.Children.Add(buttonsPanel);
@@ -149,17 +152,39 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
         {
             double price = GeneralHelpers.GetInflationPrice(267050);
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2803"), string.Format(Translator.GetInstance().GetString("MessageBox", "2803", "message"), price), WPFMessageBoxButtons.YesNo);
-            if (result == WPFMessageBoxResult.Yes)
+            ComboBox cbAirport = new ComboBox();
+            cbAirport.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAirport.Width = 200;
+            cbAirport.SelectedValuePath = "Profile.Town.Name";
+            cbAirport.DisplayMemberPath = "Profile.Town.Name";
+            cbAirport.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+            List<Airport> homeAirports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            homeAirports.AddRange(GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a.IsHub)); //hubs
+            homeAirports = homeAirports.Distinct().ToList();
+
+
+            foreach (Airport airport in homeAirports)
             {
-                int nextNumber = GameObject.GetInstance().HumanAirline.FlightSchools.Count > 0 ? GameObject.GetInstance().HumanAirline.FlightSchools.Max(f => Convert.ToInt32(f.Name.Substring(f.Name.Length - 1))) : 0;
-                FlightSchool fs = new FlightSchool(string.Format("Flight School {0}",nextNumber+1));
+                if (GameObject.GetInstance().HumanAirline.FlightSchools.Find(f => f.Airport == airport) == null)
+                    cbAirport.Items.Add(airport);
+            }
+
+            cbAirport.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PagePilots", "1004"), cbAirport) == PopUpSingleElement.ButtonSelected.OK && cbAirport.SelectedItem != null)
+            {
+                Airport airport = (Airport)cbAirport.SelectedItem;
+
+                FlightSchool fs = new FlightSchool(airport);
 
                 GameObject.GetInstance().HumanAirline.addFlightSchool(fs);
 
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -price);
 
                 showFlightSchools();
+
+           
             }
         }
         //shwos the list of instructors
