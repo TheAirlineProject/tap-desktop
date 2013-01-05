@@ -26,7 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private TextBlock txtGameSpeed;
         private ComboBox cbLanguage;
         private ComboBox cbTurnMinutes;
-        private CheckBox cbMailOnLandings, cbMailOnBadWeather;
+        private CheckBox cbMailOnLandings, cbMailOnBadWeather, cbShortenCurrency;
         private RadioButton[] rbAirportCodes;
         public PageSettings()
         {
@@ -61,9 +61,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
            
             slGameSpeed.ValueChanged += new RoutedPropertyChangedEventHandler<double>(slGameSpeed_ValueChanged);
-
-           
-
 
             panelSpeed.Children.Add(slGameSpeed);
             
@@ -124,6 +121,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbMailOnBadWeather = new CheckBox();
             cbMailOnBadWeather.IsChecked = Settings.GetInstance().MailsOnBadWeather;
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1007"),cbMailOnBadWeather));
+
+            cbShortenCurrency = new CheckBox();
+            cbShortenCurrency.IsChecked = Settings.GetInstance().CurrencyShorten;
+            lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1008"), cbShortenCurrency));
 
             rbAirportCodes = new RadioButton[Enum.GetValues(typeof(Settings.AirportCode)).Length];
 
@@ -194,6 +195,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
             cbMailOnBadWeather.IsChecked = Settings.GetInstance().MailsOnBadWeather;
             cbTurnMinutes.SelectedItem = Settings.GetInstance().MinutesPerTurn;
+            cbShortenCurrency.IsChecked = Settings.GetInstance().CurrencyShorten;
             
         }
 
@@ -211,7 +213,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;
             Settings.GetInstance().MailsOnBadWeather = cbMailOnBadWeather.IsChecked.Value;
             Settings.GetInstance().MinutesPerTurn = (int)cbTurnMinutes.SelectedItem;
-
+            Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
            
 
             foreach (RadioButton rbAirportCode in rbAirportCodes)
