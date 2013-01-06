@@ -281,7 +281,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameObjectWorker.GetInstance().start();
            
         }
-
+        private void lnkCredits_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageCredits());
+        }
         private void lnkPerformance_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PagePerformance());

@@ -100,6 +100,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageCredits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\GeneralModel\PageNewsBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -435,6 +439,9 @@
       <DependentUpon>PageCalendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageContent.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageCredits.xaml.cs">
+      <DependentUpon>PageCredits.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageHeader.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageNavigator.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageNewsBox.xaml.cs">

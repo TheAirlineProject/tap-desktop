@@ -61,6 +61,9 @@
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageSettings}" Style="{DynamicResource MenuItemStyle}" Click="lnkSettings_Click"></MenuItem>
                 <MenuItem Header="Performance counters" Visibility="{Binding Converter={StaticResource menuEnabledConverter},ConverterParameter=Performance}" Style="{DynamicResource MenuItemStyle}" Click="lnkPerformance_Click"></MenuItem>
                 <Separator></Separator>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageCredits}" Style="{DynamicResource MenuItemStyle}" Click="lnkCredits_Click"></MenuItem>
+
+                <Separator></Separator>
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuExitGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkExit_Click"></MenuItem>
             </MenuItem>
                
