@@ -26,7 +26,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpAutogenerateRoute : PopUpWindow
     {
         private FleetAirliner Airliner;
-        private ComboBox cbRoute, cbFlightsPerDay, cbFlightCode;
+        private ComboBox cbRoute, cbFlightsPerDay, cbFlightCode, cbRegion;
 
         public static object ShowPopUp(FleetAirliner airliner)
         {
@@ -43,7 +43,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Title = "Time table for " + this.Airliner.Name;
 
-            this.Width = 400;
+            this.Width = 500;
 
             this.Height = 125;
 
@@ -96,6 +96,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             WrapPanel autogeneratePanel = new WrapPanel();
 
+            cbRegion = new ComboBox();
+            cbRegion.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbRegion.Width = 150;
+            cbRegion.DisplayMemberPath = "Name";
+            cbRegion.SelectedValuePath = "Name";
+            cbRegion.SelectionChanged += cbRegion_SelectionChanged;
+            cbRegion.Items.Add(Regions.GetRegion("100"));
+
+            List<Region> regions = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1.Profile.Country.Region == r.Destination2.Profile.Country.Region).Select(r => r.Destination1.Profile.Country.Region).ToList();
+            regions.AddRange(GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Select(r => r.Destination2.Profile.Country.Region));
+            regions.AddRange(GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination2.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Select(r => r.Destination1.Profile.Country.Region));
+  
+            
+            foreach (Region region in regions.Distinct())
+                cbRegion.Items.Add(region);
+
+             autogeneratePanel.Children.Add(cbRegion);
+
             cbRoute = new ComboBox();
             cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbAutoRoute_SelectionChanged);
@@ -129,11 +147,40 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbFlightsPerDay = new ComboBox();
             cbFlightsPerDay.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
 
-            cbRoute.SelectedIndex = 0;
+            //cbRoute.SelectedIndex = 0;
 
             autogeneratePanel.Children.Add(cbFlightsPerDay);
+
+            cbRegion.SelectedIndex = 0;
+
             return autogeneratePanel;
 
+
+        }
+
+        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+
+            Region region = (Region)cbRegion.SelectedItem;
+
+            cbRoute.Items.Clear();
+
+            if (region.Uid == "100")
+            {
+                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway))
+                {
+                    cbRoute.Items.Add(route);
+                }
+            }
+            else
+            {
+                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && ((r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region)));
+
+                foreach (Route route in routes)
+                    cbRoute.Items.Add(route);
+            }
+            cbRoute.SelectedIndex = 0;
 
         }
         private void cbAutoRoute_SelectionChanged(object sender, SelectionChangedEventArgs e)

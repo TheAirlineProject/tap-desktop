@@ -29,7 +29,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpAirlinerRoutes : PopUpWindow
     {
         private FleetAirliner Airliner;
-        private ComboBox cbHour, cbMinute, cbRoute, cbDay, cbFlightCode;
+        private ComboBox cbHour, cbMinute, cbRoute, cbDay, cbFlightCode, cbRegion;
         private TextBlock txtFlightTime;
         private ListBox lbFlights;
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
@@ -267,6 +267,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             newEntryPanel.Children.Add(entryPanel);
 
+            cbRegion = new ComboBox();
+            cbRegion.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbRegion.Width = 150;
+            cbRegion.DisplayMemberPath = "Name";
+            cbRegion.SelectedValuePath = "Name";
+            cbRegion.SelectionChanged += cbRegion_SelectionChanged;
+            cbRegion.Items.Add(Regions.GetRegion("100"));
+
+            List<Region> regions = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1.Profile.Country.Region == r.Destination2.Profile.Country.Region).Select(r => r.Destination1.Profile.Country.Region).ToList();
+            regions.AddRange(GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Select(r => r.Destination2.Profile.Country.Region));
+            regions.AddRange(GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination2.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Select(r => r.Destination1.Profile.Country.Region));
+  
+            foreach (Region region in regions.Distinct())
+                cbRegion.Items.Add(region);
+
+            entryPanel.Children.Add(cbRegion);
+
             cbRoute = new ComboBox();
 
             cbRoute.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
@@ -359,7 +376,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             newEntryPanel.Children.Add(txtFlightTime);
 
-            cbRoute.SelectedIndex = 0;
+            //cbRoute.SelectedIndex = 0;
+            cbRegion.SelectedIndex = 0;
 
             return newEntryPanel;
         }
@@ -659,6 +677,49 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             }
         }
+        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+
+            Region region = (Region)cbRegion.SelectedItem;
+
+            cbRoute.Items.Clear();
+
+            if (region.Uid == "100")
+            {
+                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway))
+                {
+                    ComboBoxItem item1 = new ComboBoxItem();
+                    item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
+                    item1.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+                    cbRoute.Items.Add(item1);
+
+                    ComboBoxItem item2 = new ComboBoxItem();
+                    item2.Tag = new KeyValuePair<Route, Airport>(route, route.Destination1);
+                    item2.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
+                    cbRoute.Items.Add(item2);
+                }
+            }
+            else
+            {
+                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && ((r.Destination1.Profile.Country.Region == region && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region)));
+
+                foreach (Route route in routes)
+                {
+                    ComboBoxItem item1 = new ComboBoxItem();
+                    item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
+                    item1.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+                    cbRoute.Items.Add(item1);
+
+                    ComboBoxItem item2 = new ComboBoxItem();
+                    item2.Tag = new KeyValuePair<Route, Airport>(route, route.Destination1);
+                    item2.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
+                    cbRoute.Items.Add(item2);
+                }
+            }
+            cbRoute.SelectedIndex = 0;
+
+        }
         private void btnAutoGenerate_Click(object sender, RoutedEventArgs e)
         {
            
@@ -775,42 +836,44 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             ComboBoxItem item = (ComboBoxItem)cbRoute.SelectedItem;
 
-            Route route = ((KeyValuePair<Route, Airport>)item.Tag).Key;
-
-            Airport airport = ((KeyValuePair<Route, Airport>)item.Tag).Value;
-
-            TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
-
-            txtFlightTime.Text = string.Format("Flight time: {0:hh\\:mm}", flightTime);
-
-            cbFlightCode.Items.Clear();
-
-            List<string> codes = new List<string>(this.Airliner.Airliner.Airline.getFlightCodes());
-            codes.AddRange((from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct());
-
-            foreach (string eEntry in (from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct())
-                codes.Remove(eEntry);
-
-            foreach (string flightCode in codes)
-                cbFlightCode.Items.Add(flightCode);
-
-            string tFlightCode = null;
-
-            if (route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner) != null)
-                tFlightCode = route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner).Destination.FlightCode;
-            else if (this.Entries.ContainsKey(route) && this.Entries[route].Find(entry => entry.Destination.Airport == airport) != null)
-                tFlightCode = this.Entries[route].Find(entry => entry.Destination.Airport == airport).Destination.FlightCode;
-
-            if (tFlightCode != null)
+            if (item != null)
             {
-                cbFlightCode.Items.Add(tFlightCode);
-                cbFlightCode.SelectedItem = tFlightCode;
+                Route route = ((KeyValuePair<Route, Airport>)item.Tag).Key;
+
+                Airport airport = ((KeyValuePair<Route, Airport>)item.Tag).Value;
+
+                TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
+
+                txtFlightTime.Text = string.Format("Flight time: {0:hh\\:mm}", flightTime);
+
+                cbFlightCode.Items.Clear();
+
+                List<string> codes = new List<string>(this.Airliner.Airliner.Airline.getFlightCodes());
+                codes.AddRange((from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct());
+
+                foreach (string eEntry in (from entry in this.Entries.Keys.SelectMany(r => this.Entries[r]) select entry.Destination.FlightCode).Distinct())
+                    codes.Remove(eEntry);
+
+                foreach (string flightCode in codes)
+                    cbFlightCode.Items.Add(flightCode);
+
+                string tFlightCode = null;
+
+                if (route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner) != null)
+                    tFlightCode = route.TimeTable.Entries.Find(entry => entry.Destination.Airport == airport && entry.Airliner == Airliner).Destination.FlightCode;
+                else if (this.Entries.ContainsKey(route) && this.Entries[route].Find(entry => entry.Destination.Airport == airport) != null)
+                    tFlightCode = this.Entries[route].Find(entry => entry.Destination.Airport == airport).Destination.FlightCode;
+
+                if (tFlightCode != null)
+                {
+                    cbFlightCode.Items.Add(tFlightCode);
+                    cbFlightCode.SelectedItem = tFlightCode;
+                }
+                else
+                    cbFlightCode.SelectedIndex = 0;
+
+
             }
-            else
-                cbFlightCode.SelectedIndex = 0;
-
-
-
         }
 
         private void txtFlightEntry_MouseDown(object sender, MouseButtonEventArgs e)
