@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.Converters;
 using System.Globalization;
 using TheAirline.Model.GeneralModel.Helpers;
+using Xceed.Wpf.Toolkit;
 using System.Threading.Tasks;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
@@ -28,8 +29,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpAirlinerRoutes : PopUpWindow
     {
+        private TimePicker tpTime;
         private FleetAirliner Airliner;
-        private ComboBox cbHour, cbMinute, cbRoute, cbDay, cbFlightCode, cbRegion;
+        private ComboBox cbRoute, cbDay, cbFlightCode, cbRegion;
         private TextBlock txtFlightTime;
         private ListBox lbFlights;
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
@@ -321,32 +323,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             entryPanel.Children.Add(cbDay);
 
-            cbHour = new ComboBox();
-            cbHour.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbHour.ItemTemplate = this.Resources["HourItem"] as DataTemplate;//ItemStringFormat = "{0:D2}";
-            cbHour.Margin = new Thickness(5, 0, 0, 0);
 
-            for (int i = 0; i < 24; i++)
-                cbHour.Items.Add(i);
+            tpTime = new TimePicker();
+            tpTime.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            tpTime.EndTime = new TimeSpan(22, 0, 0);
+            tpTime.StartTime = new TimeSpan(6, 0, 0);
+            tpTime.Value = new DateTime(2011, 1, 1, 13, 0, 0);
+            tpTime.Format = TimeFormat.ShortTime;
+            tpTime.Background = Brushes.Transparent;
+            tpTime.SetResourceReference(TimePicker.ForegroundProperty, "TextColor");
+            tpTime.BorderBrush = Brushes.Black;
 
-            cbHour.SelectedIndex = 0;
+            entryPanel.Children.Add(tpTime);
 
-            entryPanel.Children.Add(cbHour);
-
-            entryPanel.Children.Add(UICreator.CreateTextBlock(":"));
-
-            cbMinute = new ComboBox();
-            cbMinute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbMinute.ItemStringFormat = "{0:D2}";
-
-
-            for (int i = 0; i < 60; i += 15)
-                cbMinute.Items.Add(i);
-
-            cbMinute.SelectedIndex = 0;
-
-            entryPanel.Children.Add(cbMinute);
-
+       
             cbFlightCode = new ComboBox();
             cbFlightCode.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
 
@@ -752,7 +742,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Airport airport = ((KeyValuePair<Route, Airport>)item.Tag).Value;
 
-            TimeSpan time = new TimeSpan((int)cbHour.SelectedItem, (int)cbMinute.SelectedItem, 0);
+            TimeSpan time = new TimeSpan(tpTime.Value.Value.Hour, tpTime.Value.Value.Minute, 0);
 
             string day = cbDay.SelectedItem.ToString();
 

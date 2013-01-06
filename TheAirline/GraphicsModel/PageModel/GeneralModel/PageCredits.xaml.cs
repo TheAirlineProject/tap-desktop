@@ -35,7 +35,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             RenderOptions.SetBitmapScalingMode(imgCredits, BitmapScalingMode.HighQuality);
             
 
-
             panelContent.Children.Add(imgCredits);
 
             //base.setTopMenu(new PageTopMenu());

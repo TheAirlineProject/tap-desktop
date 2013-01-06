@@ -11,9 +11,15 @@
         <window:FlightLocalTimeConverter x:Key="flightLocalTimeConverter"></window:FlightLocalTimeConverter>
         <c:TimeSpanConverter x:Key="timeSpanConverter"></c:TimeSpanConverter>
         <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
-        <DataTemplate x:Key="HourItem">
-            <TextBlock Text="{Binding Converter={StaticResource hourConverter}}" VerticalAlignment="Bottom"></TextBlock>
-        </DataTemplate>
+        <Style TargetType="{x:Type ToggleButton}">
+            <Setter Property="Background" Value="Transparent"></Setter>
+        </Style>
+        <Style TargetType="{x:Type ListBox}">
+
+            <Setter Property="Background" Value="{StaticResource HeaderBackgroundBrush2}" x:Name="PART_TimeListItems" />
+        </Style>
+
+      
         <DataTemplate x:Key="RouteItem">
             <TextBlock HorizontalAlignment="Left" TextAlignment="Center" Width="100" Height="20" Background="{Binding Converter={StaticResource routeColorConverter}}" VerticalAlignment="Bottom" FontWeight="Bold">
                      <TextBlock.Text>
