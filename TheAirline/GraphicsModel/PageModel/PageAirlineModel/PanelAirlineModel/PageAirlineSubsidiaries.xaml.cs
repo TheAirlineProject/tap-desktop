@@ -105,7 +105,31 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                
             }
         }
+        private void btnRelease_Click(object sender, RoutedEventArgs e)
+        {
+            SubsidiaryAirline airline = (SubsidiaryAirline)((Button)sender).Tag;
 
+            if (airline == GameObject.GetInstance().HumanAirline)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2112"), string.Format(Translator.GetInstance().GetString("MessageBox", "2112", "message"), airline.Profile.Name), WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2118"), string.Format(Translator.GetInstance().GetString("MessageBox", "2118", "message"), airline.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+
+                    AirlineHelpers.MakeSubsidiaryAirlineIndependent(airline);
+
+                    showSubsidiaries();
+
+                    this.PageParent.updatePage();
+
+                }
+            }
+        }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
             SubsidiaryAirline airline = (SubsidiaryAirline)((Button)sender).Tag;
@@ -123,7 +147,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 {
 
                     AirlineHelpers.CloseSubsidiaryAirline(airline);
-
+        
                     showSubsidiaries();
 
                     this.PageParent.updatePage();

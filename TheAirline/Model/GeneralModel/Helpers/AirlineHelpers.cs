@@ -137,6 +137,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return RouteFacilities.GetFacilities(type).FindAll(f => f.Requires == null || airline.Facilities.Contains(f.Requires));
         }
+        //launches a subsidiary to operate on its own
+        public static void MakeSubsidiaryAirlineIndependent(SubsidiaryAirline airline)
+        {
+            airline.Airline.removeSubsidiaryAirline(airline);
+
+            airline.Airline = null;
+
+            airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName());
+        }
         //closes a subsidiary airline for an airline
         public static void CloseSubsidiaryAirline(SubsidiaryAirline airline)
         {
@@ -172,7 +181,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airports[i].clearFacilities(airline);
 
-               // checkin facility + isHuman!!
+       
             }
 
   
