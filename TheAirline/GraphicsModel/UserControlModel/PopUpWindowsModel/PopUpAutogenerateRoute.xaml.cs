@@ -27,6 +27,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     {
         private FleetAirliner Airliner;
         private ComboBox cbRoute, cbFlightsPerDay, cbFlightCode, cbRegion;
+        private CheckBox cbBusinessRoute;
 
         public static object ShowPopUp(FleetAirliner airliner)
         {
@@ -151,6 +152,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             autogeneratePanel.Children.Add(cbFlightsPerDay);
 
+            cbBusinessRoute = new CheckBox();
+            cbBusinessRoute.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            cbBusinessRoute.Content = "Business route";
+
+            autogeneratePanel.Children.Add(cbBusinessRoute);
+
             cbRegion.SelectedIndex = 0;
 
             return autogeneratePanel;
@@ -204,6 +211,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 cbFlightsPerDay.SelectedIndex = 0;
 
+                double maxBusinessRouteTime = new TimeSpan(0, 0, 0).TotalMinutes;
+
+                cbBusinessRoute.Visibility = minFlightTime.TotalMinutes <= maxBusinessRouteTime ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+
+                if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
+                    cbBusinessRoute.IsChecked = false;
+
             }
 
 
@@ -223,10 +237,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             string flightcode1 = cbFlightCode.SelectedItem.ToString();
             string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1)+1];
-            
-           
+
+
             if (flightsPerDay > 0)
-                this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
+            {
+                if (cbBusinessRoute.IsChecked.Value)
+                    this.Selected = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner,flightsPerDay / 2,flightcode1,flightcode2);
+                else
+                    this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
+            }
             else
                 this.Selected = null;
             this.Close();
