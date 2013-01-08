@@ -263,7 +263,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners","1012"), txtClasses));
 
             Button btnEquipped = new Button();
-            btnEquipped.Uid = "200";
+            btnEquipped.Uid = "201";
             btnEquipped.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnEquipped.Height = Double.NaN;
             btnEquipped.Width = Double.NaN;
@@ -271,6 +271,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             btnEquipped.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnEquipped.Click += btnEquipped_Click;
             btnEquipped.Tag = type;
+            btnEquipped.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
             panelEquipped.Children.Add(btnEquipped);
 
