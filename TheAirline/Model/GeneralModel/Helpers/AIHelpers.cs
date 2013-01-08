@@ -559,7 +559,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                             airline.Fleet.Add(fAirliner);
 
-                            CreateAirlinerClasses(fAirliner);
+                            AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
 
                         }
@@ -1076,73 +1076,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
         }
-        //creates the airliner classes for an airliner
-        public static void CreateAirlinerClasses(FleetAirliner airliner)
-        {
-            if (airliner.Airliner.Type is AirlinerPassengerType)
-            {
-                airliner.Airliner.clearAirlinerClasses();
-
-                AirlinerConfiguration configuration = null;
-
-                int classes = ((AirlinerPassengerType)airliner.Airliner.Type).MaxAirlinerClasses;
-
-                if (classes == 1)
-                    configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
-                if (classes == 2)
-                    configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
-                if (classes == 3)
-                    configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
-
-                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
-                {
-                    AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
-                    airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
-
-                    foreach (AirlinerFacility facility in aClass.getFacilities())
-                        airlinerClass.setFacility(airliner.Airliner.Airline,facility);
-
-                    airliner.Airliner.addAirlinerClass(airlinerClass);
-                }
-
-                int seatingDiff = ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
-
-                airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
-
-                AirlinerFacility seatingFacility = airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
-
-                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
-
-                airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
-
-            }
-            else
-            {
-                AirlinerConfiguration configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
-
-                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
-                {
-                    AirlinerClass airlinerClass = new AirlinerClass( aClass.Type, aClass.SeatingCapacity);
-                    airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
-
-                    foreach (AirlinerFacility facility in aClass.getFacilities())
-                        airlinerClass.setFacility(airliner.Airliner.Airline, facility);
-
-                    airliner.Airliner.addAirlinerClass(airlinerClass);
-                }
-
-                int seatingDiff = ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
-
-                airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
-
-                AirlinerFacility seatingFacility = airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
-
-                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
-
-                airliner.Airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
-
-            }
-        }
+       
         //returns the prefered configuration for a spefic route
         public static RouteClassesConfiguration GetRouteConfiguration(Route route)
         {

@@ -75,43 +75,72 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return airliner;
         }
-        /*!creates some airliner classes for an airliner
-         * */
-        private static void CreateAirlinerClasses(Airliner airliner)
+        //creates the airliner classes for an airliner
+        public static void CreateAirlinerClasses(Airliner airliner)
         {
-            airliner.clearAirlinerClasses();
-
-            Dictionary<AirlinerClass.ClassType, double> seatingValues = new Dictionary<AirlinerClass.ClassType, double>();
-            seatingValues.Add(AirlinerClass.ClassType.Business_Class, 0.2);
-            seatingValues.Add(AirlinerClass.ClassType.First_Class, 0.1);
-           
-            int classes = rnd.Next(1, ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses);
-
-            for (int i = 0; i < classes; i++)
+            if (airliner.Type is AirlinerPassengerType)
             {
-               AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.ToObject(typeof(AirlinerClass.ClassType), i+1);
+                airliner.clearAirlinerClasses();
 
-               double maxSeating = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity;
-               
-                int seats;
+                AirlinerConfiguration configuration = null;
 
-               if (classType == AirlinerClass.ClassType.Economy_Class)
-               {
-                   seats = (int)maxSeating;
-               }
-               else
-               {
-                   seats = (int)(maxSeating * seatingValues[classType]);
-                   airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity -= seats;
-                   airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity -= seats;
-               }
+                int classes = ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses;
 
-               AirlinerClass aClass = new AirlinerClass(classType,seats);
-               aClass.createBasicFacilities(null);
-               airliner.Classes.Add(aClass);
+                if (classes == 1)
+                    configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
+                if (classes == 2)
+                    configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
+                if (classes == 3)
+                    configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
+
+                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
+                {
+                    AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
+                    airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+
+                    foreach (AirlinerFacility facility in aClass.getFacilities())
+                        airlinerClass.setFacility(airliner.Airline, facility);
+
+                    airliner.addAirlinerClass(airlinerClass);
+                }
+
+                int seatingDiff = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
+
+                airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
+
+                AirlinerFacility seatingFacility = airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+
+                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+
+                airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
+
             }
-          
+            else
+            {
+                AirlinerConfiguration configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
 
+                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
+                {
+                    AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
+                    airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+
+                    foreach (AirlinerFacility facility in aClass.getFacilities())
+                        airlinerClass.setFacility(airliner.Airline, facility);
+
+                    airliner.addAirlinerClass(airlinerClass);
+                }
+
+                int seatingDiff = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
+
+                airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
+
+                AirlinerFacility seatingFacility = airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
+
+                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+
+                airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
+
+            }
         }
 
     }

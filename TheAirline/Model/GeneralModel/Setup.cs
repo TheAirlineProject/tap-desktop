@@ -1520,9 +1520,9 @@ namespace TheAirline.Model.GeneralModel
                     fAirliner.addRoute(route);
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                     AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                    AIHelpers.CreateAirlinerClasses(fAirliner);
-
+                
+                    AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
+                                 
                     route.LastUpdated = GameObject.GetInstance().GameTime;
 
                     RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
@@ -1590,7 +1590,7 @@ namespace TheAirline.Model.GeneralModel
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                 AirlineHelpers.HireAirlinerPilots(fAirliner);
 
-                AIHelpers.CreateAirlinerClasses(fAirliner);
+                AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
@@ -1647,7 +1647,8 @@ namespace TheAirline.Model.GeneralModel
                         fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
                         AirlineHelpers.HireAirlinerPilots(fAirliner);
 
-                        AIHelpers.CreateAirlinerClasses(fAirliner);
+                        AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
+
                     }
                 }
 
@@ -1689,7 +1690,7 @@ namespace TheAirline.Model.GeneralModel
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                     AirlineHelpers.HireAirlinerPilots(fAirliner);
 
-                    AIHelpers.CreateAirlinerClasses(fAirliner);
+                    AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
                     route.LastUpdated = GameObject.GetInstance().GameTime;
 
