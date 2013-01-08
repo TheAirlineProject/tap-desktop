@@ -29,7 +29,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
     /// </summary>
     public partial class PageOrderAirliners : Page
     {
-        private TextBlock txtPrice, txtTotalPrice, txtDiscount, txtClasses;
+        private TextBlock txtPrice, txtTotalPrice, txtDiscount;
         private ListBox lbOrders;
         private ucNumericUpDown nudAirliners;
         private ComboBox cbTypes, cbAirport;
@@ -40,6 +40,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private Manufacturer Manufacturer;
         private PageAirliners ParentPage;
         private List<AirlinerClass> Classes;
+        private WrapPanel panelClasses;
+        private AirlinerType Type;
         public PageOrderAirliners(PageAirliners parent, Manufacturer manufacturer)
         {
             this.ParentPage = parent;
@@ -237,6 +239,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         //creates the panel for how the airline should be equipped
         private StackPanel createEquippedPanel(AirlinerType type)
         {
+            this.Type = type;
+
             StackPanel panelEquipped = new StackPanel();
             panelEquipped.Margin = new Thickness(0, 5, 0, 0);
 
@@ -253,14 +257,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             lbEquipped.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             panelEquipped.Children.Add(lbEquipped);
- 
-            this.Classes.Add(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity));
 
-            string classesName = string.Join(", ", from c in this.Classes select new TextUnderscoreConverter().Convert(c.Type, null, null, null).ToString());
+            AirlinerClass eClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity); 
+            eClass.createBasicFacilities(null);
+            this.Classes.Add(eClass);
 
-            txtClasses = UICreator.CreateTextBlock(classesName);
+            panelClasses = new WrapPanel();
 
-            lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners","1012"), txtClasses));
+            foreach (AirlinerClass aClass in this.Classes)
+            {
+                panelClasses.Children.Add(createAirlineClassLink(aClass));
+            }
+            lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1012"), panelClasses));
+
 
             Button btnEquipped = new Button();
             btnEquipped.Uid = "201";
@@ -317,13 +326,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             AirlinerType type = (AirlinerType)((Button)sender).Tag;
 
-            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(type);
+            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(type,this.Classes);
 
             if (classes != null)
             {
                 this.Classes = classes;
 
-                txtClasses.Text = string.Join(", ", from c in this.Classes select new TextUnderscoreConverter().Convert(c.Type, null, null, null).ToString());
+                panelClasses.Children.Clear();
+
+                foreach (AirlinerClass aClass in this.Classes)
+                {
+                    panelClasses.Children.Add(createAirlineClassLink(aClass));
+                }
             }
         }
 
@@ -525,6 +539,32 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             }
             this.ParentPage.updatePage();
         }
+        private void link_Click(object sender, RoutedEventArgs e)
+        {
+            AirlinerClass aClass = (AirlinerClass)((Hyperlink)sender).Tag;
+
+            AirlinerClass newClass =  (AirlinerClass)PopUpAirlinerClassConfiguration.ShowPopUp(aClass);
+
+            AirlinerClass eClass = this.Classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
+            if (newClass != null)
+            {
+
+                AirlinerClass airlinerClass = new AirlinerClass(newClass.Type, newClass.SeatingCapacity);
+                airlinerClass.RegularSeatingCapacity = newClass.RegularSeatingCapacity;
+
+                int seatingDiff = ((AirlinerPassengerType)this.Type).MaxSeatingCapacity;
+
+                eClass.RegularSeatingCapacity += seatingDiff;
+
+                AirlinerFacility seatingFacility = eClass.getFacility(AirlinerFacility.FacilityType.Seat);
+
+                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
+
+                eClass.SeatingCapacity += extraSeats;
+   
+            }
+           
+        }
         //adds a contract item
         private ComboBoxItem createLengthItem(int years)
         {
@@ -534,7 +574,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             return item;
         }
+        //creates a hyperlink for an airliner class
+        private TextBlock createAirlineClassLink(AirlinerClass aClass)
+        {
+            TextBlock txtLink = new TextBlock();
+            txtLink.Margin = new Thickness(0, 0, 20, 0);
 
+            Hyperlink link = new Hyperlink();
+            link.Tag = aClass;
+            link.Click += link_Click;
+            link.Inlines.Add(new TextUnderscoreConverter().Convert(aClass.Type).ToString());
+            txtLink.Inlines.Add(link);
+
+            return txtLink;
+
+            
+        }
+
+       
         private void cbTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             AirlinerType type = (AirlinerType)cbTypes.SelectedItem;

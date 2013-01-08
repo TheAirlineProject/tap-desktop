@@ -36,25 +36,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             return window.Selected;
         }
-          public static object ShowPopUp(AirlinerType airliner)
+          public static object ShowPopUp(AirlinerType airliner, List<AirlinerClass> classes)
         {
-            PopUpWindow window = new PopUpAirlinerConfiguration(airliner);
+            PopUpWindow window = new PopUpAirlinerConfiguration(airliner,classes);
             window.ShowDialog();
 
             return window.Selected;
         }
         
-        public PopUpAirlinerConfiguration(AirlinerType type)
+        public PopUpAirlinerConfiguration(AirlinerType type, List<AirlinerClass> classes)
         {
-            this.Classes = new List<AirlinerClass>();
-
-         
+            this.Classes = new List<AirlinerClass>(classes);
+            
             this.Type = type;
-
-            AirlinerClass aClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)this.Type).MaxSeatingCapacity);
-            aClass.createBasicFacilities(GameObject.GetInstance().HumanAirline);
-            this.Classes.Add(aClass);
-
+          
             createPopUp();
         }
         public PopUpAirlinerConfiguration(Airliner airliner)

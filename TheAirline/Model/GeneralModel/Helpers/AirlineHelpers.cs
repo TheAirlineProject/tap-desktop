@@ -71,7 +71,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airliner.clearAirlinerClasses();
 
                     foreach (AirlinerClass aClass in order.Classes)
-                        airliner.addAirlinerClass(aClass);
+                    {
+                        AirlinerClass tClass = new AirlinerClass(aClass.Type,aClass.SeatingCapacity);
+                        tClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+
+                        foreach (AirlinerFacility facility in aClass.getFacilities())
+                            tClass.setFacility(airline, facility);
+
+                        airliner.addAirlinerClass(tClass);
+                    }
 
 
                 }

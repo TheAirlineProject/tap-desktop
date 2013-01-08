@@ -1,0 +1,21 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpAirlinerClassConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+            xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+    
+        Title="PopUpAirlinerClassConfiguration" Height="300" Width="300">
+    <Window.Resources>
+        <DataTemplate x:Key="FleetFacilityItem">
+            <WrapPanel>
+                <Image Margin="0 0 20 0" Width="32" Source="{Binding Image}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                <TextBlock Width="150" Text="{Binding Facility.Name}" VerticalAlignment="Bottom"></TextBlock>
+                <Button Width="32" Height="32" Background="Transparent" Click="btnEdit_Click" Tag="{Binding}">
+                    <Image Source="/data/images/edit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        
+    </Grid>
+</window:PopUpWindow>

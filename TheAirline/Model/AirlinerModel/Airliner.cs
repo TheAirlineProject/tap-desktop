@@ -103,7 +103,8 @@ namespace TheAirline.Model.AirlinerModel
         {
             this.Classes.Add(airlinerClass);
 
-            airlinerClass.createBasicFacilities(this.Airline);
+            if (airlinerClass.getFacilities().Count == 0)
+                airlinerClass.createBasicFacilities(this.Airline);
         }
         //removes an airliner class from the airliner
         public void removeAirlinerClass(AirlinerClass airlinerClass)
