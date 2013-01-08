@@ -258,6 +258,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             panelEquipped.Children.Add(lbEquipped);
 
+            this.Classes.Clear();
+
             AirlinerClass eClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity); 
             eClass.createBasicFacilities(null);
             this.Classes.Add(eClass);
