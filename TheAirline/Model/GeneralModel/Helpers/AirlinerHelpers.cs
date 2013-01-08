@@ -33,6 +33,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.Flown = km;
 
+            CreateAirlinerClasses(airliner);
+
             return airliner;
         }
 
@@ -69,7 +71,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.Flown = km;
 
+            CreateAirlinerClasses(airliner);
+
             return airliner;
+        }
+        /*!creates some airliner classes for an airliner
+         * */
+        private static void CreateAirlinerClasses(Airliner airliner)
+        {
+            airliner.clearAirlinerClasses();
+
+            Dictionary<AirlinerClass.ClassType, double> seatingValues = new Dictionary<AirlinerClass.ClassType, double>();
+            seatingValues.Add(AirlinerClass.ClassType.Business_Class, 0.2);
+            seatingValues.Add(AirlinerClass.ClassType.First_Class, 0.1);
+           
+            int classes = rnd.Next(1, ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses);
+
+            for (int i = 0; i < classes; i++)
+            {
+               AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.ToObject(typeof(AirlinerClass.ClassType), i+1);
+
+               double maxSeating = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity;
+               
+                int seats;
+
+               if (classType == AirlinerClass.ClassType.Economy_Class)
+               {
+                   seats = (int)maxSeating;
+               }
+               else
+               {
+                   seats = (int)(maxSeating * seatingValues[classType]);
+                   airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity -= seats;
+                   airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity -= seats;
+               }
+
+               AirlinerClass aClass = new AirlinerClass(classType,seats);
+               aClass.createBasicFacilities(null);
+               airliner.Classes.Add(aClass);
+            }
+          
+
         }
 
     }
