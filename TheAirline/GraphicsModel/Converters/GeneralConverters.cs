@@ -113,7 +113,7 @@ namespace TheAirline.GraphicsModel.Converters
                     }
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return string.Format("{0:C}", value);
 

@@ -20,6 +20,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersModel
 {
@@ -28,22 +29,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
     /// </summary>
     public partial class PageOrderAirliners : Page
     {
-        private TextBlock txtPrice, txtTotalPrice, txtDiscount;
+        private TextBlock txtPrice, txtTotalPrice, txtDiscount, txtClasses;
         private ListBox lbOrders;
         private ucNumericUpDown nudAirliners;
         private ComboBox cbTypes, cbAirport;
         private CheckBox cbDownPayment;
         private Frame frameAirlinerInfo;
-        private Dictionary<AirlinerType, int> orders;
+        private List<AirlinerOrder> orders;
         private DatePicker dpDate;
         private Manufacturer Manufacturer;
         private PageAirliners ParentPage;
+        private List<AirlinerClass> Classes;
         public PageOrderAirliners(PageAirliners parent, Manufacturer manufacturer)
         {
             this.ParentPage = parent;
             this.Manufacturer = manufacturer;
 
-            this.orders = new Dictionary<AirlinerType, int>();
+            this.orders = new List<AirlinerOrder>();
+            this.Classes = new List<AirlinerClass>();
 
             InitializeComponent();
 
@@ -231,7 +234,50 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             return panelOrderType;
 
         }
+        //creates the panel for how the airline should be equipped
+        private StackPanel createEquippedPanel(AirlinerType type)
+        {
+            StackPanel panelEquipped = new StackPanel();
+            panelEquipped.Margin = new Thickness(0, 5, 0, 0);
 
+            TextBlock txtOrders = new TextBlock();
+            txtOrders.FontWeight = FontWeights.Bold;
+            txtOrders.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtOrders.Uid = "1012";
+            txtOrders.Text = Translator.GetInstance().GetString("PageOrderAirliners", txtOrders.Uid);
+
+            panelEquipped.Children.Add(txtOrders);
+
+            ListBox lbEquipped = new ListBox();
+            lbEquipped.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbEquipped.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            panelEquipped.Children.Add(lbEquipped);
+ 
+            this.Classes.Add(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity));
+
+            string classesName = string.Join(", ", from c in this.Classes select new TextUnderscoreConverter().Convert(c.Type, null, null, null).ToString());
+
+            txtClasses = UICreator.CreateTextBlock(classesName);
+
+            lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners","1012"), txtClasses));
+
+            Button btnEquipped = new Button();
+            btnEquipped.Uid = "200";
+            btnEquipped.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnEquipped.Height = Double.NaN;
+            btnEquipped.Width = Double.NaN;
+            btnEquipped.Content = Translator.GetInstance().GetString("PageOrderAirliners", btnEquipped.Uid);
+            btnEquipped.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnEquipped.Click += btnEquipped_Click;
+            btnEquipped.Tag = type;
+
+            panelEquipped.Children.Add(btnEquipped);
+
+            return panelEquipped;
+        }
+
+    
         //shows the orders
         private void showOrders()
         {
@@ -241,12 +287,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbOrders.Items.Clear();
 
-            foreach (KeyValuePair<AirlinerType, int> order in orders)
+            foreach (AirlinerOrder order in orders)
             {        
                 lbOrders.Items.Add(order);
 
-                price += order.Key.Price * order.Value;
-                airliners += order.Value;
+                price += order.Type.Price * order.Amount;
+                airliners += order.Amount;
             }
         
              if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Manufacturer)
@@ -266,7 +312,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
         }
 
+        private void btnEquipped_Click(object sender, RoutedEventArgs e)
+        {
+            AirlinerType type = (AirlinerType)((Button)sender).Tag;
 
+            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(type);
+
+            if (classes != null)
+            {
+                this.Classes = classes;
+
+                txtClasses.Text = string.Join(", ", from c in this.Classes select new TextUnderscoreConverter().Convert(c.Type, null, null, null).ToString());
+            }
+        }
 
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
@@ -296,8 +354,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             if (airport != null && tryOrder)
             {
-                int totalAmount = orders.Values.Sum();
-                double price = orders.Keys.Sum(t => t.Price * orders[t]);
+                int totalAmount = orders.Sum(o=>o.Amount);
+                double price = orders.Sum(o => o.Type.Price * o.Amount);
 
                 double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
 
@@ -307,8 +365,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 double downpaymentPrice = 0;
 
                 downpaymentPrice = totalPrice * (GameObject.GetInstance().Difficulty.PriceLevel / 10); 
-
-                           
+                                           
                 if (cbDownPayment.IsChecked.Value)
                 {
 
@@ -322,11 +379,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                         if (result == WPFMessageBoxResult.Yes)
                         {
-                            foreach (KeyValuePair<AirlinerType, int> order in orders)
+                            foreach (AirlinerOrder order in orders)
                             {
-                                for (int i = 0; i < order.Value; i++)
+                                for (int i = 0; i < order.Amount; i++)
                                 {
-                                    Airliner airliner = new Airliner(order.Key, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
+                                    Airliner airliner = new Airliner(order.Type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
                                     Airliners.AddAirliner(airliner);
 
                                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.BoughtDownPayment;
@@ -338,7 +395,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                             }
                             if (contractedOrder)
-                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Keys.Count();
+                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Sum(o=>o.Amount);
                             AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -downpaymentPrice);
                         }
                     }
@@ -354,7 +411,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                         WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
                     else
                     {
-                        if (orders.Keys.Count > 0)
+                        if (orders.Sum(o=>o.Amount) > 0)
                         {
                             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2008"), string.Format(Translator.GetInstance().GetString("MessageBox", "2008", "message"), totalPrice), WPFMessageBoxButtons.YesNo);
 
@@ -369,7 +426,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                             }
 
                             if (contractedOrder)
-                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Keys.Count();
+                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Sum(o=>o.Amount);
                     
                         }
                     }
@@ -487,7 +544,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 txtPrice.Text = new ValueCurrencyConverter().Convert(type.Price * number).ToString();//string.Format("{0:C}", type.Price * number);
 
-                frameAirlinerInfo.Content = PanelAirliner.createQuickInfoPanel(type);
+                StackPanel panelType = new StackPanel();
+                panelType.Children.Add(PanelAirliner.createQuickInfoPanel(type));
+                panelType.Children.Add(createEquippedPanel(type));
+
+                frameAirlinerInfo.Content = panelType;
             }
 
         }
@@ -507,19 +568,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             int number = Convert.ToInt16(nudAirliners.Value);
 
-            if (this.orders.ContainsKey(type))
-                this.orders[type] += number;
-            else
-                this.orders.Add(type, number);
-
+            this.orders.Add(new AirlinerOrder(type, this.Classes, number));
+     
             showOrders();
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
         {
-            AirlinerType type = (AirlinerType)((Button)sender).Tag;
+            AirlinerOrder order = (AirlinerOrder)((Button)sender).Tag;
 
-            this.orders.Remove(type);
+            this.orders.Remove(order);
 
             showOrders();
         }
@@ -530,9 +588,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            KeyValuePair<AirlinerType, int> airliners = (KeyValuePair<AirlinerType, int>)value;
-
-            return new ValueCurrencyConverter().Convert(airliners.Key.Price * airliners.Value);
+            AirlinerOrder order = (AirlinerOrder)value;
+      
+            return new ValueCurrencyConverter().Convert(order.Type.Price * order.Amount);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

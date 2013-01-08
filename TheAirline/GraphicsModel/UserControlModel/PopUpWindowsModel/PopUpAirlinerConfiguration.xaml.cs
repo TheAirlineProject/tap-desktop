@@ -15,6 +15,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -27,6 +28,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private List<AirlinerClass> Classes;
         private ListBox lbClasses;
         private ContentControl lblNewClass;
+        private AirlinerType Type;
         public static object ShowPopUp(Airliner airliner)
         {
             PopUpWindow window = new PopUpAirlinerConfiguration(airliner);
@@ -34,12 +36,30 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             return window.Selected;
         }
+          public static object ShowPopUp(AirlinerType airliner)
+        {
+            PopUpWindow window = new PopUpAirlinerConfiguration(airliner);
+            window.ShowDialog();
+
+            return window.Selected;
+        }
+        
+        public PopUpAirlinerConfiguration(AirlinerType type)
+        {
+            this.Classes = new List<AirlinerClass>();
+
+         
+            this.Type = type;
+
+            AirlinerClass aClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)this.Type).MaxSeatingCapacity);
+            aClass.createBasicFacilities(GameObject.GetInstance().HumanAirline);
+            this.Classes.Add(aClass);
+
+            createPopUp();
+        }
         public PopUpAirlinerConfiguration(Airliner airliner)
         {
-        
-            DataTemplate dt = this.Resources["NewClassItem"] as DataTemplate;
-
-   
+          
             this.Classes = new List<AirlinerClass>();
 
             foreach (AirlinerClass aClass in airliner.Classes)
@@ -47,6 +67,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 this.Classes.Add(aClass);
             }
 
+            this.Type = airliner.Type;
+
+            createPopUp();
+
+        }
+        //creates the pop up
+        private void createPopUp()
+        {
             InitializeComponent();
 
             this.Title = "Airliner Configuration";
@@ -108,10 +136,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showAirlinerClasses();
 
-
-
         }
-
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
             this.Selected = null;
@@ -136,7 +161,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 i++;
             }
 
-            int maxCapacity = ((AirlinerPassengerType)this.Classes[0].Airliner.Type).MaxSeatingCapacity;
+            int maxCapacity = ((AirlinerPassengerType)this.Type).MaxSeatingCapacity;
 
             AirlinerClass.ClassType nextClass = this.Classes.Count < maxCapacity ? this.Classes[this.Classes.Count - 1].Type + 1 : AirlinerClass.ClassType.Economy_Class;
 
@@ -153,7 +178,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
 
 
-            lblNewClass.Visibility = this.Classes.Count < ((AirlinerPassengerType)this.Classes[0].Airliner.Type).MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
+            lblNewClass.Visibility = this.Classes.Count < ((AirlinerPassengerType)this.Type).MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
             lblNewClass.Content = nextClass;
         }
 
@@ -161,7 +186,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             int seating = (int)((Button)sender).Tag;
             AirlinerClass.ClassType nextClass = this.Classes[this.Classes.Count - 1].Type + 1;
-            AirlinerClass aClass = new AirlinerClass(this.Classes[0].Airliner, nextClass, seating);
+            AirlinerClass aClass = new AirlinerClass(nextClass, seating);
 
             aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Audio));
             aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Seat));

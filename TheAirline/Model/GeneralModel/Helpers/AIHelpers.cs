@@ -21,60 +21,60 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //updates a cpu airline
         public static void UpdateCPUAirline(Airline airline)
         {
-           
-             /*
-            CheckForNewRoute(airline);
-            CheckForNewHub(airline);
-            CheckForUpdateRoute(airline);
-            //<<<CheckForOrderOfAirliners(airline);
-            CheckForAirlinersWithoutRoutes(airline);
-            CheckForAirlineAlliance(airline);
-            CheckForSubsidiaryAirline(airline);
-       */
-            
+
+            /*
+           CheckForNewRoute(airline);
+           CheckForNewHub(airline);
+           CheckForUpdateRoute(airline);
+           //<<<CheckForOrderOfAirliners(airline);
+           CheckForAirlinersWithoutRoutes(airline);
+           CheckForAirlineAlliance(airline);
+           CheckForSubsidiaryAirline(airline);
+      */
+
             Parallel.Invoke(() =>
             {
                 CheckForNewRoute(airline);
-            },  
+            },
 
                             () =>
                             {
                                 CheckForNewHub(airline);
-                            }, 
+                            },
 
                             () =>
                             {
                                 CheckForUpdateRoute(airline);
-                            } , 
+                            },
 
                             () =>
                             {
                                 CheckForAirlinersWithoutRoutes(airline);
-                             } , 
+                            },
 
                             () =>
                             {
                                 CheckForAirlineAlliance(airline);
-                            } , 
+                            },
 
                             () =>
                             {
                                 CheckForSubsidiaryAirline(airline);
-                            } 
+                            }
                         ); //close parallel.invoke
 
-        
+
         }
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)
         {
-           
+
             int max = airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute).Count;
 
             if (max > 0)
                 CreateNewRoute(airline);
-          
-            
+
+
         }
         //checks for ordering new airliners
         private static void CheckForOrderOfAirliners(Airline airline)
@@ -120,25 +120,28 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     airportsList.Add(a, (int)a.Profile.Size);
                 });
-     
+
             Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
 
             List<AirlinerType> types = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
             types = types.OrderBy(t => t.Price).ToList();
 
             Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
-            Parallel.ForEach(types,t=>
+            Parallel.ForEach(types, t =>
                 {
                     list.Add(t, (int)((t.Range / (t.Price / 100000))));
                 });
-         
+
             if (list.Keys.Count > 0)
             {
                 AirlinerType type = AIHelpers.GetRandomItem(list);
 
-                Dictionary<AirlinerType, int> orders = new Dictionary<AirlinerType, int>();
-                orders.Add(type, numberToOrder);
+                List<AirlinerClass> classes = new List<AirlinerClass>();
+                classes.Add(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity));
 
+
+                List<AirlinerOrder> orders = new List<AirlinerOrder>();
+                orders.Add(new AirlinerOrder(type,classes,numberToOrder));
 
                 int days = rnd.Next(30);
                 AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
@@ -226,7 +229,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     break;
             }
             newSubInterval *= GameObject.GetInstance().Difficulty.AILevel;
-              
+
             //newSubInterval = 0;
 
             Boolean newSub = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newSubInterval) * (subAirlines + 1)) == 0 && airline.FutureAirlines.Count > 0 && airline.Money > airline.StartMoney / 5;
@@ -380,7 +383,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             alliance.addMember(airline);
 
             Alliances.AddAlliance(alliance);
-         
+
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, "New alliance", string.Format("A new alliance: {0} has been created by [LI airline={1}]", name, airline.Profile.IATACode)));
 
             InviteToAlliance(airline, alliance);
@@ -397,7 +400,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     double balance = route.getBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
                     if (balance < -1000)
                     {
-                        var opponnentRoutes = Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes).Where(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
                         if (route.IncomePerPassenger < 0 && route.FillingDegree > 0.50)
                         {
                             foreach (RouteAirlinerClass rac in route.Classes)
@@ -406,25 +408,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             route.LastUpdated = GameObject.GetInstance().GameTime;
                         }
-                        if (route.FillingDegree < 0.25)
+                        if (route.FillingDegree > 0.2)
+                            ChangeRouteServiceLevel(route);
+                        if (route.FillingDegree < 0.2)
                         {
-                            if (opponnentRoutes.Count() == 0)
-                            {
-                                airline.removeRoute(route);
 
-                                if (route.HasAirliner)
-                                    route.getAirliners().ForEach(a => a.removeRoute(route));
+                            airline.removeRoute(route);
 
-                                route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
-                                route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
+                            if (route.HasAirliner)
+                                route.getAirliners().ForEach(a => a.removeRoute(route));
 
-                                if (airline.Routes.Count == 0)
-                                    CreateNewRoute(airline);
-                            }
-                            else
-                            {
-                                ChangeRouteServiceLevel(route);
-                            }
+                            route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
+                            route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
+
+                            if (airline.Routes.Count == 0)
+                                CreateNewRoute(airline);
+
                         }
                     }
                 }
@@ -518,7 +517,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
 
-                        
+
                         airline.addRoute(route);
 
 
@@ -568,7 +567,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         fAirliner.addRoute(route);
 
                         //creates a business route
-                        if (IsBusinessRoute(route,fAirliner)) 
+                        if (IsBusinessRoute(route, fAirliner))
                             CreateBusinessRouteTimeTable(route, fAirliner);
                         else
                             CreateRouteTimeTable(route, fAirliner);
@@ -735,7 +734,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (airlineLoanTotal < maxLoanTotal)
                     {
                         var loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
-                  
+
                         if (loanAirliners.Count > 0)
                             return new KeyValuePair<Airliner, Boolean>((from a in loanAirliners orderby a.Price select a).First(), true);
                         else
@@ -908,7 +907,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a time table for a business route
         public static RouteTimeTable CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
         {
-            
+
             RouteTimeTable timeTable = new RouteTimeTable(route);
 
             TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
@@ -1024,33 +1023,58 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //changes the service level for a route
         private static void ChangeRouteServiceLevel(Route route)
         {
-           var opponnentRoutes = Airlines.GetAirlines(a=>a!=route.Airline).SelectMany(a => a.Routes).Where(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
-           
-            double avgServiceLevel = opponnentRoutes.Average(r=>r.getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+            var opponnentRoutes = Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes).Where(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
 
-            RouteClassesConfiguration configuration = GetRouteConfiguration(route);
-
-            var types = Enum.GetValues(typeof(RouteFacility.FacilityType));
-
-            int ct = 0;
-            while (avgServiceLevel > route.getServiceLevel(AirlinerClass.ClassType.Economy_Class) && ct<types.Length)
+            if (opponnentRoutes.Count() > 0)
             {
-                RouteFacility.FacilityType type = (RouteFacility.FacilityType)types.GetValue(ct);
+                double avgServiceLevel = opponnentRoutes.Average(r => r.getServiceLevel(AirlinerClass.ClassType.Economy_Class));
 
-                RouteFacility currentFacility = route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(type);
+                RouteClassesConfiguration configuration = GetRouteConfiguration(route);
 
-                List<RouteFacility> facilities = RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
+                var types = Enum.GetValues(typeof(RouteFacility.FacilityType));
 
-                int index = facilities.IndexOf(currentFacility);
+                int ct = 0;
+                while (avgServiceLevel > route.getServiceLevel(AirlinerClass.ClassType.Economy_Class) && ct < types.Length)
+                {
+                    RouteFacility.FacilityType type = (RouteFacility.FacilityType)types.GetValue(ct);
 
-                if (index+1 < facilities.Count)
-                    route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).addFacility(facilities[index+1]);
+                    RouteFacility currentFacility = route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(type);
 
-                ct++;
+                    List<RouteFacility> facilities = RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
 
+                    int index = facilities.IndexOf(currentFacility);
+
+                    if (index + 1 < facilities.Count)
+                        route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).addFacility(facilities[index + 1]);
+
+                    ct++;
+
+                }
+            }
+            else
+            {
+                var types = Enum.GetValues(typeof(RouteFacility.FacilityType));
+                double currentServiceLevel = route.getServiceLevel(AirlinerClass.ClassType.Economy_Class);
+
+                int ct = 0;
+                while (currentServiceLevel + 50 > route.getServiceLevel(AirlinerClass.ClassType.Economy_Class) && ct < types.Length)
+                {
+                    RouteFacility.FacilityType type = (RouteFacility.FacilityType)types.GetValue(ct);
+
+                    RouteFacility currentFacility = route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(type);
+
+                    List<RouteFacility> facilities = RouteFacilities.GetFacilities(type).OrderBy(f => f.ServiceLevel).ToList();
+
+                    int index = facilities.IndexOf(currentFacility);
+
+                    if (index + 1 < facilities.Count)
+                        route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).addFacility(facilities[index + 1]);
+
+                    ct++;
+
+                }
             }
 
-          
         }
         //creates the airliner classes for an airliner
         public static void CreateAirlinerClasses(FleetAirliner airliner)
@@ -1072,11 +1096,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (AirlinerClassConfiguration aClass in configuration.Classes)
                 {
-                    AirlinerClass airlinerClass = new AirlinerClass(airliner.Airliner, aClass.Type, aClass.SeatingCapacity);
+                    AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                     airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
                     foreach (AirlinerFacility facility in aClass.getFacilities())
-                        airlinerClass.setFacility(facility);
+                        airlinerClass.setFacility(airliner.Airliner.Airline,facility);
 
                     airliner.Airliner.addAirlinerClass(airlinerClass);
                 }
@@ -1098,11 +1122,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (AirlinerClassConfiguration aClass in configuration.Classes)
                 {
-                    AirlinerClass airlinerClass = new AirlinerClass(airliner.Airliner, aClass.Type, aClass.SeatingCapacity);
+                    AirlinerClass airlinerClass = new AirlinerClass( aClass.Type, aClass.SeatingCapacity);
                     airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
                     foreach (AirlinerFacility facility in aClass.getFacilities())
-                        airlinerClass.setFacility(facility);
+                        airlinerClass.setFacility(airliner.Airliner.Airline, facility);
 
                     airliner.Airliner.addAirlinerClass(airlinerClass);
                 }

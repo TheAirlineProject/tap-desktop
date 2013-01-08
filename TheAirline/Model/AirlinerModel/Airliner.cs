@@ -31,12 +31,21 @@ namespace TheAirline.Model.AirlinerModel
             this.Flown = 0;
             this.Damaged = rnd.Next(90, 100);
             this.Classes = new List<AirlinerClass>();
-            
+
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
-                this.Classes.Add(new AirlinerClass(this,AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)this.Type).MaxSeatingCapacity));
+            {
+                AirlinerClass aClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)this.Type).MaxSeatingCapacity);
+                aClass.createBasicFacilities(this.Airline);
+                this.Classes.Add(aClass);
+            }
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
-                this.Classes.Add(new AirlinerClass(this, AirlinerClass.ClassType.Economy_Class, 0));
+            {
+                AirlinerClass aClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class,0);
+                aClass.createBasicFacilities(this.Airline);
+                this.Classes.Add(aClass);
+
+            }
             
         }
         // mjd 08/30/12 leasing price recalculated for 15 years
@@ -93,6 +102,8 @@ namespace TheAirline.Model.AirlinerModel
         public void addAirlinerClass(AirlinerClass airlinerClass)
         {
             this.Classes.Add(airlinerClass);
+
+            airlinerClass.createBasicFacilities(this.Airline);
         }
         //removes an airliner class from the airliner
         public void removeAirlinerClass(AirlinerClass airlinerClass)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 
@@ -18,25 +19,21 @@ namespace TheAirline.Model.AirlinerModel
         public ClassType Type { get; set; }
         public int RegularSeatingCapacity { get; set; }
         public int SeatingCapacity { get; set; }
-        public Airliner Airliner { get; set; }
-        public AirlinerClass(Airliner airliner, ClassType type, int seatingCapacity)
+        public AirlinerClass(ClassType type, int seatingCapacity)
         {
             this.Type = type;
-            this.Airliner = airliner;
             this.SeatingCapacity = seatingCapacity;
             this.RegularSeatingCapacity = seatingCapacity;
             this.Facilities = new Dictionary<AirlinerFacility.FacilityType, AirlinerFacility>();
 
-
-            createBasicFacilities();
         }
         //sets the facility for a facility type
-        public void setFacility(AirlinerFacility facility)
+        public void setFacility(Airline airline, AirlinerFacility facility)
         {
             this.Facilities[facility.Type] = facility;
 
-            if (this.Airliner.Airline != null)
-                AirlineHelpers.AddAirlineInvoice(this.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity);
+            if (airline != null)
+                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity);
    
 
         }
@@ -57,11 +54,11 @@ namespace TheAirline.Model.AirlinerModel
             return this.Facilities.Values.ToList();
         }
         //creates the basic facilities
-        private void createBasicFacilities()
+        public void createBasicFacilities(Airline airline)
         {
             foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
-                this.setFacility(AirlinerFacilities.GetBasicFacility(type));
+                this.setFacility(airline,AirlinerFacilities.GetBasicFacility(type));
                 //this.Facilities.Add(type, AirlinerFacilities.GetBasicFacility(type));
             }
 

@@ -117,7 +117,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), airlinerClassNode.Attributes["type"].Value);
                         int airlinerClassSeating = Convert.ToInt16(airlinerClassNode.Attributes["seating"].Value);
 
-                        AirlinerClass aClass = new AirlinerClass(airliner, airlinerClassType, airlinerClassSeating);
+                        AirlinerClass aClass = new AirlinerClass(airlinerClassType, airlinerClassSeating);
                         // chs, 2011-13-10 added for loading of airliner facilities
                         XmlNodeList airlinerClassFacilitiesList = airlinerClassNode.SelectNodes("facilities/facility");
                         foreach (XmlElement airlinerClassFacilityNode in airlinerClassFacilitiesList)

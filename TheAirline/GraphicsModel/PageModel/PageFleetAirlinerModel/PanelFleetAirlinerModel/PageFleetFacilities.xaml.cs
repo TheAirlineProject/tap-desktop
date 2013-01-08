@@ -159,11 +159,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
                 foreach (AirlinerClassConfiguration aClass in configuration.Classes)
                 {
-                    AirlinerClass airlinerClass = new AirlinerClass(this.Airliner.Airliner, aClass.Type, aClass.SeatingCapacity);
+                    AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                     airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
                     foreach (AirlinerFacility facility in aClass.getFacilities())
-                        airlinerClass.setFacility(facility);
+                        airlinerClass.setFacility(this.Airliner.Airliner.Airline,facility);
 
                     this.Airliner.Airliner.addAirlinerClass(airlinerClass);
                 }
@@ -241,7 +241,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                     if (facility.Type == AirlinerFacility.FacilityType.Seat)
                        item.AirlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(item.AirlinerClass.RegularSeatingCapacity) / facility.SeatUses); 
        
-                    item.AirlinerClass.setFacility(facility);
+                    item.AirlinerClass.setFacility(GameObject.GetInstance().HumanAirline,facility);
 
                     showFacilities();
 

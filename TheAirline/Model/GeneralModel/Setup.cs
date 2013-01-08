@@ -1047,7 +1047,7 @@ namespace TheAirline.Model.GeneralModel
                     if (element.SelectSingleNode("translations") != null)
                         Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     throw new Exception("Error on reading unions");
                 }

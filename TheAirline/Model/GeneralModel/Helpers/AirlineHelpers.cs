@@ -49,23 +49,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fAirliner;
         }
         //orders a number of airliners for an airline
-        public static void OrderAirliners(Airline airline, Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate)
+        public static void OrderAirliners(Airline airline, List<AirlinerOrder> orders, Airport airport, DateTime deliveryDate)
         {
             OrderAirliners(airline, orders, airport, deliveryDate, 0);
 
         }
         //orders a number of airliners for an airline
-        public static void OrderAirliners(Airline airline, Dictionary<AirlinerType, int> orders, Airport airport, DateTime deliveryDate, double discount)
+        public static void OrderAirliners(Airline airline, List<AirlinerOrder> orders, Airport airport, DateTime deliveryDate, double discount)
         {
-            foreach (KeyValuePair<AirlinerType, int> order in orders)
+            
+            foreach (AirlinerOrder order in orders)
             {
-                for (int i = 0; i < order.Value; i++)
+                for (int i = 0; i < order.Amount; i++)
                 {
-                    Airliner airliner = new Airliner(order.Key, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
+                    Airliner airliner = new Airliner(order.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
                     airline.addAirliner(pType, airliner, airliner.TailNumber, airport);
+
+                    airliner.clearAirlinerClasses();
+
+                    foreach (AirlinerClass aClass in order.Classes)
+                        airliner.addAirlinerClass(aClass);
+
 
                 }
 
@@ -73,8 +80,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
-            int totalAmount = orders.Values.Sum();
-            double price = orders.Keys.Sum(t => t.Price * orders[t]);
+            int totalAmount = orders.Sum(o => o.Amount)  ;
+            double price = orders.Sum(o => o.Type.Price * o.Amount); 
 
             double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount))) * ((100 - discount) / 100);
 
