@@ -17,7 +17,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public string Id { get; set; }
         public Airport Destination1 { get; set; }
         public Airport Destination2 { get; set; }
-        private List<Airport> StopOvers;
+        private List<Airport> Stopovers;
         //public FleetAirliner Airliner { get; set; }
         public List<RouteAirlinerClass> Classes { get; set; }
         public RouteTimeTable TimeTable { get; set; }
@@ -41,6 +41,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Invoices = new Invoices();
             this.Statistics = new RouteStatistics();
             this.Banned = false;
+            this.Stopovers = new List<Airport>();
 
              this.Season = Weather.Season.All_Year;
 
@@ -54,7 +55,21 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
         }
-      
+        //adds a stop over to the route
+        public void addStopover(Airport stopover)
+        {
+            this.Stopovers.Add(stopover);
+        }
+        //removes a stop over from the route
+        public void removeStopover(Airport stopover)
+        {
+            this.Stopovers.Remove(stopover);
+        }
+        //returns the list of stop overs
+        public List<Airport> getStopovers()
+        {
+            return this.Stopovers;
+        }
         //returns if the route contains a specific destination
         public Boolean containsDestination(Airport destination)
         {

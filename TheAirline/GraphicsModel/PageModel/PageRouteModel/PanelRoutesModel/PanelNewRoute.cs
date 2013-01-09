@@ -28,6 +28,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private ComboBox cbDestination1, cbDestination2;
         private Button btnSave, btnLoad;
         private PageRoutes ParentPage;
+        private ucStopover ucStopover1, ucStopover2;
         private double MaxDistance;
         private Dictionary<AirlinerClass.ClassType, RouteAirlinerClass> Classes;
         public PanelNewRoute(PageRoutes parent)
@@ -50,8 +51,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtHeader.Text = Translator.GetInstance().GetString("PanelNewRoute", "201");
             this.Children.Add(txtHeader);
 
-
-
             ListBox lbRouteInfo = new ListBox();
             lbRouteInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRouteInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
@@ -68,7 +67,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtDestination1Gates.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             panelDestination1.Children.Add(txtDestination1Gates);
 
-
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "202"), panelDestination1));
 
             WrapPanel panelDestination2 = new WrapPanel();
@@ -83,15 +81,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "203"), panelDestination2));
 
-           // New combo box for primary airliner
-           // WrapPanel panelAircraft = new WrapPanel(); 
+            ucStopover1 = new ucStopover();
+            ucStopover1.ValueChanged += ucStopover_OnValueChanged;
+            lbRouteInfo.Items.Add(new QuickInfoValue("Stopover", ucStopover1));
 
-           // cbAircraft = createAircraftComboBox();
-           // panelAircraft.Children.Add(cbAircraft);
-
-          //  lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "210"), panelAircraft));
-
-
+            ucStopover2 = new ucStopover();
+            ucStopover2.ValueChanged += ucStopover_OnValueChanged;
+            lbRouteInfo.Items.Add(new QuickInfoValue("Stopover", ucStopover2));
+         
             txtDistance = UICreator.CreateTextBlock("-");
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "204"), txtDistance));
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "205"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
@@ -193,6 +190,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             this.Children.Add(txtFlightRestrictions);
 
         }
+
+        private void ucStopover_OnValueChanged(Airport airport)
+        {
+            cbDestination_SelectionChanged(airport,null);
+        }
+
+       
       
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
@@ -239,10 +243,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             Airline airline = GameObject.GetInstance().HumanAirline;
             Airport dest1 = (Airport)cbDestination1.SelectedItem;
             Airport dest2 = (Airport)cbDestination2.SelectedItem;
+            Airport stopover1 = ucStopover1.Value;
+            Airport stopover2 = ucStopover2.Value;
 
-            if (dest1.Terminals.getFreeGates(airline) > 0 && dest2.Terminals.getFreeGates(airline) > 0)
+            Boolean stopoverOk = (stopover1 == null ? true : stopover1.Terminals.getFreeGates(airline) > 0) && (stopover2 == null ? true : stopover2.Terminals.getFreeGates(airline) > 0);
+
+            if (dest1.Terminals.getFreeGates(airline) > 0 && dest2.Terminals.getFreeGates(airline) > 0 && stopoverOk)
             {
-
 
                 Guid id = Guid.NewGuid();
                 Route route = new Route(id.ToString(),dest1, dest2, 0);
@@ -257,7 +264,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
         
                 }
-               
+
+                if (stopover1 != null)
+                    route.addStopover(stopover1);
+
+                if (stopover2 != null)
+                    route.addStopover(stopover2);
+
                 airline.addRoute(route);
 
                 dest1.Terminals.getEmptyGate(airline).HasRoute = true;
@@ -301,7 +314,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         {
             ComboBox cbDestination = new ComboBox();
 
-
             cbDestination.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
             cbDestination.Background = Brushes.Transparent;
             cbDestination.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -324,6 +336,40 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             {
                 Airport airport1 = (Airport)cbDestination1.SelectedItem;
                 Airport airport2 = (Airport)cbDestination2.SelectedItem;
+                Airport stopover1 = ucStopover1.Value;
+                Airport stopover2 = ucStopover2.Value;
+
+                List<double> distances = new List<double>();
+                Boolean isRouteOk = false;
+
+                if (stopover1 == null && stopover2 == null)
+                {
+                    distances.Add(MathHelpers.GetDistance(airport1, airport2));
+                    isRouteOk = checkRouteOk(airport1, airport2);
+                }
+
+                if (stopover1 == null && stopover2 != null)
+                {
+                    distances.Add(MathHelpers.GetDistance(airport1, stopover2));
+                    distances.Add(MathHelpers.GetDistance(stopover2, airport2));
+                    isRouteOk = checkRouteOk(airport1, stopover2) && checkRouteOk(stopover2, airport2);
+                }
+
+                if (stopover1 != null && stopover2 == null)
+                {
+                    distances.Add(MathHelpers.GetDistance(airport1, stopover1));
+                    distances.Add(MathHelpers.GetDistance(stopover1, airport2));
+                    isRouteOk = checkRouteOk(airport1, stopover1) && checkRouteOk(stopover1, airport2);
+                }
+
+                if (stopover1 != null && stopover2 != null)
+                {
+                    distances.Add(MathHelpers.GetDistance(airport1, stopover1));
+                    distances.Add(MathHelpers.GetDistance(stopover1, stopover2));
+                    distances.Add(MathHelpers.GetDistance(stopover2, airport2));
+                    isRouteOk = checkRouteOk(airport1, stopover1) && checkRouteOk(stopover1,stopover2)  && checkRouteOk(stopover2, airport2);
+                }
+
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
@@ -331,10 +377,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     aClass.FarePrice = PassengerHelpers.GetPassengerPrice(airport1, airport2) * GeneralHelpers.ClassToPriceFactor(aClass.Type);
                 }
 
-                double distance = MathHelpers.GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
-                txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km."));
+                double maxDistance = distances.Max();
+                double minDistance = distances.Min();
 
-                btnSave.IsEnabled = distance > 50 && distance < this.MaxDistance && AIHelpers.IsRouteInCorrectArea(airport1,airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) &&  !FlightRestrictions.HasRestriction(airport2.Profile.Country,airport1.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime);
+                txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance), new StringToLanguageConverter().Convert("km."));
+
+                btnSave.IsEnabled = minDistance > 50 && maxDistance < this.MaxDistance && isRouteOk;
                 btnLoad.IsEnabled = btnSave.IsEnabled;
     
                 txtInvalidRoute.Visibility = AIHelpers.IsRouteInCorrectArea(airport1,airport2) ? Visibility.Collapsed : Visibility.Visible;
@@ -344,12 +392,82 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 txtFlightRestrictions.Text= string.Format(Translator.GetInstance().GetString("PanelNewRoute","1002"),airport1.Profile.Country.Name,airport2.Profile.Country.Name);
 
             }
-            
-            Airport airport = (Airport)((ComboBox)sender).SelectedItem;
 
-            TextBlock txtDestinationGates = cbDestination2 == ((ComboBox)sender) ? txtDestination2Gates : txtDestination1Gates;
+            if (sender is ComboBox)
+            {
+                Airport airport = (Airport)((ComboBox)sender).SelectedItem;
 
-            txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
+                TextBlock txtDestinationGates = cbDestination2 == ((ComboBox)sender) ? txtDestination2Gates : txtDestination1Gates;
+
+                txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
+            }
+       
+        }
+        //returns if two airports can have route between them
+        private Boolean checkRouteOk(Airport airport1, Airport airport2)
+        {
+           return AIHelpers.IsRouteInCorrectArea(airport1, airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime);
+        }
+       //class for a stop over item
+        private class ucStopover : UserControl
+        {
+            public Airport Value { get; set; }
+            private ComboBox cbDestination;
+            public delegate void OnValueChanged(Airport airport);
+            public event OnValueChanged ValueChanged;
+      
+            public ucStopover()
+            {
+                WrapPanel panelStopover = new WrapPanel();
+
+                cbDestination = new ComboBox();
+                cbDestination.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
+                cbDestination.Background = Brushes.Transparent;
+                cbDestination.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                cbDestination.SelectionChanged += cbDestination_SelectionChanged;
+
+                List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline) > 0);
+                airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
+
+                foreach (Airport airport in airports)
+                    cbDestination.Items.Add(airport);
+
+                panelStopover.Children.Add(cbDestination);
+
+
+                Button btnDelete = new Button();
+                btnDelete.Click += btnDelete_Click;
+                btnDelete.Margin = new Thickness(5, 0, 0, 0);
+                btnDelete.Background = Brushes.Transparent;
+             
+                Image imgEdit = new Image();
+                imgEdit.Width = 16;
+                imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/delete.png", UriKind.RelativeOrAbsolute));
+                RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
+
+                btnDelete.Content = imgEdit;
+
+                panelStopover.Children.Add(btnDelete);            
+
+                this.Content = panelStopover;
+
+            }
+
+            private void btnDelete_Click(object sender, RoutedEventArgs e)
+            {
+                this.Value = null;
+                cbDestination.SelectedItem = null;
+            }
+
+            private void cbDestination_SelectionChanged(object sender, SelectionChangedEventArgs e)
+            {
+                this.Value = (Airport)cbDestination.SelectedItem;
+
+                if (this.ValueChanged != null)
+                    this.ValueChanged(this.Value); 
+   
+            }
         }
     }
 }
