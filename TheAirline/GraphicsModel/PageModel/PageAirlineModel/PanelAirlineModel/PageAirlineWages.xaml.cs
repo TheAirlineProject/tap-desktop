@@ -22,6 +22,7 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.PageModel.PageAirlineFacilityModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -810,6 +811,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 showFacilities();
             }
         }
+
+        private void lnkAirlineFacility_click(object sender, RoutedEventArgs e)
+        {
+            AirlineFacility facility = (AirlineFacility)((Hyperlink)sender).Tag;
+
+            if (facility.Shortname == "Maintenance")
+            {
+
+                PageNavigator.NavigateTo(new PageAirlineFacilityMaintenance(facility));
+
+            }
+        
+        }
         //shows the advertisement
         private void showAdvertisements()
         {
@@ -864,6 +878,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 return UICreator.CreateTextBlock(this.Airline.getAirlineAdvertisement(type).Name);
             }
         }
+
       
         
     }

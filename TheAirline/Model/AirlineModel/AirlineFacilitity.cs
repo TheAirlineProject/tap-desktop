@@ -40,26 +40,26 @@ namespace TheAirline.Model.AirlineModel
     //the collection of facilities
     public class AirlineFacilities
     {
-        private static Dictionary<string, AirlineFacility> facilities = new Dictionary<string, AirlineFacility>();
+        private static List<AirlineFacility> facilities = new List<AirlineFacility>();
          //clears the list
         public static void Clear()
         {
-            facilities = new Dictionary<string, AirlineFacility>();
+            facilities = new List<AirlineFacility>();
         }
         //adds a new facility to the collection
         public static void AddFacility(AirlineFacility facility)
         {
-            facilities.Add(facility.Uid, facility);
+            facilities.Add(facility);
         }
         //returns a facility
         public static AirlineFacility GetFacility(string uid)
         {
-            return facilities[uid];
+            return facilities.Find(f => f.Uid == uid);
         }
         //returns the list of facilities
         public static List<AirlineFacility> GetFacilities()
         {
-            return facilities.Values.ToList();
+            return facilities;
         }
     }
 }

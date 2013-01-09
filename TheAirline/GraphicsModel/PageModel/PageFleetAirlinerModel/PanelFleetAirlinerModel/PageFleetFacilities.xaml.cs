@@ -225,6 +225,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                     this.Airliner.Airliner.addAirlinerClass(aClass);
 
                 showFacilities();
+
             }
         }
         private void btnEdit_Click(object sender, RoutedEventArgs e)

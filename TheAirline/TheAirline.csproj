@@ -100,6 +100,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="GraphicsModel\PageModel\PageAirlineFacilityModel\PageAirlineFacilityMaintenance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\GeneralModel\PageCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -441,6 +445,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraphicsModel\Converters\GeneralConverters.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirlineFacilityModel\PageAirlineFacilityMaintenance.xaml.cs">
+      <DependentUpon>PageAirlineFacilityMaintenance.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\GeneralModel\GraphicsHelpers.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageBottomMenu.cs" />
     <Compile Include="GraphicsModel\PageModel\GeneralModel\PageCalendar.xaml.cs">

@@ -290,6 +290,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             cbDayTurnEnabled = new CheckBox();
             cbDayTurnEnabled.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            cbDayTurnEnabled.IsChecked = true;
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1016"), cbDayTurnEnabled));
 

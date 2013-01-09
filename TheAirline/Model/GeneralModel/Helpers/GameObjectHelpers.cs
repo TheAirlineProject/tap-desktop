@@ -1225,8 +1225,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Route route = GetNextRoute(airliner);
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
+            
             if (route != null)
-                airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
+                if (airliner.GroundedToDate > GameObject.GetInstance().GameTime)
+                     airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(airliner.GroundedToDate, airliner));
+                else
+                    airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner));
             else
                 airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
 
