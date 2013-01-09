@@ -17,6 +17,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public string Id { get; set; }
         public Airport Destination1 { get; set; }
         public Airport Destination2 { get; set; }
+        private List<Airport> StopOvers;
         //public FleetAirliner Airliner { get; set; }
         public List<RouteAirlinerClass> Classes { get; set; }
         public RouteTimeTable TimeTable { get; set; }
