@@ -79,7 +79,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the number of passengers for a flight
         public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-
+           
             Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
 
@@ -116,6 +116,10 @@ namespace TheAirline.Model.GeneralModel
                 passengerDemand = passengerDemand * (115 / 100);
 
             var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
+
+            double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count)) / 7;
+
+            passengerDemand = passengerDemand / flightsPerDay;
 
             double totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
 
