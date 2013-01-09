@@ -265,6 +265,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineFacilityModel
             {
                 foreach (FleetAirliner airliner in this.AirlinersToMaintain)
                 {
+                    serviceDays = airliner.Airliner.Classes.Count == this.Classes.Count ? 1 : 3;
                     airliner.Airliner.clearAirlinerClasses();
 
                     foreach (AirlinerClass aClass in this.Classes)
