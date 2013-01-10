@@ -93,7 +93,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             lbTrainingAircrafts = new ListBox();
             lbTrainingAircrafts.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbTrainingAircrafts.ItemTemplate = this.Resources["TrainingAircraftItem"] as DataTemplate;
-            lbTrainingAircrafts.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+            lbTrainingAircrafts.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 6;
 
             panelAircrafts.Children.Add(lbTrainingAircrafts);
 
@@ -117,7 +117,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             lbStudents = new ListBox();
             lbStudents.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbStudents.ItemTemplate = this.Resources["StudentItem"] as DataTemplate;
-            lbStudents.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+            lbStudents.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
 
             panelStudents.Children.Add(lbStudents);
 
@@ -141,7 +141,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             lbInstructors = new ListBox();
             lbInstructors.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbInstructors.ItemTemplate = this.Resources["InstructorItem"] as DataTemplate;
-            lbInstructors.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+            lbInstructors.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
 
             panelInstructors.Children.Add(lbInstructors);
 
