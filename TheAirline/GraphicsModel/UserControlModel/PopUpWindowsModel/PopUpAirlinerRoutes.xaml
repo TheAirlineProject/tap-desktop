@@ -11,7 +11,10 @@
         <window:FlightLocalTimeConverter x:Key="flightLocalTimeConverter"></window:FlightLocalTimeConverter>
         <c:TimeSpanConverter x:Key="timeSpanConverter"></c:TimeSpanConverter>
         <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
-        <Style TargetType="{x:Type ToggleButton}">
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <c:StopoverConverter x:Key="stopoverConverter"></c:StopoverConverter>
+
+                <Style TargetType="{x:Type ToggleButton}">
             <Setter Property="Background" Value="Transparent"></Setter>
         </Style>
         <Style TargetType="{x:Type ListBox}">
@@ -43,24 +46,29 @@
          </MultiBinding>
     </TextBlock.Text>
   <TextBlock.ToolTip>
-<Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
-  <WrapPanel>
-    <StackPanel>
-       <TextBlock FontWeight="Bold" Text="{Binding Value.DepartureAirport,Converter={StaticResource airportCodeConverter}}"></TextBlock>
-    
-  <!--      <TextBlock Text="{Binding Value.Time,Converter={StaticResource timeSpanConverter}}"></TextBlock>
-      -->            <TextBlock Text="{Binding Value,Converter={StaticResource flightLocalTimeConverter},ConverterParameter='D'}" VerticalAlignment="Bottom"></TextBlock>
-    </StackPanel>
-      <TextBlock Text="{Binding Value.Destination.FlightCode}" FontWeight="Bold" Margin="5 0 5 0" VerticalAlignment="Center"></TextBlock>
-      <StackPanel>
-             <TextBlock FontWeight="Bold" Text="{Binding Value.Destination.Airport,Converter={StaticResource airportCodeConverter}}"></TextBlock>
-        
-         <!--      <TextBlock Text="{Binding Value,Converter={StaticResource routeEntryEndTimeConverter}}"></TextBlock>-->
-                  <TextBlock Text="{Binding Value,Converter={StaticResource flightLocalTimeConverter},ConverterParameter='A'}" VerticalAlignment="Bottom"></TextBlock>
+                    <Border Margin="-4,0,-4,-3" Padding="5" Background="{DynamicResource HeaderBackgroundBrush2}">
+                        <StackPanel>
+                        <WrapPanel>
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" Text="{Binding Value.DepartureAirport,Converter={StaticResource airportCodeConverter}}"></TextBlock>
 
-      </StackPanel>
-  </WrapPanel> 
-</Border>    
+                                <!--      <TextBlock Text="{Binding Value.Time,Converter={StaticResource timeSpanConverter}}"></TextBlock>
+      -->
+                                <TextBlock Text="{Binding Value,Converter={StaticResource flightLocalTimeConverter},ConverterParameter='D'}" VerticalAlignment="Bottom"></TextBlock>
+                            </StackPanel>
+                            <TextBlock Text="{Binding Value.Destination.FlightCode}" FontWeight="Bold" Margin="5 0 5 0" VerticalAlignment="Center"></TextBlock>
+
+                            <StackPanel>
+                                <TextBlock FontWeight="Bold" Text="{Binding Value.Destination.Airport,Converter={StaticResource airportCodeConverter}}"></TextBlock>
+
+                                <!--      <TextBlock Text="{Binding Value,Converter={StaticResource routeEntryEndTimeConverter}}"></TextBlock>-->
+                                <TextBlock Text="{Binding Value,Converter={StaticResource flightLocalTimeConverter},ConverterParameter='A'}" VerticalAlignment="Bottom"></TextBlock>
+                            </StackPanel>
+                        </WrapPanel>
+                       <TextBlock Text="{Binding Value.TimeTable.Route,Converter={StaticResource stopoverConverter},StringFormat=Stopovers: {0}}" HorizontalAlignment="Center" FontWeight="Bold" Visibility="{Binding Value.TimeTable.Route.HasStopovers, Converter={StaticResource booleanToVisibility}}"></TextBlock>
+                          
+                        </StackPanel>
+                    </Border>    
 </TextBlock.ToolTip>
                 </TextBlock>
       

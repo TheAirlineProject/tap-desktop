@@ -16,6 +16,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -116,9 +117,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelPrice.Children.Add(txtPrice);
 
             CultureInfo cultureInfo = new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, false);
+            CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
 
 
-            TextBlock txtCurrencySign = UICreator.CreateTextBlock(cultureInfo.NumberFormat.CurrencySymbol);
+            TextBlock txtCurrencySign = UICreator.CreateTextBlock(currency == null ? cultureInfo.NumberFormat.CurrencySymbol : currency.CurrencySymbol);
             txtCurrencySign.VerticalAlignment = System.Windows.VerticalAlignment.Center;
 
             panelPrice.Children.Add(txtCurrencySign);
@@ -159,8 +161,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Content = contentPanel;
 
-
-             txtPrice.Text = String.Format("{0:0.##}", this.AirlinerClass.FarePrice);
+            double fareprice = currency == null ? this.AirlinerClass.FarePrice : this.AirlinerClass.FarePrice * currency.Rate;
+            
+             txtPrice.Text = String.Format("{0:0.##}",fareprice);
             cbSeating.SelectedItem = this.AirlinerClass.Seating;
         }
 

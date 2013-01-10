@@ -172,7 +172,9 @@ namespace TheAirline.Model.AirlineModel
         public Invoices getInvoices()
         {
             return this.Invoices;
-        }/*
+        }
+        
+        /*
         //returns all invoices with type
         public List<Invoice> getInvoices(DateTime start, DateTime end, Invoice.InvoiceType type)
         

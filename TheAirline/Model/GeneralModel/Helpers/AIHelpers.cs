@@ -823,7 +823,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             RouteTimeTable timeTable = new RouteTimeTable(route);
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan minFlightTime = route.getFlightTime(airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
@@ -880,9 +880,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
             }
-            if (timeTable.Entries.Count == 0)
-                flightCode1 = "TT";
-
+           
             foreach (RouteTimeTableEntry e in timeTable.Entries)
                 e.Airliner = airliner;
 
@@ -893,7 +891,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner)
         {
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan minFlightTime =route.getFlightTime(airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
 
             int maxHours = 10 - 6; //from 06:00 to 10:00 and from 18:00 to 22:00
 

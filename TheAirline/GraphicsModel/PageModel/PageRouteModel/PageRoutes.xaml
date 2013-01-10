@@ -19,7 +19,7 @@
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <local:StartFlightBooleanToVisibility x:Key="startFlightBooleanToVisibility"></local:StartFlightBooleanToVisibility>
         <local:UnionMemberConverter x:Key="unionMemberConverter"></local:UnionMemberConverter>
-        <local:StopoverConverter x:Key="stopoverConverter"></local:StopoverConverter>
+        <c:StopoverConverter x:Key="stopoverConverter"></c:StopoverConverter>
         <DataTemplate x:Key="FleetHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>

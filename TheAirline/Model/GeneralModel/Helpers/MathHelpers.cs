@@ -210,6 +210,10 @@ namespace TheAirline.Model.GeneralModel
 
             return new TimeSpan(hours, minutes, 0);
         }
+        public static TimeSpan GetFlightTime(Airport airport1, Airport airport2,AirlinerType type)
+        {
+            return GetFlightTime(airport1.Profile.Coordinates, airport2.Profile.Coordinates, type);
+        }
         //converts gallons to ltr
         public static double GallonsToLtr(double gallons)
         {

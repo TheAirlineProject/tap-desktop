@@ -125,6 +125,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
             StopoverRoute stopoverRoute = new StopoverRoute(stopover);
 
             Guid id = Guid.NewGuid();
+
+            if (!oneLegged)
+            {
+                Route routeLegTwo = new Route(id.ToString(), dest1, stopover, 0);
+
+                foreach (RouteAirlinerClass aClass in mainroute.Classes)
+                {
+                    //routeLegTwo.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
+                    routeLegTwo.getRouteAirlinerClass(aClass.Type).FarePrice = PassengerHelpers.GetPassengerPrice(dest1, stopover) * GeneralHelpers.ClassToPriceFactor(aClass.Type);
+
+                    foreach (RouteFacility facility in aClass.getFacilities())
+                        routeLegTwo.getRouteAirlinerClass(aClass.Type).addFacility(facility);
+
+                    routeLegTwo.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
+
+                }
+
+
+                stopoverRoute.addLeg(routeLegTwo);
+
+            }
+            id = Guid.NewGuid();
+            
             Route routeLegOne = new Route(id.ToString(), stopover, dest2, 0);
 
             foreach (RouteAirlinerClass aClass in mainroute.Classes)
@@ -143,27 +166,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             stopoverRoute.addLeg(routeLegOne);
 
-            if (!oneLegged)
-            {
-                id = Guid.NewGuid();
-                Route routeLegTwo = new Route(id.ToString(), dest1, stopover, 0);
-
-                foreach (RouteAirlinerClass aClass in mainroute.Classes)
-                {
-                    //routeLegTwo.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
-                    routeLegTwo.getRouteAirlinerClass(aClass.Type).FarePrice = PassengerHelpers.GetPassengerPrice(dest1, stopover) * GeneralHelpers.ClassToPriceFactor(aClass.Type);
-      
-                    foreach (RouteFacility facility in aClass.getFacilities())
-                        routeLegTwo.getRouteAirlinerClass(aClass.Type).addFacility(facility);
-
-                    routeLegTwo.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
-
-                }
-
-
-                stopoverRoute.addLeg(routeLegTwo);
-
-            }
+           
 
             return stopoverRoute;
         }

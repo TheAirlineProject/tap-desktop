@@ -113,7 +113,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelRoutes.Margin = new Thickness(5, 0, 0, 0);
 
             long requiredRunway= this.Airliner.Airliner.Type.MinRunwaylength;
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength()>=requiredRunway && r.Destination2.getMaxRunwayLength()>=requiredRunway ))
+
+            var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range >r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength()>=requiredRunway && r.Destination2.getMaxRunwayLength()>=requiredRunway );
+            foreach (Route route in routes)
             {
                 Border brdRoute = new Border();
                 brdRoute.BorderBrush = Brushes.Black;
@@ -257,7 +259,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
 
-            return GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => MathHelpers.GetDistance(r.Destination1, r.Destination2)) <= maxDistance );
+            return GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => r.getDistance()) <= maxDistance );
         }
         //creates the panel for adding a new entry
         private StackPanel createNewEntryPanel()
@@ -294,7 +296,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
             {
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
@@ -420,7 +422,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
              {
                 double maxTime = new TimeSpan(24, 0, 0).Subtract(e.Time).TotalMinutes;
 
-                TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
+                TimeSpan flightTime = e.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type);
 
                 ContentControl ccFlight = new ContentControl();
                 ccFlight.ContentTemplate = this.Resources["FlightItem"] as DataTemplate;
@@ -438,7 +440,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             foreach (RouteTimeTableEntry e in dayBeforeEntries)
             {
-                TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
+                TimeSpan flightTime = e.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type);
 
                 TimeSpan endTime = e.Time.Add(flightTime);
                 if (endTime.Days == 1)
@@ -481,7 +483,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //checks if an entry is valid
         private Boolean isRouteEntryValid(RouteTimeTableEntry entry, Boolean showMessageBoxOnError)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
+            TimeSpan flightTime = entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights);
 
             TimeSpan startTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
 
@@ -516,7 +518,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 TimeSpan eStartTime = new TimeSpan((int)e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
 
-                TimeSpan eFlightTime = MathHelpers.GetFlightTime(e.DepartureAirport.Profile.Coordinates, e.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
+                TimeSpan eFlightTime = e.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights);
 
                 TimeSpan eEndTime = eStartTime.Add(eFlightTime);
 
@@ -677,7 +679,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (region.Uid == "100")
             {
-                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
+                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() & !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
                 {
                     ComboBoxItem item1 = new ComboBoxItem();
                     item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
@@ -692,7 +694,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
             else
             {
-                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && ((r.Destination1.Profile.Country.Region == region && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2));
+                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && ((r.Destination1.Profile.Country.Region == region && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2));
 
                 foreach (Route route in routes)
                 {
@@ -832,7 +834,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 Airport airport = ((KeyValuePair<Route, Airport>)item.Tag).Value;
 
-                TimeSpan flightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type);
+                TimeSpan flightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
                 txtFlightTime.Text = string.Format("Flight time: {0:hh\\:mm}", flightTime);
 
@@ -922,8 +924,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
 
             RouteTimeTableEntry e = (RouteTimeTableEntry)value;
-
-            TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, e.Airliner.Airliner.Type);
+          
+            TimeSpan flightTime = e.TimeTable.Route.getFlightTime(e.Airliner.Airliner.Type);
 
             Airport airport = parameter.ToString() == "D" ? e.DepartureAirport : e.Destination.Airport;
 
@@ -932,7 +934,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             string timezone = parameter.ToString() == "D" ? e.DepartureAirport.Profile.TimeZone.ShortName : e.Destination.Airport.Profile.TimeZone.ShortName;
 
             TimeSpan localTime = MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone);
-
 
             return string.Format("{0} {1}", new TimeSpanConverter().Convert(MathHelpers.ConvertTimeSpanToLocalTime(time, airport.Profile.TimeZone)), timezone);
 
@@ -977,7 +978,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
 
             RouteTimeTableEntry e = (RouteTimeTableEntry)value;
-            TimeSpan flightTime = MathHelpers.GetFlightTime(e.TimeTable.Route.Destination1.Profile.Coordinates, e.TimeTable.Route.Destination2.Profile.Coordinates, e.Airliner.Airliner.Type);
+            TimeSpan flightTime = e.TimeTable.Route.getFlightTime(e.Airliner.Airliner.Type);
 
             return new TimeSpanConverter().Convert(e.Time.Add(flightTime));
         }

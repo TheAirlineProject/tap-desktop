@@ -120,7 +120,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbAutoRoute_SelectionChanged);
             cbRoute.ItemTemplate = this.Resources["RouteItem"] as DataTemplate;
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned))
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned))
             {
                 cbRoute.Items.Add(route);
             }
@@ -175,14 +175,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (region.Uid == "100")
             {
-                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
+                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range >r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
                 {
                     cbRoute.Items.Add(route);
                 }
             }
             else
             {
-                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > MathHelpers.GetDistance(r.Destination1.Profile.Coordinates, r.Destination2.Profile.Coordinates) && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && ((r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2));
+                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range >r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && ((r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2));
 
                 foreach (Route route in routes)
                     cbRoute.Items.Add(route);
@@ -198,7 +198,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (route != null)
             {
-                TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, this.Airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+                TimeSpan minFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
                 int maxHours = 22 - 6; //from 06.00 to 22.00
 
@@ -217,7 +217,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
                     cbBusinessRoute.IsChecked = false;
-
+                z
             }
 
 

@@ -13,6 +13,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.GraphicsModel.Converters
 {
@@ -43,6 +44,21 @@ namespace TheAirline.GraphicsModel.Converters
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             return value;
+        }
+    }
+    //the converter for the stop overs
+    public class StopoverConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Route route = (Route)value;
+            return string.Join(", ", from s in route.getStopovers() select new AirportCodeConverter().Convert(s.Stopover).ToString());
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
     //the converter for a value to the current currency

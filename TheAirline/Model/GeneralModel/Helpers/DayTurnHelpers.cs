@@ -41,16 +41,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             });
             sw.Stop();
-            /*
-            using (StreamWriter w = File.AppendText("c:\\bbm\\log.txt"))
-            {
-                
-                w.WriteLine("{0} - {1}: Airliners: {2} Time: {3} ms.", GameObject.GetInstance().GameTime.ToShortDateString(),airline.Profile.Name, airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped).Count, sw.ElapsedMilliseconds);
- 
-            }
-             * */
+          
 
-              }
+        }
         //simulates a flight
         private static void SimulateFlight(RouteTimeTableEntry entry)
         {

@@ -389,7 +389,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Random rnd = new Random();
 
                 GeneralHelpers.CreatePilots(100 * Airlines.GetAllAirlines().Count);
-
+                
                 foreach (FleetAirliner airliner in Airlines.GetAllAirlines().SelectMany(a => a.Fleet))
                 {
                     Pilot pilot = Pilots.GetPilots()[rnd.Next(Pilots.GetNumberOfPilots())];
@@ -811,9 +811,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
                     double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
-                    //RouteFacility drinks = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Drinks).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["drinks"].Value; });
-                    //RouteFacility food = RouteFacilities.GetFacilities(RouteFacility.FacilityType.Food).Find(delegate(RouteFacility facility) { return facility.Name == routeClassNode.Attributes["food"].Value; });
-                    // chs, 2011-18-10 added for loading of type of seating
                     RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);
 
                     RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);

@@ -14,6 +14,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     //the class for a route
     public class Route
     {
+        public Boolean HasStopovers { get { return this.Stopovers.Count > 0; } set { ;} }
         public string Id { get; set; }
         public Airport Destination1 { get; set; }
         public Airport Destination2 { get; set; }
@@ -211,7 +212,31 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return this.Classes.Find(c => c.Type == type).FarePrice;
         }
+        //returns the distance for the route
+        public double getDistance()
+        {
+            if (this.HasStopovers)
+                return this.Stopovers.SelectMany(s => s.Legs).Max(l => l.getDistance());
+            else
+                return MathHelpers.GetDistance(this.Destination1, this.Destination2);
+            
+        }
+        //returns the flight time for the route for a specific airliner type
+        public TimeSpan getFlightTime(AirlinerType type)
+        {
+            if (this.HasStopovers)
+            {
+                double totalMinutes = this.Stopovers.SelectMany(s => s.Legs).Sum(l => l.getFlightTime(type).TotalMinutes);
+                double totalRestTime = RouteTimeTable.MinTimeBetweenFlights.TotalMinutes * (this.Stopovers.SelectMany(s=>s.Legs).Count()-1);
+                int time = (int)(totalRestTime + totalMinutes);
 
+                return new TimeSpan(0, time, 0);
+            }
+            else
+                return MathHelpers.GetFlightTime(this.Destination1, this.Destination2, type);
+                    
+
+        }
     }
    
 }

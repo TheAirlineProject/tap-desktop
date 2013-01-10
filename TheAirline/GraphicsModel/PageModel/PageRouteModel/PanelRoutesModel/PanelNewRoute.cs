@@ -376,10 +376,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 btnSave.IsEnabled = minDistance > 50 && maxDistance < this.MaxDistance && isRouteOk;
                 btnLoad.IsEnabled = btnSave.IsEnabled;
-    
-                txtInvalidRoute.Visibility = AIHelpers.IsRouteInCorrectArea(airport1,airport2) ? Visibility.Collapsed : Visibility.Visible;
-                
-                txtFlightRestrictions.Visibility =FlightRestrictions.HasRestriction(airport2.Profile.Country,airport1.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ||  FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime) || FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+
+                txtInvalidRoute.Visibility = Visibility.Collapsed;// AIHelpers.IsRouteInCorrectArea(airport1, airport2) ? Visibility.Collapsed : Visibility.Visible;
+
+                txtFlightRestrictions.Visibility = Visibility.Collapsed;//FlightRestrictions.HasRestriction(airport2.Profile.Country,airport1.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ||  FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime) || FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
                 txtFlightRestrictions.Text= string.Format(Translator.GetInstance().GetString("PanelNewRoute","1002"),airport1.Profile.Country.Name,airport2.Profile.Country.Name);
 
