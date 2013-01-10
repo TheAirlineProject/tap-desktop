@@ -25,6 +25,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 {
@@ -375,6 +376,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             }
             else
                 return unit.Name;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the stop overs
+    public class StopoverConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Route route = (Route)value;
+            return string.Join(", ", from s in route.getStopovers() select new AirportCodeConverter().Convert(s.Stopover).ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

@@ -54,6 +54,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", UICreator.CreateTextBlock(this.Route.Destination1.Profile.Name)));
             lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", UICreator.CreateTextBlock(this.Route.Destination2.Profile.Name)));
+            
+            if (this.Route.getStopovers().Count>0)
+                lbRouteInfo.Items.Add(new QuickInfoValue("Stops",UICreator.CreateTextBlock(string.Join(", ", from s in this.Route.getStopovers() select new AirportCodeConverter().Convert(s.Stopover).ToString()))));
+
             lbRouteInfo.Items.Add(new QuickInfoValue("Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance),new StringToLanguageConverter().Convert("km.")))));
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))

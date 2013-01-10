@@ -266,10 +266,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 }
 
                 if (stopover1 != null)
-                    route.addStopover(stopover1);
+                {
+                    if (stopover2 != null)
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false));
+                    else
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false));
+                    stopover1.Terminals.getEmptyGate(airline).HasRoute = true;
+                }
 
                 if (stopover2 != null)
-                    route.addStopover(stopover2);
+                {
+                    if (stopover1 != null)
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true));
+                    else
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover2,dest2,route,false));
+                    stopover2.Terminals.getEmptyGate(airline).HasRoute = true;
+                }
 
                 airline.addRoute(route);
 
@@ -287,28 +299,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
         }
 
-        //creates the combo box for selecting a primary route aircraft
-        private ComboBox createAircraftComboBox()
-        {
-            ComboBox cbAircraft = new ComboBox();
+      
 
-            cbAircraft.SetResourceReference(ComboBox.ItemTemplateProperty, "AirportCountryItem");
-            cbAircraft.Background = Brushes.Transparent;
-            cbAircraft.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbAircraft.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            cbAircraft.SelectionChanged += new SelectionChangedEventHandler(cbAircraft_SelectionChanged);
-            List<FleetAirliner> airliners = GameObject.GetInstance().HumanAirline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime; }));
-       
-            foreach (FleetAirliner airliner in airliners)
-                cbAircraft.Items.Add(airliner);
-        
-            return cbAircraft;
-        }
-
-        private void cbAircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            throw new NotImplementedException();
-        }
         //creates the combo box for a destination
         private ComboBox createDestinationComboBox()
         {
@@ -379,7 +371,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 double maxDistance = distances.Max();
                 double minDistance = distances.Min();
-
+                
                 txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance), new StringToLanguageConverter().Convert("km."));
 
                 btnSave.IsEnabled = minDistance > 50 && maxDistance < this.MaxDistance && isRouteOk;
@@ -401,7 +393,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
             }
-       
+
+          
         }
         //returns if two airports can have route between them
         private Boolean checkRouteOk(Airport airport1, Airport airport2)

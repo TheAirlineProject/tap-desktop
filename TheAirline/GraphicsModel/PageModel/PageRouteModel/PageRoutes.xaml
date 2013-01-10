@@ -19,6 +19,7 @@
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
         <local:StartFlightBooleanToVisibility x:Key="startFlightBooleanToVisibility"></local:StartFlightBooleanToVisibility>
         <local:UnionMemberConverter x:Key="unionMemberConverter"></local:UnionMemberConverter>
+        <local:StopoverConverter x:Key="stopoverConverter"></local:StopoverConverter>
         <DataTemplate x:Key="FleetHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
@@ -55,7 +56,7 @@
                         <Run Text="Homebound"></Run>
                     </Hyperlink>
                 </TextBlock>
-             
+                <TextBlock Text="Stops" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock FontWeight="Bold" Width="100">
                       <Hyperlink Tag="Balance" Click="Header_Click">
                         <Run Text="Balance"></Run>
@@ -89,6 +90,8 @@
       
                     </Hyperlink>
                     </TextBlock>
+                    <TextBlock Text="{Binding Converter={StaticResource stopoverConverter}}" VerticalAlignment="Bottom" Width="75"></TextBlock>
+
                     <TextBlock Margin="10 0 0 0" VerticalAlignment="Bottom" Text="{Binding Balance,Converter={StaticResource valueCurrencyConverter}}" Foreground="{Binding Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
                     <Image Source="/Data/images/info.png" Height="16" Width="16" VerticalAlignment="Bottom"  RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Banned,Converter={StaticResource booleanToVisibility}}">
                         <Image.ToolTip>
@@ -99,7 +102,7 @@
                     </Image>
 
                  </WrapPanel>
-                <WrapPanel Grid.Column="1" HorizontalAlignment="Left">
+                 <WrapPanel Grid.Column="1" HorizontalAlignment="Left">
                     <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="ButtonEdit_Click" Margin="5 0 0 0" Background="Transparent">
                         <Image Source="/Data/images/edit.png" Height="24" Width="24"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     </Button>
