@@ -845,6 +845,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="..\Data\names.csv">
+      <Link>names.csv</Link>
+    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
