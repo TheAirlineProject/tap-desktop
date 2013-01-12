@@ -567,7 +567,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 double timeToNext = currentDate.Subtract(nextDate).TotalMinutes > 0 ? minutesPerWeek - currentDate.Subtract(nextDate).TotalMinutes : Math.Abs(currentDate.Subtract(nextDate).TotalMinutes);
                 double timeFromPrev = prevDate.Subtract(currentDate).TotalMinutes > 0 ? minutesPerWeek - prevDate.Subtract(currentDate).TotalMinutes : Math.Abs(prevDate.Subtract(currentDate).TotalMinutes);
 
-                if (timeFromPrev > previousEntry.getFlightTime().TotalMinutes + flightTimePrevious.TotalMinutes && timeToNext > entry.getFlightTime().TotalMinutes + flightTimeNext.TotalMinutes)
+                if (timeFromPrev > previousEntry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).TotalMinutes + flightTimePrevious.TotalMinutes && timeToNext > entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).TotalMinutes + flightTimeNext.TotalMinutes)
                     return true;
                 else
                 {

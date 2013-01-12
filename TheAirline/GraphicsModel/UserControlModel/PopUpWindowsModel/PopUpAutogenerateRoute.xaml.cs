@@ -198,7 +198,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (route != null)
             {
-                TimeSpan minFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                TimeSpan minFlightTime = route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights);
 
                 int maxHours = 22 - 6; //from 06.00 to 22.00
 
@@ -217,7 +217,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
                     cbBusinessRoute.IsChecked = false;
-                z
+                
             }
 
 

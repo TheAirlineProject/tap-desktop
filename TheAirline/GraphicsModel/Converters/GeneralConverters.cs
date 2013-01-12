@@ -53,7 +53,7 @@ namespace TheAirline.GraphicsModel.Converters
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             Route route = (Route)value;
-            return string.Join(", ", from s in route.getStopovers() select new AirportCodeConverter().Convert(s.Stopover).ToString());
+            return string.Join(", ", from s in route.Stopovers select new AirportCodeConverter().Convert(s.Stopover).ToString());
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

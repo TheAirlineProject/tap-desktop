@@ -24,7 +24,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
-        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates;
+        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates, txtRoute;
         private ComboBox cbDestination1, cbDestination2;
         private Button btnSave, btnLoad;
         private PageRoutes ParentPage;
@@ -83,12 +83,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             ucStopover1 = new ucStopover();
             ucStopover1.ValueChanged += ucStopover_OnValueChanged;
-            lbRouteInfo.Items.Add(new QuickInfoValue("Stopover", ucStopover1));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "1003"), ucStopover1));
 
             ucStopover2 = new ucStopover();
             ucStopover2.ValueChanged += ucStopover_OnValueChanged;
-            lbRouteInfo.Items.Add(new QuickInfoValue("Stopover", ucStopover2));
-         
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "1003"), ucStopover2));
+
+            txtRoute = UICreator.CreateTextBlock("");
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "1004"), txtRoute));
+
             txtDistance = UICreator.CreateTextBlock("-");
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "204"), txtDistance));
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "205"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(this.MaxDistance), new StringToLanguageConverter().Convert("km.")))));
@@ -151,6 +154,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
             }
+
+             
 
             txtFlightCode = new TextBlock();
 
@@ -332,6 +337,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 Airport stopover2 = ucStopover2.Value;
 
                 List<double> distances = new List<double>();
+                List<Airport> destinations = new List<Airport>();
+
+                destinations.Add(airport1);
+
                 Boolean isRouteOk = false;
 
                 if (stopover1 == null && stopover2 == null)
@@ -345,6 +354,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     distances.Add(MathHelpers.GetDistance(airport1, stopover2));
                     distances.Add(MathHelpers.GetDistance(stopover2, airport2));
                     isRouteOk = checkRouteOk(airport1, stopover2) && checkRouteOk(stopover2, airport2);
+                    destinations.Add(stopover2);
                 }
 
                 if (stopover1 != null && stopover2 == null)
@@ -352,6 +362,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     distances.Add(MathHelpers.GetDistance(airport1, stopover1));
                     distances.Add(MathHelpers.GetDistance(stopover1, airport2));
                     isRouteOk = checkRouteOk(airport1, stopover1) && checkRouteOk(stopover1, airport2);
+                    destinations.Add(stopover1);
                 }
 
                 if (stopover1 != null && stopover2 != null)
@@ -360,8 +371,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     distances.Add(MathHelpers.GetDistance(stopover1, stopover2));
                     distances.Add(MathHelpers.GetDistance(stopover2, airport2));
                     isRouteOk = checkRouteOk(airport1, stopover1) && checkRouteOk(stopover1,stopover2)  && checkRouteOk(stopover2, airport2);
+                    destinations.Add(stopover1);
+                    destinations.Add(stopover2);
                 }
 
+                destinations.Add(airport2);
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
@@ -383,6 +397,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 txtFlightRestrictions.Text= string.Format(Translator.GetInstance().GetString("PanelNewRoute","1002"),airport1.Profile.Country.Name,airport2.Profile.Country.Name);
 
+                txtRoute.Text = string.Join(" <-> ", from d in destinations select new AirportCodeConverter().Convert(d).ToString());
             }
 
             if (sender is ComboBox)

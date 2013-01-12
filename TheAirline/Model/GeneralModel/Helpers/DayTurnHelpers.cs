@@ -35,7 +35,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
                 {
                     foreach (RouteTimeTableEntry entry in dayEntries)
-                        SimulateFlight(entry);
+                    {
+                        if (entry.TimeTable.Route.HasStopovers)
+                            SimulateStopoverFlight(entry);
+                        else
+                            SimulateFlight(entry);
+                    }
                     CheckForService(airliner);
                 }
 
@@ -43,6 +48,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
             sw.Stop();
           
 
+        }
+        //simulates a flight with stopovers
+        private static void SimulateStopoverFlight(RouteTimeTableEntry mainEntry)
+        {
+            TimeSpan time = mainEntry.Time;
+           
+            foreach (StopoverRoute stopover in mainEntry.TimeTable.Route.Stopovers)
+            {
+                foreach (Route route in stopover.Legs)
+                {
+                    RouteTimeTable timetable = new RouteTimeTable(route);
+
+                    //outbound
+                    if (mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination1)
+                    {
+                        RouteTimeTableEntry entry = new RouteTimeTableEntry(timetable,mainEntry.Day,time,new RouteEntryDestination(route.Destination2,mainEntry.Destination.FlightCode));
+                        entry.Airliner = mainEntry.Airliner;
+                        entry.MainEntry = mainEntry;
+
+                        time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
+
+                        SimulateFlight(entry);
+                    }
+                    //inbound
+                    else
+                    {
+                        RouteTimeTableEntry entry = new RouteTimeTableEntry(timetable,mainEntry.Day,time,new RouteEntryDestination(route.Destination1,mainEntry.Destination.FlightCode));
+                        
+                        time = entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights); //getFlightTime ( 737-900ER SBY-BOS-CPH-AAR)
+                        entry.Airliner = mainEntry.Airliner;
+                        entry.MainEntry = mainEntry;
+                
+                        SimulateFlight(entry); 
+               
+                    }
+
+                   
+                   
+                }
+                
+            }
         }
         //simulates a flight
         private static void SimulateFlight(RouteTimeTableEntry entry)
@@ -80,9 +126,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
              else
              {
                  airliner.CurrentFlight.FlightTime = airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
+                 
                  foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                  {
-                     airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
+                     if (airliner.CurrentFlight.Entry.MainEntry != null)
+                         airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(airliner, aClass.Type)));
+                     else
+                         airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
                  }
 
                  SetTakeoffStatistics(airliner);

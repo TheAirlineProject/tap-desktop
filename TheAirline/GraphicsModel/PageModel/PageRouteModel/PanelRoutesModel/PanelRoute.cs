@@ -54,8 +54,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", UICreator.CreateTextBlock(this.Route.Destination1.Profile.Name)));
             lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", UICreator.CreateTextBlock(this.Route.Destination2.Profile.Name)));
 
-            if (this.Route.getStopovers().Count > 0)
-                lbRouteInfo.Items.Add(new QuickInfoValue("Stops", UICreator.CreateTextBlock(string.Join(", ", from s in this.Route.getStopovers() select new AirportCodeConverter().Convert(s.Stopover).ToString()))));
+            if (this.Route.HasStopovers)
+                lbRouteInfo.Items.Add(new QuickInfoValue("Stops", UICreator.CreateTextBlock(string.Join(", ", from s in this.Route.Stopovers select new AirportCodeConverter().Convert(s.Stopover).ToString()))));
 
             lbRouteInfo.Items.Add(new QuickInfoValue("Total distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
@@ -113,7 +113,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
             }
 
-            foreach (StopoverRoute stopover in this.Route.getStopovers())
+            foreach (StopoverRoute stopover in this.Route.Stopovers)
             {
                 foreach (Route leg in stopover.Legs)
                 {

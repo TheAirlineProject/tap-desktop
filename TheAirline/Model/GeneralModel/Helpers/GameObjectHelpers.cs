@@ -533,7 +533,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         if (pilot.Airliner != null)
                         {
+                            if (Pilots.GetNumberOfUnassignedPilots() == 0)
+                                GeneralHelpers.CreatePilots(10);
+
                             Pilot newPilot = Pilots.GetUnassignedPilots().Find(p => p.Rating == pilot.Rating);
+
+                            if (newPilot == null)
+                                newPilot = Pilots.GetUnassignedPilots()[0];
+
                             airline.addPilot(newPilot);
 
                             newPilot.Airliner = pilot.Airliner;

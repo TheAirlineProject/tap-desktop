@@ -19,6 +19,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public RouteEntryDestination Destination { get; set; }
         public FleetAirliner Airliner { get; set; }
         public Airport DepartureAirport { get { return getDepartureAirport(); } set { ;} }
+        public RouteTimeTableEntry MainEntry { get; set; }
+     
         public RouteTimeTableEntry(RouteTimeTable timeTable, DayOfWeek day, TimeSpan time, RouteEntryDestination destination)
         {
             this.Day = day;
@@ -50,13 +52,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             return new TimeSpan(24 * daysBetween, 0, 0).Add(time);
         }
-        //returns the estimated flight time for the entry
-        public TimeSpan getFlightTime()
-        {
-            if (this.Airliner != null)
-                return MathHelpers.GetFlightTime(this.Destination.Airport.Profile.Coordinates, this.DepartureAirport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed);
-            return TimeSpan.MinValue;
-        }
+      
     }
     
 }

@@ -75,18 +75,13 @@ namespace TheAirline.Model.GeneralModel
             else
                 return null;
         }
-
-        //returns the number of passengers for a flight
-        public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
+        //returns the number of passengers between two destinations
+        public static int GetFlightPassengers(Airport airportCurrent, Airport airportDestination,FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-           
-            Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
-            Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
-
             double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
-            var currentRoute = airliner.Routes.Find(r => (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
-
+            var currentRoute = airliner.Routes.Find(r =>r.Stopovers.SelectMany(s=>s.Legs).ToList().Exists(l=>(l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent)) || (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
+            
             if (currentRoute == null)
                 return 0;
 
@@ -131,7 +126,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 double level = route.getServiceLevel(type) / route.getFarePrice(type);
 
-                rations.Add(route,level);
+                rations.Add(route, level);
             }
 
             double totalRatio = rations.Values.Sum();
@@ -139,7 +134,7 @@ namespace TheAirline.Model.GeneralModel
             double routeRatioPercent = 1;
 
             if (rations.ContainsKey(currentRoute))
-                routeRatioPercent = Math.Max(1,rations[currentRoute] / Math.Max(1,totalRatio));
+                routeRatioPercent = Math.Max(1, rations[currentRoute] / Math.Max(1, totalRatio));
 
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
 
@@ -148,11 +143,49 @@ namespace TheAirline.Model.GeneralModel
             double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
 
             int pax = (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
-     
-            if (pax<0)
+
+            if (pax < 0)
                 totalCapacity = 100;
 
             return pax;
+        }
+        //returns the number of passengers for a flight
+        public static int GetFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
+        {
+           
+            Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
+            Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
+
+            return GetFlightPassengers(airportCurrent, airportDestination,airliner, type);
+        }
+        //returns the number of passengers for a flight on a stopover route
+        public static int GetStopoverFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
+        {
+            RouteTimeTableEntry mainEntry = airliner.CurrentFlight.Entry.MainEntry;
+            RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
+ 
+            List<Route> legs = mainEntry.TimeTable.Route.Stopovers.SelectMany(s=>s.Legs).ToList();
+              
+            Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
+            //inboound
+            if (isInbound)
+                legs.Reverse();
+
+            int index = legs.IndexOf(entry.TimeTable.Route);
+         
+            int passengers = 0;
+            for (int i = index; i < legs.Count; i++)
+            {
+                if (isInbound)
+                    passengers += GetFlightPassengers(legs[i].Destination2, legs[i].Destination1, airliner, type);
+                else
+                    passengers += GetFlightPassengers(legs[i].Destination1, legs[i].Destination2, airliner, type);
+               
+            }
+
+            return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity,passengers);
+
+       
         }
         //returns the holiday factor for an airport
         private static double GetHolidayFactor(Airport airport)

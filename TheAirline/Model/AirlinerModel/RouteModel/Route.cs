@@ -18,7 +18,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public string Id { get; set; }
         public Airport Destination1 { get; set; }
         public Airport Destination2 { get; set; }
-        private List<StopoverRoute> Stopovers;
+        public List<StopoverRoute> Stopovers { get; set; }
         //public FleetAirliner Airliner { get; set; }
         public List<RouteAirlinerClass> Classes { get; set; }
         public RouteTimeTable TimeTable { get; set; }
@@ -66,11 +66,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             this.Stopovers.Remove(this.Stopovers.Find(s=>s.Stopover == stopover));
         }
-        //returns the list of stop overs
-        public List<StopoverRoute> getStopovers()
-        {
-            return this.Stopovers;
-        }
+      
         //returns if the route contains a specific destination
         public Boolean containsDestination(Airport destination)
         {
