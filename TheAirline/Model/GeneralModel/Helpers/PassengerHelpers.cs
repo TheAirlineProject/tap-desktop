@@ -167,19 +167,25 @@ namespace TheAirline.Model.GeneralModel
             List<Route> legs = mainEntry.TimeTable.Route.Stopovers.SelectMany(s=>s.Legs).ToList();
               
             Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
+            
+            int passengers;
             //inboound
             if (isInbound)
+            {
                 legs.Reverse();
+                passengers = GetFlightPassengers(mainEntry.TimeTable.Route.Destination2,mainEntry.TimeTable.Route.Destination1,airliner,type);
+            }
+            else
+                passengers = GetFlightPassengers(mainEntry.TimeTable.Route.Destination1,mainEntry.TimeTable.Route.Destination2,airliner,type);
 
             int index = legs.IndexOf(entry.TimeTable.Route);
          
-            int passengers = 0;
-            for (int i = index; i < legs.Count; i++)
+            for (int i = index; i < legs.Count; i++) 
             {
                 if (isInbound)
-                    passengers += GetFlightPassengers(legs[i].Destination2, legs[i].Destination1, airliner, type);
+                    passengers += GetFlightPassengers(entry.TimeTable.Route.Destination1, legs[i].Destination1, airliner, type);
                 else
-                    passengers += GetFlightPassengers(legs[i].Destination1, legs[i].Destination2, airliner, type);
+                    passengers += GetFlightPassengers(entry.TimeTable.Route.Destination1, legs[i].Destination2, airliner, type);
                
             }
 
