@@ -47,8 +47,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         int index = legs.IndexOf(entry.TimeTable.Route);
 
-                        TimeSpan time = new TimeSpan(airliner.CurrentFlight.ExpectedLanding.Hour,airliner.CurrentFlight.ExpectedLanding.Minute,airliner.CurrentFlight.ExpectedLanding.Second);
-                        for (int i = index+1; i < legs.Count; i++)
+                        TimeSpan time = new TimeSpan(airliner.CurrentFlight.ExpectedLanding.Hour, airliner.CurrentFlight.ExpectedLanding.Minute, airliner.CurrentFlight.ExpectedLanding.Second);
+                        for (int i = index + 1; i < legs.Count; i++)
                         {
                             RouteTimeTable timetable = new RouteTimeTable(legs[i]);
 
@@ -75,7 +75,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 SimulateFlight(newEntry);
 
                             }
-                          
+
                         }
                     }
                     else
@@ -106,41 +106,46 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             TimeSpan time = mainEntry.Time;
 
-            foreach (StopoverRoute stopover in mainEntry.TimeTable.Route.Stopovers)
+            List<Route> routes = mainEntry.TimeTable.Route.Stopovers.SelectMany(s => s.Legs).ToList();
+
+            Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
+
+            if (isInbound)
+                routes.Reverse();
+
+
+            foreach (Route route in routes)
             {
-                foreach (Route route in stopover.Legs)
+                RouteTimeTable timetable = new RouteTimeTable(route);
+
+                //inbound
+                if (isInbound)
                 {
-                    RouteTimeTable timetable = new RouteTimeTable(route);
+                    RouteTimeTableEntry entry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(route.Destination1, mainEntry.Destination.FlightCode));
 
-                    //outbound
-                    if (mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination1)
-                    {
-                        RouteTimeTableEntry entry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(route.Destination2, mainEntry.Destination.FlightCode));
-                        entry.Airliner = mainEntry.Airliner;
-                        entry.MainEntry = mainEntry;
+                    time = entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights); //getFlightTime ( 737-900ER SBY-BOS-CPH-AAR)
+                    entry.Airliner = mainEntry.Airliner;
+                    entry.MainEntry = mainEntry;
 
-                        time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
+                    SimulateFlight(entry);
+                }
+                //outbound
+                else
+                {
+                    RouteTimeTableEntry entry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(route.Destination2, mainEntry.Destination.FlightCode));
+                    entry.Airliner = mainEntry.Airliner;
+                    entry.MainEntry = mainEntry;
 
-                        SimulateFlight(entry);
-                    }
-                    //inbound
-                    else
-                    {
-                        RouteTimeTableEntry entry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(route.Destination1, mainEntry.Destination.FlightCode));
+                    time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
 
-                        time = entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights); //getFlightTime ( 737-900ER SBY-BOS-CPH-AAR)
-                        entry.Airliner = mainEntry.Airliner;
-                        entry.MainEntry = mainEntry;
-
-                        SimulateFlight(entry);
-
-                    }
-
-
-
+                    SimulateFlight(entry);
                 }
 
+
+
             }
+
+
         }
         //simulates a flight
         private static void SimulateFlight(RouteTimeTableEntry entry)
@@ -233,8 +238,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double totalDiscount = ticketsIncome * (employeeDiscountType.Percentage / 100.0) * (employeesDiscount / 100.0);
             ticketsIncome = ticketsIncome - totalDiscount;
 
-            Airport dest = Airports.GetAirport(airliner.CurrentPosition);
-            Airport dept = airliner.CurrentFlight.getDepartureAirport();
+            Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
+            Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
+
+            /*
+            if (airliner.Airliner.Airline.IsHuman)
+            {
+                Console.WriteLine("{0}: {2}->{3}", GameObject.GetInstance().GameTime.ToShortDateString(), dept.Profile.IATACode, dest.Profile.IATACode);
+            }*/
 
             double dist = MathHelpers.GetDistance(dest.Profile.Coordinates, dept.Profile.Coordinates);
 
