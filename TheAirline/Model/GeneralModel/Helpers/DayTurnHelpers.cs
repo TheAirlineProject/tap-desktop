@@ -33,50 +33,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (stopoverRoute)
                     {
-                        RouteTimeTableEntry mainEntry = airliner.CurrentFlight.Entry.MainEntry;
-                        RouteTimeTableEntry entry = airliner.CurrentFlight.Entry;
+                        SimulateLanding(airliner);
 
-                        List<Route> legs = mainEntry.TimeTable.Route.Stopovers.SelectMany(s => s.Legs).ToList();
-
-                        Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
-
-                        //inboound
-                        if (isInbound)
-                            legs.Reverse();
-
-
-                        int index = legs.IndexOf(entry.TimeTable.Route);
-
-                        TimeSpan time = new TimeSpan(airliner.CurrentFlight.ExpectedLanding.Hour, airliner.CurrentFlight.ExpectedLanding.Minute, airliner.CurrentFlight.ExpectedLanding.Second);
-                        for (int i = index + 1; i < legs.Count; i++)
-                        {
-                            RouteTimeTable timetable = new RouteTimeTable(legs[i]);
-
-                            //outbound
-                            if (!isInbound)
-                            {
-                                RouteTimeTableEntry newEntry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(legs[i].Destination2, mainEntry.Destination.FlightCode));
-                                newEntry.Airliner = mainEntry.Airliner;
-                                newEntry.MainEntry = mainEntry;
-
-                                time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
-
-                                SimulateFlight(entry);
-                            }
-                            //inbound
-                            else
-                            {
-                                RouteTimeTableEntry newEntry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(legs[i].Destination1, mainEntry.Destination.FlightCode));
-
-                                time = entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights); //getFlightTime ( 737-900ER SBY-BOS-CPH-AAR)
-                                newEntry.Airliner = mainEntry.Airliner;
-                                newEntry.MainEntry = mainEntry;
-
-                                SimulateFlight(newEntry);
-
-                            }
-
-                        }
+                        while (airliner.CurrentFlight != null)
+                            SimulateFlight(airliner.CurrentFlight.Entry);
                     }
                     else
                         SimulateLanding(airliner);
@@ -104,14 +64,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a flight with stopovers
         private static void SimulateStopoverFlight(RouteTimeTableEntry mainEntry)
         {
-            TimeSpan time = mainEntry.Time;
+            
+            //List<Route> routes = mainEntry.TimeTable.Route.Stopovers.SelectMany(s => s.Legs).ToList();
 
-            List<Route> routes = mainEntry.TimeTable.Route.Stopovers.SelectMany(s => s.Legs).ToList();
+            //Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
 
-            Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
-
+            SimulateFlight(mainEntry);
+            /*
             if (isInbound)
                 routes.Reverse();
+            TimeSpan time = mainEntry.Time;
 
 
             foreach (Route route in routes)
@@ -144,14 +106,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
-
+            */
 
         }
         //simulates a flight
         private static void SimulateFlight(RouteTimeTableEntry entry)
         {
             FleetAirliner airliner = entry.Airliner;
-            entry.Airliner.CurrentFlight = new Flight(entry);
+
+            if (entry.TimeTable.Route.HasStopovers)
+            {
+                if (airliner.CurrentFlight == null)
+                    airliner.CurrentFlight = new StopoverFlight(entry);
+              
+                ((StopoverFlight)entry.Airliner.CurrentFlight).setNextEntry();
+            }
+            else
+                airliner.CurrentFlight = new Flight(entry);
 
             KeyValuePair<FleetAirlinerHelpers.DelayType, int> delayedMinutes = FleetAirlinerHelpers.GetDelayedMinutes(airliner);
 
@@ -183,14 +154,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else
             {
                 airliner.CurrentFlight.FlightTime = airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
-
-                foreach (AirlinerClass aClass in airliner.Airliner.Classes)
-                {
-                    if (airliner.CurrentFlight.Entry.MainEntry != null)
-                        airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(airliner, aClass.Type)));
-                    else
-                        airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
-                }
+                                 
+                if (airliner.CurrentFlight.Entry.MainEntry == null)
+                  foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                  {
+                    airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
+                  }
 
                 SetTakeoffStatistics(airliner);
 
@@ -241,11 +210,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
 
-            /*
+            
             if (airliner.Airliner.Airline.IsHuman)
             {
-                Console.WriteLine("{0}: {2}->{3}", GameObject.GetInstance().GameTime.ToShortDateString(), dept.Profile.IATACode, dest.Profile.IATACode);
-            }*/
+               Console.WriteLine("{0}: {1}->{2} Pax: {3}", GameObject.GetInstance().GameTime.ToShortDateString(), dept.Profile.IATACode, dest.Profile.IATACode, airliner.CurrentFlight.getTotalPassengers());
+            }
 
             double dist = MathHelpers.GetDistance(dest.Profile.Coordinates, dept.Profile.Coordinates);
 
@@ -378,10 +347,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             CreatePassengersHappiness(airliner);
 
-            airliner.CurrentFlight = null;
-
-
-
+            if (airliner.CurrentFlight is StopoverFlight && !((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
+            {
+            }
+            else
+                airliner.CurrentFlight = null;
 
         }
         //sets the statistics from a take off

@@ -48,8 +48,11 @@ namespace TheAirline.Model.GeneralModel
                 var line = reader.ReadLine();
                 var values = line.Split(',');
 
-                this.FirstNames.Add(values[0]);
-                this.LastNames.Add(values[1]);
+                if (values[0].Trim().Length > 1)
+                    this.FirstNames.Add(values[0]);
+
+                if (values[1].Trim().Length > 1)
+                    this.LastNames.Add(values[1]);
             }
         }
     }

@@ -637,8 +637,9 @@ namespace TheAirline.Model.GeneralModel
                         type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to));
                     }
 
-                    if (airliner.HasAttribute("image"))
+                    if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
                         type.Image = dir + airliner.Attributes["image"].Value + ".png";
+
 
                     if (type != null && airlinerType == AirlinerType.TypeOfAirliner.Passenger)
                         AirlinerTypes.AddType(type);

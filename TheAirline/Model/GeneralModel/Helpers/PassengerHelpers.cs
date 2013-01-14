@@ -158,6 +158,14 @@ namespace TheAirline.Model.GeneralModel
 
             return GetFlightPassengers(airportCurrent, airportDestination,airliner, type);
         }
+        //returns the number of passengers between two airports on a stopover route
+        public static int GetStopoverFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type, Airport dept, Airport dest)
+        {
+            int passengers = 0;
+            passengers += GetFlightPassengers(dept, dest, airliner, type);
+            
+            return passengers;
+        }
         //returns the number of passengers for a flight on a stopover route
         public static int GetStopoverFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)
         {

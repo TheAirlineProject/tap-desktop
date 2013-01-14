@@ -24,7 +24,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
-        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtFlightRestrictions, txtDestination1Gates, txtDestination2Gates, txtRoute;
+        private TextBlock txtDistance,  txtFlightCode, txtInvalidRoute,txtDestination1Gates, txtDestination2Gates, txtRoute;
         private ComboBox cbDestination1, cbDestination2;
         private Button btnSave, btnLoad;
         private PageRoutes ParentPage;
@@ -188,11 +188,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtInvalidRoute.Foreground = Brushes.DarkRed;
             txtInvalidRoute.Visibility = System.Windows.Visibility.Collapsed;
             this.Children.Add(txtInvalidRoute);
-
-            txtFlightRestrictions = UICreator.CreateTextBlock("");
-            txtFlightRestrictions.Foreground = Brushes.DarkRed;
-            txtFlightRestrictions.Visibility = System.Windows.Visibility.Collapsed;
-            this.Children.Add(txtFlightRestrictions);
 
         }
 
@@ -391,11 +386,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 btnSave.IsEnabled = minDistance > 50 && maxDistance < this.MaxDistance && isRouteOk;
                 btnLoad.IsEnabled = btnSave.IsEnabled;
 
-                txtInvalidRoute.Visibility = Visibility.Collapsed;// AIHelpers.IsRouteInCorrectArea(airport1, airport2) ? Visibility.Collapsed : Visibility.Visible;
-
-                txtFlightRestrictions.Visibility = Visibility.Collapsed;//FlightRestrictions.HasRestriction(airport2.Profile.Country,airport1.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ||  FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline,airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime) || FlightRestrictions.HasRestriction(airport1.Profile.Country,airport2.Profile.Country,GameObject.GetInstance().GameTime,FlightRestriction.RestrictionType.Flights) ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-
-                txtFlightRestrictions.Text= string.Format(Translator.GetInstance().GetString("PanelNewRoute","1002"),airport1.Profile.Country.Name,airport2.Profile.Country.Name);
+                txtInvalidRoute.Visibility = isRouteOk ? Visibility.Collapsed : Visibility.Visible;
 
                 txtRoute.Text = string.Join(" <-> ", from d in destinations select new AirportCodeConverter().Convert(d).ToString());
             }
