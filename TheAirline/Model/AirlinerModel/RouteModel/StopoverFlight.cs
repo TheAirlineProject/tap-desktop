@@ -9,14 +9,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     //the class for a stopover flight
     public class StopoverFlight : Flight
     {
-        private int currentFlight;
+        public int CurrentFlight { get; set; }
         public Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>> AllClasses { get; set; }
         public Boolean IsLastTrip { get { return isLastTrip(); } set { ;} }
         public StopoverFlight(RouteTimeTableEntry entry)
             : base(entry)
         {
 
-            this.currentFlight = 0;
+            this.CurrentFlight = 0;
             this.AllClasses = new Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>>();
 
             List<Route> legs = entry.TimeTable.Route.Stopovers.SelectMany(s => s.Legs).ToList();
@@ -104,27 +104,27 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public void setNextEntry()
         {
 
-            RouteTimeTableEntry entry = this.AllClasses.Keys.ElementAt(currentFlight);
+            RouteTimeTableEntry entry = this.AllClasses.Keys.ElementAt(CurrentFlight);
 
             this.Entry = entry;
             this.Classes = this.AllClasses[entry];
 
             this.Airliner = this.Entry.Airliner;
 
-            if (currentFlight == 0)
+            if (CurrentFlight == 0)
                 this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry, 0);
             else
                 this.FlightTime = GameObject.GetInstance().GameTime.Add(RouteTimeTable.MinTimeBetweenFlights);
             
             this.IsOnTime = true;
 
-            currentFlight++;
+            CurrentFlight++;
 
         }
         //returns if the entry is the last of the trip
         private Boolean isLastTrip()
         {
-            return currentFlight == this.AllClasses.Keys.Count;//this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
+            return CurrentFlight == this.AllClasses.Keys.Count;//this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
 
         }
         public override void addDelayMinutes(int minutes)

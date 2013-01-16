@@ -93,9 +93,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
-
-            
-
+                
             }
         }
         private void lnkNewGame_Click(object sender, RoutedEventArgs e)

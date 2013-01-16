@@ -20,14 +20,16 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public FleetAirliner Airliner { get; set; }
         public Airport DepartureAirport { get { return getDepartureAirport(); } set { ;} }
         public RouteTimeTableEntry MainEntry { get; set; }
-     
+        public string ID { get; set; }
         public RouteTimeTableEntry(RouteTimeTable timeTable, DayOfWeek day, TimeSpan time, RouteEntryDestination destination)
         {
+             Guid id = Guid.NewGuid();
+
             this.Day = day;
             this.Time = time;
             this.TimeTable = timeTable;
             this.Destination = destination;
-
+            this.ID = id.ToString();
          }
         //returns the departure airport
         public Airport getDepartureAirport()
