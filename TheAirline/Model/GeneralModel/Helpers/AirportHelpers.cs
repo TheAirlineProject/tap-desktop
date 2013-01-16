@@ -13,6 +13,42 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class AirportHelpers
     {
         private static Random rnd = new Random();
+        //returns the longest distance between airports in a match
+        public static double GetLongestDistance(Predicate<Airport> match)
+        {
+            var airports1 = Airports.GetAllAirports(match);
+            var airports2 = Airports.GetAllAirports(match);
+
+            double maxDistance = Double.MinValue;
+           
+            foreach (Airport airport1 in airports1)
+            {
+                double distance = airports2.Where(a=>a!=airport1).Max(a=>MathHelpers.GetDistance(a,airport1));
+
+                if (distance >= maxDistance)
+                    maxDistance = distance;
+            }
+               
+            return maxDistance;
+        }
+        //returns the shortest distance between airports in a match
+        public static double GetLongestDistance(Predicate<Airport> match)
+        {
+            var airports1 = Airports.GetAllAirports(match);
+            var airports2 = Airports.GetAllAirports(match);
+
+            double minDistance = Double.MaxValue;
+
+            foreach (Airport airport1 in airports1)
+            {
+                double distance = airports2.Where(a => a != airport1).Max(a => MathHelpers.GetDistance(a, airport1));
+
+                if (distance <= minDistance)
+                    minDistance = distance;
+            }
+
+            return minDistance;
+        }
         //returns the price for a runway at an airport
         public static double GetAirportRunwayPrice(Airport airport, long lenght)
         {
