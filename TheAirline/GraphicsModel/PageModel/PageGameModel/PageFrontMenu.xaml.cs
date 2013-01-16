@@ -17,6 +17,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.Model.GeneralModel.HolidaysModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -80,16 +82,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             if (file != null)
             {
                 Setup.SetupGame();
-
+       
                 LoadSaveHelpers.LoadGame(file);
-                
-                PageNavigator.ClearNavigator();
-
-                GameTimer.GetInstance().start();
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
+                HolidayYear.Clear();
 
+                GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+
+                GameTimer.GetInstance().start();
+                GameObjectWorker.GetInstance().start();
+
+            
 
             }
         }

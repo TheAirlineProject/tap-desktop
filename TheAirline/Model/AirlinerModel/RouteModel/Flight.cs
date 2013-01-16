@@ -37,6 +37,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
          
         }
+        //adds some delay minutes to the flight
+        public virtual void addDelayMinutes(int minutes)
+        {
+           this.FlightTime = this.FlightTime.AddMinutes(minutes);
+        }
         //returns the scheduled expected landing time
         public DateTime getScheduledLandingTime()
         {

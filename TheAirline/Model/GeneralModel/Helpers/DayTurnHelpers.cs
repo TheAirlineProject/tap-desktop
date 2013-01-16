@@ -29,17 +29,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (airliner.CurrentFlight != null)
                 {
-                    Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
+                    //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
 
-                    if (stopoverRoute)
-                    {
-                        SimulateLanding(airliner);
-
-                        while (airliner.CurrentFlight != null)
-                            SimulateFlight(airliner.CurrentFlight.Entry);
-                    }
-                    else
-                        SimulateLanding(airliner);
+                    SimulateLanding(airliner);
                 }
 
                 var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner).OrderBy(e => e.Time);
@@ -113,13 +105,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateFlight(RouteTimeTableEntry entry)
         {
             FleetAirliner airliner = entry.Airliner;
-
-            if (entry.TimeTable.Route.HasStopovers)
+            
+            if (entry.TimeTable.Route.HasStopovers || airliner.CurrentFlight is StopoverFlight)
             {
-                if (airliner.CurrentFlight == null)
+                if (airliner.CurrentFlight == null ||((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
                     airliner.CurrentFlight = new StopoverFlight(entry);
               
-                ((StopoverFlight)entry.Airliner.CurrentFlight).setNextEntry();
+                ((StopoverFlight)airliner.CurrentFlight).setNextEntry();
             }
             else
                 airliner.CurrentFlight = new Flight(entry);
@@ -153,7 +145,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else
             {
-                airliner.CurrentFlight.FlightTime = airliner.CurrentFlight.FlightTime.AddMinutes(delayedMinutes.Value);
+                airliner.CurrentFlight.addDelayMinutes(delayedMinutes.Value);
                                  
                 if (airliner.CurrentFlight.Entry.MainEntry == null)
                   foreach (AirlinerClass aClass in airliner.Airliner.Classes)
@@ -209,12 +201,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
-
-            
-            if (airliner.Airliner.Airline.IsHuman)
-            {
-               Console.WriteLine("{0}: {1}->{2} Pax: {3}", GameObject.GetInstance().GameTime.ToShortDateString(), dept.Profile.IATACode, dest.Profile.IATACode, airliner.CurrentFlight.getTotalPassengers());
-            }
 
             double dist = MathHelpers.GetDistance(dest.Profile.Coordinates, dept.Profile.Coordinates);
 
@@ -349,6 +335,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.CurrentFlight is StopoverFlight && !((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
             {
+                SimulateFlight(airliner.CurrentFlight.Entry);
             }
             else
                 airliner.CurrentFlight = null;

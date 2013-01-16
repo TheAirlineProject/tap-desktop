@@ -110,13 +110,20 @@ namespace TheAirline.Model.GeneralModel
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Local && distance < 1000)
                 passengerDemand = passengerDemand * (115 / 100);
 
-            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
+            List<Route> routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent))).ToList();
+            List<Route> stopoverroutes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Count()>0)).ToList();//Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))))).ToList(); 
+            
+            routes.AddRange(stopoverroutes);
 
             double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count)) / 7;
 
             passengerDemand = passengerDemand / flightsPerDay;
 
-            double totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
+            double totalCapacity =0;
+            if (routes.Count > 0 && routes.Count(r => !r.HasAirliner) > 0)
+                totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));//SelectMany(r => r.Stopovers.Where(s=>s.Legs.Count >0))).Sum(s=>s.;//a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Sum(r=>r.getAirliners().Max(a=>a.Airliner.getTotalSeatCapacity())); 
+            else
+                totalCapacity = routes.Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
 
             double capacityPercent = passengerDemand > totalCapacity ? 1 : passengerDemand / totalCapacity;
 
@@ -159,11 +166,30 @@ namespace TheAirline.Model.GeneralModel
             return GetFlightPassengers(airportCurrent, airportDestination,airliner, type);
         }
         //returns the number of passengers between two airports on a stopover route
-        public static int GetStopoverFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type, Airport dept, Airport dest)
+        public static int GetStopoverFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type, Airport dept, Airport dest,List<Route> routes, Boolean isInbound)
         {
-            int passengers = 0;
-            passengers += GetFlightPassengers(dept, dest, airliner, type);
-            
+            Route currentRoute = routes.Find(r=>(r.Destination1 == dept && r.Destination2==dest) || (r.Destination2 == dept && r.Destination1 == dest));
+            int index = routes.IndexOf(currentRoute);
+
+            int passengers = 0; 
+            for (int i = 0; i <= index; i++)
+            {
+                if (isInbound)
+                {
+                    passengers += GetFlightPassengers(routes[i].Destination2, dest, airliner, type);
+                }
+                else
+                {
+                    passengers += GetFlightPassengers(routes[i].Destination1, dest, airliner, type);
+   
+                }
+
+
+
+
+        
+            }
+      
             return passengers;
         }
         //returns the number of passengers for a flight on a stopover route

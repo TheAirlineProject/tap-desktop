@@ -304,6 +304,8 @@ namespace TheAirline.Model.GeneralModel
         //converts a route time table entry to datetime
         public static DateTime ConvertEntryToDate(RouteTimeTableEntry entry)
         {
+            return ConvertEntryToDate(entry, 0);
+            /*
             int currentDay = (int)GameObject.GetInstance().GameTime.DayOfWeek;
             if (GameObject.GetInstance().GameTime.DayOfWeek > entry.Day) 
                 currentDay -= 7;
@@ -319,7 +321,31 @@ namespace TheAirline.Model.GeneralModel
 
             
             return flightTime;
+             * */
         }
+        //converts a route time table entry to datetime with a max minutes before moving a week ahead
+        public static DateTime ConvertEntryToDate(RouteTimeTableEntry entry, int maxMinutes)
+        {
+            int currentDay = (int)GameObject.GetInstance().GameTime.DayOfWeek;
+
+            int entryDay = (int)entry.Day + entry.Time.Days; 
+
+            if (currentDay > entryDay)
+                currentDay -= 7;
+
+            int daysBetween = Math.Abs(entryDay - currentDay);
+
+            if (daysBetween == 0 && new TimeSpan(GameObject.GetInstance().GameTime.Hour, GameObject.GetInstance().GameTime.Minute, 0) > new TimeSpan(entry.Time.Hours, entry.Time.Minutes, 0).Add(new TimeSpan(0,maxMinutes,0)))
+            {
+                daysBetween = 7;
+            }
+
+            DateTime flightTime = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds).AddDays(daysBetween);
+
+
+            return flightTime;
+        }
+
         //gets the local time for a time in a time zone
         public static DateTime ConvertDateTimeToLoalTime(DateTime time, GameTimeZone timeZone)
         {

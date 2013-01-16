@@ -4,20 +4,20 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
        xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+       xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageFlights">
     <Page.Resources>
+        <c:StopoverConverter x:Key="stopoverConverter"></c:StopoverConverter>
         <DataTemplate x:Key="FlightItem">
             <WrapPanel>
                 <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="250"/>
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="250"/>
-
-             
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75"></TextBlock>
-      
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="300"/>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="300"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="100"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route,Converter={StaticResource stopoverConverter}}"></TextBlock>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="FlightsHeader">
@@ -32,21 +32,22 @@
                         <Run Text="Flight"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                <TextBlock Width="300" VerticalAlignment="Bottom" FontWeight="Bold">
                     <Hyperlink Tag="Origin" Click="Header_Click">
                         <Run Text="Origin"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                <TextBlock Width="300" VerticalAlignment="Bottom" FontWeight="Bold">
                     <Hyperlink Tag="Destination" Click="Header_Click">
                         <Run Text="Destination"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Width="250" VerticalAlignment="Bottom" FontWeight="Bold">
+                <TextBlock Width="100" VerticalAlignment="Bottom" FontWeight="Bold">
                     <Hyperlink Tag="Time" Click="Header_Click">
                         <Run Text="Dept.Time"></Run>
                     </Hyperlink>
                 </TextBlock>
+                <TextBlock Width="100" VerticalAlignment="Bottom" FontWeight="Bold" Text="Stopovers"></TextBlock>
                   </WrapPanel>
         </DataTemplate>
     </Page.Resources>

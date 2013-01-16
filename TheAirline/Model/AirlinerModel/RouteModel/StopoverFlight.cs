@@ -15,6 +15,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public StopoverFlight(RouteTimeTableEntry entry)
             : base(entry)
         {
+
             this.currentFlight = 0;
             this.AllClasses = new Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>>();
 
@@ -43,8 +44,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 this.AllClasses.Add(route, classes);
             }
              * */
-            
-         
+
+
         }
         //creates the entries for the stopoverflight
         private void createEntries(RouteTimeTableEntry mainEntry)
@@ -54,6 +55,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             TimeSpan time = mainEntry.Time;
 
             Boolean isInbound = mainEntry.DepartureAirport == mainEntry.TimeTable.Route.Destination2;
+
+            if (isInbound)
+                routes.Reverse();
 
             foreach (Route route in routes)
             {
@@ -65,7 +69,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 {
                     entry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(route.Destination1, mainEntry.Destination.FlightCode));
 
-                    time = entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights); //getFlightTime ( 737-900ER SBY-BOS-CPH-AAR)
+                    time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
                     entry.Airliner = mainEntry.Airliner;
                     entry.MainEntry = mainEntry;
 
@@ -86,9 +90,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 {
                     FlightAirlinerClass faClass;
                     if (isInbound)
-                        faClass = new FlightAirlinerClass(route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination2, route.Destination1));
+                        faClass = new FlightAirlinerClass(route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination2, route.Destination1, routes, isInbound));
                     else
-                        faClass = new FlightAirlinerClass(route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination1, route.Destination2));
+                        faClass = new FlightAirlinerClass(route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination1, route.Destination2, routes, isInbound));
 
                     classes.Add(faClass);
                 }
@@ -99,15 +103,18 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //sets the next entry
         public void setNextEntry()
         {
-            
+
             RouteTimeTableEntry entry = this.AllClasses.Keys.ElementAt(currentFlight);
 
             this.Entry = entry;
             this.Classes = this.AllClasses[entry];
 
             this.Airliner = this.Entry.Airliner;
-            this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
-            this.ScheduledFlightTime = this.FlightTime;
+
+            if (currentFlight == 0)
+                this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry, 0);
+            else
+                this.FlightTime = GameObject.GetInstance().GameTime.Add(RouteTimeTable.MinTimeBetweenFlights);
             
             this.IsOnTime = true;
 
@@ -118,7 +125,15 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         private Boolean isLastTrip()
         {
             return currentFlight == this.AllClasses.Keys.Count;//this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
-        
+
+        }
+        public override void addDelayMinutes(int minutes)
+        {
+            base.addDelayMinutes(minutes);
+
+            foreach (RouteTimeTableEntry e in this.AllClasses.Keys)
+                e.Time = e.Time.Add(new TimeSpan(0, minutes, 0));
+
         }
     }
 }

@@ -120,7 +120,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkNewGame_Click(object sender, RoutedEventArgs e)
         {
-           
+            if (GameTimer.GetInstance().isPaused())
+                GameTimer.GetInstance().start();
+            
+
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1001"), Translator.GetInstance().GetString("MessageBox", "1001", "message"), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
@@ -181,6 +184,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
+            
             GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().cancel();
 
