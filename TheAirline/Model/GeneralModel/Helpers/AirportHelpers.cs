@@ -32,7 +32,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return maxDistance;
         }
         //returns the shortest distance between airports in a match
-        public static double GetLongestDistance(Predicate<Airport> match)
+        public static double GetShortestDistance(Predicate<Airport> match)
         {
             var airports1 = Airports.GetAllAirports(match);
             var airports2 = Airports.GetAllAirports(match);
