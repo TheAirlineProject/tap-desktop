@@ -823,7 +823,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             RouteTimeTable timeTable = new RouteTimeTable(route);
 
-            TimeSpan minFlightTime = route.getFlightTime(airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
+
+            TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+
+            if (minFlightTime.TotalHours > 5)
+                minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {

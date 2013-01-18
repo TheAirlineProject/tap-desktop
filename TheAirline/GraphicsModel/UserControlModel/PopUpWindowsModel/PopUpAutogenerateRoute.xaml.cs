@@ -192,13 +192,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void cbAutoRoute_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
-
+            
             Route route = (Route)cbRoute.SelectedItem;
 
             if (route != null)
             {
-                TimeSpan minFlightTime = route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights);
+                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+
+                TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+
+                if (minFlightTime.TotalHours > 5)
+                    minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
 
                 int maxHours = 22 - 6; //from 06.00 to 22.00
 
