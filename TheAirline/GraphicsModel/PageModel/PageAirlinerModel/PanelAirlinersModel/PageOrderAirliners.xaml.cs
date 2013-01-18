@@ -480,14 +480,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                             int nLength = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
 
                             int length = GameObject.GetInstance().HumanAirline.Contract.Length + nLength;
-                            
-                           
-                            
-                            double discountFactor = ((nLength + length / 20) + 1.2);
-                            double discount = Math.Pow(discountFactor, 7);
-                            if (discount > 30)
-                            { discount = length * 3; }
                           
+                            double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline,length);                        
 
                             GameObject.GetInstance().HumanAirline.Contract.Length = length;
                             GameObject.GetInstance().HumanAirline.Contract.Discount = discount;
@@ -529,13 +523,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageOrderAirliners", "1011"), cbLength) == PopUpSingleElement.ButtonSelected.OK)
                 {
                     int length = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
-                    double Length = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
-                    double DiscountFactor = ((Length / 20) + 1.2);
-                    double Discount = Math.Pow(DiscountFactor, 7);
-                    if (Discount > 30)
-                    { Discount = length * 3; }
+                   
+                    double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline, length);                        
 
-                    ManufacturerContract contract = new ManufacturerContract(this.Manufacturer, GameObject.GetInstance().GameTime, length, Discount);
+                    ManufacturerContract contract = new ManufacturerContract(this.Manufacturer, GameObject.GetInstance().GameTime, length, discount);
                     GameObject.GetInstance().HumanAirline.Contract = contract;
                 }
             }

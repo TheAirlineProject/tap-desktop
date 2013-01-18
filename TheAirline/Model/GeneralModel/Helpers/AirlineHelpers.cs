@@ -266,6 +266,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             
         }
+        //returns the discount factor for a manufactorer for an airline and for a period
+        public static double GetAirlineManufactorerDiscountFactor(Airline airline, int length)
+        {
+            int score = 1 + (int)airline.getReputation();
+            double discountFactor = (Convert.ToDouble(length) / 20) + (0.3 * score);
+            double discount = Math.Pow(discountFactor, 5);
+
+            if (discount > 30)
+                discount = length * 3;
+      
+            return discount;
+
+
+        }
         
     }
 }
