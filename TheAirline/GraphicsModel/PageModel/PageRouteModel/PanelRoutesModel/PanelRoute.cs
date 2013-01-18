@@ -15,12 +15,14 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelRoute : StackPanel
     {
-
+        private Frame frmStopoverStatistics;
         private Route Route;
         private PageRoutes ParentPage;
         private ListBox lbRouteFinances;
@@ -40,7 +42,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Route Information";
+            txtHeader.Uid = "1000";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelRoute", txtHeader.Uid);
             this.Children.Add(txtHeader);
 
             ListBox lbRouteInfo = new ListBox();
@@ -51,13 +54,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             double distance = MathHelpers.GetDistance(this.Route.Destination1.Profile.Coordinates, this.Route.Destination2.Profile.Coordinates);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 1", UICreator.CreateTextBlock(this.Route.Destination1.Profile.Name)));
-            lbRouteInfo.Items.Add(new QuickInfoValue("Destination 2", UICreator.CreateTextBlock(this.Route.Destination2.Profile.Name)));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1001"), UICreator.CreateTextBlock(this.Route.Destination1.Profile.Name)));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1002"), UICreator.CreateTextBlock(this.Route.Destination2.Profile.Name)));
 
             if (this.Route.HasStopovers)
-                lbRouteInfo.Items.Add(new QuickInfoValue("Stops", UICreator.CreateTextBlock(string.Join(", ", from s in this.Route.Stopovers select new AirportCodeConverter().Convert(s.Stopover).ToString()))));
+                lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1003"), UICreator.CreateTextBlock(string.Join(", ", from s in this.Route.Stopovers select new AirportCodeConverter().Convert(s.Stopover).ToString()))));
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Total distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1004"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
             this.Classes.Add(route, new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>());
 
@@ -118,7 +121,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 foreach (Route leg in stopover.Legs)
                 {
                     this.Classes.Add(leg, new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>());
-                    lbRouteInfo.Items.Add(new QuickInfoValue("Stopover", UICreator.CreateTextBlock(string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2)))));
+                    lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1005"), UICreator.CreateTextBlock(string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2)))));
                     foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                     {
                         RouteAirlinerClass rClass = leg.getRouteAirlinerClass(type);
@@ -173,7 +176,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             int numberOfInboundFlights = this.Route.TimeTable.Entries.Count(e => e.DepartureAirport == this.Route.Destination2);
             int numberOfOutboundFlights = this.Route.TimeTable.Entries.Count(e => e.DepartureAirport == this.Route.Destination1);
 
-            lbRouteInfo.Items.Add(new QuickInfoValue("Flights per week (out/in)", UICreator.CreateTextBlock(string.Format("{0} / {1}", numberOfOutboundFlights, numberOfInboundFlights))));
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1006"), UICreator.CreateTextBlock(string.Format("{0} / {1}", numberOfOutboundFlights, numberOfInboundFlights))));
 
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
@@ -186,7 +189,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
-            btnOk.Content = "OK";
+            btnOk.Uid = "100";
+            btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
@@ -196,7 +200,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnLoad.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnLoad.Height = Double.NaN;
             btnLoad.Width = Double.NaN;
-            btnLoad.Content = Translator.GetInstance().GetString("General", "115");
+            btnLoad.Uid = "115";
+            btnLoad.Content = Translator.GetInstance().GetString("General", btnLoad.Uid);
             btnLoad.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
             btnLoad.Margin = new Thickness(5, 0, 0, 0);
@@ -206,33 +211,61 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnDelete.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnDelete.Height = Double.NaN;
             btnDelete.Width = Double.NaN;
-            btnDelete.Content = "Delete Route";
+            btnDelete.Uid = "200";
+            btnDelete.Content = Translator.GetInstance().GetString("PanelRoute", btnDelete.Uid);
             btnDelete.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnDelete.Margin = new System.Windows.Thickness(5, 0, 0, 0);
             btnDelete.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
             buttonsPanel.Children.Add(btnDelete);
 
-
-            this.Children.Add(createRouteFinancesPanel());
+            if (this.Route.HasStopovers)
+            {
+                this.Children.Add(createStopoverStatisticsPanel());
+            }
+            else
+            {
+                this.Children.Add(createRouteFinancesPanel());
+            }
 
             showRouteFinances();
 
         }
-
-        private void PanelRoute_Unloaded(object sender, RoutedEventArgs e)
+        //creates the panel for stopover statistics
+        private StackPanel createStopoverStatisticsPanel()
         {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PanelRoute_OnTimeChanged);
+            StackPanel panelStopoverStatistics = new StackPanel();
 
-        }
+            WrapPanel panelMenuButtons = new WrapPanel();
+            panelStopoverStatistics.Children.Add(panelMenuButtons);
 
-        private void PanelRoute_OnTimeChanged()
-        {
-            if (this.IsLoaded)
+            ucSelectButton sbRouteFinances = new ucSelectButton();
+            sbRouteFinances.Uid = "1007";
+            sbRouteFinances.Content = Translator.GetInstance().GetString("PanelRoute", sbRouteFinances.Uid);
+            sbRouteFinances.Click += sbRouteFinances_Click;
+            sbRouteFinances.IsSelected = true;
+            panelMenuButtons.Children.Add(sbRouteFinances);
+
+            foreach (Route leg in this.Route.Stopovers.SelectMany(s => s.Legs))
             {
-                showRouteFinances();
+                ucSelectButton sbLeg = new ucSelectButton();
+                sbLeg.Uid = "1004";
+                sbLeg.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2));
+                sbLeg.Tag = leg;
+                sbLeg.Click += sbLeg_Click;
+                panelMenuButtons.Children.Add(sbLeg);
             }
+
+            frmStopoverStatistics = new Frame();
+            frmStopoverStatistics.Navigate(createRouteFinancesPanel());
+
+            panelStopoverStatistics.Children.Add(frmStopoverStatistics);
+
+            return panelStopoverStatistics;
         }
+
+       
+       
         //creates the finances for the route
         private StackPanel createRouteFinancesPanel()
         {
@@ -243,7 +276,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
             txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = "Route Finances";
+            txtHeader.Uid = "1008";
+            txtHeader.Text = Translator.GetInstance().GetString("PanelRoute", txtHeader.Uid);
             panelRouteFinances.Children.Add(txtHeader);
 
 
@@ -255,6 +289,37 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             return panelRouteFinances;
         }
+        //creates the panel for the statistics for a leg
+        private StackPanel createLegStatistics(Route leg)
+        {
+            StackPanel panelLegStatistics = new StackPanel();
+            panelLegStatistics.Margin = new Thickness(0, 5, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2));
+            panelLegStatistics.Children.Add(txtHeader);
+            
+            ListBox lbLegStatistics = new ListBox();
+            lbLegStatistics.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbLegStatistics.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            panelLegStatistics.Children.Add(lbLegStatistics);
+
+            RouteAirlinerClass raClass = leg.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+
+            double passengers = leg.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers"));
+            double avgPassengers = leg.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers%"));
+          
+            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1009"), UICreator.CreateTextBlock(String.Format("{0:0,0}",passengers))));
+            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1010"), UICreator.CreateTextBlock(string.Format("{0:0.##}", avgPassengers))));
+            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1011"), UICreator.CreateTextBlock(string.Format("{0:0.##} %", leg.FillingDegree * 100))));
+            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1012"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(leg.Balance).ToString())));
+
+            return panelLegStatistics;
+        }
         //shows the finances for the route
         private void showRouteFinances()
         {
@@ -265,7 +330,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
         }
+        private void sbLeg_Click(object sender, RoutedEventArgs e)
+        {
+            Route leg = (Route)((ucSelectButton)sender).Tag;
 
+            frmStopoverStatistics.Navigate(createLegStatistics(leg));
+        }
+
+        private void sbRouteFinances_Click(object sender, RoutedEventArgs e)
+        {
+            frmStopoverStatistics.Navigate(createRouteFinancesPanel());
+
+            showRouteFinances();
+        }
+      
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             KeyValuePair<Route, AirlinerClass.ClassType> type = (KeyValuePair<Route, AirlinerClass.ClassType>)((Button)sender).Tag;
@@ -315,7 +393,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-
             foreach (Route route in this.Classes.Keys)
                 foreach (RouteAirlinerClass aClass in this.Classes[route].Values)
                 {

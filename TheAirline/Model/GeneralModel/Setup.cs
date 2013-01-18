@@ -1398,16 +1398,20 @@ namespace TheAirline.Model.GeneralModel
                 airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
 
                 if (!airline.IsHuman)
+                {
+                    airline.Profile.Country = airline.Profile.Countries[rnd.Next(airline.Profile.Countries.Count)];
+
                     CreateComputerRoutes(airline);
+                }
             }
-            /*
+            
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("CPH").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("SBY").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
-            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);*/
+            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
         }
 
         /*! removes some random airlines from the list bases on number of opponents.

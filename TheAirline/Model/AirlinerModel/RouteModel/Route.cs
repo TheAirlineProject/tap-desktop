@@ -32,9 +32,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
         public Weather.Season Season { get; set; }
         public Airline Airline { get; set; }
-        public Route(string id,Airport destination1, Airport destination2, double farePrice)
+        public Route(string id, Airport destination1, Airport destination2, double farePrice)
         {
-    
+
             this.Id = id;
             this.Destination1 = destination1;
             this.Destination2 = destination2;
@@ -44,14 +44,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.Banned = false;
             this.Stopovers = new List<StopoverRoute>();
 
-             this.Season = Weather.Season.All_Year;
+            this.Season = Weather.Season.All_Year;
 
             this.Classes = new List<RouteAirlinerClass>();
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
                 RouteAirlinerClass cl = new RouteAirlinerClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, farePrice);
-                
+
                 this.Classes.Add(cl);
             }
 
@@ -64,9 +64,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //removes a stop over from the route
         public void removeStopover(Airport stopover)
         {
-            this.Stopovers.Remove(this.Stopovers.Find(s=>s.Stopover == stopover));
+            this.Stopovers.Remove(this.Stopovers.Find(s => s.Stopover == stopover));
         }
-      
+
         //returns if the route contains a specific destination
         public Boolean containsDestination(Airport destination)
         {
@@ -90,7 +90,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             int cabinCrew = 0;
             if (getAirliners().Count > 0)
                 cabinCrew = getAirliners().Max(c => ((AirlinerPassengerType)c.Airliner.Type).CabinCrew);
-          
+
             return cabinCrew;
         }
         //returns all invoices for the route
@@ -112,11 +112,19 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns invoices amount for a specific type for a route
         public double getRouteInvoiceAmount(Invoice.InvoiceType type)
         {
+            double amount=0;
+            foreach (StopoverRoute stopover in this.Stopovers)
+            {
+                amount += stopover.Legs.Sum(l => l.getRouteInvoiceAmount(type));
+            }
+
             if (type == Invoice.InvoiceType.Total)
-                return this.Invoices.getAmount();
+                amount += this.Invoices.getAmount();
             else
-                return this.Invoices.getAmount(type);
-           
+                amount += this.Invoices.getAmount(type);
+
+            return amount;
+
         }
         //returns the invoices amount for a specific type for a period
         public double getRouteInvoiceAmount(Invoice.InvoiceType type, DateTime startTime, DateTime endTime)
@@ -139,7 +147,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                     totalAmount += this.Invoices.getAmount(date.Year, date.Month);
                 else
                     totalAmount += this.Invoices.getAmount(type, date.Year, date.Month);
-                
+
                 date = date.AddMonths(1);
             }
 
@@ -157,7 +165,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             types.Add(Invoice.InvoiceType.Maintenances);
             types.Add(Invoice.InvoiceType.Flight_Expenses);
             types.Add(Invoice.InvoiceType.Wages);
-         
+
             types.Add(Invoice.InvoiceType.Total);
 
             return types;
@@ -178,7 +186,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             double passengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
             double passengerCapacity = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Capacity")));
-               
+
             return passengers / passengerCapacity;
         }
         //gets the income per passenger
@@ -191,7 +199,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns all airliners assigned to the route
         public List<FleetAirliner> getAirliners()
         {
-            return (from e in this.TimeTable.Entries where e.Airliner!=null select e.Airliner).Distinct().ToList();
+            return (from e in this.TimeTable.Entries where e.Airliner != null select e.Airliner).Distinct().ToList();
         }
         //returns the current airliner on the route
         public FleetAirliner getCurrentAirliner()
@@ -215,7 +223,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 return this.Stopovers.SelectMany(s => s.Legs).Max(l => l.getDistance());
             else
                 return MathHelpers.GetDistance(this.Destination1, this.Destination2);
-            
+
         }
         //returns the flight time for the route for a specific airliner type
         public TimeSpan getFlightTime(AirlinerType type)
@@ -223,16 +231,16 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             if (this.HasStopovers)
             {
                 double totalMinutes = this.Stopovers.SelectMany(s => s.Legs).Sum(l => l.getFlightTime(type).TotalMinutes);
-                double totalRestTime = RouteTimeTable.MinTimeBetweenFlights.TotalMinutes * (this.Stopovers.SelectMany(s=>s.Legs).Count()-1);
+                double totalRestTime = RouteTimeTable.MinTimeBetweenFlights.TotalMinutes * (this.Stopovers.SelectMany(s => s.Legs).Count() - 1);
                 int time = (int)(totalRestTime + totalMinutes);
 
                 return new TimeSpan(0, time, 0);
             }
             else
                 return MathHelpers.GetFlightTime(this.Destination1, this.Destination2, type);
-                    
+
 
         }
     }
-   
+
 }
