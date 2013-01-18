@@ -40,8 +40,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
     {
         private TextBox txtName, txtNarrative;
         private TextBlock txtIATA;
-        private ContentControl cntCountry;
-        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus;
+        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus, cbCountry;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         private Popup popUpSplash;
@@ -147,16 +146,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1003"), txtIATA));
 
             StackPanel panelCountry = new StackPanel();
+
+            cbCountry = new ComboBox();
+            cbCountry.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbCountry.SetResourceReference(ComboBox.ItemTemplateProperty, "CountryFlagLongItem");
+            cbCountry.Width = 150;
+            cbCountry.SelectionChanged += cbCountry_SelectionChanged;
+
+            //cbCountry.SelectedItem = Countries.GetCountry("122");
+
+            /*
             cntCountry = new ContentControl();
             cntCountry.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-
+           
             panelCountry.Children.Add(cntCountry);
+            */
+            panelCountry.Children.Add(cbCountry);
 
             cbLocalCurrency = new CheckBox();
             cbLocalCurrency.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             cbLocalCurrency.Content = Translator.GetInstance().GetString("PageNewGame", "1014");
             cbLocalCurrency.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-  
+            cbLocalCurrency.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
             panelCountry.Children.Add(cbLocalCurrency);
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1004"), panelCountry));
@@ -339,6 +351,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
         }
+
+        private void cbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Airline airline = (Airline)cbAirline.SelectedItem;
+            Country country = (Country)cbCountry.SelectedItem;
+            int year = (int)cbStartYear.SelectedItem;
+
+            if (country != null)
+            {
+                setAirportsView(year, country);
+
+                if (airline.Profile.PreferedAirport != null && cbAirport.Items.Contains(airline.Profile.PreferedAirport))
+                    cbAirport.SelectedItem = airline.Profile.PreferedAirport;
+                else
+                {
+                    var aa = cbAirport.Items.Cast<Airport>().ToList();
+                    Airport homeAirport = aa.Find(a => a.Profile.Country == country);
+
+                    cbAirport.SelectedItem = homeAirport == null ? cbAirport.Items[0] : homeAirport;
+                }
+            }
+
+        }
         //creates the splash window
         private Border createSplashWindow()
         {
@@ -453,22 +488,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             {
                 int year = (int)cbStartYear.SelectedItem;
 
-                setAirportsView(year, airline.Profile.Country);
-
-                if (airline.Profile.PreferedAirport != null && cbAirport.Items.Contains(airline.Profile.PreferedAirport))
-                    cbAirport.SelectedItem = airline.Profile.PreferedAirport;
-                else
-                {
-                    var aa = cbAirport.Items.Cast<Airport>().ToList();
-                    Airport homeAirport =  aa.Find(a => a.Profile.Country == airline.Profile.Country);
-
-                    cbAirport.SelectedItem = homeAirport == null ? cbAirport.Items[0] : homeAirport;
-                }
-
+               
                 airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
                 txtName.Text = airline.Profile.CEO;
                 txtIATA.Text = airline.Profile.IATACode;
-                cntCountry.Content = airline.Profile.Country;
+
+                cbCountry.Items.Clear();
+
+                foreach (Country country in airline.Profile.Countries)
+                    cbCountry.Items.Add(country);
+
+                cbCountry.SelectedIndex = 0;
+                
+                //cntCountry.Content = airline.Profile.Country;
                 cbLocalCurrency.Visibility = airline.Profile.Country.Currencies.Count > 0  ? Visibility.Visible : System.Windows.Visibility.Collapsed;
                 cbLocalCurrency.IsChecked = airline.Profile.Country.Currencies.Count>0;
 
@@ -557,7 +589,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 int opponents = (int)cbOpponents.SelectedItem;
                 Airline airline = (Airline)cbAirline.SelectedItem;
-
+                airline.Profile.Country = (Country)cbCountry.SelectedItem;
                 airline.Profile.CEO = txtName.Text.Trim();
 
                 GameObject.GetInstance().HumanAirline = airline;

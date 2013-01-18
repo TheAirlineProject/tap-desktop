@@ -14,6 +14,7 @@ namespace TheAirline.Model.AirlineModel
         public string CEO { get; set; }
         public string IATACode { get; set; }
         public Country Country { get; set; }
+        public List<Country> Countries { get; set; }
         public string Color { get; set; }
         public string Logo { get; set; }
         public Airport PreferedAirport { get; set; }
@@ -21,16 +22,16 @@ namespace TheAirline.Model.AirlineModel
         public int Folded { get; set; }
         public Boolean IsReal { get; set; }
         public string Narrative { get; set; }
-        public AirlineProfile(string name, string iata, string color, Country country, string ceo, Boolean isReal, int founded, int folded)
+        public AirlineProfile(string name, string iata, string color,  string ceo, Boolean isReal, int founded, int folded)
         {
             this.Name = name;
             this.IATACode = iata;
             this.CEO = ceo;
             this.Color = color;
-            this.Country = country;
             this.IsReal = isReal;
             this.Founded = founded;
             this.Folded = folded;
+            this.Countries = new List<Country>();
         }
     }
 }

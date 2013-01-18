@@ -600,12 +600,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airlineIsSubsidiary)
             {
                 Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO, isReal, founded, folded), mentality, market);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market);
+                airline.Profile.Country = airlineCountry;
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
-                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCountry, airlineCEO, isReal, founded, folded), mentality, market);
-
+            {
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color,airlineCEO, isReal, founded, folded), mentality, market);
+                airline.Profile.Country = airlineCountry;
+            }
             airline.Profile.Logo = logo;
             airline.Fleet.Clear();
             airline.Airports.Clear();

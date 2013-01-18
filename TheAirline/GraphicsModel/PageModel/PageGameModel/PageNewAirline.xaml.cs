@@ -231,7 +231,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             Country country = (Country)cbCountry.SelectedItem;
             string color = ((PropertyInfo)cbColor.SelectedItem).Name;
 
-            AirlineProfile profile = new AirlineProfile(name, iata, color, country, "Unknown",false,1950,2199);
+            AirlineProfile profile = new AirlineProfile(name, iata, color, "Unknown",false,1950,2199);
+            profile.Country = country;
             profile.Logo = logoPath;
             
             Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local);

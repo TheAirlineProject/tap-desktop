@@ -1191,7 +1191,15 @@ namespace TheAirline.Model.GeneralModel
             string name = profileElement.Attributes["name"].Value;
             string iata = profileElement.Attributes["iata"].Value;
             string color = profileElement.Attributes["color"].Value;
-            Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
+            
+            string sCountries = profileElement.Attributes["country"].Value;
+ 
+            List<Country> countries = new List<Country>();
+
+            foreach (string sCountry in sCountries.Split(';'))
+                countries.Add(Countries.GetCountry(sCountry));
+            
+            //Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
             string ceo = profileElement.Attributes["CEO"].Value;
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
@@ -1200,11 +1208,8 @@ namespace TheAirline.Model.GeneralModel
 
             string narrative = "";
             if (narrativeElement != null)
-            {
                 narrative = narrativeElement.Attributes["narrative"].Value;
-            }
-
-
+      
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
@@ -1217,15 +1222,15 @@ namespace TheAirline.Model.GeneralModel
                 folded = Convert.ToInt16(infoElement.Attributes["to"].Value);
             }
 
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, country, ceo, isReal, founded, folded), mentality, market);
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market);
+            airline.Profile.Countries = countries;
+            airline.Profile.Country = airline.Profile.Countries[0];//<-vælges + random
             if (profileElement.HasAttribute("preferedairport"))
             {
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
                 airline.Profile.PreferedAirport = preferedAirport;
             }
-
-
-
+            
             XmlNodeList subsidiariesList = root.SelectNodes("subsidiaries/subsidiary");
             if (subsidiariesList != null)
             {
