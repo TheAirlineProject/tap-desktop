@@ -40,26 +40,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             panelLogo.Margin = new Thickness(0, 0, 0, 20);
 
             panelContent.Children.Add(panelLogo);
-           
-            Button btnNewGame = createMenuButton("New Game");
+
+            Button btnNewGame = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "200"));
             btnNewGame.Click += btnNewGame_Click;
             panelContent.Children.Add(btnNewGame);
 
-            Button btnLoadGame = createMenuButton("Load Game");
+            Button btnLoadGame = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "201"));
             btnLoadGame.Click += btnLoadGame_Click;
             panelContent.Children.Add(btnLoadGame);
 
-            Button btnSettings = createMenuButton("Settings");
+            Button btnSettings = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "202"));
             btnSettings.Click += btnSettings_Click;
             btnSettings.IsEnabled = false;
             panelContent.Children.Add(btnSettings);
 
-            Button btnCredits = createMenuButton("Credits");
+            Button btnCredits = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "203"));
             btnCredits.Click += btnCredits_Click;
-            btnCredits.IsEnabled = false;
+           // btnCredits.IsEnabled = false;
             panelContent.Children.Add(btnCredits);
 
-            Button btnExitGame = createMenuButton("Exit Game");
+            Button btnExitGame = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "204"));
             btnExitGame.Click += btnExitGame_Click;
             panelContent.Children.Add(btnExitGame);
 
@@ -71,7 +71,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             base.setContent(panelContent);
 
-            base.setHeaderContent("Start Menu");
+            base.setHeaderContent(Translator.GetInstance().GetString("PageFrontMenu","1001"));
             
             showPage(this);
 
@@ -87,11 +87,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         private void btnCredits_Click(object sender, RoutedEventArgs e)
         {
+            StackPanel panelCredits = new StackPanel();
+
             Image imgCredits = new Image();
             imgCredits.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\credits.png", UriKind.RelativeOrAbsolute));
-            imgCredits.Height = GraphicsHelpers.GetContentHeight();
+            imgCredits.Height = GraphicsHelpers.GetContentHeight()-25;
             RenderOptions.SetBitmapScalingMode(imgCredits, BitmapScalingMode.HighQuality);
-            
+            panelCredits.Children.Add(imgCredits);
+
+             Button btnOk = new Button();
+             btnOk.Uid = "100";
+             btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+             btnOk.Height = Double.NaN;
+             btnOk.Width = 100;
+             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
+             btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+             btnOk.Margin = new Thickness(0, 10, 0, 0);
+             btnOk.Click += btnOk_Click;
+             
+            panelCredits.Children.Add(btnOk);
+
+
+            base.setContent(panelCredits);
+        }
+
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageFrontMenu());
         }
 
         private void btnSettings_Click(object sender, RoutedEventArgs e)
