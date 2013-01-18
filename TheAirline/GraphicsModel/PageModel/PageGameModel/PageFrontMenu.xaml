@@ -7,17 +7,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageFrontMenu">
-    <Page.Resources>
-        <Style x:Key="MenuEntryStyle" TargetType="Run">
-            <Setter Property="FontSize" Value="24"></Setter>
-            <Setter Property="FontWeight" Value="Bold"></Setter>
-            <Setter Property="TextDecorations" Value="Underline"></Setter>
-            <Setter Property="Foreground" Value="{DynamicResource HeaderBackgroundBrush}"></Setter>
-            <EventSetter Event="MouseEnter" Handler="run_MouseEnter"></EventSetter>
-            <EventSetter Event="MouseLeave" Handler="run_MouseLeave"></EventSetter>
-
-        </Style>
-    </Page.Resources>
+     
         <Grid>
         
     </Grid>

@@ -29,7 +29,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
     {
         public PageFrontMenu()
         {
-            InitializeComponent();
+             InitializeComponent();
 
             StackPanel panelContent = new StackPanel();
             panelContent.Margin = new Thickness(10, 0, 10, 0);
@@ -40,26 +40,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             panelLogo.Margin = new Thickness(0, 0, 0, 20);
 
             panelContent.Children.Add(panelLogo);
+           
+            Button btnNewGame = createMenuButton("New Game");
+            btnNewGame.Click += btnNewGame_Click;
+            panelContent.Children.Add(btnNewGame);
 
-            TextBlock txtStartGame = createMenuLink("START NEW GAME");
-            ((Hyperlink)txtStartGame.Inlines.FirstInline).Click+=new RoutedEventHandler(lnkNewGame_Click);
-            panelContent.Children.Add(txtStartGame);
+            Button btnLoadGame = createMenuButton("Load Game");
+            btnLoadGame.Click += btnLoadGame_Click;
+            panelContent.Children.Add(btnLoadGame);
 
-            TextBlock txtLoadGame = createMenuLink("LOAD A SAVED GAME");
-            ((Hyperlink)txtLoadGame.Inlines.FirstInline).Click += new RoutedEventHandler(PageFrontMenu_Click);
-            panelContent.Children.Add(txtLoadGame);
+            Button btnSettings = createMenuButton("Settings");
+            btnSettings.Click += btnSettings_Click;
+            btnSettings.IsEnabled = false;
+            panelContent.Children.Add(btnSettings);
 
-            TextBlock txtSettings = createMenuLink("OPTIONS");
-            txtSettings.IsEnabled = false;
-            panelContent.Children.Add(txtSettings);
+            Button btnCredits = createMenuButton("Credits");
+            btnCredits.Click += btnCredits_Click;
+            btnCredits.IsEnabled = false;
+            panelContent.Children.Add(btnCredits);
 
-            TextBlock txtCredits = createMenuLink("CREDITS");
-            txtCredits.IsEnabled = false;
-            panelContent.Children.Add(txtCredits);
-
-            TextBlock txtExitGame = createMenuLink("QUIT GAME");
-            ((Hyperlink)txtExitGame.Inlines.FirstInline).Click += new RoutedEventHandler(lnkExitGame_Click);
-            panelContent.Children.Add(txtExitGame);
+            Button btnExitGame = createMenuButton("Exit Game");
+            btnExitGame.Click += btnExitGame_Click;
+            panelContent.Children.Add(btnExitGame);
 
             base.setTopMenu(new PageTopMenu());
 
@@ -75,14 +77,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
-        private void PageFrontMenu_Click(object sender, RoutedEventArgs e)
+        private void btnExitGame_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+                PageNavigator.MainWindow.Close();
+        }
+
+        private void btnCredits_Click(object sender, RoutedEventArgs e)
+        {
+            Image imgCredits = new Image();
+            imgCredits.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\credits.png", UriKind.RelativeOrAbsolute));
+            imgCredits.Height = GraphicsHelpers.GetContentHeight();
+            RenderOptions.SetBitmapScalingMode(imgCredits, BitmapScalingMode.HighQuality);
+            
+        }
+
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             String file = (String)PopUpLoad.ShowPopUp();
 
             if (file != null)
             {
                 Setup.SetupGame();
-       
+
                 LoadSaveHelpers.LoadGame(file);
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
@@ -93,49 +117,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
-                
+
             }
         }
-        private void lnkNewGame_Click(object sender, RoutedEventArgs e)
+
+        private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageNewGame());
         }
-        private void lnkExitGame_Click(object sender, RoutedEventArgs e)
-        {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
 
-            if (result == WPFMessageBoxResult.Yes)
-                PageNavigator.MainWindow.Close();
-        }
-        //creates a link for the menu
-        private TextBlock createMenuLink(string text)
+     
+        //creates a button for the menu
+        private Button createMenuButton(string text)
         {
-            TextBlock txtLink = new TextBlock();
-            txtLink.Margin = new Thickness(0, 0, 0, 10);
-            txtLink.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
-            
-            Run run = new Run(text);
+            Button btnMenu = new Button();
+            btnMenu.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnMenu.Height = 50;
+            btnMenu.Width = 300;
+            btnMenu.Content = text;//Translator.GetInstance().GetString("PageOrderAirliners", btnMenu.Uid);
+            btnMenu.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnMenu.Margin = new Thickness(0, 0, 0, 10);
+
+            return btnMenu;
         
-            run.Style = this.Resources["MenuEntryStyle"] as Style;
-             
-            Hyperlink hyperLink = new Hyperlink(run);
-      
-            txtLink.Inlines.Add(hyperLink);
-            return txtLink;
         }
-      
-        private void run_MouseLeave(object sender, MouseEventArgs e)
-        {
-            Run run = (Run)sender;
-            run.Foreground = (Brush)run.Tag;
-        }
-
-        private void run_MouseEnter(object sender, MouseEventArgs e)
-        {
-            Run run = (Run)sender;
-            run.Tag = run.Foreground;
-            run.SetResourceReference(Run.ForegroundProperty, "HeaderBackgroundBrush2");
-        }
-      
+   
     }
 }

@@ -481,7 +481,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                             int length = GameObject.GetInstance().HumanAirline.Contract.Length + nLength;
                           
-                            double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline,length);                        
+                            double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline,length,true);                        
 
                             GameObject.GetInstance().HumanAirline.Contract.Length = length;
                             GameObject.GetInstance().HumanAirline.Contract.Discount = discount;
@@ -524,7 +524,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 {
                     int length = (int)((ComboBoxItem)cbLength.SelectedItem).Tag;
                    
-                    double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline, length);                        
+                    double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline, length,true);                        
 
                     ManufacturerContract contract = new ManufacturerContract(this.Manufacturer, GameObject.GetInstance().GameTime, length, discount);
                     GameObject.GetInstance().HumanAirline.Contract = contract;
