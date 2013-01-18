@@ -32,6 +32,7 @@ using System.Windows.Threading;
 using System.Threading;
 using TheAirline.GraphicsModel.PageModel.PagePilotsModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using System.Collections;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -120,9 +121,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkNewGame_Click(object sender, RoutedEventArgs e)
         {
-            if (GameTimer.GetInstance().isPaused())
-                GameTimer.GetInstance().start();
-            
+            GameTimer.GetInstance().pause();
+            GameObjectWorker.GetInstance().cancel();
+ 
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1001"), Translator.GetInstance().GetString("MessageBox", "1001", "message"), WPFMessageBoxButtons.YesNo);
 
@@ -139,6 +140,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 Setup.SetupGame();
                 PageNavigator.NavigateTo(new PageNewGame());
             }
+
+            GameTimer.GetInstance().start();
+            GameObjectWorker.GetInstance().start();
+
         }
         private void lnkFlights_Click(object sender, RoutedEventArgs e)
         {
@@ -242,8 +247,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {
-
-            Popup popUpSplash = new Popup();
+           Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Loading.........");
             popUpSplash.Placement = PlacementMode.Center;
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;

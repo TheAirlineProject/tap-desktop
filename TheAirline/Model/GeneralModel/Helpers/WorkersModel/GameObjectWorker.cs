@@ -5,6 +5,7 @@ using System.Text;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading;
+using System.Collections;
 
 namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 {
@@ -41,6 +42,9 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             //if (this.Worker.WorkerSupportsCancellation)
                 //this.Worker.CancelAsync();
             this.CancelWorker = true;
+
+           
+           
         }
         //starts the worker
         public void start()
@@ -56,7 +60,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         //returns if the worker is busy
         public Boolean isBusy()
         {
-            return this.Cancelled;
+            return this.Cancelled || !this.Worker.IsBusy;
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {

@@ -807,7 +807,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)
         {
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan routeFlightTime= MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type);
+            TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+
+            if (minFlightTime.TotalHours > 5)
+                minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
 
             int maxHours = 22 - 6; //from 06.00 to 22.00
 
