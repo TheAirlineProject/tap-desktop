@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
@@ -76,6 +77,7 @@ namespace TheAirline.Model.AirlineModel
         public int Closed { get; set; }
         public string Destination1 { get; set; }
         public string Destination2 { get; set; }
+        public AirlinerType Type { get; set; }
         public StartDataRoute(string destination1, string destination2, int opened, int closed)
         {
             this.Opened = opened;

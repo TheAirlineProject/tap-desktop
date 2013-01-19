@@ -73,7 +73,8 @@ namespace TheAirline.Model.AirlineModel
 
             this.Pilots = new List<Pilot>();
             this.FlightSchools = new List<FlightSchool>();
-        }
+
+         }
         //adds a pilot to the airline
         public void addPilot(Pilot pilot)
         {

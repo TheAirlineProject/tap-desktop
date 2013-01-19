@@ -1260,7 +1260,16 @@ namespace TheAirline.Model.GeneralModel
                     int opened = Convert.ToInt16(routeElement.Attributes["opened"].Value);
                     int closed = Convert.ToInt16(routeElement.Attributes["closed"].Value);
 
-                    startData.addRoute(new StartDataRoute(dest1, dest2, opened, closed));
+                    StartDataRoute sdr = new StartDataRoute(dest1, dest2, opened, closed);
+                    startData.addRoute(sdr);
+
+
+                    if (routeElement.HasAttribute("airliner"))
+                    {
+                        AirlinerType airlinerType = AirlinerTypes.GetType(routeElement.Attributes["airliner"].Value);
+                        sdr.Type = airlinerType;
+                    }
+
                 }
 
                 XmlNodeList airlinersList = startDataElement.SelectNodes("airliners/airliner");
@@ -1404,6 +1413,22 @@ namespace TheAirline.Model.GeneralModel
                     CreateComputerRoutes(airline);
                 }
             }
+
+            var countryGroups =
+            (from a in GameObject.GetInstance().HumanAirline.Airports
+            group a by a.Profile.Country into g
+            select new { Country = g.Key, Airports = g }).OrderByDescending(group=>group.Airports.Count());
+
+            foreach (var g in countryGroups)
+            {
+                Console.WriteLine("Country with airports: " + g.Country.Name);
+                Console.WriteLine(g.Airports.Count());
+                foreach (var n in g.Airports)
+                {
+                    Console.WriteLine(n.Profile.IATACode);
+                }
+            } 
+
             /*
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
@@ -1601,8 +1626,23 @@ namespace TheAirline.Model.GeneralModel
 
                 Route route = new Route(id.ToString(), dest1, dest2, price);
 
-                KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1);
+                KeyValuePair<Airliner, Boolean>? airliner = null;
+                if (startRoute.Type != null)
+                {
+                    double distance = MathHelpers.GetDistance(dest1,dest2);
 
+                    if (startRoute.Type.Range > distance)
+                    {
+                        airliner = new KeyValuePair<Airliner, bool>(Airliners.GetAirlinersForSale(a => a.Type == startRoute.Type).FirstOrDefault(), true);
+                    }
+                   
+                }
+                
+                if (airliner == null)
+                {
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1);
+                }
+                
                 FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
