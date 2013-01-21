@@ -1,0 +1,2175 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="MsgYes_1000_name" xml:space="preserve">
+    <value>_Ja</value>
+  </data>
+  <data name="MsgNo_1000_name" xml:space="preserve">
+    <value>_Nej</value>
+  </data>
+  <data name="MsgCancel_1000_name" xml:space="preserve">
+    <value>_Annuller</value>
+  </data>
+  <data name="MsgOk_1000_name" xml:space="preserve">
+    <value>O_k</value>
+  </data>
+  <data name="General_100_name" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="General_101_name" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="General_102_name" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="General_103_name" xml:space="preserve">
+    <value>Fortryd</value>
+  </data>
+  <data name="General_104_name" xml:space="preserve">
+    <value>Tilføj</value>
+  </data>
+  <data name="General_105_name" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="General_106_name" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+  <data name="General_107_name" xml:space="preserve">
+    <value>Nej</value>
+  </data>
+  <data name="General_108_name" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="General_109_name" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="General_110_name" xml:space="preserve">
+    <value>Fjern filtre</value>
+  </data>
+  <data name="General_111_name" xml:space="preserve">
+    <value>Alle</value>
+  </data>
+  <data name="General_112_name" xml:space="preserve">
+    <value>Autogenerere</value>
+  </data>
+  <data name="General_113_name" xml:space="preserve">
+    <value>Gem</value>
+  </data>
+  <data name="General_114_name" xml:space="preserve">
+    <value>Indlæs</value>
+  </data>
+  <data name="General_115_name" xml:space="preserve">
+    <value>Indlæs konfiguration</value>
+  </data>
+  <data name="General_116_name" xml:space="preserve">
+    <value>Ændre</value>
+  </data>
+  <data name="General_1000_name" xml:space="preserve">
+    <value>Ikke-oversat titel</value>
+  </data>
+  <data name="General_2000_name" xml:space="preserve">
+    <value>Mil.</value>
+  </data>
+  <data name="General_2001_name" xml:space="preserve">
+    <value>Mia.</value>
+  </data>
+  <data name="LanguageTranslationConverter_1000_name" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="LanguageTranslationConverter_1001_name" xml:space="preserve">
+    <value>Emne</value>
+  </data>
+  <data name="LanguageTranslationConverter_1002_name" xml:space="preserve">
+    <value>Modtaget</value>
+  </data>
+  <data name="PopUpTimeTable_1000_name" xml:space="preserve">
+    <value>Rutetidsplan</value>
+  </data>
+  <data name="PopUpBuildRunway_1000_name" xml:space="preserve">
+    <value>Anlæg landingsbane</value>
+  </data>
+  <data name="PopUpBuildRunway_1001_name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PopUpBuildRunway_1002_name" xml:space="preserve">
+    <value>Underlag</value>
+  </data>
+  <data name="PopUpBuildRunway_1003_name" xml:space="preserve">
+    <value>Længde</value>
+  </data>
+  <data name="PopUpAirlinerRoutes_1000_name" xml:space="preserve">
+    <value>Overflyt ruteplan</value>
+  </data>
+  <data name="PopUpAirlinerRoutes_1001_name" xml:space="preserve">
+    <value>Vælg fly til flytning af tidstabel</value>
+  </data>
+  <data name="PopUpTerminal_1000_name" xml:space="preserve">
+    <value>Opret terminal</value>
+  </data>
+  <data name="PopUpTerminal_1001_name" xml:space="preserve">
+    <value>Antal gates</value>
+  </data>
+  <data name="PopUpTerminal_1002_name" xml:space="preserve">
+    <value>Basispris for terminal</value>
+  </data>
+  <data name="PopUpTerminal_1003_name" xml:space="preserve">
+    <value>Pris per gate</value>
+  </data>
+  <data name="PopUpTerminal_1004_name" xml:space="preserve">
+    <value>Antal byggedage</value>
+  </data>
+  <data name="PopUpTerminal_1005_name" xml:space="preserve">
+    <value>Samlet terminalpris</value>
+  </data>
+  <data name="PopUpTerminal_1006_name" xml:space="preserve">
+    <value>Samlet terminalpris</value>
+  </data>
+  <data name="PopUpTerminal_1007_name" xml:space="preserve">
+    <value>Terminalnavn</value>
+  </data>
+  <data name="PopUpRouteFacilities_1000_name" xml:space="preserve">
+    <value>Ændre flyklassefaciliteter</value>
+  </data>
+  <data name="PopUpRouteFacilities_1001_name" xml:space="preserve">
+    <value>Mad ombord</value>
+  </data>
+  <data name="PopUpRouteFacilities_1002_name" xml:space="preserve">
+    <value>Drinks ombord</value>
+  </data>
+  <data name="PopUpRouteFacilities_1003_name" xml:space="preserve">
+    <value>Kabinpersonale om bord</value>
+  </data>
+  <data name="PopUpRouteFacilities_1004_name" xml:space="preserve">
+    <value>Sædetype</value>
+  </data>
+  <data name="PopUpRouteFacilities_1005_name" xml:space="preserve">
+    <value>Billetpris</value>
+  </data>
+  <data name="PopUpSave_1000_name" xml:space="preserve">
+    <value>Gem spil</value>
+  </data>
+  <data name="PopUpLoad_1000_name" xml:space="preserve">
+    <value>Indlæs gemt spil</value>
+  </data>
+  <data name="PopUpMap_1000_name" xml:space="preserve">
+    <value>Kort</value>
+  </data>
+  <data name="PopUpMap_1001_name" xml:space="preserve">
+    <value>+/-: Zoom ind/Zoom ud</value>
+  </data>
+  <data name="PopUpMap_1002_name" xml:space="preserve">
+    <value>Højre: Højre pil</value>
+  </data>
+  <data name="PopUpMap_1003_name" xml:space="preserve">
+    <value>Venstre: Venstre pil</value>
+  </data>
+  <data name="PopUpMap_1004_name" xml:space="preserve">
+    <value>Op: Opad pil</value>
+  </data>
+  <data name="PopUpMap_1005_name" xml:space="preserve">
+    <value>Ned: Nedad pil</value>
+  </data>
+  <data name="PopUpLoan_1000_name" xml:space="preserve">
+    <value>Ansøg om lån</value>
+  </data>
+  <data name="PopUpEditAirlinerName_1000_name" xml:space="preserve">
+    <value>Flyets navn</value>
+  </data>
+  <data name="PopUpDifficulty_1000_name" xml:space="preserve">
+    <value>Brugerdefineret sværhedsgrad</value>
+  </data>
+  <data name="PopUpDifficulty_200_name" xml:space="preserve">
+    <value>Pengeniveau</value>
+  </data>
+  <data name="PopUpDifficulty_201_name" xml:space="preserve">
+    <value>Prisiveau</value>
+  </data>
+  <data name="PopUpDifficulty_202_name" xml:space="preserve">
+    <value>Låneniveau</value>
+  </data>
+  <data name="PopUpDifficulty_203_name" xml:space="preserve">
+    <value>Passagerniveau</value>
+  </data>
+  <data name="PopUpDifficulty_204_name" xml:space="preserve">
+    <value>AI-niveau</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1000_name" xml:space="preserve">
+    <value>Opret nyt underselskab</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1001_name" xml:space="preserve">
+    <value>Flyselskabsnavn</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1002_name" xml:space="preserve">
+    <value>IATA-kode</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1003_name" xml:space="preserve">
+    <value>Flyselskabslogo</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1004_name" xml:space="preserve">
+    <value>Flyselskabsfarve</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1005_name" xml:space="preserve">
+    <value>Hovedlufthavn</value>
+  </data>
+  <data name="PopUpNewSubsidiary_1006_name" xml:space="preserve">
+    <value>Startpenge</value>
+  </data>
+  <data name="PageRoutes_200_name" xml:space="preserve">
+    <value>Opret ny rute</value>
+  </data>
+  <data name="PageRoutes_201_name" xml:space="preserve">
+    <value>Kort over ruter</value>
+  </data>
+  <data name="PageRoutes_1000_name" xml:space="preserve">
+    <value>Ruter</value>
+  </data>
+  <data name="PageRoutes_1001_name" xml:space="preserve">
+    <value>Flyrute</value>
+  </data>
+  <data name="PageRoutes_1002_name" xml:space="preserve">
+    <value>Flyvebegrænsninger</value>
+  </data>
+  <data name="PageRoutes_1003_name" xml:space="preserve">
+    <value>{0} Ruter</value>
+  </data>
+  <data name="PageFrontMenu_200_name" xml:space="preserve">
+    <value>Nyt spil</value>
+  </data>
+  <data name="PageFrontMenu_201_name" xml:space="preserve">
+    <value>Indlæs spil</value>
+  </data>
+  <data name="PageFrontMenu_202_name" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="PageFrontMenu_203_name" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="PageFrontMenu_204_name" xml:space="preserve">
+    <value>Afslut spil</value>
+  </data>
+  <data name="PageFrontMenu_1001_name" xml:space="preserve">
+    <value>Hovedmenu</value>
+  </data>
+  <data name="PageFleetAirliner_200_name" xml:space="preserve">
+    <value>Køb fly</value>
+  </data>
+  <data name="PageFleetAirliner_1000_name" xml:space="preserve">
+    <value>Flåde fly</value>
+  </data>
+  <data name="PageFleetAirliner_1001_name" xml:space="preserve">
+    <value>Flytype</value>
+  </data>
+  <data name="PageFleetAirliner_1002_name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PageFleetAirliner_1003_name" xml:space="preserve">
+    <value>Leverandør</value>
+  </data>
+  <data name="PageFleetAirliner_1004_name" xml:space="preserve">
+    <value>Bodytype</value>
+  </data>
+  <data name="PageFleetAirliner_1005_name" xml:space="preserve">
+    <value>Rækkevidde</value>
+  </data>
+  <data name="PageFleetAirliner_1006_name" xml:space="preserve">
+    <value>Motortype</value>
+  </data>
+  <data name="PageFleetAirliner_1007_name" xml:space="preserve">
+    <value>Vingespan</value>
+  </data>
+  <data name="PageFleetAirliner_1008_name" xml:space="preserve">
+    <value>Længde</value>
+  </data>
+  <data name="PageFleetAirliner_1009_name" xml:space="preserve">
+    <value>Antal passenger</value>
+  </data>
+  <data name="PageFleetAirliner_1010_name" xml:space="preserve">
+    <value>Max. klasser</value>
+  </data>
+  <data name="PageFleetAirliner_1011_name" xml:space="preserve">
+    <value>Minimum landingsbanelængde </value>
+  </data>
+  <data name="PageFleetAirliner_1012_name" xml:space="preserve">
+    <value>Cockpit: {0} Cabin: {1}</value>
+  </data>
+  <data name="PageFleetAirliner_1013_name" xml:space="preserve">
+    <value>Personalebehov</value>
+  </data>
+  <data name="PageFleetAirliner_1014_name" xml:space="preserve">
+    <value>Flyvehastighed</value>
+  </data>
+  <data name="PageFleetAirliner_1015_name" xml:space="preserve">
+    <value>Brændstofsforbrug</value>
+  </data>
+  <data name="PageFleetAirliner_1016_name" xml:space="preserve">
+    <value>Brændstofskapacitet</value>
+  </data>
+  <data name="PageFleetAirliner_1017_name" xml:space="preserve">
+    <value>Ejer</value>
+  </data>
+  <data name="PageFleetAirliner_1018_name" xml:space="preserve">
+    <value>Hovedlufthavn</value>
+  </data>
+  <data name="PageFleetAirliner_1019_name" xml:space="preserve">
+    <value>Bygget</value>
+  </data>
+  <data name="PageFleetAirliner_1020_name" xml:space="preserve">
+    <value>{0}({1} år gammel)</value>
+  </data>
+  <data name="PageFleetAirliner_1021_name" xml:space="preserve">
+    <value>Registreringsnummer</value>
+  </data>
+  <data name="PageFleetAirliner_1022_name" xml:space="preserve">
+    <value>Fløjet</value>
+  </data>
+  <data name="PageFleetAirliner_1023_name" xml:space="preserve">
+    <value>Siden sidste servicecheck</value>
+  </data>
+  <data name="PageFleetAirliner_1024_name" xml:space="preserve">
+    <value>Nuværende rute</value>
+  </data>
+  <data name="PageFleetAirliner_1025_name" xml:space="preserve">
+    <value>Købsdato</value>
+  </data>
+  <data name="PageFleetAirliner_1026_name" xml:space="preserve">
+    <value>Købspris</value>
+  </data>
+  <data name="PageFleetAirliner_1027_name" xml:space="preserve">
+    <value>Brændstofskapacitet</value>
+  </data>
+  <data name="PageFleetAirliner_1028_name" xml:space="preserve">
+    <value>Vælg flyejer</value>
+  </data>
+  <data name="PageFleetAirliner_1029_name" xml:space="preserve">
+    <value>Lejeinformation</value>
+  </data>
+  <data name="PageFleetAirliner_1030_name" xml:space="preserve">
+    <value>Flyoplysninger</value>
+  </data>
+  <data name="PageFleetRoute_200_name" xml:space="preserve">
+    <value>Start flyvning</value>
+  </data>
+  <data name="PageFleetRoute_201_name" xml:space="preserve">
+    <value>Stop flyvning</value>
+  </data>
+  <data name="PageFleetRoute_1000_name" xml:space="preserve">
+    <value>Flyet er ikke tilknyttet nogle ruter</value>
+  </data>
+  <data name="PageFleetRoute_1001_name" xml:space="preserve">
+    <value>Flyinformation</value>
+  </data>
+  <data name="PageFleetRoute_1002_name" xml:space="preserve">
+    <value>Nuværende status</value>
+  </data>
+  <data name="PageFleetRoute_1003_name" xml:space="preserve">
+    <value>Daglige flyvninger</value>
+  </data>
+  <data name="PageFleetRoute_1004_name" xml:space="preserve">
+    <value>Gns. Passagere</value>
+  </data>
+  <data name="PageAirliners_1000_name" xml:space="preserve">
+    <value>Fly</value>
+  </data>
+  <data name="PageAirliners_1001_name" xml:space="preserve">
+    <value>Bestil nyt fly</value>
+  </data>
+  <data name="PageAirliners_1002_name" xml:space="preserve">
+    <value>Køb brugt fly</value>
+  </data>
+  <data name="PageAirport_1000_name" xml:space="preserve">
+    <value>Lufthavn</value>
+  </data>
+  <data name="PageAirport_1001_name" xml:space="preserve">
+    <value>Vejrudsigt</value>
+  </data>
+  <data name="PageAirport_1002_name" xml:space="preserve">
+    <value>Ankomster</value>
+  </data>
+  <data name="PageAirport_1003_name" xml:space="preserve">
+    <value>Fra</value>
+  </data>
+  <data name="PageAirport_1004_name" xml:space="preserve">
+    <value>Afgange</value>
+  </data>
+  <data name="PageAirport_1005_name" xml:space="preserve">
+    <value>Rejsemål</value>
+  </data>
+  <data name="PageAirport_1006_name" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="PageAirport_1007_name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PageAirport_1008_name" xml:space="preserve">
+    <value>Lufthavnskode</value>
+  </data>
+  <data name="PageAirport_1009_name" xml:space="preserve">
+    <value>Lufthavnstype</value>
+  </data>
+  <data name="PageAirport_1010_name" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="PageAirport_1011_name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="PageAirport_1012_name" xml:space="preserve">
+    <value>Tidszone</value>
+  </data>
+  <data name="PageAirport_1013_name" xml:space="preserve">
+    <value>Lokaltid</value>
+  </data>
+  <data name="PageAirport_1014_name" xml:space="preserve">
+    <value>Koordinater</value>
+  </data>
+  <data name="PageAirport_1015_name" xml:space="preserve">
+    <value>Lufthavnsstørrelse</value>
+  </data>
+  <data name="PageAirport_1016_name" xml:space="preserve">
+    <value>Antal gates</value>
+  </data>
+  <data name="PageAirport_1017_name" xml:space="preserve">
+    <value>Antal landingsbaner</value>
+  </data>
+  <data name="PageAirport_1018_name" xml:space="preserve">
+    <value>Terminaler</value>
+  </data>
+  <data name="PageAirport_1019_name" xml:space="preserve">
+    <value>Sæson</value>
+  </data>
+  <data name="PageAirport_1020_name" xml:space="preserve">
+    <value>Dagligt behov / Uafdækket behov</value>
+  </data>
+  <data name="PageAirport_1021_name" xml:space="preserve">
+    <value>Fragtstørrelse</value>
+  </data>
+  <data name="PageAirport_1022_name" xml:space="preserve">
+    <value>Åbnede</value>
+  </data>
+  <data name="PageAirport_1023_name" xml:space="preserve">
+    <value>Lufthavnsindtægt</value>
+  </data>
+  <data name="PageAirport_1024_name" xml:space="preserve">
+    <value>Lukkedato</value>
+  </data>
+  <data name="PageAirportRunways_201_name" xml:space="preserve">
+    <value>Anlæg landingsbane</value>
+  </data>
+  <data name="PageAirportRunways_1001_name" xml:space="preserve">
+    <value>Landingsbaner (Navn / Længde / Underlag)</value>
+  </data>
+  <data name="PageAirportRunways_1002_name" xml:space="preserve">
+    <value>Landingsbaner (Navn / Længde / Underlag / Bygget)</value>
+  </data>
+  <data name="PageAirportFacilities_1001_name" xml:space="preserve">
+    <value>Lufthavnsfaciliteter</value>
+  </data>
+  <data name="PageAirportFacilities_1002_name" xml:space="preserve">
+    <value>Faciliteter</value>
+  </data>
+  <data name="PageAirportStatistics_1001_name" xml:space="preserve">
+    <value>Lufthavnsstatistik</value>
+  </data>
+  <data name="PageAirportStatistics_1002_name" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="PageAirportWeather_1001_name" xml:space="preserve">
+    <value>Vejret</value>
+  </data>
+  <data name="PageAirportWeather_1002_name" xml:space="preserve">
+    <value>Aktuelle vejr</value>
+  </data>
+  <data name="PageAirportWeather_1003_name" xml:space="preserve">
+    <value>Vejrudsigt</value>
+  </data>
+  <data name="PageAirportTraffic_1001_name" xml:space="preserve">
+    <value>Passagere til rejsemål</value>
+  </data>
+  <data name="PageAirportFlights_1001_name" xml:space="preserve">
+    <value>Fly</value>
+  </data>
+  <data name="PageAirportFlights_1002_name" xml:space="preserve">
+    <value>Ankomster</value>
+  </data>
+  <data name="PageAirportFlights_1003_name" xml:space="preserve">
+    <value>Afgang</value>
+  </data>
+  <data name="PageAirportFlights_1004_name" xml:space="preserve">
+    <value>Rejsemålsflyvninger</value>
+  </data>
+  <data name="PageAirportGates_201_name" xml:space="preserve">
+    <value>Byg terminal</value>
+  </data>
+  <data name="PageAirportGates_202_name" xml:space="preserve">
+    <value>Lej</value>
+  </data>
+  <data name="PageAirportGates_203_name" xml:space="preserve">
+    <value>Frigiv</value>
+  </data>
+  <data name="PageAirportGates_204_name" xml:space="preserve">
+    <value>Opret hub</value>
+  </data>
+  <data name="PageAirportGates_205_name" xml:space="preserve">
+    <value>Overflyt til {0}</value>
+  </data>
+  <data name="PageAirportGates_1001_name" xml:space="preserve">
+    <value>Terminaler (Ejer / Antal gates / Bestilte gates / Gates i brug / Leveringsdato)</value>
+  </data>
+  <data name="PageAirportGates_1002_name" xml:space="preserve">
+    <value>Gates information</value>
+  </data>
+  <data name="PageAirportGates_1003_name" xml:space="preserve">
+    <value>Samlet antal gates</value>
+  </data>
+  <data name="PageAirportGates_1004_name" xml:space="preserve">
+    <value>Bruge gates</value>
+  </data>
+  <data name="PageAirportGates_1005_name" xml:space="preserve">
+    <value>Ledige gates</value>
+  </data>
+  <data name="PageAirportGates_1006_name" xml:space="preserve">
+    <value>Månedlig gatepris</value>
+  </data>
+  <data name="PageAirportGates_1007_name" xml:space="preserve">
+    <value>Gates (Totalt / i brug)</value>
+  </data>
+  <data name="PageAirportGates_1008_name" xml:space="preserve">
+    <value>Hubs</value>
+  </data>
+  <data name="PageAirports_1000_name" xml:space="preserve">
+    <value>Lufthavne</value>
+  </data>
+  <data name="PageAirports_1001_name" xml:space="preserve">
+    <value>Vis resultat på kort</value>
+  </data>
+  <data name="PageSearchAirports_1001_name" xml:space="preserve">
+    <value>Søgning af lufthavne</value>
+  </data>
+  <data name="PageSearchAirports_1002_name" xml:space="preserve">
+    <value>Kun dine lufthavne</value>
+  </data>
+  <data name="PageSearchAirports_1003_name" xml:space="preserve">
+    <value>Kun hubs</value>
+  </data>
+  <data name="PageSearchAirports_1004_name" xml:space="preserve">
+    <value>Søgemuligheder</value>
+  </data>
+  <data name="PageSearchAirports_1005_name" xml:space="preserve">
+    <value>Område</value>
+  </data>
+  <data name="PageSearchAirports_1006_name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="PageSearchAirports_1007_name" xml:space="preserve">
+    <value>Lufthavnsstørrelse</value>
+  </data>
+  <data name="PageSearchAirports_1008_name" xml:space="preserve">
+    <value>Søg efter</value>
+  </data>
+  <data name="PageExtendedSearchAirports_1001_name" xml:space="preserve">
+    <value>Udvidet lufthavnssøgning</value>
+  </data>
+  <data name="PageExtendedSearchAirports_1002_name" xml:space="preserve">
+    <value>Søg lufthavne indefor</value>
+  </data>
+  <data name="PageExtendedSearchAirports_1003_name" xml:space="preserve">
+    <value>af</value>
+  </data>
+  <data name="PageExtendedSearchAirports_1004_name" xml:space="preserve">
+    <value>Afstand</value>
+  </data>
+  <data name="PageAirportsStatistics_1001_name" xml:space="preserve">
+    <value>Største lufthavne / Passagere</value>
+  </data>
+  <data name="PageAirline_1000_name" xml:space="preserve">
+    <value>Flyselskab</value>
+  </data>
+  <data name="PageAirline_1001_name" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="PageAirline_1002_name" xml:space="preserve">
+    <value>Flyselskabsnavn</value>
+  </data>
+  <data name="PageAirline_1003_name" xml:space="preserve">
+    <value>IATA-kode</value>
+  </data>
+  <data name="PageAirline_1004_name" xml:space="preserve">
+    <value>Administrerende direktør</value>
+  </data>
+  <data name="PageAirline_1005_name" xml:space="preserve">
+    <value>Hjemland</value>
+  </data>
+  <data name="PageAirline_1006_name" xml:space="preserve">
+    <value>Flyselskabsfarve</value>
+  </data>
+  <data name="PageAirline_1007_name" xml:space="preserve">
+    <value>Flådestørrelse</value>
+  </data>
+  <data name="PageAirline_1008_name" xml:space="preserve">
+    <value>Værdi</value>
+  </data>
+  <data name="PageAirline_1009_name" xml:space="preserve">
+    <value>Omdømme</value>
+  </data>
+  <data name="PageAirline_1010_name" xml:space="preserve">
+    <value>Passagertilfredshed</value>
+  </data>
+  <data name="PageAirline_1011_name" xml:space="preserve">
+    <value>Rejsemål / Hubs</value>
+  </data>
+  <data name="PageAirline_1012_name" xml:space="preserve">
+    <value>Alliancer</value>
+  </data>
+  <data name="PageAirline_1013_name" xml:space="preserve">
+    <value>Ingen</value>
+  </data>
+  <data name="PageAirline_1014_name" xml:space="preserve">
+    <value>Leverandørkontrakt</value>
+  </data>
+  <data name="PageAirline_1015_name" xml:space="preserve">
+    <value>Leverandør</value>
+  </data>
+  <data name="PageAirline_1016_name" xml:space="preserve">
+    <value>Underskrevet</value>
+  </data>
+  <data name="PageAirline_1017_name" xml:space="preserve">
+    <value>Udløbsdato</value>
+  </data>
+  <data name="PageAirline_1018_name" xml:space="preserve">
+    <value>Rabat</value>
+  </data>
+  <data name="PageAirline_1019_name" xml:space="preserve">
+    <value>Fly</value>
+  </data>
+  <data name="PageAirline_1020_name" xml:space="preserve">
+    <value>Menneskecontrolleret flyselskab</value>
+  </data>
+  <data name="PageAirline_1021_name" xml:space="preserve">
+    <value>Hovedselskab</value>
+  </data>
+  <data name="PageAirline_1022_name" xml:space="preserve">
+    <value>Anskaffer flyselskab</value>
+  </data>
+  <data name="PageAirline_1023_name" xml:space="preserve">
+    <value>Køb flyselskab</value>
+  </data>
+  <data name="PageAirline_1024_name" xml:space="preserve">
+    <value>Oprettet</value>
+  </data>
+  <data name="PageAirlines_1000_name" xml:space="preserve">
+    <value>Flyselskaber</value>
+  </data>
+  <data name="PageAirlines_1001_name" xml:space="preserve">
+    <value>Menneskecontrolleret flyselskab</value>
+  </data>
+  <data name="PageAirlines_1002_name" xml:space="preserve">
+    <value>Underselskab</value>
+  </data>
+  <data name="PageCalendar_1000_name" xml:space="preserve">
+    <value>Kalender</value>
+  </data>
+  <data name="PageCalendar_200_name" xml:space="preserve">
+    <value>Vis alle helligdage</value>
+  </data>
+  <data name="PageFlights_1000_name" xml:space="preserve">
+    <value>Fly</value>
+  </data>
+  <data name="PagePilots_200_name" xml:space="preserve">
+    <value>Anlæg flyveskole</value>
+  </data>
+  <data name="PagePilots_1000_name" xml:space="preserve">
+    <value>Flyveskoler &amp; Piloter</value>
+  </data>
+  <data name="PagePilots_1001_name" xml:space="preserve">
+    <value>Piloter</value>
+  </data>
+  <data name="PagePilots_1002_name" xml:space="preserve">
+    <value>Instruktører</value>
+  </data>
+  <data name="PagePilots_1003_name" xml:space="preserve">
+    <value>Flyveskoler</value>
+  </data>
+  <data name="PagePilots_1004_name" xml:space="preserve">
+    <value>Vælg flyveskolens lokation</value>
+  </data>
+  <data name="PageAlliances_1000_name" xml:space="preserve">
+    <value>Alliancer</value>
+  </data>
+  <data name="PageAlliances_200_name" xml:space="preserve">
+    <value>Opret ny alliance</value>
+  </data>
+  <data name="PageNewsBox_201_name" xml:space="preserve">
+    <value>Markere alle som læste</value>
+  </data>
+  <data name="PageNewsBox_202_name" xml:space="preserve">
+    <value>Slet valgte nyheder</value>
+  </data>
+  <data name="PageNewsBox_1000_name" xml:space="preserve">
+    <value>Nyheder</value>
+  </data>
+  <data name="PageSettings_1000_name" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="PageSettings_1001_name" xml:space="preserve">
+    <value>Hastighed</value>
+  </data>
+  <data name="PageSettings_1002_name" xml:space="preserve">
+    <value>Sprog</value>
+  </data>
+  <data name="PageSettings_1003_name" xml:space="preserve">
+    <value>Skin</value>
+  </data>
+  <data name="PageSettings_1004_name" xml:space="preserve">
+    <value>Mails ved landinger</value>
+  </data>
+  <data name="PageSettings_1005_name" xml:space="preserve">
+    <value>Lufthavnskodeformat</value>
+  </data>
+  <data name="PageSettings_1006_name" xml:space="preserve">
+    <value>Minutter per runde</value>
+  </data>
+  <data name="PageSettings_1007_name" xml:space="preserve">
+    <value>Mails ved dårlig vejr</value>
+  </data>
+  <data name="PageSettings_1008_name" xml:space="preserve">
+    <value>Benyt forkortet beløb</value>
+  </data>
+  <data name="PageCredits_1000_name" xml:space="preserve">
+    <value>Credits</value>
+  </data>
+  <data name="PageNewGame_200_name" xml:space="preserve">
+    <value>Opret nyt spil</value>
+  </data>
+  <data name="PageNewGame_201_name" xml:space="preserve">
+    <value>Opret spil</value>
+  </data>
+  <data name="PageNewGame_202_name" xml:space="preserve">
+    <value>Startmenu</value>
+  </data>
+  <data name="PageNewGame_1001_name" xml:space="preserve">
+    <value>Flyselskabsprofil</value>
+  </data>
+  <data name="PageNewGame_1002_name" xml:space="preserve">
+    <value>Vælg flyselskab</value>
+  </data>
+  <data name="PageNewGame_1003_name" xml:space="preserve">
+    <value>IATA-kode</value>
+  </data>
+  <data name="PageNewGame_1004_name" xml:space="preserve">
+    <value>Hjemland</value>
+  </data>
+  <data name="PageNewGame_1005_name" xml:space="preserve">
+    <value>Administrerende direktør</value>
+  </data>
+  <data name="PageNewGame_1006_name" xml:space="preserve">
+    <value>Flyselskabsfarve</value>
+  </data>
+  <data name="PageNewGame_1007_name" xml:space="preserve">
+    <value>Vælg hovedlufthavn</value>
+  </data>
+  <data name="PageNewGame_1008_name" xml:space="preserve">
+    <value>Vælg startår</value>
+  </data>
+  <data name="PageNewGame_1009_name" xml:space="preserve">
+    <value>Vælg tidszone</value>
+  </data>
+  <data name="PageNewGame_1010_name" xml:space="preserve">
+    <value>Vælg antal modstandere</value>
+  </data>
+  <data name="PageNewGame_1011_name" xml:space="preserve">
+    <value>Sværhedsgrad</value>
+  </data>
+  <data name="PageNewGame_1012_name" xml:space="preserve">
+    <value>Vælg spilleområde</value>
+  </data>
+  <data name="PageNewGame_1013_name" xml:space="preserve">
+    <value>Vælg fokus for flyselskab</value>
+  </data>
+  <data name="PageNewGame_1014_name" xml:space="preserve">
+    <value>Benyt lokal møntenhed</value>
+  </data>
+  <data name="PageNewGame_1015_name" xml:space="preserve">
+    <value>Missing</value>
+  </data>
+  <data name="PageNewGame_1016_name" xml:space="preserve">
+    <value>Benyt daglige runder</value>
+  </data>
+  <data name="PageNewGame_1017_name" xml:space="preserve">
+    <value>Benyt modstandere fra samme område</value>
+  </data>
+  <data name="PageAirlinePilots_1001_name" xml:space="preserve">
+    <value>Piloter</value>
+  </data>
+  <data name="PageAirlinePilots_1002_name" xml:space="preserve">
+    <value>Tilknyt pilot til fly</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_201_name" xml:space="preserve">
+    <value>Sæt flyklasser</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_202_name" xml:space="preserve">
+    <value>Sæt klasser</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_1001_name" xml:space="preserve">
+    <value>Konfiguration af fly</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_1002_name" xml:space="preserve">
+    <value>Flyklasser</value>
+  </data>
+  <data name="PageAirlineFleet_1001_name" xml:space="preserve">
+    <value>Flådeoverblik</value>
+  </data>
+  <data name="PageAirlineFleet_1002_name" xml:space="preserve">
+    <value>Flåderuteinfromationer</value>
+  </data>
+  <data name="PageAirlineFleet_1003_name" xml:space="preserve">
+    <value>Flyselskabsflåde</value>
+  </data>
+  <data name="PageAirlineFleet_1004_name" xml:space="preserve">
+    <value>Bestilte fly</value>
+  </data>
+  <data name="PageAirlineFleet_1005_name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PageAirlineFleet_1006_name" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="PageAirlineFleet_1007_name" xml:space="preserve">
+    <value>Ejerskab</value>
+  </data>
+  <data name="PageAirlineFleet_1008_name" xml:space="preserve">
+    <value>Har rute</value>
+  </data>
+  <data name="PageAirlineFleet_1009_name" xml:space="preserve">
+    <value>Bestilt</value>
+  </data>
+  <data name="PageAirlineFleet_1101_name" xml:space="preserve">
+    <value>Flyselskabsflåde</value>
+  </data>
+  <data name="PageAirlineFinances_1001_name" xml:space="preserve">
+    <value>Finanser</value>
+  </data>
+  <data name="PageAirlineFinances_1002_name" xml:space="preserve">
+    <value>Finansielle Overblik</value>
+  </data>
+  <data name="PageAirlineFinances_1003_name" xml:space="preserve">
+    <value>Pengebeholdning</value>
+  </data>
+  <data name="PageAirlineFinances_1004_name" xml:space="preserve">
+    <value>Samlet indtægt</value>
+  </data>
+  <data name="PageAirlineFinances_1005_name" xml:space="preserve">
+    <value>Lån</value>
+  </data>
+  <data name="PageAirlineFinances_1006_name" xml:space="preserve">
+    <value>Ansøg om lån</value>
+  </data>
+  <data name="PageAirlineFacilities_1001_name" xml:space="preserve">
+    <value>Flyselskabsfaciliteter</value>
+  </data>
+  <data name="PageAirlineFacilities_1002_name" xml:space="preserve">
+    <value>Køb faciliteter</value>
+  </data>
+  <data name="PageAirlineFacilities_1003_name" xml:space="preserve">
+    <value>Reklamer</value>
+  </data>
+  <data name="PageAirlineFacilities_1004_name" xml:space="preserve">
+    <value>Gem reklamer</value>
+  </data>
+  <data name="PageAirlineDestinations_201_name" xml:space="preserve">
+    <value>Rutekort</value>
+  </data>
+  <data name="PageAirlineDestinations_1001_name" xml:space="preserve">
+    <value>Rejsemål</value>
+  </data>
+  <data name="PageAirlineDestinations_1002_name" xml:space="preserve">
+    <value>Rejsemål</value>
+  </data>
+  <data name="PageAirlineDestinations_1003_name" xml:space="preserve">
+    <value>Ruteinformation</value>
+  </data>
+  <data name="PageAirlineDestinations_1004_name" xml:space="preserve">
+    <value>Antal ruter</value>
+  </data>
+  <data name="PageAirlineDestinations_1005_name" xml:space="preserve">
+    <value>Længste rute</value>
+  </data>
+  <data name="PageAirlineDestinations_1006_name" xml:space="preserve">
+    <value>Gns. ruteindtægt</value>
+  </data>
+  <data name="PageAirlineDestinations_1007_name" xml:space="preserve">
+    <value>Gns. Fyldningsgrad</value>
+  </data>
+  <data name="PageAirlineDestinations_1008_name" xml:space="preserve">
+    <value>Ugentlige flyvninger</value>
+  </data>
+  <data name="PageAirlineDestinations_1009_name" xml:space="preserve">
+    <value>Antal passenger</value>
+  </data>
+  <data name="PageAirlineDestinations_1010_name" xml:space="preserve">
+    <value>Største gate procent</value>
+  </data>
+  <data name="PageAirlineDestinations_1011_name" xml:space="preserve">
+    <value>Mindste gate procent</value>
+  </data>
+  <data name="PageAirlineSubsidiaries_200_name" xml:space="preserve">
+    <value>Opret underselskab</value>
+  </data>
+  <data name="PageAirlineSubsidiaries_1001_name" xml:space="preserve">
+    <value>Underselskaber</value>
+  </data>
+  <data name="PageAirlineWages_1001_name" xml:space="preserve">
+    <value>Lønninger</value>
+  </data>
+  <data name="PageAirlineWages_1002_name" xml:space="preserve">
+    <value>Mad og drikke</value>
+  </data>
+  <data name="PageAirlineWages_1003_name" xml:space="preserve">
+    <value>Gebyrer</value>
+  </data>
+  <data name="PageAirlineWages_1004_name" xml:space="preserve">
+    <value>Afgifter og gebyrer</value>
+  </data>
+  <data name="PageAirlineWages_1005_name" xml:space="preserve">
+    <value>Ansatte</value>
+  </data>
+  <data name="PageAirlineWages_1006_name" xml:space="preserve">
+    <value>Services ombord</value>
+  </data>
+  <data name="PageAirlineWages_1007_name" xml:space="preserve">
+    <value>Flyselskabsservices</value>
+  </data>
+  <data name="PageAirlineWages_1008_name" xml:space="preserve">
+    <value>Reklamer</value>
+  </data>
+  <data name="PageAirlineWages_1009_name" xml:space="preserve">
+    <value>Cockpit personale</value>
+  </data>
+  <data name="PageAirlineWages_1010_name" xml:space="preserve">
+    <value>Kabinepersonale</value>
+  </data>
+  <data name="PageAirlineWages_1011_name" xml:space="preserve">
+    <value>Supportmedarbejdere</value>
+  </data>
+  <data name="PageAirlineWages_1012_name" xml:space="preserve">
+    <value>Vedligeholdelsesmedarbejdere</value>
+  </data>
+  <data name="PageAirlineWages_1013_name" xml:space="preserve">
+    <value>Vælg konfigurationsnan</value>
+  </data>
+  <data name="PageAirlineWages_1014_name" xml:space="preserve">
+    <value>Vælg konfiguration</value>
+  </data>
+  <data name="PageAirlineWages_1015_name" xml:space="preserve">
+    <value>Rabatter</value>
+  </data>
+  <data name="PageAirlineWages_1016_name" xml:space="preserve">
+    <value>Politikker</value>
+  </data>
+  <data name="PageAirlineWages_1017_name" xml:space="preserve">
+    <value>Minutter til aflysning</value>
+  </data>
+  <data name="PageAirlineWages_1018_name" xml:space="preserve">
+    <value>Minutter</value>
+  </data>
+  <data name="PageAirlineStatistics_1001_name" xml:space="preserve">
+    <value>Flyselskabsstatistik</value>
+  </data>
+  <data name="PageAirlineStatistics_1002_name" xml:space="preserve">
+    <value>Antal afgange</value>
+  </data>
+  <data name="PageAirlineStatistics_1003_name" xml:space="preserve">
+    <value>Samlet antal passagere</value>
+  </data>
+  <data name="PageAirlineStatistics_1004_name" xml:space="preserve">
+    <value>Passagere per flyvning</value>
+  </data>
+  <data name="PanelRoute_200_name" xml:space="preserve">
+    <value>Slet rute</value>
+  </data>
+  <data name="PanelRoute_1000_name" xml:space="preserve">
+    <value>Ruteinformation</value>
+  </data>
+  <data name="PanelRoute_1001_name" xml:space="preserve">
+    <value>Destination1</value>
+  </data>
+  <data name="PanelRoute_1002_name" xml:space="preserve">
+    <value>Destination2</value>
+  </data>
+  <data name="PanelRoute_1003_name" xml:space="preserve">
+    <value>Stops</value>
+  </data>
+  <data name="PanelRoute_1004_name" xml:space="preserve">
+    <value>Samlet distance</value>
+  </data>
+  <data name="PanelRoute_1005_name" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="PanelRoute_1006_name" xml:space="preserve">
+    <value>Ugentlige adgange (ud/ind)</value>
+  </data>
+  <data name="PanelRoute_1007_name" xml:space="preserve">
+    <value>Ruteøkonomi</value>
+  </data>
+  <data name="PanelRoute_1008_name" xml:space="preserve">
+    <value>Samlet ruteøkonomi</value>
+  </data>
+  <data name="PanelRoute_1009_name" xml:space="preserve">
+    <value>Passagerer</value>
+  </data>
+  <data name="PanelRoute_1010_name" xml:space="preserve">
+    <value>Gns. Passagerer</value>
+  </data>
+  <data name="PanelRoute_1011_name" xml:space="preserve">
+    <value>Fyldningsgrad</value>
+  </data>
+  <data name="PanelRoute_1012_name" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="PanelInstructor_200_name" xml:space="preserve">
+    <value>Ansæt</value>
+  </data>
+  <data name="PanelInstructor_1001_name" xml:space="preserve">
+    <value>Instruktørinformation</value>
+  </data>
+  <data name="PanelInstructor_1002_name" xml:space="preserve">
+    <value>Vælge flyveskole for instruktøren</value>
+  </data>
+  <data name="PanelFlightSchool_200_name" xml:space="preserve">
+    <value>Optag aspirant</value>
+  </data>
+  <data name="PanelFlightSchool_201_name" xml:space="preserve">
+    <value>Køb træningsfly</value>
+  </data>
+  <data name="PanelFlightSchool_1001_name" xml:space="preserve">
+    <value>Flyveskoleinformation</value>
+  </data>
+  <data name="PanelFlightSchool_1002_name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PanelFlightSchool_1003_name" xml:space="preserve">
+    <value>Instruktører</value>
+  </data>
+  <data name="PanelFlightSchool_1004_name" xml:space="preserve">
+    <value>Aspiranter (Navn / Alder / Land / Uddannet / Instruktør)</value>
+  </data>
+  <data name="PanelFlightSchool_1005_name" xml:space="preserve">
+    <value>Instruktør som skal have aspiranten</value>
+  </data>
+  <data name="PanelFlightSchool_1006_name" xml:space="preserve">
+    <value>Aspiranter</value>
+  </data>
+  <data name="PanelFlightSchool_1007_name" xml:space="preserve">
+    <value>Instruktører (Navn / Alder / Rating / Land)</value>
+  </data>
+  <data name="PanelFlightSchool_1008_name" xml:space="preserve">
+    <value>Vælg flyveskole</value>
+  </data>
+  <data name="PanelFlightSchool_1009_name" xml:space="preserve">
+    <value>Træningsfly</value>
+  </data>
+  <data name="PanelPilot_200_name" xml:space="preserve">
+    <value>Ansæt</value>
+  </data>
+  <data name="PanelPilot_1001_name" xml:space="preserve">
+    <value>Pilotinformation</value>
+  </data>
+  <data name="PanelPilot_1002_name" xml:space="preserve">
+    <value>Navn</value>
+  </data>
+  <data name="PanelPilot_1003_name" xml:space="preserve">
+    <value>Fødselsdato</value>
+  </data>
+  <data name="PanelPilot_1004_name" xml:space="preserve">
+    <value>By</value>
+  </data>
+  <data name="PanelPilot_1005_name" xml:space="preserve">
+    <value>Land</value>
+  </data>
+  <data name="PanelPilot_1006_name" xml:space="preserve">
+    <value>Uddannet</value>
+  </data>
+  <data name="PanelPilot_1007_name" xml:space="preserve">
+    <value>Erfaringsgrad</value>
+  </data>
+  <data name="PanelPilot_1008_name" xml:space="preserve">
+    <value>Månedsløn</value>
+  </data>
+  <data name="PanelAirlinesExtendedStatistics_1001_name" xml:space="preserve">
+    <value>Flåde statistik</value>
+  </data>
+  <data name="PanelAirlinesExtendedStatistics_1002_name" xml:space="preserve">
+    <value>Finansielle statistikker</value>
+  </data>
+  <data name="PanelAirlinesExtendedStatistics_1003_name" xml:space="preserve">
+    <value>Flådestørrelse</value>
+  </data>
+  <data name="PanelAirlinesExtendedStatistics_1004_name" xml:space="preserve">
+    <value>Gns. alder på flåde</value>
+  </data>
+  <data name="PanelAirlinesExtendedStatistics_1005_name" xml:space="preserve">
+    <value>Flyselskabsoverskud</value>
+  </data>
+  <data name="PanelAirlinesExtendedStatistics_1006_name" xml:space="preserve">
+    <value>Flyselskabsværdi</value>
+  </data>
+  <data name="PanelAirlinesStatistics_1001_name" xml:space="preserve">
+    <value>Flystatistik</value>
+  </data>
+  <data name="PanelAirlinesStatistics_1002_name" xml:space="preserve">
+    <value>Passagertilfredshed i %</value>
+  </data>
+  <data name="PanelAirlines_1001_name" xml:space="preserve">
+    <value>Fly</value>
+  </data>
+  <data name="PanelAirlines_1002_name" xml:space="preserve">
+    <value>Finanser</value>
+  </data>
+  <data name="PanelAirlines_1003_name" xml:space="preserve">
+    <value>Flåde</value>
+  </data>
+  <data name="PanelAirline_1001_name" xml:space="preserve">
+    <value>Flåde</value>
+  </data>
+  <data name="PanelAirline_1002_name" xml:space="preserve">
+    <value>Rejsemål og ruter</value>
+  </data>
+  <data name="PanelAirline_1003_name" xml:space="preserve">
+    <value>Faciliteter og reklamer</value>
+  </data>
+  <data name="PanelAirline_1004_name" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="PanelAirline_1005_name" xml:space="preserve">
+    <value>Finanser</value>
+  </data>
+  <data name="PanelAirline_1006_name" xml:space="preserve">
+    <value>Selskabspolitikker</value>
+  </data>
+  <data name="PanelAirline_1007_name" xml:space="preserve">
+    <value>Underselskaber</value>
+  </data>
+  <data name="PanelAirline_1008_name" xml:space="preserve">
+    <value>Piloter</value>
+  </data>
+  <data name="PanelAlliance_200_name" xml:space="preserve">
+    <value>Tilslut alliance</value>
+  </data>
+  <data name="PanelAlliance_201_name" xml:space="preserve">
+    <value>Invitere til alliance</value>
+  </data>
+  <data name="PanelAlliance_202_name" xml:space="preserve">
+    <value>Slet alliance</value>
+  </data>
+  <data name="PanelAlliance_203_name" xml:space="preserve">
+    <value>Fjern fra alliance</value>
+  </data>
+  <data name="PanelAlliance_204_name" xml:space="preserve">
+    <value>Alliance rutekort</value>
+  </data>
+  <data name="PanelAlliance_205_name" xml:space="preserve">
+    <value>Allianceinformation</value>
+  </data>
+  <data name="PanelAlliance_206_name" xml:space="preserve">
+    <value>Oprettelsesår</value>
+  </data>
+  <data name="PanelAlliance_207_name" xml:space="preserve">
+    <value>Allianceruter</value>
+  </data>
+  <data name="PanelAlliance_208_name" xml:space="preserve">
+    <value>Alliancerejsemål</value>
+  </data>
+  <data name="PanelAlliance_209_name" xml:space="preserve">
+    <value>Alliancetype</value>
+  </data>
+  <data name="PanelAlliance_210_name" xml:space="preserve">
+    <value>Årlige passagere {0}</value>
+  </data>
+  <data name="PanelAlliance_211_name" xml:space="preserve">
+    <value>Hovedkvarter</value>
+  </data>
+  <data name="PanelAlliance_212_name" xml:space="preserve">
+    <value>Hubs</value>
+  </data>
+  <data name="PanelAlliance_213_name" xml:space="preserve">
+    <value>Ugentlige adgange</value>
+  </data>
+  <data name="PanelAlliance_214_name" xml:space="preserve">
+    <value>Lande</value>
+  </data>
+  <data name="PanelAirliner_1001_name" xml:space="preserve">
+    <value>Flyspecifikationer</value>
+  </data>
+  <data name="PanelAirliner_1002_name" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="PanelAirliner_1003_name" xml:space="preserve">
+    <value>Leverandør</value>
+  </data>
+  <data name="PanelAirliner_1004_name" xml:space="preserve">
+    <value>Bodytype</value>
+  </data>
+  <data name="PanelAirliner_1005_name" xml:space="preserve">
+    <value>Rækkevidde</value>
+  </data>
+  <data name="PanelAirliner_1006_name" xml:space="preserve">
+    <value>Motortype</value>
+  </data>
+  <data name="PanelAirliner_1007_name" xml:space="preserve">
+    <value>Vingespan</value>
+  </data>
+  <data name="PanelAirliner_1008_name" xml:space="preserve">
+    <value>Længde</value>
+  </data>
+  <data name="PanelAirliner_1009_name" xml:space="preserve">
+    <value>Passagerkapacitet</value>
+  </data>
+  <data name="PanelAirliner_1010_name" xml:space="preserve">
+    <value>Max. Flyklasser</value>
+  </data>
+  <data name="PanelAirliner_1011_name" xml:space="preserve">
+    <value>Personalebehov</value>
+  </data>
+  <data name="PanelAirliner_1012_name" xml:space="preserve">
+    <value>Flyvehastighed</value>
+  </data>
+  <data name="PanelAirliner_1013_name" xml:space="preserve">
+    <value>Brændstofforbrug</value>
+  </data>
+  <data name="PanelAirliner_1014_name" xml:space="preserve">
+    <value>Produktionsperiode</value>
+  </data>
+  <data name="PanelAirliner_1015_name" xml:space="preserve">
+    <value>Minimum landingsbanelængde </value>
+  </data>
+  <data name="PanelAirliner_1016_name" xml:space="preserve">
+    <value>Brændstofskapacitet</value>
+  </data>
+  <data name="PageSearchAirliners_1001_name" xml:space="preserve">
+    <value>Søg brugte fly</value>
+  </data>
+  <data name="PageSearchAirliners_1002_name" xml:space="preserve">
+    <value>Rækkevidde</value>
+  </data>
+  <data name="PageSearchAirliners_1003_name" xml:space="preserve">
+    <value>Kapacitet</value>
+  </data>
+  <data name="PageSearchAirliners_1004_name" xml:space="preserve">
+    <value>Flypris</value>
+  </data>
+  <data name="PageSearchAirliners_1005_name" xml:space="preserve">
+    <value>Bygget år</value>
+  </data>
+  <data name="PageOrderAirliners_200_name" xml:space="preserve">
+    <value>Bestil nye fly</value>
+  </data>
+  <data name="PageOrderAirliners_201_name" xml:space="preserve">
+    <value>Sæt flyklasser</value>
+  </data>
+  <data name="PageOrderAirliners_1001_name" xml:space="preserve">
+    <value>Bestil fly</value>
+  </data>
+  <data name="PageOrderAirliners_1002_name" xml:space="preserve">
+    <value>Bestillinger</value>
+  </data>
+  <data name="PageOrderAirliners_1003_name" xml:space="preserve">
+    <value>Leverandør</value>
+  </data>
+  <data name="PageOrderAirliners_1004_name" xml:space="preserve">
+    <value>Tilføj bestil</value>
+  </data>
+  <data name="PageOrderAirliners_1005_name" xml:space="preserve">
+    <value>Rabat</value>
+  </data>
+  <data name="PageOrderAirliners_1006_name" xml:space="preserve">
+    <value>Samlet pris</value>
+  </data>
+  <data name="PageOrderAirliners_1007_name" xml:space="preserve">
+    <value>Lufthavn</value>
+  </data>
+  <data name="PageOrderAirliners_1008_name" xml:space="preserve">
+    <value>Bestil ved levering</value>
+  </data>
+  <data name="PageOrderAirliners_1009_name" xml:space="preserve">
+    <value>Kontrakt</value>
+  </data>
+  <data name="PageOrderAirliners_1010_name" xml:space="preserve">
+    <value>Udvid kontraktlængde</value>
+  </data>
+  <data name="PageOrderAirliners_1011_name" xml:space="preserve">
+    <value>Vælg kontraktlængde</value>
+  </data>
+  <data name="PageOrderAirliners_1012_name" xml:space="preserve">
+    <value>Flyklasser</value>
+  </data>
+  <data name="PanelUsedAirliner_200_name" xml:space="preserve">
+    <value>Køb</value>
+  </data>
+  <data name="PanelUsedAirliner_201_name" xml:space="preserve">
+    <value>Lej</value>
+  </data>
+  <data name="PanelUsedAirliner_1001_name" xml:space="preserve">
+    <value>Flyinformationer</value>
+  </data>
+  <data name="PanelUsedAirliner_1002_name" xml:space="preserve">
+    <value>Byggeår</value>
+  </data>
+  <data name="PanelUsedAirliner_1003_name" xml:space="preserve">
+    <value>Registreringsnummer</value>
+  </data>
+  <data name="PanelUsedAirliner_1004_name" xml:space="preserve">
+    <value>Fløjet ialt</value>
+  </data>
+  <data name="PanelUsedAirliner_1005_name" xml:space="preserve">
+    <value>Fløjet siden service</value>
+  </data>
+  <data name="PanelUsedAirliner_1006_name" xml:space="preserve">
+    <value>Udstyret med klasser</value>
+  </data>
+  <data name="PanelUsedAirliner_1101_name" xml:space="preserve">
+    <value>Prisinformation</value>
+  </data>
+  <data name="PanelUsedAirliner_1102_name" xml:space="preserve">
+    <value>Købspris</value>
+  </data>
+  <data name="PanelUsedAirliner_1103_name" xml:space="preserve">
+    <value>Lejepris</value>
+  </data>
+  <data name="PanelUsedAirliner_1104_name" xml:space="preserve">
+    <value>Årlig vedligeholdelse</value>
+  </data>
+  <data name="PanelUsedAirliner_1105_name" xml:space="preserve">
+    <value>Vælg hovedlufthavn</value>
+  </data>
+  <data name="PanelAirport_201_name" xml:space="preserve">
+    <value>Gates &amp; Terminaler</value>
+  </data>
+  <data name="PanelAirport_202_name" xml:space="preserve">
+    <value>Faciliteter</value>
+  </data>
+  <data name="PanelAirport_203_name" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="PanelAirport_204_name" xml:space="preserve">
+    <value>Fly</value>
+  </data>
+  <data name="PanelAirport_205_name" xml:space="preserve">
+    <value>Landingsbaner</value>
+  </data>
+  <data name="PanelAirport_206_name" xml:space="preserve">
+    <value>Distancer</value>
+  </data>
+  <data name="PanelAirport_207_name" xml:space="preserve">
+    <value>Trafik</value>
+  </data>
+  <data name="PanelAirport_208_name" xml:space="preserve">
+    <value>Vejret</value>
+  </data>
+  <data name="PanelAirports_201_name" xml:space="preserve">
+    <value>Søg</value>
+  </data>
+  <data name="PanelAirports_202_name" xml:space="preserve">
+    <value>Statistik</value>
+  </data>
+  <data name="PanelAirports_203_name" xml:space="preserve">
+    <value>Udvidet søgning</value>
+  </data>
+  <data name="PanelNewAlliance_200_name" xml:space="preserve">
+    <value>Ny alliance</value>
+  </data>
+  <data name="PanelNewAlliance_201_name" xml:space="preserve">
+    <value>Alliancenavn</value>
+  </data>
+  <data name="PanelNewAlliance_202_name" xml:space="preserve">
+    <value>Hovedkvarter</value>
+  </data>
+  <data name="PanelNewAlliance_203_name" xml:space="preserve">
+    <value>Opret alliance</value>
+  </data>
+  <data name="PanelNewAlliance_204_name" xml:space="preserve">
+    <value>Alliancetype</value>
+  </data>
+  <data name="PanelNewRoute_201_name" xml:space="preserve">
+    <value>Opret rute</value>
+  </data>
+  <data name="PanelNewRoute_202_name" xml:space="preserve">
+    <value>Rejsemål 1</value>
+  </data>
+  <data name="PanelNewRoute_203_name" xml:space="preserve">
+    <value>Rejsemål 2</value>
+  </data>
+  <data name="PanelNewRoute_204_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PanelNewRoute_205_name" xml:space="preserve">
+    <value>Max. Distance</value>
+  </data>
+  <data name="PanelNewRoute_206_name" xml:space="preserve">
+    <value>{0} gate(s)</value>
+  </data>
+  <data name="PanelNewRoute_1001_name" xml:space="preserve">
+    <value>En eller flere lufthavne kan ikke bruges til denne rute</value>
+  </data>
+  <data name="PanelNewRoute_1002_name" xml:space="preserve">
+    <value>Fly mellem {0} og {1} er ikke tilladt</value>
+  </data>
+  <data name="PanelNewRoute_1003_name" xml:space="preserve">
+    <value>Stopover</value>
+  </data>
+  <data name="PanelNewRoute_1004_name" xml:space="preserve">
+    <value>Rute</value>
+  </data>
+  <data name="MenuHome_1000_name" xml:space="preserve">
+    <value>Hjem</value>
+  </data>
+  <data name="MenuOptions_1000_name" xml:space="preserve">
+    <value>Indstillinger</value>
+  </data>
+  <data name="MenuNewGame_1000_name" xml:space="preserve">
+    <value>Nyt spil</value>
+  </data>
+  <data name="MenuExitGame_1000_name" xml:space="preserve">
+    <value>Afslut spil</value>
+  </data>
+  <data name="MessageBox_101_name" xml:space="preserve">
+    <value>Fejl med filnavn</value>
+  </data>
+  <data name="MessageBox_101_message" xml:space="preserve">
+    <value>Ugyldigt filnavn.\n\nSpillet bliver ikke indlæst</value>
+  </data>
+  <data name="MessageBox_1001_name" xml:space="preserve">
+    <value>Nyt spil</value>
+  </data>
+  <data name="MessageBox_1001_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil starte et nyt spil?</value>
+  </data>
+  <data name="MessageBox_1002_name" xml:space="preserve">
+    <value>Indlæs spil</value>
+  </data>
+  <data name="MessageBox_1002_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil indlæse et gemt spil?</value>
+  </data>
+  <data name="MessageBox_1003_name" xml:space="preserve">
+    <value>Afslut spil</value>
+  </data>
+  <data name="MessageBox_1003_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil afslutte spillet?</value>
+  </data>
+  <data name="MessageBox_1004_name" xml:space="preserve">
+    <value>Succes</value>
+  </data>
+  <data name="MessageBox_1004_message" xml:space="preserve">
+    <value>Lufthavnen er blevet gemt</value>
+  </data>
+  <data name="MessageBox_1005_name" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="MessageBox_1005_message" xml:space="preserve">
+    <value>Lufthavnen kan ikke gemmes</value>
+  </data>
+  <data name="MessageBox_1006_name" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="MessageBox_1006_message" xml:space="preserve">
+    <value>Lufthavnen findes allerede eller også findes IATA-koden ikke i databasen</value>
+  </data>
+  <data name="MessageBox_2000_name" xml:space="preserve">
+    <value>Ingen ledige hovedlufthavn</value>
+  </data>
+  <data name="MessageBox_2000_message" xml:space="preserve">
+    <value>Der er ingen ledige homebase, så det er ikke muligt at købe fly</value>
+  </data>
+  <data name="MessageBox_2001_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2001_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at bestille disse fly.</value>
+  </data>
+  <data name="MessageBox_2002_name" xml:space="preserve">
+    <value>Ingen hovedlufthavn</value>
+  </data>
+  <data name="MessageBox_2002_message" xml:space="preserve">
+    <value>Du har ikke valgt en hovedlufthavn</value>
+  </data>
+  <data name="MessageBox_2003_name" xml:space="preserve">
+    <value>Bestil fly</value>
+  </data>
+  <data name="MessageBox_2003_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil bestille {1} {0}?</value>
+  </data>
+  <data name="MessageBox_2004_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2004_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at lease dette fly.</value>
+  </data>
+  <data name="MessageBox_2005_name" xml:space="preserve">
+    <value>Lej fly</value>
+  </data>
+  <data name="MessageBox_2005_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil lease denne {0}?</value>
+  </data>
+  <data name="MessageBox_2006_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2006_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at købe dette fly.</value>
+  </data>
+  <data name="MessageBox_2007_name" xml:space="preserve">
+    <value>Køb fly</value>
+  </data>
+  <data name="MessageBox_2007_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil købe denne {0}?</value>
+  </data>
+  <data name="MessageBox_2008_name" xml:space="preserve">
+    <value>Bestil fly</value>
+  </data>
+  <data name="MessageBox_2008_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil bestille fly til en værdi af {0:C}?</value>
+  </data>
+  <data name="MessageBox_2009_name" xml:space="preserve">
+    <value>Bestil fly</value>
+  </data>
+  <data name="MessageBox_2009_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil bestille fly til en værdi af {0:C} med {1:C} i udbetaling?</value>
+  </data>
+  <data name="MessageBox_2010_name" xml:space="preserve">
+    <value>Opsig kontrakt</value>
+  </data>
+  <data name="MessageBox_2010_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil opsige din kontrakt med {0} for en bod på {1:C}?</value>
+  </data>
+  <data name="MessageBox_2011_name" xml:space="preserve">
+    <value>Opsig kontrakt</value>
+  </data>
+  <data name="MessageBox_2011_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil forlænge din kontrakt med {0}?</value>
+  </data>
+  <data name="MessageBox_2101_name" xml:space="preserve">
+    <value>Ikke not penge</value>
+  </data>
+  <data name="MessageBox_2101_message" xml:space="preserve">
+    <value>Du har ikke penge nok, til købe disse faciliteter</value>
+  </data>
+  <data name="MessageBox_2102_name" xml:space="preserve">
+    <value>Køb facilitet</value>
+  </data>
+  <data name="MessageBox_2102_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil købe {0}?</value>
+  </data>
+  <data name="MessageBox_2103_name" xml:space="preserve">
+    <value>Fjern facilitet</value>
+  </data>
+  <data name="MessageBox_2103_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fjerne {0}?</value>
+  </data>
+  <data name="MessageBox_2104_name" xml:space="preserve">
+    <value>Ugyldigt beløb</value>
+  </data>
+  <data name="MessageBox_2104_message" xml:space="preserve">
+    <value>Indtast korrekt beløb til at betale tilbage på lånet.</value>
+  </data>
+  <data name="MessageBox_2105_name" xml:space="preserve">
+    <value>Betalt på lån</value>
+  </data>
+  <data name="MessageBox_2105_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil betale {0:C} på lånet?</value>
+  </data>
+  <data name="MessageBox_2106_name" xml:space="preserve">
+    <value>Sælg fly</value>
+  </data>
+  <data name="MessageBox_2106_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil sælge {0}?</value>
+  </data>
+  <data name="MessageBox_2107_name" xml:space="preserve">
+    <value>Opsig leasing</value>
+  </data>
+  <data name="MessageBox_2107_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil opsige leasingen af {0}?</value>
+  </data>
+  <data name="MessageBox_2108_name" xml:space="preserve">
+    <value>Ændre lønninger</value>
+  </data>
+  <data name="MessageBox_2108_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil ændre dette?</value>
+  </data>
+  <data name="MessageBox_2109_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2109_message" xml:space="preserve">
+    <value>Du har ikke nok penge til, at købe dette fly?</value>
+  </data>
+  <data name="MessageBox_2110_name" xml:space="preserve">
+    <value>Køb fly</value>
+  </data>
+  <data name="MessageBox_2110_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil lease denne {0}?</value>
+  </data>
+  <data name="MessageBox_2111_name" xml:space="preserve">
+    <value>Luk underselskab</value>
+  </data>
+  <data name="MessageBox_2111_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil lukke {0}?</value>
+  </data>
+  <data name="MessageBox_2112_name" xml:space="preserve">
+    <value>Fejl ved lukning af underselskab</value>
+  </data>
+  <data name="MessageBox_2112_message" xml:space="preserve">
+    <value>Du kan ikke lukke {0}, idet du spiller med det</value>
+  </data>
+  <data name="MessageBox_2113_name" xml:space="preserve">
+    <value>Køb flyselskab</value>
+  </data>
+  <data name="MessageBox_2113_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil købe {0} for {1:C}?</value>
+  </data>
+  <data name="MessageBox_2114_name" xml:space="preserve">
+    <value>Køb underselskab</value>
+  </data>
+  <data name="MessageBox_2114_message" xml:space="preserve">
+    <value>Er du sikker på, at du også vil købe alle underselskaberne?</value>
+  </data>
+  <data name="MessageBox_2115_name" xml:space="preserve">
+    <value>Kan ikke reallokere piloten</value>
+  </data>
+  <data name="MessageBox_2115_message" xml:space="preserve">
+    <value>Du kan ikke reallokere piloten idet hans fly er i rute.</value>
+  </data>
+  <data name="MessageBox_2116_name" xml:space="preserve">
+    <value>Kan ikke fyre piloten</value>
+  </data>
+  <data name="MessageBox_2116_message" xml:space="preserve">
+    <value>Du kan ikke fyre {0} idet han er tilknyttet et fly</value>
+  </data>
+  <data name="MessageBox_2117_name" xml:space="preserve">
+    <value>Fyre piloten</value>
+  </data>
+  <data name="MessageBox_2117_message" xml:space="preserve">
+    <value>Er du sikker på du vil fyre {0}?</value>
+  </data>
+  <data name="MessageBox_2118_name" xml:space="preserve">
+    <value>Frigiv underselskab</value>
+  </data>
+  <data name="MessageBox_2118_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil frigive {0} så det bliver selvstændigt?</value>
+  </data>
+  <data name="MessageBox_2201_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2201_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at købe disse faciliteter.</value>
+  </data>
+  <data name="MessageBox_2202_name" xml:space="preserve">
+    <value>Opgradere facilitet</value>
+  </data>
+  <data name="MessageBox_2202_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil opgradere til {0} for {1:C}?</value>
+  </data>
+  <data name="MessageBox_2203_name" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="MessageBox_2203_message" xml:space="preserve">
+    <value>Lufthavnen er også hovedlufthavn, så der er som minimum brug for basis service faciliteter</value>
+  </data>
+  <data name="MessageBox_2204_name" xml:space="preserve">
+    <value>Nedgradere facilitet</value>
+  </data>
+  <data name="MessageBox_2204_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil nedgradere til {0}?</value>
+  </data>
+  <data name="MessageBox_2205_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2205_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at købe denne terminal.</value>
+  </data>
+  <data name="MessageBox_2206_name" xml:space="preserve">
+    <value>Køb terminal</value>
+  </data>
+  <data name="MessageBox_2206_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil bygge en terminal med {0} gates for {1:C}?\nAlle dine lejede gates vil blive flyttet hertil når terminalen er færdigbygget.</value>
+  </data>
+  <data name="MessageBox_2207_name" xml:space="preserve">
+    <value>Fjern terminal</value>
+  </data>
+  <data name="MessageBox_2207_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil stoppe byggeriet af denne terminal?</value>
+  </data>
+  <data name="MessageBox_2208_name" xml:space="preserve">
+    <value>Fjern terminal</value>
+  </data>
+  <data name="MessageBox_2208_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fjernes denne terminal med {0} gates?</value>
+  </data>
+  <data name="MessageBox_2209_name" xml:space="preserve">
+    <value>Ikke muligt at fjerne</value>
+  </data>
+  <data name="MessageBox_2209_message" xml:space="preserve">
+    <value>Terminalen kan ikke fjernes, idet den er i brug.</value>
+  </data>
+  <data name="MessageBox_2210_name" xml:space="preserve">
+    <value>Udvidelse ikke muligt</value>
+  </data>
+  <data name="MessageBox_2210_message" xml:space="preserve">
+    <value>Det er ikke muligt at udvide terminalen, idet den ikke er færdigbygget</value>
+  </data>
+  <data name="MessageBox_2211_name" xml:space="preserve">
+    <value>Køb terminal</value>
+  </data>
+  <data name="MessageBox_2211_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil købe denne terminal for {0:C}?\nAlle dine lejede gates vil blive flyttet hertil</value>
+  </data>
+  <data name="MessageBox_2212_name" xml:space="preserve">
+    <value>Ikke nok penge</value>
+  </data>
+  <data name="MessageBox_2212_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at oprette en hub</value>
+  </data>
+  <data name="MessageBox_2213_name" xml:space="preserve">
+    <value>Opret hub</value>
+  </data>
+  <data name="MessageBox_2213_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil oprette en hub for {0:C}?</value>
+  </data>
+  <data name="MessageBox_2214_name" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="MessageBox_2214_message" xml:space="preserve">
+    <value>Denne lufthavn er en hub, og skal brug minimum en {0}?</value>
+  </data>
+  <data name="MessageBox_2215_name" xml:space="preserve">
+    <value>Fejl</value>
+  </data>
+  <data name="MessageBox_2215_message" xml:space="preserve">
+    <value>Du kan ikke opsige dit lejemål, idet du har en hub, som kræver mindst 20 % af gates i lufthavnen</value>
+  </data>
+  <data name="MessageBox_2216_name" xml:space="preserve">
+    <value>Flyt flyvninger</value>
+  </data>
+  <data name="MessageBox_2216_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil flytte alle aktiviteter fra {0} til {1}?</value>
+  </data>
+  <data name="MessageBox_2217_name" xml:space="preserve">
+    <value>Check-in faciliteter</value>
+  </data>
+  <data name="MessageBox_2217_message" xml:space="preserve">
+    <value>Vil du købe check it faciliteter så du kan leje en gate i lufthavnen?</value>
+  </data>
+  <data name="MessageBox_2218_name" xml:space="preserve">
+    <value>Anlæg landingsbane</value>
+  </data>
+  <data name="MessageBox_2218_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil anlægge en landingsbane i {0} for {1:C}?</value>
+  </data>
+  <data name="MessageBox_2219_name" xml:space="preserve">
+    <value>Ikke penge nok</value>
+  </data>
+  <data name="MessageBox_2219_message" xml:space="preserve">
+    <value>Du har ikke penge nok til at anlægge landingsbanen.</value>
+  </data>
+  <data name="MessageBox_2301_name" xml:space="preserve">
+    <value>Fly ikke stoppet</value>
+  </data>
+  <data name="MessageBox_2301_message" xml:space="preserve">
+    <value>Flyet skal være stoppet, for at kunne få ændret sine faciliteter</value>
+  </data>
+  <data name="MessageBox_2401_name" xml:space="preserve">
+    <value>IATA findes allerede</value>
+  </data>
+  <data name="MessageBox_2401_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil overskrive {0}?</value>
+  </data>
+  <data name="MessageBox_2402_name" xml:space="preserve">
+    <value>Opret flyselskab</value>
+  </data>
+  <data name="MessageBox_2402_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil oprette dette flyselskab?</value>
+  </data>
+  <data name="MessageBox_2403_name" xml:space="preserve">
+    <value>Administrerende direktør</value>
+  </data>
+  <data name="MessageBox_2403_message" xml:space="preserve">
+    <value>Navnet på den administrerende direktør skal være længere end 2 karakterer </value>
+  </data>
+  <data name="MessageBox_2501_name" xml:space="preserve">
+    <value>Fejl i rute</value>
+  </data>
+  <data name="MessageBox_2501_message" xml:space="preserve">
+    <value>Denne rute kan ikke laves fordi der enten ikke er fri gates på rejsemålene eller at prisen ikke er korrekt</value>
+  </data>
+  <data name="MessageBox_2502_name" xml:space="preserve">
+    <value>Fjern fly</value>
+  </data>
+  <data name="MessageBox_2502_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fjerne {0} fra denne rute?</value>
+  </data>
+  <data name="MessageBox_2503_name" xml:space="preserve">
+    <value>Fjern rute</value>
+  </data>
+  <data name="MessageBox_2503_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fjerne ruten mellem {0} og {1}?</value>
+  </data>
+  <data name="MessageBox_2504_name" xml:space="preserve">
+    <value>Ugyldig tidsplan</value>
+  </data>
+  <data name="MessageBox_2504_message" xml:space="preserve">
+    <value>Tidsplanen er ugyldig</value>
+  </data>
+  <data name="MessageBox_2505_name" xml:space="preserve">
+    <value>Manglende piloter</value>
+  </data>
+  <data name="MessageBox_2505_message" xml:space="preserve">
+    <value>Dette fly har ikke den rette mængde piloter. Vil du assigne piloter automatisk to flyet?</value>
+  </data>
+  <data name="MessageBox_2506_name" xml:space="preserve">
+    <value>Manglende piloter</value>
+  </data>
+  <data name="MessageBox_2506_message" xml:space="preserve">
+    <value>Du har ingen ledige piloter til dette fly. Vil du hyre {0} piloter til flyet?</value>
+  </data>
+  <data name="MessageBox_2507_name" xml:space="preserve">
+    <value>Manglende piloter</value>
+  </data>
+  <data name="MessageBox_2507_message" xml:space="preserve">
+    <value>Dette fly har ikke den rette mængde piloter. Vær venlig at assigne piloter til flyet</value>
+  </data>
+  <data name="MessageBox_2601_name" xml:space="preserve">
+    <value>Tilslut alliance</value>
+  </data>
+  <data name="MessageBox_2601_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil tilslutte dig {0}?</value>
+  </data>
+  <data name="MessageBox_2602_name" xml:space="preserve">
+    <value>Træd ud af alliance</value>
+  </data>
+  <data name="MessageBox_2602_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil træde ud af {0}?</value>
+  </data>
+  <data name="MessageBox_2603_name" xml:space="preserve">
+    <value>Slet alliance</value>
+  </data>
+  <data name="MessageBox_2603_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fjerne {0}?</value>
+  </data>
+  <data name="MessageBox_2604_name" xml:space="preserve">
+    <value>Opret alliane</value>
+  </data>
+  <data name="MessageBox_2604_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil oprette denne alliance?</value>
+  </data>
+  <data name="MessageBox_2605_name" xml:space="preserve">
+    <value>Tilslutter sig alliance</value>
+  </data>
+  <data name="MessageBox_2605_message" xml:space="preserve">
+    <value>{0} har accepteret at tilslutte sig {1}</value>
+  </data>
+  <data name="MessageBox_2606_name" xml:space="preserve">
+    <value>Afviser alliancer</value>
+  </data>
+  <data name="MessageBox_2606_message" xml:space="preserve">
+    <value>{0} har afvist at tilslutte sig {1}</value>
+  </data>
+  <data name="MessageBox_2607_name" xml:space="preserve">
+    <value>Accepteret</value>
+  </data>
+  <data name="MessageBox_2607_message" xml:space="preserve">
+    <value>{0} er blevet accepteret at tilslutte sig {1}</value>
+  </data>
+  <data name="MessageBox_2608_name" xml:space="preserve">
+    <value>Afvist</value>
+  </data>
+  <data name="MessageBox_2608_message" xml:space="preserve">
+    <value>{0} er blevet afvist at tilslutte sig {1}</value>
+  </data>
+  <data name="MessageBox_2701_name" xml:space="preserve">
+    <value>Autogenerer tidstabel</value>
+  </data>
+  <data name="MessageBox_2701_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil slette den eksisterende tidstable og lave en ny mellem {0} og {1}?</value>
+  </data>
+  <data name="MessageBox_2702_name" xml:space="preserve">
+    <value>Allerede på rute</value>
+  </data>
+  <data name="MessageBox_2702_message" xml:space="preserve">
+    <value>Flyet er allerede i rute på det valgte tidspunkt</value>
+  </data>
+  <data name="MessageBox_2703_name" xml:space="preserve">
+    <value>Allerede i rute</value>
+  </data>
+  <data name="MessageBox_2703_message" xml:space="preserve">
+    <value>Ruten har allerede et fly på det valgte tidspunkt</value>
+  </data>
+  <data name="MessageBox_2704_name" xml:space="preserve">
+    <value>Intet match</value>
+  </data>
+  <data name="MessageBox_2704_message" xml:space="preserve">
+    <value>Flyet kan ikke nå rejsemålet herfra</value>
+  </data>
+  <data name="MessageBox_2801_name" xml:space="preserve">
+    <value>Ansæt pilot</value>
+  </data>
+  <data name="MessageBox_2801_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil hyre denne pilot?</value>
+  </data>
+  <data name="MessageBox_2802_name" xml:space="preserve">
+    <value>Ansæt instruktør</value>
+  </data>
+  <data name="MessageBox_2802_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil hyre denne instruktør?</value>
+  </data>
+  <data name="MessageBox_2803_name" xml:space="preserve">
+    <value>Anlæg flyveskole</value>
+  </data>
+  <data name="MessageBox_2803_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil bygge en ny flyveskole for {0:C}?</value>
+  </data>
+  <data name="MessageBox_2804_name" xml:space="preserve">
+    <value>Fjern flyveskole</value>
+  </data>
+  <data name="MessageBox_2804_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fjerne din flyveskole {0}? Alle fly, instruktører og aspiranter vil blive opsagt</value>
+  </data>
+  <data name="MessageBox_2805_name" xml:space="preserve">
+    <value>Kan ikke fyre instruktør</value>
+  </data>
+  <data name="MessageBox_2805_message" xml:space="preserve">
+    <value>Du kan ikke fyre {0}, idet han har aspiranter.</value>
+  </data>
+  <data name="MessageBox_2806_name" xml:space="preserve">
+    <value>Fyr instruktør</value>
+  </data>
+  <data name="MessageBox_2806_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fyre {0}?</value>
+  </data>
+  <data name="MessageBox_2807_name" xml:space="preserve">
+    <value>Fyr aspirant</value>
+  </data>
+  <data name="MessageBox_2807_message" xml:space="preserve">
+    <value>Er du sikker på, at du vil fyre {0}?</value>
+  </data>
+  <data name="MessageBox_2901_name" xml:space="preserve">
+    <value>Begrænsning i antal fly</value>
+  </data>
+  <data name="MessageBox_2901_message" xml:space="preserve">
+    <value>Dette maintenance center kan højest håndtere {0} fly ad gangen</value>
+  </data>
+  <data name="MessageBox_2902_name" xml:space="preserve">
+    <value>Ændre flykonfiguration</value>
+  </data>
+  <data name="MessageBox_2902_message" xml:space="preserve">
+    <value>Det tager maksimalt {0} dage at ændre disse konfigurationer. Er du sikker på, at du vil det?</value>
+  </data>
+  <data name="News_1001_name" xml:space="preserve">
+    <value>Velkommen til spillet</value>
+  </data>
+  <data name="News_1001_message" xml:space="preserve">
+    <value>Kære {0}\n\nVelkommen som administrerende direktør for [LI airline={1}].\nVi håber du vil få glæde af spillet\n\nHeld og lykke</value>
+  </data>
+  <data name="News_1002_name" xml:space="preserve">
+    <value>Dårligt vejr</value>
+  </data>
+  <data name="News_1002_message" xml:space="preserve">
+    <value>Vejrudsigten for [LI airport={0}] lover dårligt vejr i {1}</value>
+  </data>
+  <data name="News_1003_name" xml:space="preserve">
+    <value>Aflyste fly</value>
+  </data>
+  <data name="News_1003_message" xml:space="preserve">
+    <value>Dit fly [LI airliner={0}] er blevet aflyst på grund af dårlig vejr i [LI airport={1}]</value>
+  </data>
+  <data name="News_1004_name" xml:space="preserve">
+    <value>Aflyste fly</value>
+  </data>
+  <data name="News_1004_message" xml:space="preserve">
+    <value>Dit fly {0} fra [LI airport={1}] til [LI airport={2}] er blevet aflyst grundet tekniske problemer</value>
+  </data>
+  <data name="News_1005_name" xml:space="preserve">
+    <value>Aflyste fly</value>
+  </data>
+  <data name="News_1005_message" xml:space="preserve">
+    <value>Dit fly {0} fra [LI airport={1}] til [LI airport={2}] er blevet aflyst grundet dårligt vejr.</value>
+  </data>
+  <data name="News_1006_name" xml:space="preserve">
+    <value>Færdiguddannet aspirant</value>
+  </data>
+  <data name="News_1006_message" xml:space="preserve">
+    <value>Din flyveelev {0} er nu færdiguddannet og er blevet ansat hos dig</value>
+  </data>
+  <data name="News_1007_name" xml:space="preserve">
+    <value>Pilot på pension</value>
+  </data>
+  <data name="News_1007_message" xml:space="preserve">
+    <value>Din pilot {0} bliver snart {1} år og går på pension ved udgangen af måneden</value>
+  </data>
+  <data name="News_1008_name" xml:space="preserve">
+    <value>Instruktør på pension</value>
+  </data>
+  <data name="News_1008_message" xml:space="preserve">
+    <value>Din instruktør [0} bliver snart {1} år og går på pension ved udgangen af måneden</value>
+  </data>
+  <data name="News_1009_name" xml:space="preserve">
+    <value>Pilot på pension</value>
+  </data>
+  <data name="News_1009_message" xml:space="preserve">
+    <value>Din pilot [0} er gået på pension</value>
+  </data>
+  <data name="News_1010_name" xml:space="preserve">
+    <value>Pilot på pension</value>
+  </data>
+  <data name="News_1010_message" xml:space="preserve">
+    <value>Din pilot [0} er gået på pension. Venligst assigne en ny pilot til {1} som erstatning for {0}</value>
+  </data>
+  <data name="News_1011_name" xml:space="preserve">
+    <value>Instruktør på pension</value>
+  </data>
+  <data name="News_1011_message" xml:space="preserve">
+    <value>Din instruktør [0} er gået på pension</value>
+  </data>
+  <data name="News_1012_name" xml:space="preserve">
+    <value>Instruktør på pension</value>
+  </data>
+  <data name="News_1012_message" xml:space="preserve">
+    <value>Din instruktør [0} er gået på pension og {1} er blevet ansat istedet for</value>
+  </data>
+  <data name="Enums_S_name" xml:space="preserve">
+    <value>S</value>
+  </data>
+  <data name="Enums_SE_name" xml:space="preserve">
+    <value>SØ</value>
+  </data>
+  <data name="Enums_SW_name" xml:space="preserve">
+    <value>SV</value>
+  </data>
+  <data name="Enums_W_name" xml:space="preserve">
+    <value>V</value>
+  </data>
+  <data name="Enums_NW_name" xml:space="preserve">
+    <value>NV</value>
+  </data>
+  <data name="Enums_N_name" xml:space="preserve">
+    <value>N</value>
+  </data>
+  <data name="Enums_NE_name" xml:space="preserve">
+    <value>NØ</value>
+  </data>
+  <data name="Enums_E_name" xml:space="preserve">
+    <value>Ø</value>
+  </data>
+  <data name="PageAirline_1025_name" xml:space="preserve">
+    <value>Køb som underselskab</value>
+  </data>
+</root>
