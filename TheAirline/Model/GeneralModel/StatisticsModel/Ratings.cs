@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Math;
 
 namespace TheAirline.Model.StatisticsModel
 {
@@ -23,7 +22,7 @@ namespace TheAirline.Model.StatisticsModel
        }
 
        //variance calculation for a list of values
-       public static double getVariance(List<double> population)
+       public static double getVariance(List<Double> population)
        {
            double var = 0.0;
            if (population.Count() > 0)
@@ -33,6 +32,24 @@ namespace TheAirline.Model.StatisticsModel
            }
            return var;
        }
+
+       //passenger happiness calculation
+       public static int getPaxHappiness()
+       {
+           List<Double> ePrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+           List<Double> bPrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+           List<Double> fPrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+
+           double eVar = getVariance(ePrices);
+           double bVar = getVariance(bPrices);
+           double fVar = getVariance(fPrices);
+
+           double totalVariance = (eVar * 0.7) + (bVar * 0.2) + (fVar * 0.1);
+           int variance = (int)totalVariance;
+
+           return variance;
+       }
+
            
     }
 }
