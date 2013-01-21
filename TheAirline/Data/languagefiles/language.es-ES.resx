@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version='1.0' encoding='UTF-8'?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -59,46 +59,46 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+  <xsd:schema xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" id="root">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace"/>
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
         <xsd:choice maxOccurs="unbounded">
           <xsd:element name="metadata">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0"/>
               </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" use="required" type="xsd:string"/>
+              <xsd:attribute name="type" type="xsd:string"/>
+              <xsd:attribute name="mimetype" type="xsd:string"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="assembly">
             <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="alias" type="xsd:string"/>
+              <xsd:attribute name="name" type="xsd:string"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="data">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1"/>
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3"/>
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4"/>
+              <xsd:attribute ref="xml:space"/>
             </xsd:complexType>
           </xsd:element>
           <xsd:element name="resheader">
             <xsd:complexType>
               <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1"/>
               </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
+              <xsd:attribute name="name" type="xsd:string" use="required"/>
             </xsd:complexType>
           </xsd:element>
         </xsd:choice>
@@ -183,6 +183,12 @@
   <data name="General_1000_name" xml:space="preserve">
     <value>Titulo sin Traducir</value>
   </data>
+  <data name="General_2000_name" xml:space="preserve">
+    <value>Millones</value>
+  </data>
+  <data name="General_2001_name" xml:space="preserve">
+    <value>Mil millones</value>
+  </data>
   <data name="LanguageTranslationConverter_1000_name" xml:space="preserve">
     <value>Tipo</value>
   </data>
@@ -194,6 +200,18 @@
   </data>
   <data name="PopUpTimeTable_1000_name" xml:space="preserve">
     <value>Hoja de Ruta</value>
+  </data>
+  <data name="PopUpBuildRunway_1000_name" xml:space="preserve">
+    <value>Construir la pista</value>
+  </data>
+  <data name="PopUpBuildRunway_1001_name" xml:space="preserve">
+    <value>Pista nombre</value>
+  </data>
+  <data name="PopUpBuildRunway_1002_name" xml:space="preserve">
+    <value>Tipo de superficie</value>
+  </data>
+  <data name="PopUpBuildRunway_1003_name" xml:space="preserve">
+    <value>Pista longitud</value>
   </data>
   <data name="PopUpAirlinerRoutes_1000_name" xml:space="preserve">
     <value>Transferir Itinerario</value>
@@ -329,6 +347,24 @@
   </data>
   <data name="PageRoutes_1003_name" xml:space="preserve">
     <value>{0} Rutas</value>
+  </data>
+  <data name="PageFrontMenu_200_name" xml:space="preserve">
+    <value>Nueva partida</value>
+  </data>
+  <data name="PageFrontMenu_201_name" xml:space="preserve">
+    <value>Cargar juego</value>
+  </data>
+  <data name="PageFrontMenu_202_name" xml:space="preserve">
+    <value>Configuracion</value>
+  </data>
+  <data name="PageFrontMenu_203_name" xml:space="preserve">
+    <value>Creditos</value>
+  </data>
+  <data name="PageFrontMenu_204_name" xml:space="preserve">
+    <value>Salir del Jeugo</value>
+  </data>
+  <data name="PageFrontMenu_1001_name" xml:space="preserve">
+    <value>El Menu de Inicio</value>
   </data>
   <data name="PageFleetAirliner_200_name" xml:space="preserve">
     <value>Comprar avión</value>
@@ -516,6 +552,9 @@
   <data name="PageAirport_1019_name" xml:space="preserve">
     <value>Temporal</value>
   </data>
+  <data name="PageAirport_1020_name" xml:space="preserve">
+    <value>La demanda total diaria / Demanda restante</value>
+  </data>
   <data name="PageAirport_1021_name" xml:space="preserve">
     <value>Carga</value>
   </data>
@@ -528,8 +567,14 @@
   <data name="PageAirport_1024_name" xml:space="preserve">
     <value>Fecha de clausura</value>
   </data>
+  <data name="PageAirportRunways_201_name" xml:space="preserve">
+    <value>Construir pistas</value>
+  </data>
   <data name="PageAirportRunways_1001_name" xml:space="preserve">
     <value>Información de pista (Nombre / Longitud / Superficie)</value>
+  </data>
+  <data name="PageAirportRunways_1002_name" xml:space="preserve">
+    <value>Pista de Informacion (Nombre / Longitude / Superficie / Espera su Finalizacion)</value>
   </data>
   <data name="PageAirportFacilities_1001_name" xml:space="preserve">
     <value>Instalaciones del aeropuerto</value>
@@ -744,11 +789,35 @@
   <data name="PageFlights_1000_name" xml:space="preserve">
     <value>Vuelos</value>
   </data>
+  <data name="PagePilots_200_name" xml:space="preserve">
+    <value>Construir la escuela de vuelo</value>
+  </data>
+  <data name="PagePilots_1000_name" xml:space="preserve">
+    <value>Escuelas de vuelo y Pilotos</value>
+  </data>
+  <data name="PagePilots_1001_name" xml:space="preserve">
+    <value>Pilotos</value>
+  </data>
+  <data name="PagePilots_1002_name" xml:space="preserve">
+    <value>Instructores</value>
+  </data>
+  <data name="PagePilots_1003_name" xml:space="preserve">
+    <value>Escuelas de Vuelo</value>
+  </data>
+  <data name="PagePilots_1004_name" xml:space="preserve">
+    <value>Seleccionar la ciudad para la escuela de vuelo</value>
+  </data>
   <data name="PageAlliances_1000_name" xml:space="preserve">
     <value>Alianzas</value>
   </data>
   <data name="PageAlliances_200_name" xml:space="preserve">
     <value>Crear nueva alianza</value>
+  </data>
+  <data name="PageNewsBox_201_name" xml:space="preserve">
+    <value>Marcar todos como leidos</value>
+  </data>
+  <data name="PageNewsBox_202_name" xml:space="preserve">
+    <value>Eliminar noticia seleccionada.</value>
   </data>
   <data name="PageNewsBox_1000_name" xml:space="preserve">
     <value>Noticias</value>
@@ -776,6 +845,12 @@
   </data>
   <data name="PageSettings_1007_name" xml:space="preserve">
     <value>Recibir correo en caso de mal tiempo</value>
+  </data>
+  <data name="PageSettings_1008_name" xml:space="preserve">
+    <value>Utilizar acortar moneda.</value>
+  </data>
+  <data name="PageCredits_1000_name" xml:space="preserve">
+    <value>Creditos</value>
   </data>
   <data name="PageNewGame_200_name" xml:space="preserve">
     <value>Crear nuevo juego</value>
@@ -825,8 +900,35 @@
   <data name="PageNewGame_1013_name" xml:space="preserve">
     <value>Seleccionar enfoque de la aerolínea</value>
   </data>
+  <data name="PageNewGame_1014_name" xml:space="preserve">
+    <value>Utilizar la moneda local</value>
+  </data>
   <data name="PageNewGame_1015_name" xml:space="preserve">
     <value>Descripcion del aerolineas</value>
+  </data>
+  <data name="PageNewGame_1016_name" xml:space="preserve">
+    <value>Utilizar turnos al dia</value>
+  </data>
+  <data name="PageNewGame_1017_name" xml:space="preserve">
+    <value>Utilizar los mismos oponentes region</value>
+  </data>
+  <data name="PageAirlinePilots_1001_name" xml:space="preserve">
+    <value>Pilotos</value>
+  </data>
+  <data name="PageAirlinePilots_1002_name" xml:space="preserve">
+    <value>Asignar piloto de avion</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_201_name" xml:space="preserve">
+    <value>Establecer clases</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_202_name" xml:space="preserve">
+    <value>Aplicar</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_1001_name" xml:space="preserve">
+    <value>Configuracion de los aviones de pasajeros</value>
+  </data>
+  <data name="PageAirlineFacilityMaintenance_1002_name" xml:space="preserve">
+    <value>Clases avion</value>
   </data>
   <data name="PageAirlineFleet_1001_name" xml:space="preserve">
     <value>Vista de la flota</value>
@@ -996,6 +1098,117 @@
   <data name="PageAirlineStatistics_1004_name" xml:space="preserve">
     <value>Pasajeros por vuelo</value>
   </data>
+  <data name="PanelRoute_200_name" xml:space="preserve">
+    <value>Eliminar ruta</value>
+  </data>
+  <data name="PanelRoute_1000_name" xml:space="preserve">
+    <value>Informacion de la ruta</value>
+  </data>
+  <data name="PanelRoute_1001_name" xml:space="preserve">
+    <value>Destino 1</value>
+  </data>
+  <data name="PanelRoute_1002_name" xml:space="preserve">
+    <value>Destino 2</value>
+  </data>
+  <data name="PanelRoute_1003_name" xml:space="preserve">
+    <value>Detiene</value>
+  </data>
+  <data name="PanelRoute_1004_name" xml:space="preserve">
+    <value>Distancia total</value>
+  </data>
+  <data name="PanelRoute_1005_name" xml:space="preserve">
+    <value>Escala</value>
+  </data>
+  <data name="PanelRoute_1006_name" xml:space="preserve">
+    <value>Vuelos a la semana (salida/entrada)</value>
+  </data>
+  <data name="PanelRoute_1007_name" xml:space="preserve">
+    <value>Finanzas ruta</value>
+  </data>
+  <data name="PanelRoute_1008_name" xml:space="preserve">
+    <value>Finanzas totales de la ruta</value>
+  </data>
+  <data name="PanelRoute_1009_name" xml:space="preserve">
+    <value>Pasajeros</value>
+  </data>
+  <data name="PanelRoute_1010_name" xml:space="preserve">
+    <value>Pasajeros promedio</value>
+  </data>
+  <data name="PanelRoute_1011_name" xml:space="preserve">
+    <value>Grado de llenado</value>
+  </data>
+  <data name="PanelRoute_1012_name" xml:space="preserve">
+    <value>Equilibrio</value>
+  </data>
+  <data name="PanelInstructor_200_name" xml:space="preserve">
+    <value>Contratar</value>
+  </data>
+  <data name="PanelInstructor_1001_name" xml:space="preserve">
+    <value>Informacion de instructores</value>
+  </data>
+  <data name="PanelInstructor_1002_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_200_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_201_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1001_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1002_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1003_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1004_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1005_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1006_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1007_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1008_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelFlightSchool_1009_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_200_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1001_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1002_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1003_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1004_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1005_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1006_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1007_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelPilot_1008_name" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="PanelAirlinesExtendedStatistics_1001_name" xml:space="preserve">
     <value>Estadísticas de la flota</value>
   </data>
@@ -1049,6 +1262,9 @@
   </data>
   <data name="PanelAirline_1007_name" xml:space="preserve">
     <value>Subsidiarias</value>
+  </data>
+  <data name="PanelAirline_1008_name" xml:space="preserve">
+    <value></value>
   </data>
   <data name="PanelAlliance_200_name" xml:space="preserve">
     <value>Unirse a alianza</value>
@@ -1161,6 +1377,9 @@
   <data name="PageOrderAirliners_200_name" xml:space="preserve">
     <value>Encargar Nuevos Aviones</value>
   </data>
+  <data name="PageOrderAirliners_201_name" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="PageOrderAirliners_1001_name" xml:space="preserve">
     <value>Encargar Aviones</value>
   </data>
@@ -1193,6 +1412,9 @@
   </data>
   <data name="PageOrderAirliners_1011_name" xml:space="preserve">
     <value>Seleccionar duración del contratoi</value>
+  </data>
+  <data name="PageOrderAirliners_1012_name" xml:space="preserve">
+    <value></value>
   </data>
   <data name="PanelUsedAirliner_200_name" xml:space="preserve">
     <value>Comprar</value>
@@ -1304,6 +1526,12 @@
   </data>
   <data name="PanelNewRoute_1002_name" xml:space="preserve">
     <value>Vuelos entre {0} y {1} no están permitidos</value>
+  </data>
+  <data name="PanelNewRoute_1003_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PanelNewRoute_1004_name" xml:space="preserve">
+    <value></value>
   </data>
   <data name="MenuHome_1000_name" xml:space="preserve">
     <value>Inicio</value>
@@ -1517,6 +1745,30 @@
   <data name="MessageBox_2114_message" xml:space="preserve">
     <value>¿Está seguro de querer adquirir la totalidad de la aerolínea subsidiaria?</value>
   </data>
+  <data name="MessageBox_2115_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2115_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2116_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2116_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2117_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2117_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2118_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2118_message" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="MessageBox_2201_name" xml:space="preserve">
     <value>No hay dinero suficiente</value>
   </data>
@@ -1619,8 +1871,17 @@
   <data name="MessageBox_2217_message" xml:space="preserve">
     <value>¿Desea adquirir instalaciones de facturación antes de arrendar  una puerta en el aeropuerto?</value>
   </data>
+  <data name="MessageBox_2218_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2218_message" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="MessageBox_2219_name" xml:space="preserve">
     <value>No hay dinero suficiente</value>
+  </data>
+  <data name="MessageBox_2219_message" xml:space="preserve">
+    <value></value>
   </data>
   <data name="MessageBox_2301_name" xml:space="preserve">
     <value>Avión no detenido</value>
@@ -1669,6 +1930,24 @@
   </data>
   <data name="MessageBox_2504_message" xml:space="preserve">
     <value>El itinerario no es válido.</value>
+  </data>
+  <data name="MessageBox_2505_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2505_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2506_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2506_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2507_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2507_message" xml:space="preserve">
+    <value></value>
   </data>
   <data name="MessageBox_2601_name" xml:space="preserve">
     <value>Unirse a alianza</value>
@@ -1742,6 +2021,60 @@
   <data name="MessageBox_2704_message" xml:space="preserve">
     <value>El avión no puede alcanzar su destino desde esta entrada.</value>
   </data>
+  <data name="MessageBox_2801_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2801_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2802_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2802_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2803_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2803_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2804_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2804_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2805_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2805_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2806_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2806_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2807_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2807_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2901_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2901_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2902_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2902_message" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="News_1001_name" xml:space="preserve">
     <value>Bienvenido al juego</value>
   </data>
@@ -1771,6 +2104,51 @@
   <data name="News_1005_name" xml:space="preserve">
     <value>Vuelo cancelado</value>
   </data>
+  <data name="News_1005_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1006_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1006_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1007_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1007_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1008_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1008_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1009_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1009_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1010_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1010_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1011_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1011_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1012_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="News_1012_message" xml:space="preserve">
+    <value></value>
+  </data>
   <data name="Enums_S_name" xml:space="preserve">
     <value>S</value>
   </data>
@@ -1794,5 +2172,26 @@
   </data>
   <data name="Enums_E_name" xml:space="preserve">
     <value>E</value>
+  </data>
+  <data name="PageAirline_1025_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2119_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2119_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2120_message" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="MessageBox_2120_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PageAirlineSubsidiaries_1002_name" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="PageAirlineSubsidiaries_201_name" xml:space="preserve">
+    <value></value>
   </data>
 </root>

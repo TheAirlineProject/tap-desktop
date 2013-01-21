@@ -1105,10 +1105,10 @@
     <value>Route Information</value>
   </data>
   <data name="PanelRoute_1001_name" xml:space="preserve">
-    <value>Destination1</value>
+    <value>Origin</value>
   </data>
   <data name="PanelRoute_1002_name" xml:space="preserve">
-    <value>Destination2</value>
+    <value>Destination</value>
   </data>
   <data name="PanelRoute_1003_name" xml:space="preserve">
     <value>Stops</value>
@@ -1507,10 +1507,10 @@
     <value>Create new route</value>
   </data>
   <data name="PanelNewRoute_202_name" xml:space="preserve">
-    <value>Destination 1</value>
+    <value>Origin</value>
   </data>
   <data name="PanelNewRoute_203_name" xml:space="preserve">
-    <value>Destination 2</value>
+    <value>Destination</value>
   </data>
   <data name="PanelNewRoute_204_name" xml:space="preserve">
     <value>Distance</value>
