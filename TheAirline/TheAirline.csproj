@@ -764,6 +764,7 @@
     <Compile Include="Model\AirportModel\AirportStatisticsValue.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
+    <Compile Include="Model\GeneralModel\StatisticsModel\Ratings.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\CountryCurrency.cs" />
@@ -842,13 +843,27 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Data\languagefiles\language.da-DK.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.de-DE.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.en-GB.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.es-ES.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.nl-NL.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.zh-CN.resx" />
+    <EmbeddedResource Include="..\Data\languages\language.da-DK.resx">
+      <Link>Data\languagefiles\language.da-DK.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.de-DE.resx">
+      <Link>Data\languagefiles\language.de-DE.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.en-GB.resx">
+      <Link>Data\languagefiles\language.en-GB.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.es-ES.resx">
+      <Link>Data\languagefiles\language.es-ES.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.nl-NL.resx">
+      <Link>Data\languagefiles\language.nl-NL.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.resx">
+      <Link>Data\languagefiles\language.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.zh-CN.resx">
+      <Link>Data\languagefiles\language.zh-CN.resx</Link>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

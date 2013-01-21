@@ -36,14 +36,17 @@ namespace TheAirline.Model.StatisticsModel
        //passenger happiness calculation
        public static int getPaxHappiness()
        {
+           //create a list of route ticket prices
            List<Double> ePrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
            List<Double> bPrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
            List<Double> fPrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
 
+           //variance of econoomy, business, and first class
            double eVar = getVariance(ePrices);
            double bVar = getVariance(bPrices);
            double fVar = getVariance(fPrices);
 
+           //compiled variance for all classes
            double totalVariance = (eVar * 0.7) + (bVar * 0.2) + (fVar * 0.1);
            int variance = (int)totalVariance;
 
