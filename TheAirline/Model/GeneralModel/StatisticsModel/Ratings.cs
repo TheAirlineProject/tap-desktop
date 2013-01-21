@@ -9,36 +9,30 @@ namespace TheAirline.Model.StatisticsModel
     //the general class for ratings
    public class Ratings
     {
-       //standard deviation calculation
+       //standard deviation calculation for a list of values
        public static double getStandardDev(List<double> population)
        {
-           double M = 0.0;
-           double S = 0.0;
-           int k = 1;
-           foreach (double value in population)
+           double sd = 0.0;
+          if (population.Count() > 0)
            {
-               double tmpM = M;
-               M += (value - tmpM) / k;
-               S += (value - tmpM) * (value - M);
-               k++;
+               double u = population.Average();
+               double sum = population.Sum(d => Math.Pow(d - u, 2));
+               sd = Math.Sqrt((sum) / population.Count() - 1);             
            }
-           return Math.Sqrt(S / (k - 1));
+          return sd;
        }
 
-       //variance calculation
+       //variance calculation for a list of values
        public static double getVariance(List<double> population)
        {
-           double M = 0.0;
-           double S = 0.0;
-           int k = 1;
-           foreach (double value in population)
+           double var = 0.0;
+           if (population.Count() > 0)
            {
-               double tmpM = M;
-               M += (value - tmpM) / k;
-               S += (value - tmpM) * (value - M);
-               k++;
+               double u = population.Average();
+               var = population.Sum(d => Math.Pow(d - u, 2));
            }
-           return S / (k - 1);
+           return var;
        }
+           
     }
 }
