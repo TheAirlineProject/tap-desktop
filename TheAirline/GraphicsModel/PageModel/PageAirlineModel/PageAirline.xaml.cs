@@ -176,7 +176,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
         //creates the panel for purchasing an airline
         private StackPanel createPurchaseAirlinePanel()
         {
-            double buyingPrice = this.Airline.getValue()* 1000000 * 1.10;
+            double buyingPrice = this.Airline.getValue() *1000000 * 1.10;
             StackPanel purchasePanel = new StackPanel();
             purchasePanel.Margin = new Thickness(5, 10, 10, 10);
 

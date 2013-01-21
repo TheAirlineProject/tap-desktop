@@ -1413,22 +1413,7 @@ namespace TheAirline.Model.GeneralModel
                     CreateComputerRoutes(airline);
                 }
             }
-
-            var countryGroups =
-            (from a in GameObject.GetInstance().HumanAirline.Airports
-            group a by a.Profile.Country into g
-            select new { Country = g.Key, Airports = g }).OrderByDescending(group=>group.Airports.Count());
-
-            foreach (var g in countryGroups)
-            {
-                Console.WriteLine("Country with airports: " + g.Country.Name);
-                Console.WriteLine(g.Airports.Count());
-                foreach (var n in g.Airports)
-                {
-                    Console.WriteLine(n.Profile.IATACode);
-                }
-            } 
-
+      
             /*
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);

@@ -842,6 +842,13 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Data\languagefiles\language.da-DK.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.de-DE.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.en-GB.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.es-ES.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.nl-NL.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.resx" />
+    <EmbeddedResource Include="Data\languagefiles\language.zh-CN.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

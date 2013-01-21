@@ -6,6 +6,8 @@ using System.Runtime.Caching;
 using System.Collections;
 using System.Configuration;
 using System.Xml;
+using System.Reflection;
+using System.Resources;
 
 namespace TheAirline.Model.GeneralModel
 {   // this is just a comment to test all my settings and make sure they are correct
@@ -189,7 +191,7 @@ namespace TheAirline.Model.GeneralModel
                         Languages.AddLanguage(read);
                     }
                 }
-
+                /*
                 // Durch Region-Nodes iterieren
 				foreach(XmlNode regionNode in xDoc.SelectNodes(XML_ROOTNODE)) {
 
@@ -227,7 +229,7 @@ namespace TheAirline.Model.GeneralModel
 					}
 
 					this.regions.Add(regionNode.Attributes["name"].Value, strs);
-				}
+				}*/
 			} catch (System.Exception ex) {
 				throw new Exception("Fehler beim einlesen des Xml-Files"+SourceFile+": " + ex.Message);
 			}
@@ -246,60 +248,70 @@ namespace TheAirline.Model.GeneralModel
 		/// <returns>String</returns>
 		public string GetString(string region, string uid, string attribute = "name") 
 		{
-            string culture = AppSettings.GetInstance().getLanguage().CultureInfo;
-            
-            string text = null;
+            string translationString = string.Format("{0}_{1}_{2}", region, uid, attribute);
 
-			// Lese Text mit den gegebenen Parametern region, key und language
-			try
-			{
-				// Prüfen ob Regions vorhanden sind
-				if(regions.Count > 0)
-				{
-					//  Prüfen ob angeforderte Region vorhanden ist
-                    if (regions[region] != null)
+            ResourceManager rm = new ResourceManager("TheAirline.Data.languagefiles.language", Assembly.GetExecutingAssembly());
+             
+            string text = rm.GetString(translationString);
+
+            if (text != null)
+                return text;
+            else
+            {
+                string culture = AppSettings.GetInstance().getLanguage().CultureInfo;
+
+
+                // Lese Text mit den gegebenen Parametern region, key und language
+                try
+                {
+                    // Prüfen ob Regions vorhanden sind
+                    if (regions.Count > 0)
                     {
-                        if (((Hashtable)regions[region])[uid] != null)
+                        //  Prüfen ob angeforderte Region vorhanden ist
+                        if (regions[region] != null)
                         {
-                            // Prüfen ob gewählte Sprache vorhanden ist;
-                            // ansonsten wird die Default-Sprache verwendet
-                            //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
-                            if (((Hashtable)((Hashtable)regions[region])[uid]).ContainsKey(culture))
-                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions[region])[uid])[culture]))[attribute];
-                            else
-                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions[region])[uid])[DefaultLanguage]))[attribute];
+                            if (((Hashtable)regions[region])[uid] != null)
+                            {
+                                // Prüfen ob gewählte Sprache vorhanden ist;
+                                // ansonsten wird die Default-Sprache verwendet
+                                //                        if (((Dictionary<string, string>)((Hashtable)regions[region])[key]).ContainsKey(language.ToString()))
+                                if (((Hashtable)((Hashtable)regions[region])[uid]).ContainsKey(culture))
+                                    text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions[region])[uid])[culture]))[attribute];
+                                else
+                                    text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions[region])[uid])[DefaultLanguage]))[attribute];
 
-                            return text;
+                                return text;
+                            }
+                            else
+                            {
+                                // we try it in the "General" region
+                                if (((Hashtable)((Hashtable)regions["General"])[uid]).ContainsKey(culture))
+                                    text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions["General"])[uid])[culture]))[attribute];
+                                else
+                                    text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions["General"])[uid])[DefaultLanguage]))[attribute];
+
+                                return text;
+                            }
                         }
                         else
-                        {
-                            // we try it in the "General" region
-                            if (((Hashtable)((Hashtable)regions["General"])[uid]).ContainsKey(culture))
-                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions["General"])[uid])[culture]))[attribute];
-                            else
-                                text = ((Dictionary<string, string>)(((Hashtable)((Hashtable)regions["General"])[uid])[DefaultLanguage]))[attribute];
-
-                            return text;
-                        }
+                            return uid;
+                        // Region nicht vorhanden
+                        //						throw new Exception(string.Format(
+                        //							"Region {0} ist nicht vorhanden", region));
                     }
                     else
                         return uid;
-                        // Region nicht vorhanden
-//						throw new Exception(string.Format(
-//							"Region {0} ist nicht vorhanden", region));
-				} else
-					return uid;
-			}
-			// Fehlerbehandlung
-			catch (System.Exception ex)
-			{
-				throw new Exception("Folgende Parameter ergaben kein Ergebnis im aktuellen Objekt:" +
-					"Region: " + region + " " +
-					"Key: " + uid  + " " +
-                    "Language: " + System.Threading.Thread.CurrentThread.CurrentUICulture.ToString() +
-					"Fehlermeldung: " + ex.Message);
-			}
-			
+                }
+                // Fehlerbehandlung
+                catch (System.Exception ex)
+                {
+                    throw new Exception("Folgende Parameter ergaben kein Ergebnis im aktuellen Objekt:" +
+                        "Region: " + region + " " +
+                        "Key: " + uid + " " +
+                        "Language: " + System.Threading.Thread.CurrentThread.CurrentUICulture.ToString() +
+                        "Fehlermeldung: " + ex.Message);
+                }
+            }
 		}
 /*
 		public string GetString(string region, string key)
