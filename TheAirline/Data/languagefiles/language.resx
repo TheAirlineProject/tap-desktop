@@ -2181,4 +2181,22 @@ Good luck.</value>
   <data name="PageAirline_1025_name" xml:space="preserve">
     <value>Purchase as subsidiary</value>
   </data>
+  <data name="MessageBox_2119_message" xml:space="preserve">
+    <value>You can't transfer money between {0} and {1}.</value>
+  </data>
+  <data name="MessageBox_2119_name" xml:space="preserve">
+    <value>Can't transfer money</value>
+  </data>
+  <data name="MessageBox_2120_message" xml:space="preserve">
+    <value>Are you sure you want to transfer {0:C} from {1} to {2}?</value>
+  </data>
+  <data name="MessageBox_2120_name" xml:space="preserve">
+    <value>Transfer money</value>
+  </data>
+  <data name="PageAirlineSubsidiaries_1002_name" xml:space="preserve">
+    <value>Transfer funds between airlines</value>
+  </data>
+  <data name="PageAirlineSubsidiaries_201_name" xml:space="preserve">
+    <value>Transfer funds</value>
+  </data>
 </root>
