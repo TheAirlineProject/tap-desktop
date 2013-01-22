@@ -497,6 +497,11 @@ namespace TheAirline.Model.AirlineModel
         {
             return airlines.FindAll(match);
         }
+        //returns all human airlines
+        public static List<Airline> GetHumanAirlines()
+        {
+            return airlines.FindAll(a => a.IsHuman);
+        }
         //removes an airline from the list
         public static void RemoveAirline(Airline airline)
         {
