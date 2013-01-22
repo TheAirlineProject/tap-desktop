@@ -283,6 +283,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //creates the line between two airports
         private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin, Airline airline)
         {
+          
            int d = 50;
            
             double distance = MathHelpers.GetDistance(a1, a2);
@@ -304,6 +305,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
               line.Y1 = pos1.Y * ImageSize - margin.Y * ImageSize;
               line.Y2 = pos2.Y * ImageSize - margin.Y * ImageSize;
 
+              if (Math.Abs(line.X1 - line.X2) > ImageSize)
+                  line.X2 = (line.X1 - line.X2) < 0 ? 0 : ImageSize * Math.Pow(2,zoom);
+              
              panelMap.Children.Add(line);
 
               i += Math.Min(d, (int)(distance - i) + 1);

@@ -23,6 +23,14 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             p.Y = (float)((1.0 - Math.Log(Math.Tan(lat * Math.PI / 180.0) +
                 1.0 / Math.Cos(lat * Math.PI / 180.0)) / Math.PI) / 2.0 * (1 << zoom));
 
+            double maxXValue = Math.Pow(2, zoom);
+
+            if (p.X < 0)
+                p.X = maxXValue + p.X;
+
+            if (p.X > maxXValue)
+                p.X = p.X - maxXValue;
+
             return p;
         }
         //returns the content width

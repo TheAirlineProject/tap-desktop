@@ -87,6 +87,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         private void btnCredits_Click(object sender, RoutedEventArgs e)
         {
+
+            double d = Convert.ToDouble("Test");
+
             StackPanel panelCredits = new StackPanel();
 
             Image imgCredits = new Image();

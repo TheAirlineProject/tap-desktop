@@ -22,7 +22,18 @@ namespace TheAirline
         static App()
         {
             AppSettings.Init();
-            
+
+            AppDomain currentDomain = AppDomain.CurrentDomain;
+            currentDomain.UnhandledException += currentDomain_UnhandledException;
+                 
+        }
+
+        private static void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        {
+            System.IO.StreamWriter file = new System.IO.StreamWriter("theairline.log");
+            file.Write(e.ExceptionObject.ToString());
+
+            file.Close();
         }
     }
 }

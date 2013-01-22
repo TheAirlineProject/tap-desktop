@@ -203,6 +203,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
         {
             int amount = (int)value;
 
+
+            if (GameObject.GetInstance().CurrencyCountry == null)
+                return string.Format("{0:C}", value);
+
             CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
 
             if (currency == null)
