@@ -522,7 +522,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 var pilotsToRetire = airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1) < GameObject.GetInstance().GameTime);
                 var pilotsToRetirement = new List<Pilot>(airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime));
-
+                
                 var instructorsToRetire = airline.FlightSchools.SelectMany(f => f.Instructors).Where(i => i.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1) < GameObject.GetInstance().GameTime);
                 var instructorsToRetirement = new List<Instructor>(airline.FlightSchools.SelectMany(f => f.Instructors).Where(i => i.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime));
 
@@ -568,8 +568,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
                     else
-                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1009"), string.Format(Translator.GetInstance().GetString("News", "1009", "message"), pilot.Profile.Name)));
+                    {
+                        if (airline.IsHuman)
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1009"), string.Format(Translator.GetInstance().GetString("News", "1009", "message"), pilot.Profile.Name)));
 
+                    }
                     airline.removePilot(pilot);
                     pilot.Airline = null;
                     Pilots.RemovePilot(pilot);

@@ -158,12 +158,25 @@ namespace TheAirline.Model.AirportModel
             this.AirportTerminals.Remove(terminal);
             
         }
-        //rents a gate for an airline
-        public void rentGate(Airline airline)
+        //rents a gate for an airline returns if it successed
+        public Boolean rentGate(Airline airline)
         {
             if (getTotalNumberOfGates(airline) == 0)
                 airline.addAirport(this.Airport);
-            getFreeGate().Airline = airline;
+
+            try
+            {
+                getFreeGate().Airline = airline;
+
+                return true;
+            }
+            catch
+            {
+                if (getTotalNumberOfGates(airline) == 0)
+                    airline.removeAirport(this.Airport);
+
+                return false;
+            }
 
         }
         //releases a gate for an airline

@@ -169,7 +169,32 @@ namespace TheAirline.Model.GeneralModel
 
             return circumference * dist / 360;
         }
-     
+        //returns the coordinates for a route in a distance of a specific lenghth
+        public static Coordinates GetRoutePoint(Coordinates c1, Coordinates c2, double distance)
+        {
+           
+            var tc = DegreeToRadian(GetDirection(c1, c2));
+            const double radiusEarthKilometres = 6371.01;
+            var distRatio = distance / radiusEarthKilometres;
+            var distRatioSine = Math.Sin(distRatio);
+            var distRatioCosine = Math.Cos(distRatio);
+
+            var startLatRad = DegreeToRadian(c1.Latitude.toDecimal());
+            var startLonRad = DegreeToRadian(c1.Longitude.toDecimal());
+
+            var startLatCos = Math.Cos(startLatRad);
+            var startLatSin = Math.Sin(startLatRad);
+
+            var endLatRads = Math.Asin((startLatSin * distRatioCosine) + (startLatCos * distRatioSine * Math.Cos(tc)));
+
+            var endLonRads = startLonRad
+                + Math.Atan2(
+                    Math.Sin(tc) * distRatioSine * startLatCos,
+                    distRatioCosine - startLatSin * Math.Sin(endLatRads));
+
+            return new Coordinates(Coordinate.LatitudeToCoordinate(RadianToDegree(endLatRads)), Coordinate.LongitudeToCoordinate(RadianToDegree(endLonRads)));
+
+        }
         //returns the flight time between two coordinates with a given speed
         public static TimeSpan GetFlightTime(Coordinates coordinate1, Coordinates coordinate2, double speed)
         {

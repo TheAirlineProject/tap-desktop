@@ -170,6 +170,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 if (slMoney.Value > slMoney.Maximum)
                     slMoney.Value = slMoney.Maximum;
 
+      
              }
         }
 

@@ -219,13 +219,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
             buttonsPanel.Children.Add(btnDelete);
 
-            if (this.Route.HasStopovers)
+            //if (this.Route.HasStopovers)
             {
                 this.Children.Add(createStopoverStatisticsPanel());
             }
-            else
+            //else
             {
-                this.Children.Add(createRouteFinancesPanel());
+              //  this.Children.Add(createRouteFinancesPanel());
             }
 
             showRouteFinances();
@@ -246,14 +246,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             sbRouteFinances.IsSelected = true;
             panelMenuButtons.Children.Add(sbRouteFinances);
 
-            foreach (Route leg in this.Route.Stopovers.SelectMany(s => s.Legs))
+            if (this.Route.HasStopovers)
             {
-                ucSelectButton sbLeg = new ucSelectButton();
-                sbLeg.Uid = "1004";
-                sbLeg.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2));
-                sbLeg.Tag = leg;
-                sbLeg.Click += sbLeg_Click;
-                panelMenuButtons.Children.Add(sbLeg);
+                foreach (Route leg in this.Route.Stopovers.SelectMany(s => s.Legs))
+                {
+                    ucSelectButton sbLeg = new ucSelectButton();
+                    sbLeg.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2));
+                    sbLeg.Tag = leg;
+                    sbLeg.Click += sbLeg_Click;
+                    panelMenuButtons.Children.Add(sbLeg);
+                }
+            }
+            else
+            {
+                ucSelectButton sbStatistics = new ucSelectButton();
+                sbStatistics.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(this.Route.Destination1), new AirportCodeConverter().Convert(this.Route.Destination2));
+                sbStatistics.Tag = this.Route;
+                sbStatistics.Click += sbLeg_Click;
+                panelMenuButtons.Children.Add(sbStatistics);
             }
 
             frmStopoverStatistics = new Frame();

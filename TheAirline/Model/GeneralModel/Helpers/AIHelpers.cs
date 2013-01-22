@@ -516,84 +516,91 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
 
 
-
-
-                        airline.addRoute(route);
-
+                        Boolean isDeptOk = true;
+                        Boolean isDestOk = true;
 
                         if (airport.Terminals.getEmptyGate(airline) == null)
-                            airport.Terminals.rentGate(airline);
+                            isDeptOk = airport.Terminals.rentGate(airline);
 
                         if (destination.Terminals.getEmptyGate(airline) == null)
-                            destination.Terminals.rentGate(airline);
+                            isDestOk = destination.Terminals.rentGate(airline);
 
-
-                        airport.Terminals.getEmptyGate(airline).HasRoute = true;
-                        destination.Terminals.getEmptyGate(airline).HasRoute = true;
-
-                        if (fAirliner == null)
+                        if (isDestOk && isDeptOk)
                         {
 
-                            if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
-                                airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
+                            airline.addRoute(route);
 
 
-                            if (airliner.Value.Value) //loan
+                            airport.Terminals.getEmptyGate(airline).HasRoute = true;
+                            destination.Terminals.getEmptyGate(airline).HasRoute = true;
+
+                            if (fAirliner == null)
                             {
-                                double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
 
-                                Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, 120, GeneralHelpers.GetAirlineLoanRate(airline));
+                                if (Countries.GetCountryFromTailNumber(airliner.Value.Key.TailNumber).Name != airline.Profile.Country.Name)
+                                    airliner.Value.Key.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
 
-                                double payment = loan.getMonthlyPayment();
 
-                                airline.addLoan(loan);
-                                AirlineHelpers.AddAirlineInvoice(airline, loan.Date, Invoice.InvoiceType.Loans, loan.Amount);
+                                if (airliner.Value.Value) //loan
+                                {
+                                    double amount = airliner.Value.Key.getPrice() - airline.Money + 20000000;
+
+                                    Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, 120, GeneralHelpers.GetAirlineLoanRate(airline));
+
+                                    double payment = loan.getMonthlyPayment();
+
+                                    airline.addLoan(loan);
+                                    AirlineHelpers.AddAirlineInvoice(airline, loan.Date, Invoice.InvoiceType.Loans, loan.Amount);
+
+
+                                }
+                                else
+                                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
+
+
+
+                                fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
+                                airline.Fleet.Add(fAirliner);
+
+                                AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
 
                             }
+
+                            fAirliner.addRoute(route);
+
+                            //creates a business route
+                            if (IsBusinessRoute(route, fAirliner))
+                                CreateBusinessRouteTimeTable(route, fAirliner);
                             else
-                                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
+                                CreateRouteTimeTable(route, fAirliner);
 
 
+                            fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                            AirlineHelpers.HireAirlinerPilots(fAirliner);
 
-                            fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
-                            airline.Fleet.Add(fAirliner);
+                            route.LastUpdated = GameObject.GetInstance().GameTime;
+                        }
+                                                
+                        AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                            AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-
+                        if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                        {
+                            destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                         }
+                        if (airport.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                        {
+                            airport.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
-                        fAirliner.addRoute(route);
-
-                        //creates a business route
-                        if (IsBusinessRoute(route, fAirliner))
-                            CreateBusinessRouteTimeTable(route, fAirliner);
-                        else
-                            CreateRouteTimeTable(route, fAirliner);
-
-
-                        fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
-                        AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                        route.LastUpdated = GameObject.GetInstance().GameTime;
+                        }
                     }
 
                 }
-                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                {
-                    destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
-                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
-
-                }
-                if (airport.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                {
-                    airport.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
-                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
-
-                }
+              
             }
 
         }

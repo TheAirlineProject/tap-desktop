@@ -71,65 +71,73 @@ namespace TheAirline.GraphicsModel.Converters
             {
                 double v = Double.Parse(value.ToString());
 
-                CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
 
-
-                if (currency == null)
+                if (GameObject.GetInstance().CurrencyCountry == null)
                 {
-                    if (Settings.GetInstance().CurrencyShorten)
-                    {
-                        if (v >= 1000000000 || v <= -1000000000)
-                            return string.Format("{0:C} {1}", v / 1000000000, Translator.GetInstance().GetString("General", "2001"));
-                        if (v >= 1000000 || v<= -1000000)
-                            return string.Format("{0:C} {1}", v / 1000000, Translator.GetInstance().GetString("General", "2000"));
-                        return string.Format("{0:C}", value);
-                    }
-                    else
-                        return string.Format("{0:C}", value);
+                    return string.Format("{0:C}", value);
                 }
                 else
                 {
-                    double currencyValue = v * currency.Rate;
+                    CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
 
-                    if (Settings.GetInstance().CurrencyShorten)
+
+                    if (currency == null)
                     {
-                        if (currencyValue >= 1000000 || currencyValue <= -1000000 )
+                        if (Settings.GetInstance().CurrencyShorten)
                         {
-                            double sValue = currencyValue / 1000000;
-                            string sFormat = Translator.GetInstance().GetString("General", "2000");
+                            if (v >= 1000000000 || v <= -1000000000)
+                                return string.Format("{0:C} {1}", v / 1000000000, Translator.GetInstance().GetString("General", "2001"));
+                            if (v >= 1000000 || v <= -1000000)
+                                return string.Format("{0:C} {1}", v / 1000000, Translator.GetInstance().GetString("General", "2000"));
+                            return string.Format("{0:C}", value);
+                        }
+                        else
+                            return string.Format("{0:C}", value);
+                    }
+                    else
+                    {
+                        double currencyValue = v * currency.Rate;
 
-                            if (currencyValue >= 1000000000 || currencyValue <= -1000000000)
+                        if (Settings.GetInstance().CurrencyShorten)
+                        {
+                            if (currencyValue >= 1000000 || currencyValue <= -1000000)
                             {
-                                sValue = currencyValue / 1000000000;
-                                sFormat = Translator.GetInstance().GetString("General", "2001");
+                                double sValue = currencyValue / 1000000;
+                                string sFormat = Translator.GetInstance().GetString("General", "2000");
+
+                                if (currencyValue >= 1000000000 || currencyValue <= -1000000000)
+                                {
+                                    sValue = currencyValue / 1000000000;
+                                    sFormat = Translator.GetInstance().GetString("General", "2001");
+                                }
+
+                                if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                    return string.Format("{0:#,0.##} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
+                                else
+                                    return string.Format("{1}{0:#,0.##} {2}", sValue, currency.CurrencySymbol, sFormat);
+
                             }
-
-                            if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                return string.Format("{0:#,0.##} {2} {1}",sValue, currency.CurrencySymbol,sFormat);
                             else
-                                return string.Format("{1}{0:#,0.##} {2}", sValue, currency.CurrencySymbol,sFormat);
+                            {
+                                if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                    return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                                else
+                                    return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
 
+                            }
                         }
                         else
                         {
+
                             if (currency.Position == CountryCurrency.CurrencyPosition.Right)
                                 return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
                             else
                                 return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
-
                         }
-                    }
-                    else
-                    {
-
-                        if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                            return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
-                        else
-                            return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return string.Format("{0:C}", value);
 

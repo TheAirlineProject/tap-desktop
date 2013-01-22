@@ -283,18 +283,33 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //creates the line between two airports
         private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin, Airline airline)
         {
-       
-            Point pos1 = GraphicsHelpers.WorldToTilePos(a1.Profile.Coordinates, zoom);
-            Point pos2 = GraphicsHelpers.WorldToTilePos(a2.Profile.Coordinates, zoom);
+           int d = 50;
+           
+            double distance = MathHelpers.GetDistance(a1, a2);
 
-            Line line = new Line();
-            line.Stroke = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
-            line.X1 = Math.Min(panelMap.Width,pos1.X * ImageSize - margin.X * ImageSize);
-            line.X2 = Math.Min(panelMap.Width, pos2.X * ImageSize - margin.X * ImageSize);
-            line.Y1 = pos1.Y * ImageSize - margin.Y * ImageSize;
-            line.Y2 = pos2.Y * ImageSize - margin.Y * ImageSize;
+           Coordinates c1 = a1.Profile.Coordinates;
 
-            panelMap.Children.Add(line);
+          int i = 0;
+          while (i < distance)
+          {
+              Coordinates c3 = MathHelpers.GetRoutePoint(c1, a2.Profile.Coordinates, d);
+
+              Point pos1 = GraphicsHelpers.WorldToTilePos(c1, zoom);
+              Point pos2 = GraphicsHelpers.WorldToTilePos(c3, zoom);
+
+              Line line = new Line();
+              line.Stroke = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
+              line.X1 = Math.Min(panelMap.Width, pos1.X * ImageSize - margin.X * ImageSize);
+              line.X2 = Math.Min(panelMap.Width, pos2.X * ImageSize - margin.X * ImageSize);
+              line.Y1 = pos1.Y * ImageSize - margin.Y * ImageSize;
+              line.Y2 = pos2.Y * ImageSize - margin.Y * ImageSize;
+
+             panelMap.Children.Add(line);
+
+              i += Math.Min(d, (int)(distance - i) + 1);
+
+              c1 = c3;
+          }
 
         }
         public PopUpMap(Airport airport)
