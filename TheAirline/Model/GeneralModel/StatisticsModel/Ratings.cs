@@ -2,6 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.StatisticsModel
 {
@@ -32,27 +37,78 @@ namespace TheAirline.Model.StatisticsModel
            }
            return var;
        }
+        //calcluates overall ticket price per distance
+        public double getTotalTicketPPD()
+        {
+               List<Double> ticketPPD = new List<Double>();
+               foreach (Airline airline in Airlines.GetAllAirlines())
+               {
+                   List<Double> econPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+                   List<Double> busPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+                   List<Double> firstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+                   List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList();
+                   double avgDistPrice = ((econPrices.Average() * 0.7) + (busPrices.Average() * 0.2) + (firstPrices.Average() * 0.1)) / distance.Average();
+                   ticketPPD.Add(avgDistPrice);
+               }
+               return ticketPPD.Average();
+        }
 
-       //passenger happiness calculation
-       public static int getPaxHappiness()
+
+        //calculates average AI ticket price
+       public double getAIAvgTicketPPD()
+        {
+       
+            List<Double> AIPrices = new List<Double>();
+            foreach (Airline airline in Airlines.GetAirlines(a => !a.IsHuman))
+            
+        {
+            List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+            List<Double> aiBusPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+            List<Double> aiFirstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+            List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList().;
+            double avgEP = aiEconPrices.Average();
+            double avgBP = aiBusPrices.Average();
+            double avgFP = aiFirstPrices.Average();
+            double avgPrice = ((avgEP * 0.7) + (avgBP * 0.2) + (avgFP * 0.1)) / 3;
+            double avgDistPrice = avgPrice / distance.Average();
+            AIPrices.Add(avgDistPrice);
+        }
+            return AIPrices.Average();
+}
+       //calculate average human ticket price per distance
+       public static double getHumanAvgTicketPPD()
        {
-           //create a list of route ticket prices
-           List<Double> ePrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
-           List<Double> bPrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
-           List<Double> fPrices = (from r in GeneralModel.GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
-
-           //variance of econoomy, business, and first class
-           double eVar = getVariance(ePrices);
-           double bVar = getVariance(bPrices);
-           double fVar = getVariance(fPrices);
-
-           //compiled variance for all classes
-           double totalVariance = (eVar * 0.7) + (bVar * 0.2) + (fVar * 0.1);
-           int variance = (int)totalVariance;
-
-           return variance;
+           List<Double> ePrices = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+           List<Double> bPrices = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+           List<Double> fPrices = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+           List<Double> distance = (from r in GameObject.GetInstance().HumanAirline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList();
+           double avgHEP = ePrices.Average();
+           double avgHBP = bPrices.Average();
+           double avgFBP = fPrices.Average();
+           double avgHPrice = ((avgHEP * 0.7) + (avgHBP * 0.2) + (avgFBP * 0.1)) / 3;
+           double avgDistPrice = avgHPrice / distance.Average();
+           return avgDistPrice;
+       }
+       
+       //calculates average human fill degree
+       public static double getHumanFillAverage()
+       {
+       List<Double> fillDegree = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFillingDegree()).ToList();
+       return fillDegree.Average();
        }
 
+       //calculates AI average fill degree
+       public static double getAIFillDegree()
+       {
+           List<Double> AIafd = new List<Double>();
+           foreach (Airline airline in Airlines.GetAirlines(a => !a.IsHuman))
+           {
+               List<Double> AIFillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
+               AIafd.Add(AIFillDegree.Average());
+               
+           }
+           return AIafd.Average();
+       }
            
     }
 }

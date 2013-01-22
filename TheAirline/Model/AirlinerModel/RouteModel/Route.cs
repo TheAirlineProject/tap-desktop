@@ -181,7 +181,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return getRouteInvoiceAmount(Invoice.InvoiceType.Total);
         }
         //get the degree of filling
-        private double getFillingDegree()
+        public double getFillingDegree()
         {
             double passengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
