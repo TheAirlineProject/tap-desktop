@@ -121,6 +121,11 @@ namespace TheAirline.Model.AirportModel
         {
             return getDeliveredTerminals().FindAll((delegate(Terminal terminal) { return terminal.Airline == null; })).Count;
         }
+        //returns the number of gates in order
+        public int getOrdereredGates()
+        {
+            return this.AirportTerminals.Sum(a => a.Gates.NumberOfOrderedGates) + this.AirportTerminals.FindAll(a=>a.DeliveryDate>GameObject.GetInstance().GameTime).Sum(t=>t.Gates.NumberOfGates);
+        }
         //returns all delivered terminals
         public List<Terminal> getDeliveredTerminals()
         {
@@ -233,7 +238,21 @@ namespace TheAirline.Model.AirportModel
                     return terminal.Gates.getFreeGate();
             return null;
         }
+        //returns the percent of gates which are in use
+        public double getInusePercent()
+        {
+            int freeGates = getFreeGates();
+            int totalGates = getNumberOfGates();
 
+            int usedGates = totalGates - freeGates;
+
+            if (usedGates > 0)
+                freeGates = 12;
+
+            double inusePercent = Convert.ToDouble(usedGates) / Convert.ToDouble(totalGates) * 100.0;
+
+            return inusePercent;
+        }
         //returns the total number of free gates
         public int getFreeGates()
         {

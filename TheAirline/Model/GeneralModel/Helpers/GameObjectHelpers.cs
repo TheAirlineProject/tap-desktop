@@ -342,44 +342,49 @@ namespace TheAirline.Model.GeneralModel.Helpers
                {
                    if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month && terminal.DeliveryDate.Day == GameObject.GetInstance().GameTime.Day)
                    {
-                       if (terminal.Airline.IsHuman)
+                       if (terminal.Airline == null)
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("[LI airport={0}], {1} has build a new terminal with {2} gates", airport.Profile.IATACode, airport.Profile.Country.Name,terminal.Gates.NumberOfGates)));
+
+                       if (terminal.Airline != null && terminal.Airline.IsHuman)
                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at [LI airport={0}], {1} is now finished and ready for use.", airport.Profile.IATACode, airport.Profile.Country.Name)));
 
-                       //moves the "old" rented gates into the new terminal
-                       foreach (Terminal tTerminal in airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
+                       if (terminal.Airline != null)
                        {
-                           foreach (Gate gate in tTerminal.Gates.getGates(terminal.Airline))
+                           //moves the "old" rented gates into the new terminal
+                           foreach (Terminal tTerminal in airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
                            {
-                               Gate nGate = terminal.Gates.getEmptyGate(terminal.Airline);
-                               if (nGate != null)
+                               foreach (Gate gate in tTerminal.Gates.getGates(terminal.Airline))
                                {
-                                   nGate.HasRoute = gate.HasRoute;
+                                   Gate nGate = terminal.Gates.getEmptyGate(terminal.Airline);
+                                   if (nGate != null)
+                                   {
+                                       nGate.HasRoute = gate.HasRoute;
 
-                                   gate.Airline = null;
-                                   gate.HasRoute = false;
+                                       gate.Airline = null;
+                                       gate.HasRoute = false;
+                                   }
+
+
                                }
+
+                           }
+                           while (terminal.Gates.getFreeGates() > 0)
+                               terminal.Gates.rentGate(terminal.Airline);
+
+
+                           if (terminal.Airport.getAirportFacility(terminal.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                           {
+
+
+                               AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                               terminal.Airport.addAirportFacility(terminal.Airline, checkinFacility, GameObject.GetInstance().GameTime);
+
 
 
                            }
 
                        }
-                       while (terminal.Gates.getFreeGates() > 0)
-                           terminal.Gates.rentGate(terminal.Airline);
-
-
-                       if (terminal.Airport.getAirportFacility(terminal.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                       {
-
-
-                           AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
-
-                           terminal.Airport.addAirportFacility(terminal.Airline, checkinFacility, GameObject.GetInstance().GameTime);
-
-
-
-                       }
-
-
 
                    }
 
@@ -735,6 +740,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (Instructors.GetNumberOfUnassignedInstructors() < 20)
                 GeneralHelpers.CreateInstructors(75);
+
+            //checks if the airport will increase the number of gates either by new terminal or by extending existing
+            Parallel.ForEach(Airports.GetAllAirports(a=>a.Terminals.getInusePercent()>90), airport =>
+            {
+                AirportHelpers.CheckForExtendAirport(airport);
+            });
         }
         //updates an airliner
         private static void UpdateAirliner(FleetAirliner airliner)

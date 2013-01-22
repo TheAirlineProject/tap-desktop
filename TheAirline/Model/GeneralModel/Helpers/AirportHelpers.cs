@@ -424,6 +424,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return false;//airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
+        //checks an airport for new gates
+        public static void CheckForExtendAirport(Airport airport)
+        {
+           
+            if (airport.Terminals.getOrdereredGates() == 0)
+            {
+                Boolean newTerminal = true;
+                int numberOfGates = airport.Terminals.getTerminals()[0].Gates.NumberOfDeliveredGates;
+
+                int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
+
+                long price = numberOfGates * airport.getTerminalGatePrice() + (newTerminal ? airport.getTerminalPrice() : 0);
+
+                if (airport.Income > price)
+                {
+
+                    Terminal terminal = new Terminal(airport, null, "Terminal", numberOfGates, GameObject.GetInstance().GameTime.Add(new TimeSpan(daysToBuild, 0, 0, 0)));
+
+                    airport.addTerminal(terminal);
+                    airport.Income -= price;
+                }
+            }
+           
+         
+        }
     }
 
 }
