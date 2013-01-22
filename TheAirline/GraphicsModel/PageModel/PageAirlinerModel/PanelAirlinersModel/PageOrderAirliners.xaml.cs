@@ -42,6 +42,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private List<AirlinerClass> Classes;
         private WrapPanel panelClasses;
         private AirlinerType Type;
+        private Button btnEquipped;
         public PageOrderAirliners(PageAirliners parent, Manufacturer manufacturer)
         {
             this.ParentPage = parent;
@@ -272,8 +273,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             }
             lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners", "1012"), panelClasses));
 
+            Configuration airlinerTypeConfiguration = Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType).Find(c => ((AirlinerTypeConfiguration)c).Airliner == type && ((AirlinerTypeConfiguration)c).Period.From <= GameObject.GetInstance().GameTime && ((AirlinerTypeConfiguration)c).Period.To > GameObject.GetInstance().GameTime);
 
-            Button btnEquipped = new Button();
+            if (airlinerTypeConfiguration != null)
+            {
+                CheckBox cbStandardConfiguration = new CheckBox();
+                cbStandardConfiguration.Checked += cbStandardConfiguration_Checked;
+                cbStandardConfiguration.Unchecked += cbStandardConfiguration_Unchecked;
+                cbStandardConfiguration.Tag = type;
+            
+                lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners","1013"), cbStandardConfiguration));
+            }
+
+            btnEquipped = new Button();
             btnEquipped.Uid = "201";
             btnEquipped.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnEquipped.Height = Double.NaN;
@@ -287,9 +299,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             panelEquipped.Children.Add(btnEquipped);
 
             return panelEquipped;
+          
         }
 
-    
+      
         //shows the orders
         private void showOrders()
         {
@@ -322,6 +335,42 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
 
 
+        }
+        private void cbStandardConfiguration_Checked(object sender, RoutedEventArgs e)
+        {
+            btnEquipped.IsEnabled = false;
+            AirlinerType type = (AirlinerType)((CheckBox)sender).Tag;
+
+            Configuration airlinerTypeConfiguration = Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType).Find(c => ((AirlinerTypeConfiguration)c).Airliner == type && ((AirlinerTypeConfiguration)c).Period.From <=GameObject.GetInstance().GameTime && ((AirlinerTypeConfiguration)c).Period.To > GameObject.GetInstance().GameTime);
+
+            List<AirlinerClass> classes = new List<AirlinerClass>();
+
+            foreach (AirlinerClassConfiguration aClass in ((AirlinerTypeConfiguration)airlinerTypeConfiguration).Classes)
+            {
+                AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
+                airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
+
+                foreach (AirlinerFacility facility in aClass.getFacilities())
+                    airlinerClass.setFacility(GameObject.GetInstance().HumanAirline, facility);
+
+                classes.Add(airlinerClass);
+            }
+
+            if (classes != null)
+            {
+                this.Classes = classes;
+
+                panelClasses.Children.Clear();
+
+                foreach (AirlinerClass aClass in this.Classes)
+                {
+                    panelClasses.Children.Add(createAirlineClassLink(aClass));
+                }
+            }
+        }
+        private void cbStandardConfiguration_Unchecked(object sender, RoutedEventArgs e)
+        {
+            btnEquipped.IsEnabled = true;
         }
 
         private void btnEquipped_Click(object sender, RoutedEventArgs e)

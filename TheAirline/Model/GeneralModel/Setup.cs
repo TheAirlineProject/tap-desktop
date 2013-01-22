@@ -78,7 +78,8 @@ namespace TheAirline.Model.GeneralModel
                 CreateTrainingAircraftTypes();
 
                 LoadStandardConfigurations();
-
+                LoadAirlinerTypeConfigurations();
+           
                 LoadAirlines();
 
                 Skins.Init();
@@ -544,7 +545,70 @@ namespace TheAirline.Model.GeneralModel
                 Manufacturers.AddManufacturer(new Manufacturer(name, shortname, country));
             }
         }
+        /*!loads the airliner type configuratoins
+         */
+        private static void LoadAirlinerTypeConfigurations()
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airliners\\configurations");
 
+                foreach (FileInfo file in dir.GetFiles("*.xml"))
+                {
+
+                    LoadAirlinerTypeConfiguration(file.FullName);
+
+                }
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+            }
+        }
+        private static void LoadAirlinerTypeConfiguration(string file)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(file);
+            XmlElement root = doc.DocumentElement;
+
+            XmlNodeList configurationsList = root.SelectNodes("//configuration");
+
+            foreach (XmlElement element in configurationsList)
+            {
+
+                string name = element.Attributes["name"].Value;
+                string id = element.Attributes["id"].Value;
+                AirlinerType type = AirlinerTypes.GetType(element.Attributes["airliner"].Value);
+                int fromYear = Convert.ToInt16(element.Attributes["yearfrom"].Value);
+                int toYear = Convert.ToInt16(element.Attributes["yearto"].Value);
+              /*airliner="Boeing 747-400" name="Boeing 747-400 (1998)" yearfrom="1998" yearto="2199" id="301"*/
+
+                XmlNodeList classesList = element.SelectNodes("classes/class");
+
+                AirlinerTypeConfiguration configuration = new AirlinerTypeConfiguration(name,type,new Period(new DateTime(fromYear,1,1),new DateTime(toYear,12,31)), true);
+                configuration.ID = id;
+
+                foreach (XmlElement classElement in classesList)
+                {
+                    int seating = Convert.ToInt16(classElement.Attributes["seating"].Value);
+                    AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
+
+                    AirlinerClassConfiguration classConf = new AirlinerClassConfiguration(classType, seating,seating);
+                    foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                    {
+                        string facUid = classElement.Attributes[facType.ToString()].Value;
+
+                        classConf.addFacility(AirlinerFacilities.GetFacility(facType, facUid));
+                    }
+
+                    configuration.addClassConfiguration(classConf);
+
+                    
+                }
+
+                Configurations.AddConfiguration(configuration);
+            }
+        }
         /*!loads the airliners.
          */
         private static void LoadAirliners()

@@ -740,6 +740,7 @@
     <Compile Include="Model\AirlinerModel\AirlinerFacility.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerStatistics.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerType.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerTypeConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\FleetAirliner.cs" />
     <Compile Include="Model\AirlinerModel\Manufacturer.cs" />
     <Compile Include="Model\AirlinerModel\ManufacturerContract.cs" />

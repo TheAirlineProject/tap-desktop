@@ -8,7 +8,7 @@ namespace TheAirline.Model.GeneralModel
     //the class for a configuration
     public abstract class Configuration
     {
-        public enum ConfigurationType { Airliner, Routeclasses }
+        public enum ConfigurationType { Airliner, Routeclasses,AirlinerType }
         public ConfigurationType Type { get; set; }
         public Boolean Standard { get; set; }
         public string Name { get; set; }
