@@ -6,6 +6,7 @@ using TheAirline;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.StatisticsModel
@@ -65,7 +66,7 @@ namespace TheAirline.Model.StatisticsModel
             List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
             List<Double> aiBusPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
             List<Double> aiFirstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
-            List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList().;
+            List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList();
             double avgEP = aiEconPrices.Average();
             double avgBP = aiBusPrices.Average();
             double avgFP = aiFirstPrices.Average();
@@ -89,7 +90,19 @@ namespace TheAirline.Model.StatisticsModel
            double avgDistPrice = avgHPrice / distance.Average();
            return avgDistPrice;
        }
-       
+
+       //calculates average fill degree for all airlines
+       public static double getTotalFillAverage()
+       {
+           List<Double> totalFillAverage = new List<Double>();
+           foreach (Airline airline in Airlines.GetAllAirlines())
+           {
+               List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
+               totalFillAverage.Add(fillDegree.Average());
+           }
+           return totalFillAverage.Average();
+       }
+
        //calculates average human fill degree
        public static double getHumanFillAverage()
        {
@@ -109,6 +122,48 @@ namespace TheAirline.Model.StatisticsModel
            }
            return AIafd.Average();
        }
+       
+        //calculates human airline average on-time %
+       public static double getHumanOnTime()
+       {
+           List<Double> onTime = new List<Double>();
+           double otp = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
+           onTime.Add(otp);
            
-    }
+           return onTime.Average();
+       }
+
+       //calculates AI airline average on-time %
+       //needs foreach loop needs changed to AI
+       public static double getAIonTime()
+       {
+           List<Double> onTime = new List<Double>();
+           foreach (Airline airline in Airlines.GetAirlines(a => !a.IsHuman))
+           {
+               double otp = airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
+               onTime.Add(otp);
+           }
+           return onTime.Average();
+       }
+
+       //calculates all airline average on-time %
+       public static double getTotalOnTime()
+       {
+           List<Double> onTime = new List<Double>();
+           foreach (Airline airline in Airlines.GetAllAirlines())
+           {
+               double otp = airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
+               onTime.Add(otp);
+           }
+           return onTime.Average();
+       }
+
+       //calculates human airline average on-time % for given year
+       public static double getHumanOnTimeYear(int year)
+       {
+           double otp = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(year, StatisticsTypes.GetStatisticsType("On-Time%"));
+           return otp;
+       }
+
+    } 
 }
