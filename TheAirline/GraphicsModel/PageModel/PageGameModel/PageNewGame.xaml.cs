@@ -51,12 +51,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             popUpSplash = new Popup();
 
-            popUpSplash.Child = createSplashWindow();
+            popUpSplash.Child = UICreator.CreateSplashWindow();
             popUpSplash.Placement = PlacementMode.Center;
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;
             popUpSplash.IsOpen = false;
 
-                    StackPanel panelContent = new StackPanel();
+            StackPanel panelContent = new StackPanel();
             panelContent.Margin = new Thickness(10, 0, 10, 0);
             panelContent.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
 
@@ -374,33 +374,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             }
 
         }
-        //creates the splash window
-        private Border createSplashWindow()
-        {
         
-            Border brdSplasInner = new Border();
-            brdSplasInner.BorderBrush = Brushes.Black;
-            brdSplasInner.BorderThickness = new Thickness(2, 2, 0, 0);
-
-            Border brdSplashOuter = new Border();
-            brdSplashOuter.BorderBrush = Brushes.White;
-            brdSplashOuter.BorderThickness = new Thickness(0,0,2,2);
-
-            brdSplasInner.Child = brdSplashOuter;
-
-            Image imgSplash = new Image();
-            imgSplash.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\TheAirlne_Splash.jpg", UriKind.RelativeOrAbsolute));
-            imgSplash.Height = 200;
-            imgSplash.Width = 400;
-            RenderOptions.SetBitmapScalingMode(imgSplash, BitmapScalingMode.HighQuality);
-
-            brdSplashOuter.Child = imgSplash;
-
-         
-            return brdSplasInner;
-
-        }
-      
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Region region = (Region)cbRegion.SelectedItem;

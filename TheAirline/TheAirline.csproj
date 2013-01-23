@@ -288,6 +288,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PagePlayScenario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageGameModel\PageSelectLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -601,6 +605,9 @@
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageNewGame.xaml.cs">
       <DependentUpon>PageNewGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PagePlayScenario.xaml.cs">
+      <DependentUpon>PagePlayScenario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageGameModel\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
     </Compile>
@@ -765,7 +772,10 @@
     <Compile Include="Model\AirportModel\AirportStatisticsValue.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\Scenario.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioAirline.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\Ratings.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />

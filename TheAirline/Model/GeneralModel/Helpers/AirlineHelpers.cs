@@ -264,6 +264,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 pilot.Airliner = airliner;
                 airliner.addPilot(pilot);
             }
+
+            if (Pilots.GetNumberOfUnassignedPilots() < 10)
+                GeneralHelpers.CreatePilots(50);
             
         }
         //returns the discount factor for a manufactorer for an airline and for a period

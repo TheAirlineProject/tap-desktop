@@ -203,6 +203,34 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
 
         }
+        /*!creates a splash window
+         */
+               public static Border CreateSplashWindow()
+        {
+
+            Border brdSplasInner = new Border();
+            brdSplasInner.BorderBrush = Brushes.Black;
+            brdSplasInner.BorderThickness = new Thickness(2, 2, 0, 0);
+
+            Border brdSplashOuter = new Border();
+            brdSplashOuter.BorderBrush = Brushes.White;
+            brdSplashOuter.BorderThickness = new Thickness(0, 0, 2, 2);
+
+            brdSplasInner.Child = brdSplashOuter;
+
+            Image imgSplash = new Image();
+            imgSplash.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\TheAirlne_Splash.jpg", UriKind.RelativeOrAbsolute));
+            imgSplash.Height = 200;
+            imgSplash.Width = 400;
+            RenderOptions.SetBitmapScalingMode(imgSplash, BitmapScalingMode.HighQuality);
+
+            brdSplashOuter.Child = imgSplash;
+
+
+            return brdSplasInner;
+
+        }
+      
         /*!creates a link
          */
         public static TextBlock CreateLink(string text)

@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.Model.GeneralModel.ScenarioModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -46,7 +47,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             panelContent.Children.Add(btnNewGame);
 
             Button btnPlayScenario = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "205"));
-            btnPlayScenario.IsEnabled = false;
+            btnPlayScenario.IsEnabled = Scenarios.GetNumberOfScenarios() > 0;
+            btnPlayScenario.Click += btnPlayScenario_Click;
             panelContent.Children.Add(btnPlayScenario);
 
             Button btnLoadGame = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "201"));
@@ -79,6 +81,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             
             showPage(this);
 
+        }
+
+        private void btnPlayScenario_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PagePlayScenario());
         }
 
         private void btnExitGame_Click(object sender, RoutedEventArgs e)

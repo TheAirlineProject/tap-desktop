@@ -24,6 +24,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using System.Globalization;
+using TheAirline.Model.GeneralModel.ScenarioModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -131,6 +132,7 @@ namespace TheAirline.Model.GeneralModel
             Pilots.Clear();
             Instructors.Clear();
             TrainingAircraftTypes.Clear();
+            Scenarios.Clear();
         }
         /*! creates some pilots
          */
@@ -218,9 +220,74 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadScenarios()
         {
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\scenarios");
+
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadScenario(file.FullName);
+
+            }
+        }
+        private static void LoadScenario(string file)
+        {
             XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\standardconfigurations.xml");
-            XmlElement root = doc.DocumentElement;
+            doc.Load(file);
+            XmlElement element = doc.DocumentElement;
+            
+            string scenarioName = element.Attributes["name"].Value;
+            int startYear = Convert.ToInt32(element.Attributes["startYear"].Value);
+            long startCash = Convert.ToInt64(element.Attributes["startCash"].Value);
+
+            string description = element.SelectSingleNode("intro").Attributes["text"].Value;
+            string successText = element.SelectSingleNode("success").Attributes["text"].Value;
+
+            XmlElement startElement = (XmlElement)element.SelectSingleNode("start");
+
+            Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
+            Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
+
+            Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,startCash);
+            Scenarios.AddScenario(scenario);
+
+            XmlNodeList destinationsList = startElement.SelectNodes("destinations/destination");
+
+            foreach (XmlElement destinationElement in destinationsList)
+                scenario.addDestination(Airports.GetAirport(destinationElement.Attributes["airport"].Value));
+
+            XmlNodeList fleetList = startElement.SelectNodes("fleet/aircraft");
+
+            foreach (XmlElement fleetElement in fleetList)
+            {
+                AirlinerType fleetAirlinerType = AirlinerTypes.GetType(fleetElement.Attributes["name"].Value);
+                int fleetQuantity = Convert.ToInt32(fleetElement.Attributes["quantity"].Value);
+                scenario.addFleet(fleetAirlinerType, fleetQuantity);
+            }
+        
+            XmlNodeList aiNodeList = startElement.SelectNodes("AI/airline");
+
+            foreach (XmlElement aiElement in aiNodeList)
+            {
+                Airline aiAirline = Airlines.GetAirline(aiElement.Attributes["name"].Value);
+                Airport aiHomebase = Airports.GetAirport(aiElement.Attributes["homeBase"].Value);
+
+                ScenarioAirline scenarioAirline = new ScenarioAirline(aiAirline, aiHomebase);
+
+                XmlNodeList aiRoutesList = aiElement.SelectNodes("route");
+
+                foreach (XmlElement aiRouteElement in aiRoutesList)
+                {
+                    Airport aiRouteDestination1 = Airports.GetAirport(aiRouteElement.Attributes["departure"].Value);
+                    Airport aiRouteDestination2 = Airports.GetAirport(aiRouteElement.Attributes["destination"].Value);
+                    AirlinerType routeAirlinerType = AirlinerTypes.GetType(aiRouteElement.Attributes["airliner"].Value);
+                    int routeQuantity = Convert.ToInt32(aiRouteElement.Attributes["quantity"].Value);
+
+                    scenarioAirline.addRoute(new ScenarioAirlineRoute(aiRouteDestination1, aiRouteDestination2, routeAirlinerType, routeQuantity));
+                }
+
+                scenario.addOpponentAirline(scenarioAirline);
+            }
+           
+          
         }
         /*!loads the standard configurations
          */
@@ -1531,7 +1598,6 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airline airline in notAvailableAirlines)
                 Airlines.RemoveAirline(airline);
 
-            Airline lot = Airlines.GetAirline("DA");
             int count = Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year).Count;
 
             List<Airline> airlines = new List<Airline>(Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year));
@@ -1547,12 +1613,6 @@ namespace TheAirline.Model.GeneralModel
                
                 Airlines.RemoveAirline(airlines[i]);
             }
-
-
-               
-            
-             //if (!Airlines.GetAllAirlines().Contains(lot))
-            //      Airlines.AddAirline(lot);
 
         }
         //finds the home base for a computer airline
