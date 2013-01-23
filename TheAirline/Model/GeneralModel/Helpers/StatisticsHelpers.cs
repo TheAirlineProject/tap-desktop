@@ -39,7 +39,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }  
         
         //generate a 1-100 scale for a list of values
-        public static IDictionary<Double, Double> GetRatingScale(List<Double> values, double lower = 1, double upper = 100)
+        public static IDictionary<Double, Double> GetRatingScale(List<Double> values, Airline airline, double lower = 1, double upper = 100)
         {
             Double max = values.Max();
             Double min = values.Min();
@@ -58,6 +58,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 List<Double> firstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
                 List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList();
                 double avgDistPrice = ((econPrices.Average() * 0.7) + (busPrices.Average() * 0.2) + (firstPrices.Average() * 0.1)) / distance.Average();
+                IDictionary<Double, Double> scale = GetRatingScale(ticketPPD, airline);
                 ticketPPD.Add(avgDistPrice);
             }
             return ticketPPD.Average();
@@ -76,6 +77,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).Average();
                 double avgEP = aiEconPrices.Average(); double avgBP = aiBusPrices.Average(); double avgFP = aiFirstPrices.Average();
                 double avgDistPrice = (((avgEP * 0.7) + (avgBP * 0.2) + (avgFP * 0.1)) / 3) / distance;
+                IDictionary<Double, Double> scale = GetRatingScale(ppdDifference, airline);
                 double avgDiff = avgDistPrice - avgPPD;
                 ppdDifference.Add(avgDiff);
             }
