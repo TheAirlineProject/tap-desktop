@@ -36,7 +36,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 var = population.Sum(d => Math.Pow(d - u, 2));
             }
             return var;
+        }  
+        
+        //generate a 1-100 scale for a list of values
+        public static IDictionary<Double, Double> GetRatingScale(List<Double> values, double lower = 1, double upper = 100)
+        {
+            Double max = values.Max();
+            Double min = values.Min();
+            Double avg = values.Sum() / values.Count;
+            return values.ToDictionary(x => x, x => (upper - lower) * ((x - min) / (max - min)) + lower);
         }
+
         //calcluates overall ticket price per distance
         public static double GetTotalTicketPPD()
         {
