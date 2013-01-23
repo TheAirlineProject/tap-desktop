@@ -447,7 +447,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 {
                     ContentControl ccFlight = new ContentControl();
                     ccFlight.ContentTemplate = this.Resources["FlightItem"] as DataTemplate;
-                    ccFlight.Content = new KeyValuePair<double, RouteTimeTableEntry>(endTime.Subtract(new TimeSpan(1, 0, 0, 0)).TotalMinutes / 2, e);
+                    ccFlight.Content = new KeyValuePair<double, RouteTimeTableEntry>(endTime.Subtract(new TimeSpan(1, 0, 0, 0)).TotalMinutes / hourFactor, e);
 
                     Canvas.SetLeft(ccFlight, 0);
 

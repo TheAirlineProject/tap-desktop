@@ -48,6 +48,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             WrapPanel panelScenarios = new WrapPanel();
             panelContent.Children.Add(panelScenarios);
 
+            StackPanel panelSelectScenarios = new StackPanel();
+            panelScenarios.Children.Add(panelSelectScenarios);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Width = 200;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Uid = "1001";
+            txtHeader.TextAlignment = TextAlignment.Center;
+            txtHeader.Text = Translator.GetInstance().GetString("PagePlayScenario", txtHeader.Uid);
+            panelSelectScenarios.Children.Add(txtHeader);
+
             ListBox lbScenarios= new ListBox();
             lbScenarios.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbScenarios.Height = GraphicsHelpers.GetContentHeight() / 2;
@@ -57,7 +69,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             foreach (Scenario scenario in Scenarios.GetScenarios())
                lbScenarios.Items.Add(scenario);
 
-            panelScenarios.Children.Add(lbScenarios);
+            panelSelectScenarios.Children.Add(lbScenarios);
+            
             panelScenarios.Children.Add(createScenarioPanel());
 
             Button btnExit = new Button();

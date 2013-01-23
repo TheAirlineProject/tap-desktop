@@ -60,7 +60,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         //returns if the worker is busy
         public Boolean isBusy()
         {
-            return this.Cancelled || !this.Worker.IsBusy;
+            return !this.Cancelled && this.Worker.IsBusy;
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
