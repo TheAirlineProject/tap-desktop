@@ -3541,7 +3541,7 @@ namespace TheAirline.Model.GeneralModel
 
                         #endregion
                         
-
+                           
                         double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
                         foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))

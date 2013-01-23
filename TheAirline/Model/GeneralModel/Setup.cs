@@ -795,6 +795,10 @@ namespace TheAirline.Model.GeneralModel
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
                     int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
 
+                    XmlElement destinationsElement = (XmlElement)airportElement.SelectSingleNode("destinations");
+                    string majorDestinations = destinationsElement.HasAttribute("airport") ? Convert.ToString(destinationsElement.Attributes["destination"].Value): "None";
+                    int majorDestPax = destinationsElement.HasAttribute("pax") ? Convert.ToInt32(destinationsElement.Attributes["pax"].Value): 0;
+
                     Town eTown = null;
                     if (town.Contains(","))
                     {
@@ -808,7 +812,7 @@ namespace TheAirline.Model.GeneralModel
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, pax, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, pax, majorDestinations, majorDestPax, season);
 
                     Airport airport = new Airport(profile);
 

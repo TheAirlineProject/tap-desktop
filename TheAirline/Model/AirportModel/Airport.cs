@@ -43,6 +43,21 @@ namespace TheAirline.Model.AirportModel
           
          }
 
+        //returns a list of major destinations and pax
+        public List<String> getMajorDestinations()
+        {
+            List<String> majorDestinations = new List<String>();
+            foreach (Airport airport in Airports.GetAllAirports())
+            {
+                string mDest = airport.Profile.MajorDestinations.ToString();
+                string mPax = airport.Profile.MajorDestPax.ToString();
+                majorDestinations.Add(mDest);
+                majorDestinations.Add(mPax);
+            }
+            return majorDestinations;
+        }
+
+
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
         {
