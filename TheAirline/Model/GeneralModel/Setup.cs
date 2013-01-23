@@ -218,6 +218,9 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadScenarios()
         {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\standardconfigurations.xml");
+            XmlElement root = doc.DocumentElement;
         }
         /*!loads the standard configurations
          */
