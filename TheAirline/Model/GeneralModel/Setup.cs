@@ -237,7 +237,8 @@ namespace TheAirline.Model.GeneralModel
             string scenarioName = element.Attributes["name"].Value;
             int startYear = Convert.ToInt32(element.Attributes["startYear"].Value);
             long startCash = Convert.ToInt64(element.Attributes["startCash"].Value);
-
+            DifficultyLevel difficulty = DifficultyLevels.GetDifficultyLevel(element.Attributes["difficulty"].Value);
+ 
             string description = element.SelectSingleNode("intro").Attributes["text"].Value;
             string successText = element.SelectSingleNode("success").Attributes["text"].Value;
 
@@ -246,7 +247,7 @@ namespace TheAirline.Model.GeneralModel
             Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
             Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
 
-            Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,startCash);
+            Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,startCash,difficulty);
             Scenarios.AddScenario(scenario);
 
             XmlNodeList destinationsList = startElement.SelectNodes("destinations/destination");

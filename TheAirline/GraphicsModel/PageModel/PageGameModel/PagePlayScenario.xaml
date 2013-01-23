@@ -9,11 +9,14 @@
 	Title="PagePlayScenario">
     <Page.Resources>
         <DataTemplate x:Key="ScenarioItem">
-            <TextBlock Width="100" VerticalAlignment="Bottom">
+            <WrapPanel>
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
                     <Hyperlink Tag="{Binding}" Click="lnkScenario_Click">
                         <Run Text="{Binding Name}"></Run>
                     </Hyperlink>
             </TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Difficulty.Name,StringFormat=({0})}" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
         </DataTemplate>
     </Page.Resources>
         <Grid>

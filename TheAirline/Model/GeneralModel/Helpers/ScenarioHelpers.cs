@@ -24,7 +24,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().DayRoundEnabled = true;
             GameObject.GetInstance().TimeZone = scenario.Homebase.Profile.TimeZone;
-            GameObject.GetInstance().Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
+            GameObject.GetInstance().Difficulty = scenario.Difficulty;
             GameObject.GetInstance().GameTime = new DateTime(scenario.StartYear, 1, 1);
             GameObject.GetInstance().StartDate = GameObject.GetInstance().GameTime;
             //sets the fuel price
@@ -33,9 +33,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameObject.GetInstance().HumanAirline = airline;
             GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
             GameObject.GetInstance().HumanAirline.Money = scenario.StartCash;
-
-            //if (cbLocalCurrency.IsChecked.Value)
-            //  GameObject.GetInstance().CurrencyCountry = airline.Profile.Country;
 
             Airport airport = scenario.Homebase;
 

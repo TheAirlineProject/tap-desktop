@@ -20,7 +20,8 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
         public List<ScenarioAirline> OpponentAirlines { get; set; }
         public List<Airport> Destinations { get; set; }
         public Dictionary<AirlinerType,int> Fleet { get; set; }
-        public Scenario(string name,string description, Airline airline, Airport homebase, int startyear, long startcash)
+        public DifficultyLevel Difficulty { get; set; }
+        public Scenario(string name,string description, Airline airline, Airport homebase, int startyear, long startcash,DifficultyLevel difficulty)
         {
             this.Name = name;
             this.Airline = airline;
@@ -28,6 +29,7 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
             this.StartYear = startyear;
             this.StartCash = startcash;
             this.Description = description;
+            this.Difficulty = difficulty;
             this.OpponentAirlines = new List<ScenarioAirline>();
             this.Destinations = new List<Airport>();
             this.Fleet = new Dictionary<AirlinerType, int>();

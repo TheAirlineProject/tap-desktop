@@ -65,8 +65,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             lbScenarios.Height = GraphicsHelpers.GetContentHeight() / 2;
             lbScenarios.ItemTemplate = this.Resources["ScenarioItem"] as DataTemplate;
             lbScenarios.Width = 200;
-       
-            foreach (Scenario scenario in Scenarios.GetScenarios())
+
+        
+            foreach (Scenario scenario in Scenarios.GetScenarios().OrderBy(s=>s.Difficulty))
                lbScenarios.Items.Add(scenario);
 
             panelSelectScenarios.Children.Add(lbScenarios);
