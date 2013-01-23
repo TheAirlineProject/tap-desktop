@@ -81,6 +81,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirlinerTypeConfigurations();
            
                 LoadAirlines();
+                LoadScenarios();
 
                 Skins.Init();
             }
@@ -212,6 +213,11 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("Central Pacific Standard Time", "CPST", new TimeSpan(11, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("New Zealand Standard Time", "NZST", new TimeSpan(12, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Tonga Standard Time", "TST", new TimeSpan(13, 0, 0)));
+        }
+        /*!loads the different scenarios
+         */
+        private static void LoadScenarios()
+        {
         }
         /*!loads the standard configurations
          */

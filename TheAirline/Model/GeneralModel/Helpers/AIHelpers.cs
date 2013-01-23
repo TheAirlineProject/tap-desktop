@@ -480,8 +480,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airport != null)
             {
-
-
                 Airport destination;
 
                 destination = GetDestinationAirport(airline, airport);
