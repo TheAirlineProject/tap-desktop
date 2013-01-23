@@ -984,6 +984,16 @@
       <Link>New_York_Metro.xml</Link>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\addons\contracts\multipleevents.xml">
+      <Link>multipleevents.xml</Link>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="..\Data\addons\contracts\singleevents.xml">
+      <Link>singleevents.xml</Link>
+    </Resource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
