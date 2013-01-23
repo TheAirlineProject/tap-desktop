@@ -15,6 +15,8 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.StatisticsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -57,16 +59,57 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelStatistics.Children.Add(lbStats);
 
+            if (this.Airline.IsHuman)
+                panelStatistics.Children.Add(createHumanStatisticsPanel());
+
             showStats();
 
             this.Content = panelStatistics;
         }
-
-        private void PageAirlineStatistics_Unloaded(object sender, RoutedEventArgs e)
+        //creates the panel for the human statistics
+        private StackPanel createHumanStatisticsPanel()
         {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirlineStatistics_OnTimeChanged);
+            StackPanel panelHumanStatistics = new StackPanel();
+            panelHumanStatistics.Margin = new Thickness(0, 10, 0, 0);
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Uid = "1001";
+            txtHeader.Margin = new Thickness(0, 0, 0, 0);
+            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.Text = Translator.GetInstance().GetString("PageAirlineStatistics", txtHeader.Uid);
+
+            panelHumanStatistics.Children.Add(txtHeader);
+
+            ListBox lbHumanStats = new ListBox();
+            lbHumanStats.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbHumanStats.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            panelHumanStatistics.Children.Add(lbHumanStats);
+
+            lbHumanStats.Items.Add(new QuickInfoValue("Human on-time percent", UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanOnTime()))));
+            lbHumanStats.Items.Add(new QuickInfoValue("Human fill degree", UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanFillAverage()))));
+            lbHumanStats.Items.Add(new QuickInfoValue("Customer happiness", UICreator.CreateTextBlock(string.Format("{0:0.00}", Ratings.GetCustomerHappiness()))));
+            lbHumanStats.Items.Add(new QuickInfoValue("Human price per distance", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetHumanAvgTicketPPD()))));
+            lbHumanStats.Items.Add(new QuickInfoValue("Total price per distance", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetTotalTicketPPD()))));
+            lbHumanStats.Items.Add(new QuickInfoValue("Max price diff.", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetPPDdifference().Average()))));
+            lbHumanStats.Items.Add(new QuickInfoValue("Avg. price diff", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetPPDdifference().Max()))));
+
+            return panelHumanStatistics;
+            /*
+             * 
+
+GetHumanAvgTicketPPD();
+GetTotalTicketPPD();
+[07:09:07] Michael Dugan: GetPPDdifference().Average();
+GetPPDdifference().Max();
+
+             * */
+
 
         }
+       
         //shows the stats
         private void showStats()
         {
@@ -77,14 +120,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Departures")));
 
         }
-        private void PageAirlineStatistics_OnTimeChanged()
-        {
-            if (this.IsLoaded)
-            {
-                showStats();
-                 
-            }
-        }
+       
     }
     //the converter for a statistics type
     public class AirlineStatConverter : IValueConverter

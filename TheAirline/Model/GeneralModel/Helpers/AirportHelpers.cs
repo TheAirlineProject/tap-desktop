@@ -427,8 +427,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks an airport for new gates
         public static void CheckForExtendAirport(Airport airport)
         {
-           
-            if (airport.Terminals.getOrdereredGates() == 0)
+            int minYearsBetweenExpansions = 5;
+
+            if (airport.Terminals.getOrdereredGates() == 0 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
             {
                 Terminal minTerminal = airport.Terminals.AirportTerminals.OrderBy(t => t.Gates.NumberOfGates).First();
 
@@ -440,6 +441,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
 
                     long price = numberOfGates * airport.getTerminalGatePrice() + (newTerminal ? airport.getTerminalPrice() : 0);
+                    price = price / 3 * 4;
 
                     if (airport.Income > price)
                     {
@@ -448,6 +450,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             minTerminal.Gates.addGate(new Gate(airport, GameObject.GetInstance().GameTime.AddDays(daysToBuild)));
 
                         airport.Income -= price;
+                        airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                     }
                 
                 }
@@ -460,6 +463,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
 
                     long price = numberOfGates * airport.getTerminalGatePrice() + (newTerminal ? airport.getTerminalPrice() : 0);
+                    price = price / 3 * 4;
 
                     if (airport.Income > price)
                     {
@@ -468,6 +472,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         airport.addTerminal(terminal);
                         airport.Income -= price;
+                        airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                     }
                 }
             }

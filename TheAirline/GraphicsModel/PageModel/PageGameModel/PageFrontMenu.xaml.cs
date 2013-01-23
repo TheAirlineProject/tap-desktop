@@ -45,6 +45,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             btnNewGame.Click += btnNewGame_Click;
             panelContent.Children.Add(btnNewGame);
 
+            Button btnPlayScenario = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "205"));
+            btnPlayScenario.IsEnabled = false;
+            panelContent.Children.Add(btnPlayScenario);
+
             Button btnLoadGame = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "201"));
             btnLoadGame.Click += btnLoadGame_Click;
             panelContent.Children.Add(btnLoadGame);

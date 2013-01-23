@@ -46,12 +46,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             panelContent.Children.Add(lbCounters);
 
-            //base.setTopMenu(new PageTopMenu());
-
-            //base.hideNavigator();
-
-            //base.hideBottomMenu();
-
+          
             base.setContent(panelContent);
 
             base.setHeaderContent("Performance Counters");

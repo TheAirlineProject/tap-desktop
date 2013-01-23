@@ -13,6 +13,7 @@ namespace TheAirline.Model.StatisticsModel
 {
     public class Ratings
     {
+        //returns the curstomer happiness
         public static double GetCustomerHappiness()
         {
             double hAvgPPD = StatisticsHelpers.GetHumanAvgTicketPPD();

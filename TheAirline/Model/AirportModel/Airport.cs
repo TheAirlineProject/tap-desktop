@@ -27,6 +27,7 @@ namespace TheAirline.Model.AirportModel
         public List<Hub> Hubs { get; set; }
         public Boolean IsHub { get { return this.Hubs.Count > 0; } set { ;} }
         public long Income{ get; set; }
+        public DateTime LastExpansionDate { get; set; }
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
@@ -39,6 +40,7 @@ namespace TheAirline.Model.AirportModel
             this.Runways = new List<Runway>();
             this.Hubs = new List<Hub>();
             this.DestinationStatistics = new Dictionary<Airport, long>();
+            this.LastExpansionDate = new DateTime(1900, 1, 1); 
 
           
          }
@@ -47,7 +49,7 @@ namespace TheAirline.Model.AirportModel
         public Dictionary<Airport,int> getMajorDestinations()
         {
             Dictionary<Airport, int> majorDestinations = new Dictionary<Airport, int>();
-
+      
             foreach (KeyValuePair<string, int> md in this.Profile.MajorDestionations)
             {
                 majorDestinations.Add(Airports.GetAirport(md.Key), md.Value);
