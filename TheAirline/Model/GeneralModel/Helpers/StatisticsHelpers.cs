@@ -38,7 +38,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return var;
         }
         //calcluates overall ticket price per distance
-        public double getTotalTicketPPD()
+        public static double GetTotalTicketPPD()
         {
             List<Double> ticketPPD = new List<Double>();
             foreach (Airline airline in Airlines.GetAllAirlines())
@@ -53,12 +53,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return ticketPPD.Average();
         }
 
+        //calculates maximum difference
+        public static List<Double> GetPPDdifference()
+        {
+            List<Double> ppdDifference = new List<Double>();
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+                double avgPPD = GetTotalTicketPPD();
+                List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+                List<Double> aiBusPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+                List<Double> aiFirstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+                double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).Average();
+                double avgEP = aiEconPrices.Average(); double avgBP = aiBusPrices.Average(); double avgFP = aiFirstPrices.Average();
+                double avgDistPrice = (((avgEP * 0.7) + (avgBP * 0.2) + (avgFP * 0.1)) / 3) / distance;
+                double avgDiff = avgDistPrice - avgPPD;
+                ppdDifference.Add(avgDiff);
+            }
+            return ppdDifference;
+        }
+
 
         //calculates average AI ticket price
-        public double getAIAvgTicketPPD()
+        public static double GetAIAvgTicketPPD()
         {
 
             List<Double> AIPrices = new List<Double>();
+            List<Double> priceDiff = new List<Double>();
             foreach (Airline airline in Airlines.GetAirlines(a => !a.IsHuman))
             {
                 List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
@@ -71,6 +91,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double avgPrice = ((avgEP * 0.7) + (avgBP * 0.2) + (avgFP * 0.1)) / 3;
                 double avgDistPrice = avgPrice / distance;
                 AIPrices.Add(avgDistPrice);
+                
             }
             return AIPrices.Average();
         }
