@@ -308,7 +308,11 @@ namespace TheAirline.Model.AirlineModel
                 value += subAirline.getValue();
 
             value = value / 1000000;
-            return Convert.ToInt64(value);
+
+            if (double.IsNaN(value))
+                return 0;
+            else
+                return Convert.ToInt64(value);
            
         }
        

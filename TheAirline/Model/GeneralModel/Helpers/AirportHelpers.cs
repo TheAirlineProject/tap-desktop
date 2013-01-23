@@ -430,20 +430,45 @@ namespace TheAirline.Model.GeneralModel.Helpers
            
             if (airport.Terminals.getOrdereredGates() == 0)
             {
-                Boolean newTerminal = true;
-                int numberOfGates = airport.Terminals.getTerminals()[0].Gates.NumberOfDeliveredGates;
+                Terminal minTerminal = airport.Terminals.AirportTerminals.OrderBy(t => t.Gates.NumberOfGates).First();
 
-                int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
+                Boolean newTerminal = minTerminal.Gates.NumberOfGates > 50;
+                //extend existing
+                if (!newTerminal)
+                {
+                    int numberOfGates = Math.Max(5, minTerminal.Gates.NumberOfGates);
+                    int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
 
-                long price = numberOfGates * airport.getTerminalGatePrice() + (newTerminal ? airport.getTerminalPrice() : 0);
+                    long price = numberOfGates * airport.getTerminalGatePrice() + (newTerminal ? airport.getTerminalPrice() : 0);
 
-                if (airport.Income > price)
+                    if (airport.Income > price)
+                    {
+                      
+                        for (int i = 0; i < numberOfGates; i++)
+                            minTerminal.Gates.addGate(new Gate(airport, GameObject.GetInstance().GameTime.AddDays(daysToBuild)));
+
+                        airport.Income -= price;
+                    }
+                
+                }
+                //build new terminal
+                else
                 {
 
-                    Terminal terminal = new Terminal(airport, null, "Terminal", numberOfGates, GameObject.GetInstance().GameTime.Add(new TimeSpan(daysToBuild, 0, 0, 0)));
+                    int numberOfGates = airport.Terminals.getTerminals()[0].Gates.NumberOfDeliveredGates;
 
-                    airport.addTerminal(terminal);
-                    airport.Income -= price;
+                    int daysToBuild = numberOfGates * 10 + (newTerminal ? 60 : 0);
+
+                    long price = numberOfGates * airport.getTerminalGatePrice() + (newTerminal ? airport.getTerminalPrice() : 0);
+
+                    if (airport.Income > price)
+                    {
+
+                        Terminal terminal = new Terminal(airport, null, "Terminal", numberOfGates, GameObject.GetInstance().GameTime.AddDays(daysToBuild));
+
+                        airport.addTerminal(terminal);
+                        airport.Income -= price;
+                    }
                 }
             }
            

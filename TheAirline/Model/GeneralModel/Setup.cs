@@ -795,9 +795,16 @@ namespace TheAirline.Model.GeneralModel
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
                     int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
 
+                    string majorDestinations = "None";
+                    int majorDestPax = 0;
+
                     XmlElement destinationsElement = (XmlElement)airportElement.SelectSingleNode("destinations");
-                    string majorDestinations = destinationsElement.HasAttribute("airport") ? Convert.ToString(destinationsElement.Attributes["destination"].Value): "None";
-                    int majorDestPax = destinationsElement.HasAttribute("pax") ? Convert.ToInt32(destinationsElement.Attributes["pax"].Value): 0;
+
+                    if (destinationsElement != null)
+                    {
+                        majorDestinations = destinationsElement.HasAttribute("destination") ? destinationsElement.Attributes["destination"].Value : "None";
+                        majorDestPax = destinationsElement.HasAttribute("pax") ? Convert.ToInt32(destinationsElement.Attributes["pax"].Value) : 0;
+                    }
 
                     Town eTown = null;
                     if (town.Contains(","))

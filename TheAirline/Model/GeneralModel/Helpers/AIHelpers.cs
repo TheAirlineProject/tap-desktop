@@ -533,7 +533,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             Boolean humanHasRoute = Airlines.GetHumanAirlines().SelectMany(a => a.Routes).ToList().Exists(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination1 == route.Destination2 && r.Destination2 == route.Destination1));
 
                             if (humanHasRoute)
-                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1006"), string.Format(Translator.GetInstance().GetString("News", "1006", "message"), airline,route.Destination1,route.Destination2)));
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode,route.Destination1.Profile.IATACode,route.Destination2.Profile.IATACode)));
 
                             airport.Terminals.getEmptyGate(airline).HasRoute = true;
                             destination.Terminals.getEmptyGate(airline).HasRoute = true;

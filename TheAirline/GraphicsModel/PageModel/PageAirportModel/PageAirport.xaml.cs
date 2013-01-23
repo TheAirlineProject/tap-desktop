@@ -381,9 +381,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1021"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1023"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString())));
 
-            WrapPanel panelTerminals = new WrapPanel();
+            TextBlock txtAirportIncome =  UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString());
+            txtAirportIncome.Foreground = new ValueIsMinusConverter().Convert(this.Airport.Income) as Brush;
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1023"),txtAirportIncome));
+
+             WrapPanel panelTerminals = new WrapPanel();
 
             Image imgMapOverview = new Image();
             imgMapOverview.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));

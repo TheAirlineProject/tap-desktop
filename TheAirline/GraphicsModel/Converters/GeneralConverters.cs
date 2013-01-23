@@ -356,7 +356,10 @@ namespace TheAirline.GraphicsModel.Converters
     //the converter for a value to a color for minus
     public class ValueIsMinusConverter : IValueConverter
     {
-
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             try

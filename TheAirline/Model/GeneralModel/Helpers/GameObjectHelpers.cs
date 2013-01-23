@@ -337,13 +337,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                {
                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1002"), string.Format(Translator.GetInstance().GetString("News", "1002", "message"), airport.Profile.IATACode, GameObject.GetInstance().GameTime.AddDays(airport.Weather.Length - 1).DayOfWeek)));
                }
-               // chs, 2011-01-11 changed for delivery of terminals
+                // chs, 2011-01-11 changed for delivery of terminals
                foreach (Terminal terminal in airport.Terminals.getTerminals())
                {
                    if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month && terminal.DeliveryDate.Day == GameObject.GetInstance().GameTime.Day)
                    {
                        if (terminal.Airline == null)
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("[LI airport={0}], {1} has build a new terminal with {2} gates", airport.Profile.IATACode, airport.Profile.Country.Name,terminal.Gates.NumberOfGates)));
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("[LI airport={0}], {1} has build a new terminal with {2} gates", airport.Profile.IATACode, airport.Profile.Country.Name, terminal.Gates.NumberOfGates)));
 
                        if (terminal.Airline != null && terminal.Airline.IsHuman)
                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at [LI airport={0}], {1} is now finished and ready for use.", airport.Profile.IATACode, airport.Profile.Country.Name)));
@@ -386,6 +386,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                        }
 
+                   }
+                   //new gates in an existing terminal
+                   else
+                   {
+                       int numberOfNewGates = terminal.Gates.getGates().Count(g => g.DeliveryDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+
+                       if (numberOfNewGates > 0)
+                       {
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has build expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name,terminal.Name, numberOfNewGates)));
+
+                       }
                    }
 
                }
