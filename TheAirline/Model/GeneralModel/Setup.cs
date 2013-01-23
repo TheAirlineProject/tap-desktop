@@ -1603,7 +1603,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     airportDestination = airportDestinations[counter];
 
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination,false);
 
                     counter++;
                 }
@@ -1711,7 +1711,7 @@ namespace TheAirline.Model.GeneralModel
                 
                 if (airliner == null)
                 {
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1,false);
                 }
                 
                 FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
@@ -1812,7 +1812,7 @@ namespace TheAirline.Model.GeneralModel
 
                     Route route = new Route(id.ToString(), origin, destination, price);
 
-                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination);
+                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination,false);
 
                     FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                     fAirliner.addRoute(route);

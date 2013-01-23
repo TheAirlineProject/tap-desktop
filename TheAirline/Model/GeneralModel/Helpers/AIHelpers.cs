@@ -488,9 +488,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (destination != null)
                 {
+                    Boolean doLeasing = rnd.Next(5) > 1 || airline.Money < 10000000;
+                    
                     FleetAirliner fAirliner;
 
-                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination);
+                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination,doLeasing);
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -559,11 +561,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                 }
                                 else
-                                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
+                                {
+                                    if (doLeasing)
+                                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.Value.Key.LeasingPrice * 2);
+                                    else
+                                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Value.Key.getPrice());
 
+                                }
 
-
-                                fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
+                               
+                                fAirliner = new FleetAirliner(doLeasing ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
                                 airline.Fleet.Add(fAirliner);
 
                                 AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
@@ -724,15 +731,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return null;
         }
         //returns the best fit for an airliner for sale for a route true for loan
-        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2)
+        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing)
         {
-
+          
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
 
             AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(distance);
 
-            List<Airliner> airliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+            List<Airliner> airliners;
+            
+            if (doLeasing)
+                airliners = Airliners.GetAirlinersForSale().FindAll(a=>a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+            else
+                airliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
 
             if (airliners.Count > 0)
                 return new KeyValuePair<Airliner, Boolean>((from a in airliners orderby a.Type.Range select a).First(), false);

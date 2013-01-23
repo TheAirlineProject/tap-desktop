@@ -73,7 +73,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelHumanStatistics.Margin = new Thickness(0, 10, 0, 0);
 
             TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1001";
+            txtHeader.Uid = "1005";
             txtHeader.Margin = new Thickness(0, 0, 0, 0);
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -88,13 +88,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelHumanStatistics.Children.Add(lbHumanStats);
 
-            lbHumanStats.Items.Add(new QuickInfoValue("Human on-time percent", UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanOnTime()))));
-            lbHumanStats.Items.Add(new QuickInfoValue("Human fill degree", UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanFillAverage()))));
-            lbHumanStats.Items.Add(new QuickInfoValue("Customer happiness", UICreator.CreateTextBlock(string.Format("{0:0.00}", Ratings.GetCustomerHappiness()))));
-            lbHumanStats.Items.Add(new QuickInfoValue("Human price per distance", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetHumanAvgTicketPPD()))));
-            lbHumanStats.Items.Add(new QuickInfoValue("Total price per distance", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetTotalTicketPPD()))));
-            lbHumanStats.Items.Add(new QuickInfoValue("Max price diff.", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetPPDdifference().Average()))));
-            lbHumanStats.Items.Add(new QuickInfoValue("Avg. price diff", UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetPPDdifference().Max()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1006"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanOnTime()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1007"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanFillAverage()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1008"), UICreator.CreateTextBlock(string.Format("{0:0.00}", Ratings.GetCustomerHappiness()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1009"), UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetHumanAvgTicketPPD()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1010"), UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetTotalTicketPPD()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1011"), UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetPPDdifference().Average()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetPPDdifference().Max()))));
 
             return panelHumanStatistics;
             /*

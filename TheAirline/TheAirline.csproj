@@ -847,6 +847,7 @@
     </Compile>
     <EmbeddedResource Include="..\Data\languages\language.da-DK.resx">
       <Link>Data\languagefiles\language.da-DK.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.de-DE.resx">
       <Link>Data\languagefiles\language.de-DE.resx</Link>

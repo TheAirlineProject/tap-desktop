@@ -37,7 +37,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             return var;
         }  
-        
+        /*
         //generate a 1-100 scale for a list of values
         public static IDictionary<Double, Double> GetRatingScale(List<Double> values, Airline airline, double lower = 1, double upper = 100)
         {
@@ -47,6 +47,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             values.RemoveAll(v => Double.IsNaN(v));
 
             return values.ToDictionary(x => x, x => (upper - lower) * ((x - min) / (max - min)) + lower);
+        }*/
+        public static List<Double> GetRatingScale(List<Double> values, Airline airline, double lower = 1, double upper = 100)
+        {
+            Double max = values.DefaultIfEmpty(0).Max();
+            Double min = values.DefaultIfEmpty(0).Min();
+            Double avg = values.DefaultIfEmpty(0).Sum() / values.Count;
+            values.RemoveAll(v => Double.IsNaN(v));
+
+            return new List<double>();// values.ToDictionary(x => (upper - lower) * ((x - min) / (max - min)) + lower);
         }
 
         //calcluates overall ticket price per distance
@@ -60,7 +69,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 List<Double> firstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
                 List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList();
                 double avgDistPrice = ((econPrices.DefaultIfEmpty(0).Average() * 0.7) + (busPrices.DefaultIfEmpty(0).Average() * 0.2) + (firstPrices.DefaultIfEmpty(0).Average() * 0.1)) / distance.DefaultIfEmpty(0).Average();
-                IDictionary<Double, Double> scale = GetRatingScale(ticketPPD, airline);
+                //IDictionary<Double, Double> scale = GetRatingScale(ticketPPD, airline);
                 ticketPPD.Add(avgDistPrice);
             }
             return ticketPPD.Average();
@@ -79,7 +88,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).DefaultIfEmpty(0).Average();
                 double avgEP = aiEconPrices.DefaultIfEmpty(0).Average(); double avgBP = aiBusPrices.DefaultIfEmpty(0).Average(); double avgFP = aiFirstPrices.DefaultIfEmpty(0).Average();
                 double avgDistPrice = (((avgEP * 0.7) + (avgBP * 0.2) + (avgFP * 0.1)) / 3) / distance;
-                IDictionary<Double, Double> scale = GetRatingScale(ppdDifference, airline);
+                //IDictionary<Double, Double> scale = GetRatingScale(ppdDifference, airline);
                 double avgDiff = avgDistPrice - avgPPD;
                 ppdDifference.Add(avgDiff);
             }
