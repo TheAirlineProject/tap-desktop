@@ -795,16 +795,7 @@ namespace TheAirline.Model.GeneralModel
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
                     int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
 
-                    string majorDestinations = "None";
-                    int majorDestPax = 0;
-
-                    XmlElement destinationsElement = (XmlElement)airportElement.SelectSingleNode("destinations");
-
-                    if (destinationsElement != null)
-                    {
-                        majorDestinations = destinationsElement.HasAttribute("destination") ? destinationsElement.Attributes["destination"].Value : "None";
-                        majorDestPax = destinationsElement.HasAttribute("pax") ? Convert.ToInt32(destinationsElement.Attributes["pax"].Value) : 0;
-                    }
+                   
 
                     Town eTown = null;
                     if (town.Contains(","))
@@ -819,9 +810,29 @@ namespace TheAirline.Model.GeneralModel
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, pax, majorDestinations, majorDestPax, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, pax, season);
 
                     Airport airport = new Airport(profile);
+
+                    XmlElement destinationsElement = (XmlElement)airportElement.SelectSingleNode("destinations");
+
+                    if (destinationsElement != null)
+                    {
+                        XmlNodeList majorDestinationsList = destinationsElement.SelectNodes("destination");
+
+                        Dictionary<string, int> majorDestinations = new Dictionary<string, int>();
+
+                        foreach (XmlElement majorDestinationNode in majorDestinationsList)
+                        {
+                            string majorDestination = majorDestinationNode.Attributes["airport"].Value;
+                            int majorDestinationPax =Convert.ToInt32(majorDestinationNode.Attributes["pax"].Value);
+
+                            majorDestinations.Add(majorDestination,majorDestinationPax);
+                        }
+
+                        airport.Profile.MajorDestionations = majorDestinations;
+
+                   }
 
                     XmlNodeList terminalList = airportElement.SelectNodes("terminals/terminal");
 

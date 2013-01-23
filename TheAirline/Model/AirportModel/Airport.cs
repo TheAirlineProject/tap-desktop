@@ -44,16 +44,15 @@ namespace TheAirline.Model.AirportModel
          }
 
         //returns a list of major destinations and pax
-        public List<String> getMajorDestinations()
+        public Dictionary<Airport,int> getMajorDestinations()
         {
-            List<String> majorDestinations = new List<String>();
-            foreach (Airport airport in Airports.GetAllAirports())
+            Dictionary<Airport, int> majorDestinations = new Dictionary<Airport, int>();
+
+            foreach (KeyValuePair<string, int> md in this.Profile.MajorDestionations)
             {
-                string mDest = airport.Profile.MajorDestinations.ToString();
-                string mPax = airport.Profile.MajorDestPax.ToString();
-                majorDestinations.Add(mDest);
-                majorDestinations.Add(mPax);
+                majorDestinations.Add(Airports.GetAirport(md.Key), md.Value);
             }
+      
             return majorDestinations;
         }
 

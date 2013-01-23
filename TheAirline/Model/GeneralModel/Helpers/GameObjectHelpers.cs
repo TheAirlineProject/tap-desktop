@@ -393,10 +393,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                        int numberOfNewGates = terminal.Gates.getGates().Count(g => g.DeliveryDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
 
                        if (numberOfNewGates > 0)
-                       {
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has build expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name,terminal.Name, numberOfNewGates)));
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name,terminal.Name, numberOfNewGates)));
 
-                       }
                    }
 
                }
