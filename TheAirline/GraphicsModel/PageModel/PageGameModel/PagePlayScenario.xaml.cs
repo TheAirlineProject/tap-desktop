@@ -129,7 +129,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             txtDescription.FontStyle = FontStyles.Italic;
             txtDescription.FontSize = 16;
             txtDescription.BorderThickness = new Thickness(0);
-            txtDescription.Height = 250;
+            txtDescription.MaxHeight = 250;
+            txtDescription.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             txtDescription.IsReadOnly = true;
             txtDescription.Text = "";
             panelScenario.Children.Add(txtDescription);

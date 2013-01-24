@@ -8,7 +8,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.Helpers;
-using MathNet.Numerics.Statistics;
+
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -40,15 +40,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }  
         
         //generate a 1-100 scale for a list of values
-        public static Dictionary<String, Double> GetRatingScale(IDictionary<Airline, Double> valueDictionary, double lower = 1, double upper = 100)
+        public static IDictionary<Airline, Double> GetRatingScale(IDictionary<Airline, Double> valueDictionary, double lower = 1, double upper = 100)
         {
             Dictionary<Airline, Double> scaleValues = new Dictionary<Airline, double>();
             Double max = valueDictionary.Values.DefaultIfEmpty(0).Max();
             Double min = valueDictionary.Values.DefaultIfEmpty(0).Min();
             Double avg = valueDictionary.Values.DefaultIfEmpty(0).Sum() / valueDictionary.Values.Count;
-            string airline = valueDictionary.Keys.ToString();
 
-            return valueDictionary.Values.ToDictionary(v => airline, x => (upper - lower) * ((x - min) / (max - min)) + lower);
+            return valueDictionary.ToDictionary(v => v.Key, x => (upper - lower) * ((x.Value - min) / (max - min)) + lower);
         }
        /* public static List<Double> GetRatingScale(List<Double> values, Airline airline, double lower = 1, double upper = 100)
         {
