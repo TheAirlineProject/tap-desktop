@@ -260,30 +260,42 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 panelMap.Children.Add(createPin(p, airport));
         }
         //shows a route
-        private void showRoute(Route route, Panel panelMap, int zoom, Point margin)
+        private void showRoute(Route route, Panel panelMap, int zoom, Point margin, Boolean isStopoverRoute=false, Airline airline = null)
         {
-            Point pos = GraphicsHelpers.WorldToTilePos(route.Destination1.Profile.Coordinates, zoom);
+            if (route.HasStopovers)
+            {
+                foreach (Route leg in route.Stopovers.SelectMany(s => s.Legs))
+                    showRoute(leg, panelMap, zoom, margin,true,route.Airline);
+            }
+            else
+            {
+                Point pos = GraphicsHelpers.WorldToTilePos(route.Destination1.Profile.Coordinates, zoom);
 
-            Point p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
+                Point p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
 
-            if (p.X < panelMap.Width)
-                panelMap.Children.Add(createPin(p, route.Destination1));
+                if (p.X < panelMap.Width)
+                    panelMap.Children.Add(createPin(p, route.Destination1));
 
-            pos = GraphicsHelpers.WorldToTilePos(route.Destination2.Profile.Coordinates, zoom);
+                pos = GraphicsHelpers.WorldToTilePos(route.Destination2.Profile.Coordinates, zoom);
 
-            p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
+                p = new Point(pos.X * ImageSize - margin.X * ImageSize, pos.Y * ImageSize - margin.Y * ImageSize);
 
-            if (p.X < panelMap.Width)
-              panelMap.Children.Add(createPin(p, route.Destination2));
+                if (p.X < panelMap.Width)
+                    panelMap.Children.Add(createPin(p, route.Destination2));
 
+                if (airline == null)
+                    airline = route.Airline;
 
-            createRouteLine(route.Destination1, route.Destination2,panelMap, zoom,margin, route.Airline);
-
+                createRouteLine(route.Destination1, route.Destination2, panelMap, zoom, margin, airline,isStopoverRoute);
+            }
         }
         //creates the line between two airports
-        private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin, Airline airline)
+        private void createRouteLine(Airport a1, Airport a2,Panel panelMap, int zoom, Point margin, Airline airline, Boolean isStopoverRoute = false)
         {
-          
+            DoubleCollection dottedDash = new DoubleCollection();
+            dottedDash.Add(2);
+            dottedDash.Add(2);
+
            int d = 50;
            
             double distance = MathHelpers.GetDistance(a1, a2);
@@ -291,6 +303,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
            Coordinates c1 = a1.Profile.Coordinates;
 
           int i = 0;
+
+          System.Windows.Shapes.Path flightPath = new System.Windows.Shapes.Path();
+          flightPath.Stroke = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
+          flightPath.StrokeThickness = 1;
+          flightPath.Fill = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
+
+          GeometryGroup flightGeometryGroup = new GeometryGroup();
+
+
           while (i < distance)
           {
               Coordinates c3 = MathHelpers.GetRoutePoint(c1, a2.Profile.Coordinates, d);
@@ -298,7 +319,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
               Point pos1 = GraphicsHelpers.WorldToTilePos(c1, zoom);
               Point pos2 = GraphicsHelpers.WorldToTilePos(c3, zoom);
 
+              /*
               Line line = new Line();
+
+              if (isStopoverRoute)
+                  line.StrokeDashArray = dottedDash;
+              /*
               line.Stroke = new AirlineBrushConverter().Convert(airline) as SolidColorBrush;
               line.X1 = Math.Min(panelMap.Width, pos1.X * ImageSize - margin.X * ImageSize);
               line.X2 = Math.Min(panelMap.Width, pos2.X * ImageSize - margin.X * ImageSize);
@@ -307,13 +333,30 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
               if (Math.Abs(line.X1 - line.X2) > ImageSize)
                   line.X2 = (line.X1 - line.X2) < 0 ? 0 : ImageSize * Math.Pow(2,zoom);
-              
-             panelMap.Children.Add(line);
+              */
+              double x1 = Math.Min(panelMap.Width, pos1.X * ImageSize - margin.X * ImageSize);
+              double x2 = Math.Min(panelMap.Width, pos2.X * ImageSize - margin.X * ImageSize);
+              double y1 = pos1.Y * ImageSize - margin.Y * ImageSize;
+              double y2 = pos2.Y * ImageSize - margin.Y * ImageSize;
+
+              if (Math.Abs(x1 - x2) > ImageSize)
+                  x2 = (x1 - x2) < 0 ? 0 : ImageSize * Math.Pow(2, zoom);
+           
+
+              LineGeometry flightGeometry = new LineGeometry();
+              flightGeometry.StartPoint = new Point(x1, y1);
+              flightGeometry.EndPoint = new Point(x2, y2);
+
+              flightGeometryGroup.Children.Add(flightGeometry);
+ 
+             //panelMap.Children.Add(line);
 
               i += Math.Min(d, (int)(distance - i) + 1);
 
               c1 = c3;
           }
+          flightPath.Data = flightGeometryGroup;
+          panelMap.Children.Add(flightPath);
 
         }
         public PopUpMap(Airport airport)
