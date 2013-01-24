@@ -30,6 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private TextBlock txtName;
         private Button btnPlay;
         private Popup popUpSplash;
+        public ScrollBar ScrollBar { get; set; }
         public PagePlayScenario()
         {
             InitializeComponent();
@@ -126,11 +127,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             txtDescription.Background = Brushes.Transparent;
             txtDescription.TextWrapping = TextWrapping.Wrap;
             txtDescription.FontStyle = FontStyles.Italic;
+            txtDescription.FontSize = 16;
             txtDescription.BorderThickness = new Thickness(0);
-            txtDescription.Height = 100;
+            txtDescription.Height = 250;
             txtDescription.IsReadOnly = true;
             txtDescription.Text = "";
             panelScenario.Children.Add(txtDescription);
+           
 
             btnPlay = new Button();
             btnPlay.Uid = "117";
@@ -146,7 +149,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             panelScenario.Children.Add(btnPlay);
 
             return panelScenario;
-            
+
         }
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)

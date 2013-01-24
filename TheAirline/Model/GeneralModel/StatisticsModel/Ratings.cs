@@ -13,7 +13,7 @@ namespace TheAirline.Model.StatisticsModel
 {
     public class Ratings
     {
-        //returns the curstomer happiness
+        //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time %
         public static double GetCustomerHappiness()
         {
             double hAvgPPD = StatisticsHelpers.GetHumanAvgTicketPPD();
