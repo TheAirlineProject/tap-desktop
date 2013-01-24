@@ -16,18 +16,20 @@ namespace TheAirline.Model.StatisticsModel
         //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time %
         public static double GetCustomerHappiness()
         {
-            double hAvgPPD = StatisticsHelpers.GetHumanAvgTicketPPD();
-            double qAvgPPD = StatisticsHelpers.GetTotalTicketPPD();
-            double ppdVMax = StatisticsHelpers.GetPPDdifference().Max() / StatisticsHelpers.GetPPDdifference().Max() * 100;
-            double hPPD = (hAvgPPD - qAvgPPD) / StatisticsHelpers.GetPPDdifference().Max() * 100;
 
-            double fillRateModifier = StatisticsHelpers.GetHumanFillAverage();
-            fillRateModifier = Math.Pow((fillRateModifier - 100), 2);
+            Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages();
+            Dictionary<Airline, Double> onTimePercent = StatisticsHelpers.GetTotalOnTime();
+            Dictionary<Airline, Double> ticketPPD = StatisticsHelpers.GetTotalPPD();
+            IDictionary<Airline, Double> scaleAvgFill = StatisticsHelpers.GetRatingScale(fillAverages);
+            IDictionary<Airline, Double> scaleOnTimeP = StatisticsHelpers.GetRatingScale(onTimePercent);
+            IDictionary<Airline, Double> scalePPD = StatisticsHelpers.GetRatingScale(ticketPPD);
 
-            double otp = StatisticsHelpers.GetHumanOnTime();
+            double humanAvgFill = scaleAvgFill[GameObject.GetInstance().HumanAirline];
+            double humanOTP = scaleOnTimeP[GameObject.GetInstance().HumanAirline];
+            double humanPPD = scalePPD[GameObject.GetInstance().HumanAirline];
 
-            return (hPPD * 0.4) + (fillRateModifier * 0.2) + (otp * 0.4);
-        }
+            return (humanPPD * 0.4) + (humanAvgFill * 0.2) + (humanOTP * 0.4);
+        } 
         
     }
 }

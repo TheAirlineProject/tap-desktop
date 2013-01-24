@@ -14,31 +14,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 {
     public class StatisticsHelpers
     {
-        //standard deviation calculation for a list of values
-        public static double GetStandardDev(List<double> population)
-        {
-            double sd = 0.0;
-            if (population.Count() > 0)
-            {
-                double u = population.DefaultIfEmpty(0).Average();
-                double sum = population.Sum(d => Math.Pow(d - u, 2));
-                sd = Math.Sqrt((sum) / population.Count() - 1);
-            }
-            return sd;
-        }
-
-        //variance calculation for a list of values
-        public static double GetVariance(List<Double> population)
-        {
-            double var = 0.0;
-            if (population.Count() > 0)
-            {
-                double u = population.DefaultIfEmpty(0).Average();
-                var = population.Sum(d => Math.Pow(d - u, 2));
-            }
-            return var;
-        }  
-        
+      
         //generate a 1-100 scale for a list of values
         public static IDictionary<Airline, Double> GetRatingScale(IDictionary<Airline, Double> valueDictionary, double lower = 1, double upper = 100)
         {
@@ -49,15 +25,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return valueDictionary.ToDictionary(v => v.Key, x => (upper - lower) * ((x.Value - min) / (max - min)) + lower);
         }
-       /* public static List<Double> GetRatingScale(List<Double> values, Airline airline, double lower = 1, double upper = 100)
-        {
-            Double max = values.DefaultIfEmpty(0).Max();
-            Double min = values.DefaultIfEmpty(0).Min();
-            Double avg = values.DefaultIfEmpty(0).Sum() / values.Count;
-            values.RemoveAll(v => Double.IsNaN(v));
-
-            return new List<double>();// values.ToDictionary(x => (upper - lower) * ((x - min) / (max - min)) + lower);
-        } */
 
         //returns dictionary of overall ticket price per distance
         public static Dictionary<Airline,Double> GetTotalPPD()
@@ -129,20 +96,36 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double avgHBP = bPrices.DefaultIfEmpty(0).Average();
             double avgFBP = fPrices.DefaultIfEmpty(0).Average();
             double avgHPrice = ((avgHEP * 0.7) + (avgHBP * 0.2) + (avgFBP * 0.1)) / 3;
-            return (((avgHEP * 0.7) + (avgHBP * 0.2) + (avgFBP * 0.1)) / 3) / distance;
+            return ((avgHEP * 0.7) + (avgHBP * 0.2) + (avgFBP * 0.1)) / distance;
         }
 
-        //calculates average fill degree for all airlines
-        public static Dictionary<Airline, Double> GetFillAverage()
+        //returns dictionary of average fill degrees for all airlines
+        //FINISHED
+        public static Dictionary<Airline, Double> GetFillAverages()
         {
             Dictionary<Airline, Double> fillAverage = new Dictionary<Airline, Double>();
             foreach (Airline airline in Airlines.GetAllAirlines())
-            {                List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
+            {                
+                List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
                 double uFillDegree = fillDegree.Average();
                 fillAverage.Add(airline, uFillDegree);
             }
             return fillAverage;
         }
+
+        //returns the average fill degree of all airlines
+        //FINISHED
+        public static Double GetFillAverage()
+        {
+            List<Double> fillDegrees = new List<Double>();
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+                List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
+                fillDegrees.Add(fillDegree.Average());
+            }
+            return fillDegrees.Average();
+        }
+                
 
         //calculates average human fill degree
         public static double GetHumanFillAverage()
@@ -152,7 +135,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fillDegree.DefaultIfEmpty(0).Average();
         }
 
-        //calculates AI average fill degree
+        //returns dictionary of AI average fill degrees
         public static Dictionary<Airline,Double> GetAIFillDegree()
         {
             Dictionary<Airline, Double> AIafd = new Dictionary<Airline, double>();
@@ -172,11 +155,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double otp = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
             onTime.Add(otp);
 
-            return onTime.DefaultIfEmpty(0).Average();
+            return (onTime.DefaultIfEmpty(0).Average() * 100);
         }
 
         //calculates AI airline average on-time %
-        //needs foreach loop needs changed to AI
         public static Dictionary<Airline, Double> GetAIonTime()
         {
             Dictionary<Airline, Double> aiOnTime = new Dictionary<Airline, double>();
@@ -188,7 +170,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return aiOnTime;
         }
 
-        //calculates all airline average on-time %
+        //returns dictionary of all airline average on-time %
         public static Dictionary<Airline, Double> GetTotalOnTime()
         {
             Dictionary<Airline, Double> totalOnTime = new Dictionary<Airline, double>();
