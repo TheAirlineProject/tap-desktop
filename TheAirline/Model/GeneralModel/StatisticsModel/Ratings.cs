@@ -29,7 +29,24 @@ namespace TheAirline.Model.StatisticsModel
             double humanPPD = scalePPD[GameObject.GetInstance().HumanAirline];
 
             return (humanPPD * 0.4) + (humanAvgFill * 0.2) + (humanOTP * 0.4);
-        } 
+        }
+ 
+        //calculates employee happiness as a function of wages, discounts, and free pilots (relative to workload)
+        public static double GetEmployeeHappiness()
+        {
+            Dictionary<Airline, Double> wages = StatisticsHelpers.GetEmployeeWages();
+            Dictionary<Airline, Double> discounts = StatisticsHelpers.GetEmployeeDiscounts();
+            Dictionary<Airline, Double> unassignedPilots = StatisticsHelpers.GetUnassignedPilots();
+            IDictionary<Airline, Double> scaleWages = StatisticsHelpers.GetRatingScale(wages);
+            IDictionary<Airline, Double> scaleDiscounts = StatisticsHelpers.GetRatingScale(discounts);
+            IDictionary<Airline, Double> scaleUPilots = StatisticsHelpers.GetRatingScale(unassignedPilots);
+
+            double humanWages = scaleWages[GameObject.GetInstance().HumanAirline];
+            double humanDiscounts = scaleDiscounts[GameObject.GetInstance().HumanAirline];
+            double humanUnassignedPilots = scaleUPilots[GameObject.GetInstance().HumanAirline];
+
+            return (humanWages * 0.7) + (humanUnassignedPilots * 0.2) + (humanDiscounts * 0.1);
+        }
         
     }
 }
