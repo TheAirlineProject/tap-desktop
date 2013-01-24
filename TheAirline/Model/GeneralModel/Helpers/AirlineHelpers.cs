@@ -9,6 +9,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -292,13 +293,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
         {
-            if (airline.License == Airline.AirlineLicense.International)
+            Boolean isInUnion = Unions.GetUnions(airport1.Profile.Country, GameObject.GetInstance().GameTime).Intersect(Unions.GetUnions(airport2.Profile.Country, GameObject.GetInstance().GameTime)).Any();
+
+            if (airline.License == Airline.AirlineLicense.Long_Haul)
+                return true;
+
+            if (airline.License == Airline.AirlineLicense.Short_Haul && (MathHelpers.GetDistance(airport1, airport2) < 2000 || isInUnion))
                 return true;
 
             if (airline.License == Airline.AirlineLicense.Domestic && airport1.Profile.Country == airport2.Profile.Country)
                 return true;
 
-            if (airline.License == Airline.AirlineLicense.Regional && airport1.Profile.Country.Region == airport2.Profile.Country.Region)
+            if (airline.License == Airline.AirlineLicense.Regional && (airport1.Profile.Country.Region == airport2.Profile.Country.Region || isInUnion))
                 return true;
 
             return false;

@@ -16,7 +16,7 @@ namespace TheAirline.Model.AirlineModel
     //the class for an airline
     public class Airline
     {
-        public enum AirlineLicense { Domestic, Regional, International }
+        public enum AirlineLicense { Domestic, Regional, Short_Haul, Long_Haul }
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Aggressive, Moderate, Safe}
         public enum AirlineFocus { Global, Regional,Domestic, Local }

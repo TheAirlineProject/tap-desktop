@@ -69,6 +69,11 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         {
             return Airports.GetAllAirports().Select(a => a.Profile.Town).Distinct().ToList();
         }
+        //returns all towns from a specific country
+        public static List<Town> GetTowns(Country country)
+        {
+            return Airports.GetAllAirports().Where(a=>a.Profile.Country == country).Select(a => a.Profile.Town).Distinct().ToList();
+        }
         //returns a town
         public static Town GetTown(string name)
         {

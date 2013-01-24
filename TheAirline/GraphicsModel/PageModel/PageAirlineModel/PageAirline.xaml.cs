@@ -34,6 +34,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
         private Airline Airline;
         private ComboBox cbControlling;
         private Button btnOk;
+        private TextBlock txtLicense;
+        private Button btnUpgradeLicense;
         public PageAirline(Airline airline)
         {
             InitializeComponent();
@@ -170,14 +172,42 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1009"), createAirlineReputationPanel()));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1010"), UICreator.CreateTextBlock(String.Format("{0:0.00} %", PassengerHelpers.GetPassengersHappiness(this.Airline)))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1012"), UICreator.CreateTextBlock(this.Airline.Alliances.Count > 0 ? string.Join(", ", from a in this.Airline.Alliances select a.Name) : Translator.GetInstance().GetString("PageAirline", "1013"))));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1025"), UICreator.CreateTextBlock(this.Airline.License.ToString())));
+
+            WrapPanel panelLicens = new WrapPanel();
+
+            txtLicense = UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airline.License).ToString());
+            txtLicense.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+            panelLicens.Children.Add(txtLicense);
+
+            if (this.Airline.IsHuman && this.Airline.License != Airline.AirlineLicense.Long_Haul)
+            {
+
+                btnUpgradeLicense = new Button();
+                btnUpgradeLicense.Margin = new Thickness(5, 0, 0, 0);
+                btnUpgradeLicense.Background = Brushes.Transparent;
+                btnUpgradeLicense.Click += btnUpgradeLicense_Click;
+
+                Image imgUpgradeLicens = new Image();
+                imgUpgradeLicens.Source = new BitmapImage(new Uri(@"/Data/images/add.png", UriKind.RelativeOrAbsolute));
+                imgUpgradeLicens.Height = 16;
+                RenderOptions.SetBitmapScalingMode(imgUpgradeLicens, BitmapScalingMode.HighQuality);
+
+                btnUpgradeLicense.Content = imgUpgradeLicens;
+
+                panelLicens.Children.Add(btnUpgradeLicense);
+            }
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1025"), panelLicens));
 
             return panelInfo;
         }
+
+
         //creates the panel for purchasing an airline
         private StackPanel createPurchaseAirlinePanel()
         {
-            double buyingPrice = this.Airline.getValue() *1000000 * 1.10;
+            double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             StackPanel purchasePanel = new StackPanel();
             purchasePanel.Margin = new Thickness(5, 10, 10, 10);
 
@@ -364,8 +394,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                     this.Airline.removeSubsidiaryAirline(subAirline);
                 }
-                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus,this.Airline.License);
-             
+                if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
+                    GameObject.GetInstance().HumanAirline.License = this.Airline.License;
+
+                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus, this.Airline.License);
+
                 switchAirline(this.Airline, sAirline);
 
                 GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
@@ -381,10 +414,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+
             }
 
         }
-
+     
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
         {
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
@@ -419,6 +454,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
                         this.Airline.removeSubsidiaryAirline(subAirline);
                     }
                 }
+                if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
+                    GameObject.GetInstance().HumanAirline.License = this.Airline.License;
 
                 switchAirline(this.Airline, GameObject.GetInstance().HumanAirline);
 
@@ -429,7 +466,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
             }
         }
-        
+        private void btnUpgradeLicense_Click(object sender, RoutedEventArgs e)
+        {
+            double upgradeLicensPrice = GeneralHelpers.GetInflationPrice(1000000);
+
+            Airline.AirlineLicense nextLicenseType = this.Airline.License + 1;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2119"), string.Format(Translator.GetInstance().GetString("MessageBox", "2119", "message"), new TextUnderscoreConverter().Convert(nextLicenseType), new ValueCurrencyConverter().Convert(upgradeLicensPrice)), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airline.License = nextLicenseType;
+
+                AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -upgradeLicensPrice);
+
+                btnUpgradeLicense.Visibility = this.Airline.License == Model.AirlineModel.Airline.AirlineLicense.Long_Haul ? Visibility.Collapsed : Visibility.Visible;
+                txtLicense.Text = new TextUnderscoreConverter().Convert(this.Airline.License).ToString();
+
+            }
+        }
         //switches from one airline to another airline
         private void switchAirline(Airline airlineFrom, Airline airlineTo)
         {

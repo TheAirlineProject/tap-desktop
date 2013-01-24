@@ -327,7 +327,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbInstructor) == PopUpSingleElement.ButtonSelected.OK && cbInstructor.SelectedItem != null)
             {
               
-                List<Town> towns = Towns.GetTowns();
+                List<Town> towns = Towns.GetTowns(this.FlightSchool.Airport.Profile.Country);
 
                 Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-55), GameObject.GetInstance().GameTime.AddYears(-23));

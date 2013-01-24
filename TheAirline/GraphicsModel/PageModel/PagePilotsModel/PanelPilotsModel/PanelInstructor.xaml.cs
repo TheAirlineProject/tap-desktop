@@ -95,30 +95,37 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            ComboBox cbFlightSchools = new ComboBox();
-            cbFlightSchools.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFlightSchools.Width = 200;
-            cbFlightSchools.SelectedValuePath = "Name";
-            cbFlightSchools.DisplayMemberPath = "Name";
-            cbFlightSchools.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            Boolean isServingCountry = true;// GameObject.GetInstance().HumanAirline.Airports.Exists(a => a.Profile.Country == this.Instructor.Profile.Town.Country);
 
-            foreach (FlightSchool fs in GameObject.GetInstance().HumanAirline.FlightSchools.Where(f=>f.NumberOfInstructors <  FlightSchool.MaxNumberOfInstructors))
-                cbFlightSchools.Items.Add(fs);
-
-            cbFlightSchools.SelectedIndex = 0;
-            
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1008"), cbFlightSchools) == PopUpSingleElement.ButtonSelected.OK && cbFlightSchools.SelectedItem != null)
+            if (isServingCountry)
             {
-                FlightSchool flightSchool = (FlightSchool)cbFlightSchools.SelectedItem;
+                ComboBox cbFlightSchools = new ComboBox();
+                cbFlightSchools.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+                cbFlightSchools.Width = 200;
+                cbFlightSchools.SelectedValuePath = "Name";
+                cbFlightSchools.DisplayMemberPath = "Name";
+                cbFlightSchools.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-                flightSchool.addInstructor(this.Instructor);
-                this.Instructor.FlightSchool = flightSchool;
+                foreach (FlightSchool fs in GameObject.GetInstance().HumanAirline.FlightSchools.Where(f => f.NumberOfInstructors < FlightSchool.MaxNumberOfInstructors))
+                    cbFlightSchools.Items.Add(fs);
 
-                this.ParentPage.updatePage();
+                cbFlightSchools.SelectedIndex = 0;
 
-                this.ParentPage.unloadSideMenu();
+                if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1008"), cbFlightSchools) == PopUpSingleElement.ButtonSelected.OK && cbFlightSchools.SelectedItem != null)
+                {
+                    FlightSchool flightSchool = (FlightSchool)cbFlightSchools.SelectedItem;
+
+                    flightSchool.addInstructor(this.Instructor);
+                    this.Instructor.FlightSchool = flightSchool;
+
+                    this.ParentPage.updatePage();
+
+                    this.ParentPage.unloadSideMenu();
+                }
             }
-           
+            else
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2808"), Translator.GetInstance().GetString("MessageBox", "2808", "message"), WPFMessageBoxButtons.Ok);
+        
         }
     }
 }

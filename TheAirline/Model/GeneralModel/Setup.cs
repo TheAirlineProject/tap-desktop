@@ -1407,7 +1407,11 @@ namespace TheAirline.Model.GeneralModel
             Airline.AirlineLicense license = Airline.AirlineLicense.Domestic;
 
             if (market == Airline.AirlineFocus.Global)
-                license = Airline.AirlineLicense.International;
+                if (mentality == Airline.AirlineMentality.Aggressive)
+                    license = Airline.AirlineLicense.Long_Haul;
+                else
+                    license = Airline.AirlineLicense.Short_Haul;
+          
             if (market == Airline.AirlineFocus.Regional)
                 license = Airline.AirlineLicense.Regional;
 

@@ -76,6 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
         {
+           
             WrapPanel buttonsPanel = new WrapPanel();
             buttonsPanel.Margin = new Thickness(0, 5, 0, 0);
 
@@ -88,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
             btnHire.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnHire.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnHire.Click += new RoutedEventHandler(btnHire_Click);
-
+           
             buttonsPanel.Children.Add(btnHire);
 
             return buttonsPanel;
@@ -96,14 +97,23 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
 
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
-            if (result == WPFMessageBoxResult.Yes)
-            {
-                GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
-                this.ParentPage.updatePage();
+            Boolean isServingCountry = true;// GameObject.GetInstance().HumanAirline.Airports.Exists(a => a.Profile.Country == this.Pilot.Profile.Town.Country);
 
-                this.ParentPage.unloadSideMenu();
+            if (isServingCountry)
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
+
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
+                    this.ParentPage.updatePage();
+
+                    this.ParentPage.unloadSideMenu();
+                }
             }
+            else
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2808"), Translator.GetInstance().GetString("MessageBox", "2808", "message"), WPFMessageBoxButtons.Ok);
         }
     }
 }
