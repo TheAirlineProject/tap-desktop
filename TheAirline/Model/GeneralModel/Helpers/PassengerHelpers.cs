@@ -305,7 +305,12 @@ namespace TheAirline.Model.GeneralModel
             double dist = MathHelpers.GetDistance(dAirport, airport);
 
 
-
+            if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IATACode))
+            {
+                estimatedPassengerLevel = Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IATACode]);
+                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; 
+            }
+            else
             {
                 switch (airportSize)
                 {
