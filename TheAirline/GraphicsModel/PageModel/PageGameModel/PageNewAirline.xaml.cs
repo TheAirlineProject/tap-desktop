@@ -235,7 +235,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             profile.Country = country;
             profile.Logo = logoPath;
             
-            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local);
+            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local, Airline.AirlineLicense.Domestic);
 
             Airlines.AddAirline(airline);
 

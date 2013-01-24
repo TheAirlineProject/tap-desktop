@@ -655,7 +655,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double minDistance = (from a in Airports.GetAirports(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
 
 
-            List<Airport> airports = Airports.GetAirports(a => airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null && !FlightRestrictions.HasRestriction(a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline, a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime));
+            List<Airport> airports = Airports.GetAirports(a => airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null && AirlineHelpers.HasAirlineLicens(airline,airport,a) && !FlightRestrictions.HasRestriction(a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline, a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime));
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
 
             Airline.AirlineFocus marketFocus = airline.MarketFocus;
@@ -1121,6 +1121,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return null;
         }
+     
         //returns a random item based on a weighted value
         public static T GetRandomItem<T>(Dictionary<T, int> list)
         {

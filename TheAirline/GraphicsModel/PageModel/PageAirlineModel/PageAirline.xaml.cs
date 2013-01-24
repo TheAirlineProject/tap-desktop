@@ -170,6 +170,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1009"), createAirlineReputationPanel()));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1010"), UICreator.CreateTextBlock(String.Format("{0:0.00} %", PassengerHelpers.GetPassengersHappiness(this.Airline)))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1012"), UICreator.CreateTextBlock(this.Airline.Alliances.Count > 0 ? string.Join(", ", from a in this.Airline.Alliances select a.Name) : Translator.GetInstance().GetString("PageAirline", "1013"))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1025"), UICreator.CreateTextBlock(this.Airline.License.ToString())));
 
             return panelInfo;
         }
@@ -363,7 +364,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                     this.Airline.removeSubsidiaryAirline(subAirline);
                 }
-                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus);
+                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus,this.Airline.License);
              
                 switchAirline(this.Airline, sAirline);
 

@@ -591,6 +591,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
+            Airline.AirlineLicense license = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense),airlineNode.Attributes["license"].Value);
 
             Boolean isReal = airlineNode.HasAttribute("real") ? Convert.ToBoolean(airlineNode.Attributes["real"].Value) : true;
             int founded = airlineNode.HasAttribute("founded") ? Convert.ToInt16(airlineNode.Attributes["founded"].Value) : 1950;
@@ -600,13 +601,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airlineIsSubsidiary)
             {
                 Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market,license);
                 airline.Profile.Country = airlineCountry;
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
             {
-                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color,airlineCEO, isReal, founded, folded), mentality, market);
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color,airlineCEO, isReal, founded, folded), mentality, market,license);
                 airline.Profile.Country = airlineCountry;
             }
             airline.Profile.Logo = logo;
@@ -1042,6 +1043,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
                 airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
+                airlineNode.SetAttribute("license", airline.License.ToString());
                 airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
                 airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
                 airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());

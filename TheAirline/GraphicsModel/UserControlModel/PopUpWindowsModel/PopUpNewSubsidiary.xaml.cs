@@ -219,7 +219,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             profile.Logo = logoPath;
             profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
             
-            SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local);
+            SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local,Airline.AirlineLicense.Domestic);
             subAirline.addAirport(airport);
             subAirline.Money = slMoney.Value;
 

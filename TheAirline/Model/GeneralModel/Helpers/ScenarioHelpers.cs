@@ -99,46 +99,51 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (ScenarioAirlineRoute saroute in airline.Routes)
             {
-                SetupScenarioAirport(airline.Airline, saroute.Destination1, saroute.Quantity);
-                SetupScenarioAirport(airline.Airline, saroute.Destination2, saroute.Quantity);
-
-                double price = PassengerHelpers.GetPassengerPrice(saroute.Destination1, saroute.Destination2);
-
-                for (int i = 0; i < saroute.Quantity; i++)
-                {
-                    Guid id = Guid.NewGuid();
-
-                    Route route = new Route(id.ToString(), saroute.Destination1, saroute.Destination2, price);
-
-                    RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
-
-                    foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
-                    {
-                        route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
-
-                        foreach (RouteFacility rfacility in classConfiguration.getFacilities())
-                            route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rfacility);
-                    }
-
-                    saroute.Destination1.Terminals.getEmptyGate(airline.Airline).HasRoute = true;
-                    saroute.Destination2.Terminals.getEmptyGate(airline.Airline).HasRoute = true;
-
-                    airline.Airline.addRoute(route);
-
-                    FleetAirliner fAirliner = CreateAirliner(airline.Airline, saroute.AirlinerType);
-                    airline.Airline.addAirliner(fAirliner);
-
-                    fAirliner.addRoute(route);
-
-                    AIHelpers.CreateRouteTimeTable(route, fAirliner);
-
-                    fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
-                    AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                    route.LastUpdated = GameObject.GetInstance().GameTime;
-                }
+                SetupScenarioRoute(saroute, airline.Airline);
             }
 
+        }
+        //sets up an scenario airline route
+        private static void SetupScenarioRoute(ScenarioAirlineRoute saroute, Airline airline)
+        {
+            SetupScenarioAirport(airline, saroute.Destination1, saroute.Quantity);
+            SetupScenarioAirport(airline, saroute.Destination2, saroute.Quantity);
+
+            double price = PassengerHelpers.GetPassengerPrice(saroute.Destination1, saroute.Destination2);
+
+            for (int i = 0; i < saroute.Quantity; i++)
+            {
+                Guid id = Guid.NewGuid();
+
+                Route route = new Route(id.ToString(), saroute.Destination1, saroute.Destination2, price);
+
+                RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
+
+                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                {
+                    route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+
+                    foreach (RouteFacility rfacility in classConfiguration.getFacilities())
+                        route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rfacility);
+                }
+
+                saroute.Destination1.Terminals.getEmptyGate(airline).HasRoute = true;
+                saroute.Destination2.Terminals.getEmptyGate(airline).HasRoute = true;
+
+                airline.addRoute(route);
+
+                FleetAirliner fAirliner = CreateAirliner(airline, saroute.AirlinerType);
+                airline.addAirliner(fAirliner);
+
+                fAirliner.addRoute(route);
+
+                AIHelpers.CreateRouteTimeTable(route, fAirliner);
+
+                fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
+                AirlineHelpers.HireAirlinerPilots(fAirliner);
+
+                route.LastUpdated = GameObject.GetInstance().GameTime;
+            }
         }
         //sets up an airport for an airline
         private static void SetupScenarioAirport(Airline airline, Airport airport, int quantity = 2)
@@ -169,6 +174,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     GameObject.GetInstance().HumanAirline.addAirliner(CreateAirliner(GameObject.GetInstance().HumanAirline, fleetAirliner.Key));
                 }
+            }
+            foreach (ScenarioAirlineRoute route in scenario.Routes)
+            {
+                SetupScenarioRoute(route, GameObject.GetInstance().HumanAirline);
             }
         }
         //sets up the different scenario setting

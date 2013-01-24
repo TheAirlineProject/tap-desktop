@@ -247,7 +247,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO,true,GameObject.GetInstance().GameTime.Year,2199);
             profile.Country = airline.Profile.Country;
          
-            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market);
+            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License);
 
             AddSubsidiaryAirline(airline, sAirline,money,homebase);
 
@@ -288,6 +288,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return discount;
 
 
+        }
+        //returns if an airline has licens for flying between two airports
+        public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
+        {
+            if (airline.License == Airline.AirlineLicense.International)
+                return true;
+
+            if (airline.License == Airline.AirlineLicense.Domestic && airport1.Profile.Country == airport2.Profile.Country)
+                return true;
+
+            if (airline.License == Airline.AirlineLicense.Regional && airport1.Profile.Country.Region == airport2.Profile.Country.Region)
+                return true;
+
+            return false;
         }
         
     }

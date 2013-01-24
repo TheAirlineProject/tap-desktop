@@ -250,6 +250,25 @@ namespace TheAirline.Model.GeneralModel
             Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,startCash,difficulty);
             Scenarios.AddScenario(scenario);
 
+            /*
+            <start airline="PCA" homeBase="SFO">
+ <routes>
+   <route departure="SFO" destination="JFK" airliner="Boeing 767-200" quantity="1"/>
+ </routes>
+    */
+            XmlNodeList humanRoutesList = startElement.SelectNodes("routes/route");
+
+            foreach (XmlElement humanRouteElement in humanRoutesList)
+            {
+                Airport routeDestination1 = Airports.GetAirport(humanRouteElement.Attributes["departure"].Value);
+                Airport routeDestination2 = Airports.GetAirport(humanRouteElement.Attributes["destination"].Value);
+                AirlinerType routeAirlinerType = AirlinerTypes.GetType(humanRouteElement.Attributes["airliner"].Value);
+                int routeQuantity = Convert.ToInt32(humanRouteElement.Attributes["quantity"].Value);
+
+                scenario.addRoute(new ScenarioAirlineRoute(routeDestination1, routeDestination2, routeAirlinerType, routeQuantity));
+                
+            }
+
             XmlNodeList destinationsList = startElement.SelectNodes("destinations/destination");
 
             foreach (XmlElement destinationElement in destinationsList)
@@ -1385,7 +1404,14 @@ namespace TheAirline.Model.GeneralModel
                 folded = Convert.ToInt16(infoElement.Attributes["to"].Value);
             }
 
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market);
+            Airline.AirlineLicense license = Airline.AirlineLicense.Domestic;
+
+            if (market == Airline.AirlineFocus.Global)
+                license = Airline.AirlineLicense.International;
+            if (market == Airline.AirlineFocus.Regional)
+                license = Airline.AirlineLicense.Regional;
+
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market,license);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];//<-vælges + random
             if (profileElement.HasAttribute("preferedairport"))

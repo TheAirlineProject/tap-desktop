@@ -16,9 +16,11 @@ namespace TheAirline.Model.AirlineModel
     //the class for an airline
     public class Airline
     {
+        public enum AirlineLicense { Domestic, Regional, International }
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Aggressive, Moderate, Safe}
         public enum AirlineFocus { Global, Regional,Domestic, Local }
+        public AirlineLicense License { get; set; }
         public AirlineFocus MarketFocus { get; set; }
         public AirlineMentality Mentality { get; set; }
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
@@ -43,10 +45,9 @@ namespace TheAirline.Model.AirlineModel
         public ManufacturerContract Contract { get; set; }
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
         public List<AirlinePolicy> Policies { get; set; }
-
         public List<Pilot> Pilots { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
-        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus)
+        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
@@ -63,6 +64,7 @@ namespace TheAirline.Model.AirlineModel
             this.Alliances = new List<Alliance>();
             this.Mentality = mentality;
             this.MarketFocus = marketFocus;
+            this.License = license;
             this.FlightCodes = new List<string>();
             this.Policies = new List<AirlinePolicy>();
 
