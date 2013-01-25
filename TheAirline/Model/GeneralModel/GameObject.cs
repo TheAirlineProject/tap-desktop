@@ -5,6 +5,7 @@ using System.Text;
 using System.Globalization;
 using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
+using TheAirline.Model.GeneralModel.ScenarioModel;
 
 //locked for verison 0.3.6 (this serves no purpose whatsoever)
 
@@ -26,6 +27,7 @@ namespace TheAirline.Model.GeneralModel
         public long StartMoney { get { return getStartMoney(); } set { ;} }
         public GameTimeZone TimeZone { get; set; }
         public string Name { get; set; }
+        public ScenarioObject Scenario { get; set; }
        // public enum DifficultyLevel { Easy, Normal, Hard } 
         public DifficultyLevel Difficulty { get; set; }
         public double PassengerDemandFactor { get; set; }

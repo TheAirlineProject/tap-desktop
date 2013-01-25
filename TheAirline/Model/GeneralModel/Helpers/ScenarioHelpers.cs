@@ -5,12 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.GraphicsModel.PageModel.PageGameModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -33,6 +36,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameObject.GetInstance().HumanAirline = airline;
             GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
             GameObject.GetInstance().HumanAirline.Money = scenario.StartCash;
+
+            GameObject.GetInstance().Scenario = new ScenarioObject(scenario);
 
             Airport airport = scenario.Homebase;
 
@@ -183,7 +188,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets up the different scenario setting
         private static void SetupScenario()
         {
-           
+
             Parallel.ForEach(Airports.GetAllAirports(), airport =>
             {
                 foreach (Airline airline in Airlines.GetAllAirlines())
@@ -225,7 +230,98 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fAirliner;
 
         }
+        //checks for the different failure scenarios
+        public static void UpdateScenario(ScenarioObject scenario)
+        {
+            double monthsSinceStart = MathHelpers.GetMonthsBetween(GameObject.GetInstance().StartDate, GameObject.GetInstance().GameTime);
+            
+            var failuresToCheck = scenario.Scenario.Failures.FindAll(f => f.CheckMonths == 1 || f.CheckMonths == monthsSinceStart);
+            foreach (ScenarioFailure failure in failuresToCheck)
+            {
+                Boolean failureOk = true;
+                if (failure.Type == ScenarioFailure.FailureType.Cash)
+                {
+                    failureOk = GameObject.GetInstance().HumanAirline.Money > Convert.ToInt64(failure.Value);
+                }
+                if (failure.Type == ScenarioFailure.FailureType.Fleet)
+                {
+                    failureOk = GameObject.GetInstance().HumanAirline.Fleet.Count() > Convert.ToInt32(failure.Value);
+                }
+                if (failure.Type == ScenarioFailure.FailureType.Domestic)
+                {
+                    int domesticDestinations = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Count;
+                    failureOk = domesticDestinations > Convert.ToInt32(failure.Value);
+                }
+                if (failure.Type == ScenarioFailure.FailureType.Intl)
+                {
+                    int intlDestinations = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country).Count;
+                    failureOk = intlDestinations > Convert.ToInt32(failure.Value);
+                }
+                if (failure.Type == ScenarioFailure.FailureType.PaxGrowth)
+                {
+                    double paxLastYear = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 2, StatisticsTypes.GetStatisticsType("Passengers"));
+                    double paxCurrentYear = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers"));
 
+                    double change = (paxCurrentYear - paxLastYear) / paxLastYear * 100;
+
+                    failureOk = change > Convert.ToDouble(failure.Value);
+                }
+
+                if (!failureOk)
+                {
+                    if (failure.MonthsOfFailure == 1)
+                    {
+                        EndScenario(failure.FailureText);
+                    }
+                    else
+                    {
+                        Boolean failingScenario = UpdateFailureValue(scenario,failure);
+
+                        if (failingScenario)
+                            EndScenario(failure.FailureText);
+                    }
+                }
+                //( Safety, Debt, Security,  Crime)
+            }
+        }
+        //adds another month for where the scenario parameter has not been fulfilled and returns if failing scenario
+        private static Boolean UpdateFailureValue(ScenarioObject scenario, ScenarioFailure failure)
+        {
+            ScenarioFailureObject failureObject = scenario.getScenarioFailure(failure);
+            int monthsSinceLastFailure = MathHelpers.GetMonthsBetween(failureObject.LastFailureTime,GameObject.GetInstance().GameTime);
+
+            if (monthsSinceLastFailure == 1)
+                failureObject.Failures++;
+            else
+                failureObject.Failures = 1;
+
+            failureObject.LastFailureTime = GameObject.GetInstance().GameTime;
+
+            return failureObject.Failures == failure.MonthsOfFailure;
+
+        }
+        //ends a scenario
+        private static void EndScenario(string text)
+        {
+            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Scenario failed", text));
+
+            //WPFMessageBox.Show("Scenario failed", text, WPFMessageBoxButtons.Ok);
+            //PageNavigator.NavigateTo(new PageCredits());
+            /*
+            GameObjectWorker.GetInstance().cancel();
+
+            while (GameObjectWorker.GetInstance().isBusy())
+            {
+            }
+            Setup.SetupGame();
+            PageNavigator.NavigateTo(new PageNewGame());
+            GameObject.RestartInstance();
+            GameTimer.RestartInstance();
+            
+            GameTimer.GetInstance().start();
+            GameObjectWorker.GetInstance().start();
+            */
+        }
 
 
     }

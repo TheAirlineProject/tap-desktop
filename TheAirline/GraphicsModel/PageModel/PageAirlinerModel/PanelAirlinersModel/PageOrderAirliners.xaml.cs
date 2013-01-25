@@ -53,8 +53,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             InitializeComponent();
 
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight();
+            
             StackPanel mainPanel = new StackPanel();
             mainPanel.Margin = new Thickness(0, 0, 5, 0);
+            scroller.Content = mainPanel;
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
@@ -122,7 +128,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             lbOrders = new ListBox();
             lbOrders.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbOrders.ItemTemplate = this.Resources["AirlinerOrderItem"] as DataTemplate;
-            lbOrders.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
+            //lbOrders.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
 
             mainPanel.Children.Add(lbOrders);
 
@@ -173,7 +179,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             mainPanel.Children.Add(frameAirlinerInfo);
 
 
-            this.Content = mainPanel;
+            this.Content = scroller;
 
             showOrders();
 
@@ -333,7 +339,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
              txtDiscount.Text = new ValueCurrencyConverter().Convert(discount).ToString();// string.Format("{0:C}", discount);
              txtTotalPrice.Text = new ValueCurrencyConverter().Convert(price - discount).ToString();// string.Format("{0:C}", price - discount);
 
+             showPossibleHomebases();
 
+        }
+        //show possible airports/homebases
+        private void showPossibleHomebases()
+        {
+            long minRequiredRunway = orders.Count == 0 ? 0 : this.orders.Max(o=>o.Type.MinRunwaylength);
+
+            Airport selectedAirport = (Airport)cbAirport.SelectedItem;
+
+            if (selectedAirport == null || minRequiredRunway > selectedAirport.getMaxRunwayLength())
+            {
+                cbAirport.Items.Clear();
+
+                List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= minRequiredRunway);
+                airports = airports.OrderBy(a => a.Profile.Name).ToList();
+
+                foreach (Airport airport in airports)
+                    cbAirport.Items.Add(airport);
+
+                cbAirport.SelectedIndex = 0;
+            }
 
         }
         private void cbStandardConfiguration_Checked(object sender, RoutedEventArgs e)
@@ -397,109 +424,115 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
-            if (GameObject.GetInstance().HumanAirline.Contract != null)
-            {
-                if (GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Manufacturer)
-                    contractedOrder = true;
-                else
-                {
-                    double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
-                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2010"), string.Format(Translator.GetInstance().GetString("MessageBox", "2010", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name, terminationFee), WPFMessageBoxButtons.YesNo);
 
-                    if (result == WPFMessageBoxResult.Yes)
-                    {
-                        AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
-                        GameObject.GetInstance().HumanAirline.Contract = null;
-           
-                    }
-                    tryOrder = result == WPFMessageBoxResult.Yes;
-                }
-            }
-            
+
             Airport airport = (Airport)cbAirport.SelectedItem;
 
-            if (airport != null && tryOrder)
+            if (airport == null)
             {
-                int totalAmount = orders.Sum(o=>o.Amount);
-                double price = orders.Sum(o => o.Type.Price * o.Amount);
-
-                double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
-
-                if (contractedOrder)
-                    totalPrice = totalPrice * ((100 - GameObject.GetInstance().HumanAirline.Contract.Discount) / 100);
-
-                double downpaymentPrice = 0;
-
-                downpaymentPrice = totalPrice * (GameObject.GetInstance().Difficulty.PriceLevel / 10); 
-                                           
-                if (cbDownPayment.IsChecked.Value)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                if (GameObject.GetInstance().HumanAirline.Contract != null)
                 {
-
-                    if (downpaymentPrice > GameObject.GetInstance().HumanAirline.Money)
-                    {
-                        WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
-                    }
+                    if (GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Manufacturer)
+                        contractedOrder = true;
                     else
                     {
-                        WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2009"), string.Format(Translator.GetInstance().GetString("MessageBox", "2009", "message"), totalPrice, downpaymentPrice), WPFMessageBoxButtons.YesNo);
+                        double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                        WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2010"), string.Format(Translator.GetInstance().GetString("MessageBox", "2010", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name, terminationFee), WPFMessageBoxButtons.YesNo);
 
                         if (result == WPFMessageBoxResult.Yes)
                         {
-                            foreach (AirlinerOrder order in orders)
-                            {
-                                for (int i = 0; i < order.Amount; i++)
-                                {
-                                    Airliner airliner = new Airliner(order.Type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
-                                    Airliners.AddAirliner(airliner);
+                            AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
+                            GameObject.GetInstance().HumanAirline.Contract = null;
 
-                                    FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.BoughtDownPayment;
-                                    GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airliner.TailNumber, airport);
-
-                                }
-
-
-
-                            }
-                            if (contractedOrder)
-                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Sum(o=>o.Amount);
-                            AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -downpaymentPrice);
                         }
+                        tryOrder = result == WPFMessageBoxResult.Yes;
                     }
                 }
-                else
-                {
 
-                    if (totalPrice > GameObject.GetInstance().HumanAirline.Money)
+                if (tryOrder)
+                {
+                    int totalAmount = orders.Sum(o => o.Amount);
+                    double price = orders.Sum(o => o.Type.Price * o.Amount);
+
+                    double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount)));
+
+                    if (contractedOrder)
+                        totalPrice = totalPrice * ((100 - GameObject.GetInstance().HumanAirline.Contract.Discount) / 100);
+
+                    double downpaymentPrice = 0;
+
+                    downpaymentPrice = totalPrice * (GameObject.GetInstance().Difficulty.PriceLevel / 10);
+
+                    if (cbDownPayment.IsChecked.Value)
                     {
-                        WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
-                    }
-                    else if (airport == null)
-                        WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
-                    else
-                    {
-                        if (orders.Sum(o=>o.Amount) > 0)
+
+                        if (downpaymentPrice > GameObject.GetInstance().HumanAirline.Money)
                         {
-                            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2008"), string.Format(Translator.GetInstance().GetString("MessageBox", "2008", "message"), totalPrice), WPFMessageBoxButtons.YesNo);
+                            WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
+                        }
+                        else
+                        {
+                            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2009"), string.Format(Translator.GetInstance().GetString("MessageBox", "2009", "message"), totalPrice, downpaymentPrice), WPFMessageBoxButtons.YesNo);
 
                             if (result == WPFMessageBoxResult.Yes)
                             {
-                                if (contractedOrder)
-                                    AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value, GameObject.GetInstance().HumanAirline.Contract.Discount);
-                                else
-                                    AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value);
-                                
-                                PageNavigator.NavigateTo(new PageAirliners());
-                            }
+                                foreach (AirlinerOrder order in orders)
+                                {
+                                    for (int i = 0; i < order.Amount; i++)
+                                    {
+                                        Airliner airliner = new Airliner(order.Type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
+                                        Airliners.AddAirliner(airliner);
 
-                            if (contractedOrder)
-                                GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Sum(o=>o.Amount);
-                    
+                                        FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.BoughtDownPayment;
+                                        GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airliner.TailNumber, airport);
+
+                                    }
+
+
+
+                                }
+                                if (contractedOrder)
+                                    GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Sum(o => o.Amount);
+                                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -downpaymentPrice);
+                            }
+                        }
+                    }
+                    else
+                    {
+
+                        if (totalPrice > GameObject.GetInstance().HumanAirline.Money)
+                        {
+                            WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);
+                        }
+                        else
+                        {
+                            if (orders.Sum(o => o.Amount) > 0)
+                            {
+                                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2008"), string.Format(Translator.GetInstance().GetString("MessageBox", "2008", "message"), totalPrice), WPFMessageBoxButtons.YesNo);
+
+                                if (result == WPFMessageBoxResult.Yes)
+                                {
+                                    if (contractedOrder)
+                                        AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value, GameObject.GetInstance().HumanAirline.Contract.Discount);
+                                    else
+                                        AirlineHelpers.OrderAirliners(GameObject.GetInstance().HumanAirline, orders, airport, dpDate.SelectedDate.Value);
+
+                                    PageNavigator.NavigateTo(new PageAirliners());
+                                }
+
+                                if (contractedOrder)
+                                    GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners += orders.Sum(o => o.Amount);
+
+                            }
                         }
                     }
                 }
+                this.ParentPage.updatePage();
             }
-            this.ParentPage.updatePage();
-    
         }
         private void btnContract_Click(object sender, RoutedEventArgs e)
         {

@@ -22,6 +22,7 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
         public Dictionary<AirlinerType,int> Fleet { get; set; }
         public DifficultyLevel Difficulty { get; set; }
         public List<ScenarioAirlineRoute> Routes { get; set; }
+        public List<ScenarioFailure> Failures { get; set; }
         public Scenario(string name,string description, Airline airline, Airport homebase, int startyear, long startcash,DifficultyLevel difficulty)
         {
             this.Name = name;
@@ -35,6 +36,7 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
             this.Destinations = new List<Airport>();
             this.Fleet = new Dictionary<AirlinerType, int>();
             this.Routes = new List<ScenarioAirlineRoute>();
+            this.Failures = new List<ScenarioFailure>();
         }
         //adds a route to the scenario
         public void addRoute(ScenarioAirlineRoute route)
@@ -55,6 +57,11 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
         public void addOpponentAirline(ScenarioAirline airline)
         {
             this.OpponentAirlines.Add(airline);
+        }
+        //adds a failure to the scenario
+        public void addScenarioFailure(ScenarioFailure failure)
+        {
+            this.Failures.Add(failure);
         }
 
 

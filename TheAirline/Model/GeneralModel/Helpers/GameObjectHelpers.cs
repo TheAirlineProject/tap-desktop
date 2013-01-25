@@ -755,6 +755,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 AirportHelpers.CheckForExtendAirport(airport);
             });
+
+            if (GameObject.GetInstance().Scenario != null)
+                ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
         }
         //updates an airliner
         private static void UpdateAirliner(FleetAirliner airliner)

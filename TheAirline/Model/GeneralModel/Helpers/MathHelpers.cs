@@ -32,6 +32,12 @@ namespace TheAirline.Model.GeneralModel
 
             return list;
         }
+        //returns the number of months between two dates
+        public static int GetMonthsBetween(DateTime date1, DateTime date2)
+        {
+            return ((date2.Year - date1.Year) * 12) + date2.Month - date1.Month;
+
+        }
         //returns a random date 
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {

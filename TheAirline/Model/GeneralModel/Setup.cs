@@ -247,15 +247,14 @@ namespace TheAirline.Model.GeneralModel
             Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
             Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
 
+            if (startElement.HasAttribute("license"))
+                startAirline.License = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), startElement.Attributes["license"].Value);
+
+
             Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,startCash,difficulty);
             Scenarios.AddScenario(scenario);
 
-            /*
-            <start airline="PCA" homeBase="SFO">
- <routes>
-   <route departure="SFO" destination="JFK" airliner="Boeing 767-200" quantity="1"/>
- </routes>
-    */
+          
             XmlNodeList humanRoutesList = startElement.SelectNodes("routes/route");
 
             foreach (XmlElement humanRouteElement in humanRoutesList)
@@ -306,8 +305,26 @@ namespace TheAirline.Model.GeneralModel
 
                 scenario.addOpponentAirline(scenarioAirline);
             }
-           
-          
+
+            XmlNodeList parametersList = element.SelectNodes("parameters/failure");
+
+            foreach (XmlElement parameterElement in parametersList)
+            {
+                ScenarioFailure.FailureType failureType = (ScenarioFailure.FailureType)Enum.Parse(typeof(ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
+                object failureValue = parameterElement.Attributes["value"].Value;
+                double checkMonths = parameterElement.HasAttribute("at") ? 12 * Convert.ToDouble(parameterElement.Attributes["at"].Value) : 1;
+                string failureText = parameterElement.Attributes["text"].Value;
+                double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value) : 1;
+
+                ScenarioFailure failure = new ScenarioFailure(failureType, (int)checkMonths, failureValue, failureText,(int)monthsOfFailure);
+
+                scenario.addScenarioFailure(failure);
+            }
+            /*
+             * 	<		<failure type="Cash" value="0" for="0.25" text="You have failed the scenario because you didn't maintain a positive balance, maybe you aren't the right CEO for this company!"/>
+ </parameters>
+  */
+
         }
         /*!loads the standard configurations
          */
