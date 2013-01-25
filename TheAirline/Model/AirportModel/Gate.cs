@@ -91,6 +91,11 @@ namespace TheAirline.Model.AirportModel
 
             return null;
         }
+        //returns if there is gates with routes
+        public Boolean hasRoute()
+        {
+            return getDeliveredGates().Exists(g => g.HasRoute);
+        }
         //returns all used gates
         public List<Gate> getUsedGates()
         {

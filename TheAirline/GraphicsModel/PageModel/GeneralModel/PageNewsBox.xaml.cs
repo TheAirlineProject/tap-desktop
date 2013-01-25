@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -93,6 +94,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnDelete.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             panelButtons.Children.Add(btnDelete);
 
+            Button btnDeleteAll = new Button();
+            btnDeleteAll.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnDeleteAll.Height = Double.NaN;
+            btnDeleteAll.Width = Double.NaN;
+            btnDeleteAll.Uid = "203";
+            btnDeleteAll.Margin = new Thickness(5, 0, 0, 0);
+            btnDeleteAll.Content = Translator.GetInstance().GetString("PageNewsBox", btnDeleteAll.Uid);
+            btnDeleteAll.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnDeleteAll.Click += btnDeleteAll_Click;
+            panelButtons.Children.Add(btnDeleteAll);
+
             newsPanel.Children.Add(panelButtons);
             
      
@@ -111,6 +123,18 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
 
             this.Unloaded += new RoutedEventHandler(PageNewsBox_Unloaded);
+        }
+
+        private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
+        {
+             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2951"), string.Format(Translator.GetInstance().GetString("MessageBox", "2951", "message")), WPFMessageBoxButtons.YesNo);
+
+             if (result == WPFMessageBoxResult.Yes)
+             {
+                 GameObject.GetInstance().NewsBox.clear();
+
+                 showNews(true);
+             }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)

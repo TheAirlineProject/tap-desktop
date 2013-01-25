@@ -756,6 +756,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirportHelpers.CheckForExtendAirport(airport);
             });
 
+            foreach (Airport airport in Airports.GetAllAirports(a=>a.Terminals.hasRoute()))
+            {
+               foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
+                        destPax.Rate = (ushort)(destPax.Rate * 1.03);
+           
+            }
+
             if (GameObject.GetInstance().Scenario != null)
                 ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
         }
