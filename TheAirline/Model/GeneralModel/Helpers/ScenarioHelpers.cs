@@ -266,23 +266,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     failureOk = change > Convert.ToDouble(failure.Value);
                 }
+                if (failure.Type == ScenarioFailure.FailureType.Debt)
+                {
+                    double debt =GameObject.GetInstance().HumanAirline.Loans.Sum(l=>l.PaymentLeft) + GameObject.GetInstance().HumanAirline.Money;
+
+                    failureOk = debt <= Convert.ToDouble(failure.Value);
+                }
 
                 if (!failureOk)
                 {
                     if (failure.MonthsOfFailure == 1)
                     {
-                        EndScenario(failure.FailureText);
+                        EndScenario(failure);
                     }
                     else
                     {
                         Boolean failingScenario = UpdateFailureValue(scenario,failure);
 
                         if (failingScenario)
-                            EndScenario(failure.FailureText);
+                            EndScenario(failure);
                     }
                 }
                 //( Safety, Debt, Security,  Crime)
             }
+            if (GameObject.GetInstance().Scenario.Scenario.EndYear == GameObject.GetInstance().GameTime.Year)
+                GameObject.GetInstance().Scenario.IsSuccess = true;
         }
         //adds another month for where the scenario parameter has not been fulfilled and returns if failing scenario
         private static Boolean UpdateFailureValue(ScenarioObject scenario, ScenarioFailure failure)
@@ -301,26 +309,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //ends a scenario
-        private static void EndScenario(string text)
+        private static void EndScenario(ScenarioFailure failure)
         {
-            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Scenario failed", text));
-
-            //WPFMessageBox.Show("Scenario failed", text, WPFMessageBoxButtons.Ok);
-            //PageNavigator.NavigateTo(new PageCredits());
-            /*
-            GameObjectWorker.GetInstance().cancel();
-
-            while (GameObjectWorker.GetInstance().isBusy())
-            {
-            }
-            Setup.SetupGame();
-            PageNavigator.NavigateTo(new PageNewGame());
-            GameObject.RestartInstance();
-            GameTimer.RestartInstance();
-            
-            GameTimer.GetInstance().start();
-            GameObjectWorker.GetInstance().start();
-            */
+            GameObject.GetInstance().Scenario.ScenarioFailed = failure;
+          
         }
 
 

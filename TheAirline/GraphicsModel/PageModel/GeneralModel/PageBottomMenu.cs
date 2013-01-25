@@ -8,6 +8,9 @@ using System.Windows.Controls;
 using System.Windows.Media;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.GraphicsModel.PageModel.PageGameModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -30,8 +33,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             TextBlock txtHuman = new TextBlock();
             txtHuman.FontWeight = FontWeights.Bold;
-
-            txtHuman.Text = string.Format("{0} CEO of {1}", GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name);
+            
+            txtHuman.Text = string.Format(Translator.GetInstance().GetString("PageBottomMenu","1000"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name);
 
             Grid.SetColumn(txtHuman, 0);
             panelMain.Children.Add(txtHuman);
@@ -91,6 +94,41 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 txtMoney.Text = new ValueCurrencyConverter().Convert(GameObject.GetInstance().HumanAirline.Money).ToString();
                 txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
 
+                if (GameObject.GetInstance().Scenario != null && (GameObject.GetInstance().Scenario.ScenarioFailed != null || GameObject.GetInstance().Scenario.IsSuccess))
+                {
+                    GameObjectWorker.GetInstance().cancel();
+
+                    WPFMessageBoxResult result;
+                    if (GameObject.GetInstance().Scenario.ScenarioFailed != null)
+                    {
+                        result = WPFMessageBox.Show(Translator.GetInstance().GetString("PageBottomMenu","1001"), GameObject.GetInstance().Scenario.ScenarioFailed.FailureText, WPFMessageBoxButtons.ContinueExit);
+                        
+                    }
+                    else
+                    {
+                        result = WPFMessageBox.Show(Translator.GetInstance().GetString("PageBottomMenu","1002"), Translator.GetInstance().GetString("PageBottomMenu","1003"), WPFMessageBoxButtons.ContinueExit);
+    
+                    }
+
+                    if (result == WPFMessageBoxResult.Continue)
+                    {
+                        GameObjectWorker.GetInstance().start();
+
+                        GameObject.GetInstance().Scenario = null;
+                    }
+                    else
+                    {
+                        Setup.SetupGame();
+                        PageNavigator.NavigateTo(new PageNewGame());
+                        GameObject.RestartInstance();
+                        GameTimer.RestartInstance();
+
+                        GameTimer.GetInstance().start();
+                        //GameObjectWorker.GetInstance().start();
+      
+                    }
+           
+                }
             }
 
         }

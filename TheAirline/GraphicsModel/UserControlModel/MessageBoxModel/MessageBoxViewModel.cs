@@ -14,12 +14,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.MessageBoxModel
         No,
         Ok,
         Cancel,
-        Close
+        Close,
+        Exit,
+        Continue
     }
     public enum WPFMessageBoxButtons
     {
         YesNo,
-        Ok
+        Ok,
+        ContinueExit
     }
     public class MessageBoxViewModel : INotifyPropertyChanged
     {
@@ -48,6 +51,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.MessageBoxModel
                 {
                     ___Message = value;
                     NotifyPropertyChange("Message");
+                }
+            }
+        }
+        public Visibility ContinueExitVisibility
+        {
+            get { return ___ContinueExitVisibility; }
+            set
+            {
+                if (___ContinueExitVisibility != value)
+                {
+                    ___ContinueExitVisibility = value;
+                    NotifyPropertyChange("ContinueExitVisibility");
                 }
             }
         }
@@ -133,7 +148,32 @@ namespace TheAirline.GraphicsModel.UserControlModel.MessageBoxModel
                 return ___OKCommand;
             }
         }
-
+        public ICommand ContinueCommand
+        {
+            get
+            {
+                if (___ContinueCommand == null)
+                    ___ContinueCommand = new DelegateCommand(() =>
+                    {
+                        ___View.Result = WPFMessageBoxResult.Continue;
+                        ___View.Close();
+                    });
+                return ___ContinueCommand;
+            }
+        }
+        public ICommand ExitCommand
+        {
+            get
+            {
+                if (___ExitCommand == null)
+                    ___ExitCommand = new DelegateCommand(() =>
+                    {
+                        ___View.Result = WPFMessageBoxResult.Exit;
+                        ___View.Close();
+                    });
+                return ___ExitCommand;
+            }
+        }
 
 
 
@@ -160,10 +200,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.MessageBoxModel
             switch (buttonOption)
             {
                 case WPFMessageBoxButtons.YesNo:
-                    OkVisibility = CancelVisibility = Visibility.Collapsed;
+                    OkVisibility = CancelVisibility = ContinueExitVisibility = Visibility.Collapsed;
                     break;
                 case WPFMessageBoxButtons.Ok:
-                    YesNoVisibility = CancelVisibility = Visibility.Collapsed;
+                    YesNoVisibility = CancelVisibility = ContinueExitVisibility = Visibility.Collapsed;
+                    break;
+                case WPFMessageBoxButtons.ContinueExit:
+                    OkVisibility = CancelVisibility = YesNoVisibility = Visibility.Collapsed;
                     break;
                 default:
                     OkVisibility = CancelVisibility = YesNoVisibility = Visibility.Collapsed;
@@ -172,7 +215,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.MessageBoxModel
         }
 
 
-
+        Visibility ___ContinueExitVisibility;
         Visibility ___YesNoVisibility;
         Visibility ___OKVisibility;
         Visibility ___CancelVisibility;
@@ -180,7 +223,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.MessageBoxModel
         ICommand ___YesCommand;
         ICommand ___NoCommand;
         ICommand ___OKCommand;
-
+        ICommand ___ContinueCommand;
+        ICommand ___ExitCommand;
 
 
 

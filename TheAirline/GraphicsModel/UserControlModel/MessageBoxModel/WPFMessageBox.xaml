@@ -27,8 +27,10 @@
             <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgNo}" Visibility="{Binding YesNoVisibility}" Command="{Binding NoCommand}" Margin="5 5 5 5" Height="24" Width="80" />
             <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgCancel}" Visibility="{Binding CancelVisibility}" Command="{Binding CancelCommand}" Margin="5 5 5 5" Height="24" Width="80" />
             <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgOk}" Visibility="{Binding OkVisibility}" Command="{Binding OkCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgContinue}" Visibility="{Binding ContinueExitVisibility}" Command="{Binding ContinueCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgExit}" Visibility="{Binding ContinueExitVisibility}" Command="{Binding ExitCommand}" Margin="5 5 5 5" Height="24" Width="80" />
 
-            </StackPanel>
+        </StackPanel>
         </Grid>
 </Window>
 

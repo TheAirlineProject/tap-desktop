@@ -9,10 +9,13 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
     public class ScenarioObject
     {
         public Scenario Scenario { get; set; }
+        public ScenarioFailure ScenarioFailed { get; set; }
+        public Boolean IsSuccess { get; set; }
         private List<ScenarioFailureObject> Failures;
         public ScenarioObject(Scenario scenario)
         {
             this.Scenario = scenario;
+            this.IsSuccess = false;
             this.Failures = new List<ScenarioFailureObject>();
 
             foreach (ScenarioFailure failure in this.Scenario.Failures)

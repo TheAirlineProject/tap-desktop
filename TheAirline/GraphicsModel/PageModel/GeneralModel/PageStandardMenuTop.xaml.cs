@@ -142,7 +142,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
 
             GameTimer.GetInstance().start();
-            GameObjectWorker.GetInstance().start();
+            //GameObjectWorker.GetInstance().start();
 
         }
         private void lnkFlights_Click(object sender, RoutedEventArgs e)

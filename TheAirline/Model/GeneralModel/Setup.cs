@@ -237,6 +237,7 @@ namespace TheAirline.Model.GeneralModel
             string scenarioName = element.Attributes["name"].Value;
             int startYear = Convert.ToInt32(element.Attributes["startYear"].Value);
             long startCash = Convert.ToInt64(element.Attributes["startCash"].Value);
+            int endYear = Convert.ToInt32(element.Attributes["endYear"].Value);
             DifficultyLevel difficulty = DifficultyLevels.GetDifficultyLevel(element.Attributes["difficulty"].Value);
  
             string description = element.SelectSingleNode("intro").Attributes["text"].Value;
@@ -251,7 +252,7 @@ namespace TheAirline.Model.GeneralModel
                 startAirline.License = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), startElement.Attributes["license"].Value);
 
 
-            Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,startCash,difficulty);
+            Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,endYear, startCash,difficulty);
             Scenarios.AddScenario(scenario);
 
           
