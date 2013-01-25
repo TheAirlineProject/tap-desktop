@@ -121,7 +121,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 brdRoute.BorderBrush = Brushes.Black;
                 brdRoute.BorderThickness = new Thickness(1);
                 brdRoute.Margin = new Thickness(0, 0, 0, 2);
-                brdRoute.Width = 100;
+                brdRoute.Width = 150;
                 brdRoute.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
                 ContentControl ccRoute = new ContentControl();
@@ -298,14 +298,38 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
             {
+                string outboundRoute;
+
+                if (route.HasStopovers)
+                {
+                    string stopovers= string.Join("-", from s in route.Stopovers select new AirportCodeConverter().Convert(s.Stopover));
+                    outboundRoute = string.Format("{0}-{1}-{2}",new AirportCodeConverter().Convert(route.Destination1), stopovers,new AirportCodeConverter().Convert(route.Destination2));
+                }
+                else
+                    outboundRoute = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+                
                 ComboBoxItem item1 = new ComboBoxItem();
                 item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
-                item1.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+                item1.Content = outboundRoute; 
                 cbRoute.Items.Add(item1);
 
+                string inboundRoute;
+
+                if (route.HasStopovers)
+                {
+                    var lStopovers = route.Stopovers;
+                    lStopovers.Reverse();
+                    string stopovers = string.Join("-", from s in lStopovers select new AirportCodeConverter().Convert(s.Stopover));
+                    
+                    inboundRoute = string.Format("{2}-{1}-{0}", new AirportCodeConverter().Convert(route.Destination1), stopovers, new AirportCodeConverter().Convert(route.Destination2));
+         
+                }
+                else
+                    inboundRoute = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
+           
                 ComboBoxItem item2 = new ComboBoxItem();
                 item2.Tag = new KeyValuePair<Route, Airport>(route, route.Destination1);
-                item2.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
+                item2.Content = inboundRoute;  
                 cbRoute.Items.Add(item2);
             }
 
@@ -681,14 +705,39 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() & !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r=>new AirportCodeConverter().Convert(r.Destination2)))
                 {
+                    string outboundRoute;
+
+                    if (route.HasStopovers)
+                    {
+                        string stopovers = string.Join("-", from s in route.Stopovers select new AirportCodeConverter().Convert(s.Stopover));
+                        outboundRoute = string.Format("{0}-{1}-{2}", new AirportCodeConverter().Convert(route.Destination1), stopovers, new AirportCodeConverter().Convert(route.Destination2));
+                    }
+                    else
+                        outboundRoute = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+            
                     ComboBoxItem item1 = new ComboBoxItem();
                     item1.Tag = new KeyValuePair<Route, Airport>(route, route.Destination2);
-                    item1.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+                    item1.Content = outboundRoute;
                     cbRoute.Items.Add(item1);
+
+                    string inboundRoute;
+
+                    if (route.HasStopovers)
+                    {
+                        var lStopovers = route.Stopovers;
+                        lStopovers.Reverse();
+                        string stopovers = string.Join("-", from s in lStopovers select new AirportCodeConverter().Convert(s.Stopover));
+
+                        inboundRoute = string.Format("{2}-{1}-{0}", new AirportCodeConverter().Convert(route.Destination1), stopovers, new AirportCodeConverter().Convert(route.Destination2));
+
+                    }
+                    else
+                        inboundRoute = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
+           
 
                     ComboBoxItem item2 = new ComboBoxItem();
                     item2.Tag = new KeyValuePair<Route, Airport>(route, route.Destination1);
-                    item2.Content = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination2), new AirportCodeConverter().Convert(route.Destination1));
+                    item2.Content = inboundRoute;
                     cbRoute.Items.Add(item2);
                 }
             }

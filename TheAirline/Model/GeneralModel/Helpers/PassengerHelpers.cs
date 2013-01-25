@@ -190,8 +190,9 @@ namespace TheAirline.Model.GeneralModel
 
         
             }
-      
-            return passengers;
+
+            return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, passengers);
+
         }
         //returns the number of passengers for a flight on a stopover route
         public static int GetStopoverFlightPassengers(FleetAirliner airliner, AirlinerClass.ClassType type)

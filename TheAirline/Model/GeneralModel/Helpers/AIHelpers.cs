@@ -421,6 +421,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
                             route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
 
+                            foreach (StopoverRoute stopover in route.Stopovers)
+                                stopover.Stopover.Terminals.getUsedGate(airline).HasRoute = false;
+
                             if (airline.Routes.Count == 0)
                                 CreateNewRoute(airline);
 
