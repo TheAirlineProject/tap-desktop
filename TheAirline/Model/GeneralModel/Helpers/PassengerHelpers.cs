@@ -309,7 +309,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IATACode))
             {
-                estimatedPassengerLevel = Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IATACode]);
+                estimatedPassengerLevel = (Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IATACode]) * 1000)/365;
                 estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; 
             }
             else

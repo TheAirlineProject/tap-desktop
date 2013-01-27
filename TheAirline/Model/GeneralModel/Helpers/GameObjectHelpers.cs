@@ -753,8 +753,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //checks if the airport will increase the number of gates either by new terminal or by extending existing
             Parallel.ForEach(Airports.GetAllAirports(a=>a.Terminals.getInusePercent()>90), airport =>
             {
-                AirportHelpers.CheckForExtendAirport(airport);
+                AirportHelpers.CheckForExtendGates(airport);
             });
+            
+            long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a=>a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To>= GameObject.GetInstance().GameTime).Max(a=>a.MinRunwaylength);
+
+            Parallel.ForEach(Airports.GetAllAirports(a => a.Runways.Count > 0 && a.Runways.Select(r => r.Length).Max() < longestRequiredRunwayLenght / 2), airport =>
+                {
+                    AirportHelpers.CheckForExtendRunway(airport);
+                });
 
             foreach (Airport airport in Airports.GetAllAirports(a=>a.Terminals.hasRoute()))
             {

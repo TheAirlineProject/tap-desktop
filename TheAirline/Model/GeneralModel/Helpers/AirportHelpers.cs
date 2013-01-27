@@ -6,6 +6,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -424,8 +425,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return false;//airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
+        //checks an airport for extending of runway
+        public static void CheckForExtendRunway(Airport airport)
+        {
+            int minYearsBetweenExpansions = 5;
+
+           long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
+           long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a=>a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To>= GameObject.GetInstance().GameTime).Max(a=>a.MinRunwaylength);
+           long longestRunwayInUse = AirportHelpers.GetAirportRoutes(airport).Max(r=>r.getAirliners().Max(a=>a.Airliner.Type.MinRunwaylength));
+
+           if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
+           {
+               List<string> runwayNames = (from r in Airports.GetAllAirports().SelectMany(a=>a.Runways) select r.Name).Distinct().ToList();
+             
+               foreach (Runway r in airport.Runways)
+                   runwayNames.Remove(r.Name);
+
+               Runway.SurfaceType surface = airport.Runways[0].Surface;
+               long lenght = Math.Min(longestRequiredRunwayLenght * 3 / 4,longestRunwayInUse*2);
+               
+               Runway runway = new Runway(runwayNames[rnd.Next(runwayNames.Count)] ,lenght,surface,GameObject.GetInstance().GameTime.AddDays(90),false);
+               airport.Runways.Add(runway);
+      
+               airport.LastExpansionDate = GameObject.GetInstance().GameTime;
+           }
+           
+        }
         //checks an airport for new gates
-        public static void CheckForExtendAirport(Airport airport)
+        public static void CheckForExtendGates(Airport airport)
         {
             int minYearsBetweenExpansions = 5;
 

@@ -94,6 +94,10 @@ namespace TheAirline.Model.GeneralModel
             Console.WriteLine(Airports.GetAllAirports().Count);
             Console.WriteLine(Airlines.GetAllAirlines().Count);
 
+            var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
+
+            foreach (Airport airport in noRunwayAirports)
+                Console.WriteLine(airport.Profile.Name);
 
         }
 
@@ -1625,7 +1629,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
       
-            
+            /*
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("CPH").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
@@ -1633,6 +1637,7 @@ namespace TheAirline.Model.GeneralModel
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
+             * */
         }
 
         /*! removes some random airlines from the list bases on number of opponents.
