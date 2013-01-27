@@ -432,7 +432,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
            long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
            long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a=>a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To>= GameObject.GetInstance().GameTime).Max(a=>a.MinRunwaylength);
-           long longestRunwayInUse = AirportHelpers.GetAirportRoutes(airport).Max(r=>r.getAirliners().Max(a=>a.Airliner.Type.MinRunwaylength));
+           long longestRunwayInUse = 0;// AirportHelpers.GetAirportRoutes(airport).Where(a => a.getAirliners().Count > 0).Max(r => r.getAirliners().Max(a => a.Airliner.Type.MinRunwaylength));
 
            if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
            {

@@ -183,11 +183,26 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //get the degree of filling
         public double getFillingDegree()
         {
-            double passengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
+            if (this.HasStopovers)
+            {
+                double fillingDegree = 0;
 
-            double passengerCapacity = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Capacity")));
+                var legs = this.Stopovers.SelectMany(s => s.Legs);
+                foreach (Route leg in legs)
+                {
+                    fillingDegree += leg.getFillingDegree();
+                }
+                return fillingDegree / legs.Count();
 
-            return passengers / passengerCapacity;
+            }
+            else
+            {
+                double passengers = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Passengers")));
+
+                double passengerCapacity = Convert.ToDouble(this.Statistics.getTotalValue(StatisticsTypes.GetStatisticsType("Capacity")));
+
+                return passengers / passengerCapacity;
+            }
         }
         //gets the income per passenger
         private double getIncomePerPassenger()
@@ -199,7 +214,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns all airliners assigned to the route
         public List<FleetAirliner> getAirliners()
         {
-            return (from e in this.TimeTable.Entries where e.Airliner != null select e.Airliner).Distinct().ToList();
+            List<FleetAirliner> mainEntries = (from e in this.TimeTable.Entries where e.MainEntry != null && e.MainEntry.Airliner != null select e.MainEntry.Airliner).Distinct().ToList();
+            List<FleetAirliner> allAirliners = (from e in this.TimeTable.Entries where e.Airliner != null select e.Airliner).Distinct().ToList();
+            allAirliners.AddRange(mainEntries);
+
+            return allAirliners;
         }
         //returns the current airliner on the route
         public FleetAirliner getCurrentAirliner()
