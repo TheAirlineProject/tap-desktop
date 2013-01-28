@@ -310,6 +310,31 @@ namespace TheAirline.Model.GeneralModel
 
                 scenario.addOpponentAirline(scenarioAirline);
             }
+            /*    <!--country/airport is modified by change(%) for length(years)-->
+      <paxDemand country="122" change="-20" length="1"/>
+      <paxDemand airport="JFK" change="-25" length="2"/>
+      <paxDemand airport="LGA" change="-25" length="2"/>
+      <paxDemand airport="EWR" change="-25" length="2"/>*/
+            XmlNodeList modifiersList = element.SelectNodes("modifiers/paxDemand");
+
+            foreach (XmlElement paxElement in modifiersList)
+            {
+                Country country = null;
+                Airport airport = null;
+
+                if (paxElement.HasAttribute("country"))
+                    country = Countries.GetCountry(paxElement.Attributes["country"].Value);
+
+                if (paxElement.HasAttribute("airport"))
+                    airport = Airports.GetAirport(paxElement.Attributes["airport"].Value);
+
+                double factor = Convert.ToDouble(paxElement.Attributes["change"].Value);
+
+                DateTime enddate = new DateTime(scenario.StartYear + Convert.ToInt32(paxElement.Attributes["length"].Value), 1, 1);
+
+                scenario.addPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport)); 
+            }
+
 
             XmlNodeList parametersList = element.SelectNodes("parameters/failure");
 

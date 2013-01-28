@@ -511,7 +511,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
                 {
                     foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
-                        destPax.Rate = (ushort)(destPax.Rate * 1.05);
+                        destPax.Rate = (ushort)(destPax.Rate * MathHelpers.GetRandomDoubleNumber(0.97,1.05));
                 });
 
             //removes the oldest pilots/instructors and creates some new ones
@@ -763,12 +763,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirportHelpers.CheckForExtendRunway(airport);
                 });
 
-            foreach (Airport airport in Airports.GetAllAirports(a=>a.Terminals.hasRoute()))
-            {
-               foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
-                        destPax.Rate = (ushort)(destPax.Rate * 1.03);
-           
-            }
+            PassengerHelpers.ChangePaxDemand(Airports.GetAllAirports(a => a.Terminals.hasRoute()), 3);
 
             if (GameObject.GetInstance().Scenario != null)
                 ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
@@ -1384,7 +1379,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (e.Type)
             {
                 case HistoricEventInfluence.InfluenceType.PassengerDemand:
-                    GameObject.GetInstance().PassengerDemandFactor = GameObject.GetInstance().PassengerDemandFactor + value;
+                    PassengerHelpers.ChangePaxDemand(value);
                     break;
                 case HistoricEventInfluence.InfluenceType.FuelPrices:
                     double percent = (100 - value) / 100;

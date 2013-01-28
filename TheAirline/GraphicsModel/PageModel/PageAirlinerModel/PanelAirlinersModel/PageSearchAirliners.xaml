@@ -6,8 +6,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageSearchAirliners">
+    <Page.Resources>
+        <DataTemplate x:Key="ManufacturerItem">
+            <WrapPanel Width="250">
+                <Image Source="{Binding Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20" Height="20" Margin="0 0 5 0"></Image>
+                <TextBlock Width="200" VerticalAlignment="Bottom" Text="{Binding Name}"/>
+            </WrapPanel>
+        </DataTemplate>
 
-    <Grid>
+    </Page.Resources>
+        <Grid>
         
     </Grid>
 </Page>

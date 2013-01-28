@@ -44,6 +44,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             SetupScenarioAirport(airline, airport);
 
             PassengerHelpers.CreateDestinationPassengers();
+            SetupScenarioPassengerDemand(scenario);
 
             AirlinerHelpers.CreateStartUpAirliners();
 
@@ -70,6 +71,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
+        }
+        //sets up the passenger demand for a scenario
+        private static void SetupScenarioPassengerDemand(Scenario scenario)
+        {
+            foreach (ScenarioPassengerDemand demand in scenario.PassengerDemands)
+            {
+                if (demand.Airport != null)
+                    PassengerHelpers.ChangePaxDemand(demand.Factor);
+                if (demand.Country != null)
+                    PassengerHelpers.ChangePaxDemand(Airports.GetAllAirports(a => a.Profile.Country == demand.Country),demand.Factor);
+
+            }
+            
         }
         //sets up the airlines for a scenario
         private static void SetupScenarioAirlines(Scenario scenario)
@@ -230,6 +244,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return fAirliner;
 
         }
+        //updates the pax demands for the scenario
+        private static void UpdatePassengerDemands(ScenarioObject scenario)
+        {
+            
+            foreach (ScenarioPassengerDemand demand in scenario.Scenario.PassengerDemands)
+                if (GameObject.GetInstance().GameTime.ToShortDateString() == demand.EndDate.ToShortDateString())
+                {
+                    if (demand.Airport != null)
+                        PassengerHelpers.ChangePaxDemand(-demand.Factor);
+                    if (demand.Country != null)
+                        PassengerHelpers.ChangePaxDemand(Airports.GetAllAirports(a => a.Profile.Country == demand.Country), -demand.Factor);
+
+                }
+              
+        }
         //checks for the different failure scenarios
         public static void UpdateScenario(ScenarioObject scenario)
         {
@@ -289,6 +318,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 //( Safety, Debt, Security,  Crime)
             }
+            UpdatePassengerDemands(GameObject.GetInstance().Scenario);
+
             if (GameObject.GetInstance().Scenario.Scenario.EndYear == GameObject.GetInstance().GameTime.Year)
                 GameObject.GetInstance().Scenario.IsSuccess = true;
         }

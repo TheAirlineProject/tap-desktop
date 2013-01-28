@@ -514,8 +514,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
 
-            GameObject.GetInstance().PassengerDemandFactor = Convert.ToDouble(gameSettingsNode.Attributes["passengerdemand"].Value);
-
             GameObject.GetInstance().Name = gameSettingsNode.Attributes["name"].Value;
 
             Airline humanAirline = Airlines.GetAirline(gameSettingsNode.Attributes["human"].Value);
@@ -1653,7 +1651,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             root.AppendChild(difficultyNode);
 
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
-            gameSettingsNode.SetAttribute("passengerdemand", GameObject.GetInstance().PassengerDemandFactor.ToString());
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
             gameSettingsNode.SetAttribute("mainairline", GameObject.GetInstance().MainAirline.Profile.IATACode);

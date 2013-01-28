@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
     /// </summary>
     public partial class PageSearchAirliners : Page
     {
-        private ComboBox cbRange, cbCapacity, cbPrice,cbYear, cbCompareRange, cbCompareCapacity, cbComparePrice, cbCompareYear;
+        private ComboBox cbRange, cbCapacity, cbPrice,cbYear, cbCompareRange, cbCompareCapacity, cbComparePrice, cbCompareYear, cbManufacturers;
         private enum CompareType { Larger_than, Lower_than, Equal_to,All }
         private PageAirliners ParentPage;
         public PageSearchAirliners(PageAirliners parent)
@@ -47,6 +47,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             lbSearch.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbSearch.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             mainPanel.Children.Add(lbSearch);
+
+            cbManufacturers = new ComboBox();
+            cbManufacturers.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbManufacturers.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbManufacturers.ItemTemplate = this.Resources["ManufacturerItem"] as DataTemplate;
+            cbManufacturers.Width = 200;
+
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirliners", "1006"), cbManufacturers));
+
+            cbManufacturers.Items.Add(new Manufacturer("All","All",null));
+
+            (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => cbManufacturers.Items.Add(m));
+
+            cbManufacturers.SelectedIndex = 0;
 
             WrapPanel panelRange = new WrapPanel();
 
@@ -131,7 +145,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirliners", "1005"), panelYear));
 
-            Button btnSearch = new Button();
+               Button btnSearch = new Button();
             btnSearch.Uid = "109";
             btnSearch.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSearch.Height = Double.NaN;
@@ -200,8 +214,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         }
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            List<Airliner> airliners = Airliners.GetAirlinersForSale();
-        
+            Manufacturer manufacturer = ((Manufacturer)cbManufacturers.SelectedItem);
+
+            List<Airliner> airliners = manufacturer.Name == "All" ? Airliners.GetAirlinersForSale() : Airliners.GetAirlinersForSale(a=>a.Type.Manufacturer == manufacturer);
+
             CompareType rangeCompare = (CompareType)(((ComboBoxItem)cbCompareRange.SelectedItem).Tag);
             CompareType priceCompare = (CompareType)(((ComboBoxItem)cbComparePrice.SelectedItem).Tag);
             CompareType capacityCompare = (CompareType)(((ComboBoxItem)cbCompareCapacity.SelectedItem).Tag);

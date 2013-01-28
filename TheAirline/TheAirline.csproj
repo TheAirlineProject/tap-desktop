@@ -779,6 +779,7 @@
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioAirline.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioFailure.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioObject.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioPassengerDemand.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\Ratings.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />

@@ -30,12 +30,12 @@ namespace TheAirline.Model.GeneralModel
         public ScenarioObject Scenario { get; set; }
        // public enum DifficultyLevel { Easy, Normal, Hard } 
         public DifficultyLevel Difficulty { get; set; }
-        public double PassengerDemandFactor { get; set; }
+        //public double PassengerDemandFactor { get; set; }
         public const int StartYear = 1960;
         
         private GameObject()
         {
-            this.PassengerDemandFactor = 100;
+            //this.PassengerDemandFactor = 100;
             this.GameTime = new DateTime(2007, 12, 31, 10, 0, 0);
             this.TimeZone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == new TimeSpan(0, 0, 0); });
             this.Difficulty = DifficultyLevels.GetDifficultyLevel("Easy");
