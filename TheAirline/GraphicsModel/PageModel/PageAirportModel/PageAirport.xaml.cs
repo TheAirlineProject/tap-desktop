@@ -23,6 +23,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.GraphicsModel.UserControlModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 {
@@ -151,13 +152,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             txtHeader.Text = Translator.GetInstance().GetString("PageAirport", txtHeader.Uid);
             panelPassengers.Children.Add(txtHeader);
 
+            WrapPanel panelButtons = new WrapPanel();
+
+            ucSelectButton sbDomestic = new ucSelectButton();
+            sbDomestic.Uid = "1025";
+            sbDomestic.Content = Translator.GetInstance().GetString("PageAirport", sbDomestic.Uid);
+            sbDomestic.IsSelected = true;
+            sbDomestic.Click += sbDomestic_Click;
+            panelButtons.Children.Add(sbDomestic);
+
+            ucSelectButton sbInternational = new ucSelectButton();
+            sbInternational.Uid = "1026";
+            sbInternational.Content = Translator.GetInstance().GetString("PageAirport", sbInternational.Uid);
+            sbInternational.Click += sbInternational_Click;
+            panelButtons.Children.Add(sbInternational);
+
+            panelPassengers.Children.Add(panelButtons);
+
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
             lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
             panelPassengers.Children.Add(lbPassengers);
 
-            showPassengers();
+            showPassengers(true);
 
             return panelPassengers;
 
@@ -166,13 +184,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
 
         }
+
+        
         //shows the passengers
-        private void showPassengers()
+        private void showPassengers(Boolean domestic)
         {
             lbPassengers.Items.Clear();
 
-            var airports = Airports.GetAirports(a => a != this.Airport).OrderByDescending(a=>this.Airport.getDestinationPassengersRate(a,AirlinerClass.ClassType.Economy_Class));
-      
+            List<Airport> airports;
+            
+            if (domestic)
+                airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country == this.Airport.Profile.Country).OrderByDescending(a=>this.Airport.getDestinationPassengersRate(a,AirlinerClass.ClassType.Economy_Class)).ToList();
+            else
+                airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country != this.Airport.Profile.Country).OrderByDescending(a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)).ToList();
+
             foreach (Airport airport in airports)
             {
                 DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport,AirlinerClass.ClassType.Economy_Class);
@@ -408,7 +433,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             return scroller;
         }
+        private void sbInternational_Click(object sender, RoutedEventArgs e)
+        {
+            showPassengers(false);
+        }
 
+        private void sbDomestic_Click(object sender, RoutedEventArgs e)
+        {
+            showPassengers(true);
+        }
         private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PopUpAirportMap.ShowPopUp(this.Airport);

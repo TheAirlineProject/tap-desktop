@@ -283,7 +283,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             if (airliner.NumberOfPilots == airliner.Airliner.Type.CockpitCrew)
             {
              
-                PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+                PopUpAirlinerAutoRoutes.ShowPopUp(airliner);
                 showFleet();
             }
             else
@@ -303,7 +303,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                             airliner.addPilot(unassignedPilots[i]);
                         }
 
-                        PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+                       // PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+                        PopUpAirlinerAutoRoutes.ShowPopUp(airliner);
 
                         showFleet();
                     }
@@ -323,7 +324,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                             airliner.addPilot(pilot);
                         }
 
-                        PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+                        //PopUpAirlinerRoutes.ShowPopUp(airliner, true);
+                        PopUpAirlinerAutoRoutes.ShowPopUp(airliner);
 
                         showFleet();
             

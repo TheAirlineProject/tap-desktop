@@ -87,8 +87,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             buttonsPanel.Children.Add(btnCancel);
-
-
+            
+           
             return buttonsPanel;
         }
 
@@ -231,37 +231,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
 
         }
+       
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
-            this.Selected = null;
             this.Close();
         }
 
-        private void btnOk_Click(object sender, RoutedEventArgs e)
-        {
-
-            Route route = (Route)cbRoute.SelectedItem;
-
-            int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
-
-            string flightcode1 = cbFlightCode.SelectedItem.ToString();
-            string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1)+1];
-
-
-            if (flightsPerDay > 0)
-            {
-                if (cbBusinessRoute.IsChecked.Value)
-                {
-                    flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights).TotalMinutes / 2 / maxBusinessRouteTime);
-                    this.Selected = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner,Math.Max(1,flightsPerDay) ,flightcode1,flightcode2); 
-                }
-                else
-                    this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
-            }
-            else
-                this.Selected = null;
-            this.Close();
-        }
+       
         private void cbBusinessRoute_Checked(object sender, RoutedEventArgs e)
         {
             cbFlightsPerDay.IsEnabled = false;
@@ -270,6 +246,30 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void cbBusinessRoute_Unchecked(object sender, RoutedEventArgs e)
         {
             cbFlightsPerDay.IsEnabled = true;
+        }
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+
+            Route route = (Route)cbRoute.SelectedItem;
+
+            int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
+
+            string flightcode1 = cbFlightCode.SelectedItem.ToString();
+            string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1) + 1];
+            
+            if (flightsPerDay > 0)
+            {
+                if (cbBusinessRoute.IsChecked.Value)
+                {
+                    flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights).TotalMinutes / 2 / maxBusinessRouteTime);
+                    this.Selected = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner, Math.Max(1, flightsPerDay), flightcode1, flightcode2);
+                }
+                else
+                    this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
+            }
+            else
+                this.Selected = null;
+            this.Close();
         }
 
        
