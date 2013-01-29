@@ -28,6 +28,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private FleetAirliner Airliner;
         private ComboBox cbRoute, cbFlightsPerDay, cbFlightCode, cbRegion;
         private CheckBox cbBusinessRoute;
+        private double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
 
         public static object ShowPopUp(FleetAirliner airliner)
         {
@@ -140,7 +141,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             autogeneratePanel.Children.Add(cbFlightCode);
 
             TextBlock txtFlightsPerDay = UICreator.CreateTextBlock("Flights per day");
-            //txtFlightsPerDay.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            txtFlightsPerDay.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             txtFlightsPerDay.Margin = new Thickness(10, 0, 5, 0);
 
             autogeneratePanel.Children.Add(txtFlightsPerDay);
@@ -154,7 +155,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             cbBusinessRoute = new CheckBox();
             cbBusinessRoute.FlowDirection = System.Windows.FlowDirection.RightToLeft;
+            cbBusinessRoute.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            cbBusinessRoute.Unchecked += cbBusinessRoute_Unchecked;
+            cbBusinessRoute.Checked += cbBusinessRoute_Checked;
             cbBusinessRoute.Content = "Business route";
+            cbBusinessRoute.Margin = new Thickness(5, 0, 0, 0);
 
             autogeneratePanel.Children.Add(cbBusinessRoute);
 
@@ -165,6 +170,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         }
 
+     
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
@@ -215,8 +221,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 cbFlightsPerDay.SelectedIndex = 0;
 
-                double maxBusinessRouteTime = new TimeSpan(0, 0, 0).TotalMinutes;
-
+            
                 cbBusinessRoute.Visibility = minFlightTime.TotalMinutes <= maxBusinessRouteTime ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
                 if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
@@ -246,7 +251,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (flightsPerDay > 0)
             {
                 if (cbBusinessRoute.IsChecked.Value)
-                    this.Selected = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner,flightsPerDay / 2,flightcode1,flightcode2);
+                {
+                    flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights).TotalMinutes / 2 / maxBusinessRouteTime);
+                    this.Selected = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner,Math.Max(1,flightsPerDay) ,flightcode1,flightcode2); 
+                }
                 else
                     this.Selected = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
             }
@@ -254,6 +262,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 this.Selected = null;
             this.Close();
         }
+        private void cbBusinessRoute_Checked(object sender, RoutedEventArgs e)
+        {
+            cbFlightsPerDay.IsEnabled = false;
+        }
+
+        private void cbBusinessRoute_Unchecked(object sender, RoutedEventArgs e)
+        {
+            cbFlightsPerDay.IsEnabled = true;
+        }
+
        
     }
     public class RouteItemConverter : IValueConverter

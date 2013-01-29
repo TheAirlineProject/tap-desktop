@@ -62,6 +62,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirportLogos();
                 LoadAirportMaps();
                 LoadAirportFacilities();
+                LoadMajorDestinations();
                 LoadAirlineFacilities();
                 LoadManufacturers();
                 LoadManufacturerLogos();
@@ -80,7 +81,7 @@ namespace TheAirline.Model.GeneralModel
 
                 LoadStandardConfigurations();
                 LoadAirlinerTypeConfigurations();
-           
+
                 LoadAirlines();
                 LoadScenarios();
 
@@ -142,7 +143,7 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreatePilots()
         {
-            int pilotsPool = 100 * Airlines.GetAllAirlines().Count ;
+            int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
 
             GeneralHelpers.CreatePilots(pilotsPool);
 
@@ -237,13 +238,13 @@ namespace TheAirline.Model.GeneralModel
             XmlDocument doc = new XmlDocument();
             doc.Load(file);
             XmlElement element = doc.DocumentElement;
-            
+
             string scenarioName = element.Attributes["name"].Value;
             int startYear = Convert.ToInt32(element.Attributes["startYear"].Value);
             long startCash = Convert.ToInt64(element.Attributes["startCash"].Value);
             int endYear = Convert.ToInt32(element.Attributes["endYear"].Value);
             DifficultyLevel difficulty = DifficultyLevels.GetDifficultyLevel(element.Attributes["difficulty"].Value);
- 
+
             string description = element.SelectSingleNode("intro").Attributes["text"].Value;
             string successText = element.SelectSingleNode("success").Attributes["text"].Value;
 
@@ -256,10 +257,10 @@ namespace TheAirline.Model.GeneralModel
                 startAirline.License = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), startElement.Attributes["license"].Value);
 
 
-            Scenario scenario = new Scenario(scenarioName,description,startAirline,homebase,startYear,endYear, startCash,difficulty);
+            Scenario scenario = new Scenario(scenarioName, description, startAirline, homebase, startYear, endYear, startCash, difficulty);
             Scenarios.AddScenario(scenario);
 
-          
+
             XmlNodeList humanRoutesList = startElement.SelectNodes("routes/route");
 
             foreach (XmlElement humanRouteElement in humanRoutesList)
@@ -270,7 +271,7 @@ namespace TheAirline.Model.GeneralModel
                 int routeQuantity = Convert.ToInt32(humanRouteElement.Attributes["quantity"].Value);
 
                 scenario.addRoute(new ScenarioAirlineRoute(routeDestination1, routeDestination2, routeAirlinerType, routeQuantity));
-                
+
             }
 
             XmlNodeList destinationsList = startElement.SelectNodes("destinations/destination");
@@ -286,7 +287,7 @@ namespace TheAirline.Model.GeneralModel
                 int fleetQuantity = Convert.ToInt32(fleetElement.Attributes["quantity"].Value);
                 scenario.addFleet(fleetAirlinerType, fleetQuantity);
             }
-        
+
             XmlNodeList aiNodeList = startElement.SelectNodes("AI/airline");
 
             foreach (XmlElement aiElement in aiNodeList)
@@ -332,7 +333,7 @@ namespace TheAirline.Model.GeneralModel
 
                 DateTime enddate = new DateTime(scenario.StartYear + Convert.ToInt32(paxElement.Attributes["length"].Value), 1, 1);
 
-                scenario.addPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport)); 
+                scenario.addPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport));
             }
 
 
@@ -346,7 +347,7 @@ namespace TheAirline.Model.GeneralModel
                 string failureText = parameterElement.Attributes["text"].Value;
                 double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value) : 1;
 
-                ScenarioFailure failure = new ScenarioFailure(failureType, (int)checkMonths, failureValue, failureText,(int)monthsOfFailure);
+                ScenarioFailure failure = new ScenarioFailure(failureType, (int)checkMonths, failureValue, failureText, (int)monthsOfFailure);
 
                 scenario.addScenarioFailure(failure);
             }
@@ -724,11 +725,11 @@ namespace TheAirline.Model.GeneralModel
                 AirlinerType type = AirlinerTypes.GetType(element.Attributes["airliner"].Value);
                 int fromYear = Convert.ToInt16(element.Attributes["yearfrom"].Value);
                 int toYear = Convert.ToInt16(element.Attributes["yearto"].Value);
-              /*airliner="Boeing 747-400" name="Boeing 747-400 (1998)" yearfrom="1998" yearto="2199" id="301"*/
+                /*airliner="Boeing 747-400" name="Boeing 747-400 (1998)" yearfrom="1998" yearto="2199" id="301"*/
 
                 XmlNodeList classesList = element.SelectNodes("classes/class");
 
-                AirlinerTypeConfiguration configuration = new AirlinerTypeConfiguration(name,type,new Period(new DateTime(fromYear,1,1),new DateTime(toYear,12,31)), true);
+                AirlinerTypeConfiguration configuration = new AirlinerTypeConfiguration(name, type, new Period(new DateTime(fromYear, 1, 1), new DateTime(toYear, 12, 31)), true);
                 configuration.ID = id;
 
                 foreach (XmlElement classElement in classesList)
@@ -736,7 +737,7 @@ namespace TheAirline.Model.GeneralModel
                     int seating = Convert.ToInt16(classElement.Attributes["seating"].Value);
                     AirlinerClass.ClassType classType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), classElement.Attributes["type"].Value);
 
-                    AirlinerClassConfiguration classConf = new AirlinerClassConfiguration(classType, seating,seating);
+                    AirlinerClassConfiguration classConf = new AirlinerClassConfiguration(classType, seating, seating);
                     foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
                     {
                         string facUid = classElement.Attributes[facType.ToString()].Value;
@@ -746,7 +747,7 @@ namespace TheAirline.Model.GeneralModel
 
                     configuration.addClassConfiguration(classConf);
 
-                    
+
                 }
 
                 Configurations.AddConfiguration(configuration);
@@ -938,7 +939,7 @@ namespace TheAirline.Model.GeneralModel
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
                     int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
 
-                   
+
 
                     Town eTown = null;
                     if (town.Contains(","))
@@ -968,14 +969,14 @@ namespace TheAirline.Model.GeneralModel
                         foreach (XmlElement majorDestinationNode in majorDestinationsList)
                         {
                             string majorDestination = majorDestinationNode.Attributes["airport"].Value;
-                            int majorDestinationPax =Convert.ToInt32(majorDestinationNode.Attributes["pax"].Value);
+                            int majorDestinationPax = Convert.ToInt32(majorDestinationNode.Attributes["pax"].Value);
 
-                            majorDestinations.Add(majorDestination,majorDestinationPax);
+                            majorDestinations.Add(majorDestination, majorDestinationPax);
                         }
 
                         airport.Profile.MajorDestionations = majorDestinations;
 
-                   }
+                    }
 
                     int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
 
@@ -1014,7 +1015,49 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
         }
+        /*!loads the major destinations
+         */
+        private static void LoadMajorDestinations()
+        {
+            try
+            {
+                DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\airports\\majordestinations");
 
+                foreach (FileInfo file in dir.GetFiles("*.xml"))
+                {
+                    LoadMajorDestinations(file.FullName);
+
+                }
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
+            }
+        }
+        private static void LoadMajorDestinations(string file)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(file);
+            XmlElement root = doc.DocumentElement;
+
+            XmlNodeList airportsList = root.SelectNodes("//majordestination");
+
+            foreach (XmlElement airportElement in airportsList)
+            {
+                Airport airport = Airports.GetAirport(airportElement.Attributes["airport"].Value);
+
+                XmlNodeList destinationsList = airportElement.SelectNodes("//destination");
+
+                foreach (XmlElement destinationElement in destinationsList)
+                {
+         
+                    string destination = destinationElement.Attributes["airport"].Value;
+                    int pax =  Convert.ToInt32(destinationElement.Attributes["pax"].Value);
+
+                    airport.addMajorDestination(destination, pax);
+                }
+            }
+        }
         /*!loads the airport facilities.
          */
         private static void LoadAirportFacilities()
@@ -1424,14 +1467,14 @@ namespace TheAirline.Model.GeneralModel
             string name = profileElement.Attributes["name"].Value;
             string iata = profileElement.Attributes["iata"].Value;
             string color = profileElement.Attributes["color"].Value;
-            
+
             string sCountries = profileElement.Attributes["country"].Value;
- 
+
             List<Country> countries = new List<Country>();
 
             foreach (string sCountry in sCountries.Split(';'))
                 countries.Add(Countries.GetCountry(sCountry));
-            
+
             //Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
             string ceo = profileElement.Attributes["CEO"].Value;
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
@@ -1442,7 +1485,7 @@ namespace TheAirline.Model.GeneralModel
             string narrative = "";
             if (narrativeElement != null)
                 narrative = narrativeElement.Attributes["narrative"].Value;
-      
+
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
@@ -1462,11 +1505,11 @@ namespace TheAirline.Model.GeneralModel
                     license = Airline.AirlineLicense.Long_Haul;
                 else
                     license = Airline.AirlineLicense.Short_Haul;
-          
+
             if (market == Airline.AirlineFocus.Regional)
                 license = Airline.AirlineLicense.Regional;
 
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market,license);
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];//<-vælges + random
             if (profileElement.HasAttribute("preferedairport"))
@@ -1474,7 +1517,7 @@ namespace TheAirline.Model.GeneralModel
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
                 airline.Profile.PreferedAirport = preferedAirport;
             }
-            
+
             XmlNodeList subsidiariesList = root.SelectNodes("subsidiaries/subsidiary");
             if (subsidiariesList != null)
             {
@@ -1623,7 +1666,7 @@ namespace TheAirline.Model.GeneralModel
          */
         public static void SetupTestGame(int opponents, Boolean sameRegion)
         {
-          
+
             RemoveAirlines(opponents, sameRegion);
 
             CreatePilots();
@@ -1657,8 +1700,8 @@ namespace TheAirline.Model.GeneralModel
                     CreateComputerRoutes(airline);
                 }
             }
-      
-            
+
+
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("CPH").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
@@ -1666,7 +1709,7 @@ namespace TheAirline.Model.GeneralModel
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
-             
+
         }
 
         /*! removes some random airlines from the list bases on number of opponents.
@@ -1686,14 +1729,14 @@ namespace TheAirline.Model.GeneralModel
             List<Airline> airlines = new List<Airline>(Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year));
 
             if (sameRegion)
-                airlines.Sort(delegate(Airline a1, Airline a2) { return MathHelpers.GetDistance(a2.Profile.PreferedAirport,humanAirport).CompareTo(MathHelpers.GetDistance(a1.Profile.PreferedAirport,humanAirport)); });
+                airlines.Sort(delegate(Airline a1, Airline a2) { return MathHelpers.GetDistance(a2.Profile.PreferedAirport, humanAirport).CompareTo(MathHelpers.GetDistance(a1.Profile.PreferedAirport, humanAirport)); });
             else
-               airlines = MathHelpers.Shuffle(airlines);
+                airlines = MathHelpers.Shuffle(airlines);
 
-     
+
             for (int i = 0; i < count - opponnents; i++)
             {
-               
+
                 Airlines.RemoveAirline(airlines[i]);
             }
 
@@ -1755,7 +1798,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     airportDestination = airportDestinations[counter];
 
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination,false);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false);
 
                     counter++;
                 }
@@ -1786,9 +1829,9 @@ namespace TheAirline.Model.GeneralModel
                     fAirliner.addRoute(route);
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                     AirlineHelpers.HireAirlinerPilots(fAirliner);
-                
+
                     AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-                                 
+
                     route.LastUpdated = GameObject.GetInstance().GameTime;
 
                     RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
@@ -1852,20 +1895,20 @@ namespace TheAirline.Model.GeneralModel
                 KeyValuePair<Airliner, Boolean>? airliner = null;
                 if (startRoute.Type != null)
                 {
-                    double distance = MathHelpers.GetDistance(dest1,dest2);
+                    double distance = MathHelpers.GetDistance(dest1, dest2);
 
                     if (startRoute.Type.Range > distance)
                     {
                         airliner = new KeyValuePair<Airliner, bool>(Airliners.GetAirlinersForSale(a => a.Type == startRoute.Type).FirstOrDefault(), true);
                     }
-                   
+
                 }
-                
+
                 if (airliner == null)
                 {
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1,false);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, false);
                 }
-                
+
                 FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
@@ -1939,7 +1982,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
 
-                for (int i = 0; i < Math.Min(routes.Destinations/difficultyFactor, origin.Terminals.getFreeGates()); i++)
+                for (int i = 0; i < Math.Min(routes.Destinations / difficultyFactor, origin.Terminals.getFreeGates()); i++)
                 {
                     if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                         origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
@@ -1964,7 +2007,7 @@ namespace TheAirline.Model.GeneralModel
 
                     Route route = new Route(id.ToString(), origin, destination, price);
 
-                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination,false);
+                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false);
 
                     FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                     fAirliner.addRoute(route);

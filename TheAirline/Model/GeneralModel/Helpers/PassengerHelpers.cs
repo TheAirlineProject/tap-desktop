@@ -22,6 +22,7 @@ namespace TheAirline.Model.GeneralModel
     {
         private static Dictionary<Airline, double> HappinessPercent = new Dictionary<Airline, double>();
         private static Random rnd = new Random();
+
         //returns the passengers happiness for an airline
         public static double GetPassengersHappiness(Airline airline)
         {

@@ -279,11 +279,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             panelSideMenu.Children.Clear();
 
+        
             if (airliner.NumberOfPilots == airliner.Airliner.Type.CockpitCrew)
             {
-
+             
                 PopUpAirlinerRoutes.ShowPopUp(airliner, true);
-
                 showFleet();
             }
             else

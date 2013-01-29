@@ -44,7 +44,14 @@ namespace TheAirline.Model.AirportModel
 
           
          }
-
+        //adds a major destination to the airport
+        public void addMajorDestination(string destination, int pax)
+        {
+            if (this.Profile.MajorDestionations.ContainsKey(destination))
+                this.Profile.MajorDestionations[destination] = pax;
+            else
+                this.Profile.MajorDestionations.Add(destination, pax);
+        }
         //returns a list of major destinations and pax
         public Dictionary<Airport,int> getMajorDestinations()
         {
