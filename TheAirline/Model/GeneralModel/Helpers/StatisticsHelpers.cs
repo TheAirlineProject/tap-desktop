@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.AirportModel;
 
 
 namespace TheAirline.Model.GeneralModel.Helpers
@@ -74,7 +75,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
                     List<Double> aiBusPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
                     List<Double> aiFirstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
-                    double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).Average();
+                    double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).DefaultIfEmpty(0).Average();
                     double avgEP = aiEconPrices.DefaultIfEmpty(0).Average();
                     double avgBP = aiBusPrices.DefaultIfEmpty(0).Average();
                     double avgFP = aiFirstPrices.DefaultIfEmpty(0).Average();
@@ -83,7 +84,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AIPrices.Add(avgDistPrice);
                 
                 }
-                return AIPrices.Average();
+                return AIPrices.DefaultIfEmpty(0).Average();
             }
             //calculate average human ticket price per distance
             public static double GetHumanAvgTicketPPD()
@@ -121,7 +122,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
-                    fillDegrees.Add(fillDegree.Average());
+                    fillDegrees.Add(fillDegree.DefaultIfEmpty(0).Average());
                 }
                 return fillDegrees.DefaultIfEmpty(0).Average();
             }
@@ -142,7 +143,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Airline airline in Airlines.GetAirlines(a => !a.IsHuman))
                 {
                     List<Double> AIFillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
-                    AIafd.Add(airline, AIFillDegree.Average());                
+                    AIafd.Add(airline, AIFillDegree.DefaultIfEmpty(0).Average());                
 
                 }
                 return AIafd;
@@ -235,5 +236,44 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 return unassignedPilots;
             }
+
+        /*-------------------------------------------------------------------------------------------------------------------------------------------
+ * -------------------------------------------------------------------------------------------------------------------------------------------
+ * ------------------------------------------END OF EMPLOYEE HAPPINESS METHODS-------------------------------------------------------------*/
+       //calculates the human airports served worldwide
+            public static double getWorldAirportsServed()
+            {
+                int hAirports = GameObject.GetInstance().HumanAirline.Airports.Count();
+                return hAirports / AirportModel.Airports.GetAllAirports().Count();                
+            }
+
+        //calculates the human airports served for a given country
+            public static Dictionary<Country,double> getCountryAirportsServed()
+                
+            {
+                Dictionary<Country,double> countryAirports = new Dictionary<Country,double>();
+                foreach (Country country in GameObject.GetInstance().HumanAirline.Airports.Select(a => a.Profile.Country).Distinct())
+                {
+                    double c = Airports.GetAirports(country).Count();
+                    double cHuman = GameObject.GetInstance().HumanAirline.Airports.Count(a => a.Profile.Country == country);
+                    countryAirports.Add(country, (c / cHuman));
+                }
+                return countryAirports;
+            }
+
+        //calculates human daily flights worldwide
+        /*    public static double getHumanDailyFlights()
+            {
+                Dictionary<Airline,double> uFlights = new Dictionary<Airline,double>();
+                foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports)
+                {
+                    double flights = AirportHelpers.GetAirportRoutes(airport).Sum(r => r.TimeTable.Entries.Count) / 7;
+                    double hFlights = AirportHelpers.GetAirportRoutes(airport, GameObject.GetInstance().HumanAirline).Sum(r=>r.TimeTable.Entries.Count) / 7;
+                    uFlights.Add(Airline,(hFlights/flights);
+                }
+
+                return hFlights / 
+            }*/
+
     }
 }

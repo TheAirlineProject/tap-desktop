@@ -16,7 +16,7 @@ namespace TheAirline.Model.StatisticsModel
         //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time %
         public static double GetCustomerHappiness()
         {
-
+            int negInt = -1;
             Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages();
             Dictionary<Airline, Double> onTimePercent = StatisticsHelpers.GetTotalOnTime();
             Dictionary<Airline, Double> ticketPPD = StatisticsHelpers.GetTotalPPD();
@@ -28,7 +28,7 @@ namespace TheAirline.Model.StatisticsModel
             double humanOTP = scaleOnTimeP[GameObject.GetInstance().HumanAirline];
             double humanPPD = scalePPD[GameObject.GetInstance().HumanAirline];
 
-            return (humanPPD * 0.4) + (humanAvgFill * 0.2) + (humanOTP * 0.4);
+            return ((humanPPD * negInt + 100) * 0.4) + (humanAvgFill * 0.2) + (humanOTP * 0.4);
         }
  
         //calculates employee happiness as a function of wages, discounts, and free pilots (relative to workload)
