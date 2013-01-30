@@ -1046,16 +1046,16 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport airport = Airports.GetAirport(airportElement.Attributes["airport"].Value);
 
-                XmlNodeList destinationsList = airportElement.SelectNodes("//destination");
+                XmlNodeList destinationsList = airportElement.SelectNodes("destinations/destination");
 
                 foreach (XmlElement destinationElement in destinationsList)
                 {
-         
                     string destination = destinationElement.Attributes["airport"].Value;
                     int pax =  Convert.ToInt32(destinationElement.Attributes["pax"].Value);
 
                     airport.addMajorDestination(destination, pax);
-                }
+
+                  }
             }
         }
         /*!loads the airport facilities.

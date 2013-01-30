@@ -172,10 +172,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
-            lbPassengers.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            lbPassengers.MaxHeight = (GraphicsHelpers.GetContentHeight()-100) / 2;
             panelPassengers.Children.Add(lbPassengers);
 
             showPassengers(true);
+
+            //fejl i domestic demand
 
             return panelPassengers;
 
