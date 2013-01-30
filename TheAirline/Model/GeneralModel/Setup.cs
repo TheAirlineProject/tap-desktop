@@ -978,10 +978,7 @@ namespace TheAirline.Model.GeneralModel
 
                     }
 
-                    int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
-
-                    airport.Profile.Pax = Math.Max(0, airport.Profile.Pax - majorPax);
-
+             
                     XmlNodeList terminalList = airportElement.SelectNodes("terminals/terminal");
 
                     foreach (XmlElement terminalNode in terminalList)
@@ -1057,6 +1054,15 @@ namespace TheAirline.Model.GeneralModel
 
                   }
             }
+
+            foreach (Airport airport in Airports.GetAllAirports())
+            {
+
+                int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
+
+                airport.Profile.Pax = Math.Max(0, airport.Profile.Pax - majorPax);
+            }
+
         }
         /*!loads the airport facilities.
          */

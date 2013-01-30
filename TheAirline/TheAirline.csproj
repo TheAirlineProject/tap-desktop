@@ -888,6 +888,7 @@
     <EmbeddedResource Include="..\Data\languages\language.zh-CN.resx">
       <Link>Data\languagefiles\language.zh-CN.resx</Link>
     </EmbeddedResource>
+    <EmbeddedResource Include="Data\languagefiles\language.it-IT.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

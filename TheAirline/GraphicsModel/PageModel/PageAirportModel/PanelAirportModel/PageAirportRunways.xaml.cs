@@ -84,6 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnBuildRunway.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnBuildRunway.Click += new RoutedEventHandler(btnBuildRunway_Click);
             btnBuildRunway.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnBuildRunway.Visibility = System.Windows.Visibility.Collapsed;
             panelButtons.Children.Add(btnBuildRunway);
 
             panelRunways.Children.Add(panelButtons);

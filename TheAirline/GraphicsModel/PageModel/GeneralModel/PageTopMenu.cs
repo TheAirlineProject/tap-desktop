@@ -25,7 +25,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             TextBlock txtName = new TextBlock();
             txtName.FontSize = 16;
             txtName.FontWeight = FontWeights.Bold;
-            txtName.Text = "The Airline " + Settings.Default.Version;
+            txtName.Text = "Airline Project " + Settings.Default.Version;
             txtName.Margin = new Thickness(5, 0, 0, 0);
       
             panelMain.Children.Add(txtName);
