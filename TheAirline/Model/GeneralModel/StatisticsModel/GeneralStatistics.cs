@@ -17,12 +17,15 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         //returns the value for a statistics type for a year
         public double getStatisticsValue(int year, StatisticsType type)
         {
-            if (this.StatValues.ContainsKey(year))
+            lock (this.StatValues)
             {
-                StatisticsValue value = this.StatValues[year].Find(sv => sv.Stat == type);
-                if (value != null) return value.Value;
+                if (this.StatValues.ContainsKey(year))
+                {
+                    StatisticsValue value = this.StatValues[year].Find(sv => sv.Stat == type);
+                    if (value != null) return value.Value;
+                }
+                return 0;
             }
-            return 0;
 
         }
         //returns the total valu for a statistics type
@@ -53,19 +56,30 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         //sets the value for a statistics type for a year
         public void setStatisticsValue(int year, StatisticsType type, double value)
         {
-            if (!this.StatValues.ContainsKey(year))
-                this.StatValues.Add(year, new List<StatisticsValue>());
-            StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
-            if (statValue != null)
-                statValue.Value = value;
-            else
-                this.StatValues[year].Add(new StatisticsValue(type, value));
+            lock (this.StatValues)
+            {
+                if (!this.StatValues.ContainsKey(year))
+                    this.StatValues.Add(year, new List<StatisticsValue>());
+                StatisticsValue statValue = this.StatValues[year].Find(sv => sv.Stat == type);
+                if (statValue != null)
+                    statValue.Value = value;
+                else
+                    this.StatValues[year].Add(new StatisticsValue(type, value));
+            }
 
         }
         //returns all years with statistics
         public List<int> getYears()
         {
-            return this.StatValues.Keys.ToList();
+            if (this.StatValues != null)
+            {
+                lock (this.StatValues)
+                {
+                    return this.StatValues.Keys.ToList();
+                }
+            }
+            else
+                return new List<int>();
         }
 
 
