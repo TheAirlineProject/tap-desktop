@@ -232,6 +232,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 }
                 
                 LoadSaveHelpers.SaveGame(fileName);
+                //NewLoadSaveHelpers.SaveGame(fileName);
 
                 popUpSplash.IsOpen = false;
             }

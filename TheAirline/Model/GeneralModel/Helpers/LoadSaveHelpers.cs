@@ -20,6 +20,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using System.Diagnostics;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -942,6 +943,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves the game
         public static void SaveGame(string file)
         {
+            Stopwatch  sw = new Stopwatch();
+            sw.Start();
+
             string path = AppSettings.getDataPath() + "\\saves\\" + file + ".sav";
 
             XmlDocument xmlDoc = new XmlDocument();
@@ -1683,8 +1687,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             root.AppendChild(gameSettingsNode);
 
+            sw.Stop();
 
+            Console.WriteLine("Time elapsed: {0} ms.", sw.ElapsedMilliseconds);
 
+            
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
                 Stream s;

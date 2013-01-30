@@ -1030,6 +1030,17 @@ namespace TheAirline.Model.GeneralModel
             {
                 string s = e.ToString();
             }
+
+            foreach (Airport airport in Airports.GetAllAirports())
+            {
+
+                int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
+
+                if (airport.Profile.IATACode == "SBY")
+                    Console.WriteLine(majorPax);
+
+                airport.Profile.Pax = Math.Max(0, airport.Profile.Pax - majorPax);
+            }
         }
         private static void LoadMajorDestinations(string file)
         {
@@ -1055,13 +1066,7 @@ namespace TheAirline.Model.GeneralModel
                   }
             }
 
-            foreach (Airport airport in Airports.GetAllAirports())
-            {
-
-                int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
-
-                airport.Profile.Pax = Math.Max(0, airport.Profile.Pax - majorPax);
-            }
+           
 
         }
         /*!loads the airport facilities.
