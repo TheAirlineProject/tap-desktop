@@ -1470,7 +1470,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportDestinationNode.SetAttribute("id", airport.Profile.IATACode);
 
                 XmlElement destinationsNode = xmlDoc.CreateElement("destinations");
-                foreach (Airport dest in Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a))))
+                var dests = Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a)));
+                //foreach (Airport dest in Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a))))
+                Parallel.ForEach(dests, dest =>
                 {
                     foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                     {
@@ -1482,7 +1484,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         destinationsNode.AppendChild(destinationNode);
                     }
-                }
+                });
                 airportDestinationNode.AppendChild(destinationsNode);
                 airportDestinationsNode.AppendChild(airportDestinationNode);
             }

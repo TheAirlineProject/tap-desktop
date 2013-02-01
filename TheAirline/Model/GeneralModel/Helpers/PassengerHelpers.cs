@@ -298,9 +298,9 @@ namespace TheAirline.Model.GeneralModel
             Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
 
             double estimatedPassengerLevel = 0;
-            Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region;
-            Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
-
+             Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
+             Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region && !isSameCountry;
+        
             String dAirportSize = dAirport.Profile.Size.ToString();
             String airportSize = airport.Profile.Size.ToString();
             double dist = MathHelpers.GetDistance(dAirport, airport);
