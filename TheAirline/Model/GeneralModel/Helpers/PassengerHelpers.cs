@@ -14,6 +14,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
+using TheAirline.Model.GeneralModel.Helpers.DatabaseModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -96,7 +97,7 @@ namespace TheAirline.Model.GeneralModel
 
             double passengerDemand = demand * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
 
-             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
+            passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Global && distance > 3000 && airportCurrent.Profile.Country != airportDestination.Profile.Country)
                 passengerDemand = passengerDemand * (115 / 100);
@@ -298,9 +299,9 @@ namespace TheAirline.Model.GeneralModel
             Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
 
             double estimatedPassengerLevel = 0;
-             Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
-             Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region && !isSameCountry;
-        
+            Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
+            Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region && !isSameCountry;
+
             String dAirportSize = dAirport.Profile.Size.ToString();
             String airportSize = airport.Profile.Size.ToString();
             double dist = MathHelpers.GetDistance(dAirport, airport);
@@ -1728,6 +1729,7 @@ namespace TheAirline.Model.GeneralModel
                                     double paxLarge = airport.Profile.Pax * 0.32 / Airports.LargeAirports;
                                     paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
                                     estimatedPassengerLevel = (paxLarge * 1000) / 365;
+
                                     estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                                     if (isSameCountry && dist < 500)
                                         estimatedPassengerLevel *= 5;
@@ -1743,6 +1745,7 @@ namespace TheAirline.Model.GeneralModel
                                     { estimatedPassengerLevel *= 0; }
                                     else { estimatedPassengerLevel *= 1; }
                                 }
+                               
                                 if (dist < 1600)
                                 { estimatedPassengerLevel *= 2; }
                                 else if (dist < 2400)
@@ -3545,8 +3548,7 @@ namespace TheAirline.Model.GeneralModel
              }*/
 
 
-                         #endregion
-
+             #endregion
 
             double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
@@ -3556,11 +3558,17 @@ namespace TheAirline.Model.GeneralModel
 
                 if ((classType == AirlinerClass.ClassType.Economy_Class || classType == AirlinerClass.ClassType.Business_Class) && distance < 7500)
                     value = value / (int)classType;
+               
+               
 
                 ushort rate = (ushort)value;
 
                 if (rate > 0)
+                {
+                  
                     airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
+                    //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
+                }
 
             }
 
@@ -3593,7 +3601,7 @@ namespace TheAirline.Model.GeneralModel
         public static void ChangePaxDemand(Airport airport, double factor)
         {
             double value = (100 + factor) / 100;
-        
+
             foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
                 destPax.Rate = (ushort)(destPax.Rate * value);
         }

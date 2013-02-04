@@ -328,7 +328,7 @@ namespace TheAirline.Model.AirportModel
     public class Airports
     {
         private static List<Airport> airports = new List<Airport>();
-        public static int LargestAirports, VeryLargeAirports, LargeAirports, MediumAirports, SmallAirports, VerySmallAirports, SmallestAirports;
+        public static double LargestAirports, VeryLargeAirports, LargeAirports, MediumAirports, SmallAirports, VerySmallAirports, SmallestAirports;
         //clears the list
         public static void Clear()
         {
@@ -426,37 +426,37 @@ namespace TheAirline.Model.AirportModel
             return GetAllActiveAirports().Count;
         }
         //returns the total number of airports with a given size
-        public static int CountLargest()
+        public static double CountLargest()
         {
             return LargestAirports;
         }
 
-        public static int CountVeryLarge()
+        public static double CountVeryLarge()
         {
             return VeryLargeAirports;
         }
 
-        public static int CountLarge()
+        public static double CountLarge()
         {
             return LargeAirports;
         }
 
-        public static int CountMedium()
+        public static double CountMedium()
         {
             return MediumAirports;
         }
 
-        public static int CountSmall()
+        public static double CountSmall()
         {
             return SmallAirports;
         }
 
-        public static int CountVerySmall()
+        public static double CountVerySmall()
         {
             return VerySmallAirports;
         }
 
-        public static int CountSmalleset()
+        public static double CountSmalleset()
         {
             return SmallestAirports;
         }

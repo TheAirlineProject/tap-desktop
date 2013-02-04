@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using System.Threading;
 using System.Globalization;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers.DatabaseModel;
 
 
 namespace TheAirline
@@ -38,6 +39,8 @@ namespace TheAirline
             try
             {
                 Setup.SetupGame();
+
+                //DatabaseObject.GetInstance();
 
                 PageNavigator.MainWindow = this;
 

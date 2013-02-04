@@ -144,7 +144,10 @@ namespace TheAirline.Model.AirlinerModel
         //adds an airliner to the list
         public static void AddAirliner(Airliner airliner)
         {
-            airliners.Add(airliner);
+            lock (airliners)
+            {
+                airliners.Add(airliner);
+            }
         }
         //returns an airliner
         public static Airliner GetAirliner(string tailnumber)
