@@ -337,7 +337,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                {
                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1002"), string.Format(Translator.GetInstance().GetString("News", "1002", "message"), airport.Profile.IATACode, GameObject.GetInstance().GameTime.AddDays(airport.Weather.Length - 1).DayOfWeek)));
                }
-                // chs, 2011-01-11 changed for delivery of terminals
+               // chs, 2011-01-11 changed for delivery of terminals
                foreach (Terminal terminal in airport.Terminals.getTerminals())
                {
                    if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month && terminal.DeliveryDate.Day == GameObject.GetInstance().GameTime.Day)
@@ -393,7 +393,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                        int numberOfNewGates = terminal.Gates.getGates().Count(g => g.DeliveryDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
 
                        if (numberOfNewGates > 0)
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name,terminal.Name, numberOfNewGates)));
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name, terminal.Name, numberOfNewGates)));
 
                    }
 
@@ -511,7 +511,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
                 {
                     foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
-                        destPax.Rate = (ushort)(destPax.Rate * MathHelpers.GetRandomDoubleNumber(0.97,1.05));
+                        destPax.Rate = (ushort)(destPax.Rate * MathHelpers.GetRandomDoubleNumber(0.97, 1.05));
                 });
 
             //removes the oldest pilots/instructors and creates some new ones
@@ -536,7 +536,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 var pilotsToRetire = airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1) < GameObject.GetInstance().GameTime);
                 var pilotsToRetirement = new List<Pilot>(airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime));
-                
+
                 var instructorsToRetire = airline.FlightSchools.SelectMany(f => f.Instructors).Where(i => i.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1) < GameObject.GetInstance().GameTime);
                 var instructorsToRetirement = new List<Instructor>(airline.FlightSchools.SelectMany(f => f.Instructors).Where(i => i.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime));
 
@@ -751,19 +751,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GeneralHelpers.CreateInstructors(75);
 
             //checks if the airport will increase the number of gates either by new terminal or by extending existing
-            Parallel.ForEach(Airports.GetAllAirports(a=>a.Terminals.getInusePercent()>90), airport =>
+            Parallel.ForEach(Airports.GetAllAirports(a => a.Terminals.getInusePercent() > 90), airport =>
             {
                 AirportHelpers.CheckForExtendGates(airport);
             });
-            
-            long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a=>a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To>= GameObject.GetInstance().GameTime).Max(a=>a.MinRunwaylength);
+
+            long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a => a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
 
             Parallel.ForEach(Airports.GetAllAirports(a => a.Runways.Count > 0 && a.Runways.Select(r => r.Length).Max() < longestRequiredRunwayLenght / 2), airport =>
                 {
                     AirportHelpers.CheckForExtendRunway(airport);
                 });
 
-            PassengerHelpers.ChangePaxDemand(Airports.GetAllAirports(a => a.Terminals.hasRoute()), 3);
+            foreach (Airport airport in Airports.GetAllAirports(a => a.Terminals.hasRoute()))
+            {
+                double airportRoutes = AirportHelpers.GetAirportRoutes(airport).Count;
+                double growth = Math.Min(0.5*airportRoutes,2);
+
+                PassengerHelpers.ChangePaxDemand(airport, growth);
+            }
 
             if (GameObject.GetInstance().Scenario != null)
                 ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
@@ -1268,7 +1274,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             Route route = GetNextRoute(airliner);
 
-            if ((airliner.CurrentFlight == null && route != null && route.HasStopovers) || (airliner.CurrentFlight != null && airliner.CurrentFlight is StopoverFlight && ((StopoverFlight)airliner.CurrentFlight).IsLastTrip) ||(airliner.CurrentFlight != null && airliner.CurrentFlight.Entry.MainEntry == null && route != null && route.HasStopovers))
+            if ((airliner.CurrentFlight == null && route != null && route.HasStopovers) || (airliner.CurrentFlight != null && airliner.CurrentFlight is StopoverFlight && ((StopoverFlight)airliner.CurrentFlight).IsLastTrip) || (airliner.CurrentFlight != null && airliner.CurrentFlight.Entry.MainEntry == null && route != null && route.HasStopovers))
             {
                 if (airliner.GroundedToDate > GameObject.GetInstance().GameTime)
                     airliner.CurrentFlight = new StopoverFlight(route.TimeTable.getNextEntry(airliner.GroundedToDate, airliner));
