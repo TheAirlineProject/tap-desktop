@@ -341,13 +341,14 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (XmlElement parameterElement in parametersList)
             {
+                string id = parameterElement.Attributes["id"].Value;
                 ScenarioFailure.FailureType failureType = (ScenarioFailure.FailureType)Enum.Parse(typeof(ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
                 object failureValue = parameterElement.Attributes["value"].Value;
                 double checkMonths = parameterElement.HasAttribute("at") ? 12 * Convert.ToDouble(parameterElement.Attributes["at"].Value) : 1;
                 string failureText = parameterElement.Attributes["text"].Value;
                 double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value) : 1;
 
-                ScenarioFailure failure = new ScenarioFailure(failureType, (int)checkMonths, failureValue, failureText, (int)monthsOfFailure);
+                ScenarioFailure failure = new ScenarioFailure(id,failureType, (int)checkMonths, failureValue, failureText, (int)monthsOfFailure);
 
                 scenario.addScenarioFailure(failure);
             }

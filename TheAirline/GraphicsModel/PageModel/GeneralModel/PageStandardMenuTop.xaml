@@ -54,9 +54,9 @@
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
 
             <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuOptions}" Style="{DynamicResource MenuHeaderStyle}">
-                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpLoad}" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkLoadGame_Click"></MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpLoad}" Style="{DynamicResource MenuItemStyle}" Visibility="Collapsed" IsEnabled="True" Click="lnkLoadGame_Click"></MenuItem>
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpSave}" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkSaveGame_Click"> </MenuItem>
-                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuNewGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkNewGame_Click" Visibility="Collapsed"></MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuNewGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkNewGame_Click"></MenuItem>
                 <Separator></Separator>
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageSettings}" Style="{DynamicResource MenuItemStyle}" Click="lnkSettings_Click"></MenuItem>
                 <MenuItem Header="Performance counters" Visibility="{Binding Converter={StaticResource menuEnabledConverter},ConverterParameter=Performance}" Style="{DynamicResource MenuItemStyle}" Click="lnkPerformance_Click"></MenuItem>

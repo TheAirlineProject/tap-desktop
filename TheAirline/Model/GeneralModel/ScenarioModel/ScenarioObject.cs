@@ -26,6 +26,11 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
         {
             return this.Failures.Find(f => f.Failure == failure);
         }
+        //returns all scenario failure objects
+        public List<ScenarioFailureObject> getScenarioFailures()
+        {
+            return this.Failures;
+        }
     }
     //the object for a scenario failure
     public class ScenarioFailureObject

@@ -75,14 +75,6 @@
     <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Devart.Data, Version=5.0.623.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Devart.Data.dll</HintPath>
-    </Reference>
-    <Reference Include="Devart.Data.SQLite, Version=4.4.164.0, Culture=neutral, PublicKeyToken=09af7300eec23701, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Devart.Data.SQLite.dll</HintPath>
-    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -789,7 +781,6 @@
     <Compile Include="Model\AirportModel\AirportStatisticsValue.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
-    <Compile Include="Model\GeneralModel\Helpers\DatabaseModel\DatabaseObject.cs" />
     <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\Scenario.cs" />

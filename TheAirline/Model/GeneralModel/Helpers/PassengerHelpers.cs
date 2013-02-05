@@ -14,7 +14,6 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Diagnostics;
-using TheAirline.Model.GeneralModel.Helpers.DatabaseModel;
 
 namespace TheAirline.Model.GeneralModel
 {

@@ -15,8 +15,10 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
         public object Value { get; set; }
         public string FailureText { get; set; }
         public int MonthsOfFailure { get; set; }
-        public ScenarioFailure(FailureType type, int checkMonths, object value, string failureText, int monthsOfFailure)
+        public string ID { get; set; }
+        public ScenarioFailure(string id, FailureType type, int checkMonths, object value, string failureText, int monthsOfFailure)
         {
+            this.ID = id;
             this.Type = type;
             this.CheckMonths = checkMonths;
             this.Value = value;

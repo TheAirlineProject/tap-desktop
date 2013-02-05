@@ -21,6 +21,7 @@ using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using System.Diagnostics;
+using TheAirline.Model.GeneralModel.ScenarioModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -93,7 +94,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airliners.Clear();
 
             XmlNodeList airlinersList = root.SelectNodes("//airliners/airliner");
-
+         
             Parallel.For(0, airlinersList.Count, i =>
              //foreach (XmlElement airlinerNode in airlinersList)
              {
@@ -518,6 +519,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().Difficulty = new DifficultyLevel(difficultyName, moneyLevel, loanLevel, passengersLevel, priceLevel, aiLevel);
 
+            XmlElement scenarioNode = (XmlElement)root.SelectSingleNode("//scenario");
+
+            if (scenarioNode != null)
+            {
+                Scenario scenario = Scenarios.GetScenario(scenarioNode.Attributes["name"].Value);
+
+                ScenarioObject so = new ScenarioObject(scenario);
+                so.IsSuccess = Convert.ToBoolean(scenarioNode.Attributes["success"].Value);
+
+                if (scenarioNode.HasAttribute("failed"))
+                    so.ScenarioFailed = scenario.Failures.Find(f => f.ID == scenarioNode.Attributes["failed"].Value);
+
+                XmlNodeList failuresList = scenarioNode.SelectNodes("failures/failure");
+
+                foreach (XmlElement failureNode in failuresList)
+                {
+                    ScenarioFailure failure = scenario.Failures.Find(f => f.ID == failureNode.Attributes["id"].Value);
+                    int failureCount = Convert.ToInt16(failureNode.Attributes["count"].Value);
+                    DateTime lastFailureTime = DateTime.Parse(failureNode.Attributes["lastfailuretime"].Value, new CultureInfo("de-DE", false));
+
+                    so.getScenarioFailure(failure).LastFailureTime = lastFailureTime;
+                    so.getScenarioFailure(failure).Failures = failureCount;
+                }
+
+                GameObject.GetInstance().Scenario = so;
+        
+            }
+           
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
 
             GameObject.GetInstance().Name = gameSettingsNode.Attributes["name"].Value;
@@ -1664,6 +1693,33 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             root.AppendChild(difficultyNode);
 
+            if (GameObject.GetInstance().Scenario != null)
+            {
+                XmlElement scenarioNode = xmlDoc.CreateElement("scenario");
+                scenarioNode.SetAttribute("name", GameObject.GetInstance().Scenario.Scenario.Name);
+                scenarioNode.SetAttribute("success", GameObject.GetInstance().Scenario.IsSuccess.ToString());
+
+                if (GameObject.GetInstance().Scenario.ScenarioFailed != null)
+                    scenarioNode.SetAttribute("failed", GameObject.GetInstance().Scenario.ScenarioFailed.ID);
+
+                XmlElement failuresNode = xmlDoc.CreateElement("failures");
+
+                foreach (ScenarioFailureObject sfo in GameObject.GetInstance().Scenario.getScenarioFailures())
+                {
+                    XmlElement failureNode = xmlDoc.CreateElement("failure");
+
+                    failureNode.SetAttribute("id", sfo.Failure.ID);
+                    failureNode.SetAttribute("count", sfo.Failures.ToString());
+                    failureNode.SetAttribute("lastfailuretime", sfo.LastFailureTime.ToString(new CultureInfo("de-DE")));
+
+                    failuresNode.AppendChild(failureNode);
+                 }
+
+                scenarioNode.AppendChild(failuresNode);
+
+                root.AppendChild(scenarioNode);
+            }
+       
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);

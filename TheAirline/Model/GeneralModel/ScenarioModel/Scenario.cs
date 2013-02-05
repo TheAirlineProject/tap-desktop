@@ -89,6 +89,11 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
         {
             return scenarios;
         }
+        //returns a scenario with a name
+        public static Scenario GetScenario(string name)
+        {
+            return scenarios.Find(s => s.Name == name);
+        }
         //clears the list of scenarios
         public static void Clear()
         {

@@ -134,7 +134,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 {
                 }
                 Setup.SetupGame();
-                PageNavigator.NavigateTo(new PageNewGame());
+                PageNavigator.NavigateTo(new PageFrontMenu());
                 GameObject.RestartInstance();
                 GameTimer.RestartInstance();
               
