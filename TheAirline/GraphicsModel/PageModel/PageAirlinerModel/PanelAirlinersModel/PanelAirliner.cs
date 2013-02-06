@@ -117,9 +117,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             return quickInfoPanel;
         }
 
-        private static void imgAirlinerImage_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        {
-            PopUpAirlinerImage.ShowPopUp((AirlinerType)((Image)sender).Tag);
-        }
+      
     }
 }
