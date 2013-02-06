@@ -170,5 +170,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return stopoverRoute;
         }
+        //returns the minimum time between flights for an airliner
+        public static TimeSpan GetMinTimeBetweenFlights(FleetAirliner airliner)
+        {
+            return GetMinTimeBetweenFlights(airliner.Airliner.getTotalSeatCapacity());
+        }
+        public static TimeSpan GetMinTimeBetweenFlights(AirlinerType type)
+        {
+            if (type == null || type is AirlinerCargoType)
+                return GetMinTimeBetweenFlights(0);
+
+            return GetMinTimeBetweenFlights(((AirlinerPassengerType)type).MaxSeatingCapacity);
+        }
+        private static TimeSpan GetMinTimeBetweenFlights(int passengers)
+        {
+            TimeSpan minTime = new TimeSpan(0, 45, 0);
+
+            if (passengers > 200)
+                return minTime.Add(minTime);
+            else
+                return minTime;
+
+
+            
+        }
     }
 }

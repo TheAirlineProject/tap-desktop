@@ -13,7 +13,6 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 */
     public class RouteTimeTable
     {
-        public static TimeSpan MinTimeBetweenFlights = new TimeSpan(0, 45, 0);
         public List<RouteTimeTableEntry> Entries { get; set; }
         public Route Route { get; set; }
         public RouteTimeTable(Route route)

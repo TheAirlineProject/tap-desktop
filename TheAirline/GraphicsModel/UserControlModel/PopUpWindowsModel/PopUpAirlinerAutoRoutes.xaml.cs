@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
@@ -443,17 +444,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
-                TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+                TimeSpan minFlightTime = routeFlightTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
 
-                if (minFlightTime.TotalHours > 5)
-                    minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
-          
                 cbDelayMinutes.Items.Clear();
 
-                int minDelayMinutes =(int)RouteTimeTable.MinTimeBetweenFlights.TotalMinutes;
-
-                if (minFlightTime.TotalHours > 5)
-                    minDelayMinutes = (int)(2 * RouteTimeTable.MinTimeBetweenFlights.TotalMinutes);
+                int minDelayMinutes = (int)FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner).TotalMinutes;
 
                 for (int i=minDelayMinutes;i<minDelayMinutes+120;i+=15)
                     cbDelayMinutes.Items.Add(i);
@@ -474,9 +469,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
              Route route = (Route)cbRoute.SelectedItem;
 
-             if (route != null)
+             if (route != null && cbDelayMinutes.SelectedItem != null)
              {
-                      TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+                  TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
                   int delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
@@ -502,8 +497,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
               Route route = (Route)cbRoute.SelectedItem;
 
               if (route != null && cbFlightsPerDay.SelectedItem != null)
-              {
-                           
+              {                           
                   int latestStartTime = 22;
 
                   TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
@@ -595,12 +589,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
              RouteTimeTable rt;
             
-             clearTimeTable();
-
-             if (!this.Entries.ContainsKey(route))
-                 this.Entries.Add(route, new List<RouteTimeTableEntry>());
-
-        
+            
             int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
              int delayMinutes = (int)cbDelayMinutes.SelectedItem;
              TimeSpan startTime = (TimeSpan)cbStartTime.SelectedItem;
@@ -612,7 +601,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
              {
                  if (cbBusinessRoute.IsChecked.Value)
                  {
-                     flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights).TotalMinutes / 2 / maxBusinessRouteTime);
+                     flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner)).TotalMinutes / 2 / maxBusinessRouteTime);
                      rt = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner, Math.Max(1, flightsPerDay), flightcode1, flightcode2);
                  }
                  else
@@ -621,9 +610,32 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
              else
                  rt = null;
 
-             foreach (RouteTimeTableEntry entry in rt.Entries)
-                 this.Entries[route].Add(entry);
-            
+             if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.Entries))
+             {
+                   WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2705"), Translator.GetInstance().GetString("MessageBox", "2705", "message"), WPFMessageBoxButtons.YesNo);
+
+                 if (result == WPFMessageBoxResult.Yes)
+                 {
+
+                     clearTimeTable();
+
+                     if (!this.Entries.ContainsKey(route))
+                         this.Entries.Add(route, new List<RouteTimeTableEntry>());
+
+
+                     foreach (RouteTimeTableEntry entry in rt.Entries)
+                         this.Entries[route].Add(entry);
+                 }
+             }
+             else
+             {
+                 if (!this.Entries.ContainsKey(route))
+                     this.Entries.Add(route, new List<RouteTimeTableEntry>());
+
+
+                 foreach (RouteTimeTableEntry entry in rt.Entries)
+                     this.Entries[route].Add(entry);
+             }
              showFlights();
          }
          private void cbBusinessRoute_Checked(object sender, RoutedEventArgs e)

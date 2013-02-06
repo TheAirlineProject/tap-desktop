@@ -205,10 +205,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
-                TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
-
-                if (minFlightTime.TotalHours > 5)
-                    minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+                TimeSpan minFlightTime = routeFlightTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
 
                 int maxHours = 22 - 6; //from 06.00 to 22.00
 
@@ -261,7 +258,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 if (cbBusinessRoute.IsChecked.Value)
                 {
-                    flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights).TotalMinutes / 2 / maxBusinessRouteTime);
+                    flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner)).TotalMinutes / 2 / maxBusinessRouteTime);
                     this.Selected = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner, Math.Max(1, flightsPerDay), flightcode1, flightcode2);
                 }
                 else

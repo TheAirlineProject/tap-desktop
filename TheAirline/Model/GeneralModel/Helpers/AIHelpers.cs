@@ -621,7 +621,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             return minFlightTime.TotalMinutes <= maxBusinessRouteTime;
         }
@@ -832,10 +832,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             TimeSpan routeFlightTime= MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type);
-            TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
-
-            if (minFlightTime.TotalHours > 5)
-                minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+            TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int maxHours = 22 - 6; //from 06.00 to 22.00
 
@@ -854,12 +851,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
 
-            TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+            TimeSpan minFlightTime = routeFlightTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
-           int minDelayMinutes = (int)RouteTimeTable.MinTimeBetweenFlights.TotalMinutes;
-
-            if (minFlightTime.TotalHours > 5)
-                minDelayMinutes = (int)(2 * RouteTimeTable.MinTimeBetweenFlights.TotalMinutes);
+            int minDelayMinutes = (int)FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).TotalMinutes;
 
             int startMinutes = Convert.ToInt16(((endHour-startHour) * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
 
@@ -936,7 +930,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CreateBusinessRouteTimeTable(Route route, FleetAirliner airliner)
         {
 
-            TimeSpan minFlightTime =route.getFlightTime(airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan minFlightTime = route.getFlightTime(airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int maxHours = 10 - 6; //from 06:00 to 10:00 and from 18:00 to 22:00
 
@@ -953,7 +947,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             RouteTimeTable timeTable = new RouteTimeTable(route);
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(RouteTimeTable.MinTimeBetweenFlights.Ticks));
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int startHour = 6;
             int endHour = 10;

@@ -507,7 +507,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //checks if an entry is valid
         private Boolean isRouteEntryValid(RouteTimeTableEntry entry, Boolean showMessageBoxOnError)
         {
-            TimeSpan flightTime = entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights);
+            TimeSpan flightTime = entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
 
             TimeSpan startTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
 
@@ -542,7 +542,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 TimeSpan eStartTime = new TimeSpan((int)e.Day, e.Time.Hours, e.Time.Minutes, e.Time.Seconds);
 
-                TimeSpan eFlightTime = e.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).Add(RouteTimeTable.MinTimeBetweenFlights);
+                TimeSpan eFlightTime = e.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
 
                 TimeSpan eEndTime = eStartTime.Add(eFlightTime);
 
@@ -579,8 +579,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             if (nextEntry != null && previousEntry != null)
             {
 
-                TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates, nextEntry.DepartureAirport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
-                TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, previousEntry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(RouteTimeTable.MinTimeBetweenFlights);
+                TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates, nextEntry.DepartureAirport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
+                TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, previousEntry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
 
 
                 TimeSpan prevDate = new TimeSpan((int)previousEntry.Day, previousEntry.Time.Hours, previousEntry.Time.Minutes, previousEntry.Time.Seconds);

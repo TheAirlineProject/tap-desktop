@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -69,7 +70,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 {
                     entry = new RouteTimeTableEntry(timetable, mainEntry.Day, time, new RouteEntryDestination(route.Destination1, mainEntry.Destination.FlightCode));
 
-                    time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
+                    time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(mainEntry.Airliner));
                     entry.Airliner = mainEntry.Airliner;
                     entry.MainEntry = mainEntry;
 
@@ -81,7 +82,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                     entry.Airliner = mainEntry.Airliner;
                     entry.MainEntry = mainEntry;
 
-                    time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(RouteTimeTable.MinTimeBetweenFlights);
+                    time = time.Add(entry.TimeTable.Route.getFlightTime(mainEntry.Airliner.Airliner.Type)).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(mainEntry.Airliner));
 
                 }
 
@@ -114,7 +115,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             if (CurrentFlight == 0)
                 this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry, 0);
             else
-                this.FlightTime = GameObject.GetInstance().GameTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+                this.FlightTime = GameObject.GetInstance().GameTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
             
             this.IsOnTime = true;
 

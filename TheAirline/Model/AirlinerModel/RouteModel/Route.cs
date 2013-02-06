@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -250,7 +251,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             if (this.HasStopovers)
             {
                 double totalMinutes = this.Stopovers.SelectMany(s => s.Legs).Sum(l => l.getFlightTime(type).TotalMinutes);
-                double totalRestTime = RouteTimeTable.MinTimeBetweenFlights.TotalMinutes * (this.Stopovers.SelectMany(s => s.Legs).Count() - 1);
+                double totalRestTime = FleetAirlinerHelpers.GetMinTimeBetweenFlights(type).TotalMinutes * (this.Stopovers.SelectMany(s => s.Legs).Count() - 1);
                 int time = (int)(totalRestTime + totalMinutes);
 
                 return new TimeSpan(0, time, 0);
