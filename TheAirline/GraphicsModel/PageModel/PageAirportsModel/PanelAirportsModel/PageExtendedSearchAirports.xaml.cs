@@ -128,6 +128,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             Airport airport = (Airport)cbAirport.SelectedItem;
             double distance = txtDistance.Text.Length > 0 ? Convert.ToDouble(txtDistance.Text) : 0;
+
+            if (AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Imperial)
+                distance = MathHelpers.MilesToKM(distance);
+        
+
             CompareType comparer = (CompareType)((ComboBoxItem)cbCompareDistance.SelectedItem).Tag;
          
             if (AppSettings.GetInstance().getLanguage().Unit == Model.GeneralModel.Language.UnitSystem.Imperial)

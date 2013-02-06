@@ -226,6 +226,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             int capacity = (int)(((ComboBoxItem)cbCapacity.SelectedItem).Tag);
             long price = (long)(((ComboBoxItem)cbPrice.SelectedItem).Tag);
             double range = (double)(((ComboBoxItem)cbRange.SelectedItem).Tag);
+
+            if (AppSettings.GetInstance().getLanguage().Unit == TheAirline.Model.GeneralModel.Language.UnitSystem.Imperial)
+                range = MathHelpers.MilesToKM(range);
+            
             int year = (int)(cbYear.SelectedItem);
 
             switch (rangeCompare)
