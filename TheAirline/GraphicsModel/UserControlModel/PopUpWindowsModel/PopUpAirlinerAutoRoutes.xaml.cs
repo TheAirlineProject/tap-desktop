@@ -30,8 +30,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
 
-        private ComboBox cbRoute, cbFlightsPerDay, cbFlightCode, cbRegion;
+        private ComboBox cbRoute, cbFlightsPerDay, cbFlightCode, cbRegion, cbDelayMinutes;
         private CheckBox cbBusinessRoute;
+
+        //minutesBetween and starttime 
+
         private double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
 
         public static object ShowPopUp(FleetAirliner airliner)
@@ -305,25 +308,36 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             autogeneratePanel.Children.Add(cbFlightCode);
 
-            TextBlock txtFlightsPerDay = UICreator.CreateTextBlock("Flights per day");
+            TextBlock txtFlightsPerDay = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes","1002"));
             txtFlightsPerDay.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            txtFlightsPerDay.Margin = new Thickness(10, 0, 5, 0);
+            txtFlightsPerDay.Margin = new Thickness(10, 0, 0, 0);
 
             autogeneratePanel.Children.Add(txtFlightsPerDay);
-
+            
             cbFlightsPerDay = new ComboBox();
             cbFlightsPerDay.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-
-            //cbRoute.SelectedIndex = 0;
-
+           
             autogeneratePanel.Children.Add(cbFlightsPerDay);
+
+            TextBlock txtDelayMinutes = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", "1003"));
+            txtDelayMinutes.Margin = new Thickness(10, 0, 5, 0);
+            txtDelayMinutes.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+            autogeneratePanel.Children.Add(txtDelayMinutes);
+
+            cbDelayMinutes = new ComboBox();
+            cbDelayMinutes.SetResourceReference(ComboBox.StyleProperty,"ComboBoxTransparentStyle");
+            cbDelayMinutes.SelectionChanged += cbDelayMinutes_SelectionChanged;
+            cbDelayMinutes.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
+
+            autogeneratePanel.Children.Add(cbDelayMinutes);
 
             cbBusinessRoute = new CheckBox();
             cbBusinessRoute.FlowDirection = System.Windows.FlowDirection.RightToLeft;
             cbBusinessRoute.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             cbBusinessRoute.Unchecked += cbBusinessRoute_Unchecked;
             cbBusinessRoute.Checked += cbBusinessRoute_Checked;
-            cbBusinessRoute.Content = "Business route";
+            cbBusinessRoute.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes","1001");
             cbBusinessRoute.Margin = new Thickness(5, 0, 0, 0);
 
             autogeneratePanel.Children.Add(cbBusinessRoute);
@@ -374,19 +388,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 if (minFlightTime.TotalHours > 5)
                     minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+          
+                cbDelayMinutes.Items.Clear();
 
-                int maxHours = 22 - 6; //from 06.00 to 22.00
+                int minDelayMinutes =(int)RouteTimeTable.MinTimeBetweenFlights.TotalMinutes;
 
-                int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+                if (minFlightTime.TotalHours > 5)
+                    minDelayMinutes = (int)(2 * RouteTimeTable.MinTimeBetweenFlights.TotalMinutes);
 
-                cbFlightsPerDay.Items.Clear();
+                for (int i=minDelayMinutes;i<minDelayMinutes+120;i+=15)
+                    cbDelayMinutes.Items.Add(i);
 
-                for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
-                    cbFlightsPerDay.Items.Add(i + 1);
-
-                cbFlightsPerDay.SelectedIndex = 0;
-
-
+                cbDelayMinutes.SelectedIndex = 0;
+                
                 cbBusinessRoute.Visibility = minFlightTime.TotalMinutes <= maxBusinessRouteTime ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
                 if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
@@ -396,6 +410,33 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
 
         }
+        
+        private void cbDelayMinutes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+             Route route = (Route)cbRoute.SelectedItem;
+
+             if (route != null)
+             {
+                 TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
+
+                 int delayMinutes = (int)cbDelayMinutes.SelectedItem;
+
+                 TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0,delayMinutes,0));
+
+                 int maxHours = 22 - 6; //from 06.00 to 22.00
+
+                 int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+
+                 cbFlightsPerDay.Items.Clear();
+
+                 for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
+                     cbFlightsPerDay.Items.Add(i + 1);
+
+                 cbFlightsPerDay.SelectedIndex = 0;
+             }
+
+        }
+
         //clears the time table
         private void clearTimeTable()
         {
@@ -474,6 +515,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         
            int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
+            int delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
             string flightcode1 = cbFlightCode.SelectedItem.ToString();
             string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1) + 1];
@@ -486,7 +528,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                     rt = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner, Math.Max(1, flightsPerDay), flightcode1, flightcode2);
                 }
                 else
-                    rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, flightcode1, flightcode2);
+                    rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay,delayMinutes, flightcode1, flightcode2);
             }
             else
                 rt = null;

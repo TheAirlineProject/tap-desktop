@@ -849,14 +849,27 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static RouteTimeTable CreateAirlinerRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
         {
-            RouteTimeTable timeTable = new RouteTimeTable(route);
-
+          
             TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
 
             TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
 
+           int minDelayMinutes = (int)RouteTimeTable.MinTimeBetweenFlights.TotalMinutes;
+
             if (minFlightTime.TotalHours > 5)
-                minFlightTime = minFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
+                minDelayMinutes = (int)(2 * RouteTimeTable.MinTimeBetweenFlights.TotalMinutes);
+
+            return CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, minDelayMinutes, flightCode1, flightCode2);
+
+        }
+        public static RouteTimeTable CreateAirlinerRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay,int delayMinutes, string flightCode1, string flightCode2)
+        {
+            TimeSpan delayTime = new TimeSpan(0, delayMinutes, 0);
+            RouteTimeTable timeTable = new RouteTimeTable(route);
+
+            TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
+
+            TimeSpan minFlightTime = routeFlightTime.Add(delayTime);
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
