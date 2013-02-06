@@ -41,7 +41,7 @@ namespace TheAirline.Model.GeneralModel
         //returns a random date 
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {
-            int range = ((TimeSpan)(maxDate - minDate)).Days;
+            int range = Math.Abs(((TimeSpan)(maxDate - minDate)).Days);
 
             int days = GetRandomInt(0,range);
           

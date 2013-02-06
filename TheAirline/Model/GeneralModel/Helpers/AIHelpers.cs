@@ -849,7 +849,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static RouteTimeTable CreateAirlinerRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay, string flightCode1, string flightCode2)
         {
-          
+            int startHour = 6;
+            int endHour = 22;
+
             TimeSpan routeFlightTime = route.getFlightTime(airliner.Airliner.Type);
 
             TimeSpan minFlightTime = routeFlightTime.Add(RouteTimeTable.MinTimeBetweenFlights);
@@ -859,10 +861,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (minFlightTime.TotalHours > 5)
                 minDelayMinutes = (int)(2 * RouteTimeTable.MinTimeBetweenFlights.TotalMinutes);
 
-            return CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, minDelayMinutes, flightCode1, flightCode2);
+            int startMinutes = Convert.ToInt16(((endHour-startHour) * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
+
+            if (startMinutes < 0) startMinutes = 0;
+
+            TimeSpan flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+
+
+            return CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, minDelayMinutes,flightTime, flightCode1, flightCode2);
 
         }
-        public static RouteTimeTable CreateAirlinerRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay,int delayMinutes, string flightCode1, string flightCode2)
+        public static RouteTimeTable CreateAirlinerRouteTimeTable(Route route, FleetAirliner airliner, int flightsPerDay,int delayMinutes,TimeSpan startTime, string flightCode1, string flightCode2)
         {
             TimeSpan delayTime = new TimeSpan(0, delayMinutes, 0);
             RouteTimeTable timeTable = new RouteTimeTable(route);
@@ -873,18 +882,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (minFlightTime.Hours < 12 && minFlightTime.Days < 1)
             {
-                int startHour = 6;
-                int endHour = 22;
-
-                int maxHours = endHour - startHour;
-
-
-
-                int startMinutes = Convert.ToInt16((maxHours * 60) - (minFlightTime.TotalMinutes * flightsPerDay * 2));
-
-                if (startMinutes < 0) startMinutes = 0;
-
-                TimeSpan flightTime = new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
+               
+                TimeSpan flightTime = new TimeSpan(startTime.Hours, startTime.Minutes, startTime.Seconds);//new TimeSpan(startHour, 0, 0).Add(new TimeSpan(0, startMinutes / 2, 0));
 
                 for (int i = 0; i < flightsPerDay; i++)
                 {

@@ -7,6 +7,7 @@
     <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
     <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
     <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
+    <c:TimeSpanConverter x:Key="timeSpanConverter"></c:TimeSpanConverter>
     <local:RouteClassFacilityConverter x:Key="routeClassFacilityConverter"></local:RouteClassFacilityConverter>
     <local:WifiEnabledConverter x:Key="wifiEnabledConverter"></local:WifiEnabledConverter>
     <DataTemplate x:Key="TextUnderscoreTextBlock">
@@ -134,6 +135,9 @@
             <Image Source="{Binding Profile.Logo}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
             <TextBlock Text="{Binding Profile.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0" TextAlignment="Left"></TextBlock>
         </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="TimeSpanItem">
+        <TextBlock Text="{Binding Converter={StaticResource timeSpanConverter}}" VerticalAlignment="Bottom"></TextBlock>
     </DataTemplate>
     <DataTemplate x:Key="QuickInfoItem">
         <Grid>
