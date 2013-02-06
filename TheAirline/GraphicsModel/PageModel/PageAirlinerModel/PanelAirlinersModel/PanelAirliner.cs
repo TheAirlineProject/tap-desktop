@@ -23,7 +23,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             this.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.Height = GraphicsHelpers.GetContentHeight();
-            
+
             panelAirliner = new StackPanel();
             panelAirliner.Orientation = Orientation.Vertical;
 
@@ -60,28 +60,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             quickInfoPanel.Children.Add(txtHeader);
 
+            if (airliner.Image != null)
+            {
+                Image imgAirlinerMap = new Image();
+                imgAirlinerMap.Width = GraphicsHelpers.GetContentWidth()-100;
+                imgAirlinerMap.Source = new BitmapImage(new Uri(airliner.Image, UriKind.RelativeOrAbsolute));
+                RenderOptions.SetBitmapScalingMode(imgAirlinerMap, BitmapScalingMode.HighQuality);
+
+                quickInfoPanel.Children.Add(imgAirlinerMap);
+            }
+
             ListBox lbQuickInfo = new ListBox();
             lbQuickInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbQuickInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             quickInfoPanel.Children.Add(lbQuickInfo);
 
-            WrapPanel panelAirlinerName = new WrapPanel();
-
-            Image imgAirlinerImage = new Image();
-            imgAirlinerImage.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
-            imgAirlinerImage.Height = 16;
-            imgAirlinerImage.Tag = airliner;
-            imgAirlinerImage.Visibility = airliner.Image == null ? Visibility.Collapsed : Visibility.Visible;
-            imgAirlinerImage.Margin = new Thickness(5, 0, 0, 0);
-            imgAirlinerImage.MouseDown += new System.Windows.Input.MouseButtonEventHandler(imgAirlinerImage_MouseDown);
-
-            RenderOptions.SetBitmapScalingMode(imgAirlinerImage, BitmapScalingMode.HighQuality);
-
-            panelAirlinerName.Children.Add(UICreator.CreateTextBlock(airliner.Name));
-            panelAirlinerName.Children.Add(imgAirlinerImage);
-
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1002"),panelAirlinerName ));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1002"), UICreator.CreateTextBlock(airliner.Name)));
 
             ContentControl ccManufactorer = new ContentControl();
             ccManufactorer.SetResourceReference(ContentControl.ContentTemplateProperty, "ManufactorerCountryItem");
@@ -89,12 +84,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1003"), ccManufactorer));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1004"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Body, null, null, null).ToString())));
-            
-            string range =  string.Format("{0:0.##} {1}",new NumberToUnitConverter().Convert(airliner.Range),new StringToLanguageConverter().Convert("km."));
+
+            string range = string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.Range), new StringToLanguageConverter().Convert("km."));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1005"), UICreator.CreateTextBlock(string.Format("{1} ({0})", new TextUnderscoreConverter().Convert(airliner.RangeType), range))));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1006"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(airliner.Engine, null, null, null).ToString())));
-   
+
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1007"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Wingspan).ToString())));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1008"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.Length).ToString())));
             if (airliner.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
@@ -102,7 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1009"), UICreator.CreateTextBlock(((AirlinerPassengerType)airliner).MaxSeatingCapacity.ToString())));
                 lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1010"), UICreator.CreateTextBlock(((AirlinerPassengerType)airliner).MaxAirlinerClasses.ToString())));
             }
-             
+
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1015"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.MinRunwaylength).ToString())));
 
             if (airliner.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
@@ -113,10 +108,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.##} {1}", new NumberToUnitConverter().Convert(airliner.CruisingSpeed), new StringToLanguageConverter().Convert("km/t")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1013"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1016"), UICreator.CreateTextBlock(string.Format("{0:0.#} {1}", new FuelUnitGtLConverter().Convert(airliner.FuelCapacity), new StringToLanguageConverter().Convert("gallons")))));
-            
-            
+
+
             string produced = string.Format("{0}-{1}", airliner.Produced.From > GameObject.GetInstance().GameTime ? "?" : airliner.Produced.From.ToShortDateString(), airliner.Produced.To > GameObject.GetInstance().GameTime ? "?" : airliner.Produced.To.ToShortDateString());
-        
+
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1014"), UICreator.CreateTextBlock(produced)));
 
             return quickInfoPanel;
