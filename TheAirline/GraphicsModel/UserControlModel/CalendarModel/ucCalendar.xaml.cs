@@ -149,7 +149,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
             {
                 items.Add(new CalendarItem(CalendarItem.ItemType.Airliner_Order, date, "Delivery of airliners", string.Join("\r\n", from a in airliners select a.Name)));    
             }
-        
+
+            foreach (CalendarItem item in CalendarItems.GetCalendarItems(date))
+                items.Add(item);
          
             return items;
 
@@ -173,21 +175,5 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
         }
     }
-    public class CalendarItem
-    {
-        public string Header { get; set; }
-        public DateTime Date { get; set; }
-        public string Subject { get; set; }
-        public enum ItemType { Holiday, Airliner_Order }
-        public ItemType Type { get; set; }
-        public CalendarItem(ItemType type, DateTime date, string header, string subject)
-        {
-            this.Type = type;
-            this.Header = header;
-            this.Date = date;
-            this.Subject = subject;
-        }
-
-    }
-
+   
 }

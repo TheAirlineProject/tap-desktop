@@ -573,6 +573,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AppSettings.GetInstance().setLanguage(Languages.GetLanguage(gameSettingsNode.Attributes["language"].Value));
             GameObject.GetInstance().DayRoundEnabled = Convert.ToBoolean(gameSettingsNode.Attributes["dayround"].Value);
 
+            XmlNodeList itemsList = gameSettingsNode.SelectNodes("calendaritems/calendaritem");
+           
+            CalendarItems.Clear();
+
+            foreach (XmlElement itemNode in itemsList)
+            {
+                CalendarItem.ItemType itemType = (CalendarItem.ItemType)Enum.Parse(typeof(CalendarItem.ItemType), itemNode.Attributes["type"].Value);
+                DateTime itemDate = DateTime.Parse(itemNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
+                string itemHeader = itemNode.Attributes["header"].Value;
+                string itemSubject = itemNode.Attributes["subject"].Value;
+
+                CalendarItems.AddCalendarItem(new CalendarItem(itemType, itemDate, itemHeader, itemSubject));
+            }
+
             XmlNodeList newsList = gameSettingsNode.SelectNodes("news/new");
             GameObject.GetInstance().NewsBox.clear();
 
@@ -1734,6 +1748,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString());
             gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().getLanguage().Name);
             gameSettingsNode.SetAttribute("dayround", GameObject.GetInstance().DayRoundEnabled.ToString());
+
+            XmlElement itemsNodes = xmlDoc.CreateElement("calendaritems");
+
+            foreach (CalendarItem item in CalendarItems.GetCalendarItems())
+            {
+                XmlElement itemNode = xmlDoc.CreateElement("calendaritem");
+
+                itemNode.SetAttribute("type", item.Type.ToString());
+                itemNode.SetAttribute("date", item.Date.ToString(new CultureInfo("de-DE")));
+                itemNode.SetAttribute("header", item.Header);
+                itemNode.SetAttribute("subject", item.Subject);
+
+                itemsNodes.AppendChild(itemNode);
+            }
+
+            gameSettingsNode.AppendChild(itemsNodes);
+
 
             XmlElement newsNodes = xmlDoc.CreateElement("news");
 

@@ -150,7 +150,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 else
                     GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
 
+                CalendarItems.AddCalendarItem(new CalendarItem(CalendarItem.ItemType.Airport_Closing, airport.Profile.Period.To, "Airport closing", string.Format("{0}, {1}", airport.Profile.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+            }
 
+            foreach (Airport airport in openingAirports)
+            {
+                //GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport opening", string.Format("A new airport The airport [LI airport={0}]({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString())));
+                CalendarItems.AddCalendarItem(new CalendarItem(CalendarItem.ItemType.Airport_Opening, airport.Profile.Period.From, "Airport opening", string.Format("{0}, {1}", airport.Profile.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+      
             }
             //checks for new airports which are opening
             List<Airport> openedAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());

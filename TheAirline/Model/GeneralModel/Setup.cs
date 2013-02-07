@@ -138,6 +138,7 @@ namespace TheAirline.Model.GeneralModel
             Instructors.Clear();
             TrainingAircraftTypes.Clear();
             Scenarios.Clear();
+          
         }
         /*! creates some pilots
          */

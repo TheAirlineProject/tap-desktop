@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.ComponentModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 {
@@ -58,6 +59,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                 if (item.Type == CalendarItem.ItemType.Airliner_Order)
                 {
                     brush = new SolidColorBrush(Colors.DarkRed);
+                    brush.Opacity = 0.5;
+                }
+                if (item.Type == CalendarItem.ItemType.Airport_Opening)
+                {
+                    brush = new SolidColorBrush(Colors.DarkGreen);
+                    brush.Opacity = 0.5;
+                }
+                if (item.Type == CalendarItem.ItemType.Airport_Closing)
+                {
+                    brush = new SolidColorBrush(Colors.Orange);
                     brush.Opacity = 0.5;
                 }
             }
