@@ -155,7 +155,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airport airport in openingAirports)
             {
-                //GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport opening", string.Format("A new airport The airport [LI airport={0}]({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString())));
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport opening", string.Format("A new airport {0}({1}) is opening in 14 days in {2}, {3}.", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
                 CalendarItems.AddCalendarItem(new CalendarItem(CalendarItem.ItemType.Airport_Opening, airport.Profile.Period.From, "Airport opening", string.Format("{0}, {1}", airport.Profile.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
       
             }
