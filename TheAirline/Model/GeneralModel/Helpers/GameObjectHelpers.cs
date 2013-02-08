@@ -709,6 +709,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
                     }
+                    //passenger growth if ticket office
+                    if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)
+                    {
+                        foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
+                        {
+                            Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
+
+                            airport.addDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
+
+                        }
+                    }
+
 
                 }
                 //passenger demand

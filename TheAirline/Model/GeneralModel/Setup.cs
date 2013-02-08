@@ -1674,11 +1674,25 @@ namespace TheAirline.Model.GeneralModel
 
         /*! sets up test game.
          */
+        public static void SetupTestGame(List<Airline> opponents)
+        {
+            List<Airline> airlines = new List<Airline>(Airlines.GetAllAirlines());
+
+            foreach (Airline airline in airlines)
+                if (!opponents.Contains(airline) && !airline.IsHuman)
+                    Airlines.RemoveAirline(airline);
+
+            SetupTestGame();
+        }
         public static void SetupTestGame(int opponents, Boolean sameRegion)
         {
 
             RemoveAirlines(opponents, sameRegion);
 
+            SetupTestGame();
+        }
+        private static void SetupTestGame()
+        {
             CreatePilots();
 
             //sets all the facilities at an airport to none for all airlines
@@ -1711,7 +1725,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-            
+
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("CPH").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
@@ -1723,7 +1737,6 @@ namespace TheAirline.Model.GeneralModel
              
 
         }
-
         /*! removes some random airlines from the list bases on number of opponents.
          */
         private static void RemoveAirlines(int opponnents, Boolean sameRegion)

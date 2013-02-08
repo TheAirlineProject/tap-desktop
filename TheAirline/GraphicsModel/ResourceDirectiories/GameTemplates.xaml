@@ -16,6 +16,7 @@
     <DataTemplate x:Key="CountryFlag">
         <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
     </DataTemplate>
+  
     <DataTemplate x:Key="AirlineLink">
         <TextBlock VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding}" Click="Airline_Click" >
