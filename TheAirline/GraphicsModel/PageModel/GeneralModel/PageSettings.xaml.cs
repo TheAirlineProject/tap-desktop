@@ -57,7 +57,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             slGameSpeed.IsDirectionReversed = true;
             slGameSpeed.IsSnapToTickEnabled = true;
             slGameSpeed.IsMoveToPointEnabled = true;
-            slGameSpeed.TickFrequency = 250;
+            slGameSpeed.TickFrequency = 500;
 
            
             slGameSpeed.ValueChanged += new RoutedPropertyChangedEventHandler<double>(slGameSpeed_ValueChanged);

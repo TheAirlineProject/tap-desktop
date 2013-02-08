@@ -908,8 +908,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         day += 2;
                     }
 
-
-
                     day = (DayOfWeek)1;
 
                     for (int i = 0; i < 3; i++)
