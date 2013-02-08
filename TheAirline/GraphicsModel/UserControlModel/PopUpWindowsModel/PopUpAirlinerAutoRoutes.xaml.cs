@@ -257,6 +257,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             buttonsPanel.Children.Add(btnAdd);
 
+            Button btnUndo = new Button();
+            btnUndo.Uid = "103";
+            btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnUndo.Height = Double.NaN;
+            btnUndo.Width = Double.NaN;
+            btnUndo.Margin = new Thickness(5, 0, 0, 0);
+            btnUndo.Content = Translator.GetInstance().GetString("General", btnUndo.Uid);
+            btnUndo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnUndo.Click += new RoutedEventHandler(btnUndo_Click);
+
+            buttonsPanel.Children.Add(btnUndo);
+            
             Button btnTransfer = new Button();
             btnTransfer.Uid = "1000";
             btnTransfer.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -575,6 +587,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
              }
 
              this.Close();
+         }
+         private void btnUndo_Click(object sender, RoutedEventArgs e)
+         {
+             this.Entries.Clear();
+
+             this.EntriesToDelete.Clear();
+
+             showFlights();
          }
          private void btnCancel_Click(object sender, RoutedEventArgs e)
          {
