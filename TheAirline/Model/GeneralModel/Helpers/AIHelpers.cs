@@ -893,7 +893,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else
             {
-                if (isDaily)
+                if (isDaily || minFlightTime.Hours >= 12 || minFlightTime.Days >= 1)
                 {
 
                     DayOfWeek day = 0;
@@ -921,7 +921,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 else
                 {
-                    DayOfWeek day = (DayOfWeek)(7 - numberOfFlights);
+                    DayOfWeek day = (DayOfWeek)(7 - numberOfFlights/2);
 
                 
                     for (int i = 0; i < numberOfFlights; i++)
@@ -935,6 +935,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, flightTime, new RouteEntryDestination(route.Destination1, flightCode2)));
 
                         day++;
+
+                        if (((int)day) > 6)
+                            day = 0;
                     }
 
 
