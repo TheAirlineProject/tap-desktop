@@ -98,7 +98,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             if (result == WPFMessageBoxResult.Yes)
             {
                 Alliance alliance = new Alliance(GameObject.GetInstance().GameTime,(Alliance.AllianceType)cbType.SelectedItem, txtAllianceName.Text.Trim(), (Airport)cbHeadquarter.SelectedItem);
-                alliance.addMember(GameObject.GetInstance().HumanAirline);
+                alliance.addMember(new AllianceMember(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime));
 
                 Alliances.AddAlliance(alliance);
 

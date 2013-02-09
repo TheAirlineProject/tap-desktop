@@ -58,12 +58,15 @@ namespace TheAirline.Model.GeneralModel
                 LoadStates();
                 LoadTemporaryCountries();
                 LoadUnions();
+                
                 LoadAirports();
                 LoadAirportLogos();
                 LoadAirportMaps();
                 LoadAirportFacilities();
                 LoadMajorDestinations();
+                
                 LoadAirlineFacilities();
+
                 LoadManufacturers();
                 LoadManufacturerLogos();
                 LoadAirliners();
@@ -83,6 +86,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirlinerTypeConfigurations();
 
                 LoadAirlines();
+                LoadAlliances();
                 LoadScenarios();
 
                 Skins.Init();
@@ -1437,7 +1441,45 @@ namespace TheAirline.Model.GeneralModel
             }
 
         }
+        /*loads the alliances
+         */
+        private static void LoadAlliances()
+        {
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getDataPath() + "\\addons\\alliances");
 
+            foreach (FileInfo file in dir.GetFiles("*.xml"))
+            {
+                LoadAlliance(file.FullName);
+            }
+        }
+        private static void LoadAlliance(string path)
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(path);
+            XmlElement root = doc.DocumentElement;
+
+            string allianceName = root.Attributes["name"].Value;
+            string logo = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value + ".png";
+            DateTime formationDate = Convert.ToDateTime(root.Attributes["formation"].Value);
+            Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), root.Attributes["type"].Value);
+
+            Airport headquarter = Airports.GetAirport(root.Attributes["headquarter"].Value);
+
+            Alliance alliance = new Alliance(formationDate,allianceType,allianceName,headquarter);
+            alliance.Logo = logo;
+
+            XmlNodeList membersList = root.SelectNodes("members/member");
+
+            foreach (XmlElement memberNode in membersList)
+            {
+                Airline memberAirline = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
+                DateTime joinedDate = Convert.ToDateTime(memberNode.Attributes["joined"].Value);
+
+                alliance.addMember(new AllianceMember(memberAirline, joinedDate));
+            }
+
+            Alliances.AddAlliance(alliance);
+        }
         /*loads the airlines
          */
         private static void LoadAirlines()
@@ -1734,8 +1776,28 @@ namespace TheAirline.Model.GeneralModel
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
-             
 
+            SetupAlliances();
+        }
+        //tests up the alliances in use
+        private static void SetupAlliances()
+        {
+            List<Alliance> alliances = new List<Alliance>(Alliances.GetAlliances());
+            foreach (Alliance alliance in alliances)
+            {
+                int activeMembers = alliance.Members.Count(m => Airlines.GetAllAirlines().Contains(m.Airline) && m.JoinedDate<= GameObject.GetInstance().GameTime);
+
+                if (activeMembers > 1)
+                {
+                    List<AllianceMember> members = new List<AllianceMember>(alliance.Members);
+
+                    foreach (AllianceMember member in alliance.Members.FindAll(m=> !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate> GameObject.GetInstance().GameTime))
+                        alliance.removeMember(member);
+                    
+                }
+                else
+                    Alliances.RemoveAlliance(alliance);
+            }
         }
         /*! removes some random airlines from the list bases on number of opponents.
          */

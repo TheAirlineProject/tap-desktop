@@ -280,7 +280,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     else
                     {
 
-                        if (alliance.Members.Contains(GameObject.GetInstance().HumanAirline))
+                        if (alliance.Members.Exists(m=>m.Airline == GameObject.GetInstance().HumanAirline))
                         {
                             alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime, alliance, airline, PendingAllianceMember.AcceptType.Request));
                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Request to join alliance", string.Format("[LI airline={0}] has requested to joined {1}. The request can be accepted or declined on the alliance page", airline.Profile.IATACode, alliance.Name)));
@@ -290,7 +290,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             if (CanJoinAlliance(airline, alliance))
                             {
-                                alliance.addMember(airline);
+                                alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
                                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("[LI airline={0}] has joined {1}", airline.Profile.IATACode, alliance.Name)));
                             }
                         }
@@ -333,7 +333,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (DoAcceptAllianceInvitation(bestFitAirline, alliance))
                     {
                         GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("[LI airline={0}] has joined {1}", bestFitAirline.Profile.IATACode, alliance.Name)));
-                        alliance.addMember(bestFitAirline);
+                        alliance.addMember(new AllianceMember(bestFitAirline,GameObject.GetInstance().GameTime));
                     }
                 }
             }
@@ -341,7 +341,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns a "good" alliance for an airline to join
         private static Alliance GetAirlineAlliance(Airline airline)
         {
-            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.Contains(airline) orderby GetAirlineAllianceScore(airline, a, true) descending select a).FirstOrDefault();
+            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.Exists(m=>m.Airline == airline) orderby GetAirlineAllianceScore(airline, a, true) descending select a).FirstOrDefault();
 
             if (bestAlliance != null && GetAirlineAllianceScore(airline, bestAlliance, true) > 50)
                 return bestAlliance;
@@ -351,11 +351,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the "score" for an airline compared to an alliance
         private static double GetAirlineAllianceScore(Airline airline, Alliance alliance, Boolean forAlliance)
         {
-            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
-            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airports).Distinct().Intersect(airline.Airports);
+            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airline.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airline.Airports).Distinct().Intersect(airline.Airports);
 
             double airlineRoutes = airline.Routes.Count;
-            double allianceRoutes = alliance.Members.SelectMany(m => m.Routes).Count();
+            double allianceRoutes = alliance.Members.SelectMany(m => m.Airline.Routes).Count();
 
             double coeff = forAlliance ? allianceRoutes * 10 : airlineRoutes * 10;
 
@@ -367,7 +367,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the best fit airline for an alliance
         private static Airline GetAllianceAirline(Alliance alliance)
         {
-            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.Contains(a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance, false) descending select a).FirstOrDefault();
+            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.Exists(m=>m.Airline == a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance, false) descending select a).FirstOrDefault();
 
             if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
                 return bestAirline;
@@ -380,7 +380,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             string name = Alliance.GenerateAllianceName();
             Airport headquarter = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0)[0];
             Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, Alliance.AllianceType.Full, name, headquarter);
-            alliance.addMember(airline);
+            alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
 
             Alliances.AddAlliance(alliance);
 
@@ -1023,15 +1023,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //check if an airline can join an alliance
         public static Boolean CanJoinAlliance(Airline airline, Alliance alliance)
         {
-            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
-            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airports).Distinct().Intersect(airline.Airports);
+            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airline.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airline.Airports).Distinct().Intersect(airline.Airports);
 
             double airlineDestinations = airline.Airports.Count;
             double airlineRoutes = airline.Routes.Count;
             double airlineCountries = airline.Airports.Select(a => a.Profile.Country).Distinct().Count();
             double airlineAlliances = airline.Alliances.Count;
 
-            double allianceRoutes = alliance.Members.SelectMany(m => m.Routes).Count();
+            double allianceRoutes = alliance.Members.SelectMany(m => m.Airline.Routes).Count();
 
             //declines if airline is much smaller than alliance
             if (airlineRoutes * 5 < allianceRoutes)
@@ -1052,15 +1052,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static Boolean DoAcceptAllianceInvitation(Airline airline, Alliance alliance)
         {
 
-            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
-            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airports).Distinct().Intersect(airline.Airports);
+            IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airline.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airline.Airports).Distinct().Intersect(airline.Airports);
 
             double airlineDestinations = airline.Airports.Count;
             double airlineRoutes = airline.Routes.Count;
             double airlineCountries = airline.Airports.Select(a => a.Profile.Country).Distinct().Count();
             double airlineAlliances = airline.Alliances.Count;
 
-            double allianceRoutes = alliance.Members.SelectMany(m => m.Routes).Count();
+            double allianceRoutes = alliance.Members.SelectMany(m => m.Airline.Routes).Count();
 
             //declines if invited airline is much larger than alliance
             if (airlineRoutes > 2 * allianceRoutes)

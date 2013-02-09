@@ -754,6 +754,7 @@
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlineModel\Alliance.cs" />
+    <Compile Include="Model\AirlineModel\AllianceMember.cs" />
     <Compile Include="Model\AirlineModel\FeeType.cs" />
     <Compile Include="Model\AirlineModel\SubsidiaryModel\FutureSubsidiaryAirline.cs" />
     <Compile Include="Model\AirlineModel\SubsidiaryModel\SubsidiaryAirline.cs" />

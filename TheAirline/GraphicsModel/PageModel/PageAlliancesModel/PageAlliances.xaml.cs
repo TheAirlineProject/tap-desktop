@@ -122,7 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
         {
             PendingAllianceMember pending = (PendingAllianceMember)((Button)sender).Tag;
 
-            pending.Alliance.addMember(pending.Airline);
+            pending.Alliance.addMember(new AllianceMember(pending.Airline,GameObject.GetInstance().GameTime));
             pending.Alliance.removePendingMember(pending);
       
             updatePage();
@@ -157,7 +157,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
         {
             Alliance alliance = (Alliance)value;
 
-            return alliance.Members.Contains(GameObject.GetInstance().HumanAirline) ? Visibility.Visible : Visibility.Collapsed;
+            return alliance.Members.Exists(m=>m.Airline.IsHuman) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

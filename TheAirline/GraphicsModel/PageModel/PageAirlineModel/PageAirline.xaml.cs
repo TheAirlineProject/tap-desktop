@@ -492,7 +492,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             {
                 Alliance alliance = airlineFrom.Alliances[0];
                 alliance.removeMember(airlineFrom);
-                alliance.addMember(airlineTo);
+                alliance.addMember(new AllianceMember(airlineTo,GameObject.GetInstance().GameTime));
             }
             while (airlineFrom.Facilities.Count > 0)
             {

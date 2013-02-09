@@ -12,29 +12,35 @@ namespace TheAirline.Model.AirlineModel
         public enum AllianceType { Codesharing, Full }
         public AllianceType Type { get; set; }
         public string Name { get; set; }
-        public List<Airline> Members { get; set; }
+        public List<AllianceMember> Members { get; set; }
         public Airport Headquarter { get; set; }
         public DateTime FormationDate { get; set; }
         public List<PendingAllianceMember> PendingMembers { get; set; }
+        public string Logo { get; set; }
         public Alliance(DateTime formationDate, AllianceType type, string name, Airport headquarter)
         {
             this.FormationDate = formationDate;
             this.Type = type;
             this.Name = name;
-            this.Members = new List<Airline>();
+            this.Members = new List<AllianceMember>();
             this.PendingMembers = new List<PendingAllianceMember>();
             this.Headquarter = headquarter;
         }
         //adds an airline to the alliance
-        public void addMember(Airline airline)
+        public void addMember(AllianceMember airline)
         {
             this.Members.Add(airline);
-            airline.addAlliance(this);
+            airline.Airline.addAlliance(this);
         }
         //removes an airline from the alliance
-        public void removeMember(Airline airline)
+        public void removeMember(AllianceMember airline)
         {
             this.Members.Remove(airline);
+            airline.Airline.removeAlliance(this);
+        }
+        public void removeMember(Airline airline)
+        {
+            this.Members.RemoveAll(a => a.Airline == airline);
             airline.removeAlliance(this);
         }
         //adds a pending member to the alliance
@@ -56,8 +62,8 @@ namespace TheAirline.Model.AirlineModel
         public static string GenerateAllianceName()
         {
             Random rnd = new Random();
-
-            string[] tNames = new string[] { "Star Alliance", "One World", "Sky Team", "Sky Alliance", "WOW Alliance", "Air Alliance", "Blue Sky", "Golden Circle Alliance", "Skywalkers", "One Air Alliance" };
+            
+            string[] tNames = new string[] { "Wings Alliance", "Qualiflyer","Air Team", "Sky Alliance", "WOW Alliance", "Air Alliance", "Blue Sky", "Golden Circle Alliance", "Skywalkers", "One Air Alliance" };
             List<string> aNames = (from a in Alliances.GetAlliances() select a.Name).ToList();
 
             List<string> names = tNames.ToList().Except(aNames).ToList();
@@ -65,7 +71,7 @@ namespace TheAirline.Model.AirlineModel
             return names[rnd.Next(names.Count)];
             
         }
-
+        
     }
     //the list of alliances
     public class Alliances

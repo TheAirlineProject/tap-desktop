@@ -56,7 +56,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             StackPanel panelAirlines = new StackPanel();
             scroller.Content = panelAirlines;
 
-            var airlines = from a in Airlines.GetAllAirlines() where !this.Alliance.Members.Contains(a) select a;
+            var airlines = from a in Airlines.GetAllAirlines() where !this.Alliance.Members.Exists(m=>m.Airline == a) select a;
 
             foreach (Airline airline in airlines)
             {

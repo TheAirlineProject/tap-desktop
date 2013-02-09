@@ -423,7 +423,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (XmlElement memberNode in membersList)
                 {
-                    alliance.addMember(Airlines.GetAirline(memberNode.Attributes["iata"].Value));
+                     Airline allianceMember = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
+                    DateTime joinedDate = DateTime.Parse(memberNode.Attributes["joined"].Value, new CultureInfo("de-DE"));
+
+                    alliance.addMember(new AllianceMember(allianceMember, joinedDate));
                 }
 
                 XmlNodeList pendingsList = allianceNode.SelectNodes("pendings/pending");
@@ -1602,11 +1605,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlElement membersNode = xmlDoc.CreateElement("members");
 
-                foreach (Airline airline in alliance.Members)
+                foreach (AllianceMember airline in alliance.Members)
                 {
                     XmlElement memberNode = xmlDoc.CreateElement("member");
-                    memberNode.SetAttribute("iata", airline.Profile.IATACode);
-
+                    memberNode.SetAttribute("airline", airline.Airline.Profile.IATACode);
+                    memberNode.SetAttribute("joined", airline.JoinedDate.ToString(new CultureInfo("de-DE")));
+                    
                     membersNode.AppendChild(memberNode);
                 }
                 allianceNode.AppendChild(membersNode);

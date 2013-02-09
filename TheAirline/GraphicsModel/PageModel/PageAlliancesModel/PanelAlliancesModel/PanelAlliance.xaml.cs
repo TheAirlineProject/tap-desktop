@@ -49,10 +49,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             scroller.Margin = new Thickness(0, 0, 50, 0);
 
             StackPanel panelAlliance = new StackPanel();
+            
+            WrapPanel panelHeader = new WrapPanel();
+            panelAlliance.Children.Add(panelHeader);
 
+            Image imgLogo = new Image();
+            imgLogo.Source = new BitmapImage(new Uri(this.Alliance.Logo, UriKind.RelativeOrAbsolute));
+            imgLogo.Width = 32;
+            imgLogo.Margin = new Thickness(0, 0, 10, 0);
+            imgLogo.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            RenderOptions.SetBitmapScalingMode(imgLogo, BitmapScalingMode.HighQuality);
+            panelHeader.Children.Add(imgLogo);
+
+            TextBlock txtAirlineName = UICreator.CreateTextBlock(this.Alliance.Name);
+            txtAirlineName.FontSize = 20;
+            txtAirlineName.FontWeight = FontWeights.Bold;
+            txtAirlineName.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+            panelHeader.Children.Add(txtAirlineName);
+
+            
             ContentControl txtHeader = new ContentControl();
             txtHeader.ContentTemplate = this.Resources["AirlinesHeader"] as DataTemplate;
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtHeader.Margin = new Thickness(0, 5, 0, 0);
             panelAlliance.Children.Add(txtHeader);
 
 
@@ -61,7 +81,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             lbMembers.MaxHeight = GraphicsHelpers.GetContentHeight()/2;
             lbMembers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            List<Airline> airlines = this.Alliance.Members;
+            List<Airline> airlines = this.Alliance.Members.Select(m=>m.Airline).ToList();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
             foreach (Airline airline in airlines)
@@ -130,13 +150,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             ccHeadquarter.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryLink");
             ccHeadquarter.Content = this.Alliance.Headquarter;
 
-            int routes = this.Alliance.Members.Sum(a => a.Routes.Count);
+            int routes = this.Alliance.Members.Sum(a => a.Airline.Routes.Count);
 
-            int destinations = this.Alliance.Members.SelectMany(m => m.Airports).Distinct().Count();
-            int countries = this.Alliance.Members.SelectMany(m => m.Airports).Select(a => a.Profile.Country).Distinct().Count();
-            double annualPassengers = this.Alliance.Members.Sum(m => m.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers")));
-            int hubs = this.Alliance.Members.Sum(m => m.getHubs().Count);
-            int weeklyDepartures = this.Alliance.Members.Sum(m => m.Routes.SelectMany(r => r.TimeTable.Entries).Count());
+            int destinations = this.Alliance.Members.SelectMany(m => m.Airline.Airports).Distinct().Count();
+            int countries = this.Alliance.Members.SelectMany(m => m.Airline.Airports).Select(a => a.Profile.Country).Distinct().Count();
+            double annualPassengers = this.Alliance.Members.Sum(m => m.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers")));
+            int hubs = this.Alliance.Members.Sum(m => m.Airline.getHubs().Count);
+            int weeklyDepartures = this.Alliance.Members.Sum(m => m.Airline.Routes.SelectMany(r => r.TimeTable.Entries).Count());
 
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAlliance", "211"), ccHeadquarter));
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAlliance", "206"), UICreator.CreateTextBlock(this.Alliance.FormationDate.Year.ToString())));
@@ -165,7 +185,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnJoin.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnJoin.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnJoin.Click += new RoutedEventHandler(btnJoin_Click);
-            btnJoin.Visibility = this.Alliance.Members.Contains(GameObject.GetInstance().HumanAirline) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+            btnJoin.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
 
             buttonsPanel.Children.Add(btnJoin);
 
@@ -178,7 +198,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnInvite.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnInvite.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnInvite.Click += new RoutedEventHandler(btnInvite_Click);
-            btnInvite.Visibility = this.Alliance.Members.Contains(GameObject.GetInstance().HumanAirline) ? Visibility.Visible : Visibility.Collapsed;
+            btnInvite.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) ? Visibility.Visible : Visibility.Collapsed;
 
             buttonsPanel.Children.Add(btnInvite);
 
@@ -192,7 +212,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnDelete.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnDelete.Margin = new Thickness(5, 0, 0, 0);
             btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
-            btnDelete.Visibility = this.Alliance.Members.Contains(GameObject.GetInstance().HumanAirline) && this.Alliance.Members.Count == 1 ? Visibility.Visible : Visibility.Collapsed;
+            btnDelete.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) && this.Alliance.Members.Count == 1 ? Visibility.Visible : Visibility.Collapsed;
 
             buttonsPanel.Children.Add(btnDelete);
 
@@ -205,7 +225,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnExit.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnExit.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnExit.Margin = new Thickness(5, 0, 0, 0);
-            btnExit.Visibility = this.Alliance.Members.Contains(GameObject.GetInstance().HumanAirline) && this.Alliance.Members.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
+            btnExit.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) && this.Alliance.Members.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
             btnExit.Click += new RoutedEventHandler(btnExit_Click);
 
             buttonsPanel.Children.Add(btnExit);
@@ -256,7 +276,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
                     if (AIHelpers.DoAcceptAllianceInvitation(airline, this.Alliance))
                     {
                         WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2605"), string.Format(Translator.GetInstance().GetString("MessageBox", "2605", "message"), airline.Profile.Name, this.Alliance.Name), WPFMessageBoxButtons.Ok);
-                        this.Alliance.addMember(airline);
+                        this.Alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
                     }
                     else
                     {
@@ -264,7 +284,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
 
                     }
 
-                    this.Alliance.addMember(airline);
+                    this.Alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
                 }
 
                 createPanel();
@@ -284,7 +304,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
                 {
                     WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2606"), string.Format(Translator.GetInstance().GetString("MessageBox", "2606", "message"), GameObject.GetInstance().HumanAirline.Profile.Name, this.Alliance.Name), WPFMessageBoxButtons.Ok);
                
-                    this.Alliance.addMember(GameObject.GetInstance().HumanAirline);
+                    this.Alliance.addMember(new AllianceMember(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime));
                 }
                 else
                 {
@@ -299,7 +319,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
         private void btnMap_Click(object sender, RoutedEventArgs e)
         {
 
-            PopUpMap.ShowPopUp((this.Alliance.Members.SelectMany(a => a.Routes)).ToList());
+            PopUpMap.ShowPopUp((this.Alliance.Members.SelectMany(a => a.Airline.Routes)).ToList());
         }
 
         private void lnkAirline_Click(object sender, RoutedEventArgs e)
@@ -316,7 +336,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
         {
             PendingAllianceMember member = (PendingAllianceMember)((Button)sender).Tag;
 
-            this.Alliance.addMember(member.Airline);
+            this.Alliance.addMember(new AllianceMember(member.Airline,GameObject.GetInstance().GameTime));
             this.Alliance.removePendingMember(member);
 
             createPanel();
