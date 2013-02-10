@@ -60,10 +60,37 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             () =>
                             {
                                 CheckForSubsidiaryAirline(airline);
+                            },
+                            () =>
+                            {
+                                CheckForAirlineAirportFacilities(airline);
                             }
                         ); //close parallel.invoke
 
 
+        }
+        //checks for building airport facilities for the airline
+        private static void CheckForAirlineAirportFacilities(Airline airline)
+        {
+            int minRoutesForTicketOffice = 3 + (int)airline.Mentality;
+            List<Airport> airports = airline.Airports.FindAll(a => AirlineHelpers.GetAirportOutboundRoutes(airline, a) >= minRoutesForTicketOffice);
+
+            foreach (Airport airport in airports)
+            {
+                if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel == 0)
+                {
+                    AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice).Find(f => f.TypeLevel == 1);
+                    double price = facility.Price;
+
+                    if (airport.Profile.Country != airline.Profile.Country)
+                        price = price * 1.25;
+
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+
+                    airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                    
+                 }
+            }
         }
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)

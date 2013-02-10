@@ -1790,7 +1790,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             sw.Stop();
 
-            Console.WriteLine("Time elapsed: {0} ms.", sw.ElapsedMilliseconds);
+            //Console.WriteLine("Time elapsed: {0} ms.", sw.ElapsedMilliseconds);
             
             //WaitFor.tasks
             using (FileStream fs = new FileStream(path, FileMode.Create))

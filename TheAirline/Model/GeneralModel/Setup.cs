@@ -2160,7 +2160,7 @@ namespace TheAirline.Model.GeneralModel
                 if (airport != null)
                     airport.Profile.Logo = file.FullName;
                 else
-                    code = "x";
+                    Console.WriteLine("The logo {0} doesn't match any airports",code);
             }
         }
         /*! loads the manufacturer logos
