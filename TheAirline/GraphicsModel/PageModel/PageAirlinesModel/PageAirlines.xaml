@@ -5,10 +5,12 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
                    xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+                   xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirlinesModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlines">
     <Page.Resources>
+        <local:AirlineRatingConverter x:Key="airlineRatingConverter"></local:AirlineRatingConverter>
         <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
         <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <DataTemplate x:Key="AirlinesHeader">

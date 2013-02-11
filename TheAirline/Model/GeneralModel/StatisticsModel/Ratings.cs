@@ -13,8 +13,8 @@ namespace TheAirline.Model.StatisticsModel
 {
     public class Ratings
     {
-        //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time %
-        public static double GetCustomerHappiness()
+        //calculates customer happiness as a function of average ticket price, crowding on flights, and on-time % - for an airline
+        public static double GetCustomerHappiness(Airline airline)
         {
             int negInt = -1;
             Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages();
@@ -24,15 +24,15 @@ namespace TheAirline.Model.StatisticsModel
             IDictionary<Airline, Double> scaleOnTimeP = StatisticsHelpers.GetRatingScale(onTimePercent);
             IDictionary<Airline, Double> scalePPD = StatisticsHelpers.GetRatingScale(ticketPPD);
 
-            double humanAvgFill = scaleAvgFill[GameObject.GetInstance().HumanAirline];
-            double humanOTP = scaleOnTimeP[GameObject.GetInstance().HumanAirline];
-            double humanPPD = scalePPD[GameObject.GetInstance().HumanAirline];
+            double airlineAvgFill = scaleAvgFill[airline];
+            double airlineOTP = scaleOnTimeP[airline];
+            double airlinePPD = scalePPD[airline];
 
-            return ((humanPPD * negInt + 100) * 0.4) + (humanAvgFill * 0.2) + (humanOTP * 0.4);
+            return ((airlinePPD * negInt + 100) * 0.4) + (airlineAvgFill * 0.2) + (airlineOTP * 0.4);
         }
  
         //calculates employee happiness as a function of wages, discounts, and free pilots (relative to workload)
-        public static double GetEmployeeHappiness()
+        public static double GetEmployeeHappiness(Airline airline)
         {
             Dictionary<Airline, Double> wages = StatisticsHelpers.GetEmployeeWages();
             Dictionary<Airline, Double> discounts = StatisticsHelpers.GetEmployeeDiscounts();
@@ -41,11 +41,11 @@ namespace TheAirline.Model.StatisticsModel
             IDictionary<Airline, Double> scaleDiscounts = StatisticsHelpers.GetRatingScale(discounts);
             IDictionary<Airline, Double> scaleUPilots = StatisticsHelpers.GetRatingScale(unassignedPilots);
 
-            double humanWages = scaleWages[GameObject.GetInstance().HumanAirline];
-            double humanDiscounts = scaleDiscounts[GameObject.GetInstance().HumanAirline];
-            double humanUnassignedPilots = scaleUPilots[GameObject.GetInstance().HumanAirline];
+            double airlineWages = scaleWages[airline];
+            double airlineDiscounts = scaleDiscounts[airline];
+            double airlineUnassignedPilots = scaleUPilots[airline];
 
-            return (humanWages * 0.7) + (humanUnassignedPilots * 0.2) + (humanDiscounts * 0.1);
+            return (airlineWages * 0.7) + (airlineUnassignedPilots * 0.2) + (airlineDiscounts * 0.1);
         }
         
     }

@@ -77,6 +77,61 @@ namespace TheAirline.Model.GeneralModel
             else
                 return null;
         }
+        //returns the passenger demand for routes with airportdestination as connection point
+        private static double GetFlightConnectionPassengers(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
+        {
+            /*
+             * Find demand origin-><dest> hvor der er rute fra Destination til <dest> -origin
+Find demand <dest>->Destination hvor der er rute fra <dest> til origin -destination*/
+
+            double legDistance = MathHelpers.GetDistance(airportCurrent, airportDestination);
+
+            double demandOrigin = 0;
+            double demandDestination = 0;
+
+            var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r=>((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
+            var routesToOrigin = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
+
+            if (airliner.Airliner.Airline.IsHuman)
+                Console.WriteLine("{0}->{1}", airportCurrent.Profile.IATACode, airportDestination.Profile.IATACode);
+
+            foreach (Route route in routesFromDestination)
+            {                
+                Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
+
+                double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
+
+                int directRoutes = AirportHelpers.GetAirportRoutes(airportCurrent, tDest).Count;
+
+                if (route.getDistance() + legDistance < totalDistance * 20 && directRoutes < 2)
+                {
+                    if (airportCurrent.Profile.IATACode == "SBY")
+                        legDistance = legDistance;
+                    double demand = (double)airportCurrent.getDestinationPassengersRate(tDest, type);
+                    demandDestination += demand;
+                }
+            }
+
+            foreach (Route route in routesToOrigin)
+            {
+                Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
+
+                double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
+
+                int directRoutes = AirportHelpers.GetAirportRoutes(tDest, airportDestination).Count;
+
+                if (airportCurrent.Profile.IATACode == "SBY")
+                    legDistance = legDistance;
+                  
+                if (route.getDistance() + legDistance < totalDistance * 2 && directRoutes < 2)
+                {
+                    double demand = (double)tDest.getDestinationPassengersRate(airportDestination, type);
+                    demandOrigin += demand;
+                }
+            }
+
+            return demandOrigin + demandDestination;
+        }
         //returns the number of passengers between two destinations
         public static int GetFlightPassengers(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
         {
@@ -94,7 +149,7 @@ namespace TheAirline.Model.GeneralModel
 
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
-            double passengerDemand = demand * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent,airportDestination,airliner,type))* GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 

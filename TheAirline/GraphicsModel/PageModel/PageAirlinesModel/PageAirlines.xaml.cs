@@ -17,6 +17,7 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.StatisticsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
 {
@@ -127,6 +128,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             panelSymbols.Children.Add(txtSubsidiary);
 
             return panelSymbols;
+        }
+    }
+    public class AirlineRatingConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Airline airline = (Airline)value;
+
+            return Ratings.GetCustomerHappiness(airline);
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

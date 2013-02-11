@@ -19,6 +19,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //generate a 1-100 scale for a list of values
             public static IDictionary<Airline, Double> GetRatingScale(IDictionary<Airline, Double> valueDictionary, double lower = 1, double upper = 100)
             {
+                foreach (Airline airline in valueDictionary.Keys.ToArray())
+                    if (Double.IsNaN(valueDictionary[airline]))
+                        valueDictionary[airline] = 0;
+
                 Dictionary<Airline, Double> scaleValues = new Dictionary<Airline, double>();
                 Double max = valueDictionary.Values.DefaultIfEmpty(0).Max();
                 Double min = valueDictionary.Values.DefaultIfEmpty(0).Min();

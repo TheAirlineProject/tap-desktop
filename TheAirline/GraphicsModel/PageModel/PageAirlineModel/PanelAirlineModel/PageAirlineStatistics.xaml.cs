@@ -90,9 +90,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1006"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanOnTime()))));
             lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1007"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", StatisticsHelpers.GetHumanFillAverage()*100))));
-            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1008"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", Ratings.GetCustomerHappiness()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1008"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", Ratings.GetCustomerHappiness(GameObject.GetInstance().HumanAirline)))));
             lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1009"), UICreator.CreateTextBlock(string.Format("{0:0.00}", StatisticsHelpers.GetHumanAvgTicketPPD()))));
-            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", Ratings.GetEmployeeHappiness()))));
+            lbHumanStats.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1012"), UICreator.CreateTextBlock(string.Format("{0:0.00} %", Ratings.GetEmployeeHappiness(GameObject.GetInstance().HumanAirline)))));
             return panelHumanStatistics;
           
 

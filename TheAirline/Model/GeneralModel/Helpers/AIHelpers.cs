@@ -95,7 +95,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)
         {
-
             int max = airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute).Count;
 
             if (max > 0)
