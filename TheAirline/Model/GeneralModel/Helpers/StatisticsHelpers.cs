@@ -28,7 +28,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Double min = valueDictionary.Values.DefaultIfEmpty(0).Min();
                 Double avg = valueDictionary.Values.DefaultIfEmpty(0).Sum() / valueDictionary.Values.Count;
 
-                return valueDictionary.ToDictionary(v => v.Key, x => (upper - lower) * ((x.Value - min) / (max - min)) + lower);
+                Double gap = max - min;
+
+                if (gap == 0)
+                    gap = 1;
+
+                return valueDictionary.ToDictionary(v => v.Key, x => (upper - lower) * ((x.Value - min) / gap) + lower);
             }
 
             //returns dictionary of overall ticket price per distance
@@ -205,13 +210,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     double sWage = airline.Fees.getValue(FeeTypes.GetType("Support Wage"));
                     double mWage = airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
-                    double pWage = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary")) * airline.Pilots.Count();
+                    double pWage = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));// *airline.Pilots.Count();
                     double cWage = airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
-                    double iWage = airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary")) * PilotModel.FlightSchool.MaxNumberOfInstructors;
+                    double iWage = airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));// *PilotModel.FlightSchool.MaxNumberOfInstructors;
                     int cabinCrew = airline.Routes.Sum(r => r.getTotalCabinCrew());
                     int serviceCrew = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportModel.AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
                     int maintenanceCrew = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportModel.AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
                     double averageWage = ((sWage * serviceCrew) + (mWage * maintenanceCrew) + pWage + iWage + (cWage * cabinCrew)) / 5;
+
+                    averageWage = (sWage + mWage + pWage + cWage + iWage) / 5;
+                    
                     employeeWages.Add(airline, averageWage);
                 }
                 return employeeWages;
@@ -235,7 +243,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Dictionary<Airline, Double> unassignedPilots = new Dictionary<Airline, Double>();
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
-                    double unPilots = (double)PilotModel.Pilots.GetNumberOfUnassignedPilots();
+                    double unPilots = airline.Pilots.Count(p => p.Airliner == null);
                     unassignedPilots.Add(airline, unPilots);
                 }
                 return unassignedPilots;

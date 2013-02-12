@@ -80,10 +80,6 @@ namespace TheAirline.Model.GeneralModel
         //returns the passenger demand for routes with airportdestination as connection point
         private static double GetFlightConnectionPassengers(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-            /*
-             * Find demand origin-><dest> hvor der er rute fra Destination til <dest> -origin
-Find demand <dest>->Destination hvor der er rute fra <dest> til origin -destination*/
-
             double legDistance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
             double demandOrigin = 0;
@@ -92,10 +88,7 @@ Find demand <dest>->Destination hvor der er rute fra <dest> til origin -destinat
             var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r=>((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
             var routesToOrigin = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
 
-            if (airliner.Airliner.Airline.IsHuman)
-                Console.WriteLine("{0}->{1}", airportCurrent.Profile.IATACode, airportDestination.Profile.IATACode);
-
-            foreach (Route route in routesFromDestination)
+           foreach (Route route in routesFromDestination)
             {                
                 Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
@@ -103,12 +96,10 @@ Find demand <dest>->Destination hvor der er rute fra <dest> til origin -destinat
 
                 int directRoutes = AirportHelpers.GetAirportRoutes(airportCurrent, tDest).Count;
 
-                if (route.getDistance() + legDistance < totalDistance * 20 && directRoutes < 2)
+                if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
-                    if (airportCurrent.Profile.IATACode == "SBY")
-                        legDistance = legDistance;
-                    double demand = (double)airportCurrent.getDestinationPassengersRate(tDest, type);
-                    demandDestination += demand;
+                     double demand = (double)airportCurrent.getDestinationPassengersRate(tDest, type);
+                    demandDestination += (demand*0.25);
                 }
             }
 
@@ -119,18 +110,55 @@ Find demand <dest>->Destination hvor der er rute fra <dest> til origin -destinat
                 double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
 
                 int directRoutes = AirportHelpers.GetAirportRoutes(tDest, airportDestination).Count;
-
-                if (airportCurrent.Profile.IATACode == "SBY")
-                    legDistance = legDistance;
-                  
-                if (route.getDistance() + legDistance < totalDistance * 2 && directRoutes < 2)
+    
+                if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
                     double demand = (double)tDest.getDestinationPassengersRate(airportDestination, type);
-                    demandOrigin += demand;
+                    demandOrigin += (demand*0.25);
+                }
+            }
+            //alliances
+            if (airliner.Airliner.Airline.Alliances.Count > 0)
+            {
+                var allianceRoutesFromDestination = airliner.Airliner.Airline.Alliances.SelectMany(a=>a.Members.Where(m=>m.Airline!=airliner.Airliner.Airline).SelectMany(m=>m.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)))));
+                var allianceRoutesToOrigin = airliner.Airliner.Airline.Alliances.SelectMany(a=>a.Members.Where(m=>m.Airline != airliner.Airliner.Airline).SelectMany(m=>m.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)))));
+
+                foreach (Route route in allianceRoutesFromDestination)
+                {
+                    Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
+
+                    double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
+
+                    int directRoutes = AirportHelpers.GetAirportRoutes(airportCurrent, tDest).Count;
+
+                    if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
+                    {
+                        double demand = (double)airportCurrent.getDestinationPassengersRate(tDest, type);
+                        demandDestination += demand;
+                    }
+                }
+
+                foreach (Route route in allianceRoutesToOrigin)
+                {
+                    Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
+
+                    double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
+
+                    int directRoutes = AirportHelpers.GetAirportRoutes(tDest, airportDestination).Count;
+
+
+                    if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
+                    {
+                        double demand = (double)tDest.getDestinationPassengersRate(airportDestination, type);
+                        demandOrigin += demand;
+                    }
                 }
             }
 
             return demandOrigin + demandDestination;
+
+      
+
         }
         //returns the number of passengers between two destinations
         public static int GetFlightPassengers(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)

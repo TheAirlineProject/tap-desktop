@@ -17,6 +17,7 @@ using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.StatisticsModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -129,7 +130,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int totalRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) select r).Count();
             int totalAirlinersOnRoute = (from a in Airlines.GetAllAirlines().SelectMany(t => t.Fleet) where a.HasRoute select a).Count();
 
-            Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: " + totalAirlinersOnRoute);
+            //Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: " + totalAirlinersOnRoute);
 
             LastTime = DateTime.Now;
             //changes the fuel prices 
@@ -673,6 +674,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -salary);
 
                 }
+                //check for employee happiness and wages
+                Console.WriteLine("Airline: {0} Avg. Wages: {1} Happiness: {2}", airline.Profile.Name, StatisticsHelpers.GetEmployeeWages()[airline], Ratings.GetEmployeeHappiness(airline));
+                
 
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
