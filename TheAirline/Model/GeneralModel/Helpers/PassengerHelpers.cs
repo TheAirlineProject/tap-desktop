@@ -80,31 +80,34 @@ namespace TheAirline.Model.GeneralModel
         //returns the passenger demand from nearby airport with no routes for a destination
         private static double GetNearbyPassengerDemand(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
         {
-            TimeSpan flightTime = MathHelpers.GetFlightTime(airportCurrent,airportDestination,airliner.Airliner.Type);
+            TimeSpan flightTime = MathHelpers.GetFlightTime(airportCurrent, airportDestination, airliner.Airliner.Type);
 
             double maxDistance = (flightTime.TotalHours * 0.5) * 100;
 
-            var nearbyAirports = AirportHelpers.GetAirportsNearAirport(airportCurrent, maxDistance).DefaultIfEmpty().Where(a=>!AirportHelpers.HasRoute(a,airportDestination));
+            var nearbyAirports = AirportHelpers.GetAirportsNearAirport(airportCurrent, maxDistance).DefaultIfEmpty().Where(a => !AirportHelpers.HasRoute(a, airportDestination));
 
             double demand = 0;
 
             foreach (Airport airport in nearbyAirports)
             {
-                double distance = MathHelpers.GetDistance(airportCurrent, airport);
-                
-                double airportDemand = (double)airport.getDestinationPassengersRate(airportDestination, type);
+                if (airport != null)
+                {
+                    double distance = MathHelpers.GetDistance(airportCurrent, airport);
 
-                if (distance < 150)
-                    demand += distance * 0.75;
+                    double airportDemand = (double)airport.getDestinationPassengersRate(airportDestination, type);
 
-                if (distance>= 150 && distance < 225)
-                    demand += distance * 0.5;
+                    if (distance < 150)
+                        demand += airportDemand * 0.75;
 
-                if (distance >= 225 && distance < 300)
-                    demand += distance * 0.25;
+                    if (distance >= 150 && distance < 225)
+                        demand += airportDemand * 0.5;
 
-                if (distance >= 300 && distance < 400)
-                    demand += distance * 0.10;
+                    if (distance >= 225 && distance < 300)
+                        demand += airportDemand * 0.25;
+
+                    if (distance >= 300 && distance < 400)
+                        demand += airportDemand * 0.10;
+                }
             }
 
             return demand;
@@ -117,11 +120,11 @@ namespace TheAirline.Model.GeneralModel
             double demandOrigin = 0;
             double demandDestination = 0;
 
-            var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r=>((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
+            var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
             var routesToOrigin = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
 
-           foreach (Route route in routesFromDestination)
-            {                
+            foreach (Route route in routesFromDestination)
+            {
                 Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
                 double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
@@ -130,8 +133,8 @@ namespace TheAirline.Model.GeneralModel
 
                 if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
-                     double demand = (double)airportCurrent.getDestinationPassengersRate(tDest, type);
-                    demandDestination += (demand*0.25);
+                    double demand = (double)airportCurrent.getDestinationPassengersRate(tDest, type);
+                    demandDestination += (demand * 0.25);
                 }
             }
 
@@ -142,18 +145,18 @@ namespace TheAirline.Model.GeneralModel
                 double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
 
                 int directRoutes = AirportHelpers.GetAirportRoutes(tDest, airportDestination).Count;
-    
+
                 if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
                     double demand = (double)tDest.getDestinationPassengersRate(airportDestination, type);
-                    demandOrigin += (demand*0.25);
+                    demandOrigin += (demand * 0.25);
                 }
             }
             //alliances
             if (airliner.Airliner.Airline.Alliances.Count > 0)
             {
-                var allianceRoutesFromDestination = airliner.Airliner.Airline.Alliances.SelectMany(a=>a.Members.Where(m=>m.Airline!=airliner.Airliner.Airline).SelectMany(m=>m.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)))));
-                var allianceRoutesToOrigin = airliner.Airliner.Airline.Alliances.SelectMany(a=>a.Members.Where(m=>m.Airline != airliner.Airliner.Airline).SelectMany(m=>m.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)))));
+                var allianceRoutesFromDestination = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)))));
+                var allianceRoutesToOrigin = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)))));
 
                 foreach (Route route in allianceRoutesFromDestination)
                 {
@@ -189,7 +192,7 @@ namespace TheAirline.Model.GeneralModel
 
             return demandOrigin + demandDestination;
 
-      
+
 
         }
         //returns the number of passengers between two destinations
@@ -209,7 +212,7 @@ namespace TheAirline.Model.GeneralModel
 
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
-            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent,airportDestination,airliner,type) + GetNearbyPassengerDemand(airportCurrent,airportDestination,airliner,type))* GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent, airportDestination, airliner, type) + GetNearbyPassengerDemand(airportCurrent, airportDestination, airliner, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
@@ -1859,7 +1862,7 @@ namespace TheAirline.Model.GeneralModel
                                     { estimatedPassengerLevel *= 0; }
                                     else { estimatedPassengerLevel *= 1; }
                                 }
-                               
+
                                 if (dist < 1600)
                                 { estimatedPassengerLevel *= 2; }
                                 else if (dist < 2400)
@@ -3672,14 +3675,14 @@ namespace TheAirline.Model.GeneralModel
 
                 if ((classType == AirlinerClass.ClassType.Economy_Class || classType == AirlinerClass.ClassType.Business_Class) && distance < 7500)
                     value = value / (int)classType;
-               
-               
+
+
 
                 ushort rate = (ushort)value;
 
                 if (rate > 0)
                 {
-                  
+
                     airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
                     //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
                 }
