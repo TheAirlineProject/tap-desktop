@@ -77,6 +77,38 @@ namespace TheAirline.Model.GeneralModel
             else
                 return null;
         }
+        //returns the passenger demand from nearby airport with no routes for a destination
+        private static double GetNearbyPassengerDemand(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
+        {
+            TimeSpan flightTime = MathHelpers.GetFlightTime(airportCurrent,airportDestination,airliner.Airliner.Type);
+
+            double maxDistance = (flightTime.TotalHours * 0.5) * 100;
+
+            var nearbyAirports = AirportHelpers.GetAirportsNearAirport(airportCurrent, maxDistance).DefaultIfEmpty().Where(a=>!AirportHelpers.HasRoute(a,airportDestination));
+
+            double demand = 0;
+
+            foreach (Airport airport in nearbyAirports)
+            {
+                double distance = MathHelpers.GetDistance(airportCurrent, airport);
+                
+                double airportDemand = (double)airport.getDestinationPassengersRate(airportDestination, type);
+
+                if (distance < 150)
+                    demand += distance * 0.75;
+
+                if (distance>= 150 && distance < 225)
+                    demand += distance * 0.5;
+
+                if (distance >= 225 && distance < 300)
+                    demand += distance * 0.25;
+
+                if (distance >= 300 && distance < 400)
+                    demand += distance * 0.10;
+            }
+
+            return demand;
+        }
         //returns the passenger demand for routes with airportdestination as connection point
         private static double GetFlightConnectionPassengers(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
         {
@@ -177,7 +209,7 @@ namespace TheAirline.Model.GeneralModel
 
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
-            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent,airportDestination,airliner,type))* GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent,airportDestination,airliner,type) + GetNearbyPassengerDemand(airportCurrent,airportDestination,airliner,type))* GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 

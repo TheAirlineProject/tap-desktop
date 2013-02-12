@@ -65,15 +65,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return pricePerMeter * lenght;
         }
-        //finds all airports in a radius of 1000 km from a airport
-        public static List<Airport> GetAirportsNearAirport(Airport airport)
+        //finds all airports in a radius of x km from a airport
+        public static List<Airport> GetAirportsNearAirport(Airport airport,double distance)
         {
-            return Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < 1000 && airport != a);
+            return Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < distance && airport != a);
         }
         //returns all routes from an airport for an airline
         public static List<Route> GetAirportRoutes(Airport airport, Airline airline)
         {
             return airline.Routes.FindAll(r => r.Destination2 == airport || r.Destination1 == airport);
+        }
+        //returns if there is a route between two airports
+        public static Boolean HasRoute(Airport airport1, Airport airport2)
+        {
+            return  Airlines.GetAllAirlines().SelectMany(a => a.Routes).Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
+
         }
         //returns all routes from an airport
         public static List<Route> GetAirportRoutes(Airport airport)

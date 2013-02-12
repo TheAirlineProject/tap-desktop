@@ -1843,7 +1843,7 @@ namespace TheAirline.Model.GeneralModel
                     airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
                 Dictionary<Airport, int> list = new Dictionary<Airport, int>();
-                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * AirportHelpers.GetAirportsNearAirport(a).Count));
+                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * AirportHelpers.GetAirportsNearAirport(a,1000).Count));
 
                 return AIHelpers.GetRandomItem(list);
             }
