@@ -53,13 +53,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             WrapPanel panelHeader = new WrapPanel();
             panelAlliance.Children.Add(panelHeader);
 
-            Image imgLogo = new Image();
-            imgLogo.Source = new BitmapImage(new Uri(this.Alliance.Logo, UriKind.RelativeOrAbsolute));
-            imgLogo.Width = 32;
-            imgLogo.Margin = new Thickness(0, 0, 10, 0);
-            imgLogo.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-            RenderOptions.SetBitmapScalingMode(imgLogo, BitmapScalingMode.HighQuality);
-            panelHeader.Children.Add(imgLogo);
+            if (this.Alliance.Logo != null)
+            {
+                Image imgLogo = new Image();
+                imgLogo.Source = new BitmapImage(new Uri(this.Alliance.Logo, UriKind.RelativeOrAbsolute));
+                imgLogo.Width = 32;
+                imgLogo.Margin = new Thickness(0, 0, 10, 0);
+                imgLogo.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                RenderOptions.SetBitmapScalingMode(imgLogo, BitmapScalingMode.HighQuality);
+                panelHeader.Children.Add(imgLogo);
+            }
 
             TextBlock txtAirlineName = UICreator.CreateTextBlock(this.Alliance.Name);
             txtAirlineName.FontSize = 20;

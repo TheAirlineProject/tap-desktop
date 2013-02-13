@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using System.Globalization;
 using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.Model.GeneralModel
 {
