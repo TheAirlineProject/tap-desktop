@@ -28,6 +28,7 @@ namespace TheAirline.Model.AirportModel
         public Boolean IsHub { get { return this.Hubs.Count > 0; } set { ;} }
         public long Income{ get; set; }
         public DateTime LastExpansionDate { get; set; }
+        public AirportContract AirlineContract { get; set; }
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;

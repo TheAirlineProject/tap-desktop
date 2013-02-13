@@ -499,7 +499,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (FeeType feeType in FeeTypes.GetTypes())
                     airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
 
-
+                //pays the airport contracts
+                foreach (AirportContract contract in airline.AirportContracts)
+                {
+                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -contract.YearlyPayment);
+                }
 
             }
 

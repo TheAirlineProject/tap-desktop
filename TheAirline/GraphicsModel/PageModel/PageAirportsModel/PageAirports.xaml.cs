@@ -183,7 +183,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             {
                 Airport airport = (Airport)value;
 
-                Boolean isEnabled = isEnabled = airport.Terminals.getFreeGates() > 0;
+                Boolean isEnabled = airport.Terminals.getFreeGates() > 0 && airport.AirlineContract == null;
     
              
                 rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);

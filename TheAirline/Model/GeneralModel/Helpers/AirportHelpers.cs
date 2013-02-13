@@ -431,6 +431,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return false;//airport.Weather[0].WindSpeed == Weather.eWindSpeed.Hurricane || airport.Weather[0].WindSpeed == Weather.eWindSpeed.Violent_Storm;
         }
+        //returns the price for a contract at an airport
+        public static double GetAirportContractPrice(Airport airport)
+        {
+            double paxDemand = airport.Profile.MajorDestionations.Sum(d => d.Value) + airport.Profile.Pax;
+
+            double basePrice = 10000;
+
+            return GeneralHelpers.GetInflationPrice(paxDemand * basePrice);
+         
+            //(initial amount, in the millions; and a montly amount probably $50,000 or so
+        }
         //checks an airport for extending of runway
         public static void CheckForExtendRunway(Airport airport)
         {

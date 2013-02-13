@@ -94,7 +94,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airliners.Clear();
 
             XmlNodeList airlinersList = root.SelectNodes("//airliners/airliner");
-         
+
             Parallel.For(0, airlinersList.Count, i =>
              //foreach (XmlElement airlinerNode in airlinersList)
              {
@@ -184,6 +184,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     Airline airline = Airlines.GetAirline(airportHubElement.Attributes["airline"].Value);
                     airport.Hubs.Add(new Hub(airline));
+                }
+
+                XmlElement airportContractElement = (XmlElement)airportNode.SelectSingleNode("contract");
+
+                if (airportContractElement != null)
+                {
+                    Airline contractAirline = Airlines.GetAirline(airportContractElement.Attributes["airline"].Value);
+                    Airport contractAirport = Airports.GetAirport(airportContractElement.Attributes["airport"].Value);
+                    DateTime contractDate = DateTime.Parse(airportContractElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
+                    int contractLength = Convert.ToInt32(airportContractElement.Attributes["length"].Value);
+                    double yearlyPayment = Convert.ToDouble(airportContractElement.Attributes["payment"].Value);
+
+                    AirportContract contract = new AirportContract(contractAirline, contractAirport, contractDate, contractLength, yearlyPayment);
+                    contractAirline.addAirportContract(contract);
                 }
 
                 XmlNodeList airportWeatherList = airportNode.SelectNodes("weathers/weather");
@@ -290,7 +304,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             XmlNodeList airportDestinationsList = root.SelectNodes("//airportdestinations/airportdestination");
-                        
+
             foreach (XmlElement airportDestinationElement in airportDestinationsList)
             {
                 Airport targetAirport = Airports.GetAirport(airportDestinationElement.Attributes["id"].Value);
@@ -301,7 +315,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     XmlNodeList destinationsList = airportDestinationElement.SelectNodes("destinations/destination");
 
-                    Parallel.For(0,destinationsList.Count, i =>
+                    Parallel.For(0, destinationsList.Count, i =>
                     //foreach (XmlElement destinationElement in destinationsList)
                     {
                         XmlElement destinationElement = (XmlElement)destinationsList[i];
@@ -423,7 +437,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (XmlElement memberNode in membersList)
                 {
-                     Airline allianceMember = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
+                    Airline allianceMember = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
                     DateTime joinedDate = DateTime.Parse(memberNode.Attributes["joined"].Value, new CultureInfo("de-DE"));
 
                     alliance.addMember(new AllianceMember(allianceMember, joinedDate));
@@ -547,9 +561,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
                 GameObject.GetInstance().Scenario = so;
-        
+
             }
-           
+
             XmlElement gameSettingsNode = (XmlElement)root.SelectSingleNode("//gamesettings");
 
             GameObject.GetInstance().Name = gameSettingsNode.Attributes["name"].Value;
@@ -577,7 +591,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GameObject.GetInstance().DayRoundEnabled = Convert.ToBoolean(gameSettingsNode.Attributes["dayround"].Value);
 
             XmlNodeList itemsList = gameSettingsNode.SelectNodes("calendaritems/calendaritem");
-           
+
             CalendarItems.Clear();
 
             foreach (XmlElement itemNode in itemsList)
@@ -641,7 +655,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
-            Airline.AirlineLicense license = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense),airlineNode.Attributes["license"].Value);
+            Airline.AirlineLicense license = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), airlineNode.Attributes["license"].Value);
 
             Boolean isReal = airlineNode.HasAttribute("real") ? Convert.ToBoolean(airlineNode.Attributes["real"].Value) : true;
             int founded = airlineNode.HasAttribute("founded") ? Convert.ToInt16(airlineNode.Attributes["founded"].Value) : 1950;
@@ -651,13 +665,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airlineIsSubsidiary)
             {
                 Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market,license);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license);
                 airline.Profile.Country = airlineCountry;
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
             {
-                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color,airlineCEO, isReal, founded, folded), mentality, market,license);
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license);
                 airline.Profile.Country = airlineCountry;
             }
             airline.Profile.Logo = logo;
@@ -930,7 +944,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
                         else
                         {
-                            
+
                             airliner.CurrentFlight = currentFlight;
                         }
                     }
@@ -994,14 +1008,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves the game
         public static void SaveGame(string file)
         {
-            Stopwatch  sw = new Stopwatch();
+            Stopwatch sw = new Stopwatch();
             sw.Start();
 
             string path = AppSettings.getDataPath() + "\\saves\\" + file + ".sav";
 
             XmlDocument xmlDoc = new XmlDocument();
 
-            XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0","UTF-8", null);
+            XmlDeclaration xmlDeclaration = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
             xmlDoc.AppendChild(xmlDeclaration);
 
             XmlElement root = xmlDoc.CreateElement("game");
@@ -1101,7 +1115,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
                 airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
                 airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());
-             
+
                 if (airline.Contract != null)
                 {
                     XmlElement airlineContractNode = xmlDoc.CreateElement("contract");
@@ -1228,8 +1242,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement trainingAircraftNode = xmlDoc.CreateElement("trainingaircraft");
                         trainingAircraftNode.SetAttribute("type", aircraft.Type.Name);
-                        trainingAircraftNode.SetAttribute("date",aircraft.BoughtDate.ToString(new CultureInfo("de-DE")));
-           
+                        trainingAircraftNode.SetAttribute("date", aircraft.BoughtDate.ToString(new CultureInfo("de-DE")));
+
                         trainingAircraftsNode.AppendChild(trainingAircraftNode);
                     }
 
@@ -1239,10 +1253,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (PilotStudent student in fs.Students)
                     {
                         XmlElement studentNode = xmlDoc.CreateElement("student");
-                      
-                        studentNode.SetAttribute("firstname",student.Profile.Firstname);
-                        studentNode.SetAttribute("lastname",student.Profile.Lastname);
-                        studentNode.SetAttribute("birthdate",student.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
+
+                        studentNode.SetAttribute("firstname", student.Profile.Firstname);
+                        studentNode.SetAttribute("lastname", student.Profile.Lastname);
+                        studentNode.SetAttribute("birthdate", student.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
                         studentNode.SetAttribute("town", student.Profile.Town.Name);
                         studentNode.SetAttribute("startdate", student.StartDate.ToString(new CultureInfo("de-DE")));
 
@@ -1251,7 +1265,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     flightSchoolNode.AppendChild(studentsNode);
                     flightSchoolsNode.AppendChild(flightSchoolNode);
-                  }
+                }
 
                 airlineNode.AppendChild(flightSchoolsNode);
 
@@ -1265,7 +1279,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
                     fleetAirlinerNode.SetAttribute("date", airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
                     fleetAirlinerNode.SetAttribute("groundeddate", airliner.GroundedToDate.ToString(new CultureInfo("de-DE")));
-     
+
                     fleetAirlinerNode.SetAttribute("status", airliner.Status.ToString());
                     fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
                     fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());
@@ -1300,7 +1314,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement routesNode = xmlDoc.CreateElement("routes");
                 foreach (Route route in airline.Routes)
                 {
-                    routesNode.AppendChild(SaveRoute(xmlDoc,route));
+                    routesNode.AppendChild(SaveRoute(xmlDoc, route));
                 }
                 airlineNode.AppendChild(routesNode);
 
@@ -1321,7 +1335,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         if (airliner.CurrentFlight is StopoverFlight)
                         {
                             XmlElement stopoverNode = xmlDoc.CreateElement("stopover");
-                            stopoverNode.SetAttribute("currentflight",((StopoverFlight)airliner.CurrentFlight).CurrentFlight.ToString());
+                            stopoverNode.SetAttribute("currentflight", ((StopoverFlight)airliner.CurrentFlight).CurrentFlight.ToString());
 
                             XmlElement stopoverClassesNode = xmlDoc.CreateElement("classes");
 
@@ -1382,7 +1396,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlElement airportRunwaysNode = xmlDoc.CreateElement("runways");
 
-                foreach (Runway runway in airport.Runways.FindAll(r=>!r.Standard))
+                foreach (Runway runway in airport.Runways.FindAll(r => !r.Standard))
                 {
                     XmlElement airportRunwayNode = xmlDoc.CreateElement("runway");
                     airportRunwayNode.SetAttribute("name", runway.Name);
@@ -1405,6 +1419,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
                 airportNode.AppendChild(airportHubsNode);
+
+                if (airport.AirlineContract != null)
+                {
+                    XmlElement airportContractNode = xmlDoc.CreateElement("contract");
+                    airportContractNode.SetAttribute("airline", airport.AirlineContract.Airline.Profile.IATACode);
+                    airportContractNode.SetAttribute("airport", airport.AirlineContract.Airport.Profile.IATACode);
+                    airportContractNode.SetAttribute("contractdate", airport.AirlineContract.ContractDate.ToString(new CultureInfo("de-DE")));
+                    airportContractNode.SetAttribute("length", airport.AirlineContract.Length.ToString());
+                    airportContractNode.SetAttribute("payment", airport.AirlineContract.YearlyPayment.ToString());
+
+                    airportNode.AppendChild(airportContractNode);
+
+                }
 
                 XmlElement airportWeathersNode = xmlDoc.CreateElement("weathers");
                 foreach (Weather weather in airport.Weather)
@@ -1448,7 +1475,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         foreach (int year in airport.Statistics.getYears())
                         {
                             double value = airport.Statistics.getStatisticsValue(year, airline, type);
-                            
+
                             if (value > 0)
                             {
                                 XmlElement airportStatNode = xmlDoc.CreateElement("stat");
@@ -1515,7 +1542,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             root.AppendChild(airportsNode);
 
-            
+
             XmlElement airportDestinationsNode = xmlDoc.CreateElement("airportdestinations");
             foreach (Airport airport in Airports.GetAllAirports())
             {
@@ -1543,8 +1570,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             root.AppendChild(airportDestinationsNode);
-            
-            
+
+
             XmlElement instructorsNode = xmlDoc.CreateElement("instructors");
 
             foreach (Instructor instructor in Instructors.GetInstructors())
@@ -1555,7 +1582,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 instructorNode.SetAttribute("birthdate", instructor.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
                 instructorNode.SetAttribute("town", instructor.Profile.Town.Name);
                 instructorNode.SetAttribute("rating", instructor.Rating.ToString());
-                instructorNode.SetAttribute("id",instructor.FlightSchool == null ? "-" : instructor.FlightSchool.ID);
+                instructorNode.SetAttribute("id", instructor.FlightSchool == null ? "-" : instructor.FlightSchool.ID);
 
                 XmlElement studentsNode = xmlDoc.CreateElement("students");
 
@@ -1583,7 +1610,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 pilotNode.SetAttribute("lastname", pilot.Profile.Lastname);
                 pilotNode.SetAttribute("birthdate", pilot.Profile.Birthdate.ToString(new CultureInfo("de-DE")));
                 pilotNode.SetAttribute("town", pilot.Profile.Town.Name);
-                pilotNode.SetAttribute("education",pilot.EducationTime.ToString(new CultureInfo("de-DE")));
+                pilotNode.SetAttribute("education", pilot.EducationTime.ToString(new CultureInfo("de-DE")));
                 pilotNode.SetAttribute("rating", pilot.Rating.ToString());
                 pilotNode.SetAttribute("airline", pilot.Airline == null ? "-" : pilot.Airline.Profile.IATACode);
                 pilotNode.SetAttribute("airlinesigned", pilot.AirlineSignedDate.ToString(new CultureInfo("de-DE")));
@@ -1593,7 +1620,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             root.AppendChild(pilotsNode);
-            
+
             XmlElement alliancesNode = xmlDoc.CreateElement("alliances");
             foreach (Alliance alliance in Alliances.GetAlliances())
             {
@@ -1610,7 +1637,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement memberNode = xmlDoc.CreateElement("member");
                     memberNode.SetAttribute("airline", airline.Airline.Profile.IATACode);
                     memberNode.SetAttribute("joined", airline.JoinedDate.ToString(new CultureInfo("de-DE")));
-                    
+
                     membersNode.AppendChild(memberNode);
                 }
                 allianceNode.AppendChild(membersNode);
@@ -1731,13 +1758,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     failureNode.SetAttribute("lastfailuretime", sfo.LastFailureTime.ToString(new CultureInfo("de-DE")));
 
                     failuresNode.AppendChild(failureNode);
-                 }
+                }
 
                 scenarioNode.AppendChild(failuresNode);
 
                 root.AppendChild(scenarioNode);
             }
-       
+
             XmlElement gameSettingsNode = xmlDoc.CreateElement("gamesettings");
             gameSettingsNode.SetAttribute("name", GameObject.GetInstance().Name);
             gameSettingsNode.SetAttribute("human", GameObject.GetInstance().HumanAirline.Profile.IATACode);
@@ -1791,7 +1818,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             sw.Stop();
 
             //Console.WriteLine("Time elapsed: {0} ms.", sw.ElapsedMilliseconds);
-            
+
             //WaitFor.tasks
             using (FileStream fs = new FileStream(path, FileMode.Create))
             {
@@ -1806,7 +1833,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
-            
+
             // xmlDoc.Save(path);
 
 
@@ -1895,7 +1922,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), entryNode.Attributes["day"].Value);
                 TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
                 FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Name == entryNode.Attributes["airliner"].Value); ;
-               
+
                 RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
 
                 if (entryNode.HasAttribute("id"))
@@ -1934,7 +1961,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             routeNode.SetAttribute("destination1", route.Destination1.Profile.IATACode);
             routeNode.SetAttribute("destination2", route.Destination2.Profile.IATACode);
             routeNode.SetAttribute("isbanned", route.Banned.ToString());
-                    
+
             XmlElement routeStopoversNode = xmlDoc.CreateElement("stopovers");
 
             foreach (StopoverRoute stopover in route.Stopovers)
@@ -2006,7 +2033,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             routeNode.AppendChild(routeInvoicesNode);
 
-            return routeNode;    
+            return routeNode;
         }
 
     }

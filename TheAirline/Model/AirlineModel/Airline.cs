@@ -47,6 +47,7 @@ namespace TheAirline.Model.AirlineModel
         public List<AirlinePolicy> Policies { get; set; }
         public List<Pilot> Pilots { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
+        public List<AirportContract> AirportContracts { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
         {
             this.Airports = new List<Airport>();
@@ -67,6 +68,7 @@ namespace TheAirline.Model.AirlineModel
             this.License = license;
             this.FlightCodes = new List<string>();
             this.Policies = new List<AirlinePolicy>();
+            this.AirportContracts = new List<AirportContract>();
 
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
@@ -77,6 +79,18 @@ namespace TheAirline.Model.AirlineModel
             this.FlightSchools = new List<FlightSchool>();
 
          }
+        //adds an airport contract to the airline
+        public void addAirportContract(AirportContract contract)
+        {
+            this.AirportContracts.Add(contract);
+            contract.Airport.AirlineContract = contract;
+        }
+        //removes an airport contract from the airline
+        public void removeAirportContract(AirportContract contract)
+        {
+            this.AirportContracts.Remove(contract);
+            contract.Airport.AirlineContract = null;
+        }
         //adds a pilot to the airline
         public void addPilot(Pilot pilot)
         {

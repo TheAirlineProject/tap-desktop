@@ -529,7 +529,8 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
-    //converter for a price based on the inflation
+    //converter for a price based on the 
+
     public class PriceInflationConverter : IValueConverter
     {
 

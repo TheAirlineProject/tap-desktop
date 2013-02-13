@@ -279,6 +279,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             svDepartures.Content = panelDepartures;
 
             return svDepartures;
+
+          
         }
 
         //shows the departures and arrivals
