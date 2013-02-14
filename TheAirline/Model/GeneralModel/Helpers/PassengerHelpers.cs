@@ -397,17 +397,21 @@ namespace TheAirline.Model.GeneralModel
         {
             var largestAirports = subAirports.FindAll(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Very_large);
 
+            int maxValue = Math.Max(2, (int)Math.Ceiling(airport.Profile.Pax / 2));
+
             if (largestAirports.Count > 0)
             {
                 foreach (var lAirport in largestAirports)
-                    airport.addDestinationPassengersRate(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, lAirport, (ushort)rnd.Next(1, 3)));
+                    airport.addDestinationPassengersRate(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, lAirport, (ushort)rnd.Next(1, maxValue)));
 
             }
             else
             {
                 subAirports = subAirports.OrderByDescending(a => a.Profile.Size).ToList();
-                airport.addDestinationPassengersRate(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, subAirports[0], (ushort)rnd.Next(1, 3)));
+                airport.addDestinationPassengersRate(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, subAirports[0], (ushort)rnd.Next(1, maxValue)));
             }
+
+         
         }
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)

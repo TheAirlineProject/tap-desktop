@@ -1767,7 +1767,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-
+            /*
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("CPH").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
@@ -1775,7 +1775,7 @@ namespace TheAirline.Model.GeneralModel
             Airports.GetAirport("SBY").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
-            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
+            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);*/
 
             SetupAlliances();
         }
@@ -2059,7 +2059,7 @@ namespace TheAirline.Model.GeneralModel
                         AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                         AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-
+                        
                     }
                 }
 
