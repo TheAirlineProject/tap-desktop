@@ -134,10 +134,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 while (GameObjectWorker.GetInstance().isBusy())
                 {
                 }
-                Setup.SetupGame();
                 PageNavigator.NavigateTo(new PageFrontMenu());
                 GameObject.RestartInstance();
                 GameTimer.RestartInstance();
+
+                Setup.SetupGame();
+              
               
                
             }
