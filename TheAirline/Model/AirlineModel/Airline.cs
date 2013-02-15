@@ -533,7 +533,11 @@ namespace TheAirline.Model.AirlineModel
         {
             airlines.RemoveAll(match);
         }
-      
+        //returns if the list of airlines contains an airline
+        public static Boolean ContainsAirline(Airline airline)
+        {
+            return airlines.Contains(airline);
+        }
       
     }
 

@@ -18,6 +18,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.StatisticsModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -480,7 +481,38 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             );
+            //checks for mergers
+            foreach (AirlineMerger merger in AirlineMergers.GetAirlineMergers(GameObject.GetInstance().GameTime))
+            {
+                if (merger.Type == AirlineMerger.MergerType.Merger)
+                {
+                    AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
 
+                    Airlines.RemoveAirline(merger.Airline2);
+
+                    if (merger.NewName != null && merger.NewName.Length > 1)
+                        merger.Airline1.Profile.Name = merger.NewName;
+                }
+                if (merger.Type == AirlineMerger.MergerType.Subsidiary)
+                {
+                    string oldLogo = merger.Airline2.Profile.Logo;
+
+                    SubsidiaryAirline sAirline = new SubsidiaryAirline(merger.Airline1, merger.Airline2.Profile, merger.Airline2.Mentality, merger.Airline2.MarketFocus, merger.Airline2.License);
+
+                    AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
+
+                    merger.Airline1.addSubsidiaryAirline(sAirline);
+
+                    Airlines.RemoveAirline(merger.Airline2);
+
+                    sAirline.Profile.Logo = oldLogo;
+                    sAirline.Profile.Color = merger.Airline2.Profile.Color;
+
+                }
+
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime,"Airline merger", merger.Name));
+             
+            }
 
         }
         //do the yearly update

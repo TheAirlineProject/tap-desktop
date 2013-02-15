@@ -88,6 +88,7 @@ namespace TheAirline.Model.GeneralModel
 
                 LoadAirlines();
                 LoadAlliances();
+              
                 LoadScenarios();
 
                 Skins.Init();
@@ -1115,6 +1116,33 @@ namespace TheAirline.Model.GeneralModel
                     Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
+        /*!loads the airline mergers
+         */
+        private static void LoadAirlineMergers()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\addons\\airlines\\mergers\\mergers.xml");
+            XmlElement root = doc.DocumentElement;
+
+            XmlNodeList mergersList = root.SelectNodes("//merger");
+
+            foreach (XmlElement element in mergersList)
+            {
+
+                string mergerName = element.Attributes["name"].Value;
+                Airline airline1 = Airlines.GetAirline(element.Attributes["airline1"].Value);
+                Airline airline2 = Airlines.GetAirline(element.Attributes["airline2"].Value);
+                AirlineMerger.MergerType mergerType = (AirlineMerger.MergerType)Enum.Parse(typeof(AirlineMerger.MergerType), element.Attributes["type"].Value);
+                DateTime mergerDate = DateTime.Parse(element.Attributes["date"].Value, new CultureInfo("en-US", false));
+
+                AirlineMerger merger = new AirlineMerger(mergerName,airline1,airline2,mergerDate,mergerType);
+
+                if (element.HasAttribute("newname"))
+                    merger.NewName = element.Attributes["newname"].Value;
+
+                AirlineMergers.AddAirlineMerger(merger);
+            }
+        }
         /*!loads the states
          */
         private static void LoadStates()
@@ -1778,14 +1806,31 @@ namespace TheAirline.Model.GeneralModel
             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);*/
 
             SetupAlliances();
+            SetupMergers();
         }
-        //tests up the alliances in use
-        private static void SetupAlliances()
+        //sets up the airline mergers
+        public static void SetupMergers()
+        {
+            AirlineMergers.Clear();
+            Setup.LoadAirlineMergers();
+               
+            List<AirlineMerger> mergers = new List<AirlineMerger>(AirlineMergers.GetAirlineMergers());
+
+            foreach (AirlineMerger merger in mergers)
+            {
+
+                if (!Airlines.ContainsAirline(merger.Airline1) || !Airlines.ContainsAirline(merger.Airline2) || merger.Airline2.IsHuman || merger.Airline1.IsHuman)
+                    AirlineMergers.RemoveAirlineMerger(merger);
+                
+            }
+        }
+        //sets up the alliances in use
+        public static void SetupAlliances()
         {
             List<Alliance> alliances = new List<Alliance>(Alliances.GetAlliances());
             foreach (Alliance alliance in alliances)
             {
-                int activeMembers = alliance.Members.Count(m => Airlines.GetAllAirlines().Contains(m.Airline) && m.JoinedDate<= GameObject.GetInstance().GameTime);
+                int activeMembers = alliance.Members.Count(m => Airlines.ContainsAirline(m.Airline) && m.JoinedDate<= GameObject.GetInstance().GameTime);
 
                 if (activeMembers > 1)
                 {

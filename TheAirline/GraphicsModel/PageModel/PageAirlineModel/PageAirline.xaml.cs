@@ -399,7 +399,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                 SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus, this.Airline.License);
 
-                switchAirline(this.Airline, sAirline);
+                AirlineHelpers.SwitchAirline(this.Airline, sAirline);
 
                 GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
 
@@ -457,7 +457,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
                 if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
                     GameObject.GetInstance().HumanAirline.License = this.Airline.License;
 
-                switchAirline(this.Airline, GameObject.GetInstance().HumanAirline);
+                AirlineHelpers.SwitchAirline(this.Airline, GameObject.GetInstance().HumanAirline);
 
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
 
@@ -485,57 +485,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             }
         }
-        //switches from one airline to another airline
-        private void switchAirline(Airline airlineFrom, Airline airlineTo)
-        {
-            while (airlineFrom.Alliances.Count > 0)
-            {
-                Alliance alliance = airlineFrom.Alliances[0];
-                alliance.removeMember(airlineFrom);
-                alliance.addMember(new AllianceMember(airlineTo,GameObject.GetInstance().GameTime));
-            }
-            while (airlineFrom.Facilities.Count > 0)
-            {
-                AirlineFacility airlineFacility = airlineFrom.Facilities[0];
-                airlineFrom.removeFacility(airlineFacility);
-                airlineTo.addFacility(airlineFacility);
-            }
-
-
-            while (airlineFrom.getFleetSize() > 0)
-            {
-                FleetAirliner airliner = airlineFrom.Fleet[0];
-                airlineFrom.removeAirliner(airliner);
-                airlineTo.addAirliner(airliner);
-                airliner.Airliner.Airline = GameObject.GetInstance().HumanAirline;
-            }
-
-            while (airlineFrom.Routes.Count > 0)
-            {
-                Route route = airlineFrom.Routes[0];
-                route.Airline = airlineTo;
-
-                airlineFrom.removeRoute(route);
-                airlineTo.addRoute(route);
-            }
-
-            while (airlineFrom.Airports.Count > 0)
-            {
-                Airport airport = airlineFrom.Airports[0];
-                airport.Terminals.switchAirline(airlineFrom, airlineTo);
-
-                foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airlineFrom))
-                {
-                    if (facility.TypeLevel > airport.getCurrentAirportFacility(airlineTo, facility.Type).TypeLevel)
-                        airport.addAirportFacility(airlineTo, facility, GameObject.GetInstance().GameTime);
-
-                    AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
-
-                    airport.setAirportFacility(airlineFrom, noneFacility, GameObject.GetInstance().GameTime);
-
-                }
-            }
-        }
+      
         public override void updatePage()
         {
             cbControlling.Items.Clear();

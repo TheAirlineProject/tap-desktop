@@ -316,6 +316,57 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return routes;
         }
+        //switches from one airline to another airline
+        public static void SwitchAirline(Airline airlineFrom, Airline airlineTo)
+        {
+            while (airlineFrom.Alliances.Count > 0)
+            {
+                Alliance alliance = airlineFrom.Alliances[0];
+                alliance.removeMember(airlineFrom);
+                alliance.addMember(new AllianceMember(airlineTo, GameObject.GetInstance().GameTime));
+            }
+            while (airlineFrom.Facilities.Count > 0)
+            {
+                AirlineFacility airlineFacility = airlineFrom.Facilities[0];
+                airlineFrom.removeFacility(airlineFacility);
+                airlineTo.addFacility(airlineFacility);
+            }
+
+
+            while (airlineFrom.getFleetSize() > 0)
+            {
+                FleetAirliner airliner = airlineFrom.Fleet[0];
+                airlineFrom.removeAirliner(airliner);
+                airlineTo.addAirliner(airliner);
+                airliner.Airliner.Airline = airlineTo;
+            }
+
+            while (airlineFrom.Routes.Count > 0)
+            {
+                Route route = airlineFrom.Routes[0];
+                route.Airline = airlineTo;
+
+                airlineFrom.removeRoute(route);
+                airlineTo.addRoute(route);
+            }
+
+            while (airlineFrom.Airports.Count > 0)
+            {
+                Airport airport = airlineFrom.Airports[0];
+                airport.Terminals.switchAirline(airlineFrom, airlineTo);
+
+                foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airlineFrom))
+                {
+                    if (facility.TypeLevel > airport.getCurrentAirportFacility(airlineTo, facility.Type).TypeLevel)
+                        airport.addAirportFacility(airlineTo, facility, GameObject.GetInstance().GameTime);
+
+                    AirportFacility noneFacility = AirportFacilities.GetFacilities(facility.Type).Find(f => f.TypeLevel == 0);
+
+                    airport.setAirportFacility(airlineFrom, noneFacility, GameObject.GetInstance().GameTime);
+
+                }
+            }
+        }
         
     }
 }

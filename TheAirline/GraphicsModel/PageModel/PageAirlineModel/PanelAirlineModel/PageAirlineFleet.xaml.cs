@@ -24,6 +24,7 @@ using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PilotModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -296,8 +297,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     if (airliner.HasRoute)
-                        airliner.Routes.ForEach(r => airliner.removeRoute(r));
-                  
+                    {
+                        var routes = new List<Route>(airliner.Routes);
+
+                        foreach (Route route in routes)
+                            airliner.removeRoute(route);
+                    }
+                   
                     this.Airline.removeAirliner(airliner);
 
                     AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airliner.Airliner.getPrice());

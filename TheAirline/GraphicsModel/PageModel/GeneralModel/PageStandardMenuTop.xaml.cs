@@ -33,6 +33,7 @@ using System.Threading;
 using TheAirline.GraphicsModel.PageModel.PagePilotsModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using System.Collections;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -280,6 +281,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     HolidayYear.Clear();
 
                     GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+
+                      Setup.SetupMergers();
 
                     popUpSplash.IsOpen = false;
                 }
