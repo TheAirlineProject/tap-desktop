@@ -1506,7 +1506,11 @@ namespace TheAirline.Model.GeneralModel
                 Airline memberAirline = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
                 DateTime joinedDate = Convert.ToDateTime(memberNode.Attributes["joined"].Value);
 
-                alliance.addMember(new AllianceMember(memberAirline, joinedDate));
+                AllianceMember member = new AllianceMember(memberAirline, joinedDate);
+                if (memberNode.HasAttribute("exited"))
+                    member.ExitedDate = Convert.ToDateTime(memberNode.Attributes["exited"].Value);
+
+                alliance.addMember(member);
             }
 
             Alliances.AddAlliance(alliance);
@@ -1833,13 +1837,13 @@ namespace TheAirline.Model.GeneralModel
             List<Alliance> alliances = new List<Alliance>(Alliances.GetAlliances());
             foreach (Alliance alliance in alliances)
             {
-                int activeMembers = alliance.Members.Count(m => Airlines.ContainsAirline(m.Airline) && m.JoinedDate<= GameObject.GetInstance().GameTime);
+                int activeMembers = alliance.Members.Count(m => Airlines.ContainsAirline(m.Airline) && m.JoinedDate<= GameObject.GetInstance().GameTime && m.ExitedDate > GameObject.GetInstance().GameTime);
 
                 if (activeMembers > 1)
                 {
                     List<AllianceMember> members = new List<AllianceMember>(alliance.Members);
 
-                    foreach (AllianceMember member in alliance.Members.FindAll(m=> !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate> GameObject.GetInstance().GameTime))
+                    foreach (AllianceMember member in alliance.Members.FindAll(m=> !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate> GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
                         alliance.removeMember(member);
                     
                 }

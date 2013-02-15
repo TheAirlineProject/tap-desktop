@@ -15,6 +15,7 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Airline = airline;
             this.JoinedDate = joinedDate;
+            this.ExitedDate = new DateTime(2199, 1, 1);
         }
     }
 }
