@@ -1141,6 +1141,9 @@ namespace TheAirline.Model.GeneralModel
                     merger.NewName = element.Attributes["newname"].Value;
 
                 AirlineMergers.AddAirlineMerger(merger);
+
+               
+
             }
         }
         /*!loads the states
