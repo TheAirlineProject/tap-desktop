@@ -98,8 +98,8 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
 
-            Console.WriteLine(Airports.GetAllAirports().Count);
-            Console.WriteLine(Airlines.GetAllAirlines().Count);
+            Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
+            Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
             var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
 
