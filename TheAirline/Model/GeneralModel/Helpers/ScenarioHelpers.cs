@@ -301,13 +301,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Pax)
                 {
-                    //opponnent on Cold War
-                    /*<failure id="5" type="Pax" value="5000" at="10" text="You have failed the scenario because you did not have 5,000,000 passengers in the year 2000!"/>
-	<failure id="6" type="Bases" value="2" at="10" text="You have failed the scenario because you did not successfully set up 3 different operating bases within 10 years!"/>
-*/
+                    double totalPassengers = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"));
+
+                    failureOk = Convert.ToDouble(failure.Value) * 1000 < totalPassengers;
+
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Bases)
                 {
+                    int homeBases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0).Count;
+
+                    failureOk = homeBases <= Convert.ToInt32(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Debt)
                 {
