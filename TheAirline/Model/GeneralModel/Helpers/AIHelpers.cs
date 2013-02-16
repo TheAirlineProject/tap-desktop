@@ -786,7 +786,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         var loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
 
                         if (loanAirliners.Count > 0)
-                            return new KeyValuePair<Airliner, Boolean>((from a in loanAirliners orderby a.Price select a).First(), true);
+                        {
+                            var airliner = (from a in loanAirliners orderby a.Price select a).First();
+
+                            if (airliner == null)
+                                return null;
+
+                            return new KeyValuePair<Airliner, Boolean>(airliner, true);
+                        }
                         else
                             return null;
                     }

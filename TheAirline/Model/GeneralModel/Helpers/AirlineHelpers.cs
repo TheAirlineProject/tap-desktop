@@ -16,6 +16,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
     //the class for some general airline helpers
     public class AirlineHelpers
     {
+        //creates an airliner for an airline
+        public static FleetAirliner CreateAirliner(Airline airline, AirlinerType type)
+        {
+            Airliner airliner = new Airliner(type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
+            Airliners.AddAirliner(airliner);
+
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airline.Airports[0]);
+
+            airliner.clearAirlinerClasses();
+
+            AirlinerHelpers.CreateAirlinerClasses(airliner);
+
+            return fAirliner;
+
+        }
         //adds an invoice to an airline
         public static void AddAirlineInvoice(Airline airline, DateTime date, Invoice.InvoiceType type, double amount)
         {
@@ -40,6 +55,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport)
         {
+       
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
             

@@ -2046,6 +2046,18 @@ namespace TheAirline.Model.GeneralModel
                     if (startRoute.Type.Range > distance)
                     {
                         airliner = new KeyValuePair<Airliner, bool>(Airliners.GetAirlinersForSale(a => a.Type == startRoute.Type).FirstOrDefault(), true);
+
+                        if (airliner.Value.Key == null)
+                        {
+                            Airliner nAirliner = new Airliner(startRoute.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
+                            Airliners.AddAirliner(nAirliner);
+
+                             nAirliner.clearAirlinerClasses();
+
+                            AirlinerHelpers.CreateAirlinerClasses(nAirliner);
+
+                            airliner = new KeyValuePair<Airliner, bool>(nAirliner, true);
+                        }
                     }
 
                 }
@@ -2155,6 +2167,11 @@ namespace TheAirline.Model.GeneralModel
 
                     KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false);
 
+                    if (airliner == null)
+                        airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, true);
+
+                    double distance = MathHelpers.GetDistance(origin, destination);
+
                     FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                     fAirliner.addRoute(route);
                     fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
@@ -2184,7 +2201,9 @@ namespace TheAirline.Model.GeneralModel
         //returns a random destination for an origin start routes
         private static Airport GetStartDataRoutesDestination(StartDataRoutes routes)
         {
-            List<Airport> airports = Airports.GetAirports(a => routes.Countries.Contains(a.Profile.Country) && a != Airports.GetAirport(routes.Origin) && ((int)a.Profile.Size) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates() > 0);
+            double maxRange = (AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To > GameObject.GetInstance().GameTime).Max(t => t.Range)) * 0.8;
+
+            List<Airport> airports = Airports.GetAirports(a => routes.Countries.Contains(a.Profile.Country) && MathHelpers.GetDistance(Airports.GetAirport(routes.Origin), a) < maxRange && a != Airports.GetAirport(routes.Origin) && ((int)a.Profile.Size) >= ((int)routes.MinimumSize) && a.Terminals.getFreeGates() > 0);
 
             return airports[rnd.Next(airports.Count)];
         }

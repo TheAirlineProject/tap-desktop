@@ -10,6 +10,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class AirlinerHelpers
     {
         private static Random rnd = new Random();
+       
         /*! create a random airliner with a minimum range.
         */
         private static Airliner CreateAirliner(double minRange)
@@ -25,6 +26,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int builtYear = rnd.Next(Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year-1, type.Produced.To.Year));
 
             Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
+
+            if (airliner.TailNumber.Length < 2)
+                typeNumber = 0;
 
             int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
 

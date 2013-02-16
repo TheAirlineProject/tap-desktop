@@ -151,7 +151,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airline.addRoute(route);
 
-                FleetAirliner fAirliner = CreateAirliner(airline, saroute.AirlinerType);
+                FleetAirliner fAirliner = AirlineHelpers.CreateAirliner(airline, saroute.AirlinerType);
                 airline.addAirliner(fAirliner);
 
                 fAirliner.addRoute(route);
@@ -191,7 +191,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 for (int i = 0; i < fleetAirliner.Value; i++)
                 {
-                    GameObject.GetInstance().HumanAirline.addAirliner(CreateAirliner(GameObject.GetInstance().HumanAirline, fleetAirliner.Key));
+                    GameObject.GetInstance().HumanAirline.addAirliner(AirlineHelpers.CreateAirliner(GameObject.GetInstance().HumanAirline, fleetAirliner.Key));
                 }
             }
             foreach (ScenarioAirlineRoute route in scenario.Routes)
@@ -229,21 +229,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
         }
-        //creates an airliner for an airliner
-        private static FleetAirliner CreateAirliner(Airline airline, AirlinerType type)
-        {
-            Airliner airliner = new Airliner(type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
-            Airliners.AddAirliner(airliner);
-
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airline.Airports[0]);
-
-            airliner.clearAirlinerClasses();
-
-            AirlinerHelpers.CreateAirlinerClasses(airliner);
-
-            return fAirliner;
-
-        }
+       
         //updates the pax demands for the scenario
         private static void UpdatePassengerDemands(ScenarioObject scenario)
         {

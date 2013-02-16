@@ -197,7 +197,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 return "";
             }
-
+        
             return this.LastTailNumber;
         }
 
