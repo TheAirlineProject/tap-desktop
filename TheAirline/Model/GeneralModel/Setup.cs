@@ -317,11 +317,7 @@ namespace TheAirline.Model.GeneralModel
 
                 scenario.addOpponentAirline(scenarioAirline);
             }
-            /*    <!--country/airport is modified by change(%) for length(years)-->
-      <paxDemand country="122" change="-20" length="1"/>
-      <paxDemand airport="JFK" change="-25" length="2"/>
-      <paxDemand airport="LGA" change="-25" length="2"/>
-      <paxDemand airport="EWR" change="-25" length="2"/>*/
+          
             XmlNodeList modifiersList = element.SelectNodes("modifiers/paxDemand");
 
             foreach (XmlElement paxElement in modifiersList)
