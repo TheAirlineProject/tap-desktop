@@ -1051,21 +1051,30 @@ namespace TheAirline.Model.GeneralModel
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList airportsList = root.SelectNodes("//majordestination");
-
-            foreach (XmlElement airportElement in airportsList)
+            string id;
+            try
             {
-                Airport airport = Airports.GetAirport(airportElement.Attributes["airport"].Value);
-
-                XmlNodeList destinationsList = airportElement.SelectNodes("destinations/destination");
-
-                foreach (XmlElement destinationElement in destinationsList)
+                foreach (XmlElement airportElement in airportsList)
                 {
-                    string destination = destinationElement.Attributes["airport"].Value;
-                    int pax =  Convert.ToInt32(destinationElement.Attributes["pax"].Value);
+                    Airport airport = Airports.GetAirport(airportElement.Attributes["airport"].Value);
 
-                    airport.addMajorDestination(destination, pax);
+                    id = airport.Profile.IATACode;
 
-                  }
+                    XmlNodeList destinationsList = airportElement.SelectNodes("destinations/destination");
+
+                    foreach (XmlElement destinationElement in destinationsList)
+                    {
+                        string destination = destinationElement.Attributes["airport"].Value;
+                        int pax = Convert.ToInt32(destinationElement.Attributes["pax"].Value);
+
+                        airport.addMajorDestination(destination, pax);
+
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                string s = e.ToString();
             }
 
            
