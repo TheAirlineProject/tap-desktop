@@ -68,7 +68,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             lbScenarios.Width = 200;
 
         
-            foreach (Scenario scenario in Scenarios.GetScenarios().OrderBy(s=>s.Difficulty))
+            foreach (Scenario scenario in Scenarios.GetScenarios())
                lbScenarios.Items.Add(scenario);
 
             panelSelectScenarios.Children.Add(lbScenarios);

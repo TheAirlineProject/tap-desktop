@@ -295,6 +295,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     failureOk = change > Convert.ToDouble(failure.Value);
                 }
+                if (failure.Type == ScenarioFailure.FailureType.FleetAge)
+                {
+                    failureOk = Convert.ToDouble(failure.Value) > GameObject.GetInstance().HumanAirline.getAverageFleetAge();
+                }
+                if (failure.Type == ScenarioFailure.FailureType.Pax)
+                {
+                    //opponnent on Cold War
+                    /*<failure id="5" type="Pax" value="5000" at="10" text="You have failed the scenario because you did not have 5,000,000 passengers in the year 2000!"/>
+	<failure id="6" type="Bases" value="2" at="10" text="You have failed the scenario because you did not successfully set up 3 different operating bases within 10 years!"/>
+*/
+                }
+                if (failure.Type == ScenarioFailure.FailureType.Bases)
+                {
+                }
                 if (failure.Type == ScenarioFailure.FailureType.Debt)
                 {
                     double debt =GameObject.GetInstance().HumanAirline.Loans.Sum(l=>l.PaymentLeft) + GameObject.GetInstance().HumanAirline.Money;
