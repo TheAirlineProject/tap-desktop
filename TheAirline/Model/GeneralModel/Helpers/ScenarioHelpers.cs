@@ -309,6 +309,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     double jetRation = Convert.ToDouble(GameObject.GetInstance().HumanAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.EngineType.Jet)) / Convert.ToDouble(GameObject.GetInstance().HumanAirline.Fleet.Count);
 
+                    failureOk = jetRation >= Convert.ToDouble(failure.Value);
 
                 }
 
