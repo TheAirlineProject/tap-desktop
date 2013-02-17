@@ -104,6 +104,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  if (type != null)
                  {
                      string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
+
                      string last_service = airlinerNode.Attributes["last_service"].Value;
                      DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
                      double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
@@ -116,9 +117,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                      XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
 
+                 
                      foreach (XmlElement airlinerClassNode in airlinerClassList)
                      {
-                         AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), airlinerClassNode.Attributes["type"].Value);
+                          AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), airlinerClassNode.Attributes["type"].Value);
                          int airlinerClassSeating = Convert.ToInt16(airlinerClassNode.Attributes["seating"].Value);
 
                          AirlinerClass aClass = new AirlinerClass(airlinerClassType, airlinerClassSeating);
@@ -638,7 +640,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
               }
             
               */
-
+      
         }
         //loads an airline from the saved file
         private static void LoadAirline(XmlElement airlineNode)

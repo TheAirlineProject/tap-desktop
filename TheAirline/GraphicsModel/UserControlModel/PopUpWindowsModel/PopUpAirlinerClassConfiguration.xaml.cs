@@ -101,6 +101,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnCancel.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
+            btnCancel.Visibility = System.Windows.Visibility.Collapsed;
             btnCancel.Content = "Cancel";
             btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 

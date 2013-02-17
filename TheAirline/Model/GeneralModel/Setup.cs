@@ -364,6 +364,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 string s = e.ToString();
             }
+     
 
         }
         /*!loads the standard configurations
@@ -1760,9 +1761,9 @@ namespace TheAirline.Model.GeneralModel
         }
 
 
-        /*! sets up test game.
+        /*! sets up the game.
          */
-        public static void SetupTestGame(List<Airline> opponents)
+        public static void SetupMainGame(List<Airline> opponents)
         {
             List<Airline> airlines = new List<Airline>(Airlines.GetAllAirlines());
 
@@ -1770,16 +1771,16 @@ namespace TheAirline.Model.GeneralModel
                 if (!opponents.Contains(airline) && !airline.IsHuman)
                     Airlines.RemoveAirline(airline);
 
-            SetupTestGame();
+            SetupMainGame();
         }
-        public static void SetupTestGame(int opponents, Boolean sameRegion)
+        public static void SetupMainGame(int opponents, Boolean sameRegion)
         {
 
             RemoveAirlines(opponents, sameRegion);
 
-            SetupTestGame();
+            SetupMainGame();
         }
-        private static void SetupTestGame()
+        private static void SetupMainGame()
         {
             CreatePilots();
 
@@ -1848,18 +1849,23 @@ namespace TheAirline.Model.GeneralModel
             List<Alliance> alliances = new List<Alliance>(Alliances.GetAlliances());
             foreach (Alliance alliance in alliances)
             {
-                int activeMembers = alliance.Members.Count(m => Airlines.ContainsAirline(m.Airline) && m.JoinedDate<= GameObject.GetInstance().GameTime && m.ExitedDate > GameObject.GetInstance().GameTime);
-
+                int activeMembers = alliance.Members.Count(m => Airlines.ContainsAirline(m.Airline) && !m.Airline.IsHuman && m.JoinedDate<= GameObject.GetInstance().GameTime && m.ExitedDate > GameObject.GetInstance().GameTime);
+                
                 if (activeMembers > 1)
                 {
                     List<AllianceMember> members = new List<AllianceMember>(alliance.Members);
 
-                    foreach (AllianceMember member in alliance.Members.FindAll(m=> !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate> GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
+                    foreach (AllianceMember member in alliance.Members.FindAll(m => !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate > GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
                         alliance.removeMember(member);
-                    
+
                 }
                 else
+                {
+                    while (alliance.Members.Count > 0)
+                        alliance.removeMember(alliance.Members[0]);
+                    
                     Alliances.RemoveAlliance(alliance);
+                }
             }
         }
         /*! removes some random airlines from the list bases on number of opponents.

@@ -51,6 +51,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airliners.AddAirliner(CreateAirliner(0));
             }
+
+       
         }
         /*!creates an airliner from a specific year
          */
@@ -166,7 +168,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
 
             }
+            if (airliner.Type is AirlinerPassengerType && ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity < airliner.getTotalSeatCapacity())
+            {
+                string s = "j";
+            }
         }
-
+       
     }
 }

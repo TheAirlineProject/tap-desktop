@@ -638,9 +638,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 AirlinerHelpers.CreateStartUpAirliners();
 
                 if (this.OpponentType == OpponentSelect.Random || o == null)
-                    Setup.SetupTestGame(opponents, cbSameRegion.IsChecked.Value);
+                    Setup.SetupMainGame(opponents, cbSameRegion.IsChecked.Value);
                 else
-                    Setup.SetupTestGame((List<Airline>) o);
+                    Setup.SetupMainGame((List<Airline>) o);
 
                 airline.MarketFocus = (Airline.AirlineFocus)cbFocus.SelectedItem;
 
@@ -653,7 +653,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 PageNavigator.ClearNavigator();
 
-                // GameObject.GetInstance().HumanAirline.Money = 1000000000;
+                GameObject.GetInstance().HumanAirline.Money = 10000000000000;
 
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 

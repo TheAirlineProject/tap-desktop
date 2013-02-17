@@ -618,27 +618,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             AirlinerClass aClass = (AirlinerClass)((Hyperlink)sender).Tag;
 
-            AirlinerClass newClass =  (AirlinerClass)PopUpAirlinerClassConfiguration.ShowPopUp(aClass);
+            PopUpAirlinerClassConfiguration.ShowPopUp(aClass);
 
-            AirlinerClass eClass = this.Classes.Find(c => c.Type == AirlinerClass.ClassType.Economy_Class);
-            if (newClass != null)
-            {
 
-                AirlinerClass airlinerClass = new AirlinerClass(newClass.Type, newClass.SeatingCapacity);
-                airlinerClass.RegularSeatingCapacity = newClass.RegularSeatingCapacity;
-
-                int seatingDiff = ((AirlinerPassengerType)this.Type).MaxSeatingCapacity;
-
-                eClass.RegularSeatingCapacity += seatingDiff;
-
-                AirlinerFacility seatingFacility = eClass.getFacility(AirlinerFacility.FacilityType.Seat);
-
-                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
-
-                eClass.SeatingCapacity += extraSeats;
-   
-            }
-           
         }
         //adds a contract item
         private ComboBoxItem createLengthItem(int years)
