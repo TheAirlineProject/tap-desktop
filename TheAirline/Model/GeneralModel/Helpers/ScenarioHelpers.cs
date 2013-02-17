@@ -305,6 +305,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     failureOk = debt <= Convert.ToDouble(failure.Value);
                 }
 
+                if (failure.Type == ScenarioFailure.FailureType.JetRation)
+                {
+                    double jetRation = Convert.ToDouble(GameObject.GetInstance().HumanAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.EngineType.Jet)) / Convert.ToDouble(GameObject.GetInstance().HumanAirline.Fleet.Count);
+
+
+                }
+
                 if (!failureOk)
                 {
                     if (failure.MonthsOfFailure == 1)

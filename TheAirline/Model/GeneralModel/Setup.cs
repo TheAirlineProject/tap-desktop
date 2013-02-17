@@ -247,119 +247,123 @@ namespace TheAirline.Model.GeneralModel
             doc.Load(file);
             XmlElement element = doc.DocumentElement;
 
-            string scenarioName = element.Attributes["name"].Value;
-            int startYear = Convert.ToInt32(element.Attributes["startYear"].Value);
-            long startCash = Convert.ToInt64(element.Attributes["startCash"].Value);
-            int endYear = Convert.ToInt32(element.Attributes["endYear"].Value);
-            DifficultyLevel difficulty = DifficultyLevels.GetDifficultyLevel(element.Attributes["difficulty"].Value);
-
-            string description = element.SelectSingleNode("intro").Attributes["text"].Value;
-            string successText = element.SelectSingleNode("success").Attributes["text"].Value;
-
-            XmlElement startElement = (XmlElement)element.SelectSingleNode("start");
-
-            Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
-            Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
-
-            if (startElement.HasAttribute("license"))
-                startAirline.License = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), startElement.Attributes["license"].Value);
-
-
-            Scenario scenario = new Scenario(scenarioName, description, startAirline, homebase, startYear, endYear, startCash, difficulty);
-            Scenarios.AddScenario(scenario);
-
-
-            XmlNodeList humanRoutesList = startElement.SelectNodes("routes/route");
-
-            foreach (XmlElement humanRouteElement in humanRoutesList)
+            try
             {
-                Airport routeDestination1 = Airports.GetAirport(humanRouteElement.Attributes["departure"].Value);
-                Airport routeDestination2 = Airports.GetAirport(humanRouteElement.Attributes["destination"].Value);
-                AirlinerType routeAirlinerType = AirlinerTypes.GetType(humanRouteElement.Attributes["airliner"].Value);
-                int routeQuantity = Convert.ToInt32(humanRouteElement.Attributes["quantity"].Value);
+                string scenarioName = element.Attributes["name"].Value;
+                int startYear = Convert.ToInt32(element.Attributes["startYear"].Value);
+                long startCash = Convert.ToInt64(element.Attributes["startCash"].Value);
+                int endYear = Convert.ToInt32(element.Attributes["endYear"].Value);
+                DifficultyLevel difficulty = DifficultyLevels.GetDifficultyLevel(element.Attributes["difficulty"].Value);
 
-                scenario.addRoute(new ScenarioAirlineRoute(routeDestination1, routeDestination2, routeAirlinerType, routeQuantity));
+                string description = element.SelectSingleNode("intro").Attributes["text"].Value;
+                string successText = element.SelectSingleNode("success").Attributes["text"].Value;
 
-            }
+                XmlElement startElement = (XmlElement)element.SelectSingleNode("start");
 
-            XmlNodeList destinationsList = startElement.SelectNodes("destinations/destination");
+                Airline startAirline = Airlines.GetAirline(startElement.Attributes["airline"].Value);
+                Airport homebase = Airports.GetAirport(startElement.Attributes["homeBase"].Value);
 
-            foreach (XmlElement destinationElement in destinationsList)
-                scenario.addDestination(Airports.GetAirport(destinationElement.Attributes["airport"].Value));
+                if (startElement.HasAttribute("license"))
+                    startAirline.License = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), startElement.Attributes["license"].Value);
 
-            XmlNodeList fleetList = startElement.SelectNodes("fleet/aircraft");
 
-            foreach (XmlElement fleetElement in fleetList)
-            {
-                AirlinerType fleetAirlinerType = AirlinerTypes.GetType(fleetElement.Attributes["name"].Value);
-                int fleetQuantity = Convert.ToInt32(fleetElement.Attributes["quantity"].Value);
-                scenario.addFleet(fleetAirlinerType, fleetQuantity);
-            }
+                Scenario scenario = new Scenario(scenarioName, description, startAirline, homebase, startYear, endYear, startCash, difficulty);
+                Scenarios.AddScenario(scenario);
 
-            XmlNodeList aiNodeList = startElement.SelectNodes("AI/airline");
 
-            foreach (XmlElement aiElement in aiNodeList)
-            {
-                Airline aiAirline = Airlines.GetAirline(aiElement.Attributes["name"].Value);
-                Airport aiHomebase = Airports.GetAirport(aiElement.Attributes["homeBase"].Value);
+                XmlNodeList humanRoutesList = startElement.SelectNodes("routes/route");
 
-                ScenarioAirline scenarioAirline = new ScenarioAirline(aiAirline, aiHomebase);
-
-                XmlNodeList aiRoutesList = aiElement.SelectNodes("route");
-
-                foreach (XmlElement aiRouteElement in aiRoutesList)
+                foreach (XmlElement humanRouteElement in humanRoutesList)
                 {
-                    Airport aiRouteDestination1 = Airports.GetAirport(aiRouteElement.Attributes["departure"].Value);
-                    Airport aiRouteDestination2 = Airports.GetAirport(aiRouteElement.Attributes["destination"].Value);
-                    AirlinerType routeAirlinerType = AirlinerTypes.GetType(aiRouteElement.Attributes["airliner"].Value);
-                    int routeQuantity = Convert.ToInt32(aiRouteElement.Attributes["quantity"].Value);
+                    Airport routeDestination1 = Airports.GetAirport(humanRouteElement.Attributes["departure"].Value);
+                    Airport routeDestination2 = Airports.GetAirport(humanRouteElement.Attributes["destination"].Value);
+                    AirlinerType routeAirlinerType = AirlinerTypes.GetType(humanRouteElement.Attributes["airliner"].Value);
+                    int routeQuantity = Convert.ToInt32(humanRouteElement.Attributes["quantity"].Value);
 
-                    scenarioAirline.addRoute(new ScenarioAirlineRoute(aiRouteDestination1, aiRouteDestination2, routeAirlinerType, routeQuantity));
+                    scenario.addRoute(new ScenarioAirlineRoute(routeDestination1, routeDestination2, routeAirlinerType, routeQuantity));
+
                 }
 
-                scenario.addOpponentAirline(scenarioAirline);
-            }
-          
-            XmlNodeList modifiersList = element.SelectNodes("modifiers/paxDemand");
+                XmlNodeList destinationsList = startElement.SelectNodes("destinations/destination");
 
-            foreach (XmlElement paxElement in modifiersList)
+                foreach (XmlElement destinationElement in destinationsList)
+                    scenario.addDestination(Airports.GetAirport(destinationElement.Attributes["airport"].Value));
+
+                XmlNodeList fleetList = startElement.SelectNodes("fleet/aircraft");
+
+                foreach (XmlElement fleetElement in fleetList)
+                {
+                    AirlinerType fleetAirlinerType = AirlinerTypes.GetType(fleetElement.Attributes["name"].Value);
+                    int fleetQuantity = Convert.ToInt32(fleetElement.Attributes["quantity"].Value);
+
+                     scenario.addFleet(fleetAirlinerType, fleetQuantity);
+                }
+
+                XmlNodeList aiNodeList = startElement.SelectNodes("AI/airline");
+
+                foreach (XmlElement aiElement in aiNodeList)
+                {
+                    Airline aiAirline = Airlines.GetAirline(aiElement.Attributes["name"].Value);
+                    Airport aiHomebase = Airports.GetAirport(aiElement.Attributes["homeBase"].Value);
+
+                    ScenarioAirline scenarioAirline = new ScenarioAirline(aiAirline, aiHomebase);
+
+                    XmlNodeList aiRoutesList = aiElement.SelectNodes("route");
+
+                    foreach (XmlElement aiRouteElement in aiRoutesList)
+                    {
+                        Airport aiRouteDestination1 = Airports.GetAirport(aiRouteElement.Attributes["departure"].Value);
+                        Airport aiRouteDestination2 = Airports.GetAirport(aiRouteElement.Attributes["destination"].Value);
+                        AirlinerType routeAirlinerType = AirlinerTypes.GetType(aiRouteElement.Attributes["airliner"].Value);
+                        int routeQuantity = Convert.ToInt32(aiRouteElement.Attributes["quantity"].Value);
+
+                        scenarioAirline.addRoute(new ScenarioAirlineRoute(aiRouteDestination1, aiRouteDestination2, routeAirlinerType, routeQuantity));
+                    }
+
+                    scenario.addOpponentAirline(scenarioAirline);
+                }
+
+                XmlNodeList modifiersList = element.SelectNodes("modifiers/paxDemand");
+
+                foreach (XmlElement paxElement in modifiersList)
+                {
+                    Country country = null;
+                    Airport airport = null;
+
+                    if (paxElement.HasAttribute("country"))
+                        country = Countries.GetCountry(paxElement.Attributes["country"].Value);
+
+                    if (paxElement.HasAttribute("airport"))
+                        airport = Airports.GetAirport(paxElement.Attributes["airport"].Value);
+
+                    double factor = Convert.ToDouble(paxElement.Attributes["change"].Value);
+
+                    DateTime enddate = new DateTime(scenario.StartYear + Convert.ToInt32(paxElement.Attributes["length"].Value), 1, 1);
+
+                    scenario.addPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport));
+                }
+
+
+                XmlNodeList parametersList = element.SelectNodes("parameters/failure");
+
+                foreach (XmlElement parameterElement in parametersList)
+                {
+                    string id = parameterElement.Attributes["id"].Value;
+                    ScenarioFailure.FailureType failureType = (ScenarioFailure.FailureType)Enum.Parse(typeof(ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
+                    object failureValue = parameterElement.Attributes["value"].Value;
+                    double checkMonths = parameterElement.HasAttribute("at") ? 12 * Convert.ToDouble(parameterElement.Attributes["at"].Value) : 1;
+                    string failureText = parameterElement.Attributes["text"].Value;
+                    double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value) : 1;
+
+                    ScenarioFailure failure = new ScenarioFailure(id, failureType, (int)checkMonths, failureValue, failureText, (int)monthsOfFailure);
+
+                    scenario.addScenarioFailure(failure);
+                }
+            }
+            catch (Exception e)
             {
-                Country country = null;
-                Airport airport = null;
-
-                if (paxElement.HasAttribute("country"))
-                    country = Countries.GetCountry(paxElement.Attributes["country"].Value);
-
-                if (paxElement.HasAttribute("airport"))
-                    airport = Airports.GetAirport(paxElement.Attributes["airport"].Value);
-
-                double factor = Convert.ToDouble(paxElement.Attributes["change"].Value);
-
-                DateTime enddate = new DateTime(scenario.StartYear + Convert.ToInt32(paxElement.Attributes["length"].Value), 1, 1);
-
-                scenario.addPassengerDemand(new ScenarioPassengerDemand(factor, enddate, country, airport));
+                string s = e.ToString();
             }
-
-
-            XmlNodeList parametersList = element.SelectNodes("parameters/failure");
-
-            foreach (XmlElement parameterElement in parametersList)
-            {
-                string id = parameterElement.Attributes["id"].Value;
-                ScenarioFailure.FailureType failureType = (ScenarioFailure.FailureType)Enum.Parse(typeof(ScenarioFailure.FailureType), parameterElement.Attributes["type"].Value);
-                object failureValue = parameterElement.Attributes["value"].Value;
-                double checkMonths = parameterElement.HasAttribute("at") ? 12 * Convert.ToDouble(parameterElement.Attributes["at"].Value) : 1;
-                string failureText = parameterElement.Attributes["text"].Value;
-                double monthsOfFailure = parameterElement.HasAttribute("for") ? 12 * Convert.ToDouble(parameterElement.Attributes["for"].Value) : 1;
-
-                ScenarioFailure failure = new ScenarioFailure(id,failureType, (int)checkMonths, failureValue, failureText, (int)monthsOfFailure);
-
-                scenario.addScenarioFailure(failure);
-            }
-            /*
-             * 	<		<failure type="Cash" value="0" for="0.25" text="You have failed the scenario because you didn't maintain a positive balance, maybe you aren't the right CEO for this company!"/>
- </parameters>
-  */
 
         }
         /*!loads the standard configurations
