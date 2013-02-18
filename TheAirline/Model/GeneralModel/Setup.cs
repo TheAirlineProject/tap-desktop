@@ -294,6 +294,7 @@ namespace TheAirline.Model.GeneralModel
                 foreach (XmlElement fleetElement in fleetList)
                 {
                     AirlinerType fleetAirlinerType = AirlinerTypes.GetType(fleetElement.Attributes["name"].Value);
+
                     int fleetQuantity = Convert.ToInt32(fleetElement.Attributes["quantity"].Value);
 
                      scenario.addFleet(fleetAirlinerType, fleetQuantity);
