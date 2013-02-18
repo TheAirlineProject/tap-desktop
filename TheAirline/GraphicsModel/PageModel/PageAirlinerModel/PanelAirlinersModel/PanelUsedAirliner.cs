@@ -163,7 +163,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Airliner.Type.Manufacturer)
                 {
                     contractedOrder = true;
-          
+          <
                 }
                 else
                 {
