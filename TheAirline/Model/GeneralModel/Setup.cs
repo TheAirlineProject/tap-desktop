@@ -1586,6 +1586,8 @@ namespace TheAirline.Model.GeneralModel
             if (narrativeElement != null)
                 narrative = narrativeElement.Attributes["narrative"].Value;
 
+          
+
             Boolean isReal = true;
             int founded = 1950;
             int folded = 2199;
@@ -1611,7 +1613,19 @@ namespace TheAirline.Model.GeneralModel
 
             Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license);
             airline.Profile.Countries = countries;
-            airline.Profile.Country = airline.Profile.Countries[0];//<-vælges + random
+            airline.Profile.Country = airline.Profile.Countries[0];
+
+            XmlNodeList logosList = profileElement.SelectNodes("logos/logo");
+
+            foreach (XmlElement logoElement in logosList)
+            {
+                int logoFromYear = Convert.ToInt16(logoElement.Attributes["from"].Value);
+                int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
+                string logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\multilogos\\" + logoElement.Attributes["path"].Value + ".png";
+
+                airline.Profile.addLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
+            }
+
             if (profileElement.HasAttribute("preferedairport"))
             {
                 Airport preferedAirport = Airports.GetAirport(profileElement.Attributes["preferedairport"].Value);
@@ -1823,8 +1837,8 @@ namespace TheAirline.Model.GeneralModel
             Airports.GetAirport("SBY").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
-            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);*/
-
+            AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
+            */
             SetupAlliances();
             SetupMergers();
         }
@@ -2269,7 +2283,7 @@ namespace TheAirline.Model.GeneralModel
                     name = "x";
             }
         }
-
+        
         /*! creates the logos for the game airlines.
          */
         private static void CreateAirlineLogos()
@@ -2277,9 +2291,9 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 if (File.Exists(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png"))
-                    airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png";
+                    airline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airline.Profile.IATACode + ".png"));
                 else
-                    airline.Profile.Logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+                    airline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
             }
         }
 

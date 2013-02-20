@@ -7,6 +7,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.PassengerModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -526,6 +527,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
            
          
+        }
+        //reallocate the pax demand from one airport to another
+        public static void ReallocateAirport(Airport airportOld, Airport airportNew)
+        {
+            if (airportNew.getMajorDestinations().Count == 0)
+            {
+                 foreach (DestinationPassengers paxDemand in airportOld.getDestinationsPassengers())
+                    airportNew.addDestinationPassengersRate(paxDemand);
+            }
         }
     }
 

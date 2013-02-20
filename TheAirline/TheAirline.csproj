@@ -344,7 +344,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerAutoRoutes.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -364,7 +372,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerRoutes.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -376,7 +384,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAutogenerateRoute.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -658,7 +666,13 @@
     <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml.cs">
       <DependentUpon>WPFMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerAutoRoutes.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml.cs">
+      <DependentUpon>PageAirlinerAdvancedRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml.cs">
+      <DependentUpon>PageAirlinerAutoRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml.cs">
       <DependentUpon>PopUpAirlinerAutoRoutes.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml.cs">
@@ -673,7 +687,7 @@
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml.cs">
       <DependentUpon>PopUpAirlinerImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerRoutes.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml.cs">
       <DependentUpon>PopUpAirlinerRoutes.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml.cs">
@@ -682,7 +696,7 @@
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml.cs">
       <DependentUpon>PopUpAirportSlot.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAutogenerateRoute.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml.cs">
       <DependentUpon>PopUpAutogenerateRoute.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml.cs">

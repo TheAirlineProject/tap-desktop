@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoutesModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
@@ -26,19 +27,16 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpAirlinerAutoRoutes : PopUpWindow
     {
-        private enum FlightInterval { Daily, Weekly }
-        private FlightInterval Interval;
-
+     
         private FleetAirliner Airliner;
         private ListBox lbFlights;
-        
-        private Dictionary<Route, List<RouteTimeTableEntry>> Entries;
+
+        public Dictionary<Route, List<RouteTimeTableEntry>> Entries { get; set; }
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
 
-        private ComboBox cbRoute, cbFlightsPerDay, cbFlightsPerWeek, cbFlightCode, cbRegion, cbDelayMinutes, cbStartTime;
-        private CheckBox cbBusinessRoute;
-
-        private double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
+        private Button btnAdvanced, btnRegular;
+     
+        private Frame RouteFrame;
 
         public static object ShowPopUp(FleetAirliner airliner)
         {
@@ -60,7 +58,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.Width = 1200;
 
-            this.Height = 325;
+            this.Height = 350;
           
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
@@ -91,12 +89,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             Grid.SetColumn(panelRoutes, 1);
             grdFlights.Children.Add(panelRoutes);
 
-            mainPanel.Children.Add(createAutoGeneratePanel());
+            this.RouteFrame = new Frame();
+            this.RouteFrame.NavigationUIVisibility = System.Windows.Navigation.NavigationUIVisibility.Hidden;
+
+            mainPanel.Children.Add(this.RouteFrame);
+            //mainPanel.Children.Add(createAutoGeneratePanel());
             mainPanel.Children.Add(createButtonsPanel());
 
             this.Content = scroller;
 
             showFlights();
+
+            this.RouteFrame.Navigate(new PageAirlinerAutoRoute(this.Airliner,this));
         }
         //creates the panel for the routes
         private ScrollViewer createRoutesPanel()
@@ -246,20 +250,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             buttonsPanel.Children.Add(btnCancel);
 
-            Button btnAdd = new Button();
-            btnAdd.Uid = "104";
-            btnAdd.SetResourceReference(Button.StyleProperty, "RoundedButton");
-            btnAdd.Height = Double.NaN;
-            btnAdd.Width = Double.NaN;
-            btnAdd.Click += new RoutedEventHandler(btnAdd_Click);
-            btnAdd.Margin = new Thickness(5, 0, 0, 0);
-            btnAdd.Content = Translator.GetInstance().GetString("General", btnAdd.Uid);
-            btnAdd.IsEnabled = cbRoute.Items.Count > 0;
-            btnAdd.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            btnAdd.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
-            buttonsPanel.Children.Add(btnAdd);
-
             Button btnUndo = new Button();
             btnUndo.Uid = "103";
             btnUndo.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -286,7 +276,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
 
             Button btnTransfer = new Button();
-            btnTransfer.Uid = "1000";
+            btnTransfer.Uid = "202";
             btnTransfer.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnTransfer.Height = Double.NaN;
             btnTransfer.Width = Double.NaN;
@@ -298,167 +288,48 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             buttonsPanel.Children.Add(btnTransfer);
 
+            btnAdvanced = new Button();
+            btnAdvanced.Uid = "201";
+            btnAdvanced.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnAdvanced.Height = Double.NaN;
+            btnAdvanced.Width = Double.NaN;
+            btnAdvanced.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnAdvanced.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", btnAdvanced.Uid);
+            btnAdvanced.Margin = new Thickness(5, 0, 0, 0);
+            btnAdvanced.Click += btnAdvanced_Click;
 
+            buttonsPanel.Children.Add(btnAdvanced);
+
+            btnRegular = new Button();
+            btnRegular.Uid = "203";
+            btnRegular.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnRegular.Height = Double.NaN;
+            btnRegular.Width = Double.NaN;
+            btnRegular.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnRegular.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", btnRegular.Uid);
+            btnRegular.Margin = new Thickness(5, 0, 0, 0);
+            btnRegular.Visibility = System.Windows.Visibility.Collapsed;
+            btnRegular.Click += btnRegular_Click;
+
+            buttonsPanel.Children.Add(btnRegular);
+          
             return buttonsPanel;
         }
-        //creates the panel for auto generation of time table from a route
-        private WrapPanel createAutoGeneratePanel()
+
+        private void btnRegular_Click(object sender, RoutedEventArgs e)
         {
-            WrapPanel autogeneratePanel = new WrapPanel();
-            autogeneratePanel.Margin = new Thickness(0, 5, 0, 0);
-
-            cbRegion = new ComboBox();
-            cbRegion.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbRegion.Width = 150;
-            cbRegion.DisplayMemberPath = "Name";
-            cbRegion.SelectedValuePath = "Name";
-            cbRegion.SelectionChanged += cbRegion_SelectionChanged;
-            cbRegion.Items.Add(Regions.GetRegion("100"));
-            cbRegion.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            List<Region> regions = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1.Profile.Country.Region == r.Destination2.Profile.Country.Region).Select(r => r.Destination1.Profile.Country.Region).ToList();
-            regions.AddRange(GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Select(r => r.Destination2.Profile.Country.Region));
-            regions.AddRange(GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination2.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Select(r => r.Destination1.Profile.Country.Region));
-
-
-            foreach (Region region in regions.Distinct())
-                cbRegion.Items.Add(region);
-
-            autogeneratePanel.Children.Add(cbRegion);
-
-            cbRoute = new ComboBox();
-            cbRoute.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbRoute.SelectionChanged += new SelectionChangedEventHandler(cbAutoRoute_SelectionChanged);
-            cbRoute.ItemTemplate = this.Resources["SelectRouteItem"] as DataTemplate;
-            cbRoute.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned))
-            {
-                cbRoute.Items.Add(route);
-            }
-
-            autogeneratePanel.Children.Add(cbRoute);
-
-            cbFlightCode = new ComboBox();
-            cbFlightCode.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFlightCode.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            foreach (string flightCode in this.Airliner.Airliner.Airline.getFlightCodes())
-                cbFlightCode.Items.Add(flightCode);
-
-            cbFlightCode.Items.RemoveAt(cbFlightCode.Items.Count - 1);
-
-            cbFlightCode.SelectedIndex = 0;
-
-            autogeneratePanel.Children.Add(cbFlightCode);
-
-            StackPanel panelFlightInterval = new StackPanel();
-            panelFlightInterval.Margin = new Thickness(10, 0, 0, 0);
-
-            RadioButton rbDailyFlights = new RadioButton();
-            rbDailyFlights.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", "1002");
-            rbDailyFlights.GroupName = "Interval";
-            rbDailyFlights.IsChecked = true;
-            rbDailyFlights.Checked += rbDailyFlights_Checked;
-
-            panelFlightInterval.Children.Add(rbDailyFlights);
-
-            RadioButton rbWeeklyFlights = new RadioButton();
-            rbWeeklyFlights.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", "1005");
-            rbWeeklyFlights.GroupName = "Interval";
-            rbWeeklyFlights.Checked += rbWeeklyFlights_Checked;
-
-            panelFlightInterval.Children.Add(rbWeeklyFlights);
-
-            autogeneratePanel.Children.Add(panelFlightInterval);
-                         
-            cbFlightsPerDay = new ComboBox();
-            cbFlightsPerDay.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFlightsPerDay.SelectionChanged += cbFlightsPerDay_SelectionChanged;
-            cbFlightsPerDay.Margin = new Thickness(5, 0, 0, 0);
-            cbFlightsPerDay.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            autogeneratePanel.Children.Add(cbFlightsPerDay);
-
-            this.Interval = FlightInterval.Daily;  
-
-            cbFlightsPerWeek = new ComboBox();
-            cbFlightsPerWeek.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
-            cbFlightsPerWeek.Visibility = System.Windows.Visibility.Collapsed;
-            cbFlightsPerWeek.Margin = new Thickness(5, 0, 0, 0);
-            cbFlightsPerWeek.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            for (int i = 1; i < 7; i++)
-                cbFlightsPerWeek.Items.Add(i);
-
-            cbFlightsPerWeek.SelectedIndex = 0;
-
-            autogeneratePanel.Children.Add(cbFlightsPerWeek);
-
-            TextBlock txtDelayMinutes = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", "1003"));
-            txtDelayMinutes.Margin = new Thickness(10, 0, 0, 0);
-            txtDelayMinutes.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            autogeneratePanel.Children.Add(txtDelayMinutes);
-
-            cbDelayMinutes = new ComboBox();
-            cbDelayMinutes.SetResourceReference(ComboBox.StyleProperty,"ComboBoxTransparentStyle");
-            cbDelayMinutes.SelectionChanged += cbDelayMinutes_SelectionChanged;
-            cbDelayMinutes.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Right;
-            cbDelayMinutes.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            
-
-            autogeneratePanel.Children.Add(cbDelayMinutes);
-
-            TextBlock txtStartTime = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes","1004"));
-            txtStartTime.Margin = new Thickness(10,0,5,0);
-            txtStartTime.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-
-            autogeneratePanel.Children.Add(txtStartTime);
-
-            cbStartTime = new ComboBox();
-            cbStartTime.SetResourceReference(ComboBox.StyleProperty,"ComboBoxTransparentStyle");
-            cbStartTime.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            cbStartTime.SetResourceReference(ComboBox.ItemTemplateProperty, "TimeSpanItem");
-                     
-            autogeneratePanel.Children.Add(cbStartTime);
-
-            cbBusinessRoute = new CheckBox();
-            cbBusinessRoute.FlowDirection = System.Windows.FlowDirection.RightToLeft;
-            cbBusinessRoute.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            cbBusinessRoute.Unchecked += cbBusinessRoute_Unchecked;
-            cbBusinessRoute.Checked += cbBusinessRoute_Checked;
-            cbBusinessRoute.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes","1001");
-            cbBusinessRoute.Margin = new Thickness(5, 0, 0, 0);
-
-            autogeneratePanel.Children.Add(cbBusinessRoute);
-
-            cbRegion.SelectedIndex = 0;
-
-            return autogeneratePanel;
-
-
+            this.RouteFrame.Navigate(new PageAirlinerAutoRoute(this.Airliner, this));
+            this.btnRegular.Visibility = System.Windows.Visibility.Collapsed;
+            this.btnAdvanced.Visibility = System.Windows.Visibility.Visible;
+        }
+        private void btnAdvanced_Click(object sender, RoutedEventArgs e)
+        {
+            this.RouteFrame.Navigate(new PageAirlinerAdvancedRoute(this.Airliner, this));
+            this.btnAdvanced.Visibility = System.Windows.Visibility.Collapsed;
+            this.btnRegular.Visibility = System.Windows.Visibility.Visible;
         }
 
-        private void rbWeeklyFlights_Checked(object sender, RoutedEventArgs e)
-        {
-            cbFlightsPerWeek.Visibility = System.Windows.Visibility.Visible;
-            cbFlightsPerDay.Visibility = System.Windows.Visibility.Collapsed;
-
-            cbFlightsPerDay.SelectedIndex = 0;
-
-            this.Interval = FlightInterval.Weekly;
-        }
-
-        private void rbDailyFlights_Checked(object sender, RoutedEventArgs e)
-        {
-            cbFlightsPerDay.Visibility = System.Windows.Visibility.Visible;
-            cbFlightsPerWeek.Visibility = System.Windows.Visibility.Collapsed;
-
-            this.Interval = FlightInterval.Daily;
-        }
-
-       
+      
         private void btnTransfer_Click(object sender, RoutedEventArgs e)
         {
             ComboBox cbAirliners = new ComboBox();
@@ -491,116 +362,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
         }
 
-        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
-
-            Region region = (Region)cbRegion.SelectedItem;
-
-            cbRoute.Items.Clear();
-
-            if (region.Uid == "100")
-            {
-                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r => new AirportCodeConverter().Convert(r.Destination2)))
-                {
-                    cbRoute.Items.Add(route);
-                }
-            }
-            else
-            {
-                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && ((r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r => new AirportCodeConverter().Convert(r.Destination2));
-
-                foreach (Route route in routes)
-                    cbRoute.Items.Add(route);
-            }
-            cbRoute.SelectedIndex = 0;
-
-        }
-        private void cbAutoRoute_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-            Route route = (Route)cbRoute.SelectedItem;
-
-            if (route != null)
-            {
-                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
-
-                TimeSpan minFlightTime = routeFlightTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
-
-                cbDelayMinutes.Items.Clear();
-
-                int minDelayMinutes = (int)FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner).TotalMinutes;
-
-                for (int i=minDelayMinutes;i<minDelayMinutes+120;i+=15)
-                    cbDelayMinutes.Items.Add(i);
-
-                cbDelayMinutes.SelectedIndex = 0;
-                
-                cbBusinessRoute.Visibility = minFlightTime.TotalMinutes <= maxBusinessRouteTime ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-
-                if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
-                    cbBusinessRoute.IsChecked = false;
-
-            }
-
-
-        }
-        
-        private void cbDelayMinutes_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-             Route route = (Route)cbRoute.SelectedItem;
-
-             if (route != null && cbDelayMinutes.SelectedItem != null)
-             {
-                  TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
-
-                  int delayMinutes = (int)cbDelayMinutes.SelectedItem;
-
-                  TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0,delayMinutes,0));
-
-                  int maxHours = 22 - 06; //from 06.00 to 22.00
-
-                  int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
-
-                  cbFlightsPerDay.Items.Clear();
-
-                  for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
-                      cbFlightsPerDay.Items.Add(i + 1);
-
-                  cbFlightsPerDay.SelectedIndex = 0;
-
-
-              }
-
-         }
-         private void cbFlightsPerDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
-         {
-              Route route = (Route)cbRoute.SelectedItem;
-
-              if (route != null && cbFlightsPerDay.SelectedItem != null)
-              {                           
-                  int latestStartTime = 22;
-
-                  TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
-
-                  int delayMinutes = (int)cbDelayMinutes.SelectedItem;
-
-                  TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
-
-                  int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
-
-                  int lastDepartureHour = (int)(latestStartTime - (minFlightTime.TotalHours * flightsPerDay*2));
-
-                  cbStartTime.Items.Clear();
-                 
-                  for (int i = 6; i <= Math.Max(6,lastDepartureHour); i++)
-                      cbStartTime.Items.Add(new TimeSpan(i,0,0));
-
-                  cbStartTime.SelectedIndex = cbStartTime.Items.Count / 2;
-              }
-         }
          //clears the time table
-         private void clearTimeTable()
+         public void clearTimeTable()
          {
              this.Entries.Clear();
 
@@ -623,7 +386,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
              }
          }
          //shows the flights for the airliner
-         private void showFlights()
+         public void showFlights()
          {
              lbFlights.Items.Clear();
 
@@ -678,83 +441,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
              this.Close();
          }
 
-         private void btnAdd_Click(object sender, RoutedEventArgs e)
-         {
-
-             Route route = (Route)cbRoute.SelectedItem;
-
-             RouteTimeTable rt;
-            
-            
-            int flightsPerDay = (int)cbFlightsPerDay.SelectedItem;
-            int flightsPerWeek = (int)cbFlightsPerWeek.SelectedItem;
-             int delayMinutes = (int)cbDelayMinutes.SelectedItem;
-             TimeSpan startTime = (TimeSpan)cbStartTime.SelectedItem;
-
-             string flightcode1 = cbFlightCode.SelectedItem.ToString();
-             string flightcode2 = this.Airliner.Airliner.Airline.getFlightCodes()[this.Airliner.Airliner.Airline.getFlightCodes().IndexOf(flightcode1) + 1];
-            
-             if (flightsPerDay > 0)
-             {
-                 if (cbBusinessRoute.IsChecked.Value)
-                 {
-                     flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner)).TotalMinutes / 2 / maxBusinessRouteTime);
-                     rt = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner, Math.Max(1, flightsPerDay), flightcode1, flightcode2);
-                 }
-                 else
-                 {
-                     if (this.Interval == FlightInterval.Daily)
-                         rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay,true, delayMinutes, startTime, flightcode1, flightcode2);
-                     else
-                         rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerWeek,false, delayMinutes, startTime, flightcode1, flightcode2);
-                 }
-             }
-             else
-                 rt = null;
-
-             if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.Entries))
-             {
-                   WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2705"), Translator.GetInstance().GetString("MessageBox", "2705", "message"), WPFMessageBoxButtons.YesNo);
-
-                 if (result == WPFMessageBoxResult.Yes)
-                 {
-
-                     clearTimeTable();
-
-                     if (!this.Entries.ContainsKey(route))
-                         this.Entries.Add(route, new List<RouteTimeTableEntry>());
-
-
-                     foreach (RouteTimeTableEntry entry in rt.Entries)
-                         this.Entries[route].Add(entry);
-                 }
-             }
-             else
-             {
-                 if (!this.Entries.ContainsKey(route))
-                     this.Entries.Add(route, new List<RouteTimeTableEntry>());
-
-
-                 foreach (RouteTimeTableEntry entry in rt.Entries)
-                     this.Entries[route].Add(entry);
-             }
-             showFlights();
-         }
-         private void cbBusinessRoute_Checked(object sender, RoutedEventArgs e)
-         {
-             cbFlightsPerDay.IsEnabled = false;
-             cbFlightsPerWeek.IsEnabled = false;
-             cbStartTime.IsEnabled = false;
-             cbDelayMinutes.IsEnabled = false;
-         }
-
-         private void cbBusinessRoute_Unchecked(object sender, RoutedEventArgs e)
-         {
-             cbFlightsPerDay.IsEnabled = true;
-             cbStartTime.IsEnabled = true;
-             cbDelayMinutes.IsEnabled = true;
-             cbFlightsPerWeek.IsEnabled = true;
-         }
+       
+        
          private void txtFlightEntry_MouseDown(object sender, MouseButtonEventArgs e)
          {
              if (e.RightButton == MouseButtonState.Pressed)
@@ -785,6 +473,35 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
 
             return GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => r.getDistance()) <= maxDistance);
+        }
+    }
+    public class RouteItemConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+
+            if (value is Route)
+            {
+                Route route = (Route)value;
+
+                string outboundRoute;
+                if (route.HasStopovers)
+                {
+                    string stopovers = string.Join("-", from s in route.Stopovers select new AirportCodeConverter().Convert(s.Stopover));
+                    outboundRoute = string.Format("{0}-{1}-{2}", new AirportCodeConverter().Convert(route.Destination1), stopovers, new AirportCodeConverter().Convert(route.Destination2));
+                }
+                else
+                    outboundRoute = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
+
+                return outboundRoute;
+            }
+            return "";
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -20,6 +20,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             return true;
         }
+        public static Boolean IsTimeTableValid(RouteTimeTableEntry entry, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries)
+        {
+            return IsRouteEntryValid(entry, airliner, entries, new Dictionary<Route, List<RouteTimeTableEntry>>());
+          
+        }
         //checks if an entry is valid
         public static Boolean IsRouteEntryValid(RouteTimeTableEntry entry, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries, Dictionary<Route, List<RouteTimeTableEntry>> entriesToDelete)
         {

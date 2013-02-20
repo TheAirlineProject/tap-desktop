@@ -514,12 +514,17 @@ namespace TheAirline.GraphicsModel.Converters
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            Airport airport = (Airport)value;
+            if (value is Airport)
+            {
+                Airport airport = (Airport)value;
 
-            if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
-                return airport.Profile.IATACode;
+                if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
+                    return airport.Profile.IATACode;
+                else
+                    return airport.Profile.ICAOCode;
+            }
             else
-                return airport.Profile.ICAOCode;
+                return "";
         }
         public object Convert(object value)
         {

@@ -409,7 +409,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                 Airlines.RemoveAirline(this.Airline);
 
-                sAirline.Profile.Logo = oldLogo;
+                sAirline.Profile.Logos = this.Airline.Profile.Logos ;
                 sAirline.Profile.Color = this.Airline.Profile.Color;
 
 

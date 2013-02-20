@@ -163,11 +163,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             //checks for new airports which are opening
             List<Airport> openedAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
-
+            List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+         
             foreach (Airport airport in openedAirports)
             {
-
-                PassengerHelpers.CreateDestinationPassengers(airport);
+                if (closedAirports.Find(a=>a.Profile.Town == airport.Profile.Town) != null)
+                    AirportHelpers.ReallocateAirport(closedAirports.Find(a => a.Profile.Town == airport.Profile.Town), airport);
+                else
+                    PassengerHelpers.CreateDestinationPassengers(airport);
 
                 foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
                     PassengerHelpers.CreateDestinationPassengers(dAirport, airport);
@@ -186,14 +189,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
             //checks for airports which are closing down
-            List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
             foreach (Airport airport in closedAirports)
             {
                 //check for airport which are reallocated 
                 Airport reallocatedAirport = openedAirports.Find(a => a.Profile.Town == airport.Profile.Town);
 
+               
                 if (reallocatedAirport != null)
                 {
+                    
+                   
+
                     var airlines = new List<Airline>(from g in airport.Terminals.getUsedGates() select g.Airline).Distinct();
                     foreach (Airline airline in airlines)
                     {
@@ -505,7 +511,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     Airlines.RemoveAirline(merger.Airline2);
 
-                    sAirline.Profile.Logo = oldLogo;
+                    sAirline.Profile.Logos = merger.Airline2.Profile.Logos;
                     sAirline.Profile.Color = merger.Airline2.Profile.Color;
 
                 }

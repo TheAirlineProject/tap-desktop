@@ -224,7 +224,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                     }
                   
 
-                    lbPassengers.Items.Add(new KeyValuePair<DestinationPassengers, int>(passengers, demand - covered));
+                    lbPassengers.Items.Add(new KeyValuePair<DestinationPassengers, int>(passengers, Math.Max(0, demand - covered)));
                 }
              }
           

@@ -271,28 +271,5 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
        
     }
-    public class RouteItemConverter : IValueConverter
-    {
-
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            Route route = (Route)value;
-
-            string outboundRoute;
-            if (route.HasStopovers)
-            {
-                string stopovers = string.Join("-", from s in route.Stopovers select new AirportCodeConverter().Convert(s.Stopover));
-                outboundRoute = string.Format("{0}-{1}-{2}", new AirportCodeConverter().Convert(route.Destination1), stopovers, new AirportCodeConverter().Convert(route.Destination2));
-            }
-            else
-                outboundRoute = string.Format("{0}-{1}", new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2));
-
-            return outboundRoute;
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+    
 }

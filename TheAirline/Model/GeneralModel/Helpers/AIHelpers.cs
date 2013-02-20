@@ -88,8 +88,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
 
                     airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
-                    
-                 }
+
+                }
             }
         }
         //checks for any airliners without routes
@@ -274,7 +274,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airline.FutureAirlines.Remove(futureAirline);
 
             SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(airline, airline.Money / 5, futureAirline.Name, futureAirline.IATA, futureAirline.Mentality, futureAirline.Market, futureAirline.PreferedAirport);
-            sAirline.Profile.Logo = futureAirline.Logo;
+            sAirline.Profile.addLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
 
             CreateNewRoute(sAirline);
@@ -306,7 +306,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     else
                     {
 
-                        if (alliance.Members.Exists(m=>m.Airline == GameObject.GetInstance().HumanAirline))
+                        if (alliance.Members.Exists(m => m.Airline == GameObject.GetInstance().HumanAirline))
                         {
                             alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime, alliance, airline, PendingAllianceMember.AcceptType.Request));
                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Request to join alliance", string.Format("[LI airline={0}] has requested to joined {1}. The request can be accepted or declined on the alliance page", airline.Profile.IATACode, alliance.Name)));
@@ -316,7 +316,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             if (CanJoinAlliance(airline, alliance))
                             {
-                                alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
+                                alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
                                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("[LI airline={0}] has joined {1}", airline.Profile.IATACode, alliance.Name)));
                             }
                         }
@@ -359,7 +359,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (DoAcceptAllianceInvitation(bestFitAirline, alliance))
                     {
                         GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Joined alliance", string.Format("[LI airline={0}] has joined {1}", bestFitAirline.Profile.IATACode, alliance.Name)));
-                        alliance.addMember(new AllianceMember(bestFitAirline,GameObject.GetInstance().GameTime));
+                        alliance.addMember(new AllianceMember(bestFitAirline, GameObject.GetInstance().GameTime));
                     }
                 }
             }
@@ -367,7 +367,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns a "good" alliance for an airline to join
         private static Alliance GetAirlineAlliance(Airline airline)
         {
-            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.Exists(m=>m.Airline == airline) orderby GetAirlineAllianceScore(airline, a, true) descending select a).FirstOrDefault();
+            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.Exists(m => m.Airline == airline) orderby GetAirlineAllianceScore(airline, a, true) descending select a).FirstOrDefault();
 
             if (bestAlliance != null && GetAirlineAllianceScore(airline, bestAlliance, true) > 50)
                 return bestAlliance;
@@ -393,7 +393,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the best fit airline for an alliance
         private static Airline GetAllianceAirline(Alliance alliance)
         {
-            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.Exists(m=>m.Airline == a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance, false) descending select a).FirstOrDefault();
+            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.Exists(m => m.Airline == a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance, false) descending select a).FirstOrDefault();
 
             if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
                 return bestAirline;
@@ -406,7 +406,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             string name = Alliance.GenerateAllianceName();
             Airport headquarter = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0)[0];
             Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, Alliance.AllianceType.Full, name, headquarter);
-            alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
+            alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
 
             Alliances.AddAlliance(alliance);
 
@@ -860,7 +860,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return null;
 
         }
-        //creates the time table for an route for an airliner
+        //creates the time table for route for a number of airliners returns if successed
+        public static Boolean CreateRouteTimeTable(Route route, List<FleetAirliner> airliners)
+        {
+            TimeSpan totalFlightTime = new TimeSpan(airliners.Sum(a => route.getFlightTime(a.Airliner.Type).Ticks));
+            TimeSpan maxFlightTime = new TimeSpan(airliners.Max(a => route.getFlightTime(a.Airliner.Type)).Ticks);
+
+            int maxHours = 22 - 6 - (int)Math.Ceiling(maxFlightTime.TotalMinutes); //from 06.00 to 22.00
+
+            if (totalFlightTime.TotalMinutes > maxHours)
+                return false;
+
+            TimeSpan startTime = new TimeSpan(6,0,0);
+
+            foreach (FleetAirliner airliner in airliners)
+            {
+                string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
+                string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+
+                CreateAirlinerRouteTimeTable(route,airliner,1,true,(int)FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).TotalMinutes,startTime,flightCode1,flightCode2);
+
+                startTime = startTime.Add(route.getFlightTime(airliner.Airliner.Type));
+            }
+
+            return true;
+        }
+        //creates the time table for a route for an airliner
         public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)
         {
 
@@ -952,9 +977,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 else
                 {
-                    DayOfWeek day = (DayOfWeek)(7 - numberOfFlights/2);
+                    DayOfWeek day = (DayOfWeek)(7 - numberOfFlights / 2);
 
-                
+
                     for (int i = 0; i < numberOfFlights; i++)
                     {
                         TimeSpan flightTime = new TimeSpan(startTime.Hours, startTime.Minutes, startTime.Seconds);

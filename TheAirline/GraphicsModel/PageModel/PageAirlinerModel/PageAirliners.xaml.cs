@@ -160,7 +160,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             airliners = airlinersList;
             showUsedAirliners();
         }
-
+        //removes an airliner from the used list
+        public void removeUsedAirliner(Airliner airliner)
+        {
+            lbUsedAirliners.Items.Remove(airliner);
+        }
         private void lnkManufacturer_Click(object sender, RoutedEventArgs e)
         {
             Manufacturer manufacturer = (Manufacturer)((Hyperlink)sender).Tag;

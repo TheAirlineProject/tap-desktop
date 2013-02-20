@@ -216,7 +216,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             string color = ((PropertyInfo)cbColor.SelectedItem).Name;
                   
             AirlineProfile profile = new AirlineProfile(txtAirlineName.Text.Trim(),txtIATA.Text.ToUpper().Trim(),color,GameObject.GetInstance().MainAirline.Profile.CEO,false,GameObject.GetInstance().GameTime.Year,2199);
-            profile.Logo = logoPath;
+            profile.addLogo(new AirlineLogo(logoPath));
             profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
             
             SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local,Airline.AirlineLicense.Domestic);

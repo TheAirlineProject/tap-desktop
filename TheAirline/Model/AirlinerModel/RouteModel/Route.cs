@@ -74,6 +74,16 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return this.Destination1 == destination || this.Destination2 == destination;
 
         }
+        //returns the list of destinations
+        public List<Airport> getDestinations()
+        {
+            List<Airport> dests = new List<Airport>();
+            dests.Add(this.Destination1);
+            dests.Add(this.Destination2);
+
+            return dests;
+
+        }
         //adds a route airliner class to the route
         public void addRouteAirlinerClass(RouteAirlinerClass aClass)
         {

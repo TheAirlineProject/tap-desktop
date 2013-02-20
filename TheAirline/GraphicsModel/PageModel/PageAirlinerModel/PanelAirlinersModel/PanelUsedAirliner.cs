@@ -163,7 +163,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Airliner.Type.Manufacturer)
                 {
                     contractedOrder = true;
-          <
+          
                 }
                 else
                 {
@@ -174,7 +174,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     {
                         AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
 
-
+                        GameObject.GetInstance().HumanAirline.Contract = null;
                     }
                     tryOrder = result == WPFMessageBoxResult.Yes;
                 }
@@ -205,7 +205,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                         if (contractedOrder)
                             GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners++;
 
-                        base.ParentPage.showUsedAirliners(Airliners.GetAirlinersForSale());
+                        base.ParentPage.removeUsedAirliner(this.Airliner);
 
                         this.clearPanel();
 
@@ -258,9 +258,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport, GameObject.GetInstance().HumanAirline.Contract.Discount);
                         else
                             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, this.Airliner, airport);
-    
 
-                        base.ParentPage.showUsedAirliners(Airliners.GetAirlinersForSale());
+
+                        base.ParentPage.removeUsedAirliner(this.Airliner);
 
                         if (contractedOrder)
                             GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners++;

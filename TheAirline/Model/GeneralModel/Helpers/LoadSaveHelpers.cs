@@ -651,7 +651,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Boolean airlineIsSubsidiary = Convert.ToBoolean(airlineNode.Attributes["subsidiary"].Value);
             Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
             string color = airlineNode.Attributes["color"].Value;
-            string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
+            //string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
             string airlineCEO = airlineNode.Attributes["CEO"].Value;
             double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
             int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
@@ -676,7 +676,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license);
                 airline.Profile.Country = airlineCountry;
             }
-            airline.Profile.Logo = logo;
+            //airline.Profile.Logo = logo;
             airline.Fleet.Clear();
             airline.Airports.Clear();
             airline.Routes.Clear();

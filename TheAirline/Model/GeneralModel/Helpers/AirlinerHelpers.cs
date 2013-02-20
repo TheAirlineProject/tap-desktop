@@ -168,10 +168,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
 
             }
-            if (airliner.Type is AirlinerPassengerType && ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity < airliner.getTotalSeatCapacity())
-            {
-                string s = "j";
-            }
+          
         }
        
     }
