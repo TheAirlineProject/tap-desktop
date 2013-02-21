@@ -11,6 +11,7 @@ using TheAirline.GraphicsModel.Converters;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
+using System.Windows.Media.Imaging;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
@@ -33,14 +34,25 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             TextBlock txtHuman = new TextBlock();
             txtHuman.FontWeight = FontWeights.Bold;
+            txtHuman.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             
             txtHuman.Text = string.Format(Translator.GetInstance().GetString("PageBottomMenu","1000"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name);
 
             Grid.SetColumn(txtHuman, 0);
             panelMain.Children.Add(txtHuman);
 
+            WrapPanel panelTime = new WrapPanel();
+       
+            Image imgCalendar = new Image();
+            imgCalendar.Width = 24;
+            imgCalendar.Source = new BitmapImage(new Uri(@"/Data/images/calendar.png", UriKind.RelativeOrAbsolute));
+            imgCalendar.MouseDown += imgCalendar_MouseDown;
+            RenderOptions.SetBitmapScalingMode(imgCalendar, BitmapScalingMode.HighQuality);
 
+             panelTime.Children.Add(imgCalendar);
+        
             txtTime = new TextBlock();
+            txtTime.Width = 300;
 
             if (GameObject.GetInstance().DayRoundEnabled)
                 txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
@@ -48,10 +60,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 txtTime.Text = GameObject.GetInstance().GameTime.ToLongDateString() + " " + GameObject.GetInstance().GameTime.ToShortTimeString() + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;//GameObject.GetInstance().GameTime.ToString("dddd MMMM dd, yyyy HH:mm", CultureInfo.CreateSpecificCulture("en-US")) + " " + GameObject.GetInstance().TimeZone.ShortDisplayName;
 
             txtTime.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+            txtTime.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             txtTime.FontWeight = FontWeights.Bold;
 
-            Grid.SetColumn(txtTime, 1);
-            panelMain.Children.Add(txtTime);
+            panelTime.Children.Add(txtTime);
+
+           
+
+            Grid.SetColumn(panelTime, 1);
+            panelMain.Children.Add(panelTime);
 
             txtMoney = new TextBlock();
 
@@ -60,6 +77,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             txtMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(GameObject.GetInstance().HumanAirline.Money, null, null, null) as Brush;
 
             txtMoney.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
+            txtMoney.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             txtMoney.FontWeight = FontWeights.Bold;
 
             Grid.SetColumn(txtMoney, 2);
@@ -72,6 +90,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GameTimer.GetInstance().OnTimeChangedForced += new GameTimer.TimeChanged(PageBottomMenu_OnTimeChanged);
 
             this.Unloaded += new RoutedEventHandler(PageBottomMenu_Unloaded);
+        }
+
+        private void imgCalendar_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageCalendar());
+        }
+
+        private void btnCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageCalendar());
         }
 
         private void PageBottomMenu_Unloaded(object sender, RoutedEventArgs e)

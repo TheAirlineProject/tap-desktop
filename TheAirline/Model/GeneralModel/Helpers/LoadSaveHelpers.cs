@@ -32,7 +32,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             RemoveSavedFile(name);
 
-            File.Delete(AppSettings.getDataPath() + "\\saves\\" + name + ".xml");
+            File.Delete(AppSettings.getDataPath() + "\\saves\\" + name + ".sav");
 
 
         }
@@ -651,7 +651,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Boolean airlineIsSubsidiary = Convert.ToBoolean(airlineNode.Attributes["subsidiary"].Value);
             Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
             string color = airlineNode.Attributes["color"].Value;
-            //string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
             string airlineCEO = airlineNode.Attributes["CEO"].Value;
             double money = XmlConvert.ToDouble(airlineNode.Attributes["money"].Value);
             int reputation = Convert.ToInt16(airlineNode.Attributes["reputation"].Value);
@@ -676,7 +675,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license);
                 airline.Profile.Country = airlineCountry;
             }
-            //airline.Profile.Logo = logo;
+            if (airlineNode.HasAttribute("logo"))
+            {
+                string logo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + airlineNode.Attributes["logo"].Value;
+
+                airline.Profile.addLogo(new AirlineLogo(logo));
+            }
             airline.Fleet.Clear();
             airline.Airports.Clear();
             airline.Routes.Clear();
@@ -684,6 +688,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airline.Money = money;
             airline.Reputation = reputation;
+
+            XmlNodeList logosList = airlineNode.SelectNodes("logos/logo");
+
+            foreach (XmlElement logoElement in logosList)
+            {
+                int logoFromYear = Convert.ToInt16(logoElement.Attributes["from"].Value);
+                int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
+                string logoPath = logoElement.Attributes["path"].Value;
+                
+                airline.Profile.addLogo(new AirlineLogo(logoFromYear,logoToYear,logoPath));
+            }
 
             XmlElement airlineContractNode = (XmlElement)airlineNode.SelectSingleNode("contract");
             if (airlineContractNode != null)
@@ -1107,7 +1122,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airlineNode.SetAttribute("country", airline.Profile.Country.Uid);
                 airlineNode.SetAttribute("color", airline.Profile.Color);
-                airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\') + 1));
+                //airlineNode.SetAttribute("logo", airline.Profile.Logo.Substring(airline.Profile.Logo.LastIndexOf('\\') + 1));
                 airlineNode.SetAttribute("CEO", airline.Profile.CEO);
                 airlineNode.SetAttribute("money", string.Format("{0:0}", airline.Money));
                 airlineNode.SetAttribute("reputation", airline.Reputation.ToString());
@@ -1117,6 +1132,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
                 airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
                 airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());
+
+                XmlElement airlineLogosList = xmlDoc.CreateElement("logos");
+
+                foreach (AirlineLogo logo in airline.Profile.Logos)
+                {
+                    XmlElement logoElement = xmlDoc.CreateElement("logo");
+
+                    logoElement.SetAttribute("from", logo.FromYear.ToString());
+                    logoElement.SetAttribute("to", logo.ToYear.ToString());
+                    logoElement.SetAttribute("path", logo.Path);
+
+                    airlineLogosList.AppendChild(logoElement);
+                }
+                airlineNode.AppendChild(airlineLogosList);
+
 
                 if (airline.Contract != null)
                 {

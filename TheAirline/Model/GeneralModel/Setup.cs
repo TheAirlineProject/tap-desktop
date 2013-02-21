@@ -101,8 +101,7 @@ namespace TheAirline.Model.GeneralModel
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
-           
-         
+          
             var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
 
             foreach (Airport airport in noRunwayAirports)

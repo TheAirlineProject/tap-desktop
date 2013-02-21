@@ -72,17 +72,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
             scroller.Content = mainPanel;
 
+           
             Grid grdFlights = UICreator.CreateGrid(2);
             grdFlights.ColumnDefinitions[1].Width = new GridLength(200);
-            mainPanel.Children.Add(grdFlights);
+           // mainPanel.Children.Add(grdFlights);
 
             lbFlights = new ListBox();
             lbFlights.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbFlights.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
             lbFlights.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            Grid.SetColumn(lbFlights, 0);
-            grdFlights.Children.Add(lbFlights);
+            //Grid.SetColumn(lbFlights, 0);
+            //grdFlights.Children.Add(lbFlights);
+
+            mainPanel.Children.Add(lbFlights);
 
             ScrollViewer panelRoutes = createRoutesPanel();
 
