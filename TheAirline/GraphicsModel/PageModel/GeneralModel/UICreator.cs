@@ -219,8 +219,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             Image imgSplash = new Image();
             imgSplash.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\TheAirlne_Splash.jpg", UriKind.RelativeOrAbsolute));
-            imgSplash.Height = 200;
-            imgSplash.Width = 400;
+            imgSplash.Height = 600;
+            imgSplash.Width = 800;
             RenderOptions.SetBitmapScalingMode(imgSplash, BitmapScalingMode.HighQuality);
 
             brdSplashOuter.Child = imgSplash;
