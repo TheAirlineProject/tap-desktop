@@ -285,7 +285,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnTransfer.Width = Double.NaN;
             btnTransfer.Visibility = getTransferAirliners().Count > 0 && this.Airliner.Routes.Count == 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnTransfer.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnTransfer.Content = Translator.GetInstance().GetString("PopUpAirlinerRoutes", btnTransfer.Uid);
+            btnTransfer.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", btnTransfer.Uid);
             btnTransfer.Click += new RoutedEventHandler(btnTransfer_Click);
             btnTransfer.Margin = new Thickness(5, 0, 0, 0);
 

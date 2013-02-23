@@ -112,17 +112,17 @@ namespace TheAirline.GraphicsModel.Converters
                                 }
 
                                 if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                    return string.Format("{0:#,0.##} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
+                                    return string.Format("{0:#,0.00} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
                                 else
-                                    return string.Format("{1}{0:#,0.##} {2}", sValue, currency.CurrencySymbol, sFormat);
+                                    return string.Format("{1}{0:#,0.00} {2}", sValue, currency.CurrencySymbol, sFormat);
 
                             }
                             else
                             {
                                 if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                    return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                                    return string.Format("{0:#,0.00} {1}", currencyValue, currency.CurrencySymbol);
                                 else
-                                    return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+                                    return string.Format("{1}{0:#,0.00}", currencyValue, currency.CurrencySymbol);
 
                             }
                         }
@@ -130,9 +130,9 @@ namespace TheAirline.GraphicsModel.Converters
                         {
 
                             if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
+                                return string.Format("{0:#,0.00} {1}", currencyValue, currency.CurrencySymbol);
                             else
-                                return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
+                                return string.Format("{1}{0:#,0.00}", currencyValue, currency.CurrencySymbol);
                         }
                     }
                 }
