@@ -311,7 +311,9 @@ namespace TheAirline.Model.AirportModel
                 gate.Airline = airlineTo;
             }
             airlineFrom.removeAirport(this.Airport);
-            airlineTo.addAirport(this.Airport);
+
+            if (!airlineTo.Airports.Contains(this.Airport))
+                airlineTo.addAirport(this.Airport);
       
         }
        
