@@ -593,7 +593,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 popUpSplash.IsOpen = true;
 
-                DoEvents();
+                //DoEvents();
 
                 Stopwatch sw = new Stopwatch();
                 sw.Start();

@@ -435,8 +435,7 @@ namespace TheAirline.Model.GeneralModel
                 }
                 else
                 {
-                    Console.WriteLine("{0}, {1}", airport.Profile.Name, airport.Profile.Country.Name);
-
+                
                     subAirports = airports.FindAll(a => a.Profile.Country.Region == airport.Profile.Country.Region).ToList();
                     CreateDestinationPassengers(airport, subAirports);
                 }
@@ -449,19 +448,39 @@ namespace TheAirline.Model.GeneralModel
         {
             var airports = Airports.GetAllAirports();
             int count = airports.Count;
-            /*
-            Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
-           {
-               CreateDestinationPassengers(airport);
-           });*/
-
-
+           
+            //var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+      
             Parallel.For(0, count-1, i =>
                 {
                     Parallel.For(i + 1, count, j =>
                         {
-                            CreateDestinationPassengers(airports[i], airports[j]);
+                            if (airports[i].Profile.Town != airports[j].Profile.Town && MathHelpers.GetDistance(airports[i], airports[j]) > 50)
+                            {
+                                CreateDestinationPassengers(airports[j], airports[i]);
+                                CreateDestinationPassengers(airports[i], airports[j]);
+                            }
                         });
+
+                    if (airports[i].getDestinationPassengersSum() == 0)
+                    {
+                        var subAirports = airports.FindAll(a => a.Profile.Country == airports[i].Profile.Country).DefaultIfEmpty().ToList();
+                        subAirports.RemoveAll(a => a == null);
+
+                        if (subAirports != null && subAirports.Count() > 0)
+                        {
+                           
+                            CreateDestinationPassengers(airports[i], subAirports);
+                        }
+                        else
+                        {
+                         
+                            subAirports = airports.FindAll(a => a.Profile.Country.Region == airports[i].Profile.Country.Region).ToList();
+                            CreateDestinationPassengers(airports[i], subAirports);
+                        }
+
+
+                    }
                 });
 
         }
