@@ -29,6 +29,7 @@ using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using System.Windows.Controls.Primitives;
 using System.Threading;
 using System.Windows.Threading;
+using System.Diagnostics;
 
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
@@ -580,6 +581,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             if (txtName.Text.Trim().Length > 2)
             {
+               
                 object o=null;
                 int startYear = (int)cbStartYear.SelectedItem;
                 int opponents = (int)cbOpponents.SelectedItem;
@@ -593,6 +595,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 DoEvents();
 
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
 
 
                 GameTimeZone gtz = (GameTimeZone)cbTimeZone.SelectedItem;
@@ -633,18 +637,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     Airlines.RemoveAirlines(a => a.Profile.Country.Region != region);
                 }
 
+                Console.WriteLine("Before creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
+
                 PassengerHelpers.CreateDestinationPassengers();
 
+                Console.WriteLine("After creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
+
                 AirlinerHelpers.CreateStartUpAirliners();
+
+                Console.WriteLine("After creation of start up airliners: {0} ms.", sw.ElapsedMilliseconds);
 
                 if (this.OpponentType == OpponentSelect.Random || o == null)
                     Setup.SetupMainGame(opponents, cbSameRegion.IsChecked.Value);
                 else
                     Setup.SetupMainGame((List<Airline>) o);
 
+                Console.WriteLine("After creation of airlines: {0} ms.", sw.ElapsedMilliseconds);
+
+
                 airline.MarketFocus = (Airline.AirlineFocus)cbFocus.SelectedItem;
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+                Console.WriteLine("After creation of holidays: {0} ms.", sw.ElapsedMilliseconds);
+
+
                 GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
                 // AIWorker.GetInstance().start();
@@ -658,9 +674,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
                 popUpSplash.IsOpen = false;
+
+                Console.WriteLine("Total time: {0} ms.", sw.ElapsedMilliseconds);
+
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);
+
 
         }
         //sets the airports view

@@ -447,10 +447,22 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()
         {
+            var airports = Airports.GetAllAirports();
+            int count = airports.Count;
+            /*
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
            {
                CreateDestinationPassengers(airport);
-           });
+           });*/
+
+
+            Parallel.For(0, count-1, i =>
+                {
+                    Parallel.For(i + 1, count, j =>
+                        {
+                            CreateDestinationPassengers(airports[i], airports[j]);
+                        });
+                });
 
         }
         //creates the airport destinations passengers between two destinations 
