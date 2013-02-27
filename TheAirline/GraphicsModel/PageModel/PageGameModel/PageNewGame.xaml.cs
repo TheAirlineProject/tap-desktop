@@ -159,14 +159,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             cbCountry.Width = 150;
             cbCountry.SelectionChanged += cbCountry_SelectionChanged;
 
-            //cbCountry.SelectedItem = Countries.GetCountry("122");
-
-            /*
-            cntCountry = new ContentControl();
-            cntCountry.SetResourceReference(ContentControl.ContentTemplateProperty, "CountryFlagLongItem");
-           
-            panelCountry.Children.Add(cntCountry);
-            */
             panelCountry.Children.Add(cbCountry);
 
             cbLocalCurrency = new CheckBox();
@@ -593,7 +585,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 popUpSplash.IsOpen = true;
 
-                //DoEvents();
+                DoEvents();
 
                 Stopwatch sw = new Stopwatch();
                 sw.Start();
