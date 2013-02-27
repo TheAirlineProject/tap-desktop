@@ -107,16 +107,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airport airport in noRunwayAirports)
                 Console.WriteLine(airport.Profile.Name);
 
-            var airportGroups =
-           (from a in Airports.GetAllAirports()
-           group a by a.Profile.Country into g
-           select new { Country = g.Key, Airports = g }).OrderByDescending(g=>g.Airports.Count());
-
-            foreach (var g in airportGroups)
-            {
-                Console.WriteLine("{0}: {1} airports", g.Country.Name, g.Airports.Count());
-               
-            } 
+    
 
         }
 
