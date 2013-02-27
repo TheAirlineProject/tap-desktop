@@ -76,23 +76,44 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             //panelFlights.Children.Add(createDestinationFlightsPanel());
 
+            WrapPanel panelButtons = new WrapPanel();
+            panelButtons.Margin = new Thickness(0, 5, 0, 0);
+
             Button btnSlotAllocation = new Button();
             btnSlotAllocation.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnSlotAllocation.Height = Double.NaN;
             btnSlotAllocation.Width = Double.NaN;
-            btnSlotAllocation.Content = "Slot allocations";
+            btnSlotAllocation.Uid = "200";
+            btnSlotAllocation.Content = Translator.GetInstance().GetString("PageAirportFlights", btnSlotAllocation.Uid);
             btnSlotAllocation.Click += new RoutedEventHandler(btnSlotAllocation_Click);
             btnSlotAllocation.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnSlotAllocation.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnSlotAllocation.Visibility = this.Airport.Terminals.getNumberOfRoutes() > 0 ? Visibility.Visible : Visibility.Collapsed;
-            btnSlotAllocation.Margin = new Thickness(0, 5, 0, 0);
 
-            panelFlights.Children.Add(btnSlotAllocation);
+            panelButtons.Children.Add(btnSlotAllocation);
+
+            Button btnFlightMap = new Button();
+            btnFlightMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnFlightMap.Height = Double.NaN;
+            btnFlightMap.Width = Double.NaN;
+            btnFlightMap.Uid ="201";
+            btnFlightMap.Content = Translator.GetInstance().GetString("PageAirportFlights", btnFlightMap.Uid);
+            btnFlightMap.Click += btnFlightMap_Click;
+            btnFlightMap.SetResourceReference(Button.BackgroundProperty,"ButtonBrush");
+            btnFlightMap.Margin = new Thickness(5,0,0,0);
+            btnFlightMap.Visibility = this.Airport.Terminals.getNumberOfRoutes() > 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+
+            panelButtons.Children.Add(btnFlightMap);
+
+
+
+
+            panelFlights.Children.Add(panelButtons);
           
             this.Content = panelFlights;
            
         }
 
+      
        
        
         //creates the panel for destination flights
@@ -198,6 +219,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             return destinations;
 
         }
+        private void btnFlightMap_Click(object sender, RoutedEventArgs e)
+        {
+
+            PopUpMap.ShowPopUp(AirportHelpers.GetAirportRoutes(this.Airport));
+        }
+
         private void btnSlotAllocation_Click(object sender, RoutedEventArgs e)
         {
             PopUpAirportSlot.ShowPopUp(this.Airport);
