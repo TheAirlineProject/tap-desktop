@@ -184,7 +184,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         private static TimeSpan GetMinTimeBetweenFlights(int passengers)
         {
-            TimeSpan minTime = new TimeSpan(0, 45, 0);
+            TimeSpan minTime = new TimeSpan(0, 30, 0);
 
             if (passengers > 200)
                 return minTime.Add(minTime);

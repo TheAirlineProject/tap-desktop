@@ -418,6 +418,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for updating of an existing route for an airline
         private static void CheckForUpdateRoute(Airline airline)
         {
+
             int totalHours = rnd.Next(24 * 7, 24 * 13);
             foreach (Route route in airline.Routes.FindAll(r => GameObject.GetInstance().GameTime.Subtract(r.LastUpdated).TotalHours > totalHours))
             {

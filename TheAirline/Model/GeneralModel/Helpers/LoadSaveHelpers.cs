@@ -393,7 +393,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airline pilotAirline = Airlines.GetAirline(pilotNode.Attributes["airline"].Value);
                     DateTime airlinesigneddate = DateTime.Parse(pilotNode.Attributes["airlinesigned"].Value, new CultureInfo("de-DE", false));
 
-                    pilot.Airline = pilotAirline;
+                    pilotAirline.addPilot(pilot);
                     pilot.AirlineSignedDate = airlinesigneddate;
 
                     if (pilotNode.Attributes["airliner"].Value != "-")
@@ -754,7 +754,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Loan loan = new Loan(date, amount, length, rate);
                 loan.PaymentLeft = payment;
-
+                
                 airline.addLoan(loan);
             }
 

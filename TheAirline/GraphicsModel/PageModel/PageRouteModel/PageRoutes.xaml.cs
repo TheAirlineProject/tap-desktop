@@ -364,6 +364,34 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
 
     }
+    //the converter for the stop overs
+    public class StopoverItemConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Route route = (Route)value;
+
+            WrapPanel panelStopovers = new WrapPanel();
+
+            foreach (StopoverRoute sRoute in route.Stopovers)
+            {
+                ContentControl ccStopover = new ContentControl();
+                ccStopover.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportIATACountryItem");
+                ccStopover.Content = sRoute.Stopover;
+                ccStopover.Margin = new Thickness(0, 0, 10, 0);
+
+                panelStopovers.Children.Add(ccStopover);
+            }
+
+            return panelStopovers;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for an unions member
     public class UnionMemberConverter : IValueConverter
     {

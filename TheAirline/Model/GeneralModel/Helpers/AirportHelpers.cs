@@ -109,6 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the weather (5 days) for a number of airport with an average
         public static void CreateAirportsWeather(List<Airport> airports, WeatherAverage average)
         {
+            
             if (airports.Count > 0)
             {
                 int maxDays = 5;
@@ -180,7 +181,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double maxTemp = 40;
                 double minTemp = -20;
 
-                temperature = rnd.NextDouble() * (maxTemp - minTemp) + minTemp;
+                temperature = MathHelpers.GetRandomDoubleNumber(minTemp, maxTemp);
             }
             else
             {
@@ -192,7 +193,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double maxTemp = Math.Min(40, previousTemperature + 5);
                 double minTemp = Math.Max(-20, previousTemperature - 5);
 
-                temperature = rnd.NextDouble() * (maxTemp - minTemp) + minTemp;
+                temperature = MathHelpers.GetRandomDoubleNumber(minTemp, maxTemp);
             }
 
             temperatureLow = temperature - rnd.Next(1, 10);
@@ -300,9 +301,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 windSpeed = windSpeedValues[rnd.Next(windIndexMin, windIndexMax)];
                 
-                temperatureLow = rnd.NextDouble() * ((average.TemperatureMin + 5) - (average.TemperatureMin - 5)) + (average.TemperatureMin - 5);
-                temperatureHigh = rnd.NextDouble() * ((average.TemperatureMax + 5) - Math.Max(average.TemperatureMax - 5, temperatureLow + 1)) + Math.Max(average.TemperatureMax - 5, temperatureLow + 1);
-
+                temperatureLow = MathHelpers.GetRandomDoubleNumber(average.TemperatureMin -5,average.TemperatureMin+5);
+               temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(average.TemperatureMax - 5, temperatureLow + 1),average.TemperatureMax+5);
+    
             }
             else
             {
@@ -311,11 +312,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 windSpeed = windSpeedValues[rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
 
                 double minTemp = Math.Max(average.TemperatureMin, previousTemperature - 5);
-                temperatureLow = rnd.NextDouble() * ((minTemp + 5) - (minTemp - 5)) + (minTemp - 5);
-
+                temperatureLow = MathHelpers.GetRandomDoubleNumber(minTemp-5,minTemp+5);
+              
                 double maxTemp = Math.Min(average.TemperatureMax, previousTemperature + 5);
 
-                temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);//rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
+               temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);//rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
 
 
 

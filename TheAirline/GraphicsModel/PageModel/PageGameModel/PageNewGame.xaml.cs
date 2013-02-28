@@ -30,6 +30,7 @@ using System.Windows.Controls.Primitives;
 using System.Threading;
 using System.Windows.Threading;
 using System.Diagnostics;
+using System.Threading.Tasks;
 
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
@@ -629,12 +630,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     Airlines.RemoveAirlines(a => a.Profile.Country.Region != region);
                 }
 
-                Console.WriteLine("Before creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
-
-                PassengerHelpers.CreateDestinationPassengers();
-
-                Console.WriteLine("After creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
-
+             
                 AirlinerHelpers.CreateStartUpAirliners();
 
                 Console.WriteLine("After creation of start up airliners: {0} ms.", sw.ElapsedMilliseconds);
@@ -651,6 +647,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
                 Console.WriteLine("After creation of holidays: {0} ms.", sw.ElapsedMilliseconds);
+
+                Console.WriteLine("Before creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
+
+                //PassengerHelpers.CreateDestinationPassengers();
+                PassengerHelpers.CreateAirlineDestinationPassengers();
+
+                Console.WriteLine("After creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
 
 
                 GameTimer.GetInstance().start();
@@ -669,6 +672,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Console.WriteLine("Total time: {0} ms.", sw.ElapsedMilliseconds);
 
+                Action<object> action = (object obj) =>
+                {
+                    Stopwatch swPax = new Stopwatch();
+                    swPax.Start();
+
+                    PassengerHelpers.CreateDestinationPassengers();
+
+                    Console.WriteLine("Passenger demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+                    swPax.Stop();
+                };
+
+                sw.Stop();
+
+                Task t2 = Task.Factory.StartNew(action, "passengers");
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);

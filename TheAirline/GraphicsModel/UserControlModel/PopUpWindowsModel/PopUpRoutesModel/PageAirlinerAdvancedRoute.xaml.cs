@@ -35,7 +35,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
         private ComboBox cbOrigin, cbDestination, cbDay, cbFlightCode;
         private TimePicker tpTime;
 
-        private TextBlock txtStopovers;
+        private TextBlock txtStopovers, txtFlightTime;
 
         public PageAirlinerAdvancedRoute(FleetAirliner airliner, PopUpAirlinerAutoRoutes parent)
         {
@@ -48,10 +48,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             panelMain.Children.Add(createNewEntryPanel());
 
+            WrapPanel panelFlightTime = new WrapPanel();
+
             txtStopovers = UICreator.CreateTextBlock("");
             txtStopovers.Visibility = System.Windows.Visibility.Collapsed;
+            txtStopovers.Margin = new Thickness(0, 0, 10, 0);
+            panelFlightTime.Children.Add(txtStopovers);
 
-            panelMain.Children.Add(txtStopovers);
+            txtFlightTime = UICreator.CreateTextBlock("Flight time:");
+             panelFlightTime.Children.Add(txtFlightTime);
+
+           
+
+            panelMain.Children.Add(panelFlightTime);
 
             this.Content = panelMain;
 
@@ -165,6 +174,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
                 }
                 else
                     txtStopovers.Visibility = System.Windows.Visibility.Collapsed;
+
+                txtFlightTime.Text = string.Format("Flight time: {0}", route.getFlightTime(this.Airliner.Airliner.Type).ToString("hh\\:mm"));
 
             }
         }

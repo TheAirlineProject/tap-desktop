@@ -443,10 +443,47 @@ namespace TheAirline.Model.GeneralModel
                     
             }
         }
+        //creates the airport destinations passengers for all destination served by an airline
+        public static void CreateAirlineDestinationPassengers()
+        {
+            var airports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
+        
+            foreach (Airport airport in airports)
+            {
+                Parallel.ForEach(Airports.GetAllAirports(), dAirport =>
+                    {
+                        if (airport != dAirport && airport.Profile.Town != dAirport.Profile.Town && MathHelpers.GetDistance(airport, dAirport) > 50)
+                        {
+                            CreateDestinationPassengers(airport, dAirport);
+                        }
+                    });
+                if (airport.getDestinationPassengersSum() == 0)
+                {
+                    var subAirports = Airports.GetAllAirports(a => a.Profile.Country == airport.Profile.Country).DefaultIfEmpty().ToList();
+                    subAirports.RemoveAll(a => a == null);
+
+                    if (subAirports != null && subAirports.Count() > 0)
+                    {
+
+                        CreateDestinationPassengers(airport, subAirports);
+                    }
+                    else
+                    {
+
+                        subAirports = Airports.GetAllAirports(a => a.Profile.Country.Region == airport.Profile.Country.Region).ToList();
+                        CreateDestinationPassengers(airport, subAirports);
+                    }
+
+
+                }
+            }
+
+            
+        }
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationPassengers()
         {
-            var airports = Airports.GetAllAirports();
+            var airports = Airports.GetAllAirports(a=>a.getDestinationPassengersSum() == 0);
             int count = airports.Count;
            
             //var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
