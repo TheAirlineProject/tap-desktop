@@ -318,7 +318,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                     {
                         while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
                         {
-                            Pilot pilot = Pilots.GetPilots()[rnd.Next(Pilots.GetNumberOfPilots())];
+                            var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
+
+                            if (pilots.Count == 0)
+                                pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region);
+
+                            if (pilots.Count == 0)
+                                pilots = Pilots.GetUnassignedPilots();
+
+                            Pilot pilot = pilots.First();
+
                             airliner.Airliner.Airline.addPilot(pilot);
                             pilot.Airliner = airliner;
                             airliner.addPilot(pilot);

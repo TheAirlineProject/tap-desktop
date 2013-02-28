@@ -408,8 +408,39 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             panelCoordinates.Children.Add(txtCoordinates);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1021"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
+          //  lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
+         //   lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1021"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
+
+            WrapPanel panelSize = new WrapPanel();
+
+            Image imgPassenger = new Image();
+            imgPassenger.Source = new BitmapImage(new Uri(@"/Data/images/passenger.png", UriKind.RelativeOrAbsolute));
+            imgPassenger.Height = 16;
+            RenderOptions.SetBitmapScalingMode(imgPassenger, BitmapScalingMode.HighQuality);
+
+            panelSize.Children.Add(imgPassenger);
+
+            TextBlock txtPassengerSize = UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString());
+            txtPassengerSize.Margin = new Thickness(2, 0, 0, 0);
+            txtPassengerSize.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+            panelSize.Children.Add(txtPassengerSize);
+
+            Image imgCargo = new Image();
+            imgCargo.Margin = new Thickness(10, 0, 0, 0);
+            imgCargo.Source = new BitmapImage(new Uri(@"/Data/images/cargo.png", UriKind.RelativeOrAbsolute));
+            imgCargo.Height = 16;
+            RenderOptions.SetBitmapScalingMode(imgCargo,BitmapScalingMode.HighQuality);
+
+            panelSize.Children.Add(imgCargo);
+
+            TextBlock txtCargoSize = UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString());
+            txtCargoSize.Margin = new Thickness(2, 0, 0, 0);
+            txtCargoSize.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+
+            panelSize.Children.Add(txtCargoSize);
+
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"),panelSize));
 
             TextBlock txtAirportIncome =  UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString());
             txtAirportIncome.Foreground = new ValueIsMinusConverter().Convert(this.Airport.Income) as Brush;

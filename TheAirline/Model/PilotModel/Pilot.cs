@@ -56,6 +56,10 @@ namespace TheAirline.Model.PilotModel
         {
             return pilots.FindAll(p => p.Airline == null);
         }
+        public static List<Pilot> GetUnassignedPilots(Predicate<Pilot> match)
+        {
+            return GetUnassignedPilots().FindAll(match);
+        }
         //removes a pilot from the list
         public static void RemovePilot(Pilot pilot)
         {

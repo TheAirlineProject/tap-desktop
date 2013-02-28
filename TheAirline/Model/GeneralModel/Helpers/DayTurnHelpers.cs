@@ -49,6 +49,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
 
             });
+            Console.WriteLine("Flights updated for {0} in {1} ms. with {2} airliners in route", airline.Profile.Name, sw.ElapsedMilliseconds, airline.Fleet.Count(f=>f.Status != FleetAirliner.AirlinerStatus.Stopped));
+
             sw.Stop();
 
 
@@ -157,6 +159,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
                     SimulateLanding(airliner);
+
             }
         }
         //simulates the service of a flight

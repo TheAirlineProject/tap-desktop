@@ -275,13 +275,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
            {
-                Pilot pilot = Pilots.GetUnassignedPilots().OrderByDescending(p => p.Rating).First();
+                var pilots = Pilots.GetUnassignedPilots(p=>p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
+
+                if (pilots.Count == 0)
+                    pilots = Pilots.GetUnassignedPilots(p=>p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region);
+
+                if (pilots.Count == 0)
+                    pilots = Pilots.GetUnassignedPilots();
+
+                Pilot pilot = pilots.OrderByDescending(p => p.Rating).First();
                 airliner.Airliner.Airline.addPilot(pilot);
 
                 pilot.Airliner = airliner;
                 airliner.addPilot(pilot);
             }
-
+            
             if (Pilots.GetNumberOfUnassignedPilots() < 10)
                 GeneralHelpers.CreatePilots(50);
             

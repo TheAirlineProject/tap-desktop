@@ -19,6 +19,7 @@ using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.StatisticsModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using System.Diagnostics;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -44,11 +45,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 // foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     if (!airline.IsHuman)
+                    {
                         AIHelpers.UpdateCPUAirline(airline);
+                    }
 
                     DayTurnHelpers.SimulateAirlineFlights(airline);
+             
                 });
 
+          
+             
             }
             else
             {

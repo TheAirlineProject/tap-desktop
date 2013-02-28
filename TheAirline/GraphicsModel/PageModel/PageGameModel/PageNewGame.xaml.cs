@@ -588,10 +588,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 DoEvents();
 
-                Stopwatch sw = new Stopwatch();
-                sw.Start();
-
-
                 GameTimeZone gtz = (GameTimeZone)cbTimeZone.SelectedItem;
                 GameObject.GetInstance().DayRoundEnabled = cbDayTurnEnabled.IsChecked.Value;
                 GameObject.GetInstance().TimeZone = gtz;
@@ -633,30 +629,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
              
                 AirlinerHelpers.CreateStartUpAirliners();
 
-                Console.WriteLine("After creation of start up airliners: {0} ms.", sw.ElapsedMilliseconds);
-
-                if (this.OpponentType == OpponentSelect.Random || o == null)
+                 if (this.OpponentType == OpponentSelect.Random || o == null)
                     Setup.SetupMainGame(opponents, cbSameRegion.IsChecked.Value);
                 else
                     Setup.SetupMainGame((List<Airline>) o);
 
-                Console.WriteLine("After creation of airlines: {0} ms.", sw.ElapsedMilliseconds);
-
-
+              
                 airline.MarketFocus = (Airline.AirlineFocus)cbFocus.SelectedItem;
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-                Console.WriteLine("After creation of holidays: {0} ms.", sw.ElapsedMilliseconds);
-
-                Console.WriteLine("Before creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
-
+          
                 //PassengerHelpers.CreateDestinationPassengers();
                 PassengerHelpers.CreateAirlineDestinationPassengers();
 
-                Console.WriteLine("After creation of passengers: {0} ms.", sw.ElapsedMilliseconds);
-
-
-                GameTimer.GetInstance().start();
+                 GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
                 // AIWorker.GetInstance().start();
 
@@ -670,8 +656,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 popUpSplash.IsOpen = false;
 
-                Console.WriteLine("Total time: {0} ms.", sw.ElapsedMilliseconds);
-
+       
                 Action<object> action = (object obj) =>
                 {
                     Stopwatch swPax = new Stopwatch();
@@ -683,8 +668,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     swPax.Stop();
                 };
 
-                sw.Stop();
-
+           
                 Task t2 = Task.Factory.StartNew(action, "passengers");
             }
             else

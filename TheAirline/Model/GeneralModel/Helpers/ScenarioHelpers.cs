@@ -43,9 +43,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             SetupScenarioAirport(airline, airport);
 
-            PassengerHelpers.CreateDestinationPassengers();
-            SetupScenarioPassengerDemand(scenario);
-
+           
+           // PassengerHelpers.CreateDestinationPassengers();
+         
             AirlinerHelpers.CreateStartUpAirliners();
 
             int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
@@ -59,6 +59,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             SetupScenarioAirlines(scenario);
             SetupScenario();
 
+            PassengerHelpers.CreateAirlineDestinationPassengers();
+
+
+
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
             GameTimer.GetInstance().start();
             GameObjectWorker.GetInstance().start();
@@ -71,6 +75,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
+            
+                Action<object> action = (object obj) =>
+                {
+                    
+                    PassengerHelpers.CreateDestinationPassengers();
+
+                    SetupScenarioPassengerDemand(scenario);
+
+                };
+
+           
+                Task t2 = Task.Factory.StartNew(action, "passengers");
         }
         //sets up the passenger demand for a scenario
         private static void SetupScenarioPassengerDemand(Scenario scenario)
@@ -256,26 +272,37 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Boolean failureOk = true;
                 if (failure.Type == ScenarioFailure.FailureType.Cash)
                 {
-                    failureOk = GameObject.GetInstance().HumanAirline.Money > Convert.ToInt64(failure.Value);
+                    double totalMoney = GameObject.GetInstance().MainAirline.Money;
+
+                    totalMoney += GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Money);
+
+                    failureOk = totalMoney > Convert.ToInt64(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Fleet)
                 {
-                    failureOk = GameObject.GetInstance().HumanAirline.Fleet.Count() > Convert.ToInt32(failure.Value);
+                    int fleetSize = GameObject.GetInstance().MainAirline.Fleet.Count + GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Fleet.Count);
+                    failureOk = fleetSize > Convert.ToInt32(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Domestic)
                 {
-                    int domesticDestinations = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.Profile.Country == GameObject.GetInstance().HumanAirline.Profile.Country).Count;
+                    int domesticDestinations = GameObject.GetInstance().MainAirline.Airports.FindAll(a => a.Profile.Country == GameObject.GetInstance().MainAirline.Profile.Country).Count;
+
+                    domesticDestinations += GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Airports.Count(a => a.Profile.Country == s.Profile.Country));
+
                     failureOk = domesticDestinations > Convert.ToInt32(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Intl)
                 {
-                    int intlDestinations = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country).Count;
+                    int intlDestinations = GameObject.GetInstance().MainAirline.Airports.FindAll(a => a.Profile.Country != GameObject.GetInstance().MainAirline.Profile.Country).Count;
+
+                    intlDestinations += GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Airports.Count(a => a.Profile.Country != s.Profile.Country));
+                    
                     failureOk = intlDestinations > Convert.ToInt32(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.PaxGrowth)
                 {
-                    double paxLastYear = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 2, StatisticsTypes.GetStatisticsType("Passengers"));
-                    double paxCurrentYear = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers"));
+                    double paxLastYear = GameObject.GetInstance().MainAirline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 2, StatisticsTypes.GetStatisticsType("Passengers")) + GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s=>s.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year- 2, StatisticsTypes.GetStatisticsType("Passengers")));
+                    double paxCurrentYear = GameObject.GetInstance().MainAirline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers")) + GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers")));
 
                     double change = (paxCurrentYear - paxLastYear) / paxLastYear * 100;
 
@@ -283,31 +310,38 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 if (failure.Type == ScenarioFailure.FailureType.FleetAge)
                 {
-                    failureOk = Convert.ToDouble(failure.Value) > GameObject.GetInstance().HumanAirline.getAverageFleetAge();
+                    double avgFleetAge = (GameObject.GetInstance().MainAirline.getAverageFleetAge() + GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s=>s.getAverageFleetAge())) / (1 + GameObject.GetInstance().MainAirline.Subsidiaries.Count); 
+                    failureOk = Convert.ToDouble(failure.Value) > avgFleetAge;
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Pax)
                 {
-                    double totalPassengers = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers"));
+                    double totalPassengers = GameObject.GetInstance().MainAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")) + GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
                     failureOk = Convert.ToDouble(failure.Value) * 1000 < totalPassengers;
 
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Bases)
                 {
-                    int homeBases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0).Count;
+                    int homeBases = GameObject.GetInstance().MainAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().MainAirline, AirportFacility.FacilityType.Service).TypeLevel > 0).Count;
+                    homeBases += GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Airports.Count(a => a.getCurrentAirportFacility(s, AirportFacility.FacilityType.Service).TypeLevel > 0));
 
                     failureOk = homeBases <= Convert.ToInt32(failure.Value);
                 }
                 if (failure.Type == ScenarioFailure.FailureType.Debt)
                 {
-                    double debt =GameObject.GetInstance().HumanAirline.Loans.Sum(l=>l.PaymentLeft) + GameObject.GetInstance().HumanAirline.Money;
+                    double debt =GameObject.GetInstance().MainAirline.Loans.Sum(l=>l.PaymentLeft) + GameObject.GetInstance().MainAirline.Money;
+                    debt += GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Loans.Sum(l => l.PaymentLeft) + s.Money);
+
 
                     failureOk = debt <= Convert.ToDouble(failure.Value);
                 }
 
                 if (failure.Type == ScenarioFailure.FailureType.JetRation)
                 {
-                    double jetRation = Convert.ToDouble(GameObject.GetInstance().HumanAirline.Fleet.Count(f => f.Airliner.Type.Engine == AirlinerType.EngineType.Jet)) / Convert.ToDouble(GameObject.GetInstance().HumanAirline.Fleet.Count);
+                    double totalFleet = Convert.ToDouble(GameObject.GetInstance().MainAirline.Fleet.Count) + Convert.ToDouble(GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s => s.Fleet.Count));
+                    double totalJets = Convert.ToDouble(GameObject.GetInstance().MainAirline.Fleet.Count(f=>f.Airliner.Type.Engine == AirlinerType.EngineType.Jet)) + Convert.ToDouble(GameObject.GetInstance().MainAirline.Subsidiaries.Sum(s=>s.Fleet.Count(f=>f.Airliner.Type.Engine == AirlinerType.EngineType.Jet)));
+
+                    double jetRation = totalJets / totalFleet;
 
                     failureOk = jetRation >= Convert.ToDouble(failure.Value);
 
