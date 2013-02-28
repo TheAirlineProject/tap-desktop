@@ -1831,7 +1831,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-            
+            /*
             Airports.GetAirport("BOS").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("AAR").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
             Airports.GetAirport("CPH").Terminals.rentGate(GameObject.GetInstance().HumanAirline);
@@ -1840,7 +1840,7 @@ namespace TheAirline.Model.GeneralModel
 
             Airliner airliner = Airliners.GetAirlinersForSale(a => a.Type.Name == "Boeing 737-900ER").First();
             AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, GameObject.GetInstance().HumanAirline.Airports[0]);
-            
+            */
             SetupAlliances();
             SetupMergers();
         }
@@ -2039,7 +2039,9 @@ namespace TheAirline.Model.GeneralModel
             var startroutes = startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year);
 
             //creates the routes
-            foreach (StartDataRoute startRoute in startroutes.GetRange(0, startroutes.Count / difficultyFactor))
+            //foreach (StartDataRoute startRoute in startroutes.GetRange(0, startroutes.Count / difficultyFactor))
+            var sRoutes = startroutes.GetRange(0, startroutes.Count / difficultyFactor);
+            Parallel.ForEach(sRoutes, startRoute =>
             {
                 Airport dest1 = Airports.GetAirport(startRoute.Destination1);
                 Airport dest2 = Airports.GetAirport(startRoute.Destination2);
@@ -2079,7 +2081,7 @@ namespace TheAirline.Model.GeneralModel
                             Airliner nAirliner = new Airliner(startRoute.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
                             Airliners.AddAirliner(nAirliner);
 
-                             nAirliner.clearAirlinerClasses();
+                            nAirliner.clearAirlinerClasses();
 
                             AirlinerHelpers.CreateAirlinerClasses(nAirliner);
 
@@ -2118,10 +2120,13 @@ namespace TheAirline.Model.GeneralModel
                 AIHelpers.CreateRouteTimeTable(route, fAirliner);
 
 
-            }
+            });
 
             //adds the airliners
-            foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor))
+            //foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor))
+            var sAirliners = startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor);
+
+            Parallel.ForEach(sAirliners, airliners =>
             {
                 AirlinerType type = AirlinerTypes.GetType(airliners.Type);
 
@@ -2157,13 +2162,16 @@ namespace TheAirline.Model.GeneralModel
                         AirlineHelpers.HireAirlinerPilots(fAirliner);
 
                         AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-                        
+
                     }
                 }
 
-            }
+            });
+
+           
             //the origin routes
-            foreach (StartDataRoutes routes in startData.OriginRoutes)
+            //foreach (StartDataRoutes routes in startData.OriginRoutes)
+            Parallel.ForEach(startData.OriginRoutes, routes =>
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
 
@@ -2223,7 +2231,7 @@ namespace TheAirline.Model.GeneralModel
                     AIHelpers.CreateRouteTimeTable(route, fAirliner);
 
                 }
-            }
+            });
         }
         //returns a random destination for an origin start routes
         private static Airport GetStartDataRoutesDestination(StartDataRoutes routes)
