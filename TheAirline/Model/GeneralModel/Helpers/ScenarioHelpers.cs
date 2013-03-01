@@ -44,6 +44,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             SetupScenarioAirport(airline, airport);
 
            
+            
+If you think about most games - even those with a relatively simply GUI like ours, they take up much more hard drive space, presumably because data is pre-calculated to reduce the workload on the application.
+Loading and saving on the fly for the game
+
            // PassengerHelpers.CreateDestinationPassengers();
          
             AirlinerHelpers.CreateStartUpAirliners();
@@ -60,8 +64,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             SetupScenario();
 
             PassengerHelpers.CreateAirlineDestinationPassengers();
-
-
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
             GameTimer.GetInstance().start();
