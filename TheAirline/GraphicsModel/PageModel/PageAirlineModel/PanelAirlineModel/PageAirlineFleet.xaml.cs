@@ -25,6 +25,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -285,7 +286,38 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             PageNavigator.NavigateTo(new PageFleetAirliner(airliner));
         }
+        private void btnTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
 
+            ComboBox cbAirlines = new ComboBox();
+            cbAirlines.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAirlines.SetResourceReference(ComboBox.ItemTemplateProperty, "AirlineLogoItem");
+            cbAirlines.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+            cbAirlines.Items.Add(GameObject.GetInstance().MainAirline);
+
+            foreach (Airline airline in GameObject.GetInstance().MainAirline.Subsidiaries)
+                cbAirlines.Items.Add(airline);
+
+            cbAirlines.Items.Remove(airliner.Airliner.Airline);
+
+            cbAirlines.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineFleet", "1010"), cbAirlines) == PopUpSingleElement.ButtonSelected.OK && cbAirlines.SelectedItem != null)
+            {
+                Airline airline = (Airline)cbAirlines.SelectedItem;
+                airliner.Airliner.Airline.removeAirliner(airliner);
+
+                airliner.Airliner.Airline = airline;
+                airline.addAirliner(airliner);
+
+                _FleetDelivered.Remove(airliner);
+
+                showFleet();
+
+            }
+        }
         private void ButtonDelete_Click(object sender, RoutedEventArgs e)
         {
             FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
@@ -346,7 +378,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             }
         }
     }
+    //the converter for transfering airliners between subsidairy
+    public class TransferAirlinerVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            FleetAirliner airliner = (FleetAirliner)value;
 
+            Boolean isTransferable = airliner.Airliner.Airline.IsHuman && airliner.Status == FleetAirliner.AirlinerStatus.Stopped && GameObject.GetInstance().MainAirline.Subsidiaries.Count > 0;
+
+            return isTransferable ? Visibility.Visible : Visibility.Collapsed;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for a filling degree to color
    public class FillingDegreeConverter : IValueConverter
     {
