@@ -94,7 +94,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     AirlinerConfiguration configuration = null;
 
-                    int classes = rnd.Next(0, ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses) + 1;
+                    int classes = rnd.Next(0, ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses) +1;
 
                     if (classes == 1)
                         configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");

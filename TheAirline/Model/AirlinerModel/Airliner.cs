@@ -128,7 +128,10 @@ namespace TheAirline.Model.AirlinerModel
         //returns the airliner class for the airliner
         public AirlinerClass getAirlinerClass(AirlinerClass.ClassType type)
         {
-            return this.Classes.Find((delegate(AirlinerClass c) { return c.Type == type; }));
+            if (this.Classes.Exists(c => c.Type == type))
+                return this.Classes.Find(c => c.Type == type);
+            else
+                return this.Classes[0];
         }
 
     }
