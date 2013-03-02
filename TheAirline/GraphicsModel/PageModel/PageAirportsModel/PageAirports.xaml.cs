@@ -39,14 +39,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PageAirports", this.Uid);
 
-           StackPanel airportsPanel = new StackPanel();
+            StackPanel airportsPanel = new StackPanel();
             airportsPanel.Margin = new Thickness(10, 0, 10, 0);
 
 
             ContentControl txtHeader = new ContentControl();
             txtHeader.ContentTemplate = this.Resources["AirportsHeader"] as DataTemplate;
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-   
+
             airportsPanel.Children.Add(txtHeader);
 
             lbAirports = new ListBox();
@@ -60,7 +60,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             airportsPanel.Children.Add(lbAirports);
 
-            Button btnResultsMap = new Button(); 
+            Button btnResultsMap = new Button();
             btnResultsMap.Uid = "1001";
             btnResultsMap.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnResultsMap.Width = Double.NaN;
@@ -100,7 +100,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             lbAirports.Items.Clear();
 
-      
+
             airports.Sort(sortCriteria);
 
             foreach (Airport airport in airports)
@@ -118,7 +118,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             Airport airport = (Airport)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageAirport(airport));
-      }
+        }
 
         private void Header_Click(object sender, RoutedEventArgs e)
         {
@@ -135,7 +135,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                         sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.IATACode.CompareTo(a2.Profile.IATACode); };
                     else
                         sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.ICAOCode.CompareTo(a2.Profile.ICAOCode); };
-              
+
                     showAirports();
                     break;
                 case "Size":
@@ -152,25 +152,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
         private void btnRent_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Button)sender).Tag;
-            Boolean isRentable = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
+            Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-            if (!isRentable)
+            if (!hasCheckin)
             {
-                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-                    airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
-                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+                airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
-                    isRentable = true;
             }
 
-            if (isRentable)
-            {
-                airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
 
-                showAirports();
-            }
-      
+            airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
+
+            showAirports();
+
+
         }
     }
     //the converter for renting a gate    
@@ -184,8 +182,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                 Airport airport = (Airport)value;
 
                 Boolean isEnabled = airport.Terminals.getFreeGates() > 0 && airport.AirlineContract == null;
-    
-             
+
+
                 rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);
 
             }
@@ -201,5 +199,5 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             throw new NotImplementedException();
         }
     }
-    
+
 }

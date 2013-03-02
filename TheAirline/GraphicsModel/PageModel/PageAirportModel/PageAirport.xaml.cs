@@ -491,7 +491,29 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             PopUpMap.ShowPopUp(this.Airport);
         }
+        private void btnRent_Click(object sender, RoutedEventArgs e)
+        {
+            KeyValuePair<DestinationPassengers, int> v = (KeyValuePair<DestinationPassengers, int>)((Button)sender).Tag;
+            Airport airport = v.Key.Destination;
 
+            Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
+
+            if (!hasCheckin)
+            {
+                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+            }
+
+
+            airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
+
+            showPassengers(true);
+
+
+        }
         //the class for a flight at the airport
         private class AirportFlightItem
         {
@@ -512,6 +534,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
 
     }
+    //the converter for renting a gate    
+    public class RentingGateVisibility : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Visibility rv = Visibility.Collapsed;
+            try
+            {
+                KeyValuePair<DestinationPassengers, int> v = (KeyValuePair<DestinationPassengers, int>)value;
+                Airport airport = v.Key.Destination;
+
+                Boolean isEnabled = airport.Terminals.getFreeGates() > 0 && airport.AirlineContract == null;
+
+
+                rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);
+
+            }
+            catch (Exception)
+            {
+
+            }
+            return rv;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+   
     public class IsHumanAirportConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

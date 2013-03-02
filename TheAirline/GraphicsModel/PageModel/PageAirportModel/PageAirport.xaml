@@ -14,6 +14,7 @@
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:NumberToUnitConverter x:Key="numberToUnitConverter"></c:NumberToUnitConverter>
         <local:IsHumanAirportConverter x:Key="isHumanAirportConverter"></local:IsHumanAirportConverter>
+        <local:RentingGateVisibility x:Key="rentingGateVisibility"></local:RentingGateVisibility>
         <DataTemplate x:Key="FlightHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>
@@ -37,9 +38,12 @@
             <WrapPanel>
             <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Key.Destination}" VerticalAlignment="Bottom" Width="250" Foreground="DarkRed"></ContentControl>
                 <TextBlock Text="{Binding Key.Rate}" VerticalAlignment="Bottom" Width="50"></TextBlock>
-                <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom" Width="50"></TextBlock>
                 <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Key,Converter={StaticResource isHumanAirportConverter}}"></Image>
-                
+                <Button VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnRent_Click"  Visibility="{Binding Converter={StaticResource rentingGateVisibility}}">
+                    <Image Source="/Data/images/add.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+
             </WrapPanel>
         </DataTemplate>
        
