@@ -90,6 +90,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnDelete.Margin = new Thickness(5, 0, 0, 0);
             btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
             btnDelete.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnDelete.IsEnabled = false;
 
             panelButtons.Children.Add(btnDelete);
 

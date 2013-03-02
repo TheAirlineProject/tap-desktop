@@ -31,7 +31,7 @@ namespace TheAirline
         private static void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
             System.IO.StreamWriter file = new System.IO.StreamWriter("theairline.log");
-            file.Write(e.ExceptionObject.ToString());
+            file.Write("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
 
             file.Close();
         }

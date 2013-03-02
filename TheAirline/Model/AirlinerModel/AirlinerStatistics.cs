@@ -26,15 +26,20 @@ namespace TheAirline.Model.AirlinerModel
 
             double fillingDegree = avgPassengers / totalPassengers;
 
-
-            return avgPassengers / totalPassengers;
+            if (totalPassengers == 0)
+                return 0;
+            else
+                return avgPassengers / totalPassengers;
         }
           //gets the income per passenger
         private double getIncomePerPassenger()
         {
             double totalPassengers = Convert.ToDouble(getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")));
 
-            return getBalance() / totalPassengers;
+            if (totalPassengers == 0)
+                return 0;
+            else
+                return getBalance() / totalPassengers;
         }
         //gets the balance
         private double getBalance()

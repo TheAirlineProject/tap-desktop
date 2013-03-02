@@ -16,6 +16,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private BackgroundWorker Worker;
         private Boolean Cancelled;
         private Boolean CancelWorker;
+        private Boolean Paused;
         private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
@@ -27,6 +28,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             this.Cancelled = false;
             this.CancelWorker = false;
+            this.Paused = false;
         }
         //returns the instance
         public static GameObjectWorker GetInstance()
@@ -46,6 +48,16 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
            
            
         }
+        //pause the worker
+        public void pause()
+        {
+            this.Paused = true;
+        }
+        //restarts the worker
+        public void restart()
+        {
+            this.Paused = false;
+        }
         //starts the worker
         public void start()
         {
@@ -64,23 +76,26 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            Stopwatch sw = new Stopwatch();
-
-            sw.Start();
-            GameObjectHelpers.SimulateTurn();
-            sw.Stop();
-
-            long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
-
-            /*
-            if ((this.Worker.CancellationPending == true))
+            if (!Paused)
             {
-                e.Cancel = true;
-                
-            }*/
+                Stopwatch sw = new Stopwatch();
 
-            if (waittime > 0 && !this.CancelWorker)
-                Thread.Sleep((int)waittime);
+                sw.Start();
+                GameObjectHelpers.SimulateTurn();
+                sw.Stop();
+
+                long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
+
+                /*
+                if ((this.Worker.CancellationPending == true))
+                {
+                    e.Cancel = true;
+                
+                }*/
+
+                if (waittime > 0 && !this.CancelWorker)
+                    Thread.Sleep((int)waittime);
+            }
 
         }
         private void bw_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)

@@ -197,7 +197,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             this.btnStart.Visibility = System.Windows.Visibility.Collapsed;
             this.btnPause.Visibility = System.Windows.Visibility.Visible;
             GameTimer.GetInstance().start();
-            GameObjectWorker.GetInstance().start();
+            GameObjectWorker.GetInstance().restart();
         }
 
         private void btnPause_Click(object sender, RoutedEventArgs e)
@@ -205,7 +205,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             this.btnStart.Visibility = System.Windows.Visibility.Visible;
             this.btnPause.Visibility = System.Windows.Visibility.Collapsed;
             GameTimer.GetInstance().pause();
-            GameObjectWorker.GetInstance().cancel();
+            GameObjectWorker.GetInstance().pause();
         }
 
         private void btnNext_Click(object sender, RoutedEventArgs e)

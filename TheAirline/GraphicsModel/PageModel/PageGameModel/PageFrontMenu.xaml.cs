@@ -103,7 +103,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             Image imgCredits = new Image();
             imgCredits.Source = new BitmapImage(new Uri(AppSettings.getDataPath() + "\\graphics\\credits.png", UriKind.RelativeOrAbsolute));
-            imgCredits.Height = GraphicsHelpers.GetContentHeight()-25;
+            imgCredits.Height = GraphicsHelpers.GetContentHeight()-50;
             RenderOptions.SetBitmapScalingMode(imgCredits, BitmapScalingMode.HighQuality);
             panelCredits.Children.Add(imgCredits);
 
