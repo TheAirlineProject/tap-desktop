@@ -272,7 +272,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
 
             PopUpTimeTable.ShowPopUp(route);
         }
+        private void btnStopRoute_Click(object sender, RoutedEventArgs e)
+        {
+             Route route = (Route)((Button)sender).Tag;
 
+             foreach (FleetAirliner airliner in route.getAirliners())
+                 airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+
+             showFleet();
+
+             showRoutes();
+        }
         private void lnkAirline_Click(object sender, RoutedEventArgs e)
         {
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
@@ -350,6 +360,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
 
             showFleet();
+
+            showRoutes();
            
         }
         private void btnStartFlight_Click(object sender, RoutedEventArgs e)
@@ -364,6 +376,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
                     airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
                 showFleet();
+
+                showRoutes();
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2507"), string.Format(Translator.GetInstance().GetString("MessageBox", "2507", "message")), WPFMessageBoxButtons.Ok);
@@ -372,6 +386,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         }
 
 
+    }
+    //the converter for the possibility of stopping a route
+    public class StopRouteVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Route route = (Route)value;
+
+            if (route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped))
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
     //the converter for the stop overs
     public class StopoverItemConverter : IValueConverter

@@ -20,6 +20,7 @@
         <local:StartFlightBooleanToVisibility x:Key="startFlightBooleanToVisibility"></local:StartFlightBooleanToVisibility>
         <local:UnionMemberConverter x:Key="unionMemberConverter"></local:UnionMemberConverter>
         <local:StopoverItemConverter x:Key="stopoverConverter"></local:StopoverItemConverter>
+        <local:StopRouteVisibilityConverter x:Key="stopRouteVisibilityConverter"></local:StopRouteVisibilityConverter>
         <DataTemplate x:Key="FleetHeader">
             <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Text="Name" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
@@ -111,6 +112,9 @@
                     </Button>
                     <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="ButtonMap_Click" Margin="5 0 0 0" Background="Transparent">
                         <Image Source="/Data/images/map.png" Height="24" Width="24"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                    </Button>
+                    <Button  VerticalAlignment="Bottom" Tag="{Binding}" Click="btnStopRoute_Click" Margin="5 0 0 0" Background="Transparent" Visibility="{Binding Converter={StaticResource stopRouteVisibilityConverter}}">
+                        <Image Source="/Data/images/stop.png" Height="24" Width="24"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                     </Button>
                 </WrapPanel>
             </Grid>
