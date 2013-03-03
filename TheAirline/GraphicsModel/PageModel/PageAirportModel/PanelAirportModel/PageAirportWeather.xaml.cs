@@ -203,8 +203,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             Weather weather = (Weather)value;
 
-            int currentHour = GameObject.GetInstance().GameTime.Hour; 
+           int currentHour;
+            if (GameObject.GetInstance().DayRoundEnabled)
+                currentHour = 12;
+            else
+                currentHour = GameObject.GetInstance().GameTime.Hour;
 
+      
             string weatherCondition = "clear";
 
             if (weather.Temperatures[currentHour].Cover == Weather.CloudCover.Overcast && weather.Temperatures[currentHour].Precip != Weather.Precipitation.None)
