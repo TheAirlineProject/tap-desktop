@@ -183,12 +183,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             if (airlineFrom == airlineTo || funds > airlineFrom.Money)
             {
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2119"), string.Format(Translator.GetInstance().GetString("MessageBox", "2119", "message"), airlineFrom.Profile.Name,airlineTo.Profile.Name), WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2120"), string.Format(Translator.GetInstance().GetString("MessageBox", "2120", "message"), airlineFrom.Profile.Name,airlineTo.Profile.Name), WPFMessageBoxButtons.Ok);
             }
             else
             {
             
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2120"), string.Format(Translator.GetInstance().GetString("MessageBox", "2120", "message"), funds,airlineFrom.Profile.Name,airlineTo.Profile.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2121"), string.Format(Translator.GetInstance().GetString("MessageBox", "2121", "message"), funds,airlineFrom.Profile.Name,airlineTo.Profile.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {

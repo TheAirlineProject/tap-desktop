@@ -34,7 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             TypeConverter colorConverter = new ColorConverter();
             Color c = (Color)colorConverter.ConvertFromString(color);
-
+            
             LinearGradientBrush colorBrush = CreateGradientBrush(c);
 
             Rectangle rectColor = new Rectangle();

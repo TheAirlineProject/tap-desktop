@@ -236,7 +236,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             panelButtons.Children.Add(btnPurchase);
 
             Button btnPurchaseAsSubsidiary = new Button();
-            btnPurchaseAsSubsidiary.Uid = "1025";
+            btnPurchaseAsSubsidiary.Uid = "1026";
             btnPurchaseAsSubsidiary.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnPurchaseAsSubsidiary.Height = Double.NaN;
             btnPurchaseAsSubsidiary.Width = Double.NaN;
@@ -384,7 +384,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             if (result == WPFMessageBoxResult.Yes)
             {
-                string oldLogo = this.Airline.Profile.Logo;
+                List<AirlineLogo> oldLogos = this.Airline.Profile.Logos;
+                string oldColor = this.Airline.Profile.Color;
+
                 //creates independent airlines for each subsidiary 
                 while (this.Airline.Subsidiaries.Count > 0)
                 {
@@ -403,15 +405,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                 GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
 
-                //switchAirline(this.Airline);
-
+                
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
 
                 Airlines.RemoveAirline(this.Airline);
 
-                sAirline.Profile.Logos = this.Airline.Profile.Logos ;
-                sAirline.Profile.Color = this.Airline.Profile.Color;
+                sAirline.Profile.Logos = oldLogos;
+                sAirline.Profile.Color = oldColor;
 
+                foreach (AirlinePolicy policy in this.Airline.Policies)
+                    sAirline.addAirlinePolicy(policy);
+
+                sAirline.Money = this.Airline.Money;
+                sAirline.StartMoney = this.Airline.Money;
+
+                sAirline.Fees = new AirlineFees();
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
