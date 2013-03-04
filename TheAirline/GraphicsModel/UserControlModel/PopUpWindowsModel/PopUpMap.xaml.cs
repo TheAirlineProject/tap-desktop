@@ -108,60 +108,47 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void PopUpMap_KeyDown(object sender, KeyEventArgs e)
         {
             int zoomer = 4 - this.Zoom;
-            if (e.Key == Key.OemPlus && this.Zoom<3)
+           
+            if (e.Key == Key.OemPlus || e.Key == Key.OemMinus)
             {
-                this.Zoom++;
+                zoomMap(e.Key == Key.OemPlus);
+            }
+            if (e.Key == Key.Left && this.ZoomCoordinates.Longitude.Degrees > -180 + (40 * zoomer))
+            {
+                this.ZoomCoordinates = new Coordinates(this.ZoomCoordinates.Latitude, new Coordinate(this.ZoomCoordinates.Longitude.Degrees - 40 * zoomer, this.ZoomCoordinates.Longitude.Minutes, this.ZoomCoordinates.Longitude.Seconds, this.ZoomCoordinates.Longitude.Direction));
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
+
             }
-            if (e.Key == Key.OemMinus && this.Zoom>1)
+            if (e.Key == Key.Right && this.ZoomCoordinates.Longitude.Degrees < 180 - (40 * zoomer))
             {
-                this.Zoom--;
+                this.ZoomCoordinates = new Coordinates(this.ZoomCoordinates.Latitude, new Coordinate(this.ZoomCoordinates.Longitude.Degrees + 40 * zoomer, this.ZoomCoordinates.Longitude.Minutes, this.ZoomCoordinates.Longitude.Seconds, this.ZoomCoordinates.Longitude.Direction));
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
-   
+
             }
-            if (e.Key == Key.Left && this.ZoomCoordinates.Longitude.Degrees> -180+(40*zoomer))
+            if (e.Key == Key.Up && this.ZoomCoordinates.Latitude.Degrees < 90 - (30 * zoomer))
             {
-                this.ZoomCoordinates = new Coordinates(this.ZoomCoordinates.Latitude, new Coordinate(this.ZoomCoordinates.Longitude.Degrees - 40*zoomer, this.ZoomCoordinates.Longitude.Minutes, this.ZoomCoordinates.Longitude.Seconds, this.ZoomCoordinates.Longitude.Direction));
+                this.ZoomCoordinates = new Coordinates(new Coordinate(this.ZoomCoordinates.Latitude.Degrees + 30 * zoomer, this.ZoomCoordinates.Latitude.Minutes, this.ZoomCoordinates.Latitude.Seconds, this.ZoomCoordinates.Latitude.Direction), this.ZoomCoordinates.Longitude);
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
-   
+
             }
-            if (e.Key == Key.Right && this.ZoomCoordinates.Longitude.Degrees<180-(40*zoomer))
+            if (e.Key == Key.Down && this.ZoomCoordinates.Latitude.Degrees > -90 + (30 * zoomer))
             {
-                this.ZoomCoordinates = new Coordinates(this.ZoomCoordinates.Latitude, new Coordinate(this.ZoomCoordinates.Longitude.Degrees + 40*zoomer, this.ZoomCoordinates.Longitude.Minutes, this.ZoomCoordinates.Longitude.Seconds, this.ZoomCoordinates.Longitude.Direction));
+                this.ZoomCoordinates = new Coordinates(new Coordinate(this.ZoomCoordinates.Latitude.Degrees - 30 * zoomer, this.ZoomCoordinates.Latitude.Minutes, this.ZoomCoordinates.Latitude.Seconds, this.ZoomCoordinates.Latitude.Direction), this.ZoomCoordinates.Longitude);
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
-   
+
             }
-            if (e.Key == Key.Up && this.ZoomCoordinates.Latitude.Degrees<90-(30*zoomer))
-            {
-                this.ZoomCoordinates = new Coordinates(new Coordinate(this.ZoomCoordinates.Latitude.Degrees + 30*zoomer, this.ZoomCoordinates.Latitude.Minutes, this.ZoomCoordinates.Latitude.Seconds, this.ZoomCoordinates.Latitude.Direction),this.ZoomCoordinates.Longitude);
-                if (this.ShowingAirports)
-                    showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
-                else
-                    showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
-   
-            }
-            if (e.Key == Key.Down && this.ZoomCoordinates.Latitude.Degrees>-90 + (30*zoomer))
-            {
-                this.ZoomCoordinates = new Coordinates(new Coordinate(this.ZoomCoordinates.Latitude.Degrees - 30*zoomer, this.ZoomCoordinates.Latitude.Minutes, this.ZoomCoordinates.Latitude.Seconds, this.ZoomCoordinates.Latitude.Direction), this.ZoomCoordinates.Longitude);
-                if (this.ShowingAirports)
-                    showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
-                else
-                    showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
-   
-            }
-            
         }
         public PopUpMap(List<Route> routes)
             : this(ImageSize * 3)
@@ -222,9 +209,65 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             //var regions = airports.Select(a => a.Profile.Country.Region).Distinct();//from a in airports select a.Profile.Country.Region;
 
+            WrapPanel panelZoomButtons = new WrapPanel();
+
+            Button btnZoomIn = new Button();
+            btnZoomIn.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            //btnZoomIn.Height = Double.NaN;
+            btnZoomIn.Width = 30;
+            btnZoomIn.Content = "+";
+            btnZoomIn.Click += btnZoomIn_Click;
+            btnZoomIn.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+
+            panelZoomButtons.Children.Add(btnZoomIn);
+
+            Button btnZoomOut = new Button();
+            btnZoomOut.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            //btnZoomOut.Height = Double.NaN;
+            btnZoomOut.Width = 30;
+            btnZoomOut.Content = "-";
+            btnZoomOut.Margin = new Thickness(5, 0, 0, 0);
+            btnZoomOut.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnZoomOut.Click += btnZoomOut_Click;
+
+            panelZoomButtons.Children.Add(btnZoomOut);
+
+            sidePanel.Children.Add(panelZoomButtons);
+
             return sidePanel;
 
 
+        }
+        private void btnZoomOut_Click(object sender, RoutedEventArgs e)
+        {
+            zoomMap(false);
+        }
+
+        private void btnZoomIn_Click(object sender, RoutedEventArgs e)
+        {
+            zoomMap(true);
+        }
+        //zooms the map
+        private void zoomMap(Boolean zoomIn)
+        {
+            if (zoomIn && this.Zoom < 3)
+            {
+                this.Zoom++;
+                if (this.ShowingAirports)
+                    showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
+                else
+                    showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
+            }
+            if (!zoomIn && this.Zoom > 1)
+            {
+                this.Zoom--;
+                if (this.ShowingAirports)
+                    showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
+                else
+                    showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
+
+            }
+          
         }
 
         //returns the color for a specific airport size

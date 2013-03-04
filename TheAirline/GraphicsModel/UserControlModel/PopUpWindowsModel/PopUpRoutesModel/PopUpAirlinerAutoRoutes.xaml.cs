@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     /// </summary>
     public partial class PopUpAirlinerAutoRoutes : PopUpWindow
     {
-     
+
         private FleetAirliner Airliner;
         private ListBox lbFlights;
 
@@ -35,7 +36,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
 
         private Button btnAdvanced, btnRegular;
-     
+
         private Frame RouteFrame;
 
         public static object ShowPopUp(FleetAirliner airliner)
@@ -51,7 +52,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.EntriesToDelete = new Dictionary<Route, List<RouteTimeTableEntry>>();
 
             this.Airliner = airliner;
-       
+
             InitializeComponent();
 
             this.Title = this.Airliner.Name;
@@ -59,7 +60,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Width = 1200;
 
             this.Height = 350;
-          
+
             this.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
 
             ScrollViewer scroller = new ScrollViewer();
@@ -72,10 +73,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             mainPanel.Margin = new Thickness(10, 10, 10, 10);
             scroller.Content = mainPanel;
 
-           
+
             Grid grdFlights = UICreator.CreateGrid(2);
             grdFlights.ColumnDefinitions[1].Width = new GridLength(200);
-           // mainPanel.Children.Add(grdFlights);
+            // mainPanel.Children.Add(grdFlights);
 
             lbFlights = new ListBox();
             lbFlights.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
@@ -103,7 +104,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showFlights();
 
-            this.RouteFrame.Navigate(new PageAirlinerAutoRoute(this.Airliner,this));
+            this.RouteFrame.Navigate(new PageAirlinerAutoRoute(this.Airliner, this));
         }
         //creates the panel for the routes
         private ScrollViewer createRoutesPanel()
@@ -315,7 +316,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             btnRegular.Click += btnRegular_Click;
 
             buttonsPanel.Children.Add(btnRegular);
-          
+
             return buttonsPanel;
         }
 
@@ -332,7 +333,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.btnRegular.Visibility = System.Windows.Visibility.Visible;
         }
 
-      
+
         private void btnTransfer_Click(object sender, RoutedEventArgs e)
         {
             ComboBox cbAirliners = new ComboBox();
@@ -365,108 +366,112 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
         }
 
-         //clears the time table
-         public void clearTimeTable()
-         {
-             this.Entries.Clear();
+        //clears the time table
+        public void clearTimeTable()
+        {
+            this.Entries.Clear();
 
-             foreach (Route r in this.Airliner.Routes)
-             {
-                 foreach (RouteTimeTableEntry entry in r.TimeTable.Entries)
-                 {
-                     if (!this.EntriesToDelete.ContainsKey(r))
-                     {
-                         this.EntriesToDelete.Add(r, new List<RouteTimeTableEntry>());
-                         this.EntriesToDelete[r].Add(entry);
-                     }
-                     else
-                     {
-                         if (!this.EntriesToDelete[r].Contains(entry))
-                             this.EntriesToDelete[r].Add(entry);
-                     }
-                 }
+            foreach (Route r in this.Airliner.Routes)
+            {
+                foreach (RouteTimeTableEntry entry in r.TimeTable.Entries)
+                {
+                    if (!this.EntriesToDelete.ContainsKey(r))
+                    {
+                        this.EntriesToDelete.Add(r, new List<RouteTimeTableEntry>());
+                        this.EntriesToDelete[r].Add(entry);
+                    }
+                    else
+                    {
+                        if (!this.EntriesToDelete[r].Contains(entry))
+                            this.EntriesToDelete[r].Add(entry);
+                    }
+                }
 
-             }
-         }
-         //shows the flights for the airliner
-         public void showFlights()
-         {
-             lbFlights.Items.Clear();
+            }
+        }
+        //shows the flights for the airliner
+        public void showFlights()
+        {
+            lbFlights.Items.Clear();
 
-             lbFlights.Items.Add(new QuickInfoValue("Day", createTimeHeaderPanel()));
-
-             foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
-             {
-                 lbFlights.Items.Add(new QuickInfoValue(day.ToString(), createRoutePanel(day)));
-
-             }
-         }
-         private void btnOk_Click(object sender, RoutedEventArgs e)
-         {
-             foreach (Route route in this.Entries.Keys)
-             {
-                 foreach (RouteTimeTableEntry entry in this.Entries[route])
-                     route.TimeTable.addEntry(entry);
-
-                 if (!this.Airliner.Routes.Contains(route))
-                     this.Airliner.addRoute(route);
-             }
-             foreach (Route route in this.EntriesToDelete.Keys)
-             {
-                 foreach (RouteTimeTableEntry entry in this.EntriesToDelete[route])
-                     route.TimeTable.removeEntry(entry);
-
-                 if (route.TimeTable.getEntries(this.Airliner).Count == 0)
-                     this.Airliner.removeRoute(route);
-
-             }
-
-             this.Close();
-         }
-         private void btnClear_Click(object sender, RoutedEventArgs e)
-         {
-             clearTimeTable();
-
-             showFlights();
-
-         }
-         private void btnUndo_Click(object sender, RoutedEventArgs e)
-         {
-             this.Entries.Clear();
-
-             this.EntriesToDelete.Clear();
-
-             showFlights();
-         }
-         private void btnCancel_Click(object sender, RoutedEventArgs e)
-         {
-             this.Selected = null;
-             this.Close();
-         }
-
-       
+            lbFlights.Items.Add(new QuickInfoValue("Day", createTimeHeaderPanel()));
+            //CultureInfo ci = new CultureInfo(language.CultureInfo, true);
         
-         private void txtFlightEntry_MouseDown(object sender, MouseButtonEventArgs e)
-         {
-             if (e.RightButton == MouseButtonState.Pressed)
-             {
-                 /*
-                 RouteTimeTableEntry entry = (RouteTimeTableEntry)((TextBlock)sender).Tag;
+            DayOfWeek firstDay = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+            for (int dayIndex = 0; dayIndex < 7; dayIndex++)
+            {
+                var currentDay = (DayOfWeek)(((int)firstDay + dayIndex) % 7);
 
-                 if (this.Entries.ContainsKey(entry.TimeTable.Route) && this.Entries[entry.TimeTable.Route].Find(te => te == entry) != null)
-                 {
-                     this.Entries[entry.TimeTable.Route].Remove(entry);
-                 }
-                 else
-                 {
-                     if (!this.EntriesToDelete.ContainsKey(entry.TimeTable.Route))
-                         this.EntriesToDelete.Add(entry.TimeTable.Route, new List<RouteTimeTableEntry>());
+                lbFlights.Items.Add(new QuickInfoValue(currentDay.ToString(), createRoutePanel(currentDay)));
+            }
+          
+        }
+        private void btnOk_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (Route route in this.Entries.Keys)
+            {
+                foreach (RouteTimeTableEntry entry in this.Entries[route])
+                    route.TimeTable.addEntry(entry);
 
-                     this.EntriesToDelete[entry.TimeTable.Route].Add(entry);
-                 }
+                if (!this.Airliner.Routes.Contains(route))
+                    this.Airliner.addRoute(route);
+            }
+            foreach (Route route in this.EntriesToDelete.Keys)
+            {
+                foreach (RouteTimeTableEntry entry in this.EntriesToDelete[route])
+                    route.TimeTable.removeEntry(entry);
 
-                 showFlights();*/
-             }
+                if (route.TimeTable.getEntries(this.Airliner).Count == 0)
+                    this.Airliner.removeRoute(route);
+
+            }
+
+            this.Close();
+        }
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            clearTimeTable();
+
+            showFlights();
+
+        }
+        private void btnUndo_Click(object sender, RoutedEventArgs e)
+        {
+            this.Entries.Clear();
+
+            this.EntriesToDelete.Clear();
+
+            showFlights();
+        }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Selected = null;
+            this.Close();
+        }
+
+
+
+        private void txtFlightEntry_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.RightButton == MouseButtonState.Pressed)
+            {
+                /*
+                RouteTimeTableEntry entry = (RouteTimeTableEntry)((TextBlock)sender).Tag;
+
+                if (this.Entries.ContainsKey(entry.TimeTable.Route) && this.Entries[entry.TimeTable.Route].Find(te => te == entry) != null)
+                {
+                    this.Entries[entry.TimeTable.Route].Remove(entry);
+                }
+                else
+                {
+                    if (!this.EntriesToDelete.ContainsKey(entry.TimeTable.Route))
+                        this.EntriesToDelete.Add(entry.TimeTable.Route, new List<RouteTimeTableEntry>());
+
+                    this.EntriesToDelete[entry.TimeTable.Route].Add(entry);
+                }
+
+                showFlights();*/
+            }
         }
         //returns the airliners from where the airliner can transfer schedule
         private List<FleetAirliner> getTransferAirliners()
