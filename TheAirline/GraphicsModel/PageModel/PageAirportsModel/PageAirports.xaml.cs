@@ -154,20 +154,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             Airport airport = (Airport)((Button)sender).Tag;
             Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-            if (!hasCheckin)
-            {
-                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+           WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
 
-                airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+           if (result == WPFMessageBoxResult.Yes)
+           {
+               if (!hasCheckin)
+               {
+                   AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
-            }
+                   airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                   AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+               }
 
 
-            airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
+               airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
 
-            showAirports();
-
+               showAirports();
+           }
 
         }
     }

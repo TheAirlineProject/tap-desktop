@@ -322,58 +322,65 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             FleetAirliner airliner = (FleetAirliner)((Button)sender).Tag;
 
-            if (airliner.Purchased == FleetAirliner.PurchasedType.Bought)
+            if (airliner.Status != FleetAirliner.AirlinerStatus.Stopped)
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2106"), string.Format(Translator.GetInstance().GetString("MessageBox", "2106", "message"), airliner.Name), WPFMessageBoxButtons.YesNo);
-
-                if (result == WPFMessageBoxResult.Yes)
-                {
-                    if (airliner.HasRoute)
-                    {
-                        var routes = new List<Route>(airliner.Routes);
-
-                        foreach (Route route in routes)
-                            airliner.removeRoute(route);
-                    }
-                   
-                    this.Airline.removeAirliner(airliner);
-
-                    AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airliner.Airliner.getPrice());
-
-              
-                    _FleetDelivered.Remove(airliner);
-                    
-                    foreach (Pilot pilot in airliner.Pilots)
-                        pilot.Airliner = null;
-
-                    airliner.Pilots.Clear();
-
-                    showFleet();
-
-                }
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2122"), string.Format(Translator.GetInstance().GetString("MessageBox", "2122", "message")), WPFMessageBoxButtons.Ok);
             }
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2107"), string.Format(Translator.GetInstance().GetString("MessageBox", "2107", "message"), airliner.Name), WPFMessageBoxButtons.YesNo);
-
-                if (result == WPFMessageBoxResult.Yes)
+                if (airliner.Purchased == FleetAirliner.PurchasedType.Bought)
                 {
-                    if (airliner.HasRoute)
-                        airliner.Routes.ForEach(r => airliner.removeRoute(r));
-              
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2106"), string.Format(Translator.GetInstance().GetString("MessageBox", "2106", "message"), airliner.Name), WPFMessageBoxButtons.YesNo);
 
-                    this.Airline.removeAirliner(airliner);
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        if (airliner.HasRoute)
+                        {
+                            var routes = new List<Route>(airliner.Routes);
 
-                    _FleetDelivered.Remove(airliner);
+                            foreach (Route route in routes)
+                                airliner.removeRoute(route);
+                        }
 
-                    
-                    foreach (Pilot pilot in airliner.Pilots)
-                        pilot.Airliner = null;
+                        this.Airline.removeAirliner(airliner);
 
-                    airliner.Pilots.Clear();
+                        AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airliner.Airliner.getPrice());
 
-                    showFleet();
 
+                        _FleetDelivered.Remove(airliner);
+
+                        foreach (Pilot pilot in airliner.Pilots)
+                            pilot.Airliner = null;
+
+                        airliner.Pilots.Clear();
+
+                        showFleet();
+
+                    }
+                }
+                else
+                {
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2107"), string.Format(Translator.GetInstance().GetString("MessageBox", "2107", "message"), airliner.Name), WPFMessageBoxButtons.YesNo);
+
+                    if (result == WPFMessageBoxResult.Yes)
+                    {
+                        if (airliner.HasRoute)
+                            airliner.Routes.ForEach(r => airliner.removeRoute(r));
+
+
+                        this.Airline.removeAirliner(airliner);
+
+                        _FleetDelivered.Remove(airliner);
+
+
+                        foreach (Pilot pilot in airliner.Pilots)
+                            pilot.Airliner = null;
+
+                        airliner.Pilots.Clear();
+
+                        showFleet();
+
+                    }
                 }
             }
         }

@@ -24,6 +24,7 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 {
@@ -495,24 +496,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         {
             KeyValuePair<DestinationPassengers, int> v = (KeyValuePair<DestinationPassengers, int>)((Button)sender).Tag;
             Airport airport = v.Key.Destination;
+            
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
 
-            Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
-
-            if (!hasCheckin)
+            if (result == WPFMessageBoxResult.Yes)
             {
-                AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+                Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-                airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
-                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+                if (!hasCheckin)
+                {
+                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                    airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+                }
+
+
+                airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
+
+                showPassengers(true);
 
             }
-
-
-            airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
-
-            showPassengers(true);
-
-
         }
         //the class for a flight at the airport
         private class AirportFlightItem
