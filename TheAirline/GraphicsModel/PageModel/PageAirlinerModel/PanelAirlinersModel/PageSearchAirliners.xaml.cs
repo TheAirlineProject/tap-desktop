@@ -58,7 +58,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             cbManufacturers.Items.Add(new Manufacturer("All","All",null));
 
-            (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => cbManufacturers.Items.Add(m));
+            (from a in Airliners.GetAirlinersForSale() orderby a.Type.Manufacturer.Name select a.Type.Manufacturer).Distinct().ToList().ForEach(m => cbManufacturers.Items.Add(m));
+           // (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList().ForEach(m => cbManufacturers.Items.Add(m));
 
             cbManufacturers.SelectedIndex = 0;
 

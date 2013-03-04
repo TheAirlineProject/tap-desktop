@@ -1142,8 +1142,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //changes the service level for a route
         private static void ChangeRouteServiceLevel(Route route)
         {
+            
             var opponnentRoutes = Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes).Where(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
-
+            
             if (opponnentRoutes.Count() > 0)
             {
                 double avgServiceLevel = opponnentRoutes.Average(r => r.getServiceLevel(AirlinerClass.ClassType.Economy_Class));

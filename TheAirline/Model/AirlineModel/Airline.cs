@@ -508,7 +508,10 @@ namespace TheAirline.Model.AirlineModel
         //returns all airlines
         public static List<Airline> GetAllAirlines()
         {
-            return airlines;
+            lock (airlines)
+            {
+                return airlines;
+            }
         }
         //returns all airlines for a specific region
         public static List<Airline> GetAirlines(Region region)
@@ -518,7 +521,10 @@ namespace TheAirline.Model.AirlineModel
         //returns a list of airlines
         public static List<Airline> GetAirlines(Predicate<Airline> match)
         {
-            return airlines.FindAll(match);
+            lock (airlines)
+            {
+                return airlines.FindAll(match);
+            }
         }
         //returns all human airlines
         public static List<Airline> GetHumanAirlines()
