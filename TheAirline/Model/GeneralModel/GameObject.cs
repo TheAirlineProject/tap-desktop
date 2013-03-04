@@ -7,7 +7,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 
-//locked for verison 0.3.6t1 (this serves no purpose whatsoever)
+//locked for verison 0.3.6t2 (this serves no purpose whatsoever)
 
 namespace TheAirline.Model.GeneralModel
 {
