@@ -69,6 +69,16 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 this.Worker.RunWorkerAsync();
             }
         }
+        //returns if the worker is cancelled
+        public Boolean isCancelled()
+        {
+            return this.Cancelled;
+        }
+        //returns if the worker is paused
+        public Boolean isPaused()
+        {
+            return this.Paused;
+        }
         //returns if the worker is busy
         public Boolean isBusy()
         {

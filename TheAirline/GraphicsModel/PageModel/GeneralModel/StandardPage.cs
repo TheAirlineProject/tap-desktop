@@ -17,6 +17,8 @@ using TheAirline.Model.AirlineModel;
 using System.Diagnostics;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using System.Threading;
 
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -33,18 +35,18 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private Stopwatch sw;
         public StandardPage()
         {
-         
+
             if (GameObject.GetInstance().PagePerformanceCounterEnabled)
             {
                 sw = new Stopwatch();
                 sw.Start();
 
                 this.Loaded += new RoutedEventHandler(StandardPage_Loaded);
-           
+
             }
 
 
-   
+
             this.Width = SystemParameters.PrimaryScreenWidth;
             this.Height = SystemParameters.PrimaryScreenHeight;
 
@@ -120,6 +122,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnStart.Click += new RoutedEventHandler(btnStart_Click);
             panelNavigation.Children.Add(btnStart);
 
+            Button btnThreadState = new Button();
+            btnThreadState.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnThreadState.Height = Double.NaN;
+            btnThreadState.Width = Double.NaN;
+            btnThreadState.Margin = new Thickness(2, 0, 0, 0);
+            btnThreadState.Content = "Thread state";
+            btnThreadState.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnThreadState.Click += btnThreadState_Click;
+            panelNavigation.Children.Add(btnThreadState);
+
             Canvas.SetTop(panelNavigation, frameTopMenu.Height);
             Canvas.SetLeft(panelNavigation, 0);
             mainPanel.Children.Add(panelNavigation);
@@ -155,7 +167,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             frameInformation.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             frameInformation.Navigate(new PageInformation());
 
-            Canvas.SetTop(frameInformation,0);
+            Canvas.SetTop(frameInformation, 0);
             Canvas.SetRight(frameInformation, 0);
             mainPanel.Children.Add(frameInformation);
 
@@ -171,6 +183,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             this.Content = this.mainPanel;
         }
+
 
         private void StandardPage_Loaded(object sender, RoutedEventArgs e)
         {
@@ -188,8 +201,22 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             Size s = ((Frame)sender).RenderSize;
 
-            GraphicsHelpers.SetContentHeight(s.Height -100);
+            GraphicsHelpers.SetContentHeight(s.Height - 100);
             GraphicsHelpers.SetContentWidth(s.Width / 2);
+        }
+        private void btnThreadState_Click(object sender, RoutedEventArgs e)
+        {
+            int worker;
+            int ioCompletion;
+            ThreadPool.GetMaxThreads(out worker, out ioCompletion);
+
+            string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
+            text += string.Format("Gameobjectworker cancelled: {0}\n", GameObjectWorker.GetInstance().isCancelled());
+            text += string.Format("Gametimer paused: {0}\n", GameTimer.GetInstance().isPaused());
+            text += string.Format("Worker threads: {0} IO Completions: {1}\n", worker, ioCompletion);
+            text += string.Format("Total Number of Threads: {0}", Process.GetCurrentProcess().Threads.Count);
+            WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
+
         }
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
@@ -217,7 +244,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             PageNavigator.NavigateBack();
         }
-      
+
         //hides the bottom menu
         public void hideBottomMenu()
         {
@@ -234,7 +261,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             page.Content = this.mainPanel;
         }
-       
+
         //sets the content
         protected void setContent(UIElement content)
         {
@@ -243,7 +270,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         //sets the content for the header panel
         protected void setHeaderContent(string text)
         {
-            
+
             if (text != null)
                 this.PageHeader.Text = text;
         }
@@ -320,7 +347,7 @@ public class PageInformation : Page
         panelContent.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
         panelContent.Margin = new Thickness(0, 0, 5, 0);
 
-      
+
         Image imgLogo = new Image();
         imgLogo.Source = new BitmapImage(new Uri(@"/Data/images/gas-white.png", UriKind.RelativeOrAbsolute));
         imgLogo.Height = 16;
@@ -332,7 +359,7 @@ public class PageInformation : Page
         txtGasPrice.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
         txtGasPrice.FontWeight = FontWeights.Bold;
         txtGasPrice.Margin = new Thickness(5, 0, 0, 0);
-       
+
         panelContent.Children.Add(txtGasPrice);
 
         this.Content = panelContent;
@@ -342,7 +369,7 @@ public class PageInformation : Page
         this.Unloaded += new RoutedEventHandler(PageInformation_Unloaded);
     }
 
-   
+
     private void PageInformation_Unloaded(object sender, RoutedEventArgs e)
     {
         GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageInformation_OnTimeChanged);
@@ -351,13 +378,13 @@ public class PageInformation : Page
 
     private void PageInformation_OnTimeChanged()
     {
-       
+
         if (this.IsLoaded)
         {
             txtGasPrice.Text = string.Format("{0}/{1}.", new ValueCurrencyConverter().Convert(new FuelUnitConverter().Convert(GameObject.GetInstance().FuelPrice)), new StringToLanguageConverter().Convert("ltr"));
-            
-     
+
+
 
         }
-     }
+    }
 }
