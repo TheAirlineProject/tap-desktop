@@ -12,11 +12,13 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         public string Name { get; set; }
         public string ShortName { get; set; }
         public string Flag { get; set; }
-        public State(Country country, string name, string shortname)
+        public Boolean IsOverseas { get; set; }
+        public State(Country country, string name, string shortname,Boolean overseas)
         {
             this.Country = country;
             this.Name = name;
             this.ShortName = shortname;
+            this.IsOverseas = overseas;
         }
     }
     //the list of states

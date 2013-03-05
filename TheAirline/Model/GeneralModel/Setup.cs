@@ -1174,8 +1174,13 @@ namespace TheAirline.Model.GeneralModel
                 Country country = Countries.GetCountry(element.Attributes["country"].Value);
                 string name = element.Attributes["name"].Value;
                 string shortname = element.Attributes["shortname"].Value;
+                Boolean overseas = false;
 
-                State state = new State(country, name, shortname);
+                if (element.HasAttribute("overseas"))
+                    overseas = Convert.ToBoolean(element.Attributes["overseas"].Value);
+
+
+                State state = new State(country, name, shortname,overseas);
                 state.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\states\\" + element.Attributes["flag"].Value + ".png";
 
                 States.AddState(state);

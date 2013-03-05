@@ -622,7 +622,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 if (region.Uid != "100")
                 {
-                    Airports.RemoveAirports(a => a.Profile.Country.Region != region);
+                    Airports.RemoveAirports(a => a.Profile.Country.Region != region || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas) );
                     Airlines.RemoveAirlines(a => a.Profile.Country.Region != region);
                 }
 
@@ -686,7 +686,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airportsView.Filter = o =>
                 {
                     Airport a = o as Airport;
-                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == (Country)new CountryCurrentCountryConverter().Convert(country) && GeneralHelpers.IsAirportActive(a);// && a.Terminals.getNumberOfGates() > 10 //a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
+                    return ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)) == (Country)new CountryCurrentCountryConverter().Convert(country) && (a.Profile.Town.State == null || !a.Profile.Town.State.IsOverseas) && GeneralHelpers.IsAirportActive(a);// && a.Terminals.getNumberOfGates() > 10 //a.Profile.Period.From<=GameObject.GetInstance().GameTime && a.Profile.Period.To > GameObject.GetInstance().GameTime;
                 };
             }
             catch (Exception ex)
