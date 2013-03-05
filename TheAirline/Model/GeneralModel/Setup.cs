@@ -107,17 +107,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airport airport in noRunwayAirports)
                 Console.WriteLine(airport.Profile.Name);
 
-            Airport AMS = Airports.GetAirport("AMS");
-            Airport PPT = Airports.GetAirport("PPT");
-
-            Console.WriteLine("{0} km.",MathHelpers.GetDistance(AMS, PPT));
-
-            long maxDistance = AirlinerTypes.GetAllTypes().Max(t => t.Range);
-
-            Console.WriteLine("Max distance: {0} km.", maxDistance);
-
-            AirlinerType maxType = (from t in AirlinerTypes.GetAllTypes() orderby t.Range descending select t).First();
-
+         
         }
 
         /*! private static method ClearLists().

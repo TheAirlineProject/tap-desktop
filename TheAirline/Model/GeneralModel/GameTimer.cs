@@ -45,8 +45,7 @@ namespace TheAirline.Model.GeneralModel
         //pause the game
         public void pause()
         {
-            this.Timer.IsEnabled = false;
-            this.IsPaused = true;
+           this.IsPaused = true;
         }
         //(re)start the game 
         public void start()
@@ -68,11 +67,14 @@ namespace TheAirline.Model.GeneralModel
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (this.OnTimeChanged != null && !this.IsPaused)
-                this.OnTimeChanged();
+            if (!IsPaused)
+            {
+                if (this.OnTimeChanged != null && !this.IsPaused)
+                    this.OnTimeChanged();
 
-            if (this.OnTimeChangedForced != null)
-                this.OnTimeChangedForced(); 
+                if (this.OnTimeChangedForced != null)
+                    this.OnTimeChangedForced();
+            }
         }
         //starts the timer
         public static void StartTimer()

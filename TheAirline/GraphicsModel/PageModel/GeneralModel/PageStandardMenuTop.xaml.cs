@@ -194,12 +194,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             
             GameTimer.GetInstance().pause();
-            GameObjectWorker.GetInstance().cancel();
+            GameObjectWorker.GetInstance().pause();
 
-            while (GameObjectWorker.GetInstance().isBusy())
-            {
-            }
-
+          
             Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Saving.........");
             popUpSplash.Placement = PlacementMode.Center;
@@ -241,7 +238,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             }
          
             GameTimer.GetInstance().start();
-            GameObjectWorker.GetInstance().start();
+            GameObjectWorker.GetInstance().restart();
 
             
         }
