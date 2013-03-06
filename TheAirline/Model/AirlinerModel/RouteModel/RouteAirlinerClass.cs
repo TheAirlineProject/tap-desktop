@@ -29,10 +29,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //adds a facility to the route class
         public void addFacility(RouteFacility facility)
         {
-            if (this.Facilities.Exists(f => f.Type == facility.Type))
-                this.Facilities.RemoveAll(f => f.Type == facility.Type);
+            if (facility != null)
+            {
+                if (this.Facilities.Exists(f => f.Type == facility.Type))
+                    this.Facilities.RemoveAll(f => f.Type == facility.Type);
 
-            this.Facilities.Add(facility);
+                this.Facilities.Add(facility);
+            }
         }
         //returns the facility for a type for the route class
         public RouteFacility getFacility(RouteFacility.FacilityType type)

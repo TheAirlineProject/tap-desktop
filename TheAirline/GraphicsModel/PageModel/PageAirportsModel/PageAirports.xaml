@@ -11,6 +11,7 @@
 	Title="PageAirports">
     <Page.Resources>
         <local:RentingGateVisibility x:Key="rentingGateVisibility"></local:RentingGateVisibility>
+        <local:IsHumanAirportConverter x:Key="isHumanAirportConverter"></local:IsHumanAirportConverter>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
         <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
@@ -51,6 +52,7 @@
                 <Button VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnRent_Click"  Visibility="{Binding Converter={StaticResource rentingGateVisibility}}">
                     <Image Source="/Data/images/add.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
+                <Image Source="/Data/images/human.png" Height="16" Width="16"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Converter={StaticResource isHumanAirportConverter}}"></Image>
 
             </WrapPanel>
         </DataTemplate>

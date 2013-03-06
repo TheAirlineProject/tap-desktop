@@ -598,7 +598,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (Pilot pilot in pilotsToRetire)
                     if (airline.IsHuman)
+                    {
                         GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1007"), string.Format(Translator.GetInstance().GetString("News", "1007", "message"), pilot.Profile.Name, pilot.Profile.Age + 1)));
+
+                    }
                     else
                     {
                         if (pilot.Airliner != null)
@@ -632,8 +635,40 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         pilot.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
 
                         if (airline.IsHuman)
+                        {
                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1010"), string.Format(Translator.GetInstance().GetString("News", "1010", "message"), pilot.Profile.Name, pilot.Airliner.Name)));
+                            if (pilot.Airliner != null)
+                            {
+                                if (Pilots.GetNumberOfUnassignedPilots() == 0)
+                                    GeneralHelpers.CreatePilots(10);
 
+                                if (GameObject.GetInstance().HumanAirline.Pilots.Exists(p => p.Airliner == null))
+                                {
+                                    Pilot newPilot = GameObject.GetInstance().HumanAirline.Pilots.Find(p => p.Airliner == null);
+
+                                    newPilot.Airliner = pilot.Airliner;
+                                    newPilot.Airliner.addPilot(newPilot);
+                                }
+                                else
+                                {
+
+                                    var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == pilot.Airliner.Airliner.Airline.Profile.Country);
+
+                                    if (pilots.Count == 0)
+                                        pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == pilot.Airliner.Airliner.Airline.Profile.Country.Region);
+
+                                    if (pilots.Count == 0)
+                                        pilots = Pilots.GetUnassignedPilots();
+
+                                    Pilot newPilot = pilots.First();
+
+                                    pilot.Airliner.Airliner.Airline.addPilot(newPilot);
+                                    newPilot.Airliner = pilot.Airliner;
+                                    newPilot.Airliner.addPilot(newPilot);
+                                }
+
+                            }
+                        }
                         pilot.Airliner.removePilot(pilot);
 
                     }

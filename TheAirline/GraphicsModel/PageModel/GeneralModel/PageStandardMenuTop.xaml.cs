@@ -215,9 +215,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
                 string fileName;
 
-                KeyValuePair<string,string> f = LoadSaveHelpers.GetSavedGames().Find(delegate(KeyValuePair<string,string> fs) { return fs.Key == name; });
+                var saves = LoadSaveHelpers.GetSavedGames();
 
-                if (f.Key == null)
+                  
+                KeyValuePair<string,string>? f = LoadSaveHelpers.GetSavedGames().Find(fs=>fs.Key == name);
+
+                if (!f.HasValue)
                 {
                     Guid file = Guid.NewGuid();
 
@@ -228,7 +231,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 }
                 else
                 {
-                    fileName = f.Value;
+                    fileName = f.Value.Value;
                 }
                 
                 LoadSaveHelpers.SaveGame(fileName);

@@ -84,7 +84,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 btnEdit.Content = imgEdit;
 
-                btnEdit.Visibility = this.Route.HasAirliner && (this.Route.getCurrentAirliner() != null && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                Boolean inRoute = route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+                //btnEdit.Visibility = this.Route.HasAirliner && (this.Route.getCurrentAirliner() != null && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                btnEdit.Visibility = inRoute ? Visibility.Collapsed : System.Windows.Visibility.Visible;
 
                 panelClassButtons.Children.Add(btnEdit);
 

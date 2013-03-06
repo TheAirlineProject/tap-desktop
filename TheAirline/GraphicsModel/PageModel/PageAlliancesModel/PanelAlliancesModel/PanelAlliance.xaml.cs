@@ -287,7 +287,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
 
                     }
 
-                    this.Alliance.addMember(new AllianceMember(airline,GameObject.GetInstance().GameTime));
+                   
                 }
 
                 createPanel();

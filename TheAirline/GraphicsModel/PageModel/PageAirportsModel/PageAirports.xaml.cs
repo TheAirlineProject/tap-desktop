@@ -28,7 +28,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
     public partial class PageAirports : StandardPage
     {
         private ListBox lbAirports;
-        private Comparison<Airport> sortCriteria;
+        private Func<Airport,object> sortCriteria;
         private List<Airport> airportsList;
         public PageAirports()
         {
@@ -54,7 +54,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             lbAirports.MaxHeight = GraphicsHelpers.GetContentHeight() - 50;
             lbAirports.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); };
+            sortCriteria = a => a.Profile.Name;
 
             showAirports(Airports.GetAllActiveAirports());
 
@@ -100,9 +100,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             lbAirports.Items.Clear();
 
-
-            airports.Sort(sortCriteria);
-
+            airports = airports.OrderBy(sortCriteria).ThenBy(a=>a.Profile.Name).ToList();
+           
             foreach (Airport airport in airports)
                 lbAirports.Items.Add(airport);
 
@@ -127,28 +126,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             switch (type)
             {
                 case "Country":
-                    sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Country.Name.CompareTo(a2.Profile.Country.Name); };
+                    sortCriteria = a=>a.Profile.Country.Name; 
                     showAirports();
                     break;
                 case "IATA":
                     if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
-                        sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.IATACode.CompareTo(a2.Profile.IATACode); };
+                        sortCriteria = a => a.Profile.IATACode;
                     else
-                        sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.ICAOCode.CompareTo(a2.Profile.ICAOCode); };
+                        sortCriteria = a => a.Profile.ICAOCode;
 
                     showAirports();
                     break;
                 case "Size":
-                    sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Size.CompareTo(a2.Profile.Size); };
+                    sortCriteria = a => a.Profile.Size;
                     showAirports();
                     break;
                 case "Name":
-                    sortCriteria = delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); };
+                    sortCriteria = a => a.Profile.Name;
                     showAirports();
                     break;
             }
         }
-
+       
         private void btnRent_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Button)sender).Tag;
@@ -175,6 +174,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
         }
     }
+    public class IsHumanAirportConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Airport airport = (Airport)value;
+
+
+            if (GameObject.GetInstance().HumanAirline.Airports.Contains(airport))
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     //the converter for renting a gate    
     public class RentingGateVisibility : IValueConverter
     {
