@@ -32,9 +32,9 @@
         </DataTemplate>
         <DataTemplate x:Key="DestinationItem">
             <WrapPanel>
-                
-                    <ContentControl ContentTemplate="{DynamicResource AirportCountryItemNormal}" VerticalAlignment="Bottom" Content="{Binding Airport}" Width="300" MouseDown="lnkAirport_MouseDown" Tag="{Binding Airport}"></ContentControl>
-                       
+
+                <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Airport}" VerticalAlignment="Bottom" Width="300"></ContentControl>
+
                 <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" Width="50" Margin="5 0 0 0"></TextBlock>
             </WrapPanel>
         </DataTemplate>

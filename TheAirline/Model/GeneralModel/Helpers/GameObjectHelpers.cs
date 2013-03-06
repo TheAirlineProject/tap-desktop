@@ -563,7 +563,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airliner airliner in oldAirliners)
                 Airliners.RemoveAirliner(airliner);
 
-            //increases the passenger demand between airports with 5%
+            //increases the passenger demand between airports with up to 5%
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
                 {
                     foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
@@ -1181,7 +1181,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cancellation%"), cancellationPercent * 100);
 
             Boolean isOnTime = airliner.CurrentFlight.IsOnTime;//airliner.CurrentFlight.ExpectedLanding >= GameObject.GetInstance().GameTime;
-
+            
             if (isOnTime)
                 airliner.Airliner.Airline.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("On-Time"), 1);
 

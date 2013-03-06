@@ -454,7 +454,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             };
 
-
             source.Refresh();
 
             cbAirline.SelectedIndex = 0;

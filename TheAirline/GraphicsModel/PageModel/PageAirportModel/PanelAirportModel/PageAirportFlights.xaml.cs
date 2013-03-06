@@ -230,31 +230,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             PopUpAirportSlot.ShowPopUp(this.Airport);
 
         }
-        private void lnkAirport_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            Airport airport = (Airport)((ContentControl)sender).Tag;
-
-            panelDestinationFlights.Visibility = System.Windows.Visibility.Visible;
-
-            lbDestinationArrivals.Items.Clear();
-            lbDestinationDepartures.Items.Clear();
-            
-            GameTimeZone tz = this.Airport.Profile.TimeZone;
-             
-            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportFlights(this.Airport,airport,false))
-            {
-                lbDestinationDepartures.Items.Add(new DestinationFlight(entry.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz)));
-            }
-
-            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportFlights(this.Airport,airport,true))
-            {
-                TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.Airliner.Airliner.Type);
-
-                lbDestinationArrivals.Items.Add(new DestinationFlight(entry.Airliner.Airliner.Airline, entry,MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz)));
-                
-            }
-            
-        }
+      
         private void Header_Click(object sender, RoutedEventArgs e)
         {
             string type = (string)((Hyperlink)sender).Tag;

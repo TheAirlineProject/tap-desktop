@@ -484,7 +484,7 @@ namespace TheAirline.Model.GeneralModel
 
             string name = root.Attributes["name"].Value;
             string text = root.Attributes["text"].Value;
-            DateTime eventDate = Convert.ToDateTime(root.Attributes["date"].Value);
+            DateTime eventDate = Convert.ToDateTime(root.Attributes["date"].Value, new CultureInfo("en-US", false));
 
             HistoricEvent historicEvent = new HistoricEvent(name, text, eventDate);
 
@@ -494,7 +494,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 HistoricEventInfluence.InfluenceType type = (HistoricEventInfluence.InfluenceType)Enum.Parse(typeof(HistoricEventInfluence.InfluenceType), influenceElement.Attributes["type"].Value);
                 double value = Convert.ToDouble(influenceElement.Attributes["value"].Value);
-                DateTime endDate = Convert.ToDateTime(influenceElement.Attributes["enddate"].Value);
+                DateTime endDate = Convert.ToDateTime(influenceElement.Attributes["enddate"].Value, new CultureInfo("en-US", false));
 
                 historicEvent.addInfluence(new HistoricEventInfluence(type, value, endDate));
             }
@@ -928,8 +928,8 @@ namespace TheAirline.Model.GeneralModel
                     Period airportPeriod;
                     if (periodElement != null)
                     {
-                        DateTime airportFrom = Convert.ToDateTime(periodElement.Attributes["from"].Value);
-                        DateTime airportTo = Convert.ToDateTime(periodElement.Attributes["to"].Value);
+                        DateTime airportFrom = Convert.ToDateTime(periodElement.Attributes["from"].Value, new CultureInfo("en-US", false));
+                        DateTime airportTo = Convert.ToDateTime(periodElement.Attributes["to"].Value, new CultureInfo("en-US", false));
 
                         airportPeriod = new Period(airportFrom, airportTo);
                     }
@@ -1329,8 +1329,8 @@ namespace TheAirline.Model.GeneralModel
                     foreach (XmlElement tempCountryElement in tempCountriesList)
                     {
                         Country tempCountry = Countries.GetCountry(tempCountryElement.Attributes["id"].Value);
-                        DateTime cStartDate = Convert.ToDateTime(tempCountryElement.Attributes["start"].Value);
-                        DateTime cEndDate = Convert.ToDateTime(tempCountryElement.Attributes["end"].Value);
+                        DateTime cStartDate = Convert.ToDateTime(tempCountryElement.Attributes["start"].Value, new CultureInfo("en-US", false));
+                        DateTime cEndDate = Convert.ToDateTime(tempCountryElement.Attributes["end"].Value ,new CultureInfo("en-US", false));
 
                         tCountry.Countries.Add(new OneToManyCountry(tempCountry, cStartDate, cEndDate));
                     }
@@ -1365,18 +1365,17 @@ namespace TheAirline.Model.GeneralModel
 
 
                     XmlElement periodElement = (XmlElement)element.SelectSingleNode("period");
-                    DateTime creationDate = Convert.ToDateTime(periodElement.Attributes["creation"].Value);
-                    DateTime obsoleteDate = Convert.ToDateTime(periodElement.Attributes["obsolete"].Value);
+                    DateTime creationDate = Convert.ToDateTime(periodElement.Attributes["creation"].Value, new CultureInfo("en-US", false));
+                    DateTime obsoleteDate = Convert.ToDateTime(periodElement.Attributes["obsolete"].Value, new CultureInfo("en-US", false));
 
                     Union union = new Union(section, uid, shortname, creationDate, obsoleteDate);
-
                     XmlNodeList membersList = element.SelectNodes("members/member");
 
                     foreach (XmlElement memberNode in membersList)
                     {
                         Country country = Countries.GetCountry(memberNode.Attributes["country"].Value);
-                        DateTime fromDate = Convert.ToDateTime(memberNode.Attributes["memberfrom"].Value);
-                        DateTime toDate = Convert.ToDateTime(memberNode.Attributes["memberto"].Value);
+                        DateTime fromDate = Convert.ToDateTime(memberNode.Attributes["memberfrom"].Value, new CultureInfo("en-US", false));
+                        DateTime toDate = Convert.ToDateTime(memberNode.Attributes["memberto"].Value, new CultureInfo("en-US", false));
 
                         union.addMember(new UnionMember(country, fromDate, toDate));
                     }
@@ -1510,7 +1509,7 @@ namespace TheAirline.Model.GeneralModel
 
             string allianceName = root.Attributes["name"].Value;
             string logo = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value + ".png";
-            DateTime formationDate = Convert.ToDateTime(root.Attributes["formation"].Value);
+            DateTime formationDate = Convert.ToDateTime(root.Attributes["formation"].Value, new CultureInfo("en-US", false));
             Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), root.Attributes["type"].Value);
 
             Airport headquarter = Airports.GetAirport(root.Attributes["headquarter"].Value);
@@ -1523,11 +1522,11 @@ namespace TheAirline.Model.GeneralModel
             foreach (XmlElement memberNode in membersList)
             {
                 Airline memberAirline = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
-                DateTime joinedDate = Convert.ToDateTime(memberNode.Attributes["joined"].Value);
+                DateTime joinedDate = Convert.ToDateTime(memberNode.Attributes["joined"].Value, new CultureInfo("en-US", false));
 
                 AllianceMember member = new AllianceMember(memberAirline, joinedDate);
                 if (memberNode.HasAttribute("exited"))
-                    member.ExitedDate = Convert.ToDateTime(memberNode.Attributes["exited"].Value);
+                    member.ExitedDate = Convert.ToDateTime(memberNode.Attributes["exited"].Value, new CultureInfo("en-US", false));
 
                 alliance.addMember(member);
             }
@@ -1734,8 +1733,8 @@ namespace TheAirline.Model.GeneralModel
             {
                 FlightRestriction.RestrictionType type = (FlightRestriction.RestrictionType)Enum.Parse(typeof(FlightRestriction.RestrictionType), element.Attributes["type"].Value);
 
-                DateTime startDate = Convert.ToDateTime(element.Attributes["start"].Value);
-                DateTime endDate = Convert.ToDateTime(element.Attributes["end"].Value);
+                DateTime startDate = Convert.ToDateTime(element.Attributes["start"].Value, new CultureInfo("en-US", false));
+                DateTime endDate = Convert.ToDateTime(element.Attributes["end"].Value, new CultureInfo("en-US", false));
 
                 XmlElement countriesElement = (XmlElement)element.SelectSingleNode("countries");
 

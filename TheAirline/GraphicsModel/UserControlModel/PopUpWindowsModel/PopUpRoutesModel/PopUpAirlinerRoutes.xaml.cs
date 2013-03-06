@@ -402,18 +402,20 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         //creates the time indicator header
         private WrapPanel createTimeHeaderPanel()
         {
-            string format = System.Threading.Thread.CurrentThread.CurrentCulture.DateTimeFormat.PMDesignator == "" ? "HH" : "hh";
             int hourFactor = 1;
 
             WrapPanel panelHeader = new WrapPanel();
             for (int i = 0; i < 24; i++)
             {
+                string fromHour = string.Format("{0:00}",Convert.ToInt16(new DateTime(2000, 1, 1, i, 0, 0).ToString("t", CultureInfo.CurrentCulture).Split(':')[0]));
+                string toHour = string.Format("{0:00}",Convert.ToInt16(new DateTime(2000, 1, 1, i + 1 == 24 ? 0 : i + 1, 0, 0).ToString("t", CultureInfo.CurrentCulture).Split(':')[0]));
+
                 Border brdHour = new Border();
                 brdHour.BorderThickness = new Thickness(1, 0, 1, 0);
                 brdHour.BorderBrush = Brushes.Black;
 
                 TextBlock txtHour = new TextBlock();
-                txtHour.Text = string.Format("{0}-{1}", new DateTime(2000, 1, 1, i, 0, 0).ToString(format), new DateTime(2000, 1, 1, i + 1 == 24 ? 0 : i + 1, 0, 0).ToString(format));
+                txtHour.Text = string.Format("{0}-{1}",fromHour,toHour);
                 txtHour.FontWeight = FontWeights.Bold;
                 txtHour.Width = (60 / hourFactor) - 2;
                 txtHour.TextAlignment = TextAlignment.Center;
@@ -686,12 +688,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbFlights.Items.Clear();
 
             lbFlights.Items.Add(new QuickInfoValue("Day", createTimeHeaderPanel()));
-
-            foreach (DayOfWeek day in Enum.GetValues(typeof(DayOfWeek)))
+            
+            DayOfWeek firstDay = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
+            for (int dayIndex = 0; dayIndex < 7; dayIndex++)
             {
-                lbFlights.Items.Add(new QuickInfoValue(day.ToString(), createRoutePanel(day)));
+                var currentDay = (DayOfWeek)(((int)firstDay + dayIndex) % 7);
 
+                lbFlights.Items.Add(new QuickInfoValue(currentDay.ToString(), createRoutePanel(currentDay)));
             }
+            
         }
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

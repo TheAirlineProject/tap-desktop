@@ -161,11 +161,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //calculates human airline average on-time %
             public static double GetHumanOnTime()
             {
-                List<Double> onTime = new List<Double>();
-                double otp = GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
-                onTime.Add(otp);
-
-                return onTime.DefaultIfEmpty(0).Average();
+                return  GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
+          
             }
 
             //calculates AI airline average on-time %

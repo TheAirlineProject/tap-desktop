@@ -3830,8 +3830,23 @@ namespace TheAirline.Model.GeneralModel
         {
             double value = (100 + factor) / 100;
 
+            //factor 0.5 - 2;
             foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
-                destPax.Rate = (ushort)(destPax.Rate * value);
+            {
+                if (destPax.Rate > 0)
+                {
+                    ushort oRate = destPax.Rate;
+               
+                    if (oRate * value == destPax.Rate)
+                        destPax.Rate = Convert.ToUInt16(destPax.Rate + Convert.ToUInt16(rnd.Next(0, Math.Max(1, (int)factor)))); 
+                    else
+                        destPax.Rate = (ushort)(destPax.Rate * value);
+
+                 
+                }
+                else
+                    destPax.Rate = (ushort)rnd.Next(1, Math.Max(1, (int)factor));
+            }
         }
     }
 }
