@@ -697,6 +697,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
                 string logoPath = logoElement.Attributes["path"].Value;
                 
+                if (!File.Exists(logoPath))
+                    logoPath = AppSettings.getDataPath() +  "\\graphics\\airlinelogos\\"+ logoPath.Substring(logoPath.LastIndexOf('\\')+1);
+
                 airline.Profile.addLogo(new AirlineLogo(logoFromYear,logoToYear,logoPath));
             }
 
