@@ -122,7 +122,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnStart.Click += new RoutedEventHandler(btnStart_Click);
             panelNavigation.Children.Add(btnStart);
 
-            Button btnThreadState = new Button();
+         /*   Button btnThreadState = new Button();
             btnThreadState.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnThreadState.Height = Double.NaN;
             btnThreadState.Width = Double.NaN;
@@ -130,7 +130,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnThreadState.Content = "Thread state";
             btnThreadState.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnThreadState.Click += btnThreadState_Click;
-            panelNavigation.Children.Add(btnThreadState);
+            panelNavigation.Children.Add(btnThreadState);*/
 
             Canvas.SetTop(panelNavigation, frameTopMenu.Height);
             Canvas.SetLeft(panelNavigation, 0);
@@ -204,7 +204,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             GraphicsHelpers.SetContentHeight(s.Height - 100);
             GraphicsHelpers.SetContentWidth(s.Width / 2);
         }
-        private void btnThreadState_Click(object sender, RoutedEventArgs e)
+    /*    private void btnThreadState_Click(object sender, RoutedEventArgs e)
         {
             int worker;
             int ioCompletion;
@@ -217,7 +217,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             text += string.Format("Total Number of Threads: {0}", Process.GetCurrentProcess().Threads.Count);
             WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
 
-        }
+        }  */
 
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
