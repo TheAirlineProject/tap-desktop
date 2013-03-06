@@ -43,6 +43,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private WrapPanel panelClasses;
         private AirlinerType Type;
         private Button btnEquipped;
+        private Button btnOrder;
         public PageOrderAirliners(PageAirliners parent, Manufacturer manufacturer)
         {
             this.ParentPage = parent;
@@ -151,7 +152,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
             mainPanel.Children.Add(panelButtons);
 
-            Button btnOrder = new Button();
+            btnOrder = new Button();
             btnOrder.Uid = "200";
             btnOrder.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnOrder.Height = Double.NaN;
@@ -159,6 +160,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             btnOrder.Content = Translator.GetInstance().GetString("PageOrderAirliners", btnOrder.Uid);
             btnOrder.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnOrder.Click += new RoutedEventHandler(btnOrder_Click);
+            btnOrder.IsEnabled = false;
 
             panelButtons.Children.Add(btnOrder);
 
@@ -340,6 +342,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
              txtTotalPrice.Text = new ValueCurrencyConverter().Convert(price - discount).ToString();// string.Format("{0:C}", price - discount);
 
              showPossibleHomebases();
+
+             btnOrder.IsEnabled = orders.Count > 0 && cbAirport.SelectedItem != null;
 
         }
         //show possible airports/homebases
