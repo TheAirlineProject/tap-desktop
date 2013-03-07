@@ -30,8 +30,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineFinances : Page
     {
         private Airline Airline;
-        private TextBlock txtCurrentMoney, txtBalance;
+        private TextBlock txtCurrentMoney, txtBalance, txtMarketingBudget;
         private ListBox lbSpecifications, lbLoans;
+        private Slider slMarketingBudget;
         public PageAirlineFinances(Airline airline)
         {
             InitializeComponent();
@@ -40,8 +41,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             this.Airline = airline;
 
+
+
             StackPanel panelFinances = new StackPanel();
             panelFinances.Margin = new Thickness(0, 10, 50, 0);
+
+            WrapPanel panelMarketingBudget = new WrapPanel();
+
+            Slider slMarketingBudget = new Slider();
+            slMarketingBudget.Minimum = 0;
+            slMarketingBudget.Maximum = 10000000;
+            slMarketingBudget.Width = 100;
+            slMarketingBudget.IsDirectionReversed = true;
+            slMarketingBudget.IsSnapToTickEnabled = false;
+            slMarketingBudget.IsMoveToPointEnabled = true;
+            slMarketingBudget.TickFrequency = 25000;
+
+            TextBlock txtMarketingBudget = new TextBlock();
+            txtMarketingBudget.Margin = new Thickness(5, 0, 5, 0);
+            txtMarketingBudget.VerticalAlignment = System
+
+            panelMarketingBudget.Children.Add(slMarketingBudget);
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
@@ -59,6 +79,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtSummary.FontWeight = FontWeights.Bold;
             txtSummary.Text = Translator.GetInstance().GetString("PageAirlineFinances", txtSummary.Uid);
             panelFinances.Children.Add(txtSummary);
+
+
 
             ListBox lbSummary = new ListBox();
             lbSummary.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
