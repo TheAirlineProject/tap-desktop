@@ -128,7 +128,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             btnLoan.Margin = new Thickness(0, 10, 0, 0);
             btnLoan.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLoan.Click += new RoutedEventHandler(btnLoan_Click);
-
+            btnLoan.ToolTip = UICreator.CreateToolTip("View, pay, and take out loans");
             panelLoans.Children.Add(btnLoan);
 
             showLoans(false);

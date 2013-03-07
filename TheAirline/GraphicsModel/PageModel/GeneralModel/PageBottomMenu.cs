@@ -48,6 +48,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             imgCalendar.Source = new BitmapImage(new Uri(@"/Data/images/calendar.png", UriKind.RelativeOrAbsolute));
             imgCalendar.MouseDown += imgCalendar_MouseDown;
             RenderOptions.SetBitmapScalingMode(imgCalendar, BitmapScalingMode.HighQuality);
+            imgCalendar.ToolTip = UICreator.CreateToolTip("View Events Calendar");
 
              panelTime.Children.Add(imgCalendar);
         

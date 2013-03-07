@@ -58,6 +58,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             slGameSpeed.IsSnapToTickEnabled = true;
             slGameSpeed.IsMoveToPointEnabled = true;
             slGameSpeed.TickFrequency = 500;
+            slGameSpeed.ToolTip = UICreator.CreateToolTip("Change the gameplay speed");
 
            
             slGameSpeed.ValueChanged += new RoutedPropertyChangedEventHandler<double>(slGameSpeed_ValueChanged);
@@ -79,6 +80,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbTurnMinutes.Items.Add(15);
             cbTurnMinutes.Items.Add(30);
             cbTurnMinutes.Items.Add(60);
+            cbTurnMinutes.ToolTip = UICreator.CreateToolTip("Select minutes per turn");
           
             cbTurnMinutes.SelectedItem = Settings.GetInstance().MinutesPerTurn;
 
@@ -91,6 +93,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbLanguage.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             // chs, 2011-10-11 changed to display flag together with language
             cbLanguage.ItemTemplate = this.Resources["LanguageItem"] as DataTemplate;
+            cbLanguage.ToolTip = UICreator.CreateToolTip("Select your language");
           
             
             foreach (Language language in Languages.GetLanguages().FindAll(l=>l.IsEnabled))
@@ -106,6 +109,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbSkin.Width = 200;
             cbSkin.SelectedValuePath = "Name";
             cbSkin.DisplayMemberPath = "Name";
+            cbSkin.ToolTip = UICreator.CreateToolTip("Select the skin/background");
 
             foreach (Skin skin in Skins.GetSkins())
                 cbSkin.Items.Add(skin);
@@ -117,14 +121,17 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             cbMailOnLandings = new CheckBox();
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1004"), cbMailOnLandings));
+            cbMailOnLandings.ToolTip = UICreator.CreateToolTip("Sends mail on every landing");
 
             cbMailOnBadWeather = new CheckBox();
             cbMailOnBadWeather.IsChecked = Settings.GetInstance().MailsOnBadWeather;
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1007"),cbMailOnBadWeather));
+            cbMailOnBadWeather.ToolTip = UICreator.CreateToolTip("Sends mail if a flight is affected by bad weather");
 
             cbShortenCurrency = new CheckBox();
             cbShortenCurrency.IsChecked = Settings.GetInstance().CurrencyShorten;
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings", "1008"), cbShortenCurrency));
+            cbShortenCurrency.ToolTip = UICreator.CreateToolTip("Displays $1,200,000 as $1.2 million");
 
             rbAirportCodes = new RadioButton[Enum.GetValues(typeof(Settings.AirportCode)).Length];
 
@@ -138,6 +145,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 rbAirportCodes[i].Tag = code;
                 rbAirportCodes[i].Margin = new Thickness(0, 0, 5, 0);
                 rbAirportCodes[i].IsChecked = code == Settings.GetInstance().AirportCodeDisplay;
+                rbAirportCodes[i].ToolTip = UICreator.CreateToolTip("IATA is a 3 letter code. ICAO is a 4 letter code");
 
                 panelAirpodeCode.Children.Add(rbAirportCodes[i]);
                 i++;
