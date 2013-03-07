@@ -53,6 +53,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             Button btnLoadGame = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "201"));
             btnLoadGame.Click += btnLoadGame_Click;
+            btnLoadGame.ToolTip = UICreator.CreateToolTip("Loading a saved game");
             panelContent.Children.Add(btnLoadGame);
 
             Button btnSettings = createMenuButton(Translator.GetInstance().GetString("PageFrontMenu", "202"));

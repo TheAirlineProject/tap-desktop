@@ -20,8 +20,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     {
         /*!creates a tool tip with a text
          **/
-        public static Border CreateToolTip(string text)
+        public static ToolTip CreateToolTip(string text)
         {
+            /*
             Border brdToolTip = new Border();
             brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
             brdToolTip.Padding = new Thickness(5);
@@ -30,8 +31,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             TextBlock txtText = UICreator.CreateTextBlock(text);
        
             brdToolTip.Child = txtText;
+             * */
 
-            return brdToolTip;
+
+            ToolTip tooltip = new System.Windows.Controls.ToolTip();
+            tooltip.SetResourceReference(ToolTip.BackgroundProperty, "HeaderBackgroundBrush2");
+            tooltip.Content = text;
+
+
+            return tooltip;
           
         }
         /*!creates a standard text block.
