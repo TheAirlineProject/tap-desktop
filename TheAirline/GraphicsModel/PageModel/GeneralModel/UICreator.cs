@@ -18,7 +18,23 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {
     public class UICreator
     {
-        /*!creates a standard text block. Font size 0 for default
+        /*!creates a tool tip with a text
+         **/
+        public static Border CreateToolTip(string text)
+        {
+            Border brdToolTip = new Border();
+            brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
+            brdToolTip.Padding = new Thickness(5);
+            brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
+
+            TextBlock txtText = UICreator.CreateTextBlock(text);
+       
+            brdToolTip.Child = txtText;
+
+            return brdToolTip;
+          
+        }
+        /*!creates a standard text block.
          * */
         public static TextBlock CreateTextBlock(string text)
         {

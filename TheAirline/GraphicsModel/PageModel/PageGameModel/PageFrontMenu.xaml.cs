@@ -116,6 +116,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
              btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
              btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
              btnOk.Margin = new Thickness(0, 10, 0, 0);
+
              btnOk.Click += btnOk_Click;
              
             panelCredits.Children.Add(btnOk);
