@@ -80,9 +80,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelDetailed = createDetailedPanel();
             panelDetailed.Visibility = System.Windows.Visibility.Collapsed;
+            panelDetailed.ToolTip = UICreator.CreateToolTip("View detailed information for this aircraft");
 
             panelOrdered = createOrderedPanel();
             panelOrdered.Visibility = System.Windows.Visibility.Collapsed;
+            panelOrdered.ToolTip = UICreator.CreateToolTip("View ordered airliners");
 
             panelFleet.Children.Add(panelOverview);
             panelFleet.Children.Add(panelDetailed);

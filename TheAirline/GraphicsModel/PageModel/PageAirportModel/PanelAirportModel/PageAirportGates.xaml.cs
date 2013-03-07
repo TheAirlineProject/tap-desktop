@@ -116,6 +116,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnContract.Click += btnContract_Click;
             btnContract.Content = Translator.GetInstance().GetString("PageAirportGates", btnContract.Uid);
             panelButtons.Children.Add(btnContract);
+            btnContract.ToolTip = UICreator.CreateToolTip("Sign an exclusive use contract with this airport");
 
             btnTerminateContract = new Button();
             btnTerminateContract.Visibility = this.Airport.AirlineContract != null && this.Airport.AirlineContract.Airline == GameObject.GetInstance().HumanAirline ? Visibility.Visible : System.Windows.Visibility.Collapsed;
@@ -128,6 +129,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnTerminateContract.Content = Translator.GetInstance().GetString("PageAirportGates", btnTerminateContract.Uid);
             btnTerminateContract.Click += btnTerminateContract_Click;
             panelButtons.Children.Add(btnTerminateContract);
+            btnTerminateContract.ToolTip = UICreator.CreateToolTip("Terminate the exclusive use contract");
 
 
             Airport allocateToAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Profile.Period.From.AddDays(30) > GameObject.GetInstance().GameTime).FirstOrDefault();
@@ -381,7 +383,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             }
 
         }
-
+        
         private void btnReleaseGate_Click(object sender, RoutedEventArgs e)
         {
             double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) - 1) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
@@ -618,5 +620,5 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             throw new NotImplementedException();
         }
     }
-
+    
 }

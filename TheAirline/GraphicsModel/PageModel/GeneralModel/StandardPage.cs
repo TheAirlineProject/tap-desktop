@@ -89,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnPrevious.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnPrevious.Click += new RoutedEventHandler(btnPrevious_Click);
             panelNavigation.Children.Add(btnPrevious);
-            btnPrevious.ToolTip = UICreator.CreateToolTip("Return to the previous screen");
+            btnPrevious.ToolTip = UICreator.CreateToolTip("1001");
 
             btnNext = new Button();
             btnNext.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -100,7 +100,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnNext.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnNext.Click += new RoutedEventHandler(btnNext_Click);
             panelNavigation.Children.Add(btnNext);
-            btnNext.ToolTip = UICreator.CreateToolTip("Go to the next screen");
+            btnNext.ToolTip = UICreator.CreateToolTip("1002");
 
             btnPause = new Button();
             btnPause.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -112,7 +112,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnPause.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnPause.Click += new RoutedEventHandler(btnPause_Click);
             panelNavigation.Children.Add(btnPause);
-            btnPause.ToolTip = UICreator.CreateToolTip("Pause the game");
+            btnPause.ToolTip = UICreator.CreateToolTip("1003");
 
             btnStart = new Button();
             btnStart.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -124,7 +124,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnStart.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnStart.Click += new RoutedEventHandler(btnStart_Click);
             panelNavigation.Children.Add(btnStart);
-            btnStart.ToolTip = UICreator.CreateToolTip("Resume the game");
+            btnStart.ToolTip = UICreator.CreateToolTip("1004");
 
          /*   Button btnThreadState = new Button();
             btnThreadState.SetResourceReference(Button.StyleProperty, "RoundedButton");

@@ -187,7 +187,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
                 btnUpgradeLicense.Margin = new Thickness(5, 0, 0, 0);
                 btnUpgradeLicense.Background = Brushes.Transparent;
                 btnUpgradeLicense.Click += btnUpgradeLicense_Click;
-                btnUpgradeLicense.ToolTip = UICreator.CreateToolTip("Upgrade your airline's license");
+                btnUpgradeLicense.ToolTip = UICreator.CreateToolTip("1014");
 
                 Image imgUpgradeLicens = new Image();
                 imgUpgradeLicens.Source = new BitmapImage(new Uri(@"/Data/images/add.png", UriKind.RelativeOrAbsolute));
@@ -233,7 +233,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             btnPurchase.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnPurchase.IsEnabled = GameObject.GetInstance().HumanAirline.Money > buyingPrice;
             btnPurchase.Click += new RoutedEventHandler(btnPurchase_Click);
-            btnPurchase.ToolTip = UICreator.CreateToolTip("Purchase this airline and dissolve it into your airline");
+            btnPurchase.ToolTip = UICreator.CreateToolTip("1015");
 
             panelButtons.Children.Add(btnPurchase);
 
@@ -247,7 +247,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             btnPurchaseAsSubsidiary.IsEnabled = GameObject.GetInstance().HumanAirline.Money > buyingPrice;
             btnPurchaseAsSubsidiary.Margin = new Thickness(5, 0, 0, 0);
             btnPurchaseAsSubsidiary.Click += btnPurchaseAsSubsidiary_Click;
-            btnPurchaseAsSubsidiary.ToolTip = UICreator.CreateToolTip("Purchase this airline as a subsidiary to yours");
+            btnPurchaseAsSubsidiary.ToolTip = UICreator.CreateToolTip("1016");
 
             panelButtons.Children.Add(btnPurchaseAsSubsidiary);
 

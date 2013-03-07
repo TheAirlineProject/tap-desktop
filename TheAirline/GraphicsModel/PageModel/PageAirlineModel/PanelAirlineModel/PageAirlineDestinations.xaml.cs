@@ -73,6 +73,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             btnDestinations.Content = Translator.GetInstance().GetString("PageAirlineDestinations", btnDestinations.Uid);
             btnDestinations.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnDestinations.Click += new RoutedEventHandler(btnDestinations_Click);
+            btnDestinations.ToolTip = UICreator.CreateToolTip("Show your airline's destinations");
 
             panelButtons.Children.Add(btnDestinations);
 
@@ -154,10 +155,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1009"), UICreator.CreateTextBlock(totalPassengers.ToString())));
 
             Airport largestGateAirport = this.Airline.Airports.OrderByDescending(a => a.Terminals.getNumberOfGates(this.Airline) / Convert.ToDouble(a.Terminals.getUsedGates().Count)).FirstOrDefault();
-      
+
             ContentControl ccLargestAirport = new ContentControl();
             ccLargestAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryLink");
             ccLargestAirport.Content = largestGateAirport;
+            ccLargestAirport.ToolTip = UICreator.CreateToolTip("The greatest % of owned gates in use");
 
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1010"), ccLargestAirport));
 
@@ -166,6 +168,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             ContentControl ccSmallestAirport = new ContentControl();
             ccSmallestAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryLink");
             ccSmallestAirport.Content = smallestGateAirport;
+            ccSmallestAirport.ToolTip = UICreator.CreateToolTip("The smallest % of owned gates in use");
 
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1011"), ccSmallestAirport));
 

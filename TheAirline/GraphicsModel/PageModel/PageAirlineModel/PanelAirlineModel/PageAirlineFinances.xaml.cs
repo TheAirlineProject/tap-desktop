@@ -68,6 +68,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             //txtCurrentMoney = UICreator.CreateTextBlock(string.Format("{0:c}", this.Airline.Money));
             txtCurrentMoney = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airline.Money).ToString());
             txtCurrentMoney.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money, null, null, null) as Brush;
+            txtCurrentMoney.ToolTip = UICreator.CreateToolTip("Current expendable cash");
 
             lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1003"), txtCurrentMoney));
 
@@ -75,6 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtBalance = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airline.Money - this.Airline.StartMoney).ToString());
             txtBalance.Foreground = new Converters.ValueIsMinusConverter().Convert(this.Airline.Money - this.Airline.StartMoney, null, null, null) as Brush;
             lbSummary.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineFinances", "1004"), txtBalance));
+            txtBalance.ToolTip = UICreator.CreateToolTip("Total balance since start of game");
 
             ContentControl txtSpecifications = new ContentControl();
             txtSpecifications.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -128,7 +130,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             btnLoan.Margin = new Thickness(0, 10, 0, 0);
             btnLoan.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLoan.Click += new RoutedEventHandler(btnLoan_Click);
-            btnLoan.ToolTip = UICreator.CreateToolTip("View, pay, and take out loans");
             panelLoans.Children.Add(btnLoan);
 
             showLoans(false);
