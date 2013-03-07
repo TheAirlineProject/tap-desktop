@@ -48,20 +48,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             WrapPanel panelMarketingBudget = new WrapPanel();
 
+            double minValue = 0;
+            TextBlock txtSliderValue = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(minValue).ToString());
+            txtSliderValue.Margin = new Thickness(5, 0, 5, 0);
+            txtSliderValue.VerticalAlignment = System.Windows.VerticalAlignment.Top;
+            txtSliderValue.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
+
+            panelFinances.Children.Add(txtSliderValue);
+
             Slider slMarketingBudget = new Slider();
-            slMarketingBudget.Minimum = 0;
+            slMarketingBudget.Minimum = 1;
             slMarketingBudget.Maximum = 10000000;
-            slMarketingBudget.Width = 100;
-            slMarketingBudget.IsDirectionReversed = true;
-            slMarketingBudget.IsSnapToTickEnabled = false;
+            slMarketingBudget.Width = 400;
+            slMarketingBudget.Value = 10000;
+            slMarketingBudget.Tag = txtSliderValue;
+            slMarketingBudget.IsDirectionReversed = false;
+            slMarketingBudget.IsSnapToTickEnabled = true;
             slMarketingBudget.IsMoveToPointEnabled = true;
             slMarketingBudget.TickFrequency = 25000;
+            slMarketingBudget.ValueChanged += new RoutedPropertyChangedEventHandler<double>(slider_ValueChanged);
+            slMarketingBudget.TickPlacement = System.Windows.Controls.Primitives.TickPlacement.Both;
 
-            TextBlock txtMarketingBudget = new TextBlock();
+            panelFinances.Children.Add(slMarketingBudget);
+
+            txtMarketingBudget = new TextBlock();
             txtMarketingBudget.Margin = new Thickness(5, 0, 5, 0);
-            txtMarketingBudget.VerticalAlignment = System
+            txtMarketingBudget.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            txtMarketingBudget.Text = "Marketing Budget";
+            txtMarketingBudget.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
 
-            panelMarketingBudget.Children.Add(slMarketingBudget);
+            panelFinances.Children.Add(txtMarketingBudget);
 
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
@@ -161,6 +177,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             //GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirlineFinances_OnTimeChanged);
 
             //this.Unloaded += new RoutedEventHandler(PageAirlineFinances_Unloaded);
+        }
+
+        private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            Slider slider = (Slider)sender;
+            TextBlock txtBlock = (TextBlock)slider.Tag;
+            txtBlock.Text = new ValueCurrencyConverter().Convert(slider.Value).ToString();
+
         }
 
         private void PageAirlineFinances_Unloaded(object sender, RoutedEventArgs e)
