@@ -20,7 +20,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     {
         /*!creates a tool tip with a text
          **/
-        public static ToolTip CreateToolTip(string text)
+        public static ToolTip CreateToolTip(string id)
         {
             /*
             Border brdToolTip = new Border();
@@ -36,7 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             ToolTip tooltip = new System.Windows.Controls.ToolTip();
             tooltip.SetResourceReference(ToolTip.BackgroundProperty, "HeaderBackgroundBrush2");
-            tooltip.Content = text;
+            tooltip.Content = Translator.GetInstance().GetString("ToolTip", id);
 
 
             return tooltip;
