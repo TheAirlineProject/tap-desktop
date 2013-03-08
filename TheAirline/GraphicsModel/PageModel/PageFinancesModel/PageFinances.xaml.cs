@@ -22,23 +22,31 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.Converters;
 
-namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
+namespace TheAirline.GraphicsModel.PageModel
 {
     /// <summary>
     /// Interaction logic for PageFinances.xaml
     /// </summary>
-    public partial class PageFinances : Page
+    public partial class PageFinances : StandardPage
     {
         private Airline Airline;
         private Slider slMarketingBudget, slNewspaper, slInternet, slTelevision;
         private TextBox txtMarketingBudget, txtSliderValue;
         public PageFinances(Airline airline)
         {
-            
+
 
             InitializeComponent();
+            this.Uid = "2000";
+            this.Title = Translator.GetInstance().GetString("PageFinances", this.Uid);
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
             this.Airline = airline;
+
+            StackPanel financesPanel = new StackPanel();
+            financesPanel.Margin = new Thickness(10, 0, 10, 0);
+            StandardContentPanel panelContent = new StandardContentPanel();
+
+            panelContent.setContentPage(financesPanel, StandardContentPanel.ContentLocation.Left);
 
             StackPanel panelFinances = new StackPanel();
             panelFinances.Margin = new Thickness(0, 10, 50, 0);
@@ -74,7 +82,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             txtNPSliderValue.VerticalAlignment = System.Windows.VerticalAlignment.Top;
             txtNPSliderValue.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
 
-            panelFinances.Children.Add(txtSliderValue);
+            panelFinances.Children.Add(txtNPSliderValue);
 
             Slider slNewspaper = new Slider();
             slNewspaper.Value = slMarketingBudget.Value / 3;
