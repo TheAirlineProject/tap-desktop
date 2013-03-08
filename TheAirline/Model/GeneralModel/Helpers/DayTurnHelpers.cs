@@ -12,6 +12,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -193,8 +194,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double ticketsIncome = 0;
 
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+            {
+                if (airliner.Name == "B-0034")
+                {
+                    Console.WriteLine(airliner.Name);
+                    Console.WriteLine("airliner type: {0}", airliner.Airliner.Type.Name);
+                    Console.WriteLine("Gametimer paused: {0}", GameTimer.GetInstance().isPaused());
+                    Console.WriteLine("Gameobjectworker paused: {0}", GameObjectWorker.GetInstance().isPaused());
+                    Console.WriteLine("{0}: classes: {1}", airliner.Name, airliner.CurrentFlight.Classes.Count);
+                    Console.WriteLine("{0}: entry == null: {1}", airliner.Name, airliner.CurrentFlight.Entry == null);
+                    Console.WriteLine("{0}: timetable == null: {1}", airliner.Name, airliner.CurrentFlight.Entry.TimeTable == null);
+                    Console.WriteLine("{0}: route == null: {1}", airliner.Name, airliner.CurrentFlight.Entry.TimeTable.Route == null);
+                }
                 ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
-
+            }
             //employees discount
             FeeType employeeDiscountType = FeeTypes.GetType("Employee Discount");
             double employeesDiscount = airliner.Airliner.Airline.Fees.getValue(employeeDiscountType);

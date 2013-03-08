@@ -35,6 +35,7 @@ using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel;
+using TheAirline.GraphicsModel.PageModel.PageFinancesModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {

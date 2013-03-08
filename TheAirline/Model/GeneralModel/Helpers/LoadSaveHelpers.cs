@@ -904,7 +904,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     Boolean isStopoverFlight = stopoverNode != null;
 
-
+                    if (airliner.Name == "B-0034")
+                    {
+                        string ss = "J#";
+                    }
                     if (destination != "Service")
                     {
                         RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
@@ -914,7 +917,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         currentFlight.Classes.Clear();
 
                         XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
-
+                        
                         foreach (XmlElement flightClassNode in flightClassList)
                         {
                             AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
