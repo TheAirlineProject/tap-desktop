@@ -32,7 +32,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private Airline Airline;
         private TextBlock txtCurrentMoney, txtBalance, txtMarketingBudget;
         private ListBox lbSpecifications, lbLoans;
-        private Slider slMarketingBudget;
+        //private Slider slMarketingBudget;
         public PageAirlineFinances(Airline airline)
         {
             InitializeComponent();
@@ -45,7 +45,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             StackPanel panelFinances = new StackPanel();
             panelFinances.Margin = new Thickness(0, 10, 50, 0);
-
+            /*REMOVE THIS LINE AFTER 0.3.6 PUBLIC RELEASE ************************
             WrapPanel panelMarketingBudget = new WrapPanel();
 
             double minValue = 0;
@@ -57,10 +57,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             panelFinances.Children.Add(txtSliderValue);
 
             Slider slMarketingBudget = new Slider();
+            slMarketingBudget.Value = 10000;
             slMarketingBudget.Minimum = 1;
             slMarketingBudget.Maximum = 10000000;
             slMarketingBudget.Width = 400;
-            slMarketingBudget.Value = 10000;
             slMarketingBudget.Tag = txtSliderValue;
             slMarketingBudget.IsDirectionReversed = false;
             slMarketingBudget.IsSnapToTickEnabled = true;
@@ -71,14 +71,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             panelFinances.Children.Add(slMarketingBudget);
 
+            Button btnApplyMB = new Button();
+            btnApplyMB.Uid = "2001";
+            btnApplyMB.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnApplyMB.Height = Double.NaN;
+            btnApplyMB.Width = Double.NaN;
+            btnApplyMB.Content = Translator.GetInstance().GetString("PageFinances", btnApplyMB.Uid);
+            btnApplyMB.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            btnApplyMB.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+            btnApplyMB.Margin = new Thickness(0, 10, 0, 10);
+            btnApplyMB.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnApplyMB.Click += new RoutedEventHandler(btnApplyMB_Click);
+            panelFinances.Children.Add(btnApplyMB);
+
             txtMarketingBudget = new TextBlock();
             txtMarketingBudget.Margin = new Thickness(5, 0, 5, 0);
             txtMarketingBudget.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            txtMarketingBudget.Text = "Marketing Budget";
+            txtMarketingBudget.Text = Translator.GetInstance().GetString("PageFinances", "1001");
             txtMarketingBudget.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
 
-            panelFinances.Children.Add(txtMarketingBudget);
 
+            panelFinances.Children.Add(txtMarketingBudget);
+            REMOVE THIS LINE AFTER 0.3.6 PUBLIC RELEASE ********************/
             TextBlock txtHeader = new TextBlock();
             txtHeader.Uid = "1001";
             txtHeader.Margin = new Thickness(0, 0, 0, 0);
@@ -179,6 +193,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             //this.Unloaded += new RoutedEventHandler(PageAirlineFinances_Unloaded);
         }
 
+        /*REMOVE THIS LINE AFTER 0.3.6 PUBLIC RELEASE *********************
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider slider = (Slider)sender;
@@ -187,6 +202,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
         }
 
+        private void btnApplyMB_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Your marketing budget has been changed!", "Marketing Budget", MessageBoxButton.OK);
+            /*News news;
+            news.Body = "The marketing department has received and approved your new budget request. It will take place immediatelely. Please make sure you check your advertisement allocation as values have changed.";
+            news.Subject = "Marketing Budget";
+            news.Type = News.NewsType.Airline_News;
+                       
+
+        }
+       REMOVE THIS LINE AFTER 0.3.6 PUBLIC RELEASE *************************/
         private void PageAirlineFinances_Unloaded(object sender, RoutedEventArgs e)
         {
             GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirlineFinances_OnTimeChanged);
