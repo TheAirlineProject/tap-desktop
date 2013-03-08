@@ -656,7 +656,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 popUpSplash.IsOpen = false;
 
        
-                Action<object> action = (object obj) =>
+                Action action = () =>
                 {
                     Stopwatch swPax = new Stopwatch();
                     swPax.Start();
@@ -667,13 +667,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     swPax.Stop();
                 };
 
-           
-                Task t2 = Task.Factory.StartNew(action, "passengers");
+                Task.Run(action);
+                //Task t2 = Task.Factory.StartNew(action, "passengers");
+
+               
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2403"), Translator.GetInstance().GetString("MessageBox", "2403"), WPFMessageBoxButtons.Ok);
 
-
+  
         }
         //sets the airports view
         private void setAirportsView(int year, Country country)

@@ -468,6 +468,9 @@ namespace TheAirline.GraphicsModel.Converters
             if (parameterValue == "Performance")
                 return GameObject.GetInstance().PagePerformanceCounterEnabled ? Visibility.Visible : Visibility.Collapsed;
 
+            if (parameterValue == "Finance")
+                return GameObject.GetInstance().FinancePageEnabled ? Visibility.Visible : Visibility.Collapsed;
+
             return Visibility.Collapsed;
         }
 
