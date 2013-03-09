@@ -264,13 +264,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             switch (capacityCompare)
             {
                 case CompareType.Equal_to:
-                    airliners = airliners.FindAll(a => a.getTotalSeatCapacity() == capacity);
+                    airliners = airliners.FindAll(a => a.Type is AirlinerPassengerType && ((AirlinerPassengerType)a.Type).MaxSeatingCapacity == capacity);
                     break;
                 case CompareType.Larger_than:
-                    airliners = airliners.FindAll(a => a.getTotalSeatCapacity() > capacity);
+                    airliners = airliners.FindAll(a => a.Type is AirlinerPassengerType && ((AirlinerPassengerType)a.Type).MaxSeatingCapacity > capacity);
                     break;
                 case CompareType.Lower_than:
-                    airliners = airliners.FindAll(a => a.getTotalSeatCapacity() < capacity);
+                    airliners = airliners.FindAll(a => a.Type is AirlinerPassengerType && ((AirlinerPassengerType)a.Type).MaxSeatingCapacity < capacity);
                     break;
             }
 

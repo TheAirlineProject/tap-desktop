@@ -12,6 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.SkinsModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -209,28 +210,34 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            Skin selectedSkin = (Skin)cbSkin.SelectedItem;
 
-            SkinObject.GetInstance().setCurrentSkin(selectedSkin);
-      
-            GeneralHelpers.GameSpeedValue speed = (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
-            GameTimer.GetInstance().setGameSpeed(speed);
+               WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2952"), Translator.GetInstance().GetString("MessageBox", "2952", "message"), WPFMessageBoxButtons.YesNo);
 
-            Language language = (Language)cbLanguage.SelectedItem;
-            AppSettings.GetInstance().setLanguage(language);
-            Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;
-            Settings.GetInstance().MailsOnBadWeather = cbMailOnBadWeather.IsChecked.Value;
-            Settings.GetInstance().MinutesPerTurn = (int)cbTurnMinutes.SelectedItem;
-            Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
-           
+               if (result == WPFMessageBoxResult.Yes)
+               {
+                   Skin selectedSkin = (Skin)cbSkin.SelectedItem;
 
-            foreach (RadioButton rbAirportCode in rbAirportCodes)
-            {
-                if (rbAirportCode.IsChecked.Value)
-                    Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)rbAirportCode.Tag;
-            }
+                   SkinObject.GetInstance().setCurrentSkin(selectedSkin);
 
-          PageNavigator.NavigateTo(new PageSettings()); 
+                   GeneralHelpers.GameSpeedValue speed = (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
+                   GameTimer.GetInstance().setGameSpeed(speed);
+
+                   Language language = (Language)cbLanguage.SelectedItem;
+                   AppSettings.GetInstance().setLanguage(language);
+                   Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;
+                   Settings.GetInstance().MailsOnBadWeather = cbMailOnBadWeather.IsChecked.Value;
+                   Settings.GetInstance().MinutesPerTurn = (int)cbTurnMinutes.SelectedItem;
+                   Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
+
+
+                   foreach (RadioButton rbAirportCode in rbAirportCodes)
+                   {
+                       if (rbAirportCode.IsChecked.Value)
+                           Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)rbAirportCode.Tag;
+                   }
+
+                   PageNavigator.NavigateTo(new PageSettings());
+               }
          
         }
     }

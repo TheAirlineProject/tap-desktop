@@ -407,6 +407,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Region region = (Region)cbRegion.SelectedItem;
+            int year = (int)cbStartYear.SelectedItem;
 
             if (region == null)
             {
@@ -418,7 +419,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             source.Filter = delegate(object item)
             {
                 var airline = item as Airline;
-                return airline.Profile.Country.Region == region || region.Uid == "100";
+                return (airline.Profile.Country.Region == region || region.Uid == "100") && airline.Profile.Founded <= year && airline.Profile.Folded > year;
 
             };
             source.Refresh();

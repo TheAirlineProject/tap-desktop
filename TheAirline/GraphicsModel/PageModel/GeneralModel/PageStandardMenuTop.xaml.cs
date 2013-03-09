@@ -192,8 +192,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkFinances_Click(object sender, RoutedEventArgs e)
         {
-
-            PageNavigator.NavigateTo(new PageModel.PageFinances(GameObject.GetInstance().HumanAirline));
+            //PageNavigator.NavigateTo(new PageFinances());
+            //PageNavigator.NavigateTo(new PageFinances(GameObject.GetInstance().HumanAirline));
         }
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
