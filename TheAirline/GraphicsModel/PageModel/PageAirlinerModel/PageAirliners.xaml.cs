@@ -29,7 +29,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
     public partial class PageAirliners : StandardPage
     {
         private ListBox lbUsedAirliners, lbManufacturers;
-        private Comparison<Airliner> sortCriteriaUsed;
+        private Func<Airliner,object> sortCriteriaUsed;
+        private Boolean sortDescending;
         private Frame sideFrame;
         private List<Airliner> airliners;
         public PageAirliners()
@@ -39,7 +40,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PageAirliners", this.Uid);
 
-            sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a2.BuiltDate.CompareTo(a1.BuiltDate); };
+            sortCriteriaUsed = a => a.BuiltDate;
+            sortDescending = true;
 
             StackPanel airlinersPanel = new StackPanel();
             airlinersPanel.Margin = new Thickness(10, 0, 10, 0);
@@ -150,7 +152,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
         {
             lbUsedAirliners.Items.Clear();
 
-            airliners.Sort(sortCriteriaUsed);
+            if (sortDescending)
+                airliners = airliners.OrderByDescending(sortCriteriaUsed).ThenBy(a => a.TailNumber).ToList();
+            else
+            airliners = airliners.OrderBy(sortCriteriaUsed).ThenBy(a => a.TailNumber).ToList();
 
             foreach (Airliner airliner in airliners)
                 lbUsedAirliners.Items.Add(airliner);
@@ -194,22 +199,40 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
         {
             string type = (string)((Hyperlink)sender).Tag;
 
+            Func<Airliner, object> oSortCriteria = sortCriteriaUsed;
+
             switch (type)
             {
                 case "Built":
-                    sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a2.BuiltDate.CompareTo(a1.BuiltDate); };
+                    sortCriteriaUsed = a => a.BuiltDate;
+
+                    if (sortCriteriaUsed == oSortCriteria)
+                        sortDescending = !sortDescending;
+
                     showUsedAirliners();
                     break;
                 case "Price":
-                    sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a2.Price.CompareTo(a1.Price); };
+                    sortCriteriaUsed = a => a.Price;
+
+                    if (sortCriteriaUsed == oSortCriteria)
+                        sortDescending = !sortDescending;
+
                     showUsedAirliners();
                     break;
                 case "Type":
-                    sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a1.Type.Name.CompareTo(a2.Type.Name); };
+                    sortCriteriaUsed = a => a.Type.Name;
+
+                    if (sortCriteriaUsed == oSortCriteria)
+                        sortDescending = !sortDescending;
+
                     showUsedAirliners();
                     break;
                 case "Range":
-                    sortCriteriaUsed = delegate(Airliner a1, Airliner a2) { return a1.Type.RangeType.ToString().CompareTo(a2.Type.RangeType.ToString()); };
+                    sortCriteriaUsed = a => a.Type.RangeType;
+
+                    if (sortCriteriaUsed == oSortCriteria)
+                        sortDescending = !sortDescending;
+
                     showUsedAirliners();
                     break;
             }
