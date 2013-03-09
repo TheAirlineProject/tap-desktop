@@ -37,6 +37,7 @@
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <StartWorkingDirectory>..\</StartWorkingDirectory>
@@ -253,10 +254,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelNewAlliance.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -930,12 +927,13 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="..\Data\names.csv">
-      <Link>names.csv</Link>
-    </None>
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="GraphicsModel\PageModel\PageFinancesModel\darkbg.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -1014,16 +1012,6 @@
     <Resource Include="Data\images\start.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="..\Data\addons\airliners\let.xml">
-      <Link>let.xml</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\graphics\manufacturerlogos\Let.png">
-      <Link>Let.png</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="..\Data\graphics\manufacturerlogos\Aerospatiale.png">
       <Link>Aerospatiale.png</Link>
     </Resource>
@@ -1039,21 +1027,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Key.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\addons\scenarios\New_York_Metro.xml">
-      <Link>New_York_Metro.xml</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\addons\contracts\multipleevents.xml">
-      <Link>multipleevents.xml</Link>
-    </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\addons\contracts\singleevents.xml">
-      <Link>singleevents.xml</Link>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="App_Readme\MathNet.Numerics.readme.txt" />
