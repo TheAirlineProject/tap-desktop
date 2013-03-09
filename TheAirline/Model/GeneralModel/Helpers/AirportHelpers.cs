@@ -106,9 +106,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             var routes = new List<Route>();
 
             foreach (Airline airline in airlines)
-                foreach (Route route in airline.Routes)
+            {
+                var aRoutes = new List<Route>(airline.Routes);
+                foreach (Route route in aRoutes)
+
                     routes.Add(route);
-       
+            }
             return routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).ToList();
 
           

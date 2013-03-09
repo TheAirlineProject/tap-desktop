@@ -225,8 +225,9 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns all airliners assigned to the route
         public List<FleetAirliner> getAirliners()
         {
-            List<FleetAirliner> mainEntries = (from e in this.TimeTable.Entries where e.MainEntry != null && e.MainEntry.Airliner != null select e.MainEntry.Airliner).Distinct().ToList();
-            List<FleetAirliner> allAirliners = (from e in this.TimeTable.Entries where e.Airliner != null select e.Airliner).Distinct().ToList();
+            var entries = new List<RouteTimeTableEntry>(this.TimeTable.Entries);
+            List<FleetAirliner> mainEntries = (from e in entries where e.MainEntry != null && e.MainEntry.Airliner != null select e.MainEntry.Airliner).Distinct().ToList();
+            List<FleetAirliner> allAirliners = (from e in entries where e.Airliner != null select e.Airliner).Distinct().ToList();
             allAirliners.AddRange(mainEntries);
 
             return allAirliners;

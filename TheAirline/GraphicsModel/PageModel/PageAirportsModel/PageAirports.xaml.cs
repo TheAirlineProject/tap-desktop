@@ -29,9 +29,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
     {
         private ListBox lbAirports;
         private Func<Airport,object> sortCriteria;
+        private Boolean sortDescending;
         private List<Airport> airportsList;
         public PageAirports()
         {
+            this.sortDescending = false;
             this.Resources["SettingsClass"] = Settings.GetInstance();
 
             InitializeComponent();
@@ -100,7 +102,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
             lbAirports.Items.Clear();
 
-            airports = airports.OrderBy(sortCriteria).ThenBy(a=>a.Profile.Name).ToList();
+            if (this.sortDescending)
+                airports = airports.OrderByDescending(sortCriteria).ThenBy(a=>a.Profile.Name).ToList();
+            else
+                airports = airports.OrderBy(sortCriteria).ThenBy(a => a.Profile.Name).ToList();
            
             foreach (Airport airport in airports)
                 lbAirports.Items.Add(airport);
@@ -123,10 +128,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
         {
             string type = (string)((Hyperlink)sender).Tag;
 
+            Func<Airport, object> oSort = sortCriteria;
+
             switch (type)
             {
                 case "Country":
-                    sortCriteria = a=>a.Profile.Country.Name; 
+                    sortCriteria = a=>a.Profile.Country.Name;
+
+                    if (sortCriteria == oSort)
+                        this.sortDescending = !this.sortDescending;
+
                     showAirports();
                     break;
                 case "IATA":
@@ -135,14 +146,25 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                     else
                         sortCriteria = a => a.Profile.ICAOCode;
 
+                    if (sortCriteria == oSort)
+                        this.sortDescending = !this.sortDescending;
+
                     showAirports();
                     break;
                 case "Size":
                     sortCriteria = a => a.Profile.Size;
+
+                    if (sortCriteria == oSort)
+                        this.sortDescending = !this.sortDescending;
+
                     showAirports();
                     break;
                 case "Name":
                     sortCriteria = a => a.Profile.Name;
+
+                    if (sortCriteria == oSort)
+                        this.sortDescending = !this.sortDescending;
+
                     showAirports();
                     break;
             }
