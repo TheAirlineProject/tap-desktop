@@ -28,7 +28,8 @@ namespace TheAirline.Model.AirlineModel
         public List<FleetAirliner> Fleet { get; set; }
         public List<SubsidiaryAirline> Subsidiaries { get; set; }
         public AirlineProfile Profile { get; set; }
-        public List<Route> Routes { get; set; } 
+        private List<Route> _Routes;
+        public List<Route> Routes { get { return getRoutes(); } set { this._Routes = value; } } 
         public List<AirlineFacility> Facilities { get; set; }
         private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
         public GeneralStatistics Statistics { get; set; }
@@ -52,7 +53,7 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
-            this.Routes = new List<Route>();
+            this._Routes = new List<Route>();
             this.FutureAirlines = new List<FutureSubsidiaryAirline>();
             this.Subsidiaries = new List<SubsidiaryAirline>();
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
@@ -118,19 +119,31 @@ namespace TheAirline.Model.AirlineModel
         //adds a route to the airline
         public void addRoute(Route route)
         {
-
-            this.Routes.Add(route);
-            route.Airline = this;
-
+            lock (this._Routes)
+            {
+                this._Routes.Add(route);
+                route.Airline = this;
+            }
          
         }
         //removes a route from the airline
         public void removeRoute(Route route)
         {
-        
-            this.Routes.Remove(route);
+            lock (this._Routes)
+            {
+                this._Routes.Remove(route);
+            }
        
         }
+        //get routes for the airline
+        private List<Route> getRoutes()
+        {
+            lock (this._Routes)
+            {
+                return this._Routes;
+            }
+        }
+       
         //adds an alliance to the airline
         public void addAlliance(Alliance alliance)
         {

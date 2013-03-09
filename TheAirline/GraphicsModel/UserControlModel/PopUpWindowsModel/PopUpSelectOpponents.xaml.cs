@@ -25,14 +25,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private Airline Human;
         private int Opponents, StartYear;
         private ListBox lbSelectedAirlines, lbOpponentAirlines;
-        public static object ShowPopUp(Airline human, int opponents, int startyear)
+        public static object ShowPopUp(Airline human, int opponents, int startyear, Region region)
         {
-            PopUpWindow window = new PopUpSelectOpponents(human, opponents, startyear);
+            PopUpWindow window = new PopUpSelectOpponents(human, opponents, startyear,region);
             window.ShowDialog();
 
             return window.Selected;
         }
-        public PopUpSelectOpponents(Airline human, int opponents, int startyear)
+        public PopUpSelectOpponents(Airline human, int opponents, int startyear, Region region)
         {
             this.Human = human;
             this.Opponents = opponents;
@@ -98,7 +98,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
        
             panelOpponents.Children.Add(lbOpponentAirlines);
             
-            foreach (Airline airline in Airlines.GetAirlines(a => a.Profile.Founded <= startyear && a.Profile.Folded > startyear && a != this.Human))
+            foreach (Airline airline in Airlines.GetAirlines(a => a.Profile.Founded <= startyear && a.Profile.Folded > startyear && a != this.Human && (a.Profile.Country.Region == region || region.Uid == "100")))
                 lbOpponentAirlines.Items.Add(airline);
 
             Grid.SetColumn(panelOpponents, 1);

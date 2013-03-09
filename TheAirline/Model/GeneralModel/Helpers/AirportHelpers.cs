@@ -79,8 +79,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if there is a route between two airports
         public static Boolean HasRoute(Airport airport1, Airport airport2)
         {
-            return  Airlines.GetAllAirlines().SelectMany(a => a.Routes).Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
+            var airlines = new List<Airline>(Airlines.GetAllAirlines());
 
+            var routes = new List<Route>();
+
+            foreach (Airline airline in airlines)
+            {
+                routes.AddRange(airline.Routes);
+            }
+
+             return  routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
+            
         }
         //returns all routes from an airport
         public static List<Route> GetAirportRoutes(Airport airport)
@@ -92,9 +101,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns all routes between two airports
         public static List<Route> GetAirportRoutes(Airport airport1, Airport airport2)
         {
-            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes).Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1));
+            var airlines = new List<Airline>(Airlines.GetAllAirlines());
 
-            return new List<Route>(routes);
+            var routes = new List<Route>();
+
+            foreach (Airline airline in airlines)
+                foreach (Route route in airline.Routes)
+                    routes.Add(route);
+       
+            return routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).ToList();
+
+          
         }
         //returns all entries for a specific airport with take off in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportTakeoffs(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)

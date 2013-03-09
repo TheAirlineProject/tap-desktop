@@ -578,9 +578,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 int startYear = (int)cbStartYear.SelectedItem;
                 int opponents = (int)cbOpponents.SelectedItem;
                 Airline airline = (Airline)cbAirline.SelectedItem;
+                Region region = (Region)cbRegion.SelectedItem;
+
 
                 if (this.OpponentType == OpponentSelect.User)
-                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear);
+                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region);
 
 
                 popUpSplash.IsOpen = true;
@@ -617,8 +619,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                Region region = (Region)cbRegion.SelectedItem;
-
+             
                 if (region.Uid != "100")
                 {
                     Airports.RemoveAirports(a => a.Profile.Country.Region != region || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas) );

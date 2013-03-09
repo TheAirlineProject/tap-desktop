@@ -336,9 +336,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the number of routes out of an airport for an airline
         public static int GetAirportOutboundRoutes(Airline airline, Airport airport)
         {
-            int routes = airline.Routes.Count(r => r.Destination1 == airport || r.Destination2 == airport);
+            var routes = new List<Route>(airline.Routes);
+            return routes.Count(r => r.Destination1 == airport || r.Destination2 == airport);
 
-            return routes;
         }
         //switches from one airline to another airline
         public static void SwitchAirline(Airline airlineFrom, Airline airlineTo)
