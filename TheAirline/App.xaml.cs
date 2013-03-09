@@ -30,9 +30,12 @@ namespace TheAirline
 
         private static void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            System.IO.StreamWriter file = new System.IO.StreamWriter("theairline.log");
-            file.Write("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
+            var l_CurrentStack = new System.Diagnostics.StackTrace(true);
 
+            System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getBasePath() + "\\theairline.log");
+            file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
+            file.WriteLine("-------------------");
+            file.Write(l_CurrentStack.ToString());
             file.Close();
         }
     }

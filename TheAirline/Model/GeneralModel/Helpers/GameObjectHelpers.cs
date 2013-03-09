@@ -52,10 +52,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     DayTurnHelpers.SimulateAirlineFlights(airline);
              
                 });
+                var l_CurrentStack = new System.Diagnostics.StackTrace(true);
 
-          
-             
-            }
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getBasePath() + "\\dailyround.log");
+                file.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString());
+                file.Write(l_CurrentStack.ToString());
+                file.Close();
+         }
             else
             {
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);
@@ -923,7 +926,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (route == null || route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition) == null)
                     airliner.CurrentFlight = null;
                 else
+                {
                     airliner.CurrentFlight = new Flight(route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner.CurrentPosition));
+                    
+                }
             }
             if (airliner.CurrentFlight != null)
             {

@@ -28,13 +28,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //foreach (FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped))
             Parallel.ForEach(airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped), airliner =>
             {
-                if (airliner.CurrentFlight != null)
+                if (airliner.CurrentFlight != null && airliner.CurrentFlight.Classes.Count > 0)
                 {
+                   
                     //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;
 
                     SimulateLanding(airliner);
                 }
-
+                                    
                 var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner).OrderBy(e => e.Time);
 
                 if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
@@ -150,7 +151,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 airliner.CurrentFlight.addDelayMinutes(delayedMinutes.Value);
                                  
-                if (airliner.CurrentFlight.Entry.MainEntry == null)
+                if (airliner.CurrentFlight.Entry.MainEntry == null) 
                   foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                   {
                     airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
@@ -195,17 +196,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (AirlinerClass aClass in airliner.Airliner.Classes)
             {
-                if (airliner.Name == "B-0034")
-                {
-                    Console.WriteLine(airliner.Name);
-                    Console.WriteLine("airliner type: {0}", airliner.Airliner.Type.Name);
-                    Console.WriteLine("Gametimer paused: {0}", GameTimer.GetInstance().isPaused());
-                    Console.WriteLine("Gameobjectworker paused: {0}", GameObjectWorker.GetInstance().isPaused());
-                    Console.WriteLine("{0}: classes: {1}", airliner.Name, airliner.CurrentFlight.Classes.Count);
-                    Console.WriteLine("{0}: entry == null: {1}", airliner.Name, airliner.CurrentFlight.Entry == null);
-                    Console.WriteLine("{0}: timetable == null: {1}", airliner.Name, airliner.CurrentFlight.Entry.TimeTable == null);
-                    Console.WriteLine("{0}: route == null: {1}", airliner.Name, airliner.CurrentFlight.Entry.TimeTable.Route == null);
-                }
+               
                 ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * airliner.CurrentFlight.Entry.TimeTable.Route.getRouteAirlinerClass(aClass.Type).FarePrice;
             }
             //employees discount
