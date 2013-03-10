@@ -37,12 +37,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             InitializeComponent();
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
 
-            this.Airline = airline;
-            
-          
+           /* this.Airline = airline;
+            Page page = null;
+          using (FileStream fs = new FileStream("TheAirline\\GraphicsModel\\PageModel\\PageFinancesModel\\PageFinances.xaml", FileMode.Open, FileAccess.Read))
+            {
+            page = (Page)XamlReader.Load(fs);
+            } */
+
           string airlineCash = GameObject.GetInstance().HumanAirline.Money.ToString();
           TextBox cashValue = (TextBox)this.FindName("cashValue");
-          cashValue.DataContext = airlineCash;
+          cashValue.Text = airlineCash;
+
+          Slider slMarketingBudget = (Slider)this.FindName("marketingSlider");
+          Slider printSlider = (Slider)this.FindName("printSlider");
+          Slider televisionSlider = (Slider)this.FindName("televisionSlider");
+          Slider radioSlider = (Slider)this.FindName("radioSlider");
+          Slider internetSlider = (Slider)this.FindName("internetSlider");
+          
         }
     }
 }

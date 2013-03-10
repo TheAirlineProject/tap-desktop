@@ -22,7 +22,7 @@
         		<TransformGroup>
         			<ScaleTransform/>
         			<SkewTransform/>
-        			<RotateTransform Angle="-89.907"/>
+        			<RotateTransform Angle="-90"/>
         			<TranslateTransform/>
         		</TransformGroup>
         	</TextBox.RenderTransform>
@@ -80,9 +80,6 @@
         <WrapPanel x:Name="financesOverviewPanel" HorizontalAlignment="Left" Height="88" Margin="524,40,0,0" VerticalAlignment="Top" Width="250">
             <TextBox x:Name="cashLabel" TextWrapping="Wrap" Text="Cash" Background="Transparent" Width="34" HorizontalAlignment="Left" Height="20" Padding="0" BorderThickness="0,0,0,1"/>
             <TextBox x:Name="cashValue" Height="23" TextWrapping="Wrap" Text="{Binding TheAirline.Model.GeneralModel.GameObject.GetInstance().HumanAirline.Money, FallbackValue=$150\,000\,000, Mode=OneTime, StringFormat=\{0:C\}}" Width="144" Margin="40,0,0,0" Background="Transparent">
-                <TextBox.DataContext>
-                    <AirlineModel:Airlines/>
-                </TextBox.DataContext>
             </TextBox>
             <TextBox x:Name="budgetLabel" Height="20" TextWrapping="Wrap" Text="Annual Budget" Background="Transparent" Padding="0" BorderThickness="0,0,0,1" Width="87"/>
             <TextBox x:Name="expensesLabel" Height="20" TextWrapping="Wrap" Text="Projected Expenses" Background="Transparent" Padding="0" BorderThickness="0,0,0,1" Width="108"/>
@@ -158,6 +155,5 @@
         	<TextBox x:Name="scValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=scSlider, Mode=OneWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" BorderThickness="0"/>
         	<TextBox x:Name="prValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=prSlider, Mode=OneWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" BorderThickness="0"/>
         </StackPanel>
-
-    </Grid>
+  </Grid>
     </Page>
