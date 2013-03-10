@@ -107,7 +107,8 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airport airport in noRunwayAirports)
                 Console.WriteLine(airport.Profile.Name);
 
-         
+           
+      
         }
 
         /*! private static method ClearLists().
@@ -1970,7 +1971,7 @@ namespace TheAirline.Model.GeneralModel
 
                 int counter = 0;
 
-                while (airportDestination == null || airliner == null || !airliner.HasValue)
+                while ((airportDestination == null || airliner == null || !airliner.HasValue) && airportDestinations.Count>counter)
                 {
                     airportDestination = airportDestinations[counter];
 
