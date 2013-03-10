@@ -34,26 +34,63 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
 
         public PageFinances(Airline airline)
         {
+            double airlineCash = GameObject.GetInstance().HumanAirline.Money;
             InitializeComponent();
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
+            
+            // sets max top level budgets
+            Slider slMarketingBudget = (Slider)this.FindName("marketingSlider");
+            TextBox cashValue = (TextBox)this.FindName("cashValue");
+            cashValue.Text = airlineCash.ToString();
+            Double maxMarketingBudget = ((airlineCash / 2) / 3 / 12);
+            Double maxSecurityBudget = maxMarketingBudget;
+            Double maxCSBudget = maxMarketingBudget;
+            Double maxMaintBudget = ((airlineCash / 2) / 12);
 
-           /* this.Airline = airline;
-            Page page = null;
-          using (FileStream fs = new FileStream("TheAirline\\GraphicsModel\\PageModel\\PageFinancesModel\\PageFinances.xaml", FileMode.Open, FileAccess.Read))
+            // sets maximum marketing sub-budgets
+            Slider printSlider = (Slider)this.FindName("printSlider");            
+            Slider televisionSlider = (Slider)this.FindName("televisionSlider");            
+            Slider radioSlider = (Slider)this.FindName("radioSlider");            
+            Slider internetSlider = (Slider)this.FindName("internetSlider");
+            internetSlider.Maximum = printSlider.Maximum = televisionSlider.Maximum = radioSlider.Maximum = maxMarketingBudget / 2;
+
+            //sets max maintenance sub-budgets
+            Slider overhaulSlider = (Slider)this.FindName("overhaulSlider");
+            Slider partsSlider = (Slider)this.FindName("partsSlider");
+            Slider engineSlider = (Slider)this.FindName("engineSlider");
+            Slider rsSlider = (Slider)this.FindName("rsSlider");
+            overhaulSlider.Maximum = partsSlider.Maximum = engineSlider.Maximum = rsSlider.Maximum = maxMaintBudget / 2;
+
+            //sets max security sub-budgets
+            Slider inflightSlider = (Slider)this.FindName("inflightSlider");
+            Slider airportSlider = (Slider)this.FindName("airportSlider");
+            Slider baggageSlider = (Slider)this.FindName("baggageSlider");
+            Slider itSlider = (Slider)this.FindName("itSlider");
+            inflightSlider.Maximum = airportSlider.Maximum = baggageSlider.Maximum = itSlider.Maximum = (maxSecurityBudget / 2);
+
+            //sets max customer service sub-budgets
+            Slider compSlider = (Slider)this.FindName("compSlider");
+            Slider promoSlider = (Slider)this.FindName("promoSlider");
+            Slider scSlider = (Slider)this.FindName("scSlider");
+            Slider prSlider = (Slider)this.FindName("prSlider");
+            compSlider.Maximum = promoSlider.Maximum = scSlider.Maximum = prSlider.Maximum = maxCSBudget / 2;
+
+            Button btnApply = (Button)this.FindName("buttonApply");
+            Button btnReset = (Button)this.FindName("buttonReset");
+            btnApply.Click += new RoutedEventHandler(btnApply_Click);
+            btnReset.Click += new RoutedEventHandler(btnReset_Click);
+            }
+
+            private void btnApply_Click(object sender, RoutedEventArgs e)
             {
-            page = (Page)XamlReader.Load(fs);
-            } */
+                
+            }
+    
+            private void btnReset_Click(object sender, RoutedEventArgs e)
+            {
 
-          string airlineCash = GameObject.GetInstance().HumanAirline.Money.ToString();
-          TextBox cashValue = (TextBox)this.FindName("cashValue");
-          cashValue.Text = airlineCash;
+            }
 
-          Slider slMarketingBudget = (Slider)this.FindName("marketingSlider");
-          Slider printSlider = (Slider)this.FindName("printSlider");
-          Slider televisionSlider = (Slider)this.FindName("televisionSlider");
-          Slider radioSlider = (Slider)this.FindName("radioSlider");
-          Slider internetSlider = (Slider)this.FindName("internetSlider");
-          
         }
     }
-}
+

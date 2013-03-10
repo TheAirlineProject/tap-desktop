@@ -77,14 +77,6 @@
             <TextBlock x:Name="securityLabel" TextWrapping="Wrap" Text="Security Budget" Height="22"/>
             <TextBlock x:Name="csLabel" TextWrapping="Wrap" Text="Customer Service Budget" Height="22"/>
         </StackPanel>
-        <WrapPanel x:Name="financesOverviewPanel" HorizontalAlignment="Left" Height="88" Margin="524,40,0,0" VerticalAlignment="Top" Width="250">
-            <TextBox x:Name="cashLabel" TextWrapping="Wrap" Text="Cash" Background="Transparent" Width="34" HorizontalAlignment="Left" Height="20" Padding="0" BorderThickness="0,0,0,1"/>
-            <TextBox x:Name="cashValue" Height="23" TextWrapping="Wrap" Text="{Binding TheAirline.Model.GeneralModel.GameObject.GetInstance().HumanAirline.Money, FallbackValue=$150\,000\,000, Mode=OneTime, StringFormat=\{0:C\}}" Width="144" Margin="40,0,0,0" Background="Transparent">
-            </TextBox>
-            <TextBox x:Name="budgetLabel" Height="20" TextWrapping="Wrap" Text="Annual Budget" Background="Transparent" Padding="0" BorderThickness="0,0,0,1" Width="87"/>
-            <TextBox x:Name="expensesLabel" Height="20" TextWrapping="Wrap" Text="Projected Expenses" Background="Transparent" Padding="0" BorderThickness="0,0,0,1" Width="108"/>
-            <TextBox x:Name="eoyCashLabel" Height="23" TextWrapping="Wrap" Text="End of Year Cash" Background="Transparent" Padding="0" BorderThickness="0,0,0,1" Width="97"/>
-        </WrapPanel>
         <WrapPanel x:Name="marketingSliderPanel" HorizontalAlignment="Left" Height="92" Margin="25,141,0,0" VerticalAlignment="Top" Width="200">
         	<Slider x:Name="printSlider" Width="104" Height="23" Maximum="10000000" SmallChange="250000" LargeChange="1000000" TickFrequency="400000" TickPlacement="BottomRight" Value="125000" FontFamily="Segoe UI" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
         	<TextBox x:Name="printLabel" Height="23" TextWrapping="Wrap" Text="Print Budget" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" BorderThickness="0" Opacity="0.845"/>
