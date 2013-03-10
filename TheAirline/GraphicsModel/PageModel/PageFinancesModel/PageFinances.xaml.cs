@@ -37,7 +37,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             InitializeComponent();
             double airlineCash = GameObject.GetInstance().HumanAirline.Money;
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
-            
+
+            Page Budgets = (Page)this.FindName("Budgets");
+            Budgets.Width = SystemParameters.PrimaryScreenWidth;
+            Budgets.Height = SystemParameters.PrimaryScreenHeight;
+
             // sets max top level budgets
             Slider slMarketingBudget = (Slider)this.FindName("marketingSlider");
             Double maxMarketingBudget = ((airlineCash / 2) / 3 / 12);
