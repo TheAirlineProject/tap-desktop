@@ -53,7 +53,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
             List<Airline> airlines = Airlines.GetAllAirlines().FindAll(a=>!a.IsSubsidiary);
             //airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
-            airlines.OrderBy(a => a.Profile.Name);
+            airlines = airlines.OrderBy(a => a.Profile.Name).ToList();
 
             airlines.Remove(GameObject.GetInstance().MainAirline);
             airlines.Insert(0, GameObject.GetInstance().MainAirline);

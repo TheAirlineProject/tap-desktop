@@ -177,6 +177,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airline.Airline = null;
 
             airline.Profile.CEO = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName());
+
+            if (!Airlines.ContainsAirline(airline))
+                Airlines.AddAirline(airline);
         }
         //closes a subsidiary airline for an airline
         public static void CloseSubsidiaryAirline(SubsidiaryAirline airline)
