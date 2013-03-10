@@ -1592,7 +1592,7 @@ namespace TheAirline.Model.GeneralModel
             if (narrativeElement != null)
                 narrative = narrativeElement.Attributes["narrative"].Value;
 
-          
+     
 
             Boolean isReal = true;
             int founded = 1950;
