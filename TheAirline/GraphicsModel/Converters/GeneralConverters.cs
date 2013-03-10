@@ -421,7 +421,6 @@ namespace TheAirline.GraphicsModel.Converters
             }
             catch
             {
-                Console.WriteLine("{0}: {1}", airline.Profile.Name, airline.Profile.Color);
             
                 return Brushes.White;
             }
