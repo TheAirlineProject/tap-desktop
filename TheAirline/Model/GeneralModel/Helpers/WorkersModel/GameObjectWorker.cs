@@ -17,6 +17,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private Boolean Cancelled;
         private Boolean CancelWorker;
         private Boolean Paused;
+        public Boolean IsStarted { get; set; }
         private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
@@ -29,6 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             this.Cancelled = false;
             this.CancelWorker = false;
             this.Paused = false;
+            this.IsStarted = true;
         }
         //returns the instance
         public static GameObjectWorker GetInstance()
@@ -63,6 +65,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         {
             if (!this.Worker.IsBusy)
             {
+                this.IsStarted = true;
                 this.Cancelled = false;
                 this.CancelWorker = false;
   

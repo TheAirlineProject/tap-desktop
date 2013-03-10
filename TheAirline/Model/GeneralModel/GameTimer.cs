@@ -5,6 +5,7 @@ using System.Text;
 
 using TheAirline.Model.GeneralModel.Helpers;
 using System.Windows.Threading;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 
 namespace TheAirline.Model.GeneralModel
@@ -62,7 +63,8 @@ namespace TheAirline.Model.GeneralModel
         }
         private void GameTimer_OnTimeChanged()
         {
-            
+            if (!GameObjectWorker.GetInstance().IsStarted)
+                GameObjectWorker.GetInstance().start();
         }
 
         private void Timer_Tick(object sender, EventArgs e)
