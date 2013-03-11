@@ -816,6 +816,7 @@
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\GeneralModel\CalendarItem.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\BudgetHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\TimeTableHelpers.cs" />

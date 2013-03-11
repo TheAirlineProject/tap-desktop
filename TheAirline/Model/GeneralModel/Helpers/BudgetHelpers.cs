@@ -8,7 +8,7 @@ using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
-    class BudgetHelpers
+    public class BudgetHelpers
     {
         //gets the total value of all aircraft in fleet combined
         public long GetFleetValue()
