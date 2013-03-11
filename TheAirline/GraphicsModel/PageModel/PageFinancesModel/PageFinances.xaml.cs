@@ -34,48 +34,57 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
 
         public PageFinances(Airline airline)
         {
+            Airline humanAirline = GameObject.GetInstance().HumanAirline;
             InitializeComponent();
-            double airlineCash = GameObject.GetInstance().HumanAirline.Money;
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
+            SetDefaults();
 
             Page Budgets = (Page)this.FindName("Budgets");
             Budgets.Width = SystemParameters.PrimaryScreenWidth;
             Budgets.Height = SystemParameters.PrimaryScreenHeight;
 
-            // sets max top level budgets
-            Slider slMarketingBudget = (Slider)this.FindName("marketingSlider");
-            Double maxMarketingBudget = ((airlineCash / 2) / 3 / 12);
-            Double maxSecurityBudget = maxMarketingBudget;
-            Double maxCSBudget = maxMarketingBudget;
-            Double maxMaintBudget = ((airlineCash / 2) / 12);
+            //binds overview panel
+            TextBox mCashValue = (TextBox)this.FindName("mCashValue");
+            TextBox mBudgetValue = (TextBox)this.FindName("mBudgetValue");
+            TextBox mrBudgetValue = (TextBox)this.FindName("mrBudgetValue");
+            TextBox meoyCashValue = (TextBox)this.FindName("meoyCashValue");
+            TextBox dblFleetSizeValue = (TextBox)this.FindName("intFleetSizeValue");
+            TextBox mTotalFleetValue = (TextBox)this.FindName("mTotalFleetValue");
+            TextBox mAvgAirlinerValue = (TextBox)this.FindName("mAvgAirlinerValue");
+            TextBox dblSubsValue = (TextBox)this.FindName("dblSubsValue");
+            TextBox mTotalSubsValue = (TextBox)this.FindName("mTotalSubsValue");
+            TextBox mAvgSubsValue = (TextBox)this.FindName("mAvgSubsValue");
+            TextBox intTotalEmployees = (TextBox)this.FindName("intTotalEmployees");
+            TextBox mTotalPayroll = (TextBox)this.FindName("mTotalPayroll");
 
-            // sets maximum marketing sub-budgets
-            Slider printSlider = (Slider)this.FindName("printSlider");            
-            Slider televisionSlider = (Slider)this.FindName("televisionSlider");            
-            Slider radioSlider = (Slider)this.FindName("radioSlider");            
+            // binds top level budgets
+            Slider marketingSlider = (Slider)this.FindName("marketingSlider");
+            Slider maintenanceSlider = (Slider)this.FindName("maintenanceSlider");
+            Slider securitySlider = (Slider)this.FindName("securitySlider");
+            Slider csSlider = (Slider)this.FindName("csSlider");
+
+            //binds all sub-budgets
+            Slider printSlider = (Slider)this.FindName("printSlider");
+            Slider televisionSlider = (Slider)this.FindName("televisionSlider");
+            Slider radioSlider = (Slider)this.FindName("radioSlider");
             Slider internetSlider = (Slider)this.FindName("internetSlider");
-            internetSlider.Maximum = printSlider.Maximum = televisionSlider.Maximum = radioSlider.Maximum = maxMarketingBudget / 2;
-
-            //sets max maintenance sub-budgets
             Slider overhaulSlider = (Slider)this.FindName("overhaulSlider");
             Slider partsSlider = (Slider)this.FindName("partsSlider");
             Slider engineSlider = (Slider)this.FindName("engineSlider");
             Slider rsSlider = (Slider)this.FindName("rsSlider");
-            overhaulSlider.Maximum = partsSlider.Maximum = engineSlider.Maximum = rsSlider.Maximum = maxMaintBudget / 2;
-
-            //sets max security sub-budgets
             Slider inflightSlider = (Slider)this.FindName("inflightSlider");
             Slider airportSlider = (Slider)this.FindName("airportSlider");
             Slider baggageSlider = (Slider)this.FindName("baggageSlider");
             Slider itSlider = (Slider)this.FindName("itSlider");
-            inflightSlider.Maximum = airportSlider.Maximum = baggageSlider.Maximum = itSlider.Maximum = (maxSecurityBudget / 2);
-
-            //sets max customer service sub-budgets
             Slider compSlider = (Slider)this.FindName("compSlider");
             Slider promoSlider = (Slider)this.FindName("promoSlider");
             Slider scSlider = (Slider)this.FindName("scSlider");
             Slider prSlider = (Slider)this.FindName("prSlider");
-            compSlider.Maximum = promoSlider.Maximum = scSlider.Maximum = prSlider.Maximum = maxCSBudget / 2;
+
+            //sets a few default values
+            dblFleetSizeValue.Text = humanAirline.getFleetSize().ToString();
+            mCashValue.Text = humanAirline.Money.ToString();
+            mBudgetValue.Text = (marketingSlider.Value + maintenanceSlider.Value + csSlider.Value + securitySlider.Value).ToString();
 
             Button btnApply = (Button)this.FindName("buttonApply");
             Button btnReset = (Button)this.FindName("buttonReset");
@@ -83,6 +92,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             btnReset.Click += new RoutedEventHandler(btnReset_Click);
             }
 
+
+        //sets default values and max values
+        public void SetDefaults()
+        {
+            double airlineCash = GameObject.GetInstance().HumanAirline.Money;
+            Double maxMarketingBudget = ((airlineCash / 2) / 3 / 12);
+            Double maxSecurityBudget = maxMarketingBudget;
+            Double maxCSBudget = maxMarketingBudget;
+            Double maxMaintBudget = ((airlineCash / 2) / 12);
+            internetSlider.Maximum = printSlider.Maximum = televisionSlider.Maximum = radioSlider.Maximum = maxMarketingBudget / 2;
+            overhaulSlider.Maximum = partsSlider.Maximum = engineSlider.Maximum = rsSlider.Maximum = maxMaintBudget / 2;
+            compSlider.Maximum = promoSlider.Maximum = scSlider.Maximum = prSlider.Maximum = maxCSBudget / 2;
+            inflightSlider.Maximum = airportSlider.Maximum = baggageSlider.Maximum = itSlider.Maximum = (maxSecurityBudget / 2);
+        }
             private void btnApply_Click(object sender, RoutedEventArgs e)
             {
                 
