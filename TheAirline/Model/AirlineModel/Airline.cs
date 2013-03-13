@@ -50,7 +50,7 @@ namespace TheAirline.Model.AirlineModel
         public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
         public List<AirportContract> AirportContracts { get; set; }
-        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, AirlineBudget budget)
+        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
@@ -80,6 +80,7 @@ namespace TheAirline.Model.AirlineModel
 
             this.Pilots = new List<Pilot>();
             this.FlightSchools = new List<FlightSchool>();
+            this.Budget = new AirlineBudget();
 
          }
         //adds an airport contract to the airline
