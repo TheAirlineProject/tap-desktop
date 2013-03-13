@@ -32,7 +32,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineWages : Page
     {
         private Airline Airline;
-        private StackPanel panelWages, panelEmployees, panelInflightServices, panelAirlineServices, panelAdvertisement, panelAirlinePolicies;
+        private StackPanel panelWages, panelEmployees,panelAirlineServices, panelAdvertisement, panelAirlinePolicies;
+        private ScrollViewer panelInflightServices;
         private Dictionary<FeeType, double> FeeValues;
         private ListBox lbWages, lbFees,lbDiscounts, lbFoodDrinks;
         private ListBox lbNewFacilities, lbFacilities, lbAdvertisement;
@@ -204,10 +205,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             return panelFacilities;
         }
         //creates the inflight services panel
-        private StackPanel createInflightServicesPanel()
+        private ScrollViewer createInflightServicesPanel()
         {
             this.Facilities = new Dictionary<AirlinerClass.ClassType, List<RouteFacility>>();
             this.cbFacilities = new Dictionary<AirlinerClass.ClassType, List<ComboBox>>();
+
+            ScrollViewer scroller = new ScrollViewer();
+            scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            scroller.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
+         
 
             StackPanel panelServices = new StackPanel();
 
@@ -288,9 +295,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             btnLoad.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
             panelButtons.Children.Add(btnLoad);
-         
 
-            return panelServices;
+
+            scroller.Content = panelServices;
+
+            return scroller;
         }
         //creates the employees panel
         private StackPanel createEmployeesPanel()
