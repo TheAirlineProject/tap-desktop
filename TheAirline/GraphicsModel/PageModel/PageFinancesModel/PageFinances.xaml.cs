@@ -145,7 +145,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
                     prSlider.Value -= (sumD / 4);
                 }
 
-                double userSecurityBudget = airportSlider.Value + baggageSlider.Value + inFlighSlider.Value + itSlider.Value;
+                double userSecurityBudget = airportSlider.Value + baggageSlider.Value + inflightSlider.Value + itSlider.Value;
                 if (userSecurityBudget > securitySlider.Value)
                 {
                     double sumD = userSecurityBudget - securitySlider.Value;

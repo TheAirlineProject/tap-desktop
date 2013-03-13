@@ -1617,7 +1617,7 @@ namespace TheAirline.Model.GeneralModel
             if (market == Airline.AirlineFocus.Regional)
                 license = Airline.AirlineLicense.Regional;
 
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license);
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license, budget);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];
 

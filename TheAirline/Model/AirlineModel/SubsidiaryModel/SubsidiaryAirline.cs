@@ -10,7 +10,7 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
     {
         public Airline Airline { get; set; }
         public SubsidiaryAirline(Airline airline,AirlineProfile profile, AirlineMentality mentality, AirlineFocus market, AirlineLicense license)
-            : base(profile, mentality, market,license)
+            : base(profile, mentality, market,license,budget)
         {
             this.Airline = airline;
             this.Profile.Logos = this.Airline.Profile.Logos;
