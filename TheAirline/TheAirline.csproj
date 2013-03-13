@@ -261,6 +261,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageFinancesModel\PageFinancesOverview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -605,6 +609,9 @@
     <Compile Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml.cs">
       <DependentUpon>PageFinances.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFinancesModel\PageFinancesOverview.xaml.cs">
+      <DependentUpon>PageFinancesOverview.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml.cs">
       <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
     </Compile>
@@ -772,6 +779,7 @@
   <ItemGroup>
     <Compile Include="Model\AirlineModel\Airline.cs" />
     <Compile Include="Model\AirlineModel\AdvertisementType.cs" />
+    <Compile Include="Model\AirlineModel\AirlineBudget.cs" />
     <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
     <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
@@ -926,8 +934,6 @@
     <EmbeddedResource Include="..\Data\languages\language.zh-CN.resx">
       <Link>Data\languagefiles\language.zh-CN.resx</Link>
     </EmbeddedResource>
-    <EmbeddedResource Include="Data\languagefiles\language.it-IT.resx" />
-    <EmbeddedResource Include="Data\languagefiles\language.pl-PL.resx" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

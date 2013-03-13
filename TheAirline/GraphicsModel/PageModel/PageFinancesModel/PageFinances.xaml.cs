@@ -159,6 +159,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             private void btnApply_Click(object sender, RoutedEventArgs e)
             {
                 verifyValues();
+                GameObject.GetInstance().HumanAirline.Budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(12);
                 GameObject.GetInstance().HumanAirline.Budget.AirportBudget = airportSlider.Value;
                 GameObject.GetInstance().HumanAirline.Budget.CompBudget = compSlider.Value;
                 GameObject.GetInstance().HumanAirline.Budget.CSBudget = csSlider.Value;

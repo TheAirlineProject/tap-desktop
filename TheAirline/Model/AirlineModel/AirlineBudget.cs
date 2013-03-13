@@ -9,7 +9,7 @@ namespace TheAirline.Model.AirlineModel
     public class AirlineBudget
     {
         public double TotalBudget { set; get; }
-        public DateTime BudgetEffective { set; get; }
+        public DateTime BudgetExpires { set; get; }
         public double MarketingBudget { set; get; }
         public double MaintenanceBudget { set; get; }
         public double SecurityBudget { set; get; }
