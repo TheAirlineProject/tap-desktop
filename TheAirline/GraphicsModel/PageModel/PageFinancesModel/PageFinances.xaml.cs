@@ -28,7 +28,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
     /// <summary>
     /// Interaction logic for PageFinances.xaml
     /// </summary>
-    public partial class PageFinances : Page
+    public partial class PageFinances : StandardPage
     {
         private Airline Airline;
 
@@ -38,54 +38,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             InitializeComponent();
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
             SetDefaults(airline);
-            Page Budgets = (Page)this.FindName("Budgets");
-            Budgets.Width = SystemParameters.PrimaryScreenWidth;
-            Budgets.Height = SystemParameters.PrimaryScreenHeight;
-
+         
             // binds top level budgets and buttons
-            Slider marketingSlider = (Slider)this.FindName("marketingSlider");
-            Slider maintenanceSlider = (Slider)this.FindName("maintenanceSlider");
-            Slider securitySlider = (Slider)this.FindName("securitySlider");
-            Slider csSlider = (Slider)this.FindName("csSlider");
-            Button btnApply = (Button)this.FindName("buttonApply");
+             Button btnApply = (Button)this.FindName("buttonApply");
             Button btnReset = (Button)this.FindName("buttonReset");
 
-            //binds all sub-budgets
-            Slider printSlider = (Slider)this.FindName("printSlider");
-            Slider televisionSlider = (Slider)this.FindName("televisionSlider");
-            Slider radioSlider = (Slider)this.FindName("radioSlider");
-            Slider internetSlider = (Slider)this.FindName("internetSlider");
-            Slider overhaulSlider = (Slider)this.FindName("overhaulSlider");
-            Slider partsSlider = (Slider)this.FindName("partsSlider");
-            Slider engineSlider = (Slider)this.FindName("engineSlider");
-            Slider rsSlider = (Slider)this.FindName("rsSlider");
-            Slider inflightSlider = (Slider)this.FindName("inflightSlider");
-            Slider airportSlider = (Slider)this.FindName("airportSlider");
-            Slider baggageSlider = (Slider)this.FindName("baggageSlider");
-            Slider itSlider = (Slider)this.FindName("itSlider");
-            Slider compSlider = (Slider)this.FindName("compSlider");
-            Slider promoSlider = (Slider)this.FindName("promoSlider");
-            Slider scSlider = (Slider)this.FindName("scSlider");
-            Slider prSlider = (Slider)this.FindName("prSlider");
-
-            //binds overview panel
-            TextBox mCashValue = (TextBox)this.FindName("mCashValue");
-            TextBox mBudgetValue = (TextBox)this.FindName("mBudgetValue");
-            TextBox mrBudgetValue = (TextBox)this.FindName("mrBudgetValue");
-            TextBox meoyCashValue = (TextBox)this.FindName("meoyCashValue");
-            TextBox intFleetSizeValue = (TextBox)this.FindName("intFleetSizeValue");
-            TextBox mTotalFleetValue = (TextBox)this.FindName("mTotalFleetValue");
-            TextBox mAvgAirlinerValue = (TextBox)this.FindName("mAvgAirlinerValue");
-            TextBox dblSubsValue = (TextBox)this.FindName("dblSubsValue");
-            TextBox mTotalSubsValue = (TextBox)this.FindName("mTotalSubsValue");
-            TextBox mAvgSubsValue = (TextBox)this.FindName("mAvgSubsValue");
-            TextBox intTotalEmployees = (TextBox)this.FindName("intTotalEmployees");
-            TextBox mTotalPayroll = (TextBox)this.FindName("mTotalPayroll");
+            Viewbox panelContent = (Viewbox)this.FindName("panelViewbox");
 
             //event handlers
             btnApply.Click += new RoutedEventHandler(btnApply_Click);
             btnReset.Click += new RoutedEventHandler(btnReset_Click);
-            }
+
+            this.RemoveLogicalChild(panelContent);
+
+            base.setContent(panelContent);
+
+            showPage(this);
+        }
 
 
         //sets default values and max values
