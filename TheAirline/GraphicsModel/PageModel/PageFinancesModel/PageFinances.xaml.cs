@@ -112,10 +112,76 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             //the *0.15 is arbitrary padding
             meoyCashValue.Text = (humanAirline.Money - BudgetHelpers.GetRemainingBudget(totalBudget) - (totalBudget * 0.15)).ToString("C0");
         }
+        
+        private void verifyValues()
+            {
+                double userMarketingBudget = radioSlider.Value + televisionSlider.Value + printSlider.Value + internetSlider.Value;
+                if (userMarketingBudget > marketingSlider.Value)
+                {
+                    double sumD = userMarketingBudget - marketingSlider.Value;
+                    radioSlider.Value -= (sumD / 4);
+                    televisionSlider.Value -= (sumD / 4);
+                    printSlider.Value -= (sumD / 4);
+                    internetSlider.Value -= (sumD / 4);
+                }
+
+                double userMaintBudget = partsSlider.Value + engineSlider.Value + overhaulSlider.Value + rsSlider.Value;
+                if (userMaintBudget > maintenanceSlider.Value)
+                {
+                    double sumD = userMaintBudget = maintenanceSlider.Value;
+                    partsSlider.Value -= (sumD / 4);
+                    overhaulSlider.Value -= (sumD / 4);
+                    engineSlider.Value -= (sumD / 4);
+                    rsSlider.Value -= (sumD / 4);
+                }
+
+                double userCSBudget = scSlider.Value + compSlider.Value + promoSlider.Value + prSlider.Value;
+                if (userCSBudget > csSlider.Value)
+                {
+                    double sumD = userCSBudget - csSlider.Value;
+                    scSlider.Value -= (sumD / 4);
+                    compSlider.Value -= (sumD / 4);
+                    promoSlider.Value -= (sumD / 4);
+                    prSlider.Value -= (sumD / 4);
+                }
+
+                double userSecurityBudget = airportSlider.Value + baggageSlider.Value + inFlighSlider.Value + itSlider.Value;
+                if (userSecurityBudget > securitySlider.Value)
+                {
+                    double sumD = userSecurityBudget - securitySlider.Value;
+                    airportSlider.Value -= (sumD / 4);
+                    baggageSlider.Value -= (sumD / 4);
+                    inflightSlider.Value -= (sumD / 4);
+                    itSlider.Value -= (sumD / 4);
+                }
+
+            }
             private void btnApply_Click(object sender, RoutedEventArgs e)
             {
-                
+                verifyValues();
+                GameObject.GetInstance().HumanAirline.Budget.AirportBudget = airportSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.CompBudget = compSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.CSBudget = csSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.EnginesBudget = engineSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.EquipmentBudget = baggageSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.InFlightBudget = inflightSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.InternetBudget = internetSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.ITBudget = itSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.MaintenanceBudget = maintenanceSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.MarketingBudget = marketingSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.OverhaulBudget = overhaulSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.PartsBudget = partsSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.PRBudget = prSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.PrintBudget = printSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.PromoBudget = promoSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.RadioBudget = radioSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.RemoteBudget = rsSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.SecurityBudget = securitySlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.ServCenterBudget = scSlider.Value;
+                GameObject.GetInstance().HumanAirline.Budget.TelevisionBudget = televisionSlider.Value;
             }
+
+
     
             private void btnReset_Click(object sender, RoutedEventArgs e)
             {

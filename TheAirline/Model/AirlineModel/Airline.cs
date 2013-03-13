@@ -47,9 +47,10 @@ namespace TheAirline.Model.AirlineModel
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
         public List<AirlinePolicy> Policies { get; set; }
         public List<Pilot> Pilots { get; set; }
+        public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
         public List<AirportContract> AirportContracts { get; set; }
-        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
+        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, AirlineBudget budget)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
@@ -60,6 +61,7 @@ namespace TheAirline.Model.AirlineModel
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new Invoices();
+            this.Budget = new AirlineBudget();
             this.Profile = profile;
             this.Loans = new List<Loan>();
             this.Reputation = 50;
