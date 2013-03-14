@@ -228,7 +228,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int airlineValue = (int)airline.getAirlineValue() + 1;
 
-            int totalAirlineHubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int totalAirlineHubs = airline.getHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
             double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
             Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
 
