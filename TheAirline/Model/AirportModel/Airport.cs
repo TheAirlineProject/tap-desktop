@@ -29,6 +29,7 @@ namespace TheAirline.Model.AirportModel
         public long Income { get; set; }
         public DateTime LastExpansionDate { get; set; }
         public AirportContract AirlineContract { get; set; }
+        public AirportStatics Statics { get; set; }
         public Airport(AirportProfile profile)
         {
             this.Profile = profile;
@@ -42,7 +43,7 @@ namespace TheAirline.Model.AirportModel
             this.Hubs = new List<Hub>();
             this.DestinationStatistics = new Dictionary<Airport, long>();
             this.LastExpansionDate = new DateTime(1900, 1, 1);
-
+            this.Statics = new AirportStatics();
 
         }
         //adds a major destination to the airport

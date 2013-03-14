@@ -145,9 +145,11 @@ namespace TheAirline.Model.GeneralModel
         //gets the distance between two airports in kilometers
         public static double GetDistance(Airport airport1, Airport airport2)
         {
-            if (airport1 == null || airport2 == null)
-                return Double.MaxValue;
-            return GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
+            if (airport1.Statics.getDistance(airport2) == 0 && airport2.Statics.getDistance(airport1) == 0)
+                return GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
+            else
+                return Math.Max(airport1.Statics.getDistance(airport2), airport2.Statics.getDistance(airport1));
+          
         }
         //gets the distance in kilometers between two coordinates
         public static double GetDistance(Coordinates coordinates1, Coordinates coordinates2)

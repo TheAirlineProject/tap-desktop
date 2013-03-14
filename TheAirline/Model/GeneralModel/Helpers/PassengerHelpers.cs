@@ -80,6 +80,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the passenger demand from nearby airport with no routes for a destination
         private static double GetNearbyPassengerDemand(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
         {
+
             TimeSpan flightTime = MathHelpers.GetFlightTime(airportCurrent, airportDestination, airliner.Airliner.Type);
 
             double maxDistance = (flightTime.TotalHours * 0.5) * 100;
@@ -198,6 +199,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the number of passengers between two destinations
         public static int GetFlightPassengers(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner, AirlinerClass.ClassType type)
         {
+           
             double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
             var currentRoute = airliner.Routes.Find(r => r.Stopovers.SelectMany(s => s.Legs).ToList().Exists(l => (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent)) || (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent));
@@ -452,6 +454,8 @@ namespace TheAirline.Model.GeneralModel
             {
                 Parallel.ForEach(Airports.GetAllAirports(), dAirport =>
                     {
+                        airport.Statics.addDistance(dAirport, MathHelpers.GetDistance(airport, dAirport));
+
                         if (airport != dAirport && airport.Profile.Town != dAirport.Profile.Town && MathHelpers.GetDistance(airport, dAirport) > 50)
                         {
                             CreateDestinationPassengers(airport, dAirport);
@@ -494,6 +498,8 @@ namespace TheAirline.Model.GeneralModel
                         {
                             if (airports[i].Profile.Town != airports[j].Profile.Town && MathHelpers.GetDistance(airports[i], airports[j]) > 50)
                             {
+                                airports[j].Statics.addDistance(airports[i], MathHelpers.GetDistance(airports[j], airports[i]));
+
                                 CreateDestinationPassengers(airports[j], airports[i]);
                                 CreateDestinationPassengers(airports[i], airports[j]);
                             }

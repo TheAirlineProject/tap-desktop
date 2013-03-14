@@ -583,8 +583,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
 
                 if (this.OpponentType == OpponentSelect.User)
-                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region);
+                {
+                    if (cbSameRegion.IsChecked.Value)
+                        o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, airline.Profile.Country.Region);
+                    else
+                        o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region);
+                }
 
+             
 
                 popUpSplash.IsOpen = true;
 

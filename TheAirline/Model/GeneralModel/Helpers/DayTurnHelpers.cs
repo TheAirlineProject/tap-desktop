@@ -40,6 +40,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
                 {
+                    
                     foreach (RouteTimeTableEntry entry in dayEntries)
                     {
                         if (entry.TimeTable.Route.HasStopovers)
@@ -48,11 +49,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             SimulateFlight(entry);
                     }
                     CheckForService(airliner);
+                     
                 }
 
             });
-            Console.WriteLine("Flights updated for {0} in {1} ms. with {2} airliners in route", airline.Profile.Name, sw.ElapsedMilliseconds, airline.Fleet.Count(f=>f.Status != FleetAirliner.AirlinerStatus.Stopped));
-
+        
             sw.Stop();
 
 

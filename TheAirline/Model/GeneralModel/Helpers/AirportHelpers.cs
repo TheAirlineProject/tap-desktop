@@ -69,8 +69,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds all airports in a radius of x km from a airport
         public static List<Airport> GetAirportsNearAirport(Airport airport,double distance)
         {
-            return Airports.GetAirports(a => MathHelpers.GetDistance(airport.Profile.Coordinates, a.Profile.Coordinates) < distance && airport != a);
-        }
+            return airport.Statics.getAirportsWithin(distance);
+         }
         //returns all routes from an airport for an airline
         public static List<Route> GetAirportRoutes(Airport airport, Airline airline)
         {
