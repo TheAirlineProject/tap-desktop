@@ -908,6 +908,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.en-GB.resx">
       <Link>Data\languagefiles\language.en-GB.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.es-ES.resx">
       <Link>Data\languagefiles\language.es-ES.resx</Link>
@@ -917,6 +918,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.resx">
       <Link>Data\languagefiles\language.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.zh-CN.resx">
       <Link>Data\languagefiles\language.zh-CN.resx</Link>
