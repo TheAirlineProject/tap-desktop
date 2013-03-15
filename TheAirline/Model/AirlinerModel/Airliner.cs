@@ -95,6 +95,27 @@ namespace TheAirline.Model.AirlinerModel
 
             
             return Convert.ToInt64(basePrice * devaluationPercent * (this.Damaged/100));
+        } 
+
+        //returns depreciated airliner value (3% per year or 20% value if over 25 years old)
+        public long getValue()
+        {
+            if (getAge() < 25)
+            {
+                return getPrice() * (1 - (long)getAge() * (3 / 100));
+            }
+            else return getPrice() * (20 / 100);
+        }
+
+        //returns total current value of fleet
+        public long getFleetVlaue()
+        {
+            long fleetValue = 0;
+            foreach (FleetAirliner airliner in this.Airline.Fleet)
+            {
+                fleetValue += getValue();
+            }
+            return fleetValue;
         }
         
         
