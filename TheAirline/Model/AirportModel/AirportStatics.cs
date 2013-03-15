@@ -19,7 +19,8 @@ namespace TheAirline.Model.AirportModel
         {
             lock (this.AirportDistances)
             {
-                this.AirportDistances.Add(airport, distance);
+                if (!this.AirportDistances.ContainsKey(airport))
+                    this.AirportDistances.Add(airport, distance);
             }
         }
         //returns the distance for an airport
