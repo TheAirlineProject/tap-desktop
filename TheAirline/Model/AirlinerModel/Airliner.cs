@@ -108,7 +108,7 @@ namespace TheAirline.Model.AirlinerModel
         }
 
         //returns total current value of fleet
-        public long getFleetVlaue()
+        public long getFleetValue()
         {
             long fleetValue = 0;
             foreach (FleetAirliner airliner in this.Airline.Fleet)
@@ -116,6 +116,12 @@ namespace TheAirline.Model.AirlinerModel
                 fleetValue += getValue();
             }
             return fleetValue;
+        }
+
+        //returns the average value of an airliner in the fleet
+        public long getAvgFleetValue()
+        {
+            return getFleetValue() / this.Airline.Fleet.Count();
         }
         
         
