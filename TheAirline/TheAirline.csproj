@@ -257,6 +257,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFinancesModel\PageFinancesOverview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -597,6 +605,12 @@
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelNewAlliance.xaml.cs">
       <DependentUpon>PanelNewAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml.cs">
+      <DependentUpon>PageFinances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFinancesModel\PageFinancesOverview.xaml.cs">
+      <DependentUpon>PageFinancesOverview.xaml</DependentUpon>
     </Compile>
     <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml.cs">
       <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
@@ -1048,6 +1062,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GraphicsModel\PageModel\PageFinancesModel\darkbg.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

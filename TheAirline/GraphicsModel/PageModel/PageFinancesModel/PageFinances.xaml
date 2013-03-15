@@ -1,5 +1,5 @@
 ﻿<page:StandardPage
-	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
   xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:AirlineModel="clr-namespace:TheAirline.Model.AirlineModel" mc:Ignorable="d"
 	x:Class="TheAirline.GraphicsModel.PageModel.PageFinancesModel.PageFinances"
@@ -7,125 +7,62 @@
     xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
 	WindowTitle="Budgets"
 	FlowDirection="LeftToRight">
-<<<<<<< .mine
-	<Page.Background>
-		<ImageBrush Stretch="UniformToFill" ImageSource="pack://siteoforigin:,,,/GraphicsModel/PageModel/PageFinancesModel/darkbg.jpg"/>
-	</Page.Background>
     <Viewbox Stretch="Uniform">
-		<Grid x:Name="LayoutRoot">
-		
-        <TextBlock x:Name="financesHeader" HorizontalAlignment="Center" Margin="146.306,536.813,449,0" TextWrapping="Wrap" Text="Finances and Budgets" VerticalAlignment="Top" Foreground="White" FontSize="21.333"/>
-        <TextBlock x:Name="budgetsLabel" HorizontalAlignment="Left" Height="23" Margin="-33,75,0,0" TextWrapping="Wrap" Text="Primary Budgets" VerticalAlignment="Top" Width="93" Background="Transparent"  RenderTransformOrigin="0.492,0.475">
-        	<TextBlock.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="-90"/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="marketingSubLabel" HorizontalAlignment="Left" Height="21" Margin="-31,176.6,0,0" TextWrapping="Wrap" Text="Marketing" VerticalAlignment="Top" Width="92" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5"  Opacity="0.85" TextAlignment="Center">
-        	<TextBlock.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="-90"/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="maintenanceSubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,271.5,0,0" TextWrapping="Wrap" Text="Maintenance" VerticalAlignment="Top" Width="88" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5"  Opacity="0.845" TextAlignment="Center">
-        	<TextBlock.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="-90.35"/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="securitySubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,369.166,0,0" TextWrapping="Wrap" Text="Security" VerticalAlignment="Top" Width="88"  Opacity="0.85" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
-        	<TextBlock.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="-90"/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</TextBlock.RenderTransform>
-        </TextBlock>
-        <TextBlock x:Name="csSubLabel" HorizontalAlignment="Left" Height="23" Margin="-36.001,468.667,0,0" TextWrapping="Wrap" Text="Customer Service" VerticalAlignment="Top" Width="102" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"  RenderTransformOrigin="0.5,0.5" TextAlignment="Center">
-        	<TextBlock.RenderTransform>
-        		<TransformGroup>
-        			<ScaleTransform/>
-        			<SkewTransform/>
-        			<RotateTransform Angle="-90"/>
-        			<TranslateTransform/>
-        		</TransformGroup>
-        	</TextBlock.RenderTransform>
-        </TextBlock>
-        <Button x:Name="buttonApply" Content="Apply" HorizontalAlignment="Left" Margin="25,545,0,0" VerticalAlignment="Top" Width="43"  FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
-        <Button x:Name="buttonReset" Content="Reset" HorizontalAlignment="Left" Margin="88,545,0,0" VerticalAlignment="Top" Width="43" FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
-=======
-  
-    <Viewbox x:Name="panelViewbox">
         <Grid x:Name="LayoutRoot">
 
             <TextBlock x:Name="financesHeader" HorizontalAlignment="Center" Margin="146.306,536.813,449,0" TextWrapping="Wrap" Text="Finances and Budgets" VerticalAlignment="Top" Foreground="White" FontSize="21.333"/>
-            <TextBox x:Name="budgetsLabel" HorizontalAlignment="Left" Height="23" Margin="-33,75,0,0" TextWrapping="Wrap" Text="Primary Budgets" VerticalAlignment="Top" Width="93" Background="Transparent" BorderThickness="0" RenderTransformOrigin="0.492,0.475">
-                <TextBox.RenderTransform>
+            <TextBlock x:Name="budgetsLabel" HorizontalAlignment="Left" Height="23" Margin="-33,75,0,0" TextWrapping="Wrap" Text="Primary Budgets" VerticalAlignment="Top" Width="93" Background="Transparent"  RenderTransformOrigin="0.492,0.475">
+                <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform Angle="-90"/>
                         <TranslateTransform/>
                     </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <TextBox x:Name="marketingSubLabel" HorizontalAlignment="Left" Height="21" Margin="-31,176.6,0,0" TextWrapping="Wrap" Text="Marketing" VerticalAlignment="Top" Width="92" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5" BorderThickness="0" Opacity="0.85" TextAlignment="Center">
-                <TextBox.RenderTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="marketingSubLabel" HorizontalAlignment="Left" Height="21" Margin="-31,176.6,0,0" TextWrapping="Wrap" Text="Marketing" VerticalAlignment="Top" Width="92" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5"  Opacity="0.85" TextAlignment="Center">
+                <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform Angle="-90"/>
                         <TranslateTransform/>
                     </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <TextBox x:Name="maintenanceSubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,271.5,0,0" TextWrapping="Wrap" Text="Maintenance" VerticalAlignment="Top" Width="88" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5" BorderThickness="0" Opacity="0.845" TextAlignment="Center">
-                <TextBox.RenderTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="maintenanceSubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,271.5,0,0" TextWrapping="Wrap" Text="Maintenance" VerticalAlignment="Top" Width="88" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5"  Opacity="0.845" TextAlignment="Center">
+                <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform Angle="-90.35"/>
                         <TranslateTransform/>
                     </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <TextBox x:Name="securitySubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,369.166,0,0" TextWrapping="Wrap" Text="Security" VerticalAlignment="Top" Width="88" BorderThickness="0" Opacity="0.85" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
-                <TextBox.RenderTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="securitySubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,369.166,0,0" TextWrapping="Wrap" Text="Security" VerticalAlignment="Top" Width="88"  Opacity="0.85" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform Angle="-90"/>
                         <TranslateTransform/>
                     </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <TextBox x:Name="csSubLabel" HorizontalAlignment="Left" Height="23" Margin="-36.001,468.667,0,0" TextWrapping="Wrap" Text="Customer Service" VerticalAlignment="Top" Width="102" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" BorderThickness="0" RenderTransformOrigin="0.5,0.5" TextAlignment="Center">
-                <TextBox.RenderTransform>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="csSubLabel" HorizontalAlignment="Left" Height="23" Margin="-36.001,468.667,0,0" TextWrapping="Wrap" Text="Customer Service" VerticalAlignment="Top" Width="102" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"  RenderTransformOrigin="0.5,0.5" TextAlignment="Center">
+                <TextBlock.RenderTransform>
                     <TransformGroup>
                         <ScaleTransform/>
                         <SkewTransform/>
                         <RotateTransform Angle="-90"/>
                         <TranslateTransform/>
                     </TransformGroup>
-                </TextBox.RenderTransform>
-            </TextBox>
-            <Button x:Name="buttonApply" Content="Apply" HorizontalAlignment="Left" Margin="25,545,0,0" VerticalAlignment="Top" Width="43" BorderThickness="0" FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Button x:Name="buttonApply" Content="Apply" HorizontalAlignment="Left" Margin="25,545,0,0" VerticalAlignment="Top" Width="43"  FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
             <Button x:Name="buttonReset" Content="Reset" HorizontalAlignment="Left" Margin="88,545,0,0" VerticalAlignment="Top" Width="43" FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
->>>>>>> .r1293
             <StackPanel x:Name="mainSliderPanel" HorizontalAlignment="Left" Height="96" Margin="20,40,0,0" VerticalAlignment="Top" Width="200">
                 <Slider x:Name="marketingSlider" Maximum="10000000" LargeChange="500000" SmallChange="50000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Cursor="None" Background="Transparent"/>
                 <Slider x:Name="maintenanceSlider" Maximum="50000000" LargeChange="1000000" SmallChange="250000" TickFrequency="2500000" TickPlacement="BottomRight" Value="2500000"/>
@@ -214,112 +151,55 @@
                 <TextBlock x:Name="scValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=scSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
                 <TextBlock x:Name="prValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=prSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
             </StackPanel>
-<<<<<<< .mine
             <TextBlock x:Name="foHeader" HorizontalAlignment="Center" Height="23" Margin="565,37.896,111,0" TextWrapping="Wrap" Text="Financial Overview" VerticalAlignment="Top" Width="124" Background="Transparent" Foreground="LightGray"  FontSize="13.333" FontWeight="Bold">
-			<TextBlock.Effect>
-				<DropShadowEffect BlurRadius="3" Color="#FF88AAF3" ShadowDepth="2" Opacity="0.925"/>
-			</TextBlock.Effect>
-		</TextBlock>
-		<StackPanel x:Name="labelPanel1" HorizontalAlignment="Left" Height="275" Margin="462,60,0,0" VerticalAlignment="Top" Width="120" Opacity="0.995">
-			<TextBlock x:Name="totalCash" Height="23" TextWrapping="Wrap" Text="Total Cash" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="totalBudget" Height="23" TextWrapping="Wrap" Text="Total Budget" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="remBudget" Height="23" TextWrapping="Wrap" Text="Remaining Budget" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="eoyCash" Height="23" TextWrapping="Wrap" Text="End of Year Cash" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="fleetSize" Height="23" TextWrapping="Wrap" Text="Fleet Size" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="totalFleetVal" Height="23" TextWrapping="Wrap" Text="Total Fleet Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="avgAirlinerVal" Height="23" TextWrapping="Wrap" Text="Avg Airliner Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="susbsidiaries" Height="23" TextWrapping="Wrap" Text="Subsidiaries" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="totalSubVal" Height="23" TextWrapping="Wrap" Text="Total Subs. Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="avgSubVal" Height="23" TextWrapping="Wrap" Text="Avg Subs. Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="totalEmployees" Height="23" TextWrapping="Wrap" Text="Total Employees" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-			<TextBlock x:Name="totalPayroll" Height="23" TextWrapping="Wrap" Text="Total Annual Payroll" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
-		</StackPanel>
-		<StackPanel x:Name="currentYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="582,60,0,0" VerticalAlignment="Top" Width="92" Opacity="0.995">
-			<TextBlock x:Name="mCashValue" Height="23" TextWrapping="Wrap" Text="$37,501,400" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mBudgetValue" Height="23" TextWrapping="Wrap" Text="$77,500,000" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mrBudgetValue" Height="23" TextWrapping="Wrap" Text="$19,400,000" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="meoyCashValue" Height="23" TextWrapping="Wrap" Text="$41,622,920" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intFleetSizeValue" Height="23" TextWrapping="Wrap" Text="27" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mTotalFleetValue" Height="23" TextWrapping="Wrap" Text="$813,561,774" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mAvgAirlinerValue" Height="23" TextWrapping="Wrap" Text="$30,111,111" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intSubsValue" Height="23" TextWrapping="Wrap" Text="1" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mAvgSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intTotalEmployees" Height="23" TextWrapping="Wrap" Text="722" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mTotalPayroll" Height="23" TextWrapping="Wrap" Text="$29,983,216" Background="#BF808080" Foreground="LightGray"/>
-		</StackPanel>
-		<StackPanel x:Name="previousYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="674,60,0,0" VerticalAlignment="Top" Width="92" Opacity="0.995">
-			<TextBlock x:Name="mCashValue1" Height="23" TextWrapping="Wrap" Text="$71,422,800" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mBudgetValue1" Height="23" TextWrapping="Wrap" Text="$62,500,000" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mrBudgetValue1" Height="23" TextWrapping="Wrap" Text="$31,350,000" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="meoyCashValue1" Height="23" TextWrapping="Wrap" Text="$52,675,300" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intFleetSizeValue1" Height="23" TextWrapping="Wrap" Text="14" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mTotalFleetValue1" Height="23" TextWrapping="Wrap" Text="$367,190,632" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mAvgAirlinerValue1" Height="23" TextWrapping="Wrap" Text="$26,215,688" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intSubsValue1" Height="23" TextWrapping="Wrap" Text="0" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intTotalSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mAvgSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="intTotalEmployees1" Height="23" TextWrapping="Wrap" Text="381" Background="#BF808080" Foreground="LightGray"/>
-			<TextBlock x:Name="mTotalPayroll1" Height="23" TextWrapping="Wrap" Text="$14,308,836" Background="#BF808080" Foreground="LightGray"/>
-		</StackPanel>
-				<TextBlock x:Name="current" TextWrapping="Wrap" Text="Current" Margin="582,335,126,242" Width="92" Height="23" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
-		<TextBlock x:Name="oneYearAgo" HorizontalAlignment="Left" Height="23" Margin="674,335,0,0" TextWrapping="Wrap" Text="One Year Ago" VerticalAlignment="Top" Width="92" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
-  
-	</Grid>
-  </Viewbox>
- </Page>
-=======
-            <TextBox x:Name="foHeader" HorizontalAlignment="Center" Height="23" Margin="565,37.896,111,0" TextWrapping="Wrap" Text="Financial Overview" VerticalAlignment="Top" Width="124" Background="Transparent" Foreground="LightGray" BorderThickness="0" FontSize="13.333" FontWeight="Bold">
-                <TextBox.Effect>
+                <TextBlock.Effect>
                     <DropShadowEffect BlurRadius="3" Color="#FF88AAF3" ShadowDepth="2" Opacity="0.925"/>
-                </TextBox.Effect>
-            </TextBox>
+                </TextBlock.Effect>
+            </TextBlock>
             <StackPanel x:Name="labelPanel1" HorizontalAlignment="Left" Height="275" Margin="462,60,0,0" VerticalAlignment="Top" Width="120" Opacity="0.995">
-                <TextBox x:Name="totalCash" Height="23" TextWrapping="Wrap" Text="Total Cash" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="totalBudget" Height="23" TextWrapping="Wrap" Text="Total Budget" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="remBudget" Height="23" TextWrapping="Wrap" Text="Remaining Budget" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="eoyCash" Height="23" TextWrapping="Wrap" Text="End of Year Cash" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="fleetSize" Height="23" TextWrapping="Wrap" Text="Fleet Size" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="totalFleetVal" Height="23" TextWrapping="Wrap" Text="Total Fleet Value" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="avgAirlinerVal" Height="23" TextWrapping="Wrap" Text="Avg Airliner Value" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="susbsidiaries" Height="23" TextWrapping="Wrap" Text="Subsidiaries" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="totalSubVal" Height="23" TextWrapping="Wrap" Text="Total Subs. Value" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="avgSubVal" Height="23" TextWrapping="Wrap" Text="Avg Subs. Value" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="totalEmployees" Height="23" TextWrapping="Wrap" Text="Total Employees" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
-                <TextBox x:Name="totalPayroll" Height="23" TextWrapping="Wrap" Text="Total Annual Payroll" Background="#BF808080" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalCash" Height="23" TextWrapping="Wrap" Text="Total Cash" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalBudget" Height="23" TextWrapping="Wrap" Text="Total Budget" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="remBudget" Height="23" TextWrapping="Wrap" Text="Remaining Budget" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="eoyCash" Height="23" TextWrapping="Wrap" Text="End of Year Cash" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="fleetSize" Height="23" TextWrapping="Wrap" Text="Fleet Size" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalFleetVal" Height="23" TextWrapping="Wrap" Text="Total Fleet Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="avgAirlinerVal" Height="23" TextWrapping="Wrap" Text="Avg Airliner Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="susbsidiaries" Height="23" TextWrapping="Wrap" Text="Subsidiaries" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalSubVal" Height="23" TextWrapping="Wrap" Text="Total Subs. Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="avgSubVal" Height="23" TextWrapping="Wrap" Text="Avg Subs. Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalEmployees" Height="23" TextWrapping="Wrap" Text="Total Employees" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalPayroll" Height="23" TextWrapping="Wrap" Text="Total Annual Payroll" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
             </StackPanel>
             <StackPanel x:Name="currentYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="582,60,0,0" VerticalAlignment="Top" Width="92" Opacity="0.995">
-                <TextBox x:Name="mCashValue" Height="23" TextWrapping="Wrap" Text="$37,501,400" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mBudgetValue" Height="23" TextWrapping="Wrap" Text="$77,500,000" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mrBudgetValue" Height="23" TextWrapping="Wrap" Text="$19,400,000" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="meoyCashValue" Height="23" TextWrapping="Wrap" Text="$41,622,920" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intFleetSizeValue" Height="23" TextWrapping="Wrap" Text="27" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mTotalFleetValue" Height="23" TextWrapping="Wrap" Text="$813,561,774" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mAvgAirlinerValue" Height="23" TextWrapping="Wrap" Text="$30,111,111" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intSubsValue" Height="23" TextWrapping="Wrap" Text="1" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mAvgSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intTotalEmployees" Height="23" TextWrapping="Wrap" Text="722" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mTotalPayroll" Height="23" TextWrapping="Wrap" Text="$29,983,216" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mCashValue" Height="23" TextWrapping="Wrap" Text="$37,501,400" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mBudgetValue" Height="23" TextWrapping="Wrap" Text="$77,500,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mrBudgetValue" Height="23" TextWrapping="Wrap" Text="$19,400,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="meoyCashValue" Height="23" TextWrapping="Wrap" Text="$41,622,920" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intFleetSizeValue" Height="23" TextWrapping="Wrap" Text="27" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalFleetValue" Height="23" TextWrapping="Wrap" Text="$813,561,774" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgAirlinerValue" Height="23" TextWrapping="Wrap" Text="$30,111,111" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intSubsValue" Height="23" TextWrapping="Wrap" Text="1" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalEmployees" Height="23" TextWrapping="Wrap" Text="722" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalPayroll" Height="23" TextWrapping="Wrap" Text="$29,983,216" Background="#BF808080" Foreground="LightGray"/>
             </StackPanel>
             <StackPanel x:Name="previousYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="674,60,0,0" VerticalAlignment="Top" Width="92" Opacity="0.995">
-                <TextBox x:Name="mCashValue1" Height="23" TextWrapping="Wrap" Text="$71,422,800" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mBudgetValue1" Height="23" TextWrapping="Wrap" Text="$62,500,000" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mrBudgetValue1" Height="23" TextWrapping="Wrap" Text="$31,350,000" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="meoyCashValue1" Height="23" TextWrapping="Wrap" Text="$52,675,300" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intFleetSizeValue1" Height="23" TextWrapping="Wrap" Text="14" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mTotalFleetValue1" Height="23" TextWrapping="Wrap" Text="$367,190,632" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mAvgAirlinerValue1" Height="23" TextWrapping="Wrap" Text="$26,215,688" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intSubsValue1" Height="23" TextWrapping="Wrap" Text="0" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intTotalSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mAvgSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="intTotalEmployees1" Height="23" TextWrapping="Wrap" Text="381" Background="#BF808080" Foreground="LightGray"/>
-                <TextBox x:Name="mTotalPayroll1" Height="23" TextWrapping="Wrap" Text="$14,308,836" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mCashValue1" Height="23" TextWrapping="Wrap" Text="$71,422,800" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mBudgetValue1" Height="23" TextWrapping="Wrap" Text="$62,500,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mrBudgetValue1" Height="23" TextWrapping="Wrap" Text="$31,350,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="meoyCashValue1" Height="23" TextWrapping="Wrap" Text="$52,675,300" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intFleetSizeValue1" Height="23" TextWrapping="Wrap" Text="14" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalFleetValue1" Height="23" TextWrapping="Wrap" Text="$367,190,632" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgAirlinerValue1" Height="23" TextWrapping="Wrap" Text="$26,215,688" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intSubsValue1" Height="23" TextWrapping="Wrap" Text="0" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalEmployees1" Height="23" TextWrapping="Wrap" Text="381" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalPayroll1" Height="23" TextWrapping="Wrap" Text="$14,308,836" Background="#BF808080" Foreground="LightGray"/>
             </StackPanel>
-            <TextBox x:Name="current" TextWrapping="Wrap" Text="Current" Margin="582,335,126,242" Width="92" Height="23" TextAlignment="Center" BorderThickness="0,3,1,0" Background="#CC808080" Foreground="White"/>
-            <TextBox x:Name="oneYearAgo" HorizontalAlignment="Left" Height="23" Margin="674,335,0,0" TextWrapping="Wrap" Text="One Year Ago" VerticalAlignment="Top" Width="92" TextAlignment="Center" Background="#CC808080" BorderThickness="0,3,0,0" Foreground="White"/>
-
+            <TextBlock x:Name="current" TextWrapping="Wrap" Text="Current" Margin="582,335,126,242" Width="92" Height="23" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
+            <TextBlock x:Name="oneYearAgo" HorizontalAlignment="Left" Height="23" Margin="674,335,0,0" TextWrapping="Wrap" Text="One Year Ago" VerticalAlignment="Top" Width="92" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
         </Grid>
     </Viewbox>
 </page:StandardPage>
->>>>>>> .r1293
