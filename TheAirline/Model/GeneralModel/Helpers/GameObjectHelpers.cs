@@ -537,6 +537,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
              
             }
 
+            //does monthly budget work
+            DateTime budgetExpires = GameObject.GetInstance().HumanAirline.Budget.BudgetExpires;
+            if (budgetExpires <= GameObject.GetInstance().GameTime.AddDays(30))
+            {
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Budget Expires Soon", "Your budget will expire within the next 30 days. Please go to the budget screen and adjust it as needed and click 'Apply'."));
+            }
+            else if (budgetExpires <= GameObject.GetInstance().GameTime)
+            {
+                //GraphicsModel.PageModel.PageFinancesModel.PageFinances.ResetValues();
+            }
+
+            if (GameObject.GetInstance().HumanAirline.Money < GameObject.GetInstance().HumanAirline.Budget.TotalBudget / 12)
+            {
+                WPFMessageBox.Show("Low Cash!", "Your current cash is less than your budget deduction for the month! Decrease your budget immediately or you will be negative!", WPFMessageBoxButtons.Ok);
+            }
+            else { GameObject.GetInstance().HumanAirline.Money -= GameObject.GetInstance().HumanAirline.Budget.TotalBudget / 12; }
         }
         //do the yearly update
         private static void DoYearlyUpdate()
