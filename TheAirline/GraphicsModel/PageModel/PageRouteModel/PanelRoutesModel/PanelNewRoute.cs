@@ -252,7 +252,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             {
 
                 Guid id = Guid.NewGuid();
-                Route route = new Route(id.ToString(),dest1, dest2, 0);
+                PassengerRoute route = new PassengerRoute(id.ToString(),dest1, dest2, 0);
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
@@ -268,18 +268,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 if (stopover1 != null)
                 {
                     if (stopover2 != null)
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false,Route.RouteType.Passenger));
                     else
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false, Route.RouteType.Passenger));
                     stopover1.Terminals.getEmptyGate(airline).HasRoute = true;
                 }
 
                 if (stopover2 != null)
                 {
                     if (stopover1 != null)
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true, Route.RouteType.Passenger));
                     else
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover2,dest2,route,false));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover2, dest2, route, false, Route.RouteType.Passenger));
                     stopover2.Terminals.getEmptyGate(airline).HasRoute = true;
                 }
 

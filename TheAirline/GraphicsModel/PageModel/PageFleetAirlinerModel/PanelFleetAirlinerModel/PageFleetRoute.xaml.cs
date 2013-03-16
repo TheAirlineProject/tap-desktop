@@ -160,7 +160,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             TextBlock txtStatus = UICreator.CreateTextBlock(status);
             TextBlock txtFlightsPerDay = UICreator.CreateTextBlock(this.Airliner.Routes.Sum(r=>r.TimeTable.Entries.FindAll(e=>e.Day == GameObject.GetInstance().GameTime.DayOfWeek).Count).ToString());
-            TextBlock txtPassengers = UICreator.CreateTextBlock(string.Format("{0:0.00}",this.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")) / this.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"))));
+            TextBlock txtPassengers = UICreator.CreateTextBlock(string.Format("{0:0.00}",this.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")) / this.Airliner.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"))));
 
             lbFlightInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetRoute","1002"), txtStatus));
             lbFlightInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetRoute", "1003"), txtFlightsPerDay));
@@ -210,33 +210,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
                 // chs, 2011-10-10 added missing conversion
                 lbRouteInfo.Items.Add(new QuickInfoValue("Distance", UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
-                foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+                if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
                 {
-                    RouteAirlinerClass rClass = this.Airliner.Routes[0].getRouteAirlinerClass(aClass.Type);
-                    
-                    Image imgInfo = new Image();
-                    imgInfo.Width = 16;
-                    imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
-                    imgInfo.Margin = new Thickness(5, 0, 0, 0);
-                    RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
+                    foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+                    {
+                        RouteAirlinerClass rClass = ((PassengerRoute)route).getRouteAirlinerClass(aClass.Type);
 
-                    Border brdToolTip = new Border();
-                    brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
-                    brdToolTip.Padding = new Thickness(5);
-                    brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
+                        Image imgInfo = new Image();
+                        imgInfo.Width = 16;
+                        imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
+                        imgInfo.Margin = new Thickness(5, 0, 0, 0);
+                        RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
 
-
-                    ContentControl lblClass = new ContentControl();
-                    lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
-                    lblClass.Content = rClass;
-
-                    brdToolTip.Child = lblClass;
+                        Border brdToolTip = new Border();
+                        brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
+                        brdToolTip.Padding = new Thickness(5);
+                        brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
 
 
-                    imgInfo.ToolTip = brdToolTip;
+                        ContentControl lblClass = new ContentControl();
+                        lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
+                        lblClass.Content = rClass;
+
+                        brdToolTip.Child = lblClass;
 
 
-                    lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(aClass.Type, null, null, null).ToString(), imgInfo));
+                        imgInfo.ToolTip = brdToolTip;
+
+
+                        lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(aClass.Type, null, null, null).ToString(), imgInfo));
+                    }
                 }
             }
             WrapPanel buttonsPanel = new WrapPanel();

@@ -29,7 +29,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private Dictionary<Route, Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>> Classes;
         public PanelRoute(PageRoutes parent, Route route)
         {
-
+            
             this.Classes = new Dictionary<Route, Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>>();
 
             this.ParentPage = parent;
@@ -62,115 +62,124 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1004"), UICreator.CreateTextBlock(string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(distance), new StringToLanguageConverter().Convert("km.")))));
 
-            this.Classes.Add(route, new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>());
-
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            if (this.Route.Type == Route.RouteType.Passenger || this.Route.Type == Route.RouteType.Mixed)
             {
-                RouteAirlinerClass rClass = this.Route.getRouteAirlinerClass(type);
-                this.Classes[route].Add(type, rClass);
+                this.Classes.Add(route, new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>());
 
-                WrapPanel panelClassButtons = new WrapPanel();
+                foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                {
+                    RouteAirlinerClass rClass = ((PassengerRoute)this.Route).getRouteAirlinerClass(type);
+                    this.Classes[route].Add(type, rClass);
 
-                Button btnEdit = new Button();
-                btnEdit.Background = Brushes.Transparent;
-                btnEdit.Tag = new KeyValuePair<Route, AirlinerClass.ClassType>(this.Route, type);
-                btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
+                    WrapPanel panelClassButtons = new WrapPanel();
 
-
-                Image imgEdit = new Image();
-                imgEdit.Width = 16;
-                imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
-                RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
-
-                btnEdit.Content = imgEdit;
-
-                Boolean inRoute = route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
-                //btnEdit.Visibility = this.Route.HasAirliner && (this.Route.getCurrentAirliner() != null && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
-                btnEdit.Visibility = inRoute ? Visibility.Collapsed : System.Windows.Visibility.Visible;
-
-                panelClassButtons.Children.Add(btnEdit);
-
-                Image imgInfo = new Image();
-                imgInfo.Width = 16;
-                imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
-                imgInfo.Margin = new Thickness(5, 0, 0, 0);
-                imgInfo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-                RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
-
-                Border brdToolTip = new Border();
-                brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
-                brdToolTip.Padding = new Thickness(5);
-                brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
-                
-                ContentControl lblClass = new ContentControl();
-                lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
-                lblClass.Content = rClass;
-
-                brdToolTip.Child = lblClass;
+                    Button btnEdit = new Button();
+                    btnEdit.Background = Brushes.Transparent;
+                    btnEdit.Tag = new KeyValuePair<Route, AirlinerClass.ClassType>(this.Route, type);
+                    btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
 
 
-                imgInfo.ToolTip = brdToolTip;
+                    Image imgEdit = new Image();
+                    imgEdit.Width = 16;
+                    imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
+                    RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
 
-                panelClassButtons.Children.Add(imgInfo);
+                    btnEdit.Content = imgEdit;
+
+                    Boolean inRoute = route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+                    //btnEdit.Visibility = this.Route.HasAirliner && (this.Route.getCurrentAirliner() != null && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                    btnEdit.Visibility = inRoute ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+
+                    panelClassButtons.Children.Add(btnEdit);
+
+                    Image imgInfo = new Image();
+                    imgInfo.Width = 16;
+                    imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
+                    imgInfo.Margin = new Thickness(5, 0, 0, 0);
+                    imgInfo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                    RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
+
+                    Border brdToolTip = new Border();
+                    brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
+                    brdToolTip.Padding = new Thickness(5);
+                    brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
+
+                    ContentControl lblClass = new ContentControl();
+                    lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
+                    lblClass.Content = rClass;
+
+                    brdToolTip.Child = lblClass;
+
+
+                    imgInfo.ToolTip = brdToolTip;
+
+                    panelClassButtons.Children.Add(imgInfo);
 
 
 
-                lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
+                    lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
+                }
             }
 
             foreach (StopoverRoute stopover in this.Route.Stopovers)
             {
                 foreach (Route leg in stopover.Legs)
                 {
-                    this.Classes.Add(leg, new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>());
+
                     lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1005"), UICreator.CreateTextBlock(string.Format("{0}-{1}", new AirportCodeConverter().Convert(leg.Destination1), new AirportCodeConverter().Convert(leg.Destination2)))));
-                    foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                  
+                    if (this.Route.Type == Route.RouteType.Passenger || this.Route.Type == Route.RouteType.Mixed)
                     {
-                        RouteAirlinerClass rClass = leg.getRouteAirlinerClass(type);
-                        this.Classes[leg].Add(type, rClass);
+                        this.Classes.Add(leg, new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>());
+               
+                        foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                        {
+                            RouteAirlinerClass rClass = ((PassengerRoute)leg).getRouteAirlinerClass(type);
+                            this.Classes[leg].Add(type, rClass);
 
-                        WrapPanel panelClassButtons = new WrapPanel();
+                            WrapPanel panelClassButtons = new WrapPanel();
 
-                        Button btnEdit = new Button();
-                        btnEdit.Background = Brushes.Transparent;
-                        btnEdit.Tag = new KeyValuePair<Route, AirlinerClass.ClassType>(leg, type);
-                        btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
+                            Button btnEdit = new Button();
+                            btnEdit.Background = Brushes.Transparent;
+                            btnEdit.Tag = new KeyValuePair<Route, AirlinerClass.ClassType>(leg, type);
+                            btnEdit.Click += new RoutedEventHandler(btnEdit_Click);
 
-                        Image imgEdit = new Image();
-                        imgEdit.Width = 16;
-                        imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
-                        RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
+                            Image imgEdit = new Image();
+                            imgEdit.Width = 16;
+                            imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
+                            RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
 
-                        btnEdit.Content = imgEdit;
+                            btnEdit.Content = imgEdit;
 
-                        btnEdit.Visibility = this.Route.HasAirliner && (this.Route.getCurrentAirliner() != null && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                            btnEdit.Visibility = this.Route.HasAirliner && (this.Route.getCurrentAirliner() != null && this.Route.getCurrentAirliner().Status != FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
 
-                        panelClassButtons.Children.Add(btnEdit);
+                            panelClassButtons.Children.Add(btnEdit);
 
-                        Image imgInfo = new Image();
-                        imgInfo.Width = 16;
-                        imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
-                        imgInfo.Margin = new Thickness(5, 0, 0, 0);
-                        imgInfo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-                        RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
+                            Image imgInfo = new Image();
+                            imgInfo.Width = 16;
+                            imgInfo.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
+                            imgInfo.Margin = new Thickness(5, 0, 0, 0);
+                            imgInfo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                            RenderOptions.SetBitmapScalingMode(imgInfo, BitmapScalingMode.HighQuality);
 
-                        Border brdToolTip = new Border();
-                        brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
-                        brdToolTip.Padding = new Thickness(5);
-                        brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
+                            Border brdToolTip = new Border();
+                            brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
+                            brdToolTip.Padding = new Thickness(5);
+                            brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
 
-                        ContentControl lblClass = new ContentControl();
-                        lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
-                        lblClass.Content = rClass;
+                            ContentControl lblClass = new ContentControl();
+                            lblClass.SetResourceReference(ContentControl.ContentTemplateProperty, "RouteAirlinerClassItem");
+                            lblClass.Content = rClass;
 
-                        brdToolTip.Child = lblClass;
+                            brdToolTip.Child = lblClass;
 
 
-                        imgInfo.ToolTip = brdToolTip;
+                            imgInfo.ToolTip = brdToolTip;
 
-                        panelClassButtons.Children.Add(imgInfo);
+                            panelClassButtons.Children.Add(imgInfo);
 
-                        lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type).ToString(), panelClassButtons));
+                            lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type).ToString(), panelClassButtons));
+                        }
                     }
                 }
             }
@@ -207,6 +216,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnLoad.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnLoad.Click += new RoutedEventHandler(btnLoad_Click);
             btnLoad.Margin = new Thickness(5, 0, 0, 0);
+            btnLoad.Visibility = this.Route.Type == Route.RouteType.Cargo ? Visibility.Collapsed : System.Windows.Visibility.Visible;
             buttonsPanel.Children.Add(btnLoad);
 
             Button btnDelete = new Button();
@@ -320,14 +330,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             panelLegStatistics.Children.Add(lbLegStatistics);
 
-            RouteAirlinerClass raClass = leg.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+            if (leg.Type == Route.RouteType.Mixed || leg.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger)
+            {
+                RouteAirlinerClass raClass = ((PassengerRoute)leg).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
 
-            double passengers = leg.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers"));
-            double avgPassengers = leg.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers%"));
-          
-            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1009"), UICreator.CreateTextBlock(String.Format("{0:0,0}",passengers))));
-            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1010"), UICreator.CreateTextBlock(string.Format("{0:0.##}", avgPassengers))));
+                double passengers = leg.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
+                double avgPassengers = leg.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
+
+                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1009"), UICreator.CreateTextBlock(String.Format("{0:0,0}", passengers))));
+                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1010"), UICreator.CreateTextBlock(string.Format("{0:0.##}", avgPassengers))));
+             }
+            if (leg.Type == Route.RouteType.Mixed || leg.Type == Route.RouteType.Cargo)
+            {
+                double cargo = leg.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                double avgCargo = leg.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
+
+                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1013"), UICreator.CreateTextBlock(String.Format("{0:0,0}", cargo))));
+                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1014"), UICreator.CreateTextBlock(string.Format("{0:0.##}", avgCargo))));
+        
+            }
             lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1011"), UICreator.CreateTextBlock(string.Format("{0:0.##} %", leg.FillingDegree * 100))));
+     
             lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1012"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(leg.Balance).ToString())));
 
             return panelLegStatistics;
@@ -405,17 +428,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            foreach (Route route in this.Classes.Keys)
-                foreach (RouteAirlinerClass aClass in this.Classes[route].Values)
-                {
-                    route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
+            if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger)
+            {
+                foreach (Route route in this.Classes.Keys)
+                    foreach (RouteAirlinerClass aClass in this.Classes[route].Values)
+                    {
+                        ((PassengerRoute)route).getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
 
-                    List<RouteFacility> facilities = new List<RouteFacility>(aClass.getFacilities());
-                    foreach (RouteFacility facility in facilities)
-                        route.getRouteAirlinerClass(aClass.Type).addFacility(facility);
+                        List<RouteFacility> facilities = new List<RouteFacility>(aClass.getFacilities());
+                        foreach (RouteFacility facility in facilities)
+                            ((PassengerRoute)route).getRouteAirlinerClass(aClass.Type).addFacility(facility);
 
 
-                }
+                    }
+            }
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)

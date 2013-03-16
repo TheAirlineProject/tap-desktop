@@ -20,21 +20,27 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public DateTime FlightTime { get; set; }
         public DateTime ScheduledFlightTime { get; set; }
         public DateTime ExpectedLanding { get { return getExpectedLandingTime(); } set { ;} }
+        public double Cargo { get; set; }
         public Flight(RouteTimeTableEntry entry)
         {
          
-            this.Entry = entry;
-            this.Classes = new List<FlightAirlinerClass>();
-
-            if (this.Entry != null)
-            {
-                this.Airliner = this.Entry.Airliner;
-                this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
-                this.ScheduledFlightTime = this.FlightTime;
-            }
             
-            this.IsOnTime = true;
+            this.Entry = entry;
 
+            if (this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed)
+            {
+                this.Classes = new List<FlightAirlinerClass>();
+
+                if (this.Entry != null)
+                {
+                    this.Airliner = this.Entry.Airliner;
+                    this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
+                    this.ScheduledFlightTime = this.FlightTime;
+                }
+
+                this.IsOnTime = true;
+            }
+           
          
         }
         //adds some delay minutes to the flight
@@ -53,6 +59,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return this.FlightTime.Add(MathHelpers.GetFlightTime(this.Entry.DepartureAirport.Profile.Coordinates, this.Entry.Destination.Airport.Profile.Coordinates, this.Airliner.Airliner.Type));
 
+        }
+        //returns the cargo price
+        public double getCargoPrice()
+        {
+            return ((CargoRoute)this.Entry.TimeTable.Route).PricePerUnit;
         }
         //returns the total number of passengers
         public int getTotalPassengers()
@@ -80,7 +91,17 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return getNextDestination();
 
         }
-
+        //returns if it is a passenger flight
+        public Boolean isPassengerFlight()
+        {
+            return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed || this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger;
+        }
+        //returns if it is a cargo flight
+        public Boolean isCargoFlight()
+        {
+            return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed || this.Entry.TimeTable.Route.Type == Route.RouteType.Cargo;
+  
+        }
 
     }
 }

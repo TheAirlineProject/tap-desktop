@@ -427,16 +427,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     double balance = route.getBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
                     if (balance < -1000)
                     {
-                        if (route.IncomePerPassenger < 0 && route.FillingDegree > 0.50)
+                        if (route.FillingDegree > 0.50 && ((route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed) && ((PassengerRoute)route).IncomePerPassenger > 0.50))
                         {
-                            foreach (RouteAirlinerClass rac in route.Classes)
+                            foreach (RouteAirlinerClass rac in ((PassengerRoute)route).Classes)
                             {
                                 rac.FarePrice += 10;
                             }
                             route.LastUpdated = GameObject.GetInstance().GameTime;
                         }
-                        if (route.FillingDegree > 0.2)
-                            ChangeRouteServiceLevel(route);
+                        if (route.FillingDegree > 0.2 && (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed))
+                            ChangeRouteServiceLevel((PassengerRoute)route);
                         if (route.FillingDegree < 0.2)
                         {
 
@@ -520,7 +520,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     FleetAirliner fAirliner;
 
-                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing);
+                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing,false);
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -533,7 +533,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         Guid id = Guid.NewGuid();
 
-                        Route route = new Route(id.ToString(), airport, destination, price);
+                        PassengerRoute route = new PassengerRoute(id.ToString(), airport, destination, price);
 
                         RouteClassesConfiguration configuration = GetRouteConfiguration(route);
 
@@ -754,9 +754,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return null;
         }
         //returns the best fit for an airliner for sale for a route true for loan
-        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing)
+        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing, Boolean forCargo)
         {
-
+            
             double maxLoanTotal = 100000000;
             double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
 
@@ -764,10 +764,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             List<Airliner> airliners;
 
-            if (doLeasing)
-                airliners = Airliners.GetAirlinersForSale().FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+            if (forCargo)
+            {
+                if (doLeasing)
+                    airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+                else
+                    airliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+       
+            }
             else
-                airliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+            {
+                if (doLeasing)
+                    airliners = Airliners.GetAirlinersForSale(a=>a.Type is AirlinerPassengerType).FindAll(a => a.LeasingPrice * 2 < airline.Money && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+                else
+                    airliners = Airliners.GetAirlinersForSale(a=>a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money - 1000000 && a.getAge() < 10 && distance < a.Type.Range && rangeType == a.Type.RangeType);
+            }
 
             if (airliners.Count > 0)
                 return new KeyValuePair<Airliner, Boolean>((from a in airliners orderby a.Type.Range select a).First(), false);
@@ -1135,14 +1146,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return true;
         }
         //changes the service level for a route
-        private static void ChangeRouteServiceLevel(Route route)
+        private static void ChangeRouteServiceLevel(PassengerRoute route)
         {
             
-            var opponnentRoutes = Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes).Where(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
+            var opponnentRoutes = Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes).Where(r => (r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger) && (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));
             
             if (opponnentRoutes.Count() > 0)
             {
-                double avgServiceLevel = opponnentRoutes.Average(r => r.getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+                double avgServiceLevel = opponnentRoutes.Average(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
 
                 RouteClassesConfiguration configuration = GetRouteConfiguration(route);
 
@@ -1193,7 +1204,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
 
         //returns the prefered configuration for a spefic route
-        public static RouteClassesConfiguration GetRouteConfiguration(Route route)
+        public static RouteClassesConfiguration GetRouteConfiguration(PassengerRoute route)
         {
             double distance = MathHelpers.GetDistance(route.Destination1, route.Destination2);
 

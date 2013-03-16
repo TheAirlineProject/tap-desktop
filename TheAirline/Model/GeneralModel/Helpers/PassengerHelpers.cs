@@ -124,7 +124,7 @@ namespace TheAirline.Model.GeneralModel
             var routesFromDestination = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)));
             var routesToOrigin = airliner.Airliner.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)));
 
-            foreach (Route route in routesFromDestination)
+            foreach (PassengerRoute route in routesFromDestination)
             {
                 Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
@@ -139,7 +139,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-            foreach (Route route in routesToOrigin)
+            foreach (PassengerRoute route in routesToOrigin)
             {
                 Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 
@@ -159,7 +159,7 @@ namespace TheAirline.Model.GeneralModel
                 var allianceRoutesFromDestination = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)))));
                 var allianceRoutesToOrigin = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)))));
 
-                foreach (Route route in allianceRoutesFromDestination)
+                foreach (PassengerRoute route in allianceRoutesFromDestination)
                 {
                     Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
@@ -174,7 +174,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
 
-                foreach (Route route in allianceRoutesToOrigin)
+                foreach (PassengerRoute route in allianceRoutesToOrigin)
                 {
                     Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 
@@ -208,7 +208,7 @@ namespace TheAirline.Model.GeneralModel
                 return 0;
 
             double basicPrice = GetPassengerPrice(currentRoute.Destination1, currentRoute.Destination2, type);
-            double routePrice = currentRoute.getFarePrice(type);
+            double routePrice = ((PassengerRoute)currentRoute).getFarePrice(type);
 
             double priceDiff = basicPrice / routePrice;
 
@@ -251,7 +251,7 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (Route route in routes)
             {
-                double level = route.getServiceLevel(type) / route.getFarePrice(type);
+                double level = ((PassengerRoute)route).getServiceLevel(type) / ((PassengerRoute)route).getFarePrice(type);
 
                 rations.Add(route, level);
             }
@@ -347,6 +347,11 @@ namespace TheAirline.Model.GeneralModel
             return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, passengers);
 
 
+        }
+        //returns the cargo for a flight
+        public static double GetFlightCargo(FleetAirliner airliner)
+        {
+            return 10;
         }
         //returns the holiday factor for an airport
         private static double GetHolidayFactor(Airport airport)

@@ -9,6 +9,7 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 
 namespace TheAirline.Model.GeneralModel.Helpers
@@ -43,9 +44,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Dictionary<Airline, Double> uDistPrice = new Dictionary<Airline, Double>();
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
-                    List<Double> econPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
-                    List<Double> busPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
-                    List<Double> firstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+                    List<Double> econPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+                    List<Double> busPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+                    List<Double> firstPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
                     List<Double> distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).ToList();
                     double avgDistPrice = ((econPrices.DefaultIfEmpty(0).Average() * 0.7) + (busPrices.DefaultIfEmpty(0).Average() * 0.2) + (firstPrices.DefaultIfEmpty(0).Average() * 0.1)) / distance.DefaultIfEmpty(0).Average();
                     uDistPrice.Add(airline, avgDistPrice);
@@ -60,9 +61,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     double avgPPD = 0;  // GetTotalTicketPPD();
-                    List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
-                    List<Double> aiBusPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
-                    List<Double> aiFirstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+                    List<Double> aiEconPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+                    List<Double> aiBusPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+                    List<Double> aiFirstPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
                     double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).DefaultIfEmpty(0).Average();
                     double avgEP = aiEconPrices.DefaultIfEmpty(0).Average(); double avgBP = aiBusPrices.DefaultIfEmpty(0).Average(); double avgFP = aiFirstPrices.DefaultIfEmpty(0).Average();
                     double avgDistPrice = ((avgEP * 0.7) + (avgBP * 0.2) + (avgFP * 0.1)) / distance;
@@ -81,9 +82,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 List<Double> priceDiff = new List<Double>();
                 foreach (Airline airline in Airlines.GetAirlines(a => !a.IsHuman))
                 {
-                    List<Double> aiEconPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
-                    List<Double> aiBusPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
-                    List<Double> aiFirstPrices = (from r in airline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+                    List<Double> aiEconPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+                    List<Double> aiBusPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+                    List<Double> aiFirstPrices = (from r in airline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
                     double distance = (from r in airline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).DefaultIfEmpty(0).Average();
                     double avgEP = aiEconPrices.DefaultIfEmpty(0).Average();
                     double avgBP = aiBusPrices.DefaultIfEmpty(0).Average();
@@ -98,9 +99,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //calculate average human ticket price per distance
             public static double GetHumanAvgTicketPPD()
             {
-                List<Double> ePrices = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
-                List<Double> bPrices = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
-                List<Double> fPrices = (from r in GameObject.GetInstance().HumanAirline.Routes select r.getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
+                List<Double> ePrices = (from r in GameObject.GetInstance().HumanAirline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Economy_Class)).ToList();
+                List<Double> bPrices = (from r in GameObject.GetInstance().HumanAirline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.Business_Class)).ToList();
+                List<Double> fPrices = (from r in GameObject.GetInstance().HumanAirline.Routes where r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed select ((PassengerRoute)r).getFarePrice(AirlinerModel.AirlinerClass.ClassType.First_Class)).ToList();
                 double distance = (from r in GameObject.GetInstance().HumanAirline.Routes select MathHelpers.GetDistance(r.Destination1, r.Destination2)).DefaultIfEmpty(0).Average();
                 double avgHEP = ePrices.DefaultIfEmpty(0).Average();
                 double avgHBP = bPrices.DefaultIfEmpty(0).Average();
@@ -116,7 +117,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Dictionary<Airline, Double> fillAverage = new Dictionary<Airline, Double>();
                 foreach (Airline airline in Airlines.GetAllAirlines())
                 {                
-                    List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
+                    List<Double> fillDegree = (from r in airline.Routes where r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger select ((PassengerRoute)r).getFillingDegree()).ToList();
                     double uFillDegree = fillDegree.DefaultIfEmpty(0).Average();
                     fillAverage.Add(airline, uFillDegree);
                 }
@@ -210,7 +211,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     double pWage = airline.Fees.getValue(FeeTypes.GetType("Pilot Base Salary"));// *airline.Pilots.Count();
                     double cWage = airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
                     double iWage = airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));// *PilotModel.FlightSchool.MaxNumberOfInstructors;
-                    int cabinCrew = airline.Routes.Sum(r => r.getTotalCabinCrew());
+                    int cabinCrew = airline.Routes.Where(r=>r.Type == AirlinerModel.RouteModel.Route.RouteType.Passenger || r.Type==AirlinerModel.RouteModel.Route.RouteType.Mixed).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
                     int serviceCrew = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportModel.AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
                     int maintenanceCrew = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportModel.AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
                     double averageWage = ((sWage * serviceCrew) + (mWage * maintenanceCrew) + pWage + iWage + (cWage * cabinCrew)) / 5;

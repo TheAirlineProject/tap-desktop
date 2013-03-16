@@ -88,7 +88,7 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerCargoType : AirlinerType
     {
         public double CargoSize { get; set; }
-        public AirlinerCargoType(Manufacturer manufacturer, string name,  int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period produced) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced)
+        public AirlinerCargoType(Manufacturer manufacturer, string name, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period produced) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced)
         {
             this.CargoSize = cargoSize;
         }

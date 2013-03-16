@@ -803,13 +803,15 @@
     <Compile Include="Model\AirlinerModel\Manufacturer.cs" />
     <Compile Include="Model\AirlinerModel\ManufacturerContract.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerOrder.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\CargoRoute.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\Flight.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\FlightAirlinerClass.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\Route.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteAirlinerClass.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteConfiguration.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteEntryDestination.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteFacility.cs" />
-    <Compile Include="Model\AirlinerModel\RouteModel\Route.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\PassengerRoute.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteStatistics.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTable.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTableEntry.cs" />
@@ -948,6 +950,7 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
     <AppDesigner Include="Properties\" />
   </ItemGroup>

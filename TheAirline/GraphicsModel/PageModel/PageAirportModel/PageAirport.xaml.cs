@@ -210,11 +210,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                     int demand = passengers.Rate;
                     int covered = 0;
 
-                    List<Route> routes = AirportHelpers.GetAirportRoutes(airport, this.Airport);
+                    List<Route> routes = AirportHelpers.GetAirportRoutes(airport, this.Airport).Where(r=>r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger).ToList();
 
                     foreach (Route route in routes)
                     {
-                         RouteAirlinerClass raClass = route.getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                         RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
 
                         double avgPassengers = route.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers%"));
                         double flights = route.TimeTable.Entries.Count;

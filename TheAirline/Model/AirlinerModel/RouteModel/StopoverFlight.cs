@@ -86,19 +86,22 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 }
 
-                List<FlightAirlinerClass> classes = new List<FlightAirlinerClass>();
-                foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+                if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
                 {
-                    FlightAirlinerClass faClass;
-                    if (isInbound)
-                        faClass = new FlightAirlinerClass(route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination2, route.Destination1, routes, isInbound));
-                    else
-                        faClass = new FlightAirlinerClass(route.getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination1, route.Destination2, routes, isInbound));
+                    List<FlightAirlinerClass> classes = new List<FlightAirlinerClass>();
+                    foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
+                    {
+                        FlightAirlinerClass faClass;
+                        if (isInbound)
+                            faClass = new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination2, route.Destination1, routes, isInbound));
+                        else
+                            faClass = new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetStopoverFlightPassengers(this.Airliner, aClass.Type, route.Destination1, route.Destination2, routes, isInbound));
 
-                    classes.Add(faClass);
+                        classes.Add(faClass);
+                    }
+
+                    this.AllClasses.Add(entry, classes);
                 }
-
-                this.AllClasses.Add(entry, classes);
             }
         }
         //sets the next entry

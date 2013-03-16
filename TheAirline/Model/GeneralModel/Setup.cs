@@ -862,7 +862,7 @@ namespace TheAirline.Model.GeneralModel
                         type.Image = dir + airliner.Attributes["image"].Value + ".png";
 
 
-                    if (type != null && airlinerType == AirlinerType.TypeOfAirliner.Passenger)
+                    if (type != null)
                         AirlinerTypes.AddType(type);
                 }
             }
@@ -1772,6 +1772,8 @@ namespace TheAirline.Model.GeneralModel
         {
             StatisticsTypes.AddStatisticsType(new StatisticsType("Arrivals", "Arrivals"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Departures", "Departures"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Cargo", "Cargo"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Cargo%", "Cargo%"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers", "Passengers"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers per flight", "Passengers%"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passenger Capacity", "Capacity"));
@@ -1976,7 +1978,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     airportDestination = airportDestinations[counter];
 
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false,false);
 
                     counter++;
                 }
@@ -2001,7 +2003,7 @@ namespace TheAirline.Model.GeneralModel
 
                     Guid id = Guid.NewGuid();
 
-                    Route route = new Route(id.ToString(), airportDestination, airline.Airports[0], price);
+                    PassengerRoute route = new PassengerRoute(id.ToString(), airportDestination, airline.Airports[0], price);
 
                     FleetAirliner fAirliner = AirlineHelpers.BuyAirliner(airline, airliner.Value.Key, airportHomeBase);
                     fAirliner.addRoute(route);
@@ -2070,7 +2072,7 @@ namespace TheAirline.Model.GeneralModel
 
                 Guid id = Guid.NewGuid();
 
-                Route route = new Route(id.ToString(), dest1, dest2, price);
+                PassengerRoute route = new PassengerRoute(id.ToString(), dest1, dest2, price);
 
                 KeyValuePair<Airliner, Boolean>? airliner = null;
                 if (startRoute.Type != null)
@@ -2098,7 +2100,7 @@ namespace TheAirline.Model.GeneralModel
 
                 if (airliner == null)
                 {
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, false);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, false,false);
                 }
 
                 FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
@@ -2203,12 +2205,12 @@ namespace TheAirline.Model.GeneralModel
 
                     Guid id = Guid.NewGuid();
 
-                    Route route = new Route(id.ToString(), origin, destination, price);
+                    PassengerRoute route = new PassengerRoute(id.ToString(), origin, destination, price);
 
-                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false);
+                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false,false);
 
                     if (airliner == null)
-                        airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, true);
+                        airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, true,false);
 
                     double distance = MathHelpers.GetDistance(origin, destination);
 

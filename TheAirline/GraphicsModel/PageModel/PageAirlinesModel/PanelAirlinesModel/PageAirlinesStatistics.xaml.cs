@@ -84,7 +84,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
 
             panelStats.Children.Clear();
 
-            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Departures"), false));
+            panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Arrivals"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("On-Time%"), true));

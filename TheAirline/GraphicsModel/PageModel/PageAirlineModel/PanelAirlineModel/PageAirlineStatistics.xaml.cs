@@ -106,7 +106,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Passengers")));
             lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Passengers%")));
-            lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Departures")));
+            lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Arrivals")));
 
         }
        

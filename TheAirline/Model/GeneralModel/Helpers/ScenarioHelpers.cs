@@ -148,7 +148,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Guid id = Guid.NewGuid();
 
-                Route route = new Route(id.ToString(), saroute.Destination1, saroute.Destination2, price);
+                PassengerRoute route = new PassengerRoute(id.ToString(), saroute.Destination1, saroute.Destination2, price);
 
                 RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
 

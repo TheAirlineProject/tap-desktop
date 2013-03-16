@@ -145,7 +145,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             //lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"), UICreator.CreateTextBlock(string.Format("{0:C}", avgBalance))));
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(avgBalance).ToString())));
 
-            double avgFillingPercent = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.FillingDegree);
+            double avgFillingPercent = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Where(r=>r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed).Average(r => ((PassengerRoute)r).FillingDegree);
             lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1007"), UICreator.CreateTextBlock(string.Format("{0:0} %", avgFillingPercent * 100))));
 
             int totalFlights = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Sum(r => r.TimeTable.Entries.Count);

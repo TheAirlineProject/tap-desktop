@@ -22,6 +22,7 @@ namespace TheAirline.Model.AirlinerModel
         public double Damaged { get; set; }
         public int Age { get { return getAge(); } private set { } }
         public List<AirlinerClass> Classes { get; set; }
+        private Random rnd = new Random();
         public Airliner(AirlinerType type, string tailNumber, DateTime builtDate)
         {
             this.BuiltDate = new DateTime(builtDate.Year,builtDate.Month,builtDate.Day);
@@ -78,7 +79,6 @@ namespace TheAirline.Model.AirlinerModel
         }
 
         //gets the price for the airliner based on age
-        Random rnd = new Random();
         public long getPrice()
         {
             double basePrice = this.Type.Price;

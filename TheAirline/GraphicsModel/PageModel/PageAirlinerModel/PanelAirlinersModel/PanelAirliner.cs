@@ -97,6 +97,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1009"), UICreator.CreateTextBlock(((AirlinerPassengerType)airliner).MaxSeatingCapacity.ToString())));
                 lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1010"), UICreator.CreateTextBlock(((AirlinerPassengerType)airliner).MaxAirlinerClasses.ToString())));
             }
+            if (airliner.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+            {
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner","1017"),UICreator.CreateTextBlock(((AirlinerCargoType)airliner).CargoSize.ToString())));
+            }
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1015"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.MinRunwaylength).ToString())));
 

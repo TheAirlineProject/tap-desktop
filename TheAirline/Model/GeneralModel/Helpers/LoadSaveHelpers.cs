@@ -933,9 +933,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
                             int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
 
-                            
+                            /*ændres
                             currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));
-                        }
+                        */}
 
                         if (isStopoverFlight)
                         {
@@ -959,9 +959,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     AirlinerClass.ClassType stopoverAirlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), stopoverFlightClassNode.Attributes["type"].Value);
                                     int stopoverFlightPassengers = Convert.ToInt16(stopoverFlightClassNode.Attributes["passengers"].Value);
 
-                                   
+                                   /*ændres
                                     stopoverFlightClasses.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(stopoverAirlinerClassType), stopoverFlightPassengers));
-                                    
+                                    */
                                 }
 
                                 stopEntryAllClasses.Add(stopoverEntry, stopoverFlightClasses);

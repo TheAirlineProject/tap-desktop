@@ -5,8 +5,9 @@ using System.Text;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
-    /*! Route airliner class.
-    * This class is used for an airliner class onboard of a route airliner
+    
+    /*! Route airliner class for passengers.
+    * This class is used for an airliner class onboard of a route airliner for passengers
     * The class needs parameters for type of class and the fare price
     */
     public class RouteAirlinerClass
@@ -16,15 +17,15 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public SeatingType Seating { get; set; } 
         public double FarePrice { get; set; }
         private List<RouteFacility> Facilities;
-        //public int CabinCrew { get; set; }
         public AirlinerClass.ClassType Type { get; set; }
+        //public int CabinCrew { get; set; }
         
         public RouteAirlinerClass(AirlinerClass.ClassType type,SeatingType seating, double fareprice)
         {
             this.Facilities = new List<RouteFacility>();
-            this.Type = type;
             this.FarePrice =  fareprice;
             this.Seating =  seating;
+            this.Type = type;
         }
         //adds a facility to the route class
         public void addFacility(RouteFacility facility)
@@ -49,4 +50,5 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         }
 
     }
+  
 }

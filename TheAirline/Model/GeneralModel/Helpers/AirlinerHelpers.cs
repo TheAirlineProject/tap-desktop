@@ -130,7 +130,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     airliner.clearAirlinerClasses();
 
-                    
                     foreach (AirlinerClassConfiguration aClass in ((AirlinerTypeConfiguration)airlinerTypeConfiguration).Classes)
                     {
                         AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
@@ -144,30 +143,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     
                 }
             }
-            else
+            else if (airliner.Type is AirlinerCargoType)
             {
-                AirlinerConfiguration configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
 
-                foreach (AirlinerClassConfiguration aClass in configuration.Classes)
-                {
-                    AirlinerClass airlinerClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
-                    airlinerClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
-
-                    foreach (AirlinerFacility facility in aClass.getFacilities())
-                        airlinerClass.setFacility(airliner.Airline, facility);
-
-                    airliner.addAirlinerClass(airlinerClass);
-                }
-
-                int seatingDiff = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
-
-                airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
-
-                AirlinerFacility seatingFacility = airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).getFacility(AirlinerFacility.FacilityType.Seat);
-
-                int extraSeats = (int)(seatingDiff / seatingFacility.SeatUses);
-
-                airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).SeatingCapacity += extraSeats;
+                AirlinerClass cargoClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
+                airliner.addAirlinerClass(cargoClass);
+                    
+            
 
             }
           

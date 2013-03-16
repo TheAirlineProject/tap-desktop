@@ -20,7 +20,7 @@ namespace TheAirline.Model.AirlinerModel
         //get the degree of filling
         private double getFillingDegree()
         {
-            double avgPassengers = getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")) / getStatisticsValue(StatisticsTypes.GetStatisticsType("Departures"));
+            double avgPassengers = getStatisticsValue(StatisticsTypes.GetStatisticsType("Passengers")) / getStatisticsValue(StatisticsTypes.GetStatisticsType("Arrivals"));
 
             double totalPassengers = Convert.ToDouble(this.Airliner.Airliner.getTotalSeatCapacity());
 

@@ -79,7 +79,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             lbStats.Items.Add(new KeyValuePair<FleetAirliner,StatisticsType>(this.Airliner,StatisticsTypes.GetStatisticsType("Passengers")));
             lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Passengers%")));
-            lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Departures")));
+            //lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Departures")));
       
         }
         private void PageFleetStatistics_OnTimeChanged()
