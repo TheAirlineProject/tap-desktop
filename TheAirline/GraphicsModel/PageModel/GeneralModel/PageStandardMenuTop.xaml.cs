@@ -226,7 +226,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                   
                 KeyValuePair<string,string>? f = LoadSaveHelpers.GetSavedGames().Find(fs=>fs.Key == name);
 
-                if (!f.HasValue)
+                if (!f.HasValue || f.Value.Key == null)
                 {
                     Guid file = Guid.NewGuid();
 

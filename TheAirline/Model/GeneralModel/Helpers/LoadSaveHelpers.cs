@@ -27,12 +27,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
 {
     public class LoadSaveHelpers
     {
+        //creates the saves.xml
+        public static void CreateBaseXml(string path)
+        {
+            XmlDocument doc = new XmlDocument();// Create the XML Declaration, and append it to XML document
+            XmlDeclaration dec = doc.CreateXmlDeclaration("1.0", null, null);
+            doc.AppendChild(dec);// Create the root element
+            
+            XmlElement root = doc.CreateElement("saves");
+            doc.AppendChild(root);
+            
+
+            doc.Save(path + "\\saves.xml");
+        }
         //deletes a saved game
         public static void DeleteGame(string name)
         {
             RemoveSavedFile(name);
 
-            File.Delete(AppSettings.getDataPath() + "\\saves\\" + name + ".sav");
+            File.Delete(AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav");
 
 
         }
@@ -40,13 +53,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void RemoveSavedFile(string name)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\saves\\saves.xml");
+            doc.Load(AppSettings.getCommonApplicationDataPath()+ "\\saves\\saves.xml");
 
             XmlNode node = doc.SelectSingleNode("/saves/save[@file='" + name + "']");
 
             node.ParentNode.RemoveChild(node);
 
-            doc.Save(AppSettings.getDataPath() + "\\saves\\saves.xml");
+            doc.Save(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
 
         }
         //loads a game
@@ -57,7 +70,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "101"), Translator.GetInstance().GetString("MessageBox", "101", "message"), WPFMessageBoxButtons.Ok);
                 return;
             }
-            string fileName = AppSettings.getDataPath() + "\\saves\\" + name + ".sav";
+            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             XmlDocument doc = new XmlDocument();
 
@@ -920,6 +933,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
                             int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
 
+                            
                             currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));
                         }
 
@@ -945,8 +959,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     AirlinerClass.ClassType stopoverAirlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), stopoverFlightClassNode.Attributes["type"].Value);
                                     int stopoverFlightPassengers = Convert.ToInt16(stopoverFlightClassNode.Attributes["passengers"].Value);
 
+                                   
                                     stopoverFlightClasses.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(stopoverAirlinerClassType), stopoverFlightPassengers));
-
+                                    
                                 }
 
                                 stopEntryAllClasses.Add(stopoverEntry, stopoverFlightClasses);
@@ -990,7 +1005,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void AppendSavedFile(string name, string file)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\saves\\saves.xml");
+            doc.Load(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNode node = root.SelectSingleNode("//saves");
@@ -1001,7 +1016,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             node.AppendChild(e);
 
-            doc.Save(AppSettings.getDataPath() + "\\saves\\saves.xml");
+            doc.Save(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
 
         }
         //returns the names of the saved games
@@ -1010,7 +1025,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<KeyValuePair<string, string>> saves = new List<KeyValuePair<string, string>>();
 
             XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getDataPath() + "\\saves\\saves.xml");
+            doc.Load(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList savesList = root.SelectNodes("//saves/save");
@@ -1031,7 +1046,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
-            string path = AppSettings.getDataPath() + "\\saves\\" + file + ".sav";
+            string path = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
             XmlDocument xmlDoc = new XmlDocument();
 
@@ -1347,7 +1362,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.AppendChild(fleetNode);
 
                 XmlElement routesNode = xmlDoc.CreateElement("routes");
-                foreach (Route route in airline.Routes)
+                foreach (PassengerRoute route in airline.Routes)
                 {
                     routesNode.AppendChild(SaveRoute(xmlDoc, route));
                 }
@@ -1855,7 +1870,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //Console.WriteLine("Time elapsed: {0} ms.", sw.ElapsedMilliseconds);
 
             //WaitFor.tasks
-            using (FileStream fs = new FileStream(path, FileMode.Create))
+            using (FileStream fs = new FileStream(path, FileMode.Create)) 
             {
                 Stream s;
 
@@ -1874,14 +1889,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //loads a route
-        private static Route LoadRoute(XmlElement routeNode, Airline airline)
+        private static PassengerRoute LoadRoute(XmlElement routeNode, Airline airline)
         {
             string id = routeNode.Attributes["id"].Value;
             Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
             Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
             Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
 
-            Route route = new Route(id, dest1, dest2, 0);
+            PassengerRoute route = new PassengerRoute(id, dest1, dest2, 0);
             route.Banned = isBanned;
             route.Classes.Clear();
 
@@ -1989,7 +2004,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return route;
         }
         //saves a route
-        private static XmlElement SaveRoute(XmlDocument xmlDoc, Route route)
+        private static XmlElement SaveRoute(XmlDocument xmlDoc, PassengerRoute route)
         {
             XmlElement routeNode = xmlDoc.CreateElement("route");
             routeNode.SetAttribute("id", route.Id);
@@ -2005,7 +2020,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 routeStopoverNode.SetAttribute("airport", stopover.Stopover.Profile.ID);
 
                 XmlElement stopoverLegsNode = xmlDoc.CreateElement("legs");
-                foreach (Route leg in stopover.Legs)
+                foreach (PassengerRoute leg in stopover.Legs)
                 {
                     XmlElement stopoverLegNode = xmlDoc.CreateElement("leg");
 

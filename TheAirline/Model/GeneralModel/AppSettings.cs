@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -66,7 +68,28 @@ namespace TheAirline.Model.GeneralModel
         {
             return dataPath;
         }
+        /*! public static method getCommonApplicationData
+         *  return the path to the path for saving data
+         */
+        public static string getCommonApplicationDataPath()
+        {
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
 
+            if (!Directory.Exists(path))
+                createPaths(path);
+    
+
+            return path;
+        }
+        //creates all relevant paths
+        private static void createPaths(string path)
+        {
+
+            Directory.CreateDirectory(path);
+            Directory.CreateDirectory(path + "\\saves");
+            LoadSaveHelpers.CreateBaseXml(path + "\\saves");
+
+        }
         /*! public static method getPluginPath.
          * returns the path to the Plugin directory.
          * \return Plugin directory path as string.
