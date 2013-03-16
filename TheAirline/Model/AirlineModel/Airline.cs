@@ -50,6 +50,8 @@ namespace TheAirline.Model.AirlineModel
         public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
         public List<AirportContract> AirportContracts { get; set; }
+        public Int64 AvgFleetValue { get; set; }
+        public Int64 FleetValue { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
         {
             this.Airports = new List<Airport>();
@@ -463,6 +465,24 @@ namespace TheAirline.Model.AirlineModel
             else
                 return totalAge / getFleetSize();
         }
+
+        //returns total current value of fleet
+        public long getFleetValue()
+        {
+            long fleetValue = 0;
+            foreach (FleetAirliner airliner in this.Fleet)
+            {
+                fleetValue += getValue();
+            }
+            return fleetValue;
+        }
+
+        //returns the average value of an airliner in the fleet
+        public long getAvgFleetValue()
+        {
+            return getFleetValue() / this.Fleet.Count();
+        }
+
         //returns if the airline is a subsidiary airline
         public virtual Boolean isSubsidiaryAirline()
         {

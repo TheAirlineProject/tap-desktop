@@ -7,7 +7,7 @@
     xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
 	WindowTitle="Budgets"
 	FlowDirection="LeftToRight">
-    <Viewbox Stretch="Uniform">
+    <Viewbox x:Name="panelViewbox" Stretch="Uniform">
         <Grid x:Name="LayoutRoot">
 
             <TextBlock x:Name="financesHeader" HorizontalAlignment="Center" Margin="146.306,536.813,449,0" TextWrapping="Wrap" Text="Finances and Budgets" VerticalAlignment="Top" Foreground="White" FontSize="21.333"/>
@@ -61,8 +61,8 @@
                     </TransformGroup>
                 </TextBlock.RenderTransform>
             </TextBlock>
-            <Button x:Name="buttonApply" Content="Apply" HorizontalAlignment="Left" Margin="25,545,0,0" VerticalAlignment="Top" Width="43"  FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
-            <Button x:Name="buttonReset" Content="Reset" HorizontalAlignment="Left" Margin="88,545,0,0" VerticalAlignment="Top" Width="43" FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
+            <Button x:Name="buttonApply" Content="Apply" HorizontalAlignment="Left" Margin="321,141,0,0" VerticalAlignment="Top" Width="43"  FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold" RenderTransformOrigin="6.86,-17.05"/>
+            <Button x:Name="buttonReset" Content="Reset" HorizontalAlignment="Left" Margin="390,141,0,0" VerticalAlignment="Top" Width="43" FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
             <StackPanel x:Name="mainSliderPanel" HorizontalAlignment="Left" Height="96" Margin="20,40,0,0" VerticalAlignment="Top" Width="200">
                 <Slider x:Name="marketingSlider" Maximum="10000000" LargeChange="500000" SmallChange="50000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Cursor="None" Background="Transparent"/>
                 <Slider x:Name="maintenanceSlider" Maximum="50000000" LargeChange="1000000" SmallChange="250000" TickFrequency="2500000" TickPlacement="BottomRight" Value="2500000"/>

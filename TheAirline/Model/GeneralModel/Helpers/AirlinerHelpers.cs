@@ -81,6 +81,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return airliner;
         }
+
+
         //creates the airliner classes for an airliner
         public static void CreateAirlinerClasses(Airliner airliner)
         {
