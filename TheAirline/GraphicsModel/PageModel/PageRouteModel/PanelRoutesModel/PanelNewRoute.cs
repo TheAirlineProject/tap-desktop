@@ -315,8 +315,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
-            Airline airline = GameObject.GetInstance().HumanAirline;
+             Airline airline = GameObject.GetInstance().HumanAirline;
             Airport dest1 = (Airport)cbDestination1.SelectedItem;
             Airport dest2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = ucStopover1.Value;
@@ -326,36 +325,45 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             if (dest1.Terminals.getFreeGates(airline) > 0 && dest2.Terminals.getFreeGates(airline) > 0 && stopoverOk)
             {
-
+                Route route = null;
                 Guid id = Guid.NewGuid();
-                PassengerRoute route = new PassengerRoute(id.ToString(),dest1, dest2, 0);
 
-                foreach (RouteAirlinerClass aClass in this.Classes.Values)
+                if (this.RouteType == Route.RouteType.Passenger)
                 {
-                    route.getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
+                    route = new PassengerRoute(id.ToString(), dest1, dest2, 0);
 
-                    foreach (RouteFacility facility in aClass.getFacilities())
-                        route.getRouteAirlinerClass(aClass.Type).addFacility(facility);
-                   
-                    route.getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
-        
+                    foreach (RouteAirlinerClass aClass in this.Classes.Values)
+                    {
+                        ((PassengerRoute)route).getRouteAirlinerClass(aClass.Type).FarePrice = aClass.FarePrice;
+
+                        foreach (RouteFacility facility in aClass.getFacilities())
+                            ((PassengerRoute)route).getRouteAirlinerClass(aClass.Type).addFacility(facility);
+
+                        ((PassengerRoute)route).getRouteAirlinerClass(aClass.Type).Seating = aClass.Seating;
+
+                    }
+                }
+                if (this.RouteType == Route.RouteType.Cargo)
+                {
+                    route = new CargoRoute(id.ToString(),dest1,dest2,this.CargoPrice);
                 }
 
+                
                 if (stopover1 != null)
                 {
                     if (stopover2 != null)
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false,Route.RouteType.Passenger));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false,this.RouteType));
                     else
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false, Route.RouteType.Passenger));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false, this.RouteType));
                     stopover1.Terminals.getEmptyGate(airline).HasRoute = true;
                 }
 
                 if (stopover2 != null)
                 {
                     if (stopover1 != null)
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true, Route.RouteType.Passenger));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true, this.RouteType));
                     else
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover2, dest2, route, false, Route.RouteType.Passenger));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover2, dest2, route, false,this.RouteType));
                     stopover2.Terminals.getEmptyGate(airline).HasRoute = true;
                 }
 

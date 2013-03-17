@@ -112,7 +112,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             mTotalPayroll.Text = (AirlineHelpers.GetMonthlyPayroll(GameObject.GetInstance().HumanAirline) * 12).ToString("C0");
             intSubsValue.Text = GameObject.GetInstance().HumanAirline.Subsidiaries.Count().ToString();
             mAvgSubsValue.Text = BudgetHelpers.GetAvgSubValue(humanAirline).ToString("C0");
-            mTotalSubsValue.Text = BudgetHelpers.GetTotalSubValues(humanAirline).ToString("C0");
+            //mTotalSubsValue.Text = BudgetHelpers.GetTotalSubValues(humanAirline).ToString("C0");
         }
         
             public void btnApply_Click(object sender, RoutedEventArgs e)

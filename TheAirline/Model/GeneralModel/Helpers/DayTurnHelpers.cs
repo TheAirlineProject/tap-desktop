@@ -156,7 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     if (airliner.CurrentFlight.isPassengerFlight())
                     {
-                        foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                         foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                         {
                             airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute) airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
                         }

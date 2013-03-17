@@ -27,6 +27,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private PageRoutes ParentPage;
         private ListBox lbRouteFinances;
         private Dictionary<Route, Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>> Classes;
+        private double CargoPrice;
+        private TextBlock txtCargo;
         public PanelRoute(PageRoutes parent, Route route)
         {
             
@@ -120,7 +122,32 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     lbRouteInfo.Items.Add(new QuickInfoValue(new TextUnderscoreConverter().Convert(type, null, null, null).ToString(), panelClassButtons));
                 }
             }
+            if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo)
+            {
+                this.CargoPrice = ((CargoRoute)this.Route).PricePerUnit;
 
+                WrapPanel panelCargo = new WrapPanel();
+
+                txtCargo = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.CargoPrice).ToString());
+                txtCargo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                panelCargo.Children.Add(txtCargo);
+
+                Button btnEditCargo = new Button();
+                btnEditCargo.Margin = new Thickness(5, 0, 0, 0);
+                btnEditCargo.Background = Brushes.Transparent;
+                btnEditCargo.Click += new RoutedEventHandler(btnEditCargo_Click);
+
+                Image imgEdit = new Image();
+                imgEdit.Width = 16;
+                imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
+                RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
+
+                btnEditCargo.Content = imgEdit;
+
+                panelCargo.Children.Add(btnEditCargo);
+
+                lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1015"),panelCargo));
+            }
             foreach (StopoverRoute stopover in this.Route.Stopovers)
             {
                 foreach (Route leg in stopover.Legs)
@@ -365,6 +392,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
         }
+        private void btnEditCargo_Click(object sender, RoutedEventArgs e)
+        {
+            TextBox tbCargoPrice = new TextBox();
+            tbCargoPrice.Text = string.Format("{0}", this.CargoPrice);
+            tbCargoPrice.TextAlignment = TextAlignment.Left;
+            tbCargoPrice.Width = 100;
+            tbCargoPrice.Background = Brushes.Transparent;
+            tbCargoPrice.SetResourceReference(TextBox.ForegroundProperty, "TextColor");
+            tbCargoPrice.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelNewRoute", "1008"), tbCargoPrice) == PopUpSingleElement.ButtonSelected.OK && tbCargoPrice.Text.Length > 0)
+            {
+                this.CargoPrice = Convert.ToDouble(tbCargoPrice.Text);
+                txtCargo.Text = new ValueCurrencyConverter().Convert(this.CargoPrice).ToString();
+            }
+        }
         private void sbLeg_Click(object sender, RoutedEventArgs e)
         {
             Route leg = (Route)((ucSelectButton)sender).Tag;
@@ -441,6 +484,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
 
                     }
+            }
+            if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo || this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed)
+            {
+                ((CargoRoute)this.Route).PricePerUnit = this.CargoPrice;
             }
         }
 

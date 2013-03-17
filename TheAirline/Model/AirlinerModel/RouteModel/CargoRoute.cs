@@ -13,7 +13,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     {
         public double PricePerUnit { get; set; }
         public CargoRoute(string id, Airport destination1, Airport destination2, double pricePerUnit)
-            : base(RouteType.Passenger, id, destination1, destination2)
+            : base(RouteType.Cargo, id, destination1, destination2)
         {
             this.PricePerUnit = pricePerUnit;
         }

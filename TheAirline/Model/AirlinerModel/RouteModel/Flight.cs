@@ -40,6 +40,18 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 this.IsOnTime = true;
             }
+            if (this.Entry.TimeTable.Route.Type == Route.RouteType.Cargo || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed)
+            {
+
+                if (this.Entry != null)
+                {
+                    this.Airliner = this.Entry.Airliner;
+                    this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry);
+                    this.ScheduledFlightTime = this.FlightTime;
+                }
+
+                this.IsOnTime = true;
+            }
            
          
         }
