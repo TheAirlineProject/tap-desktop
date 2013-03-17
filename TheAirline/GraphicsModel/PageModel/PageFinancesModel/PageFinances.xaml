@@ -179,7 +179,7 @@
                 <TextBlock x:Name="mTotalFleetValue" Height="23" TextWrapping="Wrap" Text="$813,561,774" Background="#BF808080" Foreground="LightGray"/>
                 <TextBlock x:Name="mAvgAirlinerValue" Height="23" TextWrapping="Wrap" Text="$30,111,111" Background="#BF808080" Foreground="LightGray"/>
                 <TextBlock x:Name="intSubsValue" Height="23" TextWrapping="Wrap" Text="1" Background="#BF808080" Foreground="LightGray"/>
-                <TextBlock x:Name="intTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
                 <TextBlock x:Name="mAvgSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
                 <TextBlock x:Name="intTotalEmployees" Height="23" TextWrapping="Wrap" Text="722" Background="#BF808080" Foreground="LightGray"/>
                 <TextBlock x:Name="mTotalPayroll" Height="23" TextWrapping="Wrap" Text="$29,983,216" Background="#BF808080" Foreground="LightGray"/>

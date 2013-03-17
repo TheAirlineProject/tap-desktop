@@ -38,7 +38,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             //binds and initializes page
             InitializeComponent();
             this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
-            SetDefaults(airline);
+            SetLocalDefaults(airline);
          
             // binds top level budgets and buttons
             Button btnApply = (Button)this.FindName("buttonApply");
@@ -47,7 +47,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             Viewbox panelContent = (Viewbox)this.FindName("panelViewbox");
             setMaximums(airline);
             BudgetHelpers.SetDefaults(airline);
-
+            SetLocalDefaults(airline);
+            SetOverviewPanel(airline);
+            
             //event handlers
             btnApply.Click += new RoutedEventHandler(btnApply_Click);
             btnReset.Click += new RoutedEventHandler(btnReset_Click);
@@ -71,51 +73,88 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
         }
 
         //sets default values and max values
-        public void SetDefaults(Airline humanAirline)
+        public void SetLocalDefaults(Airline humanAirline)
+        {
+            airportSlider.Value = humanAirline.Budget.AirportBudget;
+            compSlider.Value = humanAirline.Budget.CompBudget;
+            csSlider.Value = humanAirline.Budget.CSBudget;
+            engineSlider.Value = humanAirline.Budget.EnginesBudget;
+            baggageSlider.Value = humanAirline.Budget.EquipmentBudget;
+            inflightSlider.Value = humanAirline.Budget.InFlightBudget;
+            internetSlider.Value = humanAirline.Budget.InternetBudget;
+            itSlider.Value = humanAirline.Budget.ITBudget;
+            maintenanceSlider.Value = humanAirline.Budget.MaintenanceBudget;
+            marketingSlider.Value = humanAirline.Budget.MarketingBudget;
+            overhaulSlider.Value = humanAirline.Budget.OverhaulBudget;
+            partsSlider.Value = humanAirline.Budget.PartsBudget;
+            prSlider.Value = humanAirline.Budget.PRBudget;
+            printSlider.Value = humanAirline.Budget.PrintBudget;
+            promoSlider.Value = humanAirline.Budget.PromoBudget;
+            radioSlider.Value = humanAirline.Budget.RadioBudget;
+            rsSlider.Value = humanAirline.Budget.RemoteBudget;
+            securitySlider.Value = humanAirline.Budget.SecurityBudget;
+            scSlider.Value = humanAirline.Budget.ServCenterBudget;
+            televisionSlider.Value = humanAirline.Budget.TelevisionBudget;
+        }
+
+        //sets initial overview panel
+        private void SetOverviewPanel(Airline humanAirline)
         {
             intFleetSizeValue.Text = humanAirline.getFleetSize().ToString();
-            double totalBudget = (humanAirline.Budget.MarketingBudget + humanAirline.Budget.MaintenanceBudget + humanAirline.Budget.SecurityBudget + humanAirline.Budget.CSBudget);
             mCashValue.Text = humanAirline.Money.ToString("C0");
-            mBudgetValue.Text = totalBudget.ToString("C0");
-            mrBudgetValue.Text = BudgetHelpers.GetRemainingBudget(totalBudget).ToString("C0");
+            mBudgetValue.Text = BudgetHelpers.SetDefaults(humanAirline).ToString("C0");
+            mrBudgetValue.Text = BudgetHelpers.GetRemainingBudget().ToString("C0");
             //the *0.15 is arbitrary padding
-            meoyCashValue.Text = (humanAirline.Money - BudgetHelpers.GetRemainingBudget(totalBudget) - (totalBudget * 0.15)).ToString("C0");
-            mAvgAirlinerValue.Text = GameObject.GetInstance().HumanAirline.AvgFleetValue.ToString();
-            mTotalFleetValue.Text = GameObject.GetInstance().HumanAirline.FleetValue.ToString();
+            meoyCashValue.Text = (humanAirline.Money - BudgetHelpers.GetRemainingBudget() - (humanAirline.Budget.TotalBudget * 0.15)).ToString("C0");
+            mAvgAirlinerValue.Text = BudgetHelpers.GetAvgFleetValue().ToString("C0");
+            mTotalFleetValue.Text = BudgetHelpers.GetFleetValue().ToString("C0");
+            intTotalEmployees.Text = GameObject.GetInstance().HumanAirline.getNumberOfEmployees().ToString();
+            mTotalPayroll.Text = (AirlineHelpers.GetMonthlyPayroll(GameObject.GetInstance().HumanAirline) * 12).ToString("C0");
+            intSubsValue.Text = GameObject.GetInstance().HumanAirline.Subsidiaries.Count().ToString();
+            mAvgSubsValue.Text = BudgetHelpers.GetAvgSubValue(humanAirline).ToString("C0");
+            mTotalSubsValue.Text = BudgetHelpers.GetTotalSubValues(humanAirline).ToString("C0");
         }
         
             public void btnApply_Click(object sender, RoutedEventArgs e)
             {
+                Airline humanAirline = GameObject.GetInstance().HumanAirline;
+                humanAirline.Budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(12);
+                humanAirline.Budget.BudgetActive = GameObject.GetInstance().GameTime;
+                humanAirline.Budget.AirportBudget = (long)airportSlider.Value;
+                humanAirline.Budget.CompBudget = (long)compSlider.Value;
+                humanAirline.Budget.CSBudget = (long)csSlider.Value;
+                humanAirline.Budget.EnginesBudget = (long)engineSlider.Value;
+                humanAirline.Budget.EquipmentBudget = (long)baggageSlider.Value;
+                humanAirline.Budget.InFlightBudget = (long)inflightSlider.Value;
+                humanAirline.Budget.InternetBudget = (long)internetSlider.Value;
+                humanAirline.Budget.ITBudget = (long)itSlider.Value;
+                humanAirline.Budget.MaintenanceBudget = (long)maintenanceSlider.Value;
+                humanAirline.Budget.MarketingBudget = (long)marketingSlider.Value;
+                humanAirline.Budget.OverhaulBudget = (long)overhaulSlider.Value;
+                humanAirline.Budget.PartsBudget = (long)partsSlider.Value;
+                humanAirline.Budget.PRBudget = (long)prSlider.Value;
+                humanAirline.Budget.PrintBudget = (long)printSlider.Value;
+                humanAirline.Budget.PromoBudget = (long)promoSlider.Value;
+                humanAirline.Budget.RadioBudget = (long)radioSlider.Value;
+                humanAirline.Budget.RemoteBudget = (long)rsSlider.Value;
+                humanAirline.Budget.SecurityBudget = (long)securitySlider.Value;
+                humanAirline.Budget.ServCenterBudget = (long)scSlider.Value;
+                humanAirline.Budget.TelevisionBudget = (long)televisionSlider.Value;
+                humanAirline.Budget.TotalBudget = (long)securitySlider.Value + (long)marketingSlider.Value + (long)maintenanceSlider.Value + (long)csSlider.Value;
+                mBudgetValue.Text = humanAirline.Budget.TotalBudget.ToString("C0");
+                mrBudgetValue.Text = BudgetHelpers.GetRemainingBudget().ToString("C0");
+                meoyCashValue.Text = BudgetHelpers.GetEndYearCash(humanAirline.Budget.TotalBudget, (long)GameObject.GetInstance().HumanAirline.Money).ToString("C0");
+                BudgetHelpers.verifyValues(humanAirline.Budget);
+                SetLocalDefaults(humanAirline);
                 
-                GameObject.GetInstance().HumanAirline.Budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(12);
-                GameObject.GetInstance().HumanAirline.Budget.AirportBudget = airportSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.CompBudget = compSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.CSBudget = csSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.EnginesBudget = engineSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.EquipmentBudget = baggageSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.InFlightBudget = inflightSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.InternetBudget = internetSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.ITBudget = itSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.MaintenanceBudget = maintenanceSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.MarketingBudget = marketingSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.OverhaulBudget = overhaulSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.PartsBudget = partsSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.PRBudget = prSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.PrintBudget = printSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.PromoBudget = promoSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.RadioBudget = radioSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.RemoteBudget = rsSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.SecurityBudget = securitySlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.ServCenterBudget = scSlider.Value;
-                GameObject.GetInstance().HumanAirline.Budget.TelevisionBudget = televisionSlider.Value;
-                BudgetHelpers.verifyValues(GameObject.GetInstance().HumanAirline.Budget);
             }
 
 
     
             private void btnReset_Click(object sender, RoutedEventArgs e)
             {
-                SetDefaults(GameObject.GetInstance().HumanAirline);
+                BudgetHelpers.SetDefaults(GameObject.GetInstance().HumanAirline);
+                SetLocalDefaults(GameObject.GetInstance().HumanAirline);
             }
 
         }

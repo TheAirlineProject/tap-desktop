@@ -52,6 +52,7 @@ namespace TheAirline.Model.AirlineModel
         public List<AirportContract> AirportContracts { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
+        public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
         {
             this.Airports = new List<Airport>();
@@ -64,6 +65,7 @@ namespace TheAirline.Model.AirlineModel
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new Invoices();
             this.Budget = new AirlineBudget();
+            this.BudgetHistory = new Dictionary<DateTime, AirlineBudget>();
             this.Profile = profile;
             this.Loans = new List<Loan>();
             this.Reputation = 50;
@@ -85,6 +87,13 @@ namespace TheAirline.Model.AirlineModel
             this.Budget = new AirlineBudget();
 
          }
+
+        //stores a budget
+        public void storeBudget(AirlineBudget budget)
+        {
+            this.BudgetHistory.Add(GameObject.GetInstance().GameTime, budget);
+        }
+
         //adds an airport contract to the airline
         public void addAirportContract(AirportContract contract)
         {
@@ -593,13 +602,8 @@ namespace TheAirline.Model.AirlineModel
         public static Boolean ContainsAirline(Airline airline)
         {
             return airlines.Contains(airline);
-        }
+        }           
       
-    }
-
-   
-   
-   
-    
+    }    
    
 }

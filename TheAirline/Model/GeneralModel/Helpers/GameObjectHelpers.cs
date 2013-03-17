@@ -538,7 +538,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             /*
             //does monthly budget work
-            DateTime budgetExpires = GameObject.GetInstance().HumanAirline.Budget.BudgetExpires;
+           DateTime budgetExpires = GameObject.GetInstance().HumanAirline.Budget.BudgetExpires;
             if (budgetExpires <= GameObject.GetInstance().GameTime.AddDays(30))
             {
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Budget Expires Soon", "Your budget will expire within the next 30 days. Please go to the budget screen and adjust it as needed and click 'Apply'."));
@@ -555,6 +555,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else { GameObject.GetInstance().HumanAirline.Money -= GameObject.GetInstance().HumanAirline.Budget.TotalBudget / 12; }
              * */
         }
+
         //do the yearly update
         private static void DoYearlyUpdate()
         {
