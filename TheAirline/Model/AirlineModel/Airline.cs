@@ -518,7 +518,19 @@ namespace TheAirline.Model.AirlineModel
         {
             return this.Policies.Find(p => p.Name == name);
         }
-      
+        //returns the number of employees
+        public int getNumberOfEmployees()
+        {
+            int instructors = this.FlightSchools.Sum(f => f.NumberOfInstructors);
+          
+            int cockpitCrew = this.Pilots.Count;
+            int cabinCrew = this.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
+
+            int serviceCrew = this.Airports.SelectMany(a => a.getCurrentAirportFacilities(this)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
+            int maintenanceCrew = this.Airports.SelectMany(a => a.getCurrentAirportFacilities(this)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
+
+            return cockpitCrew + cabinCrew + serviceCrew + maintenanceCrew + instructors;
+        }
      
        
     }

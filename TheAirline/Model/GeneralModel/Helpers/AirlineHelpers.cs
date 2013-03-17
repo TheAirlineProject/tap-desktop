@@ -336,6 +336,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return false;
         }
+        //returns the monthly payroll for an airline
+        public static double GetMonthlyPayroll(Airline airline)
+        {
+            double instructorFee = airline.FlightSchools.Sum(f => f.NumberOfInstructors) * airline.Fees.getValue(FeeTypes.GetType("Instructor Base Salary"));
+
+            double cockpitCrewFee = airline.Pilots.Count * airline.Fees.getValue(FeeTypes.GetType("Cockpit Wage"));
+
+            double cabinCrewFee = airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew()) * airline.Fees.getValue(FeeTypes.GetType("Cabin Wage"));
+
+            double serviceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees) * airline.Fees.getValue(FeeTypes.GetType("Support Wage"));
+            double maintenanceCrewFee = airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees) * airline.Fees.getValue(FeeTypes.GetType("Maintenance Wage"));
+
+            return instructorFee + cockpitCrewFee + cabinCrewFee + serviceCrewFee + maintenanceCrewFee;
+
+        }
         //returns the number of routes out of an airport for an airline
         public static int GetAirportOutboundRoutes(Airline airline, Airport airport)
         {
