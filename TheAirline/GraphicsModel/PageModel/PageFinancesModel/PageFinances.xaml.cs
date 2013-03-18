@@ -100,24 +100,46 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
         //sets initial overview panel
         private void SetOverviewPanel(Airline humanAirline)
         {
+            BudgetHelpers.GetTestBudget(humanAirline);
+            IDictionary<DateTime, AirlineBudget> testBudget = GameObject.GetInstance().HumanAirline.TestBudget;
+            AirlineBudget budget = BudgetHelpers.GetOneYearBudget(GameObject.GetInstance().GameTime);
             intFleetSizeValue.Text = humanAirline.getFleetSize().ToString();
+            intFleetSizeValue1.Text = budget.FleetSize.ToString();
             mCashValue.Text = humanAirline.Money.ToString("C0");
+            mCashValue1.Text = budget.Cash.ToString("C0");
             mBudgetValue.Text = BudgetHelpers.SetDefaults(humanAirline).ToString("C0");
+            mBudgetValue1.Text = budget.TotalBudget.ToString("C0");
             mrBudgetValue.Text = BudgetHelpers.GetRemainingBudget().ToString("C0");
+            mrBudgetValue1.Text = budget.RemainingBudget.ToString("C0");
             //the *0.15 is arbitrary padding
             meoyCashValue.Text = (humanAirline.Money - BudgetHelpers.GetRemainingBudget() - (humanAirline.Budget.TotalBudget * 0.15)).ToString("C0");
+            meoyCashValue1.Text = budget.EndYearCash.ToString("C0");
             mAvgAirlinerValue.Text = BudgetHelpers.GetAvgFleetValue().ToString("C0");
+            mAvgAirlinerValue1.Text = (budget.FleetValue / budget.FleetSize).ToString("C0");
             mTotalFleetValue.Text = BudgetHelpers.GetFleetValue().ToString("C0");
+            mTotalFleetValue1.Text = budget.FleetValue.ToString("C0");
             intTotalEmployees.Text = GameObject.GetInstance().HumanAirline.getNumberOfEmployees().ToString();
+            intTotalEmployees1.Text = budget.TotalEmployees.ToString();
             mTotalPayroll.Text = (AirlineHelpers.GetMonthlyPayroll(GameObject.GetInstance().HumanAirline) * 12).ToString("C0");
-            intSubsValue.Text = GameObject.GetInstance().HumanAirline.Subsidiaries.Count().ToString();
+            mTotalPayroll1.Text = budget.TotalPayroll.ToString("C0");
+            intSubsValue.Text = GameObject.GetInstance().HumanAirline.Subsidiaries.Count().ToString("C0");
+            intSubsValue1.Text = budget.TotalSubValue.ToString("C0");
             mAvgSubsValue.Text = BudgetHelpers.GetAvgSubValue(humanAirline).ToString("C0");
+            mAvgAirlinerValue1.Text = (budget.TotalSubValue / budget.Subsidiaries).ToString("C0");
             //mTotalSubsValue.Text = BudgetHelpers.GetTotalSubValues(humanAirline).ToString("C0");
         }
         
             public void btnApply_Click(object sender, RoutedEventArgs e)
             {
                 Airline humanAirline = GameObject.GetInstance().HumanAirline;
+                humanAirline.Budget.FleetSize = humanAirline.Fleet.Count();
+                humanAirline.Budget.FleetValue = BudgetHelpers.GetFleetValue();
+                humanAirline.Budget.Subsidiaries = humanAirline.Subsidiaries.Count();
+                humanAirline.Budget.TotalSubValue = BudgetHelpers.GetTotalSubValues(humanAirline);
+                humanAirline.Budget.Cash = (long)humanAirline.Money;
+                humanAirline.Budget.RemainingBudget = BudgetHelpers.GetRemainingBudget();
+                humanAirline.Budget.TotalPayroll = (int)AirlineHelpers.GetMonthlyPayroll(humanAirline);
+                humanAirline.Budget.TotalEmployees = humanAirline.getNumberOfEmployees();
                 humanAirline.Budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(12);
                 humanAirline.Budget.BudgetActive = GameObject.GetInstance().GameTime;
                 humanAirline.Budget.AirportBudget = (long)airportSlider.Value;
@@ -141,6 +163,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
                 humanAirline.Budget.ServCenterBudget = (long)scSlider.Value;
                 humanAirline.Budget.TelevisionBudget = (long)televisionSlider.Value;
                 humanAirline.Budget.TotalBudget = (long)securitySlider.Value + (long)marketingSlider.Value + (long)maintenanceSlider.Value + (long)csSlider.Value;
+                humanAirline.Budget.EndYearCash = BudgetHelpers.GetEndYearCash(humanAirline.Budget.TotalBudget, (long)humanAirline.Money);
                 mBudgetValue.Text = humanAirline.Budget.TotalBudget.ToString("C0");
                 mrBudgetValue.Text = BudgetHelpers.GetRemainingBudget().ToString("C0");
                 meoyCashValue.Text = BudgetHelpers.GetEndYearCash(humanAirline.Budget.TotalBudget, (long)GameObject.GetInstance().HumanAirline.Money).ToString("C0");
@@ -155,6 +178,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             {
                 BudgetHelpers.SetDefaults(GameObject.GetInstance().HumanAirline);
                 SetLocalDefaults(GameObject.GetInstance().HumanAirline);
+                SetOverviewPanel(GameObject.GetInstance().HumanAirline);
             }
 
         }

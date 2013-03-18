@@ -32,5 +32,13 @@ namespace TheAirline.Model.AirlineModel
         public long ServCenterBudget { set; get; }
         public long PRBudget { set; get; }
         public long EndYearCash { set; get; }
+        public int FleetSize { set; get; }
+        public long FleetValue { set; get; }
+        public int Subsidiaries { set; get; }
+        public long TotalSubValue { set; get; }
+        public int TotalEmployees { set; get; }
+        public int TotalPayroll { set; get; }
+        public long RemainingBudget { set; get; }
+        public long Cash { set; get; }
     }
 }

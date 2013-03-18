@@ -127,11 +127,62 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
 
         //returns the budget from 1 year ago
-       /* public static GetOneYearBudget(DateTime date)
+        public static AirlineBudget GetOneYearBudget(DateTime date)
         {
             Airline humanAirline = GameObject.GetInstance().HumanAirline;
-            humanAirline.BudgetHistory.Select
-        }*/
+            if (GameObject.GetInstance().StartDate > GameObject.GetInstance().GameTime.AddMonths(-12))
+            {
+                AirlineBudget oldBudget = (from d in humanAirline.TestBudget where (d.Key.Month == date.Month) && (d.Key.Year == (date.Year - 1)) select d.Value).FirstOrDefault();
+                return oldBudget;
+            }
+            else
+            {
+                return humanAirline.Budget;
+            }
+        }
 
+        //returns a bogus budget for testing
+        public static IDictionary<DateTime, AirlineBudget> GetTestBudget(Airline airline)
+        {
+            AirlineBudget budget = GameObject.GetInstance().HumanAirline.Budget;
+            Random random = new Random();
+            for (int i = 1; i < 61; i++)
+            {
+                budget.BudgetActive = GameObject.GetInstance().GameTime.AddMonths(-i);
+                budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(-i + 12);
+                budget.Cash = random.Next(1, 100000000);
+                budget.AirportBudget = random.Next(1, 500000);
+                budget.CompBudget = random.Next(1, 500000);
+                budget.CSBudget = random.Next(1, 2000000);
+                budget.EndYearCash = random.Next(1, 100000000);
+                budget.EnginesBudget = random.Next(1, 1000000);
+                budget.EquipmentBudget = random.Next(1, 500000);
+                budget.FleetSize = random.Next(1, 250);
+                budget.FleetValue = random.Next(10, 10000);
+                budget.InFlightBudget = random.Next(1, 500000);
+                budget.InternetBudget = random.Next(1, 500000);
+                budget.ITBudget = random.Next(1, 500000);
+                budget.MaintenanceBudget = random.Next(1, 4000000);
+                budget.MarketingBudget = random.Next(1, 2000000);
+                budget.OverhaulBudget = random.Next(1, 1000000);
+                budget.PartsBudget = random.Next(1, 1000000);
+                budget.PRBudget = random.Next(1, 500000);
+                budget.PrintBudget = random.Next(1, 500000);
+                budget.PromoBudget = random.Next(1, 500000);
+                budget.RadioBudget = random.Next(1, 500000);
+                budget.RemainingBudget = random.Next(1, 10000000);
+                budget.RemoteBudget = random.Next(1, 1000000);
+                budget.SecurityBudget = random.Next(1, 2000000);
+                budget.ServCenterBudget = random.Next(1, 500000);
+                budget.Subsidiaries = random.Next(0, 4);
+                budget.TelevisionBudget = random.Next(1, 500000);
+                budget.TotalBudget = random.Next(4, 10000000);
+                budget.TotalEmployees = random.Next(1, 10000);
+                budget.TotalPayroll = random.Next(500000, 10000000);
+                budget.TotalSubValue = random.Next(200000000, 1000000000);
+                airline.TestBudget.Add(budget.BudgetActive, budget);
+            }
+            return airline.TestBudget;
+        }
     }
 }

@@ -53,6 +53,7 @@ namespace TheAirline.Model.AirlineModel
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
+        public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
         {
             this.Airports = new List<Airport>();
@@ -66,6 +67,7 @@ namespace TheAirline.Model.AirlineModel
             this.Invoices = new Invoices();
             this.Budget = new AirlineBudget();
             this.BudgetHistory = new Dictionary<DateTime, AirlineBudget>();
+            this.TestBudget = new Dictionary<DateTime, AirlineBudget>();
             this.Profile = profile;
             this.Loans = new List<Loan>();
             this.Reputation = 50;
