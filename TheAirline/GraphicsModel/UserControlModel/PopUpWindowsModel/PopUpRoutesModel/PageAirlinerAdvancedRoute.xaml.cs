@@ -78,7 +78,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             newEntryPanel.Children.Add(entryPanel);
 
-            var origins = this.Airliner.Airliner.Airline.Routes.SelectMany(r => r.getDestinations()).Distinct();
+            Route.RouteType type = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+            var origins = this.Airliner.Airliner.Airline.Routes.Where(r=>r.Type == type).SelectMany(r => r.getDestinations()).Distinct();
             origins.OrderBy(a => a.Profile.Name);
 
             cbOrigin = new ComboBox();
@@ -164,7 +166,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
             if (cbDestination.SelectedItem != null)
             {
                 ComboBoxItem item = (ComboBoxItem)cbDestination.SelectedItem;
-
+           
                 Route route = (Route)item.Tag;
 
                 if (route.HasStopovers)
@@ -188,7 +190,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 Airport origin = (Airport)cbOrigin.SelectedItem;
 
-                var routes = this.Airliner.Airliner.Airline.Routes.Where(r => r.Destination1 == origin || r.Destination2 == origin);//.Select(r => r.Destination1 == origin ? r.Destination2 : r.Destination1);
+                Route.RouteType type = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
+                var routes = this.Airliner.Airliner.Airline.Routes.Where(r => r.Type == type && (r.Destination1 == origin || r.Destination2 == origin));//.Select(r => r.Destination1 == origin ? r.Destination2 : r.Destination1);
 
                 foreach (Route route in routes)
                 {

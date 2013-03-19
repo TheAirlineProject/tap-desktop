@@ -118,7 +118,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelRoutes.Margin = new Thickness(5, 0, 0, 0);
 
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
-
+            
             var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway);
             foreach (Route route in routes)
             {

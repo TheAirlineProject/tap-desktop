@@ -212,11 +212,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private void btnThreadState_Click(object sender, RoutedEventArgs e)
         {
               string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
-            text += string.Format("Gameobjectworker cancelled: {0}\n", GameObjectWorker.GetInstance().isCancelled());
-            text += string.Format("Gametimer paused: {0}\n", GameTimer.GetInstance().isPaused());
+              text += string.Format("Gameobjectworker cancelled: {0}\n", GameObjectWorker.GetInstance().isCancelled());
+              text += string.Format("Gametimer paused: {0}\n", GameTimer.GetInstance().isPaused());
 
              
-            WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
+              WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
 
         } 
 

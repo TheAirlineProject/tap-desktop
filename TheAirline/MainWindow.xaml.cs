@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using System.Threading;
 using System.Globalization;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline
 {
@@ -73,6 +74,16 @@ namespace TheAirline
 
                 if (result == WPFMessageBoxResult.Yes)
                     this.Close();
+            }
+            if (e.Key == Key.F8)
+            {
+                string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
+                text += string.Format("Gameobjectworker cancelled: {0}\n", GameObjectWorker.GetInstance().isCancelled());
+                text += string.Format("Gametimer paused: {0}\n", GameTimer.GetInstance().isPaused());
+
+
+                WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
+
             }
         
         }

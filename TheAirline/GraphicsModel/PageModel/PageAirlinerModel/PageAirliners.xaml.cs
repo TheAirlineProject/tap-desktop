@@ -90,15 +90,36 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             airlinersPanel.Children.Add(txtUsedHeader);
 
+            WrapPanel airlinerTypePanel = new WrapPanel();
+            airlinersPanel.Children.Add(airlinerTypePanel);
+
+            RadioButton rbPassengerAirliner = new RadioButton();
+            rbPassengerAirliner.GroupName = "AirlinerRouteType";
+            rbPassengerAirliner.IsChecked = true;
+            rbPassengerAirliner.Tag = AirlinerType.TypeOfAirliner.Passenger;
+            rbPassengerAirliner.Checked += rbRouteType_Checked;
+            rbPassengerAirliner.Content = Translator.GetInstance().GetString("PageAirliners", "1003");
+
+            airlinerTypePanel.Children.Add(rbPassengerAirliner);
+
+            RadioButton rbCargoAirliner = new RadioButton();
+            rbCargoAirliner.GroupName = "AirlinerRouteType";
+            rbCargoAirliner.Margin = new Thickness(5, 0, 0, 0);
+            rbCargoAirliner.Tag = AirlinerType.TypeOfAirliner.Cargo;
+            rbCargoAirliner.Checked += rbRouteType_Checked;
+            rbCargoAirliner.Content = Translator.GetInstance().GetString("PageAirliners", "1004");
+
+            airlinerTypePanel.Children.Add(rbCargoAirliner);
+            
             ContentControl lblUsedHeader = new ContentControl();
             lblUsedHeader.ContentTemplate = this.Resources["AirlinersUsedHeader"] as DataTemplate;
             lblUsedHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
 
             airlinersPanel.Children.Add(lblUsedHeader);
-
+            
             lbUsedAirliners = new ListBox();
             lbUsedAirliners.ItemTemplate = this.Resources["AirlinerUsedItem"] as DataTemplate;
-            lbUsedAirliners.Height = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+            lbUsedAirliners.Height = (GraphicsHelpers.GetContentHeight() - 150) / 2;
             lbUsedAirliners.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
             airlinersPanel.Children.Add(lbUsedAirliners);
@@ -117,8 +138,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             airlinersPanel.Children.Add(btnSearch);
 
-            showUsedAirliners(Airliners.GetAirlinersForSale());
-
+            showUsedAirliners(Airliners.GetAirlinersForSale(a=>a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger));
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -136,6 +156,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
             showPage(this);
 
             showManufacturers();
+        }
+
+        private void rbRouteType_Checked(object sender, RoutedEventArgs e)
+        {
+            AirlinerType.TypeOfAirliner type = (AirlinerType.TypeOfAirliner)((RadioButton)sender).Tag;
+
+            List<Airliner> airliners = Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == type);
+
+            showUsedAirliners(airliners);
         }
 
      //shows the list of manufacturers

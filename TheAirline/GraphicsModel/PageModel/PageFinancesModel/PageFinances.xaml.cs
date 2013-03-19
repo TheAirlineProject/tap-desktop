@@ -167,7 +167,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
                 mBudgetValue.Text = humanAirline.Budget.TotalBudget.ToString("C0");
                 mrBudgetValue.Text = BudgetHelpers.GetRemainingBudget().ToString("C0");
                 meoyCashValue.Text = BudgetHelpers.GetEndYearCash(humanAirline.Budget.TotalBudget, (long)GameObject.GetInstance().HumanAirline.Money).ToString("C0");
-                BudgetHelpers.verifyValues(humanAirline.Budget);
+                BudgetHelpers.VerifyValues(humanAirline.Budget);
                 SetLocalDefaults(humanAirline);
                 
             }

@@ -291,6 +291,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
        
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Route.RouteType type = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo ? Route.RouteType.Cargo : Route.RouteType.Passenger;
+
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
 
             Region region = (Region)cbRegion.SelectedItem;
@@ -299,14 +301,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             if (region.Uid == "100")
             {
-                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r => new AirportCodeConverter().Convert(r.Destination2)))
+                foreach (Route route in this.Airliner.Airliner.Airline.Routes.FindAll(r => r.Type == type && this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r => new AirportCodeConverter().Convert(r.Destination2)))
                 {
                     cbRoute.Items.Add(route);
                 }
             }
             else
             {
-                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && ((r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r => new AirportCodeConverter().Convert(r.Destination2));
+                var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => r.Type == type && this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway && ((r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination2.Profile.Country.Region == region && r.Destination1.Profile.Country.Region == GameObject.GetInstance().HumanAirline.Profile.Country.Region) || (r.Destination1.Profile.Country.Region == region && r.Destination2.Profile.Country.Region == region))).OrderBy(r => new AirportCodeConverter().Convert(r.Destination1)).ThenBy(r => new AirportCodeConverter().Convert(r.Destination2));
 
                 foreach (Route route in routes)
                     cbRoute.Items.Add(route);

@@ -65,7 +65,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             panelContent.setContentPage(panelSideMenu, StandardContentPanel.ContentLocation.Right);
 
-
+            FleetAirliner.AirlinerStatus status = this.Airliner.Status;
 
             base.setContent(panelContent);
 

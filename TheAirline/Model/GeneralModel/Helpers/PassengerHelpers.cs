@@ -230,10 +230,15 @@ namespace TheAirline.Model.GeneralModel
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Local && distance < 1000)
                 passengerDemand = passengerDemand * (115 / 100);
 
-            List<Route> routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent))).ToList();
-            List<Route> stopoverroutes = Airlines.GetAllAirlines().SelectMany(a => a.Routes.FindAll(r => r.Stopovers.SelectMany(s => s.Legs.Where(l => r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Count() > 0)).ToList();//Airlines.GetAllAirlines().SelectMany(a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))))).ToList(); 
+            List<Route> routes = new List<Route>();
 
-            routes.AddRange(stopoverroutes);
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+                var aRoutes = new List<Route>(airline.Routes);
+
+                routes.AddRange(aRoutes.Where(r => r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed).Where(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
+                routes.AddRange(aRoutes.Where(r => r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger).Where(r => r.Stopovers.SelectMany(s => s.Legs.Where(l => r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Count() > 0));
+            }
 
             double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count)) / 7;
 

@@ -104,6 +104,7 @@ namespace TheAirline.Model.GeneralModel
             var airlines = Airlines.GetAllAirlines().FindAll(a=>a.Profile.PreferedAirport == null);
                        
             var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
+            var cargoAirliners = AirlinerTypes.GetAllTypes().FindAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
 
             foreach (Airport airport in noRunwayAirports)
                 Console.WriteLine(airport.Profile.Name);
@@ -1378,6 +1379,11 @@ namespace TheAirline.Model.GeneralModel
                         Country country = Countries.GetCountry(memberNode.Attributes["country"].Value);
                         DateTime fromDate = Convert.ToDateTime(memberNode.Attributes["memberfrom"].Value, new CultureInfo("en-US", false));
                         DateTime toDate = Convert.ToDateTime(memberNode.Attributes["memberto"].Value, new CultureInfo("en-US", false));
+
+                        if (country == null)
+                        {
+                            uid = "";
+                        }
 
                         union.addMember(new UnionMember(country, fromDate, toDate));
                     }

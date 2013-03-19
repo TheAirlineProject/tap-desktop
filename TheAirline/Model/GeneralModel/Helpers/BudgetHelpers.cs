@@ -98,7 +98,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
 
         //verifies to make sure sub-budgets don't exceed master budget
-        public static void verifyValues(AirlineBudget budget)
+        public static void VerifyValues(AirlineBudget budget)
         {
             long userMarketingBudget = budget.RadioBudget + budget.TelevisionBudget + budget.PrintBudget + budget.InternetBudget;
             if (userMarketingBudget > budget.MarketingBudget)

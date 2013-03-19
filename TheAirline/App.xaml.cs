@@ -30,12 +30,12 @@ namespace TheAirline
 
         private static void currentDomain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            var l_CurrentStack = new System.Diagnostics.StackTrace(true);
+            //var l_CurrentStack = new System.Diagnostics.StackTrace(true);
             
             System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
             file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
-            file.WriteLine("-------------------");
-            file.Write(l_CurrentStack.ToString());
+            file.WriteLine("---------GAME INFORMATION----------");
+            file.Write("Gametime: {0}, human airline: {1}",GameObject.GetInstance().GameTime.ToShortDateString(),GameObject.GetInstance().HumanAirline.Profile.Name);
             file.Close();
         }
     }

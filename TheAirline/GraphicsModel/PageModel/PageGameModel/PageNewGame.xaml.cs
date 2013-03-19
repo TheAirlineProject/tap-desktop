@@ -663,7 +663,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 popUpSplash.IsOpen = false;
 
-       
+             
+                
                 Action action = () =>
                 {
                     Stopwatch swPax = new Stopwatch();
@@ -675,7 +676,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     swPax.Stop();
                 };
 
-                Task.Run(action);
+                Task.Factory.StartNew(action);
+                //Task.Run(action);
                 //Task t2 = Task.Factory.StartNew(action, "passengers");
 
                
@@ -685,6 +687,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
   
         }
+
+
         //sets the airports view
         private void setAirportsView(int year, Country country)
         {
