@@ -17,6 +17,7 @@ using TheAirline.Model.AirlineModel;
 using System.Reflection;
 using TheAirline.Model.AirportModel;
 using TheAirline.GraphicsModel.Converters;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -219,7 +220,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             profile.addLogo(new AirlineLogo(logoPath));
             profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
             
-            SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local,Airline.AirlineLicense.Domestic);
+            SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local,Airline.AirlineLicense.Domestic,Route.RouteType.Passenger);
             subAirline.addAirport(airport);
             subAirline.Money = slMoney.Value;
 

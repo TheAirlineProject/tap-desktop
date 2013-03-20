@@ -17,6 +17,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using System.IO;
 using System.Reflection;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -236,7 +237,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             profile.Country = country;
             profile.addLogo(new AirlineLogo(logoPath));
             
-            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local, Airline.AirlineLicense.Domestic);
+            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local, Airline.AirlineLicense.Domestic,Route.RouteType.Passenger);
 
             Airlines.AddAirline(airline);
 

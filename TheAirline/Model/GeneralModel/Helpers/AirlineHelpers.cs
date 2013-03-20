@@ -262,12 +262,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         //creates a subsidiary airline for an airline
-        public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineFocus market, Airport homebase)
+        public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineFocus market, Route.RouteType routefocus, Airport homebase)
         {
             AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO,true,GameObject.GetInstance().GameTime.Year,2199);
             profile.Country = airline.Profile.Country;
          
-            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License);
+            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License,routefocus);
 
             AddSubsidiaryAirline(airline, sAirline,money,homebase);
 

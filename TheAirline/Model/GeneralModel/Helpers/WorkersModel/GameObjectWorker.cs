@@ -128,7 +128,17 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             else if (!(e.Error == null))
             {
                 this.Cancelled = true;
+                
                 Console.WriteLine("Error: " + e.Error.Message);
+
+                var l_CurrentStack = new System.Diagnostics.StackTrace(true);
+
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinepause.log");
+                file.WriteLine(l_CurrentStack.ToString());
+                file.WriteLine("------------ERROR MESSAGE--------------");
+                file.WriteLine(e.Error.Message);
+                file.Close();
+           
             }
 
             else

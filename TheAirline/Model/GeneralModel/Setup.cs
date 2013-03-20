@@ -1593,6 +1593,11 @@ namespace TheAirline.Model.GeneralModel
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), profileElement.Attributes["market"].Value);
 
+            Route.RouteType routeFocus = Route.RouteType.Passenger;
+
+            if (profileElement.HasAttribute("routefocus"))
+                routeFocus = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), profileElement.Attributes["routefocus"].Value);
+
             XmlElement narrativeElement = (XmlElement)profileElement.SelectSingleNode("narrative");
 
             string narrative = "";
@@ -1625,7 +1630,7 @@ namespace TheAirline.Model.GeneralModel
                 license = Airline.AirlineLicense.Regional;
 
        
-            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license);
+            Airline airline = new Airline(new AirlineProfile(name, iata, color, ceo, isReal, founded, folded), mentality, market, license,routeFocus);
             airline.Profile.Countries = countries;
             airline.Profile.Country = airline.Profile.Countries[0];
 
@@ -1780,7 +1785,7 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.AddStatisticsType(new StatisticsType("Arrivals", "Arrivals"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Departures", "Departures"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Cargo", "Cargo"));
-            StatisticsTypes.AddStatisticsType(new StatisticsType("Cargo%", "Cargo%"));
+            StatisticsTypes.AddStatisticsType(new StatisticsType("Cargo per flight", "Cargo%"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers", "Passengers"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passengers per flight", "Passengers%"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Passenger Capacity", "Capacity"));

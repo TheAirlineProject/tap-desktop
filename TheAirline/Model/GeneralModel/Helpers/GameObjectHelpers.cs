@@ -520,7 +520,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     string oldLogo = merger.Airline2.Profile.Logo;
 
-                    SubsidiaryAirline sAirline = new SubsidiaryAirline(merger.Airline1, merger.Airline2.Profile, merger.Airline2.Mentality, merger.Airline2.MarketFocus, merger.Airline2.License);
+                    SubsidiaryAirline sAirline = new SubsidiaryAirline(merger.Airline1, merger.Airline2.Profile, merger.Airline2.Mentality, merger.Airline2.MarketFocus, merger.Airline2.License,merger.Airline2.AirlineRouteFocus);
 
                     AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
 

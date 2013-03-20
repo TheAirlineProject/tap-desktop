@@ -356,7 +356,24 @@ namespace TheAirline.Model.GeneralModel
         //returns the cargo for a flight
         public static double GetFlightCargo(FleetAirliner airliner)
         {
-            return 10;
+            Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
+            Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
+            double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
+
+            double capacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
+
+            //cargo from departure airport
+            double cargoDeparture = ((int)airportCurrent.Profile.Cargo) * 1000;
+
+            //cargo destination can handle
+            double cargoDestination = ((int)airportDestination.Profile.Cargo) * 1500;
+
+            double distanceFactor = distance / 1000;
+
+            double volume = Math.Min(cargoDeparture / distanceFactor, cargoDestination);
+
+            return Math.Min(capacity, volume);
+            
         }
         //returns the holiday factor for an airport
         private static double GetHolidayFactor(Airport airport)
@@ -385,6 +402,16 @@ namespace TheAirline.Model.GeneralModel
                 else return 150 / 100;
 
             return 1;
+        }
+        //returns the suggested cargo price for a route
+        public static double GetCargoPrice(Airport dest1, Airport dest2)
+        {
+            double dist = MathHelpers.GetDistance(dest1, dest2);
+
+            double ticketPrice = dist * GeneralHelpers.GetInflationPrice(0.0078);
+
+            return ticketPrice * 2;
+
         }
         //returns the suggested passenger price for a route
         public static double GetPassengerPrice(Airport dest1, Airport dest2)

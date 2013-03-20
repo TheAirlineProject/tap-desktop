@@ -269,11 +269,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new subsidiary airline for the airline
         private static void CreateSubsidiaryAirline(Airline airline)
         {
+            Route.RouteType airlineRouteFocus = Route.RouteType.Passenger;
             FutureSubsidiaryAirline futureAirline = airline.FutureAirlines[rnd.Next(airline.FutureAirlines.Count)];
 
             airline.FutureAirlines.Remove(futureAirline);
 
-            SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(airline, airline.Money / 5, futureAirline.Name, futureAirline.IATA, futureAirline.Mentality, futureAirline.Market, futureAirline.PreferedAirport);
+            SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(airline, airline.Money / 5, futureAirline.Name, futureAirline.IATA, futureAirline.Mentality, futureAirline.Market,airlineRouteFocus, futureAirline.PreferedAirport);
             sAirline.Profile.addLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
 
@@ -505,13 +506,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new route for an airline
         private static void CreateNewRoute(Airline airline)
         {
-
+            
             Airport airport = GetRouteStartDestination(airline);
 
             if (airport != null)
             {
                 Airport destination;
 
+               
                 destination = GetDestinationAirport(airline, airport);
 
                 if (destination != null)
@@ -520,7 +522,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     FleetAirliner fAirliner;
 
-                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing,false);
+                    KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing, airline.AirlineRouteFocus == Route.RouteType.Cargo);
+                
+
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -529,22 +533,33 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (!airline.Airports.Contains(destination)) airline.addAirport(destination);
 
-                        double price = PassengerHelpers.GetPassengerPrice(airport, destination);
-
                         Guid id = Guid.NewGuid();
 
-                        PassengerRoute route = new PassengerRoute(id.ToString(), airport, destination, price);
+                        Route route = null;
 
-                        RouteClassesConfiguration configuration = GetRouteConfiguration(route);
-
-                        foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                        if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
                         {
-                            route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+                            double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
-                            foreach (RouteFacility facility in classConfiguration.getFacilities())
-                                route.getRouteAirlinerClass(classConfiguration.Type).addFacility(facility);
+                    
+                            route = new PassengerRoute(id.ToString(), airport, destination, price);
+
+                            RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute)route);
+
+                            foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                            {
+                                ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+
+                                foreach (RouteFacility facility in classConfiguration.getFacilities())
+                                    ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).addFacility(facility);
+                            }
                         }
 
+                        if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                        {
+                            route = new CargoRoute(id.ToString(),airport,destination,PassengerHelpers.GetCargoPrice(airport,destination));
+
+                        }
 
                         Boolean isDeptOk = true;
                         Boolean isDestOk = true;
@@ -608,13 +623,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             fAirliner.addRoute(route);
 
-                            //creates a business route
-                            if (IsBusinessRoute(route, fAirliner))
-                                CreateBusinessRouteTimeTable(route, fAirliner);
-                            else
-                                CreateRouteTimeTable(route, fAirliner);
+                            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
+                            {
 
-
+                                 //creates a business route
+                                if (IsBusinessRoute(route, fAirliner))
+                                    CreateBusinessRouteTimeTable(route, fAirliner);
+                                else
+                                    CreateRouteTimeTable(route, fAirliner);
+                            }
+                            if (route.Type == Route.RouteType.Cargo)
+                                CreateCargoRouteTimeTable(route, fAirliner);
+                            
                             fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                             AirlineHelpers.HireAirlinerPilots(fAirliner);
 
@@ -891,6 +911,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             return true;
+        }
+        //creates the time table for a cargo airliner
+        public static void CreateCargoRouteTimeTable(Route route, FleetAirliner airliner)
+        {
+            TimeSpan routeFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type);
+            TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
+
+            int maxHours = 20 - 8; //from 08.00 to 20.00
+
+            int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+
+            string flightCode1 = airliner.Airliner.Airline.getNextFlightCode(0);
+            string flightCode2 = airliner.Airliner.Airline.getNextFlightCode(1);
+
+
+            route.TimeTable = CreateAirlinerRouteTimeTable(route, airliner, flightsPerDay, flightCode1, flightCode2);
+
         }
         //creates the time table for a route for an airliner
         public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)

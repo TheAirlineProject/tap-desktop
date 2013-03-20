@@ -20,6 +20,7 @@ namespace TheAirline.Model.AirlineModel
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Aggressive, Moderate, Safe}
         public enum AirlineFocus { Global, Regional,Domestic, Local }
+        public Route.RouteType AirlineRouteFocus { get; set; }
         public AirlineLicense License { get; set; }
         public AirlineFocus MarketFocus { get; set; }
         public AirlineMentality Mentality { get; set; }
@@ -54,7 +55,7 @@ namespace TheAirline.Model.AirlineModel
         public Int64 FleetValue { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
-        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license)
+        public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
@@ -69,6 +70,7 @@ namespace TheAirline.Model.AirlineModel
             this.BudgetHistory = new Dictionary<DateTime, AirlineBudget>();
             this.TestBudget = new Dictionary<DateTime, AirlineBudget>();
             this.Profile = profile;
+            this.AirlineRouteFocus = routeFocus;
             this.Loans = new List<Loan>();
             this.Reputation = 50;
             this.Alliances = new List<Alliance>();

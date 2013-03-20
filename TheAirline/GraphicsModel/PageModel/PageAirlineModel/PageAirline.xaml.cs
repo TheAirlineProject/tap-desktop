@@ -163,6 +163,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1005"), lblFlag));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1006"), UICreator.CreateColorRect(this.Airline.Profile.Color)));
 
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline","1027"),UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airline.AirlineRouteFocus).ToString())));
             // chs, 2011-10-10 added fleet size to the airline profile
             TextBlock txtFleetSize = UICreator.CreateTextBlock(string.Format("{0} (+{1} in order)", this.Airline.DeliveredFleet.Count, this.Airline.Fleet.Count - this.Airline.DeliveredFleet.Count));
 
@@ -402,7 +403,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
                 if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
                     GameObject.GetInstance().HumanAirline.License = this.Airline.License;
 
-                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus, this.Airline.License);
+                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus, this.Airline.License,this.Airline.AirlineRouteFocus);
 
                 AirlineHelpers.SwitchAirline(this.Airline, sAirline);
 

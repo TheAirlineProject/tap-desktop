@@ -77,10 +77,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
         {
             lbStats.Items.Clear();
 
-            lbStats.Items.Add(new KeyValuePair<FleetAirliner,StatisticsType>(this.Airliner,StatisticsTypes.GetStatisticsType("Passengers")));
-            lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Passengers%")));
-            //lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Departures")));
-      
+            lbStats.Items.Add(new KeyValuePair<FleetAirliner,StatisticsType>(this.Airliner,StatisticsTypes.GetStatisticsType("Arrivals")));
+
+            if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger || this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Mixed)
+            {
+
+                lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Passengers")));
+                lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Passengers%")));
+                //lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Departures")));
+            }
+            if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Mixed || this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
+            {
+                lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Cargo")));
+                lbStats.Items.Add(new KeyValuePair<FleetAirliner, StatisticsType>(this.Airliner, StatisticsTypes.GetStatisticsType("Cargo%")));
+            
+            }
         }
         private void PageFleetStatistics_OnTimeChanged()
         {

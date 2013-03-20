@@ -670,22 +670,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), airlineNode.Attributes["mentality"].Value);
             Airline.AirlineFocus market = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), airlineNode.Attributes["market"].Value);
             Airline.AirlineLicense license = (Airline.AirlineLicense)Enum.Parse(typeof(Airline.AirlineLicense), airlineNode.Attributes["license"].Value);
+            Route.RouteType routefocus = airlineNode.HasAttribute("routefocus") ? (Route.RouteType)Enum.Parse(typeof(Route.RouteType), airlineNode.Attributes["routefocus"].Value) : Route.RouteType.Passenger;
 
             Boolean isReal = airlineNode.HasAttribute("real") ? Convert.ToBoolean(airlineNode.Attributes["real"].Value) : true;
             int founded = airlineNode.HasAttribute("founded") ? Convert.ToInt16(airlineNode.Attributes["founded"].Value) : 1950;
             int folded = airlineNode.HasAttribute("folded") ? Convert.ToInt16(airlineNode.Attributes["folded"].Value) : 2199;
+            
 
             Airline airline;
             if (airlineIsSubsidiary)
             {
                 Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license,routefocus);
                 airline.Profile.Country = airlineCountry;
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
             {
-                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license);
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license,routefocus);
                 airline.Profile.Country = airlineCountry;
             }
             if (airlineNode.HasAttribute("logo"))
@@ -1147,10 +1149,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.SetAttribute("mentality", airline.Mentality.ToString());
                 airlineNode.SetAttribute("market", airline.MarketFocus.ToString());
                 airlineNode.SetAttribute("license", airline.License.ToString());
+                airlineNode.SetAttribute("routefocus", airline.AirlineRouteFocus.ToString());
                 airlineNode.SetAttribute("isreal", airline.Profile.IsReal.ToString());
                 airlineNode.SetAttribute("founded", airline.Profile.Founded.ToString());
                 airlineNode.SetAttribute("folded", airline.Profile.Folded.ToString());
-
+           
                 XmlElement airlineLogosList = xmlDoc.CreateElement("logos");
 
                 foreach (AirlineLogo logo in airline.Profile.Logos)

@@ -33,13 +33,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
         private Boolean sortDescending;
         private Frame sideFrame;
         private List<Airliner> airliners;
+        private AirlinerType.TypeOfAirliner airlinerType;
         public PageAirliners()
         {
             InitializeComponent();
 
             this.Uid = "1000";
             this.Title = Translator.GetInstance().GetString("PageAirliners", this.Uid);
-
+           
+            
+            airlinerType = AirlinerType.TypeOfAirliner.Passenger;
             sortCriteriaUsed = a => a.BuiltDate;
             sortDescending = true;
 
@@ -138,7 +141,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
             airlinersPanel.Children.Add(btnSearch);
 
-            showUsedAirliners(Airliners.GetAirlinersForSale(a=>a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger));
+            showUsedAirliners(Airliners.GetAirlinersForSale());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -160,11 +163,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
 
         private void rbRouteType_Checked(object sender, RoutedEventArgs e)
         {
-            AirlinerType.TypeOfAirliner type = (AirlinerType.TypeOfAirliner)((RadioButton)sender).Tag;
+            
+            airlinerType = (AirlinerType.TypeOfAirliner)((RadioButton)sender).Tag;
 
-            List<Airliner> airliners = Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == type);
+            showUsedAirliners();
+          
+        
 
-            showUsedAirliners(airliners);
         }
 
      //shows the list of manufacturers
@@ -181,12 +186,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel
         {
             lbUsedAirliners.Items.Clear();
 
-            if (sortDescending)
-                airliners = airliners.OrderByDescending(sortCriteriaUsed).ThenBy(a => a.TailNumber).ToList();
-            else
-            airliners = airliners.OrderBy(sortCriteriaUsed).ThenBy(a => a.TailNumber).ToList();
+            var lAirliners = new List<Airliner>(airliners.FindAll(a => a.Type.TypeAirliner == airlinerType));
 
-            foreach (Airliner airliner in airliners)
+            if (sortDescending)
+                lAirliners = lAirliners.OrderByDescending(sortCriteriaUsed).ThenBy(a => a.TailNumber).ToList();
+            else
+                lAirliners = lAirliners.OrderBy(sortCriteriaUsed).ThenBy(a => a.TailNumber).ToList();
+
+            foreach (Airliner airliner in lAirliners)
                 lbUsedAirliners.Items.Add(airliner);
         }
         public void showUsedAirliners(List<Airliner> airlinersList)
