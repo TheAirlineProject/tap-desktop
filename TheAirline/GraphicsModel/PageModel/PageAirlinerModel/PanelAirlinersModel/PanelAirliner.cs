@@ -99,7 +99,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             }
             if (airliner.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo)
             {
-                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner","1017"),UICreator.CreateTextBlock(((AirlinerCargoType)airliner).CargoSize.ToString())));
+                
+                lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner","1017"),UICreator.CreateTextBlock(new CargoSizeConverter().Convert(airliner).ToString())));
             }
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelAirliner", "1015"), UICreator.CreateTextBlock(new NumberMeterToUnitConverter().Convert(airliner.MinRunwaylength).ToString())));

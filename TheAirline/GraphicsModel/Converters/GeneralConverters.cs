@@ -14,6 +14,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.GraphicsModel.Converters
 {
@@ -191,6 +192,28 @@ namespace TheAirline.GraphicsModel.Converters
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the cargo size from an airliner
+    public class CargoSizeConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            AirlinerCargoType airliner = (AirlinerCargoType)value;
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:0.##} m3", airliner.CargoSize);
+            else
+                return string.Format("{0:0.##} cu feet", MathHelpers.MeterToFeet(airliner.CargoSize) * 10);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

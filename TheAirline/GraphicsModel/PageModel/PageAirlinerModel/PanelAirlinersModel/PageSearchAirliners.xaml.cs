@@ -24,10 +24,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
     public partial class PageSearchAirliners : Page
     {
         private ComboBox cbRange, cbCapacity, cbPrice,cbYear, cbCompareRange, cbCompareCapacity, cbComparePrice, cbCompareYear, cbManufacturers;
+        private AirlinerType.TypeOfAirliner AirlinerType;
         private enum CompareType { Larger_than, Lower_than, Equal_to,All }
         private PageAirliners ParentPage;
         public PageSearchAirliners(PageAirliners parent)
         {
+
+          //  AirlinerType.TypeOfAirliner type = (AirlinerType.TypeOfAirliner)((RadioButton)sender).Tag;
+
+           // List<Airliner> airliners = Airliners.GetAirlinersForSale(a => a.Type.TypeAirliner == type);
+
             this.ParentPage = parent;
 
             InitializeComponent();

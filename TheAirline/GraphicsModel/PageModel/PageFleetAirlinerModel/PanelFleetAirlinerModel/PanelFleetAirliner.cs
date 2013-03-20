@@ -22,13 +22,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             ucSelectButton sbFacilities = new ucSelectButton();
             sbFacilities.Content = "Facilities";
-            sbFacilities.IsSelected = true;
+            sbFacilities.IsSelected = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger;
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
             sbFacilities.Visibility = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             buttonsPanel.Children.Add(sbFacilities);
 
             ucSelectButton sbRoute = new ucSelectButton();
             sbRoute.Content = "Route & Flight";
+            sbRoute.IsSelected = this.Airliner.Airliner.Type.TypeAirliner != AirlinerType.TypeOfAirliner.Passenger;
             sbRoute.Click += new System.Windows.RoutedEventHandler(sbRoute_Click);
             buttonsPanel.Children.Add(sbRoute);
 

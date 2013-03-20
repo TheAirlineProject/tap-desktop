@@ -214,7 +214,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
               string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
               text += string.Format("Gameobjectworker cancelled: {0}\n", GameObjectWorker.GetInstance().isCancelled());
               text += string.Format("Gametimer paused: {0}\n", GameTimer.GetInstance().isPaused());
-
+              text += string.Format("Gameobjectworker sleeping: {0}", GameObjectWorker.GetInstance().Sleeping);
              
               WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
 

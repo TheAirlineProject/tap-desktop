@@ -17,6 +17,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private Boolean Cancelled;
         private Boolean CancelWorker;
         private Boolean Paused;
+        public Boolean Sleeping { get; set; }
         public Boolean IsStarted { get; set; }
         private GameObjectWorker()
         {
@@ -31,6 +32,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             this.CancelWorker = false;
             this.Paused = false;
             this.IsStarted = true;
+            this.Sleeping = false;
         }
         //returns the instance
         public static GameObjectWorker GetInstance()
@@ -107,7 +109,11 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 }*/
 
                 if (waittime > 0 && !this.CancelWorker)
+                {
+                    this.Sleeping = true;
                     Thread.Sleep((int)waittime);
+                    this.Sleeping = false;
+                }
             }
 
         }
