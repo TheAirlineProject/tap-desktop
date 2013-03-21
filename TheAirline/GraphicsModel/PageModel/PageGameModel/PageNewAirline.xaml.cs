@@ -32,6 +32,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private Image imgLogo;
         private Button btnCreate;
         private string logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
+        private Route.RouteType airlinerType;
         public PageNewAirline()
         {
             InitializeComponent();
@@ -75,6 +76,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             lbContent.Items.Add(new QuickInfoValue("IATA Code", txtIATA));
 
             // chs, 2011-20-10 changed to enable loading of logo
+
+            WrapPanel panelAirlinerType = new WrapPanel();
+
+            RadioButton rbPassenger = new RadioButton();
+            rbPassenger.Content = "Passenger";
+            rbPassenger.GroupName = "AirlineFocus";
+            rbPassenger.IsChecked = true;
+            rbPassenger.Tag = Route.RouteType.Passenger;
+            rbPassenger.Checked += rbAirlineType_Checked;
+            rbPassenger.Margin = new Thickness(5, 0, 0, 0);
+
+            panelAirlinerType.Children.Add(rbPassenger);
+
+            RadioButton rbCargo = new RadioButton();
+            rbCargo.Content = "Cargo";
+            rbCargo.GroupName = "AirlineFocus";
+            rbCargo.Tag = Route.RouteType.Cargo;
+            rbCargo.Checked += rbAirlineType_Checked;
+
+            panelAirlinerType.Children.Add(rbCargo);
+
+            //lbContent.Items.Add(new QuickInfoValue("Airline type", panelAirlinerType));
 
             WrapPanel panelAirlineLogo = new WrapPanel();
       
@@ -160,6 +183,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             showPage(this);
 
+            airlinerType = Route.RouteType.Passenger;
+
+        }
+
+        private void rbAirlineType_Checked(object sender, RoutedEventArgs e)
+        {
+            airlinerType = (Route.RouteType)((RadioButton)sender).Tag;
         }
         // chs, 2011-20-10 changed to enable loading of logo
 
@@ -237,7 +267,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             profile.Country = country;
             profile.addLogo(new AirlineLogo(logoPath));
             
-            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local, Airline.AirlineLicense.Domestic,Route.RouteType.Passenger);
+            Airline airline = new Airline(profile,Airline.AirlineMentality.Aggressive,Airline.AirlineFocus.Local, Airline.AirlineLicense.Domestic,airlinerType);
 
             Airlines.AddAirline(airline);
 

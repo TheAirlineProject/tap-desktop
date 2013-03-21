@@ -87,6 +87,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Arrivals"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers"), false));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Passengers%"), false));
+        
+            Boolean hasCargoAirline = Airlines.GetAirlines(a => a.AirlineRouteFocus == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo).Count > 0;
+
+            if (hasCargoAirline)
+            {
+                panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Cargo"), false));
+                panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Cargo%"), false));
+       
+            }
+
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("On-Time%"), true));
             panelStats.Children.Add(createStatisticsPanel(StatisticsTypes.GetStatisticsType("Cancellation%"), true));
 

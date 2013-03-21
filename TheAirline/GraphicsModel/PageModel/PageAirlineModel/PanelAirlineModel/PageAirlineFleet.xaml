@@ -14,6 +14,44 @@
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
             <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
+        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetCargoViewItem">
+            <GridViewColumn>
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Button Click="ButtonDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" Background="Transparent" Tag="{Binding}" Visibility="{Binding Airliner.Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                            <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="150" Header="Name">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding}" Click="HyperlinkAirline_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                        </TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Width="100" Header="Balance">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Statistics.Balance,Converter={StaticResource valueCurrencyConverter}}" VerticalAlignment="Bottom" Foreground="{Binding Statistics.Balance,Converter={StaticResource valueIsMinusConverter}}"></TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            
+            <GridViewColumn Width="100" Header="Degree of filling">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Statistics.FillingDegree, StringFormat={}{0:P2}}" VerticalAlignment="Bottom" Foreground="{Binding Statistics.FillingDegree,Converter={StaticResource fillingDegreeConverter}}"></TextBlock>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+
+        </GridView>
         <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetRouteViewItem">
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>

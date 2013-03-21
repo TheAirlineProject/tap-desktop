@@ -55,14 +55,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     DayTurnHelpers.SimulateAirlineFlights(airline);
 
                 });
-                var l_CurrentStack = new System.Diagnostics.StackTrace(true);
-
-                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getBasePath() + "\\dailyround.log");
-                file.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString());
-                file.Write(l_CurrentStack.ToString());
-                file.Close();
-
-
+          
 
                 Console.WriteLine("{0} airlines: {1} airliners: {2} routes: {3} flights: {4} airports: {5} total time per round: {6} ms.", GameObject.GetInstance().GameTime.ToShortDateString(), Airlines.GetAllAirlines().Count, Airlines.GetAllAirlines().Sum(a => a.Fleet.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Sum(r => r.TimeTable.Entries.Count)), Airports.GetAllAirports().Count, sw.ElapsedMilliseconds);
                 sw.Stop();

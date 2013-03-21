@@ -143,7 +143,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             double avgBalance = this.Airline.Routes.Count == 0 ? 0 : this.Airline.Routes.Average(r => r.Balance);
             //lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"), UICreator.CreateTextBlock(string.Format("{0:C}", avgBalance))));
-            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(avgBalance).ToString())));
+            TextBlock txtAvgBalance = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(avgBalance).ToString());
+            txtAvgBalance.Foreground = new ValueIsMinusConverter().Convert(avgBalance) as SolidColorBrush;
+
+            lbInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineDestinations", "1006"),txtAvgBalance ));
             
             var airlinePassengerRoutes =  this.Airline.Routes.Where(r=>r.Type == Route.RouteType.Passenger || r.Type == Route.RouteType.Mixed);
             

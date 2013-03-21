@@ -28,7 +28,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //foreach (FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped))
             Parallel.ForEach(airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped), airliner =>
             {
-                if (airliner.CurrentFlight != null && airliner.CurrentFlight.Classes.Count > 0)
+                if (airliner.CurrentFlight != null)
                 {
                    
                     //Boolean stopoverRoute = airliner.CurrentFlight.Entry.MainEntry != null;

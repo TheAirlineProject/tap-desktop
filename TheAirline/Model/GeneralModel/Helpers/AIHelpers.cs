@@ -810,7 +810,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (airlineLoanTotal < maxLoanTotal)
                     {
-                        var loanAirliners = Airliners.GetAirlinersForSale().FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
+                        List<Airliner> loanAirliners;
+                        if (forCargo)
+                            loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerCargoType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
+
+                        else
+                            loanAirliners = Airliners.GetAirlinersForSale(a => a.Type is AirlinerPassengerType).FindAll(a => a.getPrice() < airline.Money + maxLoanTotal - airlineLoanTotal && distance < a.Type.Range);
 
                         if (loanAirliners.Count > 0)
                         {

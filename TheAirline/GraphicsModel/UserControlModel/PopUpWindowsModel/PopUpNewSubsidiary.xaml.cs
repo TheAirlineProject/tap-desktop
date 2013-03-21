@@ -82,6 +82,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpNewSubsidiary", "1002"), txtIATA));
 
+            WrapPanel panelAirlinerType = new WrapPanel();
+
+            RadioButton rbPassenger = new RadioButton();
+            rbPassenger.IsChecked = true;
+            
+
             WrapPanel panelAirlineLogo = new WrapPanel();
       
             imgLogo = new Image();

@@ -69,13 +69,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             rbCargo.GroupName = "RouteType";
             rbCargo.Content = Translator.GetInstance().GetString("PanelNewRoute","1006");
             rbCargo.Tag = Route.RouteType.Cargo;
-            //rbCargo.IsEnabled = false;
+            rbCargo.IsEnabled = false;
             rbCargo.Checked += rbRouteType_Checked;
             panelRouteType.Children.Add(rbCargo);
 
             this.Children.Add(panelRouteType);
 
-            //rbPassenger.IsChecked = true;
+            rbPassenger.IsChecked = true;
 
         }
         //creates the panel for a new route

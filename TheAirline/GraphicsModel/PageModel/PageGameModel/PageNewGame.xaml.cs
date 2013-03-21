@@ -41,7 +41,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
     public partial class PageNewGame : StandardPage
     {
         private TextBox txtName, txtNarrative;
-        private TextBlock txtIATA;
+        private TextBlock txtIATA, txtAirlineType;
         private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus, cbCountry;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
@@ -151,6 +151,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             txtIATA = UICreator.CreateTextBlock("");
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1003"), txtIATA));
+
+            txtAirlineType = UICreator.CreateTextBlock("");
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame", "1021"), txtAirlineType));
 
             StackPanel panelCountry = new StackPanel();
 
@@ -495,6 +498,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airlineColorRect.Fill = new AirlineBrushConverter().Convert(airline) as Brush;
                 txtName.Text = airline.Profile.CEO;
                 txtIATA.Text = airline.Profile.IATACode;
+                txtAirlineType.Text = airline.AirlineRouteFocus.ToString();
 
                 cbCountry.Items.Clear();
 
