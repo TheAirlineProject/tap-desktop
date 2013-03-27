@@ -362,17 +362,41 @@ namespace TheAirline.Model.GeneralModel
 
             double capacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
 
-            //cargo from departure airport
-            double cargoDeparture = ((int)airportCurrent.Profile.Cargo) * 1000;
+            double demand = (double)airportCurrent.getDestinationCargoRate(airportDestination);
+       
+            double cargoDemand = demand * 1000;
+          
+            List<Route> routes = new List<Route>();
 
-            //cargo destination can handle
-            double cargoDestination = ((int)airportDestination.Profile.Cargo) * 1500;
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+                var aRoutes = new List<Route>(airline.Routes);
 
-            double distanceFactor = distance / 1000;
+                routes.AddRange(aRoutes.Where(r => r.Type == Route.RouteType.Cargo || r.Type == Route.RouteType.Mixed).Where(r => (r.HasAirliner) && (r.Destination1 == airportCurrent || r.Destination1 == airportDestination) && (r.Destination2 == airportDestination || r.Destination2 == airportCurrent)));
+                routes.AddRange(aRoutes.Where(r => r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Cargo).Where(r => r.Stopovers.SelectMany(s => s.Legs.Where(l => r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Count() > 0));
+            }
 
-            double volume = Math.Min(cargoDeparture / distanceFactor, cargoDestination);
+            double flightsPerDay = Convert.ToDouble(routes.Sum(r => r.TimeTable.Entries.Count)) / 7;
+            
+            cargoDemand = cargoDemand / flightsPerDay;
 
-            return Math.Min(capacity, volume);
+            double totalCapacity = 0;
+            if (routes.Count > 0 && routes.Count(r => r.HasAirliner) > 0)
+                totalCapacity = routes.Where(r => r.HasAirliner).Sum(r => r.getAirliners().Max(a => ((AirlinerCargoType)a.Airliner.Type).CargoSize));//SelectMany(r => r.Stopovers.Where(s=>s.Legs.Count >0))).Sum(s=>s.;//a => a.Routes.SelectMany(r=>r.Stopovers.SelectMany(s=>s.Legs.Where(l=>r.HasAirliner && (l.Destination1 == airportCurrent || l.Destination1 == airportDestination) && (l.Destination2 == airportDestination || l.Destination2 == airportCurrent))).Sum(r=>r.getAirliners().Max(a=>a.Airliner.getTotalSeatCapacity())); 
+            else
+                totalCapacity = 0;// routes.Where(r => r.HasAirliner).Sum(r => r.getAirliners().Max(a => a.Airliner.getTotalSeatCapacity()));
+
+            double capacityPercent = cargoDemand > totalCapacity ? 1 : cargoDemand / totalCapacity;
+
+            double randomCargo= Convert.ToDouble(rnd.Next(97, 103)) / 100;
+
+            int cargo = (int)Math.Min(capacity, (capacity * capacityPercent *  randomCargo));
+
+            if (cargo< 0)
+                totalCapacity = 100;
+
+            return cargo;
+      
             
         }
         //returns the holiday factor for an airport
@@ -441,13 +465,13 @@ namespace TheAirline.Model.GeneralModel
             if (largestAirports.Count > 0)
             {
                 foreach (var lAirport in largestAirports)
-                    airport.addDestinationPassengersRate(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, lAirport, (ushort)rnd.Next(1, maxValue)));
+                    airport.addDestinationPassengersRate(new DestinationDemand(AirlinerClass.ClassType.Economy_Class, lAirport, (ushort)rnd.Next(1, maxValue)));
 
             }
             else
             {
                 subAirports = subAirports.OrderByDescending(a => a.Profile.Size).ToList();
-                airport.addDestinationPassengersRate(new DestinationPassengers(AirlinerClass.ClassType.Economy_Class, subAirports[0], (ushort)rnd.Next(1, maxValue)));
+                airport.addDestinationPassengersRate(new DestinationDemand(AirlinerClass.ClassType.Economy_Class, subAirports[0], (ushort)rnd.Next(1, maxValue)));
             }
 
          
@@ -482,8 +506,8 @@ namespace TheAirline.Model.GeneralModel
                     
             }
         }
-        //creates the airport destinations passengers for all destination served by an airline
-        public static void CreateAirlineDestinationPassengers()
+        //creates the airport destinations demand for all destination served by an airline
+        public static void CreateAirlineDestinationDemand()
         {
             var airports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
         
@@ -496,6 +520,8 @@ namespace TheAirline.Model.GeneralModel
                         if (airport != dAirport && airport.Profile.Town != dAirport.Profile.Town && MathHelpers.GetDistance(airport, dAirport) > 50)
                         {
                             CreateDestinationPassengers(airport, dAirport);
+
+                            CreateDestinationCargo(airport, dAirport);
                         }
                     });
                 if (airport.getDestinationPassengersSum() == 0)
@@ -522,7 +548,7 @@ namespace TheAirline.Model.GeneralModel
             
         }
         //creates the airport destinations passenger for all destinations
-        public static void CreateDestinationPassengers()
+        public static void CreateDestinationDemand()
         {
             var airports = Airports.GetAllAirports(a=>a.getDestinationPassengersSum() == 0);
             int count = airports.Count;
@@ -539,6 +565,9 @@ namespace TheAirline.Model.GeneralModel
 
                                 CreateDestinationPassengers(airports[j], airports[i]);
                                 CreateDestinationPassengers(airports[i], airports[j]);
+
+                                CreateDestinationCargo(airports[j], airports[i]);
+                                CreateDestinationCargo(airports[i], airports[j]);
                             }
                         });
 
@@ -562,6 +591,53 @@ namespace TheAirline.Model.GeneralModel
 
                     }
                 });
+
+        }
+        //returns the cargo mass per day for an airport
+        private static double GetAirportCargoMass(Airport airport)
+        {
+            //density cargo 3000 kg/cu m.
+            //1 cu m. vejer 3000 kg. eller 3.0 metric ton
+
+            //total cargo volume from/to airport in tonnes
+            double totalCargoVolume = airport.Profile.CargoVolume == 0 ? ((int)airport.Profile.Cargo + 1) * 10000 : airport.Profile.CargoVolume * 1000; //in metric ton
+            double cargoDensity = 3000; //kg/cu m
+
+            //in cargo mass
+            double cargoMass = totalCargoVolume / (cargoDensity / 1000);
+
+            double cargoMassPerDay = cargoMass / 365;
+
+            return cargoMassPerDay;
+        }
+        //creates the airport destinations cargo between two destinations in cu m.
+        public static void CreateDestinationCargo(Airport airport, Airport dAirport)
+        {
+            //origin airport out
+            double originMassPerDay = GetAirportCargoMass(airport) / 2;
+            //destination airport in
+            double destinationMassPerDay = GetAirportCargoMass(dAirport) / 2;
+            
+            double distance = MathHelpers.GetDistance(airport,dAirport);
+
+            double distanceFactor = distance > 5000 ? 1 : 0.5;
+            double sameCountryFactor = airport.Profile.Country == dAirport.Profile.Country ? 0.75 : 1;
+            double sameRegionFactor = sameCountryFactor == 1 && airport.Profile.Country.Region == dAirport.Profile.Country.Region ? 0.5 : 1;
+
+            //the airport factors
+            double largestFactor = Airports.CountLargest() * 0.091;
+            double verylargeFactor = Airports.CountVeryLarge() * 0.064;
+            double largeFactor = Airports.CountLarge() * 0.051;
+            double mediumFactor = Airports.CountMedium() * 0.032;
+            double restFactor = (Airports.CountSmallest() + Airports.CountVerySmall() + Airports.CountSmall()) * 0.015;
+
+            double minMass = Math.Min(originMassPerDay, destinationMassPerDay);
+
+            double volume = minMass / distanceFactor / sameCountryFactor / sameRegionFactor;
+
+            if (volume >= 1)
+                airport.addDestinationCargoRate(dAirport, (ushort)volume);
+           //CargoPerYear - Airport
 
         }
         //creates the airport destinations passengers between two destinations 
@@ -3197,7 +3273,7 @@ namespace TheAirline.Model.GeneralModel
                 if (rate > 0)
                 {
 
-                    airport.addDestinationPassengersRate(new DestinationPassengers(classType, dAirport, rate));
+                    airport.addDestinationPassengersRate(new DestinationDemand(classType, dAirport, rate));
                     //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
                 }
 
@@ -3234,7 +3310,7 @@ namespace TheAirline.Model.GeneralModel
             double value = (100 + factor) / 100;
 
             //factor 0.5 - 2;
-            foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
+            foreach (DestinationDemand destPax in airport.getDestinationsPassengers())
             {
                 if (destPax.Rate > 0)
                 {

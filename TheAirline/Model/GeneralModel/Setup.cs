@@ -954,7 +954,11 @@ namespace TheAirline.Model.GeneralModel
                     GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
                     int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
 
-
+                    GeneralHelpers.Size cargoSize = GeneralHelpers.Size.Very_small;
+                    double cargovolume = sizeElement.HasAttribute("cargovolume") ? Convert.ToDouble(sizeElement.Attributes["cargovolume"].Value) : 0;
+                    
+                    if (sizeElement.HasAttribute("cargo"))
+                        cargoSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["cargo"].Value);
 
                     Town eTown = null;
                     if (town.Contains(","))
@@ -969,7 +973,7 @@ namespace TheAirline.Model.GeneralModel
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, size, pax, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size,cargoSize, cargovolume, pax, season);
 
                     Airport airport = new Airport(profile);
 
@@ -1663,10 +1667,18 @@ namespace TheAirline.Model.GeneralModel
                     Airline.AirlineFocus subMarket = (Airline.AirlineFocus)Enum.Parse(typeof(Airline.AirlineFocus), subsidiaryElement.Attributes["market"].Value);
                     string subLogo = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + subsidiaryElement.Attributes["logo"].Value + ".png";
 
-                    airline.FutureAirlines.Add(new FutureSubsidiaryAirline(subName, subIATA, subAirport, subMentality, subMarket, subLogo));
+                    Route.RouteType airlineRouteFocus = Route.RouteType.Passenger;
+
+                    if (subsidiaryElement.HasAttribute("routefocus"))
+                        airlineRouteFocus = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), subsidiaryElement.Attributes["routefocus"].Value);
+
+
+
+                    airline.FutureAirlines.Add(new FutureSubsidiaryAirline(subName, subIATA, subAirport, subMentality, subMarket,airlineRouteFocus, subLogo));
                 }
             }
-
+            
+         
             XmlElement startDataElement = (XmlElement)root.SelectSingleNode("startdata");
             if (startDataElement != null)
             {

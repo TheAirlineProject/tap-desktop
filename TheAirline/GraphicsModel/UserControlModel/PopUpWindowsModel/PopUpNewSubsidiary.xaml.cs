@@ -32,7 +32,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private Image imgLogo;
         private ComboBox cbColor, cbAirport;
         private string logoPath;
- 
+        private Route.RouteType airlineType;
         public static object ShowPopUp()
         {
             PopUpWindow window = new PopUpNewSubsidiary();
@@ -86,7 +86,26 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             RadioButton rbPassenger = new RadioButton();
             rbPassenger.IsChecked = true;
+            rbPassenger.Content = Translator.GetInstance().GetString("PopUpNewSubsidiary", "1007");
+            rbPassenger.Margin = new Thickness(5, 0, 0, 0);
+            rbPassenger.Checked += rbAirlineType_Checked;
+            rbPassenger.Tag = Route.RouteType.Passenger;
+            rbPassenger.GroupName = "AirlineType";
+
+            panelAirlinerType.Children.Add(rbPassenger);
+
+            RadioButton rbCargo = new RadioButton();
+            rbCargo.Tag = Route.RouteType.Cargo;
+            rbCargo.GroupName = "AirlineType";
+            rbCargo.Content = Translator.GetInstance().GetString("PopUpNewSubsidiary", "1008");
+            rbCargo.Tag = Route.RouteType.Cargo;
+            rbCargo.Checked+=rbAirlineType_Checked;
+
+            panelAirlinerType.Children.Add(rbCargo);
+
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpNewSubsidiary", "1009"), panelAirlinerType));
             
+            airlineType = Route.RouteType.Passenger;
 
             WrapPanel panelAirlineLogo = new WrapPanel();
       
@@ -142,6 +161,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             mainPanel.Children.Add(createButtonsPanel());
 
             this.Content = mainPanel;
+        }
+
+        private void rbAirlineType_Checked(object sender, RoutedEventArgs e)
+        {
+            airlineType = (Route.RouteType)((RadioButton)sender).Tag;
         }
         //creates the buttons panel
         private WrapPanel createButtonsPanel()
@@ -226,7 +250,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             profile.addLogo(new AirlineLogo(logoPath));
             profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
             
-            SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local,Airline.AirlineLicense.Domestic,Route.RouteType.Passenger);
+            SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline,profile,Airline.AirlineMentality.Safe,Airline.AirlineFocus.Local,Airline.AirlineLicense.Domestic,airlineType);
             subAirline.addAirport(airport);
             subAirline.Money = slMoney.Value;
 

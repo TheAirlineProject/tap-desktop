@@ -53,6 +53,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             int sideMargin = 200;
             int regularMargin = 25;
             int menuHeight = 25;
+            int bottomMenuHeight = 40;
 
             ImageBrush imgBackground = new ImageBrush();
 
@@ -177,7 +178,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             mainPanel.Children.Add(frameInformation);
 
             frameBottomMenu = new Frame();
-            frameBottomMenu.Height = menuHeight;
+            frameBottomMenu.Height = bottomMenuHeight;
             frameBottomMenu.Width = this.Width;
             frameBottomMenu.NavigationUIVisibility = NavigationUIVisibility.Hidden;
             frameBottomMenu.Navigate(new PageBottomMenu());

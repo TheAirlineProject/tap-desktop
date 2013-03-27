@@ -70,8 +70,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Grid.SetColumn(menu, 0);
          
             panelMain.Children.Add(menu);
-
-       
+                   
 
             this.Content = base.panelMain;
 

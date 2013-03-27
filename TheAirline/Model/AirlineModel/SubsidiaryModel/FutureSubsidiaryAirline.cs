@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlineModel.SubsidiaryModel
@@ -15,7 +16,8 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
         public Airline.AirlineMentality Mentality { get; set; }
         public Airport PreferedAirport { get; set; }
         public string Logo { get; set; }
-        public FutureSubsidiaryAirline(string name, string iata,Airport airport, Airline.AirlineMentality mentality, Airline.AirlineFocus market, string logo)
+        public Route.RouteType AirlineRouteFocus { get; set; }
+        public FutureSubsidiaryAirline(string name, string iata,Airport airport, Airline.AirlineMentality mentality, Airline.AirlineFocus market, Route.RouteType airlineRouteFocus, string logo)
         {
             this.Name = name;
             this.IATA = iata;
@@ -23,6 +25,7 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
             this.Mentality = mentality;
             this.Market = market;
             this.Logo = logo;
+            this.AirlineRouteFocus = airlineRouteFocus;
         }
     }
 }

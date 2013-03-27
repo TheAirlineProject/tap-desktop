@@ -637,7 +637,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     Airlines.RemoveAirlines(a => a.Profile.Country.Region != region);
                 }
 
-             
+                PassengerHelpers.CreateAirlineDestinationDemand();
+
                 AirlinerHelpers.CreateStartUpAirliners();
 
                  if (this.OpponentType == OpponentSelect.Random || o == null)
@@ -651,8 +652,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
           
                 //PassengerHelpers.CreateDestinationPassengers();
-                PassengerHelpers.CreateAirlineDestinationPassengers();
-
+              
                  GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
                 // AIWorker.GetInstance().start();
@@ -674,9 +674,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     Stopwatch swPax = new Stopwatch();
                     swPax.Start();
 
-                    PassengerHelpers.CreateDestinationPassengers();
+                    PassengerHelpers.CreateDestinationDemand();
 
-                    Console.WriteLine("Passenger demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+                    Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                     swPax.Stop();
                 };
 

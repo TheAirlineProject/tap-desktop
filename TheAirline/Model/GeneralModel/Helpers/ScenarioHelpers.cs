@@ -59,7 +59,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             SetupScenarioAirlines(scenario);
             SetupScenario();
 
-            PassengerHelpers.CreateAirlineDestinationPassengers();
+            PassengerHelpers.CreateAirlineDestinationDemand();
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
             GameTimer.GetInstance().start();
@@ -77,7 +77,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Action<object> action = (object obj) =>
                 {
                     
-                    PassengerHelpers.CreateDestinationPassengers();
+                    PassengerHelpers.CreateDestinationDemand();
 
                     SetupScenarioPassengerDemand(scenario);
 

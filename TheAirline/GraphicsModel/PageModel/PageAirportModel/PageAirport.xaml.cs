@@ -36,6 +36,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         public Airport Airport { get; set; }
         private TextBlock txtLocalTime;
         private ListBox lbArrivals, lbDepartures, lbPassengers;
+        private Boolean domesticDemand;
         public PageAirport(Airport airport)
         {
             InitializeComponent();
@@ -153,6 +154,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             txtHeader.Text = Translator.GetInstance().GetString("PageAirport", txtHeader.Uid);
             panelPassengers.Children.Add(txtHeader);
 
+          
+
             WrapPanel panelButtons = new WrapPanel();
 
             ucSelectButton sbDomestic = new ucSelectButton();
@@ -173,10 +176,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
-            lbPassengers.MaxHeight = (GraphicsHelpers.GetContentHeight()-100) / 2;
+            lbPassengers.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             panelPassengers.Children.Add(lbPassengers);
 
-            showPassengers(true);
+            domesticDemand = true;
+
+            showDemand();
 
             //fejl i domestic demand
 
@@ -188,50 +193,54 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
         }
 
-        
+
+
+
         //shows the passengers
-        private void showPassengers(Boolean domestic)
+        private void showDemand()
         {
             lbPassengers.Items.Clear();
 
+
             List<Airport> airports;
-            
-            if (domestic)
-                airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country == this.Airport.Profile.Country).OrderByDescending(a=>this.Airport.getDestinationPassengersRate(a,AirlinerClass.ClassType.Economy_Class)).ToList();
+
+            if (domesticDemand)
+                airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country == this.Airport.Profile.Country).OrderByDescending(a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)).ToList();
             else
                 airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country != this.Airport.Profile.Country).OrderByDescending(a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)).ToList();
 
             foreach (Airport airport in airports)
             {
-                DestinationPassengers passengers = this.Airport.getDestinationPassengersObject(airport,AirlinerClass.ClassType.Economy_Class);
+                DestinationDemand passengers = this.Airport.getDestinationPassengersObject(airport, AirlinerClass.ClassType.Economy_Class);
 
                 if (passengers != null && passengers.Rate > 0)
                 {
                     int demand = passengers.Rate;
                     int covered = 0;
 
-                    List<Route> routes = AirportHelpers.GetAirportRoutes(airport, this.Airport).Where(r=>r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger).ToList();
+                    List<Route> routes = AirportHelpers.GetAirportRoutes(airport, this.Airport).Where(r => r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger).ToList();
 
                     foreach (Route route in routes)
                     {
-                         RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+                        RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
 
-                        double avgPassengers = route.Statistics.getStatisticsValue(raClass,StatisticsTypes.GetStatisticsType("Passengers%"));
+                        double avgPassengers = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
                         double flights = route.TimeTable.Entries.Count;
 
                         double routeCovered = avgPassengers / (7.0 / flights);
 
                         covered += (int)routeCovered;
                     }
-                  
 
-                    lbPassengers.Items.Add(new KeyValuePair<DestinationPassengers, int>(passengers, Math.Max(0, demand - covered)));
+
+                    lbPassengers.Items.Add(new KeyValuePair<DestinationDemand, int>(passengers, Math.Max(0, demand - covered)));
                 }
-             }
-          
+            }
 
 
-            
+
+
+
         }
         //creates the panel for departures
         private ScrollViewer createDeparturesPanel()
@@ -281,7 +290,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             return svDepartures;
 
-          
+
         }
 
         //shows the departures and arrivals
@@ -409,8 +418,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             panelCoordinates.Children.Add(txtCoordinates);
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1014"), panelCoordinates));
-          //  lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
-         //   lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1021"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
+            //  lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Size).ToString())));
+            //   lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1021"), UICreator.CreateTextBlock(new TextUnderscoreConverter().Convert(this.Airport.Profile.Cargo).ToString())));
 
             WrapPanel panelSize = new WrapPanel();
 
@@ -431,7 +440,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             imgCargo.Margin = new Thickness(10, 0, 0, 0);
             imgCargo.Source = new BitmapImage(new Uri(@"/Data/images/cargo.png", UriKind.RelativeOrAbsolute));
             imgCargo.Height = 16;
-            RenderOptions.SetBitmapScalingMode(imgCargo,BitmapScalingMode.HighQuality);
+            RenderOptions.SetBitmapScalingMode(imgCargo, BitmapScalingMode.HighQuality);
 
             panelSize.Children.Add(imgCargo);
 
@@ -441,14 +450,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             panelSize.Children.Add(txtCargoSize);
 
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"),panelSize));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1015"), panelSize));
 
-            TextBlock txtAirportIncome =  UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString());
+            TextBlock txtAirportIncome = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airport.Income).ToString());
             txtAirportIncome.Foreground = new ValueIsMinusConverter().Convert(this.Airport.Income) as Brush;
 
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1023"),txtAirportIncome));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirport", "1023"), txtAirportIncome));
 
-             WrapPanel panelTerminals = new WrapPanel();
+            WrapPanel panelTerminals = new WrapPanel();
 
             Image imgMapOverview = new Image();
             imgMapOverview.Source = new BitmapImage(new Uri(@"/Data/images/info.png", UriKind.RelativeOrAbsolute));
@@ -471,17 +480,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         }
         private void sbInternational_Click(object sender, RoutedEventArgs e)
         {
-            showPassengers(false);
+            domesticDemand = false;
+
+            showDemand();
         }
 
         private void sbDomestic_Click(object sender, RoutedEventArgs e)
         {
-            showPassengers(true);
+            domesticDemand = true;
+
+            showDemand();
         }
         private void imgMapOverview_MouseDown(object sender, MouseButtonEventArgs e)
         {
             PopUpAirportMap.ShowPopUp(this.Airport);
         }
+       
 
         private void PageAirport_Click(object sender, RoutedEventArgs e)
         {
@@ -494,9 +508,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         }
         private void btnRent_Click(object sender, RoutedEventArgs e)
         {
-            KeyValuePair<DestinationPassengers, int> v = (KeyValuePair<DestinationPassengers, int>)((Button)sender).Tag;
+            KeyValuePair<DestinationDemand, int> v = (KeyValuePair<DestinationDemand, int>)((Button)sender).Tag;
             Airport airport = v.Key.Destination;
-            
+
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
@@ -515,7 +529,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
                 airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
 
-                showPassengers(true);
+                showDemand();
 
             }
         }
@@ -547,7 +561,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             Visibility rv = Visibility.Collapsed;
             try
             {
-                KeyValuePair<DestinationPassengers, int> v = (KeyValuePair<DestinationPassengers, int>)value;
+                KeyValuePair<DestinationDemand, int> v = (KeyValuePair<DestinationDemand, int>)value;
                 Airport airport = v.Key.Destination;
 
                 Boolean isEnabled = airport.Terminals.getFreeGates() > 0 && airport.AirlineContract == null;
@@ -568,12 +582,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             throw new NotImplementedException();
         }
     }
-   
+
     public class IsHumanAirportConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            DestinationPassengers destination = (DestinationPassengers)value;
+            DestinationDemand destination = (DestinationDemand)value;
 
 
             if (GameObject.GetInstance().HumanAirline.Airports.Contains(destination.Destination))

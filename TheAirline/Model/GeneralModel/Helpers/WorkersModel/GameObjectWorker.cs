@@ -127,7 +127,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
             else if (!(e.Error == null))
             {
-                this.Cancelled = true;
+                //this.Cancelled = true;
                 
                 Console.WriteLine("Error: " + e.Error.Message);
 
@@ -137,8 +137,10 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 file.WriteLine(l_CurrentStack.ToString());
                 file.WriteLine("------------ERROR MESSAGE--------------");
                 file.WriteLine(e.Error.Message);
+                file.WriteLine(e.Error.StackTrace);
                 file.Close();
-           
+
+                this.Worker.RunWorkerAsync();
             }
 
             else

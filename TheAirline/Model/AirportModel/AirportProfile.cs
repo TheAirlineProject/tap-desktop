@@ -32,8 +32,9 @@ namespace TheAirline.Model.AirportModel
         public Period Period { get; set; }
         public string ID { get; set; }
         public double Pax{ get; set; }
+        public double CargoVolume { get; set; }
         public Dictionary<string,int> MajorDestionations { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, double pax, Weather.Season season)
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, double pax, double cargovolume, Weather.Season season)
         {
             this.Name = name;
             this.Period = period;
@@ -44,6 +45,7 @@ namespace TheAirline.Model.AirportModel
             this.Coordinates = coordinates;
             this.Size = size;
             this.Pax = pax;
+            this.CargoVolume = cargovolume;
             this.MajorDestionations = new Dictionary<string, int>();
             this.Cargo = cargo;
             this.Logo = "";

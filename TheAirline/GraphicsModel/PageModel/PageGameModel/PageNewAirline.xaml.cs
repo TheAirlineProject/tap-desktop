@@ -97,7 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
             panelAirlinerType.Children.Add(rbCargo);
 
-            //lbContent.Items.Add(new QuickInfoValue("Airline type", panelAirlinerType));
+            lbContent.Items.Add(new QuickInfoValue("Airline type", panelAirlinerType));
 
             WrapPanel panelAirlineLogo = new WrapPanel();
       

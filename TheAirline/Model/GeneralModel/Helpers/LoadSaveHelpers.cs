@@ -343,7 +343,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
                             targetAirport.addDestinationStatistics(destAirport, destPassengers);
-                            targetAirport.addDestinationPassengersRate(new DestinationPassengers(classtype, destAirport, rate));
+                            targetAirport.addDestinationPassengersRate(new DestinationDemand(classtype, destAirport, rate));
                         }
                     });
                 }

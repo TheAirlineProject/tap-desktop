@@ -394,7 +394,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         {
             Route route = (Route)value;
 
-            if (route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped))
+            if (route.getAirliners().Find(a=>a.Status != FleetAirliner.AirlinerStatus.Stopped) != null) 
                 return Visibility.Visible;
             else
                 return Visibility.Collapsed;

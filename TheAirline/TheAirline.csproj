@@ -827,6 +827,7 @@
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\GeneralModel\CalendarItem.cs" />
+    <Compile Include="Model\GeneralModel\NewsFeed.cs" />
     <Compile Include="Model\GeneralModel\Helpers\BudgetHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
@@ -884,7 +885,7 @@
     <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\HourlyWeather.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
-    <Compile Include="Model\PassengerModel\DestinationPassengers.cs" />
+    <Compile Include="Model\PassengerModel\DestinationDemand.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\Region.cs" />

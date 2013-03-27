@@ -11,6 +11,7 @@ using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using TheAirline.GraphicsModel.Converters;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -219,6 +220,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airport.getHubPrice());
 
+                NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1003"), airline.Profile.Name, new AirportCodeConverter().Convert(airport), airport.Profile.Town.Name, airport.Profile.Town.Country.ShortName)));
 
             }
 
@@ -269,12 +271,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new subsidiary airline for the airline
         private static void CreateSubsidiaryAirline(Airline airline)
         {
-            Route.RouteType airlineRouteFocus = Route.RouteType.Passenger;
-            FutureSubsidiaryAirline futureAirline = airline.FutureAirlines[rnd.Next(airline.FutureAirlines.Count)];
+             FutureSubsidiaryAirline futureAirline = airline.FutureAirlines[rnd.Next(airline.FutureAirlines.Count)];
 
             airline.FutureAirlines.Remove(futureAirline);
 
-            SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(airline, airline.Money / 5, futureAirline.Name, futureAirline.IATA, futureAirline.Mentality, futureAirline.Market,airlineRouteFocus, futureAirline.PreferedAirport);
+            SubsidiaryAirline sAirline = AirlineHelpers.CreateSubsidiaryAirline(airline, airline.Money / 5, futureAirline.Name, futureAirline.IATA, futureAirline.Mentality, futureAirline.Market,futureAirline.AirlineRouteFocus, futureAirline.PreferedAirport);
             sAirline.Profile.addLogo(new AirlineLogo(futureAirline.Logo));
             sAirline.Profile.Color = airline.Profile.Color;
 
@@ -426,35 +427,71 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (route.HasAirliner)
                 {
                     double balance = route.getBalance(route.LastUpdated, GameObject.GetInstance().GameTime);
-                    if (balance < -1000)
+
+                    Route.RouteType routeType = route.Type;
+
+                    if (routeType == Route.RouteType.Mixed || routeType == Route.RouteType.Passenger)
                     {
-                        if (route.FillingDegree > 0.50 && ((route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed) && ((PassengerRoute)route).IncomePerPassenger > 0.50))
+                        if (balance < -1000)
                         {
-                            foreach (RouteAirlinerClass rac in ((PassengerRoute)route).Classes)
+                            if (route.FillingDegree > 0.50 && (((PassengerRoute)route).IncomePerPassenger < 0.50))
                             {
-                                rac.FarePrice += 10;
+                                foreach (RouteAirlinerClass rac in ((PassengerRoute)route).Classes)
+                                {
+                                    rac.FarePrice += 10;
+                                }
+                                route.LastUpdated = GameObject.GetInstance().GameTime;
                             }
-                            route.LastUpdated = GameObject.GetInstance().GameTime;
+                            if (route.FillingDegree >= 0.2 && route.FillingDegree <= 0.50)
+                                ChangeRouteServiceLevel((PassengerRoute)route);
+                            if (route.FillingDegree < 0.2)
+                            {
+
+                                airline.removeRoute(route);
+
+                                if (route.HasAirliner)
+                                    route.getAirliners().ForEach(a => a.removeRoute(route));
+
+                                route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
+                                route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
+
+                                foreach (StopoverRoute stopover in route.Stopovers)
+                                    stopover.Stopover.Terminals.getUsedGate(airline).HasRoute = false;
+
+                                if (airline.Routes.Count == 0)
+                                    CreateNewRoute(airline);
+
+                                NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1002"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
+
+                            }
                         }
-                        if (route.FillingDegree > 0.2 && (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed))
-                            ChangeRouteServiceLevel((PassengerRoute)route);
-                        if (route.FillingDegree < 0.2)
+                    }
+                    else
+                    {
+                        if (balance < -1000)
                         {
+                            if (route.FillingDegree > 0.45)
+                                ((CargoRoute)route).PricePerUnit += 10;
+                            if (route.FillingDegree <= 0.45)
+                            {
 
-                            airline.removeRoute(route);
+                                airline.removeRoute(route);
 
-                            if (route.HasAirliner)
-                                route.getAirliners().ForEach(a => a.removeRoute(route));
+                                if (route.HasAirliner)
+                                    route.getAirliners().ForEach(a => a.removeRoute(route));
 
-                            route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
-                            route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
+                                route.Destination1.Terminals.getUsedGate(airline).HasRoute = false;
+                                route.Destination2.Terminals.getUsedGate(airline).HasRoute = false;
 
-                            foreach (StopoverRoute stopover in route.Stopovers)
-                                stopover.Stopover.Terminals.getUsedGate(airline).HasRoute = false;
+                                foreach (StopoverRoute stopover in route.Stopovers)
+                                    stopover.Stopover.Terminals.getUsedGate(airline).HasRoute = false;
 
-                            if (airline.Routes.Count == 0)
-                                CreateNewRoute(airline);
+                                if (airline.Routes.Count == 0)
+                                    CreateNewRoute(airline);
 
+                                NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1002"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
+
+                            }
                         }
                     }
                 }
@@ -471,6 +508,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (airline.Routes.Count == 0)
                         CreateNewRoute(airline);
+
+                    NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1002"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
+
                 }
 
             }
@@ -484,17 +524,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (airline.Mentality)
             {
                 case Airline.AirlineMentality.Aggressive:
-                    newRouteInterval = 100000;
+                    newRouteInterval = 10000;
                     break;
                 case Airline.AirlineMentality.Moderate:
-                    newRouteInterval = 1000000;
+                    newRouteInterval = 100000;
                     break;
                 case Airline.AirlineMentality.Safe:
-                    newRouteInterval = 10000000;
+                    newRouteInterval = 1000000;
                     break;
             }
 
-            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder + 1)) / 1100 == 0;//ændres 1100->110
+            Boolean newRoute = rnd.Next(newRouteInterval * (airlinersInOrder + 1)) / 1100 == 0;
 
             if (newRoute)
             {
@@ -541,7 +581,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
-                    
                             route = new PassengerRoute(id.ToString(), airport, destination, price);
 
                             RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute)route);
@@ -620,6 +659,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                             }
+
+                            NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime,string.Format(Translator.GetInstance().GetString("NewsFeed","1001"),airline.Profile.Name,new AirportCodeConverter().Convert(route.Destination1),new AirportCodeConverter().Convert(route.Destination2))));
 
                             fAirliner.addRoute(route);
 

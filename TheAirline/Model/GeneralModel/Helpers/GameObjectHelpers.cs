@@ -588,7 +588,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //increases the passenger demand between airports with up to 5%
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
                 {
-                    foreach (DestinationPassengers destPax in airport.getDestinationsPassengers())
+                    foreach (DestinationDemand destPax in airport.getDestinationsPassengers())
                         destPax.Rate = (ushort)(destPax.Rate * MathHelpers.GetRandomDoubleNumber(0.97, 1.05));
                 });
 

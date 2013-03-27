@@ -17,7 +17,8 @@ namespace TheAirline.Model.AirportModel
     {
         public AirportProfile Profile { get; set; }
         // private List<Passenger> Passengers;
-        private List<DestinationPassengers> DestinationPassengers { get; set; }
+        private List<DestinationDemand> DestinationPassengers { get; set; }
+        private List<DestinationDemand> DestinationCargo { get; set; }
         private Dictionary<Airport, long> DestinationStatistics { get; set; }
         private List<AirlineAirportFacility> Facilities;
         public AirportStatistics Statistics { get; set; }
@@ -34,7 +35,8 @@ namespace TheAirline.Model.AirportModel
         {
             this.Profile = profile;
             this.Income = 0;
-            this.DestinationPassengers = new List<DestinationPassengers>();
+            this.DestinationPassengers = new List<DestinationDemand>();
+            this.DestinationCargo = new List<DestinationDemand>();
             this.Facilities = new List<AirlineAirportFacility>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather[5];
@@ -81,7 +83,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination passengers for a specific destination for a class
         public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationPassengers pax = this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type);
+            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type);
 
             if (pax == null)
                 return 0;
@@ -89,25 +91,57 @@ namespace TheAirline.Model.AirportModel
                 return pax.Rate;
       
         }
-        //adds a rate for a destination
-        public void addDestinationPassengersRate(DestinationPassengers passengers)
+        //returns the destination cargo for a specific destination
+        public ushort getDestinationCargoRate(Airport destination)
+        {
+            DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination);
+
+            if (cargo == null)
+                return 0;
+            else
+                return cargo.Rate;
+            
+        }
+        //adds a passenger rate for a destination
+        public void addDestinationPassengersRate(DestinationDemand passengers)
         {
             lock (this.DestinationPassengers)
             {
                 this.DestinationPassengers.Add(passengers);
             }
         }
-        //adds a rate valu to a destination
+        //adds a cargo rate for a destination
+        public void addDestinationCargoRate(DestinationDemand cargo)
+        {
+            lock (this.DestinationCargo)
+            {
+                this.DestinationCargo.Add(cargo);
+            }
+        }
+        //adds a passenger rate value to a destination
         public void addDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type, ushort rate)
         {
             lock (this.DestinationPassengers)
             {
-                DestinationPassengers destinationPassengers = getDestinationPassengersObject(destination, type);
+                DestinationDemand destinationPassengers = getDestinationPassengersObject(destination, type);
 
                 if (destinationPassengers != null)
                     destinationPassengers.Rate += rate;
                 else
-                    addDestinationPassengersRate(new DestinationPassengers(type, destination, rate));
+                    addDestinationPassengersRate(new DestinationDemand(type, destination, rate));
+            }
+        }
+        //adds a cargo rate value to a destination
+        public void addDestinationCargoRate(Airport destination, ushort rate)
+        {
+            lock (this.DestinationCargo) 
+            {
+                DestinationDemand destinationCargo = getDestinationCargoObject(destination);
+
+                if (destinationCargo != null)
+                    destinationCargo.Rate += rate;
+                else
+                    addDestinationCargoRate(new DestinationDemand(destination, rate));
             }
         }
         //returns if the destination has passengers rate
@@ -116,9 +150,14 @@ namespace TheAirline.Model.AirportModel
             return this.DestinationPassengers.Exists(a => a.Destination == destination);
         }
         //returns a destination passengers object
-        public DestinationPassengers getDestinationPassengersObject(Airport destination, AirlinerClass.ClassType type)
+        public DestinationDemand getDestinationPassengersObject(Airport destination, AirlinerClass.ClassType type)
         {
             return this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type);
+        }
+        //returns a destination cargo object
+        public DestinationDemand getDestinationCargoObject(Airport destination)
+        {
+            return this.DestinationCargo.Find(a => a.Destination == destination);
         }
         //clears the destination passengers
         public void clearDestinationPassengers()
@@ -126,7 +165,7 @@ namespace TheAirline.Model.AirportModel
             this.DestinationPassengers.Clear();
         }
         //returns all destination passengers
-        public List<DestinationPassengers> getDestinationsPassengers()
+        public List<DestinationDemand> getDestinationsPassengers()
         {
             return this.DestinationPassengers;
         }
@@ -480,7 +519,7 @@ namespace TheAirline.Model.AirportModel
             return VerySmallAirports;
         }
 
-        public static double CountSmalleset()
+        public static double CountSmallest()
         {
             return SmallestAirports;
         }

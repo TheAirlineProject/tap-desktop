@@ -554,7 +554,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (airportNew.getMajorDestinations().Count == 0)
             {
-                 foreach (DestinationPassengers paxDemand in airportOld.getDestinationsPassengers())
+                 foreach (DestinationDemand paxDemand in airportOld.getDestinationsPassengers())
                     airportNew.addDestinationPassengersRate(paxDemand);
             }
         }
