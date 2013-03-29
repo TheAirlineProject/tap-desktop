@@ -19,7 +19,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private Boolean Paused;
         public Boolean Sleeping { get; set; }
         public Boolean IsStarted { get; set; }
-        private GameObjectWorker()
+         private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
 
@@ -91,6 +91,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
+            Random rnd  = new Random();
             if (!Paused)
             {
                 Stopwatch sw = new Stopwatch();
@@ -101,6 +102,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 
                 long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
 
+              
                 /*
                 if ((this.Worker.CancellationPending == true))
                 {
@@ -140,6 +142,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 file.WriteLine(e.Error.StackTrace);
                 file.Close();
 
+          
                 this.Worker.RunWorkerAsync();
             }
 
