@@ -119,7 +119,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
 
                      string last_service = airlinerNode.Attributes["last_service"].Value;
-                     DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value);
+                     DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
                      double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
                      double damaged = Convert.ToDouble(airlinerNode.Attributes["damaged"].Value);
 
@@ -187,7 +187,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     string runwayName = runwayElement.Attributes["name"].Value;
                     long runwayLenght = Convert.ToInt64(runwayElement.Attributes["lenght"].Value);
                     Runway.SurfaceType runwaySurface = (Runway.SurfaceType)Enum.Parse(typeof(Runway.SurfaceType), runwayElement.Attributes["surface"].Value);
-                    DateTime runwayDate = DateTime.Parse(runwayElement.Attributes["date"].Value);
+                    DateTime runwayDate = DateTime.Parse(runwayElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
 
                     airport.Runways.Add(new Runway(runwayName, runwayLenght, runwaySurface, runwayDate, false));
                 }
@@ -722,7 +722,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airlineContractNode != null)
             {
                 Manufacturer contractManufacturer = Manufacturers.GetManufacturer(airlineContractNode.Attributes["manufacturer"].Value);
-                DateTime contractSigningDate = Convert.ToDateTime(airlineContractNode.Attributes["signingdate"].Value);
+                DateTime contractSigningDate = DateTime.Parse(airlineContractNode.Attributes["signingdate"].Value, new CultureInfo("de-DE", false));
                 int contractLength = Convert.ToInt16(airlineContractNode.Attributes["length"].Value);
                 double contractDiscount = Convert.ToDouble(airlineContractNode.Attributes["discount"].Value);
                 int contractAirliners = Convert.ToInt16(airlineContractNode.Attributes["airliners"].Value);
@@ -1091,7 +1091,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("type", airliner.Type.Name);
                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
-                airlinerNode.SetAttribute("built", airliner.BuiltDate.ToShortDateString());
+                airlinerNode.SetAttribute("built", airliner.BuiltDate.ToString(new CultureInfo("de-DE")));
                 airlinerNode.SetAttribute("flown", string.Format("{0:0}", airliner.Flown));
                 airlinerNode.SetAttribute("damaged", airliner.Damaged.ToString());
 
@@ -1173,7 +1173,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement airlineContractNode = xmlDoc.CreateElement("contract");
                     airlineContractNode.SetAttribute("manufacturer", airline.Contract.Manufacturer.ShortName);
-                    airlineContractNode.SetAttribute("signingdate", airline.Contract.SigningDate.ToShortDateString());
+                    airlineContractNode.SetAttribute("signingdate", airline.Contract.SigningDate.ToString(new CultureInfo("de-DE")));
                     airlineContractNode.SetAttribute("length", airline.Contract.Length.ToString());
                     airlineContractNode.SetAttribute("discount", airline.Contract.Discount.ToString());
                     airlineContractNode.SetAttribute("airliners", airline.Contract.PurchasedAirliners.ToString());
@@ -1455,7 +1455,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airportRunwayNode.SetAttribute("name", runway.Name);
                     airportRunwayNode.SetAttribute("lenght", runway.Length.ToString());
                     airportRunwayNode.SetAttribute("surface", runway.Surface.ToString());
-                    airportRunwayNode.SetAttribute("date", runway.BuiltDate.ToShortDateString());
+                    airportRunwayNode.SetAttribute("date", runway.BuiltDate.ToString(new CultureInfo("de-DE")));
 
                     airportRunwaysNode.AppendChild(airportRunwayNode);
                 }
