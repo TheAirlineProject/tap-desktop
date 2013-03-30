@@ -367,7 +367,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                     if (result == WPFMessageBoxResult.Yes)
                     {
                         if (airliner.HasRoute)
-                            airliner.Routes.ForEach(r => airliner.removeRoute(r));
+                        {
+                            var routes = new List<Route>(airliner.Routes);
+
+                            foreach (Route route in routes)
+                                airliner.removeRoute(route);
+                        }
 
 
                         this.Airline.removeAirliner(airliner);
