@@ -392,6 +392,7 @@ namespace TheAirline.Model.AirportModel
     {
         private static List<Airport> airports = new List<Airport>();
         public static double LargestAirports, VeryLargeAirports, LargeAirports, MediumAirports, SmallAirports, VerySmallAirports, SmallestAirports;
+        public static Dictionary<GeneralHelpers.Size, int> CargoAirportsSizes = new Dictionary<GeneralHelpers.Size,int>();
         //clears the list
         public static void Clear()
         {

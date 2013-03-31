@@ -154,8 +154,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             txtHeader.Text = Translator.GetInstance().GetString("PageAirport", txtHeader.Uid);
             panelPassengers.Children.Add(txtHeader);
 
-          
-
             WrapPanel panelButtons = new WrapPanel();
 
             ucSelectButton sbDomestic = new ucSelectButton();
@@ -175,15 +173,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbPassengers.ItemTemplate = this.Resources["PassengersItem"] as DataTemplate;
+            lbPassengers.ItemTemplate = this.Resources["DemandItem"] as DataTemplate;
             lbPassengers.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
             panelPassengers.Children.Add(lbPassengers);
 
             domesticDemand = true;
 
             showDemand();
-
-            //fejl i domestic demand
 
             return panelPassengers;
 
@@ -212,9 +208,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             foreach (Airport airport in airports)
             {
                 DestinationDemand passengers = this.Airport.getDestinationPassengersObject(airport, AirlinerClass.ClassType.Economy_Class);
+                DestinationDemand cargo = this.Airport.getDestinationCargoObject(airport);
 
-                if (passengers != null && passengers.Rate > 0)
+                if ((passengers != null && passengers.Rate > 0) || (cargo != null && cargo.Rate >0))
                 {
+                    if (passengers == null)
+                        passengers = new DestinationDemand(AirlinerClass.ClassType.Economy_Class, cargo.Destination, 0);
+                   
                     int demand = passengers.Rate;
                     int covered = 0;
 
@@ -232,8 +232,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                         covered += (int)routeCovered;
                     }
 
+                    KeyValuePair<DestinationDemand,int> paxDemand = new KeyValuePair<DestinationDemand,int>(passengers, Math.Max(0,demand-covered));
+                    KeyValuePair<DestinationDemand,int> cargoDemand = new KeyValuePair<DestinationDemand,int>(cargo,0);
+                    KeyValuePair<KeyValuePair<DestinationDemand,int>,KeyValuePair<DestinationDemand,int>> totalDemand = new KeyValuePair<KeyValuePair<DestinationDemand,int>,KeyValuePair<DestinationDemand,int>>(paxDemand,cargoDemand);
 
-                    lbPassengers.Items.Add(new KeyValuePair<DestinationDemand, int>(passengers, Math.Max(0, demand - covered)));
+                    lbPassengers.Items.Add(totalDemand);
                 }
             }
 

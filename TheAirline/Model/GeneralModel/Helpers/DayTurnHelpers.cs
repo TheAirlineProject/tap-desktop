@@ -197,7 +197,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double tax=0;
         
-            if (airliner.CurrentFlight.Entry.Destination.Airport.Profile.Country.Name != airliner.CurrentFlight.getDepartureAirport().Profile.Country.Name)
+            if (airliner.CurrentFlight.Entry.Destination.Airport.Profile.Country!= airliner.CurrentFlight.getDepartureAirport().Profile.Country)
                 tax = 2 * tax;
 
             double ticketsIncome = 0;

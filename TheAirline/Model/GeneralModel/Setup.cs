@@ -903,6 +903,11 @@ namespace TheAirline.Model.GeneralModel
             Airports.VerySmallAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_small).Count;
             Airports.SmallestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Smallest).Count;
 
+            foreach (GeneralHelpers.Size size in Enum.GetValues(typeof(GeneralHelpers.Size)))
+            {
+                Airports.CargoAirportsSizes.Add(size,Airports.GetAirports(a=>a.Profile.Cargo == size).Count);
+            }
+         
         }
         private static void LoadAirports(string file)
         {

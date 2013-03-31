@@ -34,13 +34,15 @@
 
             </WrapPanel>
         </DataTemplate>
-        <DataTemplate x:Key="PassengersItem">
+        <DataTemplate x:Key="DemandItem">
             <WrapPanel>
-            <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Key.Destination}" VerticalAlignment="Bottom" Width="250" Foreground="DarkRed"></ContentControl>
-                <TextBlock Text="{Binding Key.Rate}" VerticalAlignment="Bottom" Width="50"></TextBlock>
-                <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom" Width="50"></TextBlock>
-                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Key,Converter={StaticResource isHumanAirportConverter}}"></Image>
-                <Button VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnRent_Click"  Visibility="{Binding Converter={StaticResource rentingGateVisibility}}">
+            <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Key.Key.Destination}" VerticalAlignment="Bottom" Width="250" Foreground="DarkRed"></ContentControl>
+                <TextBlock Text="{Binding Key.Key.Rate}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Key.Value}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Value.Key.Rate}" VerticalAlignment="Bottom" Margin="10 0 0 0" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Value.Value}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <Image Source="/Data/images/human.png" Height="20" Width="20"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Key.Key,Converter={StaticResource isHumanAirportConverter}}"></Image>
+                <Button VerticalAlignment="Bottom" Tag="{Binding Key}" Background="Transparent" Click="btnRent_Click"  Visibility="{Binding Key,Converter={StaticResource rentingGateVisibility}}">
                     <Image Source="/Data/images/add.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
 

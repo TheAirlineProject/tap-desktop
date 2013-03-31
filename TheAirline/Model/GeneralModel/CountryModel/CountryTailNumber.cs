@@ -193,7 +193,7 @@ namespace TheAirline.Model.GeneralModel
                      * */
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return "";
             }
