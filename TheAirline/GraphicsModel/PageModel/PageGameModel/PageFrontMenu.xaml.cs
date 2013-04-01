@@ -20,6 +20,8 @@ using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.Model.AirportModel;
+using System.Threading.Tasks;
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 {
@@ -145,15 +147,38 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 LoadSaveHelpers.LoadGame(file);
 
-                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
-
                 HolidayYear.Clear();
 
                 GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
 
+
                 GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
 
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+                Action action = () =>
+                {
+                    var airports = Airports.GetAllAirports();
+                    int count = airports.Count;
+
+                    //var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+
+                    Parallel.For(0, count - 1, i =>
+                    {
+                        Parallel.For(i + 1, count, j =>
+                        {
+                            airports[j].Statics.addDistance(airports[i], MathHelpers.GetDistance(airports[j], airports[i]));
+
+                        });
+                    });
+                };
+                
+                Task.Factory.StartNew(action);
+
+              
+            
+        
             }
         }
 

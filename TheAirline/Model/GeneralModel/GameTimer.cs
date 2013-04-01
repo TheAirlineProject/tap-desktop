@@ -96,6 +96,7 @@ namespace TheAirline.Model.GeneralModel
         {
             GetInstance().pause();
             gameTimer = new GameTimer();
+            GetInstance().start();
         }
 
 

@@ -216,6 +216,7 @@ namespace TheAirline.Model.GeneralModel
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
             double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent, airportDestination, airliner, type) + GetNearbyPassengerDemand(airportCurrent, airportDestination, airliner, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+            
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 

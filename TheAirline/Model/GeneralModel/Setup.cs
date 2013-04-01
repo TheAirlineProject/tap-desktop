@@ -905,7 +905,8 @@ namespace TheAirline.Model.GeneralModel
 
             foreach (GeneralHelpers.Size size in Enum.GetValues(typeof(GeneralHelpers.Size)))
             {
-                Airports.CargoAirportsSizes.Add(size,Airports.GetAirports(a=>a.Profile.Cargo == size).Count);
+                if (!Airports.CargoAirportsSizes.ContainsKey(size))
+                    Airports.CargoAirportsSizes.Add(size,Airports.GetAirports(a=>a.Profile.Cargo == size).Count);
             }
          
         }
@@ -1938,7 +1939,9 @@ namespace TheAirline.Model.GeneralModel
             List<Airline> airlines = new List<Airline>(Airlines.GetAirlines(a => !a.IsHuman && a.Profile.Founded <= year && a.Profile.Folded > year));
 
             if (sameRegion)
-                airlines.Sort(delegate(Airline a1, Airline a2) { return MathHelpers.GetDistance(a2.Profile.PreferedAirport, humanAirport).CompareTo(MathHelpers.GetDistance(a1.Profile.PreferedAirport, humanAirport)); });
+            {
+                airlines = airlines.OrderByDescending(a => a.Profile.PreferedAirport == null ? Double.MaxValue : MathHelpers.GetDistance(a.Profile.PreferedAirport,humanAirport)).ToList();
+            }
             else
                 airlines = MathHelpers.Shuffle(airlines);
 

@@ -44,6 +44,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
+                
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
                 // foreach (Airline airline in Airlines.GetAllAirlines())
                 {

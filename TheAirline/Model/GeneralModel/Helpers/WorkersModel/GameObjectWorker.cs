@@ -91,7 +91,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         }
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
-            Random rnd  = new Random();
+            
             if (!Paused)
             {
                 Stopwatch sw = new Stopwatch();
