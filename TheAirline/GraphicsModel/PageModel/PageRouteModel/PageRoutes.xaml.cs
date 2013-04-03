@@ -460,7 +460,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-
+            
             FleetAirliner airliner = (FleetAirliner)value;
 
             if (parameter.ToString() == "start")

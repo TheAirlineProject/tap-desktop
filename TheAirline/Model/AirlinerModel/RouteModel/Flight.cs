@@ -90,7 +90,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the flight airliner class for a specific class type
         public FlightAirlinerClass getFlightAirlinerClass(AirlinerClass.ClassType type)
         {
-            return this.Classes.Find((delegate(FlightAirlinerClass c) { return c.AirlinerClass.Type == type; }));
+            return this.Classes.Find(c=>c.AirlinerClass.Type == type); 
         }
         //returns the next destination
         public Airport getNextDestination()

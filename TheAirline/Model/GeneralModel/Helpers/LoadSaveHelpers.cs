@@ -344,6 +344,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             targetAirport.addDestinationStatistics(destAirport, destPassengers);
                             targetAirport.addDestinationPassengersRate(new DestinationDemand(classtype, destAirport, rate));
+
+                            if (classtype == AirlinerClass.ClassType.Economy_Class && destinationElement.HasAttribute("cargo"))
+                                targetAirport.addDestinationCargoRate(new DestinationDemand(destAirport, ushort.Parse(destinationElement.Attributes["cargo"].Value)));
                         }
                     });
                 }
@@ -928,21 +931,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         currentFlight.FlightTime = flightTime;
                         currentFlight.Classes.Clear();
 
-                        XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
-                        
-                        foreach (XmlElement flightClassNode in flightClassList)
+                        if (currentFlight.isPassengerFlight())
                         {
-                            AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
-                            int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
+                            XmlNodeList flightClassList = flightNode.SelectNodes("flightclasses/flightclass");
 
-                            /*ændres
-                            currentFlight.Classes.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(airlinerClassType), flightPassengers));
-                        */}
+                            foreach (XmlElement flightClassNode in flightClassList)
+                            {
+                                AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), flightClassNode.Attributes["type"].Value);
+                                int flightPassengers = Convert.ToInt16(flightClassNode.Attributes["passengers"].Value);
 
+                                currentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(airlinerClassType), flightPassengers));
+                            }
+
+                        }
+                        if (currentFlight.isCargoFlight())
+                        {
+                             XmlElement flightCargoNode = (XmlElement)flightNode.SelectSingleNode("flightcargo"); 
+                            double flightCargo = Convert.ToDouble(flightCargoNode.Attributes["cargo"].Value);
+
+                            currentFlight.Cargo = flightCargo;
+                        
+                        }
                         if (isStopoverFlight)
                         {
                             int currentStopoverFlight = Convert.ToInt32(stopoverNode.Attributes["currentflight"].Value);
 
+                           
                             XmlNodeList stopoverClassesList = stopoverNode.SelectNodes("classes/class");
 
                             Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>> stopEntryAllClasses = new Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>>();
@@ -961,9 +975,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     AirlinerClass.ClassType stopoverAirlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), stopoverFlightClassNode.Attributes["type"].Value);
                                     int stopoverFlightPassengers = Convert.ToInt16(stopoverFlightClassNode.Attributes["passengers"].Value);
 
-                                   /*ændres
-                                    stopoverFlightClasses.Add(new FlightAirlinerClass(route.getRouteAirlinerClass(stopoverAirlinerClassType), stopoverFlightPassengers));
-                                    */
+                                     stopoverFlightClasses.Add(new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(stopoverAirlinerClassType), stopoverFlightPassengers));
+                                   
                                 }
 
                                 stopEntryAllClasses.Add(stopoverEntry, stopoverFlightClasses);
@@ -1365,7 +1378,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineNode.AppendChild(fleetNode);
 
                 XmlElement routesNode = xmlDoc.CreateElement("routes");
-                foreach (PassengerRoute route in airline.Routes)
+                foreach (Route route in airline.Routes)
                 {
                     routesNode.AppendChild(SaveRoute(xmlDoc, route));
                 }
@@ -1390,41 +1403,59 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             XmlElement stopoverNode = xmlDoc.CreateElement("stopover");
                             stopoverNode.SetAttribute("currentflight", ((StopoverFlight)airliner.CurrentFlight).CurrentFlight.ToString());
 
-                            XmlElement stopoverClassesNode = xmlDoc.CreateElement("classes");
-
-                            foreach (RouteTimeTableEntry stopEntry in ((StopoverFlight)airliner.CurrentFlight).AllClasses.Keys)
+                            if (airliner.CurrentFlight.isPassengerFlight())
                             {
-                                XmlElement stopoverClassNode = xmlDoc.CreateElement("class");
-                                stopoverClassNode.SetAttribute("id", stopEntry.ID);
+                                XmlElement stopoverClassesNode = xmlDoc.CreateElement("classes");
 
-                                XmlElement stopoverFlightClassesNode = xmlDoc.CreateElement("flightclasses");
-                                foreach (FlightAirlinerClass faClass in ((StopoverFlight)airliner.CurrentFlight).AllClasses[stopEntry])
+                                foreach (RouteTimeTableEntry stopEntry in ((StopoverFlight)airliner.CurrentFlight).AllClasses.Keys)
                                 {
-                                    XmlElement stopoverFlightClassNode = xmlDoc.CreateElement("flightclass");
-                                    stopoverFlightClassNode.SetAttribute("type", faClass.AirlinerClass.Type.ToString());
-                                    stopoverFlightClassNode.SetAttribute("passengers", faClass.Passengers.ToString());
+                                    XmlElement stopoverClassNode = xmlDoc.CreateElement("class");
+                                    stopoverClassNode.SetAttribute("id", stopEntry.ID);
 
-                                    stopoverFlightClassesNode.AppendChild(stopoverFlightClassNode);
+                                    XmlElement stopoverFlightClassesNode = xmlDoc.CreateElement("flightclasses");
+                                    foreach (FlightAirlinerClass faClass in ((StopoverFlight)airliner.CurrentFlight).AllClasses[stopEntry])
+                                    {
+                                        XmlElement stopoverFlightClassNode = xmlDoc.CreateElement("flightclass");
+                                        stopoverFlightClassNode.SetAttribute("type", faClass.AirlinerClass.Type.ToString());
+                                        stopoverFlightClassNode.SetAttribute("passengers", faClass.Passengers.ToString());
+
+                                        stopoverFlightClassesNode.AppendChild(stopoverFlightClassNode);
+                                    }
+                                    stopoverClassNode.AppendChild(stopoverFlightClassesNode);
+                                    stopoverClassesNode.AppendChild(stopoverClassNode);
                                 }
-                                stopoverClassNode.AppendChild(stopoverFlightClassesNode);
-                                stopoverClassesNode.AppendChild(stopoverClassNode);
+
+                                stopoverNode.AppendChild(stopoverClassesNode);
                             }
+                            if (airliner.CurrentFlight.isCargoFlight())
+                            {
+                                XmlElement stopoverCargoNode = xmlDoc.CreateElement("cargo");
+                                stopoverCargoNode.SetAttribute("value", airliner.CurrentFlight.Cargo.ToString());
 
-                            stopoverNode.AppendChild(stopoverClassesNode);
-
+                                stopoverNode.AppendChild(stopoverCargoNode);
+                            }
                             flightNode.AppendChild(stopoverNode);
                         }
-                      
-                        XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
-                        foreach (FlightAirlinerClass aClass in airliner.CurrentFlight.Classes)
+                        if (airliner.CurrentFlight.isPassengerFlight())
                         {
-                            XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
-                            flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
-                            flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
+                            XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
+                            foreach (FlightAirlinerClass aClass in airliner.CurrentFlight.Classes)
+                            {
+                                XmlElement flightClassNode = xmlDoc.CreateElement("flightclass");
+                                flightClassNode.SetAttribute("type", aClass.AirlinerClass.Type.ToString());
+                                flightClassNode.SetAttribute("passengers", aClass.Passengers.ToString());
 
-                            flightClassesNode.AppendChild(flightClassNode);
+                                flightClassesNode.AppendChild(flightClassNode);
+                            }
+                            flightNode.AppendChild(flightClassesNode);
                         }
-                        flightNode.AppendChild(flightClassesNode);
+                        if (airliner.CurrentFlight.isCargoFlight())
+                        {
+                            XmlElement flightCargoNode = xmlDoc.CreateElement("flightcargo");
+                            flightCargoNode.SetAttribute("cargo", airliner.CurrentFlight.Cargo.ToString());
+
+                            flightNode.AppendChild(flightCargoNode);
+                        }
 
                         flightsNode.AppendChild(flightNode);
 
@@ -1607,6 +1638,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Airport dest in Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a))))
                 //Parallel.ForEach(dests, dest =>
                 {
+                    
                     foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                     {
                         XmlElement destinationNode = xmlDoc.CreateElement("destination");
@@ -1614,6 +1646,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         destinationNode.SetAttribute("classtype", classType.ToString());
                         destinationNode.SetAttribute("rate", airport.getDestinationPassengersRate(dest, classType).ToString());
                         destinationNode.SetAttribute("passengers", airport.getDestinationStatistics(dest).ToString());
+
+                        if (classType == AirlinerClass.ClassType.Economy_Class)
+                            destinationNode.SetAttribute("cargo", airport.getDestinationCargoRate(dest).ToString());
 
                         destinationsNode.AppendChild(destinationNode);
                     }
@@ -1892,17 +1927,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //loads a route
-        private static PassengerRoute LoadRoute(XmlElement routeNode, Airline airline)
+        private static Route LoadRoute(XmlElement routeNode, Airline airline, Route.RouteType routetype = Route.RouteType.Passenger)
         {
             string id = routeNode.Attributes["id"].Value;
             Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
             Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
             Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
 
-            PassengerRoute route = new PassengerRoute(id, dest1, dest2, 0);
-            route.Banned = isBanned;
-            route.Classes.Clear();
+            if (routeNode.HasAttribute("type"))
+                routetype = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), routeNode.Attributes["type"].Value);
 
+            Route route;
+            
+            if (routetype == Route.RouteType.Passenger || routetype == Route.RouteType.Mixed)
+                route = new PassengerRoute(id, dest1, dest2, 0);
+            else
+                route = new CargoRoute(id,dest1,dest2,0);
+
+            route.Banned = isBanned;
+         
             /* foreach (StopoverRoute stopover in route.Stopovers)
             {
                 XmlElement routeStopoverNode = xmlDoc.CreateElement("stopover");
@@ -1933,35 +1976,48 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (XmlElement legNode in legsList)
                 {
 
-                    stopoverRoute.addLeg(LoadRoute((XmlElement)legNode.SelectSingleNode("route"), airline));
+                    stopoverRoute.addLeg(LoadRoute((XmlElement)legNode.SelectSingleNode("route"), airline,routetype));
                 }
 
                 route.addStopover(stopoverRoute);
 
             }
 
-            XmlNodeList routeClassList = routeNode.SelectNodes("routeclasses/routeclass");
-
-            foreach (XmlElement routeClassNode in routeClassList)
+            if (routetype == Route.RouteType.Passenger || routetype == Route.RouteType.Mixed)
             {
-                AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
-                double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
-                RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);
+                ((PassengerRoute)route).Classes.Clear();
 
-                RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);
-                rClass.Seating = seatingType;
+                XmlNodeList routeClassList = routeNode.SelectNodes("routeclasses/routeclass");
 
-                foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                foreach (XmlElement routeClassNode in routeClassList)
                 {
-                    if (routeClassNode.HasAttribute(ftype.ToString()))
+                    AirlinerClass.ClassType airlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), routeClassNode.Attributes["type"].Value);
+                    double fareprice = Convert.ToDouble(routeClassNode.Attributes["fareprice"].Value);
+                    RouteAirlinerClass.SeatingType seatingType = (RouteAirlinerClass.SeatingType)Enum.Parse(typeof(RouteAirlinerClass.SeatingType), routeClassNode.Attributes["seating"].Value);
+
+                    RouteAirlinerClass rClass = new RouteAirlinerClass(airlinerClassType, RouteAirlinerClass.SeatingType.Reserved_Seating, fareprice);
+                    rClass.Seating = seatingType;
+
+                    foreach (RouteFacility.FacilityType ftype in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {
-                        RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
-                        rClass.addFacility(facility);
+                        if (routeClassNode.HasAttribute(ftype.ToString()))
+                        {
+                            RouteFacility facility = RouteFacilities.GetFacility(routeClassNode.Attributes[ftype.ToString()].Value);
+                            rClass.addFacility(facility);
+                        }
                     }
+
+                    ((PassengerRoute)route).addRouteAirlinerClass(rClass);
+
                 }
-
-                route.addRouteAirlinerClass(rClass);
-
+            }
+            if (routetype == Route.RouteType.Mixed || routetype == Route.RouteType.Cargo)
+            {
+                XmlElement routeCargoNode = (XmlElement)routeNode.SelectSingleNode("cargo");
+                double unitPrice = Convert.ToDouble(routeCargoNode.Attributes["priceperunit"].Value);
+                
+                ((CargoRoute)route).PricePerUnit = unitPrice;
+        
             }
 
             RouteTimeTable timeTable = new RouteTimeTable(route);
@@ -2007,13 +2063,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return route;
         }
         //saves a route
-        private static XmlElement SaveRoute(XmlDocument xmlDoc, PassengerRoute route)
+        private static XmlElement SaveRoute(XmlDocument xmlDoc, Route route)
         {
             XmlElement routeNode = xmlDoc.CreateElement("route");
             routeNode.SetAttribute("id", route.Id);
             routeNode.SetAttribute("destination1", route.Destination1.Profile.IATACode);
             routeNode.SetAttribute("destination2", route.Destination2.Profile.IATACode);
             routeNode.SetAttribute("isbanned", route.Banned.ToString());
+            routeNode.SetAttribute("type", route.Type.ToString());
 
             XmlElement routeStopoversNode = xmlDoc.CreateElement("stopovers");
 
@@ -2037,22 +2094,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             routeNode.AppendChild(routeStopoversNode);
 
-            XmlElement routeClassesNode = xmlDoc.CreateElement("routeclasses");
-
-            foreach (RouteAirlinerClass aClass in route.Classes)
+            if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
             {
-                XmlElement routeClassNode = xmlDoc.CreateElement("routeclass");
-                routeClassNode.SetAttribute("type", aClass.Type.ToString());
-                routeClassNode.SetAttribute("fareprice", string.Format("{0:0.##}", aClass.FarePrice));
 
-                foreach (RouteFacility facility in aClass.getFacilities())
-                    routeClassNode.SetAttribute(facility.Type.ToString(), facility.Uid);
-                // chs, 2011-18-10 added for saving of type of seating
-                routeClassNode.SetAttribute("seating", aClass.Seating.ToString());
+                XmlElement routeClassesNode = xmlDoc.CreateElement("routeclasses");
 
-                routeClassesNode.AppendChild(routeClassNode);
+                foreach (RouteAirlinerClass aClass in ((PassengerRoute)route).Classes)
+                {
+                    XmlElement routeClassNode = xmlDoc.CreateElement("routeclass");
+                    routeClassNode.SetAttribute("type", aClass.Type.ToString());
+                    routeClassNode.SetAttribute("fareprice", string.Format("{0:0.##}", aClass.FarePrice));
+
+                    foreach (RouteFacility facility in aClass.getFacilities())
+                        routeClassNode.SetAttribute(facility.Type.ToString(), facility.Uid);
+                    // chs, 2011-18-10 added for saving of type of seating
+                    routeClassNode.SetAttribute("seating", aClass.Seating.ToString());
+
+                    routeClassesNode.AppendChild(routeClassNode);
+                }
+                routeNode.AppendChild(routeClassesNode);
+
             }
-            routeNode.AppendChild(routeClassesNode);
+
+            if (route.Type == Route.RouteType.Mixed || route.Type == Route.RouteType.Cargo)
+            {
+                XmlElement routeCargoNode = xmlDoc.CreateElement("cargo");
+                routeCargoNode.SetAttribute("priceperunit",((CargoRoute)route).PricePerUnit.ToString());
+
+                routeNode.AppendChild(routeCargoNode);
+            }
 
             XmlElement timetableNode = xmlDoc.CreateElement("timetable");
 

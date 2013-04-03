@@ -174,7 +174,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 //SetTakeoffStatistics(airliner);
 
-       
                 if (airliner.CurrentFlight.ExpectedLanding.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
                     SimulateLanding(airliner);
 
