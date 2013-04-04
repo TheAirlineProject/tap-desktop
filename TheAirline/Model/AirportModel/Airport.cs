@@ -19,7 +19,8 @@ namespace TheAirline.Model.AirportModel
         // private List<Passenger> Passengers;
         private List<DestinationDemand> DestinationPassengers { get; set; }
         private List<DestinationDemand> DestinationCargo { get; set; }
-        private Dictionary<Airport, long> DestinationStatistics { get; set; }
+        private Dictionary<Airport, long> DestinationPassengerStatistics { get; set; }
+        private Dictionary<Airport, double> DestinationCargoStatistics { get; set; }
         private List<AirlineAirportFacility> Facilities;
         public AirportStatistics Statistics { get; set; }
         public Weather[] Weather { get; set; }
@@ -43,7 +44,8 @@ namespace TheAirline.Model.AirportModel
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
             this.Hubs = new List<Hub>();
-            this.DestinationStatistics = new Dictionary<Airport, long>();
+            this.DestinationPassengerStatistics = new Dictionary<Airport, long>();
+            this.DestinationCargoStatistics = new Dictionary<Airport, double>();
             this.LastExpansionDate = new DateTime(1900, 1, 1);
             this.Statics = new AirportStatics(this);
 
@@ -178,35 +180,68 @@ namespace TheAirline.Model.AirportModel
             }
         }
         //adds a number of passengers to destination to the statistics
-        public void addDestinationStatistics(Airport destination, long passengers)
+        public void addPassengerDestinationStatistics(Airport destination, long passengers)
         {
-            lock (this.DestinationStatistics)
+            lock (this.DestinationPassengerStatistics)
             {
-                if (!this.DestinationStatistics.ContainsKey(destination))
-                    this.DestinationStatistics.Add(destination, passengers);
+                if (!this.DestinationPassengerStatistics.ContainsKey(destination))
+                    this.DestinationPassengerStatistics.Add(destination, passengers);
                 else
-                    this.DestinationStatistics[destination] += passengers;
+                    this.DestinationPassengerStatistics[destination] += passengers;
             }
 
         }
-
-        //clears the destination statistics
-        public void clearDestinationStatistics()
+        //adds a number of cargo to destination to the statistics
+        public void addCargoDestinationStatistics(Airport destination, double cargo)
         {
-            this.DestinationStatistics.Clear();
+            lock (this.DestinationCargoStatistics)
+            {
+                if (!this.DestinationCargoStatistics.ContainsKey(destination))
+                    this.DestinationCargoStatistics.Add(destination, cargo);
+                else
+                    this.DestinationCargoStatistics[destination] += cargo;
+            }
+        }
+        //clears the destination statistics
+        public void clearDestinationPassengerStatistics()
+        {
+            this.DestinationPassengerStatistics.Clear();
+        }
+        //clears the destination cargo statistics
+        public void clearDestinationCargoStatistics()
+        {
+            this.DestinationCargoStatistics.Clear();
         }
         //returns the number of passengers to a destination
-        public long getDestinationStatistics(Airport destination)
+        public long getDestinationPassengerStatistics(Airport destination)
         {
-            if (this.DestinationStatistics.ContainsKey(destination))
-                return this.DestinationStatistics[destination];
-            else
+            lock (this.DestinationPassengerStatistics)
+            {
+                if (this.DestinationPassengerStatistics.ContainsKey(destination))
+                    return this.DestinationPassengerStatistics[destination];
+                else
+                    return 0;
+            }
+        }
+        //returns the number of cargo to a destination
+        public double getDestinationCargoStatistics(Airport destination)
+        {
+            lock (this.DestinationCargoStatistics)
+            {
+                if (this.DestinationCargoStatistics.ContainsKey(destination))
+                    return this.DestinationCargoStatistics[destination];
                 return 0;
+            }
         }
         //returns if the destination have statistics
-        public Boolean hasDestinationStatistics(Airport destination)
+        public Boolean hasDestinationPassengerStatistics(Airport destination)
         {
-            return this.DestinationStatistics.ContainsKey(destination);
+            return this.DestinationPassengerStatistics.ContainsKey(destination);
+        }
+        //returns if the destination have cargo statistics
+        public Boolean hasDestinationCargStatistics(Airport destination)
+        {
+            return this.DestinationCargoStatistics.ContainsKey(destination);
         }
         //returns the price for a gate
         public long getGatePrice()

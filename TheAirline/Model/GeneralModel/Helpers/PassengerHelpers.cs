@@ -355,12 +355,43 @@ namespace TheAirline.Model.GeneralModel
 
 
         }
+        //returns the cargo for a stopover flight
+        public static double GetStopoverFlightCargo(FleetAirliner airliner, Airport dept, Airport dest, List<Route> routes, Boolean isInbound)
+        {
+            Route currentRoute = routes.Find(r => (r.Destination1 == dept && r.Destination2 == dest) || (r.Destination2 == dept && r.Destination1 == dest));
+            int index = routes.IndexOf(currentRoute);
+
+            double cargo = 0;
+            for (int i = 0; i <= index; i++)
+            {
+                if (isInbound)
+                {
+                    cargo += GetFlightCargo(routes[i].Destination2, dest, airliner);
+                }
+                else
+                {
+                    cargo += GetFlightCargo(routes[i].Destination1, dest, airliner);
+
+                }
+
+
+
+            }
+
+            return Math.Min(airliner.Airliner.getCargoCapacity(), cargo);
+        }
         //returns the cargo for a flight
         public static double GetFlightCargo(FleetAirliner airliner)
         {
             Airport airportCurrent = airliner.CurrentFlight.getDepartureAirport();
             Airport airportDestination = airliner.CurrentFlight.Entry.Destination.Airport;
-            double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
+
+            return GetFlightCargo(airportCurrent, airportDestination, airliner);
+        }
+        public static double GetFlightCargo(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner)
+        {
+
+             double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
             double capacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
 

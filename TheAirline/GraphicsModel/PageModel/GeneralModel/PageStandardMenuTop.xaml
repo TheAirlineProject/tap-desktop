@@ -49,7 +49,7 @@
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
             <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageFlights}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkFlights_Click"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
-            <MenuItem Header="Finances" Style="{DynamicResource MenuHeaderStyle}" Click="lnkFinances_Click"/>
+            <MenuItem Header="Finances" Style="{DynamicResource MenuHeaderStyle}" Click="lnkFinances_Click" Visibility="Collapsed"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Visibility="{Binding Converter={StaticResource menuEnabledConverter},ConverterParameter=Finance}" Margin="0,10,0,2" />
             <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageCalendar}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkCalendar_Click" Visibility="Collapsed"/>
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />

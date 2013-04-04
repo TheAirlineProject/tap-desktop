@@ -12,6 +12,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     {
         public int CurrentFlight { get; set; }
         public Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>> AllClasses { get; set; }
+        public Dictionary<RouteTimeTableEntry, double> AllCargo { get; set; }
         public Boolean IsLastTrip { get { return isLastTrip(); } set { ;} }
         public StopoverFlight(RouteTimeTableEntry entry)
             : base(entry)
@@ -19,6 +20,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             this.CurrentFlight = 0;
             this.AllClasses = new Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>>();
+            this.AllCargo = new Dictionary<RouteTimeTableEntry, double>();
 
             List<Route> legs = entry.TimeTable.Route.Stopovers.SelectMany(s => s.Legs).ToList();
 
@@ -102,16 +104,35 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                     this.AllClasses.Add(entry, classes);
                 }
+                if (route.Type == Route.RouteType.Cargo || route.Type == Route.RouteType.Mixed)
+                {
+                    if (isInbound)
+                        this.AllCargo.Add(entry, PassengerHelpers.GetStopoverFlightCargo(this.Airliner, route.Destination2, route.Destination1, routes, isInbound));
+                    else
+                        this.AllCargo.Add(entry, PassengerHelpers.GetStopoverFlightCargo(this.Airliner, route.Destination1, route.Destination2, routes,isInbound));
+
+                }
+
             }
         }
         //sets the next entry
         public void setNextEntry()
         {
+            RouteTimeTableEntry entry=null;
 
-            RouteTimeTableEntry entry = this.AllClasses.Keys.ElementAt(CurrentFlight);
+            if (isPassengerFlight())
+                entry = this.AllClasses.Keys.ElementAt(CurrentFlight);
+
+            if (isCargoFlight())
+                entry = this.AllCargo.Keys.ElementAt(CurrentFlight);
 
             this.Entry = entry;
-            this.Classes = this.AllClasses[entry];
+
+            if (entry.TimeTable.Route.Type == Route.RouteType.Mixed || entry.TimeTable.Route.Type == Route.RouteType.Passenger)
+                this.Classes = this.AllClasses[entry];
+
+            if (entry.TimeTable.Route.Type == Route.RouteType.Mixed || entry.TimeTable.Route.Type == Route.RouteType.Cargo)
+                this.Cargo = this.AllCargo[entry];
 
             this.Airliner = this.Entry.Airliner;
 
@@ -119,7 +140,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 this.FlightTime = MathHelpers.ConvertEntryToDate(this.Entry, 0);
             else
                 this.FlightTime = GameObject.GetInstance().GameTime.Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner));
-            
+
             this.IsOnTime = true;
 
             CurrentFlight++;
@@ -128,15 +149,21 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns if the entry is the last of the trip
         private Boolean isLastTrip()
         {
-            return CurrentFlight == this.AllClasses.Keys.Count;//this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
+
+            return CurrentFlight == Math.Max(this.AllClasses.Keys.Count, this.AllCargo.Keys.Count);//this.AllClasses.Keys.ToList().IndexOf(this.Entry.TimeTable.Route) == this.AllClasses.Keys.Count -1;
 
         }
         public override void addDelayMinutes(int minutes)
         {
             base.addDelayMinutes(minutes);
 
-            foreach (RouteTimeTableEntry e in this.AllClasses.Keys)
-                e.Time = e.Time.Add(new TimeSpan(0, minutes, 0));
+            if (isPassengerFlight())
+                foreach (RouteTimeTableEntry e in this.AllClasses.Keys)
+                    e.Time = e.Time.Add(new TimeSpan(0, minutes, 0));
+
+            if (isCargoFlight())
+                foreach (RouteTimeTableEntry e in this.AllCargo.Keys)
+                    e.Time = e.Time.Add(new TimeSpan(0, minutes, 0));
 
         }
     }

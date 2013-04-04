@@ -32,25 +32,46 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             StackPanel panelTraffic = new StackPanel();
             panelTraffic.Margin = new Thickness(0, 10, 50, 0);
 
-            TextBlock txtHeader = new TextBlock();
-            txtHeader.Uid = "1001";
-            txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtHeader.FontWeight = FontWeights.Bold;
-            txtHeader.Text = Translator.GetInstance().GetString("PageAirportTraffic", txtHeader.Uid);
-            panelTraffic.Children.Add(txtHeader);
+            TextBlock txtPassengerHeader = new TextBlock();
+            txtPassengerHeader.Uid = "1001";
+            txtPassengerHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtPassengerHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtPassengerHeader.FontWeight = FontWeights.Bold;
+            txtPassengerHeader.Text = Translator.GetInstance().GetString("PageAirportTraffic", txtPassengerHeader.Uid);
+            panelTraffic.Children.Add(txtPassengerHeader);
 
-            ListBox lbDestinations = new ListBox();
-            lbDestinations.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbDestinations.ItemTemplate = this.Resources["DestinationItem"] as DataTemplate;
-            lbDestinations.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
+            ListBox lbPassengerDestinations = new ListBox();
+            lbPassengerDestinations.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbPassengerDestinations.ItemTemplate = this.Resources["DestinationItem"] as DataTemplate;
+            lbPassengerDestinations.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100)/2;
 
-            var destinations = from a in Airports.GetAllActiveAirports() orderby this.Airport.getDestinationStatistics(a) descending select a;
+            var destinations = from a in Airports.GetAllActiveAirports() orderby this.Airport.getDestinationPassengerStatistics(a) descending select a;
 
             foreach (Airport a in destinations.Take(20))
-                lbDestinations.Items.Add(new KeyValuePair<Airport,long>(a,this.Airport.getDestinationStatistics(a)));
+                lbPassengerDestinations.Items.Add(new KeyValuePair<Airport,long>(a,this.Airport.getDestinationPassengerStatistics(a)));
 
-            panelTraffic.Children.Add(lbDestinations);
+            panelTraffic.Children.Add(lbPassengerDestinations);
+
+            TextBlock txtCargoHeader = new TextBlock();
+            txtCargoHeader.Margin = new Thickness(0, 10, 0, 0);
+            txtCargoHeader.Uid = "1002";
+            txtCargoHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtCargoHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtCargoHeader.FontWeight = FontWeights.Bold;
+            txtCargoHeader.Text = Translator.GetInstance().GetString("PageAirportTraffic", txtCargoHeader.Uid);
+            panelTraffic.Children.Add(txtCargoHeader);
+
+            ListBox lbCargoDestinations = new ListBox();
+            lbCargoDestinations.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbCargoDestinations.ItemTemplate = this.Resources["DestinationItem"] as DataTemplate;
+            lbCargoDestinations.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+
+            var cargoDestinations = from a in Airports.GetAllActiveAirports() orderby this.Airport.getDestinationCargoStatistics(a) descending select a;
+
+            foreach (Airport a in destinations.Take(20))
+                lbCargoDestinations.Items.Add(new KeyValuePair<Airport, double>(a, this.Airport.getDestinationCargoStatistics(a)));
+
+            panelTraffic.Children.Add(lbCargoDestinations);
 
             this.Content = panelTraffic;
 

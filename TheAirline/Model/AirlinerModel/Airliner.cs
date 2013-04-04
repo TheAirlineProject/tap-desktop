@@ -136,6 +136,14 @@ namespace TheAirline.Model.AirlinerModel
 
             return capacity;
         }
+        //returns the cargo capacity of the airliner
+        public double getCargoCapacity()
+        {
+            if (this.Type is AirlinerCargoType)
+                return ((AirlinerCargoType)this.Type).CargoSize;
+            else
+                return 0;
+        }
         //returns the airliner class for the airliner
         public AirlinerClass getAirlinerClass(AirlinerClass.ClassType type)
         {

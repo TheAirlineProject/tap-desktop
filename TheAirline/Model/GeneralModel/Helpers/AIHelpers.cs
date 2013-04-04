@@ -1236,7 +1236,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             if (opponnentRoutes.Count() > 0)
             {
-                double avgServiceLevel = opponnentRoutes.Average(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+                double avgServiceLevel = opponnentRoutes.Where(r=>r is PassengerRoute).Average(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
 
                 RouteClassesConfiguration configuration = GetRouteConfiguration(route);
 

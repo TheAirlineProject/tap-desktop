@@ -265,6 +265,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double airlineDepartures = airliner.Airliner.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Arrivals"));
                 airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Cargo%"), (int)(airlineCargo / airlineDepartures));
 
+                dept.addCargoDestinationStatistics(dest, airliner.CurrentFlight.Cargo);
             }
             if (airliner.CurrentFlight.isPassengerFlight())
             {
@@ -299,7 +300,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.Airliner.Airline.Statistics.setStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Passengers%"), (int)(airlinePassengers / airlineDepartures));
 
                 //the statistics for destination airport
-                dept.addDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
+                dept.addPassengerDestinationStatistics(dest, airliner.CurrentFlight.getTotalPassengers());
             }
         }
         //returns the flight crusing speed based on the wind
