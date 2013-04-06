@@ -271,8 +271,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             Button btnEditName = new Button();
             btnEditName.Background = Brushes.Transparent;
             btnEditName.Margin = new Thickness(5, 0, 0, 0);
-            btnEditName.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-            btnEditName.Click += new RoutedEventHandler(btnEditName_Click);
+            btnEditName.Visibility = Visibility.Collapsed;// this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            //btnEditName.Click += new RoutedEventHandler(btnEditName_Click);
             btnEditName.Content = imgEditName;
 
             panelName.Children.Add(btnEditName);
@@ -394,7 +394,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
                 PageNavigator.NavigateTo(new PageFleetAirliner(this.Airliner));
             }
         }
-
+        /*
         private void btnEditName_Click(object sender, RoutedEventArgs e)
         {
             string name = (string)PopUpEditAirlinerName.ShowPopUp(this.Airliner);
@@ -405,7 +405,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
                 txtName.Text = this.Airliner.Name;
             }
-        }
+        }*/
         private void btnBuy_Click(object sender, System.Windows.RoutedEventArgs e)
         {
           

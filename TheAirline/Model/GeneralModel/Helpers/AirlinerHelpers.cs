@@ -15,6 +15,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         */
         private static Airliner CreateAirliner(double minRange)
         {
+            Guid id = Guid.NewGuid();
+
             List<AirlinerType> types = AirlinerTypes.GetTypes(delegate(AirlinerType t) { return t.Range >= minRange && t.Produced.From.Year < GameObject.GetInstance().GameTime.Year && t.Produced.To > GameObject.GetInstance().GameTime.AddYears(-30); });
 
             int typeNumber = rnd.Next(types.Count);
@@ -25,7 +27,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int builtYear = rnd.Next(Math.Max(type.Produced.From.Year, GameObject.GetInstance().GameTime.Year - 30), Math.Min(GameObject.GetInstance().GameTime.Year-1, type.Produced.To.Year));
 
-            Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
+            Airliner airliner = new Airliner(id.ToString(), type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
 
             if (airliner.TailNumber.Length < 2)
                 typeNumber = 0;
@@ -58,6 +60,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
          */
         public static Airliner CreateAirlinerFromYear(int year)
         {
+            Guid id = Guid.NewGuid();
+
             List<AirlinerType> types = AirlinerTypes.GetTypes(t=>t.Produced.From.Year < year && t.Produced.To.Year > year);
 
             int typeNumber = rnd.Next(types.Count);
@@ -68,7 +72,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int builtYear = year;
 
-            Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
+            Airliner airliner = new Airliner(id.ToString(), type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
 
             int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
 

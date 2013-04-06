@@ -488,11 +488,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                                 {
                                     for (int i = 0; i < order.Amount; i++)
                                     {
-                                        Airliner airliner = new Airliner(order.Type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
+                                        Guid id = Guid.NewGuid();
+
+                                        Airliner airliner = new Airliner(id.ToString(), order.Type, GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber(), dpDate.SelectedDate.Value);
                                         Airliners.AddAirliner(airliner);
 
                                         FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.BoughtDownPayment;
-                                        GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airliner.TailNumber, airport);
+                                        GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airport);
 
                                     }
 

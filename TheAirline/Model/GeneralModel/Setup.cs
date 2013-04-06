@@ -927,7 +927,7 @@ namespace TheAirline.Model.GeneralModel
                     string icao = airportElement.Attributes["icao"].Value;
                     string iata = airportElement.Attributes["iata"].Value;
 
-                    id = name;
+                    id = name + " iata: " + iata;
 
                     AirportProfile.AirportType type = (AirportProfile.AirportType)Enum.Parse(typeof(AirportProfile.AirportType), airportElement.Attributes["type"].Value);
                     Weather.Season season = (Weather.Season)Enum.Parse(typeof(Weather.Season), airportElement.Attributes["season"].Value);
@@ -2133,7 +2133,8 @@ namespace TheAirline.Model.GeneralModel
 
                         if (airliner.Value.Key == null)
                         {
-                            Airliner nAirliner = new Airliner(startRoute.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
+                            id = Guid.NewGuid();
+                            Airliner nAirliner = new Airliner(id.ToString(), startRoute.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
                             Airliners.AddAirliner(nAirliner);
 
                             nAirliner.clearAirlinerClasses();
@@ -2196,12 +2197,14 @@ namespace TheAirline.Model.GeneralModel
                 {
                     for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)
                     {
+                        Guid id = Guid.NewGuid();
+
                         int countryNumber = rnd.Next(Countries.GetCountries().Count() - 1);
                         Country country = Countries.GetCountries()[countryNumber];
 
                         int builtYear = rnd.Next(type.Produced.From.Year, Math.Min(GameObject.GetInstance().GameTime.Year - 1, type.Produced.To.Year));
 
-                        Airliner airliner = new Airliner(type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
+                        Airliner airliner = new Airliner(id.ToString(), type, country.TailNumbers.getNextTailNumber(), new DateTime(builtYear, 1, 1));
 
                         int age = MathHelpers.CalculateAge(airliner.BuiltDate, GameObject.GetInstance().GameTime);
 

@@ -11,6 +11,7 @@ namespace TheAirline.Model.AirlinerModel
     public class Airliner
     {
         public string TailNumber { get; set; }
+        public string ID { get; set; }
         public DateTime BuiltDate { get; set; }
         public AirlinerType Type { get; set; }
         public double Flown { get; set; } //distance flown by the airliner
@@ -23,8 +24,9 @@ namespace TheAirline.Model.AirlinerModel
         public int Age { get { return getAge(); } private set { } }
         public List<AirlinerClass> Classes { get; set; }
         private Random rnd = new Random();
-        public Airliner(AirlinerType type, string tailNumber, DateTime builtDate)
+        public Airliner(string id, AirlinerType type, string tailNumber, DateTime builtDate)
         {
+            this.ID = id;
             this.BuiltDate = new DateTime(builtDate.Year,builtDate.Month,builtDate.Day);
             this.Type = type;
             this.LastServiceCheck = 0;
@@ -168,6 +170,9 @@ namespace TheAirline.Model.AirlinerModel
         {
             lock (airliners)
             {
+                //if (airliners.Exists(a => a.ID == airliner.ID))
+                  //  throw new Exception("Airliner element already exists exception");
+
                 airliners.Add(airliner);
             }
         }

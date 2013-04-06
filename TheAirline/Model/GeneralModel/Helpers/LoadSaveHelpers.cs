@@ -116,14 +116,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                  if (type != null)
                  {
-                     string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
-
+                      string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
+                     string id = airlinerNode.HasAttribute("id") ? airlinerNode.Attributes["id"].Value : tailnumber;
+                    
                      string last_service = airlinerNode.Attributes["last_service"].Value;
                      DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
                      double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
                      double damaged = Convert.ToDouble(airlinerNode.Attributes["damaged"].Value);
 
-                     Airliner airliner = new Airliner(type, tailnumber, built);
+                     Airliner airliner = new Airliner(id, type, tailnumber, built);
                      airliner.Damaged = damaged;
                      airliner.Flown = flown;
                      airliner.clearAirlinerClasses();
@@ -417,7 +418,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (pilotNode.Attributes["airliner"].Value != "-")
                     {
-                        FleetAirliner airliner = pilotAirline.Fleet.Find(f => f.Name == pilotNode.Attributes["airliner"].Value);
+                        FleetAirliner airliner = pilotAirline.Fleet.Find(f => f.Airliner.ID == pilotNode.Attributes["airliner"].Value);
                         pilot.Airliner = airliner;
                         airliner.addPilot(pilot);
                     }
@@ -879,7 +880,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
                 Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
 
-                FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, fAirlinerName, homebase);
+                FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, homebase);
                 fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
                 fAirliner.Status = status;
                 fAirliner.GroundedToDate = groundedDate;
@@ -910,7 +911,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");
             foreach (XmlElement flightNode in flightNodes)
             {
-                FleetAirliner airliner = airline.Fleet.Find(a => a.Name == flightNode.Attributes["airliner"].Value);
+                FleetAirliner airliner = airline.Fleet.Find(a => a.Airliner.ID == flightNode.Attributes["airliner"].Value);
                 Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
 
                 if (route != null)
@@ -1122,6 +1123,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement airlinerNode = xmlDoc.CreateElement("airliner");
                 airlinerNode.SetAttribute("type", airliner.Type.Name);
                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
+                airlinerNode.SetAttribute("id", airliner.ID);
+         
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToString(new CultureInfo("de-DE")));
                 airlinerNode.SetAttribute("flown", string.Format("{0:0}", airliner.Flown));
@@ -1359,7 +1362,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     XmlElement fleetAirlinerNode = xmlDoc.CreateElement("airliner");
                     fleetAirlinerNode.SetAttribute("airliner", airliner.Airliner.TailNumber);
-                    fleetAirlinerNode.SetAttribute("name", airliner.Name);
+                    fleetAirlinerNode.SetAttribute("name", airliner.Airliner.ID);
                     fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IATACode);
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
                     fleetAirlinerNode.SetAttribute("date", airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
@@ -1410,7 +1413,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement flightNode = xmlDoc.CreateElement("flight");
 
-                        flightNode.SetAttribute("airliner", airliner.Name);
+                        flightNode.SetAttribute("airliner", airliner.Airliner.ID);
                         flightNode.SetAttribute("route", airliner.CurrentFlight.Entry.TimeTable.Route.Id);
                         flightNode.SetAttribute("destination", airliner.CurrentFlight.Entry.Destination.FlightCode);
                         flightNode.SetAttribute("day", airliner.CurrentFlight.Entry.Day.ToString());
@@ -1734,7 +1737,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 pilotNode.SetAttribute("rating", pilot.Rating.ToString());
                 pilotNode.SetAttribute("airline", pilot.Airline == null ? "-" : pilot.Airline.Profile.IATACode);
                 pilotNode.SetAttribute("airlinesigned", pilot.AirlineSignedDate.ToString(new CultureInfo("de-DE")));
-                pilotNode.SetAttribute("airliner", pilot.Airliner == null ? "-" : pilot.Airliner.Name);
+                pilotNode.SetAttribute("airliner", pilot.Airliner == null ? "-" : pilot.Airliner.Airliner.ID);
 
                 pilotsNode.AppendChild(pilotNode);
             }
@@ -2062,7 +2065,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 string flightCode = entryNode.Attributes["flightcode"].Value;
                 DayOfWeek day = (DayOfWeek)Enum.Parse(typeof(DayOfWeek), entryNode.Attributes["day"].Value);
                 TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
-                FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Name == entryNode.Attributes["airliner"].Value); ;
+                FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Airliner.ID == entryNode.Attributes["airliner"].Value); ;
 
                 RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
 
@@ -2165,7 +2168,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 ttEntryNode.SetAttribute("flightcode", entry.Destination.FlightCode);
                 ttEntryNode.SetAttribute("day", entry.Day.ToString());
                 ttEntryNode.SetAttribute("time", entry.Time.ToString());
-                ttEntryNode.SetAttribute("airliner", entry.Airliner != null ? entry.Airliner.Name : "-");
+                ttEntryNode.SetAttribute("airliner", entry.Airliner != null ? entry.Airliner.Airliner.ID : "-");
                 ttEntryNode.SetAttribute("id", entry.ID);
                 if (entry.MainEntry != null) ttEntryNode.SetAttribute("mainentry", entry.MainEntry.ID);
 

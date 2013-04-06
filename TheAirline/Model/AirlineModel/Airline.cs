@@ -173,9 +173,9 @@ namespace TheAirline.Model.AirlineModel
             this.Alliances.Remove(alliance);
         }
         //adds an airliner to the airlines fleet
-        public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner, string name, Airport homeBase)
+        public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner,  Airport homeBase)
         {
-            addAirliner(new FleetAirliner(type,GameObject.GetInstance().GameTime, this,airliner, name, homeBase));
+            addAirliner(new FleetAirliner(type,GameObject.GetInstance().GameTime, this,airliner, homeBase));
         }
         //adds a fleet airliner to the airlines fleet
         public void addAirliner(FleetAirliner airliner)

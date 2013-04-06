@@ -652,7 +652,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 }
 
 
-                                fAirliner = new FleetAirliner(doLeasing ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airliner.Value.Key.TailNumber, airport);
+                                fAirliner = new FleetAirliner(doLeasing ? FleetAirliner.PurchasedType.Leased : FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner.Value.Key, airport);
                                 airline.Fleet.Add(fAirliner);
 
                                 AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);

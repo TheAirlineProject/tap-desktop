@@ -19,10 +19,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates an airliner for an airline
         public static FleetAirliner CreateAirliner(Airline airline, AirlinerType type)
         {
-            Airliner airliner = new Airliner(type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
+            Guid id = Guid.NewGuid();
+
+            Airliner airliner = new Airliner(id.ToString(),type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
             Airliners.AddAirliner(airliner);
 
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airline.Airports[0]);
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner,  airline.Airports[0]);
 
             airliner.clearAirlinerClasses();
 
@@ -59,7 +61,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
             
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airliner.TailNumber, airport);
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
              
             airline.addAirliner(fAirliner);
 
@@ -74,16 +76,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //orders a number of airliners for an airline
         public static void OrderAirliners(Airline airline, List<AirlinerOrder> orders, Airport airport, DateTime deliveryDate, double discount)
         {
-            
+            Guid id = Guid.NewGuid();
+
             foreach (AirlinerOrder order in orders)
             {
                 for (int i = 0; i < order.Amount; i++)
                 {
-                    Airliner airliner = new Airliner(order.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
+                    Airliner airliner = new Airliner(id.ToString(), order.Type, airline.Profile.Country.TailNumbers.getNextTailNumber(), deliveryDate);
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
-                    airline.addAirliner(pType, airliner, airliner.TailNumber, airport);
+                    airline.addAirliner(pType, airliner,  airport);
 
                     airliner.clearAirlinerClasses();
 

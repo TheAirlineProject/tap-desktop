@@ -31,14 +31,14 @@ namespace TheAirline.Model.AirlinerModel
         public DateTime GroundedToDate { get; set; }
         public List<Pilot> Pilots { get; set; }
         public int NumberOfPilots {get {return this.Pilots.Count;} private set {;}}
-        public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,string name, Airport homebase)
+        public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,Airport homebase)
         {
             this.Airliner = airliner;
             this.Purchased = purchased;
             this.PurchasedDate = purchasedDate;
             this.Airliner.Airline = airline;
             this.Homebase = homebase;
-            this.Name = name;
+            this.Name = airliner.TailNumber;
             this.Statistics = new AirlinerStatistics(this);
           
             this.Status = AirlinerStatus.Stopped;
