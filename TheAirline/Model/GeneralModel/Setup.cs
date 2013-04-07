@@ -1698,10 +1698,14 @@ namespace TheAirline.Model.GeneralModel
                     int opened = Convert.ToInt16(routeElement.Attributes["opened"].Value);
                     int closed = Convert.ToInt16(routeElement.Attributes["closed"].Value);
 
-                    StartDataRoute sdr = new StartDataRoute(dest1, dest2, opened, closed);
+                    Route.RouteType routetype = airline.AirlineRouteFocus;
+
+                    if (routeElement.HasAttribute("routetype"))
+                        routetype = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), routeElement.Attributes["routetype"].Value);
+
+                    StartDataRoute sdr = new StartDataRoute(dest1, dest2, opened, closed,routetype);
                     startData.addRoute(sdr);
-
-
+                    
                     if (routeElement.HasAttribute("airliner"))
                     {
                         AirlinerType airlinerType = AirlinerTypes.GetType(routeElement.Attributes["airliner"].Value);
@@ -2010,7 +2014,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     airportDestination = airportDestinations[counter];
 
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false, airline.AirlineRouteFocus == Route.RouteType.Cargo);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, airportHomeBase, airportDestination, false, airline.AirlineRouteFocus == Route.RouteType.Cargo, true);
 
                     counter++;
                 }
@@ -2094,7 +2098,6 @@ namespace TheAirline.Model.GeneralModel
             var startroutes = startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year);
 
             //creates the routes
-            //foreach (StartDataRoute startRoute in startroutes.GetRange(0, startroutes.Count / difficultyFactor))
             var sRoutes = startroutes.GetRange(0, startroutes.Count / difficultyFactor);
             Parallel.ForEach(sRoutes, startRoute =>
             {
@@ -2116,11 +2119,17 @@ namespace TheAirline.Model.GeneralModel
                 dest1.Terminals.getEmptyGate(airline).HasRoute = true;
                 dest2.Terminals.getEmptyGate(airline).HasRoute = true;
 
+                Guid id = Guid.NewGuid();
+                
                 double price = PassengerHelpers.GetPassengerPrice(dest1, dest2);
 
-                Guid id = Guid.NewGuid();
+                Route route = null;
 
-                PassengerRoute route = new PassengerRoute(id.ToString(), dest1, dest2, price);
+                if (startRoute.RouteType == Route.RouteType.Mixed || startRoute.RouteType == Route.RouteType.Passenger)
+                    route = new PassengerRoute(id.ToString(), dest1, dest2, price);
+
+                if (startRoute.RouteType == Route.RouteType.Cargo)
+                    route = new CargoRoute(id.ToString(), dest1, dest2, PassengerHelpers.GetCargoPrice(dest1, dest2));
 
                 KeyValuePair<Airliner, Boolean>? airliner = null;
                 if (startRoute.Type != null)
@@ -2149,32 +2158,42 @@ namespace TheAirline.Model.GeneralModel
 
                 if (airliner == null)
                 {
-                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, false, false);
+                    airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1,false,startRoute.RouteType == Route.RouteType.Cargo,true);
+
+                    if (airliner == null)
+                        airliner = AIHelpers.GetAirlinerForRoute(airline, dest2, dest1, true, startRoute.RouteType == Route.RouteType.Cargo,true);
+
                 }
 
                 FleetAirliner fAirliner = AirlineHelpers.AddAirliner(airline, airliner.Value.Key, airline.Airports[0]);
                 fAirliner.addRoute(route);
                 fAirliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
                 AirlineHelpers.HireAirlinerPilots(fAirliner);
-
-                AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
-
+                
                 route.LastUpdated = GameObject.GetInstance().GameTime;
 
-                RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
-
-                foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                if (startRoute.RouteType == Route.RouteType.Mixed || startRoute.RouteType == Route.RouteType.Passenger)
                 {
-                    route.getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+                    AirlinerHelpers.CreateAirlinerClasses(fAirliner.Airliner);
 
-                    foreach (RouteFacility rFacility in classConfiguration.getFacilities())
-                        route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rFacility);
+
+                    RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute)route);
+
+                    foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
+                    {
+                        ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
+
+                        foreach (RouteFacility rFacility in classConfiguration.getFacilities())
+                            ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).addFacility(rFacility);
+                    }
+
+                    AIHelpers.CreateRouteTimeTable(route, fAirliner);
                 }
-
+                if (startRoute.RouteType == Route.RouteType.Cargo)
+                {
+                    AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
+                }
                 airline.addRoute(route);
-
-                AIHelpers.CreateRouteTimeTable(route, fAirliner);
-
 
             });
 
@@ -2226,9 +2245,7 @@ namespace TheAirline.Model.GeneralModel
 
             });
 
-
             //the origin routes
-            //foreach (StartDataRoutes routes in startData.OriginRoutes)
             Parallel.ForEach(startData.OriginRoutes, routes =>
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
@@ -2258,10 +2275,10 @@ namespace TheAirline.Model.GeneralModel
 
                     PassengerRoute route = new PassengerRoute(id.ToString(), origin, destination, price);
 
-                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false, false);
+                    KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false, false,true);
 
                     if (airliner == null)
-                        airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, true, false);
+                        airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, true, false,true);
 
                     double distance = MathHelpers.GetDistance(origin, destination);
 

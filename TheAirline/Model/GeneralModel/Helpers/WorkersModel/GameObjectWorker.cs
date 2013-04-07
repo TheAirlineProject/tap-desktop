@@ -19,7 +19,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private Boolean Paused;
         public Boolean Sleeping { get; set; }
         public Boolean IsStarted { get; set; }
-         private GameObjectWorker()
+        private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
 

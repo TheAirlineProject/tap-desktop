@@ -815,7 +815,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return null;
         }
         //returns the best fit for an airliner for sale for a route true for loan
-        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing, Boolean forCargo)
+        public static KeyValuePair<Airliner, Boolean>? GetAirlinerForRoute(Airline airline, Airport destination1, Airport destination2, Boolean doLeasing, Boolean forCargo, Boolean forStartdata = false)
         {
             
             double maxLoanTotal = 100000000;
@@ -845,7 +845,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return new KeyValuePair<Airliner, Boolean>((from a in airliners orderby a.Type.Range select a).First(), false);
             else
             {
-                if (airline.Mentality == Airline.AirlineMentality.Aggressive || airline.Fleet.Count == 0)
+                if (airline.Mentality == Airline.AirlineMentality.Aggressive || airline.Fleet.Count == 0 || forStartdata)
                 {
                     double airlineLoanTotal = airline.Loans.Sum(l => l.PaymentLeft);
 
