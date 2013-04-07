@@ -74,7 +74,7 @@ namespace TheAirline.Model.GeneralModel
         public static string getCommonApplicationDataPath()
         {
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\theairlineproject\\";
-
+            
             if (!Directory.Exists(path))
                 createPaths(path);
     

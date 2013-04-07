@@ -53,7 +53,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             int sideMargin = 200;
             int regularMargin = 25;
             int menuHeight = 25;
-            int bottomMenuHeight = 40;
+            int bottomMenuHeight = 25;
 
             ImageBrush imgBackground = new ImageBrush();
 

@@ -18,7 +18,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     //the page for the bottom menu
     public class PageBottomMenu : Page
     {
-        private TextBlock txtMoney, txtTime, txtNews;
+        private TextBlock txtMoney, txtTime;
         private List<NewsFeed> currentNews;
         public PageBottomMenu()
         {
@@ -30,7 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             frameBorder.BorderThickness = new Thickness(2);
 
        
-            Grid panelMain = UICreator.CreateGrid(3,2);
+            Grid panelMain = UICreator.CreateGrid(3,1);
             panelMain.Margin = new Thickness(5, 0, 5, 0);
             panelMain.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
 
@@ -41,7 +41,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             txtHuman.Text = string.Format(Translator.GetInstance().GetString("PageBottomMenu","1000"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.Name);
 
             Grid.SetColumn(txtHuman, 0);
-            Grid.SetRow(txtHuman, 1);
+            Grid.SetRow(txtHuman, 0);
             panelMain.Children.Add(txtHuman);
 
             WrapPanel panelTime = new WrapPanel();
@@ -70,7 +70,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             panelTime.Children.Add(txtTime);
 
             Grid.SetColumn(panelTime, 1);
-            Grid.SetRow(panelTime, 1);
+            Grid.SetRow(panelTime, 0);
             panelMain.Children.Add(panelTime);
 
             txtMoney = new TextBlock();
@@ -84,9 +84,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             txtMoney.FontWeight = FontWeights.Bold;
 
             Grid.SetColumn(txtMoney, 2);
-            Grid.SetRow(txtMoney, 1);
+            Grid.SetRow(txtMoney, 0);
             panelMain.Children.Add(txtMoney);
 
+            /*
             txtNews = UICreator.CreateTextBlock("Test");
             txtNews.HorizontalAlignment = System.Windows.HorizontalAlignment.Center;
             txtNews.VerticalAlignment = System.Windows.VerticalAlignment.Center;
@@ -96,7 +97,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Grid.SetRow(txtNews, 0);
             Grid.SetColumn(txtNews, 0);
 
-            panelMain.Children.Add(txtNews);
+            panelMain.Children.Add(txtNews);*/
 
             frameBorder.Child = panelMain;
 
@@ -177,14 +178,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
            
                 }
 
-                if (NewsFeeds.Count() > 0)
-                {
-                    string newsFeed = string.Join("    ", from n in NewsFeeds.GetNewsFeeds() select string.Format("{0} {1}", n.Date.ToShortDateString(), n.Text));
-
-                    txtNews.Text = newsFeed;
-
-                    NewsFeeds.ClearNewsFeeds();
-                }
+                
             }
 
         }

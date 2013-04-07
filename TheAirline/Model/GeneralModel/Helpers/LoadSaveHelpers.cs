@@ -118,6 +118,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  {
                       string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                      string id = airlinerNode.HasAttribute("id") ? airlinerNode.Attributes["id"].Value : tailnumber;
+
+
                     
                      string last_service = airlinerNode.Attributes["last_service"].Value;
                      DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
@@ -668,6 +670,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             // chs, 2011-21-10 changed for the possibility of creating a new airline
             string airlineName = airlineNode.Attributes["name"].Value;
             string airlineIATA = airlineNode.Attributes["code"].Value;
+
             Boolean airlineIsSubsidiary = Convert.ToBoolean(airlineNode.Attributes["subsidiary"].Value);
             Country airlineCountry = Countries.GetCountry(airlineNode.Attributes["country"].Value);
             string color = airlineNode.Attributes["color"].Value;
