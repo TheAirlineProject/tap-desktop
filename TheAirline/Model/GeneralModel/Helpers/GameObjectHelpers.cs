@@ -827,7 +827,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
 
-                            airport.addDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
+                            airport.addDestinationPassengersRate(destination, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
 
                         }
                     }
@@ -839,8 +839,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (Route route in airline.Routes)
                 {
-                    route.Destination1.addDestinationPassengersRate(route.Destination2, AirlinerClass.ClassType.Economy_Class, (ushort)(5 * advertisementFactor));
-                    route.Destination2.addDestinationPassengersRate(route.Destination1, AirlinerClass.ClassType.Economy_Class, (ushort)(5 * advertisementFactor));
+                    route.Destination1.addDestinationPassengersRate(route.Destination2, (ushort)(5 * advertisementFactor));
+                    route.Destination2.addDestinationPassengersRate(route.Destination1,  (ushort)(5 * advertisementFactor));
 
                 }
                 foreach (Loan loan in airline.Loans)

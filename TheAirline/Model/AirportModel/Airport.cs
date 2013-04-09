@@ -85,12 +85,16 @@ namespace TheAirline.Model.AirportModel
         //returns the destination passengers for a specific destination for a class
         public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type);
+            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination);
 
+            int classFactor = (int)type;
+        
             if (pax == null)
                 return 0;
             else
-                return pax.Rate;
+            {
+                return (ushort)(pax.Rate / classFactor);
+            }
       
         }
         //returns the destination cargo for a specific destination
@@ -121,16 +125,16 @@ namespace TheAirline.Model.AirportModel
             }
         }
         //adds a passenger rate value to a destination
-        public void addDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type, ushort rate)
+        public void addDestinationPassengersRate(Airport destination, ushort rate)
         {
             lock (this.DestinationPassengers)
             {
-                DestinationDemand destinationPassengers = getDestinationPassengersObject(destination, type);
+                DestinationDemand destinationPassengers = getDestinationPassengersObject(destination);
 
                 if (destinationPassengers != null)
                     destinationPassengers.Rate += rate;
                 else
-                    addDestinationPassengersRate(new DestinationDemand(type, destination, rate));
+                    addDestinationPassengersRate(new DestinationDemand(destination, rate));
             }
         }
         //adds a cargo rate value to a destination
@@ -152,9 +156,9 @@ namespace TheAirline.Model.AirportModel
             return this.DestinationPassengers.Exists(a => a.Destination == destination);
         }
         //returns a destination passengers object
-        public DestinationDemand getDestinationPassengersObject(Airport destination, AirlinerClass.ClassType type)
+        public DestinationDemand getDestinationPassengersObject(Airport destination)
         {
-            return this.DestinationPassengers.Find(a => a.Destination == destination && a.Type == type);
+            return this.DestinationPassengers.Find(a => a.Destination == destination);
         }
         //returns a destination cargo object
         public DestinationDemand getDestinationCargoObject(Airport destination)
@@ -487,7 +491,7 @@ namespace TheAirline.Model.AirportModel
         }
         public static List<Airport> GetAllAirports()
         {
-            return airports;
+            return airports; ;
         }
         //returns a possible match for coordinates
         public static Airport GetAirport(Coordinates coordinates)

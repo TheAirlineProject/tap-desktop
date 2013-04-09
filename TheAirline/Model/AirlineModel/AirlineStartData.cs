@@ -58,12 +58,14 @@ namespace TheAirline.Model.AirlineModel
         public string Origin { get; set; }
         public int Destinations { get; set; }
         public GeneralHelpers.Size MinimumSize { get; set; }
-        public StartDataRoutes(string origin, int destinations, GeneralHelpers.Size minimumsize)
+        public Route.RouteType RouteType { get; set; }
+        public StartDataRoutes(string origin, int destinations, GeneralHelpers.Size minimumsize,Route.RouteType routetype)
         {
             this.Countries = new List<Country>();
             this.Origin = origin;
             this.Destinations = destinations;
             this.MinimumSize = minimumsize;
+            this.RouteType = routetype;
         }
         //adds a country to the routes
         public void addCountry(Country country)

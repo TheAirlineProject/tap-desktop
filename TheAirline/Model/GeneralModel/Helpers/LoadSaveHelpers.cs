@@ -116,11 +116,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                  if (type != null)
                  {
-                      string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
+                     string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                      string id = airlinerNode.HasAttribute("id") ? airlinerNode.Attributes["id"].Value : tailnumber;
 
 
-                    
+
                      string last_service = airlinerNode.Attributes["last_service"].Value;
                      DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
                      double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
@@ -342,17 +342,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         if (destAirport != null)
                         {
                             ushort rate = ushort.Parse(destinationElement.Attributes["rate"].Value);
-                            AirlinerClass.ClassType classtype = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), destinationElement.Attributes["classtype"].Value);
                             long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
                             targetAirport.addPassengerDestinationStatistics(destAirport, destPassengers);
-                            targetAirport.addDestinationPassengersRate(new DestinationDemand(classtype, destAirport, rate));
+                            targetAirport.addDestinationPassengersRate(new DestinationDemand(destAirport, rate));
 
-                            if (classtype == AirlinerClass.ClassType.Economy_Class && destinationElement.HasAttribute("cargo"))
+                            if (destinationElement.HasAttribute("cargo"))
                             {
                                 targetAirport.addDestinationCargoRate(new DestinationDemand(destAirport, ushort.Parse(destinationElement.Attributes["cargo"].Value)));
                                 targetAirport.addCargoDestinationStatistics(destAirport, Convert.ToDouble(destinationElement.Attributes["cargostats"].Value));
-                             }
+                            }
                         }
                     });
                 }
@@ -685,19 +684,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Boolean isReal = airlineNode.HasAttribute("real") ? Convert.ToBoolean(airlineNode.Attributes["real"].Value) : true;
             int founded = airlineNode.HasAttribute("founded") ? Convert.ToInt16(airlineNode.Attributes["founded"].Value) : 1950;
             int folded = airlineNode.HasAttribute("folded") ? Convert.ToInt16(airlineNode.Attributes["folded"].Value) : 2199;
-            
+
 
             Airline airline;
             if (airlineIsSubsidiary)
             {
                 Airline parent = Airlines.GetAirline(airlineNode.Attributes["parentairline"].Value);
-                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license,routefocus);
+                airline = new SubsidiaryAirline(parent, new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license, routefocus);
                 airline.Profile.Country = airlineCountry;
                 parent.addSubsidiaryAirline((SubsidiaryAirline)airline);
             }
             else
             {
-                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license,routefocus);
+                airline = new Airline(new AirlineProfile(airlineName, airlineIATA, color, airlineCEO, isReal, founded, folded), mentality, market, license, routefocus);
                 airline.Profile.Country = airlineCountry;
             }
             if (airlineNode.HasAttribute("logo"))
@@ -721,11 +720,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 int logoFromYear = Convert.ToInt16(logoElement.Attributes["from"].Value);
                 int logoToYear = Convert.ToInt16(logoElement.Attributes["to"].Value);
                 string logoPath = logoElement.Attributes["path"].Value;
-                
-                if (!File.Exists(logoPath))
-                    logoPath = AppSettings.getDataPath() +  "\\graphics\\airlinelogos\\"+ logoPath.Substring(logoPath.LastIndexOf('\\')+1);
 
-                airline.Profile.addLogo(new AirlineLogo(logoFromYear,logoToYear,logoPath));
+                if (!File.Exists(logoPath))
+                    logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\" + logoPath.Substring(logoPath.LastIndexOf('\\') + 1);
+
+                airline.Profile.addLogo(new AirlineLogo(logoFromYear, logoToYear, logoPath));
             }
 
             XmlElement airlineContractNode = (XmlElement)airlineNode.SelectSingleNode("contract");
@@ -782,7 +781,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Loan loan = new Loan(date, amount, length, rate);
                 loan.PaymentLeft = payment;
-                
+
                 airline.addLoan(loan);
             }
 
@@ -929,7 +928,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     Boolean isStopoverFlight = stopoverNode != null;
 
-                  
+
                     if (destination != "Service")
                     {
                         RouteTimeTableEntry rtte = route.TimeTable.Entries.Find(delegate(RouteTimeTableEntry e) { return e.Destination.FlightCode == destination && e.Day == day && e.Time == time; });
@@ -953,22 +952,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
                         if (currentFlight.isCargoFlight())
                         {
-                             XmlElement flightCargoNode = (XmlElement)flightNode.SelectSingleNode("flightcargo"); 
+                            XmlElement flightCargoNode = (XmlElement)flightNode.SelectSingleNode("flightcargo");
                             double flightCargo = Convert.ToDouble(flightCargoNode.Attributes["cargo"].Value);
 
                             currentFlight.Cargo = flightCargo;
-                        
+
                         }
                         if (isStopoverFlight)
                         {
                             int currentStopoverFlight = Convert.ToInt32(stopoverNode.Attributes["currentflight"].Value);
 
-                           
+
                             XmlNodeList stopoverClassesList = stopoverNode.SelectNodes("classes/class");
 
                             Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>> stopEntryAllClasses = new Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>>();
-                            
-                                    
+
+
                             foreach (XmlElement stopoverClassNode in stopoverClassesList)
                             {
 
@@ -983,28 +982,28 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                     AirlinerClass.ClassType stopoverAirlinerClassType = (AirlinerClass.ClassType)Enum.Parse(typeof(AirlinerClass.ClassType), stopoverFlightClassNode.Attributes["type"].Value);
                                     int stopoverFlightPassengers = Convert.ToInt16(stopoverFlightClassNode.Attributes["passengers"].Value);
 
-                                     stopoverFlightClasses.Add(new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(stopoverAirlinerClassType), stopoverFlightPassengers));
-                                   
+                                    stopoverFlightClasses.Add(new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(stopoverAirlinerClassType), stopoverFlightPassengers));
+
                                 }
 
                                 stopEntryAllClasses.Add(stopoverEntry, stopoverFlightClasses);
 
                             }
 
-                              XmlNodeList stopoverCargosList = stopoverNode.SelectNodes("cargos/cargo");
+                            XmlNodeList stopoverCargosList = stopoverNode.SelectNodes("cargos/cargo");
 
                             Dictionary<RouteTimeTableEntry, double> stopEntryAllCargo = new Dictionary<RouteTimeTableEntry, double>();
-                         
-                             foreach (XmlElement stopoverCargoNode in stopoverCargosList)
+
+                            foreach (XmlElement stopoverCargoNode in stopoverCargosList)
                             {
 
                                 RouteTimeTableEntry stopoverEntry = airline.Routes.SelectMany(r => r.TimeTable.Entries).ToList().Find(e => e.ID == stopoverCargoNode.Attributes["id"].Value);
                                 double cargoValue = Convert.ToDouble(stopoverCargoNode.Attributes["value"].Value);
-                               
-                                 stopEntryAllCargo.Add(stopoverEntry,cargoValue);
+
+                                stopEntryAllCargo.Add(stopoverEntry, cargoValue);
 
                             }
-                            
+
                             StopoverFlight stopoverFlight = new StopoverFlight(rtte);
                             stopoverFlight.AllClasses = stopEntryAllClasses;
                             stopoverFlight.AllCargo = stopEntryAllCargo;
@@ -1127,7 +1126,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("type", airliner.Type.Name);
                 airlinerNode.SetAttribute("tailnumber", airliner.TailNumber);
                 airlinerNode.SetAttribute("id", airliner.ID);
-         
+
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToString(new CultureInfo("de-DE")));
                 airlinerNode.SetAttribute("flown", string.Format("{0:0}", airliner.Flown));
@@ -1661,8 +1660,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             root.AppendChild(airportsNode);
 
+            sw.Restart();
 
             XmlElement airportDestinationsNode = xmlDoc.CreateElement("airportdestinations");
+
+            var destAirports = Airports.GetAllAirports();
+
             foreach (Airport airport in Airports.GetAllAirports())
             {
                 XmlElement airportDestinationNode = xmlDoc.CreateElement("airportdestination");
@@ -1670,23 +1673,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 XmlElement destinationsNode = xmlDoc.CreateElement("destinations");
                 //var dests = Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a)));
-                foreach (Airport dest in Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationPassengerStatistics(a) || airport.hasDestinationCargStatistics(a))))
+             //foreach (Airport dest in Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationPassengerStatistics(a) || airport.hasDestinationCargStatistics(a))))
                 //Parallel.ForEach(dests, dest =>
+               foreach (Airport dest in destAirports)
                 {
 
-                    foreach (AirlinerClass.ClassType classType in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+                    if (dest != airport && (airport.hasDestinationPassengersRate(dest) || airport.hasDestinationPassengerStatistics(dest) || airport.hasDestinationCargStatistics(dest)))
                     {
                         XmlElement destinationNode = xmlDoc.CreateElement("destination");
                         destinationNode.SetAttribute("id", dest.Profile.IATACode);
-                        destinationNode.SetAttribute("classtype", classType.ToString());
-                        destinationNode.SetAttribute("rate", airport.getDestinationPassengersRate(dest, classType).ToString());
+                        destinationNode.SetAttribute("rate", airport.getDestinationPassengersRate(dest, AirlinerClass.ClassType.Economy_Class).ToString());
                         destinationNode.SetAttribute("passengers", airport.getDestinationPassengerStatistics(dest).ToString());
 
-                        if (classType == AirlinerClass.ClassType.Economy_Class)
-                        {
-                            destinationNode.SetAttribute("cargo", airport.getDestinationCargoRate(dest).ToString());
-                            destinationNode.SetAttribute("cargostats", airport.getDestinationCargoStatistics(dest).ToString());
-                        }
+                        destinationNode.SetAttribute("cargo", airport.getDestinationCargoRate(dest).ToString());
+                        destinationNode.SetAttribute("cargostats", airport.getDestinationCargoStatistics(dest).ToString());
 
                         destinationsNode.AppendChild(destinationNode);
                     }
@@ -1697,6 +1697,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             root.AppendChild(airportDestinationsNode);
 
+            Console.WriteLine("Saving of destinations: {0} ms.", sw.ElapsedMilliseconds);
 
             XmlElement instructorsNode = xmlDoc.CreateElement("instructors");
 
