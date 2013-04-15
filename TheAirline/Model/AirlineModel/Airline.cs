@@ -323,7 +323,7 @@ namespace TheAirline.Model.AirlineModel
             double value = 0;
             value += this.Money;
 
-            var fleet = new List<FleetAirliner>(this.Fleet);
+            var fleet = new List<FleetAirliner>(this.Fleet.FindAll(f=>f.Purchased != FleetAirliner.PurchasedType.Leased));
 
             foreach (FleetAirliner airliner in fleet)
             {

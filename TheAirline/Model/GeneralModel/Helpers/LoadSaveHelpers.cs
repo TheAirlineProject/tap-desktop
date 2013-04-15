@@ -423,7 +423,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         pilot.Airliner = airliner;
                         airliner.addPilot(pilot);
                     }
-                }
+
+                  }
 
                 Pilots.AddPilot(pilot);
             }

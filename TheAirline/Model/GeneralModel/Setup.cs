@@ -102,10 +102,11 @@ namespace TheAirline.Model.GeneralModel
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
             var airlines = Airlines.GetAllAirlines().FindAll(a => a.Profile.PreferedAirport == null);
+            var airlineLogos = Airlines.GetAllAirlines().FindAll(a => a.Profile.Logo.EndsWith("default.png"));
 
             var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
             var cargoAirliners = AirlinerTypes.GetAllTypes().FindAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
-
+       
             foreach (Airport airport in noRunwayAirports)
                 Console.WriteLine(airport.Profile.Name);
 
@@ -1971,6 +1972,7 @@ namespace TheAirline.Model.GeneralModel
             }
             else
             {
+                
                 List<Airport> airports = Airports.GetAirports(airline.Profile.Country).FindAll(a => a.Terminals.getFreeGates() > 1);
 
                 if (airports.Count < 4)
