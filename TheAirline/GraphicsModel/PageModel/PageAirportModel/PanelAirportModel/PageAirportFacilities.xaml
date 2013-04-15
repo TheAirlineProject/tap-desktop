@@ -43,6 +43,12 @@
                 </Button>
             </WrapPanel>
         </DataTemplate>
+        <DataTemplate x:Key="AirportFacilityItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Facility.Type}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
             <DataTemplate x:Key="AirlineFacilityItem">
             <WrapPanel>
                 <TextBlock Width="150" VerticalAlignment="Bottom">

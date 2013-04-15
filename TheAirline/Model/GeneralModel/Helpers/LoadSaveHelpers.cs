@@ -175,9 +175,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             XmlNodeList airportsList = root.SelectNodes("//airports/airport");
 
+            List<Airport> airportsToKeep = new List<Airport>();
+
             foreach (XmlElement airportNode in airportsList)
             {
                 Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
+                airportsToKeep.Add(airport);
 
                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
                 airport.Profile.Size = airportSize;
@@ -320,6 +323,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
+            Airports.RemoveAirports(a => !airportsToKeep.Contains(a));
 
             XmlNodeList airportDestinationsList = root.SelectNodes("//airportdestinations/airportdestination");
 
@@ -1624,6 +1628,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         airportFacilitiesNode.AppendChild(airportFacilityNode);
                     }
+                }
+
+                foreach (AirlineAirportFacility facility in airport.getAirportFacilities().Where(f=>f.Airline == null))
+                {
+                    XmlElement airportFacilityNode = xmlDoc.CreateElement("facility");
+                    airportFacilityNode.SetAttribute("airline","-");
+                    airportFacilityNode.SetAttribute("name", facility.Facility.Shortname);
+                    airportFacilityNode.SetAttribute("finished", facility.FinishedDate.ToString(new CultureInfo("de-DE")));
+
+                    airportFacilitiesNode.AppendChild(airportFacilityNode);
+           
                 }
                 airportNode.AppendChild(airportFacilitiesNode);
 

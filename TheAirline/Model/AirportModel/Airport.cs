@@ -332,6 +332,11 @@ namespace TheAirline.Model.AirportModel
             return this.Facilities.FindAll(f => f.Airline == airline);
 
         }
+        //returns all facilities
+        public List<AirlineAirportFacility> getAirportFacilities()
+        {
+            return this.Facilities;
+        }
         //returns if an airline has any facilities at the airport
         public Boolean hasFacilities(Airline airline)
         {

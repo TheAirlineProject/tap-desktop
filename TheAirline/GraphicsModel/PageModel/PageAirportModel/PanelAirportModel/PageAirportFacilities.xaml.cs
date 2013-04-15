@@ -59,6 +59,26 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             panelFacilities.Children.Clear();
 
+            TextBlock txtAirportFacilitiesHeader = new TextBlock();
+            txtAirportFacilitiesHeader.Uid = "1003";
+            txtAirportFacilitiesHeader.Margin = new Thickness(0, 10, 0, 0);
+            txtAirportFacilitiesHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtAirportFacilitiesHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtAirportFacilitiesHeader.FontWeight = FontWeights.Bold;
+            txtAirportFacilitiesHeader.Text = Translator.GetInstance().GetString("PageAirportFacilities", txtAirportFacilitiesHeader.Uid);
+            panelFacilities.Children.Add(txtAirportFacilitiesHeader);
+
+            ListBox lbAirportFacilities = new ListBox();
+            lbAirportFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbAirportFacilities.ItemTemplate = this.Resources["AirportFacilityItem"] as DataTemplate;
+
+            panelFacilities.Children.Add(lbAirportFacilities);
+            cx
+            var airportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null);
+
+            foreach (AirlineAirportFacility facility in airportFacilities)
+                lbAirportFacilities.Items.Add(facility);
+
             TextBlock txtFacilitiesHeader = new TextBlock();
             txtFacilitiesHeader.Uid = "1001";
             txtFacilitiesHeader.Margin = new Thickness(0, 10, 0, 0);
@@ -69,13 +89,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelFacilities.Children.Add(txtFacilitiesHeader);
 
-            ListBox lbAirportFacilities = new ListBox();
-            lbAirportFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
-            lbAirportFacilities.ItemTemplate = this.Resources["AirlineFacilityItem"] as DataTemplate;
+            ListBox lbAirlineAirportFacilities = new ListBox();
+            lbAirlineAirportFacilities.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbAirlineAirportFacilities.ItemTemplate = this.Resources["AirlineFacilityItem"] as DataTemplate;
 
-            panelFacilities.Children.Add(lbAirportFacilities);
+            panelFacilities.Children.Add(lbAirlineAirportFacilities);
 
-        
             List<Airline> airlines = Airlines.GetAllAirlines();
             airlines.Sort((delegate(Airline a1, Airline a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); }));
 
@@ -84,7 +103,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                 {
                     if (this.Airport.getAirportFacility(airline, type).TypeLevel != 0)
-                     lbAirportFacilities.Items.Add(this.Airport.getAirlineAirportFacility(airline, type));
+                        lbAirlineAirportFacilities.Items.Add(this.Airport.getAirlineAirportFacility(airline, type));
                 }
             }
 

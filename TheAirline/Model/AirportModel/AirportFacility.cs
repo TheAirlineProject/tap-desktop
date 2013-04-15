@@ -11,7 +11,7 @@ namespace TheAirline.Model.AirportModel
     {
         public static string Section { get; set; }
         public string Uid { get; set; }
-        public enum FacilityType { Lounge, Service, CheckIn, SelfCheck, TicketOffice }
+        public enum FacilityType { Lounge, Service, CheckIn, SelfCheck, TicketOffice, Cargo }
         public FacilityType Type { get; set; }
         public string Shortname { get; set; }
         private double APrice;

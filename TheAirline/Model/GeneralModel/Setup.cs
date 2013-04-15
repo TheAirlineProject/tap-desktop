@@ -110,7 +110,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airport airport in noRunwayAirports)
                 Console.WriteLine(airport.Profile.Name);
 
-
+             
 
         }
 
@@ -1110,7 +1110,7 @@ namespace TheAirline.Model.GeneralModel
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList facilitiesList = root.SelectNodes("//airportfacility");
-
+            
             foreach (XmlElement element in facilitiesList)
             {
                 string section = root.Name;
@@ -1855,11 +1855,20 @@ namespace TheAirline.Model.GeneralModel
                 {
                     foreach (AirportFacility.FacilityType type in Enum.GetValues(typeof(AirportFacility.FacilityType)))
                     {
-                        AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
+                         AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find((delegate(AirportFacility facility) { return facility.TypeLevel == 0; }));
 
                         airport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
                     }
                 }
+
+                if (airport.Profile.Cargo == GeneralHelpers.Size.Very_large || airport.Profile.Cargo == GeneralHelpers.Size.Largest)
+                {
+                    AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f=>f.TypeLevel > 0);
+
+                    airport.addAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
+                }
+                    
+
                 AirportHelpers.CreateAirportWeather(airport);
             });
 
