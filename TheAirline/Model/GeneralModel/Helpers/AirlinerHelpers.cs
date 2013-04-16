@@ -85,8 +85,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return airliner;
         }
-
-
+        //converts the passenger capacity for an airliner type to cargo capacity
+        public static double ConvertPassengersToCargoSize(AirlinerPassengerType type)
+        {
+            return type.MaxSeatingCapacity * 2;
+        }
         //creates the airliner classes for an airliner
         public static void CreateAirlinerClasses(Airliner airliner)
         {

@@ -74,12 +74,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             showPage(this);
 
-    
+
         }
 
-       
 
-       
+
+
         //creates the panel for leased airliner
         private ScrollViewer createLeasedAirlinerPanel()
         {
@@ -87,7 +87,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.MaxHeight = GraphicsHelpers.GetContentHeight() / 5;
-          
+
             panelLeasedAirliner = new StackPanel();
             panelLeasedAirliner.Margin = new Thickness(0, 10, 0, 0);
 
@@ -105,7 +105,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1025"), UICreator.CreateTextBlock(this.Airliner.PurchasedDate.ToShortDateString())));
-           // lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(string.Format("{0:C}", this.Airliner.Airliner.getPrice()))));
+            // lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(string.Format("{0:C}", this.Airliner.Airliner.getPrice()))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1026"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.Airliner.Airliner.getPrice()).ToString())));
 
             panelLeasedAirliner.Children.Add(lbQuickInfo);
@@ -209,11 +209,30 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1015"), UICreator.CreateTextBlock(string.Format("{0:0.###} {1}", new FuelConsumptionToUnitConverter().Convert(airliner.FuelConsumption), new StringToLanguageConverter().Convert("l/seat/km")))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1027"), UICreator.CreateTextBlock(string.Format("{0:0.#} {1}", new FuelUnitGtLConverter().Convert(airliner.FuelCapacity), new StringToLanguageConverter().Convert("gallons")))));
 
+            if (!this.Airliner.HasRoute && this.Airliner.Purchased != FleetAirliner.PurchasedType.Leased && this.Airliner.Airliner.Airline.IsHuman && this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+            {
+                Button btnConvertToCargo = new Button();
+                btnConvertToCargo.Uid = "1032";
+                btnConvertToCargo.SetResourceReference(Button.StyleProperty, "RoundedButton");
+                btnConvertToCargo.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+                btnConvertToCargo.Margin = new Thickness(0, 5, 0, 0);
+                btnConvertToCargo.Height = Double.NaN;
+                btnConvertToCargo.Width = Double.NaN;
+                btnConvertToCargo.Content = Translator.GetInstance().GetString("PageFleetAirliner", btnConvertToCargo.Uid);
+                btnConvertToCargo.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+                btnConvertToCargo.Click+=btnConvertToCargo_Click;
+
+                panelAirlinerType.Children.Add(btnConvertToCargo);
+            }
+
+
             scroller.Content = panelAirlinerType;
             
             return scroller;
 
         }
+
+
         //creates the quick info panel for the fleet airliner
         private ScrollViewer createQuickInfoPanel()
         {
@@ -221,7 +240,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             scroller.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             scroller.MaxHeight = GraphicsHelpers.GetContentHeight() / 3;
-            
+
             StackPanel panelInfo = new StackPanel();
 
             TextBlock txtHeader = new TextBlock();
@@ -279,7 +298,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1002"), panelName));
 
-            DockPanel panelOwner = new DockPanel(); 
+            DockPanel panelOwner = new DockPanel();
 
             TextBlock lnkOwner = UICreator.CreateLink(this.Airliner.Airliner.Airline.Profile.Name);
             lnkOwner.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
@@ -316,7 +335,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/edit.png", UriKind.RelativeOrAbsolute));
             imgEdit.Width = 16;
             RenderOptions.SetBitmapScalingMode(imgEdit, BitmapScalingMode.HighQuality);
-            
+
             btnEditHomeBase.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
             btnEditHomeBase.Content = imgEdit;
@@ -329,7 +348,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             lblAirport.Content = this.Airliner.Homebase;
 
             panelHomeBase.Children.Add(lblAirport);
-            
+
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1018"), panelHomeBase));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageFleetAirliner", "1019"), UICreator.CreateTextBlock(string.Format(Translator.GetInstance().GetString("PageFleetAirliner", "1020"), this.Airliner.Airliner.BuiltDate.ToShortDateString(), this.Airliner.Airliner.Age))));
@@ -353,7 +372,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             panelCoordinates.Children.Add(imgMap);
 
 
-            TextBlock txtCurrentRoute = UICreator.CreateTextBlock(this.Airliner.HasRoute && this.Airliner.CurrentFlight != null ? string.Format("{0} - {1}",this.Airliner.CurrentFlight.Entry.DepartureAirport.Profile.Name,this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name) : "-");
+            TextBlock txtCurrentRoute = UICreator.CreateTextBlock(this.Airliner.HasRoute && this.Airliner.CurrentFlight != null ? string.Format("{0} - {1}", this.Airliner.CurrentFlight.Entry.DepartureAirport.Profile.Name, this.Airliner.CurrentFlight.Entry.Destination.Airport.Profile.Name) : "-");
             txtCurrentRoute.Margin = new Thickness(5, 0, 0, 0);
             panelCoordinates.Children.Add(txtCurrentRoute);
 
@@ -367,7 +386,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
         private void btnEditOwner_Click(object sender, RoutedEventArgs e)
         {
-            
+
             ComboBox cbAirlines = new ComboBox();
             cbAirlines.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAirlines.SetResourceReference(ComboBox.ItemTemplateProperty, "AirlineLogoItem");
@@ -382,16 +401,43 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
             cbAirlines.Items.Remove(this.Airliner.Airliner.Airline);
 
             cbAirlines.SelectedIndex = 0;
-            
+
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageFleetAirliner", "1028"), cbAirlines) == PopUpSingleElement.ButtonSelected.OK && cbAirlines.SelectedItem != null)
             {
                 Airline airline = (Airline)cbAirlines.SelectedItem;
-                
+
                 this.Airliner.Airliner.Airline.removeAirliner(this.Airliner);
                 airline.addAirliner(this.Airliner);
                 this.Airliner.Airliner.Airline = airline;
 
                 PageNavigator.NavigateTo(new PageFleetAirliner(this.Airliner));
+            }
+        }
+        private void btnConvertToCargo_Click(object sender, RoutedEventArgs e)
+        {
+            double convertPrice = GeneralHelpers.GetInflationPrice(75000);
+                        
+            if (this.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2109"), Translator.GetInstance().GetString("MessageBox", "2109", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2123"), string.Format(Translator.GetInstance().GetString("MessageBox", "2123", "message"), this.Airliner.Name, new ValueCurrencyConverter().Convert(convertPrice)), WPFMessageBoxButtons.YesNo);
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    AirlinerPassengerType currentType = this.Airliner.Airliner.Type as AirlinerPassengerType;
+
+                    string airlinerName = string.Format("{0} Freighter", currentType.Name);
+
+                    double cargoSize = AirlinerHelpers.ConvertPassengersToCargoSize(currentType);
+         
+                    AirlinerType newCargoType = new AirlinerCargoType(currentType.Manufacturer,airlinerName,currentType.CockpitCrew,cargoSize,currentType.CruisingSpeed,currentType.Range,currentType.Wingspan,currentType.Length,currentType.FuelConsumption,currentType.Price,currentType.MinRunwaylength,currentType.FuelCapacity,currentType.Body,currentType.RangeType,currentType.Engine,currentType.Produced);
+
+                    this.Airliner.Airliner.Type = newCargoType;
+
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -convertPrice);
+
+                    PageNavigator.NavigateTo(new PageFleetAirliner(this.Airliner));
+                }
             }
         }
         /*
@@ -408,7 +454,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         }*/
         private void btnBuy_Click(object sender, System.Windows.RoutedEventArgs e)
         {
-          
+
             if (this.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2109"), Translator.GetInstance().GetString("MessageBox", "2109", "message"), WPFMessageBoxButtons.Ok);
             else
