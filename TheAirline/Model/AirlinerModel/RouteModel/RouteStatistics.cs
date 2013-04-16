@@ -78,12 +78,14 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             int value = 0;
 
-            foreach (RouteAirlinerClass aClass in this.Stats.Keys)
+            lock (this.Stats)
             {
-                if (this.Stats[aClass].ContainsKey(type))
-                    value += this.Stats[aClass][type];
+                foreach (RouteAirlinerClass aClass in this.Stats.Keys)
+                {
+                    if (this.Stats[aClass].ContainsKey(type))
+                        value += this.Stats[aClass][type];
+                }
             }
-
 
             return value;
         }

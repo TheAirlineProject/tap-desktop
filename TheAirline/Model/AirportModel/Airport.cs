@@ -270,13 +270,20 @@ namespace TheAirline.Model.AirportModel
             this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
             this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
         }
-        //returns the facility of a specific type for an airline
-        public AirportFacility getAirportFacility(Airline airline, AirportFacility.FacilityType type)
+        //returns the facility of a specific type for an airline - useAirport == true if it should also check for the airports facility
+        public AirportFacility getAirportFacility(Airline airline, AirportFacility.FacilityType type, Boolean useAirport = false)
         {
+            if (!useAirport)
+                return getAirlineAirportFacility(airline, type).Facility;
+            else
+            {
+                AirportFacility airlineFacility = getCurrentAirportFacility(airline, type);
+                AirportFacility airportFacility = getCurrentAirportFacility(null, type);
 
-            return getAirlineAirportFacility(airline, type).Facility;
+                return airportFacility == null || airlineFacility.TypeLevel > airportFacility.TypeLevel ? airlineFacility : airportFacility;
+            }
         }
-        //returns the current airport facility of a specific type for an airlines
+         //returns the current airport facility of a specific type for an airlines
         public AirportFacility getCurrentAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
            
@@ -285,7 +292,7 @@ namespace TheAirline.Model.AirportModel
                 var facility = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility);
                 int numberOfFacilities = facility.Count();
 
-                if (numberOfFacilities == 0)
+                if (numberOfFacilities == 0 && airline != null)
                 {
                     AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find(f => f.TypeLevel == 0);
                     this.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
@@ -294,7 +301,7 @@ namespace TheAirline.Model.AirportModel
 
                 }
                 // AirportFacility facility = this.Facilities.Find(f => f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime).Facility;
-                return facility.First();
+                return facility.FirstOrDefault();
             }
         }
         //return the airport facility for a specific type for an airline

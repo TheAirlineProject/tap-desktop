@@ -390,12 +390,13 @@ namespace TheAirline.Model.GeneralModel
         }
         public static double GetFlightCargo(Airport airportCurrent, Airport airportDestination, FleetAirliner airliner)
         {
-
+            double destinationFacilityFactor = airportDestination.getAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Cargo,true).ServiceLevel;
+            
             double distance = MathHelpers.GetDistance(airportCurrent, airportDestination);
 
             double capacity = ((AirlinerCargoType)airliner.Airliner.Type).CargoSize;
 
-            double demand = (double)airportCurrent.getDestinationCargoRate(airportDestination);
+            double demand = (double)airportCurrent.getDestinationCargoRate(airportDestination) * (destinationFacilityFactor / 100);
 
             double cargoDemand = demand * 1000;
 
@@ -509,8 +510,7 @@ namespace TheAirline.Model.GeneralModel
 
 
         }
-        //creates the airport destination passengers a destination
-        //creates the airport destination passengers a destination
+         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
             var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);

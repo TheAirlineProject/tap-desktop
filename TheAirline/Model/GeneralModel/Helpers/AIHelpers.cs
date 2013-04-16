@@ -619,8 +619,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (humanHasRoute)
                                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode, route.Destination1.Profile.IATACode, route.Destination2.Profile.IATACode)));
 
-                            airport.Terminals.getEmptyGate(airline).HasRoute = true;
-                            destination.Terminals.getEmptyGate(airline).HasRoute = true;
+                            lock (airport.Terminals)
+                            {
+                                if (airport.Terminals.getEmptyGate(airline) == null)
+                                    airport.Terminals.rentGate(airline);
+
+                                airport.Terminals.getEmptyGate(airline).HasRoute = true;
+                            }
+
+                            lock (destination.Terminals)
+                            {
+                                if (destination.Terminals.getEmptyGate(airline) == null)
+                                    destination.Terminals.rentGate(airline);
+
+                                destination.Terminals.getEmptyGate(airline).HasRoute = true;
+
+                            }
 
                             if (fAirliner == null)
                             {
@@ -683,6 +697,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         }
 
                         AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+                        AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
                         if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                         {
@@ -696,6 +711,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                         }
+
+                        if (destination.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && destination.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && route.Type == Route.RouteType.Cargo)
+                        {
+                            destination.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -cargoTerminal.Price);
+
+                        }
+
+                        if (airport.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && airport.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && route.Type == Route.RouteType.Cargo)
+                        {
+                            airport.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+                            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -cargoTerminal.Price);
+
+                        }
+
                     }
 
                 }
@@ -802,6 +832,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
 
+        }
+        //returns if two destinations for a cargo route is correct
+        public static Boolean IsCargoRouteDestinationsCorrect(Airport dest1, Airport dest2, Airline airline)
+        {
+            return dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo, true).TypeLevel > 0 && dest2.getAirportFacility(airline, AirportFacility.FacilityType.Cargo, true).TypeLevel > 0;
         }
         //returns an airliner from the fleet which fits a route
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)

@@ -34,20 +34,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             InitializeComponent();
 
-            this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
+            this.Language = XmlLanguage.GetLanguage(new CultureInfo(AppSettings.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag);
 
             this.Airport = airport;
 
-             ScrollViewer svFacilities = new ScrollViewer();
-             svFacilities.Margin = new Thickness(0, 10, 50, 0);
-             svFacilities.MaxHeight = GraphicsHelpers.GetContentHeight()-50;
-             svFacilities.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-             svFacilities.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
+            ScrollViewer svFacilities = new ScrollViewer();
+            svFacilities.Margin = new Thickness(0, 10, 50, 0);
+            svFacilities.MaxHeight = GraphicsHelpers.GetContentHeight() - 50;
+            svFacilities.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
+            svFacilities.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 
-             panelFacilities = new StackPanel();
+            panelFacilities = new StackPanel();
 
-             svFacilities.Content = panelFacilities;
-        
+            svFacilities.Content = panelFacilities;
+
 
             showFacilitiesInformation();
 
@@ -73,7 +73,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbAirportFacilities.ItemTemplate = this.Resources["AirportFacilityItem"] as DataTemplate;
 
             panelFacilities.Children.Add(lbAirportFacilities);
-            cx
+
             var airportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null);
 
             foreach (AirlineAirportFacility facility in airportFacilities)
@@ -167,23 +167,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                     if (this.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
                         price = price * 1.25;
 
-                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases,-price);
-                    
-                    this.Airport.addAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility,GameObject.GetInstance().GameTime.AddDays(type.NextFacility.BuildingDays));
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+
+                    this.Airport.addAirportFacility(GameObject.GetInstance().HumanAirline, type.NextFacility, GameObject.GetInstance().GameTime.AddDays(type.NextFacility.BuildingDays));
 
                     showFacilitiesInformation();
                 }
             }
         }
-         private void ButtonSell_Click(object sender, RoutedEventArgs e)
+        private void ButtonSell_Click(object sender, RoutedEventArgs e)
         {
             HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
-            Boolean hasHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline)>0;
+            Boolean hasHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
-            if ((type.CurrentFacility.TypeLevel == 1 && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
+            Boolean hasCargoRoute = GameObject.GetInstance().HumanAirline.Routes.Exists(r => (r.Destination1 == this.Airport || r.Destination2 == this.Airport) && r.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo);
+            Boolean airportHasCargoTerminal = this.Airport.getCurrentAirportFacility(null,AirportFacility.FacilityType.Cargo).TypeLevel > 0;
+
+            if ((type.CurrentFacility.TypeLevel == 1 && type.CurrentFacility.Type == AirportFacility.FacilityType.Service && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
             else if (type.CurrentFacility.Type == AirportFacility.FacilityType.Service && hasHub && type.CurrentFacility == Hub.MinimumServiceFacility)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2214"), string.Format(Translator.GetInstance().GetString("MessageBox","2214","message"), Hub.MinimumServiceFacility.Name), WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2214"), string.Format(Translator.GetInstance().GetString("MessageBox", "2214", "message"), Hub.MinimumServiceFacility.Name), WPFMessageBoxButtons.Ok);
+            else if (type.CurrentFacility.Type == AirportFacility.FacilityType.Cargo && type.CurrentFacility.TypeLevel == 1 && hasCargoRoute && !airportHasCargoTerminal)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2223"), Translator.GetInstance().GetString("MessageBox", "2223", "message"), WPFMessageBoxButtons.Ok);
             else
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), type.CurrentFacility.Name), WPFMessageBoxButtons.YesNo);
@@ -196,10 +201,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 }
             }
         }
-        
+
     }
 
-   
+
     //the class for a facility type for the human airline
     public class HumanFacilityType
     {
@@ -235,21 +240,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if (buttonType == "Buy" && type != AirportFacility.FacilityType.CheckIn)
             {
-                isEnabled = index < facilities.Count - 1 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime; 
+                isEnabled = index < facilities.Count - 1 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime;
             }
             if (buttonType == "Sell" && type != AirportFacility.FacilityType.CheckIn)
             {
-                isEnabled = index > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,type).FinishedDate<GameObject.GetInstance().GameTime;
+                isEnabled = index > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime;
             }
             if (buttonType == "Buy" && type == AirportFacility.FacilityType.CheckIn)
             {
-                isEnabled = index < facilities.Count - 1 &&  airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime; 
-     
+                isEnabled = index < facilities.Count - 1 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime;
+
             }
             if (buttonType == "Sell" && type == AirportFacility.FacilityType.CheckIn)
             {
                 isEnabled = index > 0 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) == 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime;
-    
+
             }
             return isEnabled;
         }

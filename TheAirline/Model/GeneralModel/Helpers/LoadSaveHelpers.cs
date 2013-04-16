@@ -119,8 +119,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      string tailnumber = airlinerNode.Attributes["tailnumber"].Value;
                      string id = airlinerNode.HasAttribute("id") ? airlinerNode.Attributes["id"].Value : tailnumber;
 
-
-
+                 
                      string last_service = airlinerNode.Attributes["last_service"].Value;
                      DateTime built = DateTime.Parse(airlinerNode.Attributes["built"].Value, new CultureInfo("de-DE", false));
                      double flown = Convert.ToDouble(airlinerNode.Attributes["flown"].Value);
@@ -132,7 +131,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      airliner.clearAirlinerClasses();
 
                      XmlNodeList airlinerClassList = airlinerNode.SelectNodes("classes/class");
-
 
                      foreach (XmlElement airlinerClassNode in airlinerClassList)
                      {
@@ -468,7 +466,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airline allianceMember = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
                     DateTime joinedDate = DateTime.Parse(memberNode.Attributes["joined"].Value, new CultureInfo("de-DE"));
 
-                    alliance.addMember(new AllianceMember(allianceMember, joinedDate));
+                    if (allianceMember != null)
+                        alliance.addMember(new AllianceMember(allianceMember, joinedDate));
                 }
 
                 XmlNodeList pendingsList = allianceNode.SelectNodes("pendings/pending");
@@ -918,6 +917,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             XmlNodeList flightNodes = airlineNode.SelectNodes("flights/flight");
             foreach (XmlElement flightNode in flightNodes)
             {
+               
                 FleetAirliner airliner = airline.Fleet.Find(a => a.Airliner.ID == flightNode.Attributes["airliner"].Value);
                 Route route = airline.Routes.Find(r => r.Id == flightNode.Attributes["route"].Value);
 
@@ -1988,6 +1988,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport dest1 = Airports.GetAirport(routeNode.Attributes["destination1"].Value);
             Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
             Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
+
+            
 
             if (routeNode.HasAttribute("type"))
                 routetype = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), routeNode.Attributes["type"].Value);

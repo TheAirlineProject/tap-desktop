@@ -212,6 +212,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelNewRoute", "1007"), panelCargo));
             }
 
+            txtInvalidRoute = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PanelNewRoute", "1001"));
+            txtInvalidRoute.Foreground = Brushes.DarkRed;
+            txtInvalidRoute.Visibility = System.Windows.Visibility.Collapsed;
+            this.Children.Add(txtInvalidRoute);
+
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
             this.Children.Add(panelButtons);
@@ -238,10 +243,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnLoad.Visibility = this.RouteType == Route.RouteType.Cargo ? Visibility.Collapsed : Visibility.Visible;
             panelButtons.Children.Add(btnLoad);
 
-            txtInvalidRoute = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PanelNewRoute", "1001"));
-            txtInvalidRoute.Foreground = Brushes.DarkRed;
-            txtInvalidRoute.Visibility = System.Windows.Visibility.Collapsed;
-            this.Children.Add(txtInvalidRoute);
+  
         }
         private void rbRouteType_Checked(object sender, RoutedEventArgs e)
         {
@@ -455,6 +457,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     destinations.Add(stopover2);
                 }
 
+               
+
                 destinations.Add(airport2);
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
@@ -473,6 +477,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 txtInvalidRoute.Visibility = isRouteOk ? Visibility.Collapsed : Visibility.Visible;
 
+                if (this.RouteType == Route.RouteType.Cargo && !AIHelpers.IsCargoRouteDestinationsCorrect(airport1, airport2, GameObject.GetInstance().HumanAirline))
+                {
+                    txtInvalidRoute.Text = Translator.GetInstance().GetString("PanelNewRoute", "1009");
+                }
+
                 txtRoute.Text = string.Join(" <-> ", from d in destinations select new AirportCodeConverter().Convert(d).ToString());
             }
 
@@ -490,7 +499,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         //returns if two airports can have route between them and if the airline has license for the route
         private Boolean checkRouteOk(Airport airport1, Airport airport2)
         {
-            return AirlineHelpers.HasAirlineLicens(GameObject.GetInstance().HumanAirline,airport1,airport2) && AIHelpers.IsRouteInCorrectArea(airport1, airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime);
+            Boolean isCargoRouteOk = true;
+            if (this.RouteType == Route.RouteType.Cargo)
+            {
+                isCargoRouteOk = AIHelpers.IsCargoRouteDestinationsCorrect(airport1, airport2,GameObject.GetInstance().HumanAirline);
+            }
+            
+            return isCargoRouteOk && AirlineHelpers.HasAirlineLicens(GameObject.GetInstance().HumanAirline,airport1,airport2) && AIHelpers.IsRouteInCorrectArea(airport1, airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime);
         }
        //class for a stop over item
         private class ucStopover : UserControl

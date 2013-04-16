@@ -107,15 +107,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airline airline in airlines)
             {
-                var aRoutes = new List<Route>(airline.Routes);
-                foreach (Route route in aRoutes)
+                lock (airline.Routes)
+                {
+                    var aRoutes = new List<Route>(airline.Routes);
 
-                    routes.Add(route);
+                    foreach (Route route in aRoutes)
+                        routes.Add(route);
+                }
+            
             }
             return routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).ToList();
 
           
         }
+        
         //returns all entries for a specific airport with take off in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportTakeoffs(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {

@@ -1861,7 +1861,7 @@ namespace TheAirline.Model.GeneralModel
                     }
                 }
 
-                if (airport.Profile.Cargo == GeneralHelpers.Size.Very_large || airport.Profile.Cargo == GeneralHelpers.Size.Largest)
+                if (airport.Profile.Cargo == GeneralHelpers.Size.Very_large || airport.Profile.Cargo == GeneralHelpers.Size.Largest || airport.Profile.Size == GeneralHelpers.Size.Largest || airport.Profile.Size == GeneralHelpers.Size.Very_large)
                 {
                     AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f=>f.TypeLevel > 0);
 
@@ -1999,13 +1999,20 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateComputerRoutes(Airline airline)
         {
+             
+               
             Airport airportHomeBase = FindComputerHomeBase(airline);
 
             AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+            AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f=>f.TypeLevel > 0);
 
             airportHomeBase.addAirportFacility(airline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                airportHomeBase.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+    
 
             AirlineStartData startData = AirlineStartDatas.GetAirlineStartData(airline);
 
@@ -2075,7 +2082,8 @@ namespace TheAirline.Model.GeneralModel
                     {
                         route = new CargoRoute(id.ToString(), airportDestination, airline.Airports[0], PassengerHelpers.GetCargoPrice(airportDestination, airline.Airports[0]));
 
-
+                        airportDestination.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+    
                     }
 
 
@@ -2096,7 +2104,9 @@ namespace TheAirline.Model.GeneralModel
                         AIHelpers.CreateRouteTimeTable(route, fAirliner);
                     }
                     if (route.Type == Route.RouteType.Cargo)
+                    {
                         AIHelpers.CreateCargoRouteTimeTable(route, fAirliner);
+                    }
 
 
 
@@ -2108,6 +2118,7 @@ namespace TheAirline.Model.GeneralModel
         private static void CreateAirlineStartData(Airline airline, AirlineStartData startData)
         {
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+              AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f=>f.TypeLevel > 0);
 
             int difficultyFactor = GameObject.GetInstance().Difficulty.AILevel > 1 ? 2 : 1; //level easy
 
@@ -2126,14 +2137,27 @@ namespace TheAirline.Model.GeneralModel
                 if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                     dest2.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                if (dest1.Terminals.getEmptyGate(airline) == null)
-                    dest1.Terminals.rentGate(airline);
+                if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && dest1.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                    dest1.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
+               
+                if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && dest2.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                    dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
 
-                if (dest2.Terminals.getEmptyGate(airline) == null)
-                    dest2.Terminals.rentGate(airline);
+                lock (dest1.Terminals)
+                {
+                    if (dest1.Terminals.getEmptyGate(airline) == null)
+                        dest1.Terminals.rentGate(airline);
 
-                dest1.Terminals.getEmptyGate(airline).HasRoute = true;
-                dest2.Terminals.getEmptyGate(airline).HasRoute = true;
+                    dest1.Terminals.getEmptyGate(airline).HasRoute = true;
+                }
+
+                lock (dest2.Terminals)
+                {
+                    if (dest2.Terminals.getEmptyGate(airline) == null)
+                        dest2.Terminals.rentGate(airline);
+
+                    dest2.Terminals.getEmptyGate(airline).HasRoute = true;
+                }
 
                 Guid id = Guid.NewGuid();
                 
