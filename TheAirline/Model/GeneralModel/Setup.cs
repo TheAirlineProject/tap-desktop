@@ -838,7 +838,7 @@ namespace TheAirline.Model.GeneralModel
                     XmlElement producedElement = (XmlElement)airliner.SelectSingleNode("produced");
                     int fromYear = Convert.ToInt16(producedElement.Attributes["from"].Value);
                     int toYear = Convert.ToInt16(producedElement.Attributes["to"].Value);
-                    int prodRate = Convert.ToInt16(producedElement.Attributes["rate"].Value);
+                    int prodRate = producedElement.HasAttribute("rate") ? Convert.ToInt16(producedElement.Attributes["rate"].Value) : 10;
 
                     DateTime from = new DateTime(fromYear, 1, 2);
                     DateTime to = new DateTime(toYear, 12, 31);
@@ -2254,7 +2254,7 @@ namespace TheAirline.Model.GeneralModel
                 double span = valueSpan / Convert.ToDouble(totalSpan);
 
                 int numbers = Convert.ToInt16(span * yearSpan);
-
+                //type==null
                 if (type.Produced.From <= GameObject.GetInstance().GameTime)
                 {
                     for (int i = 0; i < Math.Max(numbers, airliners.AirlinersEarly); i++)

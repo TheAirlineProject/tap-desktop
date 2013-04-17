@@ -596,7 +596,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
              
 
-                popUpSplash.IsOpen = true;
+               // popUpSplash.IsOpen = true;
 
                 DoEvents();
 

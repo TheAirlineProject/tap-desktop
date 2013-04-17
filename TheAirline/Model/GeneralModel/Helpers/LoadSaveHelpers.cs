@@ -120,12 +120,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     int passengers = Convert.ToInt16(airlinerTypeNode.Attributes["passengers"].Value);
                     int maxclasses = Convert.ToInt16(airlinerTypeNode.Attributes["maxclasses"].Value);
                  
-                    type = new AirlinerPassengerType(baseType.Manufacturer,airlinerTypeName,passengers,baseType.CockpitCrew,cabincrew,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,maxclasses,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,false);
+                    type = new AirlinerPassengerType(baseType.Manufacturer,airlinerTypeName,passengers,baseType.CockpitCrew,cabincrew,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,maxclasses,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,baseType.ProductionRate,false);
                 }
                 if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                 {
                     double cargo = Convert.ToDouble(airlinerTypeNode.Attributes["cargo"].Value);
-                    type = new AirlinerCargoType(baseType.Manufacturer,airlinerTypeName,baseType.CockpitCrew,cargo,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,false);
+                    type = new AirlinerCargoType(baseType.Manufacturer,airlinerTypeName,baseType.CockpitCrew,cargo,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,baseType.ProductionRate, false);
                 }
                 type.BaseType = baseType;
 

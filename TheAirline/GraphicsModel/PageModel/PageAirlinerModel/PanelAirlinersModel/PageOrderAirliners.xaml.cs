@@ -620,20 +620,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             }
             this.ParentPage.updatePage();
         }
-        private void link_Click(object sender, RoutedEventArgs e)
-        {
-            AirlinerClass aClass = (AirlinerClass)((Hyperlink)sender).Tag;
-
-            PopUpAirlinerClassConfiguration.ShowPopUp(aClass);
-
-
-        }
+     
         //returns a date for delivery based on the aircraft production rate
-        private DateTime getDeliveryDate(Airliner airliner, int orderSize)
+        private DateTime getDeliveryDate()
         {
-            //DateTime date = new DateTime();
+            double monthsToComplete=0;
+
+            foreach (AirlinerOrder order in orders)
+            {
+                double orderToComplete = Math.Ceiling(Convert.ToDouble(order.Amount) / order.Type.ProductionRate);
+
+                if (orderToComplete > monthsToComplete)
+                    monthsToComplete = orderToComplete;
+            }
+           
+            /*
             DateTime date = GameObject.GetInstance().GameTime;
-            int rate = airliner.Type.ProductionRate;
+            int rate = order.Type.Type.ProductionRate;
             if (orderSize <= (rate / 4))
             {
                 date = GameObject.GetInstance().GameTime.AddMonths(3);
@@ -645,8 +648,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                     double iRate = 365 / rate;
                     date.AddDays(Math.Round(iRate, 0, MidpointRounding.AwayFromZero));
                 }
-            }
-            return date;
+            }*/
+            return GameObject.GetInstance().GameTime.AddMonths(Convert.ToInt16(monthsToComplete));
         }
 
         //adds a contract item
@@ -674,7 +677,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             
         }
+        private void link_Click(object sender, RoutedEventArgs e)
+        {
+            AirlinerClass aClass = (AirlinerClass)((Hyperlink)sender).Tag;
 
+            PopUpAirlinerClassConfiguration.ShowPopUp(aClass);
+
+
+        }
        
         private void cbTypes_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -713,6 +723,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             this.orders.Add(new AirlinerOrder(type, this.Classes, number));
      
             showOrders();
+
+            DateTime firstDeliveryDate = getDeliveryDate();
+
+            dpDate.DisplayDate = dpDate.DisplayDate > firstDeliveryDate ? dpDate.DisplayDate : firstDeliveryDate;
+            dpDate.SelectedDate = dpDate.SelectedDate > firstDeliveryDate ? dpDate.SelectedDate : firstDeliveryDate;
+
+            dpDate.BlackoutDates.Clear();
+
+            for (int i = 1; i < firstDeliveryDate.Day; i++)
+                dpDate.BlackoutDates.Add(new CalendarDateRange(new DateTime(firstDeliveryDate.Year, firstDeliveryDate.Month, i)));
+
+        
         }
 
         private void btnRemove_Click(object sender, RoutedEventArgs e)
