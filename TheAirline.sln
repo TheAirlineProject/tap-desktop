@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirportCSVReader", "Airport
 		{63A09097-FD0E-4159-A2ED-528EA26FD097} = {63A09097-FD0E-4159-A2ED-528EA26FD097}
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ucLibrary", "ucLibrary\ucLibrary.csproj", "{7369EC47-88E5-423E-AF33-66F9C63C536A}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -62,6 +64,16 @@ Global
 		{EB3DBB3B-B929-435D-8461-10F0EBE9DF29}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{EB3DBB3B-B929-435D-8461-10F0EBE9DF29}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EB3DBB3B-B929-435D-8461-10F0EBE9DF29}.Release|x86.ActiveCfg = Release|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{7369EC47-88E5-423E-AF33-66F9C63C536A}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -48,7 +48,7 @@ namespace TheAirline.Model.AirportModel
             this.DestinationCargoStatistics = new Dictionary<Airport, double>();
             this.LastExpansionDate = new DateTime(1900, 1, 1);
             this.Statics = new AirportStatics(this);
-
+          
         }
         //adds a major destination to the airport
         public void addMajorDestination(string destination, int pax)

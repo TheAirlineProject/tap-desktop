@@ -244,7 +244,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      int contractLength = Convert.ToInt32(airportContractElement.Attributes["length"].Value);
                      double yearlyPayment = Convert.ToDouble(airportContractElement.Attributes["payment"].Value);
 
-                     AirportContract contract = new AirportContract(contractAirline, contractAirport, contractDate, contractLength, yearlyPayment);
+                     AirportContract contract = new AirportContract(contractAirline, contractAirport, contractDate,5,contractLength, yearlyPayment);
                      contractAirline.addAirportContract(contract);
                  }
 

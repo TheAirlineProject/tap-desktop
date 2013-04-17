@@ -302,7 +302,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             
             if (result == WPFMessageBoxResult.Yes)
             {
-                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport, GameObject.GetInstance().GameTime, 5, contractPrice * 0.10);
+                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport, GameObject.GetInstance().GameTime,3, 5, contractPrice * 0.10);
                 GameObject.GetInstance().HumanAirline.addAirportContract(contract);
 
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -contractPrice);

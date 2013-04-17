@@ -1077,6 +1077,12 @@
   <ItemGroup>
     <Resource Include="GraphicsModel\PageModel\PageFinancesModel\darkbg.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ucLibrary\ucLibrary.csproj">
+      <Project>{7369ec47-88e5-423e-af33-66f9c63c536a}</Project>
+      <Name>ucLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

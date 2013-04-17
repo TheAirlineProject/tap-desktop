@@ -626,6 +626,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             double monthsToComplete=0;
 
+           
+
             foreach (AirlinerOrder order in orders)
             {
                 double orderToComplete = Math.Ceiling(Convert.ToDouble(order.Amount) / order.Type.ProductionRate);
@@ -633,23 +635,33 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 if (orderToComplete > monthsToComplete)
                     monthsToComplete = orderToComplete;
             }
-           
-            /*
-            DateTime date = GameObject.GetInstance().GameTime;
-            int rate = order.Type.Type.ProductionRate;
-            if (orderSize <= (rate / 4))
+
+            DateTime latestDate = new DateTime(1900, 1, 1);
+
+            foreach (AirlinerOrder order in orders)
             {
-                date = GameObject.GetInstance().GameTime.AddMonths(3);
-            }
-            else
-            {
-                for (int i = (rate / 4) + 1; i <= orderSize; i++)
+                DateTime date = new DateTime(GameObject.GetInstance().GameTime.Year, GameObject.GetInstance().GameTime.Month, GameObject.GetInstance().GameTime.Day);
+                int rate = order.Type.ProductionRate;
+                if (order.Amount <= (rate / 4))
                 {
-                    double iRate = 365 / rate;
-                    date.AddDays(Math.Round(iRate, 0, MidpointRounding.AwayFromZero));
+                    date = date.AddMonths(3);
                 }
-            }*/
-            return GameObject.GetInstance().GameTime.AddMonths(Convert.ToInt16(monthsToComplete));
+                else
+                {
+                    for (int i = (rate / 4) + 1; i <= order.Amount; i++)
+                    {
+                        double iRate = 365 / rate;
+                        date = date.AddDays(Math.Round(iRate, 0, MidpointRounding.AwayFromZero));
+                    }
+                }
+
+                if (date > latestDate)
+                    latestDate = date;
+            }
+
+            return latestDate;
+
+           
         }
 
         //adds a contract item

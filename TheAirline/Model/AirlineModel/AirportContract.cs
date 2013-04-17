@@ -14,13 +14,15 @@ namespace TheAirline.Model.AirlineModel
         public DateTime ContractDate { get; set; }
         public int Length { get; set; }
         public double YearlyPayment { get; set; }
-        public AirportContract(Airline airline, Airport airport, DateTime date, int length, double yearlyPayment)
+        public int NumberOfGates { get; set; }
+        public AirportContract(Airline airline, Airport airport, DateTime date, int numberOfGates, int length, double yearlyPayment)
         {
             this.Airline = airline;
             this.Airport = airport;
             this.ContractDate = date;
             this.Length = length;
             this.YearlyPayment = yearlyPayment;
+            this.NumberOfGates = numberOfGates;
         }
     }
 }
