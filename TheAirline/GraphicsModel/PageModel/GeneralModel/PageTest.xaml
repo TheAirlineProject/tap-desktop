@@ -1,15 +1,17 @@
-﻿<page:StandardPage x:Class="TheAirline.GraphicsModel.PageModel.GeneralModel.PageTest"
+﻿<page:StandardPage
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
                    xmlns:uc="clr-namespace:TheAirline.GraphicsModel.UserControlModel"
+      xmlns:ucLibrary="clr-namespace:ucLibrary;assembly=ucLibrary" x:Class="TheAirline.GraphicsModel.PageModel.GeneralModel.PageTest"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageTest">
     <StackPanel>
-        <uc:ucFinanceControl Text="Radio Budget" Value="3" Width="300"></uc:ucFinanceControl>
-        <uc:ucFinanceControl Text="TV Budget" Width="300"></uc:ucFinanceControl>
+        <uc:ucFinanceControl Text="Radio Budget" Value="3" Width="300"/>
+        <uc:ucFinanceControl Text="TV Budget" Width="300"/>
+    	<ucLibrary:ucLoader/>
      </StackPanel>
 </page:StandardPage>

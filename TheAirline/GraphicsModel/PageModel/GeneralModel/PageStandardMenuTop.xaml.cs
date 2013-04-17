@@ -36,6 +36,7 @@ using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageFinancesModel;
+using ucLibrary;
 
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -204,7 +205,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
           
             Popup popUpSplash = new Popup();
-            popUpSplash.Child = createSplashWindow("Saving.........");
+            popUpSplash.Child = createSplashWindow("Saving......");
             popUpSplash.Placement = PlacementMode.Center;
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;
             popUpSplash.IsOpen = false;
@@ -258,7 +259,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {
            Popup popUpSplash = new Popup();
-            popUpSplash.Child = createSplashWindow("Loading.........");
+            popUpSplash.Child = createSplashWindow("Loading.....");
             popUpSplash.Placement = PlacementMode.Center;
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;
             popUpSplash.IsOpen = false;
