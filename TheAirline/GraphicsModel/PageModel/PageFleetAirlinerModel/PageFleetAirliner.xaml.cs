@@ -415,7 +415,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
         }
         private void btnConvertToCargo_Click(object sender, RoutedEventArgs e)
         {
-            double convertPrice = GeneralHelpers.GetInflationPrice(75000);
+            double convertPrice = GeneralHelpers.GetInflationPrice(1000 * ((AirlinerPassengerType)this.Airliner.Airliner.Type).MaxSeatingCapacity);
                         
             if (this.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2109"), Translator.GetInstance().GetString("MessageBox", "2109", "message"), WPFMessageBoxButtons.Ok);
