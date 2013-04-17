@@ -628,6 +628,27 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
 
         }
+        //returns a date for delivery based on the aircraft production rate
+        private DateTime getDeliveryDate(Airliner airliner, int orderSize)
+        {
+            //DateTime date = new DateTime();
+            DateTime date = GameObject.GetInstance().GameTime;
+            int rate = airliner.Type.ProductionRate;
+            if (orderSize <= (rate / 4))
+            {
+                date = GameObject.GetInstance().GameTime.AddMonths(3);
+            }
+            else
+            {
+                for (int i = (rate / 4) + 1; i <= orderSize; i++)
+                {
+                    double iRate = 365 / rate;
+                    date.AddDays(Math.Round(iRate, 0, MidpointRounding.AwayFromZero));
+                }
+            }
+            return date;
+        }
+
         //adds a contract item
         private ComboBoxItem createLengthItem(int years)
         {

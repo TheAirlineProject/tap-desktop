@@ -838,6 +838,7 @@ namespace TheAirline.Model.GeneralModel
                     XmlElement producedElement = (XmlElement)airliner.SelectSingleNode("produced");
                     int fromYear = Convert.ToInt16(producedElement.Attributes["from"].Value);
                     int toYear = Convert.ToInt16(producedElement.Attributes["to"].Value);
+                    int prodRate = Convert.ToInt16(producedElement.Attributes["rate"].Value);
 
                     DateTime from = new DateTime(fromYear, 1, 2);
                     DateTime to = new DateTime(toYear, 12, 31);
@@ -851,14 +852,14 @@ namespace TheAirline.Model.GeneralModel
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                         int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-                        type = new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to));
+                        type = new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to),prodRate);
 
                     }
                     if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                     {
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
-                        type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to));
+                        type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to), prodRate);
                     }
 
                     if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
