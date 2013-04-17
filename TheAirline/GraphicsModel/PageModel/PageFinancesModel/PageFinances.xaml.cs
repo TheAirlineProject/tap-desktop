@@ -43,16 +43,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             // binds top level budgets and buttons
             Button btnApply = (Button)this.FindName("buttonApply");
             Button btnReset = (Button)this.FindName("buttonReset");
+            Button btn1Year = (Button)this.FindName("_1year");
+            Button btn5Year = (Button)this.FindName("_5year");
+            Button btn10Year = (Button)this.FindName("_10year");
 
             Viewbox panelContent = (Viewbox)this.FindName("panelViewbox");
             setMaximums(airline);
             BudgetHelpers.SetDefaults(airline);
             SetLocalDefaults(airline);
-            SetOverviewPanel(airline);
+            SetOverviewPanel(airline, 1);
             
             //event handlers
             btnApply.Click += new RoutedEventHandler(btnApply_Click);
             btnReset.Click += new RoutedEventHandler(btnReset_Click);
+            btn1Year.Click += new RoutedEventHandler(btn1Year_Click);
+            btn5Year.Click += new RoutedEventHandler(btn5Year_Click);
+            btn10Year.Click += new RoutedEventHandler(btn10Year_Click);
 
             this.RemoveLogicalChild(panelContent);
 
@@ -98,11 +104,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
         }
 
         //sets initial overview panel
-        private void SetOverviewPanel(Airline humanAirline)
+        private void SetOverviewPanel(Airline humanAirline, int n)
         {
-            BudgetHelpers.GetTestBudget(humanAirline);
+            
             IDictionary<DateTime, AirlineBudget> testBudget = GameObject.GetInstance().HumanAirline.TestBudget;
-            AirlineBudget budget = BudgetHelpers.GetOneYearBudget(GameObject.GetInstance().GameTime);
+            AirlineBudget budget = BudgetHelpers.GetOneYearBudget(GameObject.GetInstance().GameTime, n);
             intFleetSizeValue.Text = humanAirline.getFleetSize().ToString();
             intFleetSizeValue1.Text = budget.FleetSize.ToString();
             mCashValue.Text = humanAirline.Money.ToString("C0");
@@ -127,6 +133,21 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
             mAvgSubsValue.Text = BudgetHelpers.GetAvgSubValue(humanAirline).ToString("C0");
             mAvgAirlinerValue1.Text = (budget.TotalSubValue / budget.Subsidiaries).ToString("C0");
             //mTotalSubsValue.Text = BudgetHelpers.GetTotalSubValues(humanAirline).ToString("C0");
+        }
+
+        public void btn1Year_Click(object sender, RoutedEventArgs e)
+        {
+            SetOverviewPanel(GameObject.GetInstance().HumanAirline, 1);
+        }
+
+        public void btn5Year_Click(object sender, RoutedEventArgs e)
+        {
+            SetOverviewPanel(GameObject.GetInstance().HumanAirline, 5);
+        }
+
+        public void btn10Year_Click(object sender, RoutedEventArgs e)
+        {
+            SetOverviewPanel(GameObject.GetInstance().HumanAirline, 10);
         }
         
             public void btnApply_Click(object sender, RoutedEventArgs e)
@@ -171,14 +192,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageFinancesModel
                 SetLocalDefaults(humanAirline);
                 
             }
-
-
     
             private void btnReset_Click(object sender, RoutedEventArgs e)
             {
                 BudgetHelpers.SetDefaults(GameObject.GetInstance().HumanAirline);
                 SetLocalDefaults(GameObject.GetInstance().HumanAirline);
-                SetOverviewPanel(GameObject.GetInstance().HumanAirline);
+                SetOverviewPanel(GameObject.GetInstance().HumanAirline, 1);
             }
 
         }

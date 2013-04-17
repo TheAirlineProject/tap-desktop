@@ -127,12 +127,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
 
         //returns the budget from 1 year ago
-        public static AirlineBudget GetOneYearBudget(DateTime date)
-        {
-            Airline humanAirline = GameObject.GetInstance().HumanAirline;
+        public static AirlineBudget GetOneYearBudget(DateTime date, int n)
+        {            Airline humanAirline = GameObject.GetInstance().HumanAirline;
             if (GameObject.GetInstance().StartDate > GameObject.GetInstance().GameTime.AddMonths(-12))
             {
-                AirlineBudget oldBudget = (from d in humanAirline.TestBudget where (d.Key.Month == date.Month) && (d.Key.Year == (date.Year - 1)) select d.Value).FirstOrDefault();
+                AirlineBudget oldBudget = (from d in humanAirline.TestBudget where (d.Key.Month == date.Month) && (d.Key.Year == (date.Year - n)) select d.Value).FirstOrDefault();
                 return oldBudget;
             }
             else
@@ -148,8 +147,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Random random = new Random();
             for (int i = 1; i < 61; i++)
             {
-                budget.BudgetActive = GameObject.GetInstance().GameTime.AddMonths(-i);
-                budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(-i + 12);
+                budget.BudgetActive = GameObject.GetInstance().GameTime.AddMonths(-1);
+                budget.BudgetExpires = GameObject.GetInstance().GameTime.AddMonths(-1 + 12);
                 budget.Cash = random.Next(1, 100000000);
                 budget.AirportBudget = random.Next(1, 500000);
                 budget.CompBudget = random.Next(1, 500000);
@@ -180,7 +179,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 budget.TotalEmployees = random.Next(1, 10000);
                 budget.TotalPayroll = random.Next(500000, 10000000);
                 budget.TotalSubValue = random.Next(200000000, 1000000000);
-                airline.TestBudget.Add(budget.BudgetActive, budget);
+                if (airline.TestBudget.ContainsKey(budget.BudgetActive.AddMonths(-1)))
+                {}
+                else {
+                airline.TestBudget.Add(budget.BudgetActive.AddMonths(-1), budget);
+                }
             }
             return airline.TestBudget;
         }

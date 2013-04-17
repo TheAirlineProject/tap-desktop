@@ -200,6 +200,9 @@
             </StackPanel>
             <TextBlock x:Name="current" TextWrapping="Wrap" Text="Current" Margin="582,335,126,242" Width="92" Height="23" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
             <TextBlock x:Name="oneYearAgo" HorizontalAlignment="Left" Height="23" Margin="674,335,0,0" TextWrapping="Wrap" Text="One Year Ago" VerticalAlignment="Top" Width="92" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
+            <Button x:Name="_1year" Content="1 Year Ago" HorizontalAlignment="Left" Margin="462,16,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="_5year" Content="5 Years Ago" HorizontalAlignment="Left" Margin="582,16,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="_10year" Content="10 Years Ago" HorizontalAlignment="Left" Margin="694,16,0,0" VerticalAlignment="Top" Width="75"/>
         </Grid>
     </Viewbox>
 </page:StandardPage>

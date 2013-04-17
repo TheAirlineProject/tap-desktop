@@ -78,5 +78,17 @@ namespace TheAirline.Model.GeneralModel.InvoicesModel
                 return this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year && m.Type == type);
             }
         }
+
+        public static List<double> getInvoiceList()
+        {
+            List<double> invoices = new List<double>();
+            foreach (MonthlyInvoice invoice in GameObject.GetInstance().HumanAirline.getInvoices().MonthlyInvoices)
+            {
+                invoices.Add(invoice.Amount);
+            }
+
+            return invoices;
+
+        }
     }
 }
