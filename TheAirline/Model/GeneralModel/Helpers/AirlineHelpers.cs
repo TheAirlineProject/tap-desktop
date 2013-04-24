@@ -21,10 +21,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             Guid id = Guid.NewGuid();
 
-            Airliner airliner = new Airliner(id.ToString(),type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
+            Airliner airliner = new Airliner(id.ToString(), type, airline.Profile.Country.TailNumbers.getNextTailNumber(), GameObject.GetInstance().GameTime);
             Airliners.AddAirliner(airliner);
 
-            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner,  airline.Airports[0]);
+            FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airline.Airports[0]);
 
             airliner.clearAirlinerClasses();
 
@@ -57,12 +57,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static FleetAirliner AddAirliner(Airline airline, Airliner airliner, Airport airport)
         {
-       
+
             if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != airline.Profile.Country.Name)
                 airliner.TailNumber = airline.Profile.Country.TailNumbers.getNextTailNumber();
-            
+
             FleetAirliner fAirliner = new FleetAirliner(FleetAirliner.PurchasedType.Bought, GameObject.GetInstance().GameTime, airline, airliner, airport);
-             
+
             airline.addAirliner(fAirliner);
 
             return fAirliner;
@@ -86,13 +86,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
-                    airline.addAirliner(pType, airliner,  airport);
+                    airline.addAirliner(pType, airliner, airport);
 
                     airliner.clearAirlinerClasses();
 
                     foreach (AirlinerClass aClass in order.Classes)
                     {
-                        AirlinerClass tClass = new AirlinerClass(aClass.Type,aClass.SeatingCapacity);
+                        AirlinerClass tClass = new AirlinerClass(aClass.Type, aClass.SeatingCapacity);
                         tClass.RegularSeatingCapacity = aClass.RegularSeatingCapacity;
 
                         foreach (AirlinerFacility facility in aClass.getFacilities())
@@ -108,8 +108,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
-            int totalAmount = orders.Sum(o => o.Amount)  ;
-            double price = orders.Sum(o => o.Type.Price * o.Amount); 
+            int totalAmount = orders.Sum(o => o.Amount);
+            double price = orders.Sum(o => o.Type.Price * o.Amount);
 
             double totalPrice = price * ((1 - GeneralHelpers.GetAirlinerOrderDiscount(totalAmount))) * ((100 - discount) / 100);
 
@@ -119,15 +119,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void ReallocateAirport(Airport oldAirport, Airport newAirport, Airline airline)
         {
 
-            //gates
-            foreach (Gate gate in oldAirport.Terminals.getUsedGates(airline))
+            //contract
+            List<AirportContract> oldContracts = oldAirport.getAirlineContracts(airline);
+
+            foreach (AirportContract oldContract in oldContracts)
             {
-                gate.HasRoute = false;
-            }
-            while (oldAirport.Terminals.getTotalNumberOfGates(airline) > 0)
-            {
-                oldAirport.Terminals.releaseGate(airline);
-                newAirport.Terminals.rentGate(airline);
+
+                oldAirport.removeAirlineContract(oldContract);
+
+                oldContract.Airport = newAirport;
+
+                newAirport.addAirlineContract(oldContract);
+
+
             }
             //routes
             var obsoleteRoutes = (from r in airline.Routes where r.Destination1 == oldAirport || r.Destination2 == oldAirport select r);
@@ -137,7 +141,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (route.Destination1 == oldAirport) route.Destination1 = newAirport;
                 if (route.Destination2 == oldAirport) route.Destination2 = newAirport;
 
-                newAirport.Terminals.getEmptyGate(airline).HasRoute = true;
 
                 var entries = route.TimeTable.Entries.FindAll(e => e.Destination.Airport == oldAirport);
 
@@ -188,13 +191,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void CloseSubsidiaryAirline(SubsidiaryAirline airline)
         {
             AddAirlineInvoice(airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, airline.Money);
-          
+
             airline.Airline.removeSubsidiaryAirline(airline);
             Airlines.RemoveAirline(airline);
 
-            var fleet = airline.Fleet; 
+            var fleet = airline.Fleet;
 
-            for (int f=0;f<fleet.Count;f++)
+            for (int f = 0; f < fleet.Count; f++)
             {
                 fleet[f].Airliner.Airline = airline.Airline;
                 airline.Airline.addAirliner(fleet[f]);
@@ -203,15 +206,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             var airports = airline.Airports;
 
-            for (int i=0;i<airports.Count;i++)
+            for (int i = 0; i < airports.Count; i++)
             {
-                var gates = airports[i].Terminals.getUsedGates(airline);
+                var contracts = airports[i].getAirlineContracts(airline);
 
-                for (int g = 0;g<gates.Count;g++)
+                for (int j = 0; j < contracts.Count; j++)
                 {
-                    gates[g].Airline = airline.Airline;
-                    gates[g].HasRoute = false;
+                    contracts[j].Airline = airline.Airline;
                 }
+
                 if (!airline.Airline.Airports.Contains(airports[i]))
                 {
                     airline.Airline.addAirport(airports[i]);
@@ -219,10 +222,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airports[i].clearFacilities(airline);
 
-       
+
             }
 
-  
+
         }
         //adds a subsidiary airline to an airline
         public static void AddSubsidiaryAirline(Airline airline, SubsidiaryAirline sAirline, double money, Airport airportHomeBase)
@@ -251,13 +254,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (AirlinePolicy policy in airline.Policies)
                 sAirline.addAirlinePolicy(policy);
 
-           
+
             AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find(f => f.TypeLevel == 1);
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
             airportHomeBase.addAirportFacility(sAirline, serviceFacility, GameObject.GetInstance().GameTime);
             airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
-            airportHomeBase.Terminals.rentGate(sAirline);
+
+            if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline))
+                AirportHelpers.RentGates(airportHomeBase, sAirline);
 
             Airlines.AddAirline(sAirline);
 
@@ -267,12 +272,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a subsidiary airline for an airline
         public static SubsidiaryAirline CreateSubsidiaryAirline(Airline airline, double money, string name, string iata, Airline.AirlineMentality mentality, Airline.AirlineFocus market, Route.RouteType routefocus, Airport homebase)
         {
-            AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO,true,GameObject.GetInstance().GameTime.Year,2199);
+            AirlineProfile profile = new AirlineProfile(name, iata, airline.Profile.Color, airline.Profile.CEO, true, GameObject.GetInstance().GameTime.Year, 2199);
             profile.Country = airline.Profile.Country;
-         
-            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License,routefocus);
 
-            AddSubsidiaryAirline(airline, sAirline,money,homebase);
+            SubsidiaryAirline sAirline = new SubsidiaryAirline(airline, profile, mentality, market, airline.License, routefocus);
+
+            AddSubsidiaryAirline(airline, sAirline, money, homebase);
 
             return sAirline;
         }
@@ -280,11 +285,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void HireAirlinerPilots(FleetAirliner airliner)
         {
             while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
-           {
-                var pilots = Pilots.GetUnassignedPilots(p=>p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
+            {
+                var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
 
                 if (pilots.Count == 0)
-                    pilots = Pilots.GetUnassignedPilots(p=>p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region);
+                    pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region);
 
                 if (pilots.Count == 0)
                     pilots = Pilots.GetUnassignedPilots();
@@ -295,13 +300,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 pilot.Airliner = airliner;
                 airliner.addPilot(pilot);
             }
-            
+
             if (Pilots.GetNumberOfUnassignedPilots() < 10)
                 GeneralHelpers.CreatePilots(50);
-            
+
         }
         //returns the discount factor for a manufactorer for an airline and for a period
-        public static double GetAirlineManufactorerDiscountFactor(Airline airline, int length, Boolean forReputation) 
+        public static double GetAirlineManufactorerDiscountFactor(Airline airline, int length, Boolean forReputation)
         {
             double score = 0;
 
@@ -315,7 +320,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (discount > 30)
                 discount = length * 3;
-      
+
             return discount;
 
 
@@ -412,6 +417,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
         }
-        
+
     }
 }

@@ -621,16 +621,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 Airport airport = (Airport)cbAirport.SelectedItem;
 
-                airport.Terminals.rentGate(airline);
-                airport.Terminals.rentGate(airline);
+                AirportHelpers.RentGates(airport, airline, 2);
 
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
                 AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
-
-             
+    
                 if (region.Uid != "100")
                 {
                     Airports.RemoveAirports(a => a.Profile.Country.Region != region || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas) );

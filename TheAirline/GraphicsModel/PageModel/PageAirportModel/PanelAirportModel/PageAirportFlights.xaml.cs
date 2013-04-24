@@ -87,7 +87,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnSlotAllocation.Content = Translator.GetInstance().GetString("PageAirportFlights", btnSlotAllocation.Uid);
             btnSlotAllocation.Click += new RoutedEventHandler(btnSlotAllocation_Click);
             btnSlotAllocation.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnSlotAllocation.Visibility = this.Airport.Terminals.getNumberOfRoutes() > 0 ? Visibility.Visible : Visibility.Collapsed;
+            btnSlotAllocation.Visibility = AirportHelpers.GetAirportRoutes(this.Airport).Count > 0 ? Visibility.Visible : Visibility.Collapsed;
 
             panelButtons.Children.Add(btnSlotAllocation);
 
@@ -100,12 +100,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             btnFlightMap.Click += btnFlightMap_Click;
             btnFlightMap.SetResourceReference(Button.BackgroundProperty,"ButtonBrush");
             btnFlightMap.Margin = new Thickness(5,0,0,0);
-            btnFlightMap.Visibility = this.Airport.Terminals.getNumberOfRoutes() > 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            btnFlightMap.Visibility = AirportHelpers.GetAirportRoutes(this.Airport).Count > 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
             panelButtons.Children.Add(btnFlightMap);
-
-
-
 
             panelFlights.Children.Add(panelButtons);
           

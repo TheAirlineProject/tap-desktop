@@ -522,7 +522,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                       
                         for (int i = 0; i < numberOfGates; i++)
-                            minTerminal.Gates.addGate(new Gate(airport, GameObject.GetInstance().GameTime.AddDays(daysToBuild)));
+                            minTerminal.Gates.addGate(new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild)));
 
                         airport.Income -= price;
                         airport.LastExpansionDate = GameObject.GetInstance().GameTime;
@@ -562,6 +562,61 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  foreach (DestinationDemand paxDemand in airportOld.getDestinationsPassengers())
                     airportNew.addDestinationPassengersRate(paxDemand);
             }
+        }
+        //checks if an airline has any free gates at an airport
+        public static Boolean HasFreeGates(Airport airport, Airline airline)
+        {
+            List<AirportContract> contracts = airport.getAirlineContracts(airline);
+
+            if (contracts.Count == 0)
+                return false;
+
+            int gates = contracts.Sum(c => c.NumberOfGates);
+
+            return gates > GetAirportRoutes(airport, airline).Count / Gate.RoutesPerGate;
+        }
+        //rents a "standard" amount of gates at an airport for an airline
+        public static Boolean RentGates(Airport airport, Airline airline)
+        {
+            int maxGates = airport.Terminals.getFreeGates();
+
+            int gatesToRent = Math.Min(maxGates, (int)(airline.Mentality) + 2);
+
+            if (gatesToRent == 0)
+                return false;
+
+            RentGates(airport, airline, gatesToRent);
+
+            return true;
+
+        }
+        public static void RentGates(Airport airport, Airline airline, int gates)
+        {
+            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport,gates, 20));
+
+            airport.addAirlineContract(contract);
+      
+        }
+        //rents a number of gates for an airline at an airport
+        public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length,string s)
+        {
+
+            CreateAirportContract(airport, airline, gates, length, GetYearlyContractPayment(airport, gates,length));
+        }
+        public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length, double yearlypayment)
+        {
+            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, length,yearlypayment);
+            airport.addAirlineContract(contract);
+  
+        }
+        //returns the yearly payment for a number of gates
+        public static double GetYearlyContractPayment(Airport airport, int gates, int length)
+        {
+            double basePrice = airport.getGatePrice() * 12;
+
+            double lengthFactor = 100 - length;
+
+            return basePrice * (lengthFactor / 100);
         }
     }
 

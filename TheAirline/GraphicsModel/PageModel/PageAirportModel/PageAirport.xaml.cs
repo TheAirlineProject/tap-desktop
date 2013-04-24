@@ -491,12 +491,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             KeyValuePair<DestinationDemand, int> v = (KeyValuePair<DestinationDemand, int>)((Button)sender).Tag;
             Airport airport = v.Key.Destination;
 
-            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+            Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-            if (result == WPFMessageBoxResult.Yes)
+            object o = PopUpAirportContract.ShowPopUp(airport);
+
+            //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (o != null)
             {
-                Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
-
                 if (!hasCheckin)
                 {
                     AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
@@ -506,11 +508,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
                 }
 
-
-                airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
+                airport.addAirlineContract((AirportContract)o);
 
                 showDemand();
-
             }
         }
         //the class for a flight at the airport
@@ -544,7 +544,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 KeyValuePair<DestinationDemand, int> v = (KeyValuePair<DestinationDemand, int>)value;
                 Airport airport = v.Key.Destination;
 
-                Boolean isEnabled = airport.Terminals.getFreeGates() > 0 && airport.AirlineContract == null;
+                Boolean isEnabled = airport.Terminals.getFreeGates() > 0;// && airport.AirlineContract == null;
 
 
                 rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);

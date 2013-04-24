@@ -26,11 +26,14 @@ namespace TheAirline.Model.AirportModel
         public Weather[] Weather { get; set; }
         public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
-        public List<Hub> Hubs { get; set; }
+        private List<Hub> _Hubs;
+        public List<Hub> Hubs { get { return getHubs(); } set { this._Hubs = value; } }
         public Boolean IsHub { get { return this.Hubs.Count > 0; } set { ;} }
         public long Income { get; set; }
         public DateTime LastExpansionDate { get; set; }
-        public AirportContract AirlineContract { get; set; }
+        private List<AirportContract> _Contracts;
+        public List<AirportContract> AirlineContracts { get { return getAirlineContracts();} set { this._Contracts = value; } }
+
         public AirportStatics Statics { get; set; }
         public Airport(AirportProfile profile)
         {
@@ -43,12 +46,12 @@ namespace TheAirline.Model.AirportModel
             this.Weather = new Weather[5];
             this.Terminals = new Terminals(this);
             this.Runways = new List<Runway>();
-            this.Hubs = new List<Hub>();
+            this._Hubs = new List<Hub>();
             this.DestinationPassengerStatistics = new Dictionary<Airport, long>();
             this.DestinationCargoStatistics = new Dictionary<Airport, double>();
             this.LastExpansionDate = new DateTime(1900, 1, 1);
             this.Statics = new AirportStatics(this);
-          
+            this.AirlineContracts = new List<AirportContract>();
         }
         //adds a major destination to the airport
         public void addMajorDestination(string destination, int pax)
@@ -70,8 +73,42 @@ namespace TheAirline.Model.AirportModel
 
             return majorDestinations;
         }
+        //clears the list of airline contracts
+        public void clearAirlineContracts()
+        {
+            this.AirlineContracts.Clear();
+        }
+        //adds an airline airport contract to the airport
+        public void addAirlineContract(AirportContract contract)
+        {
+           
+            this.AirlineContracts.Add(contract);
 
+            if (!contract.Airline.Airports.Contains(this))
+                contract.Airline.addAirport(this);
+        }
+        //removes an airline airport contract from the airport
+        public void removeAirlineContract(AirportContract contract)
+        {
+            this.AirlineContracts.Remove(contract);
 
+            if (!this.AirlineContracts.Exists(c => c.Airline == contract.Airline))
+                contract.Airline.removeAirport(this);
+        }
+        //returns the contracts for an airline
+        public List<AirportContract> getAirlineContracts(Airline airline)
+        {
+            return this.AirlineContracts.FindAll(a => a.Airline == airline);
+        }
+        //return all airline contracts
+        public List<AirportContract> getAirlineContracts()
+        {
+           
+            lock (this._Contracts)
+            {
+                return this._Contracts;
+            }
+        }
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
         {
@@ -404,7 +441,12 @@ namespace TheAirline.Model.AirportModel
             this.Facilities.RemoveAll(f => f.Airline == airline);
 
         }
-
+        //returns all hubs
+        public List<Hub> getHubs()
+        {
+            lock (this._Hubs)
+                return this._Hubs;
+        }
         //returns the price for a hub
         public long getHubPrice()
         {
@@ -435,6 +477,11 @@ namespace TheAirline.Model.AirportModel
         //removes a terminal from the airport
         public void removeTerminal(Terminal terminal)
         {
+            AirportContract terminalContract = this.AirlineContracts.Find(c => c.Terminal != null && c.Terminal == terminal);
+
+            if (terminalContract != null)
+                removeAirlineContract(terminalContract);
+
             this.Terminals.removeTerminal(terminal);
         }
     }

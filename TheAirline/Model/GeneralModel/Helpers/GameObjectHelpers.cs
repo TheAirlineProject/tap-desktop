@@ -211,7 +211,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
 
-                    var airlines = new List<Airline>(from g in airport.Terminals.getUsedGates() select g.Airline).Distinct();
+                    var airlines = new List<Airline>(from c in airport.AirlineContracts select c.Airline).Distinct();
                     foreach (Airline airline in airlines)
                     {
                         AirlineHelpers.ReallocateAirport(airport, reallocatedAirport, airline);
@@ -376,28 +376,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                        if (terminal.Airline != null)
                        {
-                           //moves the "old" rented gates into the new terminal
-                           foreach (Terminal tTerminal in airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
+                           List<AirportContract> oldContracts = new List<AirportContract>(airport.getAirlineContracts(terminal.Airline));
+
+                           if (oldContracts.Count > 0)
                            {
-                               foreach (Gate gate in tTerminal.Gates.getGates(terminal.Airline))
+                               int totalGates = oldContracts.Sum(c => c.NumberOfGates);
+
+                               int gatesDiff = totalGates - terminal.Gates.NumberOfGates;
+
+                               if (gatesDiff > 0)
                                {
-                                   Gate nGate = terminal.Gates.getEmptyGate(terminal.Airline);
-                                   if (nGate != null)
-                                   {
-                                       nGate.HasRoute = gate.HasRoute;
+                                   int length = oldContracts.Max(c=>c.Length);
+                                   AirportContract newContract = new AirportContract(terminal.Airline,airport,GameObject.GetInstance().GameTime,gatesDiff,length,AirportHelpers.GetYearlyContractPayment(airport,gatesDiff,length)/2);
 
-                                       gate.Airline = null;
-                                       gate.HasRoute = false;
-                                   }
-
-
+                                   airport.addAirlineContract(newContract);
                                }
-
+                               
+                               foreach (AirportContract oldContract in oldContracts)
+                                   airport.removeAirlineContract(oldContract);
+                               
                            }
-                           while (terminal.Gates.getFreeGates() > 0)
-                               terminal.Gates.rentGate(terminal.Airline);
+                           double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport,terminal.Gates.NumberOfGates,20);
 
-
+                           airport.addAirlineContract(new AirportContract(terminal.Airline, airport, GameObject.GetInstance().GameTime, terminal.Gates.NumberOfGates, 20,yearlyPayment*0.75,false,terminal ));
+                          
                            if (terminal.Airport.getAirportFacility(terminal.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                            {
 
@@ -419,8 +421,80 @@ namespace TheAirline.Model.GeneralModel.Helpers
                        int numberOfNewGates = terminal.Gates.getGates().Count(g => g.DeliveryDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
 
                        if (numberOfNewGates > 0)
+                       {
                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name, terminal.Name, numberOfNewGates)));
 
+                           double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, numberOfNewGates + terminal.Gates.NumberOfGates, 20);
+
+                           AirportContract terminalContract = airport.AirlineContracts.Find(c => c.Terminal != null && c.Terminal == terminal);
+
+                           if (terminalContract != null)
+                           {
+                               terminalContract.NumberOfGates += numberOfNewGates;
+                               terminalContract.YearlyPayment = yearlyPayment;
+                           }
+                       }
+                       
+                       
+                   }
+                   //expired contracts
+                   var airlineContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c=>c.ExpireDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()));
+
+                   foreach (AirportContract contract in airlineContracts)
+                   {
+                       if (contract.Airline.IsHuman)
+                       {
+                           int totalContractGates = airport.AirlineContracts.Where(c => c.Airline.IsHuman).Sum(c => c.NumberOfGates);
+
+                           int maxRoutes = (totalContractGates - contract.NumberOfGates) * Gate.RoutesPerGate;
+
+                           var airlineRoutes = new List<Route>(AirportHelpers.GetAirportRoutes(airport, contract.Airline));
+
+                           if (airlineRoutes.Count > maxRoutes)
+                           {
+                               GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired, and a number of routes has been cancelled", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+
+                               int routes = airlineRoutes.Count;
+                               int currentRoute=0;
+                               while (routes > maxRoutes+currentRoute)
+                               {
+                                   Route routeToDelete = airlineRoutes[currentRoute];
+
+                                   foreach (FleetAirliner fAirliner in routeToDelete.getAirliners())
+                                   {
+                                       fAirliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+                                       fAirliner.removeRoute(routeToDelete);
+                                   }
+
+                                   contract.Airline.removeRoute(routeToDelete);
+
+
+                                   contract.Airline.removeRoute(routeToDelete);
+
+                                   currentRoute++;
+                               }
+
+                           }
+                           else
+                           {
+                               GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+
+                           }
+
+                           airport.removeAirlineContract(contract);
+                       }
+                       else
+                       {
+                           int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport,contract.Airline).Count;
+
+                           if (numberOfRoutes > 0)
+                           {
+                               contract.ContractDate = GameObject.GetInstance().GameTime;
+                               contract.ExpireDate = GameObject.GetInstance().GameTime.AddYears(contract.Length);
+                           }
+                           else
+                               airport.removeAirlineContract(contract);
+                       }
                    }
 
                }
@@ -565,14 +639,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (FeeType feeType in FeeTypes.GetTypes())
                     airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
-
-                
-                //pays the airport contracts
-                foreach (AirportContract contract in airline.AirportContracts)
-                {
-                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -contract.YearlyPayment);
-                }
-
+         
             }
 
             //creates some new used airliners for the year
@@ -795,18 +862,36 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 // chs, 2011-28-10 changed so a terminal only costs 75% of gate price
                 foreach (Airport airport in airline.Airports)
                 {
-                    foreach (Terminal terminal in airport.Terminals.getDeliveredTerminals())
-                    {
-                        double gates = Convert.ToDouble(terminal.Gates.getNumberOfGates(airline));
-                        double gatePrice = airline == terminal.Airline ? airport.getGatePrice() * 0.75 : airport.getGatePrice();
+                    List<AirportContract> contracts = new List<AirportContract>(airport.getAirlineContracts(airline));
 
-                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -gatePrice * gates);
+                    double contractPrice = contracts.Sum(c => c.YearlyPayment) / 12;
 
-                        long airportIncome = Convert.ToInt64(gatePrice * gates);
-                        airport.Income += airportIncome;
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -contractPrice);
 
+                    long airportIncome = Convert.ToInt64(contractPrice);
+                    airport.Income += airportIncome;
+                   
+                   //expired contracts
+                   var airlineContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c=>c.ExpireDate < GameObject.GetInstance().GameTime.AddMonths(2)));
 
-                    }
+                   foreach (AirportContract contract in airlineContracts)
+                   {
+                       if (contract.Airline.IsHuman)
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expires", string.Format("Your contract for {0} gates at [LI airport={1}], {2} expires soon. Please extend the contracts.", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+                       else
+                       {
+                           int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport, contract.Airline).Count;
+
+                           if (numberOfRoutes > 0)
+                           {
+                               contract.ContractDate = GameObject.GetInstance().GameTime;
+                               contract.ExpireDate = GameObject.GetInstance().GameTime.AddYears(contract.Length);
+                           }
+                           else
+                               airport.removeAirlineContract(contract);
+                       }
+                   }
+
                     //wages
                     foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airline))
                     {
@@ -894,7 +979,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirportHelpers.CheckForExtendRunway(airport);
                 });
 
-            foreach (Airport airport in Airports.GetAllAirports(a => a.Terminals.hasRoute()))
+            foreach (Airport airport in Airports.GetAllAirports(a => AirportHelpers.GetAirportRoutes(a).Count > 0))
             {
                 double airportRoutes = AirportHelpers.GetAirportRoutes(airport).Count;
                 double growth = Math.Min(0.5 * airportRoutes, 2);

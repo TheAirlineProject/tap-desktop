@@ -502,12 +502,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 if (this.Route.HasAirliner)
                     this.Route.getAirliners().ForEach(a => a.removeRoute(this.Route));
 
-                this.Route.Destination1.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).HasRoute = false;
-                this.Route.Destination2.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).HasRoute = false;
-                
-                foreach (StopoverRoute stopover in this.Route.Stopovers)
-                    stopover.Stopover.Terminals.getUsedGate(GameObject.GetInstance().HumanAirline).HasRoute = false;
-
+               
                 this.ParentPage.showRoutes();
 
                 this.Visibility = System.Windows.Visibility.Collapsed;

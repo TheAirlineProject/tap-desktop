@@ -234,20 +234,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      airport.Hubs.Add(new Hub(airline));
                  }
 
-                 XmlElement airportContractElement = (XmlElement)airportNode.SelectSingleNode("contract");
-
-                 if (airportContractElement != null)
-                 {
-                     Airline contractAirline = Airlines.GetAirline(airportContractElement.Attributes["airline"].Value);
-                     Airport contractAirport = Airports.GetAirport(airportContractElement.Attributes["airport"].Value);
-                     DateTime contractDate = DateTime.Parse(airportContractElement.Attributes["date"].Value, new CultureInfo("de-DE", false));
-                     int contractLength = Convert.ToInt32(airportContractElement.Attributes["length"].Value);
-                     double yearlyPayment = Convert.ToDouble(airportContractElement.Attributes["payment"].Value);
-
-                     AirportContract contract = new AirportContract(contractAirline, contractAirport, contractDate,5,contractLength, yearlyPayment);
-                     contractAirline.addAirportContract(contract);
-                 }
-
+               
                  XmlNodeList airportWeatherList = airportNode.SelectNodes("weathers/weather");
 
                  for (int i = 0; i < airportWeatherList.Count; i++)
@@ -325,16 +312,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      foreach (XmlElement airportGateNode in airportGatesList)
                      {
                          DateTime gateDeliveryDate = DateTime.Parse(airportGateNode.Attributes["delivery"].Value, new CultureInfo("de-DE", false));
-                         Gate gate = new Gate(airport, gateDeliveryDate);
-
-                         if (airportGateNode.Attributes["airline"].Value.Length > 0)
-                         {
-                             Airline airline = Airlines.GetAirline(airportGateNode.Attributes["airline"].Value);
-                             gate.Airline = airline;
-
-                             gate.HasRoute = Convert.ToBoolean(airportGateNode.Attributes["route"].Value);
-
-                         }
+                         Gate gate = new Gate(gateDeliveryDate);
 
                          terminal.Gates.addGate(gate);
                      }
@@ -345,6 +323,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
 
+                 }
+                 airport.clearAirlineContracts();
+
+                 XmlNodeList contractsList = airportNode.SelectNodes("contracts/contract");
+
+                 foreach (XmlElement contractNode in contractsList)
+                 {
+                     Airline contractAirline = Airlines.GetAirline(contractNode.Attributes["airline"].Value);
+                     int contractLength = Convert.ToInt16(contractNode.Attributes["length"].Value);
+                     DateTime contractDate = DateTime.Parse(contractNode.Attributes["date"].Value, new CultureInfo("de-DE", false));
+                     int contractGates = Convert.ToInt16(contractNode.Attributes["gates"].Value);
+                     double contractPayment = Convert.ToDouble(contractNode.Attributes["payment"].Value);
+                     Boolean contractExclusive = Convert.ToBoolean(contractNode.Attributes["exclusive"].Value);
+                     Terminal contractTerminal = contractNode.HasAttribute("terminal") ? airport.Terminals.AirportTerminals.Find(t => t.Name == contractNode.Attributes["terminal"].Value) : null;
+
+                     AirportContract contract = new AirportContract(contractAirline, airport, contractDate, contractGates, contractLength, contractPayment, contractExclusive, contractTerminal);
+                     airport.addAirlineContract(contract);
                  }
 
 
@@ -1595,19 +1590,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 airportNode.AppendChild(airportHubsNode);
 
-                if (airport.AirlineContract != null)
-                {
-                    XmlElement airportContractNode = xmlDoc.CreateElement("contract");
-                    airportContractNode.SetAttribute("airline", airport.AirlineContract.Airline.Profile.IATACode);
-                    airportContractNode.SetAttribute("airport", airport.AirlineContract.Airport.Profile.IATACode);
-                    airportContractNode.SetAttribute("contractdate", airport.AirlineContract.ContractDate.ToString(new CultureInfo("de-DE")));
-                    airportContractNode.SetAttribute("length", airport.AirlineContract.Length.ToString());
-                    airportContractNode.SetAttribute("payment", airport.AirlineContract.YearlyPayment.ToString());
-
-                    airportNode.AppendChild(airportContractNode);
-
-                }
-
+             
                 XmlElement airportWeathersNode = xmlDoc.CreateElement("weathers");
                 foreach (Weather weather in airport.Weather)
                 {
@@ -1709,9 +1692,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlElement gateNode = xmlDoc.CreateElement("gate");
                         gateNode.SetAttribute("delivery", gate.DeliveryDate.ToString(new CultureInfo("de-DE")));
-                        gateNode.SetAttribute("airline", gate.Airline == null ? "" : gate.Airline.Profile.IATACode);
-                        gateNode.SetAttribute("route", gate.HasRoute.ToString());
-
+                  
                         gatesNode.AppendChild(gateNode);
                     }
                     terminalNode.AppendChild(gatesNode);
@@ -1720,6 +1701,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 airportNode.AppendChild(terminalsNode);
 
+                XmlElement contractsNode = xmlDoc.CreateElement("contracts");
+
+                foreach (AirportContract contract in airport.AirlineContracts)
+                {
+                    XmlElement contractNode = xmlDoc.CreateElement("contract");
+
+                    contractNode.SetAttribute("airline", contract.Airline.Profile.IATACode);
+                    contractNode.SetAttribute("length", contract.Length.ToString());
+                    contractNode.SetAttribute("date", contract.ContractDate.ToString(new CultureInfo("de-DE")));
+                    contractNode.SetAttribute("gates", contract.NumberOfGates.ToString());
+                    contractNode.SetAttribute("payment", contract.YearlyPayment.ToString());
+                    contractNode.SetAttribute("exclusive", contract.IsExclusiveDeal.ToString());
+
+                    if (contract.Terminal != null)
+                        contractNode.SetAttribute("terminal", contract.Terminal.Name);
+
+           
+                    contractsNode.AppendChild(contractNode);
+                }
+                airportNode.AppendChild(contractsNode);
 
                 airportsNode.AppendChild(airportNode);
 

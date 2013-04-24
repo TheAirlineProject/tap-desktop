@@ -18,7 +18,7 @@ namespace TheAirline.Model.AirlineModel
     {
         public enum AirlineLicense { Domestic, Regional, Short_Haul, Long_Haul }
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
-        public enum AirlineMentality { Aggressive, Moderate, Safe}
+        public enum AirlineMentality { Safe,Moderate, Aggressive}
         public enum AirlineFocus { Global, Regional,Domestic, Local }
         public Route.RouteType AirlineRouteFocus { get; set; }
         public AirlineLicense License { get; set; }
@@ -50,7 +50,6 @@ namespace TheAirline.Model.AirlineModel
         public List<Pilot> Pilots { get; set; }
         public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
-        public List<AirportContract> AirportContracts { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
@@ -79,8 +78,7 @@ namespace TheAirline.Model.AirlineModel
             this.License = license;
             this.FlightCodes = new List<string>();
             this.Policies = new List<AirlinePolicy>();
-            this.AirportContracts = new List<AirportContract>();
-
+          
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
 
@@ -96,19 +94,6 @@ namespace TheAirline.Model.AirlineModel
         public void storeBudget(AirlineBudget budget)
         {
             this.BudgetHistory.Add(GameObject.GetInstance().GameTime, budget);
-        }
-
-        //adds an airport contract to the airline
-        public void addAirportContract(AirportContract contract)
-        {
-            this.AirportContracts.Add(contract);
-            contract.Airport.AirlineContract = contract;
-        }
-        //removes an airport contract from the airline
-        public void removeAirportContract(AirportContract contract)
-        {
-            this.AirportContracts.Remove(contract);
-            contract.Airport.AirlineContract = null;
         }
         //adds a pilot to the airline
         public void addPilot(Pilot pilot)

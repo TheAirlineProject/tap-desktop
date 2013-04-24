@@ -121,9 +121,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets up an opponent airline
         private static void SetupOpponentAirline(ScenarioAirline airline)
         {
-            airline.Homebase.Terminals.rentGate(airline.Airline);
-            airline.Homebase.Terminals.rentGate(airline.Airline);
-
+            AirportHelpers.RentGates(airline.Homebase, airline.Airline);
+          
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
 
@@ -160,10 +159,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         route.getRouteAirlinerClass(classConfiguration.Type).addFacility(rfacility);
                 }
 
-                saroute.Destination1.Terminals.getEmptyGate(airline).HasRoute = true;
-                saroute.Destination2.Terminals.getEmptyGate(airline).HasRoute = true;
-
-                airline.addRoute(route);
+                 airline.addRoute(route);
 
                 FleetAirliner fAirliner = AirlineHelpers.CreateAirliner(airline, saroute.AirlinerType);
                 airline.addAirliner(fAirliner);
@@ -183,7 +179,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             for (int i = 0; i < quantity; i++)
             {
-                airport.Terminals.rentGate(airline);
+                if (!AirportHelpers.HasFreeGates(airport,airline))
+                    AirportHelpers.RentGates(airport, airline);
             }
 
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);

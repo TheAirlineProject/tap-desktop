@@ -175,9 +175,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             Airport airport = (Airport)((Button)sender).Tag;
             Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-           WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+            object o = PopUpAirportContract.ShowPopUp(airport);
 
-           if (result == WPFMessageBoxResult.Yes)
+           //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+            
+           if (o!=null)
            {
                if (!hasCheckin)
                {
@@ -188,9 +190,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
 
                }
 
-
-               airport.Terminals.rentGate(GameObject.GetInstance().HumanAirline);
-
+               airport.addAirlineContract((AirportContract)o);
+          
                showAirports();
            }
 
@@ -225,7 +226,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
             {
                 Airport airport = (Airport)value;
 
-                Boolean isEnabled = airport.Terminals.getFreeGates() > 0 && airport.AirlineContract == null;
+                Boolean isEnabled = airport.Terminals.getFreeGates() > 0;
 
 
                 rv = (Visibility)new BooleanToVisibilityConverter().Convert(isEnabled, null, null, null);

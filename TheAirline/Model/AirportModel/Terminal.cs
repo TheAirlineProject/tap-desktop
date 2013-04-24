@@ -5,6 +5,7 @@ using System.Text;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.Model.AirportModel
 {
@@ -29,56 +30,26 @@ namespace TheAirline.Model.AirportModel
             this.Airline = airline;
             this.Name = name;
             this.DeliveryDate = new DateTime(deliveryDate.Year, deliveryDate.Month, deliveryDate.Day);
-
-            this.Gates = new Gates(airport, gates, this.DeliveryDate);
-      
-            if (this.Airline != null)
-            {
-                if (this.Airport.Terminals.getTotalNumberOfGates(airline) == 0)
-                    airline.addAirport(this.Airport);
-
-                for (int i = 0; i < this.Gates.getGates().Count; i++)
-                    this.Gates.getGates()[i].Airline = airline;
-
-               
-            }
-      
+        
+            this.Gates = new Gates(gates, this.DeliveryDate);
         }
         // chs 11-10-11: changed for the possibility of purchasing an existing terminal
         //returns if the terminal is buyalbe
         private Boolean isBuyable()
         {
-            return this.Gates.getFreeGates() == this.Gates.NumberOfDeliveredGates && this.Airport.Terminals.getNumberOfAirportTerminals()>1;
+            int freeGates = this.Airport.Terminals.getFreeGates();
+
+            return freeGates > this.Gates.NumberOfGates && this.Airport.Terminals.getNumberOfAirportTerminals()>1;
         }
         //purchases a terminal for an airline
         public void purchaseTerminal(Airline airline)
         {
             this.Airline = airline;
-            foreach (Gate gate in this.Gates.getGates())
-            {
-                gate.Airline = airline;
-            }
-            if (!airline.Airports.Contains(this.Airport))
-                airline.Airports.Add(this.Airport);
-            // chs 11-10-11: changed so old gates (from terminals owned by the airport) are moved into the new terminal
-            //moves the "old" rented gates into the new terminal
-            foreach (Terminal tTerminal in this.Airport.Terminals.getTerminals().FindAll((delegate(Terminal t) { return t.Airline == null; })))
-            {
-                foreach (Gate gate in tTerminal.Gates.getGates(this.Airline))
-                {
-                    Gate nGate = this.Gates.getEmptyGate(this.Airline);
-                    if (nGate != null)
-                    {
-                        nGate.HasRoute = gate.HasRoute;
 
-                        gate.Airline = null;
-                        gate.HasRoute = false;
-                    }
+            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport,this.Gates.NumberOfGates,20);
 
-
-                }
-
-            }
+            this.Airport.addAirlineContract(new AirportContract(this.Airline,this.Airport,GameObject.GetInstance().GameTime,this.Gates.NumberOfGates,20,yearlyPayment * 0.75));
+           
         }
         // chs 11-04-11: changed for the possibility of extending a terminal
         //extends a terminal with a number of gates
@@ -87,11 +58,8 @@ namespace TheAirline.Model.AirportModel
             DateTime deliveryDate = GameObject.GetInstance().GameTime.AddDays(gates * 10);
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = new Gate(this.Airport, deliveryDate);
-                gate.Airline = this.Airline;
+                Gate gate = new Gate( deliveryDate);
                 this.Gates.addGate(gate);
-
-                
             }
         }
         //returns if the terminal has been built
@@ -157,92 +125,11 @@ namespace TheAirline.Model.AirportModel
         //removes a terminal from the list
         public void removeTerminal(Terminal terminal)
         {
-            while (terminal.Gates.getFreeGates(terminal.Airline) > 0)
-                terminal.Gates.releaseGate(terminal.Airline);
-                 
+                  
             this.AirportTerminals.Remove(terminal);
             
         }
-        //rents a gate for an airline returns if it successed
-        public Boolean rentGate(Airline airline)
-        {
-            if (getTotalNumberOfGates(airline) == 0)
-                airline.addAirport(this.Airport);
-
-            try
-            {
-                getFreeGate().Airline = airline;
-
-                return true;
-            }
-            catch
-            {
-                if (getTotalNumberOfGates(airline) == 0)
-                    airline.removeAirport(this.Airport);
-
-                return false;
-            }
-
-        }
-        //releases a gate for an airline
-        public void releaseGate(Airline airline)
-        {
-            Gate gate = getEmptyGate(airline);
-            gate.Airline = null;
-
-            if (getTotalNumberOfGates(airline) == 0)
-                airline.removeAirport(this.Airport);
-        }
-        //returns a empty gate for an airline
-        public Gate getEmptyGate(Airline airline)
-        {
-            foreach (Terminal terminal in getDeliveredTerminals())
-                if (terminal.Gates.getEmptyGate(airline) != null)
-                    return terminal.Gates.getEmptyGate(airline);
-
-            return null;
-        }
-        //returns if there is terminals with route
-        public Boolean hasRoute()
-        {
-            return this.getDeliveredTerminals().Exists(t => t.Gates.hasRoute());
-        }
-        //returns all used gates 
-        public List<Gate> getUsedGates()
-        {
-            return this.getDeliveredTerminals().SelectMany(t => t.Gates.getUsedGates()).ToList();
-        }
-        //returns all used gates for an airline
-        public List<Gate> getUsedGates(Airline airline)
-        {
-            return this.getDeliveredTerminals().SelectMany(t => t.Gates.getUsedGates(airline)).ToList();
-        }
-        //returns a used gate for an airline
-        public Gate getUsedGate(Airline airline)
-        {
-            foreach (Terminal terminal in getDeliveredTerminals())
-                if (terminal.Gates.getUsedGate(airline) != null)
-                    return terminal.Gates.getUsedGate(airline);
-            return null;
-        }
-        
-        //returns a gate for an airline
-        public Gate getGate(Airline airline)
-        {
-            foreach (Terminal terminal in getDeliveredTerminals())
-                foreach (Gate gate in terminal.Gates.getGates())
-                    if (gate.Airline == airline)
-                        return gate;
-            return null;
-        }
-        //returns a free gate
-        public Gate getFreeGate()
-        {
-            foreach (Terminal terminal in getDeliveredTerminals())
-                if (terminal.Gates.getFreeGate() != null)
-                    return terminal.Gates.getFreeGate();
-            return null;
-        }
+       
         //returns the percent of gates which are in use
         public double getInusePercent()
         {
@@ -258,58 +145,48 @@ namespace TheAirline.Model.AirportModel
 
             return inusePercent;
         }
-        //returns the total number of free gates
+        //returns the number of gates in use
+        public int getInuseGates()
+        {
+            return this.Airport.AirlineContracts.Where(c=>c.ContractDate<= GameObject.GetInstance().GameTime).Sum(c => c.NumberOfGates); 
+        }
+        //returns the number of free gates
         public int getFreeGates()
         {
-            int count = 0;
-            foreach (Terminal terminal in getDeliveredTerminals())
-                count += terminal.Gates.getFreeGates();
-
-            return count;
-        }
-        //returns the number of gates for an airline 
-        public int getNumberOfGates(Airline airline)
-        {
-            int number = 0;
-            foreach (Terminal terminal in getDeliveredTerminals())
-                number += terminal.Gates.getNumberOfGates(airline);
-            return number;
-        }
-        //returns the total number of gates for an airline
-        public int getTotalNumberOfGates(Airline airline)
-        {
-            int number = 0;
-            foreach (Terminal terminal in this.AirportTerminals)
-                number += terminal.Gates.getNumberOfGates(airline);
-            return number;
+            return getNumberOfGates() - getInuseGates();
         }
         //returns the total number of gates
         public int getNumberOfGates()
         {
-            return getGates().Count;
+            return this.AirportTerminals.Sum(t=>t.Gates.NumberOfDeliveredGates);
         }
-        //returns the number of free gates for an airline (without a route)
-        public int getFreeGates(Airline airline)
+        //returns the number of gates for an airline
+        public int getNumberOfGates(Airline airline)
         {
-            int number = 0;
-            foreach (Terminal terminal in getDeliveredTerminals())
-                number += terminal.Gates.getFreeGates(airline);
-            return number;
+            return this.Airport.AirlineContracts.Where(c => c.Airline == airline && c.ContractDate>= GameObject.GetInstance().GameTime).Sum(c=>c.NumberOfGates);
         }
-        //returns the number of gates with route 
-        public int getNumberOfRoutes()
+        //returns the number of free gates for an airport
+        public int getNumberOfFreeGates(Airline airline)
         {
-            return this.AirportTerminals.SelectMany(a => a.Gates.getGates()).Where(g=>g.HasRoute).Count();
+            var contracts = this.Airport.getAirlineContracts(airline).Where(c => c.ContractDate >= GameObject.GetInstance().GameTime);
+
+            if (contracts.Count() == 0)
+                return 0;
+
+            int gates = contracts.Sum(c => c.NumberOfGates);
+
+            return gates -  (AirportHelpers.GetAirportRoutes(this.Airport, airline).Count / Gate.RoutesPerGate);
         }
-       
-        //switches all gates from one airline to another
+        //switches from one airline to another
         public void switchAirline(Airline airlineFrom, Airline airlineTo)
         {
-            while (getNumberOfGates(airlineFrom) > 0)
+            List<AirportContract> contracts = this.Airport.getAirlineContracts(airlineFrom);
+
+            foreach (AirportContract contractFrom in contracts)
             {
-                Gate gate = getGate(airlineFrom);
-                gate.Airline = airlineTo;
+                contractFrom.Airline = airlineTo;
             }
+          
             airlineFrom.removeAirport(this.Airport);
 
             if (!airlineTo.Airports.Contains(this.Airport))
@@ -317,26 +194,6 @@ namespace TheAirline.Model.AirportModel
       
         }
        
-        /*
-        //finds the routes assigned to the gates
-        public List<Route> getRoutes()
-        {
-            List<Route> routes = new List<Route>();
-            foreach (Terminal terminal in getDeliveredTerminals())
-                foreach (Route route in terminal.Gates.getRoutes())
-                    routes.Add(route);
-            return routes;
-        }
-        public List<Route> getRoutes(Airline airline)
-        {
-            List<Route> routes = new List<Route>();
-            foreach (Terminal terminal in getDeliveredTerminals())
-                foreach (Route route in terminal.Gates.getRoutes(airline))
-                    routes.Add(route);
-
-            return routes;
-        }
-        */
         //clears the gates
         public void clear()
         {

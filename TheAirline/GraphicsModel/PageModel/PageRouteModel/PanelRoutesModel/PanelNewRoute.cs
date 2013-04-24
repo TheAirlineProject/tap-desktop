@@ -324,9 +324,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             Airport stopover1 = ucStopover1.Value;
             Airport stopover2 = ucStopover2.Value;
 
-            Boolean stopoverOk = (stopover1 == null ? true : stopover1.Terminals.getFreeGates(airline) > 0) && (stopover2 == null ? true : stopover2.Terminals.getFreeGates(airline) > 0);
+            Boolean stopoverOk = (stopover1 == null ? true : AirportHelpers.HasFreeGates(stopover1,airline)) && (stopover2 == null ? true : AirportHelpers.HasFreeGates(stopover2,airline));
 
-            if (dest1.Terminals.getFreeGates(airline) > 0 && dest2.Terminals.getFreeGates(airline) > 0 && stopoverOk)
+            if (AirportHelpers.HasFreeGates(dest1,airline) && AirportHelpers.HasFreeGates(dest2,airline) && stopoverOk)
             {
                 Route route = null;
                 Guid id = Guid.NewGuid();
@@ -358,8 +358,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                         route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false,this.RouteType));
                     else
                         route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false, this.RouteType));
-                    stopover1.Terminals.getEmptyGate(airline).HasRoute = true;
-                }
+                 }
 
                 if (stopover2 != null)
                 {
@@ -367,13 +366,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                         route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true, this.RouteType));
                     else
                         route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover2, dest2, route, false,this.RouteType));
-                    stopover2.Terminals.getEmptyGate(airline).HasRoute = true;
                 }
 
                 airline.addRoute(route);
-
-                dest1.Terminals.getEmptyGate(airline).HasRoute = true;
-                dest2.Terminals.getEmptyGate(airline).HasRoute = true;
 
                 this.ParentPage.showRoutes();
 
@@ -398,7 +393,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             cbDestination.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbDestination.SelectionChanged += new SelectionChangedEventHandler(cbDestination_SelectionChanged);
-            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline)>0);
+            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>AirportHelpers.HasFreeGates(a,GameObject.GetInstance().HumanAirline));
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
             foreach (Airport airport in airports)
@@ -491,7 +486,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 TextBlock txtDestinationGates = cbDestination2 == ((ComboBox)sender) ? txtDestination2Gates : txtDestination1Gates;
 
-                txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline));
+                txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getNumberOfFreeGates(GameObject.GetInstance().HumanAirline));
             }
 
           
@@ -526,7 +521,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                 cbDestination.SelectionChanged += cbDestination_SelectionChanged;
 
-                List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.Terminals.getFreeGates(GameObject.GetInstance().HumanAirline) > 0);
+                List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => AirportHelpers.HasFreeGates(a,GameObject.GetInstance().HumanAirline));
                 airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
                 foreach (Airport airport in airports)
