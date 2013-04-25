@@ -197,7 +197,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         private void slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             Slider slider = (Slider)sender;
-            TextBlock txtBlock = (TextBlock)slider.Tag;
+            TextBlock txtBlock = (TextB
+         * slider.Tag;
             txtBlock.Text = new ValueCurrencyConverter().Convert(slider.Value).ToString();
 
         }

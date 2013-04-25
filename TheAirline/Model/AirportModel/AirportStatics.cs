@@ -29,17 +29,21 @@ namespace TheAirline.Model.AirportModel
         //returns the distance for an airport
         public double getDistance(Airport airport)
         {
+            double distance;
             lock (this.AirportDistances)
             {
                 if (this.AirportDistances.ContainsKey(airport))
-                    return this.AirportDistances[airport];
+                    distance = this.AirportDistances[airport];
                 else
-                    return 0;
+                    distance =0;
             }
+
+            return distance;
         }
         //returns all airports within a range
         public List<Airport> getAirportsWithin(double range)
         {
+            List<Airport> airports;
             lock (this.AirportDistances)
             {
                 if (this.AirportDistances.Count == 0)
@@ -47,8 +51,10 @@ namespace TheAirline.Model.AirportModel
                     foreach (Airport airport in Airports.GetAllAirports())
                         addDistance(airport, MathHelpers.GetDistance(this.Airport, airport));
                 }
-                return (from a in this.AirportDistances where a.Value <= range select a.Key).ToList();
+                airports = new List<Airport>(from a in this.AirportDistances where a.Value <= range select a.Key);
             }
+
+            return airports;
         }
     }
 }

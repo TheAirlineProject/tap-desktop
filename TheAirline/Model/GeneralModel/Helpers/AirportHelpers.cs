@@ -616,7 +616,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             double lengthFactor = 100 - length;
 
-            return basePrice * (lengthFactor / 100);
+            return gates * (basePrice * (lengthFactor / 100));
         }
     }
 

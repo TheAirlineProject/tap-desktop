@@ -141,10 +141,13 @@ namespace TheAirline.Model.AirlineModel
         //get routes for the airline
         private List<Route> getRoutes()
         {
+            List<Route> routes;
             lock (this._Routes)
             {
-                return this._Routes;
+                routes = new List<Route>(this._Routes);
             }
+
+            return routes;
         }
        
         //adds an alliance to the airline
@@ -554,10 +557,13 @@ namespace TheAirline.Model.AirlineModel
         //returns all airlines
         public static List<Airline> GetAllAirlines()
         {
+            List<Airline> tAirlines;
             lock (airlines)
             {
-                return airlines;
+                tAirlines = new List<Airline>(airlines);
             }
+
+            return tAirlines;
         }
         //returns all airlines for a specific region
         public static List<Airline> GetAirlines(Region region)
@@ -567,10 +573,12 @@ namespace TheAirline.Model.AirlineModel
         //returns a list of airlines
         public static List<Airline> GetAirlines(Predicate<Airline> match)
         {
+            List<Airline> tAirlines;
             lock (airlines)
             {
-                return airlines.FindAll(match);
+                tAirlines = new List<Airline>(airlines.FindAll(match));
             }
+            return tAirlines;
         }
         //returns all human airlines
         public static List<Airline> GetHumanAirlines()

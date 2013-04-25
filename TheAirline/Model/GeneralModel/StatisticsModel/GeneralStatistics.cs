@@ -71,15 +71,17 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
         //returns all years with statistics
         public List<int> getYears()
         {
+            List<int> years = new List<int>();;
             if (this.StatValues != null)
             {
                 lock (this.StatValues)
                 {
-                    return this.StatValues.Keys.ToList();
+                   years = new List<int>(this.StatValues.Keys);
                 }
             }
-            else
-                return new List<int>();
+
+            return years;
+            
         }
 
 

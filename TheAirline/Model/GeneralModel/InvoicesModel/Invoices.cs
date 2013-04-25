@@ -73,10 +73,13 @@ namespace TheAirline.Model.GeneralModel.InvoicesModel
         //returns if the invoices contains a month, year and type element
         public Boolean contains(Invoice.InvoiceType type,int year, int month)
         {
+            Boolean contains;
             lock (this.MonthlyInvoices)
             {
-                return this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year && m.Type == type);
+                contains = this.MonthlyInvoices.Exists(m => m.Month == month && m.Year == year && m.Type == type);
             }
+
+            return contains;
         }
 
         public static List<double> getInvoiceList()

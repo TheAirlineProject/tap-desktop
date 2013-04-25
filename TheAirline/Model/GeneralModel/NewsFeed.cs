@@ -32,10 +32,12 @@ namespace TheAirline.Model.GeneralModel
         //returns the list of feeds
         public static List<NewsFeed> GetNewsFeeds()
         {
+            List<NewsFeed> tFeeds;
             lock (feeds)
             {
-                return feeds;
+                tFeeds = new List<NewsFeed>(feeds);
             }
+            return tFeeds;
         }
         //clears the list of news feeds
         public static void ClearNewsFeeds()
@@ -48,10 +50,12 @@ namespace TheAirline.Model.GeneralModel
         //returns the number of news feeds
         public static int Count()
         {
+            int count;
+
             lock (feeds)
-            {
-                return feeds.Count;
-            }
+                count = feeds.Count;
+
+            return count;
         }
     }
 }

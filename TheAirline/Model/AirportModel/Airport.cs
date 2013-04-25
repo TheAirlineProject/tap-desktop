@@ -103,11 +103,13 @@ namespace TheAirline.Model.AirportModel
         //return all airline contracts
         public List<AirportContract> getAirlineContracts()
         {
-           
+            List<AirportContract> contracts;
             lock (this._Contracts)
             {
-                return this._Contracts;
+                contracts = new List<AirportContract>(this._Contracts);
+             
             }
+            return contracts;
         }
         //returns the maximum value for the run ways
         public long getMaxRunwayLength()
@@ -215,10 +217,13 @@ namespace TheAirline.Model.AirportModel
         //returns the sum of passenger demand
         public int getDestinationPassengersSum()
         {
+            int sum;
             lock (this.DestinationPassengers)
             {
-                return this.DestinationPassengers.Sum(d => d.Rate);
+                sum = this.DestinationPassengers.Sum(d => d.Rate);
             }
+
+            return sum;
         }
         //adds a number of passengers to destination to the statistics
         public void addPassengerDestinationStatistics(Airport destination, long passengers)
@@ -256,23 +261,28 @@ namespace TheAirline.Model.AirportModel
         //returns the number of passengers to a destination
         public long getDestinationPassengerStatistics(Airport destination)
         {
+            long passengers;
             lock (this.DestinationPassengerStatistics)
             {
                 if (this.DestinationPassengerStatistics.ContainsKey(destination))
-                    return this.DestinationPassengerStatistics[destination];
+                    passengers = this.DestinationPassengerStatistics[destination];
                 else
-                    return 0;
+                    passengers = 0;
             }
+
+            return passengers;
         }
         //returns the number of cargo to a destination
         public double getDestinationCargoStatistics(Airport destination)
         {
+            double cargo = 0;
             lock (this.DestinationCargoStatistics)
             {
                 if (this.DestinationCargoStatistics.ContainsKey(destination))
-                    return this.DestinationCargoStatistics[destination];
-                return 0;
+                    cargo = this.DestinationCargoStatistics[destination];
+                
             }
+            return cargo;
         }
         //returns if the destination have statistics
         public Boolean hasDestinationPassengerStatistics(Airport destination)
@@ -323,41 +333,43 @@ namespace TheAirline.Model.AirportModel
          //returns the current airport facility of a specific type for an airlines
         public AirportFacility getCurrentAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
-           
+            List<AirportFacility> facilities = new List<AirportFacility>();
             lock (this.Facilities)
             {
-                var facility = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility);
-                int numberOfFacilities = facility.Count();
+                facilities = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility).ToList();
+                int numberOfFacilities = facilities.Count();
 
                 if (numberOfFacilities == 0 && airline != null)
                 {
-                    AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find(f => f.TypeLevel == 0);
+                    var noneFacility = AirportFacilities.GetFacilities(type).Find(f => f.TypeLevel == 0);
                     this.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
 
-                    return noneFacility;
+                    facilities.Add(noneFacility);
 
                 }
-                // AirportFacility facility = this.Facilities.Find(f => f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime).Facility;
-                return facility.FirstOrDefault();
+            
             }
+            return facilities.FirstOrDefault();
         }
         //return the airport facility for a specific type for an airline
         public AirlineAirportFacility getAirlineAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
+            List<AirlineAirportFacility> facilities = new List<AirlineAirportFacility>();
             lock (this.Facilities)
             {
-                var facility = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type orderby f.Facility.TypeLevel descending select f);
+                facilities = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type orderby f.Facility.TypeLevel descending select f).ToList();
 
-                if (facility.Count() == 0)
+                if (facilities.Count() == 0)
                 {
                     AirportFacility noneFacility = AirportFacilities.GetFacilities(type).Find(f => f.TypeLevel == 0);
                     this.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
 
-                    return getAirlineAirportFacility(airline, type);
-                }
+                    facilities.Add(getAirlineAirportFacility(airline,type));
+                  }
 
-                return facility.First();
+                
             }
+            return facilities.FirstOrDefault();
         }
         //return all the facilities for an airline
         public List<AirportFacility> getCurrentAirportFacilities(Airline airline)
@@ -444,8 +456,11 @@ namespace TheAirline.Model.AirportModel
         //returns all hubs
         public List<Hub> getHubs()
         {
+            List<Hub> hubs;
             lock (this._Hubs)
-                return this._Hubs;
+                hubs = new List<Hub>(this._Hubs);
+
+            return hubs;
         }
         //returns the price for a hub
         public long getHubPrice()
