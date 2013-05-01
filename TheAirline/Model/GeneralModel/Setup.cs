@@ -959,8 +959,37 @@ namespace TheAirline.Model.GeneralModel
                     Coordinate longitude = Coordinate.Parse(longitudeElement.Attributes["value"].Value);
 
                     XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");
-                    GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
-                    int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
+
+                    List<PaxValue> paxValues = new List<PaxValue>();
+
+                    if (!sizeElement.HasChildNodes)
+                    {
+                        GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["value"].Value);
+                        int pax = sizeElement.HasAttribute("pax") ? Convert.ToInt32(sizeElement.Attributes["pax"].Value) : 0;
+
+                        paxValues.Add(new PaxValue(airportPeriod.From.Year, airportPeriod.To.Year, size, pax));
+                    }
+                    else
+                    {
+                        XmlNodeList yearsList = sizeElement.SelectNodes("yearvalues/yearvalue");
+
+                        foreach (XmlElement yearElement in yearsList)
+                        {
+                            int fromYear = Convert.ToInt16(yearElement.Attributes["from"].Value);
+                            int toYear = Convert.ToInt16(yearElement.Attributes["to"].Value);
+                            GeneralHelpers.Size size = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), yearElement.Attributes["value"].Value);
+                            int pax = Convert.ToInt32(yearElement.Attributes["pax"].Value);
+
+                            PaxValue paxValue = new PaxValue(fromYear, toYear, size, pax);
+
+                            if (yearElement.HasAttribute("inflationafter"))
+                                paxValue.InflationAfterYear = Convert.ToDouble(yearElement.Attributes["inflationafter"].Value);
+                            if (yearElement.HasAttribute("inflationbefore"))
+                                paxValue.InflationBeforeYear = Convert.ToDouble(yearElement.Attributes["inflationbefore"].Value);
+
+                            paxValues.Add(paxValue);
+                        }
+                    }
 
                     GeneralHelpers.Size cargoSize = GeneralHelpers.Size.Very_small;
                     double cargovolume = sizeElement.HasAttribute("cargovolume") ? Convert.ToDouble(sizeElement.Attributes["cargovolume"].Value) : 0;
@@ -981,7 +1010,8 @@ namespace TheAirline.Model.GeneralModel
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
-                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), size, cargoSize, cargovolume, pax, season);
+                    AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), cargoSize, cargovolume, season);
+                    profile.PaxValues = paxValues;
 
                     Airport airport = new Airport(profile);
 
@@ -1063,7 +1093,8 @@ namespace TheAirline.Model.GeneralModel
 
                 int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
 
-                airport.Profile.Pax = Math.Max(0, airport.Profile.Pax - majorPax);
+                if (majorPax > 0)
+                    airport.Profile.setPaxValue(Math.Max(0, airport.Profile.Pax - majorPax));
             }
         }
         private static void LoadMajorDestinations(string file)

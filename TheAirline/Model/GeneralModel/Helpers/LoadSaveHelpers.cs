@@ -209,11 +209,39 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  Airport airport = Airports.GetAirportFromID(airportNode.Attributes["id"].Value);
                  airportsToKeep.Add(airport);
 
-                 GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), airportNode.Attributes["size"].Value);
-                 airport.Profile.Size = airportSize;
+                 /*
+                  *   XmlElement airportPaxNode = xmlDoc.CreateElement("paxvalue");
+                    airportPaxNode.SetAttribute("from", paxValue.FromYear.ToString());
+                    airportPaxNode.SetAttribute("to", paxValue.ToYear.ToString());
+                    airportPaxNode.SetAttribute("size", paxValue.Size.ToString());
+                    airportPaxNode.SetAttribute("pax", paxValue.Pax.ToString());
+                    airportPaxNode.SetAttribute("inflationbefore", paxValue.InflationBeforeYear.ToString());
+                    airportPaxNode.SetAttribute("inflationafter", paxValue.InflationAfterYear.ToString());
+*/
+
                  airport.Income = Convert.ToInt64(airportNode.Attributes["income"].Value);
 
-                 XmlNodeList runwaysList = airportNode.SelectNodes("runways/runway");
+                 airport.Profile.PaxValues.Clear();
+
+                 XmlNodeList paxvaluesList = airportNode.SelectNodes("paxvalue/paxvalues");
+
+                 foreach (XmlElement paxElement in paxvaluesList)
+                 {
+                     int fromYear = Convert.ToInt16(paxElement.Attributes["from"].Value);
+                     int toYear = Convert.ToInt16(paxElement.Attributes["to"].Value);
+                     GeneralHelpers.Size airportSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), paxElement.Attributes["size"].Value);
+                     double pax = Convert.ToDouble(paxElement.Attributes["pax"].Value);
+                     double inflationBefore = Convert.ToDouble(paxElement.Attributes["inflationbefore"].Value);
+                     double inflationAfter = Convert.ToDouble(paxElement.Attributes["inflationafter"].Value);
+
+                     PaxValue paxValue = new PaxValue(fromYear, toYear, airportSize, pax);
+                     paxValue.InflationAfterYear = inflationAfter;
+                     paxValue.InflationBeforeYear = inflationBefore;
+
+                     airport.Profile.PaxValues.Add(paxValue);
+                 }
+
+                  XmlNodeList runwaysList = airportNode.SelectNodes("runways/runway");
 
                  foreach (XmlElement runwayElement in runwaysList)
                  {
@@ -1561,8 +1589,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 XmlElement airportNode = xmlDoc.CreateElement("airport");
                 airportNode.SetAttribute("id", airport.Profile.ID);
-                airportNode.SetAttribute("size", airport.Profile.Size.ToString());
                 airportNode.SetAttribute("income", airport.Income.ToString());
+
+                XmlElement airportPaxsNode = xmlDoc.CreateElement("paxvalues");
+                foreach (PaxValue paxValue in airport.Profile.PaxValues)
+                {
+                    XmlElement airportPaxNode = xmlDoc.CreateElement("paxvalue");
+                    airportPaxNode.SetAttribute("from", paxValue.FromYear.ToString());
+                    airportPaxNode.SetAttribute("to", paxValue.ToYear.ToString());
+                    airportPaxNode.SetAttribute("size", paxValue.Size.ToString());
+                    airportPaxNode.SetAttribute("pax", paxValue.Pax.ToString());
+                    airportPaxNode.SetAttribute("inflationbefore", paxValue.InflationBeforeYear.ToString());
+                    airportPaxNode.SetAttribute("inflationafter", paxValue.InflationAfterYear.ToString());
+
+                    airportPaxsNode.AppendChild(airportPaxNode);
+                }
+                airportNode.AppendChild(airportPaxsNode);
 
                 XmlElement airportRunwaysNode = xmlDoc.CreateElement("runways");
 

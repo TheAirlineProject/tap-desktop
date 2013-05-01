@@ -14,7 +14,7 @@ namespace TheAirline.Model.AirportModel
         public enum AirportType { Long_Haul_International, Regional, Domestic,Short_Haul_International }
         public AirportType Type { get; set; }
         //public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
-        public GeneralHelpers.Size Size { get; set; }
+        public GeneralHelpers.Size Size { get { return getCurrentSize(); } private set { ;} }
         public GeneralHelpers.Size Cargo { get; set; }
         public Weather.Season Season { get; set; }
         public string Name { get; set; }
@@ -31,11 +31,14 @@ namespace TheAirline.Model.AirportModel
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
         public Period Period { get; set; }
         public string ID { get; set; }
-        public double Pax{ get; set; }
+        public double Pax { get { return getCurrentPaxValue(); } private set { ;} }
+        public List<PaxValue> PaxValues { get; set; }
         public double CargoVolume { get; set; }
         public Dictionary<string,int> MajorDestionations { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size size, GeneralHelpers.Size cargo, double pax, double cargovolume, Weather.Season season)
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo,  double cargovolume, Weather.Season season)
         {
+            this.PaxValues = new List<PaxValue>();
+        
             this.Name = name;
             this.Period = period;
             this.IATACode = code;
@@ -43,8 +46,6 @@ namespace TheAirline.Model.AirportModel
             this.Type = type;
             this.Town = town;
             this.Coordinates = coordinates;
-            this.Size = size;
-            this.Pax = pax;
             this.CargoVolume = cargovolume;
             this.MajorDestionations = new Dictionary<string, int>();
             this.Cargo = cargo;
@@ -52,7 +53,7 @@ namespace TheAirline.Model.AirportModel
             this.OffsetDST = offsetDST;
             this.OffsetGMT = offsetGMT;
             this.Season = season;
-            this.ID = string.Format("{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}", char.ConvertToUtf32(this.IATACode, 0), char.ConvertToUtf32(this.IATACode, 1), char.ConvertToUtf32(this.IATACode, 2), name.Length, char.ConvertToUtf32(this.Name, this.Name.Length / 2),(int)this.Size);
+            this.ID = string.Format("{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}", char.ConvertToUtf32(this.IATACode, 0), char.ConvertToUtf32(this.IATACode, 1), char.ConvertToUtf32(this.IATACode, 2), name.Length, char.ConvertToUtf32(this.Name, this.Name.Length / 2),(int)this.Cargo);
 
             
         }
@@ -63,6 +64,79 @@ namespace TheAirline.Model.AirportModel
           
             return zone;
         }
-       
+        //sets the pax value
+        public void setPaxValue(double pax)
+        {
+           
+            PaxValue paxValue = this.PaxValues[0];
+
+            this.PaxValues = new List<PaxValue>();
+
+            PaxValue tPaxValue = new PaxValue(this.Period.From.Year, this.Period.To.Year, paxValue.Size, pax);
+
+            this.PaxValues.Add(tPaxValue);
+        }
+        //returns the current pax value
+        private double getCurrentPaxValue()
+        {
+
+            int currentYear = GameObject.GetInstance().GameTime.Year;
+
+            PaxValue currentPaxValue = getCurrentPaxValueObject();
+
+            double pax = currentPaxValue.Pax;
+
+            if (currentPaxValue.InflationAfterYear != 0)
+            {
+                int yearDiff = currentYear - currentPaxValue.FromYear;
+
+                pax = pax * Math.Pow((1 + (currentPaxValue.InflationAfterYear / 100)), yearDiff);
+            }
+
+            if (currentPaxValue.InflationBeforeYear != 0)
+            {
+                int yearDiff = currentPaxValue.ToYear - currentYear;
+
+                pax = pax * Math.Pow((1 - (currentPaxValue.InflationBeforeYear / 100)), yearDiff);
+            }
+
+            return pax;
+        }
+        //return the current size (pax) of the airport
+        private GeneralHelpers.Size getCurrentSize()
+        {
+            PaxValue currentPaxValue = getCurrentPaxValueObject();
+
+          
+            return currentPaxValue.Size;
+        }
+        //returns the current pax value object
+        private PaxValue getCurrentPaxValueObject()
+        {
+            
+            int currentYear = GameObject.GetInstance().GameTime.Year;
+
+            PaxValue currentPaxValue = this.PaxValues.Find(p => p.FromYear <= currentYear && p.ToYear >= currentYear);
+
+            return currentPaxValue == null ? this.PaxValues[0] : currentPaxValue;
+        }
+        
+    }
+    //the class for a pax value
+    public class PaxValue
+    {
+        public double Pax { get; set; }
+        public int FromYear { get; set; }
+        public int ToYear { get; set; }
+        public double InflationBeforeYear { get; set; }
+        public double InflationAfterYear { get; set; }
+        public GeneralHelpers.Size Size { get; set; }
+        public PaxValue(int fromYear, int toYear, GeneralHelpers.Size size, double pax)
+        {
+            this.Pax = pax;
+            this.FromYear  =fromYear;
+            this.ToYear = toYear;
+            this.Size = size;
+        }
     }
 }
