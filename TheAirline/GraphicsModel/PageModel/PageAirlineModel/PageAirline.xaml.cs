@@ -401,19 +401,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
                     this.Airline.removeSubsidiaryAirline(subAirline);
                 }
+                
                 if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
                     GameObject.GetInstance().HumanAirline.License = this.Airline.License;
 
                 SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Profile, this.Airline.Mentality, this.Airline.MarketFocus, this.Airline.License,this.Airline.AirlineRouteFocus);
-
+              
                 AirlineHelpers.SwitchAirline(this.Airline, sAirline);
 
                 GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
 
-                
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
 
                 Airlines.RemoveAirline(this.Airline);
+                Airlines.AddAirline(sAirline);
 
                 sAirline.Profile.Logos = oldLogos;
                 sAirline.Profile.Color = oldColor;

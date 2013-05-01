@@ -305,7 +305,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                 }
 
-                airport.addAirlineContract((AirportContract)o);
+                this.Airport.addAirlineContract((AirportContract)o);
 
                 showGatesInformation();
                 showContracts();
@@ -452,7 +452,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
                     this.Airport.removeAirlineContract(contract);
 
+                    showGatesInformation();
                     showContracts();
+                    showTerminals();
+     
                 }
             }
 

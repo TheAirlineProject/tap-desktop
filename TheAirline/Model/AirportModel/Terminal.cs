@@ -163,12 +163,12 @@ namespace TheAirline.Model.AirportModel
         //returns the number of gates for an airline
         public int getNumberOfGates(Airline airline)
         {
-            return this.Airport.AirlineContracts.Where(c => c.Airline == airline && c.ContractDate>= GameObject.GetInstance().GameTime).Sum(c=>c.NumberOfGates);
+            return this.Airport.AirlineContracts.Where(c => c.Airline == airline && c.ContractDate <= GameObject.GetInstance().GameTime).Sum(c=>c.NumberOfGates);
         }
         //returns the number of free gates for an airport
         public int getNumberOfFreeGates(Airline airline)
         {
-            var contracts = this.Airport.getAirlineContracts(airline).Where(c => c.ContractDate >= GameObject.GetInstance().GameTime);
+            var contracts = this.Airport.getAirlineContracts(airline).Where(c => c.ContractDate <= GameObject.GetInstance().GameTime);
 
             if (contracts.Count() == 0)
                 return 0;

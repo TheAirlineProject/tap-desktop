@@ -240,7 +240,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             if (buttonType == "Buy" && type != AirportFacility.FacilityType.CheckIn)
             {
-                isEnabled = index < facilities.Count - 1 && airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime;
+                int gates = airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline);
+                isEnabled = index < facilities.Count - 1 && gates > 0 && airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type).FinishedDate < GameObject.GetInstance().GameTime;
             }
             if (buttonType == "Sell" && type != AirportFacility.FacilityType.CheckIn)
             {

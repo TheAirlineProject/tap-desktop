@@ -76,13 +76,18 @@ namespace TheAirline.Model.AirportModel
         //clears the list of airline contracts
         public void clearAirlineContracts()
         {
-            this.AirlineContracts.Clear();
+            lock (this._Contracts)
+            {
+                this.AirlineContracts.Clear();
+            }
         }
         //adds an airline airport contract to the airport
         public void addAirlineContract(AirportContract contract)
         {
-           
-            this.AirlineContracts.Add(contract);
+            lock (this._Contracts)
+            {
+                this._Contracts.Add(contract);
+            }
 
             if (!contract.Airline.Airports.Contains(this))
                 contract.Airline.addAirport(this);
@@ -90,7 +95,11 @@ namespace TheAirline.Model.AirportModel
         //removes an airline airport contract from the airport
         public void removeAirlineContract(AirportContract contract)
         {
-            this.AirlineContracts.Remove(contract);
+
+            lock (this._Contracts)
+            {
+                this._Contracts.Remove(contract);
+            }
 
             if (!this.AirlineContracts.Exists(c => c.Airline == contract.Airline))
                 contract.Airline.removeAirport(this);

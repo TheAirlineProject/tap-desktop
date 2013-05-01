@@ -17,14 +17,14 @@ namespace TheAirline.Model.StatisticsModel
         public static double GetCustomerHappiness(Airline airline)
         {
             int negInt = -1;
-            Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages();
+            Dictionary<Airline, Double> fillAverages = StatisticsHelpers.GetFillAverages(); 
             Dictionary<Airline, Double> onTimePercent = StatisticsHelpers.GetTotalOnTime();
             Dictionary<Airline, Double> ticketPPD = StatisticsHelpers.GetTotalPPD();
             IDictionary<Airline, Double> scaleAvgFill = StatisticsHelpers.GetRatingScale(fillAverages);
             IDictionary<Airline, Double> scaleOnTimeP = StatisticsHelpers.GetRatingScale(onTimePercent);
             IDictionary<Airline, Double> scalePPD = StatisticsHelpers.GetRatingScale(ticketPPD);
 
-            double airlineAvgFill = scaleAvgFill[airline];
+            double airlineAvgFill = scaleAvgFill[airline]; 
             double airlineOTP = scaleOnTimeP[airline];
             double airlinePPD = scalePPD[airline];
 

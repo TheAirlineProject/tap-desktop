@@ -399,7 +399,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlineFrom.removeRoute(route);
                 airlineTo.addRoute(route);
             }
+            while (airlineFrom.Pilots.Count > 0)
+            {
+                Pilot pilot = airlineFrom.Pilots[0];
+                airlineFrom.removePilot(pilot);
 
+                pilot.Airline = airlineTo;
+                airlineTo.addPilot(pilot);
+            }
             while (airlineFrom.Airports.Count > 0)
             {
                 Airport airport = airlineFrom.Airports[0];

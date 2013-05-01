@@ -186,12 +186,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lvFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
             lvFleet.BorderThickness = new Thickness(0);
             lvFleet.View = this.Resources["FleetViewItem"] as GridView;
-
+           
             panelOverview.Children.Add(lvFleet);
 
             lvFleet.ItemsSource = this.FleetDelivered;
-
-      
 
             return panelOverview;
         }
