@@ -872,7 +872,6 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-
                 string s = id;
                 s = e.ToString();
             }

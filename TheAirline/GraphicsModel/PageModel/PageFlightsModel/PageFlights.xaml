@@ -16,8 +16,9 @@
                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
                 <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="300"/>
                 <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="300"/>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="100"></TextBlock>
-                <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route,Converter={StaticResource stopoverConverter}}"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route,Converter={StaticResource stopoverConverter}}" Width="75"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route.Type}"></TextBlock>
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="FlightsHeader">
@@ -42,13 +43,19 @@
                         <Run Text="Destination"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Width="100" VerticalAlignment="Bottom" FontWeight="Bold">
+                <TextBlock Width="75" VerticalAlignment="Bottom" FontWeight="Bold">
                     <Hyperlink Tag="Time" Click="Header_Click">
                         <Run Text="Dept.Time"></Run>
                     </Hyperlink>
                 </TextBlock>
-                <TextBlock Width="100" VerticalAlignment="Bottom" FontWeight="Bold" Text="Stopovers"></TextBlock>
-                  </WrapPanel>
+                <TextBlock Width="75" VerticalAlignment="Bottom" FontWeight="Bold" Text="Stopovers"></TextBlock>
+                <TextBlock Width="100" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Type" Click="Header_Click">
+                        <Run Text="Route type"></Run>
+                    </Hyperlink>
+                </TextBlock>
+
+            </WrapPanel>
         </DataTemplate>
     </Page.Resources>
         <Grid>

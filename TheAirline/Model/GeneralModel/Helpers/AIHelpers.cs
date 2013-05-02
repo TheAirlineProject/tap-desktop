@@ -503,7 +503,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for a new route for an airline
         private static void CheckForNewRoute(Airline airline)
         {
-            int airlinersInOrder = airline.Fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            List<FleetAirliner> fleet = new List<FleetAirliner>(airline.Fleet);
+            int airlinersInOrder = fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
 
             int newRouteInterval = 0;
             switch (airline.Mentality)

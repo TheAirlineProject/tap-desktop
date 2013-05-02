@@ -63,8 +63,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
             day = GameObject.GetInstance().GameTime.DayOfWeek;
             showDayEntries();
 
-          
-
+      
           }
         //creates the panel for the day buttons
         private WrapPanel createDaysButtonsPanel()
@@ -159,6 +158,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageFlightsModel
                     break;
                 case "Time":
                     sortCriteria = "Time";
+                    showDayEntries();
+                    break;
+                case "Type":
+                    sortCriteria = "TimeTable.Route.Type";
                     showDayEntries();
                     break;
             }

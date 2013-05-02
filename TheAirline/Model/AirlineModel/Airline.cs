@@ -192,7 +192,12 @@ namespace TheAirline.Model.AirlineModel
         //returns all hubs airports for the airline
         public List<Airport> getHubs()
         {
-            return (from a in this.Airports where a.Hubs.Find(h => h.Airline == this) != null select a).ToList();
+            List<Airport> hubs = new List<Airport>();
+            lock (this.Airports)
+            {
+                hubs = (from a in this.Airports where a.Hubs.Exists(h=>h.Airline == this) select a).ToList();
+            }
+            return hubs;
         }
         //adds a facility to the airline
         public void addFacility(AirlineFacility facility)
