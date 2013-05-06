@@ -618,6 +618,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return gates * (basePrice * (lengthFactor / 100));
         }
+        //converts a pax value to airport size
+        public static GeneralHelpers.Size ConvertAirportPaxToSize(Airport airport)
+        {
+            Dictionary<int, double> yearCoeffs = new Dictionary<int, double>();
+            yearCoeffs.Add(1960, 1.3);
+            yearCoeffs.Add(1970, 1.2);
+            yearCoeffs.Add(1980, 1.15);
+            yearCoeffs.Add(1990, 1.10);
+            yearCoeffs.Add(2000, 1.0658);
+            yearCoeffs.Add(2010, 1);
+
+            int decade = (GameObject.GetInstance().GameTime.Year - 1960) / 10 * 10 + 1960;
+
+            double coeff = 1;
+
+            if (yearCoeffs.ContainsKey(decade))
+                coeff = yearCoeffs[decade];
+
+            return airport.Profile.Size;
+
+            /*
+             * 1960: 1.3
+1970: 1.2
+1980: 1.15
+1990:
+[22:48:53] Michael Dugan: 1990: 1.1
+2000: 1.0658
+             * */
+        }
     }
 
 }

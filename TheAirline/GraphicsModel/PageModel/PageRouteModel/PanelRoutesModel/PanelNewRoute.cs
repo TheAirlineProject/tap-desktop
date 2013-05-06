@@ -370,7 +370,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 airline.addRoute(route);
 
-                this.ParentPage.showRoutes();
+                PageNavigator.NavigateTo(new PageRoutes());
 
                 this.Visibility = System.Windows.Visibility.Collapsed;
 

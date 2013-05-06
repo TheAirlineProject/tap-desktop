@@ -42,7 +42,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             lbAirport.ItemTemplate = this.Resources["AirportItem"] as DataTemplate;
             lbAirport.MaxHeight = GraphicsHelpers.GetContentHeight() - 100;
 
-            foreach (Airport destAirport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a!=this.Airport))
+            var airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>a!=this.Airport).OrderBy(a=>MathHelpers.GetDistance(a,this.Airport));
+
+
+            foreach (Airport destAirport in airports )
                 lbAirport.Items.Add(new KeyValuePair<Airport,Airport>(this.Airport,destAirport));
 
             panelAirports.Children.Add(lbAirport);

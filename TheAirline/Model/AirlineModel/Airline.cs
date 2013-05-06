@@ -98,8 +98,11 @@ namespace TheAirline.Model.AirlineModel
         //adds a pilot to the airline
         public void addPilot(Pilot pilot)
         {
-            this.Pilots.Add(pilot);
-            pilot.Airline = this;
+            lock (this.Pilots)
+            {
+                this.Pilots.Add(pilot);
+                pilot.Airline = this;
+            }
         }
         //removes a pilot from the airline
         public void removePilot(Pilot pilot)

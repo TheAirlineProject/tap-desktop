@@ -295,10 +295,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     pilots = Pilots.GetUnassignedPilots();
 
                 Pilot pilot = pilots.OrderByDescending(p => p.Rating).First();
-                airliner.Airliner.Airline.addPilot(pilot);
 
-                pilot.Airliner = airliner;
-                airliner.addPilot(pilot);
+                if (pilot != null)
+                {
+                    airliner.Airliner.Airline.addPilot(pilot);
+
+                    pilot.Airliner = airliner;
+                    airliner.addPilot(pilot);
+                }
+                else
+                    GeneralHelpers.CreatePilots(50);
             }
 
             if (Pilots.GetNumberOfUnassignedPilots() < 10)

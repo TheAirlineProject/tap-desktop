@@ -56,6 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             double distance = MathHelpers.GetDistance(this.Route.Destination1.Profile.Coordinates, this.Route.Destination2.Profile.Coordinates);
 
+            lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1016"),UICreator.CreateTextBlock(this.Route.Type.ToString())));
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1001"), UICreator.CreateTextBlock(this.Route.Destination1.Profile.Name)));
             lbRouteInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute","1002"), UICreator.CreateTextBlock(this.Route.Destination2.Profile.Name)));
 
@@ -502,8 +503,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 if (this.Route.HasAirliner)
                     this.Route.getAirliners().ForEach(a => a.removeRoute(this.Route));
 
-               
-                this.ParentPage.showRoutes();
+
+                PageNavigator.NavigateTo(new PageRoutes());
 
                 this.Visibility = System.Windows.Visibility.Collapsed;
 

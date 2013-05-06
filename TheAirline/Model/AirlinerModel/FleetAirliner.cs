@@ -51,12 +51,18 @@ namespace TheAirline.Model.AirlinerModel
         //adds a pilot to the airliner
         public void addPilot(Pilot pilot)
         {
-            this.Pilots.Add(pilot);
+            lock (this.Pilots)
+            {
+                this.Pilots.Add(pilot);
+            }
         }
         //removes a pilot from the airliner
         public void removePilot(Pilot pilot)
         {
-            this.Pilots.Remove(pilot);
+            lock (this.Pilots)
+            {
+                this.Pilots.Remove(pilot);
+            }
         }
         //adds a route to the airliner
         public void addRoute(Route route)

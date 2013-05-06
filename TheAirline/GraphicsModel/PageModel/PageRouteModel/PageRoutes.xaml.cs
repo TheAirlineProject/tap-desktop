@@ -195,7 +195,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
             panelSideMenu.Children.Add(new PanelNewRoute(this));
         }
         //shows the routes for the human airline
-        public void showRoutes()
+        private void showRoutes()
         {
 
             ICollectionView dataView =

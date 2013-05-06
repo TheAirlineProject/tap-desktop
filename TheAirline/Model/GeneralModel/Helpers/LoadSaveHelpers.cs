@@ -223,7 +223,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                  airport.Profile.PaxValues.Clear();
 
-                 XmlNodeList paxvaluesList = airportNode.SelectNodes("paxvalue/paxvalues");
+                 XmlNodeList paxvaluesList = airportNode.SelectNodes("paxvalues/paxvalue");
 
                  foreach (XmlElement paxElement in paxvaluesList)
                  {
