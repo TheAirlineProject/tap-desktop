@@ -1608,8 +1608,9 @@ namespace TheAirline.Model.GeneralModel
                 file.WriteLine("Alliance failing: " + path);
                 file.WriteLine(e.ToString());
                 file.WriteLine(e.StackTrace);
-                 * */
+               
                 file.Close();
+                 * */
             }
         }
         /*loads the airlines
