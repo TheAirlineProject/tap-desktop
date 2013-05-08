@@ -95,6 +95,13 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                /*
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log",true);
+                file.WriteLine("Game start failing");
+                file.WriteLine(e.ToString());
+                file.WriteLine(e.StackTrace);
+                file.Close();
+                 * */
                 string s = e.ToString();
             }
 
@@ -246,12 +253,13 @@ namespace TheAirline.Model.GeneralModel
 
             }
         }
-        private static void LoadScenario(string file)
+        private static void LoadScenario(string filename)
         {
             XmlDocument doc = new XmlDocument();
-            doc.Load(file);
+            doc.Load(filename);
             XmlElement element = doc.DocumentElement;
 
+            
             try
             {
                 string scenarioName = element.Attributes["name"].Value;
@@ -368,6 +376,7 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                
                 string s = e.ToString();
             }
 
@@ -911,13 +920,13 @@ namespace TheAirline.Model.GeneralModel
             }
 
         }
-        private static void LoadAirports(string file)
+        private static void LoadAirports(string filename)
         {
             string id = "";
             try
             {
                 XmlDocument doc = new XmlDocument();
-                doc.Load(file);
+                doc.Load(filename);
                 XmlElement root = doc.DocumentElement;
 
                 XmlNodeList airportsList = root.SelectNodes("//airport");
@@ -1064,6 +1073,13 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                /*
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
+                file.WriteLine("Airport failing: " + id);
+                file.WriteLine(e.ToString());
+                file.WriteLine(e.StackTrace);
+                file.Close();
+                 * */
                 string i = id;
                 string s = e.ToString();
             }
@@ -1557,31 +1573,44 @@ namespace TheAirline.Model.GeneralModel
             doc.Load(path);
             XmlElement root = doc.DocumentElement;
 
-            string allianceName = root.Attributes["name"].Value;
-            string logo = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value + ".png";
-            DateTime formationDate = Convert.ToDateTime(root.Attributes["formation"].Value, new CultureInfo("en-US", false));
-            Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), root.Attributes["type"].Value);
-
-            Airport headquarter = Airports.GetAirport(root.Attributes["headquarter"].Value);
-
-            Alliance alliance = new Alliance(formationDate, allianceType, allianceName, headquarter);
-            alliance.Logo = logo;
-
-            XmlNodeList membersList = root.SelectNodes("members/member");
-
-            foreach (XmlElement memberNode in membersList)
+            try
             {
-                Airline memberAirline = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
-                DateTime joinedDate = Convert.ToDateTime(memberNode.Attributes["joined"].Value, new CultureInfo("en-US", false));
+                string allianceName = root.Attributes["name"].Value;
+                string logo = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value + ".png";
+                DateTime formationDate = Convert.ToDateTime(root.Attributes["formation"].Value, new CultureInfo("en-US", false));
+                Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), root.Attributes["type"].Value);
 
-                AllianceMember member = new AllianceMember(memberAirline, joinedDate);
-                if (memberNode.HasAttribute("exited"))
-                    member.ExitedDate = Convert.ToDateTime(memberNode.Attributes["exited"].Value, new CultureInfo("en-US", false));
+                Airport headquarter = Airports.GetAirport(root.Attributes["headquarter"].Value);
 
-                alliance.addMember(member);
+                Alliance alliance = new Alliance(formationDate, allianceType, allianceName, headquarter);
+                alliance.Logo = logo;
+
+                XmlNodeList membersList = root.SelectNodes("members/member");
+
+                foreach (XmlElement memberNode in membersList)
+                {
+                    Airline memberAirline = Airlines.GetAirline(memberNode.Attributes["airline"].Value);
+                    DateTime joinedDate = Convert.ToDateTime(memberNode.Attributes["joined"].Value, new CultureInfo("en-US", false));
+
+                    AllianceMember member = new AllianceMember(memberAirline, joinedDate);
+                    if (memberNode.HasAttribute("exited"))
+                        member.ExitedDate = Convert.ToDateTime(memberNode.Attributes["exited"].Value, new CultureInfo("en-US", false));
+
+                    alliance.addMember(member);
+                }
+
+                Alliances.AddAlliance(alliance);
             }
-
-            Alliances.AddAlliance(alliance);
+            catch (Exception e)
+            {
+                /*
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
+                file.WriteLine("Alliance failing: " + path);
+                file.WriteLine(e.ToString());
+                file.WriteLine(e.StackTrace);
+                 * */
+                file.Close();
+            }
         }
         /*loads the airlines
          */
@@ -1605,6 +1634,13 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
+                /*
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
+                file.WriteLine("Airlines failing: " + f);
+                file.WriteLine(e.ToString());
+                file.WriteLine(e.StackTrace);
+                file.Close();
+                 * */
                 string s = e.ToString();
             }
 
