@@ -66,7 +66,7 @@
 
                 <Separator></Separator>
                 <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuExitGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkExit_Click"></MenuItem>
-                <MenuItem Header="Test Page" Style="{DynamicResource MenuItemStyle}" Click="lnkTest_Click"></MenuItem>
+                <MenuItem Header="Test Page" Style="{DynamicResource MenuItemStyle}" Visibility="Collapsed" Click="lnkTest_Click"></MenuItem>
             </MenuItem>
                
             <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2"/>

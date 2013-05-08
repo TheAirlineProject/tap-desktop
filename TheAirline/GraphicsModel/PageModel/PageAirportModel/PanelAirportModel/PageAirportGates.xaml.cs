@@ -187,6 +187,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             {
                 lbTerminals.Items.Add(terminal);
             }
+
+            showHubs();
+      
         }
         //shows the contracts
         private void showContracts()
@@ -382,7 +385,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                     this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
 
                     showHubs();
-
+                   
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airport.getHubPrice());
 
 

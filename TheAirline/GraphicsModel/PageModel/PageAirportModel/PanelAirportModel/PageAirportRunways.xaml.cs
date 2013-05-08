@@ -28,7 +28,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
     public partial class PageAirportRunways : Page
     {
         private Airport Airport;
-        private ListBox lbRunway, lbRunwayBuilding;
+        private ListBox lbRunway;//, lbRunwayBuilding;
         public PageAirportRunways(Airport airport)
         {
             InitializeComponent();
@@ -56,6 +56,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelRunways.Children.Add(lbRunway);
 
+            /*
             TextBlock txtRunwaysBuildHeader = new TextBlock();
             txtRunwaysBuildHeader.Uid = "1002";
             txtRunwaysBuildHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -88,7 +89,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             panelButtons.Children.Add(btnBuildRunway);
 
             panelRunways.Children.Add(panelButtons);
-
+            */
             this.Content = panelRunways;
 
             showRunways();
@@ -97,17 +98,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private void showRunways()
         {
             lbRunway.Items.Clear();
-            lbRunwayBuilding.Items.Clear();
+            //lbRunwayBuilding.Items.Clear();
 
             var buildRunways = this.Airport.Runways.FindAll(r => r.BuiltDate <= GameObject.GetInstance().GameTime);
 
             foreach (Runway runway in buildRunways)
                 lbRunway.Items.Add(runway);
 
-            var buildingRunways = this.Airport.Runways.FindAll(r => r.BuiltDate > GameObject.GetInstance().GameTime);
+            //var buildingRunways = this.Airport.Runways.FindAll(r => r.BuiltDate > GameObject.GetInstance().GameTime);
 
-            foreach (Runway runway in buildingRunways)
-                lbRunwayBuilding.Items.Add(runway);
+            //foreach (Runway runway in buildingRunways)
+              //  lbRunwayBuilding.Items.Add(runway);
 
         }
         private void btnBuildRunway_Click(object sender, RoutedEventArgs e)

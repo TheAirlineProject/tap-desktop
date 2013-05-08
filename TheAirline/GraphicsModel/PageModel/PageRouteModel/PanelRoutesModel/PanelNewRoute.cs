@@ -34,6 +34,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         private Dictionary<AirlinerClass.ClassType, RouteAirlinerClass> Classes;
         private double CargoPrice;
         private Route.RouteType RouteType;
+        private Panel panelRouteInfo;
         public PanelNewRoute(PageRoutes parent)
         {
             this.Classes = new Dictionary<AirlinerClass.ClassType, RouteAirlinerClass>();
@@ -75,17 +76,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             this.Children.Add(panelRouteType);
 
+
+            panelRouteInfo = new StackPanel();
+            this.Children.Add(panelRouteInfo);
             //rbPassenger.IsChecked = true;
 
         }
         //creates the panel for a new route
         private void createRoutePanel()
         {
+            panelRouteInfo.Children.Clear();
+
             ListBox lbRouteInfo = new ListBox();
             lbRouteInfo.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRouteInfo.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
 
-            this.Children.Add(lbRouteInfo);
+            panelRouteInfo.Children.Add(lbRouteInfo);
 
             WrapPanel panelDestination1 = new WrapPanel();
 
@@ -128,6 +134,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             if (this.RouteType == Route.RouteType.Mixed || this.RouteType == Route.RouteType.Passenger)
             {
+                this.Classes.Clear();
                 foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
                 {
 
@@ -215,11 +222,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtInvalidRoute = UICreator.CreateTextBlock(Translator.GetInstance().GetString("PanelNewRoute", "1001"));
             txtInvalidRoute.Foreground = Brushes.DarkRed;
             txtInvalidRoute.Visibility = System.Windows.Visibility.Collapsed;
-            this.Children.Add(txtInvalidRoute);
+            panelRouteInfo.Children.Add(txtInvalidRoute);
 
             WrapPanel panelButtons = new WrapPanel();
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
-            this.Children.Add(panelButtons);
+            panelRouteInfo.Children.Add(panelButtons);
 
             btnSave = new Button();
             btnSave.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -249,9 +256,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         {
             this.RouteType = (Route.RouteType)((RadioButton)sender).Tag;
 
-            rbPassenger.IsEnabled = false;
-            rbCargo.IsEnabled = false;
-
+            //rbPassenger.IsEnabled = false;
+            //rbCargo.IsEnabled = false;
+            
             createRoutePanel();
         }
 

@@ -636,7 +636,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (yearCoeffs.ContainsKey(decade))
                 coeff = yearCoeffs[decade];
 
-            return airport.Profile.Size;
+            return airport.Profile.Size;z
 
             /*
              * 1960: 1.3
