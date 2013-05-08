@@ -619,7 +619,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return gates * (basePrice * (lengthFactor / 100));
         }
         //converts a pax value to airport size
-        public static GeneralHelpers.Size ConvertAirportPaxToSize(Airport airport)
+        public static GeneralHelpers.Size ConvertAirportPaxToSize(double size)
         {
             Dictionary<int, double> yearCoeffs = new Dictionary<int, double>();
             yearCoeffs.Add(1960, 1.3);
@@ -636,16 +636,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (yearCoeffs.ContainsKey(decade))
                 coeff = yearCoeffs[decade];
 
-            return airport.Profile.Size;
+            double coeffPax = coeff * size;
 
-            /*
-             * 1960: 1.3
-1970: 1.2
-1980: 1.15
-1990:
-[22:48:53] Michael Dugan: 1990: 1.1
-2000: 1.0658
-             * */
+            if (coeffPax > 32000)
+                return GeneralHelpers.Size.Largest;
+            if (coeffPax > 16000)
+                return GeneralHelpers.Size.Very_large;
+            if (coeffPax > 9000)
+                return GeneralHelpers.Size.Large;
+            if (coeffPax > 3000)
+                return GeneralHelpers.Size.Medium;
+            if (coeffPax > 535)
+                return GeneralHelpers.Size.Small;
+            if (coeffPax > 160)
+                return GeneralHelpers.Size.Very_small;
+
+            return GeneralHelpers.Size.Smallest;
+
+  
         }
     }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirportModel
@@ -105,10 +106,8 @@ namespace TheAirline.Model.AirportModel
         //return the current size (pax) of the airport
         private GeneralHelpers.Size getCurrentSize()
         {
-            PaxValue currentPaxValue = getCurrentPaxValueObject();
-
-          
-            return currentPaxValue.Size;
+           
+            return AirportHelpers.ConvertAirportPaxToSize(getCurrentPaxValue());
         }
         //returns the current pax value object
         private PaxValue getCurrentPaxValueObject()
