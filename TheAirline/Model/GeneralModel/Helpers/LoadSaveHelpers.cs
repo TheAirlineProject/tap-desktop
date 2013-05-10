@@ -1006,6 +1006,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                 currentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)route).getRouteAirlinerClass(airlinerClassType), flightPassengers));
                             }
 
+                          
                         }
                         if (currentFlight.isCargoFlight())
                         {
@@ -1550,6 +1551,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             flightNode.AppendChild(stopoverNode);
                         }
+
                         if (airliner.CurrentFlight.isPassengerFlight())
                         {
                             XmlElement flightClassesNode = xmlDoc.CreateElement("flightclasses");
@@ -1563,6 +1565,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             }
                             flightNode.AppendChild(flightClassesNode);
                         }
+
                         if (airliner.CurrentFlight.isCargoFlight())
                         {
                             XmlElement flightCargoNode = xmlDoc.CreateElement("flightcargo");
@@ -2084,8 +2087,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport dest2 = Airports.GetAirport(routeNode.Attributes["destination2"].Value);
             Boolean isBanned = Convert.ToBoolean(routeNode.Attributes["isbanned"].Value);
 
-            
-
             if (routeNode.HasAttribute("type"))
                 routetype = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), routeNode.Attributes["type"].Value);
 
@@ -2232,7 +2233,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 routeStopoverNode.SetAttribute("airport", stopover.Stopover.Profile.ID);
 
                 XmlElement stopoverLegsNode = xmlDoc.CreateElement("legs");
-                foreach (PassengerRoute leg in stopover.Legs)
+                foreach (Route leg in stopover.Legs) 
                 {
                     XmlElement stopoverLegNode = xmlDoc.CreateElement("leg");
 

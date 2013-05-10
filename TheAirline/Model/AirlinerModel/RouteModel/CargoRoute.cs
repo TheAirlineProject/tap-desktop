@@ -24,7 +24,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 double fillingDegree = 0;
 
                 var legs = this.Stopovers.SelectMany(s => s.Legs);
-                foreach (PassengerRoute leg in legs)
+                foreach (CargoRoute leg in legs)
                 {
                     fillingDegree += leg.getFillingDegree();
                 }
