@@ -222,7 +222,36 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 return employeeWages;
             }
+        //returns the average employee wages
+            public static double GetAverageEmployeeWages()
+            {
+                var numberOfAirlines = Airlines.GetNumberOfAirlines();
+                Dictionary<Airline, Double> airlineWages = new Dictionary<Airline,double>(GetEmployeeWages());
 
+                double totalWages = 0;
+                foreach (Airline airline in Airlines.GetAllAirlines())
+                {
+                    totalWages += GetEmployeeWages()[airline];
+                }
+
+                return totalWages / numberOfAirlines;
+
+            }
+        //returns the average employee wages for the competitors for an airlines
+            public static double GetAverageEmployeeWages(Airline airline)
+            {
+                var numberOfAirlines = Airlines.GetNumberOfAirlines()-1;
+                Dictionary<Airline, Double> airlineWages = new Dictionary<Airline, double>(GetEmployeeWages());
+
+                double totalWages = 0;
+                foreach (Airline competitor in Airlines.GetAllAirlines())
+                {
+                    if (competitor != airline)
+                        totalWages += GetEmployeeWages()[competitor];
+                }
+
+                return totalWages / numberOfAirlines;
+            }
         //creates a dictionary of average employee discounts
             public static Dictionary<Airline, Double> GetEmployeeDiscounts()
             {

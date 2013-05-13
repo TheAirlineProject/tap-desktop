@@ -573,6 +573,11 @@ namespace TheAirline.Model.AirlineModel
 
             return tAirlines;
         }
+        //returns the number of airlines
+        public static int GetNumberOfAirlines()
+        {
+            return airlines.Count;
+        }
         //returns all airlines for a specific region
         public static List<Airline> GetAirlines(Region region)
         {

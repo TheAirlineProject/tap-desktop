@@ -850,8 +850,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
                 //check for employee happiness and wages
-                Console.WriteLine("Airline: {0} Avg. Wages: {1} Happiness: {2}", airline.Profile.Name, StatisticsHelpers.GetEmployeeWages()[airline], Ratings.GetEmployeeHappiness(airline));
-                
+                //Console.WriteLine("Airline: {0} Avg. Wages: {1} Happiness: {2}", airline.Profile.Name, StatisticsHelpers.GetEmployeeWages()[airline], Ratings.GetEmployeeHappiness(airline));
+
+                double employeeHapiness = Ratings.GetEmployeeHappiness(airline);
+                double avgCompetitorsWages = StatisticsHelpers.GetAverageEmployeeWages(airline);
+                double airlineWage = StatisticsHelpers.GetEmployeeWages()[airline];
+
+                double wagesDiff = (airlineWage / avgCompetitorsWages) * 100;
+
+                //striking if below 80% of the average
+                if (wagesDiff < 80 && employeeHapiness < 80)
+                {
+
+                    //tjek for union ved skift af løn - forhandling på års niveau
+
+                }
 
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
