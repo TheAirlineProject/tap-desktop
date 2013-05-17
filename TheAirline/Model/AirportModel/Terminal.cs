@@ -165,6 +165,19 @@ namespace TheAirline.Model.AirportModel
         {
             return this.Airport.AirlineContracts.Where(c => c.Airline == airline && c.ContractDate <= GameObject.GetInstance().GameTime).Sum(c=>c.NumberOfGates);
         }
+        //returns the percent of free gate slots for the airport
+        public double getFreeSlotsPercent(Airline airline)
+        {
+            double numberOfSlots = (22 - 6) * 4 * 7; //from 06.00 to 22.00 each quarter each day (7 days a week) 
+
+            double usedSlots = AirportHelpers.GetOccupiedSlotTimes(this.Airport, airline).Count;
+
+            double percent = ((numberOfSlots - usedSlots) / numberOfSlots) * 100;
+
+            return percent;
+
+        }
+        /*
         //returns the number of free gates for an airport
         public int getNumberOfFreeGates(Airline airline)
         {
@@ -176,7 +189,7 @@ namespace TheAirline.Model.AirportModel
             int gates = contracts.Sum(c => c.NumberOfGates);
 
             return gates -  (AirportHelpers.GetAirportRoutes(this.Airport, airline).Count / Gate.RoutesPerGate);
-        }
+        }*/
         //switches from one airline to another
         public void switchAirline(Airline airlineFrom, Airline airlineTo)
         {

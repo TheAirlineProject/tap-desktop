@@ -10,9 +10,9 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerTypeConfiguration : Configuration
     {
         public AirlinerType Airliner { get; set; }
-        public Period Period { get; set; }
+        public Period<DateTime> Period { get; set; }
         public List<AirlinerClassConfiguration> Classes { get; set; }
-        public AirlinerTypeConfiguration(string name, AirlinerType type, Period period, Boolean standard)
+        public AirlinerTypeConfiguration(string name, AirlinerType type, Period<DateTime> period, Boolean standard)
             : base(Configuration.ConfigurationType.AirlinerType, name, standard)
         {
             this.Airliner = type;

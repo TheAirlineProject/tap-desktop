@@ -19,7 +19,7 @@ namespace TheAirline.Model.AirlinerModel
         public int CockpitCrew { get; set; }
         private long APrice;
         public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
-        public Period Produced { get; set; }
+        public Period<DateTime> Produced { get; set; }
         public double FuelConsumption { get; set; }
         public Manufacturer Manufacturer { get; set; }
         public enum BodyType {Narrow_Body, Single_Aisle,Wide_Body} 
@@ -35,7 +35,7 @@ namespace TheAirline.Model.AirlinerModel
         public Boolean IsStandardType { get; set; }
         public AirlinerType BaseType { get; set; }
         public int ProductionRate { get; set; }
-        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period produced,int prodRate, Boolean standardType)
+        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
         {
             this.TypeAirliner = typeOfAirliner;
             this.Manufacturer = manufacturer;
@@ -81,7 +81,7 @@ namespace TheAirline.Model.AirlinerModel
         public int MaxSeatingCapacity { get; set; }
         public int CabinCrew { get; set; }
         public int MaxAirlinerClasses { get; set; }
-        public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
+        public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
             this.MaxSeatingCapacity = seating;
             this.CabinCrew = cabincrew;
@@ -92,7 +92,7 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerCargoType : AirlinerType
     {
         public double CargoSize { get; set; }
-        public AirlinerCargoType(Manufacturer manufacturer, string name, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
+        public AirlinerCargoType(Manufacturer manufacturer, string name, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
             this.CargoSize = cargoSize;
         }

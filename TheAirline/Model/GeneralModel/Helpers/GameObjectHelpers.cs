@@ -446,17 +446,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
                        {
                            int totalContractGates = airport.AirlineContracts.Where(c => c.Airline.IsHuman).Sum(c => c.NumberOfGates);
 
-                           int maxRoutes = (totalContractGates - contract.NumberOfGates) * Gate.RoutesPerGate;
-
                            var airlineRoutes = new List<Route>(AirportHelpers.GetAirportRoutes(airport, contract.Airline));
 
-                           if (airlineRoutes.Count > maxRoutes)
+                           var remainingContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c=>c.Airline == contract.Airline && c != contract));
+
+                           Boolean canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport,contract.Airline,remainingContracts);
+
+                           if (!canFillRoutes)
                            {
                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired, and a number of routes has been cancelled", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
 
-                               int routes = airlineRoutes.Count;
                                int currentRoute=0;
-                               while (routes > maxRoutes+currentRoute)
+                               while (!canFillRoutes)
                                {
                                    Route routeToDelete = airlineRoutes[currentRoute];
 
@@ -467,11 +468,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                    }
 
                                    contract.Airline.removeRoute(routeToDelete);
-
-
-                                   contract.Airline.removeRoute(routeToDelete);
-
+                                   
                                    currentRoute++;
+
+                                   canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts);
                                }
 
                            }
@@ -861,6 +861,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 //striking if below 80% of the average
                 if (wagesDiff < 80 && employeeHapiness < 80)
                 {
+                   // if (airline.IsHuman)
+                    //    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1012"), string.Format(Translator.GetInstance().GetString("News", "1012", "message"), instructor.Profile.Name, newInstructor.Profile.Name)));
+
+                  
 
                     //tjek for union ved skift af løn - forhandling på års niveau
 

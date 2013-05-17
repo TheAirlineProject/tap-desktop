@@ -6,14 +6,15 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a period
-    public class Period
+    public class Period<T>
     {
-        public DateTime From { get; set; }
-        public DateTime To { get; set; }
-        public Period(DateTime from, DateTime to)
+        public T From { get; set; }
+        public T To { get; set; }
+        public Period(T from, T to)
         {
             this.To = to;
             this.From = from;
         }
     }
+   
 }

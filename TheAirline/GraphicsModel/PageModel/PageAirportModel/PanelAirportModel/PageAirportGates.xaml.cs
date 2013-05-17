@@ -433,13 +433,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             AirportContract contract = (AirportContract)((Button)sender).Tag;
 
-            int totalGatesAfter = this.Airport.AirlineContracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline).Sum(c => c.NumberOfGates) - contract.NumberOfGates;
+            //int totalGatesAfter = this.Airport.AirlineContracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline).Sum(c => c.NumberOfGates) - contract.NumberOfGates;
 
-            int routes = AirportHelpers.GetAirportRoutes(this.Airport,GameObject.GetInstance().HumanAirline).Count;
+            //int routes = AirportHelpers.GetAirportRoutes(this.Airport,GameObject.GetInstance().HumanAirline).Count;
 
             double penaltyFee = ((contract.YearlyPayment / 12) * contract.MonthsLeft) / 10;
 
-            if (totalGatesAfter * Gate.RoutesPerGate < routes)
+            var contracts = this.Airport.AirlineContracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline && a != contract).ToList() ;
+
+            if (AirportHelpers.CanFillRoutesEntries(this.Airport,GameObject.GetInstance().HumanAirline,contracts))
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2224"), Translator.GetInstance().GetString("MessageBox", "2224", "message"),WPFMessageBoxButtons.Ok);
             }

@@ -400,7 +400,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             cbDestination.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbDestination.SelectionChanged += new SelectionChangedEventHandler(cbDestination_SelectionChanged);
-            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a=>AirportHelpers.HasFreeGates(a,GameObject.GetInstance().HumanAirline));
+            List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => AirportHelpers.HasFreeGates(a, GameObject.GetInstance().HumanAirline));
             airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
             foreach (Airport airport in airports)
@@ -459,9 +459,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     destinations.Add(stopover2);
                 }
 
-               
-
-                destinations.Add(airport2);
+                 destinations.Add(airport2);
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
@@ -493,7 +491,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 TextBlock txtDestinationGates = cbDestination2 == ((ComboBox)sender) ? txtDestination2Gates : txtDestination1Gates;
 
-                txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getNumberOfFreeGates(GameObject.GetInstance().HumanAirline));
+                txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeSlotsPercent(GameObject.GetInstance().HumanAirline));
             }
 
           

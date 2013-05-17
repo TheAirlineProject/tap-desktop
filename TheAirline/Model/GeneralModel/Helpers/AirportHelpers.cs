@@ -563,7 +563,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airportNew.addDestinationPassengersRate(paxDemand);
             }
         }
-        //checks if an airline has any free gates at an airport
+        //checks if an airline has any free gates at an airport - more than 90 % free
         public static Boolean HasFreeGates(Airport airport, Airline airline)
         {
             List<AirportContract> contracts = airport.getAirlineContracts(airline);
@@ -571,9 +571,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (contracts.Count == 0)
                 return false;
 
-            int gates = contracts.Sum(c => c.NumberOfGates);
-
-            return gates > GetAirportRoutes(airport, airline).Count / Gate.RoutesPerGate;
+            return airport.Terminals.getFreeSlotsPercent(airline) > 90;
         }
         //rents a "standard" amount of gates at an airport for an airline
         public static Boolean RentGates(Airport airport, Airline airline)
@@ -608,6 +606,69 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, length,yearlypayment);
             airport.addAirlineContract(contract);
   
+        }
+        //returns all occupied slot times for an airline at an airport (15 minutes slots)
+        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts)
+        {
+
+            List<TimeSpan> occupiedSlots = new List<TimeSpan>();
+
+            TimeSpan gateTimeBefore = new TimeSpan(0, 15, 0);
+            TimeSpan gateTimeAfter = new TimeSpan(0, 45, 0);
+
+            int gates = contracts.Sum(c => c.NumberOfGates);
+
+            var routes = new List<Route>(GetAirportRoutes(airport, airline));
+
+            var entries = routes.SelectMany(r => r.TimeTable.Entries);
+            
+            foreach (var entry in entries)
+            {
+                TimeSpan entryTakeoffTime = new TimeSpan((int)entry.Day, entry.Time.Hours,entry.Time.Minutes,entry.Time.Seconds);
+                TimeSpan entryLandingTime = entryTakeoffTime.Add(entry.TimeTable.Route.getFlightTime(entry.Airliner.Airliner.Type));
+
+                if (entryLandingTime.Days > 6)
+                    entryLandingTime = new TimeSpan(0, entryLandingTime.Hours, entryLandingTime.Minutes, entryLandingTime.Seconds);
+
+                TimeSpan entryStartTakeoffTime = entryTakeoffTime.Subtract(gateTimeBefore);
+                TimeSpan entryEndTakeoffTime = entryTakeoffTime.Add(gateTimeAfter);
+
+                TimeSpan tTakeoffTime = new TimeSpan(entryStartTakeoffTime.Days, entryStartTakeoffTime.Hours, (entryStartTakeoffTime.Minutes / 15) * 15, 0);
+
+                while (tTakeoffTime < entryEndTakeoffTime)
+                {
+                    occupiedSlots.Add(tTakeoffTime);
+                    tTakeoffTime = tTakeoffTime.Add(new TimeSpan(0, 15, 0));
+                }
+               
+                TimeSpan entryStartLandingTime = entryLandingTime.Subtract(gateTimeBefore);
+                TimeSpan entryEndLandingTime = entryLandingTime.Add(gateTimeAfter);
+
+                TimeSpan tLandingTime = new TimeSpan(entryStartLandingTime.Days, entryStartLandingTime.Hours, (entryStartLandingTime.Minutes / 15) * 15, 0);
+
+                while (tLandingTime < entryEndLandingTime) 
+                {
+                    occupiedSlots.Add(tLandingTime);
+                    tLandingTime = tLandingTime.Add(new TimeSpan(0, 15, 0));
+                }
+            }
+
+            var slots = (from s in occupiedSlots
+           group s by s.Ticks into g
+           select new { Time = g.Key, Slots = g }).Where(s=>s.Slots.Count() >= gates);
+
+            return slots.SelectMany(s => s.Slots).ToList();
+
+        }
+        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline)
+        {
+            return GetOccupiedSlotTimes(airport, airline, airport.AirlineContracts.Where(c => c.Airline == airline).ToList());
+        }
+        //returns if an airline has enough free slots at an airport
+        public static Boolean CanFillRoutesEntries(Airport airport, Airline airline, List<AirportContract> contracts)
+        {
+            return GetOccupiedSlotTimes(airport, airline, contracts).GroupBy(s => s.Ticks).Where(x => x.Count() > 1).Count() == 0;
+       
         }
         //returns the yearly payment for a number of gates
         public static double GetYearlyContractPayment(Airport airport, int gates, int length)

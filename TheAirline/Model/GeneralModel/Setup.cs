@@ -753,7 +753,7 @@ namespace TheAirline.Model.GeneralModel
 
                 XmlNodeList classesList = element.SelectNodes("classes/class");
 
-                AirlinerTypeConfiguration configuration = new AirlinerTypeConfiguration(name, type, new Period(new DateTime(fromYear, 1, 1), new DateTime(toYear, 12, 31)), true);
+                AirlinerTypeConfiguration configuration = new AirlinerTypeConfiguration(name, type, new Period<DateTime>(new DateTime(fromYear, 1, 1), new DateTime(toYear, 12, 31)), true);
                 configuration.ID = id;
 
                 foreach (XmlElement classElement in classesList)
@@ -860,14 +860,14 @@ namespace TheAirline.Model.GeneralModel
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
                         int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
-                        type = new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to), prodRate);
+                        type = new AirlinerPassengerType(manufacturer, name, passengers, cockpitcrew, cabincrew, speed, range, wingspan, length, fuel, price, maxClasses, runwaylenght, fuelcapacity, body, rangeType, engine, new Period<DateTime>(from, to), prodRate);
 
                     }
                     if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                     {
                         int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
                         double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
-                        type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period(from, to), prodRate);
+                        type = new AirlinerCargoType(manufacturer, name, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period<DateTime>(from, to), prodRate);
                     }
 
                     if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
@@ -943,16 +943,16 @@ namespace TheAirline.Model.GeneralModel
 
                     XmlElement periodElement = (XmlElement)airportElement.SelectSingleNode("period");
 
-                    Period airportPeriod;
+                    Period<DateTime> airportPeriod;
                     if (periodElement != null)
                     {
                         DateTime airportFrom = Convert.ToDateTime(periodElement.Attributes["from"].Value, new CultureInfo("en-US", false));
                         DateTime airportTo = Convert.ToDateTime(periodElement.Attributes["to"].Value, new CultureInfo("en-US", false));
 
-                        airportPeriod = new Period(airportFrom, airportTo);
+                        airportPeriod = new Period<DateTime>(airportFrom, airportTo);
                     }
                     else
-                        airportPeriod = new Period(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31));
+                        airportPeriod = new Period<DateTime>(new DateTime(1959, 12, 31), new DateTime(2199, 12, 31));
 
                     XmlElement townElement = (XmlElement)airportElement.SelectSingleNode("town");
                     string town = townElement.Attributes["town"].Value;

@@ -14,7 +14,7 @@ namespace TheAirline.Model.AirportModel
     {
        // public Airline Airline { get; set; }
         //public Boolean HasRoute { get; set; }
-        public const int RoutesPerGate = 5;
+        //public const int RoutesPerGate = 5;
         public DateTime DeliveryDate { get; set; }
         public Gate(DateTime deliveryDate)
         {

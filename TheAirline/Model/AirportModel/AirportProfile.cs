@@ -30,13 +30,13 @@ namespace TheAirline.Model.AirportModel
         public TimeSpan OffsetGMT { get; set; }
         public TimeSpan OffsetDST { get; set; }
         public GameTimeZone TimeZone { get { return getTimeZone();} set { ;} }
-        public Period Period { get; set; }
+        public Period<DateTime> Period { get; set; }
         public string ID { get; set; }
         public double Pax { get { return getCurrentPaxValue(); } private set { ;} }
         public List<PaxValue> PaxValues { get; set; }
         public double CargoVolume { get; set; }
         public Dictionary<string,int> MajorDestionations { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo,  double cargovolume, Weather.Season season)
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo,  double cargovolume, Weather.Season season)
         {
             this.PaxValues = new List<PaxValue>();
         
