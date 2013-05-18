@@ -922,6 +922,8 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirports(string filename)
         {
             string id = "";
+            int n = 0;
+            IDictionary<int, Airport> airports = new Dictionary<int, Airport>();
             try
             {
                 XmlDocument doc = new XmlDocument();
@@ -932,6 +934,7 @@ namespace TheAirline.Model.GeneralModel
 
                 foreach (XmlElement airportElement in airportsList)
                 {
+
                     string name = airportElement.Attributes["name"].Value;
                     string icao = airportElement.Attributes["icao"].Value;
                     string iata = airportElement.Attributes["iata"].Value;
@@ -1068,6 +1071,8 @@ namespace TheAirline.Model.GeneralModel
                     if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
                         Airports.AddAirport(airport);
 
+                    airports.Add(n, airport);
+                    n++;
                 }
             }
             catch (Exception e)
