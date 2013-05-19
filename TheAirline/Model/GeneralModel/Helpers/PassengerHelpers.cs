@@ -641,7 +641,12 @@ namespace TheAirline.Model.GeneralModel
         private static double GetAirportCargoMass(Airport airport)
         {
             //density cargo 3000 kg/cu m.
-            //1 cu m. vejer 3000 kg. eller 3.0 metric ton
+            //1 cu m. vejer 3000 kg. eller 3.0 metric ton 
+
+            /*--------------------READ THE TWO LINES BELOW --- VERY USEFUL ----------------*/
+
+            //for reference, most commercial aircraft have capacity of about 5.5(5.3-5.8)lb per cu ft
+            //to convert values to cu meters, multiply the cargo cu footage * 35.3 (194lb/m3 and 88kg/m3 at standard density)
 
             //total cargo volume from/to airport in tonnes
             double totalCargoVolume = airport.Profile.CargoVolume == 0 ? ((int)airport.Profile.Cargo + 1) * 10000 : airport.Profile.CargoVolume * 1000; //in metric ton
@@ -653,6 +658,45 @@ namespace TheAirline.Model.GeneralModel
             double cargoMassPerDay = cargoMass / 365;
 
             return cargoMassPerDay;
+        }
+
+        //sets the cargo sizes based on the volume
+        public static void SetCargoSize()
+        {
+            List<Airport> airports = new List<Airport>();
+            airports = Airports.GetAllActiveAirports();
+
+            foreach (Airport airport in airports)
+            {
+                int volume = (int)airport.Profile.CargoVolume;
+                if (volume > 4500) {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Largest;
+                }
+                else if (volume > 2500)
+                {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Very_large;
+                }
+                else if (volume < 2500)
+                {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Large;
+                }
+                else if (volume < 1500)
+                {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Medium;
+                }
+                else if (volume < 750)
+                {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Small;
+                }
+                else if (volume < 400)
+                {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Very_small;
+                }
+                else if (volume < 200)
+                {
+                    airport.Profile.Cargo = GeneralHelpers.Size.Smallest;
+                }
+            }
         }
         //creates the airport destinations cargo between two destinations in cu m.
         public static void CreateDestinationCargo(Airport airport, Airport dAirport)

@@ -887,6 +887,8 @@ namespace TheAirline.Model.GeneralModel
 
         /*!loads the airports.
          */
+
+        IDictionary<int, Airport> airports = new Dictionary<int, Airport>();
         private static void LoadAirports()
         {
             //LoadAirports(AppSettings.getDataPath() + "\\airports.xml");
@@ -923,7 +925,6 @@ namespace TheAirline.Model.GeneralModel
         {
             string id = "";
             int n = 0;
-            IDictionary<int, Airport> airports = new Dictionary<int, Airport>();
             try
             {
                 XmlDocument doc = new XmlDocument();
@@ -1071,8 +1072,6 @@ namespace TheAirline.Model.GeneralModel
                     if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
                         Airports.AddAirport(airport);
 
-                    airports.Add(n, airport);
-                    n++;
                 }
             }
             catch (Exception e)
