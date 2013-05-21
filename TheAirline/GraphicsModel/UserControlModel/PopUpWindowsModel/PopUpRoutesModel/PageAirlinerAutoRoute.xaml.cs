@@ -37,13 +37,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
         private CheckBox cbBusinessRoute;
 
         private double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
-
-    
-        public PageAirlinerAutoRoute(FleetAirliner airliner, PopUpAirlinerAutoRoutes parent)
+      
+        public delegate void OnRouteChanged(Route route);
+        public event OnRouteChanged RouteChanged;
+      
+        public PageAirlinerAutoRoute(FleetAirliner airliner, PopUpAirlinerAutoRoutes parent, OnRouteChanged routeChanged)
         {
             this.ParentPage = parent;
 
             this.Airliner = airliner;
+
+            this.RouteChanged += routeChanged;
 
             InitializeComponent();
 
@@ -241,7 +245,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
             else
                 rt = null;
 
-            if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.ParentPage.Entries))
+            if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.ParentPage.Entries,false))
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2705"), Translator.GetInstance().GetString("MessageBox", "2705", "message"), WPFMessageBoxButtons.YesNo);
 
@@ -255,7 +259,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
 
                     foreach (RouteTimeTableEntry entry in rt.Entries)
-                        this.ParentPage.Entries[route].Add(entry);
+                        if (!TimeTableHelpers.IsRouteEntryInOccupied(entry,this.Airliner))
+                            this.ParentPage.Entries[route].Add(entry);
                 }
             }
             else
@@ -263,9 +268,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
                 if (!this.ParentPage.Entries.ContainsKey(route))
                     this.ParentPage.Entries.Add(route, new List<RouteTimeTableEntry>());
 
-
                 foreach (RouteTimeTableEntry entry in rt.Entries)
-                    this.ParentPage.Entries[route].Add(entry);
+                    if (!TimeTableHelpers.IsRouteEntryInOccupied(entry,this.Airliner))
+                        this.ParentPage.Entries[route].Add(entry);
             }
             this.ParentPage.showFlights();
         }
@@ -341,6 +346,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
                 if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
                     cbBusinessRoute.IsChecked = false;
 
+                if (this.RouteChanged != null)
+                    this.RouteChanged(route);
+                
             }
 
 

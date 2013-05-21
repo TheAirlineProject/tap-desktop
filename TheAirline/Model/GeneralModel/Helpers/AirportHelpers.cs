@@ -22,15 +22,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             var airports2 = Airports.GetAllAirports(match);
 
             double maxDistance = Double.MinValue;
-           
+
             foreach (Airport airport1 in airports1)
             {
-                double distance = airports2.Where(a=>a!=airport1).Max(a=>MathHelpers.GetDistance(a,airport1));
+                double distance = airports2.Where(a => a != airport1).Max(a => MathHelpers.GetDistance(a, airport1));
 
                 if (distance >= maxDistance)
                     maxDistance = distance;
             }
-               
+
             return maxDistance;
         }
         //returns the shortest distance between airports in a match
@@ -67,10 +67,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return pricePerMeter * lenght;
         }
         //finds all airports in a radius of x km from a airport
-        public static List<Airport> GetAirportsNearAirport(Airport airport,double distance)
+        public static List<Airport> GetAirportsNearAirport(Airport airport, double distance)
         {
             return airport.Statics.getAirportsWithin(distance);
-         }
+        }
         //returns all routes from an airport for an airline
         public static List<Route> GetAirportRoutes(Airport airport, Airline airline)
         {
@@ -88,8 +88,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 routes.AddRange(airline.Routes);
             }
 
-             return  routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
-            
+            return routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).Count() > 0;
+
         }
         //returns all routes from an airport
         public static List<Route> GetAirportRoutes(Airport airport)
@@ -114,13 +114,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (Route route in aRoutes)
                         routes.Add(route);
                 }
-            
+
             }
             return routes.Where(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1)).ToList();
 
-          
+
         }
-        
+
         //returns all entries for a specific airport with take off in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportTakeoffs(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {
@@ -134,7 +134,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the weather (5 days) for a number of airport with an average
         public static void CreateAirportsWeather(List<Airport> airports, WeatherAverage average)
         {
-            
+
             if (airports.Count > 0)
             {
                 int maxDays = 5;
@@ -180,7 +180,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
         }
-        
+
         //creates a new weather object for a specific date based on the weather for another day
         private static Weather CreateDayWeather(Airport airport, DateTime date, Weather previousWeather)
         {
@@ -193,7 +193,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Weather.CloudCover[] coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
             Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
-            Weather.WindDirection windDirection; 
+            Weather.WindDirection windDirection;
             Weather.eWindSpeed windSpeed;
             double temperature, temperatureLow, temperatureHigh, temperatureSunrise, temperatureSunset, temperatureDayend;
 
@@ -234,7 +234,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (cover == Weather.CloudCover.Overcast)
                 precip = precipitationValues[rnd.Next(precipitationValues.Length)];
 
-           
+
             HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
 
             if (previousWeather == null)
@@ -260,14 +260,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             for (int i = Weather.Sunrise + 1; i < Weather.Sunset; i++)
             {
-                 Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
+                Weather.CloudCover hourlyCover = rnd.Next(3) == 0 ? coverValues[rnd.Next(coverValues.Length)] : cover;
 
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
                     temp -= MathHelpers.GetRandomDoubleNumber(1, 4);
-                 if (hourlyCover != hourlyTemperature[i-1].Cover && hourlyTemperature[i-1].Cover == Weather.CloudCover.Overcast)
-                     temp += MathHelpers.GetRandomDoubleNumber(1, 4);
-            
+                if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyTemperature[i - 1].Cover == Weather.CloudCover.Overcast)
+                    temp += MathHelpers.GetRandomDoubleNumber(1, 4);
+
 
                 int windspeedIndex = windSpeedValues.ToList().IndexOf(windSpeed);
                 Weather.eWindSpeed[] hourlyWindspeedValues = new Weather.eWindSpeed[] { windSpeed, windSpeed, windSpeed, hourlyTemperature[i - 1].WindSpeed, windspeedIndex > 0 ? (Weather.eWindSpeed)windspeedIndex - 1 : (Weather.eWindSpeed)windspeedIndex + 1, windspeedIndex < windSpeedValues.Length - 1 ? (Weather.eWindSpeed)windspeedIndex + 1 : (Weather.eWindSpeed)windspeedIndex - 1 };
@@ -296,7 +296,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
             cover = (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Cover;
             precip = (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Precip;
-          
+
 
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);
 
@@ -304,11 +304,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return weather;
 
         }
-         
+
         //creates the weather from an average
         private static Weather CreateDayWeather(DateTime date, Weather previousWeather, WeatherAverage average)
         {
-            
+
             Weather.WindDirection[] windDirectionValues = (Weather.WindDirection[])Enum.GetValues(typeof(Weather.WindDirection));
             Weather.eWindSpeed[] windSpeedValues = (Weather.eWindSpeed[])Enum.GetValues(typeof(Weather.eWindSpeed));
             Weather.CloudCover[] coverValues = (Weather.CloudCover[])Enum.GetValues(typeof(Weather.CloudCover));
@@ -325,10 +325,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (previousWeather == null)
             {
                 windSpeed = windSpeedValues[rnd.Next(windIndexMin, windIndexMax)];
-                
-                temperatureLow = MathHelpers.GetRandomDoubleNumber(average.TemperatureMin -5,average.TemperatureMin+5);
-               temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(average.TemperatureMax - 5, temperatureLow + 1),average.TemperatureMax+5);
-    
+
+                temperatureLow = MathHelpers.GetRandomDoubleNumber(average.TemperatureMin - 5, average.TemperatureMin + 5);
+                temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(average.TemperatureMax - 5, temperatureLow + 1), average.TemperatureMax + 5);
+
             }
             else
             {
@@ -337,11 +337,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 windSpeed = windSpeedValues[rnd.Next(Math.Max(windIndexMin, windIndex - 2), Math.Min(windIndex + 2, windIndexMax))];
 
                 double minTemp = Math.Max(average.TemperatureMin, previousTemperature - 5);
-                temperatureLow = MathHelpers.GetRandomDoubleNumber(minTemp-5,minTemp+5);
-              
+                temperatureLow = MathHelpers.GetRandomDoubleNumber(minTemp - 5, minTemp + 5);
+
                 double maxTemp = Math.Min(average.TemperatureMax, previousTemperature + 5);
 
-               temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);//rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
+                temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);//rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
 
 
 
@@ -393,7 +393,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 double temp = hourlyTemperature[i - 1].Temperature + daySteps;
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyCover == Weather.CloudCover.Overcast)
-                    temp -= MathHelpers.GetRandomDoubleNumber(1,4);
+                    temp -= MathHelpers.GetRandomDoubleNumber(1, 4);
                 if (hourlyCover != hourlyTemperature[i - 1].Cover && hourlyTemperature[i - 1].Cover == Weather.CloudCover.Overcast)
                     temp += MathHelpers.GetRandomDoubleNumber(1, 4);
 
@@ -422,9 +422,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureLow = hourlyTemperature.Min(t => t.Temperature);
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
 
-            cover = (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() }).OrderByDescending(g=>g.Qty).First().Cover;
+            cover = (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Cover;
             precip = (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Precip;
-          
+
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);
 
 
@@ -466,7 +466,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double basePrice = 10000;
 
             return GeneralHelpers.GetInflationPrice(paxDemand * basePrice);
-         
+
             //(initial amount, in the millions; and a montly amount probably $50,000 or so
         }
         //checks an airport for extending of runway
@@ -474,30 +474,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int minYearsBetweenExpansions = 5;
 
-           long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
-           long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a=>a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To>= GameObject.GetInstance().GameTime).Max(a=>a.MinRunwaylength);
-           
+            long maxRunwayLenght = (from r in airport.Runways select r.Length).Max();
+            long longestRequiredRunwayLenght = AirlinerTypes.GetTypes(a => a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime).Max(a => a.MinRunwaylength);
+
             var airportRoutes = AirportHelpers.GetAirportRoutes(airport);
-            var routeAirliners = airportRoutes.SelectMany(r=>r.getAirliners());
+            var routeAirliners = airportRoutes.SelectMany(r => r.getAirliners());
 
             long longestRunwayInUse = routeAirliners.Count() > 0 ? routeAirliners.Max(a => a.Airliner.Type.MinRunwaylength) : 0;
 
-           if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
-           {
-               List<string> runwayNames = (from r in Airports.GetAllAirports().SelectMany(a=>a.Runways) select r.Name).Distinct().ToList();
-             
-               foreach (Runway r in airport.Runways)
-                   runwayNames.Remove(r.Name);
+            if (maxRunwayLenght < longestRequiredRunwayLenght / 2 && maxRunwayLenght < longestRunwayInUse * 3 / 4 && GameObject.GetInstance().GameTime.AddYears(-minYearsBetweenExpansions) > airport.LastExpansionDate)
+            {
+                List<string> runwayNames = (from r in Airports.GetAllAirports().SelectMany(a => a.Runways) select r.Name).Distinct().ToList();
 
-               Runway.SurfaceType surface = airport.Runways[0].Surface;
-               long lenght = Math.Min(longestRequiredRunwayLenght * 3 / 4,longestRunwayInUse*2);
-               
-               Runway runway = new Runway(runwayNames[rnd.Next(runwayNames.Count)] ,lenght,surface,GameObject.GetInstance().GameTime.AddDays(90),false);
-               airport.Runways.Add(runway);
-      
-               airport.LastExpansionDate = GameObject.GetInstance().GameTime;
-           }
-           
+                foreach (Runway r in airport.Runways)
+                    runwayNames.Remove(r.Name);
+
+                Runway.SurfaceType surface = airport.Runways[0].Surface;
+                long lenght = Math.Min(longestRequiredRunwayLenght * 3 / 4, longestRunwayInUse * 2);
+
+                Runway runway = new Runway(runwayNames[rnd.Next(runwayNames.Count)], lenght, surface, GameObject.GetInstance().GameTime.AddDays(90), false);
+                airport.Runways.Add(runway);
+
+                airport.LastExpansionDate = GameObject.GetInstance().GameTime;
+            }
+
         }
         //checks an airport for new gates
         public static void CheckForExtendGates(Airport airport)
@@ -520,14 +520,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     if (airport.Income > price)
                     {
-                      
+
                         for (int i = 0; i < numberOfGates; i++)
                             minTerminal.Gates.addGate(new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild)));
 
                         airport.Income -= price;
                         airport.LastExpansionDate = GameObject.GetInstance().GameTime;
                     }
-                
+
                 }
                 //build new terminal
                 else
@@ -551,15 +551,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                 }
             }
-           
-         
+
+
         }
         //reallocate the pax demand from one airport to another
         public static void ReallocateAirport(Airport airportOld, Airport airportNew)
         {
             if (airportNew.getMajorDestinations().Count == 0)
             {
-                 foreach (DestinationDemand paxDemand in airportOld.getDestinationsPassengers())
+                foreach (DestinationDemand paxDemand in airportOld.getDestinationsPassengers())
                     airportNew.addDestinationPassengersRate(paxDemand);
             }
         }
@@ -590,74 +590,80 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static void RentGates(Airport airport, Airline airline, int gates)
         {
-            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport,gates, 20));
+            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport, gates, 20));
 
             airport.addAirlineContract(contract);
-      
+
         }
         //rents a number of gates for an airline at an airport
-        public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length,string s)
+        public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length, string s)
         {
 
-            CreateAirportContract(airport, airline, gates, length, GetYearlyContractPayment(airport, gates,length));
+            CreateAirportContract(airport, airline, gates, length, GetYearlyContractPayment(airport, gates, length));
         }
         public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length, double yearlypayment)
         {
-            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, length,yearlypayment);
+            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, length, yearlypayment);
             airport.addAirlineContract(contract);
-  
+
         }
         //returns all occupied slot times for an airline at an airport (15 minutes slots)
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts)
         {
-
             List<TimeSpan> occupiedSlots = new List<TimeSpan>();
 
             TimeSpan gateTimeBefore = new TimeSpan(0, 15, 0);
-            TimeSpan gateTimeAfter = new TimeSpan(0, 45, 0);
+            TimeSpan gateTimeAfter = new TimeSpan(0, 15, 0);
 
             int gates = contracts.Sum(c => c.NumberOfGates);
 
             var routes = new List<Route>(GetAirportRoutes(airport, airline));
 
-            var entries = routes.SelectMany(r => r.TimeTable.Entries);
-            
+            var entries = new List<RouteTimeTableEntry>(routes.SelectMany(r => r.TimeTable.Entries));
+
             foreach (var entry in entries)
             {
-                TimeSpan entryTakeoffTime = new TimeSpan((int)entry.Day, entry.Time.Hours,entry.Time.Minutes,entry.Time.Seconds);
+
+                TimeSpan entryTakeoffTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
                 TimeSpan entryLandingTime = entryTakeoffTime.Add(entry.TimeTable.Route.getFlightTime(entry.Airliner.Airliner.Type));
 
                 if (entryLandingTime.Days > 6)
                     entryLandingTime = new TimeSpan(0, entryLandingTime.Hours, entryLandingTime.Minutes, entryLandingTime.Seconds);
 
-                TimeSpan entryStartTakeoffTime = entryTakeoffTime.Subtract(gateTimeBefore);
-                TimeSpan entryEndTakeoffTime = entryTakeoffTime.Add(gateTimeAfter);
-
-                TimeSpan tTakeoffTime = new TimeSpan(entryStartTakeoffTime.Days, entryStartTakeoffTime.Hours, (entryStartTakeoffTime.Minutes / 15) * 15, 0);
-
-                while (tTakeoffTime < entryEndTakeoffTime)
+                if (entry.DepartureAirport == airport)
                 {
-                    occupiedSlots.Add(tTakeoffTime);
-                    tTakeoffTime = tTakeoffTime.Add(new TimeSpan(0, 15, 0));
+                    TimeSpan entryStartTakeoffTime = entryTakeoffTime.Subtract(gateTimeBefore);
+                    TimeSpan entryEndTakeoffTime = entryTakeoffTime.Add(gateTimeAfter);
+
+                    TimeSpan tTakeoffTime = new TimeSpan(entryStartTakeoffTime.Days, entryStartTakeoffTime.Hours, (entryStartTakeoffTime.Minutes / 15) * 15, 0);
+
+                    while (tTakeoffTime < entryEndTakeoffTime)
+                    {
+                        occupiedSlots.Add(tTakeoffTime);
+                        tTakeoffTime = tTakeoffTime.Add(new TimeSpan(0, 15, 0));
+                    }
                 }
-               
-                TimeSpan entryStartLandingTime = entryLandingTime.Subtract(gateTimeBefore);
-                TimeSpan entryEndLandingTime = entryLandingTime.Add(gateTimeAfter);
 
-                TimeSpan tLandingTime = new TimeSpan(entryStartLandingTime.Days, entryStartLandingTime.Hours, (entryStartLandingTime.Minutes / 15) * 15, 0);
-
-                while (tLandingTime < entryEndLandingTime) 
+                if (entry.DepartureAirport != airport)
                 {
-                    occupiedSlots.Add(tLandingTime);
-                    tLandingTime = tLandingTime.Add(new TimeSpan(0, 15, 0));
+                    TimeSpan entryStartLandingTime = entryLandingTime.Subtract(gateTimeBefore);
+                    TimeSpan entryEndLandingTime = entryLandingTime.Add(gateTimeAfter);
+
+                    TimeSpan tLandingTime = new TimeSpan(entryStartLandingTime.Days, entryStartLandingTime.Hours, (entryStartLandingTime.Minutes / 15) * 15, 0);
+
+                    while (tLandingTime < entryEndLandingTime)
+                    {
+                        occupiedSlots.Add(tLandingTime);
+                        tLandingTime = tLandingTime.Add(new TimeSpan(0, 15, 0));
+                    }
                 }
             }
 
             var slots = (from s in occupiedSlots
-           group s by s.Ticks into g
-           select new { Time = g.Key, Slots = g }).Where(s=>s.Slots.Count() >= gates);
+                         group s by s into g
+                         select new { Time = g.Key, Slots = g });
 
-            return slots.SelectMany(s => s.Slots).ToList();
+            return slots.Where(s => s.Slots.Count() >= gates).SelectMany(s => s.Slots).ToList();
 
         }
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline)
@@ -668,7 +674,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static Boolean CanFillRoutesEntries(Airport airport, Airline airline, List<AirportContract> contracts)
         {
             return GetOccupiedSlotTimes(airport, airline, contracts).GroupBy(s => s.Ticks).Where(x => x.Count() > 1).Count() == 0;
-       
+
         }
         //returns the yearly payment for a number of gates
         public static double GetYearlyContractPayment(Airport airport, int gates, int length)
@@ -714,7 +720,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return GeneralHelpers.Size.Smallest;
 
-  
+
         }
     }
 

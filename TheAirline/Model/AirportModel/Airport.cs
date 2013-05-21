@@ -177,6 +177,7 @@ namespace TheAirline.Model.AirportModel
         {
             lock (this.DestinationPassengers)
             {
+             
                 DestinationDemand destinationPassengers = getDestinationPassengersObject(destination);
 
                 if (destinationPassengers != null)

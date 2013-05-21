@@ -37,10 +37,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
         private TextBlock txtStopovers, txtFlightTime;
 
-        public PageAirlinerAdvancedRoute(FleetAirliner airliner, PopUpAirlinerAutoRoutes parent)
+        public delegate void OnRouteChanged(Route route);
+        public event OnRouteChanged RouteChanged;
+
+        public PageAirlinerAdvancedRoute(FleetAirliner airliner, PopUpAirlinerAutoRoutes parent, OnRouteChanged routeChanged)
         {
             this.ParentPage = parent;
             this.Airliner = airliner;
+            this.RouteChanged += routeChanged;
 
             InitializeComponent();
 
@@ -56,9 +60,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
             panelFlightTime.Children.Add(txtStopovers);
 
             txtFlightTime = UICreator.CreateTextBlock("Flight time:");
-             panelFlightTime.Children.Add(txtFlightTime);
-
-           
+            panelFlightTime.Children.Add(txtFlightTime);
 
             panelMain.Children.Add(panelFlightTime);
 
@@ -179,6 +181,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 txtFlightTime.Text = string.Format("Flight time: {0}", route.getFlightTime(this.Airliner.Airliner.Type).ToString("hh\\:mm"));
 
+                if (this.RouteChanged != null)
+                    this.RouteChanged(route);
+         
             }
         }
 

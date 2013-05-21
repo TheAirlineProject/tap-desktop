@@ -34,6 +34,14 @@
                 <TextBlock Text="{Binding Converter={StaticResource routeItemConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>
+        
+        <DataTemplate x:Key="OccupiedItem">
+            <TextBlock Width="{Binding}" VerticalAlignment="Bottom">
+                <TextBlock.Background>
+                    <SolidColorBrush Color="Gray" Opacity="0.6"></SolidColorBrush>
+                </TextBlock.Background>
+            </TextBlock>
+        </DataTemplate>
         <DataTemplate x:Key="FlightItem">
             <TextBlock TextAlignment="Center" Width="{Binding Key}" Height="20" Background="{Binding Value.TimeTable.Route,Converter={StaticResource routeColorConverter}}" Tag="{Binding Value}" MouseDown="txtFlightEntry_MouseDown" VerticalAlignment="Bottom" FontWeight="Bold">
                 <TextBlock.Text>

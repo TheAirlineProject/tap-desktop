@@ -39,6 +39,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private Frame RouteFrame;
 
+        private Route SelectedRoute;
+
         public static object ShowPopUp(FleetAirliner airliner)
         {
             PopUpWindow window = new PopUpAirlinerAutoRoutes(airliner);
@@ -104,7 +106,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showFlights();
 
-            this.RouteFrame.Navigate(new PageAirlinerAutoRoute(this.Airliner, this));
+            PageAirlinerAutoRoute pageRoute = new PageAirlinerAutoRoute(this.Airliner, this,PopUpAirlinerAutoRoutes_RouteChanged);
+    
+            this.RouteFrame.Navigate(pageRoute);
+            
         }
         //creates the panel for the routes
         private ScrollViewer createRoutesPanel()
@@ -118,7 +123,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelRoutes.Margin = new Thickness(5, 0, 0, 0);
 
             long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
-            
+
             var routes = this.Airliner.Airliner.Airline.Routes.FindAll(r => this.Airliner.Airliner.Type.Range > r.getDistance() && !r.Banned && r.Destination1.getMaxRunwayLength() >= requiredRunway && r.Destination2.getMaxRunwayLength() >= requiredRunway);
             foreach (Route route in routes)
             {
@@ -198,6 +203,40 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 }
             }
 
+
+            if (this.SelectedRoute != null)
+            {
+                var occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(this.SelectedRoute.Destination1, this.Airliner.Airliner.Airline).Where(s => s.Days == (int)day);
+                var occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(this.SelectedRoute.Destination2, this.Airliner.Airliner.Airline).Where(s => s.Days == (int)day);
+                <
+
+                int slotLenght = 15;
+
+                foreach (TimeSpan occupiedSlot in occupiedSlots1)
+                {
+                    ContentControl ccOccupied = new ContentControl();
+                    ccOccupied.ContentTemplate = this.Resources["OccupiedItem"] as DataTemplate; 
+                    ccOccupied.Content = slotLenght / hourFactor;
+
+                    Canvas.SetLeft(ccOccupied, 60 * occupiedSlot.Hours / hourFactor + occupiedSlot.Minutes / hourFactor);
+
+                    cnvFlights.Children.Add(ccOccupied);
+                }
+
+                foreach (TimeSpan occupiedSlot in occupiedSlots2)
+                {
+                    ContentControl ccOccupied = new ContentControl();
+                    ccOccupied.ContentTemplate = this.Resources["OccupiedItem"] as DataTemplate;
+                    ccOccupied.Content = slotLenght / hourFactor;
+
+                    Canvas.SetLeft(ccOccupied, 60 * occupiedSlot.Hours / hourFactor + occupiedSlot.Minutes / hourFactor);
+
+                    cnvFlights.Children.Add(ccOccupied);
+
+                }
+
+            }
+
             return brdDay;
         }
         //creates the time indicator header
@@ -217,7 +256,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 TextBlock txtHour = new TextBlock();
                 //txtHour.Text = string.Format("{0}-{1}", new DateTime(2000, 1, 1, i, 0, 0).ToString(format), new DateTime(2000, 1, 1, i + 1 == 24 ? 0 : i + 1, 0, 0).ToString(format));
-                txtHour.Text = string.Format("{0}-{1}",fromHour,toHour);
+                txtHour.Text = string.Format("{0}-{1}", fromHour, toHour);
                 txtHour.FontWeight = FontWeights.Bold;
                 txtHour.Width = (60 / hourFactor) - 2;
                 txtHour.TextAlignment = TextAlignment.Center;
@@ -325,13 +364,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void btnRegular_Click(object sender, RoutedEventArgs e)
         {
-            this.RouteFrame.Navigate(new PageAirlinerAutoRoute(this.Airliner, this));
+            PageAirlinerAutoRoute pageRoute = new PageAirlinerAutoRoute(this.Airliner, this, PopUpAirlinerAutoRoutes_RouteChanged);
+        
+            this.RouteFrame.Navigate(pageRoute);
             this.btnRegular.Visibility = System.Windows.Visibility.Collapsed;
             this.btnAdvanced.Visibility = System.Windows.Visibility.Visible;
         }
+
+        private void PopUpAirlinerAutoRoutes_RouteChanged(Route route)
+        {
+            this.SelectedRoute = route;
+            showFlights();
+        }
         private void btnAdvanced_Click(object sender, RoutedEventArgs e)
         {
-            this.RouteFrame.Navigate(new PageAirlinerAdvancedRoute(this.Airliner, this));
+            PageAirlinerAdvancedRoute pageRoute = new PageAirlinerAdvancedRoute(this.Airliner, this,PopUpAirlinerAutoRoutes_RouteChanged);
+        
+            this.RouteFrame.Navigate(pageRoute);
             this.btnAdvanced.Visibility = System.Windows.Visibility.Collapsed;
             this.btnRegular.Visibility = System.Windows.Visibility.Visible;
         }
@@ -399,7 +448,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             lbFlights.Items.Add(new QuickInfoValue("Day", createTimeHeaderPanel()));
             //CultureInfo ci = new CultureInfo(language.CultureInfo, true);
-        
+
             DayOfWeek firstDay = CultureInfo.CurrentCulture.DateTimeFormat.FirstDayOfWeek;
             for (int dayIndex = 0; dayIndex < 7; dayIndex++)
             {
@@ -407,7 +456,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
                 lbFlights.Items.Add(new QuickInfoValue(currentDay.ToString(), createRoutePanel(currentDay)));
             }
-          
+
         }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {

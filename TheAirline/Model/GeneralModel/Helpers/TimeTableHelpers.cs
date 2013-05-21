@@ -11,23 +11,68 @@ namespace TheAirline.Model.GeneralModel.Helpers
     public class TimeTableHelpers
     {
         //checks if a time table is valid
-        public static Boolean IsTimeTableValid(RouteTimeTable timeTable, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries)
+        public static Boolean IsTimeTableValid(RouteTimeTable timeTable, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries, Boolean withSlots = true)
         {
             foreach (RouteTimeTableEntry e in timeTable.Entries)
             {
-                if (!IsRouteEntryValid(e, airliner, entries, new Dictionary<Route, List<RouteTimeTableEntry>>()))
+                if (!IsRouteEntryValid(e, airliner, entries, new Dictionary<Route, List<RouteTimeTableEntry>>(),withSlots))
                     return false;
             }
             return true;
         }
-        public static Boolean IsTimeTableValid(RouteTimeTableEntry entry, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries)
+        public static Boolean IsTimeTableValid(RouteTimeTableEntry entry, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries, Boolean withSlots = true)
         {
-            return IsRouteEntryValid(entry, airliner, entries, new Dictionary<Route, List<RouteTimeTableEntry>>());
-          
+            return IsRouteEntryValid(entry, airliner, entries, new Dictionary<Route, List<RouteTimeTableEntry>>(), withSlots);
+
+        }
+
+        //checks if an entry is in occupied slot
+        public static Boolean IsRouteEntryInOccupied(RouteTimeTableEntry entry, FleetAirliner airliner)
+        {
+            var occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(entry.DepartureAirport, airliner.Airliner.Airline);
+            var occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(entry.Destination.Airport, airliner.Airliner.Airline);
+
+            TimeSpan gateTimeBefore = new TimeSpan(0, 15, 0);
+            TimeSpan gateTimeAfter = new TimeSpan(0, 15, 0);
+
+            TimeSpan entryTakeoffTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
+            TimeSpan entryLandingTime = entryTakeoffTime.Add(entry.TimeTable.Route.getFlightTime(entry.Airliner.Airliner.Type));
+
+            if (entryLandingTime.Days > 6)
+                entryLandingTime = new TimeSpan(0, entryLandingTime.Hours, entryLandingTime.Minutes, entryLandingTime.Seconds);
+
+            TimeSpan entryStartTakeoffTime = entryTakeoffTime.Subtract(gateTimeBefore);
+            TimeSpan entryEndTakeoffTime = entryTakeoffTime.Add(gateTimeAfter);
+
+            TimeSpan tTakeoffTime = new TimeSpan(entryStartTakeoffTime.Days, entryStartTakeoffTime.Hours, (entryStartTakeoffTime.Minutes / 15) * 15, 0);
+
+            while (tTakeoffTime < entryEndTakeoffTime)
+            {
+                if (occupiedSlots1.Contains(tTakeoffTime))
+                    return true;
+
+                tTakeoffTime = tTakeoffTime.Add(new TimeSpan(0, 15, 0));
+            }
+
+            TimeSpan entryStartLandingTime = entryLandingTime.Subtract(gateTimeBefore);
+            TimeSpan entryEndLandingTime = entryLandingTime.Add(gateTimeAfter);
+
+            TimeSpan tLandingTime = new TimeSpan(entryStartLandingTime.Days, entryStartLandingTime.Hours, (entryStartLandingTime.Minutes / 15) * 15, 0);
+
+            while (tLandingTime < entryEndLandingTime)
+            {
+                if (occupiedSlots2.Contains(tLandingTime))
+                    return true;
+
+                tLandingTime = tLandingTime.Add(new TimeSpan(0, 15, 0));
+            }
+
+            return false;
         }
         //checks if an entry is valid
-        public static Boolean IsRouteEntryValid(RouteTimeTableEntry entry, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries, Dictionary<Route, List<RouteTimeTableEntry>> entriesToDelete)
+        public static Boolean IsRouteEntryValid(RouteTimeTableEntry entry, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries, Dictionary<Route, List<RouteTimeTableEntry>> entriesToDelete, Boolean withSlots)
         {
+
             TimeSpan flightTime = entry.TimeTable.Route.getFlightTime(airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
             TimeSpan startTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
@@ -50,12 +95,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
-            
+
             foreach (RouteTimeTableEntry e in deletable)
                 if (airlinerEntries.Contains(e))
                     airlinerEntries.Remove(e);
 
-           // airlinerEntries.AddRange(entry.TimeTable.Entries.FindAll(e => e.Destination.Airport == entry.Destination.Airport));
+            if (withSlots)
+                if (IsRouteEntryInOccupied(entry, airliner))
+                    return false;
+
+
+            // airlinerEntries.AddRange(entry.TimeTable.Entries.FindAll(e => e.Destination.Airport == entry.Destination.Airport));
 
             foreach (RouteTimeTableEntry e in airlinerEntries)
             {
@@ -75,7 +125,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     if (e.Airliner == airliner || diffEndTime < 15 || diffStartTime < 15)
                     {
-                       
+
 
                         return false;
                     }
@@ -83,9 +133,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             double minutesPerWeek = 7 * 24 * 60;
 
-            RouteTimeTableEntry nextEntry = GetNextEntry(entry,airliner,entries,entriesToDelete);
+            RouteTimeTableEntry nextEntry = GetNextEntry(entry, airliner, entries, entriesToDelete);
 
-            RouteTimeTableEntry previousEntry = GetPreviousEntry(entry,airliner,entries,entriesToDelete);
+            RouteTimeTableEntry previousEntry = GetPreviousEntry(entry, airliner, entries, entriesToDelete);
 
             if (nextEntry != null && previousEntry != null)
             {
@@ -106,7 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     return true;
                 else
                 {
-                  
+
                     return false;
                 }
             }
