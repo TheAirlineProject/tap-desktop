@@ -208,8 +208,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 var occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(this.SelectedRoute.Destination1, this.Airliner.Airliner.Airline).Where(s => s.Days == (int)day);
                 var occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(this.SelectedRoute.Destination2, this.Airliner.Airliner.Airline).Where(s => s.Days == (int)day);
-                <
-
+            
                 int slotLenght = 15;
 
                 foreach (TimeSpan occupiedSlot in occupiedSlots1)

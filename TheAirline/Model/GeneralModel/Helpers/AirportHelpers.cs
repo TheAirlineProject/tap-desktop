@@ -610,7 +610,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns all occupied slot times for an airline at an airport (15 minutes slots)
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts)
         {
-            List<TimeSpan> occupiedSlots = new List<TimeSpan>();
+            List<KeyValuePair<Route, TimeSpan>> occupiedSlots = new List<KeyValuePair<Route, TimeSpan>>();
 
             TimeSpan gateTimeBefore = new TimeSpan(0, 15, 0);
             TimeSpan gateTimeAfter = new TimeSpan(0, 15, 0);
@@ -639,7 +639,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     while (tTakeoffTime < entryEndTakeoffTime)
                     {
-                        occupiedSlots.Add(tTakeoffTime);
+                        if (!occupiedSlots.Exists(s=>s.Key==entry.TimeTable.Route && s.Value == tTakeoffTime))
+                            occupiedSlots.Add(new KeyValuePair<Route,TimeSpan>(entry.TimeTable.Route,tTakeoffTime));
                         tTakeoffTime = tTakeoffTime.Add(new TimeSpan(0, 15, 0));
                     }
                 }
@@ -653,14 +654,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     while (tLandingTime < entryEndLandingTime)
                     {
-                        occupiedSlots.Add(tLandingTime);
+                        if (!occupiedSlots.Exists(s => s.Key == entry.TimeTable.Route && s.Value == tLandingTime))
+                            occupiedSlots.Add(new KeyValuePair<Route, TimeSpan>(entry.TimeTable.Route, tLandingTime));
                         tLandingTime = tLandingTime.Add(new TimeSpan(0, 15, 0));
                     }
                 }
             }
 
             var slots = (from s in occupiedSlots
-                         group s by s into g
+                         group s.Value by s.Value into g
                          select new { Time = g.Key, Slots = g });
 
             return slots.Where(s => s.Slots.Count() >= gates).SelectMany(s => s.Slots).ToList();

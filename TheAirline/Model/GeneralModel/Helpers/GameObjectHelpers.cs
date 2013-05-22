@@ -398,7 +398,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                            }
                            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport,terminal.Gates.NumberOfGates,20);
 
-                           airport.addAirlineContract(new AirportContract(terminal.Airline, airport, GameObject.GetInstance().GameTime, terminal.Gates.NumberOfGates, 20,yearlyPayment*0.75,false,terminal ));
+                           airport.addAirlineContract(new AirportContract(terminal.Airline, airport, GameObject.GetInstance().GameTime, terminal.Gates.NumberOfGates, 20,yearlyPayment*0.75,false,false,terminal ));
                           
                            if (terminal.Airport.getAirportFacility(terminal.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                            {
@@ -876,7 +876,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (FleetAirliner airliner in airline.Fleet.FindAll((delegate(FleetAirliner a) { return a.Purchased == FleetAirliner.PurchasedType.Leased; })))
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.Airliner.LeasingPrice);
 
-                // chs, 2011-28-10 changed so a terminal only costs 75% of gate price
                 foreach (Airport airport in airline.Airports)
                 {
                     List<AirportContract> contracts = new List<AirportContract>(airport.getAirlineContracts(airline));

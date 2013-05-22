@@ -98,6 +98,9 @@ namespace TheAirline.Model.AirlineModel
         //adds a pilot to the airline
         public void addPilot(Pilot pilot)
         {
+            if (pilot == null)
+                throw new NullReferenceException("Pilot is null at Airline.cs/addPilot");
+
             lock (this.Pilots)
             {
                 this.Pilots.Add(pilot);

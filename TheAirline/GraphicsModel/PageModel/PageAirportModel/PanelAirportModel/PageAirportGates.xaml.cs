@@ -307,8 +307,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                 }
+                AirportContract contract = (AirportContract)o;
 
-                this.Airport.addAirlineContract((AirportContract)o);
+                //25 % off if paying up front
+                if (contract.PayFull)
+                {
+                    double payment = (contract.YearlyPayment * contract.Length) * 0.75;
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline,GameObject.GetInstance().GameTime,Invoice.InvoiceType.Rents,-payment);
+                    contract.YearlyPayment = 0;
+                }
+
+                this.Airport.addAirlineContract(contract);
 
                 showGatesInformation();
                 showContracts();

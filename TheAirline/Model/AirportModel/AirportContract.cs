@@ -21,8 +21,10 @@ namespace TheAirline.Model.AirportModel
         public int MonthsLeft { get { return getMonthsLeft();} set { ;} }
         public Terminal Terminal { get; set; }
         public DateTime ExpireDate { get; set; }
-        public AirportContract(Airline airline, Airport airport, DateTime date, int numberOfGates, int length, double yearlyPayment, Boolean isExclusiveDeal = false, Terminal terminal = null)
+        public Boolean PayFull { get; set; }
+        public AirportContract(Airline airline, Airport airport, DateTime date, int numberOfGates, int length, double yearlyPayment,Boolean payFull = false, Boolean isExclusiveDeal = false, Terminal terminal = null)
         {
+            this.PayFull = payFull;
             this.Airline = airline;
             this.Airport = airport;
             this.ContractDate = date;

@@ -30,6 +30,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private TextBlock txtYearlyPayment;
         private AirportContract Contract;
         private Button btnOk;
+        private CheckBox cbPayNow;
         public static object ShowPopUp(Airport airport)
         {
             PopUpWindow window = new PopUpAirportContract(airport);
@@ -97,9 +98,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             cbLength.ItemStringFormat = "{0} year(s)";
             cbLength.HorizontalContentAlignment = System.Windows.HorizontalAlignment.Left;
             cbLength.SelectionChanged += cbLength_SelectionChanged;
-            
-        
+         
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpAirportContract","1002"),cbLength));
+
+            cbPayNow = new CheckBox();
+            cbPayNow.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+         
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpAirportContract","1004"),cbPayNow));
 
             txtYearlyPayment = new TextBlock();
 
@@ -116,9 +121,17 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
        
         private void cbLength_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            int lenght = Convert.ToInt32(cbLength.SelectedItem);
+
             setYearlyValue();
 
-            btnOk.IsEnabled = Convert.ToInt32(cbLength.SelectedItem) > 0 && Convert.ToInt32(nudGates.Value) > 0; 
+            btnOk.IsEnabled = Convert.ToInt32(cbLength.SelectedItem) > 0 && Convert.ToInt32(nudGates.Value) > 0;
+
+            if (lenght <= 2)
+            {
+                cbPayNow.IsEnabled = false;
+                cbPayNow.IsChecked = true;
+            }
         }
 
         private void nudGates_ValueChanged(object sender, RoutedPropertyChangedEventArgs<decimal> e)
@@ -180,7 +193,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             if (this.Contract == null)
             {
-                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport, GameObject.GetInstance().GameTime, gates, lenght, yearlyPayment);
+                Boolean payFull = false;
+                if (lenght <= 2)
+                {
+                     payFull = true;
+                }
+                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport, GameObject.GetInstance().GameTime, gates, lenght, yearlyPayment,payFull);
                 this.Selected = contract;
             }
             else
