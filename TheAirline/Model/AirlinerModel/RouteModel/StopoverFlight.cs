@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
     //the class for a stopover flight
+    [Serializable]
     public class StopoverFlight : Flight
     {
         public int CurrentFlight { get; set; }

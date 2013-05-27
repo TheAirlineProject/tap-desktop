@@ -7,7 +7,8 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for passenger demand at a scenario
-    public class ScenarioPassengerDemand
+       [Serializable]
+     public class ScenarioPassengerDemand
     {
         public Country Country { get; set; }
         public Airport Airport { get; set; }

@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TheAirline.Model.AirlineModel
 {
+    [Serializable]
     //the member of an alliance
     public class AllianceMember
     {

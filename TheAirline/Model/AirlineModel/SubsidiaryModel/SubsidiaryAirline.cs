@@ -7,6 +7,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 namespace TheAirline.Model.AirlineModel.SubsidiaryModel
 {
     //the class for a subsidiary airline for an airline
+    [Serializable]
     public class SubsidiaryAirline : Airline
     {
         public Airline Airline { get; set; }

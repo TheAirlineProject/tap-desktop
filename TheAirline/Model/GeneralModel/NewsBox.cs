@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a news box
+    [Serializable]
     public class NewsBox
     {
         private List<News> News;
@@ -47,6 +48,7 @@ namespace TheAirline.Model.GeneralModel
 
     }
     //the class for a news
+    [Serializable]
     public class News
     {
         public enum NewsType { Standard_News,Airport_News, Flight_News, Fleet_News, Airline_News, Alliance_News,Airliner_News}

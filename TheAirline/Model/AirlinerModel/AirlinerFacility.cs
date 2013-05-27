@@ -7,6 +7,7 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for a facility in an airliner
+    [Serializable]
     public class AirlinerFacility
     {
         public static string Section { get; set; }

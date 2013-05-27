@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using TheAirline.Model.AirlineModel;
@@ -12,27 +13,43 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
+    [DataContract]
+    [KnownType(typeof(PassengerRoute))]
+    [KnownType(typeof(CargoRoute))]
+
     //the class for a route
     public abstract class Route
     {
         public double Balance { get { return getBalance(); } set { ;} }
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
-   
+
         public Boolean HasStopovers { get { return this.Stopovers.Count > 0; } set { ;} }
+        [DataMember]
         public string Id { get; set; }
+        [DataMember]
         public Airport Destination1 { get; set; }
+        [DataMember]
         public Airport Destination2 { get; set; }
+        [DataMember]
         public List<StopoverRoute> Stopovers { get; set; }
+        [DataMember]
         public RouteTimeTable TimeTable { get; set; }
+        [DataMember]
         public Invoices Invoices { get; set; }
+        [DataMember]
         public RouteStatistics Statistics { get; set; }
+        [DataMember]
         public Boolean Banned { get; set; }
+        [DataMember]
         public DateTime LastUpdated { get; set; }
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
+        [DataMember]
         public Weather.Season Season { get; set; }
+        [DataMember]
         public Airline Airline { get; set; }
-  
+
         public enum RouteType { Cargo, Mixed, Passenger }
+        [DataMember]
         public RouteType Type { get; set; }
         public Route(RouteType type, string id, Airport destination1, Airport destination2)
         {

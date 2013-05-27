@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 namespace TheAirline.Model.AirportModel
 {
     //the class for an airport statistics value
+    [Serializable]
     public class AirportStatisticsValue : StatisticsValue
     {
         public Airline Airline { get; set; }

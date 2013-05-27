@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for an invoice
+    [Serializable]
     public class Invoice
     {
         public enum InvoiceType { Wages, Rents, Loans, Purchases, Tickets, Airline_Expenses, Fees, Maintenances, Flight_Expenses, OnFlight_Income, Total }

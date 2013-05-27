@@ -13,6 +13,7 @@ using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.AirlineModel
 {
+    [Serializable]
     //the class for an airline
     public class Airline
     {

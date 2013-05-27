@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.AirportModel
 {
     //the class for a runway at an airport
+    [Serializable]
     public class Runway
     {
         public string Name { get; set; }

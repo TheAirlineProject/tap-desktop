@@ -9,6 +9,7 @@ namespace TheAirline.Model.GeneralModel
  * This is used for a region in the world.
  * The class needs parameter for the region name
  */
+    [Serializable]
     public class Region
     {
         public static string Section { get; set; }

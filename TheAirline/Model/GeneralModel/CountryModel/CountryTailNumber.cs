@@ -9,6 +9,7 @@ using System.Text.RegularExpressions;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for handling the tail numbers for the country
+    [Serializable]
     public class CountryTailNumber
     {
         public string LastTailNumber { get; set; }

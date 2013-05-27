@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a training aircraft
+    [Serializable]
     public class TrainingAircraft
     {
         public TrainingAircraftType Type { get; set; }

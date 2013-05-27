@@ -10,7 +10,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
   * This is used for destination for the route.
   * The class needs parameter for the destination airport and the flight code
   */
-    public class RouteEntryDestination : IComparable<RouteEntryDestination>
+       [Serializable]
+     public class RouteEntryDestination : IComparable<RouteEntryDestination>
     {
         public Airport Airport { get; set; }
         public string FlightCode { get; set; }

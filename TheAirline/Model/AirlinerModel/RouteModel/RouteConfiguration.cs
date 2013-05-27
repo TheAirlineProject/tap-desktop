@@ -1,14 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 { 
     //the class for the configuration for a route classes
+    [DataContract]
+    [KnownType(typeof(RouteClassesConfiguration))]
+   
     public class RouteClassesConfiguration : Configuration
     {
+        [DataMember]
         private List<RouteClassConfiguration> Classes;
         public RouteClassesConfiguration(string name,Boolean standard)
             : base(ConfigurationType.Routeclasses, name,standard)
@@ -31,6 +36,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         
     }
     //the class for the configuration for a route class
+    [Serializable]
     public class RouteClassConfiguration
     {
         public AirlinerClass.ClassType Type { get; set; }

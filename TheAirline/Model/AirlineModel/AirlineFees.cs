@@ -10,6 +10,7 @@ namespace TheAirline.Model.AirlineModel
      * This class is used for the fees values for an airline.
      * The class needs no parameters
      */
+    [Serializable]
     public class AirlineFees
     {
         private Dictionary<FeeType, double> Fees;
@@ -24,7 +25,15 @@ namespace TheAirline.Model.AirlineModel
         //returns the value of a specific fee type
         public double getValue(FeeType type)
         {
+            if (!this.Fees.ContainsKey(type))
+            {
+                lock (this.Fees)
+                {
+                    this.Fees.Add(type, type.DefaultValue);
+                }
+            }
             return this.Fees[type];
+            
         }
         //sets the value of a specific fee type
         public void setValue(FeeType type, double value)

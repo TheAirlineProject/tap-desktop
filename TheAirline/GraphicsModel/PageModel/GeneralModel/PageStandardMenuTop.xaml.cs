@@ -157,7 +157,20 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkTest_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageTest());
+
+           
+            //PageNavigator.NavigateTo(new PageTest());
+            //SerializedLoadSaveHelpers.SaveGame("Dugan");
+
+            SerializedLoadSaveHelpers.LoadGame("Dugan");
+            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+            HolidayYear.Clear();
+
+            GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+
+            Setup.SetupMergers();
+ 
         }
         private void lnkAlliances_Click(object sender, RoutedEventArgs e)
         {
@@ -199,10 +212,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            
+            /*
             GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().pause();
-
+            */
           
             Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Saving......");
@@ -241,15 +254,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                     fileName = f.Value.Value;
                 }
                 
-                LoadSaveHelpers.SaveGame(fileName);
-                //NewLoadSaveHelpers.SaveGame(fileName);
+                //LoadSaveHelpers.SaveGame(fileName);
+                SerializedLoadSaveHelpers.SaveGame(fileName);
 
                 popUpSplash.IsOpen = false;
             }
-         
+         /*
             GameTimer.GetInstance().start();
             GameObjectWorker.GetInstance().restart();
-
+            */
             
         }
         private void lnkPilots_Click(object sender, RoutedEventArgs e)

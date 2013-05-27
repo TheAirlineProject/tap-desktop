@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.StatisticsModel
 {
     //the class for general statistics
+    [Serializable]
     public class GeneralStatistics
     {
         private Dictionary<int, List<StatisticsValue>> StatValues;

@@ -7,6 +7,7 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
     //the class for a town / city
+    [Serializable]
     public class Town
     {
         public string Name { get; set; }

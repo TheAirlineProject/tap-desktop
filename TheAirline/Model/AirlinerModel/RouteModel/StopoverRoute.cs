@@ -6,6 +6,7 @@ using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
+    [Serializable]
     //the class for the stop over routes
     public class StopoverRoute
     {

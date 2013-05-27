@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.InvoicesModel
 {
     //the class for a collection of invoices
+    [Serializable]
     public class Invoices
     {
         public List<MonthlyInvoice> MonthlyInvoices { get; set; }

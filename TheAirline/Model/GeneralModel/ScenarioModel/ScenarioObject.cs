@@ -6,7 +6,8 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the actually scenario used in a game
-    public class ScenarioObject
+       [Serializable]
+     public class ScenarioObject
     {
         public Scenario Scenario { get; set; }
         public ScenarioFailure ScenarioFailed { get; set; }

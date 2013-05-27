@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for setting the inflation (prices etc.) for a specific year
+    [Serializable]
     public class Inflation
     {
         public int Year { get; set; }

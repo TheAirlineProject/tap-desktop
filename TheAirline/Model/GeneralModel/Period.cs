@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel
 {
+    [Serializable]
     //the class for a period
     public class Period<T>
     {

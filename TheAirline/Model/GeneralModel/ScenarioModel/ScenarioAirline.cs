@@ -9,7 +9,8 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for an airline (opponent) in a scenario
-    public class ScenarioAirline
+   [Serializable]
+   public class ScenarioAirline
     {
         public Airline Airline { get; set; }
         public Airport Homebase { get; set; }

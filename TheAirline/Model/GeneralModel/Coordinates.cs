@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel
 {
+    [Serializable]
     //the class for the coordinates
     public class Coordinates : IComparable<Coordinates>
     {
@@ -33,6 +34,7 @@ namespace TheAirline.Model.GeneralModel
 
         #endregion
     }
+    [Serializable]
     //the class for the coordinate
     public class Coordinate
     {

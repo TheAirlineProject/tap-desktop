@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheAirline.Model.AirlineModel.SubsidiaryModel
 {
+    [Serializable]
     //the class for a merger between two airlines either as a regular merger or where one of them gets subsidiary of the other
     public class AirlineMerger
     {

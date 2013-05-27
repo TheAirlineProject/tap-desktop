@@ -8,10 +8,12 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using System.Runtime.Serialization;
 
 
 namespace TheAirline.Model.AirportModel
 {
+    [Serializable]
     //the class for an airport
     public class Airport
     {

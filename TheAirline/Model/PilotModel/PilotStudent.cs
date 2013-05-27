@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a pilot student
+    [Serializable]
     public class PilotStudent
     {
         public PilotProfile Profile { get; set; }

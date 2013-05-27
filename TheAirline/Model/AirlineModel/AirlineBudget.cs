@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheAirline.Model.AirlineModel
 {
+    [Serializable]
     public class AirlineBudget
     {
         public long TotalBudget { set; get; }

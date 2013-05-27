@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.InvoicesModel
 {
     //the class for a monthly invoice
+    [Serializable]
     public class MonthlyInvoice
     {
         public Invoice.InvoiceType Type { get; set; }

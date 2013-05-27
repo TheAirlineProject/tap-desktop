@@ -12,6 +12,7 @@ namespace TheAirline.Model.AirlinerModel
  * This class is used for a passenger class onboard of a airliner
  * The class needs parameters for the airliner, type of class and the seating capacity
  */
+    [Serializable]
     public class AirlinerClass
     {
         private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;

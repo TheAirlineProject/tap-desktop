@@ -5,6 +5,7 @@ using System.Text;
 
 namespace TheAirline.Model.AirlineModel
 {
+    [Serializable]
     //the class for a policy for an airline
     public class AirlinePolicy
     {

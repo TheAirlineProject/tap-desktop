@@ -7,6 +7,7 @@ using TheAirline.Model.AirlineModel;
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
     //the class for the in flight facilities on a route
+    [Serializable]
     public class RouteFacility
     {
         public enum ExpenseType { Random, Fixed }

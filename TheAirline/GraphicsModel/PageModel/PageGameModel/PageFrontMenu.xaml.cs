@@ -145,7 +145,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             {
                 Setup.SetupGame();
 
-                LoadSaveHelpers.LoadGame(file);
+                //LoadSaveHelpers.LoadGame(file);
+                SerializedLoadSaveHelpers.LoadGame(file);
 
                 HolidayYear.Clear();
 

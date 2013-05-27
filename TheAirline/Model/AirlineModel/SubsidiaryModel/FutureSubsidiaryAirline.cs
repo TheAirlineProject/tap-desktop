@@ -7,6 +7,7 @@ using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlineModel.SubsidiaryModel
 {
+    [Serializable]
     //the class for a future subsidiary airline for an airline
     public class FutureSubsidiaryAirline
     {

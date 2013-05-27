@@ -6,6 +6,7 @@ using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.Model.AirportModel
 {
+    [Serializable]
     //the class for the an airport facility for an airline
     public class AirlineAirportFacility
     {

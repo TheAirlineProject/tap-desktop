@@ -11,6 +11,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
  * This class is used for an entry in a time table
  * The class needs parameters for the time table, the day of flight, the time of flight and the destination
  */
+    [Serializable]
     public class RouteTimeTableEntry : IComparable<RouteTimeTableEntry>
     {
         public DayOfWeek Day { get; set; }

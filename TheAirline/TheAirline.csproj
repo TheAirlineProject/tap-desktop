@@ -83,6 +83,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
     <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -841,6 +842,7 @@
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\GeneralModel\CalendarItem.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\SerializedLoadSaveHelpers.cs" />
     <Compile Include="Model\GeneralModel\NewsFeed.cs" />
     <Compile Include="Model\GeneralModel\Helpers\BudgetHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />

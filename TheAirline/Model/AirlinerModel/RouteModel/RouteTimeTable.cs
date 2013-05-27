@@ -11,6 +11,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 * This class is used for the time table for a route
 * The class needs parameters for the route
 */
+    [Serializable]
     public class RouteTimeTable
     {
         public List<RouteTimeTableEntry> Entries { get; set; }

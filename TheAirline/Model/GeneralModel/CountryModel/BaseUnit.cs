@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the base unit for countries and union members
+    [Serializable]
     public class BaseUnit
     {
         public string Uid { get; set; }

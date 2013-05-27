@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a difficulty level
+    [Serializable]
     public class DifficultyLevel
     {
         public string Name { get; set; }

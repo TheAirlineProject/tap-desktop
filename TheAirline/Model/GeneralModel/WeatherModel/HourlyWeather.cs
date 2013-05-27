@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.WeatherModel
 {
     //the class for the weather for an hour
+    [Serializable]
     public class HourlyWeather
     {
         public double Temperature { get; set; }

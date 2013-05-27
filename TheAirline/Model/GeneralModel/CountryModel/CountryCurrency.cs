@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the class for the currency for a country
+    [Serializable]
     public class CountryCurrency
     {
         public enum CurrencyPosition {Left, Right}

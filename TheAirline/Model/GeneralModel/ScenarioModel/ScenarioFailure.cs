@@ -6,7 +6,8 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for a failure at a scenario
-    public class ScenarioFailure
+       [Serializable]
+     public class ScenarioFailure
     {
         public enum FailureType { Cash, Safety, Debt, Security, Fleet, Domestic, Intl, PaxGrowth, Crime, FleetAge , Pax, Bases, JetRation}
         public FailureType Type { get; set; }

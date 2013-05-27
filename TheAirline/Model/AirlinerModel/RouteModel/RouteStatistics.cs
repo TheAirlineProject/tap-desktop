@@ -11,6 +11,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
    * This is used for statistics for a route.
    * The class needs no parameters
    */
+    [Serializable]
     public class RouteStatistics
     {
         private Dictionary<RouteAirlinerClass, Dictionary<StatisticsType, int>> Stats;

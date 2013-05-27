@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirportModel
 {
+    [Serializable]
     //the class for a contract at an airport for an airline
     public class AirportContract
     {

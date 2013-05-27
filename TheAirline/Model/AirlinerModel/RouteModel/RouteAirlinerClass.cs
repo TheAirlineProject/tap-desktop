@@ -10,7 +10,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     * This class is used for an airliner class onboard of a route airliner for passengers
     * The class needs parameters for type of class and the fare price
     */
-    public class RouteAirlinerClass
+       [Serializable]
+     public class RouteAirlinerClass
     {
         // chs, 2011-18-10 added seating type to a route airliner class
         public enum SeatingType { Reserved_Seating, Free_Seating }

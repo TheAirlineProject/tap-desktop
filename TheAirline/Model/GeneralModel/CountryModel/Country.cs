@@ -6,17 +6,25 @@ using TheAirline.Model.AirlinerModel;
 using System.IO;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.GraphicsModel.Converters;
+using System.Runtime.Serialization;
 
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a country
+    [DataContract]
+    [KnownType(typeof(Country))]
+    [KnownType(typeof(TemporaryCountry))]
     public class Country : BaseUnit
     {
         public static string Section { get; set; }
+        [DataMember]
         public Region Region { get; set; }
         //the format used for the tail number
+        [DataMember]
         public string TailNumberFormat { get; set; }
+        [DataMember]
         public CountryTailNumber TailNumbers { get; set; }
+        [DataMember]
         public List<CountryCurrency> Currencies { get; set; }
         public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {

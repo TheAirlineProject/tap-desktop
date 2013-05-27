@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for the profile of a pilot
+    [Serializable]
     public class PilotProfile
     {
         public string Firstname { get; set; }

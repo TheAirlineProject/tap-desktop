@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 
@@ -8,32 +9,55 @@ namespace TheAirline.Model.AirlinerModel
 {
      
      //the class for a type of airliner
+    [DataContract]
+    [KnownType(typeof(AirlinerPassengerType))]
+    [KnownType(typeof(AirlinerCargoType))]
+ 
     public abstract class AirlinerType
     {
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public double CruisingSpeed { get; set; }
+        [DataMember]
         public long Range { get; set; }
+        [DataMember]
         public string Image { get; set; }
+        [DataMember]
         public double Length { get; set; }
+        [DataMember]
         public double Wingspan { get; set; }
+        [DataMember]
         public int CockpitCrew { get; set; }
+        [DataMember]
         private long APrice;
         public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
+        [DataMember]
         public Period<DateTime> Produced { get; set; }
+        [DataMember]
         public double FuelConsumption { get; set; }
+        [DataMember]
         public Manufacturer Manufacturer { get; set; }
         public enum BodyType {Narrow_Body, Single_Aisle,Wide_Body} 
         public enum TypeRange {Regional, Short_Range, Medium_Range, Long_Range}
         public enum EngineType {Jet, Turboprop}
         public enum TypeOfAirliner { Passenger, Cargo, Mixed, Convertible }
+        [DataMember]
         public BodyType Body { get; set; }
+        [DataMember]
         public TypeRange RangeType { get; set; }
+        [DataMember]
         public EngineType Engine { get; set; }
+        [DataMember]
         public long MinRunwaylength { get; set; }
+        [DataMember]
         public long FuelCapacity { get; set; }
+        [DataMember]
         public TypeOfAirliner TypeAirliner { get; set; }
+        [DataMember]
         public Boolean IsStandardType { get; set; }
         public AirlinerType BaseType { get; set; }
+        [DataMember]
         public int ProductionRate { get; set; }
         public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
         {
@@ -76,10 +100,15 @@ namespace TheAirline.Model.AirlinerModel
        
     }
     //the class for a passenger airliner type
+    [DataContract]
+    [KnownType(typeof(AirlinerPassengerType))]
     public class AirlinerPassengerType : AirlinerType
     {
+        [DataMember]
         public int MaxSeatingCapacity { get; set; }
+        [DataMember]
         public int CabinCrew { get; set; }
+        [DataMember]
         public int MaxAirlinerClasses { get; set; }
         public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
@@ -89,8 +118,11 @@ namespace TheAirline.Model.AirlinerModel
         }
     }
     //the class for a cargo airliner type
+    [DataContract]
+    [KnownType(typeof(AirlinerCargoType))]
     public class AirlinerCargoType : AirlinerType
     {
+        [DataMember]
         public double CargoSize { get; set; }
         public AirlinerCargoType(Manufacturer manufacturer, string name, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {

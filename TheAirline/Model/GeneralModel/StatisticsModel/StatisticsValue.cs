@@ -6,6 +6,7 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel.StatisticsModel
 {
+    [Serializable]
     public class StatisticsValue
     {
         public StatisticsType Stat { get; set; }

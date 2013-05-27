@@ -11,6 +11,7 @@ namespace TheAirline.Model.PassengerModel
     /*
      * The class for flight restrictions with no flights between two countries or unions
      */
+    [Serializable]
     public class FlightRestriction
     {
         public enum RestrictionType { Flights, Airlines }

@@ -10,6 +10,7 @@ namespace TheAirline.Model.AirlineModel
      * This class is used for a fee for an airline.
      * The class needs parameters for type, name, defaultvalue, minvalue, maxvalue, percentage
      */
+    [Serializable]
     public class FeeType
     {
         public enum eFeeType { Fee, Wage, FoodDrinks, Discount }

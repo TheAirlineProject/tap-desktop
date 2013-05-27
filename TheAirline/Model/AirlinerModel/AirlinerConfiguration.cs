@@ -1,15 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
     //the configuration of an airliner 
+    [DataContract]
+    [KnownType(typeof(AirlinerConfiguration))]
+   
     public class AirlinerConfiguration : Configuration
     {
+        [DataMember]
         public int MinimumSeats { get; set; }
+        [DataMember]
         public List<AirlinerClassConfiguration> Classes { get; set; }
         public AirlinerConfiguration(string name, int minimumSeats, Boolean standard) : base(Configuration.ConfigurationType.Airliner, name,standard)
         {
@@ -30,6 +36,7 @@ namespace TheAirline.Model.AirlinerModel
 
     }
     //the configuration of an airliner class
+    [Serializable]
     public class AirlinerClassConfiguration
     {
         public AirlinerClass.ClassType Type { get; set; }

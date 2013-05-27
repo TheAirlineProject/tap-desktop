@@ -15,6 +15,7 @@ namespace TheAirline.Model.AirportModel
      * Constructor needs parameter for airport, owner (airline), date of delivery and number of gates
      **/
     // chs, 2011-27-10 changed so a terminal has a devilery date
+    [Serializable]
     public class Terminal
     {
         public string Name { get; set; }
@@ -69,6 +70,7 @@ namespace TheAirline.Model.AirportModel
         }
     }
     //the collection of terminals at an airport
+    [Serializable]
     public class Terminals
     {
         public Airport Airport { get; set; }

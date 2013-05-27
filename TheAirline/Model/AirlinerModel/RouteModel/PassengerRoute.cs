@@ -9,14 +9,19 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using System.Runtime.Serialization;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
+    [DataContract]
+    [KnownType(typeof(PassengerRoute))]
     //the class for a passenger route
     public class PassengerRoute : Route
     {
         //public FleetAirliner Airliner { get; set; }
+        [DataMember]
         public List<RouteAirlinerClass> Classes { get; set; }
+        [DataMember]
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
         public PassengerRoute(string id, Airport destination1, Airport destination2,double farePrice) : base(RouteType.Passenger,id,destination1,destination2)
         {

@@ -8,6 +8,7 @@ using TheAirline.Model.AirlinerModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a pilot
+    [Serializable]
     public class Pilot
     {
         public enum PilotRating { A=3, B=4, C=5, D=7, E=10 } 

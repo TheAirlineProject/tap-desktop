@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the contract for an airline for a manufacturer
+    [Serializable]
     public class ManufacturerContract
     {
         public Manufacturer Manufacturer { get; set; }

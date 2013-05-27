@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for an airliner order
+    [Serializable]
     public class AirlinerOrder
     {
         public List<AirlinerClass> Classes { get; set; }

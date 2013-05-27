@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
+    
     //the start data for an airline
     public class AirlineStartData
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 
@@ -9,14 +10,24 @@ namespace TheAirline.Model.GeneralModel
     /// <summary>
     /// The class for a temporary country
     /// </summary>
+    ///
+    [DataContract]
+    [KnownType(typeof(TemporaryCountry))]
+  
     public class TemporaryCountry : Country
     {
         public enum TemporaryType { OneToMany, ManyToOne }
+        [DataMember]
         public TemporaryType Type { get; set; }
+        [DataMember]
         public Country CountryBefore { get; set; }
+        [DataMember]
         public Country CountryAfter { get; set; }
+        [DataMember]
         public DateTime StartDate { get; set; }
+        [DataMember]
         public DateTime EndDate { get; set; }
+        [DataMember]
         public List<OneToManyCountry> Countries { get; set; }
         public TemporaryCountry(TemporaryType type, Country country, DateTime startDate, DateTime endDate)
             : base(Country.Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)

@@ -7,6 +7,7 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a flight school
+    [Serializable]
     public class FlightSchool
     {
         public const int MaxNumberOfStudentsPerInstructor = 2;

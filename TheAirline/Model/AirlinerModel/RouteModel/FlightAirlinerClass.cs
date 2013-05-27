@@ -10,6 +10,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
    * This class is used for an airliner class onboard of a flight
    * The class needs parameters for type of class and the number of passengers
    */
+    [Serializable]
     public class FlightAirlinerClass
     {
         public RouteAirlinerClass AirlinerClass { get; set; }

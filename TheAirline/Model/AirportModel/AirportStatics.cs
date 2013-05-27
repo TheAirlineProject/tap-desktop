@@ -7,6 +7,7 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirportModel
 {
+    [Serializable]
     //some static values for an airport
     public class AirportStatics
     {

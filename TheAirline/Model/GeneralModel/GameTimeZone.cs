@@ -9,6 +9,7 @@ namespace TheAirline.Model.GeneralModel
 * This is used for a time zone in the game
 * The class needs parameters names of time zone and the utc offset
      */
+    [Serializable]
     public class GameTimeZone
     {
         public TimeSpan UTCOffset { get; set; }

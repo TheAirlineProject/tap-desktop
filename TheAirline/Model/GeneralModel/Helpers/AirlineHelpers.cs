@@ -284,6 +284,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //hires the pilots for a specific airliner
         public static void HireAirlinerPilots(FleetAirliner airliner)
         {
+            if (Pilots.GetNumberOfUnassignedPilots() < 10)
+                GeneralHelpers.CreatePilots(50);
+
             while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
             {
                 var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
@@ -307,8 +310,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     GeneralHelpers.CreatePilots(50);
             }
 
-            if (Pilots.GetNumberOfUnassignedPilots() < 10)
-                GeneralHelpers.CreatePilots(50);
+           
 
         }
         //returns the discount factor for a manufactorer for an airline and for a period

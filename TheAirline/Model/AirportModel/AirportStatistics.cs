@@ -11,6 +11,7 @@ namespace TheAirline.Model.AirportModel
  * This is used for statistics for an airport.
  * The class needs no parameters
  */
+    [Serializable]
     public class AirportStatistics
     {
         private Dictionary<int, List<AirportStatisticsValue>> Stats;

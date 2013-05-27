@@ -9,7 +9,9 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 namespace TheAirline.Model.AirportModel
 {
     // chs 11-04-11: changed for the possibility of extending a terminal
-    //the class for a gate at an airport
+    //the class for a gate at an airport   
+    [Serializable]
+ 
     public class Gate
     {
        // public Airline Airline { get; set; }
@@ -24,6 +26,7 @@ namespace TheAirline.Model.AirportModel
     }
     // chs 11-04-11: changed for the possibility of extending a terminal
    //the collection of gates at an airport
+    [Serializable]
     public class Gates
     {
         private List<Gate> TerminalGates;

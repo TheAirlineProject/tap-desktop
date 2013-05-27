@@ -11,6 +11,7 @@ using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
+    [Serializable]
     public class FleetAirliner
     {
         public Airliner Airliner { get; set; }

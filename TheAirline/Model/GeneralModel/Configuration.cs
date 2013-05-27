@@ -1,17 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a configuration
+    [DataContract]
+    [KnownType(typeof(AirlinerConfiguration))]
+    [KnownType(typeof(AirlinerTypeConfiguration))]
+    [KnownType(typeof(RouteClassesConfiguration))]
+  
     public abstract class Configuration
     {
         public enum ConfigurationType { Airliner, Routeclasses,AirlinerType }
+        [DataMember]
         public ConfigurationType Type { get; set; }
+        [DataMember]
         public Boolean Standard { get; set; }
+        [DataMember]
         public string Name { get; set; }
+        [DataMember]
         public string ID { get; set; }
         public Configuration(ConfigurationType type, string name,Boolean standard)
         {

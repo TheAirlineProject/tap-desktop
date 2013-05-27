@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
     //the class for a state
+    [Serializable]
     public class State
     {
         public Country Country { get; set; }

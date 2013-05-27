@@ -568,7 +568,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
                             route = new PassengerRoute(id.ToString(), airport, destination, price);
-
+                            
                             RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute)route);
 
                             foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())

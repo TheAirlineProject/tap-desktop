@@ -1,17 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for the statistics for an airliner
+    [DataContract]
+    [KnownType(typeof(AirlinerStatistics))]
+    
     public class AirlinerStatistics : GeneralStatistics
     {
+        [DataMember]
         private FleetAirliner Airliner;
+        [DataMember]
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
+        [DataMember]
         public double Balance { get { return getBalance(); } set { ;} }
+        [DataMember]
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
         public AirlinerStatistics(FleetAirliner airliner)
         {

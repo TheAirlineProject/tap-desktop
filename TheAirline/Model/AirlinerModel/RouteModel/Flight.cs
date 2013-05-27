@@ -11,6 +11,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
   * This is used for a actually flight.
   * The class needs parameter for the time table entry which the flight flights after
   */
+    [Serializable]
     public class Flight
     {
         public RouteTimeTableEntry Entry { get; set; }

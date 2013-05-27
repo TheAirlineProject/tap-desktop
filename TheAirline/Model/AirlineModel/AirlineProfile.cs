@@ -8,6 +8,7 @@ using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlineModel
 {
+    [Serializable] 
     //the profile for an airline
     public class AirlineProfile
     {
@@ -48,6 +49,7 @@ namespace TheAirline.Model.AirlineModel
         }
     }
     //the class for an airline logo
+    [Serializable]
     public class AirlineLogo
     {
         public int FromYear { get; set; }

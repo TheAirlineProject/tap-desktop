@@ -8,6 +8,7 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for an airliner
+    [Serializable]
     public class Airliner
     {
         public string TailNumber { get; set; }

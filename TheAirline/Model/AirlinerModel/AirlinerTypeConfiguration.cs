@@ -1,16 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
     //the configuration for a configuration for an airliner type
-    public class AirlinerTypeConfiguration : Configuration
+    [DataContract]
+    [KnownType(typeof(AirlinerTypeConfiguration))]
+     public class AirlinerTypeConfiguration : Configuration
     {
+        [DataMember]
         public AirlinerType Airliner { get; set; }
+        [DataMember]
         public Period<DateTime> Period { get; set; }
+        [DataMember]
         public List<AirlinerClassConfiguration> Classes { get; set; }
         public AirlinerTypeConfiguration(string name, AirlinerType type, Period<DateTime> period, Boolean standard)
             : base(Configuration.ConfigurationType.AirlinerType, name, standard)

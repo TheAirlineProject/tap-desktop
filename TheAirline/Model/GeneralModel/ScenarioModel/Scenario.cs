@@ -9,6 +9,7 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for a scenario
+    [Serializable]
     public class Scenario
     {
         public string Name { get; set; }

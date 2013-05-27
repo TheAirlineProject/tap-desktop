@@ -6,6 +6,7 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a loan
+    [Serializable]
     public class Loan
     {
         public double Amount { get; set; }
