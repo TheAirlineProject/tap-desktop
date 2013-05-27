@@ -87,7 +87,7 @@ namespace TheAirline.Model.GeneralModel
 
             Directory.CreateDirectory(path);
             Directory.CreateDirectory(path + "\\saves");
-            LoadSaveHelpers.CreateBaseXml(path + "\\saves");
+            //LoadSaveHelpers.CreateBaseXml(path + "\\saves");
 
         }
         /*! public static method getPluginPath.

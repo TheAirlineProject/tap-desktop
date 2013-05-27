@@ -51,10 +51,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             ListBox lbSaves = new ListBox();
             lbSaves.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbSaves.Height = 375;
-            lbSaves.DisplayMemberPath = "Key";
+            //lbSaves.DisplayMemberPath = "Key";
             lbSaves.SelectionChanged += new SelectionChangedEventHandler(lbSaves_SelectionChanged);
             
-            foreach (KeyValuePair<string, string> savedFile in LoadSaveHelpers.GetSavedGames())
+            foreach (string savedFile in LoadSaveHelpers.GetSavedGames())
                 lbSaves.Items.Add(savedFile);
 
             mainPanel.Children.Add(lbSaves);
@@ -124,7 +124,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtName.Text = ((KeyValuePair<string, string>)((ListBox)sender).SelectedItem).Key;
+            txtName.Text = ((ListBox)sender).SelectedItem as string;
         }
     }
 }

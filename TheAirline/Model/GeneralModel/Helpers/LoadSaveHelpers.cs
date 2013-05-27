@@ -27,6 +27,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 {
     public class LoadSaveHelpers
     {
+        /*
         //creates the saves.xml
         public static void CreateBaseXml(string path)
         {
@@ -39,29 +40,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             doc.Save(path + "\\saves.xml");
-        }
+        }*/
         //deletes a saved game
         public static void DeleteGame(string name)
         {
-            RemoveSavedFile(name);
-
+           
             File.Delete(AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav");
-
-
         }
-        //remove a file to the list of saved files
-        public static void RemoveSavedFile(string name)
-        {
-            XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
-
-            XmlNode node = doc.SelectSingleNode("/saves/save[@file='" + name + "']");
-
-            node.ParentNode.RemoveChild(node);
-
-            doc.Save(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
-
-        }
+       
         //loads a game
         public static void LoadGame(string name)
         {
@@ -1103,6 +1089,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             Airlines.AddAirline(airline);
         }
+        /*
         //append a file to the list of saved files
         public static void AppendSavedFile(string name, string file)
         {
@@ -1120,24 +1107,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             doc.Save(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
 
-        }
+        }*/
         //returns the names of the saved games
-        public static List<KeyValuePair<string, string>> GetSavedGames()
+        public static List<string> GetSavedGames()
         {
-            List<KeyValuePair<string, string>> saves = new List<KeyValuePair<string, string>>();
+            List<string> saves = new List<string>();
 
-            XmlDocument doc = new XmlDocument();
-            doc.Load(AppSettings.getCommonApplicationDataPath() + "\\saves\\saves.xml");
-            XmlElement root = doc.DocumentElement;
+            DirectoryInfo dir = new DirectoryInfo(AppSettings.getCommonApplicationDataPath() + "\\saves\\");
 
-            XmlNodeList savesList = root.SelectNodes("//saves/save");
-
-            foreach (XmlElement saveNode in savesList)
+            foreach (FileInfo file in dir.GetFiles("*.sav"))
             {
-                string name = saveNode.Attributes["name"].Value;
-                string file = saveNode.Attributes["file"].Value;
-                saves.Add(new KeyValuePair<string, string>(name, file));
+                string name = file.Name.Split('.')[0];
+                saves.Add(name);
             }
+
             return saves;
 
 

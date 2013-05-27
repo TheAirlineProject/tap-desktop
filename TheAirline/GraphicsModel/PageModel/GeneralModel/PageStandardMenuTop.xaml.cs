@@ -212,10 +212,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            /*
+            
             GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().pause();
-            */
+
+            while (!GameObjectWorker.GetInstance().isPaused())
+            {
+            }
           
             Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Saving......");
@@ -232,7 +235,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 DoEvents();
 
                 GameObject.GetInstance().Name = name;
-
+                /*
                 string fileName;
 
                 var saves = LoadSaveHelpers.GetSavedGames();
@@ -253,16 +256,16 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 {
                     fileName = f.Value.Value;
                 }
-                
+                */
                 //LoadSaveHelpers.SaveGame(fileName);
-                SerializedLoadSaveHelpers.SaveGame(fileName);
+                SerializedLoadSaveHelpers.SaveGame(name); 
 
                 popUpSplash.IsOpen = false;
             }
-         /*
+         
             GameTimer.GetInstance().start();
             GameObjectWorker.GetInstance().restart();
-            */
+            
             
         }
         private void lnkPilots_Click(object sender, RoutedEventArgs e)

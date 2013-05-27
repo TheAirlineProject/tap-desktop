@@ -49,7 +49,6 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             lbSaves = new ListBox();
             lbSaves.Height = 375;
-            lbSaves.DisplayMemberPath = "Key";
             lbSaves.SelectionChanged += new SelectionChangedEventHandler(lbSaves_SelectionChanged);
 
       
@@ -103,13 +102,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             lbSaves.Items.Clear();
 
-            foreach (KeyValuePair<string, string> savedFile in LoadSaveHelpers.GetSavedGames())
+            foreach (string savedFile in LoadSaveHelpers.GetSavedGames())
                 lbSaves.Items.Add(savedFile);
 
         }
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
-            LoadSaveHelpers.DeleteGame(((KeyValuePair<string, string>)lbSaves.SelectedItem).Value);
+            LoadSaveHelpers.DeleteGame(lbSaves.SelectedItem as string);
             showSaves();
 
             btnLoad.IsEnabled = false; ;
@@ -125,7 +124,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void btnLoad_Click(object sender, RoutedEventArgs e)
         {
-            this.Selected = lbSaves.SelectedItem != null ? ((KeyValuePair<string,string>)lbSaves.SelectedItem).Value : null;
+            this.Selected = lbSaves.SelectedItem != null ? ((string)lbSaves.SelectedItem) : null;
             this.Close();
     
         }
