@@ -18,6 +18,15 @@ namespace TheAirline.Model.AirlinerModel
         public double Flown { get; set; } //distance flown by the airliner
         public Airline Airline { get; set; }
         public double LastServiceCheck { get; set; }  //the km were the airliner was last at service
+        public DateTime LastAMaintenance { get; set; }
+        public DateTime DueAMaintenance { get; set; }
+        public DateTime LastBMaintenance { get; set; }
+        public DateTime DueBMaintenance { get; set; }
+        public DateTime LastCMaintenance { get; set; }
+        public DateTime DueCMaintenance { get; set; }
+        public DateTime LastDMaintenance { get; set; }
+        public DateTime DueDMaintenance { get; set; }
+        public IDictionary<Invoice,String> MaintenanceHistory { get; set; }
         public long Price { get { return getPrice(); } private set { } }
         public long LeasingPrice { get { return getLeasingPrice(); } private set { } }
         public long FuelCapacity { get; set; }
@@ -31,6 +40,10 @@ namespace TheAirline.Model.AirlinerModel
             this.BuiltDate = new DateTime(builtDate.Year,builtDate.Month,builtDate.Day);
             this.Type = type;
             this.LastServiceCheck = 0;
+            this.LastCMaintenance = this.BuiltDate;
+            this.LastAMaintenance = this.BuiltDate;
+            this.LastBMaintenance = this.BuiltDate;
+            this.LastDMaintenance = this.BuiltDate;
             this.TailNumber = tailNumber;
             this.Flown = 0;
             this.Damaged = rnd.Next(90, 100);
@@ -202,6 +215,67 @@ namespace TheAirline.Model.AirlinerModel
         public static void RemoveAirliner(Airliner airliner)
         {
             airliners.Remove(airliner);
+        }
+
+        //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage
+        //make sure you pass this function a string value of either "A" "B" "C" or "D" or it will throw an error!
+        public static void DoMaintenance(Airliner airliner, string checkType)
+        {
+            if (checkType != "A" || checkType != "B" || checkType != "C" || checkType != "D")
+            {
+                return;
+            }
+
+            else { 
+            Random rnd = new Random();
+            switch (checkType)
+            {
+                case "A":
+                    double expense = (airliner.getValue() * 0.01) + 2000;
+                    GameObject.GetInstance().HumanAirline.Money -= expense;
+                    Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
+                    airliner.Damaged += rnd.Next(3, 10);
+                    if (airliner.Damaged > 100) airliner.Damaged = 100;
+                    airliner.LastAMaintenance = GameObject.GetInstance().GameTime;
+                    airliner.DueAMaintenance = GameObject.GetInstance().GameTime.AddMonths(1);
+                    airliner.MaintenanceHistory.Add(maintCheck, "A");
+                    
+                    break;
+
+                case "B":
+                    expense = (airliner.getValue() * 0.02) + 4500;
+                    GameObject.GetInstance().HumanAirline.Money -= expense;
+                    maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
+                    airliner.Damaged += rnd.Next(12, 20);
+                    if (airliner.Damaged > 100) airliner.Damaged = 100;
+                    airliner.LastBMaintenance = GameObject.GetInstance().GameTime;
+                    airliner.DueBMaintenance = GameObject.GetInstance().GameTime.AddMonths(5);
+                    airliner.MaintenanceHistory.Add(maintCheck, "B");
+                    break;
+
+                case "C":
+                    expense = (airliner.getValue() * 0.025) + 156000;
+                    GameObject.GetInstance().HumanAirline.Money -= expense;
+                    maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
+                    airliner.Damaged += rnd.Next(20, 30);
+                    if (airliner.Damaged > 100) airliner.Damaged = 100;
+                    airliner.LastCMaintenance = GameObject.GetInstance().GameTime;
+                    airliner.DueCMaintenance = GameObject.GetInstance().GameTime.AddMonths(18);
+                    airliner.MaintenanceHistory.Add(maintCheck, "C");
+                    break;
+
+                case "D":
+                    expense = (airliner.getValue() * 0.03) + 1200000;
+                    GameObject.GetInstance().HumanAirline.Money -= expense;
+                    maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
+                    airliner.Damaged += rnd.Next(35, 50);
+                    if (airliner.Damaged > 100) airliner.Damaged = 100;
+                    airliner.LastDMaintenance = GameObject.GetInstance().GameTime;
+                    airliner.DueDMaintenance = GameObject.GetInstance().GameTime.AddMonths(60);
+                    airliner.MaintenanceHistory.Add(maintCheck, "D");
+                    break;
+            }
+            }
         }
   
        

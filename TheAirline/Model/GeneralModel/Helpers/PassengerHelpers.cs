@@ -714,11 +714,14 @@ namespace TheAirline.Model.GeneralModel
             double sameCountryFactor = airport.Profile.Country == dAirport.Profile.Country ? 0.75 : 1;
             double sameRegionFactor = sameCountryFactor == 1 && airport.Profile.Country.Region == dAirport.Profile.Country.Region ? 0.5 : 1;
 
+
             double minMass = Math.Min(originMassPerDay, destinationMassPerDay);
 
             double volume = minMass / distanceFactor;
             volume = volume / sameCountryFactor;
             volume = volume / sameRegionFactor;
+            //converts to pounds of cargo
+            volume *= 35.1;
 
             if (volume >= 1)
                 airport.addDestinationCargoRate(dAirport, (ushort)volume);
