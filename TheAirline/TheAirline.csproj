@@ -797,6 +797,7 @@
     <Compile Include="Model\AirlineModel\AirlineBudget.cs" />
     <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
+    <Compile Include="Model\AirlineModel\AirlineInsurance.cs" />
     <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />

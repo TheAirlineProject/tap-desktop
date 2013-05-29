@@ -212,7 +212,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            
+            Boolean gametimerPaused = GameTimer.GetInstance().isPaused();
+            Boolean gameworkerPaused = GameObjectWorker.GetInstance().isPaused();
+
             GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().pause();
 
@@ -226,7 +228,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;
             popUpSplash.IsOpen = false;
    
-
+            
             String name = (String)PopUpSave.ShowPopUp();
             
             if (name != null)
@@ -262,9 +264,12 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
                 popUpSplash.IsOpen = false;
             }
-         
-            GameTimer.GetInstance().start();
-            GameObjectWorker.GetInstance().restart();
+            
+            if (!gametimerPaused)
+                GameTimer.GetInstance().start();
+
+            if (!gameworkerPaused)
+                GameObjectWorker.GetInstance().restart();
             
             
         }

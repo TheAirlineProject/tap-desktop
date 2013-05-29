@@ -48,7 +48,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             svFacilities.Content = panelFacilities;
 
-
             showFacilitiesInformation();
 
             this.Content = svFacilities;
@@ -181,7 +180,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             Boolean hasHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             Boolean hasCargoRoute = GameObject.GetInstance().HumanAirline.Routes.Exists(r => (r.Destination1 == this.Airport || r.Destination2 == this.Airport) && r.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo);
-            Boolean airportHasCargoTerminal = this.Airport.getCurrentAirportFacility(null,AirportFacility.FacilityType.Cargo).TypeLevel > 0;
+            Boolean airportHasCargoTerminal = this.Airport.getCurrentAirportFacility(null,AirportFacility.FacilityType.Cargo) != null && this.Airport.getCurrentAirportFacility(null,AirportFacility.FacilityType.Cargo).TypeLevel > 0;
 
             if ((type.CurrentFacility.TypeLevel == 1 && type.CurrentFacility.Type == AirportFacility.FacilityType.Service && this.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);

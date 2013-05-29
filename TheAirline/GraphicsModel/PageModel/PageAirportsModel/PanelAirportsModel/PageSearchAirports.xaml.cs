@@ -26,7 +26,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
         private TextBox txtTextSearch;
         private CheckBox cbHumanAirports, cbHubs;
         private PageAirports ParentPage;
-        private ComboBox cbCountry, cbRegion, cbSize;
+        private enum CompareType { Larger_than, Lower_than, Equal_to, All }
+        private ComboBox cbCountry, cbRegion, cbSize, cbCompareSize;
         public PageSearchAirports(PageAirports parent)
         {
             InitializeComponent();
@@ -116,6 +117,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1006"), cbCountry));
 
+          
+     
+            WrapPanel panelSizes = new WrapPanel();
+
+            cbCompareSize = new ComboBox();
+            createCompareComboBox(cbCompareSize);
+            panelSizes.Children.Add(cbCompareSize);
+
             cbSize = new ComboBox();
             cbSize.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbSize.Background = Brushes.Transparent;
@@ -123,17 +132,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             cbSize.SetResourceReference(ComboBox.ItemTemplateProperty, "TextUnderscoreTextBlock");
             cbSize.Width = 100;
 
-            cbSize.Items.Add("All sizes");
-
             foreach (GeneralHelpers.Size type in Enum.GetValues(typeof(GeneralHelpers.Size)))
-            {
-              
                 cbSize.Items.Add(type);
-            }
 
             cbSize.SelectedIndex = 0;
+                   
+            panelSizes.Children.Add(cbSize);
 
-            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1007"), cbSize));
+            lbSearch.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSearchAirports", "1007"), panelSizes));
 
             txtTextSearch = new TextBox();
             txtTextSearch.Width = 300;
@@ -212,8 +218,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
         {
             string searchText = txtTextSearch.Text.ToUpper();
 
-            string size = cbSize.SelectedItem.ToString();
-
+        
             Country country = (Country)cbCountry.SelectedItem;
             Region region = (Region)cbRegion.SelectedItem;
 
@@ -230,13 +235,47 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
 
             if (country.Uid == "100" && region.Uid != "100") 
                 airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Country.Region == region; });
-               
-            if (size != "All sizes") airports = airports.FindAll(delegate(Airport airport) { return airport.Profile.Size.ToString() == size; });
 
+            CompareType sizeCompare = (CompareType)(((ComboBoxItem)cbCompareSize.SelectedItem).Tag);
+            GeneralHelpers.Size size = (GeneralHelpers.Size)cbSize.SelectedItem;
+
+            switch (sizeCompare)
+            {
+                case CompareType.Equal_to:
+                    airports = airports.FindAll(a => a.Profile.Size == size);
+                    break;
+                case CompareType.Larger_than:
+                    airports = airports.FindAll(a => a.Profile.Size > size);
+                    break;
+                case CompareType.Lower_than:
+                    airports = airports.FindAll(a => a.Profile.Size < size);
+                    break;
+            }
+
+          
             airports = airports.FindAll(a => a.Profile.Name.ToUpper().Contains(searchText) || a.Profile.ICAOCode.ToUpper().Contains(searchText) || a.Profile.IATACode.ToUpper().Contains(searchText) || a.Profile.Town.Name.ToUpper().Contains(searchText) || ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)).Name.ToUpper().Contains(searchText));
            // airports = airports.FindAll((delegate(Airport airport) { return airport.Profile.Name.ToUpper().Contains(searchText) || airport.Profile.ICAOCode.ToUpper().Contains(searchText) || airport.Profile.IATACode.ToUpper().Contains(searchText) || airport.Profile.Town.ToUpper().Contains(searchText) || airport.Profile.Country.Name.ToUpper().Contains(searchText); }));
 
             this.ParentPage.showAirports(airports);
+        }
+        //creats a compare type combo box
+        private void createCompareComboBox(ComboBox cbCompare)
+        {
+            cbCompare.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbCompare.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbCompare.Margin = new Thickness(0, 0, 5, 0);
+            cbCompare.Width = 100;
+
+            foreach (CompareType type in Enum.GetValues(typeof(CompareType)))
+            {
+                ComboBoxItem cbItem = new ComboBoxItem();
+                cbItem.Content = new TextUnderscoreConverter().Convert(type);
+                cbItem.Tag = type;
+                cbCompare.Items.Add(cbItem);
+            }
+
+            cbCompare.SelectedIndex = cbCompare.Items.Count - 1;
+
         }
     }
 }
