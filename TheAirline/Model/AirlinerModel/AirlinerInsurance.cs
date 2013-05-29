@@ -13,11 +13,11 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.AirlineModel;
 
-namespace TheAirline.Model.AirlineModel
+namespace TheAirline.Model.AirlinerModel
 {
-    public class AirlineInsurance
+    class AirlinerInsurance
     {
-        public enum InsuranceType { None, Public_Liability, Passenger_Liability, Combined_Single_Limit, Full_Coverage }
+        public enum InsuranceType { None, Liability, Ground_Parked, Ground_Taxi,Combined_Ground, In_Flight, Full_Coverage }
         public enum InsuranceScope { Airport, Domestic, Hub, Global }
         public enum PaymentTerms { Annual, Biannual, Quarterly, Monthly }
         public InsuranceType insType { get; set; }
@@ -33,7 +33,7 @@ namespace TheAirline.Model.AirlineModel
         public DateTime InsuranceExpires { get; set; }
         public DateTime NextPaymentDue { get; set; }
         public int RemainingPayments { get; set; }
-        public AirlineInsurance(InsuranceType insType, InsuranceScope insScope, PaymentTerms paymentTerms, int insAmount)
+        public AirlinerInsurance(InsuranceType insType, InsuranceScope insScope, PaymentTerms paymentTerms, int insAmount)
         {
             this.Deductible = 0;
             this.TermLength = 0;
@@ -42,12 +42,12 @@ namespace TheAirline.Model.AirlineModel
         }
 
         //add insurance policy
-        public static void CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, int length, int amount)
+        public static void CreatePolicy(Airline airline, FleetAirliner airliner, InsuranceType type, InsuranceScope scope, PaymentTerms terms, int length, int amount)
         {
-#region Method Setup
+            #region Method Setup
             Random rnd = new Random();
             double hub = airline.getHubs().Count() * 0.1;
-            AirlineInsurance policy = new AirlineInsurance(type, scope, terms, amount);
+            AirlinerInsurance policy = new AirlinerInsurance(type, scope, terms, amount);
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
             policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);
             policy.PolicyIndex = GameObject.GetInstance().GameTime.ToString() + airline.ToString();
@@ -69,17 +69,19 @@ namespace TheAirline.Model.AirlineModel
             //sets up multipliers based on the type and scope of insurance policy
             Dictionary<InsuranceType, Double> typeMultipliers = new Dictionary<InsuranceType, double>();
             Dictionary<InsuranceScope, Double> scopeMultipliers = new Dictionary<InsuranceScope, double>();
-            double typeMPublic = 1;
-            double typeMPassenger = 1.2;
-            double typeMCSL = 1.5;
-            double typeMFull = 2.0;
+            double typeMLiability = 1;
+            double typeMGround_Parked = 1.2;
+            double typeMGroundTaxi = 1.5;
+            double typeMGroundCombined = 1.8;
+            double typeMInFlight = 2.2;
+            double typeMFullCoverage = 2.7;
 
             double scMAirport = 1;
             double scMDomestic = 1.5;
             double scMHub = 1.5 + hub;
             double scMGlobal = 2.0 + hub;
-#endregion
-#region Domestic/Int'l Airport Counter
+            #endregion
+            #region Domestic/Int'l Airport Counter
             int i = 0; int j = 0;
             foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports)
             {
@@ -89,15 +91,17 @@ namespace TheAirline.Model.AirlineModel
                 }
                 else j++;
             }
-#endregion
+            #endregion
             // all the decision making for monthly payment amounts and deductibles
-#region Public Liability
-            switch (type) {
-                case InsuranceType.Public_Liability:
-                    switch(scope) {
+            switch (type)
+            {
+                #region Liability
+                case InsuranceType.Liability:
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPublic * scMAirport;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMLiability * scMAirport;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -107,7 +111,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Domestic:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPublic * scMDomestic;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMLiability * scMDomestic;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -116,7 +120,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Hub:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPublic * scMHub;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMLiability * scMHub;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -125,7 +129,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Global:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPublic * scMGlobal;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMLiability * scMGlobal;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -133,15 +137,15 @@ namespace TheAirline.Model.AirlineModel
                             break;
                     }
                     break;
+                #endregion
+                #region Ground Parked
 
-#endregion
-#region Passenger Liability
-
-                case InsuranceType.Passenger_Liability:
-                    switch(scope) {
+                case InsuranceType.Ground_Parked:
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPassenger * scMAirport;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGround_Parked * scMAirport;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -150,7 +154,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Domestic:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPassenger * scMDomestic;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGround_Parked * scMDomestic;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -159,7 +163,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Hub:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPassenger * scMHub;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGround_Parked * scMHub;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -168,7 +172,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Global:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPassenger * scMGlobal;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGround_Parked * scMGlobal;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -176,13 +180,14 @@ namespace TheAirline.Model.AirlineModel
                             break;
                     }
                     break;
-#endregion
-#region Combined Single Limit
-                case InsuranceType.Combined_Single_Limit:
-                    switch(scope) {
+                #endregion
+                #region Ground Taxi
+                case InsuranceType.Ground_Taxi:
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMCSL * scMAirport;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundTaxi * scMAirport;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -191,7 +196,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Domestic:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMCSL * scMDomestic;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundTaxi * scMDomestic;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -200,7 +205,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Hub:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMCSL * scMHub;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundTaxi * scMHub;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -209,7 +214,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Global:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMCSL * scMGlobal;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundTaxi * scMGlobal;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -217,13 +222,99 @@ namespace TheAirline.Model.AirlineModel
                             break;
                     }
                     break;
-#endregion
-#region Full Coverage
+                #endregion
+                #region Ground Combined
+                case InsuranceType.Combined_Ground:
+                    switch (scope)
+                    {
+                        case InsuranceScope.Airport:
+                            policy.Deductible = amount * 0.005;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundCombined * scMAirport;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+
+                        case InsuranceScope.Domestic:
+                            policy.Deductible = amount * 0.001;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundCombined * scMDomestic;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+
+                        case InsuranceScope.Hub:
+                            policy.Deductible = amount * 0.001;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundCombined * scMHub;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+
+                        case InsuranceScope.Global:
+                            policy.Deductible = amount * 0.001;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMGroundCombined * scMGlobal;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+                    }
+                    break;
+                #endregion
+                #region In Flight
+                case InsuranceType.In_Flight:
+                    switch (scope)
+                    {
+                        case InsuranceScope.Airport:
+                            policy.Deductible = amount * 0.005;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMInFlight * scMAirport;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+
+                        case InsuranceScope.Domestic:
+                            policy.Deductible = amount * 0.001;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMInFlight * scMDomestic;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+
+                        case InsuranceScope.Hub:
+                            policy.Deductible = amount * 0.001;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMInFlight * scMHub;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+
+                        case InsuranceScope.Global:
+                            policy.Deductible = amount * 0.001;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMInFlight * scMGlobal;
+                            if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
+                            if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
+                            if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
+                            if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
+                            break;
+                    }
+                
+                    break;
+                #endregion
+                #region Full Coverage
                 case InsuranceType.Full_Coverage:
-                    switch(scope) {
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFull * scMAirport;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFullCoverage * scMAirport;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -232,7 +323,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Domestic:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFull * scMDomestic;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFullCoverage * scMDomestic;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -241,7 +332,7 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Hub:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFull * scMHub;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFullCoverage * scMHub;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
@@ -250,53 +341,54 @@ namespace TheAirline.Model.AirlineModel
 
                         case InsuranceScope.Global:
                             policy.Deductible = amount * 0.001;
-                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFull * scMGlobal;
+                            policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFullCoverage * scMGlobal;
                             if (terms == PaymentTerms.Annual) policy.PaymentAmount = policy.InsuredAmount / length;
                             if (terms == PaymentTerms.Biannual) policy.PaymentAmount = policy.InsuredAmount / length / 2;
                             if (terms == PaymentTerms.Quarterly) policy.PaymentAmount = policy.InsuredAmount / length / 4;
                             if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
                             break;
                     }
-#endregion
                     break;
+                #endregion
 
             }
         }
 
-        public static void AddPolicy(Airline airline, AirlineInsurance insurance, string index)
+        public static void AddPolicy(FleetAirliner airliner, AirlinerInsurance insurance, string index)
         {
-            airline.InsurancePolicies.Add(index, insurance);
+            airliner.InsurancePolicies.Add(index, insurance);
         }
 
         //remove insurance policy
-        public static void RemovePolicy(Airline airline, string index)
+        public static void RemovePolicy(FleetAirliner airliner, string index)
         {
-            airline.InsurancePolicies.Remove(index);
+            airliner.InsurancePolicies.Remove(index);
         }
-
+       
 
         //extend or modify policy
-        public static void ModifyPolicy(Airline airline, string index, AirlineInsurance newPolicy)
+        public static void ModifyPolicy(FleetAirliner airliner, string index, AirlinerInsurance newPolicy)
         {
-            AirlineInsurance oldPolicy = airline.InsurancePolicies[index];
+            AirlinerInsurance oldPolicy = airliner.InsurancePolicies[index];
             //use the index to compare the new policy passed in to the existing one and make changes
         }
 
         public static void CheckExpiredInsurance(Airline airline)
         {
             DateTime date = GameObject.GetInstance().GameTime;
-            foreach (AirlineInsurance policy in airline.InsurancePolicies.Values)
+            foreach (FleetAirliner airliner in airline.Fleet)
             {
-                if (policy.InsuranceExpires < date)
+                foreach(AirlinerInsurance policy in airliner.InsurancePolicies.Values)
                 {
-                    RemovePolicy(airline, policy.PolicyIndex);
+                    if(policy.InsuranceExpires < GameObject.GetInstance().GameTime)
+                    RemovePolicy(airliner, policy.PolicyIndex);
                 }
             }
         }
 
-        public static void MakeInsurancePayment(Airline airline)
+        public static void MakeInsurancePayment(FleetAirliner airliner, Airline airline)
         {
-            foreach (AirlineInsurance policy in airline.InsurancePolicies.Values)
+            foreach (AirlinerInsurance policy in airliner.InsurancePolicies.Values)
             {
                 if (policy.RemainingPayments > 0)
                 {
@@ -322,7 +414,7 @@ namespace TheAirline.Model.AirlineModel
                                 break;
                         }
                     }
-                    }
+                }
 
             }
         }
@@ -334,7 +426,7 @@ namespace TheAirline.Model.AirlineModel
 
         public static void ReceiveInsurancePayout(Airline airline, Airport airport)
         {
-            
+
         }
     }
 }
