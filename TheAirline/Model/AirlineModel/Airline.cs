@@ -51,6 +51,7 @@ namespace TheAirline.Model.AirlineModel
         public List<Pilot> Pilots { get; set; }
         public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
+        public Dictionary<string, AirlineInsurance> InsurancePolicies { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
