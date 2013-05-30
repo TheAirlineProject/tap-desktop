@@ -15,7 +15,7 @@ using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.Model.AirlinerModel
 {
-    class AirlinerInsurance
+    public class AirlinerInsurance
     {
         public enum InsuranceType { None, Liability, Ground_Parked, Ground_Taxi,Combined_Ground, In_Flight, Full_Coverage }
         public enum InsuranceScope { Airport, Domestic, Hub, Global }
