@@ -25,15 +25,16 @@ namespace TheAirline.Model.AirlineModel
         //returns the value of a specific fee type
         public double getValue(FeeType type)
         {
-            if (!this.Fees.ContainsKey(type))
+            lock (this.Fees)
             {
-                lock (this.Fees)
+                if (!this.Fees.ContainsKey(type))
                 {
+
                     this.Fees.Add(type, type.DefaultValue);
                 }
             }
             return this.Fees[type];
-            
+
         }
         //sets the value of a specific fee type
         public void setValue(FeeType type, double value)

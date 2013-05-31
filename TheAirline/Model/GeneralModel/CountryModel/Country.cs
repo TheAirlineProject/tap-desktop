@@ -14,6 +14,7 @@ namespace TheAirline.Model.GeneralModel
     [DataContract]
     [KnownType(typeof(Country))]
     [KnownType(typeof(TemporaryCountry))]
+    [KnownType(typeof(TerritoryCountry))]
     public class Country : BaseUnit
     {
         public static string Section { get; set; }
@@ -93,6 +94,7 @@ namespace TheAirline.Model.GeneralModel
          * */
       
     }
+    [Serializable]
     //the class for a country which is a territory of another country
     public class TerritoryCountry : Country
     {
