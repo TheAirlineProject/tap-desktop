@@ -137,8 +137,19 @@ namespace TheAirline.Model.AirportModel
         {
             DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination);
 
-            int classFactor = (int)type;
-        
+            var values = Enum.GetValues(typeof(AirlinerClass.ClassType));
+ 
+            int classFactor = 0;
+
+            int i = 1;
+
+            foreach (AirlinerClass.ClassType value in values)
+            {
+                if (value == type)
+                   classFactor = i;
+                i++;
+            }
+                          
             if (pax == null)
                 return 0;
             else

@@ -10,7 +10,7 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
-    public abstract class PopUpWindow : Window
+    public class PopUpWindow : Window
     {
         public object Selected { get; set; }
         public PopUpWindow()

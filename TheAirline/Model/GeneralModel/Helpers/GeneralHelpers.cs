@@ -111,7 +111,7 @@ namespace TheAirline.Model.GeneralModel
             return (GameObject.GetInstance().Difficulty.LoanLevel + 0.5) *((double)Airline.AirlineValue.Very_high + 1 - value);
          
         }
-  
+       
         //creates the big image map
         public static void CreateBigImageCanvas()
         {

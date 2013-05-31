@@ -105,12 +105,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     int classes = rnd.Next(0, ((AirlinerPassengerType)airliner.Type).MaxAirlinerClasses) +1;
 
-                    if (classes == 1)
-                        configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
-                    if (classes == 2)
-                        configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
-                    if (classes == 3)
-                        configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
+                    if (GameObject.GetInstance().GameTime.Year >= (int)AirlinerClass.ClassType.Business_Class)
+                    {
+                        if (classes == 1)
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
+                        if (classes == 2)
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("202");
+                        if (classes == 3)
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("203");
+                    }
+                    else
+                    {
+                        if (classes == 1)
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("200");
+                        if (classes == 2)
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
+                        if (classes == 3)
+                            configuration = (AirlinerConfiguration)Configurations.GetStandardConfiguration("201");
+           
+                    }
 
                     foreach (AirlinerClassConfiguration aClass in configuration.Classes)
                     {

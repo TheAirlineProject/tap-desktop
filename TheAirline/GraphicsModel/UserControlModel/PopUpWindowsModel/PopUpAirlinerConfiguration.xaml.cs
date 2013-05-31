@@ -25,10 +25,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpAirlinerConfiguration : PopUpWindow
     {
         public static int MaxSeats;
+        public static List<AirlinerClass.ClassType> FreeClasses;
         private List<AirlinerClass> Classes;
         private ListBox lbClasses;
         private ContentControl lblNewClass;
         private AirlinerType Type;
+        private AirlinerClass.ClassType CurrentClass;
         public static object ShowPopUp(Airliner airliner)
         {
             PopUpWindow window = new PopUpAirlinerConfiguration(airliner);
@@ -38,12 +40,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
           public static object ShowPopUp(AirlinerType airliner, List<AirlinerClass> classes)
         {
+              
             PopUpWindow window = new PopUpAirlinerConfiguration(airliner,classes);
             window.ShowDialog();
 
             return window.Selected;
         }
-        
+       
         public PopUpAirlinerConfiguration(AirlinerType type, List<AirlinerClass> classes)
         {
             this.Classes = new List<AirlinerClass>(classes);
@@ -148,6 +151,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             lbClasses.Items.Clear();
 
+            FreeClasses = new List<AirlinerClass.ClassType>();
+
             int i = 0;
             foreach (AirlinerClass aClass in this.Classes)
             {
@@ -157,37 +162,32 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
 
             int maxCapacity = ((AirlinerPassengerType)this.Type).MaxSeatingCapacity;
+        
 
-            AirlinerClass.ClassType nextClass = this.Classes.Count < maxCapacity ? this.Classes[this.Classes.Count - 1].Type + 1 : AirlinerClass.ClassType.Economy_Class;
-
-            if (nextClass == AirlinerClass.ClassType.Business_Class)
+            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                MaxSeats = (int)(0.2 * Convert.ToDouble(maxCapacity));
-
-
+                if (!this.Classes.Exists(c => c.Type == type) && ((int)type <= GameObject.GetInstance().GameTime.Year))
+                    FreeClasses.Add(type);
             }
-            if (nextClass == AirlinerClass.ClassType.First_Class)
-            {
-                MaxSeats = (int)(0.1 * Convert.ToDouble(maxCapacity));
+            
+            AirlinerClass.ClassType nextClass = FreeClasses.Count > 0 ?  FreeClasses[0] : AirlinerClass.ClassType.Economy_Class;
 
-            }
+            MaxSeats = maxCapacity - this.Classes.Count;
 
-
-            lblNewClass.Visibility = this.Classes.Count < ((AirlinerPassengerType)this.Type).MaxAirlinerClasses ? Visibility.Visible : Visibility.Collapsed;
+            lblNewClass.Visibility = this.Classes.Count < ((AirlinerPassengerType)this.Type).MaxAirlinerClasses && FreeClasses.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
             lblNewClass.Content = nextClass;
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
             int seating = (int)((Button)sender).Tag;
-            AirlinerClass.ClassType nextClass = this.Classes[this.Classes.Count - 1].Type + 1;
-            AirlinerClass aClass = new AirlinerClass(nextClass, seating);
+
+              AirlinerClass aClass = new AirlinerClass(this.CurrentClass, seating);
 
             aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Audio));
             aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Seat));
             aClass.forceSetFacility(this.Classes[0].getFacility(AirlinerFacility.FacilityType.Video));
-
-
+            
             this.Classes.Add(aClass);
 
             // chs, 2011-11-10 added so seat capacity is correctly calculated
@@ -208,6 +208,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showAirlinerClasses();
         }
+        private void cbClasses_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (((ComboBox)sender).SelectedItem!=null)
+                this.CurrentClass = (AirlinerClass.ClassType)((ComboBox)sender).SelectedItem;
+        }
         //the class for an airliner class item
         private class AirlinerClassItem
         {
@@ -220,6 +225,25 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             }
         }
 
+       
+
+    }
+    //the converter for the "free" classes
+    public class FreeClassesConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            ObservableCollection<AirlinerClass.ClassType> list = new ObservableCollection<AirlinerClass.ClassType>();
+            foreach (AirlinerClass.ClassType type in PopUpAirlinerConfiguration.FreeClasses)
+                 list.Add(type);
+                  
+            return list;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
     //the converter for returning the amount of passengers
     public class NumberOfPassengersConverter : IValueConverter

@@ -32,6 +32,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         public PopUpAirlinerClassConfiguration(AirlinerClass aClass)
         {
+            
             InitializeComponent();
 
             this.AirlinerClass = aClass;
