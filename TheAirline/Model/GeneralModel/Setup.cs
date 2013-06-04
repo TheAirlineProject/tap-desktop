@@ -1151,6 +1151,28 @@ namespace TheAirline.Model.GeneralModel
 
 
         }
+
+        //loads the random events
+        private static void LoadRandomEvents()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\addons\\events\\RandomEvents.xml");
+            XmlElement root = doc.DocumentElement;
+            XmlNodeList eventsList = root.SelectNodes("//event");
+
+            foreach (XmlElement element in eventsList)
+            {
+                string section = root.Name;
+                string uid = element.Attributes["uid"].Value;
+                string type = element.Attributes["type"].Value;
+                string name = element.Attributes["name"].Value;
+                string message = element.Attributes["text"].Value;
+                int frequency = int.Parse(element.Attributes["frequency"].Value);
+                //need to finish adding the other attributes and importing to the enum
+
+
+            }
+        }
         /*!loads the airport facilities.
          */
         private static void LoadAirportFacilities()

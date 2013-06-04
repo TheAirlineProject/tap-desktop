@@ -54,6 +54,7 @@ namespace TheAirline.Model.AirlineModel
         public Dictionary<string, AirlineInsurance> InsurancePolicies { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
+        public Dictionary<string, RandomEvent> EventLog { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
@@ -80,6 +81,7 @@ namespace TheAirline.Model.AirlineModel
             this.License = license;
             this.FlightCodes = new List<string>();
             this.Policies = new List<AirlinePolicy>();
+            this.EventLog = new Dictionary<string, RandomEvent>();
           
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));

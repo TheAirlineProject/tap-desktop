@@ -93,6 +93,10 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="ucLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Debug\ucLibrary.dll</HintPath>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -850,6 +854,7 @@
     <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\TimeTableHelpers.cs" />
+    <Compile Include="Model\GeneralModel\RandomEvent.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\Scenario.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioAirline.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioFailure.cs" />
@@ -1042,11 +1047,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\start.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="..\Data\graphics\manufacturerlogos\Aerospatiale.png">
-      <Link>Aerospatiale.png</Link>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\contract.png" />
