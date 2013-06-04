@@ -17,7 +17,8 @@ namespace TheAirline.Model.GeneralModel
 {
     class RandomEvent
     {
-        public enum EventType { Maintenance, Safety, Security, Corporate, Employee, Customer }
+        public enum EventType { Safety, Security, Maintenance, Customer, Employee, Political }
+        public EventType Type { get; set; }
         public Airline airline { get; set; }
         public string EventName { get; set; }
         public string EventMessage { get; set; }
@@ -30,6 +31,7 @@ namespace TheAirline.Model.GeneralModel
         public int CustomerHappinessEffect { get; set; } //0-100
         public int AircraftDamageEffect { get; set; } //0-100
         public int AirlineSecurityEffect { get; set; } //0-100
+        public int AirlineSafetyEffect { get; set; } //0-100
         public int EmployeeHappinessEffect { get; set; } //0-100
         public int FinancialPenalty { get; set; } //dollar amount to be added or subtracted from airline cash
         public double PaxDemandEffect { get; set; } //0-2
@@ -37,8 +39,9 @@ namespace TheAirline.Model.GeneralModel
         public int EffectLength { get; set; } //should be defined in months
         public string EventID { get; set; }
         public int Frequency { get; set; } //frequency per 3 years
-        public RandomEvent(EventType type)
+        public RandomEvent(EventType type, string name, string message, bool critical, int custHappiness, int aircraftDamage, int airlineSecurity, int airlineSafety, int empHappiness, int moneyEffect, double paxDemand, double cargoDemand, int length, string id, int frequency)
         {
+
             this.DateOccurred = GameObject.GetInstance().GameTime;
             this.CustomerHappinessEffect = 0;
             this.AircraftDamageEffect = 0;
@@ -51,13 +54,50 @@ namespace TheAirline.Model.GeneralModel
             this.CriticalEvent = false;
             this.EventName = "";
             this.EventMessage = "";
+            this.Type = type;
             this.EventID = GameObject.GetInstance().GameTime.ToString() + this.airline.ToString();
         }
 
         public void ExecuteEvent(Airline airline, RandomEvent rEvent) 
         {
-            //method to apply rating and financial effects
+            rEvent.airliner.Airliner.Damaged += AircraftDamageEffect;
+            airline.Money += rEvent.FinancialPenalty;
+            airline.scoresCHR.Add(rEvent.CustomerHappinessEffect);
+            airline.scoresEHR.Add(rEvent.EmployeeHappinessEffect);
+            airline.scoresSafety.Add(rEvent.AirlineSafetyEffect);
+            airline.scoresSecurity.Add(rEvent.AirlineSecurityEffect);
+            //add pax and cargo demand modifier
         }
+
+        public void GenerateEvents(Airline airline)
+        {
+            Random rnd = new Random();
+            int eFreq = 0;
+            int i = 0;
+            int totalRating = airline.CustomerHappinessRating + airline.EmployeeHappinessRating + airline.SafetyRating + airline.SecurityRating;
+            if (totalRating < 300)
+            {
+                eFreq = (int)rnd.Next(1, 6);
+            }
+            else if (totalRating < 200)
+            {
+                eFreq = (int)rnd.Next(4, 10);
+            }
+            else if (totalRating < 100)
+            {
+                eFreq = (int)rnd.Next(8, 16);
+            }
+            else eFreq = (int)rnd.Next(0, 4);
+
+            //need some code to populate the actual events
+
+        }
+
+        /*public RandomEvent GenerateRandomEvent()
+        {
+            //code needed
+
+        }*/
 
         public void AddEvent(Airline airline, RandomEvent rEvent)
         {
@@ -82,4 +122,37 @@ namespace TheAirline.Model.GeneralModel
                     }  }  }
         }
     }
+
+    public class RandomEvents
+    {
+        private static Dictionary<string, RandomEvent> events = new Dictionary<string, RandomEvent>();
+
+        public static void Clear()
+        {
+            events = new Dictionary<string, RandomEvent>();
+        }
+
+        public static void AddEvent(RandomEvent rEvent)
+        {
+            events.Add(rEvent.EventName, rEvent);
+        }
+
+        public static RandomEvent GetEvent(string name)
+        {
+            return events[name];
+        }
+
+        public static List<RandomEvent> GetEvents()
+        {
+            return events.Values.ToList();
+        }
+
+        public static List<RandomEvent> GetEvents(RandomEvent.EventType type)
+        {
+            return GetEvents().FindAll((delegate(RandomEvent rEvent) {return rEvent.Type ==type; }));
+        }
+
+    }
+
+
 }

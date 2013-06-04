@@ -1163,13 +1163,52 @@ namespace TheAirline.Model.GeneralModel
             foreach (XmlElement element in eventsList)
             {
                 string section = root.Name;
+                XmlElement effects = (XmlElement)element.SelectSingleNode("effects");
+                XmlElement demand = (XmlElement)element.SelectSingleNode("demand");
                 string uid = element.Attributes["uid"].Value;
+                RandomEvent.EventType eventType = new RandomEvent.EventType();
                 string type = element.Attributes["type"].Value;
+                    switch (type) {
+                        case "Safety":
+                            eventType = RandomEvent.EventType.Safety;
+                            break;
+                        case "Security":
+                            eventType = RandomEvent.EventType.Security;
+                            break;
+                        case "Customer":
+                            eventType = RandomEvent.EventType.Customer;
+                            break;
+                        case "Employee":
+                            eventType = RandomEvent.EventType.Employee;
+                            break;
+                        case "Maintenance":
+                            eventType = RandomEvent.EventType.Maintenance;
+                            break;
+                        case "Political":
+                            eventType = RandomEvent.EventType.Political;
+                            break;
+                    }
+
                 string name = element.Attributes["name"].Value;
                 string message = element.Attributes["text"].Value;
                 int frequency = int.Parse(element.Attributes["frequency"].Value);
-                //need to finish adding the other attributes and importing to the enum
 
+                bool critical;
+                if (int.Parse(effects.Attributes["important"].Value) == 1) critical = true; else critical = false;
+
+                int effectLength = int.Parse(effects.Attributes["duration"].Value);
+                int chEffect = int.Parse(effects.Attributes["CustomerHappiness"].Value);
+                int ehEffect = int.Parse(effects.Attributes["EmployeeHappiness"].Value);
+                int aSecurityEffect = int.Parse(effects.Attributes["AirlineSecurity"].Value);
+                int aSafetyEffect = int.Parse(effects.Attributes["AirlineSafety"].Value);
+                int damageEffect = int.Parse(effects.Attributes["AircraftDamage"].Value);
+                int financial = int.Parse(effects.Attributes["Financial"].Value);
+                double paxDemand = double.Parse(demand.Attributes["passenger"].Value);
+                double cargoDemand = double.Parse(demand.Attributes["cargo"].Value);
+
+                RandomEvent rEvent = new RandomEvent(eventType, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency);
+
+                RandomEvents.AddEvent(rEvent);
 
             }
         }

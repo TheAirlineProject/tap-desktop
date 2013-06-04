@@ -57,6 +57,14 @@ namespace TheAirline.Model.AirlineModel
         public Dictionary<string, RandomEvent> EventLog { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
+        public int CustomerHappinessRating { get; set; }
+        public int SafetyRating { get; set; }
+        public int SecurityRating { get; set; }
+        public int EmployeeHappinessRating { get; set; }
+        public List<int> scoresCHR { get; set; }
+        public List<int> scoresSafety { get; set; }
+        public List<int> scoresSecurity { get; set; }
+        public List<int> scoresEHR { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
             this.Airports = new List<Airport>();
@@ -82,6 +90,7 @@ namespace TheAirline.Model.AirlineModel
             this.FlightCodes = new List<string>();
             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new Dictionary<string, RandomEvent>();
+            this.CustomerHappinessRating = this.EmployeeHappinessRating = this.SecurityRating = this.SafetyRating = 50;
           
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
@@ -620,6 +629,16 @@ namespace TheAirline.Model.AirlineModel
         {
             return airlines.Contains(airline);
         }           
+
+
+        //updates the airlines ratings from a list
+        public static void UpdateRatings(Airline airline)
+        {
+            airline.SafetyRating = (int)airline.scoresSafety.Average();
+            airline.SecurityRating = (int)airline.scoresSecurity.Average();
+            airline.CustomerHappinessRating = (int)airline.scoresCHR.Average();
+            airline.EmployeeHappinessRating = (int)airline.scoresEHR.Average();
+        }
       
     }    
    
