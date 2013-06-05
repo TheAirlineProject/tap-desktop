@@ -94,7 +94,7 @@ namespace TheAirline.Model.AirlineModel
             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new Dictionary<string, RandomEvent>();
             this.CustomerHappinessRating = this.EmployeeHappinessRating = this.SecurityRating = this.SafetyRating = 50;
-          
+            this.InsurancePolicies = new Dictionary<string, AirlineInsurance>();
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
 

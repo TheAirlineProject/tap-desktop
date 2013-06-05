@@ -67,7 +67,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnConfiguration.Click += new RoutedEventHandler(btnConfiguration_Click);
             btnConfiguration.Content = "Configuration";
             btnConfiguration.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-            btnConfiguration.Visibility = (!this.Airliner.HasRoute || this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
+            btnConfiguration.Visibility =  (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger) && (!this.Airliner.HasRoute || this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped) ? Visibility.Visible : Visibility.Collapsed;
 
             panelButtons.Children.Add(btnConfiguration);
 

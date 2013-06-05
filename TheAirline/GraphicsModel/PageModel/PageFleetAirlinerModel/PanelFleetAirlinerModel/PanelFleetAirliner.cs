@@ -48,7 +48,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             frameContent = new Frame();
             frameContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-            frameContent.Navigate(new PageFleetFacilities(this.Airliner));
+
+            if (this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                frameContent.Navigate(new PageFleetFacilities(this.Airliner));
+            else
+                frameContent.Navigate(new PageFleetRoute(this.Airliner));
 
             this.Children.Add(frameContent);
 

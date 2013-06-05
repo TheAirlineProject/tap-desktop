@@ -710,7 +710,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
                 StackPanel panelType = new StackPanel();
                 panelType.Children.Add(PanelAirliner.createQuickInfoPanel(type));
-                panelType.Children.Add(createEquippedPanel(type));
+
+                if (type is AirlinerPassengerType)
+                    panelType.Children.Add(createEquippedPanel(type));
 
                 frameAirlinerInfo.Content = panelType;
             }
