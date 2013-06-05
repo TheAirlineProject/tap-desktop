@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlineModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -168,11 +169,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 AirlinerClass cargoClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
                 airliner.addAirlinerClass(cargoClass);
-                    
-            
-
             }
           
+        }
+
+        public static FleetAirliner GetRandomAirliner(Airline airline)
+        {
+            int i = 0;
+            Dictionary<int, FleetAirliner> airliners = new Dictionary<int, FleetAirliner>();
+            foreach (FleetAirliner a in airline.Fleet)
+            {
+                airliners.Add(i, a);
+                i++;
+            }
+
+            return airliners[rnd.Next(i)];
         }
        
     }

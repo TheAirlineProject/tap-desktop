@@ -15,7 +15,7 @@ using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel
 {
-    class RandomEvent
+    public class RandomEvent
     {
         public enum EventType { Safety, Security, Maintenance, Customer, Employee, Political }
         public EventType Type { get; set; }
@@ -55,19 +55,26 @@ namespace TheAirline.Model.GeneralModel
             this.EventName = "";
             this.EventMessage = "";
             this.Type = type;
-            this.EventID = GameObject.GetInstance().GameTime.ToString() + this.airline.ToString();
+            this.EventID = System.DateTime.Now.Millisecond + this.airline.ToString();
         }
 
         //applies the effects of an event
-        public void ExecuteEvent(Airline airline, RandomEvent rEvent) 
+        public void ExecuteEvents(Airline airline, DateTime time) 
         {
-            rEvent.airliner.Airliner.Damaged += AircraftDamageEffect;
-            airline.Money += rEvent.FinancialPenalty;
-            airline.scoresCHR.Add(rEvent.CustomerHappinessEffect);
-            airline.scoresEHR.Add(rEvent.EmployeeHappinessEffect);
-            airline.scoresSafety.Add(rEvent.AirlineSafetyEffect);
-            airline.scoresSecurity.Add(rEvent.AirlineSecurityEffect);
-            //add pax and cargo demand modifier
+            Random rnd = new Random();
+            foreach (RandomEvent rEvent in airline.EventLog.Values)
+            {
+                if (rEvent.DateOccurred.DayOfYear == time.DayOfYear)
+                {
+                    rEvent.airliner.Airliner.Damaged += AircraftDamageEffect;
+                    airline.Money += rEvent.FinancialPenalty;
+                    airline.scoresCHR.Add(rEvent.CustomerHappinessEffect);
+                    airline.scoresEHR.Add(rEvent.EmployeeHappinessEffect);
+                    airline.scoresSafety.Add(rEvent.AirlineSafetyEffect);
+                    airline.scoresSecurity.Add(rEvent.AirlineSecurityEffect);
+                    PassengerHelpers.ChangePaxDemand(airline, (rEvent.PaxDemandEffect * rnd.Next(9, 11) / 10));
+                }
+            }
         }
 
         //returns a list of proportions of events based on current ratings
@@ -110,7 +117,6 @@ namespace TheAirline.Model.GeneralModel
             double maintEvents;
             double custEvents;
             double empEvents;
-            int i = 0;
 
             //sets an overall event frequency based on an airlines total overall rating
             int totalRating = airline.CustomerHappinessRating + airline.EmployeeHappinessRating + airline.SafetyRating + airline.SecurityRating;
@@ -147,7 +153,7 @@ namespace TheAirline.Model.GeneralModel
             foreach (KeyValuePair<RandomEvent.EventType, double> v in eventOccurences)
             {
                 int k = (int)v.Value;
-                List<RandomEvent> list = RandomEvents.GetEvents(v.Key, k);
+                List<RandomEvent> list = RandomEvents.GetEvents(v.Key, k, airline);
                 foreach (RandomEvent e in list)
                 {
                     this.airline.EventList.Add(e);
@@ -171,22 +177,23 @@ namespace TheAirline.Model.GeneralModel
 
 
         //removes an event from the airlines event log
-        public void RemoveEvent(Airline airline, RandomEvent rEvent)
+        public static void RemoveEvent(Airline airline, RandomEvent rEvent)
         {
             airline.EventLog.Remove(rEvent.EventID);
         }
 
 
         //checks if an event's effects are expired
-        public void CheckExpired()
+        public static void CheckExpired(DateTime expDate)
         {
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 foreach (RandomEvent rEvent in airline.EventLog.Values)
                 {
-                    DateTime expDate = GameObject.GetInstance().GameTime.AddMonths(rEvent.EffectLength);
+                    expDate = GameObject.GetInstance().GameTime.AddMonths(rEvent.EffectLength);
                     if (expDate < GameObject.GetInstance().GameTime)
                     {
+                        PassengerHelpers.ChangePaxDemand(airline, (1 / rEvent.PaxDemandEffect));
                         RemoveEvent(airline, rEvent);
                     }  }  }
         }
@@ -226,7 +233,7 @@ namespace TheAirline.Model.GeneralModel
         }
 
         //gets x number of random events of a given type
-        public static List<RandomEvent> GetEvents(RandomEvent.EventType type, int number)
+        public static List<RandomEvent> GetEvents(RandomEvent.EventType type, int number, Airline airline)
         {
             Random rnd = new Random();
             Dictionary<int,RandomEvent> rEvents = new Dictionary<int,RandomEvent>();
@@ -235,6 +242,9 @@ namespace TheAirline.Model.GeneralModel
             int j = 0;
             foreach (RandomEvent r in tEvents)
             {
+                r.DateOccurred = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime, GameObject.GetInstance().GameTime.AddMonths(12));
+                r.airline = airline;
+                r.airliner = Helpers.AirlinerHelpers.GetRandomAirliner(airline);
                 rEvents.Add(i, r);
                 i++;
             }

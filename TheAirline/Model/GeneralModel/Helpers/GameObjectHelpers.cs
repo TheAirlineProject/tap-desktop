@@ -1005,6 +1005,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (GameObject.GetInstance().Scenario != null)
                 ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
+
+            //maintenance, insurance, and ratings
+            foreach(Airline a in Airlines.GetAllAirlines())
+            {
+                AirlineInsurance.CheckExpiredInsurance(a);
+                if (a.InsurancePolicies != null)
+                {
+                    AirlineInsurance.MakeInsurancePayment(a);
+                }
+
+                RandomEvent.CheckExpired(GameObject.GetInstance().GameTime);
+                //add code for checking and executing new events
+            }
         }
         //updates an airliner
         private static void UpdateAirliner(FleetAirliner airliner)

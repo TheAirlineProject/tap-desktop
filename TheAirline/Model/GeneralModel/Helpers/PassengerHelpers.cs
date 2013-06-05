@@ -3384,6 +3384,15 @@ namespace TheAirline.Model.GeneralModel
                 ChangePaxDemand(airport, factor);
             });
         }
+
+        //changes the demand for all airports belonging to an airline with a factor
+        public static void ChangePaxDemand(Airline airline, double factor)
+        {
+            foreach (Airport a in airline.Airports)
+            {
+                ChangePaxDemand(a, factor);
+            }
+        }
         //changes the demand for an airport with a factor
         public static void ChangePaxDemand(Airport airport, double factor)
         {

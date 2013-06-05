@@ -924,7 +924,6 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirports(string filename)
         {
             string id = "";
-            int n = 0;
             try
             {
                 XmlDocument doc = new XmlDocument();

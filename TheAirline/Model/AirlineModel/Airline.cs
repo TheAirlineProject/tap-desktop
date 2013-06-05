@@ -559,6 +559,30 @@ namespace TheAirline.Model.AirlineModel
 
             return cockpitCrew + cabinCrew + serviceCrew + maintenanceCrew + instructors;
         }
+
+        //update the damage scores
+        public static void UpdateMaintList(Airline airline)
+        {
+            foreach (FleetAirliner a in airline.Fleet)
+            {
+                airline.scoresMaint.Add((int)a.Airliner.Damaged);
+            }
+
+            if (airline.scoresMaint.Count > (airline.Fleet.Count * 2))
+            {
+                airline.scoresMaint.RemoveRange(0, airline.Fleet.Count);
+            }
+        }
+
+        //updates the airlines ratings from a list
+        public static void UpdateRatings(Airline airline)
+        {
+            airline.SafetyRating = (int)airline.scoresSafety.Average();
+            airline.SecurityRating = (int)airline.scoresSecurity.Average();
+            airline.CustomerHappinessRating = (int)airline.scoresCHR.Average();
+            airline.EmployeeHappinessRating = (int)airline.scoresEHR.Average();
+            airline.MaintenanceRating = (int)airline.scoresMaint.Average();
+        }
      
        
     }
@@ -632,16 +656,6 @@ namespace TheAirline.Model.AirlineModel
         {
             return airlines.Contains(airline);
         }           
-
-
-        //updates the airlines ratings from a list
-        public static void UpdateRatings(Airline airline)
-        {
-            airline.SafetyRating = (int)airline.scoresSafety.Average();
-            airline.SecurityRating = (int)airline.scoresSecurity.Average();
-            airline.CustomerHappinessRating = (int)airline.scoresCHR.Average();
-            airline.EmployeeHappinessRating = (int)airline.scoresEHR.Average();
-        }
       
     }    
    

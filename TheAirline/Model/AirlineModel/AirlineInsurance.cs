@@ -43,10 +43,11 @@ namespace TheAirline.Model.AirlineModel
         }
 
         //add insurance policy
-        public static void CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, int length, int amount)
+        public void CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, int length, int amount)
         {
 #region Method Setup
             Random rnd = new Random();
+            double modifier = GetRatingModifier(airline);
             double hub = airline.getHubs().Count() * 0.1;
             AirlineInsurance policy = new AirlineInsurance(type, scope, terms, amount);
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
@@ -70,15 +71,15 @@ namespace TheAirline.Model.AirlineModel
             //sets up multipliers based on the type and scope of insurance policy
             Dictionary<InsuranceType, Double> typeMultipliers = new Dictionary<InsuranceType, double>();
             Dictionary<InsuranceScope, Double> scopeMultipliers = new Dictionary<InsuranceScope, double>();
-            double typeMPublic = 1;
-            double typeMPassenger = 1.2;
-            double typeMCSL = 1.5;
-            double typeMFull = 2.0;
+            double typeMPublic = modifier;
+            double typeMPassenger = modifier + 0.2;
+            double typeMCSL = modifier + 0.5;
+            double typeMFull = modifier + 1;
 
-            double scMAirport = 1;
-            double scMDomestic = 1.5;
-            double scMHub = 1.5 + hub;
-            double scMGlobal = 2.0 + hub;
+            double scMAirport = modifier;
+            double scMDomestic = modifier + 0.2;
+            double scMHub = modifier + hub + 0.5;
+            double scMGlobal = modifier + hub + 1;
 #endregion
 #region Domestic/Int'l Airport Counter
             int i = 0; int j = 0;
@@ -269,6 +270,16 @@ namespace TheAirline.Model.AirlineModel
             airline.InsurancePolicies.Add(index, insurance);
         }
 
+        //gets insurance rate modifiers based on security, safety, and aircraft state of maintenance
+        public double GetRatingModifier(Airline airline)
+        {
+            double mod = 1;
+            mod += (100 - airline.MaintenanceRating) / 100;
+            mod += (100 - airline.SafetyRating) / 150;
+            mod += (100 - airline.SecurityRating) / 100;
+            return mod;
+        }
+
         //remove insurance policy
         public static void RemovePolicy(Airline airline, string index)
         {
@@ -328,12 +339,12 @@ namespace TheAirline.Model.AirlineModel
             }
         }
 
-        public static void FileInsuranceClaim(Airline airline, Airport airport, AirportFacilities facility)
+        public static void FileInsuranceClaim(Airline airline, Airport airport, AirportFacilities facility, int damage)
         {
 
         }
 
-        public static void ReceiveInsurancePayout(Airline airline, Airport airport)
+        public static void ReceiveInsurancePayout(Airline airline, Airport airport, int amount)
         {
             
         }
