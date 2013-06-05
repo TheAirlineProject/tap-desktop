@@ -673,6 +673,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GeneralHelpers.CreatePilots(15);
             GeneralHelpers.CreateInstructors(10);
+
+            foreach(Airline airline in Airlines.GetAllAirlines())
+            {
+                RandomEvent.GenerateEvents(airline);
+            }
         }
         //do the monthly update
         private static void DoMonthlyUpdate()

@@ -81,7 +81,7 @@ namespace TheAirline.Model.GeneralModel
         }
 
         //returns a list of proportions of events based on current ratings
-        public List<double> GetEventProportions(Airline airline)
+        public static List<double> GetEventProportions(Airline airline)
         {
             //chr 0 ehr 1 scr 2 sfr 3 total 4
             List<int> ratings = new List<int>();
@@ -109,7 +109,7 @@ namespace TheAirline.Model.GeneralModel
         }
 
         //generates x number of events for each event type for the current year. Should be called only from OnNewYear
-        public void GenerateEvents(Airline airline)
+        public static void GenerateEvents(Airline airline)
         {
             Random rnd = new Random();
             Dictionary<RandomEvent.EventType, double> eventOccurences = new Dictionary<EventType, double>();
@@ -159,7 +159,7 @@ namespace TheAirline.Model.GeneralModel
                 List<RandomEvent> list = RandomEvents.GetEvents(v.Key, k, airline);
                 foreach (RandomEvent e in list)
                 {
-                    this.Airline.EventList.Add(e);
+                    airline.EventLog.Add(e.EventID, e);
                 }
             }
 
