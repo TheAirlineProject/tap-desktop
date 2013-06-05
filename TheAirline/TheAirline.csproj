@@ -491,6 +491,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GraphicsModel\Converters\GeneralConverters.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\Warnings.cs" />
     <Compile Include="GraphicsModel\PageModel\PageAirlineFacilityModel\PageAirlineFacilityMaintenance.xaml.cs">
       <DependentUpon>PageAirlineFacilityMaintenance.xaml</DependentUpon>
     </Compile>

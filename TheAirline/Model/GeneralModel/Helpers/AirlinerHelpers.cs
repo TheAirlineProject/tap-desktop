@@ -166,7 +166,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else if (airliner.Type is AirlinerCargoType)
             {
-
+                
                 AirlinerClass cargoClass = new AirlinerClass(AirlinerClass.ClassType.Economy_Class, 0);
                 airliner.addAirlinerClass(cargoClass);
             }

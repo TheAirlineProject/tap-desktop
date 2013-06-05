@@ -153,6 +153,7 @@ namespace TheAirline.Model.GeneralModel
             Holidays.Clear();
             Configurations.Clear();
             HistoricEvents.Clear();
+            RandomEvents.Clear();
             WeatherAverages.Clear();
             DifficultyLevels.Clear();
             Pilots.Clear();

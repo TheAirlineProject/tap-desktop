@@ -20,6 +20,7 @@ using TheAirline.Model.PilotModel;
 using TheAirline.Model.StatisticsModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using System.Diagnostics;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -137,6 +138,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the daily update
         private static void DoDailyUpdate()
         {
+             
             var humanAirlines = Airlines.GetAirlines(a => a.IsHuman);
 
             int totalRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) select r).Count();
@@ -678,6 +680,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 RandomEvent.GenerateEvents(airline);
             }
+
+
         }
         //do the monthly update
         private static void DoMonthlyUpdate()
@@ -1023,7 +1027,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 RandomEvent.CheckExpired(GameObject.GetInstance().GameTime);
                 //add code for checking and executing new events
             }
-        }
+
+             }
         //updates an airliner
         private static void UpdateAirliner(FleetAirliner airliner)
         {

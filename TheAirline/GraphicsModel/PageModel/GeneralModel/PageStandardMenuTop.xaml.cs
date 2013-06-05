@@ -90,10 +90,29 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             
             setNewsText();
-            
-     
+
+            checkWarnings();
       
    
+        }
+        //checks the list of warnings
+        private void checkWarnings()
+        {
+            var warnings = Warnings.GetWarnings();
+
+            GameObjectWorker.GetInstance().pause();
+
+            foreach (KeyValuePair<string, string> warning in warnings)
+            {
+              
+                WPFMessageBox.Show(warning.Key, warning.Value, WPFMessageBoxButtons.Ok);
+
+               
+            }
+
+            GameObjectWorker.GetInstance().restart();
+
+            Warnings.Clear();
         }
         //sets the text of the news
         private void setNewsText()
@@ -101,6 +120,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             int news = GameObject.GetInstance().NewsBox.getUnreadNews().Count;
     
             this.NewsText = news == 0 ? "News" : string.Format("News ({0})", news);
+
+       
 
         }
         private void lnkNews_Click(object sender, RoutedEventArgs e)
