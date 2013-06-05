@@ -1194,7 +1194,7 @@ namespace TheAirline.Model.GeneralModel
 
                 string name = element.Attributes["name"].Value;
                 string message = element.Attributes["text"].Value;
-                int frequency = int.Parse(element.Attributes["frequency"].Value);
+                int frequency = int.Parse(element.Attributes["frequency"].Value) / 3;
 
                 Boolean critical = Convert.ToBoolean(element.Attributes["important"].Value);
                // if (int.Parse(effects.Attributes["important"].Value) == 1) critical = true; else critical = false;<
@@ -1207,8 +1207,8 @@ namespace TheAirline.Model.GeneralModel
                 int aSafetyEffect = effects.HasAttribute("airlineSafety") ? int.Parse(effects.Attributes["airlineSafety"].Value) : 0;
                 int damageEffect = effects.HasAttribute("aircraftDamage") ? int.Parse(effects.Attributes["aircraftDamage"].Value) : 0;
                 int financial = effects.HasAttribute("financial") ? int.Parse(effects.Attributes["financial"].Value) : 0;
-                double paxDemand = effects.HasAttribute("passenger") ? double.Parse(demand.Attributes["passenger"].Value) : 0;
-                double cargoDemand = effects.HasAttribute("cargo") ? double.Parse(demand.Attributes["cargo"].Value) : 0;
+                double paxDemand = demand.HasAttribute("passenger") ? double.Parse(demand.Attributes["passenger"].Value) : 0;
+                double cargoDemand = demand.HasAttribute("cargo") ? double.Parse(demand.Attributes["cargo"].Value) : 0;
 
                 RandomEvent rEvent = new RandomEvent(eventType, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency);
 
