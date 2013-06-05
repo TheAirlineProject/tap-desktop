@@ -245,6 +245,9 @@ namespace TheAirline.Model.GeneralModel
                 r.DateOccurred = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime, GameObject.GetInstance().GameTime.AddMonths(12));
                 r.airline = airline;
                 r.airliner = Helpers.AirlinerHelpers.GetRandomAirliner(airline);
+                r.route = r.airliner.Routes[rnd.Next(r.airliner.Routes.Count())];
+                r.country = r.route.Destination1.Profile.Country;
+                r.airport = r.route.Destination1;
                 rEvents.Add(i, r);
                 i++;
             }
