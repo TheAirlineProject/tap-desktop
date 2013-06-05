@@ -61,10 +61,13 @@ namespace TheAirline.Model.AirlineModel
         public int SafetyRating { get; set; }
         public int SecurityRating { get; set; }
         public int EmployeeHappinessRating { get; set; }
+        public int MaintenanceRating { get; set; }
         public List<int> scoresCHR { get; set; }
         public List<int> scoresSafety { get; set; }
         public List<int> scoresSecurity { get; set; }
         public List<int> scoresEHR { get; set; }
+        public List<int> scoresMaint { get; set; }
+        public List<RandomEvent> EventList { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
             this.Airports = new List<Airport>();
