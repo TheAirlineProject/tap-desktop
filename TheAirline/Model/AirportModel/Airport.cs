@@ -29,8 +29,8 @@ namespace TheAirline.Model.AirportModel
         public List<Runway> Runways { get; set; }
         public Terminals Terminals { get; set; }
         private List<Hub> _Hubs;
-        public List<Hub> Hubs { get { return getHubs(); } set { this._Hubs = value; } }
-        public Boolean IsHub { get { return this.Hubs.Count > 0; } set { ;} }
+        public List<Hub> Hubs { private get { return getHubs(); } set { this._Hubs = value; } }
+        public Boolean IsHub { get { return getHubs().Count > 0; } set { ;} }
         public long Income { get; set; }
         public DateTime LastExpansionDate { get; set; }
         private List<AirportContract> _Contracts;
@@ -476,6 +476,15 @@ namespace TheAirline.Model.AirportModel
             this.Facilities.RemoveAll(f => f.Airline == airline);
 
         }
+        //returns all hubs of a specific type
+        public List<Hub> getHubs(HubType.TypeOfHub type)
+        {
+            List<Hub> hubs;
+            lock (this._Hubs)
+                hubs = new List<Hub>(this._Hubs);
+            
+            return hubs.FindAll(h=>h.Type.Type == type);
+        }
         //returns all hubs
         public List<Hub> getHubs()
         {
@@ -485,11 +494,15 @@ namespace TheAirline.Model.AirportModel
 
             return hubs;
         }
-        //returns the price for a hub
-        public long getHubPrice()
+        //adds a hub to the airport
+        public void addHub(Hub hub)
         {
-            long price = 50000 + 25000 * ((int)this.Profile.Size);
-            return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
+            this._Hubs.Add(hub);
+        }
+        //removes a hub
+        public void removeHub(Hub hub)
+        {
+            this._Hubs.Remove(hub);
         }
         // chs, 2011-31-10 added for pricing of a terminal
         //returns the price for a terminal

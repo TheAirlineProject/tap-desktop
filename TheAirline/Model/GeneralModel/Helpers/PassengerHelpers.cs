@@ -215,8 +215,9 @@ namespace TheAirline.Model.GeneralModel
 
             double demand = (double)airportCurrent.getDestinationPassengersRate(airportDestination, type);
 
-            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent, airportDestination, airliner, type) + GetNearbyPassengerDemand(airportCurrent, airportDestination, airliner, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
+  
 
+            double passengerDemand = (demand + GetFlightConnectionPassengers(airportCurrent, airportDestination, airliner, type) + GetNearbyPassengerDemand(airportCurrent, airportDestination, airliner, type)) * GetSeasonFactor(airportDestination) * GetHolidayFactor(airportDestination) * GetHolidayFactor(airportCurrent);
 
             passengerDemand *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
@@ -231,6 +232,31 @@ namespace TheAirline.Model.GeneralModel
 
             if (airliner.Airliner.Airline.MarketFocus == Airline.AirlineFocus.Local && distance < 1000)
                 passengerDemand = passengerDemand * (115 / 100);
+
+
+            var hub = airportDestination.getHubs().Find(h => h.Airline == airliner.Airliner.Airline);
+            
+            if (hub != null)
+            {
+                switch (hub.Type.Type)
+                {
+                    case HubType.TypeOfHub.Focus_city:
+                        if (airportDestination.Profile.Country == airportCurrent.Profile.Country)
+                            passengerDemand = passengerDemand * 1.15;
+                        break;
+                    case HubType.TypeOfHub.Regional_hub:
+                        if (airportDestination.Profile.Country.Region == airportCurrent.Profile.Country.Region)
+                            passengerDemand = passengerDemand * 1.20;
+                        break;
+                    case HubType.TypeOfHub.Hub:
+                        passengerDemand = passengerDemand * 1.20;
+                        break;
+                    case HubType.TypeOfHub.Fortress_hub:
+                        passengerDemand = passengerDemand * 1.30;
+                        break;
+                }
+
+            }
 
             List<Route> routes = new List<Route>();
 

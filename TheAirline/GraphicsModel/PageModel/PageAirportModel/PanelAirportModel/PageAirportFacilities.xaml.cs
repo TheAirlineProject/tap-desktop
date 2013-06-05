@@ -177,7 +177,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         private void ButtonSell_Click(object sender, RoutedEventArgs e)
         {
             HumanFacilityType type = (HumanFacilityType)((Button)sender).Tag;
-            Boolean hasHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
+            Boolean hasHub = this.Airport.getHubs().Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             Boolean hasCargoRoute = GameObject.GetInstance().HumanAirline.Routes.Exists(r => (r.Destination1 == this.Airport || r.Destination2 == this.Airport) && r.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo);
             Boolean airportHasCargoTerminal = this.Airport.getCurrentAirportFacility(null,AirportFacility.FacilityType.Cargo) != null && this.Airport.getCurrentAirportFacility(null,AirportFacility.FacilityType.Cargo).TypeLevel > 0;

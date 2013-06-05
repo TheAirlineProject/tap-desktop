@@ -239,12 +239,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                  }
 
                  XmlNodeList airportHubsList = airportNode.SelectNodes("hubs/hub");
-                 airport.Hubs.Clear();
+                // airport.Hubs.Clear();
 
                  foreach (XmlElement airportHubElement in airportHubsList)
                  {
                      Airline airline = Airlines.GetAirline(airportHubElement.Attributes["airline"].Value);
-                     airport.Hubs.Add(new Hub(airline));
+                    // airport.Hubs.Add(new Hub(airline,null));
                  }
 
                
@@ -1615,7 +1615,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airportNode.AppendChild(airportRunwaysNode);
 
                 XmlElement airportHubsNode = xmlDoc.CreateElement("hubs");
-                foreach (Hub hub in airport.Hubs)
+                foreach (Hub hub in airport.getHubs(HubType.TypeOfHub.Hub))
                 {
                     XmlElement airportHubNode = xmlDoc.CreateElement("hub");
                     airportHubNode.SetAttribute("airline", hub.Airline.Profile.IATACode);

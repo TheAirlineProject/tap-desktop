@@ -687,6 +687,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return gates * (basePrice * (lengthFactor / 100));
         }
+        //returns the price for a hub at an airport
+        public static double GetHubPrice(Airport airport, HubType type)
+        {
+           double price = type.Price;
+          
+            price = price +25000 * ((int)airport.Profile.Size);
+            return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
+  
+        }
         //converts a pax value to airport size
         public static GeneralHelpers.Size ConvertAirportPaxToSize(double size)
         {

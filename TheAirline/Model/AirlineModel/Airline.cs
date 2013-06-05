@@ -217,7 +217,7 @@ namespace TheAirline.Model.AirlineModel
             List<Airport> hubs = new List<Airport>();
             lock (this.Airports)
             {
-                hubs = (from a in this.Airports where a.Hubs.Exists(h=>h.Airline == this) select a).ToList();
+                hubs = (from a in this.Airports where a.getHubs().Exists(h=>h.Airline == this) select a).ToList();
             }
             return hubs;
         }

@@ -847,6 +847,7 @@
     <Compile Include="Model\AirportModel\AirportStatics.cs" />
     <Compile Include="Model\AirportModel\Gate.cs" />
     <Compile Include="Model\AirportModel\Hub.cs" />
+    <Compile Include="Model\AirportModel\HubType.cs" />
     <Compile Include="Model\GeneralModel\CalendarItem.cs" />
     <Compile Include="Model\GeneralModel\Helpers\SerializedLoadSaveHelpers.cs" />
     <Compile Include="Model\GeneralModel\NewsFeed.cs" />

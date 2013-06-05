@@ -29,10 +29,10 @@ namespace TheAirline.Model.AirlineModel
             {
                 if (!this.Fees.ContainsKey(type))
                 {
-
                     this.Fees.Add(type, type.DefaultValue);
                 }
             }
+
             return this.Fees[type];
 
         }

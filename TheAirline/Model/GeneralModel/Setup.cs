@@ -53,6 +53,7 @@ namespace TheAirline.Model.GeneralModel
                 CreateTimeZones();
                 SetupDifficultyLevels();
                 SetupStatisticsTypes();
+                CreateHubTypes();
 
                 LoadRegions();
                 LoadCountries();
@@ -90,6 +91,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAlliances();
 
                 LoadScenarios();
+              
 
                 Skins.Init();
             }
@@ -156,6 +158,7 @@ namespace TheAirline.Model.GeneralModel
             Instructors.Clear();
             TrainingAircraftTypes.Clear();
             Scenarios.Clear();
+            HubTypes.Clear();
 
         }
         /*! creates some pilots
@@ -1954,7 +1957,16 @@ namespace TheAirline.Model.GeneralModel
             StatisticsTypes.AddStatisticsType(new StatisticsType("Cancellations", "Cancellations"));
             StatisticsTypes.AddStatisticsType(new StatisticsType("Cancellation Percent", "Cancellation%"));
         }
+        /*! creates the hub types
+         */
+        private static void CreateHubTypes()
+        {
+            HubTypes.AddHubType(new HubType("Hub", 50000, HubType.TypeOfHub.Hub));
+            HubTypes.AddHubType(new HubType("Regional hub", 40000, HubType.TypeOfHub.Regional_hub));
+            HubTypes.AddHubType(new HubType("Focus city", 25000, HubType.TypeOfHub.Focus_city));
+            HubTypes.AddHubType(new HubType("Fortress hub", 75000, HubType.TypeOfHub.Fortress_hub));
 
+        }
 
         /*! sets up the game.
          */

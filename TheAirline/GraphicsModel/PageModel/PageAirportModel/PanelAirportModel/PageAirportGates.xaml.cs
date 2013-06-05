@@ -163,19 +163,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             lbHubs.Items.Clear();
 
-            foreach (Hub hub in this.Airport.Hubs)
+            var hubs = this.Airport.getHubs().OrderBy(h=>h.Type.Name);
+            
+            foreach (Hub hub in hubs)
                 lbHubs.Items.Add(hub);
 
-            int airlineValue = (int)GameObject.GetInstance().HumanAirline.getAirlineValue() + 1;
+            int contracts = this.Airport.getAirlineContracts(GameObject.GetInstance().HumanAirline).Count;
 
-            int totalHumanHubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline));
-            double humanGatesPercent = Convert.ToDouble(this.Airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.getNumberOfGates()) * 100;
-            Boolean humanHub = this.Airport.Hubs.Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
+            btnHub.Visibility = contracts > 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
-
-            Boolean isBuyHubEnabled = (GameObject.GetInstance().HumanAirline.Money > this.Airport.getHubPrice()) && (!humanHub) && (humanGatesPercent > 20) && (totalHumanHubs < airlineValue) && (this.Airport.Hubs.Count < (int)this.Airport.Profile.Size) && (this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel >= Hub.MinimumServiceFacility.TypeLevel);
-            btnHub.Visibility = isBuyHubEnabled ? Visibility.Visible : System.Windows.Visibility.Collapsed;
-
+       
         }
         // chs, 2011-28-10 changed to show all terminals
         //shows the terminals
@@ -377,30 +374,57 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
                 PageNavigator.NavigateTo(new PageAirport(allocateToAirport));
             }
         }
+        //creates the radio button for a hub type
+        private RadioButton createHubType(HubType type, Panel panel)
+        {
+            RadioButton rbHub = new RadioButton();
+            rbHub.Content = string.Format("{0} ({1})", type.Name, new ValueCurrencyConverter().Convert(AirportHelpers.GetHubPrice(this.Airport, type)));
+            rbHub.GroupName = "Hub";
+            rbHub.Tag = new KeyValuePair<HubType,Panel>(type,panel);
+            rbHub.Checked += rbHub_Checked;
+            rbHub.IsChecked = true;
+
+            return rbHub;
+        }
+
+        private void rbHub_Checked(object sender, RoutedEventArgs e)
+        {
+            KeyValuePair<HubType, Panel> value = (KeyValuePair<HubType, Panel>)((RadioButton)sender).Tag;
+
+            value.Value.Tag = value.Key;
+        }
         private void btnHub_Click(object sender, RoutedEventArgs e)
         {
+            StackPanel panelHubs = new StackPanel();
 
-
-            if (this.Airport.getHubPrice() > GameObject.GetInstance().HumanAirline.Money)
+            foreach (HubType type in HubTypes.GetHubTypes())
             {
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2212"), Translator.GetInstance().GetString("MessageBox", "2212", "message"), WPFMessageBoxButtons.Ok);
+            
+                if (AirlineHelpers.CanCreateHub(GameObject.GetInstance().HumanAirline,this.Airport,type))
+                    panelHubs.Children.Add(createHubType(type,panelHubs));
             }
-            else
-            {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2213"), string.Format(Translator.GetInstance().GetString("MessageBox", "2213", "message"), this.Airport.getHubPrice()), WPFMessageBoxButtons.YesNo);
 
-                if (result == WPFMessageBoxResult.Yes)
+            if (panelHubs.Children.Count == 0)
+                panelHubs.Children.Add(UICreator.CreateTextBlock("You can't etablish any hubs at this airport"));
+
+            if (PopUpSingleElement.ShowPopUp("Select hub type", panelHubs) == PopUpSingleElement.ButtonSelected.OK && panelHubs.Tag != null)
+            {
+                HubType type = (HubType)panelHubs.Tag;
+
+                if (AirportHelpers.GetHubPrice(this.Airport, type) > GameObject.GetInstance().HumanAirline.Money)
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2212"), Translator.GetInstance().GetString("MessageBox", "2212", "message"), WPFMessageBoxButtons.Ok);
+                else
                 {
-                    this.Airport.Hubs.Add(new Hub(GameObject.GetInstance().HumanAirline));
+
+                    this.Airport.addHub(new Hub(GameObject.GetInstance().HumanAirline, type));
 
                     showHubs();
-                   
-                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airport.getHubPrice());
 
-
-
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -AirportHelpers.GetHubPrice(this.Airport, type));
                 }
             }
+
+         
 
         }
 
@@ -422,7 +446,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
         {
             Hub hub = (Hub)((Button)sender).Tag;
 
-            this.Airport.Hubs.Remove(hub);
+            this.Airport.removeHub(hub);
 
             showHubs();
         }

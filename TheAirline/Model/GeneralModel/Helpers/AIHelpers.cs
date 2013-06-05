@@ -181,7 +181,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void CheckForNewHub(Airline airline)
         {
 
-            int hubs = Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            int hubs = airline.getHubs().Count;
 
             int newHubInterval = 0;
             switch (airline.Mentality)
@@ -209,36 +209,36 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new hub for an airline
         private static void CreateNewHub(Airline airline)
         {
+            HubType.TypeOfHub type = HubType.TypeOfHub.Focus_city;
+            List<Airport> airports = new List<Airport>();
 
-            List<Airport> airports = airline.Airports.FindAll(a => CanCreateHub(airline, a));
+            if (airline.MarketFocus == Airline.AirlineFocus.Domestic || airline.MarketFocus == Airline.AirlineFocus.Local)
+                type = HubType.TypeOfHub.Focus_city;
+
+            if (airline.MarketFocus == Airline.AirlineFocus.Global)
+                type = HubType.TypeOfHub.Hub;
+
+            if (airline.MarketFocus == Airline.AirlineFocus.Regional)
+                type = HubType.TypeOfHub.Regional_hub;
+            
+            airports = airline.Airports.FindAll(a => AirlineHelpers.CanCreateHub(airline, a, HubTypes.GetHubType(type)));
 
             if (airports.Count > 0)
             {
+                HubType hubtype = HubTypes.GetHubType(type);
+
                 Airport airport = (from a in airports orderby a.Profile.Size descending select a).First();
 
-                airport.Hubs.Add(new Hub(airline));
+                airport.addHub(new Hub(airline,hubtype));
 
-                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, airport.getHubPrice());
+                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, AirportHelpers.GetHubPrice(airport, hubtype)); ;
 
                 NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1003"), airline.Profile.Name, new AirportCodeConverter().Convert(airport), airport.Profile.Town.Name, airport.Profile.Town.Country.ShortName)));
 
             }
 
         }
-        //checks if it is possible to create a hub at an airport
-        private static Boolean CanCreateHub(Airline airline, Airport airport)
-        {
-            int airlineValue = (int)airline.getAirlineValue() + 1;
-
-            int totalAirlineHubs = airline.getHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
-            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
-            Boolean airlineHub = airport.Hubs.Count(h => h.Airline == airline) > 0;
-
-            return (airline.Money > airport.getHubPrice()) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.Hubs.Count < (int)airport.Profile.Size) && (airport.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).ServiceLevel >= Hub.MinimumServiceFacility.ServiceLevel);
-
-
-        }
-        //checks for the creation of a subsidiary airline for an airline
+            //checks for the creation of a subsidiary airline for an airline
         private static void CheckForSubsidiaryAirline(Airline airline)
         {
             int subAirlines = airline.Subsidiaries.Count;
@@ -724,7 +724,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static Airport GetRouteStartDestination(Airline airline)
         {
             List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
-            homeAirports.AddRange(airline.Airports.FindAll(a => a.Hubs.Count(h => h.Airline == airline) > 0)); //hubs
+            homeAirports.AddRange(airline.getHubs());
 
             Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline));
 

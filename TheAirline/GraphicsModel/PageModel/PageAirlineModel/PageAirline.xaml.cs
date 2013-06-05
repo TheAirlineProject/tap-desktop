@@ -169,7 +169,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
             TextBlock txtFleetSize = UICreator.CreateTextBlock(string.Format("{0} (+{1} in order)", this.Airline.DeliveredFleet.Count, this.Airline.Fleet.Count - this.Airline.DeliveredFleet.Count));
 
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1007"), txtFleetSize));
-            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1011"), UICreator.CreateTextBlock(string.Format("{0} / {1}", this.Airline.Airports.Count, Airports.GetAllAirports().Sum(a => a.Hubs.Count(h => h.Airline == this.Airline))))));
+            lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1011"), UICreator.CreateTextBlock(string.Format("{0} / {1}", this.Airline.Airports.Count, Airports.GetAllAirports().Sum(a => a.getHubs().Count(h => h.Airline == this.Airline))))));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1008"), createAirlineValuePanel()));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1009"), createAirlineReputationPanel()));
             lbQuickInfo.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirline", "1010"), UICreator.CreateTextBlock(String.Format("{0:0.00} %", PassengerHelpers.GetPassengersHappiness(this.Airline)))));

@@ -333,6 +333,33 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
+        //returns if an airline can create a hub at an airport
+        public static Boolean CanCreateHub(Airline airline, Airport airport, HubType type)
+        {
+            Boolean airlineHub = airport.getHubs().Exists(h => h.Airline == airline);
+            
+            int airlineValue = (int)airline.getAirlineValue() + 1;
+
+            int totalAirlineHubs = airline.getHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
+            double airlineGatesPercent = Convert.ToDouble(airport.Terminals.getNumberOfGates(airline)) / Convert.ToDouble(airport.Terminals.getNumberOfGates()) * 100;
+
+            switch (type.Type)
+            {
+                case HubType.TypeOfHub.Focus_city:
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type);            
+                case HubType.TypeOfHub.Regional_hub:
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size == GeneralHelpers.Size.Large || airport.Profile.Size == GeneralHelpers.Size.Medium) && airport.getHubs().Count < 7;
+                case HubType.TypeOfHub.Fortress_hub:
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size > GeneralHelpers.Size.Medium) && airlineGatesPercent > 70 && (totalAirlineHubs < airlineValue);
+                case HubType.TypeOfHub.Hub:
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport,type) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.getHubs(HubType.TypeOfHub.Hub).Count < (int)airport.Profile.Size);
+            }
+
+            return false;
+            
+          
+        }
+
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
         {
