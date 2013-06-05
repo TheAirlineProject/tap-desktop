@@ -856,7 +856,6 @@
     <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\TimeTableHelpers.cs" />
     <Compile Include="Model\GeneralModel\RandomEvent.cs" />
-    <Compile Include="Model\GeneralModel\RandomEvents.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\Scenario.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioAirline.cs" />
     <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioFailure.cs" />

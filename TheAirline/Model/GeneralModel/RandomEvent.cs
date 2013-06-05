@@ -15,6 +15,7 @@ using TheAirline.Model.PilotModel;
 
 namespace TheAirline.Model.GeneralModel
 {
+    [Serializable]
     public class RandomEvent
     {
         public enum EventType { Safety, Security, Maintenance, Customer, Employee, Political }
