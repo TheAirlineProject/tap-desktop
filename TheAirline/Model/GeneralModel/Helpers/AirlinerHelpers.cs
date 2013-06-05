@@ -175,15 +175,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         public static FleetAirliner GetRandomAirliner(Airline airline)
         {
-            int i = 0;
-            Dictionary<int, FleetAirliner> airliners = new Dictionary<int, FleetAirliner>();
-            foreach (FleetAirliner a in airline.Fleet)
-            {
-                airliners.Add(i, a);
-                i++;
-            }
-
-            return airliners[rnd.Next(i)];
+            return airline.Fleet[rnd.Next(airline.Fleet.Count)];
+         
         }
        
     }

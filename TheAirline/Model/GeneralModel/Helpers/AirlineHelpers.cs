@@ -360,6 +360,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
           
         }
 
+        //update the damage scores for an airline
+        public static void UpdateMaintList(Airline airline)
+        {
+            foreach (FleetAirliner a in airline.Fleet)
+            {
+                airline.scoresMaint.Add((int)a.Airliner.Damaged);
+            }
+
+            if (airline.scoresMaint.Count > (airline.Fleet.Count * 2))
+            {
+                airline.scoresMaint.RemoveRange(0, airline.Fleet.Count);
+            }
+        }
+
+        //updates the airlines ratings for an airline
+        public static void UpdateRatings(Airline airline)
+        {
+            airline.SafetyRating = (int)airline.scoresSafety.Average();
+            airline.SecurityRating = (int)airline.scoresSecurity.Average();
+            airline.CustomerHappinessRating = (int)airline.scoresCHR.Average();
+            airline.EmployeeHappinessRating = (int)airline.scoresEHR.Average();
+            airline.MaintenanceRating = (int)airline.scoresMaint.Average();
+        }
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
         {

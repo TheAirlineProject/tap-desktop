@@ -77,6 +77,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadInflationYears();
                 LoadHolidays();
                 LoadHistoricEvents();
+                LoadRandomEvents(); 
                 LoadWeatherAverages();
 
                 CreateAdvertisementTypes();
@@ -1195,18 +1196,19 @@ namespace TheAirline.Model.GeneralModel
                 string message = element.Attributes["text"].Value;
                 int frequency = int.Parse(element.Attributes["frequency"].Value);
 
-                bool critical;
-                if (int.Parse(effects.Attributes["important"].Value) == 1) critical = true; else critical = false;
+                Boolean critical = Convert.ToBoolean(element.Attributes["important"].Value);
+               // if (int.Parse(effects.Attributes["important"].Value) == 1) critical = true; else critical = false;<
 
                 int effectLength = int.Parse(effects.Attributes["duration"].Value);
-                int chEffect = int.Parse(effects.Attributes["CustomerHappiness"].Value);
-                int ehEffect = int.Parse(effects.Attributes["EmployeeHappiness"].Value);
-                int aSecurityEffect = int.Parse(effects.Attributes["AirlineSecurity"].Value);
-                int aSafetyEffect = int.Parse(effects.Attributes["AirlineSafety"].Value);
-                int damageEffect = int.Parse(effects.Attributes["AircraftDamage"].Value);
-                int financial = int.Parse(effects.Attributes["Financial"].Value);
-                double paxDemand = double.Parse(demand.Attributes["passenger"].Value);
-                double cargoDemand = double.Parse(demand.Attributes["cargo"].Value);
+                
+                int chEffect = effects.HasAttribute("customerHappiness") ? int.Parse(effects.Attributes["customerHappiness"].Value) : 0;
+                int ehEffect = effects.HasAttribute("employeeHappiness") ? int.Parse(effects.Attributes["employeeHappiness"].Value) : 0;
+                int aSecurityEffect = effects.HasAttribute("airlineSecurity") ? int.Parse(effects.Attributes["airlineSecurity"].Value) : 0;
+                int aSafetyEffect = effects.HasAttribute("airlineSafety") ? int.Parse(effects.Attributes["airlineSafety"].Value) : 0;
+                int damageEffect = effects.HasAttribute("aircraftDamage") ? int.Parse(effects.Attributes["aircraftDamage"].Value) : 0;
+                int financial = effects.HasAttribute("financial") ? int.Parse(effects.Attributes["financial"].Value) : 0;
+                double paxDemand = effects.HasAttribute("passenger") ? double.Parse(demand.Attributes["passenger"].Value) : 0;
+                double cargoDemand = effects.HasAttribute("cargo") ? double.Parse(demand.Attributes["cargo"].Value) : 0;
 
                 RandomEvent rEvent = new RandomEvent(eventType, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency);
 

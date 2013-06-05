@@ -31,13 +31,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.airlinersList = new List<Airliner>();
             so.calendaritemsList = new List<CalendarItem>();
             so.configurationList = new List<Configuration>();
+            so.eventsList = new List<RandomEvent>();
 
             so.airlinesList.AddRange(Airlines.GetAllAirlines());
             so.airportsList.AddRange(Airports.GetAllAirports());
             so.airlinersList.AddRange(Airliners.GetAllAirliners());
             so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
             so.configurationList.AddRange(Configurations.GetConfigurations());
-            
+            so.eventsList.AddRange(RandomEvents.GetEvents());
+
             so.instance = GameObject.GetInstance();
         
             var settings = new XmlWriterSettings
@@ -123,6 +125,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Configuration configuration in deserializedSaveObject.configurationList)
                 Configurations.AddConfiguration(configuration);
 
+            RandomEvents.Clear();
+
+            foreach (RandomEvent e in deserializedSaveObject.eventsList)
+                RandomEvents.AddEvent(e);
+
             GameObject.SetInstance(deserializedSaveObject.instance);
         }
     }
@@ -148,7 +155,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         [DataMember(Name = "configurations")]
         public List<Configuration> configurationList { get; set; }
     
-  
+        [DataMember(Name = "randomevents")]
+        public List<RandomEvent> eventsList { get; set; } 
        
 
     }

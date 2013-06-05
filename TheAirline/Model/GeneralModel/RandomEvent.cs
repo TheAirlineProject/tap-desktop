@@ -20,13 +20,13 @@ namespace TheAirline.Model.GeneralModel
     {
         public enum EventType { Safety, Security, Maintenance, Customer, Employee, Political }
         public EventType Type { get; set; }
-        public Airline airline { get; set; }
+        public Airline Airline { get; set; }
         public string EventName { get; set; }
         public string EventMessage { get; set; }
-        public FleetAirliner airliner { get; set; }
-        public Airport airport { get; set; }
-        public Country country { get; set; }
-        public Route route { get; set; }
+        public FleetAirliner Airliner { get; set; }
+        public Airport Airport { get; set; }
+        public Country Country { get; set; }
+        public Route Route { get; set; }
         public bool CriticalEvent { get; set; }
         public DateTime DateOccurred { get; set; }
         public int CustomerHappinessEffect { get; set; } //0-100
@@ -56,7 +56,9 @@ namespace TheAirline.Model.GeneralModel
             this.EventName = "";
             this.EventMessage = "";
             this.Type = type;
-            this.EventID = System.DateTime.Now.Millisecond + this.airline.ToString();
+
+         
+            this.EventID = id;
         }
 
         //applies the effects of an event
@@ -67,7 +69,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (rEvent.DateOccurred.DayOfYear == time.DayOfYear)
                 {
-                    rEvent.airliner.Airliner.Damaged += AircraftDamageEffect;
+                    rEvent.Airliner.Airliner.Damaged += AircraftDamageEffect;
                     airline.Money += rEvent.FinancialPenalty;
                     airline.scoresCHR.Add(rEvent.CustomerHappinessEffect);
                     airline.scoresEHR.Add(rEvent.EmployeeHappinessEffect);
@@ -157,7 +159,7 @@ namespace TheAirline.Model.GeneralModel
                 List<RandomEvent> list = RandomEvents.GetEvents(v.Key, k, airline);
                 foreach (RandomEvent e in list)
                 {
-                    this.airline.EventList.Add(e);
+                    this.Airline.EventList.Add(e);
                 }
             }
 
@@ -244,11 +246,11 @@ namespace TheAirline.Model.GeneralModel
             foreach (RandomEvent r in tEvents)
             {
                 r.DateOccurred = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime, GameObject.GetInstance().GameTime.AddMonths(12));
-                r.airline = airline;
-                r.airliner = Helpers.AirlinerHelpers.GetRandomAirliner(airline);
-                r.route = r.airliner.Routes[rnd.Next(r.airliner.Routes.Count())];
-                r.country = r.route.Destination1.Profile.Country;
-                r.airport = r.route.Destination1;
+                r.Airline = airline;
+                r.Airliner = Helpers.AirlinerHelpers.GetRandomAirliner(airline);
+                r.Route = r.Airliner.Routes[rnd.Next(r.Airliner.Routes.Count())];
+                r.Country = r.Route.Destination1.Profile.Country;
+                r.Airport = r.Route.Destination1;
                 rEvents.Add(i, r);
                 i++;
             }

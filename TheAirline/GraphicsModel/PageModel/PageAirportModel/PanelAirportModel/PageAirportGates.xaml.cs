@@ -619,3 +619,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
     }
     
 }
+/*
+One thing I need to know...how do I display a message box from within a function? I can't seem to figure it out
+[07:27:01] Christian Sønderholm: You can only Call a message box from a function on the GUI side (GraphicsModel). Where do you want to Call it from?
+[07:27:40] Michael Dugan: Things like very important events (terrorist attacks or plane crashes)*/
