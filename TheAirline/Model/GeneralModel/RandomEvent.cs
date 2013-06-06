@@ -40,7 +40,9 @@ namespace TheAirline.Model.GeneralModel
         public int EffectLength { get; set; } //should be defined in months
         public string EventID { get; set; }
         public int Frequency { get; set; } //frequency per 3 years
-        public RandomEvent(EventType type, string name, string message, bool critical, int custHappiness, int aircraftDamage, int airlineSecurity, int airlineSafety, int empHappiness, int moneyEffect, double paxDemand, double cargoDemand, int length, string id, int frequency)
+        public DateTime Start { get; set; }
+        public DateTime End { get; set; }
+        public RandomEvent(EventType type, string name, string message, bool critical, int custHappiness, int aircraftDamage, int airlineSecurity, int airlineSafety, int empHappiness, int moneyEffect, double paxDemand, double cargoDemand, int length, string id, int frequency, DateTime stat, DateTime end)
         {
 
             this.DateOccurred = GameObject.GetInstance().GameTime;
@@ -244,16 +246,19 @@ namespace TheAirline.Model.GeneralModel
             int i = 1;
             int j = 0;
             foreach (RandomEvent r in tEvents)
-            {
-                r.DateOccurred = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime, GameObject.GetInstance().GameTime.AddMonths(12));
-                r.Airline = airline;
-                r.Airliner = Helpers.AirlinerHelpers.GetRandomAirliner(airline);
-                r.Route = r.Airliner.Routes[rnd.Next(r.Airliner.Routes.Count())];
-                r.Country = r.Route.Destination1.Profile.Country;
-                r.Airport = r.Route.Destination1;
-                rEvents.Add(i, r);
-                i++;
-            }
+                if (r.Start <= GameObject.GetInstance().GameTime && r.End >= GameObject.GetInstance().GameTime)
+                {
+                    {
+                        r.DateOccurred = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime, GameObject.GetInstance().GameTime.AddMonths(12));
+                        r.Airline = airline;
+                        r.Airliner = Helpers.AirlinerHelpers.GetRandomAirliner(airline);
+                        r.Route = r.Airliner.Routes[rnd.Next(r.Airliner.Routes.Count())];
+                        r.Country = r.Route.Destination1.Profile.Country;
+                        r.Airport = r.Route.Destination1;
+                        rEvents.Add(i, r);
+                        i++;
+                    }
+                }
 
             tEvents.Clear();
 

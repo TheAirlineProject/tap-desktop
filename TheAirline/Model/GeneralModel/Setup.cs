@@ -1169,6 +1169,7 @@ namespace TheAirline.Model.GeneralModel
                 string section = root.Name;
                 XmlElement effects = (XmlElement)element.SelectSingleNode("effects");
                 XmlElement demand = (XmlElement)element.SelectSingleNode("demand");
+                XmlElement valid = (XmlElement)element.SelectSingleNode("valid");
                 string uid = element.Attributes["uid"].Value;
                 RandomEvent.EventType eventType = new RandomEvent.EventType();
                 string type = element.Attributes["type"].Value;
@@ -1196,6 +1197,8 @@ namespace TheAirline.Model.GeneralModel
                 string name = element.Attributes["name"].Value;
                 string message = element.Attributes["text"].Value;
                 int frequency = int.Parse(element.Attributes["frequency"].Value) / 3;
+                DateTime start = valid.HasAttribute("from") ? DateTime.Parse(valid.Attributes["from"].Value) : DateTime.Now.AddYears(100);
+                DateTime end = valid.HasAttribute("to") ? DateTime.Parse(valid.Attributes["to"].Value) : DateTime.Now.AddYears(100);
 
                 Boolean critical = Convert.ToBoolean(element.Attributes["important"].Value);
                // if (int.Parse(effects.Attributes["important"].Value) == 1) critical = true; else critical = false;<
@@ -1211,7 +1214,7 @@ namespace TheAirline.Model.GeneralModel
                 double paxDemand = demand.HasAttribute("passenger") ? double.Parse(demand.Attributes["passenger"].Value) : 0;
                 double cargoDemand = demand.HasAttribute("cargo") ? double.Parse(demand.Attributes["cargo"].Value) : 0;
 
-                RandomEvent rEvent = new RandomEvent(eventType, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency);
+                RandomEvent rEvent = new RandomEvent(eventType, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency, start, end);
 
                 RandomEvents.AddEvent(rEvent);
 
