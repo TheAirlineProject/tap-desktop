@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel
 {
@@ -21,28 +22,35 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
 
             ucSelectButton sbFacilities = new ucSelectButton();
-            sbFacilities.Content = "Facilities";
+            sbFacilities.Content = Translator.GetInstance().GetString("PanelFleetAirliner","200");
             sbFacilities.IsSelected = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger;
             sbFacilities.Click += new System.Windows.RoutedEventHandler(sbFacilities_Click);
             sbFacilities.Visibility = this.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
             buttonsPanel.Children.Add(sbFacilities);
 
             ucSelectButton sbRoute = new ucSelectButton();
-            sbRoute.Content = "Route & Flight";
+            sbRoute.Content = Translator.GetInstance().GetString("PanelFleetAirliner","201");
             sbRoute.IsSelected = this.Airliner.Airliner.Type.TypeAirliner != AirlinerType.TypeOfAirliner.Passenger;
             sbRoute.Click += new System.Windows.RoutedEventHandler(sbRoute_Click);
             buttonsPanel.Children.Add(sbRoute);
 
             ucSelectButton sbTimeSlot = new ucSelectButton();
-            sbTimeSlot.Content = "Timeslot";
+            sbTimeSlot.Content  = Translator.GetInstance().GetString("PanelFleetAirliner","202");
             sbTimeSlot.Visibility = System.Windows.Visibility.Collapsed;
             sbTimeSlot.Click += new System.Windows.RoutedEventHandler(sbTimeSlot_Click);
             buttonsPanel.Children.Add(sbTimeSlot);
 
             ucSelectButton sbStatistics = new ucSelectButton();
-            sbStatistics.Content = "Statistics";
+            sbStatistics.Content  = Translator.GetInstance().GetString("PanelFleetAirliner","203");
             sbStatistics.Click += new System.Windows.RoutedEventHandler(sbStatistics_Click);
             buttonsPanel.Children.Add(sbStatistics);
+
+            ucSelectButton sbInsurance = new ucSelectButton();
+            sbInsurance.Content = Translator.GetInstance().GetString("PanelFleetAirliner", "204");
+            sbInsurance.Click+=sbInsurance_Click;
+
+            if (this.Airliner.Airliner.Airline.IsHuman)
+                buttonsPanel.Children.Add(sbInsurance);
 
             this.Children.Add(buttonsPanel);
 
@@ -57,6 +65,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             this.Children.Add(frameContent);
 
          }
+
+        private void sbInsurance_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageFleetInsurance(this.Airliner));
+        }
 
         private void sbTimeSlot_Click(object sender, System.Windows.RoutedEventArgs e)
         {

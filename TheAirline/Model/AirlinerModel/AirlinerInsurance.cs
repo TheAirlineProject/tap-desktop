@@ -21,8 +21,8 @@ namespace TheAirline.Model.AirlinerModel
         public enum InsuranceType { None, Liability, Ground_Parked, Ground_Taxi,Combined_Ground, In_Flight, Full_Coverage }
         public enum InsuranceScope { Airport, Domestic, Hub, Global }
         public enum PaymentTerms { Annual, Biannual, Quarterly, Monthly }
-        public InsuranceType insType { get; set; }
-        public InsuranceScope insScope { get; set; }
+        public InsuranceType InsType { get; set; }
+        public InsuranceScope InsScope { get; set; }
         public PaymentTerms insTerms { get; set; }
         public int InsuredAmount { get; set; }
         public double Deductible { get; set; }
