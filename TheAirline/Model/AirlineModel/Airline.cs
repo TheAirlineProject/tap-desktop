@@ -61,6 +61,7 @@ namespace TheAirline.Model.AirlineModel
         public AirlineScores Scores { get; set; }
         public AirlineRatings Ratings { get; set; }
         public List<RandomEvent> EventList { get; set; }
+        public List<InsuranceClaim> InsuranceClaims { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
             this.Scores = new AirlineScores();
@@ -88,6 +89,7 @@ namespace TheAirline.Model.AirlineModel
             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new Dictionary<string, RandomEvent>();
             this.Ratings = new AirlineRatings();
+            this.InsuranceClaims = new List<InsuranceClaim>();
             this.InsurancePolicies = new Dictionary<string, AirlineInsurance>();
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));

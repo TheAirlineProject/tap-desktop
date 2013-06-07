@@ -424,6 +424,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return routes.Count(r => r.Destination1 == airport || r.Destination2 == airport);
 
         }
+
+        //checks for any insurance claims up for settlement
+        public static void CheckInsuranceSettlements(Airline airline)
+        {
+            foreach (InsuranceClaim claim in airline.InsuranceClaims)
+            {
+                if (claim.SettlementDate <= GameObject.GetInstance().GameTime)
+                {
+                    AirlineInsurance.ReceiveInsurancePayout(airline, claim.Policy, claim);
+                }
+            }
+        }
         //switches from one airline to another airline
         public static void SwitchAirline(Airline airlineFrom, Airline airlineTo)
         {

@@ -46,7 +46,7 @@ namespace TheAirline.Model.AirlineModel
         //add insurance policy
         public static AirlineInsurance CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, bool allAirliners, int length, int amount)
         {
-#region Method Setup
+            #region Method Setup
             Random rnd = new Random();
             double modifier = GetRatingModifier(airline);
             double hub = airline.getHubs().Count() * 0.1;
@@ -81,8 +81,8 @@ namespace TheAirline.Model.AirlineModel
             double scMDomestic = modifier + 0.2;
             double scMHub = modifier + hub + 0.5;
             double scMGlobal = modifier + hub + 1;
-#endregion
-#region Domestic/Int'l Airport Counter
+            #endregion
+            #region Domestic/Int'l Airport Counter
             int i = 0; int j = 0;
             foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports)
             {
@@ -92,12 +92,14 @@ namespace TheAirline.Model.AirlineModel
                 }
                 else j++;
             }
-#endregion
+            #endregion
             // all the decision making for monthly payment amounts and deductibles
-#region Public Liability
-            switch (type) {
+            #region Public Liability
+            switch (type)
+            {
                 case InsuranceType.Public_Liability:
-                    switch(scope) {
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
                             policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPublic * scMAirport;
@@ -137,11 +139,12 @@ namespace TheAirline.Model.AirlineModel
                     }
                     break;
 
-#endregion
-#region Passenger Liability
+            #endregion
+                #region Passenger Liability
 
                 case InsuranceType.Passenger_Liability:
-                    switch(scope) {
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
                             policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMPassenger * scMAirport;
@@ -179,10 +182,11 @@ namespace TheAirline.Model.AirlineModel
                             break;
                     }
                     break;
-#endregion
-#region Combined Single Limit
+                #endregion
+                #region Combined Single Limit
                 case InsuranceType.Combined_Single_Limit:
-                    switch(scope) {
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
                             policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMCSL * scMAirport;
@@ -220,10 +224,11 @@ namespace TheAirline.Model.AirlineModel
                             break;
                     }
                     break;
-#endregion
-#region Full Coverage
+                #endregion
+                #region Full Coverage
                 case InsuranceType.Full_Coverage:
-                    switch(scope) {
+                    switch (scope)
+                    {
                         case InsuranceScope.Airport:
                             policy.Deductible = amount * 0.005;
                             policy.PaymentAmount = policy.InsuredAmount * (4 / 10) * typeMFull * scMAirport;
@@ -260,7 +265,7 @@ namespace TheAirline.Model.AirlineModel
                             if (terms == PaymentTerms.Monthly) policy.PaymentAmount = policy.InsuredAmount / length / 12;
                             break;
                     }
-#endregion
+                #endregion
                     break;
             }
 
@@ -332,19 +337,86 @@ namespace TheAirline.Model.AirlineModel
                                 break;
                         }
                     }
-                    }
+                }
 
             }
         }
 
-        public static void FileInsuranceClaim(Airline airline, Airport airport, AirportFacilities facility, int damage)
-        {
 
+        //for general damage or claims
+        public static void FileInsuranceClaim(Airline airline, AirlineInsurance policy, int damage)
+        {
+            InsuranceClaim claim = new InsuranceClaim(airline, null, null, GameObject.GetInstance().GameTime, damage);
+            airline.InsuranceClaims.Add(claim);
+            News news = new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Insurance Claim Filed", "You have filed an insurance claim. Reference: " + claim.Index);
+            
         }
 
-        public static void ReceiveInsurancePayout(Airline airline, Airport airport, int amount)
+        //for damage and claims involving an airport or airport facility
+        public static void FileInsuranceClaim(Airline airline, Airport airport, int damage)
         {
-            
+            InsuranceClaim claim = new InsuranceClaim(airline, null, airport, GameObject.GetInstance().GameTime, damage);
+            airline.InsuranceClaims.Add(claim);
+            News news = new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Insurance Claim Filed", "You have filed an insurance claim. Reference: " + claim.Index);
+        }
+
+
+        //for damage and claims involving an airliner
+        public static void FileInsuranceClaim(Airline airline, FleetAirliner airliner, int damage)
+        {
+            InsuranceClaim claim = new InsuranceClaim(airline, airliner, null, GameObject.GetInstance().GameTime, damage);
+            airline.InsuranceClaims.Add(claim);
+            News news = new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Insurance Claim Filed", "You have filed an insurance claim. Reference: " + claim.Index);
+        }
+
+        //for damage and claims involving an airliner and airport or airport facility
+        public static void FileInsuranceClaim(Airline airline, FleetAirliner airliner, Airport airport, int damage)
+        {
+            InsuranceClaim claim = new InsuranceClaim(airline, airliner, airport, GameObject.GetInstance().GameTime, damage);
+            airline.InsuranceClaims.Add(claim);
+            News news = new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Insurance Claim Filed", "You have filed an insurance claim. Reference: " + claim.Index);
+        }
+        
+
+        public static void ReceiveInsurancePayout(Airline airline, AirlineInsurance policy, InsuranceClaim claim)
+        {
+            if (claim.Damage > policy.Deductible)
+            {
+                claim.Damage -= (int)policy.Deductible;
+                airline.Money -= policy.Deductible;
+                policy.Deductible = 0;
+                policy.InsuredAmount -= claim.Damage;
+                airline.Money += claim.Damage;
+                News news = new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, "Insurance Claim Payout", "You have received an insurance payout in the amount of $" + claim.Damage.ToString() + ". This was for claim number " + claim.Index);
+            }
+
+            else if (claim.Damage < policy.Deductible)
+            {
+                policy.Deductible -= claim.Damage;
+                GraphicsModel.PageModel.GeneralModel.Warnings.AddWarning("Low Damage", "The damage incurred was less than your deductible, so you will not receive an insurance payout for this claim! \n Reference: " + claim.Index);
+            }
+        }
+    }
+
+    public class InsuranceClaim
+    {
+        public Airline Airline { get; set; }
+        public AirlineInsurance Policy { get; set; }
+        public int Damage { get; set; }
+        public DateTime Date { get; set; }
+        public FleetAirliner Airliner { get; set; }
+        public Airport Airport { get; set; }
+        public DateTime SettlementDate { get; set; }
+        public string Index { get; set; }
+        public InsuranceClaim(Airline airline, FleetAirliner airliner, Airport airport, DateTime date, int damage)
+        {
+            this.Damage = damage;
+            this.Airline = airline;
+            this.Airliner = airliner;
+            this.Airport = airport;
+            this.Date = date;
+            this.Index = GameObject.GetInstance().GameTime.ToString() + airline.ToString() + damage.ToString();
+            this.SettlementDate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddMonths(2), GameObject.GetInstance().GameTime.AddMonths(24));
         }
     }
 }
