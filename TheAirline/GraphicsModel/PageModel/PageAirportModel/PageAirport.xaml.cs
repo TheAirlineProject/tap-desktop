@@ -35,7 +35,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
     {
         public Airport Airport { get; set; }
         private TextBlock txtLocalTime;
-        private ListBox lbArrivals, lbDepartures, lbPassengers;
+        private ListBox lbArrivals, lbDepartures, lbPassengers, lbFlights;
         private Boolean domesticDemand;
         public PageAirport(Airport airport)
         {
@@ -51,6 +51,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             airportPanel.Children.Add(createQuickInfoPanel());
             airportPanel.Children.Add(createPassengersPanel());
+            airportPanel.Children.Add(createFlightsPanel());
+            //airportPanel.Children.Add(createArrivalsPanel());
+            //airportPanel.Children.Add(createDeparturesPanel());
 
             StandardContentPanel panelContent = new StandardContentPanel();
 
@@ -66,6 +69,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             showPage(this);
 
+          
             GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirport_OnTimeChanged);
 
             this.Unloaded += new RoutedEventHandler(PageAirport_Unloaded);
@@ -89,7 +93,45 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             }
         }
 
+        //creates the panel for flights
+        private StackPanel createFlightsPanel()
+        {
+            StackPanel panelFlights = new StackPanel();
+            panelFlights.Margin = new Thickness(0, 10, 0, 0);
 
+            ContentControl ccHeader = new ContentControl();
+            ccHeader.ContentTemplate = this.Resources["FlightHeader"] as DataTemplate;
+            panelFlights.Children.Add(ccHeader);
+
+            WrapPanel panelButtons = new WrapPanel();
+
+            ucSelectButton sbArrivals = new ucSelectButton();
+            sbArrivals.Uid = "1029";
+            sbArrivals.Content = Translator.GetInstance().GetString("PageAirport", sbArrivals.Uid);
+            sbArrivals.IsSelected = true;
+            sbArrivals.Click += sbArrivals_Click;
+            panelButtons.Children.Add(sbArrivals);
+
+            ucSelectButton sbDepartures = new ucSelectButton();
+            sbDepartures.Uid = "1030";
+            sbDepartures.Content = Translator.GetInstance().GetString("PageAirport", sbDepartures.Uid);
+            sbDepartures.Click += sbDepartures_Click;
+            panelButtons.Children.Add(sbDepartures);
+
+            panelFlights.Children.Add(panelButtons);
+
+            lbFlights = new ListBox();
+            lbFlights.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbFlights.ItemTemplate = this.Resources["FlightItem"] as DataTemplate;
+            lbFlights.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 4;
+            panelFlights.Children.Add(lbFlights);
+
+            showFlights(true);
+
+
+            return panelFlights;
+
+        }
         //creates the panel for arrivals
         private ScrollViewer createArrivalsPanel()
         {
@@ -174,7 +216,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             lbPassengers = new ListBox();
             lbPassengers.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbPassengers.ItemTemplate = this.Resources["DemandItem"] as DataTemplate;
-            lbPassengers.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 2;
+            lbPassengers.MaxHeight = (GraphicsHelpers.GetContentHeight() - 100) / 3;
             panelPassengers.Children.Add(lbPassengers);
 
             domesticDemand = true;
@@ -273,31 +315,52 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
         }
 
-        //shows the departures and arrivals
-        private void showFlights()
+        //shows the departures or arrivals
+        private void showFlights(Boolean arrivals)
         {
-            lbArrivals.Items.Clear();
-            lbDepartures.Items.Clear();
+            lbFlights.Items.Clear();
 
+            var entries = arrivals ?   GeneralHelpers.GetAirportArrivals(this.Airport, GameObject.GetInstance().GameTime.DayOfWeek) : GeneralHelpers.GetAirportDepartures(this.Airport,GameObject.GetInstance().GameTime.DayOfWeek);
+           
             GameTimeZone tz = this.Airport.Profile.TimeZone;
 
-            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportDepartures(this.Airport, 2))
+            foreach (RouteTimeTableEntry entry in entries)
             {
-                if (entry.Airliner.CurrentFlight != null && entry.Airliner.CurrentFlight.Entry == entry)
-                    lbDepartures.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode, "Planned"));
+                if (arrivals)
+                {
+                    TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.Airliner.Airliner.Type);
+                    lbFlights.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport == entry.TimeTable.Route.Destination1 ? entry.TimeTable.Route.Destination2 : entry.TimeTable.Route.Destination1, entry.Destination.FlightCode));
+                }
                 else
-                    lbDepartures.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode, "Planned"));
+                {
+                    lbFlights.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode));
+                }
             }
+            /*
+                        GameTimeZone tz = this.Airport.Profile.TimeZone;
 
-            foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportArrivals(this.Airport, 2))
-            {
-                TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.Airliner.Airliner.Type);
+                        lbArrivals.Items.Clear();
+                        lbDepartures.Items.Clear();
+         
+            
+            
+                        foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportDepartures(this.Airport, 2))
+                        {
+                            if (entry.Airliner.CurrentFlight != null && entry.Airliner.CurrentFlight.Entry == entry)
+                                lbDepartures.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode, "Planned"));
+                            else
+                                lbDepartures.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport, entry.Destination.FlightCode, "Planned"));
+                        }
 
-                if (entry.Airliner.CurrentFlight != null && entry == entry.Airliner.CurrentFlight.Entry && entry.Airliner.Status == FleetAirliner.AirlinerStatus.On_route)
-                    lbArrivals.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport == entry.TimeTable.Route.Destination1 ? entry.TimeTable.Route.Destination2 : entry.TimeTable.Route.Destination1, entry.Destination.FlightCode, string.Format("{0:HH:mm}", entry.Airliner.CurrentFlight.getExpectedLandingTime())));
-                else
-                    lbArrivals.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport == entry.TimeTable.Route.Destination1 ? entry.TimeTable.Route.Destination2 : entry.TimeTable.Route.Destination1, entry.Destination.FlightCode, string.Format("{0:HH:mm}", "Planned")));
-            }
+                        foreach (RouteTimeTableEntry entry in GeneralHelpers.GetAirportArrivals(this.Airport, 2))
+                        {
+                            TimeSpan flightTime = MathHelpers.GetFlightTime(entry.getDepartureAirport().Profile.Coordinates, entry.Destination.Airport.Profile.Coordinates, entry.Airliner.Airliner.Type);
+
+                            if (entry.Airliner.CurrentFlight != null && entry == entry.Airliner.CurrentFlight.Entry && entry.Airliner.Status == FleetAirliner.AirlinerStatus.On_route)
+                                lbArrivals.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport == entry.TimeTable.Route.Destination1 ? entry.TimeTable.Route.Destination2 : entry.TimeTable.Route.Destination1, entry.Destination.FlightCode, string.Format("{0:HH:mm}", entry.Airliner.CurrentFlight.getExpectedLandingTime())));
+                            else
+                                lbArrivals.Items.Add(new AirportFlightItem(MathHelpers.ConvertDateTimeToLoalTime(MathHelpers.ConvertEntryToDate(entry).Add(flightTime), tz), entry.Airliner.Airliner.Airline, entry.Destination.Airport == entry.TimeTable.Route.Destination1 ? entry.TimeTable.Route.Destination2 : entry.TimeTable.Route.Destination1, entry.Destination.FlightCode, string.Format("{0:HH:mm}", "Planned")));
+                        }   */
         }
 
         //creates the quick info panel for the airport
@@ -458,6 +521,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             return scroller;
         }
+        private void sbDepartures_Click(object sender, RoutedEventArgs e)
+        {
+            showFlights(false);
+        }
+        private void sbArrivals_Click(object sender, RoutedEventArgs e)
+        {
+            showFlights(true);
+        }
         private void sbInternational_Click(object sender, RoutedEventArgs e)
         {
             domesticDemand = false;
@@ -520,14 +591,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             public string Flight { get; set; }
             public DateTime Time { get; set; }
             public Airport Airport { get; set; }
-            public string Status { get; set; }
-            public AirportFlightItem(DateTime time, Airline airline, Airport airport, string flight, string status)
+            public AirportFlightItem(DateTime time, Airline airline, Airport airport, string flight)
             {
                 this.Time = time;
                 this.Airport = airport;
                 this.Airline = airline;
                 this.Flight = flight;
-                this.Status = status;
             }
         }
 

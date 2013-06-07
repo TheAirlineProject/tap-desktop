@@ -857,6 +857,7 @@
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\AirportModel\HubType.cs" />
     <Compile Include="Model\GeneralModel\CalendarItem.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\EventsHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\SerializedLoadSaveHelpers.cs" />
     <Compile Include="Model\GeneralModel\NewsFeed.cs" />
     <Compile Include="Model\GeneralModel\Helpers\BudgetHelpers.cs" />

@@ -678,7 +678,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach(Airline airline in Airlines.GetAllAirlines())
             {
-                RandomEvent.GenerateEvents(airline);
+                EventsHelpers.GenerateEvents(airline);
             }
 
 

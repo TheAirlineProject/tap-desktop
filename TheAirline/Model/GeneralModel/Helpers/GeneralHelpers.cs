@@ -55,6 +55,23 @@ namespace TheAirline.Model.GeneralModel
             return entries;
         }
         //returns the list of arrivals for an airport
+        public static List<RouteTimeTableEntry> GetAirportArrivals(Airport airport, DayOfWeek day)
+        {
+            List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
+            foreach (Route route in AirportHelpers.GetAirportRoutes(airport))
+            {
+                if (route.HasAirliner)
+                {
+                    var rEntries = route.TimeTable.Entries.Where(e => e.Day == day && e.Destination.Airport == airport);
+
+                    entries.AddRange(rEntries);
+                   
+
+                }
+            }
+            entries.Sort(delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+            return entries;
+        }
         public static List<RouteTimeTableEntry> GetAirportArrivals(Airport airport,int count)
         {
 
@@ -79,6 +96,23 @@ namespace TheAirline.Model.GeneralModel
             return entries.GetRange(0, Math.Min(entries.Count, count));
         }
         //returns the list of departures for an airport
+        public static List<RouteTimeTableEntry> GetAirportDepartures(Airport airport, DayOfWeek day)
+        {
+            List<RouteTimeTableEntry> entries = new List<RouteTimeTableEntry>();
+            foreach (Route route in AirportHelpers.GetAirportRoutes(airport))
+            {
+                if (route.HasAirliner)
+                {
+                    var rEntries = route.TimeTable.Entries.Where(e => e.Day == day && e.DepartureAirport == airport);
+
+                    entries.AddRange(rEntries);
+
+
+                }
+            }
+            entries.Sort(delegate(RouteTimeTableEntry e1, RouteTimeTableEntry e2) { return MathHelpers.ConvertEntryToDate(e1).CompareTo(MathHelpers.ConvertEntryToDate(e2)); });
+            return entries;
+        }
         public static List<RouteTimeTableEntry> GetAirportDepartures(Airport airport, int count)
         {
             
