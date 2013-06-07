@@ -30,6 +30,7 @@ namespace TheAirline.Model.AirlineModel
         public double PaymentAmount { get; set; }
         public int CancellationFee { get; set; }
         public string PolicyIndex { get; set; }
+        public bool AllFleetAirliners { get; set; }
         public DateTime InsuranceEffective { get; set; }
         public DateTime InsuranceExpires { get; set; }
         public DateTime NextPaymentDue { get; set; }
@@ -43,7 +44,7 @@ namespace TheAirline.Model.AirlineModel
         }
 
         //add insurance policy
-        public void CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, int length, int amount)
+        public AirlineInsurance CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, bool allAirliners, int length, int amount)
         {
 #region Method Setup
             Random rnd = new Random();
@@ -261,8 +262,14 @@ namespace TheAirline.Model.AirlineModel
                     }
 #endregion
                     break;
-
             }
+
+            if (allAirliners == true)
+            {
+                amount *= airline.Fleet.Count();
+                PaymentAmount *= (airline.Fleet.Count() * 0.95);
+            }
+            return policy;
         }
 
         public static void AddPolicy(Airline airline, AirlineInsurance insurance, string index)
