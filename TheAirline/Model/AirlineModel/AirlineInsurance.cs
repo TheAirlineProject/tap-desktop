@@ -278,9 +278,9 @@ namespace TheAirline.Model.AirlineModel
         public static double GetRatingModifier(Airline airline)
         {
             double mod = 1;
-            mod += (100 - airline.MaintenanceRating) / 100;
-            mod += (100 - airline.SafetyRating) / 150;
-            mod += (100 - airline.SecurityRating) / 100;
+            mod += (100 - airline.Ratings.MaintenanceRating) / 100;
+            mod += (100 - airline.Ratings.SafetyRating) / 150;
+            mod += (100 - airline.Ratings.SecurityRating) / 100;
             return mod;
         }
 
