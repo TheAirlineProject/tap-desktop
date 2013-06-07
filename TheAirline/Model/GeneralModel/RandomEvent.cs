@@ -19,7 +19,9 @@ namespace TheAirline.Model.GeneralModel
     public class RandomEvent
     {
         public enum EventType { Safety, Security, Maintenance, Customer, Employee, Political }
+        public enum Focus { Aircraft, Airport, Airline }
         public EventType Type { get; set; }
+        public Focus focus { get; set; }
         public Airline Airline { get; set; }
         public string EventName { get; set; }
         public string EventMessage { get; set; }
@@ -42,7 +44,7 @@ namespace TheAirline.Model.GeneralModel
         public int Frequency { get; set; } //frequency per 3 years
         public DateTime Start { get; set; }
         public DateTime End { get; set; }
-        public RandomEvent(EventType type, string name, string message, bool critical, int custHappiness, int aircraftDamage, int airlineSecurity, int airlineSafety, int empHappiness, int moneyEffect, double paxDemand, double cargoDemand, int length, string id, int frequency, DateTime stat, DateTime end)
+        public RandomEvent(EventType type, Focus focus, string name, string message, bool critical, int custHappiness, int aircraftDamage, int airlineSecurity, int airlineSafety, int empHappiness, int moneyEffect, double paxDemand, double cargoDemand, int length, string id, int frequency, DateTime stat, DateTime end)
         {
 
             this.DateOccurred = GameObject.GetInstance().GameTime;
@@ -171,6 +173,15 @@ namespace TheAirline.Model.GeneralModel
                         r.Route = r.Airliner.Routes[rnd.Next(r.Airliner.Routes.Count())];
                         r.Country = r.Route.Destination1.Profile.Country;
                         r.Airport = r.Route.Destination1;
+
+                        if (r.focus == RandomEvent.Focus.Airline)
+                        {
+                            r.Airliner = null;
+                            r.Airport = null;
+                            r.Country = null;
+                            r.Route = null;
+                        }
+
                         rEvents.Add(i, r);
                         i++;
                     }

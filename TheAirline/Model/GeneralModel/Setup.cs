@@ -1173,6 +1173,8 @@ namespace TheAirline.Model.GeneralModel
                 string uid = element.Attributes["uid"].Value;
                 RandomEvent.EventType eventType = new RandomEvent.EventType();
                 string type = element.Attributes["type"].Value;
+                string focus = element.Attributes["type"].Value;
+                RandomEvent.Focus eventFocus = new RandomEvent.Focus();
                     switch (type) {
                         case "Safety":
                             eventType = RandomEvent.EventType.Safety;
@@ -1191,6 +1193,21 @@ namespace TheAirline.Model.GeneralModel
                             break;
                         case "Political":
                             eventType = RandomEvent.EventType.Political;
+                            break;
+                    }
+
+                    switch (focus)
+                    {
+                        case "Airline":
+                            eventFocus = RandomEvent.Focus.Airline;
+                            break;
+                        
+                        case "Aircraft":
+                            eventFocus = RandomEvent.Focus.Aircraft;
+                            break;
+
+                        case "Airport":
+                            eventFocus = RandomEvent.Focus.Airport;
                             break;
                     }
 
@@ -1214,7 +1231,7 @@ namespace TheAirline.Model.GeneralModel
                 double paxDemand = demand.HasAttribute("passenger") ? double.Parse(demand.Attributes["passenger"].Value) : 0;
                 double cargoDemand = demand.HasAttribute("cargo") ? double.Parse(demand.Attributes["cargo"].Value) : 0;
 
-                RandomEvent rEvent = new RandomEvent(eventType, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency, start, end);
+                RandomEvent rEvent = new RandomEvent(eventType, eventFocus, name, message, critical, chEffect, damageEffect, aSecurityEffect, aSafetyEffect, ehEffect, financial, paxDemand, cargoDemand, effectLength, uid, frequency, start, end);
 
                 RandomEvents.AddEvent(rEvent);
 
