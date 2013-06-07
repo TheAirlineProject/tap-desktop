@@ -52,6 +52,7 @@ namespace TheAirline.Model.AirlineModel
         public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
         public Dictionary<string, AirlineInsurance> InsurancePolicies { get; set; }
+        public List<AirlineInsurance> Insurances { get { return this.InsurancePolicies.Values.ToList(); } set { ;} }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
         public Dictionary<string, RandomEvent> EventLog { get; set; }
@@ -62,14 +63,11 @@ namespace TheAirline.Model.AirlineModel
         public int SecurityRating { get; set; }
         public int EmployeeHappinessRating { get; set; }
         public int MaintenanceRating { get; set; }
-        public List<int> scoresCHR { get; set; }
-        public List<int> scoresSafety { get; set; }
-        public List<int> scoresSecurity { get; set; }
-        public List<int> scoresEHR { get; set; }
-        public List<int> scoresMaint { get; set; }
+        public AirlineScores Scores { get; set; }
         public List<RandomEvent> EventList { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
+            this.Scores = new AirlineScores();
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this._Routes = new List<Route>();
@@ -432,6 +430,16 @@ namespace TheAirline.Model.AirlineModel
             codes.Sort(delegate(string s1, string s2) { return s1.CompareTo(s2); });
 
             return codes;
+        }
+        //adds an insurance to the airline
+        public void addInsurance(AirlineInsurance insurance)
+        {
+            this.InsurancePolicies.Add(insurance.PolicyIndex, insurance);
+        }
+        //removes a policy
+        public void removeInsurance(AirlineInsurance insurance)
+        {
+            this.InsurancePolicies.Remove(insurance.PolicyIndex);
         }
         //returns all airliners which are delivered
         private List<FleetAirliner> getDeliveredFleet()

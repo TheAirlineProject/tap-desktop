@@ -21,9 +21,9 @@ namespace TheAirline.Model.AirlineModel
         public enum InsuranceType { None, Public_Liability, Passenger_Liability, Combined_Single_Limit, Full_Coverage }
         public enum InsuranceScope { Airport, Domestic, Hub, Global }
         public enum PaymentTerms { Annual, Biannual, Quarterly, Monthly }
-        public InsuranceType insType { get; set; }
-        public InsuranceScope insScope { get; set; }
-        public PaymentTerms insTerms { get; set; }
+        public InsuranceType InsType { get; set; }
+        public InsuranceScope InsScope { get; set; }
+        public PaymentTerms InsTerms { get; set; }
         public int InsuredAmount { get; set; }
         public double Deductible { get; set; }
         public int TermLength { get; set; }
@@ -44,7 +44,7 @@ namespace TheAirline.Model.AirlineModel
         }
 
         //add insurance policy
-        public AirlineInsurance CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, bool allAirliners, int length, int amount)
+        public static AirlineInsurance CreatePolicy(Airline airline, InsuranceType type, InsuranceScope scope, PaymentTerms terms, bool allAirliners, int length, int amount)
         {
 #region Method Setup
             Random rnd = new Random();
@@ -54,7 +54,7 @@ namespace TheAirline.Model.AirlineModel
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
             policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);
             policy.PolicyIndex = GameObject.GetInstance().GameTime.ToString() + airline.ToString();
-            switch (policy.insTerms)
+            switch (policy.InsTerms)
             {
                 case PaymentTerms.Monthly:
                     policy.RemainingPayments = length * 12;
@@ -267,18 +267,15 @@ namespace TheAirline.Model.AirlineModel
             if (allAirliners == true)
             {
                 amount *= airline.Fleet.Count();
-                PaymentAmount *= (airline.Fleet.Count() * 0.95);
+               // PaymentAmount *= (airline.Fleet.Count() * 0.95);
             }
             return policy;
         }
 
-        public static void AddPolicy(Airline airline, AirlineInsurance insurance, string index)
-        {
-            airline.InsurancePolicies.Add(index, insurance);
-        }
+       
 
         //gets insurance rate modifiers based on security, safety, and aircraft state of maintenance
-        public double GetRatingModifier(Airline airline)
+        public static double GetRatingModifier(Airline airline)
         {
             double mod = 1;
             mod += (100 - airline.MaintenanceRating) / 100;
@@ -287,13 +284,7 @@ namespace TheAirline.Model.AirlineModel
             return mod;
         }
 
-        //remove insurance policy
-        public static void RemovePolicy(Airline airline, string index)
-        {
-            airline.InsurancePolicies.Remove(index);
-        }
-
-
+        
         //extend or modify policy
         public static void ModifyPolicy(Airline airline, string index, AirlineInsurance newPolicy)
         {
@@ -308,7 +299,7 @@ namespace TheAirline.Model.AirlineModel
             {
                 if (policy.InsuranceExpires < date)
                 {
-                    RemovePolicy(airline, policy.PolicyIndex);
+                    airline.removeInsurance(policy);
                 }
             }
         }
@@ -325,7 +316,7 @@ namespace TheAirline.Model.AirlineModel
                         Invoice payment = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
                         airline.addInvoice(payment);
                         policy.RemainingPayments--;
-                        switch (policy.insTerms)
+                        switch (policy.InsTerms)
                         {
                             case PaymentTerms.Monthly:
                                 policy.NextPaymentDue = GameObject.GetInstance().GameTime.AddMonths(1);

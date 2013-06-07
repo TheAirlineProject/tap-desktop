@@ -1,0 +1,46 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel.PageAirlineInsurances"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:g="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineInsurances">
+    <Page.Resources>
+        <g:ListBoxItemStyleSelector x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelector>
+        <DataTemplate x:Key="InsuranceItem">
+            <WrapPanel>
+            <TextBlock Text="{Binding InsType}" VerticalAlignment="Bottom" Width="75"></TextBlock>
+                <TextBlock Text="{Binding InsScope}" VerticalAlignment="Bottom" Width="75"></TextBlock>
+                <TextBlock Text="{Binding InsTerms}" VerticalAlignment="Bottom" Width="75"></TextBlock>
+                <TextBlock Text="{Binding InsuredAmount, StringFormat={}{0:C}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+       </WrapPanel>
+            </DataTemplate>
+    </Page.Resources>
+    <StackPanel Margin="0 10 50 0">
+        <TextBlock Text="Insurance policies" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}"></TextBlock>
+        <ListBox ItemTemplate="{DynamicResource InsuranceItem}" ItemsSource="{Binding Airline.Insurances}" ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}"></ListBox>
+        <TextBlock Text="New insurance" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}" Margin="0 10 0 0"></TextBlock>
+        <ListBox ItemTemplate="{DynamicResource QuickInfoItem}"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}">
+            <g:QuickInfoValue Name="Insurance Type">
+                <g:QuickInfoValue.Value>
+                    <ComboBox ItemsSource="{Binding Types}" Style="{DynamicResource ComboBoxTransparentStyle}">
+                    </ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="Insurance Scope">
+                <g:QuickInfoValue.Value>
+                    <ComboBox ItemsSource="{Binding Scopes}" Style="{DynamicResource ComboBoxTransparentStyle}">
+                    </ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="Payment Term">
+                <g:QuickInfoValue.Value>
+                    <ComboBox ItemsSource="{Binding Terms}" Style="{DynamicResource ComboBoxTransparentStyle}">
+                    </ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+        </ListBox>
+    </StackPanel>
+</Page>

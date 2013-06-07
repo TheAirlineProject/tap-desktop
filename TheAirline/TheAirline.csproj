@@ -158,6 +158,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineInsurances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlinePilots.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -540,6 +544,9 @@
     <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineFleet.xaml.cs">
       <DependentUpon>PageAirlineFleet.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineInsurances.xaml.cs">
+      <DependentUpon>PageAirlineInsurances.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlinePilots.xaml.cs">
       <DependentUpon>PageAirlinePilots.xaml</DependentUpon>
     </Compile>
@@ -812,6 +819,7 @@
     <Compile Include="Model\AirlineModel\AirlineInsurance.cs" />
     <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
+    <Compile Include="Model\AirlineModel\AirlineScores.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirportModel\AirportContract.cs" />

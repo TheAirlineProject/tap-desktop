@@ -75,10 +75,10 @@ namespace TheAirline.Model.GeneralModel
                 {
                     rEvent.Airliner.Airliner.Damaged += AircraftDamageEffect;
                     airline.Money += rEvent.FinancialPenalty;
-                    airline.scoresCHR.Add(rEvent.CustomerHappinessEffect);
-                    airline.scoresEHR.Add(rEvent.EmployeeHappinessEffect);
-                    airline.scoresSafety.Add(rEvent.AirlineSafetyEffect);
-                    airline.scoresSecurity.Add(rEvent.AirlineSecurityEffect);
+                    airline.Scores.CHR.Add(rEvent.CustomerHappinessEffect);
+                    airline.Scores.EHR.Add(rEvent.EmployeeHappinessEffect);
+                    airline.Scores.Safety.Add(rEvent.AirlineSafetyEffect);
+                    airline.Scores.Security.Add(rEvent.AirlineSecurityEffect);
                     PassengerHelpers.ChangePaxDemand(airline, (rEvent.PaxDemandEffect * rnd.Next(9, 11) / 10));
                 }
             }

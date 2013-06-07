@@ -69,6 +69,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             sbWages.Click += new System.Windows.RoutedEventHandler(sbWages_Click);
             buttonsPanel.Children.Add(sbWages);
 
+            ucSelectButton sbInsurances = new ucSelectButton();
+            sbInsurances.Uid = "1009";
+            sbInsurances.Content = Translator.GetInstance().GetString("PanelAirline", sbInsurances.Uid);
+            sbInsurances.Visibility = this.Airline.IsHuman ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+            sbInsurances.Click += sbInsurances_Click;
+            buttonsPanel.Children.Add(sbInsurances);
+
             this.Children.Add(buttonsPanel);
 
             frameContent = new Frame();
@@ -76,6 +83,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             frameContent.Navigate(new PageAirlineFleet(this.Airline));
 
             this.Children.Add(frameContent);
+        }
+
+        private void sbInsurances_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageAirlineInsurances(this.Airline));
         }
 
         private void sbPilots_Click(object sender, System.Windows.RoutedEventArgs e)

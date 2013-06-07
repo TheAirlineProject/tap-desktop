@@ -365,23 +365,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             foreach (FleetAirliner a in airline.Fleet)
             {
-                airline.scoresMaint.Add((int)a.Airliner.Damaged);
+                airline.Scores.Maintenance.Add((int)a.Airliner.Damaged);
             }
 
-            if (airline.scoresMaint.Count > (airline.Fleet.Count * 2))
+            if (airline.Scores.Maintenance.Count > (airline.Fleet.Count * 2))
             {
-                airline.scoresMaint.RemoveRange(0, airline.Fleet.Count);
+                airline.Scores.Maintenance.RemoveRange(0, airline.Fleet.Count);
             }
         }
 
         //updates the airlines ratings for an airline
         public static void UpdateRatings(Airline airline)
         {
-            airline.SafetyRating = (int)airline.scoresSafety.Average();
-            airline.SecurityRating = (int)airline.scoresSecurity.Average();
-            airline.CustomerHappinessRating = (int)airline.scoresCHR.Average();
-            airline.EmployeeHappinessRating = (int)airline.scoresEHR.Average();
-            airline.MaintenanceRating = (int)airline.scoresMaint.Average();
+            airline.SafetyRating = (int)airline.Scores.Safety.Average();
+            airline.SecurityRating = (int)airline.Scores.Security.Average();
+            airline.CustomerHappinessRating = (int)airline.Scores.CHR.Average();
+            airline.EmployeeHappinessRating = (int)airline.Scores.EHR.Average();
+            airline.MaintenanceRating = (int)airline.Scores.Maintenance.Average();
         }
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)

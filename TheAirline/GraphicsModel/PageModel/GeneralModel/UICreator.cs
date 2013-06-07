@@ -333,6 +333,9 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
     {
         public string Name { get; set; }
         public UIElement Value { get; set; }
+        public QuickInfoValue()
+        {
+        }
         public QuickInfoValue(string name, UIElement value)
         {
             this.Name = name;
