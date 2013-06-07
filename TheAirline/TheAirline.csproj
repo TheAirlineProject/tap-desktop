@@ -819,6 +819,7 @@
     <Compile Include="Model\AirlineModel\AirlineInsurance.cs" />
     <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
+    <Compile Include="Model\AirlineModel\AirlineRatings.cs" />
     <Compile Include="Model\AirlineModel\AirlineScores.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />

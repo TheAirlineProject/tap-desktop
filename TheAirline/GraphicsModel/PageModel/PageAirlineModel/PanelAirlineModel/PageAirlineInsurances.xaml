@@ -41,6 +41,11 @@
                     </ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
+            <g:QuickInfoValue Name="For all airliners">
+                <g:QuickInfoValue.Value>
+                    <CheckBox IsChecked="False"></CheckBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
         </ListBox>
     </StackPanel>
 </Page>

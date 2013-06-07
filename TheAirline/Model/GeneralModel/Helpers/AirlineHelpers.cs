@@ -377,11 +377,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //updates the airlines ratings for an airline
         public static void UpdateRatings(Airline airline)
         {
-            airline.SafetyRating = (int)airline.Scores.Safety.Average();
-            airline.SecurityRating = (int)airline.Scores.Security.Average();
-            airline.CustomerHappinessRating = (int)airline.Scores.CHR.Average();
-            airline.EmployeeHappinessRating = (int)airline.Scores.EHR.Average();
-            airline.MaintenanceRating = (int)airline.Scores.Maintenance.Average();
+            airline.Ratings.SafetyRating = (int)airline.Scores.Safety.Average();
+            airline.Ratings.SecurityRating = (int)airline.Scores.Security.Average();
+            airline.Ratings.CustomerHappinessRating = (int)airline.Scores.CHR.Average();
+            airline.Ratings.EmployeeHappinessRating = (int)airline.Scores.EHR.Average();
+            airline.Ratings.MaintenanceRating = (int)airline.Scores.Maintenance.Average();
         }
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)

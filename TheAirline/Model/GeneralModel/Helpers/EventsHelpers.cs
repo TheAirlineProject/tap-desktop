@@ -15,11 +15,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             //chr 0 ehr 1 scr 2 sfr 3 total 4
             List<int> ratings = new List<int>();
-            ratings.Add(100 - airline.CustomerHappinessRating);
-            ratings.Add(100 - airline.EmployeeHappinessRating);
-            ratings.Add(100 - airline.SecurityRating);
-            ratings.Add(100 - airline.SafetyRating);
-            ratings.Add(100 - airline.MaintenanceRating);
+            ratings.Add(100 - airline.Ratings.CustomerHappinessRating);
+            ratings.Add(100 - airline.Ratings.EmployeeHappinessRating);
+            ratings.Add(100 - airline.Ratings.SecurityRating);
+            ratings.Add(100 - airline.Ratings.SafetyRating);
+            ratings.Add(100 - airline.Ratings.MaintenanceRating);
             ratings.Add(500 - ratings.Sum());
             double pCHR = ratings[0] / ratings[5];
             double pEHR = ratings[1] / ratings[5];
@@ -52,7 +52,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double empEvents;
 
             //sets an overall event frequency based on an airlines total overall rating
-            int totalRating = airline.CustomerHappinessRating + airline.EmployeeHappinessRating + airline.SafetyRating + airline.SecurityRating;
+            int totalRating = airline.Ratings.CustomerHappinessRating + airline.Ratings.EmployeeHappinessRating + airline.Ratings.SafetyRating + airline.Ratings.SecurityRating;
             if (totalRating < 300)
             {
                 eFreq = (int)rnd.Next(1, 6);
