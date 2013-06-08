@@ -12,6 +12,7 @@
     <Page.Resources>
         <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:ExtendedTranslatorConverter x:Key="translatorConverter"></c:ExtendedTranslatorConverter>
         <g:ListBoxItemStyleSelector x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelector>
         <DataTemplate x:Key="ComboBoxItem">
             <TextBlock Text="{Binding Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
@@ -29,9 +30,9 @@
             </DataTemplate>
     </Page.Resources>
     <StackPanel Margin="0 10 50 0">
-        <TextBlock Text="Insurance policies" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}"></TextBlock>
+        <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageAirlineInsurances 1000'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}"></TextBlock>
         <ListBox ItemTemplate="{DynamicResource InsuranceItem}" Name="lbInsurances" ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}"></ListBox>
-        <TextBlock Text="New insurance" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}" Margin="0 10 0 0"></TextBlock>
+        <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageAirlineInsurances 1001'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}" Margin="0 10 0 0"></TextBlock>
         <ListBox ItemTemplate="{DynamicResource QuickInfoItem}"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}">
             <g:QuickInfoValue Name="Insurance Type">
                 <g:QuickInfoValue.Value>
@@ -39,7 +40,7 @@
                     </ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue Name="Insurance Scope">
+            <g:QuickInfoValue Name="Insurance Scope"> 
                 <g:QuickInfoValue.Value>
                     <ComboBox Name="cbScope" Style="{DynamicResource ComboBoxTransparentStyle}" Width="150" ItemTemplate="{DynamicResource ComboBoxItem}">
                     </ComboBox>
@@ -70,7 +71,7 @@
         </ListBox>
        
         <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
-            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Click="btnAdd_Click" Width="NaN" Height="NaN" Content="Add"></Button>
+            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Click="btnAdd_Click" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 104'}"></Button>
         </WrapPanel>
     </StackPanel>
 </Page>

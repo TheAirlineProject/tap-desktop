@@ -635,6 +635,20 @@ namespace TheAirline.GraphicsModel.Converters
             throw new NotImplementedException();
         }
     }
+    public class ExtendedTranslatorConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string[] values = parameter.ToString().Split(' ');
+
+            return Translator.GetInstance().GetString(values[0], values[1]);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter from enum to language
     public class EnumLanguageConverter : IValueConverter
     {
