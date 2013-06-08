@@ -41,6 +41,9 @@ namespace TheAirline.Model.AirlineModel
             this.TermLength = 0;
             this.CancellationFee = 0;
             this.InsuredAmount = insAmount;
+            this.InsType = insType;
+            this.InsScope = InsScope;
+            this.InsTerms = paymentTerms;
         }
 
         //add insurance policy
@@ -397,7 +400,7 @@ namespace TheAirline.Model.AirlineModel
             }
         }
     }
-
+    [Serializable]
     public class InsuranceClaim
     {
         public Airline Airline { get; set; }
