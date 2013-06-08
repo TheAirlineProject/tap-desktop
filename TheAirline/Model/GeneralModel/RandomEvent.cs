@@ -69,7 +69,7 @@ namespace TheAirline.Model.GeneralModel
         public void ExecuteEvents(Airline airline, DateTime time) 
         {
             Random rnd = new Random();
-            foreach (RandomEvent rEvent in airline.EventLog.Values)
+            foreach (RandomEvent rEvent in airline.EventLog)
             {
                 if (rEvent.DateOccurred.DayOfYear == time.DayOfYear)
                 {
@@ -95,14 +95,14 @@ namespace TheAirline.Model.GeneralModel
         //adds an event to an airline's event log
         public void AddEvent(Airline airline, RandomEvent rEvent)
         {
-            airline.EventLog.Add(rEvent.EventID, rEvent);
+            airline.EventLog.Add(rEvent);
         }
 
 
         //removes an event from the airlines event log
         public static void RemoveEvent(Airline airline, RandomEvent rEvent)
         {
-            airline.EventLog.Remove(rEvent.EventID);
+            airline.EventLog.Remove(rEvent);
         }
 
 
@@ -111,7 +111,7 @@ namespace TheAirline.Model.GeneralModel
         {
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-                foreach (RandomEvent rEvent in airline.EventLog.Values)
+                foreach (RandomEvent rEvent in airline.EventLog)
                 {
                     expDate = GameObject.GetInstance().GameTime.AddMonths(rEvent.EffectLength);
                     if (expDate < GameObject.GetInstance().GameTime)

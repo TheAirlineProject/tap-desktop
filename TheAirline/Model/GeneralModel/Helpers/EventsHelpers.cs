@@ -89,7 +89,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 List<RandomEvent> list = RandomEvents.GetEvents(v.Key, k, airline);
                 foreach (RandomEvent e in list)
                 {
-                    airline.EventLog.Add(e.EventID, e);
+                    airline.EventLog.Add(e);
                 }
             }
 

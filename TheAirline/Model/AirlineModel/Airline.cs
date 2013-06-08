@@ -54,7 +54,7 @@ namespace TheAirline.Model.AirlineModel
         public List<AirlineInsurance> InsurancePolicies { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
-        public Dictionary<string, RandomEvent> EventLog { get; set; }
+        public List<RandomEvent> EventLog { get; set; }
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
         public AirlineScores Scores { get; set; }
@@ -86,7 +86,7 @@ namespace TheAirline.Model.AirlineModel
             this.License = license;
             this.FlightCodes = new List<string>();
             this.Policies = new List<AirlinePolicy>();
-            this.EventLog = new Dictionary<string, RandomEvent>();
+            this.EventLog = new List<RandomEvent>();
             this.Ratings = new AirlineRatings();
             this.InsuranceClaims = new List<InsuranceClaim>();
             this.InsurancePolicies = new List<AirlineInsurance>();

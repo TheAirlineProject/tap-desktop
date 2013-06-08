@@ -728,7 +728,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (allAirliners == true)
             {
                 amount *= airline.Fleet.Count();
-                // PaymentAmount *= (airline.Fleet.Count() * 0.95);
+                policy.PaymentAmount *= (airline.Fleet.Count() * 0.95);
             }
             return policy;
         }
