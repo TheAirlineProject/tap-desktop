@@ -1024,10 +1024,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //maintenance, insurance, and ratings
             foreach(Airline a in Airlines.GetAllAirlines())
             {
-                AirlineInsurance.CheckExpiredInsurance(a);
+                AirlineInsuranceHelpers.CheckExpiredInsurance(a);
                 if (a.InsurancePolicies != null)
                 {
-                    AirlineInsurance.MakeInsurancePayment(a);
+                    AirlineInsuranceHelpers.MakeInsurancePayment(a);
                 }
 
                 RandomEvent.CheckExpired(GameObject.GetInstance().GameTime);

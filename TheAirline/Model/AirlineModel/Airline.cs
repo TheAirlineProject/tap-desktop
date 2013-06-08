@@ -51,8 +51,7 @@ namespace TheAirline.Model.AirlineModel
         public List<Pilot> Pilots { get; set; }
         public AirlineBudget Budget { get; set; }
         public List<FlightSchool> FlightSchools { get; set; }
-        public Dictionary<string, AirlineInsurance> InsurancePolicies { get; set; }
-        public List<AirlineInsurance> Insurances { get { return this.InsurancePolicies.Values.ToList(); } set { ;} }
+        public List<AirlineInsurance> InsurancePolicies { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
         public Dictionary<string, RandomEvent> EventLog { get; set; }
@@ -90,7 +89,7 @@ namespace TheAirline.Model.AirlineModel
             this.EventLog = new Dictionary<string, RandomEvent>();
             this.Ratings = new AirlineRatings();
             this.InsuranceClaims = new List<InsuranceClaim>();
-            this.InsurancePolicies = new Dictionary<string, AirlineInsurance>();
+            this.InsurancePolicies = new List<AirlineInsurance>();
             for (int i = 1; i < 10000; i++)
                 this.FlightCodes.Add(string.Format("{0}{1:0000}",this.Profile.IATACode, i));
 
@@ -432,12 +431,12 @@ namespace TheAirline.Model.AirlineModel
         //adds an insurance to the airline
         public void addInsurance(AirlineInsurance insurance)
         {
-            this.InsurancePolicies.Add(insurance.PolicyIndex, insurance);
+            this.InsurancePolicies.Add(insurance);
         }
         //removes a policy
         public void removeInsurance(AirlineInsurance insurance)
         {
-            this.InsurancePolicies.Remove(insurance.PolicyIndex);
+            this.InsurancePolicies.Remove(insurance);
         }
         //returns all airliners which are delivered
         private List<FleetAirliner> getDeliveredFleet()

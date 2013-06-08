@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 {
@@ -63,7 +64,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             ucLength.Value = 1;
 
             lbInsurances.ItemsSource = null;
-            lbInsurances.ItemsSource = this.Airline.Insurances;
+            lbInsurances.ItemsSource = this.Airline.InsurancePolicies;
         }
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -75,7 +76,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             int amount = Convert.ToInt32(cbAmount.SelectedItem);
            
             
-            AirlineInsurance policy = AirlineInsurance.CreatePolicy(this.Airline,type,scope,terms,allAirliners,lenght,amount);
+            AirlineInsurance policy = AirlineInsuranceHelpers.CreatePolicy(this.Airline,type,scope,terms,allAirliners,lenght,amount);
             this.Airline.addInsurance(policy);
 
             clearValues();
