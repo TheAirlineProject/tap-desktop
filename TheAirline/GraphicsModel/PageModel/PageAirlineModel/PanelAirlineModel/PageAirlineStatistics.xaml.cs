@@ -26,7 +26,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineStatistics : Page
     {
         private Airline Airline;
-        private ListBox lbStats;
+        private ListBox lbStats, lbRatings;
         public PageAirlineStatistics(Airline airline)
         {
             InitializeComponent();
@@ -62,7 +62,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             if (this.Airline.IsHuman)
                 panelStatistics.Children.Add(createHumanStatisticsPanel());
 
+            TextBlock txtRatingsHeader = new TextBlock();
+            txtRatingsHeader.Uid ="1018";
+            txtRatingsHeader.Margin = new Thickness(0,10,0,0);
+            txtRatingsHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtRatingsHeader.SetResourceReference(TextBlock.BackgroundProperty,"HeaderBackgroundBrush2");
+            txtRatingsHeader.FontWeight = FontWeights.Bold;
+            txtRatingsHeader.Text = Translator.GetInstance().GetString("PageAirlineStatistics",txtRatingsHeader.Uid);
+
+            panelStatistics.Children.Add(txtRatingsHeader);
+
+            lbRatings = new ListBox();
+            lbRatings.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
+            lbRatings.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");
+
+            panelStatistics.Children.Add(lbRatings);
+          
             showStats();
+            showRatings();
 
             this.Content = panelStatistics;
         }
@@ -108,6 +125,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Passengers%")));
             lbStats.Items.Add(new KeyValuePair<Airline, StatisticsType>(this.Airline, StatisticsTypes.GetStatisticsType("Arrivals")));
 
+        }
+        //shows the ratings
+        private void showRatings()
+        {
+            lbRatings.Items.Clear();
+         
+            lbRatings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics","1013"),UICreator.CreateTextBlock(this.Airline.Ratings.CustomerHappinessRating.ToString())));
+            lbRatings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1014"), UICreator.CreateTextBlock(this.Airline.Ratings.EmployeeHappinessRating.ToString())));
+            lbRatings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1015"), UICreator.CreateTextBlock(this.Airline.Ratings.MaintenanceRating.ToString())));
+            lbRatings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1016"), UICreator.CreateTextBlock(this.Airline.Ratings.SafetyRating.ToString())));
+            lbRatings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageAirlineStatistics", "1017"), UICreator.CreateTextBlock(this.Airline.Ratings.SecurityRating.ToString())));
+     
         }
        
     }
