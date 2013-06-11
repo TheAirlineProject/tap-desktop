@@ -14,8 +14,10 @@
         <StackPanel Margin="0 10 50 0">
         <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1000'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}"></TextBlock>
         <WrapPanel>
-            <TextBlock Text="Maintenance C" Width="100" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Text="Maintenance C - Select Date:" Width="100" VerticalAlignment="Bottom"></TextBlock>
             <DatePicker CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceC"></DatePicker>
+            <TextBlock Text="Maintenance C - Select Interval" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+            <Slider x:Name="slMaintenanceC" Width="200" Maximum="30" Minimum="4" Value="10" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="Maintenance D" Width="100" VerticalAlignment="Bottom"></TextBlock>
@@ -23,16 +25,16 @@
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="Maintenance A" Width="100" VerticalAlignment="Bottom"></TextBlock>
-            <Slider x:Name="slMaintenanceA" Width="200" Maximum="21" Minimum="3" Value="10" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <Slider x:Name="slMaintenanceA" Width="200" Maximum="45" Minimum="3" Value="10" IsSnapToTickEnabled="True" TickFrequency="1"/>
             <TextBlock Text="{Binding ElementName=slMaintenanceA,Path=Value,StringFormat={}{0} days}" VerticalAlignment="Bottom"/>
         </WrapPanel>
         <WrapPanel>
             <TextBlock Text="Maintenance B" VerticalAlignment="Bottom" Width="100"></TextBlock>
-            <Slider x:Name="slMaintenanceB" Maximum="21" Minimum="3" Value="10" IsSnapToTickEnabled="True" TickFrequency="1" Width="200"/>
+            <Slider x:Name="slMaintenanceB" Maximum="72" Minimum="14" Value="10" IsSnapToTickEnabled="True" TickFrequency="1" Width="200"/>
             <TextBlock Text="{Binding ElementName=slMaintenanceB,Path=Value,StringFormat={}{0} days}"/>
         </WrapPanel>
         <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
-            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 100'}"></Button>
+            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Name ="btnOK" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 100'}"></Button>
             <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 103'}" Margin="5 0 0 0"></Button>
         </WrapPanel>
             <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1001'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}" Margin="0 10 0 0"></TextBlock>

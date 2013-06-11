@@ -57,16 +57,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             cbScope.SelectedIndex = 0;
 
             cbAmount.Items.Clear();
-            for (int i = 10000; i < 100000; i += 10000)
+            for (int i = 500000; i < 1000000000; i += 500000)
                 cbAmount.Items.Add(GeneralHelpers.GetInflationPrice(i));
             cbAmount.SelectedIndex= 0;
 
             cbAllAirliners.IsChecked = false;
+            cbAllAirliners.Click += new RoutedEventHandler(cbAllAirliners_onClick);
             ucLength.Value = 1;
 
             lbInsurances.ItemsSource = null;
             lbInsurances.ItemsSource = this.Airline.InsurancePolicies;
         }
+
+        private void cbAllAirliners_onClick(object sender, RoutedEventArgs e)
+        {
+            cbAmount.Items.Refresh();
+        }
+
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
             AirlineInsurance.InsuranceType type = (AirlineInsurance.InsuranceType)cbType.SelectedItem;

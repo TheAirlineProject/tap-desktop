@@ -625,11 +625,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             else { GameObject.GetInstance().HumanAirline.Money -= GameObject.GetInstance().HumanAirline.Budget.TotalBudget / 12; }
              * */
 
-            //check for insurance settlements
+            //check for insurance settlements and do maintenance
             foreach (Airline a in Airlines.GetAllAirlines())
             {
                 AirlineHelpers.CheckInsuranceSettlements(a);
+                foreach (FleetAirliner airliner in a.Fleet) {
+                    airliner.Airliner.DoMaintenance(airliner);
+                    airliner.Airliner.RestoreMaintRoutes(airliner);
+                }
             }
+
         }
 
         //do the yearly update

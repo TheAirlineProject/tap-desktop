@@ -30,6 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             InitializeComponent();
 
             setValues();
+            btnOK.Click += new RoutedEventHandler(btnOK_onClick);
 
         }
         //sets the values
@@ -42,6 +43,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             cbAirport.Items.Clear();
 
+
             var airports = this.Airliner.Airliner.Airline.Airports.Where(a=>a.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service).Facility.TypeLevel>1);
 
             foreach (Airport airport in airports)
@@ -50,6 +52,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnSet.IsEnabled = cbAirport.Items.Count > 0; 
 
             cbAirport.SelectedIndex = 0;
+        }
+
+        private void btnOK_onClick(object sender, RoutedEventArgs e)
+        {
+
+            //sets the dates to the airliner's scheduled maintenance
+            int aMaintInterval = (int)this.slMaintenanceA.Value;
+            this.Airliner.Airliner.SchedAMaintenance = GameObject.GetInstance().GameTime.AddDays(aMaintInterval);
+            int bMaintInterval = (int)this.slMaintenanceB.Value;
+            this.Airliner.Airliner.SchedBMaintenance = GameObject.GetInstance().GameTime.AddDays(bMaintInterval);
+            this.Airliner.Airliner.SchedCMaintenance = (DateTime)this.dpMaintenanceC.SelectedDate;
+            this.Airliner.Airliner.SchedDMaintenance = (DateTime)this.dpMaintenanceD.SelectedDate;
+            this.Airliner.Airliner.SetMaintenanceIntervals(this.Airliner.Airliner, aMaintInterval, bMaintInterval);
         }
     }
 }
