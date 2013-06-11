@@ -29,9 +29,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
             InitializeComponent();
 
-
-            foreach (AirlinerInsurance insurance in this.Airliner.InsurancePolicies.Values)
-                Console.WriteLine(insurance.InsType);
+            this.DataContext = this.Airliner;
+                 
         }
+       
     }
 }

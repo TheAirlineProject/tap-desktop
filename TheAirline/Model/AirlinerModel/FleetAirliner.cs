@@ -31,7 +31,7 @@ namespace TheAirline.Model.AirlinerModel
         public Flight CurrentFlight { get; set; }
         public DateTime GroundedToDate { get; set; }
         public List<Pilot> Pilots { get; set; }
-        public Dictionary<string, AirlinerInsurance> InsurancePolicies { get; set; }
+        public List<AirlinerInsurance> InsurancePolicies { get; set; }
         public int NumberOfPilots {get {return this.Pilots.Count;} private set {;}}
         public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,Airport homebase)
         {
@@ -49,7 +49,7 @@ namespace TheAirline.Model.AirlinerModel
 
             this.Routes = new List<Route>();
             this.Pilots = new List<Pilot>();
-            this.InsurancePolicies = new Dictionary<string, AirlinerInsurance>();
+            this.InsurancePolicies = new List<AirlinerInsurance>();
         }
         //adds a pilot to the airliner
         public void addPilot(Pilot pilot)

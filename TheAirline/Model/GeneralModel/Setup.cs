@@ -108,6 +108,8 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
 
+           
+
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
