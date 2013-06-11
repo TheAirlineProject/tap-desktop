@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,9 +34,14 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
         private enum FlightInterval { Daily, Weekly }
         private FlightInterval Interval;
 
-        private ComboBox cbRoute, cbFlightsPerDay, cbFlightsPerWeek, cbFlightCode, cbRegion, cbDelayMinutes, cbStartTime;
-        private CheckBox cbBusinessRoute;
+        private enum RouteOperationsType {[Description("Standard Operations")] Standard,
+            [Description("Business Operations")] Business, 
+            [Description("24-Hour Operations")] WholeDay
+        }
+        private RouteOperationsType RouteOperations;
 
+        private ComboBox cbRoute, cbFlightsPerDay, cbFlightsPerWeek, cbFlightCode, cbRegion, cbDelayMinutes, cbStartTime;
+ 
         private double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
       
         public delegate void OnRouteChanged(Route route);
@@ -111,6 +117,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
             autogeneratePanel.Children.Add(cbFlightCode);
 
             StackPanel panelFlightInterval = new StackPanel();
+            panelFlightInterval.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
             panelFlightInterval.Margin = new Thickness(10, 0, 0, 0);
 
             RadioButton rbDailyFlights = new RadioButton();
@@ -181,15 +188,28 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             autogeneratePanel.Children.Add(cbStartTime);
 
-            cbBusinessRoute = new CheckBox();
-            cbBusinessRoute.FlowDirection = System.Windows.FlowDirection.RightToLeft;
-            cbBusinessRoute.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
-            cbBusinessRoute.Unchecked += cbBusinessRoute_Unchecked;
-            cbBusinessRoute.Checked += cbBusinessRoute_Checked;
-            cbBusinessRoute.Content = Translator.GetInstance().GetString("PopUpAirlinerAutoRoutes", "1001");
-            cbBusinessRoute.Margin = new Thickness(5, 0, 0, 0);
+            StackPanel panelRouteType = new StackPanel();
+            panelRouteType.Margin = new Thickness(5, 0, 0, 0);
 
-            autogeneratePanel.Children.Add(cbBusinessRoute);
+            //string[] routeTypes = new string[] { "Standard Operations", "Business Operations", "24-Hour Operations" };
+
+            foreach (RouteOperationsType type in Enum.GetValues(typeof(RouteOperationsType)))
+            {
+                RadioButton rbRouteType = new RadioButton();
+                rbRouteType.Tag = type;
+                rbRouteType.GroupName = "RouteType";
+                rbRouteType.Content = type.GetAttributeOfType<DescriptionAttribute>().Description;
+                rbRouteType.Checked += rbRouteType_Checked;
+
+                if (type == RouteOperationsType.Standard)
+                    rbRouteType.IsChecked = true;
+
+                panelRouteType.Children.Add(rbRouteType);
+            }
+
+            this.RouteOperations = RouteOperationsType.Standard;
+
+            autogeneratePanel.Children.Add(panelRouteType);
 
             Button btnAdd = new Button();
             btnAdd.Uid = "104";
@@ -211,6 +231,18 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
 
         }
+
+        private void rbRouteType_Checked(object sender, RoutedEventArgs e)
+        {
+            this.RouteOperations = (RouteOperationsType)((RadioButton)sender).Tag;
+
+            cbFlightsPerDay.IsEnabled = this.RouteOperations != RouteOperationsType.Business;
+            cbFlightsPerWeek.IsEnabled = this.RouteOperations != RouteOperationsType.Business;
+            cbStartTime.IsEnabled = this.RouteOperations != RouteOperationsType.Business;
+            cbDelayMinutes.IsEnabled = this.RouteOperations != RouteOperationsType.Business;
+
+            setValues();
+        }
         
         private void btnAdd_Click(object sender, RoutedEventArgs e)
         {
@@ -229,18 +261,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             if (flightsPerDay > 0)
             {
-                if (cbBusinessRoute.IsChecked.Value)
+                if (this.RouteOperations == RouteOperationsType.Business)
                 {
                     flightsPerDay = (int)(route.getFlightTime(this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner)).TotalMinutes / 2 / maxBusinessRouteTime);
                     rt = AIHelpers.CreateBusinessRouteTimeTable(route, this.Airliner, Math.Max(1, flightsPerDay), flightcode1, flightcode2);
                 }
-                else
+                else 
                 {
                     if (this.Interval == FlightInterval.Daily)
                         rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerDay, true, delayMinutes, startTime, flightcode1, flightcode2);
                     else
                         rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, flightsPerWeek, false, delayMinutes, startTime, flightcode1, flightcode2);
                 }
+            
             }
             else
                 rt = null;
@@ -341,10 +374,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 cbDelayMinutes.SelectedIndex = 0;
 
-                cbBusinessRoute.Visibility = minFlightTime.TotalMinutes <= maxBusinessRouteTime ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+                //cbBusinessRoute.Visibility = minFlightTime.TotalMinutes <= maxBusinessRouteTime ? Visibility.Visible : System.Windows.Visibility.Collapsed;
 
-                if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
-                    cbBusinessRoute.IsChecked = false;
+                //if (minFlightTime.TotalMinutes > maxBusinessRouteTime)
+                  //  cbBusinessRoute.IsChecked = false;
 
                 if (this.RouteChanged != null)
                     this.RouteChanged(route);
@@ -353,22 +386,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
 
         }
-        private void cbBusinessRoute_Checked(object sender, RoutedEventArgs e)
-        {
-            cbFlightsPerDay.IsEnabled = false;
-            cbFlightsPerWeek.IsEnabled = false;
-            cbStartTime.IsEnabled = false;
-            cbDelayMinutes.IsEnabled = false;
-        }
-
-        private void cbBusinessRoute_Unchecked(object sender, RoutedEventArgs e)
-        {
-            cbFlightsPerDay.IsEnabled = true;
-            cbStartTime.IsEnabled = true;
-            cbDelayMinutes.IsEnabled = true;
-            cbFlightsPerWeek.IsEnabled = true;
-        }
-        private void cbDelayMinutes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+       //sets the values
+        private void setValues()
         {
             Route route = (Route)cbRoute.SelectedItem;
 
@@ -382,6 +401,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 int maxHours = 22 - 06; //from 06.00 to 22.00
 
+                if (this.RouteOperations == RouteOperationsType.WholeDay)
+                    maxHours = 22;
+
                 int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
                 cbFlightsPerDay.Items.Clear();
@@ -394,6 +416,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             }
 
+        }
+        private void cbDelayMinutes_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            setValues();
         }
         private void cbFlightsPerDay_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -415,7 +441,12 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 cbStartTime.Items.Clear();
 
-                for (int i = 6; i <= Math.Max(6, lastDepartureHour); i++)
+                int startTime = 6;
+
+                if (this.RouteOperations == RouteOperationsType.WholeDay)
+                    startTime = 0;
+
+                for (int i = startTime; i <= Math.Max(startTime, lastDepartureHour); i++)
                     for (int j = 0; j < 60; j += 15)
                         cbStartTime.Items.Add(new TimeSpan(i, j, 0));
 
