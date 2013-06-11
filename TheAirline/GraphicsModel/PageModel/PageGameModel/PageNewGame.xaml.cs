@@ -48,7 +48,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
         private Popup popUpSplash;
         private CheckBox cbLocalCurrency, cbDayTurnEnabled, cbSameRegion;
         private ListBox lbContentBasics, lbContentHuman;
-        private Button btnCreate;
+        private Button btnCreate, btnBack;
         private enum OpponentSelect { Random, User }
         private OpponentSelect OpponentType;
         public PageNewGame()
@@ -350,6 +350,18 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             btnCreate.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             panelButtons.Children.Add(btnCreate);
 
+            btnBack = new Button();
+            btnBack.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnBack.Height = Double.NaN;
+            btnBack.Width = Double.NaN;
+            btnBack.Uid = "119";
+            btnBack.Content = Translator.GetInstance().GetString("General",btnBack.Uid);
+            btnBack.SetResourceReference(Button.BackgroundProperty,"ButtonBrush");
+            btnBack.Margin = new Thickness(5, 0, 0, 0);
+            btnBack.Click += btnBack_Click;
+            btnBack.Visibility = System.Windows.Visibility.Collapsed;
+            panelButtons.Children.Add(btnBack);
+
             Button btnExit = new Button();
             btnExit.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnExit.Height = double.NaN;
@@ -381,6 +393,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
+      
         private void rbSelectOpponents_Checked(object sender, RoutedEventArgs e)
         {
             this.OpponentType = OpponentSelect.User;
@@ -580,11 +593,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             }, f);
             Dispatcher.PushFrame(f);
         }
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            lbContentBasics.Visibility = System.Windows.Visibility.Visible;
+            lbContentHuman.Visibility = System.Windows.Visibility.Collapsed;
+
+            btnBack.Visibility = System.Windows.Visibility.Collapsed;
+            txtNarrative.Visibility = System.Windows.Visibility.Collapsed;
+
+            btnCreate.Content = Translator.GetInstance().GetString("PageNewGame", "203");
+        }
+
         private void btnCreate_Click(object sender, RoutedEventArgs e)
         {
             if (lbContentBasics.Visibility == System.Windows.Visibility.Collapsed)
             {
                 createNewGame();
+              
             }
             if (lbContentBasics.Visibility == System.Windows.Visibility.Visible)
             {
@@ -594,6 +619,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 lbContentHuman.Visibility = System.Windows.Visibility.Visible;
 
                 txtNarrative.Visibility = System.Windows.Visibility.Visible;
+                btnBack.Visibility = System.Windows.Visibility.Visible;
             }
             
 
