@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel
 {
@@ -26,6 +28,28 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
         {
             this.Airliner = airliner;
             InitializeComponent();
+
+            setValues();
+
+        }
+        //sets the values
+        private void setValues()
+        {
+            cbMaintenanceType.Items.Clear();
+            cbMaintenanceType.Items.Add("C");
+            cbMaintenanceType.Items.Add("D");
+            cbMaintenanceType.SelectedIndex = 0;
+
+            cbAirport.Items.Clear();
+
+            var airports = this.Airliner.Airliner.Airline.Airports.Where(a=>a.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service).Facility.TypeLevel>1);
+
+            foreach (Airport airport in airports)
+                cbAirport.Items.Add(airport);
+
+            btnSet.IsEnabled = cbAirport.Items.Count > 0; 
+
+            cbAirport.SelectedIndex = 0;
         }
     }
 }
