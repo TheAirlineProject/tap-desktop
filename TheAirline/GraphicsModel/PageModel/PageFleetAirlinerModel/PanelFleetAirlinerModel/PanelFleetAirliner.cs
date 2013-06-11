@@ -7,6 +7,7 @@ using System.Windows.Navigation;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.Model.GeneralModel;
+using System.Windows;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel
 {
@@ -45,14 +46,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             sbStatistics.Click += new System.Windows.RoutedEventHandler(sbStatistics_Click);
             buttonsPanel.Children.Add(sbStatistics);
 
+            ucSelectButton sbMaintenance = new ucSelectButton();
+            sbMaintenance.Content = Translator.GetInstance().GetString("PanelFleetAirliner","205");
+            sbMaintenance.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+            sbMaintenance.Click +=sbMaintenance_Click;
+            buttonsPanel.Children.Add(sbMaintenance);
+
             ucSelectButton sbInsurance = new ucSelectButton();
             sbInsurance.Content = Translator.GetInstance().GetString("PanelFleetAirliner", "204");
+            sbInsurance.Visibility = this.Airliner.Airliner.Airline.IsHuman ? Visibility.Visible : Visibility.Collapsed;
             sbInsurance.Click+=sbInsurance_Click;
+            buttonsPanel.Children.Add(sbInsurance);
 
-            if (this.Airliner.Airliner.Airline.IsHuman)
-                buttonsPanel.Children.Add(sbInsurance);
-
-            this.Children.Add(buttonsPanel);
+             this.Children.Add(buttonsPanel);
 
             frameContent = new Frame();
             frameContent.NavigationUIVisibility = NavigationUIVisibility.Hidden;
@@ -65,6 +71,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             this.Children.Add(frameContent);
 
          }
+
+        private void sbMaintenance_Click(object sender, RoutedEventArgs e)
+        {
+            frameContent.Navigate(new PageFleetMaintenance(this.Airliner));
+        }
 
         private void sbInsurance_Click(object sender, System.Windows.RoutedEventArgs e)
         {

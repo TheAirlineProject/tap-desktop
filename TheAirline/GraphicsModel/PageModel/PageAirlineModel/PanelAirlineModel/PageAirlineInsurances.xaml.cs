@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -74,10 +75,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             Boolean allAirliners = cbAllAirliners.IsChecked.Value;
             int lenght = Convert.ToInt16(ucLength.Value);
             int amount = Convert.ToInt32(cbAmount.SelectedItem);
-           
+
+            AirlineInsurance insurance = AirlineInsuranceHelpers.CreatePolicy(this.Airline, type, scope, terms, allAirliners, lenght, amount);
+
+            if (PopUpConfirmInsurance.ShowPopUp(insurance) != null)
+                this.Airline.addInsurance(insurance);
+                ;
             
-            AirlineInsurance policy = AirlineInsuranceHelpers.CreatePolicy(this.Airline,type,scope,terms,allAirliners,lenght,amount);
-            this.Airline.addInsurance(policy);
+             //   I think the one last thing that needs to be implemented GUI-wise is the interface for airliner maintenance
+
 
             clearValues();
           

@@ -14,12 +14,14 @@
         <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
         <c:ExtendedTranslatorConverter x:Key="translatorConverter"></c:ExtendedTranslatorConverter>
         <g:ListBoxItemStyleSelector x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelector>
+       
         <DataTemplate x:Key="ComboBoxItem">
             <TextBlock Text="{Binding Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
         </DataTemplate>
         <DataTemplate x:Key="AmountItem">
             <TextBlock Text="{Binding Converter={StaticResource valueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
         </DataTemplate>
+       
         <DataTemplate x:Key="InsuranceItem">
             <WrapPanel>
                 <TextBlock Text="{Binding InsType, Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Width="125"></TextBlock>
