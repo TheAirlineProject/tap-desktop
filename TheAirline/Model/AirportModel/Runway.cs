@@ -12,7 +12,7 @@ namespace TheAirline.Model.AirportModel
         public string Name { get; set; }
         public long Length { get; set; }
 
-        public enum SurfaceType { Asphalt, Concrete, Grass, Dirt, Gravel, Ice, Salt, Paved }
+        public enum SurfaceType { Asphalt, Concrete, Grass, Dirt, Gravel, Ice, Salt, Paved, Unpaved }
         public SurfaceType Surface { get; set; }
         public DateTime BuiltDate { get; set; }
         public Boolean Standard { get; set; }
