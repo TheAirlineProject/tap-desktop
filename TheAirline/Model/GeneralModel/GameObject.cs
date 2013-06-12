@@ -65,7 +65,7 @@ namespace TheAirline.Model.GeneralModel
         private long getStartMoney()
         {
             
-            double baseStartMoney = 1250000000;
+            double baseStartMoney = 12500000;
 
             baseStartMoney *= this.Difficulty.MoneyLevel;
           

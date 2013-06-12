@@ -41,7 +41,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             cbMaintenanceType.SelectedIndex = 0;
 
             cbAirport.Items.Clear();
-
+            
 
             var airports = this.Airliner.Airliner.Airline.Airports.Where(a=>a.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service).Facility.TypeLevel>1);
 
@@ -55,15 +55,48 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
 
         private void btnOK_onClick(object sender, RoutedEventArgs e)
         {
+            Schedule_Maintenance();
+        }
 
-            //sets the dates to the airliner's scheduled maintenance
-            int aMaintInterval = (int)this.slMaintenanceA.Value;
-            this.Airliner.Airliner.SchedAMaintenance = GameObject.GetInstance().GameTime.AddDays(aMaintInterval);
-            int bMaintInterval = (int)this.slMaintenanceB.Value;
-            this.Airliner.Airliner.SchedBMaintenance = GameObject.GetInstance().GameTime.AddDays(bMaintInterval);
-            this.Airliner.Airliner.SchedCMaintenance = (DateTime)this.dpMaintenanceC.SelectedDate;
-            this.Airliner.Airliner.SchedDMaintenance = (DateTime)this.dpMaintenanceD.SelectedDate;
-            this.Airliner.Airliner.SetMaintenanceIntervals(this.Airliner.Airliner, aMaintInterval, bMaintInterval);
+        private void Schedule_Maintenance()
+        {            
+            //sets the
+            int aMI = (int)this.slMaintenanceA.Value;
+            this.Airliner.SchedAMaintenance = GameObject.GetInstance().GameTime.AddDays(aMI);
+            int bMI = (int)this.slMaintenanceB.Value;
+            this.Airliner.SchedBMaintenance = GameObject.GetInstance().GameTime.AddDays(bMI);
+
+            if (rbDateC.IsChecked == true && rbDateD.IsChecked == true)
+                {
+                    this.Airliner.SchedCMaintenance = (DateTime)this.dpMaintenanceC.SelectedDate;                    
+                    this.Airliner.SchedDMaintenance = (DateTime)this.dpMaintenanceD.SelectedDate;
+                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI);
+                }
+            else if (rbDateC.IsChecked == true && rbDateD.IsChecked == false)
+                {
+                    this.Airliner.SchedCMaintenance = (DateTime)this.dpMaintenanceC.SelectedDate;
+                    int dMI = (int)this.slMaintenanceD.Value;
+                    this.Airliner.CMaintenanceInterval = -1;
+                    this.Airliner.SchedDMaintenance = GameObject.GetInstance().GameTime.AddMonths(dMI);
+                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI, dMI);
+                }
+            else if (rbDateD.IsChecked == true && rbDateC.IsChecked == false)
+                {
+                    this.Airliner.SchedDMaintenance = (DateTime)this.dpMaintenanceD.SelectedDate;
+                    this.Airliner.DMaintenanceInterval = -1;
+                    int cMI = (int)this.slMaintenanceC.Value;
+                    this.Airliner.SchedCMaintenance = GameObject.GetInstance().GameTime.AddMonths(cMI);
+                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI, cMI);
+
+                }
+            else
+                {
+                    int dMI = (int)this.slMaintenanceD.Value;
+                    this.Airliner.SchedDMaintenance = GameObject.GetInstance().GameTime.AddMonths(dMI);
+                    int cMI = (int)this.slMaintenanceC.Value;
+                    this.Airliner.SchedCMaintenance = GameObject.GetInstance().GameTime.AddMonths(cMI);
+                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI, cMI, dMI);
+                }
         }
     }
 }
