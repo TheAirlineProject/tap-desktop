@@ -630,7 +630,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 AirlineHelpers.CheckInsuranceSettlements(a);
                 foreach (FleetAirliner airliner in a.Fleet) {
-                    airliner.Airliner.DoMaintenance(airliner);
+                    airliner.Airliner.doMaintenance(airliner);
                     airliner.Airliner.RestoreMaintRoutes(airliner);
                 }
             }

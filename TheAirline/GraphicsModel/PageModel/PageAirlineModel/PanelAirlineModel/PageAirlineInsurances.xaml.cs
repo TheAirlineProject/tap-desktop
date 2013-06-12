@@ -87,11 +87,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             if (PopUpConfirmInsurance.ShowPopUp(insurance) != null)
                 this.Airline.addInsurance(insurance);
-                ;
-            
-             //   I think the one last thing that needs to be implemented GUI-wise is the interface for airliner maintenance
-
-
+          
             clearValues();
           
         }

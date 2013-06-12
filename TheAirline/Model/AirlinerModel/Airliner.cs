@@ -178,7 +178,7 @@ namespace TheAirline.Model.AirlinerModel
 
         //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage
         //make sure you pass this function a string value of either "A" "B" "C" or "D" or it will throw an error!
-        public void DoMaintenance(FleetAirliner airliner)
+        public void doMaintenance(FleetAirliner airliner)
         {
             Random rnd = new Random();
             if (airliner.Airliner.SchedAMaintenance == GameObject.GetInstance().GameTime.Date)

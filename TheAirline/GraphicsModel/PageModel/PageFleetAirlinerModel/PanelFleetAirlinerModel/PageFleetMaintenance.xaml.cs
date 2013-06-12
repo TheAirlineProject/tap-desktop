@@ -30,8 +30,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             InitializeComponent();
 
             setValues();
-            btnOK.Click += new RoutedEventHandler(btnOK_onClick);
-
+       
         }
         //sets the values
         private void setValues()

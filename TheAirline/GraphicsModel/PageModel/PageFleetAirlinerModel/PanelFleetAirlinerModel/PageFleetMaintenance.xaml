@@ -14,15 +14,35 @@
         <StackPanel Margin="0 10 50 0">
         <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1000'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}"></TextBlock>
         <WrapPanel>
-            <TextBlock Text="Maintenance C - Select Date:" Width="100" VerticalAlignment="Bottom"></TextBlock>
-            <DatePicker CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceC"></DatePicker>
-            <TextBlock Text="Maintenance C - Select Interval" Width="150" HorizontalAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
-            <Slider x:Name="slMaintenanceC" Width="200" Maximum="30" Minimum="4" Value="10" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <StackPanel>
+                <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1002'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush}"></TextBlock>
+
+                <WrapPanel>
+                    <RadioButton Content="Select date" IsChecked="True" GroupName="MaintenanceCType" x:Name="rbDateC" Width="100"></RadioButton>
+                    <DatePicker IsEnabled="{Binding ElementName=rbDateC,Path=IsChecked}" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceC" Margin="5 0 0 0"></DatePicker>
+                </WrapPanel>
+                <WrapPanel>
+                    <RadioButton Content="Select interval" GroupName="MaintenanceCType" x:Name="rbIntervalC" Width="100"></RadioButton>
+                    <Slider IsEnabled="{Binding ElementName=rbIntervalC,Path=IsChecked}"  x:Name="slMaintenanceC" Width="200" Maximum="30" Minimum="6" Value="10" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <TextBlock Text="{Binding ElementName=slMaintenanceC,Path=Value,StringFormat={}{0} months}" VerticalAlignment="Bottom"/>
+                </WrapPanel>
+            </StackPanel>
         </WrapPanel>
         <WrapPanel>
-            <TextBlock Text="Maintenance D" Width="100" VerticalAlignment="Bottom"></TextBlock>
-            <DatePicker CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceD"></DatePicker>
+            <StackPanel>
+                <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1003'}" Margin="0 5 0 0" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush}"></TextBlock>
+                <WrapPanel>
+                    <RadioButton Content="Select date" IsChecked="True" GroupName="MaintenanceDType" x:Name="rbDateD" Width="100"></RadioButton>
+                    <DatePicker IsEnabled="{Binding ElementName=rbDateD,Path=IsChecked}" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceD" Margin="5 0 0 0"></DatePicker>
+                </WrapPanel>
+                <WrapPanel>
+                    <RadioButton Content="Select interval" GroupName="MaintenanceDType" x:Name="rbIntervalD" Width="100"></RadioButton>
+                    <Slider IsEnabled="{Binding ElementName=rbIntervalD,Path=IsChecked}"  x:Name="slMaintenanceD" Width="200" Maximum="30" Minimum="6" Value="10" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                    <TextBlock Text="{Binding ElementName=slMaintenanceD,Path=Value,StringFormat={}{0} months}" VerticalAlignment="Bottom"/>
+                </WrapPanel>
+            </StackPanel>
         </WrapPanel>
+        <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1004'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush}" Margin="0 5 0 0"></TextBlock>
         <WrapPanel>
             <TextBlock Text="Maintenance A" Width="100" VerticalAlignment="Bottom"></TextBlock>
             <Slider x:Name="slMaintenanceA" Width="200" Maximum="45" Minimum="3" Value="10" IsSnapToTickEnabled="True" TickFrequency="1"/>
@@ -33,8 +53,8 @@
             <Slider x:Name="slMaintenanceB" Maximum="72" Minimum="14" Value="10" IsSnapToTickEnabled="True" TickFrequency="1" Width="200"/>
             <TextBlock Text="{Binding ElementName=slMaintenanceB,Path=Value,StringFormat={}{0} days}"/>
         </WrapPanel>
-        <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
-            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Name ="btnOK" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 100'}"></Button>
+        <WrapPanel Margin="0 10 0 0" HorizontalAlignment="Left">
+            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Click="btnOK_onClick"  Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 100'}"></Button>
             <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 103'}" Margin="5 0 0 0"></Button>
         </WrapPanel>
             <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1001'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}" Margin="0 10 0 0"></TextBlock>
