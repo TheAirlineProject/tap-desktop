@@ -629,9 +629,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airline a in Airlines.GetAllAirlines())
             {
                 AirlineHelpers.CheckInsuranceSettlements(a);
-                foreach (FleetAirliner airliner in a.Fleet) {
-                    airliner.DoMaintenance(airliner);
-                    airliner.RestoreMaintRoutes(airliner);
+                foreach (FleetAirliner airliner in a.Fleet) 
+                {
+                    FleetAirlinerHelpers.DoMaintenance(airliner);
+                    FleetAirlinerHelpers.RestoreMaintRoutes(airliner);
                 }
             }
 

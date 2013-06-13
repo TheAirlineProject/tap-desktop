@@ -12,9 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel
 {
@@ -51,52 +53,99 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             btnSet.IsEnabled = cbAirport.Items.Count > 0; 
 
             cbAirport.SelectedIndex = 0;
+
+            Panel contentPanel = (Panel)this.Content;
+
+            RadioButton rbDateC = UICreator.FindChild<RadioButton>(contentPanel, "rbDateC");
+            RadioButton rbDateD = UICreator.FindChild<RadioButton>(contentPanel, "rbDateD");
+            RadioButton rbIntervalC = UICreator.FindChild<RadioButton>(contentPanel, "rbIntervalC");
+            RadioButton rbIntervalD = UICreator.FindChild<RadioButton>(contentPanel, "rbIntervalD");
+         
+            Slider slMaintenanceD = UICreator.FindChild<Slider>(contentPanel, "slMaintenanceD");
+            Slider slMaintenanceC = UICreator.FindChild<Slider>(contentPanel, "slMaintenanceC");
+  
+            rbDateC.IsChecked = this.Airliner.CMaintenanceInterval == -1;
+            rbDateD.IsChecked = this.Airliner.DMaintenanceInterval == -1;
+
+            rbIntervalC.IsChecked = !rbDateC.IsChecked;
+            rbIntervalD.IsChecked = !rbDateD.IsChecked;
+              
+            if (rbDateC.IsChecked.Value)
+                this.dpMaintenanceC.SelectedDate = this.Airliner.SchedCMaintenance;
+            else
+                slMaintenanceC.Value = this.Airliner.CMaintenanceInterval;
+
+            if (rbDateD.IsChecked.Value)
+                this.dpMaintenanceD.SelectedDate = this.Airliner.SchedDMaintenance;
+            else
+                slMaintenanceD.Value = this.Airliner.DMaintenanceInterval;
+
+            slMaintenanceA.Value = this.Airliner.AMaintenanceInterval;
+            slMaintenanceB.Value = this.Airliner.BMaintenanceInterval;
+           
         }
 
         private void btnOK_onClick(object sender, RoutedEventArgs e)
         {
-            Schedule_Maintenance();
+            schedule_Maintenance();
         }
 
-        private void Schedule_Maintenance()
+        private void schedule_Maintenance()
         {            
-            //sets the
+            //sets the values
             int aMI = (int)this.slMaintenanceA.Value;
             this.Airliner.SchedAMaintenance = GameObject.GetInstance().GameTime.AddDays(aMI);
             int bMI = (int)this.slMaintenanceB.Value;
             this.Airliner.SchedBMaintenance = GameObject.GetInstance().GameTime.AddDays(bMI);
 
+            RadioButton rbDateC = UICreator.FindChild<RadioButton>(this, "rbDateC");
+            RadioButton rbDateD = UICreator.FindChild<RadioButton>(this, "rbDateD");
+            Slider slMaintenanceD = UICreator.FindChild<Slider>(this, "slMaintenanceD");
+            Slider slMaintenanceC = UICreator.FindChild<Slider>(this, "slMaintenanceC");
+
             if (rbDateC.IsChecked == true && rbDateD.IsChecked == true)
                 {
                     this.Airliner.SchedCMaintenance = (DateTime)this.dpMaintenanceC.SelectedDate;                    
                     this.Airliner.SchedDMaintenance = (DateTime)this.dpMaintenanceD.SelectedDate;
-                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI);
+                    FleetAirlinerHelpers.SetMaintenanceIntervals(this.Airliner, aMI, bMI);
                 }
             else if (rbDateC.IsChecked == true && rbDateD.IsChecked == false)
                 {
                     this.Airliner.SchedCMaintenance = (DateTime)this.dpMaintenanceC.SelectedDate;
-                    int dMI = (int)this.slMaintenanceD.Value;
+                    int dMI = (int)slMaintenanceD.Value;
                     this.Airliner.CMaintenanceInterval = -1;
                     this.Airliner.SchedDMaintenance = GameObject.GetInstance().GameTime.AddMonths(dMI);
-                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI, dMI);
+                    FleetAirlinerHelpers.SetMaintenanceIntervals(this.Airliner, aMI, bMI, dMI);
                 }
             else if (rbDateD.IsChecked == true && rbDateC.IsChecked == false)
                 {
                     this.Airliner.SchedDMaintenance = (DateTime)this.dpMaintenanceD.SelectedDate;
                     this.Airliner.DMaintenanceInterval = -1;
-                    int cMI = (int)this.slMaintenanceC.Value;
+                    int cMI = (int)slMaintenanceC.Value;
                     this.Airliner.SchedCMaintenance = GameObject.GetInstance().GameTime.AddMonths(cMI);
-                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI, cMI);
+                    FleetAirlinerHelpers.SetMaintenanceIntervals(this.Airliner, aMI, bMI, cMI);
 
                 }
             else
                 {
-                    int dMI = (int)this.slMaintenanceD.Value;
+                    int dMI = (int)slMaintenanceD.Value;
                     this.Airliner.SchedDMaintenance = GameObject.GetInstance().GameTime.AddMonths(dMI);
-                    int cMI = (int)this.slMaintenanceC.Value;
+                    int cMI = (int)slMaintenanceC.Value;
                     this.Airliner.SchedCMaintenance = GameObject.GetInstance().GameTime.AddMonths(cMI);
-                    this.Airliner.SetMaintenanceIntervals(this.Airliner, aMI, bMI, cMI, dMI);
+                    FleetAirlinerHelpers.SetMaintenanceIntervals(this.Airliner, aMI, bMI, cMI, dMI);
                 }
         }
+
+        private void btnUndo_Click(object sender, RoutedEventArgs e)
+        {
+            setValues();
+        }
+
+        private void btnSet_Click(object sender, RoutedEventArgs e)
+        {
+            
+
+        }
+       
     }
 }
