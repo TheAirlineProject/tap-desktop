@@ -17,7 +17,7 @@
            </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="DestinationsHeader">
-            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush2}">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
                 <TextBlock Width="300" FontWeight="Bold">
                       <Hyperlink Tag="Destination" Click="Header_Click">
                         <Run Text="Destination"></Run>
@@ -28,6 +28,24 @@
                         <Run Text="Flights"></Run>
                     </Hyperlink>
                 </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock VerticalAlignment="Bottom" Text="Time" Width="50" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Flight" Width="50" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Airport" Width="50" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightItem">
+            <WrapPanel>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:HH:mm}}" Width="50"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource AirlineLogoItem}" Content="{Binding Airline}" Width="150"></ContentControl>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Flight}" Width="50"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding Airport}" Width="200" Margin="0 0 5 0"></ContentControl>
+
+
             </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="DestinationItem">

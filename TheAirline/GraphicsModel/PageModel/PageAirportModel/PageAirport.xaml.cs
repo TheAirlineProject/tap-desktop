@@ -51,7 +51,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
             airportPanel.Children.Add(createQuickInfoPanel());
             airportPanel.Children.Add(createPassengersPanel());
-            airportPanel.Children.Add(createFlightsPanel());
+            //airportPanel.Children.Add(createFlightsPanel());
             //airportPanel.Children.Add(createArrivalsPanel());
             //airportPanel.Children.Add(createDeparturesPanel());
 
