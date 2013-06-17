@@ -22,7 +22,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             this.HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
             this.VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
-            this.Height = GraphicsHelpers.GetContentHeight();
+            this.Height = GraphicsHelpers.GetContentHeight()-100;
 
             panelAirliner = new StackPanel();
             panelAirliner.Orientation = Orientation.Vertical;
