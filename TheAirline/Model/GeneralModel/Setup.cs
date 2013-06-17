@@ -1960,9 +1960,9 @@ namespace TheAirline.Model.GeneralModel
         private static void SetupDifficultyLevels()
         {
 
-            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Easy", 1.5, 0.75, 1.5, 1, 1.25));
-            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Normal", 1, 1, 1.2, 1.1, 1));
-            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Hard", 0.5, 1.25, 1, 1.2, 0.75));
+            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Easy", 1.5, 0.75, 1.5, 1, 1.25,5));
+            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Normal", 1, 1, 1.2, 1.1, 1,2));
+            DifficultyLevels.AddDifficultyLevel(new DifficultyLevel("Hard", 0.5, 1.25, 1, 1.2, 0.75,1));
 
         }
         /*! sets up the statistics types.
@@ -2280,12 +2280,13 @@ namespace TheAirline.Model.GeneralModel
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
-            int difficultyFactor = GameObject.GetInstance().Difficulty.AILevel > 1 ? 2 : 1; //level easy
+          //  int difficultyFactor = GameObject.GetInstance().Difficulty.AILevel > 1 ? 2 : 1; //level easy
 
+            int startDataFactor = Convert.ToInt16(GameObject.GetInstance().Difficulty.StartDataLevel);
             var startroutes = startData.Routes.FindAll(r => r.Opened <= GameObject.GetInstance().GameTime.Year && r.Closed >= GameObject.GetInstance().GameTime.Year);
 
             //creates the routes
-            var sRoutes = startroutes.GetRange(0, startroutes.Count / difficultyFactor);
+            var sRoutes = startroutes.GetRange(0, startroutes.Count / startDataFactor);
             Parallel.ForEach(sRoutes, startRoute =>
             {
                 Airport dest1 = Airports.GetAirport(startRoute.Destination1);
@@ -2392,7 +2393,7 @@ namespace TheAirline.Model.GeneralModel
 
             //adds the airliners
             //foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor))
-            var sAirliners = startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor);
+            var sAirliners = startData.Airliners.GetRange(0, startData.Airliners.Count / startDataFactor);
 
             Parallel.ForEach(sAirliners, airliners =>
             {
@@ -2443,7 +2444,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport origin = Airports.GetAirport(routes.Origin);
 
-                for (int i = 0; i < Math.Min(routes.Destinations / difficultyFactor, origin.Terminals.getFreeGates()); i++)
+                for (int i = 0; i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates()); i++)
                 {
                     if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                         origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);

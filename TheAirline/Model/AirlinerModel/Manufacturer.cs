@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,16 +8,16 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for an airliner manufacturer
-    [ProtoContract]
+    [Serializable]
     public class Manufacturer
     {
-        [ProtoMember(1)]
+        
         public string Name { get; set; }
-        [ProtoMember(2)]
+        
         public string ShortName { get; set; }
-        [ProtoMember(3)]
+        
         public Country Country { get; set; }
-        [ProtoMember(4)]
+        
         public string Logo { get; set; }
         public Manufacturer(string name, string shortname, Country country)
         {

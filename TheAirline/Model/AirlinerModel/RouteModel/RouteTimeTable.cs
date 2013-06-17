@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,12 +12,12 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 * This class is used for the time table for a route
 * The class needs parameters for the route
 */
-    [ProtoContract]
+    [Serializable]
     public class RouteTimeTable
     {
-        [ProtoMember(1)]
+        
         public List<RouteTimeTableEntry> Entries { get; set; }
-        [ProtoMember(2)]
+        
         public Route Route { get; set; }
         public RouteTimeTable(Route route)
         {

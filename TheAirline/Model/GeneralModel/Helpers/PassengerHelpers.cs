@@ -620,7 +620,20 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destinations passenger for all destinations
         public static void CreateDestinationDemand()
         {
-            var airports = Airports.GetAllAirports(a => a.getDestinationPassengersSum() == 0);
+            if (CargoFactors.Count == 0)
+            {
+
+                CargoFactors.Add(GeneralHelpers.Size.Largest, 0.23);
+                CargoFactors.Add(GeneralHelpers.Size.Very_large, 0.23);
+                CargoFactors.Add(GeneralHelpers.Size.Large, 0.23);
+                CargoFactors.Add(GeneralHelpers.Size.Medium, 0.23);
+                CargoFactors.Add(GeneralHelpers.Size.Small, 0.23);
+                CargoFactors.Add(GeneralHelpers.Size.Very_small, 0.23);
+                CargoFactors.Add(GeneralHelpers.Size.Smallest, 0.23);
+
+
+            }
+            var airports = Airports.GetAllAirports(a => a.Statics.getDestinationPassengersSum() == 0);
             int count = airports.Count;
 
             //var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
@@ -750,7 +763,7 @@ namespace TheAirline.Model.GeneralModel
             volume *= 35.1;
 
             if (volume >= 1)
-                airport.addDestinationCargoRate(dAirport, (ushort)volume);
+                airport.addDestinationCargoRate(new DestinationDemand(dAirport, (ushort)volume));
 
         }
         //creates the airport destinations passengers between two destinations 

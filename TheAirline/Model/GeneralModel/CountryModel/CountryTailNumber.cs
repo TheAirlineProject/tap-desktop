@@ -5,17 +5,16 @@ using System.Text;
 using System.IO;
 using TheAirline.Model.AirlinerModel;
 using System.Text.RegularExpressions;
-using ProtoBuf;
+
 
 namespace TheAirline.Model.GeneralModel
 {
     //the class for handling the tail numbers for the country
-    [ProtoContract]
+    [Serializable]
     public class CountryTailNumber
     {
-        [ProtoMember(1)]
+        
         public string LastTailNumber { get; set; }
-        [ProtoMember(2, AsReference=true)]
         public Country Country { get; set; }
         public CountryTailNumber(Country country)
         {

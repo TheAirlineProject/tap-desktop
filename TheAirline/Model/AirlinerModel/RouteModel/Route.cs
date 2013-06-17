@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,9 +14,9 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
-    [ProtoContract]
-    [ProtoInclude(100, typeof(CargoRoute))]
-    [ProtoInclude(101, typeof(PassengerRoute))]
+    [DataContract]
+    [KnownType(typeof(CargoRoute))]
+    [KnownType(typeof(PassengerRoute))]
     //the class for a route
     public abstract class Route
     {
@@ -24,33 +24,41 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
 
         public Boolean HasStopovers { get { return this.Stopovers.Count > 0; } set { ;} }
-        [ProtoMember(1)]
+       [DataMember]
+      
         public string Id { get; set; }
-        [ProtoMember(2,AsReference=true)]
-
-        public Airport Destination1 { get; set; }
-        [ProtoMember(3,AsReference=true)]
-        public Airport Destination2 { get; set; }
-        [ProtoMember(4)]
+       [DataMember]
+       public Airport Destination1 { get; set; }
+       [DataMember]
+       public Airport Destination2 { get; set; }
+        [DataMember]
+        
         public List<StopoverRoute> Stopovers { get; set; }
-        [ProtoMember(5)]
+
+        [DataMember]
         public RouteTimeTable TimeTable { get; set; }
-        [ProtoMember(6)]
+
+        [DataMember]
         public Invoices Invoices { get; set; }
-        [ProtoMember(7)]
+
+        [DataMember]
         public RouteStatistics Statistics { get; set; }
-        [ProtoMember(8)]
+
+        [DataMember]
         public Boolean Banned { get; set; }
-        [ProtoMember(9)]
+
+        [DataMember]
         public DateTime LastUpdated { get; set; }
         public Boolean HasAirliner { get { return getAirliners().Count > 0; } set { ;} }
-        [ProtoMember(10)]
+
+        [DataMember]
         public Weather.Season Season { get; set; }
-        [ProtoMember(11)]
+
+        [DataMember]
         public Airline Airline { get; set; }
 
         public enum RouteType { Cargo, Mixed, Passenger }
-        [ProtoMember(12)]
+        [DataMember]
         public RouteType Type { get; set; }
         public Route(RouteType type, string id, Airport destination1, Airport destination2)
         {

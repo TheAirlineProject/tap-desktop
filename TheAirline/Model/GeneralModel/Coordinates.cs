@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,13 +6,13 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel
 {
-    [ProtoContract]
+    [Serializable]
     //the class for the coordinates
     public class Coordinates : IComparable<Coordinates>
     {
-        [ProtoMember(1)]
+        
         public Coordinate Latitude { get; set; }
-        [ProtoMember(2)]
+        
         public Coordinate Longitude { get; set; }
         public Coordinates(Coordinate latitude, Coordinate longitude)
         {
@@ -37,20 +37,20 @@ namespace TheAirline.Model.GeneralModel
 
         #endregion
     }
-    [ProtoContract]
+    [Serializable]
     //the class for the coordinate
     public class Coordinate
     {
         
         public enum Directions { N, S, W, E };
 
-        [ProtoMember(1)]
+        
         public int Degrees { get; set; }
-        [ProtoMember(2)]
+        
         public int Minutes { get; set; }
-        [ProtoMember(3)]
+        
         public int Seconds { get; set; }
-        [ProtoMember(4)]
+        
         public Directions Direction { get; set; }
         public Coordinate(int degrees, int minutes, int seconds, Directions direction)
         {

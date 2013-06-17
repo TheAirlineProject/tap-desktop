@@ -602,7 +602,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
              double passengersLevel = Convert.ToDouble(difficultyNode.Attributes["passengers"].Value, new CultureInfo("de-DE", false));
              double aiLevel = Convert.ToDouble(difficultyNode.Attributes["ai"].Value, new CultureInfo("de-DE", false));
 
-             GameObject.GetInstance().Difficulty = new DifficultyLevel(difficultyName, moneyLevel, loanLevel, passengersLevel, priceLevel, aiLevel);
+             GameObject.GetInstance().Difficulty = new DifficultyLevel(difficultyName, moneyLevel, loanLevel, passengersLevel, priceLevel, aiLevel,1);
 
              XmlElement scenarioNode = (XmlElement)root.SelectSingleNode("//scenario");
 

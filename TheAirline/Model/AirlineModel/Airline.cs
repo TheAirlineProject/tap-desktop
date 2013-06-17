@@ -10,12 +10,13 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
-using ProtoBuf;
+using System.Runtime.Serialization;
+
 
 namespace TheAirline.Model.AirlineModel
 {
-    [ProtoContract]
-    [ProtoInclude(100,typeof(SubsidiaryAirline))]
+    [DataContract]
+    [KnownType(typeof(SubsidiaryAirline))]
     //the class for an airline
     public class Airline
     {
@@ -23,80 +24,90 @@ namespace TheAirline.Model.AirlineModel
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Safe,Moderate, Aggressive}
         public enum AirlineFocus { Global, Regional,Domestic, Local }
-        [ProtoMember(1)]
+
+        [DataMember]
         public Route.RouteType AirlineRouteFocus { get; set; }
-        [ProtoMember(2)]
+
+        [DataMember]
         public AirlineLicense License { get; set; }
-        [ProtoMember(3)]
+
+        [DataMember]
         public AirlineFocus MarketFocus { get; set; }
-        [ProtoMember(4)]
+
+        [DataMember]
         public AirlineMentality Mentality { get; set; }
-        [ProtoMember(5)]
+
+        [DataMember]
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
-        [ProtoMember(6,AsReference=true)]
+        [DataMember]
         public List<Airport> Airports { get; set; }
-        [ProtoMember(7,AsReference=true)]
+        [DataMember]
         public List<FleetAirliner> Fleet { get; set; }
-        [ProtoMember(8,AsReference=true)]
+        [DataMember]
         public List<SubsidiaryAirline> Subsidiaries { get; set; }
-        [ProtoMember(9)]
+          [DataMember]
+      
         public AirlineProfile Profile { get; set; }
-        [ProtoMember(10)]
-        private List<Route> _Routes;
+
+          [DataMember]
+          private List<Route> _Routes;
         public List<Route> Routes { get { return getRoutes(); } set { this._Routes = value; } }
-        [ProtoMember(11)]
+
+        [DataMember]
         public List<AirlineFacility> Facilities { get; set; }
-        //[ProtoMember(12)]
+        [DataMember]
         private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
-        [ProtoMember(13)]
+        [DataMember]
         public GeneralStatistics Statistics { get; set; }
-        [ProtoMember(14)]
+        [DataMember]
         public double Money { get; set; }
-        [ProtoMember(15)]
+        [DataMember]
         public double StartMoney { get; set; }
         public Boolean IsHuman { get { return isHuman(); } set { ;} }
         public Boolean IsSubsidiary { get { return isSubsidiaryAirline(); } set { ;} }
-        [ProtoMember(16)]
+        [DataMember]
         private Invoices Invoices;
-        [ProtoMember(17)]
+        [DataMember]
         public AirlineFees Fees { get; set; }
-        [ProtoMember(18)]
+        [DataMember]
         public List<Loan> Loans { get; set; }
-        [ProtoMember(19)]
+        [DataMember]
         private List<string> FlightCodes;
-        [ProtoMember(20)]
+        [DataMember]
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
-        [ProtoMember(21)]
+        [DataMember]
         public List<Alliance> Alliances { get; set; }
-        [ProtoMember(22)]
+        [DataMember]
         public ManufacturerContract Contract { get; set; }
-        [ProtoMember(23)]
+        [DataMember]
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
-        [ProtoMember(24)]
+        [DataMember]
         public List<AirlinePolicy> Policies { get; set; }
-        [ProtoMember(25)]
+        [DataMember]
         public List<Pilot> Pilots { get; set; }
-        [ProtoMember(26)]
+        [DataMember]
         public AirlineBudget Budget { get; set; }
-        [ProtoMember(27)]
+        [DataMember]
         public List<FlightSchool> FlightSchools { get; set; }
-        [ProtoMember(28)]
+        [DataMember]
         public List<AirlineInsurance> InsurancePolicies { get; set; }
+        [DataMember]
         public Int64 AvgFleetValue { get; set; }
+        [DataMember]
         public Int64 FleetValue { get; set; }
-        [ProtoMember(31)]
+        [DataMember]
         public List<RandomEvent> EventLog { get; set; }
-        [ProtoMember(32)]
+        [DataMember]
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
-        [ProtoMember(29)]
+        [DataMember]
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
-        [ProtoMember(30)]
+        [DataMember]
         public AirlineScores Scores { get; set; }
-        [ProtoMember(33)]
+        [DataMember]
         public AirlineRatings Ratings { get; set; }
-        [ProtoMember(34)]
+        [DataMember]
         public List<RandomEvent> EventList { get; set; }
-        [ProtoMember(35)]
+        [DataMember]
         public List<InsuranceClaim> InsuranceClaims { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {

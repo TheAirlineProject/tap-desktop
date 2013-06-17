@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +11,18 @@ namespace TheAirline.Model.AirlineModel
  * This class is used for a type of Advertisement for an airline
  * The class needs parameters for type, name, price per month and reputation level
  */
-    [ProtoContract]
+    [Serializable]
     public class AdvertisementType
     {
         public enum AirlineAdvertisementType { Newspaper=1930, Radio=1940, TV=1950, Internet=1995 }
-        [ProtoMember(1)]
+        
         public AirlineAdvertisementType Type { get; set; }
-        [ProtoMember(2)]
+        
         public string Name { get; set; }
-        [ProtoMember(3)]
+        
         private double APrice;
         public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
-        [ProtoMember(4)]
+        
         public int ReputationLevel { get; set; }
         public AdvertisementType(AirlineAdvertisementType type, string name, double price, int reputationLevel)
         {

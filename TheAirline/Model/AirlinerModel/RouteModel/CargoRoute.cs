@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +10,10 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
-   [ProtoContract]
+   [Serializable]
     //the class for a cargo route
     public class CargoRoute : Route
     {
-       [ProtoMember(20)]
        public double PricePerUnit { get; set; }
         public CargoRoute(string id, Airport destination1, Airport destination2, double pricePerUnit)
             : base(RouteType.Cargo, id, destination1, destination2)

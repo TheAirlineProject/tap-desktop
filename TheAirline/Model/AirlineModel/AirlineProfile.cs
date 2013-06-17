@@ -4,39 +4,38 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
-using ProtoBuf;
+
 
 
 namespace TheAirline.Model.AirlineModel
 {
-    [ProtoContract] 
+    [Serializable] 
     //the profile for an airline
     public class AirlineProfile
     {
-        [ProtoMember(1)]
+        
         public string Name { get; set; }
-        [ProtoMember(2)]
+        
         public string CEO { get; set; }
-        [ProtoMember(3)]
+        
         public string IATACode { get; set; }
-        [ProtoMember(4)]
+        
         public Country Country { get; set; }
-        [ProtoMember(5)]
+        
         public List<Country> Countries { get; set; }
-        [ProtoMember(6)]
+        
         public string Color { get; set; }
         public string Logo { get { return getCurrentLogo();} private set{;} }
-        [ProtoMember(7)]
+        
         public List<AirlineLogo> Logos { get; set; }
-        [ProtoMember(8)]
+        
         public Airport PreferedAirport { get; set; }
-        [ProtoMember(9)]
+        
         public int Founded { get; set; }
-        [ProtoMember(10)]
+        
         public int Folded { get; set; }
-        [ProtoMember(11)]
+        
         public Boolean IsReal { get; set; }
-        [ProtoMember(12)]
         public string Narrative { get; set; }
         public AirlineProfile(string name, string iata, string color,  string ceo, Boolean isReal, int founded, int folded)
         {
@@ -62,14 +61,14 @@ namespace TheAirline.Model.AirlineModel
         }
     }
     //the class for an airline logo
-    [ProtoContract]
+    [Serializable]
     public class AirlineLogo
     {
-        [ProtoMember(1)]
+        
         public int FromYear { get; set; }
-        [ProtoMember(2)]
+        
         public int ToYear { get; set; }
-        [ProtoMember(3)]
+        
         public string Path { get; set; }
         public AirlineLogo(int fromYear, int toYear, string path)
         {

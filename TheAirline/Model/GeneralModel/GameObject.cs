@@ -7,45 +7,41 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 using System.Runtime.Serialization;
-using ProtoBuf;
+
 
 //locked for verison 0.3.6t2 (this serves no purpose whatsoever)
 
 namespace TheAirline.Model.GeneralModel
 {
-    [ProtoContract]
+    [Serializable]
     //the class for the game object
     public class GameObject
     {
         private static GameObject GameInstance;
-        [ProtoMember(1)]
+        
         public Country CurrencyCountry { get; set; }
         public Boolean PagePerformanceCounterEnabled { get; set; }
         public Boolean FinancePageEnabled { get; set; }
-        [ProtoMember(2)]
+        
         public Boolean DayRoundEnabled { get; set; }
-        [ProtoMember(3)]
+        
         public DateTime GameTime { get; set; }
-        [ProtoMember(4)]
+        
         public DateTime StartDate { get; set; }
-        [ProtoMember(5,AsReference=true)]
         public Airline HumanAirline { get; set; }
-        [ProtoMember(6,AsReference=true)]
         public Airline MainAirline { get; set; }
-        [ProtoMember(7)]
+        
         public NewsBox NewsBox { get; set; }
-        [ProtoMember(8)]
+        
         public double FuelPrice { get; set; }
-        [ProtoMember(9)]
+        
         public long StartMoney { get { return getStartMoney(); } set { ;} }
-        [ProtoMember(10)]
+        
         public GameTimeZone TimeZone { get; set; }
-        [ProtoMember(11)]
+        
         public string Name { get; set; }
-        [ProtoMember(12)]
         public ScenarioObject Scenario { get; set; }
        // public enum DifficultyLevel { Easy, Normal, Hard } 
-        [ProtoMember(13)]
         public DifficultyLevel Difficulty { get; set; }
         //public double PassengerDemandFactor { get; set; }
         public const int StartYear = 1960;

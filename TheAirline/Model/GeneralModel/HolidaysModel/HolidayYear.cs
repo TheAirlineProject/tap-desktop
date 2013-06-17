@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,14 +7,14 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.HolidaysModel
 {
     //the class for an event (holiday) in a year
-    [ProtoContract]
+    [Serializable]
     public class HolidayYearEvent
     {
-        [ProtoMember(1)]
+        
         public DateTime Date { get; set; }
-        [ProtoMember(2)]
+        
         public Holiday Holiday { get; set; }
-        [ProtoMember(3)]
+        
         public int Length { get; set; } //in days
         public HolidayYearEvent(DateTime date, Holiday holiday, int length)
         {

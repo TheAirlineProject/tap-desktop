@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +7,16 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.HistoricEventModel
 {
     //the class for a historic event
-    [ProtoContract]
+    [Serializable]
     public class HistoricEvent
     {
-          [ProtoMember(1)]
+          
         public string Name { get; set; }
-          [ProtoMember(2)]
+          
           public DateTime Date { get; set; }
-          [ProtoMember(3)]
+          
           public string Text { get; set; }
-          [ProtoMember(4)]
+          
           public List<HistoricEventInfluence> Influences { get; set; }
         public HistoricEvent(string name,string text,DateTime date)
         {

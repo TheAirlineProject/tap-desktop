@@ -12,62 +12,44 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
-using ProtoBuf;
+
 
 namespace TheAirline.Model.GeneralModel
 {
-    [ProtoContract]
+    [Serializable]
     public class RandomEvent
     {
         public enum EventType { Safety, Security, Maintenance, Customer, Employee, Political }
         public enum Focus { Aircraft, Airport, Airline }
-        [ProtoMember(1)]
+        
         public EventType Type { get; set; }
-        [ProtoMember(2)]
+        
         public Focus focus { get; set; }
-        [ProtoMember(3, AsReference=true)]
         public Airline Airline { get; set; }
-        [ProtoMember(4)]
+        
         public string EventName { get; set; }
-        [ProtoMember(5)]
+        
         public string EventMessage { get; set; }
-        [ProtoMember(6,AsReference=true)]
         public FleetAirliner Airliner { get; set; }
-        [ProtoMember(7,AsReference=true)]
         public Airport Airport { get; set; }
-        [ProtoMember(8,AsReference=true)]
         public Country Country { get; set; }
-        [ProtoMember(9,AsReference=true)]
         public Route Route { get; set; }
-        [ProtoMember(10)]
+        
         public bool CriticalEvent { get; set; }
-        [ProtoMember(11)]
+        
         public DateTime DateOccurred { get; set; }
-        [ProtoMember(12)]
         public int CustomerHappinessEffect { get; set; } //0-100
-        [ProtoMember(13)]
         public int AircraftDamageEffect { get; set; } //0-100
-        [ProtoMember(14)]
         public int AirlineSecurityEffect { get; set; } //0-100
-        [ProtoMember(15)]
         public int AirlineSafetyEffect { get; set; } //0-100
-        [ProtoMember(16)]
         public int EmployeeHappinessEffect { get; set; } //0-100
-        [ProtoMember(17)]
         public int FinancialPenalty { get; set; } //dollar amount to be added or subtracted from airline cash
-        [ProtoMember(18)]
         public double PaxDemandEffect { get; set; } //0-2
-        [ProtoMember(19)]
         public double CargoDemandEffect { get; set; } //0-2
-        [ProtoMember(20)]
         public int EffectLength { get; set; } //should be defined in months
-        [ProtoMember(21)]
         public string EventID { get; set; }
-        [ProtoMember(22)]
         public int Frequency { get; set; } //frequency per 3 years
-        [ProtoMember(23)]
         public DateTime Start { get; set; }
-        [ProtoMember(24)]
         public DateTime End { get; set; }
         public RandomEvent(EventType type, Focus focus, string name, string message, bool critical, int custHappiness, int aircraftDamage, int airlineSecurity, int airlineSafety, int empHappiness, int moneyEffect, double paxDemand, double cargoDemand, int length, string id, int frequency, DateTime stat, DateTime end)
         {

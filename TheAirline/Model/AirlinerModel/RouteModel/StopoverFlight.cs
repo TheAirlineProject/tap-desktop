@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,11 @@ using TheAirline.Model.GeneralModel.Helpers;
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
     //the class for a stopover flight
-    [ProtoContract]
+    [Serializable]
     public class StopoverFlight : Flight
     {
-        [ProtoMember(20)]
         public int CurrentFlight { get; set; }
-        [ProtoMember(21)]
         public Dictionary<RouteTimeTableEntry, List<FlightAirlinerClass>> AllClasses { get; set; }
-        [ProtoMember(22)]
         public Dictionary<RouteTimeTableEntry, double> AllCargo { get; set; }
         public Boolean IsLastTrip { get { return isLastTrip(); } set { ;} }
         public StopoverFlight(RouteTimeTableEntry entry)

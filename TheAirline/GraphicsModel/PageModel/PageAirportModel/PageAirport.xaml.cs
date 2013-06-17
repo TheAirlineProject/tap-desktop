@@ -236,17 +236,23 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                 airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country == this.Airport.Profile.Country).OrderByDescending(a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)).ToList();
             else
                 airports = Airports.GetAirports(a => a != this.Airport && a.Profile.Country != this.Airport.Profile.Country).OrderByDescending(a => this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)).ToList();
+            
             foreach (Airport airport in airports)
             {
-                DestinationDemand passengers = this.Airport.getDestinationPassengersObject(airport);
-                DestinationDemand cargo = this.Airport.getDestinationCargoObject(airport);
-                if ((passengers != null && passengers.Rate > 0) || (cargo != null && cargo.Rate > 0))
+                int passengers = this.Airport.getDestinationPassengersRate(airport,AirlinerClass.ClassType.Economy_Class);
+                int cargo = this.Airport.getDestinationCargoRate(airport);
+
+                if (passengers > 0 || cargo > 0)
                 {
-                    if (passengers == null)
-                        passengers = new DestinationDemand(cargo.Destination, 0);
-                    int demand = passengers.Rate;
+                    DestinationDemand passengerDemand = new DestinationDemand(airport, (ushort)passengers);
+                    DestinationDemand cargoDemand = new DestinationDemand(airport, (ushort)cargo);
+
+                     
+                    int demand = passengers;
                     int covered = 0;
+                    
                     List<Route> routes = AirportHelpers.GetAirportRoutes(airport, this.Airport).Where(r => r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger).ToList();
+                   
                     foreach (Route route in routes)
                     {
                         RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
@@ -255,9 +261,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
                         double routeCovered = avgPassengers / (7.0 / flights);
                         covered += (int)routeCovered;
                     }
-                    KeyValuePair<DestinationDemand, int> paxDemand = new KeyValuePair<DestinationDemand, int>(passengers, Math.Max(0, demand - covered));
-                    KeyValuePair<DestinationDemand, int> cargoDemand = new KeyValuePair<DestinationDemand, int>(cargo, 0);
-                    KeyValuePair<KeyValuePair<DestinationDemand, int>, KeyValuePair<DestinationDemand, int>> totalDemand = new KeyValuePair<KeyValuePair<DestinationDemand, int>, KeyValuePair<DestinationDemand, int>>(paxDemand, cargoDemand);
+                    KeyValuePair<DestinationDemand, int> paxDemand = new KeyValuePair<DestinationDemand, int>(passengerDemand, Math.Max(0, demand - covered));
+                    KeyValuePair<DestinationDemand, int> cDemand = new KeyValuePair<DestinationDemand, int>(cargoDemand, 0);
+                    KeyValuePair<KeyValuePair<DestinationDemand, int>, KeyValuePair<DestinationDemand, int>> totalDemand = new KeyValuePair<KeyValuePair<DestinationDemand, int>, KeyValuePair<DestinationDemand, int>>(paxDemand, cDemand);
                     lbPassengers.Items.Add(totalDemand);
                 }
             } 

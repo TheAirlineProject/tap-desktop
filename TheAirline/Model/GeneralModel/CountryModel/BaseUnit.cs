@@ -1,22 +1,26 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the base unit for countries and union members
-    [ProtoContract]
-    [ProtoInclude(100,typeof(Country))]
-     [ProtoInclude(103,typeof(Union))]
+    [DataContract]
+    [KnownType(typeof(Country))]
+     [KnownType(typeof(Union))]
     public class BaseUnit
     {
-        [ProtoMember(1)]
+
+        [DataMember]
         public string Uid { get; set; }
-        [ProtoMember(2)]
+
+        [DataMember]
         public string ShortName { get; set; }
-        [ProtoMember(3)]
+
+        [DataMember]
         public string Flag { get; set; }
         public BaseUnit(string uid, string shortname)
         {

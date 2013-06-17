@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,10 +12,10 @@ namespace TheAirline.Model.AirportModel
  * This is used for statistics for an airport.
  * The class needs no parameters
  */
-    [ProtoContract]
+    [Serializable]
     public class AirportStatistics
     {
-        [ProtoMember(1)]
+        
         private Dictionary<int, List<AirportStatisticsValue>> Stats;
         public AirportStatistics()
         {

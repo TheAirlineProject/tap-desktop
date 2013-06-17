@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,18 +16,17 @@ namespace TheAirline.Model.AirportModel
      * Constructor needs parameter for airport, owner (airline), date of delivery and number of gates
      **/
     // chs, 2011-27-10 changed so a terminal has a devilery date
-    [ProtoContract]
+    [Serializable]
     public class Terminal
     {
-        [ProtoMember(1)]
+        
         public string Name { get; set; }
-        [ProtoMember(2)]
+        
         public DateTime DeliveryDate { get; set; }
-        [ProtoMember(3)]
+        
         public Airline Airline { get; set; }
-        [ProtoMember(4,AsReference=true)]
         public Airport Airport { get; set; }
-        [ProtoMember(5)]
+        
         public Gates Gates { get; set; }
         public Boolean IsBuilt { get{return isBuilt();} set{;} }
         public Boolean IsBuyable { get { return isBuyable(); } set { ;} }
@@ -76,12 +75,11 @@ namespace TheAirline.Model.AirportModel
         }
     }
     //the collection of terminals at an airport
-    [ProtoContract]
+    [Serializable]
     public class Terminals
     {
-        [ProtoMember(1,AsReference=true)]
         public Airport Airport { get; set; }
-        [ProtoMember(2)]
+        
         public List<Terminal> AirportTerminals;
         public Terminals(Airport airport)
         {

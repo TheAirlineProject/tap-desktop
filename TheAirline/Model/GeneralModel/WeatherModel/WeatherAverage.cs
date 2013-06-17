@@ -4,33 +4,33 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.AirportModel;
-using ProtoBuf;
+
 
 namespace TheAirline.Model.GeneralModel.WeatherModel
 {
     //the class for the averages for a month for a region/state/country/town
-    [ProtoContract]
+    [Serializable]
     public class WeatherAverage
     {
-        [ProtoMember(1)]
+        
         public Airport Airport { get; set; }
-        [ProtoMember(2)]
+        
         public Country Country { get; set; }
-        [ProtoMember(3)]
+        
         public Town Town { get; set; }
-        [ProtoMember(4)]
+        
         public int Month { get; set; }
         //in mm
-        [ProtoMember(5)]
+        
         public int Precipitation { get; set; }
         //in celcius
-        [ProtoMember(6)]
+        
         public double TemperatureMax { get; set; }
-        [ProtoMember(7)]
+        
         public double TemperatureMin { get; set; }
-        [ProtoMember(8)]
+        
         public Weather.eWindSpeed WindSpeedMax { get; set; }
-        [ProtoMember(9)]
+        
         public Weather.eWindSpeed WindSpeedMin { get; set; }
         public WeatherAverage(int month, double temperatureMin, double temperatureMax,int precipitation, Weather.eWindSpeed windspeedMin, Weather.eWindSpeed windspeedMax, Country country, Town town,Airport airport)
         {

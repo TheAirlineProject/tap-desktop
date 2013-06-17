@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,31 +9,31 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for an airliner
-    [ProtoContract]
+    [Serializable]
     public class Airliner
     {
-        [ProtoMember(1)]
+        
         public string TailNumber { get; set; }
-        [ProtoMember(2)]
+        
         public string ID { get; set; }
-        [ProtoMember(3)]
+        
         public DateTime BuiltDate { get; set; }
-        [ProtoMember(4)]
+        
         public AirlinerType Type { get; set; }
-        [ProtoMember(5)]
+        
         public double Flown { get; set; } //distance flown by the airliner
-        [ProtoMember(6)]
+        
         public Airline Airline { get; set; }
-        [ProtoMember(7)]
+        
         public double LastServiceCheck { get; set; }  //the km were the airliner was last at service
         public long Price { get { return getPrice(); } private set { } }
         public long LeasingPrice { get { return getLeasingPrice(); } private set { } }
-        [ProtoMember(8)]
+        
         public long FuelCapacity { get; set; }
-        [ProtoMember(9)]
+        
         public double Damaged { get; set; }
         public int Age { get { return getAge(); } private set { } }
-        [ProtoMember(10)]
+        
         public List<AirlinerClass> Classes { get; set; }
         private Random rnd = new Random();
         public Airliner(string id, AirlinerType type, string tailNumber, DateTime builtDate)

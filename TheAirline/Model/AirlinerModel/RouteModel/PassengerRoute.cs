@@ -10,18 +10,16 @@ using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using System.Runtime.Serialization;
-using ProtoBuf;
+
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
-  [ProtoContract]
+  [Serializable]
     //the class for a passenger route
     public class PassengerRoute : Route
     {
         //public FleetAirliner Airliner { get; set; }
-        [ProtoMember(30)]
         public List<RouteAirlinerClass> Classes { get; set; }
-        [ProtoMember(31)]
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
         public PassengerRoute(string id, Airport destination1, Airport destination2,double farePrice) : base(RouteType.Passenger,id,destination1,destination2)
         {

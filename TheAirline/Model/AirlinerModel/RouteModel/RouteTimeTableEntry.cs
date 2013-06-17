@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,23 +12,23 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
  * This class is used for an entry in a time table
  * The class needs parameters for the time table, the day of flight, the time of flight and the destination
  */
-    [ProtoContract]
+    [Serializable]
     public class RouteTimeTableEntry : IComparable<RouteTimeTableEntry>
     {
-        [ProtoMember(1)]
+        
         public DayOfWeek Day { get; set; }
-        [ProtoMember(2)]
+        
         public TimeSpan Time { get; set; }
-        [ProtoMember(3)]
+        
         public RouteTimeTable TimeTable { get; set; }
-        [ProtoMember(4)]
+        
         public RouteEntryDestination Destination { get; set; }
-        [ProtoMember(5)]
+        
         public FleetAirliner Airliner { get; set; }
         public Airport DepartureAirport { get { return getDepartureAirport(); } set { ;} }
-        [ProtoMember(6)]
+        
         public RouteTimeTableEntry MainEntry { get; set; }
-        [ProtoMember(7)]
+        
         public string ID { get; set; }
         public RouteTimeTableEntry(RouteTimeTable timeTable, DayOfWeek day, TimeSpan time, RouteEntryDestination destination)
         {

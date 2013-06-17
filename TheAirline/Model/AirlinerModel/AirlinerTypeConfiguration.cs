@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,14 +9,11 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the configuration for a configuration for an airliner type
-   [ProtoContract]
+   [Serializable]
     public class AirlinerTypeConfiguration : Configuration
     {
-        [ProtoMember(40)]
         public AirlinerType Airliner { get; set; }
-        [ProtoMember(41)]
         public Period<DateTime> Period { get; set; }
-        [ProtoMember(42)]
         public List<AirlinerClassConfiguration> Classes { get; set; }
         public AirlinerTypeConfiguration(string name, AirlinerType type, Period<DateTime> period, Boolean standard)
             : base(Configuration.ConfigurationType.AirlinerType, name, standard)

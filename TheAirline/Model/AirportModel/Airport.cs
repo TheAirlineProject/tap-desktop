@@ -9,45 +9,46 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Runtime.Serialization;
-using ProtoBuf;
+
 
 
 namespace TheAirline.Model.AirportModel
 {
-    [ProtoContract]
+    [DataContract]
     //the class for an airport
     public class Airport
     {
-        [ProtoMember(1)]
+        [DataMember]
         public AirportProfile Profile { get; set; }
         // private List<Passenger> Passengers;
-        [ProtoMember(2)]
+        //
+        [DataMember]
         private List<DestinationDemand> DestinationPassengers { get; set; }
-        [ProtoMember(3)]
+        [DataMember]
         private List<DestinationDemand> DestinationCargo { get; set; }
-       // [ProtoMember(4)]
+       [DataMember]
         private Dictionary<Airport, long> DestinationPassengerStatistics { get; set; }
-       // [ProtoMember(5)]
+       [DataMember]
         private Dictionary<Airport, double> DestinationCargoStatistics { get; set; }
-        [ProtoMember(6)]
+        [DataMember]
         private List<AirlineAirportFacility> Facilities;
-        [ProtoMember(7)]
+        [DataMember]
         public AirportStatistics Statistics { get; set; }
-        [ProtoMember(8)]
+        [DataMember]
         public Weather[] Weather { get; set; }
-        [ProtoMember(9)]
+        [DataMember]
         public List<Runway> Runways { get; set; }
-        [ProtoMember(10)]
+        [DataMember]
         public Terminals Terminals { get; set; }
-          [ProtoMember(11)]
+          [DataMember]
         private List<Hub> _Hubs;
         public List<Hub> Hubs { private get { return getHubs(); } set { this._Hubs = value; } }
         public Boolean IsHub { get { return getHubs().Count > 0; } set { ;} }
-        [ProtoMember(12)]
+        [DataMember]
         public long Income { get; set; }
-        [ProtoMember(13)]
+        [DataMember]
         public DateTime LastExpansionDate { get; set; }
-        [ProtoMember(14)]
+        [DataMember]
         private List<AirportContract> _Contracts;
         public List<AirportContract> AirlineContracts { get { return getAirlineContracts();} set { this._Contracts = value; } }
         public AirportStatics Statics { get; set; }
@@ -165,10 +166,10 @@ namespace TheAirline.Model.AirportModel
             }
                           
             if (pax == null)
-                return 0;
+                return this.Statics.getDestinationPassengersRate(destination,type);
             else
             {
-                return (ushort)(pax.Rate / classFactor);
+                return (ushort)(this.Statics.getDestinationPassengersRate(destination,type)+(ushort)(pax.Rate / classFactor));
             }
       
         }
@@ -177,31 +178,28 @@ namespace TheAirline.Model.AirportModel
         {
             DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination);
 
+         
             if (cargo == null)
-                return 0;
+                return this.Statics.getDestinationCargoRate(destination);
             else
-                return cargo.Rate;
+                return (ushort)(cargo.Rate + (ushort)this.Statics.getDestinationCargoRate(destination));
             
         }
         //adds a passenger rate for a destination
         public void addDestinationPassengersRate(DestinationDemand passengers)
         {
-            lock (this.DestinationPassengers)
-            {
-                this.DestinationPassengers.Add(passengers);
-            }
+            this.Statics.addPassengerDemand(passengers);
+          
         }
         //adds a cargo rate for a destination
         public void addDestinationCargoRate(DestinationDemand cargo)
         {
-            lock (this.DestinationCargo)
-            {
-                this.DestinationCargo.Add(cargo);
-            }
+            this.Statics.addCargoDemand(cargo);
         }
         //adds a passenger rate value to a destination
         public void addDestinationPassengersRate(Airport destination, ushort rate)
         {
+
             lock (this.DestinationPassengers)
             {
              
@@ -210,7 +208,7 @@ namespace TheAirline.Model.AirportModel
                 if (destinationPassengers != null)
                     destinationPassengers.Rate += rate;
                 else
-                    addDestinationPassengersRate(new DestinationDemand(destination, rate));
+                    this.DestinationPassengers.Add(new DestinationDemand(destination, rate));
             }
         }
         //adds a cargo rate value to a destination
@@ -218,18 +216,19 @@ namespace TheAirline.Model.AirportModel
         {
             lock (this.DestinationCargo) 
             {
+                
                 DestinationDemand destinationCargo = getDestinationCargoObject(destination);
 
                 if (destinationCargo != null)
                     destinationCargo.Rate += rate;
                 else
-                    addDestinationCargoRate(new DestinationDemand(destination, rate));
+                    this.DestinationCargo.Add(new DestinationDemand(destination, rate));
             }
         }
         //returns if the destination has passengers rate
         public Boolean hasDestinationPassengersRate(Airport destination)
         {
-            return this.DestinationPassengers.Exists(a => a.Destination == destination);
+            return this.Statics.hasDestinationPassengersRate(destination) || this.DestinationPassengers.Exists(a => a.Destination == destination);
         }
         //returns a destination passengers object
         public DestinationDemand getDestinationPassengersObject(Airport destination)
@@ -260,7 +259,7 @@ namespace TheAirline.Model.AirportModel
                 sum = this.DestinationPassengers.Sum(d => d.Rate);
             }
 
-            return sum;
+            return sum + this.Statics.getDestinationPassengersSum();
         }
         //adds a number of passengers to destination to the statistics
         public void addPassengerDestinationStatistics(Airport destination, long passengers)

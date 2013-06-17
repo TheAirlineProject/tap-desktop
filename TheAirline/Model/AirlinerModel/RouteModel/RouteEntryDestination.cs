@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,12 +11,12 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
   * This is used for destination for the route.
   * The class needs parameter for the destination airport and the flight code
   */
-       [ProtoContract]
+       [Serializable]
      public class RouteEntryDestination : IComparable<RouteEntryDestination>
     {
-           [ProtoMember(1)]
+           
            public Airport Airport { get; set; }
-           [ProtoMember(2)]
+           
            public string FlightCode { get; set; }
         public RouteEntryDestination(Airport airport, string flightCode)
         {

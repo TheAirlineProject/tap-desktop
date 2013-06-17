@@ -7,26 +7,26 @@ using System.IO;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.GraphicsModel.Converters;
 using System.Runtime.Serialization;
-using ProtoBuf;
+
 
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a country
-   [ProtoContract(AsReferenceDefault = true)]
-   [ProtoInclude(201, typeof(TemporaryCountry))]
-   [ProtoInclude(202, typeof(TerritoryCountry))]
+   [DataContract]
+   [KnownType(typeof(TemporaryCountry))]
+   [KnownType(typeof(TerritoryCountry))]
  
     public class Country : BaseUnit
     {
         public static string Section { get; set; }
-        [ProtoMember(20, AsReference = true)]
+        [DataMember]
         public Region Region { get; set; }
         //the format used for the tail number
-        [ProtoMember(21)]
+        [DataMember]
         public string TailNumberFormat { get; set; }
-        [ProtoMember(22,AsReference=true)]
+        [DataMember]
         public CountryTailNumber TailNumbers { get; set; }
-        [ProtoMember(23,AsReference=true)]
+        [DataMember]
         public List<CountryCurrency> Currencies { get; set; }
         public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {
@@ -95,11 +95,10 @@ namespace TheAirline.Model.GeneralModel
          * */
       
     }
-    [ProtoContract]
+    [Serializable]
     //the class for a country which is a territory of another country
     public class TerritoryCountry : Country
     {
-        [ProtoMember(31)]
         public Country MainCountry { get; set; }
         public TerritoryCountry(string section, string uid, string shortName, Region region, string tailNumberFormat, Country mainCountry)
             : base(section,uid,shortName,region,tailNumberFormat)

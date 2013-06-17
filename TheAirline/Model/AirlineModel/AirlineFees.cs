@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,10 +11,10 @@ namespace TheAirline.Model.AirlineModel
      * This class is used for the fees values for an airline.
      * The class needs no parameters
      */
-    [ProtoContract]
+    [Serializable]
     public class AirlineFees
     {
-        [ProtoMember(1)]
+        
         private Dictionary<FeeType, double> Fees;
         public AirlineFees()
         {

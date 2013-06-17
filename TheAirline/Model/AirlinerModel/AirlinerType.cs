@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,55 +10,67 @@ namespace TheAirline.Model.AirlinerModel
 {
      
      //the class for a type of airliner
-    [ProtoContract]
-    [ProtoInclude(100,typeof(AirlinerPassengerType))]
-    [ProtoInclude(101,typeof(AirlinerCargoType))]
+    [DataContract]
+    [KnownType(typeof(AirlinerPassengerType))]
+    [KnownType(typeof(AirlinerCargoType))]
  
     public abstract class AirlinerType
     {
-        [ProtoMember(1)]
+
+        [DataMember]
         public string Name { get; set; }
-        [ProtoMember(2)]
+
+        [DataMember]
         public double CruisingSpeed { get; set; }
-        [ProtoMember(3)]
+
+        [DataMember]
         public long Range { get; set; }
-        [ProtoMember(4)]
+
+        [DataMember]
         public string Image { get; set; }
-        [ProtoMember(5)]
+
+        [DataMember]
         public double Length { get; set; }
-        [ProtoMember(6)]
+
+        [DataMember]
         public double Wingspan { get; set; }
-        [ProtoMember(7)]
+
+        [DataMember]
         public int CockpitCrew { get; set; }
-        [ProtoMember(8)]
+
+        [DataMember]
         private long APrice;
         public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
-        [ProtoMember(9)]
+
+        [DataMember]
         public Period<DateTime> Produced { get; set; }
-        [ProtoMember(10)]
+
+        [DataMember]
         public double FuelConsumption { get; set; }
-        [ProtoMember(11)]
+
+        [DataMember]
         public Manufacturer Manufacturer { get; set; }
         public enum BodyType {Narrow_Body, Single_Aisle,Wide_Body} 
         public enum TypeRange {Regional, Short_Range, Medium_Range, Long_Range}
         public enum EngineType {Jet, Turboprop}
         public enum TypeOfAirliner { Passenger, Cargo, Mixed, Convertible }
-        [ProtoMember(12)]
+        [DataMember]
         public BodyType Body { get; set; }
-        [ProtoMember(13)]
+        [DataMember]
         public TypeRange RangeType { get; set; }
-        [ProtoMember(14)]
+        [DataMember]
         public EngineType Engine { get; set; }
-        [ProtoMember(15)]
+        [DataMember]
         public long MinRunwaylength { get; set; }
-        [ProtoMember(16)]
+        [DataMember]
         public long FuelCapacity { get; set; }
-        [ProtoMember(17)]
+        [DataMember]
         public TypeOfAirliner TypeAirliner { get; set; }
-        [ProtoMember(18)]
+        [DataMember]
         public Boolean IsStandardType { get; set; }
+        [DataMember]
         public AirlinerType BaseType { get; set; }
-        [ProtoMember(19)]
+        [DataMember]
         public int ProductionRate { get; set; }
         public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
         {
@@ -101,14 +113,11 @@ namespace TheAirline.Model.AirlinerModel
        
     }
     //the class for a passenger airliner type
-    [ProtoContract]
+    [Serializable]
     public class AirlinerPassengerType : AirlinerType
     {
-        [ProtoMember(30)]
         public int MaxSeatingCapacity { get; set; }
-        [ProtoMember(31)]
         public int CabinCrew { get; set; }
-        [ProtoMember(32)]
         public int MaxAirlinerClasses { get; set; }
         public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
@@ -118,10 +127,9 @@ namespace TheAirline.Model.AirlinerModel
         }
     }
     //the class for a cargo airliner type
-    [ProtoContract]
+    [Serializable]
     public class AirlinerCargoType : AirlinerType
     {
-        [ProtoMember(40)]
         public double CargoSize { get; set; }
         public AirlinerCargoType(Manufacturer manufacturer, string name, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {

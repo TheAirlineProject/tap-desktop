@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
-using ProtoBuf;
+using System.Runtime.Serialization;
+
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -12,29 +13,35 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
   * This is used for a actually flight.
   * The class needs parameter for the time table entry which the flight flights after
   */
-    [ProtoContract]
-    [ProtoInclude(100,typeof(StopoverFlight))]
+    [DataContract]
+    [KnownType(typeof(StopoverFlight))]
     public class Flight
     {
-        [ProtoMember(1)]
+
+        [DataMember]
         public RouteTimeTableEntry Entry { get; set; }
-        [ProtoMember(2)]
+        [DataMember]
         public List<FlightAirlinerClass> Classes { get; set; }
-        [ProtoMember(3)]
+
+        [DataMember]
         public FleetAirliner Airliner { get; set; }
-        [ProtoMember(4)]
+
+        [DataMember]
         public Boolean IsOnTime { get; set; }
-        [ProtoMember(5)]
+
+        [DataMember]
         public DateTime FlightTime { get; set; }
-        [ProtoMember(6)]
+
+        [DataMember]
         public DateTime ScheduledFlightTime { get; set; }
         public DateTime ExpectedLanding { get { return getExpectedLandingTime(); } set { ;} }
-        [ProtoMember(7)]
+
+        [DataMember]
         public double Cargo { get; set; }
         public Flight(RouteTimeTableEntry entry)
         {
-         
-            
+
+
             this.Entry = entry;
 
             if (this.Entry.TimeTable.Route.Type == Route.RouteType.Passenger || this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed)
@@ -62,13 +69,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 this.IsOnTime = true;
             }
-           
-         
+
+
         }
         //adds some delay minutes to the flight
         public virtual void addDelayMinutes(int minutes)
         {
-           this.FlightTime = this.FlightTime.AddMinutes(minutes);
+            this.FlightTime = this.FlightTime.AddMinutes(minutes);
         }
         //returns the scheduled expected landing time
         public DateTime getScheduledLandingTime()
@@ -100,7 +107,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the flight airliner class for a specific class type
         public FlightAirlinerClass getFlightAirlinerClass(AirlinerClass.ClassType type)
         {
-            return this.Classes.Find(c=>c.AirlinerClass.Type == type); 
+            return this.Classes.Find(c => c.AirlinerClass.Type == type);
         }
         //returns the next destination
         public Airport getNextDestination()
@@ -122,7 +129,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public Boolean isCargoFlight()
         {
             return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed || this.Entry.TimeTable.Route.Type == Route.RouteType.Cargo;
-  
+
         }
 
     }

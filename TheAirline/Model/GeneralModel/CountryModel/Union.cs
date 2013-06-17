@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,12 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the class for an union or organizational
-    [ProtoContract]
+    [Serializable]
     public class Union : BaseUnit
     {
         public static string Section { get; set; }
-        [ProtoMember(40)]
         public List<UnionMember> Members { get; set; }
-        [ProtoMember(41)]
         public DateTime CreationDate { get; set; }
-        [ProtoMember(42)]
         public DateTime ObsoleteDate { get; set; }
         public Union(string section, string uid,string shortname, DateTime creationDate, DateTime obsoleteDate) : base(uid,shortname)
         {

@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel.WeatherModel
 {
-    [ProtoContract]
+    [Serializable]
     //the class for the weather for a specific date
     public class Weather
     {
@@ -14,25 +14,25 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public const int Sunrise = 6;
         //public enum eWindSpeed { Calm = 0,Light_Air=4, Light_Breeze = 8,Gentle_Breeze=12, Moderate_Breeze = 15,Fresh_Breeze=27,Strong_Breeze=45,Near_Gale=52, Gale = 60, Strong_Gale=72, Storm = 90,Violent_Storm=102, Hurricane=114  }
         public enum eWindSpeed { Calm,Light_Air,Light_Breeze, Gentle_Breeze, Moderate_Breeze, Fresh_Breeze, Strong_Breeze, Near_Gale, Gale, Strong_Gale, Storm, Violent_Storm, Hurricane }
-        [ProtoMember(1)]
+        
         public eWindSpeed WindSpeed { get; set; }
         public enum WindDirection { E, NE, N, NW, W, SW,S, SE }
-        [ProtoMember(2)]
+        
         public WindDirection Direction { get; set; }
         public enum Precipitation { None,Fog, Light_rain, Heavy_rain, Light_snow,Heavy_snow, Hail,Sleet,Freezing_rain}
-        [ProtoMember(3)]
+        
         public Precipitation Precip { get; set; }
         public enum CloudCover {Clear, Broken, Overcast}
-        [ProtoMember(4)]
+        
         public CloudCover Cover { get; set; }
-        [ProtoMember(5)]
+        
         public DateTime Date { get; set; }  
         public enum Season { All_Year, Winter, Summer }
-        [ProtoMember(6)]
+        
         public HourlyWeather[] Temperatures { get; set; }
-        [ProtoMember(7)]
+        
         public double TemperatureHigh { get; set; }
-        [ProtoMember(8)]
+        
         public double TemperatureLow { get; set; }
         public Weather(DateTime date, eWindSpeed windspeed, WindDirection direction, CloudCover cover,Precipitation precip, HourlyWeather[] temperatures,double temperatureLow, double temperatureHigh)
         {

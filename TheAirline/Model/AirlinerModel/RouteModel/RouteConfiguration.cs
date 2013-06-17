@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,10 +9,9 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel.RouteModel
 { 
     //the class for the configuration for a route classes
-   [ProtoContract]
+   [Serializable]
     public class RouteClassesConfiguration : Configuration
     {
-      [ProtoMember(20)]
        
         private List<RouteClassConfiguration> Classes;
         public RouteClassesConfiguration(string name,Boolean standard)
@@ -36,12 +35,12 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         
     }
     //the class for the configuration for a route class
-    [ProtoContract]
+    [Serializable]
     public class RouteClassConfiguration
     {
-         [ProtoMember(1)]
+         
        public AirlinerClass.ClassType Type { get; set; }
-      [ProtoMember(2)]
+      
           private List<RouteFacility> Facilities;
         public RouteClassConfiguration(AirlinerClass.ClassType type)
         {

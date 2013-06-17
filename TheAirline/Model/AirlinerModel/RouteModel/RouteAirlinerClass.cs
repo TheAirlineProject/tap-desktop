@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,18 +11,18 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     * This class is used for an airliner class onboard of a route airliner for passengers
     * The class needs parameters for type of class and the fare price
     */
-       [ProtoContract]
+       [Serializable]
      public class RouteAirlinerClass
     {
         // chs, 2011-18-10 added seating type to a route airliner class
         public enum SeatingType { Reserved_Seating, Free_Seating }
-        [ProtoMember(1)]
+        
         public SeatingType Seating { get; set; }
-        [ProtoMember(2)]
+        
         public double FarePrice { get; set; }
-        [ProtoMember(3)]
+        
         private List<RouteFacility> Facilities;
-        [ProtoMember(4)]
+        
         public AirlinerClass.ClassType Type { get; set; }
         //public int CabinCrew { get; set; }
         

@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,17 +6,17 @@ using System.Text;
 
 namespace TheAirline.Model.GeneralModel
 {
-    [ProtoContract]
+    [Serializable]
      public class CalendarItem
     {
-        [ProtoMember(1)]
+        
         public string Header { get; set; }
-        [ProtoMember(2)]
+        
         public DateTime Date { get; set; }
-        [ProtoMember(3)]
+        
         public string Subject { get; set; }
         public enum ItemType { Holiday, Airliner_Order, Airport_Opening, Airport_Closing }
-        [ProtoMember(4)]
+        
         public ItemType Type { get; set; }
         public CalendarItem(ItemType type, DateTime date, string header, string subject)
         {

@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,24 +8,23 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a flight school
-    [ProtoContract]
+    [Serializable]
     public class FlightSchool
     {
         public const int MaxNumberOfStudentsPerInstructor = 2;
         public const int MaxNumberOfInstructors = 15;
-        [ProtoMember(1)]
+        
         public string Name { get; set; }
-        [ProtoMember(2,AsReference=true)]
         public Airport Airport { get; set; }
-        [ProtoMember(3)]
+        
         public string ID { get; set; }
         public int NumberOfInstructors { get { return this.Instructors.Count; } set { ;} }
         public int NumberOfStudents { get { return this.Students.Count; } set { ;} }
-        [ProtoMember(4)]
+        
         public List<PilotStudent> Students { get; set; }
-        [ProtoMember(5)]
+        
         public List<Instructor> Instructors { get; set; }
-        [ProtoMember(6)]
+        
         public List<TrainingAircraft> TrainingAircrafts { get; set; }
         public FlightSchool(Airport airport)
         {

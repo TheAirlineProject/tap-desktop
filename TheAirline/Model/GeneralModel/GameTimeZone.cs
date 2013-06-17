@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +10,14 @@ namespace TheAirline.Model.GeneralModel
 * This is used for a time zone in the game
 * The class needs parameters names of time zone and the utc offset
      */
-    [ProtoContract]
+    [Serializable]
     public class GameTimeZone
     {
-        [ProtoMember(1)]
+        
         public TimeSpan UTCOffset { get; set; }
-        [ProtoMember(2)]
+        
         public string ShortName { get; set; }
-        [ProtoMember(3)]
+        
         public string Name { get; set; }
         public string DisplayName { get { return getDisplayName(); } set { ;} }
         public string ShortDisplayName { get { return getShortDisplayName(); } set { ;} }

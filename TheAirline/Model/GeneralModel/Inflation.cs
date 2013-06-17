@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +7,16 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for setting the inflation (prices etc.) for a specific year
-    [ProtoContract]
+    [Serializable]
     public class Inflation
     {
-        [ProtoMember(1)]
+        
         public int Year { get; set; }
-        [ProtoMember(2)]
+        
         public double FuelPrice { get; set; }
-        [ProtoMember(3)]
+        
         public double InflationPercent { get; set; }
-        [ProtoMember(4)]
+        
         public double Modifier { get; set; }
         public Inflation(int year, double fuelprice, double inflationpercent, double modifier)
         {

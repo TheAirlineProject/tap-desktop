@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -34,16 +34,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.configurationList = new List<Configuration>();
             so.eventsList = new List<RandomEvent>();
 
-            //so.airlinesList.AddRange(Airlines.GetAllAirlines());
-            //so.airportsList.AddRange(Airports.GetAllAirports());
-            //so.airlinersList.AddRange(Airliners.GetAllAirliners());
+            so.airlinesList.AddRange(Airlines.GetAllAirlines());
+            so.airportsList.AddRange(Airports.GetAllAirports());
+            so.airlinersList.AddRange(Airliners.GetAllAirliners());
             so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
             so.configurationList.AddRange(Configurations.GetConfigurations());
             so.eventsList.AddRange(RandomEvents.GetEvents());
 
             so.instance = GameObject.GetInstance();
         
-            /*
+            
             var settings = new XmlWriterSettings
             {
                 Encoding = Encoding.UTF8,
@@ -68,11 +68,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
                 stream.Close();
-            }*/
+            }
+              /*
             using (var file = File.Create("c:\\bbm\\person.bin"))
             {
                 Serializer.Serialize<SaveObject>(file, so);
-            }
+            }*/
             sw.Stop();
           
         }
@@ -114,7 +115,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airports.Clear();
 
             foreach (Airport airport in deserializedSaveObject.airportsList)
+            {
+                airport.Statics = new AirportStatics(airport);
                 Airports.AddAirport(airport);
+            }
 
             Airliners.Clear();
 
@@ -140,28 +144,28 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
     }
     
-    [ProtoContract(Name = "game")]
+    [DataContract(Name = "game")]
     public class SaveObject
     {
-        [ProtoMember(1)]
+        [DataMember]
         public List<CalendarItem> calendaritemsList { get; set; }
 
-        [ProtoMember(2)]
+        [DataMember]
         public List<Airliner> airlinersList { get; set; }
 
-        [ProtoMember(3)]
+        [DataMember]
         public List<Airline> airlinesList { set; get; }
 
-        [ProtoMember(4)]
+        [DataMember]
         public List<Airport> airportsList { set; get; }
 
-        [ProtoMember(5)]
+        [DataMember]
         public GameObject instance { get; set; }
 
-        [ProtoMember(6)]
+        [DataMember]
         public List<Configuration> configurationList { get; set; }
 
-        [ProtoMember(7)]
+        [DataMember]
         public List<RandomEvent> eventsList { get; set; } 
        
 

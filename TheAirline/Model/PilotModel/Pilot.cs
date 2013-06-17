@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,21 +9,19 @@ using TheAirline.Model.AirlinerModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a pilot
-    [ProtoContract]
+    [Serializable]
     public class Pilot
     {
         public enum PilotRating { A=3, B=4, C=5, D=7, E=10 }
-        [ProtoMember(1)]
+        
         public PilotRating Rating { get; set; }
-        [ProtoMember(2)]
+        
         public PilotProfile Profile { get; set; }
-        [ProtoMember(3,AsReference=true)]
         public Airline Airline { get; set; }
-        [ProtoMember(4)]
+        
         public DateTime AirlineSignedDate { get; set; }
-        [ProtoMember(5)]
+        
         public DateTime EducationTime { get; set; }
-        [ProtoMember(6,AsReference=true)]
         public FleetAirliner Airliner { get; set; }
         public const int RetirementAge = 55;
          public Pilot(PilotProfile profile, DateTime educationTime, PilotRating rating)

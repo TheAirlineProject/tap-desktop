@@ -386,6 +386,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
         {
+            
             Boolean isInUnion = Unions.GetUnions(airport1.Profile.Country, GameObject.GetInstance().GameTime).Intersect(Unions.GetUnions(airport2.Profile.Country, GameObject.GetInstance().GameTime)).Any();
 
             if (airline.License == Airline.AirlineLicense.Long_Haul)

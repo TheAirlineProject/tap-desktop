@@ -157,9 +157,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 GameObjectWorker.GetInstance().start();
 
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
-
-                Action action = () =>
+               
+                 Action action = () =>
                 {
+                    PassengerHelpers.CreateDestinationDemand();
+
                     var airports = Airports.GetAllAirports();
                     int count = airports.Count;
 

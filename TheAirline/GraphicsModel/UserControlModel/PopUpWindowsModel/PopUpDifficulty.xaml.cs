@@ -21,7 +21,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
     public partial class PopUpDifficulty : PopUpWindow
     {
     
-        private Slider slMoney, slLoan, slPassengers, slPrice, slAI;
+        private Slider slMoney, slLoan, slPassengers, slPrice, slAI, slStartData;
         private DifficultyLevel Level;
         public static object ShowPopUp(DifficultyLevel level)
         {
@@ -63,6 +63,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             slAI = createDifficultySlider(easyLevel.AILevel, normalLevel.AILevel, hardLevel.AILevel,level.AILevel);
             slPassengers = createDifficultySlider(easyLevel.PassengersLevel, normalLevel.PassengersLevel, hardLevel.PassengersLevel,level.PassengersLevel);
             slPrice = createDifficultySlider(easyLevel.PriceLevel, normalLevel.PriceLevel, hardLevel.PriceLevel,level.PriceLevel);
+            slStartData = createDifficultySlider(easyLevel.StartDataLevel, normalLevel.StartDataLevel, hardLevel.StartDataLevel, level.StartDataLevel);
 
             lbContent.Items.Add(new QuickInfoValue("", createIndicator()));
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpDifficulty","200"), slMoney));
@@ -70,6 +71,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpDifficulty", "202"), slLoan));
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpDifficulty", "203"), slPassengers));
             lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpDifficulty", "204"), slAI));
+            lbContent.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PopUpDifficulty","205"),slStartData));
 
             mainPanel.Children.Add(createButtonsPanel());
 
@@ -160,7 +162,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
-            DifficultyLevel level = new DifficultyLevel("Custom", slMoney.Value, slLoan.Value, slPassengers.Value, slPrice.Value, slAI.Value);
+            DifficultyLevel level = new DifficultyLevel("Custom", slMoney.Value, slLoan.Value, slPassengers.Value, slPrice.Value, slAI.Value,slStartData.Value);
             this.Selected = level;
             this.Close();
 

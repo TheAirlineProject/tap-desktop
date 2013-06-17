@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,15 +8,15 @@ using System.Threading.Tasks;
 namespace TheAirline.Model.AirportModel
 {
     //the class for a type of hub
-    [ProtoContract]
+    [Serializable]
     public class HubType
     {
-        [ProtoMember(1)]
+        
         public double Price { get; set; }
-        [ProtoMember(2)]
+        
         public string Name { get; set; }
         public enum TypeOfHub { Hub, Regional_hub, Focus_city, Fortress_hub }
-        [ProtoMember(3)]
+        
         public TypeOfHub Type { get; set; }
         public HubType(string name, double price, TypeOfHub type)
         {

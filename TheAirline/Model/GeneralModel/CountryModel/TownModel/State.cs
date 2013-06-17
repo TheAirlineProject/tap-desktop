@@ -1,4 +1,4 @@
-﻿using ProtoBuf;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,18 +7,18 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
     //the class for a state
-    [ProtoContract]
+    [Serializable]
     public class State
     {
-        [ProtoMember(1)]
+        
         public Country Country { get; set; }
-        [ProtoMember(2)]
+        
         public string Name { get; set; }
-        [ProtoMember(3)]
+        
         public string ShortName { get; set; }
-        [ProtoMember(4)]
+        
         public string Flag { get; set; }
-        [ProtoMember(5)]
+        
         public Boolean IsOverseas { get; set; }
         public State(Country country, string name, string shortname,Boolean overseas)
         {
