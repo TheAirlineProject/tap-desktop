@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,12 +7,16 @@ using System.Text;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a flight school instructor
-    [Serializable]
+    [ProtoContract]
     public class Instructor
     {
+        [ProtoMember(1)]
         public PilotProfile Profile { get; set; }
+        [ProtoMember(2)]
         public Pilot.PilotRating Rating { get; set; }
+        [ProtoMember(3)]
         public List<PilotStudent> Students { get; set; }
+        [ProtoMember(4)]
         public FlightSchool FlightSchool { get; set; }
         public Instructor(PilotProfile profile, Pilot.PilotRating rating)
         {

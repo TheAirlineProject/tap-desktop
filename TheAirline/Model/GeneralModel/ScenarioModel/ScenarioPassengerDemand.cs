@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,13 +8,17 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for passenger demand at a scenario
-       [Serializable]
+       [ProtoContract]
      public class ScenarioPassengerDemand
     {
-        public Country Country { get; set; }
-        public Airport Airport { get; set; }
-        public double Factor { get; set; }
-        public DateTime EndDate { get; set; }
+           [ProtoMember(1)]
+           public Country Country { get; set; }
+           [ProtoMember(2)]
+           public Airport Airport { get; set; }
+           [ProtoMember(3)]
+           public double Factor { get; set; }
+           [ProtoMember(4)]
+           public DateTime EndDate { get; set; }
         public ScenarioPassengerDemand(double factor, DateTime enddate, Country country, Airport airport)
         {
             this.Country = country;

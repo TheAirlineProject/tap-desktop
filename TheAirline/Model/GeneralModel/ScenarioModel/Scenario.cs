@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,22 +10,36 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for a scenario
-    [Serializable]
+    [ProtoContract]
     public class Scenario
     {
+        [ProtoMember(1)]
         public string Name { get; set; }
+        [ProtoMember(2)]
         public Airline Airline { get; set; }
+        [ProtoMember(3)]
         public Airport Homebase { get; set; }
+        [ProtoMember(4)]
         public int StartYear { get; set; }
+        [ProtoMember(5)]
         public long StartCash { get; set; }
+        [ProtoMember(6)]
         public string Description { get; set; }
+        [ProtoMember(7)]
         public List<ScenarioAirline> OpponentAirlines { get; set; }
+        [ProtoMember(8)]
         public List<Airport> Destinations { get; set; }
-        public Dictionary<AirlinerType,int> Fleet { get; set; }
+        [ProtoMember(9)]
+        public Dictionary<AirlinerType, int> Fleet { get; set; }
+        [ProtoMember(10)]
         public DifficultyLevel Difficulty { get; set; }
+        [ProtoMember(11)]
         public List<ScenarioAirlineRoute> Routes { get; set; }
+        [ProtoMember(12)]
         public List<ScenarioFailure> Failures { get; set; }
+        [ProtoMember(13)]
         public List<ScenarioPassengerDemand> PassengerDemands { get; set; }
+        [ProtoMember(14)]
         public int EndYear { get; set; }
         public Scenario(string name,string description, Airline airline, Airport homebase, int startyear, int endyear, long startcash,DifficultyLevel difficulty)
         {

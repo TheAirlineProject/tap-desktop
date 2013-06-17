@@ -1,14 +1,18 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using TheAirline.Model.AirlinerModel;
 
 namespace TheAirline.Model.GeneralModel.StatisticsModel
 {
     //the class for general statistics
-    [Serializable]
+    [ProtoContract]
+    [ProtoInclude(100,typeof(AirlinerStatistics))]
     public class GeneralStatistics
     {
+        [ProtoMember(1)]
         private Dictionary<int, List<StatisticsValue>> StatValues;
         public GeneralStatistics()
         {

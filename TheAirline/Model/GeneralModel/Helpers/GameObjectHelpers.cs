@@ -744,7 +744,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     if (pilot.Airliner != null)
                     {
-                        pilot.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
+                        //pilot.Airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
 
                         if (airline.IsHuman)
                         {

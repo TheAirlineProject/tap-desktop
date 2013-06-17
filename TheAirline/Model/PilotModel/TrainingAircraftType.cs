@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,12 +8,15 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for the aircraft for training for students
-    [Serializable]
+    [ProtoContract]
     public class TrainingAircraftType
     {
+        [ProtoMember(1)]
         public string Name { get; set; }
+        [ProtoMember(2)]
         private double APrice;
         public double Price { get{return GeneralHelpers.GetInflationPrice(this.APrice);} private set { ;} }
+        [ProtoMember(3)]
         public int MaxNumberOfStudents { get; set; }
         public TrainingAircraftType(string name, double price, int maxnumberofstudents)
         {

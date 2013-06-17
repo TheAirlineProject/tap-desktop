@@ -192,7 +192,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
         {
             lbInstructors.Items.Clear();
 
-            foreach (Instructor instructor in Instructors.GetUnassignedInstructors())
+            foreach (Instructor instructor in Instructors.GetUnassignedInstructors().OrderByDescending(i=>i.Profile.Age))
                 lbInstructors.Items.Add(instructor);
         }
         //shows the list of flightschools
@@ -210,7 +210,7 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel
         {
             lbPilots.Items.Clear();
 
-            foreach (Pilot pilot in Pilots.GetUnassignedPilots())
+            foreach (Pilot pilot in Pilots.GetUnassignedPilots().OrderByDescending(p=>p.Profile.Age))
             {
                 lbPilots.Items.Add(pilot);
             }

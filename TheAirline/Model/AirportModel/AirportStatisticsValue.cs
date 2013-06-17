@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,10 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 namespace TheAirline.Model.AirportModel
 {
     //the class for an airport statistics value
-    [Serializable]
+    [ProtoContract]
     public class AirportStatisticsValue : StatisticsValue
     {
+        [ProtoMember(1)]
         public Airline Airline { get; set; }
         public AirportStatisticsValue(Airline airline, StatisticsType stat, int value) : base(stat, value) 
         {

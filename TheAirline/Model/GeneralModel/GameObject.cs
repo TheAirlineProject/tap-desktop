@@ -7,44 +7,45 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 using System.Runtime.Serialization;
+using ProtoBuf;
 
 //locked for verison 0.3.6t2 (this serves no purpose whatsoever)
 
 namespace TheAirline.Model.GeneralModel
 {
-    [DataContract]
+    [ProtoContract]
     //the class for the game object
     public class GameObject
     {
         private static GameObject GameInstance;
-        [DataMember]
+        [ProtoMember(1)]
         public Country CurrencyCountry { get; set; }
         public Boolean PagePerformanceCounterEnabled { get; set; }
         public Boolean FinancePageEnabled { get; set; }
-        [DataMember]
+        [ProtoMember(2)]
         public Boolean DayRoundEnabled { get; set; }
-        [DataMember]
+        [ProtoMember(3)]
         public DateTime GameTime { get; set; }
-        [DataMember]
+        [ProtoMember(4)]
         public DateTime StartDate { get; set; }
-        [DataMember]
+        [ProtoMember(5,AsReference=true)]
         public Airline HumanAirline { get; set; }
-        [DataMember]
+        [ProtoMember(6,AsReference=true)]
         public Airline MainAirline { get; set; }
-        [DataMember]
+        [ProtoMember(7)]
         public NewsBox NewsBox { get; set; }
-        [DataMember]
+        [ProtoMember(8)]
         public double FuelPrice { get; set; }
-        [DataMember]
+        [ProtoMember(9)]
         public long StartMoney { get { return getStartMoney(); } set { ;} }
-        [DataMember]
+        [ProtoMember(10)]
         public GameTimeZone TimeZone { get; set; }
-        [DataMember]
+        [ProtoMember(11)]
         public string Name { get; set; }
-        [DataMember]
+        [ProtoMember(12)]
         public ScenarioObject Scenario { get; set; }
        // public enum DifficultyLevel { Easy, Normal, Hard } 
-        [DataMember]
+        [ProtoMember(13)]
         public DifficultyLevel Difficulty { get; set; }
         //public double PassengerDemandFactor { get; set; }
         public const int StartYear = 1960;

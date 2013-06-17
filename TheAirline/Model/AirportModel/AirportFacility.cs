@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,23 +7,33 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirportModel
 {
-    [Serializable]
+    [ProtoContract]
     //the class for a facility at an airport
     public class AirportFacility
     {
         public static string Section { get; set; }
+        [ProtoMember(1)]
         public string Uid { get; set; }
         public enum FacilityType { Lounge, Service, CheckIn, SelfCheck, TicketOffice, Cargo }
+        [ProtoMember(2)]
         public FacilityType Type { get; set; }
+        [ProtoMember(3)]
         public string Shortname { get; set; }
+        [ProtoMember(4)]
         private double APrice;
         public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
+        [ProtoMember(5)]
         public int TypeLevel { get; set; }
+        [ProtoMember(6)]
         public int LuxuryLevel { get; set; } //for business customers
+        [ProtoMember(7)]
         public int ServiceLevel { get; set; } //for repairing airliners 
+        [ProtoMember(8)]
         public int BuildingDays { get; set; }
+        [ProtoMember(9)]
         public int NumberOfEmployees { get; set; }
         public enum EmployeeTypes { Maintenance, Support }
+        [ProtoMember(10)]
         public EmployeeTypes EmployeeType { get; set; }
         public AirportFacility(string section, string uid, string shortname,FacilityType type,int buildingDays, int typeLevel, double price, int serviceLevel, int luxuryLevel)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a news box
-    [Serializable]
+    [ProtoContract]
     public class NewsBox
     {
+        [ProtoMember(1)]
         private List<News> News;
          public NewsBox()
         {
@@ -48,14 +50,19 @@ namespace TheAirline.Model.GeneralModel
 
     }
     //the class for a news
-    [Serializable]
+    [ProtoContract]
     public class News
     {
         public enum NewsType { Standard_News,Airport_News, Flight_News, Fleet_News, Airline_News, Alliance_News,Airliner_News}
+        [ProtoMember(1)]
         public NewsType Type { get; set; }
+        [ProtoMember(2)]
         public DateTime Date { get; set; }
+        [ProtoMember(3)]
         public string Subject { get; set; }
+        [ProtoMember(4)]
         public string Body { get; set; }
+        [ProtoMember(5)]
         public Boolean IsRead { get; set; }
         public Boolean IsUnRead {get{return !this.IsRead;} set{;}}
         public News(NewsType type, DateTime date, string subject, string body)

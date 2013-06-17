@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirportModel;
+using ProtoBuf;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -11,16 +12,24 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
   * This is used for a actually flight.
   * The class needs parameter for the time table entry which the flight flights after
   */
-    [Serializable]
+    [ProtoContract]
+    [ProtoInclude(100,typeof(StopoverFlight))]
     public class Flight
     {
+        [ProtoMember(1)]
         public RouteTimeTableEntry Entry { get; set; }
+        [ProtoMember(2)]
         public List<FlightAirlinerClass> Classes { get; set; }
+        [ProtoMember(3)]
         public FleetAirliner Airliner { get; set; }
+        [ProtoMember(4)]
         public Boolean IsOnTime { get; set; }
+        [ProtoMember(5)]
         public DateTime FlightTime { get; set; }
+        [ProtoMember(6)]
         public DateTime ScheduledFlightTime { get; set; }
         public DateTime ExpectedLanding { get { return getExpectedLandingTime(); } set { ;} }
+        [ProtoMember(7)]
         public double Cargo { get; set; }
         public Flight(RouteTimeTableEntry entry)
         {

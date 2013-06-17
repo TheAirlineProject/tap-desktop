@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -9,21 +10,20 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a configuration
-    [DataContract]
-    [KnownType(typeof(AirlinerConfiguration))]
-    [KnownType(typeof(AirlinerTypeConfiguration))]
-    [KnownType(typeof(RouteClassesConfiguration))]
-  
+    [ProtoContract]
+  [ProtoInclude(100,typeof(AirlinerConfiguration))]
+    [ProtoInclude(101,typeof(RouteClassesConfiguration))]
+    [ProtoInclude(102,typeof(AirlinerTypeConfiguration))]
     public abstract class Configuration
     {
         public enum ConfigurationType { Airliner, Routeclasses,AirlinerType }
-        [DataMember]
+        [ProtoMember(1)]
         public ConfigurationType Type { get; set; }
-        [DataMember]
+        [ProtoMember(2)]
         public Boolean Standard { get; set; }
-        [DataMember]
+        [ProtoMember(3)]
         public string Name { get; set; }
-        [DataMember]
+        [ProtoMember(4)]
         public string ID { get; set; }
         public Configuration(ConfigurationType type, string name,Boolean standard)
         {

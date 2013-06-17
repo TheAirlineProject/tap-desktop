@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,23 +12,22 @@ namespace TheAirline.Model.GeneralModel
     /// The class for a temporary country
     /// </summary>
     ///
-    [DataContract]
-    [KnownType(typeof(TemporaryCountry))]
-  
+    [ProtoContract]
     public class TemporaryCountry : Country
     {
+        
         public enum TemporaryType { OneToMany, ManyToOne }
-        [DataMember]
+        [ProtoMember(30)]
         public TemporaryType Type { get; set; }
-        [DataMember]
+        [ProtoMember(31, AsReference=true)]
         public Country CountryBefore { get; set; }
-        [DataMember]
+        [ProtoMember(32, AsReference=true)]
         public Country CountryAfter { get; set; }
-        [DataMember]
+        [ProtoMember(33)]
         public DateTime StartDate { get; set; }
-        [DataMember]
+        [ProtoMember(34)]
         public DateTime EndDate { get; set; }
-        [DataMember]
+        [ProtoMember(35)]
         public List<OneToManyCountry> Countries { get; set; }
         public TemporaryCountry(TemporaryType type, Country country, DateTime startDate, DateTime endDate)
             : base(Country.Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)
@@ -67,11 +67,15 @@ namespace TheAirline.Model.GeneralModel
 
         }
     }
+    [ProtoContract]
     //the class for a one to many temporary country
     public class OneToManyCountry
     {
+        [ProtoMember(1)]
         public DateTime StartDate { get; set; }
+        [ProtoMember(2)]
         public DateTime EndDate { get; set; }
+        [ProtoMember(3)]
         public Country Country { get; set; }
         public OneToManyCountry(Country country, DateTime startDate, DateTime endDate)
         {

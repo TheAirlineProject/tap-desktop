@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,17 +7,24 @@ using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlineModel
 {
-    [Serializable]
+    [ProtoContract]
     //the class for an alliance of airlines
     public class Alliance
     {
         public enum AllianceType { Codesharing, Full }
+        [ProtoMember(1)]
         public AllianceType Type { get; set; }
+        [ProtoMember(2)]
         public string Name { get; set; }
+        [ProtoMember(3)]
         public List<AllianceMember> Members { get; set; }
+        [ProtoMember(4)]
         public Airport Headquarter { get; set; }
+        [ProtoMember(5)]
         public DateTime FormationDate { get; set; }
+        [ProtoMember(6)]
         public List<PendingAllianceMember> PendingMembers { get; set; }
+        [ProtoMember(7)]
         public string Logo { get; set; }
         public Alliance(DateTime formationDate, AllianceType type, string name, Airport headquarter)
         {
@@ -99,13 +107,18 @@ namespace TheAirline.Model.AirlineModel
             alliances.Clear();
         }
     }
+    [ProtoContract]
     //the class for pending acceptions to an alliance
     public class PendingAllianceMember
     {
+        [ProtoMember(1,AsReference=true)]
         public Airline Airline { get; set; }
+       [ProtoMember(2)]
         public DateTime Date { get; set; }
         public enum AcceptType { Invitation, Request }
+        [ProtoMember(3)]
         public AcceptType Type { get; set; }
+        [ProtoMember(4,AsReference=true)]
         public Alliance Alliance { get; set; }
         public PendingAllianceMember(DateTime date,Alliance alliance, Airline airline, AcceptType type)
         {

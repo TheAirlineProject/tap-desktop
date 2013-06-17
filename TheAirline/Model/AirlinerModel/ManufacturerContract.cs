@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,22 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the contract for an airline for a manufacturer
-    [Serializable]
+    [ProtoContract]
     public class ManufacturerContract
     {
+        [ProtoMember(1,AsReference=true)]
         public Manufacturer Manufacturer { get; set; }
+        [ProtoMember(2)]
         public DateTime SigningDate { get; set; }
+        [ProtoMember(3)]
         public int Length { get; set; }
+        [ProtoMember(4)]
         public DateTime ExpireDate { get; set; }
+        [ProtoMember(5)]
         public double Discount { get; set; } //in percent
+        [ProtoMember(6)]
         public int Airliners { get; set; } //the number of airliners to purchase in that period
+        [ProtoMember(7)]
         public int PurchasedAirliners { get; set; }
         public ManufacturerContract(Manufacturer manufacturer, DateTime date, int length, double discount)
         {

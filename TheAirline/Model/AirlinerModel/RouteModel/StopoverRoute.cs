@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,13 @@ using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
-    [Serializable]
+    [ProtoContract]
     //the class for the stop over routes
     public class StopoverRoute
     {
-        public List<Route> Legs{ get; set; }
+        [ProtoMember(1,AsReference=true)]
+        public List<Route> Legs { get; set; }
+        [ProtoMember(2,AsReference=true)]
         public Airport Stopover { get; set; }
         public StopoverRoute(Airport stopover)
         {

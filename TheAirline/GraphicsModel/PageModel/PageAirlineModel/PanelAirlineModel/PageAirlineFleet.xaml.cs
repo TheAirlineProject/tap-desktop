@@ -35,7 +35,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
     public partial class PageAirlineFleet : Page
     {
         private Airline Airline;
-        private ListView lvFleet, lvRouteFleet;
+        private ListView lvBoughtFleet, lvRouteFleet, lvLeasedFleet;
         private ListSortDirection sortDirection = ListSortDirection.Ascending;
         private StackPanel panelOverview, panelDetailed, panelOrdered;
         private ObservableCollection<FleetAirliner> _FleetDelivered = new ObservableCollection<FleetAirliner>();
@@ -169,27 +169,48 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         {
             StackPanel panelOverview = new StackPanel();
 
-            TextBlock txtFleetHeader = new TextBlock();
-            txtFleetHeader.Uid = "1003";
-            txtFleetHeader.Margin = new Thickness(0, 0, 0, 0);
-            txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
-            txtFleetHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
-            txtFleetHeader.FontWeight = FontWeights.Bold;
-            txtFleetHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtFleetHeader.Uid);
+            TextBlock txtFleetBoughtHeader = new TextBlock();
+            txtFleetBoughtHeader.Uid = "1003";
+            txtFleetBoughtHeader.Margin = new Thickness(0, 0, 0, 0);
+            txtFleetBoughtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtFleetBoughtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtFleetBoughtHeader.FontWeight = FontWeights.Bold;
+            txtFleetBoughtHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtFleetBoughtHeader.Uid);
 
-            panelOverview.Children.Add(txtFleetHeader);
+            panelOverview.Children.Add(txtFleetBoughtHeader);
 
-            lvFleet = new ListView();
-            lvFleet.Background = Brushes.Transparent;
-            lvFleet.SetResourceReference(ListView.ItemContainerStyleProperty, "ListViewItemStyle");
-            lvFleet.MaxHeight = 400;
-            lvFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
-            lvFleet.BorderThickness = new Thickness(0);
-            lvFleet.View = this.Resources["FleetViewItem"] as GridView;
+            lvBoughtFleet = new ListView();
+            lvBoughtFleet.Background = Brushes.Transparent;
+            lvBoughtFleet.SetResourceReference(ListView.ItemContainerStyleProperty, "ListViewItemStyle");
+            lvBoughtFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            lvBoughtFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
+            lvBoughtFleet.BorderThickness = new Thickness(0);
+            lvBoughtFleet.View = this.Resources["FleetViewBoughtItem"] as GridView;
            
-            panelOverview.Children.Add(lvFleet);
+            panelOverview.Children.Add(lvBoughtFleet);
 
-            lvFleet.ItemsSource = this.FleetDelivered;
+            lvBoughtFleet.ItemsSource = this.FleetDelivered.Where(f=>f.Purchased == FleetAirliner.PurchasedType.Bought || f.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment);
+
+            TextBlock txtFleetLeasedHeader = new TextBlock();
+            txtFleetLeasedHeader.Uid = "1012";
+            txtFleetLeasedHeader.Margin = new Thickness(0, 5, 0, 0);
+            txtFleetLeasedHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
+            txtFleetLeasedHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
+            txtFleetLeasedHeader.FontWeight = FontWeights.Bold;
+            txtFleetLeasedHeader.Text = Translator.GetInstance().GetString("PageAirlineFleet", txtFleetLeasedHeader.Uid);
+
+            panelOverview.Children.Add(txtFleetLeasedHeader);
+
+            lvLeasedFleet = new ListView();
+            lvLeasedFleet.Background = Brushes.Transparent;
+            lvLeasedFleet.SetResourceReference(ListView.ItemContainerStyleProperty, "ListViewItemStyle");
+            lvLeasedFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            lvLeasedFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
+            lvLeasedFleet.View = this.Resources["FleetViewLeasedItem"] as GridView;
+
+            panelOverview.Children.Add(lvLeasedFleet);
+
+            lvLeasedFleet.ItemsSource = this.FleetDelivered.Where(f => f.Purchased == FleetAirliner.PurchasedType.Leased);
 
             return panelOverview;
         }
@@ -200,7 +221,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             StackPanel panelDetailed = new StackPanel();
 
             TextBlock txtFleetHeader = new TextBlock();
-            txtFleetHeader.Uid = "1101";
+            txtFleetHeader.Uid = "1011";
             txtFleetHeader.Margin = new Thickness(0, 0, 0, 0);
             txtFleetHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtFleetHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -228,8 +249,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
         //shows the fleet for the airline
         private void showFleet()
         {
-            ICollectionView dataViewFleet = CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
+            ICollectionView dataViewFleet = CollectionViewSource.GetDefaultView(lvBoughtFleet.ItemsSource);
             dataViewFleet.Refresh();
+
+            ICollectionView dataViewLeased = CollectionViewSource.GetDefaultView(lvLeasedFleet.ItemsSource);
+            dataViewLeased.Refresh();
 
             ICollectionView dataViewFleetRoute = CollectionViewSource.GetDefaultView(lvRouteFleet.ItemsSource);
             dataViewFleetRoute.Refresh();

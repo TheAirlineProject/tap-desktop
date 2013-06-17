@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,18 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a loan
-    [Serializable]
+    [ProtoContract]
     public class Loan
     {
+        [ProtoMember(1)]
         public double Amount { get; set; }
+        [ProtoMember(2)]
         public double Rate { get; set; }
+        [ProtoMember(3)]
         public int Length { get; set; }
+        [ProtoMember(4)]
         public DateTime Date { get; set; }
+        [ProtoMember(5)]
         public double PaymentLeft { get; set; }
         public Boolean IsActive { get { return hasPaymentLeft(); } set { ;} }
         public double MonthlyPayment { get { return getMonthlyPayment(); } set { ;} }

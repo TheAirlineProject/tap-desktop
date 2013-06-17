@@ -510,6 +510,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             policy.InsuranceEffective = GameObject.GetInstance().GameTime;
             policy.InsuranceExpires = GameObject.GetInstance().GameTime.AddYears(length);
             policy.PolicyIndex = GameObject.GetInstance().GameTime.ToString() + airline.ToString();
+            policy.TermLength = length;
             switch (policy.InsTerms)
             {
                 case AirlineInsurance.PaymentTerms.Monthly:

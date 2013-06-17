@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,10 +10,11 @@ namespace TheAirline.Model.GeneralModel
  * This is used for a region in the world.
  * The class needs parameter for the region name
  */
-    [Serializable]
+    [ProtoContract]
     public class Region
     {
         public static string Section { get; set; }
+        [ProtoMember(1)]
         public string Uid { get; set; }
         public Region(string section, string uid)
         {

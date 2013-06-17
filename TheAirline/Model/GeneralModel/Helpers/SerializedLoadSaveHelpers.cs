@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -33,15 +34,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.configurationList = new List<Configuration>();
             so.eventsList = new List<RandomEvent>();
 
-            so.airlinesList.AddRange(Airlines.GetAllAirlines());
-            so.airportsList.AddRange(Airports.GetAllAirports());
-            so.airlinersList.AddRange(Airliners.GetAllAirliners());
+            //so.airlinesList.AddRange(Airlines.GetAllAirlines());
+            //so.airportsList.AddRange(Airports.GetAllAirports());
+            //so.airlinersList.AddRange(Airliners.GetAllAirliners());
             so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
             so.configurationList.AddRange(Configurations.GetConfigurations());
             so.eventsList.AddRange(RandomEvents.GetEvents());
 
             so.instance = GameObject.GetInstance();
         
+            /*
             var settings = new XmlWriterSettings
             {
                 Encoding = Encoding.UTF8,
@@ -66,6 +68,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
                 stream.Close();
+            }*/
+            using (var file = File.Create("c:\\bbm\\person.bin"))
+            {
+                Serializer.Serialize<SaveObject>(file, so);
             }
             sw.Stop();
           
@@ -134,28 +140,28 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
     }
     
-    [DataContract(Name = "game")]
+    [ProtoContract(Name = "game")]
     public class SaveObject
     {
-        [DataMember (Name ="calendaritems")]
+        [ProtoMember(1)]
         public List<CalendarItem> calendaritemsList { get; set; }
 
-        [DataMember (Name="aircrafts")]
+        [ProtoMember(2)]
         public List<Airliner> airlinersList { get; set; }
 
-        [DataMember(Name = "airlines")]
+        [ProtoMember(3)]
         public List<Airline> airlinesList { set; get; }
-      
-        [DataMember(Name = "airports")]
+
+        [ProtoMember(4)]
         public List<Airport> airportsList { set; get; }
-      
-        [DataMember(Name = "instance")]
+
+        [ProtoMember(5)]
         public GameObject instance { get; set; }
 
-        [DataMember(Name = "configurations")]
+        [ProtoMember(6)]
         public List<Configuration> configurationList { get; set; }
-    
-        [DataMember(Name = "randomevents")]
+
+        [ProtoMember(7)]
         public List<RandomEvent> eventsList { get; set; } 
        
 

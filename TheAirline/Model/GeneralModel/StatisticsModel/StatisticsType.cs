@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +7,12 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.StatisticsModel
 {
     //the class for a type of statistics
-    [Serializable]
+    [ProtoContract]
     public class StatisticsType
     {
+        [ProtoMember(1)]
         public string Name { get; set; }
+        [ProtoMember(2)]
         public string Shortname { get; set; }
         public StatisticsType(string name, string shortname)
         {

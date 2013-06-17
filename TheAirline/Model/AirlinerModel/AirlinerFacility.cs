@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,18 +8,25 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for a facility in an airliner
-    [Serializable]
+    [ProtoContract]
     public class AirlinerFacility
     {
         public static string Section { get; set; }
+        [ProtoMember(1)]
         public string Uid { get; set; }
         public enum FacilityType { Audio, Video, Seat }
+        [ProtoMember(3)]
         private double APricePerSeat;
         public double PricePerSeat { get { return GeneralHelpers.GetInflationPrice(this.APricePerSeat); } set { this.APricePerSeat = value; } }
+        [ProtoMember(4)]
         public double PercentOfSeats { get; set; }
+        [ProtoMember(5)]
         public FacilityType Type { get; set; }
+        [ProtoMember(6)]
         public int ServiceLevel { get; set; }
+        [ProtoMember(7)]
         public int FromYear { get; set; }
+        [ProtoMember(8)]
         public double SeatUses { get; set; }
         public AirlinerFacility(string section, string uid, FacilityType type, int fromYear, int serviceLevel, double percentOfSeats, double pricePerSeat, double seatUses)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,10 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.InvoicesModel
 {
     //the class for a collection of invoices
-    [Serializable]
+    [ProtoContract]
     public class Invoices
     {
+        [ProtoMember(1)]
         public List<MonthlyInvoice> MonthlyInvoices { get; set; }
         public Invoices()
         {

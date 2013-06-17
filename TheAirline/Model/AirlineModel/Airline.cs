@@ -10,10 +10,12 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
+using ProtoBuf;
 
 namespace TheAirline.Model.AirlineModel
 {
-    [Serializable]
+    [ProtoContract]
+    [ProtoInclude(100,typeof(SubsidiaryAirline))]
     //the class for an airline
     public class Airline
     {
@@ -21,45 +23,80 @@ namespace TheAirline.Model.AirlineModel
         public enum AirlineValue { Very_low, Low, Normal, High, Very_high }
         public enum AirlineMentality { Safe,Moderate, Aggressive}
         public enum AirlineFocus { Global, Regional,Domestic, Local }
+        [ProtoMember(1)]
         public Route.RouteType AirlineRouteFocus { get; set; }
+        [ProtoMember(2)]
         public AirlineLicense License { get; set; }
+        [ProtoMember(3)]
         public AirlineFocus MarketFocus { get; set; }
+        [ProtoMember(4)]
         public AirlineMentality Mentality { get; set; }
+        [ProtoMember(5)]
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
+        [ProtoMember(6,AsReference=true)]
         public List<Airport> Airports { get; set; }
+        [ProtoMember(7,AsReference=true)]
         public List<FleetAirliner> Fleet { get; set; }
+        [ProtoMember(8,AsReference=true)]
         public List<SubsidiaryAirline> Subsidiaries { get; set; }
+        [ProtoMember(9)]
         public AirlineProfile Profile { get; set; }
+        [ProtoMember(10)]
         private List<Route> _Routes;
-        public List<Route> Routes { get { return getRoutes(); } set { this._Routes = value; } } 
+        public List<Route> Routes { get { return getRoutes(); } set { this._Routes = value; } }
+        [ProtoMember(11)]
         public List<AirlineFacility> Facilities { get; set; }
+        //[ProtoMember(12)]
         private Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType> Advertisements;
+        [ProtoMember(13)]
         public GeneralStatistics Statistics { get; set; }
+        [ProtoMember(14)]
         public double Money { get; set; }
+        [ProtoMember(15)]
         public double StartMoney { get; set; }
         public Boolean IsHuman { get { return isHuman(); } set { ;} }
         public Boolean IsSubsidiary { get { return isSubsidiaryAirline(); } set { ;} }
+        [ProtoMember(16)]
         private Invoices Invoices;
+        [ProtoMember(17)]
         public AirlineFees Fees { get; set; }
+        [ProtoMember(18)]
         public List<Loan> Loans { get; set; }
+        [ProtoMember(19)]
         private List<string> FlightCodes;
+        [ProtoMember(20)]
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
+        [ProtoMember(21)]
         public List<Alliance> Alliances { get; set; }
+        [ProtoMember(22)]
         public ManufacturerContract Contract { get; set; }
+        [ProtoMember(23)]
         public List<FutureSubsidiaryAirline> FutureAirlines { get; set; }
+        [ProtoMember(24)]
         public List<AirlinePolicy> Policies { get; set; }
+        [ProtoMember(25)]
         public List<Pilot> Pilots { get; set; }
+        [ProtoMember(26)]
         public AirlineBudget Budget { get; set; }
+        [ProtoMember(27)]
         public List<FlightSchool> FlightSchools { get; set; }
+        [ProtoMember(28)]
         public List<AirlineInsurance> InsurancePolicies { get; set; }
         public Int64 AvgFleetValue { get; set; }
         public Int64 FleetValue { get; set; }
+        [ProtoMember(31)]
         public List<RandomEvent> EventLog { get; set; }
+        [ProtoMember(32)]
         public IDictionary<DateTime, AirlineBudget> BudgetHistory { get; set; }
+        [ProtoMember(29)]
         public IDictionary<DateTime, AirlineBudget> TestBudget { get; set; }
+        [ProtoMember(30)]
         public AirlineScores Scores { get; set; }
+        [ProtoMember(33)]
         public AirlineRatings Ratings { get; set; }
+        [ProtoMember(34)]
         public List<RandomEvent> EventList { get; set; }
+        [ProtoMember(35)]
         public List<InsuranceClaim> InsuranceClaims { get; set; }
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {

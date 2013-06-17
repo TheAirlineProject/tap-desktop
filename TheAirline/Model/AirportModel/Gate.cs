@@ -5,18 +5,20 @@ using System.Text;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using ProtoBuf;
 
 namespace TheAirline.Model.AirportModel
 {
     // chs 11-04-11: changed for the possibility of extending a terminal
     //the class for a gate at an airport   
-    [Serializable]
+    [ProtoContract]
  
     public class Gate
     {
        // public Airline Airline { get; set; }
         //public Boolean HasRoute { get; set; }
         //public const int RoutesPerGate = 5;
+        [ProtoMember(1)]
         public DateTime DeliveryDate { get; set; }
         public Gate(DateTime deliveryDate)
         {
@@ -26,9 +28,10 @@ namespace TheAirline.Model.AirportModel
     }
     // chs 11-04-11: changed for the possibility of extending a terminal
    //the collection of gates at an airport
-    [Serializable]
+    [ProtoContract]
     public class Gates
     {
+        [ProtoMember(1)]
         private List<Gate> TerminalGates;
        
         public int NumberOfGates { get { return this.TerminalGates.Count; } set { ;} }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,13 +13,17 @@ namespace TheAirline.Model.AirlinerModel
  * This class is used for a passenger class onboard of a airliner
  * The class needs parameters for the airliner, type of class and the seating capacity
  */
-    [Serializable]
+    [ProtoContract]
     public class AirlinerClass
     {
+        [ProtoMember(1)]
         private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
         public enum ClassType { Economy_Class=1921, Business_Class = 1976, First_Class=1960}
+        [ProtoMember(2)]
         public ClassType Type { get; set; }
+        [ProtoMember(3)]
         public int RegularSeatingCapacity { get; set; }
+        [ProtoMember(4)]
         public int SeatingCapacity { get; set; }
         public AirlinerClass(ClassType type, int seatingCapacity)
         {

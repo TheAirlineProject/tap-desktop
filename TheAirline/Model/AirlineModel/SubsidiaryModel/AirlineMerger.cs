@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,16 +7,22 @@ using System.Threading.Tasks;
 
 namespace TheAirline.Model.AirlineModel.SubsidiaryModel
 {
-    [Serializable]
+    [ProtoContract]
     //the class for a merger between two airlines either as a regular merger or where one of them gets subsidiary of the other
     public class AirlineMerger
     {
         public enum MergerType { Merger, Subsidiary }
+        [ProtoMember(1)]
         public MergerType Type { get; set; }
+        [ProtoMember(2)]
         public Airline Airline1 { get; set; }
+        [ProtoMember(3)]
         public Airline Airline2 { get; set; }
+        [ProtoMember(4)]
         public DateTime Date { get; set; }
+        [ProtoMember(5)]
         public string NewName { get; set; }
+        [ProtoMember(6)]
         public string Name { get; set; }
         public AirlineMerger(string name, Airline airline1, Airline airline2, DateTime date, MergerType type)
         {

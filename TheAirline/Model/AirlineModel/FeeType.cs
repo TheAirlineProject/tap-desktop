@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +11,26 @@ namespace TheAirline.Model.AirlineModel
      * This class is used for a fee for an airline.
      * The class needs parameters for type, name, defaultvalue, minvalue, maxvalue, percentage
      */
-    [Serializable]
+    [ProtoContract]
     public class FeeType
     {
         public enum eFeeType { Fee, Wage, FoodDrinks, Discount }
+        [ProtoMember(1)]
         public eFeeType Type { get; set; }
+        [ProtoMember(2)]
         private double AMinValue;
         public double MinValue { get { return GeneralHelpers.GetInflationPrice(this.AMinValue); } set { this.AMinValue = value; } }
+        [ProtoMember(3)]
         private double AMaxValue;
         public double MaxValue { get { return GeneralHelpers.GetInflationPrice(this.AMaxValue); } set { this.AMaxValue = value; } }
+        [ProtoMember(4)]
         public string Name { get; set; }
+        [ProtoMember(5)]
         private double ADefaultValue;
         public double DefaultValue { get { return GeneralHelpers.GetInflationPrice(this.ADefaultValue); } set { this.ADefaultValue = value; } }
+        [ProtoMember(6)]
         public int Percentage { get; set; }
+        [ProtoMember(7)]
         public int FromYear { get; set; }
         public FeeType(eFeeType type, string name, double defaultValue, double minValue, double maxValue, int percentage,int fromYear)
         {

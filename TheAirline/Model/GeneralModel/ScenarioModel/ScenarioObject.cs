@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,13 +7,17 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the actually scenario used in a game
-       [Serializable]
+       [ProtoContract]
      public class ScenarioObject
     {
-        public Scenario Scenario { get; set; }
-        public ScenarioFailure ScenarioFailed { get; set; }
-        public Boolean IsSuccess { get; set; }
-        private List<ScenarioFailureObject> Failures;
+           [ProtoMember(1)]
+           public Scenario Scenario { get; set; }
+           [ProtoMember(2)]
+           public ScenarioFailure ScenarioFailed { get; set; }
+           [ProtoMember(3)]
+           public Boolean IsSuccess { get; set; }
+           [ProtoMember(4)]
+           private List<ScenarioFailureObject> Failures;
         public ScenarioObject(Scenario scenario)
         {
             this.Scenario = scenario;
@@ -33,11 +38,15 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
             return this.Failures;
         }
     }
+    [ProtoContract]
     //the object for a scenario failure
     public class ScenarioFailureObject
     {
+        [ProtoMember(1)]
         public ScenarioFailure Failure { get; set; }
+        [ProtoMember(2)]
         public int Failures { get; set; }
+        [ProtoMember(3)]
         public DateTime LastFailureTime { get; set; }
         public ScenarioFailureObject(ScenarioFailure failure)
         {

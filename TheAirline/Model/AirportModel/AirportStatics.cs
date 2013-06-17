@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +8,13 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirportModel
 {
-    [Serializable]
+    [ProtoContract]
     //some static values for an airport
     public class AirportStatics
     {
+        [ProtoMember(1)]
         private Dictionary<Airport, double> AirportDistances;
+        [ProtoMember(2,AsReference=true)]
         public Airport Airport { get; set; }
         public AirportStatics(Airport airport)
         {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -8,19 +9,17 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 namespace TheAirline.Model.AirlinerModel
 {
     //the class for the statistics for an airliner
-    [DataContract]
-    [KnownType(typeof(AirlinerStatistics))]
-    
+  [ProtoContract]
     public class AirlinerStatistics : GeneralStatistics
     {
-        [DataMember]
+           [ProtoMember(20)]
         private FleetAirliner Airliner;
-        [DataMember]
-        public double FillingDegree { get { return getFillingDegree(); } set { ;} }
-        [DataMember]
-        public double Balance { get { return getBalance(); } set { ;} }
-        [DataMember]
-        public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
+           [ProtoMember(21)]
+           public double FillingDegree { get { return getFillingDegree(); } set { ;} }
+           [ProtoMember(22)]
+           public double Balance { get { return getBalance(); } set { ;} }
+           [ProtoMember(23)]
+           public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
         public AirlinerStatistics(FleetAirliner airliner)
         {
             this.Airliner = airliner;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,11 +7,16 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the base unit for countries and union members
-    [Serializable]
+    [ProtoContract]
+    [ProtoInclude(100,typeof(Country))]
+     [ProtoInclude(103,typeof(Union))]
     public class BaseUnit
     {
+        [ProtoMember(1)]
         public string Uid { get; set; }
+        [ProtoMember(2)]
         public string ShortName { get; set; }
+        [ProtoMember(3)]
         public string Flag { get; set; }
         public BaseUnit(string uid, string shortname)
         {

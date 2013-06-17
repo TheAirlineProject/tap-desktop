@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,9 +12,10 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
    * This is used for statistics for a route.
    * The class needs no parameters
    */
-    [Serializable]
+    [ProtoContract]
     public class RouteStatistics
     {
+        [ProtoMember(1)]
         private Dictionary<RouteAirlinerClass, Dictionary<StatisticsType, int>> Stats;
 
         public RouteStatistics()

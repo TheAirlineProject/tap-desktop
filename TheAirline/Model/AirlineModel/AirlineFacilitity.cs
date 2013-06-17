@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,16 +8,24 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.Model.AirlineModel
 {
     //the class for an airlines facilities
-    [Serializable]
+    [ProtoContract]
     public class AirlineFacility
     {
+
+        [ProtoMember(1)]
         public static string Section { get; set; }
+        [ProtoMember(2)]
         public string Uid { get; set; }
+        [ProtoMember(3)]
         private double APrice;
         public double Price { get { return GeneralHelpers.GetInflationPrice(this.APrice); } set { this.APrice = value; } }
+        [ProtoMember(4)]
         public double MonthlyCost { get; set; }
+        [ProtoMember(5)]
         public int LuxuryLevel { get; set; } //for business customers
+        [ProtoMember(6)]
         public int ServiceLevel { get; set; } //for repairing airliners 
+        [ProtoMember(7)]
         public int FromYear { get; set; }
         public AirlineFacility(string section, string uid, double price, double monthlyCost,int fromYear, int serviceLevel, int luxuryLevel)
         {

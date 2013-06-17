@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,11 +8,14 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
     //the class for a town / city
-    [Serializable]
+    [ProtoContract]
     public class Town
     {
+        [ProtoMember(1)]
         public string Name { get; set; }
+        [ProtoMember(2)]
         public Country Country { get; set; }
+        [ProtoMember(3)]
         public State State { get; set; }
         public Town(string name, Country country) : this(name,country,null)
         {

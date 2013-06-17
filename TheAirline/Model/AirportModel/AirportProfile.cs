@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -10,57 +11,54 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirportModel
 {
-    [DataContract]
+    [ProtoContract]
     //the class for a profile for an airport
     public class AirportProfile
     {
         public enum AirportType { Long_Haul_International, Regional, Domestic, Short_Haul_International }
-        [DataMember]
+        [ProtoMember(1)]
         public AirportType Type { get; set; }
         //public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
-        [DataMember]
+        [ProtoMember(2)]
         public GeneralHelpers.Size Size { get { return getCurrentSize(); } private set { ;} }
-        [DataMember]
+        [ProtoMember(3)]
         public GeneralHelpers.Size Cargo { get; set; }
-         [DataMember]
+        [ProtoMember(4)]
         public Weather.Season Season { get; set; }
-        [DataMember]
+        [ProtoMember(5)]
         public string Name { get; set; }
-        [DataMember]
+        [ProtoMember(6)]
         public string IATACode { get; set; }
-        [DataMember]
+        [ProtoMember(7)]
         public string ICAOCode { get; set; }
-           [DataMember]
+        [ProtoMember(8)]
         public Town Town { get; set; }
-         [DataMember]
-       
+           [ProtoMember(9)]
+     
         public Country Country { get { return this.Town.Country; } private set { ;} }
-        [DataMember]
-        public Coordinates Coordinates { get; set; }
-        [DataMember]
-       
-        public string Logo { get; set; }
+           [ProtoMember(10)]
+           public Coordinates Coordinates { get; set; }
+          [ProtoMember(11)]
+             public string Logo { get; set; }
         // chs, 2012-23-01 added for airport maps
-        public string Map { get; set; }
-        [DataMember]
+          [ProtoMember(13)]
+          public string Map { get; set; }
+        [ProtoMember(12)]
         public TimeSpan OffsetGMT { get; set; }
-        [DataMember]
+        [ProtoMember(14)]
         public TimeSpan OffsetDST { get; set; }
-        [DataMember]
-       
         public GameTimeZone TimeZone { get { return getTimeZone(); } set { ;} }
-        [DataMember]
+        [ProtoMember(15)]
         public Period<DateTime> Period { get; set; }
-        [DataMember]
+        [ProtoMember(16)]
         public string ID { get; set; }
-        [DataMember]
         public double Pax { get { return getCurrentPaxValue(); } private set { ;} }
-        [DataMember]
+        [ProtoMember(17)]
         public List<PaxValue> PaxValues { get; set; }
-        [DataMember]
+        [ProtoMember(18)]
         public double CargoVolume { get; set; }
-         [DataMember]
-       
+        [ProtoMember(19)]
+     
         public Dictionary<string, int> MajorDestionations { get; set; }
         public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
         {
@@ -147,15 +145,21 @@ namespace TheAirline.Model.AirportModel
         }
 
     }
-    [Serializable]
+    [ProtoContract]
     //the class for a pax value
     public class PaxValue
     {
+        [ProtoMember(1)]
         public double Pax { get; set; }
+        [ProtoMember(2)]
         public int FromYear { get; set; }
+        [ProtoMember(3)]
         public int ToYear { get; set; }
+        [ProtoMember(4)]
         public double InflationBeforeYear { get; set; }
+        [ProtoMember(5)]
         public double InflationAfterYear { get; set; }
+        [ProtoMember(6)]
         public GeneralHelpers.Size Size { get; set; }
         public PaxValue(int fromYear, int toYear, GeneralHelpers.Size size, double pax)
         {

@@ -9,33 +9,47 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Runtime.Serialization;
+using ProtoBuf;
 
 
 namespace TheAirline.Model.AirportModel
 {
-    [Serializable]
+    [ProtoContract]
     //the class for an airport
     public class Airport
     {
+        [ProtoMember(1)]
         public AirportProfile Profile { get; set; }
         // private List<Passenger> Passengers;
+        [ProtoMember(2)]
         private List<DestinationDemand> DestinationPassengers { get; set; }
+        [ProtoMember(3)]
         private List<DestinationDemand> DestinationCargo { get; set; }
+       // [ProtoMember(4)]
         private Dictionary<Airport, long> DestinationPassengerStatistics { get; set; }
+       // [ProtoMember(5)]
         private Dictionary<Airport, double> DestinationCargoStatistics { get; set; }
+        [ProtoMember(6)]
         private List<AirlineAirportFacility> Facilities;
+        [ProtoMember(7)]
         public AirportStatistics Statistics { get; set; }
+        [ProtoMember(8)]
         public Weather[] Weather { get; set; }
+        [ProtoMember(9)]
         public List<Runway> Runways { get; set; }
+        [ProtoMember(10)]
         public Terminals Terminals { get; set; }
+          [ProtoMember(11)]
         private List<Hub> _Hubs;
         public List<Hub> Hubs { private get { return getHubs(); } set { this._Hubs = value; } }
         public Boolean IsHub { get { return getHubs().Count > 0; } set { ;} }
+        [ProtoMember(12)]
         public long Income { get; set; }
+        [ProtoMember(13)]
         public DateTime LastExpansionDate { get; set; }
+        [ProtoMember(14)]
         private List<AirportContract> _Contracts;
         public List<AirportContract> AirlineContracts { get { return getAirlineContracts();} set { this._Contracts = value; } }
-
         public AirportStatics Statics { get; set; }
         public Airport(AirportProfile profile)
         {

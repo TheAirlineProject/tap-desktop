@@ -5,20 +5,26 @@ using System.Text;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel.CountryModel;
+using ProtoBuf;
 
 namespace TheAirline.Model.PassengerModel
 {
     /*
      * The class for flight restrictions with no flights between two countries or unions
      */
-    [Serializable]
+    [ProtoContract]
     public class FlightRestriction
     {
         public enum RestrictionType { Flights, Airlines }
+        [ProtoMember(1)]
         public RestrictionType Type { get; set; }
+        [ProtoMember(2)]
         public DateTime StartDate { get; set; }
+        [ProtoMember(3)]
         public DateTime EndDate { get; set; }
+        [ProtoMember(4)]
         public BaseUnit From { get; set; }
+        [ProtoMember(5)]
         public BaseUnit To { get; set; }
         public FlightRestriction(RestrictionType type, DateTime startDate, DateTime endDate, BaseUnit from, BaseUnit to)
         {

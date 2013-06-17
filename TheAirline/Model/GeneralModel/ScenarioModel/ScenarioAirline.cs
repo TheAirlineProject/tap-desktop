@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,12 +10,15 @@ using TheAirline.Model.AirportModel;
 namespace TheAirline.Model.GeneralModel.ScenarioModel
 {
     //the class for an airline (opponent) in a scenario
-   [Serializable]
+   [ProtoContract]
    public class ScenarioAirline
     {
-        public Airline Airline { get; set; }
-        public Airport Homebase { get; set; }
-        public List<ScenarioAirlineRoute> Routes { get; set; }
+       [ProtoMember(1)]
+       public Airline Airline { get; set; }
+       [ProtoMember(2)]
+       public Airport Homebase { get; set; }
+       [ProtoMember(3)]
+       public List<ScenarioAirlineRoute> Routes { get; set; }
         public ScenarioAirline(Airline airline, Airport homebase)
         {
             this.Airline = airline;

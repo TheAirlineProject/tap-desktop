@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ProtoBuf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,14 +7,20 @@ using System.Text;
 namespace TheAirline.Model.GeneralModel
 {
     //the class for a difficulty level
-    [Serializable]
+    [ProtoContract]
     public class DifficultyLevel
     {
+        [ProtoMember(1)]
         public string Name { get; set; }
+        [ProtoMember(2)]
         public double MoneyLevel { get; set; }
+        [ProtoMember(3)]
         public double LoanLevel { get; set; }
+        [ProtoMember(4)]
         public double PassengersLevel { get; set; }
+        [ProtoMember(5)]
         public double PriceLevel { get; set; }
+        [ProtoMember(6)]
         public double AILevel { get; set; }
         public DifficultyLevel(string name, double money, double loan, double passengers, double price, double AI)
         {
