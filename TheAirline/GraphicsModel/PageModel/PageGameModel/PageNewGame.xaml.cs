@@ -31,6 +31,7 @@ using System.Threading;
 using System.Windows.Threading;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 
 namespace TheAirline.GraphicsModel.PageModel.PageGameModel
@@ -42,7 +43,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
     {
         private TextBox txtName, txtNarrative;
         private TextBlock txtIATA, txtAirlineType;
-        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus, cbCountry;
+        private ComboBox cbAirport, cbAirline, cbOpponents, cbStartYear, cbTimeZone, cbDifficulty, cbRegion, cbFocus, cbCountry, cbContinent;
         private ICollectionView airportsView;
         private Rectangle airlineColorRect;
         private Popup popUpSplash;
@@ -110,6 +111,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             lbContentHuman.Visibility = System.Windows.Visibility.Collapsed;
 
             panelContent.Children.Add(lbContentHuman);
+
+            cbContinent = new ComboBox();
+            cbContinent.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbContinent.Width = 200;
+            cbContinent.DisplayMemberPath = "Name";
+            cbContinent.SelectedValuePath = "Name";
+
+            cbContinent.Items.Add(new Continent("100","All continents"));
+
+            foreach (Continent continent in Continents.GetContinents().OrderBy(c => c.Name))
+                cbContinent.Items.Add(continent);
+
+            cbContinent.SelectionChanged+=cbContinent_SelectionChanged;
+            lbContentBasics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageNewGame","1022"),cbContinent)); 
 
             cbRegion = new ComboBox();
             cbRegion.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
@@ -393,6 +408,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
         }
 
+        
       
         private void rbSelectOpponents_Checked(object sender, RoutedEventArgs e)
         {
@@ -426,11 +442,44 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             }
 
         }
+        private void cbContinent_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Continent continent = (Continent)cbContinent.SelectedItem;
+
+            if (continent.Regions.Count == 0)
+            {
+                cbRegion.Items.Clear();
+
+                cbRegion.Items.Add(Regions.GetRegion("100"));
+                foreach (Region region in Regions.GetRegions().FindAll(r => Airlines.GetAirlines(r).Count > 0).OrderBy(r => r.Name))
+                    cbRegion.Items.Add(region);
+
+            }
+            else
+            {
+                cbRegion.Items.Clear();
+
+                if (continent.Regions.Count > 1)
+                    cbRegion.Items.Add(Regions.GetRegion("100"));
+                
+                foreach (Region region in continent.Regions.FindAll(r => Airlines.GetAirlines(r).Count > 0).OrderBy(r => r.Name))
+                    cbRegion.Items.Add(region);
+
+            }
+        }
 
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Region region = (Region)cbRegion.SelectedItem;
             int year = (int)cbStartYear.SelectedItem;
+            
+            Continent continent = (Continent)cbContinent.SelectedItem;
+
+            if (continent == null)
+            {
+                cbContinent.SelectedIndex = 0;
+                continent = (Continent)cbContinent.SelectedItem;
+            }
 
             if (region == null)
             {
@@ -438,29 +487,40 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 region = (Region)cbRegion.SelectedItem;
             }
 
-            var source = cbAirline.Items as ICollectionView;
-            source.Filter = delegate(object item)
+            if (region != null)
             {
-                var airline = item as Airline;
-                return (airline.Profile.Country.Region == region || region.Uid == "100") && airline.Profile.Founded <= year && airline.Profile.Folded > year;
+                var source = cbAirline.Items as ICollectionView;
+                source.Filter = delegate(object item)
+                {
+                    var airline = item as Airline;
+                    return (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100") || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= year && airline.Profile.Folded > year;
 
-            };
-            source.Refresh();
+                };
+                source.Refresh();
 
-            cbAirline.SelectedIndex = 0;
+                cbAirline.SelectedIndex = 0;
 
 
-            cbOpponents.Items.Clear();
+                cbOpponents.Items.Clear();
 
-            for (int i = 0; i < cbAirline.Items.Count; i++)
-                cbOpponents.Items.Add(i);
+                for (int i = 0; i < cbAirline.Items.Count; i++)
+                    cbOpponents.Items.Add(i);
 
-            cbOpponents.SelectedIndex = Math.Min(cbOpponents.Items.Count - 1, 3);
+                cbOpponents.SelectedIndex = Math.Min(cbOpponents.Items.Count - 1, 3);
+            }
         }
 
 
         private void cbStartYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            Continent continent = (Continent)cbContinent.SelectedItem;
+
+            if (continent == null)
+            {
+                cbContinent.SelectedIndex = 0;
+                continent = (Continent)cbContinent.SelectedItem;
+            }
+
             Region region = (Region)cbRegion.SelectedItem;
             if (region == null)
             {
@@ -469,12 +529,12 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
             }
 
             int year = (int)cbStartYear.SelectedItem;
-
+            
             var source = cbAirline.Items as ICollectionView;
             source.Filter = delegate(object item)
             {
                 var airline = item as Airline;
-                return (airline.Profile.Country.Region == region || region.Uid == "100") && airline.Profile.Founded <= year && airline.Profile.Folded > year;
+                return (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100") || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= year && airline.Profile.Folded > year;
 
             };
 
@@ -636,6 +696,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 int startYear = (int)cbStartYear.SelectedItem;
                 int opponents = (int)cbOpponents.SelectedItem;
                 Airline airline = (Airline)cbAirline.SelectedItem;
+                Continent continent = (Continent)cbContinent.SelectedItem;
                 Region region = (Region)cbRegion.SelectedItem;
 
 
@@ -644,7 +705,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                     if (cbSameRegion.IsChecked.Value)
                         o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, airline.Profile.Country.Region);
                     else
-                        o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region);
+                        o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region,continent);
                 }
 
 
@@ -682,10 +743,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                if (region.Uid != "100")
+                if (continent.Uid != "100")
                 {
-                    Airports.RemoveAirports(a => a.Profile.Country.Region != region || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas));
-                    Airlines.RemoveAirlines(a => a.Profile.Country.Region != region);
+                    
+                    Airports.RemoveAirports(a => (a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region)) || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas));
+                    Airlines.RemoveAirlines(a => a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region));
                 }
 
                 PassengerHelpers.CreateAirlineDestinationDemand();

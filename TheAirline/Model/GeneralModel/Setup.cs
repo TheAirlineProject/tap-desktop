@@ -61,6 +61,8 @@ namespace TheAirline.Model.GeneralModel
                 LoadTemporaryCountries();
                 LoadUnions();
 
+                CreateContinents();
+
                 LoadAirports();
                 LoadAirportLogos();
                 LoadAirportMaps();
@@ -142,6 +144,7 @@ namespace TheAirline.Model.GeneralModel
             AirlinerFacilities.Clear();
             RouteFacilities.Clear();
             StatisticsTypes.Clear();
+            Continents.Clear();
             Regions.Clear();
             Countries.Clear();
             States.Clear();
@@ -246,6 +249,46 @@ namespace TheAirline.Model.GeneralModel
             TimeZones.AddTimeZone(new GameTimeZone("Central Pacific Standard Time", "CPST", new TimeSpan(11, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("New Zealand Standard Time", "NZST", new TimeSpan(12, 0, 0)));
             TimeZones.AddTimeZone(new GameTimeZone("Tonga Standard Time", "TST", new TimeSpan(13, 0, 0)));
+        }
+        /*!creates the continents
+         */
+        private static void CreateContinents()
+        {
+            Continent southAmerica = new Continent("101","South America");
+            southAmerica.addRegion(Regions.GetRegion("101"));
+            Continents.AddContinent(southAmerica);
+
+            Continent northAmerica = new Continent("102","North America");
+            northAmerica.addRegion(Regions.GetRegion("102"));
+            northAmerica.addRegion(Regions.GetRegion("103"));
+            northAmerica.addRegion(Regions.GetRegion("104"));
+            Continents.AddContinent(northAmerica);
+
+            Continent australia = new Continent("103","Australia");
+            australia.addRegion(Regions.GetRegion("105"));
+            Continents.AddContinent(australia);
+
+            Continent europe = new Continent("104","Europe");
+            europe.addRegion(Regions.GetRegion("106"));
+            europe.addRegion(Regions.GetRegion("107"));
+            europe.addRegion(Regions.GetRegion("108")); 
+            europe.addRegion(Regions.GetRegion("112"));
+            europe.addRegion(Regions.GetRegion("113"));
+            Continents.AddContinent(europe);
+
+            Continent africa = new Continent("105","Africa");
+            africa.addRegion(Regions.GetRegion("109"));
+            Continents.AddContinent(africa);
+
+            Continent asia = new Continent("106","Asia");
+            asia.addRegion(Regions.GetRegion("110"));
+            asia.addRegion(Regions.GetRegion("111"));
+            Continents.AddContinent(asia);
+
+
+
+
+
         }
         /*!loads the different scenarios
          */

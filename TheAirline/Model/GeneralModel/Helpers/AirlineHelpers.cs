@@ -386,19 +386,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
         {
-            
+            Continent continent1 = Continents.GetContinent(airport1.Profile.Country.Region);
+            Continent continent2 = Continents.GetContinent(airport2.Profile.Country.Region);
+            Continent continentAirline = Continents.GetContinent(airline.Profile.Country.Region);
+
+            Boolean continentsOk = continent1 == continentAirline || continent2 == continentAirline;
             Boolean isInUnion = Unions.GetUnions(airport1.Profile.Country, GameObject.GetInstance().GameTime).Intersect(Unions.GetUnions(airport2.Profile.Country, GameObject.GetInstance().GameTime)).Any();
 
-            if (airline.License == Airline.AirlineLicense.Long_Haul)
+            if (airline.License == Airline.AirlineLicense.Long_Haul && continentsOk)
                 return true;
 
-            if (airline.License == Airline.AirlineLicense.Short_Haul && (MathHelpers.GetDistance(airport1, airport2) < 2000 || isInUnion))
+            if (airline.License == Airline.AirlineLicense.Short_Haul && (MathHelpers.GetDistance(airport1, airport2) < 2000 || isInUnion) && continentsOk)
                 return true;
 
-            if (airline.License == Airline.AirlineLicense.Domestic && airport1.Profile.Country == airport2.Profile.Country)
+            if (airline.License == Airline.AirlineLicense.Domestic && airport1.Profile.Country == airport2.Profile.Country && continentsOk)
                 return true;
 
-            if (airline.License == Airline.AirlineLicense.Regional && (airport1.Profile.Country.Region == airport2.Profile.Country.Region || isInUnion))
+            if (airline.License == Airline.AirlineLicense.Regional && (continent1 == continent2 || isInUnion) && continentsOk)
                 return true;
 
             return false;
