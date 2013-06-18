@@ -254,41 +254,43 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void CreateContinents()
         {
-            Continent southAmerica = new Continent("101","South America");
-            southAmerica.addRegion(Regions.GetRegion("101"));
-            Continents.AddContinent(southAmerica);
-
-            Continent northAmerica = new Continent("102","North America");
-            northAmerica.addRegion(Regions.GetRegion("102"));
-            northAmerica.addRegion(Regions.GetRegion("103"));
-            northAmerica.addRegion(Regions.GetRegion("104"));
-            Continents.AddContinent(northAmerica);
-
-            Continent australia = new Continent("103","Australia");
-            australia.addRegion(Regions.GetRegion("105"));
-            Continents.AddContinent(australia);
-
-            Continent europe = new Continent("104","Europe");
-            europe.addRegion(Regions.GetRegion("106"));
-            europe.addRegion(Regions.GetRegion("107"));
-            europe.addRegion(Regions.GetRegion("108")); 
-            europe.addRegion(Regions.GetRegion("112"));
-            europe.addRegion(Regions.GetRegion("113"));
-            Continents.AddContinent(europe);
-
-            Continent africa = new Continent("105","Africa");
-            africa.addRegion(Regions.GetRegion("109"));
+            Continent africa = new Continent("101","Africa");
+            africa.addRegion(Regions.GetRegion("101"));
+			africa.addRegion(Regions.GetRegion("102"));
+			africa.addRegion(Regions.GetRegion("103"));
+			africa.addRegion(Regions.GetRegion("104"));
+			africa.addRegion(Regions.GetRegion("105"));
             Continents.AddContinent(africa);
-
-            Continent asia = new Continent("106","Asia");
-            asia.addRegion(Regions.GetRegion("110"));
-            asia.addRegion(Regions.GetRegion("111"));
+			
+			Continent asia = new Continent("102","Asia");
+            asia.addRegion(Regions.GetRegion("106"));
+            asia.addRegion(Regions.GetRegion("107"));
+			asia.addRegion(Regions.GetRegion("108"));
+			asia.addRegion(Regions.GetRegion("109"));
+			asia.addRegion(Regions.GetRegion("110"));
             Continents.AddContinent(asia);
-
-
-
-
-
+			
+			Continent australia = new Continent("103","Australia and Oceania");
+            australia.addRegion(Regions.GetRegion("111"));
+			australia.addRegion(Regions.GetRegion("112"));
+            Continents.AddContinent(australia);
+			
+			Continent europe = new Continent("104","Europe");
+            europe.addRegion(Regions.GetRegion("113"));
+            europe.addRegion(Regions.GetRegion("114"));
+            europe.addRegion(Regions.GetRegion("115")); 
+            europe.addRegion(Regions.GetRegion("116"));
+            Continents.AddContinent(europe);
+			
+			Continent northAmerica = new Continent("105","North America");
+            northAmerica.addRegion(Regions.GetRegion("117"));
+            northAmerica.addRegion(Regions.GetRegion("118"));
+            northAmerica.addRegion(Regions.GetRegion("119"));
+            Continents.AddContinent(northAmerica);
+			
+			Continent southAmerica = new Continent("106","South America");
+            southAmerica.addRegion(Regions.GetRegion("120"));
+            Continents.AddContinent(southAmerica);
         }
         /*!loads the different scenarios
          */
