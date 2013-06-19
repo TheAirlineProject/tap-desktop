@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the class for a continent
+    [Serializable]
     public class Continent
     {
         public string Name { get; set; }

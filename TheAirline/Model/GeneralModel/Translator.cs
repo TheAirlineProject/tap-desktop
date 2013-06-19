@@ -249,7 +249,7 @@ namespace TheAirline.Model.GeneralModel
 		public string GetString(string region, string uid, string attribute = "name") 
 		{
             string translationString = string.Format("{0}_{1}_{2}", region, uid, attribute);
-
+            
             ResourceManager rm = new ResourceManager("TheAirline.Data.languagefiles.language", Assembly.GetExecutingAssembly());
              
             string text = rm.GetString(translationString);

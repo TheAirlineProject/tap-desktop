@@ -745,9 +745,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 if (continent.Uid != "100")
                 {
+                    var airlines =  Airlines.GetAirlines(a=>a.Profile.Country.Region == region ||  (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Founded <= startYear && a.Profile.Folded > startYear);
+                    var airports = Airports.GetAirports(a => a.Profile.Country.Region == region || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year > startYear);
                     
-                    Airports.RemoveAirports(a => (a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region)) || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas));
-                    Airlines.RemoveAirlines(a => a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region));
+                    //Airports.RemoveAirports(a => (a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region)) || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas));
+                    Airports.Clear();
+                    foreach (Airport a in airports)
+                        Airports.AddAirport(a);
+
+                    Airlines.Clear();
+                    foreach (Airline a in airlines)
+                        Airlines.AddAirline(a);
                 }
 
                 PassengerHelpers.CreateAirlineDestinationDemand();

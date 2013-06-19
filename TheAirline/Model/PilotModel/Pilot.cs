@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
@@ -9,19 +10,28 @@ using TheAirline.Model.AirlinerModel;
 namespace TheAirline.Model.PilotModel
 {
     //the class for a pilot
-    [Serializable]
+    [DataContract]
     public class Pilot
     {
-        public enum PilotRating { A=3, B=4, C=5, D=7, E=10 }
+        public enum PilotRating { 
+             [EnumMember(Value="A")] A=3, 
+             [EnumMember(Value="B")]B=4,
+             [EnumMember(Value="C")]C=5, 
+             [EnumMember(Value="D")]D=7, 
+             [EnumMember(Value="E")]E=10 }
         
+        [DataMember]
         public PilotRating Rating { get; set; }
         
+        [DataMember]
         public PilotProfile Profile { get; set; }
+        [DataMember]
         public Airline Airline { get; set; }
-        
+        [DataMember]
         public DateTime AirlineSignedDate { get; set; }
-        
+        [DataMember]
         public DateTime EducationTime { get; set; }
+        [DataMember]
         public FleetAirliner Airliner { get; set; }
         public const int RetirementAge = 55;
          public Pilot(PilotProfile profile, DateTime educationTime, PilotRating rating)

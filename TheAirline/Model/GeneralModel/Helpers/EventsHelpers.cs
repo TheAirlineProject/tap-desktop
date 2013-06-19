@@ -82,6 +82,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             eventOccurences.Add(RandomEvent.EventType.Security, secEvents);
             eventOccurences.Add(RandomEvent.EventType.Political, polEvents);
 
+            /*
             //generates the given number of events for each type
             foreach (KeyValuePair<RandomEvent.EventType, double> v in eventOccurences)
             {
@@ -92,7 +93,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airline.EventLog.Add(e);
                 }
             }
-
+            */
 
         }
     }
