@@ -45,6 +45,7 @@ namespace TheAirline.Model.GeneralModel
          */
         public static void SetupGame()
         {
+           
             try
             {
                 GeneralHelpers.CreateBigImageCanvas();
@@ -100,13 +101,13 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                /*
+                
                 System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log",true);
                 file.WriteLine("Game start failing");
                 file.WriteLine(e.ToString());
                 file.WriteLine(e.StackTrace);
                 file.Close();
-                 * */
+                 
                 string s = e.ToString();
             }
 
@@ -956,7 +957,12 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                string s = e.ToString();
+                System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
+                file.WriteLine("Airport failing");
+                file.WriteLine(e.ToString());
+                file.WriteLine(e.StackTrace);
+                file.Close();
+            
             }
             Airports.LargestAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest).Count;
             Airports.VeryLargeAirports = Airports.GetAirports(a => a.Profile.Size == GeneralHelpers.Size.Very_large).Count;
@@ -1760,7 +1766,7 @@ namespace TheAirline.Model.GeneralModel
 
                 foreach (FileInfo file in dir.GetFiles("*.xml"))
                 {
-                    f = file.Name;
+                     f = file.Name;
                     LoadAirline(file.FullName);
                 }
                 GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
@@ -1771,13 +1777,13 @@ namespace TheAirline.Model.GeneralModel
             }
             catch (Exception e)
             {
-                /*
+                
                 System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
                 file.WriteLine("Airlines failing: " + f);
                 file.WriteLine(e.ToString());
                 file.WriteLine(e.StackTrace);
                 file.Close();
-                 * */
+                 
                 string s = e.ToString();
             }
 
