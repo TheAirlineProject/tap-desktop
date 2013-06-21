@@ -284,7 +284,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
-
+                    this.ParentPage.NewestEntries.Clear();
                     this.ParentPage.clearTimeTable();
 
                     if (!this.ParentPage.Entries.ContainsKey(route))
@@ -293,7 +293,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                     foreach (RouteTimeTableEntry entry in rt.Entries)
                         if (!TimeTableHelpers.IsRouteEntryInOccupied(entry,this.Airliner))
+                        {
                             this.ParentPage.Entries[route].Add(entry);
+                               this.ParentPage.NewestEntries.Add(entry);
+                        }
                 }
             }
             else
@@ -303,8 +306,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
                 foreach (RouteTimeTableEntry entry in rt.Entries)
                     if (!TimeTableHelpers.IsRouteEntryInOccupied(entry,this.Airliner))
+                    {
                         this.ParentPage.Entries[route].Add(entry);
+                           this.ParentPage.NewestEntries.Add(entry);
+                    }
             }
+
+            
             this.ParentPage.showFlights();
         }
         private void rbWeeklyFlights_Checked(object sender, RoutedEventArgs e)

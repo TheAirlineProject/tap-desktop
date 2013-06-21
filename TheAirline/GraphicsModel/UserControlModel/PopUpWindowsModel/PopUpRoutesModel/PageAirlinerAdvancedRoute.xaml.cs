@@ -260,8 +260,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRoute
 
             else
             {
+                this.ParentPage.NewestEntries.Clear();
                 foreach (RouteTimeTableEntry entry in rt.Entries)
+                {
                     this.ParentPage.Entries[route].Add(entry);
+
+                    this.ParentPage.NewestEntries.Add(entry);
+                }
 
             }
 

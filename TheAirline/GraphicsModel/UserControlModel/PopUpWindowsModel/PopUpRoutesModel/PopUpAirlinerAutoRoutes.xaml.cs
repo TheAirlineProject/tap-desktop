@@ -34,6 +34,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         public Dictionary<Route, List<RouteTimeTableEntry>> Entries { get; set; }
         private Dictionary<Route, List<RouteTimeTableEntry>> EntriesToDelete;
+        public List<RouteTimeTableEntry> NewestEntries;
 
         private Button btnAdvanced, btnRegular;
 
@@ -52,6 +53,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             this.Entries = new Dictionary<Route, List<RouteTimeTableEntry>>();
             this.EntriesToDelete = new Dictionary<Route, List<RouteTimeTableEntry>>();
+            this.NewestEntries = new List<RouteTimeTableEntry>();
 
             this.Airliner = airliner;
 
@@ -106,10 +108,10 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             showFlights();
 
-            PageAirlinerAutoRoute pageRoute = new PageAirlinerAutoRoute(this.Airliner, this,PopUpAirlinerAutoRoutes_RouteChanged);
-    
+            PageAirlinerAutoRoute pageRoute = new PageAirlinerAutoRoute(this.Airliner, this, PopUpAirlinerAutoRoutes_RouteChanged);
+
             this.RouteFrame.Navigate(pageRoute);
-            
+
         }
         //creates the panel for the routes
         private ScrollViewer createRoutesPanel()
@@ -208,13 +210,13 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 var occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(this.SelectedRoute.Destination1, this.Airliner.Airliner.Airline).Where(s => s.Days == (int)day);
                 var occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(this.SelectedRoute.Destination2, this.Airliner.Airliner.Airline).Where(s => s.Days == (int)day);
-            
+
                 int slotLenght = 15;
 
                 foreach (TimeSpan occupiedSlot in occupiedSlots1)
                 {
                     ContentControl ccOccupied = new ContentControl();
-                    ccOccupied.ContentTemplate = this.Resources["OccupiedItem"] as DataTemplate; 
+                    ccOccupied.ContentTemplate = this.Resources["OccupiedItem"] as DataTemplate;
                     ccOccupied.Content = slotLenght / hourFactor;
 
                     Canvas.SetLeft(ccOccupied, 60 * occupiedSlot.Hours / hourFactor + occupiedSlot.Minutes / hourFactor);
@@ -364,7 +366,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void btnRegular_Click(object sender, RoutedEventArgs e)
         {
             PageAirlinerAutoRoute pageRoute = new PageAirlinerAutoRoute(this.Airliner, this, PopUpAirlinerAutoRoutes_RouteChanged);
-        
+
             this.RouteFrame.Navigate(pageRoute);
             this.btnRegular.Visibility = System.Windows.Visibility.Collapsed;
             this.btnAdvanced.Visibility = System.Windows.Visibility.Visible;
@@ -377,8 +379,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnAdvanced_Click(object sender, RoutedEventArgs e)
         {
-            PageAirlinerAdvancedRoute pageRoute = new PageAirlinerAdvancedRoute(this.Airliner, this,PopUpAirlinerAutoRoutes_RouteChanged);
-        
+            PageAirlinerAdvancedRoute pageRoute = new PageAirlinerAdvancedRoute(this.Airliner, this, PopUpAirlinerAutoRoutes_RouteChanged);
+
             this.RouteFrame.Navigate(pageRoute);
             this.btnAdvanced.Visibility = System.Windows.Visibility.Collapsed;
             this.btnRegular.Visibility = System.Windows.Visibility.Visible;
@@ -488,11 +490,15 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         }
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
-            this.Entries.Clear();
+            
 
-            this.EntriesToDelete.Clear();
+            foreach (RouteTimeTableEntry entry in this.NewestEntries)
+                this.Entries[entry.TimeTable.Route].Remove(entry);
+
+            this.NewestEntries.Clear();
 
             showFlights();
+
         }
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
