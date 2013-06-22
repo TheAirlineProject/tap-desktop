@@ -111,7 +111,20 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
 
-           
+        /*
+            var townGroups =
+                from a in Airports.GetAllAirports() where a.Profile.Town.Name.Trim().Length == 0
+                group a by a.Profile.Country.Region into g
+                select new { Region = g.Key, Airports = g };
+
+            foreach (var g in townGroups)
+            {
+                Console.WriteLine(g.Region.Name);
+                foreach (var a in g.Airports)
+                {
+                    Console.WriteLine("      {0} ({1}), {2}",a.Profile.Name,a.Profile.IATACode,a.Profile.Country.Name);
+                }
+            } */
 
             Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
