@@ -14,7 +14,7 @@ namespace TheAirline.Model.PilotModel
     public class Pilot
     {
         public enum PilotRating { 
-             [EnumMember(Value="A")] A=3, 
+             [EnumMember(Value="A")]A=3, 
              [EnumMember(Value="B")]B=4,
              [EnumMember(Value="C")]C=5, 
              [EnumMember(Value="D")]D=7, 

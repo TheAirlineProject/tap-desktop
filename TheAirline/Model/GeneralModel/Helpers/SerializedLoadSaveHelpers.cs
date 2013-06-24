@@ -51,7 +51,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 NewLineChars = Environment.NewLine
 
             };
+     DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
+                      Int32.MaxValue,
+                      false,
+                      true,
+                      null);
+     using (Stream stream = new FileStream(fileName, FileMode.Create))
+     {
+         using (GZipStream compress = new GZipStream(stream, CompressionMode.Compress))
+         {
+             serializer.WriteObject(compress, so);
 
+         }
+     }
+            /*
             using (var buffer = new FileStream(fileName, FileMode.Create))
             {
                 var serializer = new DataContractSerializer(typeof(SaveObject), null,
@@ -69,7 +82,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 stream.Close();
             }
-              /*
+              
+             * */
+            /*
             using (var file = File.Create("c:\\bbm\\person.bin"))
             {
                 Serializer.Serialize<SaveObject>(file, so);
@@ -82,7 +97,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
+            DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
             SaveObject deserializedSaveObject;
+            
+            using (FileStream stream = new FileStream(fileName, FileMode.Open))
+            {
+                using (GZipStream decompress = new GZipStream(stream, CompressionMode.Decompress))
+                {
+                    deserializedSaveObject =
+                   (SaveObject)serializer.ReadObject(decompress);
+                }
+            }b
+
+            /*
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
                 DataContractSerializer ser = new DataContractSerializer(typeof(SaveObject));
@@ -104,7 +131,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
           
 
             }
-
+            */
          
 
             Airlines.Clear();

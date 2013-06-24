@@ -390,7 +390,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Continent continent2 = Continents.GetContinent(airport2.Profile.Country.Region);
             Continent continentAirline = Continents.GetContinent(airline.Profile.Country.Region);
 
-            Boolean continentsOk = continent1 == continentAirline || continent2 == continentAirline;
+            Boolean continentsOk = true;//< continent1 == continentAirline || continent2 == continentAirline;
             Boolean isInUnion = Unions.GetUnions(airport1.Profile.Country, GameObject.GetInstance().GameTime).Intersect(Unions.GetUnions(airport2.Profile.Country, GameObject.GetInstance().GameTime)).Any();
 
             if (airline.License == Airline.AirlineLicense.Long_Haul && continentsOk)

@@ -675,7 +675,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if an airline has enough free slots at an airport
         public static Boolean CanFillRoutesEntries(Airport airport, Airline airline, List<AirportContract> contracts)
         {
-            return GetOccupiedSlotTimes(airport, airline, contracts).GroupBy(s => s.Ticks).Where(x => x.Count() > 1).Count() == 0;
+            int numberOfOccupiedSlots = GetOccupiedSlotTimes(airport, airline, contracts).GroupBy(s => s.Ticks).Where(x => x.Count() > 1).Count();
+            return numberOfOccupiedSlots == 0;
 
         }
         //returns the yearly payment for a number of gates

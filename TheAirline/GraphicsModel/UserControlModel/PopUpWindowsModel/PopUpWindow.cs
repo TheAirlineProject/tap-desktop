@@ -28,12 +28,19 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             this.ResizeMode = System.Windows.ResizeMode.NoResize;
 
-            this.WindowStyle = System.Windows.WindowStyle.None;
+            this.WindowStyle = System.Windows.WindowStyle.ToolWindow;
 
             this.BorderThickness = new Thickness(2, 2, 2, 2);
             this.BorderBrush = new SolidColorBrush(Colors.Black);
+
+            this.Activated += PopUpWindow_Activated;
       }
-      
+
+        private void PopUpWindow_Activated(object sender, EventArgs e)
+        {
+            this.Height = this.Height + SystemParameters.CaptionHeight;
+        }
+       
       
     }
 

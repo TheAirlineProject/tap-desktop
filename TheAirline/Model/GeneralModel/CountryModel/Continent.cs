@@ -7,8 +7,7 @@ using System.Threading.Tasks;
 namespace TheAirline.Model.GeneralModel.CountryModel
 {
     //the class for a continent
-    [Serializable]
-    public class Continent
+    [Serializable]public class Continent
     {
         public string Name { get; set; }
         public string Uid{ get; set; }
@@ -42,7 +41,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel
         //returns the continent for a region
         public static Continent GetContinent(Region region)
         {
-            return continents.Where(c => c.Regions.Contains(region)).First();
+            return continents.Where(c => c.Regions.Exists(r=>r.Uid == region.Uid)).First();
         }
         //returns the list of continents
         public static List<Continent> GetContinents()
@@ -55,6 +54,5 @@ namespace TheAirline.Model.GeneralModel.CountryModel
             continents.Clear();
         }
         
-       
     }
 }

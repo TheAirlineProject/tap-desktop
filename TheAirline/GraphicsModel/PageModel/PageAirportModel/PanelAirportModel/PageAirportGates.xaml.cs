@@ -474,7 +474,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             var contracts = this.Airport.AirlineContracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline && a != contract).ToList() ;
 
-            if (AirportHelpers.CanFillRoutesEntries(this.Airport,GameObject.GetInstance().HumanAirline,contracts))
+            if (!AirportHelpers.CanFillRoutesEntries(this.Airport,GameObject.GetInstance().HumanAirline,contracts))
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2224"), Translator.GetInstance().GetString("MessageBox", "2224", "message"),WPFMessageBoxButtons.Ok);
             }
