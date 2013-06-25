@@ -254,36 +254,46 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             
             if (name != null)
             {
-                popUpSplash.IsOpen = true;
-                DoEvents();
+                Boolean doSave = true;
+                if (SerializedLoadSaveHelpers.SaveGameExists(name))
+                {
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1007"), Translator.GetInstance().GetString("MessageBox", "1007", "message"),WPFMessageBoxButtons.YesNo);
 
-                GameObject.GetInstance().Name = name;
-                /*
-                string fileName;
+                    doSave = result == WPFMessageBoxResult.Yes;
+                }
+                if (doSave)
+                {
+                    popUpSplash.IsOpen = true;
+                    DoEvents();
 
-                var saves = LoadSaveHelpers.GetSavedGames();
+                    GameObject.GetInstance().Name = name;
+                    /*
+                    string fileName;
+
+                    var saves = LoadSaveHelpers.GetSavedGames();
 
                   
-                KeyValuePair<string,string>? f = LoadSaveHelpers.GetSavedGames().Find(fs=>fs.Key == name);
+                    KeyValuePair<string,string>? f = LoadSaveHelpers.GetSavedGames().Find(fs=>fs.Key == name);
 
-                if (!f.HasValue || f.Value.Key == null)
-                {
-                    Guid file = Guid.NewGuid();
+                    if (!f.HasValue || f.Value.Key == null)
+                    {
+                        Guid file = Guid.NewGuid();
 
-                    fileName = file.ToString();
+                        fileName = file.ToString();
 
-                    LoadSaveHelpers.AppendSavedFile(name, fileName);
+                        LoadSaveHelpers.AppendSavedFile(name, fileName);
 
+                    }
+                    else
+                    {
+                        fileName = f.Value.Value;
+                    }
+                    */
+                    //LoadSaveHelpers.SaveGame(fileName);
+                    SerializedLoadSaveHelpers.SaveGame(name);
+
+                    popUpSplash.IsOpen = false;
                 }
-                else
-                {
-                    fileName = f.Value.Value;
-                }
-                */
-                //LoadSaveHelpers.SaveGame(fileName);
-                SerializedLoadSaveHelpers.SaveGame(name); 
-
-                popUpSplash.IsOpen = false;
             }
             
             if (!gametimerPaused)

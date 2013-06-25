@@ -18,6 +18,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
     //the helper class for loading and saving using serialization
     public class SerializedLoadSaveHelpers
     {
+        //returns if a saved game exits
+        public static Boolean SaveGameExists(string name)
+        {
+            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
+
+            return File.Exists(fileName);
+        }
         //saves a game
         public static void SaveGame(string name)
         {
@@ -107,8 +114,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     deserializedSaveObject =
                    (SaveObject)serializer.ReadObject(decompress);
                 }
-            }b
-
+            }
             /*
             using (FileStream fs = new FileStream(fileName, FileMode.Open))
             {
