@@ -48,7 +48,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             //if (this.Worker.WorkerSupportsCancellation)
                 //this.Worker.CancelAsync();
             this.CancelWorker = true;
-            this.Cancelled = true;
+            //this.Cancelled = true;
            
            
         }

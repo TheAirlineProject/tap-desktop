@@ -182,7 +182,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lvBoughtFleet = new ListView();
             lvBoughtFleet.Background = Brushes.Transparent;
             lvBoughtFleet.SetResourceReference(ListView.ItemContainerStyleProperty, "ListViewItemStyle");
-            lvBoughtFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            lvBoughtFleet.MaxHeight = (GraphicsHelpers.GetContentHeight()-100) / 2;
             lvBoughtFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
             lvBoughtFleet.BorderThickness = new Thickness(0);
             lvBoughtFleet.View = this.Resources["FleetViewBoughtItem"] as GridView;
@@ -204,7 +204,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
             lvLeasedFleet = new ListView();
             lvLeasedFleet.Background = Brushes.Transparent;
             lvLeasedFleet.SetResourceReference(ListView.ItemContainerStyleProperty, "ListViewItemStyle");
-            lvLeasedFleet.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
+            lvLeasedFleet.MaxHeight = (GraphicsHelpers.GetContentHeight()-100) / 2;
             lvLeasedFleet.AddHandler(GridViewColumnHeader.ClickEvent, new RoutedEventHandler(FleetHeaderClickedHandler), true);
             lvLeasedFleet.View = this.Resources["FleetViewLeasedItem"] as GridView;
 

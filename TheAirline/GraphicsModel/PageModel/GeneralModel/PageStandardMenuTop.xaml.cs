@@ -237,12 +237,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Boolean gameworkerPaused = GameObjectWorker.GetInstance().isPaused();
 
             GameTimer.GetInstance().pause();
-            GameObjectWorker.GetInstance().pause();
-
-            while (!GameObjectWorker.GetInstance().isPaused())
-            {
-            }
-          
+            GameObjectWorker.GetInstance().cancel();
+                      
             Popup popUpSplash = new Popup();
             popUpSplash.Child = createSplashWindow("Saving......");
             popUpSplash.Placement = PlacementMode.Center;
@@ -251,10 +247,15 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
    
             
             String name = (String)PopUpSave.ShowPopUp();
-            
-            if (name != null)
+
+            Boolean doSave = name != null;
+               
+            if (doSave)
             {
-                Boolean doSave = true;
+                while (!GameObjectWorker.GetInstance().isCancelled())
+                {
+                }
+          
                 if (SerializedLoadSaveHelpers.SaveGameExists(name))
                 {
                     WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1007"), Translator.GetInstance().GetString("MessageBox", "1007", "message"),WPFMessageBoxButtons.YesNo);
@@ -300,7 +301,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 GameTimer.GetInstance().start();
 
             if (!gameworkerPaused)
-                GameObjectWorker.GetInstance().restart();
+                GameObjectWorker.GetInstance().start();
             
             
         }
