@@ -17,6 +17,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GraphicsModel.UserControlModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
@@ -395,8 +396,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         }
         private void btnEditCargo_Click(object sender, RoutedEventArgs e)
         {
+            double rate = 1;
+
+            if (GameObject.GetInstance().CurrencyCountry != null)
+            {
+                CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+                rate = currency == null ? 1 : currency.Rate;
+            }
+
             TextBox tbCargoPrice = new TextBox();
-            tbCargoPrice.Text = string.Format("{0}", this.CargoPrice);
+            tbCargoPrice.Text = string.Format("{0:0.00}", this.CargoPrice * rate);
             tbCargoPrice.TextAlignment = TextAlignment.Left;
             tbCargoPrice.Width = 100;
             tbCargoPrice.Background = Brushes.Transparent;
@@ -405,7 +414,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelNewRoute", "1008"), tbCargoPrice) == PopUpSingleElement.ButtonSelected.OK && tbCargoPrice.Text.Length > 0)
             {
-                this.CargoPrice = Convert.ToDouble(tbCargoPrice.Text);
+               
+                this.CargoPrice = Convert.ToDouble(tbCargoPrice.Text) / rate;
                 txtCargo.Text = new ValueCurrencyConverter().Convert(this.CargoPrice).ToString();
             }
         }
@@ -434,8 +444,16 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 foreach (RouteFacility facility in aClass.getFacilities())
                     this.Classes[type.Key][type.Value].addFacility(facility);
-                
-                this.Classes[type.Key][type.Value].FarePrice = aClass.FarePrice;
+
+                double rate = 1;
+
+                if (GameObject.GetInstance().CurrencyCountry != null)
+                {
+                    CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+                    rate = currency == null ? 1 : currency.Rate;
+                }
+
+                this.Classes[type.Key][type.Value].FarePrice = aClass.FarePrice / rate;
                 this.Classes[type.Key][type.Value].Seating = aClass.Seating;
 
 

@@ -857,8 +857,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
             List<AirlineFacility> facilitiesNew = AirlineFacilities.GetFacilities();
 
-            facilitiesNew.RemoveAll(f => this.Airline.Facilities.Contains(f));
-
+            facilitiesNew.RemoveAll(f => this.Airline.Facilities.Exists(a => a.Uid == f.Uid));
+            
             foreach (AirlineFacility facility in facilitiesNew.FindAll(f => f.FromYear <= year))
                 lbNewFacilities.Items.Add(facility);
         }

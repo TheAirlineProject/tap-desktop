@@ -19,13 +19,14 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 {
     public class PanelNewRoute : StackPanel
     {
         private RadioButton rbCargo, rbPassenger;
-        private TextBlock txtDistance,  txtInvalidRoute,txtDestination1Gates, txtDestination2Gates, txtRoute, txtCargo;
+        private TextBlock txtDistance, txtInvalidRoute, txtDestination1Gates, txtDestination2Gates, txtRoute, txtCargo;
         private ComboBox cbDestination1, cbDestination2;
         private Button btnSave, btnLoad;
         private PageRoutes ParentPage;
@@ -48,7 +49,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             this.ParentPage = parent;
 
             this.Margin = new Thickness(0, 0, 50, 0);
-         
+
             TextBlock txtHeader = new TextBlock();
             txtHeader.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
             txtHeader.SetResourceReference(TextBlock.BackgroundProperty, "HeaderBackgroundBrush2");
@@ -64,11 +65,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             rbPassenger.Checked += rbRouteType_Checked;
             rbPassenger.Tag = Route.RouteType.Passenger;
             panelRouteType.Children.Add(rbPassenger);
-            
+
             rbCargo = new RadioButton();
             rbCargo.Margin = new Thickness(10, 0, 0, 0);
             rbCargo.GroupName = "RouteType";
-            rbCargo.Content = Translator.GetInstance().GetString("PanelNewRoute","1006");
+            rbCargo.Content = Translator.GetInstance().GetString("PanelNewRoute", "1006");
             rbCargo.Tag = Route.RouteType.Cargo;
             //rbCargo.IsEnabled = false;
             rbCargo.Checked += rbRouteType_Checked;
@@ -201,7 +202,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 txtCargo = UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(this.CargoPrice).ToString());
                 txtCargo.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
                 panelCargo.Children.Add(txtCargo);
-                
+
                 Button btnEditCargo = new Button();
                 btnEditCargo.Margin = new Thickness(5, 0, 0, 0);
                 btnEditCargo.Background = Brushes.Transparent;
@@ -250,7 +251,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             btnLoad.Visibility = this.RouteType == Route.RouteType.Cargo ? Visibility.Collapsed : Visibility.Visible;
             panelButtons.Children.Add(btnLoad);
 
-  
+
         }
         private void rbRouteType_Checked(object sender, RoutedEventArgs e)
         {
@@ -258,29 +259,39 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             //rbPassenger.IsEnabled = false;
             //rbCargo.IsEnabled = false;
-            
+
             createRoutePanel();
         }
 
         private void ucStopover_OnValueChanged(Airport airport)
         {
-            cbDestination_SelectionChanged(airport,null);
+            cbDestination_SelectionChanged(airport, null);
         }
 
 
         private void btnEditCargo_Click(object sender, RoutedEventArgs e)
         {
+            double rate = 1;
+
+            if (GameObject.GetInstance().CurrencyCountry != null)
+            {
+                CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+                rate = currency == null ? 1 : currency.Rate;
+            }
+
             TextBox tbCargoPrice = new TextBox();
-            tbCargoPrice.Text = string.Format("{0}",this.CargoPrice);
+            tbCargoPrice.Text = string.Format("{0:0.00}", this.CargoPrice * rate);
             tbCargoPrice.TextAlignment = TextAlignment.Left;
             tbCargoPrice.Width = 100;
             tbCargoPrice.Background = Brushes.Transparent;
             tbCargoPrice.SetResourceReference(TextBox.ForegroundProperty, "TextColor");
             tbCargoPrice.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelNewRoute","1008"), tbCargoPrice) == PopUpSingleElement.ButtonSelected.OK && tbCargoPrice.Text.Length > 0)
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelNewRoute", "1008"), tbCargoPrice) == PopUpSingleElement.ButtonSelected.OK && tbCargoPrice.Text.Length > 0)
             {
-                this.CargoPrice = Convert.ToDouble(tbCargoPrice.Text);
+
+
+                this.CargoPrice = Convert.ToDouble(tbCargoPrice.Text) / rate;
                 txtCargo.Text = new ValueCurrencyConverter().Convert(this.CargoPrice).ToString();
             }
         }
@@ -291,7 +302,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
             if (aClass != null)
             {
-                this.Classes[type].FarePrice = aClass.FarePrice;
+                double rate = 1;
+
+                if (GameObject.GetInstance().CurrencyCountry != null)
+                {
+                    CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+                    rate = currency == null ? 1 : currency.Rate;
+                }
+
+                this.Classes[type].FarePrice = aClass.FarePrice / rate;
                 this.Classes[type].Seating = aClass.Seating;
 
                 foreach (RouteFacility facility in aClass.getFacilities())
@@ -325,15 +344,15 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
         }
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-             Airline airline = GameObject.GetInstance().HumanAirline;
+            Airline airline = GameObject.GetInstance().HumanAirline;
             Airport dest1 = (Airport)cbDestination1.SelectedItem;
             Airport dest2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = ucStopover1.Value;
             Airport stopover2 = ucStopover2.Value;
 
-            Boolean stopoverOk = (stopover1 == null ? true : AirportHelpers.HasFreeGates(stopover1,airline)) && (stopover2 == null ? true : AirportHelpers.HasFreeGates(stopover2,airline));
+            Boolean stopoverOk = (stopover1 == null ? true : AirportHelpers.HasFreeGates(stopover1, airline)) && (stopover2 == null ? true : AirportHelpers.HasFreeGates(stopover2, airline));
 
-            if (AirportHelpers.HasFreeGates(dest1,airline) && AirportHelpers.HasFreeGates(dest2,airline) && stopoverOk)
+            if (AirportHelpers.HasFreeGates(dest1, airline) && AirportHelpers.HasFreeGates(dest2, airline) && stopoverOk)
             {
                 Route route = null;
                 Guid id = Guid.NewGuid();
@@ -355,24 +374,24 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 }
                 if (this.RouteType == Route.RouteType.Cargo)
                 {
-                    route = new CargoRoute(id.ToString(),dest1,dest2,this.CargoPrice);
+                    route = new CargoRoute(id.ToString(), dest1, dest2, this.CargoPrice);
                 }
 
-                
+
                 if (stopover1 != null)
                 {
                     if (stopover2 != null)
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1,stopover1,stopover2,route,false,this.RouteType));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, stopover2, route, false, this.RouteType));
                     else
                         route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover1, dest2, route, false, this.RouteType));
-                 }
+                }
 
                 if (stopover2 != null)
                 {
                     if (stopover1 != null)
                         route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, dest2, route, true, this.RouteType));
                     else
-                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover2, dest2, route, false,this.RouteType));
+                        route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(dest1, stopover2, dest2, route, false, this.RouteType));
                 }
 
                 airline.addRoute(route);
@@ -381,14 +400,14 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 this.Visibility = System.Windows.Visibility.Collapsed;
 
-                route.LastUpdated = GameObject.GetInstance().GameTime; 
+                route.LastUpdated = GameObject.GetInstance().GameTime;
             }
             else
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2501"), Translator.GetInstance().GetString("MessageBox", "2501", "message"), WPFMessageBoxButtons.Ok);
 
         }
 
-      
+
 
         //creates the combo box for a destination
         private ComboBox createDestinationComboBox()
@@ -454,22 +473,22 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                     distances.Add(MathHelpers.GetDistance(airport1, stopover1));
                     distances.Add(MathHelpers.GetDistance(stopover1, stopover2));
                     distances.Add(MathHelpers.GetDistance(stopover2, airport2));
-                    isRouteOk = checkRouteOk(airport1, stopover1) && checkRouteOk(stopover1,stopover2)  && checkRouteOk(stopover2, airport2);
+                    isRouteOk = checkRouteOk(airport1, stopover1) && checkRouteOk(stopover1, stopover2) && checkRouteOk(stopover2, airport2);
                     destinations.Add(stopover1);
                     destinations.Add(stopover2);
                 }
 
-                 destinations.Add(airport2);
+                destinations.Add(airport2);
 
                 foreach (RouteAirlinerClass aClass in this.Classes.Values)
                 {
-                    
+
                     aClass.FarePrice = PassengerHelpers.GetPassengerPrice(airport1, airport2) * GeneralHelpers.ClassToPriceFactor(aClass.Type);
                 }
 
                 double maxDistance = distances.Max();
                 double minDistance = distances.Min();
-                
+
                 txtDistance.Text = string.Format("{0:0} {1}", new NumberToUnitConverter().Convert(maxDistance), new StringToLanguageConverter().Convert("km."));
 
                 btnSave.IsEnabled = minDistance > 50 && maxDistance < this.MaxDistance && isRouteOk;
@@ -494,7 +513,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 txtDestinationGates.Text = string.Format(Translator.GetInstance().GetString("PanelNewRoute", "206"), airport.Terminals.getFreeSlotsPercent(GameObject.GetInstance().HumanAirline));
             }
 
-          
+
         }
         //returns if two airports can have route between them and if the airline has license for the route
         private Boolean checkRouteOk(Airport airport1, Airport airport2)
@@ -502,19 +521,19 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             Boolean isCargoRouteOk = true;
             if (this.RouteType == Route.RouteType.Cargo)
             {
-                isCargoRouteOk = AIHelpers.IsCargoRouteDestinationsCorrect(airport1, airport2,GameObject.GetInstance().HumanAirline);
+                isCargoRouteOk = AIHelpers.IsCargoRouteDestinationsCorrect(airport1, airport2, GameObject.GetInstance().HumanAirline);
             }
-            
-            return isCargoRouteOk && AirlineHelpers.HasAirlineLicens(GameObject.GetInstance().HumanAirline,airport1,airport2) && AIHelpers.IsRouteInCorrectArea(airport1, airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime);
+
+            return isCargoRouteOk && AirlineHelpers.HasAirlineLicens(GameObject.GetInstance().HumanAirline, airport1, airport2) && AIHelpers.IsRouteInCorrectArea(airport1, airport2) && !FlightRestrictions.HasRestriction(airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport2.Profile.Country, airport1.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(GameObject.GetInstance().HumanAirline, airport1.Profile.Country, airport2.Profile.Country, GameObject.GetInstance().GameTime);
         }
-       //class for a stop over item
+        //class for a stop over item
         private class ucStopover : UserControl
         {
             public Airport Value { get; set; }
             private ComboBox cbDestination;
             public delegate void OnValueChanged(Airport airport);
             public event OnValueChanged ValueChanged;
-      
+
             public ucStopover()
             {
                 WrapPanel panelStopover = new WrapPanel();
@@ -526,7 +545,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 cbDestination.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                 cbDestination.SelectionChanged += cbDestination_SelectionChanged;
 
-                List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => AirportHelpers.HasFreeGates(a,GameObject.GetInstance().HumanAirline));
+                List<Airport> airports = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => AirportHelpers.HasFreeGates(a, GameObject.GetInstance().HumanAirline));
                 airports.Sort(delegate(Airport a1, Airport a2) { return a1.Profile.Name.CompareTo(a2.Profile.Name); });
 
                 foreach (Airport airport in airports)
@@ -539,7 +558,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 btnDelete.Click += btnDelete_Click;
                 btnDelete.Margin = new Thickness(5, 0, 0, 0);
                 btnDelete.Background = Brushes.Transparent;
-             
+
                 Image imgEdit = new Image();
                 imgEdit.Width = 16;
                 imgEdit.Source = new BitmapImage(new Uri(@"/Data/images/delete.png", UriKind.RelativeOrAbsolute));
@@ -547,7 +566,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
 
                 btnDelete.Content = imgEdit;
 
-                panelStopover.Children.Add(btnDelete);            
+                panelStopover.Children.Add(btnDelete);
 
                 this.Content = panelStopover;
 
@@ -564,8 +583,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
                 this.Value = (Airport)cbDestination.SelectedItem;
 
                 if (this.ValueChanged != null)
-                    this.ValueChanged(this.Value); 
-   
+                    this.ValueChanged(this.Value);
+
             }
         }
     }

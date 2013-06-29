@@ -135,7 +135,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             facilities.Sort((delegate(AirportFacility f1, AirportFacility f2) { return f1.TypeLevel.CompareTo(f2.TypeLevel); }));
 
-            int index = facilities.IndexOf(this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, type));
+            int index = facilities.FindIndex(f=>f.Uid == this.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, type).Uid);
 
             if (index < facilities.Count - 1)
                 return facilities[index + 1];
@@ -235,8 +235,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             facilities.Sort((delegate(AirportFacility f1, AirportFacility f2) { return f1.TypeLevel.CompareTo(f2.TypeLevel); }));
 
-            int index = facilities.IndexOf(airport.getAirportFacility(GameObject.GetInstance().HumanAirline, type));
-
+            int index = facilities.FindIndex(f=>f.Uid == airport.getAirportFacility(GameObject.GetInstance().HumanAirline, type).Uid);
+         
             if (buttonType == "Buy" && type != AirportFacility.FacilityType.CheckIn)
             {
                 int gates = airport.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline);
