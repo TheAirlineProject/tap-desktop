@@ -16,32 +16,20 @@ namespace TheAirline.Model.AirportModel
     public class AirportProfile
     {
         public enum AirportType { Long_Haul_International, Regional, Domestic, Short_Haul_International }
-        
         public AirportType Type { get; set; }
         //public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
-        
         public GeneralHelpers.Size Size { get { return getCurrentSize(); } private set { ;} }
-        
         public GeneralHelpers.Size Cargo { get; set; }
-        
         public Weather.Season Season { get; set; }
-        
         public string Name { get; set; }
-        
         public string IATACode { get; set; }
-        
         public string ICAOCode { get; set; }
-        
         public Town Town { get; set; }
-           
-     
         public Country Country { get { return this.Town.Country; } private set { ;} }
-           
-           public Coordinates Coordinates { get; set; }
-          
-             public string Logo { get; set; }
+        public Coordinates Coordinates { get; set; }
+        public string Logo { get; set; }
         // chs, 2012-23-01 added for airport maps
-          public string Map { get; set; }
+        public string Map { get; set; }
         public TimeSpan OffsetGMT { get; set; }
         public TimeSpan OffsetDST { get; set; }
         public GameTimeZone TimeZone { get { return getTimeZone(); } set { ;} }
@@ -50,7 +38,7 @@ namespace TheAirline.Model.AirportModel
         public double Pax { get { return getCurrentPaxValue(); } private set { ;} }
         public List<PaxValue> PaxValues { get; set; }
         public double CargoVolume { get; set; }
-       
+
         public Dictionary<string, int> MajorDestionations { get; set; }
         public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
         {
@@ -141,17 +129,17 @@ namespace TheAirline.Model.AirportModel
     //the class for a pax value
     public class PaxValue
     {
-        
+
         public double Pax { get; set; }
-        
+
         public int FromYear { get; set; }
-        
+
         public int ToYear { get; set; }
-        
+
         public double InflationBeforeYear { get; set; }
-        
+
         public double InflationAfterYear { get; set; }
-        
+
         public GeneralHelpers.Size Size { get; set; }
         public PaxValue(int fromYear, int toYear, GeneralHelpers.Size size, double pax)
         {

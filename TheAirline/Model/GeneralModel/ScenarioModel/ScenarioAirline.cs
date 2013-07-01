@@ -31,6 +31,7 @@ namespace TheAirline.Model.GeneralModel.ScenarioModel
             this.Routes.Add(route);
         }
     }
+    [Serializable]
     //a route for an scenario airline
     public class ScenarioAirlineRoute
     {
