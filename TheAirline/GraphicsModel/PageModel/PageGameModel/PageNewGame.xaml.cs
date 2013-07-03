@@ -451,7 +451,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 cbRegion.Items.Clear();
 
                 cbRegion.Items.Add(Regions.GetRegion("100"));
-                foreach (Region region in Regions.GetRegions().FindAll(r => Airlines.GetAirlines(r).Count > 0).OrderBy(r => r.Name))
+                foreach (Region region in Regions.GetRegions().FindAll(r => Airlines.GetAirlines(r).Count > 0).OrderBy(r => r.Name)) 
                     cbRegion.Items.Add(region);
 
             }

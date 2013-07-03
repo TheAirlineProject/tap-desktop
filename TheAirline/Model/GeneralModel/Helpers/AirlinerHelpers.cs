@@ -39,7 +39,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             long km = kmPerYear * age;
 
             airliner.Flown = km;
-
+            
             CreateAirlinerClasses(airliner);
 
             return airliner;
@@ -94,6 +94,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the airliner classes for an airliner
         public static void CreateAirlinerClasses(Airliner airliner)
         {
+            
             if (airliner.Type is AirlinerPassengerType)
             {
                 Configuration airlinerTypeConfiguration = Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType).Find(c=>((AirlinerTypeConfiguration)c).Airliner == airliner.Type && ((AirlinerTypeConfiguration)c).Period.From <= airliner.BuiltDate && ((AirlinerTypeConfiguration)c).Period.To> airliner.BuiltDate) ;

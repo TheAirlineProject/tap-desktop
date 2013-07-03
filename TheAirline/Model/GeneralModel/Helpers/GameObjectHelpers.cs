@@ -702,6 +702,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
             {
+            
                 var pilotsToRetire = airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1) < GameObject.GetInstance().GameTime);
                 var pilotsToRetirement = new List<Pilot>(airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime));
 
@@ -873,6 +874,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 //check for employee happiness and wages
                 //Console.WriteLine("Airline: {0} Avg. Wages: {1} Happiness: {2}", airline.Profile.Name, StatisticsHelpers.GetEmployeeWages()[airline], Ratings.GetEmployeeHappiness(airline));
 
+                /*
                 double employeeHapiness = Ratings.GetEmployeeHappiness(airline);
                 double avgCompetitorsWages = StatisticsHelpers.GetAverageEmployeeWages(airline);
                 double airlineWage = StatisticsHelpers.GetEmployeeWages()[airline];
@@ -889,7 +891,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     //tjek for union ved skift af løn - forhandling på års niveau
 
-                }
+                }*/
 
                 foreach (AirlineFacility facility in airline.Facilities)
                     AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -facility.MonthlyCost);
@@ -994,9 +996,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
                 }
+                //maintenance, insurance, and ratings
+       
+                AirlineInsuranceHelpers.CheckExpiredInsurance(airline);
+                if (airline.InsurancePolicies != null)
+                {
+                    AirlineInsuranceHelpers.MakeInsurancePayment(airline);
+                }
 
+                RandomEvent.CheckExpired(GameObject.GetInstance().GameTime);
 
             });
+
+        
             if (Pilots.GetNumberOfUnassignedPilots() < 25)
                 GeneralHelpers.CreatePilots(100);
 
@@ -1027,19 +1039,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (GameObject.GetInstance().Scenario != null)
                 ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
 
-            //maintenance, insurance, and ratings
-            foreach(Airline a in Airlines.GetAllAirlines())
-            {
-                AirlineInsuranceHelpers.CheckExpiredInsurance(a);
-                if (a.InsurancePolicies != null)
-                {
-                    AirlineInsuranceHelpers.MakeInsurancePayment(a);
-                }
-
-                RandomEvent.CheckExpired(GameObject.GetInstance().GameTime);
-                //add code for checking and executing new events
-            }
-
+             
              }
         //updates an airliner
         private static void UpdateAirliner(FleetAirliner airliner)

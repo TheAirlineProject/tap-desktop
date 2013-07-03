@@ -130,7 +130,10 @@ namespace TheAirline.Model.GeneralModel
             Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
             var airlines = Airlines.GetAllAirlines().FindAll(a => a.Profile.PreferedAirport == null);
-            var airlineLogos = Airlines.GetAllAirlines().FindAll(a => a.Profile.Logo.EndsWith("default.png"));
+            var airlineLogos = Airlines.GetAllAirlines().FindAll(a => a.Profile.Logos.Count==0);
+
+            foreach (Airline noLogoAirline in airlineLogos)
+                Console.WriteLine(noLogoAirline.Profile.Name);
 
             var noRunwayAirports = Airports.GetAirports(a => a.Runways.Count == 0);
             var cargoAirliners = AirlinerTypes.GetAllTypes().FindAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);

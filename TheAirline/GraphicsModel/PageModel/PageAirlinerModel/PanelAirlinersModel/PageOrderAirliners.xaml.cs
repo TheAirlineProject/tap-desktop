@@ -40,15 +40,17 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private Manufacturer Manufacturer;
         private PageAirliners ParentPage;
         private List<AirlinerClass> Classes;
+        private Boolean customConfiguration;
         private WrapPanel panelClasses;
         private AirlinerType Type;
-        private Button btnEquipped;
+        private Button btnEquipped, btnApplyConfiguration;
         private Button btnOrder;
         public PageOrderAirliners(PageAirliners parent, Manufacturer manufacturer)
         {
             this.ParentPage = parent;
             this.Manufacturer = manufacturer;
 
+            this.customConfiguration = false;
             this.orders = new List<AirlinerOrder>();
             this.Classes = new List<AirlinerClass>();
 
@@ -293,6 +295,10 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
                 lbEquipped.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageOrderAirliners","1013"), cbStandardConfiguration));
             }
 
+            WrapPanel panelConfiguration = new WrapPanel();
+            panelEquipped.Margin = new Thickness(0, 5, 0, 0);
+            panelEquipped.Children.Add(panelConfiguration);
+
             btnEquipped = new Button();
             btnEquipped.Uid = "201";
             btnEquipped.SetResourceReference(Button.StyleProperty, "RoundedButton");
@@ -304,7 +310,20 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
             btnEquipped.Tag = type;
             btnEquipped.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
 
-            panelEquipped.Children.Add(btnEquipped);
+            panelConfiguration.Children.Add(btnEquipped);
+
+            btnApplyConfiguration = new Button();
+            btnApplyConfiguration.Uid = "202";
+            btnApplyConfiguration.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnApplyConfiguration.Height = Double.NaN;
+            btnApplyConfiguration.Width = Double.NaN;
+            btnApplyConfiguration.Margin = new Thickness(5, 0, 0, 0);
+            btnApplyConfiguration.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+            btnApplyConfiguration.Content = Translator.GetInstance().GetString("PageOrderAirli ners", btnApplyConfiguration.Uid);
+            btnApplyConfiguration.Visibility = System.Windows.Visibility.Collapsed;
+            
+            //text: apply before Adding to order
+            panelConfiguration.Children.Add(btnApplyConfiguration);
 
             return panelEquipped;
           
@@ -370,6 +389,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private void cbStandardConfiguration_Checked(object sender, RoutedEventArgs e)
         {
             btnEquipped.IsEnabled = false;
+            btnApplyConfiguration.IsEnabled = false;
             AirlinerType type = (AirlinerType)((CheckBox)sender).Tag;
 
             Configuration airlinerTypeConfiguration = Configurations.GetConfigurations(Configuration.ConfigurationType.AirlinerType).Find(c => ((AirlinerTypeConfiguration)c).Airliner == type && ((AirlinerTypeConfiguration)c).Period.From <=GameObject.GetInstance().GameTime && ((AirlinerTypeConfiguration)c).Period.To > GameObject.GetInstance().GameTime);
@@ -402,7 +422,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         private void cbStandardConfiguration_Unchecked(object sender, RoutedEventArgs e)
         {
             btnEquipped.IsEnabled = true;
-        }
+            btnApplyConfiguration.IsEnabled = true;
+         }
 
         private void btnEquipped_Click(object sender, RoutedEventArgs e)
         {
@@ -412,6 +433,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             if (classes != null)
             {
+                this.customConfiguration = true;
+
                 this.Classes = classes;
 
                 panelClasses.Children.Clear();
@@ -428,7 +451,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         {
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
-
 
             Airport airport = (Airport)cbAirport.SelectedItem;
 
@@ -695,6 +717,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
 
             PopUpAirlinerClassConfiguration.ShowPopUp(aClass);
 
+            customConfiguration = true;
 
         }
        
@@ -730,11 +753,13 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinerModel.PanelAirlinersMod
         }
         private void btnAddOrder_Click(object sender, RoutedEventArgs e)
         {
+
+            
             AirlinerType type = (AirlinerType)cbTypes.SelectedItem;
 
             int number = Convert.ToInt16(nudAirliners.Value);
-
-            this.orders.Add(new AirlinerOrder(type, this.Classes, number));
+          
+            this.orders.Add(new AirlinerOrder(type, this.Classes, number,customConfiguration));
      
             showOrders();
 

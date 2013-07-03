@@ -168,7 +168,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                 List<AirlinerOrder> orders = new List<AirlinerOrder>();
-                orders.Add(new AirlinerOrder(type, classes, numberToOrder));
+                orders.Add(new AirlinerOrder(type, classes, numberToOrder,false));
 
                 int days = rnd.Next(30);
                 AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
