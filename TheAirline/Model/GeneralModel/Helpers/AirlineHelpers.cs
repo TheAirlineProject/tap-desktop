@@ -67,6 +67,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return fAirliner;
         }
+       
         //orders a number of airliners for an airline
         public static void OrderAirliners(Airline airline, List<AirlinerOrder> orders, Airport airport, DateTime deliveryDate)
         {
@@ -310,7 +311,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     GeneralHelpers.CreatePilots(50);
             }
 
-           
+
 
         }
         //returns the discount factor for a manufactorer for an airline and for a period
@@ -337,7 +338,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static Boolean CanCreateHub(Airline airline, Airport airport, HubType type)
         {
             Boolean airlineHub = airport.getHubs().Exists(h => h.Airline == airline);
-            
+
             int airlineValue = (int)airline.getAirlineValue() + 1;
 
             int totalAirlineHubs = airline.getHubs().Count;// 'Airports.GetAllActiveAirports().Sum(a => a.Hubs.Count(h => h.Airline == airline));
@@ -346,18 +347,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (type.Type)
             {
                 case HubType.TypeOfHub.Focus_city:
-                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type);            
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type);
                 case HubType.TypeOfHub.Regional_hub:
                     return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size == GeneralHelpers.Size.Large || airport.Profile.Size == GeneralHelpers.Size.Medium) && airport.getHubs().Count < 7;
                 case HubType.TypeOfHub.Fortress_hub:
                     return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (airport.Profile.Size > GeneralHelpers.Size.Medium) && airlineGatesPercent > 70 && (totalAirlineHubs < airlineValue);
                 case HubType.TypeOfHub.Hub:
-                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport,type) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.getHubs(HubType.TypeOfHub.Hub).Count < (int)airport.Profile.Size);
+                    return !airlineHub && airline.Money > AirportHelpers.GetHubPrice(airport, type) && (!airlineHub) && (airlineGatesPercent > 20) && (totalAirlineHubs < airlineValue) && (airport.getHubs(HubType.TypeOfHub.Hub).Count < (int)airport.Profile.Size);
             }
 
             return false;
-            
-          
+
+
         }
 
         //update the damage scores for an airline
