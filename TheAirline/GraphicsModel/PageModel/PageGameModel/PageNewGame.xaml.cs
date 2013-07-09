@@ -743,7 +743,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
                 airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                if (continent.Uid != "100")
+                if (continent.Uid != "100" || region.Uid != "100")
                 {
                     var airlines =  Airlines.GetAirlines(a=>a.Profile.Country.Region == region ||  (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Founded <= startYear && a.Profile.Folded > startYear);
                     var airports = Airports.GetAirports(a => a.Profile.Country.Region == region || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year > startYear);

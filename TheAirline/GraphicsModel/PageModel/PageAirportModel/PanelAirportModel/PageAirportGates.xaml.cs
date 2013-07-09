@@ -48,7 +48,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             panelGates = new StackPanel();
 
-
             panelGatesTerminals.Children.Add(panelGates);
 
             ScrollViewer svTerminals = new ScrollViewer();
