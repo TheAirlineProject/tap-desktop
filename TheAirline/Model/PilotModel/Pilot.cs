@@ -13,6 +13,7 @@ namespace TheAirline.Model.PilotModel
     [DataContract]
     public class Pilot
     {
+        
         public enum PilotRating { 
              [EnumMember(Value="A")]A=3, 
              [EnumMember(Value="B")]B=4,
