@@ -267,7 +267,7 @@ namespace TheAirline.Model.GeneralModel
         //creates the pilot ranking for a pilot student
         public static Pilot.PilotRating GetPilotStudentRanking(PilotStudent student)
         {
-            
+          
           
             Pilot.PilotRating instructorRanking = student.Instructor.Rating;
             int aircraftCoeff = student.Instructor.FlightSchool.TrainingAircrafts.Exists(a => a.Type.MaxNumberOfStudents > 5) ? 10 : 0;
@@ -276,10 +276,21 @@ namespace TheAirline.Model.GeneralModel
             Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
             rankings.Add(instructorRanking, 50);
 
-            if (instructorRankingIndex > 0) rankings.Add((Pilot.PilotRating)instructorRankingIndex - 1, 35-aircraftCoeff);
-            if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1) rankings.Add((Pilot.PilotRating)instructorRankingIndex + 1, 15+aircraftCoeff);
+            if (instructorRankingIndex > 0)
+            {
+                Pilot.PilotRating prevRating = (Pilot.PilotRating)Enum.GetValues(typeof(Pilot.PilotRating)).GetValue(instructorRankingIndex-1);
+                rankings.Add(prevRating, 35 - aircraftCoeff);
+            }
+            if (instructorRankingIndex < Enum.GetValues(typeof(Pilot.PilotRating)).Length - 1)
+            {
+                Pilot.PilotRating nextRating = (Pilot.PilotRating)Enum.GetValues(typeof(Pilot.PilotRating)).GetValue(instructorRankingIndex + 1);
+         
+                rankings.Add(nextRating, 15 + aircraftCoeff);
+            }
 
-            return AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+            Pilot.PilotRating rating = AIHelpers.GetRandomItem<Pilot.PilotRating>(rankings);
+
+            return rating;
         }
         //creates a number of pilots
         public static void CreatePilots(int count)
