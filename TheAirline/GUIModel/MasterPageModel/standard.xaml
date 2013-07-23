@@ -1,0 +1,142 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    x:Class="TheAirline.GUIModel.MasterPageModel.standardEvents"
+                    xmlns:p="clr-namespace:TheAirline.Properties"
+                    xmlns:g="clr-namespace:TheAirline.GUIModel.ObjectsModel"
+                    xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel">
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="standardStyles.xaml"></ResourceDictionary>
+    </ResourceDictionary.MergedDictionaries>
+    <g:GUIObject x:Key="gameObject"></g:GUIObject>
+    <DataTemplate x:Key="HeaderContent">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Source="/data/images/logo_banner.png" Grid.Column="0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            <WrapPanel Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <Image                                  
+                               Source="{Binding GameObject.HumanAirline.Profile.Logo,Source={StaticResource gameObject}}"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                              Margin="0 0 20 0" Opacity="0.8"
+                VerticalAlignment="Center"
+                              Height="32"/>
+
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.Name,Source={StaticResource gameObject}}" Style="{StaticResource HeaderStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+            </WrapPanel>
+            <StackPanel VerticalAlignment="Center" Grid.Column="2" Margin="0 0 10 0">
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.CEO,Source={StaticResource gameObject}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},StringFormat={}{0:MMMM dd yyyy HH:mm}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="$1.234.567" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+            </StackPanel>
+
+        </Grid>
+    </DataTemplate>
+    <DataTemplate x:Key="MainContentMenu">
+
+    </DataTemplate>
+    <DataTemplate x:Key="MainContent">
+        <TextBlock Text="Main content"></TextBlock>
+
+    </DataTemplate>
+    <DataTemplate x:Key="LeftContent">
+        <StackPanel>
+            <Button Content="Home" Style="{StaticResource MenuButtonStyle}" Click="Home_Click"></Button>
+            <Button Content="Routes Manager" Style="{StaticResource MenuButtonStyle}" Click="RoutesManager_Click" Margin="0 5 0 0"></Button>
+            <Button Content="Buy/Lease Airliners" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Margin="0 5 0 0"></Button>
+            <Button Content="Airports" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Click="Airports_Click" Margin="0 5 0 0" ></Button>
+            <Button Content="Create Alliance" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Margin="0 5 0 0" ></Button>
+            <Button Content="Hire Pilots" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Margin="0 5 0 0" ></Button>
+            <Button Content="Take Out Loan" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Margin="0 5 0 0" ></Button>
+            <Button Content="Airlines" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Margin="0 5 0 0" ></Button>
+            <Button Content="Options" Style="{StaticResource MenuButtonStyle}" HorizontalAlignment="Center" Margin="0 5 0 0" ></Button>
+       
+        </StackPanel>
+
+    </DataTemplate>
+    <DataTemplate x:Key="RightContent">
+        <TextBlock Text=""></TextBlock>
+    </DataTemplate>
+    <DataTemplate x:Key="FooterContent">
+        <TextBlock Text="{Binding Source={x:Static p:Settings.Default},
+                               Path=Version,StringFormat={}TheAirlineProject {0}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+
+    </DataTemplate>
+    <Style TargetType="{x:Type local:StandardMasterPage}" x:Key="StandardPage">
+        <Setter Property="FooterContentArea" Value="{StaticResource FooterContent}"></Setter>
+        <Setter Property="HeaderContentArea"  Value="{StaticResource HeaderContent}"/>
+        <Setter Property="MainContentArea" Value="{StaticResource MainContent}"/>
+        <Setter Property="RightContentArea" Value="{StaticResource RightContent}"/>
+        <Setter Property="LeftContentArea" Value="{StaticResource LeftContent}"/>
+        <Setter Property="MainContentMenuArea" Value="{StaticResource MainContentMenu}"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:StandardMasterPage}">
+                    <Grid>
+                        <Grid.Background>
+                            <ImageBrush ImageSource="/data/images/bg.jpg"/>
+                        </Grid.Background>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="20" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                                    <LinearGradientBrush.GradientStops>
+                                        <GradientStop Offset="0.25">
+                                            <GradientStop.Color>
+                                                <Color A="50" R="255" G="158" B="0"></Color>
+                                            </GradientStop.Color>
+                                        </GradientStop>
+                                        <GradientStop Offset="1">
+                                            <GradientStop.Color>
+                                                <Color A="50" R="117" G="69" B="15"></Color>
+                                            </GradientStop.Color>
+                                        </GradientStop>
+                                    </LinearGradientBrush.GradientStops>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <ContentControl VerticalAlignment="Center" Margin="10 0 0 0" Grid.Row="0" x:Name="HeaderContentArea" ContentTemplate="{TemplateBinding HeaderContentArea}"/>
+
+                        </Grid>
+                        <Grid Grid.Row="1" Margin="10 50 10 50">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="150" />
+                            </Grid.ColumnDefinitions>
+
+                            <ContentControl x:Name="LeftContentArea" Grid.Column="0" ContentTemplate="{TemplateBinding LeftContentArea}"/>
+
+                            <Grid Grid.Column="1" Margin="10 0 10 0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <ContentControl Grid.Row="0"  x:Name="MainContentMenuArea" ContentTemplate="{TemplateBinding MainContentMenuArea}"/>
+
+                                <DockPanel Grid.Row="1">
+                                    <Border Style="{StaticResource RoundedBorderStyle}">
+                                        <ContentControl  x:Name="MainContentArea" ContentTemplate="{TemplateBinding MainContentArea}"/>
+                                    </Border>
+                                </DockPanel>
+                            </Grid>
+
+                            <ContentControl Grid.Column="2" x:Name="RightContentArea" ContentTemplate="{TemplateBinding RightContentArea}"/>
+
+                        </Grid>
+                        <ContentControl Grid.Row="2" x:Name="FooterContentArea" ContentTemplate="{TemplateBinding FooterContentArea}"/>
+                    </Grid>
+                </ControlTemplate>
+
+            </Setter.Value>
+
+        </Setter>
+
+    </Style>
+</ResourceDictionary>

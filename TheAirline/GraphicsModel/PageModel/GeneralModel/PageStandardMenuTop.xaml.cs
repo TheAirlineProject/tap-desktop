@@ -64,8 +64,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             InitializeComponent();
 
-            int news = GameObject.GetInstance().NewsBox.getUnreadNews().Count;
-
             Menu menu = this.Resources["MenuMain"] as Menu;
             menu.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             Grid.SetColumn(menu, 0);

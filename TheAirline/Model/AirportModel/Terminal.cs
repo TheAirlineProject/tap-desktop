@@ -79,7 +79,8 @@ namespace TheAirline.Model.AirportModel
     public class Terminals
     {
         public Airport Airport { get; set; }
-        
+        public int NumberOfGates { get { return getNumberOfGates(); } private set { ;} }
+        public int NumberOfFreeGates { get { return getFreeGates(); } private set { ; } }
         public List<Terminal> AirportTerminals;
         public Terminals(Airport airport)
         {
