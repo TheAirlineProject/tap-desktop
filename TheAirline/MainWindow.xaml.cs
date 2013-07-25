@@ -28,8 +28,7 @@ namespace TheAirline
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Frame frameMain;
-
+       
         public MainWindow()
         {
            
@@ -45,20 +44,9 @@ namespace TheAirline
 
                 this.Width = SystemParameters.PrimaryScreenWidth;
                 this.Height = SystemParameters.PrimaryScreenHeight;
+                
+                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
 
-                Canvas mainPanel = new Canvas();
-
-                frameMain = new Frame();
-                frameMain.NavigationUIVisibility = NavigationUIVisibility.Hidden;
-                //frameMain.Navigate(new PageNewGame());
-                frameMain.Navigate(new PageSelectLanguage());
-
-                Canvas.SetTop(frameMain, 0);
-                Canvas.SetLeft(frameMain, 0);
-
-                mainPanel.Children.Add(frameMain);
-
-                this.Content = mainPanel;
             }
             catch (Exception e)
             {
@@ -90,38 +78,38 @@ namespace TheAirline
         //clears the navigator
         public void clearNavigator()
         {
-            frameMain.NavigationService.LoadCompleted += new LoadCompletedEventHandler(NavigationService_LoadCompleted);
+            frmContent.NavigationService.LoadCompleted += new LoadCompletedEventHandler(NavigationService_LoadCompleted);
 
             // Remove back entries
-            while (frameMain.NavigationService.CanGoBack)
-                frameMain.NavigationService.RemoveBackEntry();
+            while (frmContent.NavigationService.CanGoBack)
+                frmContent.NavigationService.RemoveBackEntry();
         }
 
         private void NavigationService_LoadCompleted(object sender, NavigationEventArgs e)
         {
-            frameMain.NavigationService.RemoveBackEntry();
+            frmContent.NavigationService.RemoveBackEntry();
 
-            frameMain.NavigationService.LoadCompleted -= new LoadCompletedEventHandler(NavigationService_LoadCompleted);
+            frmContent.NavigationService.LoadCompleted -= new LoadCompletedEventHandler(NavigationService_LoadCompleted);
         }
 
         //returns if navigator can go forward
         public Boolean canGoForward()
         {
-            return frameMain.NavigationService.CanGoForward;
+            return frmContent.NavigationService.CanGoForward;
         }
 
         //returns if navigator can go back
         public Boolean canGoBack()
         {
-            return frameMain.NavigationService.CanGoBack;
+            return frmContent.NavigationService.CanGoBack;
         }
 
         //navigates to a new page
         public void navigateTo(Page page)
         {
           
-            frameMain.Navigate(page);
-            frameMain.NavigationService.RemoveBackEntry();
+            frmContent.Navigate(page);
+            frmContent.NavigationService.RemoveBackEntry();
 
           
         }
@@ -130,16 +118,16 @@ namespace TheAirline
         public void navigateForward()
         {
 
-            if (frameMain.NavigationService.CanGoForward)
-                frameMain.NavigationService.GoForward();
+            if (frmContent.NavigationService.CanGoForward)
+                frmContent.NavigationService.GoForward();
         }
 
         //moves the navigator back
         public void navigateBack()
         {
 
-            if (frameMain.NavigationService.CanGoBack)
-                frameMain.NavigationService.GoBack();
+            if (frmContent.NavigationService.CanGoBack)
+                frmContent.NavigationService.GoBack();
         }
        
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -1,0 +1,49 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageStartData"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      
+	Title="PageStartData">
+    <Page.Resources>
+        <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
+
+    </Page.Resources>
+    <StackPanel HorizontalAlignment="Center">
+        <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+            <g:QuickInfoValue Name="Select Playing Continent">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbContinent_SelectionChanged" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbContinent"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="Select Playing Region">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbRegion"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="Select Start Year">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" Name="cbYear"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="Select Airline Focus">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbFocus"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="Select Difficulty">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name" SelectedValuePath="Name"  Width="100" SelectedIndex="0" Name="cbDifficulty"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+        </ListBox>
+        <WrapPanel Margin="0 10 0 0">
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="Create Game" Width="NaN" Click="btnCreateGame_Click"></Button>
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="Main Menu" Width="NaN" Margin="5 0 0 0"></Button>
+        </WrapPanel>
+
+    </StackPanel>
+</Page>

@@ -19,14 +19,12 @@
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="FontFamily" Value="Calibri"></Setter>
-
     </Style>
     <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold"></Setter>
         <Setter Property="FontSize" Value="32"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="FontFamily" Value="Calibri"></Setter>
-
     </Style>
     <Style TargetType="{x:Type TextBlock}" x:Key="SmallHeaderStyle">
         <Setter Property="FontWeight" Value="Bold"></Setter>

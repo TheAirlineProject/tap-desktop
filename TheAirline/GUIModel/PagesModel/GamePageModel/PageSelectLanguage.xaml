@@ -1,0 +1,63 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageSelectLanguage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      x:Name="pageSelectLanguage"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageSelectLanguage">
+    <Page.Resources>
+        <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
+        <DataTemplate x:Key="LanguageItem">
+            <WrapPanel>
+                <Image Height="32" Width="32" Source="{Binding ImageFile}" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom"></Image>
+                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <Hyperlink Tag="{Binding}" Click="Language_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="QuickLinksContent">
+
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderContent">
+            <WrapPanel HorizontalAlignment="Center">
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                              Margin="0 0 20 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+                <TextBlock   Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                  
+                    
+                              Margin="20 0 0 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NoContentMenu"></DataTemplate>
+        <DataTemplate x:Key="NoLeftContent"></DataTemplate>
+        <DataTemplate x:Key="LanguageContent">
+            <StackPanel>
+                <TextBlock Text="Select Language" Style="{StaticResource HeaderStyle}"></TextBlock>
+
+                <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}"  ItemsSource="{Binding ElementName=pageSelectLanguage, Path=AllLanguages}" ItemTemplate="{StaticResource LanguageItem}" />
+
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" HeaderContentArea="{StaticResource HeaderContent}" LeftContentArea="{StaticResource NoLeftContent}"  MainContentArea="{StaticResource LanguageContent}" RightContentArea="{StaticResource QuickLinksContent}" MainContentMenuArea="{StaticResource NoContentMenu}"/>
+
+</Page>

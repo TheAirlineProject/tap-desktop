@@ -3,6 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="The Airline" Height="350" Width="525"  KeyDown="Window_KeyDown" WindowState="Maximized" WindowStyle="None" Icon="Data\images\airplane-white.png" Loaded="Window_Loaded">
     <Grid>
-        
+        <Frame NavigationUIVisibility="Hidden" Name="frmContent" />
     </Grid>
 </Window>
