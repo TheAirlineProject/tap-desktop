@@ -36,7 +36,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             AppSettings.GetInstance().setLanguage(language);
 
 
-            PageNavigator.NavigateTo(new PageNewGame());
+            PageNavigator.NavigateTo(new PageStartMenu());
         }
     }
 }

@@ -843,6 +843,7 @@
     <Compile Include="GraphicsModel\UserControlModel\ucSelectButton.xaml.cs">
       <DependentUpon>ucSelectButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\HelpersModel\Converters.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
     <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
