@@ -142,11 +142,12 @@ namespace TheAirline.Model.GeneralModel
 			catch (System.IO.FileNotFoundException) 
 			{ 
 				throw new Exception("Xml-File "+file+" wurde nicht gefunden");
-			} 
+			}
+                /*
 			catch (System.Exception ex) 
 			{
 				throw new Exception("Allgemeiner Fehler beim Laden von "+file+": " + ex.Message);
-			}
+			}*/
 
 			return xDoc;
 		}

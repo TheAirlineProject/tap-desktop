@@ -9,7 +9,7 @@
 	Title="PageNewGame">
     <Page.Resources>
         <DataTemplate x:Key="NewGameContent">
-            <Frame NavigationUIVisibility="Hidden" Name="frmContent" Source="PageStartData.xaml" />
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent"/>
         </DataTemplate>
         <DataTemplate x:Key="QuickLinksContent">
 

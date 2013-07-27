@@ -6,6 +6,7 @@
                     xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="standardStyles.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="standardTemplates.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
     <g:GUIObject x:Key="gameObject"></g:GUIObject>
     <DataTemplate x:Key="HeaderContent">

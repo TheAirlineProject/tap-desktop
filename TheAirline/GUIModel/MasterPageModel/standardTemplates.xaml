@@ -1,0 +1,28 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <!--airline templates-->
+    <DataTemplate x:Key="AirlineLink">
+        <DockPanel>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                            <Hyperlink Tag="{Binding}">
+                                <Run Text="{Binding Profile.Name}"></Run>
+                            </Hyperlink>
+            </TextBlock>
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirlineItem">
+        <DockPanel>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}">
+            </TextBlock>
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirlineLongItem">
+        <DockPanel>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}"></TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}"></TextBlock>
+        </DockPanel>
+    </DataTemplate>
+</ResourceDictionary>

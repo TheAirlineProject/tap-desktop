@@ -16,9 +16,16 @@ namespace TheAirline.GUIModel.HelpersModel
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            string[] values = parameter.ToString().Split(' ');
+            try
+            {
+                string[] values = parameter.ToString().Split(' ');
 
-            return Translator.GetInstance().GetString(values[0], values[1]);
+                return Translator.GetInstance().GetString(values[0], values[1]);
+            }
+            catch (Exception e)
+            {
+                return "";
+            }
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
@@ -30,6 +32,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             InitializeComponent();
 
             Continent continentAll = new Continent("100", "All continents");
+                       
             cbContinent.Items.Add(continentAll);
 
             foreach (Continent continent in Continents.GetContinents())
@@ -56,15 +59,74 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 foreach (Region region in Regions.GetAllRegions().OrderBy(r => r.Name))
                     cbRegion.Items.Add(region);
             else
+            {
+                 if (selectedContinent.Regions.Count > 1)
+                    cbRegion.Items.Add(Regions.GetRegion("100"));
+
                 foreach (Region region in selectedContinent.Regions.OrderBy(r => r.Name))
                     cbRegion.Items.Add(region);
+            }
+
 
             cbRegion.SelectedIndex = 0;
         }
 
-        private void btnCreateGame_Click(object sender, RoutedEventArgs e)
+       
+        private void cbYear_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageFrontMenu());
+            Continent continent = (Continent)cbContinent.SelectedItem;
+
+            if (continent == null)
+            {
+                cbContinent.SelectedIndex = 0;
+                continent = (Continent)cbContinent.SelectedItem;
+            }
+
+            Region region = (Region)cbRegion.SelectedItem;
+            if (region == null)
+            {
+                cbRegion.SelectedIndex = 0;
+                region = (Region)cbRegion.SelectedItem;
+            }
+
+            setNumberOfOpponents();
+
+        }
+
+        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            setNumberOfOpponents();
+        }
+
+        //sets the number of opponents
+        private void setNumberOfOpponents()
+        {
+            if (cbYear.SelectedItem != null && cbRegion.SelectedItem != null && cbContinent.SelectedItem != null)
+            {
+                int year = (int)cbYear.SelectedItem;
+                Region region = (Region)cbRegion.SelectedItem;
+                Continent continent = (Continent)cbContinent.SelectedItem;
+
+                var airlines = Airlines.GetAirlines(airline => (airline.Profile.Country.Region == region || (region.Uid == "100" && continent.Uid == "100") || (region.Uid == "100" && continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= year && airline.Profile.Folded > year);
+
+                cbOpponents.Items.Clear();
+
+                for (int i = 0; i < airlines.Count; i++)
+                    cbOpponents.Items.Add(i);
+
+                cbOpponents.SelectedIndex = Math.Min(cbOpponents.Items.Count - 1, 3);
+            }
+        }
+
+        private void btnNext_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
+
+            frmContent.Navigate(new PageAirlineData() { Tag = this.Tag });
+        }
+        private void btnStartMenu_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageStartMenu());
         }
     }
 }

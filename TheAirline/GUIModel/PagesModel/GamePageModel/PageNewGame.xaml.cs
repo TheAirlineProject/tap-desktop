@@ -24,6 +24,15 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         public PageNewGame()
         {
             InitializeComponent();
+
+            this.Loaded += PageNewGame_Loaded;
+        }
+
+        private void PageNewGame_Loaded(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+
+            frmContent.Navigate(new PageStartData() { Tag = this });
         }
 
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)

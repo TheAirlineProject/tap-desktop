@@ -506,6 +506,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\MasterPageModel\standardTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -849,6 +857,9 @@
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
     <Compile Include="GUIModel\MasterPageModel\StandardMasterPage.cs" />
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
+      <DependentUpon>PageAirlineData.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml.cs">
       <DependentUpon>PageNewGame.xaml</DependentUpon>
     </Compile>
@@ -1176,6 +1187,9 @@
   <ItemGroup>
     <Resource Include="Data\images\bg.jpg" />
     <Resource Include="Data\images\logo_banner.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Plane.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

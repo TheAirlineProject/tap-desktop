@@ -13,6 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.PageModel.PageGameModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -31,6 +34,17 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             PageNavigator.NavigateTo(new PageNewGame());
         }
 
+        private void btnPlayScenario_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PagePlayScenario());
+        }
+        private void btnExitGame_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+                PageNavigator.MainWindow.Close();
+        }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
            
