@@ -38,7 +38,7 @@
         <DataTemplate x:Key="NoContentMenu"></DataTemplate>
         <DataTemplate x:Key="NoLeftContent"></DataTemplate>
         <DataTemplate x:Key="StartMenuContent">
-            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <StackPanel HorizontalAlignment="Center">
                 <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFrontMenu 200'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnNewGame_Click"></Button>
                 <Button Margin="0 5 0 0" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFrontMenu 205'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnPlayScenario_Click"></Button>
                 <Button Margin="0 5 0 0" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFrontMenu 201'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnLoadGame_Click"></Button>

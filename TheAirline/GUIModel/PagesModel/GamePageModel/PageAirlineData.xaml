@@ -4,8 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
        xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
+xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.GamePageModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
+      Name="pageAirlineData"
 	Title="PageAirlineData">
 
     <Page.Resources>
@@ -13,13 +17,64 @@
         <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
     </Page.Resources>
     <StackPanel HorizontalAlignment="Center">
-        <TextBlock Name="txtNarrative" Width="400" FontStyle="Italic" TextWrapping="Wrap"></TextBlock>
         <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
-            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1022'}">
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1002'}">
                 <g:QuickInfoValue.Value>
-                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemTemplate="{StaticResource AirlineLongItem}" Width="300" Name="cbAirline" SelectionChanged="cbAirline_SelectionChanged"></ComboBox>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemTemplate="{StaticResource AirlineLongItem}" Width="300" SelectionChanged="cbAirline_SelectionChanged" Name="cbAirline"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1021'}">
+                <g:QuickInfoValue.Value>
+                    <TextBlock Text="{Binding SelectedItem.AirlineRouteFocus,ElementName=cbAirline}"></TextBlock>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1005'}">
+                <g:QuickInfoValue.Value>
+                    <TextBox Width="300" Name="txtCEO" Text="{Binding SelectedItem.Profile.CEO,ElementName=cbAirline}"></TextBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1004'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Width="300" Name="cbCountry" IsSynchronizedWithCurrentItem="True"  Style="{StaticResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource CountryLongFlagItem}" SelectedItem="{Binding SelectedItem.Profile.Country,ElementName=cbAirline}" ItemsSource="{Binding SelectedItem.Profile.Countries,ElementName=cbAirline}"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1006'}">
+                <g:QuickInfoValue.Value>
+                    <ContentControl ContentTemplate="{StaticResource AirlineColorItem}" Content="{Binding SelectedItem.Profile.Color,ElementName=cbAirline}" HorizontalAlignment="Center"></ContentControl>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1007'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox x:Name="cbAirport" Width="300" Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding AllAirports,ElementName=pageAirlineData}"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1009'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Name="cbTimeZone" Width="300" Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="DisplayName" SelectedValuePath="DisplayName" SelectedItem="{Binding SelectedItem.Profile.TimeZone,ElementName=cbAirport}" ItemsSource="{Binding AllTimeZones,ElementName=pageAirlineData}"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+
         </ListBox>
+        <TextBlock Name="txtNarrative" Width="500" FontStyle="Italic" TextWrapping="Wrap" Text="{Binding SelectedItem.Profile.Narrative,ElementName=cbAirline}">
+            <TextBlock.Background>
+                <SolidColorBrush Color="Black" Opacity="0.8"></SolidColorBrush>
+            </TextBlock.Background>
+            <TextBlock.Style>
+                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                <Style.Triggers>
+                    <Trigger Property="Text" Value="">
+                        <Setter Property="Visibility" Value="Hidden" />
+                    </Trigger>
+                </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <WrapPanel Margin="0 10 0 0">
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 201'}" Width="NaN" Click="btnCreateGame_Click"></Button>
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='General 119'}" Width="NaN" Click="btnBack_Click" Margin="5 0 0 0"></Button>
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 202'}" Width="NaN" Click="btnStartMenu_Click" Margin="5 0 0 0"></Button>
+        </WrapPanel>
+
+
     </StackPanel>
 </Page>

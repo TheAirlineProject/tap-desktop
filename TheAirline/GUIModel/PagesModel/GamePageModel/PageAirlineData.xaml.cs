@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +13,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -21,18 +29,69 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
     /// </summary>
     public partial class PageAirlineData : Page
     {
-        public PageAirlineData()
+        public List<GameTimeZone> AllTimeZones { get; set; }
+        public ObservableCollection<Airport> AllAirports { get; set; }
+        private StartDataObject StartData;
+        public PageAirlineData(StartDataObject startData)
         {
+            this.AllTimeZones = TimeZones.GetTimeZones();
+            this.AllAirports = new ObservableCollection<Airport>();
+            this.StartData = startData;
+            
             InitializeComponent();
 
-            cbAirline.ItemsSource = Airlines.GetAllAirlines();
+            var airlines = Airlines.GetAirlines(airline => (airline.Profile.Country.Region == this.StartData.Region || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100") || (this.StartData.Region.Uid == "100" && this.StartData.Continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= this.StartData.Year && airline.Profile.Folded > this.StartData.Year);
+
+            cbAirline.ItemsSource = airlines;
+
+           // cbLocalCurrency.Visibility = airline.Profile.Country.Currencies.Count > 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
+              
         }
 
         private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Airline airline = (Airline)cbAirline.SelectedItem;
 
-            txtNarrative.Text = airline.Profile.Narrative; 
+            this.AllAirports.Clear();
+
+            foreach (var airport in Airports.GetAllAirports(a => airline.Profile.Countries.Contains(a.Profile.Country)))
+                this.AllAirports.Add(airport);
+
+            if (this.AllAirports.Contains(airline.Profile.PreferedAirport))
+                cbAirport.SelectedItem = airline.Profile.PreferedAirport;
+            else
+                cbAirport.SelectedIndex = 0;
         }
+        private void btnStartMenu_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageStartMenu());
+        }
+        private void btnCreateGame_Click(object sender, RoutedEventArgs e)
+        {
+            this.StartData.Airline = (Airline)cbAirline.SelectedItem;
+            this.StartData.Airport = (Airport)cbAirport.SelectedItem;
+            this.StartData.CEO = (string)txtCEO.Text;
+            this.StartData.HomeCountry = (Country)cbCountry.SelectedItem;
+            this.StartData.TimeZone = (GameTimeZone)cbTimeZone.SelectedItem;
+
+            Size s = PageNavigator.MainWindow.RenderSize;
+
+            GraphicsHelpers.SetContentHeight(s.Height - 100);
+            GraphicsHelpers.SetContentWidth(s.Width / 2);
+
+            GameObjectHelpers.CreateGame(this.StartData);
+
+            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+            PageNavigator.ClearNavigator();
+
+        }
+        private void btnBack_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
+
+            frmContent.Navigate(new PageStartData() { Tag = this.Tag });
+        }
+       
     }
 }

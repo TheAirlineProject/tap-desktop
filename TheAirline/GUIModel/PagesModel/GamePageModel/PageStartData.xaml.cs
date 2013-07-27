@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
@@ -43,6 +44,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             for (int i = 1960; i < 2014; i++)
                 cbYear.Items.Add(i);
+
+            cbYear.SelectedIndex = cbYear.Items.Count - 1;
 
             cbDifficulty.ItemsSource = DifficultyLevels.GetDifficultyLevels();
 
@@ -122,7 +125,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             Frame frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
 
-            frmContent.Navigate(new PageAirlineData() { Tag = this.Tag });
+            frmContent.Navigate(new PageAirlineData(new StartDataObject() { Focus = (Airline.AirlineFocus)cbFocus.SelectedItem, SameRegion = cbSameRegion.IsChecked.Value, RandomOpponents = rbRandomOpponents.IsChecked.Value,  UseDayTurns=rbDayTurns.IsChecked.Value, Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem, Opponents = (int)cbOpponents.SelectedItem, Year = (int)cbYear.SelectedItem, Continent = (Continent)cbContinent.SelectedItem, Region = (Region)cbRegion.SelectedItem}) { Tag = this.Tag });
         }
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {

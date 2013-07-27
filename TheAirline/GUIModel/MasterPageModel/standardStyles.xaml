@@ -15,10 +15,18 @@
         <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
 
     </Style>
-    <!--text blocks-->
+    <!--textboxes-->
+    <Style TargetType="{x:Type TextBox}">
+        <Setter Property="Background" Value="Transparent"></Setter>
+        <Setter Property="Foreground" Value="White"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="BorderBrush" Value="Black"></Setter>
+    </Style>
+    <!--textblocks-->
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="FontFamily" Value="Calibri"></Setter>
+       
     </Style>
     <Style x:Key="HeaderStyle" TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Bold"></Setter>

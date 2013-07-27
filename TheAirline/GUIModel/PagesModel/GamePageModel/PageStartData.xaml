@@ -34,7 +34,7 @@
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbFocus"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1012'}">
+            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1011'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name" SelectedValuePath="Name"  Width="100" SelectedIndex="0" Name="cbDifficulty"></ComboBox>
                 </g:QuickInfoValue.Value>
@@ -49,7 +49,7 @@
                     <StackPanel>
                         <CheckBox Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1017'}" VerticalAlignment="Bottom" Name="cbSameRegion"></CheckBox>
                     <WrapPanel>
-                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1018'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1018'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True" x:Name="rbRandomOpponents"></RadioButton>
                             <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1019'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
                     </WrapPanel>
                     </StackPanel>
@@ -58,7 +58,7 @@
             <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1023'}">
                 <g:QuickInfoValue.Value>
                     <WrapPanel>
-                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1024'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1024'}" Name="rbDayTurns" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
                         <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1025'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
                     </WrapPanel>
                 </g:QuickInfoValue.Value>

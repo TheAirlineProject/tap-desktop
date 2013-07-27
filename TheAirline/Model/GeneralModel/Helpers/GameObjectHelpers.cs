@@ -21,6 +21,8 @@ using TheAirline.Model.StatisticsModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using System.Diagnostics;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.ObjectsModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -1601,6 +1603,114 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 case HistoricEventInfluence.InfluenceType.Stocks:
                     break;
             }
+        }
+        //creates a new game
+        public static void CreateGame(StartDataObject startData)
+        {
+            object o = null;
+            int startYear = startData.Year;
+            int opponents = startData.Opponents;
+            Airline airline = startData.Airline;
+            Continent continent = startData.Continent;
+            Region region = startData.Region;
+            
+            if (!startData.RandomOpponents)
+            {
+                if (startData.SameRegion)
+                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, airline.Profile.Country.Region);
+                else
+                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region, continent);
+            }
+
+            GameTimeZone gtz = startData.TimeZone;
+            GameObject.GetInstance().DayRoundEnabled = startData.UseDayTurns;
+            GameObject.GetInstance().TimeZone = gtz;
+            GameObject.GetInstance().Difficulty = startData.Difficulty;
+            GameObject.GetInstance().GameTime = new DateTime(startYear, 1, 1);
+            GameObject.GetInstance().StartDate = GameObject.GetInstance().GameTime;
+            //sets the fuel price
+            GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
+
+            airline.Profile.Country = startData.HomeCountry;
+            airline.Profile.CEO = startData.CEO;
+
+            GameObject.GetInstance().HumanAirline = airline;
+            GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
+
+            if (startData.LocalCurrency)
+                GameObject.GetInstance().CurrencyCountry = airline.Profile.Country;
+            // AppSettings.GetInstance().resetCurrencyFormat();
+
+            Airport airport = startData.Airport;
+
+            AirportHelpers.RentGates(airport, airline, 2);
+
+            AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+            AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
+
+            airport.addAirportFacility(GameObject.GetInstance().HumanAirline, facility, GameObject.GetInstance().GameTime);
+            airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+
+            if (continent.Uid != "100" || region.Uid != "100")
+            {
+                var airlines = Airlines.GetAirlines(a => a.Profile.Country.Region == region || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Founded <= startYear && a.Profile.Folded > startYear);
+                var airports = Airports.GetAirports(a => a.Profile.Country.Region == region || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year > startYear);
+
+                //Airports.RemoveAirports(a => (a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region)) || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas));
+                Airports.Clear();
+                foreach (Airport a in airports)
+                    Airports.AddAirport(a);
+
+                Airlines.Clear();
+                foreach (Airline a in airlines)
+                    Airlines.AddAirline(a);
+            }
+
+            PassengerHelpers.CreateAirlineDestinationDemand();
+
+            AirlinerHelpers.CreateStartUpAirliners();
+
+            if (startData.RandomOpponents || o == null)
+                Setup.SetupMainGame(opponents, startData.SameRegion);
+            else
+                Setup.SetupMainGame((List<Airline>)o);
+
+
+            airline.MarketFocus = startData.Focus;
+
+            GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+
+            //PassengerHelpers.CreateDestinationPassengers();
+
+            GameTimer.GetInstance().start();
+            GameObjectWorker.GetInstance().start();
+            // AIWorker.GetInstance().start();
+
+        
+            //GameObject.GetInstance().HumanAirline.Money = 10000000000000;
+
+            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
+
+       
+
+
+
+            Action action = () =>
+            {
+                Stopwatch swPax = new Stopwatch();
+                swPax.Start();
+
+                PassengerHelpers.CreateDestinationDemand();
+
+                Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+                swPax.Stop();
+            };
+
+            Task.Factory.StartNew(action);
+            //Task.Run(action);
+            //Task t2 = Task.Factory.StartNew(action, "passengers");
+
+
         }
 
     }

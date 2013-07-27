@@ -42,6 +42,7 @@ namespace TheAirline.Model.GeneralModel
     //the list of time zones
     public class TimeZones
     {
+       
         private static List<GameTimeZone> timeZones = new List<GameTimeZone>();
         //clears the list
         public static void Clear()
@@ -58,5 +59,6 @@ namespace TheAirline.Model.GeneralModel
         {
             return timeZones;
         }
+      
     }
 }
