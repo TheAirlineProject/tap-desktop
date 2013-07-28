@@ -42,6 +42,21 @@
                         <TextBox Width="200" Name="txtIATA" MaxLength="2" Text="--"></TextBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1009'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBox Width="200" Name="txtCEO" Text="Firstname Lastname">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+                                    <Style.Triggers>
+                                        <Trigger Property="Text" Value="Firstname Lastname">
+                                            <Setter Property="FontStyle" Value="Italic" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
                 <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1003'}">
                     <g:QuickInfoValue.Value>
                         <WrapPanel>

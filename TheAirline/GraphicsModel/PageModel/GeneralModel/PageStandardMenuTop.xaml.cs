@@ -212,7 +212,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkAirports_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageAirports());
+            //PageNavigator.NavigateTo(new PageAirports());
+            PageNavigator.NavigateTo(new GUIModel.PagesModel.AirportsPageModel.PageAirports());
         }
         private void lnkCalendar_Click(object sender, RoutedEventArgs e)
         {

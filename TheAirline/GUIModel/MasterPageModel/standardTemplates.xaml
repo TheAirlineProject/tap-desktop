@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:c="clr-namespace:TheAirline.GUIModel.HelpersModel">
+                    xmlns:c="clr-namespace:TheAirline.GUIModel.HelpersModel"
+                    x:Class="TheAirline.GUIModel.MasterPageModel.standardTemplatesEvents">
     <c:AirlineColorConverter x:Key="airlineColorConverter"></c:AirlineColorConverter>
     <!--countries templates-->
     <DataTemplate x:Key="CountryLongFlagItem">
@@ -15,6 +16,16 @@
             <Image Source="{Binding Profile.Town.Country.Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}"/>
 
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirportShortCountryLink">
+        <DockPanel>
+            <Image Source="{Binding Profile.Town.Country.Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                            <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                                <Run Text="{Binding Profile.IATACode}"></Run>
+                            </Hyperlink>
+            </TextBlock>
         </DockPanel>
     </DataTemplate>
     <!--airline templates-->

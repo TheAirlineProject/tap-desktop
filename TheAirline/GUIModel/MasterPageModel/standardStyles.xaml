@@ -370,8 +370,8 @@
                     <Border x:Name="Border" Style="{StaticResource RoundedBorderStyle}">
                         <WrapPanel>
                             <Image Source="/data/images/plane.png" Width="100" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                            <ContentPresenter x:Name="Presenter"
-            Margin="5 0 0 0"
+                            <ContentPresenter x:Name="Presenter" 
+            Margin="5 0 5 0"
             TextBlock.FontWeight="Bold"
                                             
                                 TextBlock.FontSize="20"

@@ -7,6 +7,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 using System.Runtime.Serialization;
+using System.ComponentModel;
 
 
 //locked for verison 0.3.6t2 (this serves no purpose whatsoever)
@@ -15,7 +16,7 @@ namespace TheAirline.Model.GeneralModel
 {
     [Serializable]
     //the class for the game object
-    public class GameObject
+    public class GameObject : INotifyPropertyChanged
     {
         private static GameObject GameInstance;
         
@@ -25,7 +26,7 @@ namespace TheAirline.Model.GeneralModel
         
         public Boolean DayRoundEnabled { get; set; }
         
-        public DateTime GameTime { get; set; }
+        //public DateTime GameTime { get; set; }
         
         public DateTime StartDate { get; set; }
         public Airline HumanAirline { get; set; }
@@ -46,6 +47,14 @@ namespace TheAirline.Model.GeneralModel
         //public double PassengerDemandFactor { get; set; }
         public const int StartYear = 1960;
         
+        private DateTime _gameTime;
+        public DateTime GameTime
+        {
+            get { return _gameTime; }
+            set { _gameTime = value; NotifyPropertyChanged("GameTime"); }
+        }
+
+       
         private GameObject()
         {
             //this.PassengerDemandFactor = 100;
@@ -86,6 +95,18 @@ namespace TheAirline.Model.GeneralModel
         {
             GameInstance = new GameObject();
         }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+         
+        
 
     }
 }

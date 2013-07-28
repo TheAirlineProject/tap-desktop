@@ -113,7 +113,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             string name = txtName.Text.Trim();
             string iata = txtIATA.Text.Trim().ToUpper();
-            string ceo;
+            string ceo = txtCEO.Text.Trim();
 
             Airline tAirline = Airlines.GetAirline(iata);
 
