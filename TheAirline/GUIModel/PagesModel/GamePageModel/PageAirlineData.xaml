@@ -6,7 +6,6 @@
        xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
-      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.GamePageModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageAirlineData"
@@ -35,10 +34,14 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
             </g:QuickInfoValue>
             <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1004'}">
                 <g:QuickInfoValue.Value>
+                    <StackPanel>
                     <ComboBox Width="300" Name="cbCountry" IsSynchronizedWithCurrentItem="True"  Style="{StaticResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource CountryLongFlagItem}" SelectedItem="{Binding SelectedItem.Profile.Country,ElementName=cbAirline}" ItemsSource="{Binding SelectedItem.Profile.Countries,ElementName=cbAirline}"></ComboBox>
-                </g:QuickInfoValue.Value>
+                        <CheckBox FlowDirection="RightToLeft" HorizontalAlignment="Left" Name="cbLocalCurrency" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1014'}">
+                        </CheckBox>
+                    </StackPanel>
+                    </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1006'}">
+             <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewGame 1006'}">
                 <g:QuickInfoValue.Value>
                     <ContentControl ContentTemplate="{StaticResource AirlineColorItem}" Content="{Binding SelectedItem.Profile.Color,ElementName=cbAirline}" HorizontalAlignment="Center"></ContentControl>
                 </g:QuickInfoValue.Value>

@@ -278,6 +278,8 @@
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
         <Setter Property="Background" Value="#085084"/>
         <Setter Property="FontWeight" Value="Bold"/>
+        <Setter Property="Width" Value="NaN"></Setter>
+        <Setter Property="Height" Value="NaN"></Setter>
         <Setter Property="BorderThickness" Value="3"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

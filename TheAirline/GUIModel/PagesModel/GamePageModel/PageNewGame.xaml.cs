@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+
 using TheAirline.GUIModel.HelpersModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
@@ -44,8 +45,10 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
             
             if (selection == "New" && frmContent != null)
-                frmContent.Navigate(new PageStartData());
+                frmContent.Navigate(new PageStartData() { Tag = this });
 
+            if (selection == "Airline" && frmContent != null)
+                frmContent.Navigate(new PageNewAirline());
         }
     }
 }

@@ -40,7 +40,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             
             InitializeComponent();
 
-            var airlines = Airlines.GetAirlines(airline => (airline.Profile.Country.Region == this.StartData.Region || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100") || (this.StartData.Region.Uid == "100" && this.StartData.Continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= this.StartData.Year && airline.Profile.Folded > this.StartData.Year);
+            var airlines = Airlines.GetAirlines(airline => (airline.Profile.Country.Region == this.StartData.Region || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100") || (this.StartData.Region.Uid == "100" && this.StartData.Continent.hasRegion(airline.Profile.Country.Region))) && airline.Profile.Founded <= this.StartData.Year && airline.Profile.Folded > this.StartData.Year).OrderBy(a=>a.Profile.Name).ToList();
 
             cbAirline.ItemsSource = airlines;
 
@@ -54,7 +54,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             this.AllAirports.Clear();
 
-            foreach (var airport in Airports.GetAllAirports(a => airline.Profile.Countries.Contains(a.Profile.Country)))
+            foreach (var airport in Airports.GetAllAirports(a => airline.Profile.Countries.Contains(a.Profile.Country)).OrderBy(a=>a.Profile.Name))
                 this.AllAirports.Add(airport);
 
             if (this.AllAirports.Contains(airline.Profile.PreferedAirport))
@@ -73,10 +73,11 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.StartData.CEO = (string)txtCEO.Text;
             this.StartData.HomeCountry = (Country)cbCountry.SelectedItem;
             this.StartData.TimeZone = (GameTimeZone)cbTimeZone.SelectedItem;
+            this.StartData.LocalCurrency = cbLocalCurrency.IsChecked.Value && this.StartData.HomeCountry.Currencies.Count > 0;
 
             Size s = PageNavigator.MainWindow.RenderSize;
 
-            GraphicsHelpers.SetContentHeight(s.Height - 100);
+            GraphicsHelpers.SetContentHeight(s.Height/2);
             GraphicsHelpers.SetContentWidth(s.Width / 2);
 
             GameObjectHelpers.CreateGame(this.StartData);

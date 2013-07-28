@@ -23,7 +23,7 @@
                               Margin="0 0 20 0" Opacity="2"
                 VerticalAlignment="Center"
                               Height="32"/>
-                <TextBlock   Text="Welcome To The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock   Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
                 <Image                                  
                                Source="/data/images/logo_banner.png"
                                RenderOptions.BitmapScalingMode="HighQuality"

@@ -13,6 +13,31 @@ using TheAirline.Model.GeneralModel;
 namespace TheAirline.GUIModel.HelpersModel
 {
     //the class for the different converters
+    //the converter for a string to a brush
+    public class StringToBrushConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string color = (string)value;
+            try
+            {
+                TypeConverter colorConverter = new ColorConverter();
+                Color c = (Color)colorConverter.ConvertFromString(color);
+
+                return new SolidColorBrush(c);
+            }
+            catch
+            {
+                return Brushes.White;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for airline color
     public class AirlineColorConverter : IValueConverter
     {
