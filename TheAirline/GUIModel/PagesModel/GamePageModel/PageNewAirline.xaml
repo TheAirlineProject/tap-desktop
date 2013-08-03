@@ -9,7 +9,6 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageNewAirline">
     <Page.Resources>
-        <g:TranslatorConverter x:Key="translatorConverter"></g:TranslatorConverter>
         <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
         <g:StringToBrushConverter x:Key="stringToBrushConverter"></g:StringToBrushConverter>
             <DataTemplate x:Key="ColorItem">
@@ -22,7 +21,7 @@
     <ScrollViewer>
             <StackPanel HorizontalAlignment="Center">
                 <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1001'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1001'}">
                     <g:QuickInfoValue.Value>
                         <TextBox Width="200" Name="txtName" Text="Airline Name">
                             <TextBox.Style>
@@ -37,12 +36,12 @@
                         </TextBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1002'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1002'}">
                     <g:QuickInfoValue.Value>
                         <TextBox Width="200" Name="txtIATA" MaxLength="2" Text="--"></TextBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1009'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1009'}">
                     <g:QuickInfoValue.Value>
                         <TextBox Width="200" Name="txtCEO" Text="Firstname Lastname">
                             <TextBox.Style>
@@ -57,15 +56,15 @@
                         </TextBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1003'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1003'}">
                     <g:QuickInfoValue.Value>
                         <WrapPanel>
-                            <RadioButton Name="rbPassengerType" FlowDirection="RightToLeft" GroupName="AirlineType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1007'}"></RadioButton>
-                            <RadioButton FlowDirection="RightToLeft" Margin="5 0 0 0" GroupName="AirlineType" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1008'}"></RadioButton>
+                            <RadioButton Name="rbPassengerType" FlowDirection="RightToLeft" GroupName="AirlineType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1007'}"></RadioButton>
+                            <RadioButton FlowDirection="RightToLeft" Margin="5 0 0 0" GroupName="AirlineType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1008'}"></RadioButton>
                         </WrapPanel>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1004'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1004'}">
                     <g:QuickInfoValue.Value>
                         <WrapPanel>
                             <Image Name="imgLogo" RenderOptions.BitmapScalingMode="HighQuality" Height="32"></Image>
@@ -73,24 +72,24 @@
                         </WrapPanel>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1005'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1005'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbColor" Width="300" SelectedIndex="0" ItemTemplate="{DynamicResource ColorItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Colors,ElementName=pageNewAirline}"></ComboBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1005'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1005'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbCountry" Width="300" SelectedIndex="0" ItemTemplate="{DynamicResource CountryLongFlagItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding AllCountries,ElementName=pageNewAirline}" SelectionChanged="cbCountry_SelectionChanged"></ComboBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 1006'}">
+                <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1006'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbAirport" Width="300" SelectedIndex="0" ItemTemplate="{DynamicResource AirportCountryItem}" Style="{DynamicResource ComboBoxTransparentStyle}"></ComboBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
             </ListBox>
             <WrapPanel Margin="0 10 0 0">
-                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnCreateAirline_Click" Content="{Binding Source={x:Null}, Converter={StaticResource translatorConverter},ConverterParameter='PageNewAirline 201'}"></Button>
+                <Button Style="{DynamicResource StandardButtonStyle}" Click="btnCreateAirline_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 201'}"></Button>
              </WrapPanel>
         </StackPanel>
     </ScrollViewer>

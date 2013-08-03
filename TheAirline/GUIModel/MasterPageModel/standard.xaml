@@ -7,6 +7,7 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="standardStyles.xaml"></ResourceDictionary>
         <ResourceDictionary Source="standardTemplates.xaml"></ResourceDictionary>
+        <ResourceDictionary Source="standardResources.xaml"></ResourceDictionary>
     </ResourceDictionary.MergedDictionaries>
     <g:GUIObject x:Key="gameObject"></g:GUIObject>
     <DataTemplate x:Key="HeaderContent">

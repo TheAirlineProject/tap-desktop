@@ -506,7 +506,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\ComparerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\MasterPageModel\standard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\standardResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -878,6 +886,9 @@
     </Compile>
     <Compile Include="GraphicsModel\UserControlModel\ucSelectButton.xaml.cs">
       <DependentUpon>ucSelectButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\ComparerControl.xaml.cs">
+      <DependentUpon>ComparerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\HelpersModel\Converters.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
