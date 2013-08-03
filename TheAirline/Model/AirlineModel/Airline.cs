@@ -106,6 +106,13 @@ namespace TheAirline.Model.AirlineModel
         [DataMember]
         public AirlineRatings Ratings { get; set; }
         [DataMember]
+        [DataMember]
+        public int OverallScore { get; set; }
+        [DataMember]
+        public Dictionary<DateTime, int> GameScores { get; set; }
+        [DataMember]
+        public int CountedScores { get; set; }
+        [DataMember]
         public List<RandomEvent> EventList { get; set; }
         [DataMember]
         public List<InsuranceClaim> InsuranceClaims { get; set; }
@@ -136,6 +143,8 @@ namespace TheAirline.Model.AirlineModel
             this.Policies = new List<AirlinePolicy>();
             this.EventLog = new List<RandomEvent>();
             this.Ratings = new AirlineRatings();
+            this.OverallScore = this.CountedScores = 0;
+            this.GameScores = new Dictionary<DateTime, int>();
             this.InsuranceClaims = new List<InsuranceClaim>();
             this.InsurancePolicies = new List<AirlineInsurance>();
             for (int i = 1; i < 10000; i++)

@@ -314,5 +314,111 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return hFlights / 
             }*/
 
+
+        /*===============================================================================================
+         * =======================score methods =====================================================*/
+
+            public static int GetWeeklyScore(Airline airline)
+            {
+                int score = 0;
+
+                //some base score weights:
+                    //fleet: 5 per airliner
+                    // destinations: 2 per destination
+                    // cash: 1 per $1,000,000
+                    // happiness: raw value
+                    // employee happiness: raw value
+                    // maint, security, safety: raw values
+
+                int fleet = airline.Fleet.Count();
+                int destinations = airline.Airports.Count();
+                int cash = (int)airline.Money / 1000000;
+                double happiness = airline.Ratings.CustomerHappinessRating;
+                happiness = Math.Pow(happiness, 2) / 2;
+                double empHappiness = airline.Ratings.EmployeeHappinessRating;
+                empHappiness = Math.Pow(empHappiness, 2) / 4;
+                double maint = airline.Ratings.MaintenanceRating;
+                double security = airline.Ratings.SecurityRating;
+                double safety = airline.Ratings.SafetyRating;
+
+                score += (int)((fleet * 5) + (destinations * 2) + cash + happiness + empHappiness + maint + safety + security);
+                airline.CountedScores++;
+                return score;
+            }
+
+            public static int GetScore(Airline airline, int year)
+            {
+                int yScore = 0;
+                foreach (KeyValuePair<DateTime, int> score in airline.GameScores)
+                {
+                    if (score.Key.Year == year)
+                    {
+                        yScore += score.Value;
+                    }
+                }
+
+                return yScore;
+            }
+
+            public static int GetScore(Airline airline, int year, int month)
+            {
+                int mScore = 0;
+                foreach (KeyValuePair<DateTime, int> score in airline.GameScores)
+                {
+                    if (score.Key.Month == month && score.Key.Year == year)
+                    {
+                        mScore += score.Value;
+                    }
+                }
+
+                return mScore;
+            }
+
+            public static int GetScore(Airline airline, int startYear, int endYear)
+            {
+                int mScore = 0;
+                foreach (KeyValuePair<DateTime, int> score in airline.GameScores)
+                {
+                    if (score.Key.Year >= startYear && score.Key.Year <= endYear)
+                    {
+                        mScore += score.Value;
+                    }
+                }
+
+                return mScore;
+            }
+
+            public static int GetScore(Airline airline)
+            {
+                int mScore = 0;
+                foreach (KeyValuePair<DateTime, int> score in airline.GameScores)
+                {
+                    mScore += score.Value;
+                }
+                
+                return mScore;
+            }
+
+            public static int GetBestYear(Airline airline)
+            {
+                int high = 0;
+                int year = 0;
+                {
+                    int years = GameObject.GetInstance().GameTime.Year - GameObject.StartYear;
+                    for (int z = GameObject.StartYear; z < (z + years); z++)
+                    {
+                        int sc = GetScore(airline, z);
+                        if (sc > high)
+                        {
+                            high = sc;
+                            year = z;
+                        }
+                    }
+                }
+
+                return year;
+            }
+
+            
     }
 }
