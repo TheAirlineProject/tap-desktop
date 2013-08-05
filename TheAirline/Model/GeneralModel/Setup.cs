@@ -2163,7 +2163,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     List<AllianceMember> members = new List<AllianceMember>(alliance.Members);
 
-                    foreach (AllianceMember member in alliance.Members.FindAll(m => !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate > GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
+                    foreach (AllianceMember member in alliance.Members.Where(m => !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate > GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
                         alliance.removeMember(member);
 
                 }

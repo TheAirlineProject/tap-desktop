@@ -193,6 +193,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkAlliances_Click(object sender, RoutedEventArgs e)
         {
+            //PageNavigator.NavigateTo(new GUIModel.PagesModel.AlliancesPageModel.PageAlliances());
             PageNavigator.NavigateTo(new PageAlliances());
         }
         private void lnkAirlines_Click(object sender, RoutedEventArgs e)

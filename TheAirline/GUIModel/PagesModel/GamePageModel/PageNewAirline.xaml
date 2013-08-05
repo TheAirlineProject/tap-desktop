@@ -9,7 +9,6 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageNewAirline">
     <Page.Resources>
-        <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
         <g:StringToBrushConverter x:Key="stringToBrushConverter"></g:StringToBrushConverter>
             <DataTemplate x:Key="ColorItem">
             <WrapPanel>
@@ -18,9 +17,9 @@
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
-    <ScrollViewer>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
             <StackPanel HorizontalAlignment="Center">
-                <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+                <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
                 <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1001'}">
                     <g:QuickInfoValue.Value>
                         <TextBox Width="200" Name="txtName" Text="Airline Name">

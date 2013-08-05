@@ -11,11 +11,9 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
       Name="pageAirlineData"
 	Title="PageAirlineData">
 
-    <Page.Resources>
-        <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
-    </Page.Resources>
+    
     <StackPanel HorizontalAlignment="Center">
-        <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+        <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
             <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1002'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemTemplate="{StaticResource AirlineLongItem}" Width="300" SelectionChanged="cbAirline_SelectionChanged" Name="cbAirline"></ComboBox>

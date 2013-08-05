@@ -374,7 +374,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return mScore;
             }
 
-            public static int GetScore(Airline airline, int startYear, int endYear)
+            public static int GetYearScore(Airline airline, int startYear, int endYear)
             {
                 int mScore = 0;
                 foreach (KeyValuePair<DateTime, int> score in airline.GameScores)

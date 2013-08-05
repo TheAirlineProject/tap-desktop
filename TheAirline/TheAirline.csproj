@@ -538,6 +538,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageAlliances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageCreateAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -906,6 +922,18 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageShowAirports.xaml.cs">
       <DependentUpon>PageShowAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageAlliances.xaml.cs">
+      <DependentUpon>PageAlliances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageCreateAlliance.xaml.cs">
+      <DependentUpon>PageCreateAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliance.xaml.cs">
+      <DependentUpon>PageShowAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliances.xaml.cs">
+      <DependentUpon>PageShowAlliances.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>

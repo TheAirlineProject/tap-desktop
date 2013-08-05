@@ -76,7 +76,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             if (frmContent != null)
             {
-                frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = this.Tag });
+               frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = this.Tag });
 
             }
         }

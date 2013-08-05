@@ -78,11 +78,15 @@ namespace TheAirline.GUIModel.HelpersModel
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            Boolean negation = false;
+            if (parameter != null && (parameter.ToString() == "!"))
+                negation = true;
+
             Visibility rv = Visibility.Collapsed;
             try
             {
                 var x = bool.Parse(value.ToString());
-                if (x)
+                if (x && !negation)
                 {
                     rv = Visibility.Visible;
                 }

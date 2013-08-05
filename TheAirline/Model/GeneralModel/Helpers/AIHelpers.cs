@@ -308,7 +308,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     else
                     {
 
-                        if (alliance.Members.Exists(m => m.Airline == GameObject.GetInstance().HumanAirline))
+                        if (alliance.IsHumanAlliance)
                         {
                             alliance.addPendingMember(new PendingAllianceMember(GameObject.GetInstance().GameTime, alliance, airline, PendingAllianceMember.AcceptType.Request));
                             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Request to join alliance", string.Format("[LI airline={0}] has requested to joined {1}. The request can be accepted or declined on the alliance page", airline.Profile.IATACode, alliance.Name)));
@@ -369,7 +369,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns a "good" alliance for an airline to join
         private static Alliance GetAirlineAlliance(Airline airline)
         {
-            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.Exists(m => m.Airline == airline) orderby GetAirlineAllianceScore(airline, a, true) descending select a).FirstOrDefault();
+            Alliance bestAlliance = (from a in Alliances.GetAlliances() where !a.Members.ToList().Exists(m => m.Airline == airline) orderby GetAirlineAllianceScore(airline, a, true) descending select a).FirstOrDefault();
 
             if (bestAlliance != null && GetAirlineAllianceScore(airline, bestAlliance, true) > 50)
                 return bestAlliance;
@@ -395,7 +395,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the best fit airline for an alliance
         private static Airline GetAllianceAirline(Alliance alliance)
         {
-            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.Exists(m => m.Airline == a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance, false) descending select a).FirstOrDefault();
+            Airline bestAirline = (from a in Airlines.GetAllAirlines() where !alliance.Members.ToList().Exists(m => m.Airline == a) && a.Alliances.Count == 0 orderby GetAirlineAllianceScore(a, alliance, false) descending select a).FirstOrDefault();
 
             if (GetAirlineAllianceScore(bestAirline, alliance, false) > 50)
                 return bestAirline;

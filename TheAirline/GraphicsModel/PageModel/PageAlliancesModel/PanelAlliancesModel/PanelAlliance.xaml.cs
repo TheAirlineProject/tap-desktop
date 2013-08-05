@@ -104,7 +104,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             lbPendings.MaxHeight = GraphicsHelpers.GetContentHeight() / 2;
             lbPendings.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            this.Alliance.PendingMembers.ForEach(p => lbPendings.Items.Add(p));
+            this.Alliance.PendingMembers.ToList().ForEach(p => lbPendings.Items.Add(p));
 
             panelAlliance.Children.Add(lbPendings);
 
@@ -188,7 +188,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnJoin.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnJoin.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnJoin.Click += new RoutedEventHandler(btnJoin_Click);
-            btnJoin.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+            btnJoin.Visibility = this.Alliance.IsHumanAlliance ? Visibility.Collapsed : System.Windows.Visibility.Visible;
 
             buttonsPanel.Children.Add(btnJoin);
 
@@ -201,7 +201,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnInvite.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnInvite.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnInvite.Click += new RoutedEventHandler(btnInvite_Click);
-            btnInvite.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) ? Visibility.Visible : Visibility.Collapsed;
+            btnInvite.Visibility = this.Alliance.IsHumanAlliance ? Visibility.Visible : Visibility.Collapsed;
 
             buttonsPanel.Children.Add(btnInvite);
 
@@ -215,7 +215,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnDelete.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnDelete.Margin = new Thickness(5, 0, 0, 0);
             btnDelete.Click += new RoutedEventHandler(btnDelete_Click);
-            btnDelete.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) && this.Alliance.Members.Count == 1 ? Visibility.Visible : Visibility.Collapsed;
+            btnDelete.Visibility = this.Alliance.IsHumanAlliance && this.Alliance.Members.Count == 1 ? Visibility.Visible : Visibility.Collapsed;
 
             buttonsPanel.Children.Add(btnDelete);
 
@@ -228,7 +228,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel.PanelAlliancesMo
             btnExit.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnExit.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnExit.Margin = new Thickness(5, 0, 0, 0);
-            btnExit.Visibility = this.Alliance.Members.Exists(m=>m.Airline.IsHuman) && this.Alliance.Members.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
+            btnExit.Visibility = this.Alliance.IsHumanAlliance && this.Alliance.Members.Count > 1 ? Visibility.Visible : Visibility.Collapsed;
             btnExit.Click += new RoutedEventHandler(btnExit_Click);
 
             buttonsPanel.Children.Add(btnExit);

@@ -8,11 +8,9 @@
       d:DesignHeight="300" d:DesignWidth="300"
       
 	Title="PageStartData">
-    <Page.Resources>
-        <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
-    </Page.Resources>
+   
     <StackPanel HorizontalAlignment="Center">
-         <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+         <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
             <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbContinent_SelectionChanged" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbContinent"></ComboBox>

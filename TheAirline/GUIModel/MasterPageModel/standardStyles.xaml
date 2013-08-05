@@ -19,7 +19,7 @@
     <Style TargetType="{x:Type TextBox}">
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="Foreground" Value="White"></Setter>
-        <Setter Property="BorderThickness" Value="0"></Setter>
+        <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="BorderBrush" Value="Black"></Setter>
     </Style>
     <!--textblocks-->

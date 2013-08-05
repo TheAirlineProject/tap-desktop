@@ -28,6 +28,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         public PageShowAirports(List<Airport> airports)
         {
+            object o = this.Tag;
             createPage(airports);
         }
         public PageShowAirports()
@@ -37,6 +38,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         //creates the page
         private void createPage(List<Airport> airports)
         {
+
+            this.AllAirports = airports.OrderBy(a=>a.Profile.Name).ToList();
+
+            InitializeComponent();
+
             TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
             if (tab_main != null)
@@ -46,13 +52,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
        .Where(item => item.Tag.ToString() == "Airports")
        .FirstOrDefault();
 
+                //matchingItem.IsSelected = true;
                 tab_main.SelectedItem = matchingItem;
             }
 
-            this.AllAirports = airports.OrderBy(a=>a.Profile.Name).ToList();
-
-            InitializeComponent();
+           
         }
+
+       
         private void clName_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Hyperlink)sender).Tag;

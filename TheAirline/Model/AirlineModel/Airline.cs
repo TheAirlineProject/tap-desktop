@@ -106,7 +106,6 @@ namespace TheAirline.Model.AirlineModel
         [DataMember]
         public AirlineRatings Ratings { get; set; }
         [DataMember]
-        [DataMember]
         public int OverallScore { get; set; }
         [DataMember]
         public Dictionary<DateTime, int> GameScores { get; set; }

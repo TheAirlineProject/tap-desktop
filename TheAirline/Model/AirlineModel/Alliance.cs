@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirportModel;
@@ -17,22 +18,23 @@ namespace TheAirline.Model.AirlineModel
         
         public string Name { get; set; }
         
-        public List<AllianceMember> Members { get; set; }
+        public ObservableCollection<AllianceMember> Members { get; set; }
         
         public Airport Headquarter { get; set; }
         
         public DateTime FormationDate { get; set; }
-        
-        public List<PendingAllianceMember> PendingMembers { get; set; }
+
+        public ObservableCollection<PendingAllianceMember> PendingMembers { get; set; }
         
         public string Logo { get; set; }
+        public Boolean IsHumanAlliance { get{ return this.Members.ToList().Exists(m=>m.Airline.IsHuman);} private set { ;} }
         public Alliance(DateTime formationDate, AllianceType type, string name, Airport headquarter)
         {
             this.FormationDate = formationDate;
             this.Type = type;
             this.Name = name;
-            this.Members = new List<AllianceMember>();
-            this.PendingMembers = new List<PendingAllianceMember>();
+            this.Members = new ObservableCollection<AllianceMember>();
+            this.PendingMembers = new ObservableCollection<PendingAllianceMember>();
             this.Headquarter = headquarter;
         }
         //adds an airline to the alliance
@@ -49,13 +51,14 @@ namespace TheAirline.Model.AirlineModel
         }
         public void removeMember(Airline airline)
         {
-            this.Members.RemoveAll(a => a.Airline == airline);
+            AllianceMember member = this.Members.FirstOrDefault(m => m.Airline == airline);
+            this.Members.Remove(member);
             airline.removeAlliance(this);
         }
         //adds a pending member to the alliance
         public void addPendingMember(PendingAllianceMember pending)
         {
-            PendingAllianceMember member = this.PendingMembers.Find(p => p.Airline == pending.Airline);
+            PendingAllianceMember member = this.PendingMembers.FirstOrDefault(p => p.Airline == pending.Airline);
 
             if (member != null)
                 this.removePendingMember(member);

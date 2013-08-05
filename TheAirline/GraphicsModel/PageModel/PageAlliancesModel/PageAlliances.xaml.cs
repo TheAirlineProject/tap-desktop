@@ -66,7 +66,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
             lbRequests.MaxHeight = GraphicsHelpers.GetContentHeight() / 4;
             lbRequests.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
-            foreach (PendingAllianceMember member in from a in Alliances.GetAlliances() where a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline) != null select a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline))
+            foreach (PendingAllianceMember member in from a in Alliances.GetAlliances() where a.PendingMembers.ToList().Find(p => p.Airline == GameObject.GetInstance().HumanAirline) != null select a.PendingMembers.ToList().Find(p => p.Airline == GameObject.GetInstance().HumanAirline))
                 lbRequests.Items.Add(member);
 
             alliancesPanel.Children.Add(lbRequests);
@@ -144,7 +144,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
             lbAlliances.Items.Refresh();
             
             lbRequests.Items.Clear();
-            foreach (PendingAllianceMember member in from a in Alliances.GetAlliances() where a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline) != null select a.PendingMembers.Find(p => p.Airline == GameObject.GetInstance().HumanAirline))
+            foreach (PendingAllianceMember member in from a in Alliances.GetAlliances() where a.PendingMembers.ToList().Find(p => p.Airline == GameObject.GetInstance().HumanAirline) != null select a.PendingMembers.ToList().Find(p => p.Airline == GameObject.GetInstance().HumanAirline))
                 lbRequests.Items.Add(member);
 
         }
@@ -157,7 +157,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAlliancesModel
         {
             Alliance alliance = (Alliance)value;
 
-            return alliance.Members.Exists(m=>m.Airline.IsHuman) ? Visibility.Visible : Visibility.Collapsed;
+            return alliance.IsHumanAlliance ? Visibility.Visible : Visibility.Collapsed;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

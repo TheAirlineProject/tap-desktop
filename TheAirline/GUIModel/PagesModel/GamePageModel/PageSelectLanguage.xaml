@@ -10,7 +10,6 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageSelectLanguage">
     <Page.Resources>
-        <g:ListBoxItemStyleSelectorTransparent x:Key="listBoxItemStyleSelector"></g:ListBoxItemStyleSelectorTransparent>
         <DataTemplate x:Key="LanguageItem">
             <WrapPanel>
                 <Image Height="32" Width="32" Source="{Binding ImageFile}" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom"></Image>
@@ -53,7 +52,7 @@
             <StackPanel>
                 <TextBlock Text="Select Language" Style="{StaticResource HeaderStyle}"></TextBlock>
 
-                <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{DynamicResource listBoxItemStyleSelector}"  ItemsSource="{Binding ElementName=pageSelectLanguage, Path=AllLanguages}" ItemTemplate="{StaticResource LanguageItem}" />
+                <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"  ItemsSource="{Binding ElementName=pageSelectLanguage, Path=AllLanguages}" ItemTemplate="{StaticResource LanguageItem}" />
 
             </StackPanel>
         </DataTemplate>
