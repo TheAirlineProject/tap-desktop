@@ -38,6 +38,29 @@
             </TextBlock>
         </DockPanel>
     </DataTemplate>
+    <DataTemplate x:Key="AirportCountryLongLink">
+        <DockPanel>
+            <TextBlock VerticalAlignment="Bottom">
+                            <Hyperlink Tag="{Binding}" Click="Airport_Click">
+                                <Run Text="{Binding Profile.Name}"></Run>
+                            </Hyperlink>
+            </TextBlock>
+            <TextBlock Text="{Binding Profile.Town.Country.Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+            <Image Margin="5 0 0 0" Source="{Binding Profile.Town.Country.Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+        </DockPanel>
+    </DataTemplate>
+    <!--route templates-->
+    <DataTemplate x:Key="RouteItem">
+        <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}-{1}">
+                    <Binding Path="Destination1.Profile.IATACode" />
+                    <Binding Path="Destination2.Profile.IATACode" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </DataTemplate>
     <!--alliance templates-->
     <DataTemplate x:Key="AllianceLink">
         <DockPanel>

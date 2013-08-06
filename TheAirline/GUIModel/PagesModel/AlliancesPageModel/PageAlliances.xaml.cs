@@ -34,10 +34,18 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
             var alliances = Alliances.GetAlliances().OrderBy(a=>a.Members.Sum(m => m.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year - 1, StatisticsTypes.GetStatisticsType("Passengers")))).ToList();
 
             this.LargestAlliances = alliances.Take(Math.Min(5,alliances.Count)).ToList();
-
+            this.Loaded += PageAlliances_Loaded;
+           
             InitializeComponent();
 
             
+        }
+
+        private void PageAlliances_Loaded(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+
+            frmContent.Navigate(new PageShowAlliances() { Tag = this });
         }
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

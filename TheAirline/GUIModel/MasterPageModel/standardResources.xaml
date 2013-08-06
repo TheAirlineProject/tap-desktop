@@ -4,5 +4,6 @@
     <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
     <c:BooleanToVisibility x:Key="BooleanToVisibility"></c:BooleanToVisibility>
     <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
+    <c:ValueCurrencyConverter x:Key="ValueCurrencyConverter"></c:ValueCurrencyConverter>
     <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector"></c:ListBoxItemStyleSelectorTransparent>
 </ResourceDictionary>

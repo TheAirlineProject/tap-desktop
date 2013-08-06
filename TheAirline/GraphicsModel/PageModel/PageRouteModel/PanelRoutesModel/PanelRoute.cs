@@ -331,7 +331,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel.PanelRoutesModel
             txtHeader.Text = Translator.GetInstance().GetString("PanelRoute", txtHeader.Uid);
             panelRouteFinances.Children.Add(txtHeader);
 
-
             lbRouteFinances = new ListBox();
             lbRouteFinances.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
             lbRouteFinances.SetResourceReference(ListBox.ItemTemplateProperty, "QuickInfoItem");

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.CountryModel;
 
 namespace TheAirline.GUIModel.HelpersModel
 {
@@ -73,6 +74,98 @@ namespace TheAirline.GUIModel.HelpersModel
             throw new NotImplementedException();
         }
     }
+    //the converter for a value to the current currency
+    public class ValueCurrencyConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            try
+            {
+                double v = Double.Parse(value.ToString());
+
+
+                if (GameObject.GetInstance().CurrencyCountry == null || Double.IsInfinity(v))
+                {
+                    return string.Format("{0:C}", value);
+                }
+                else
+                {
+                    CountryCurrency currency = GameObject.GetInstance().CurrencyCountry.getCurrency(GameObject.GetInstance().GameTime);
+
+
+                    if (currency == null)
+                    {
+                        if (Settings.GetInstance().CurrencyShorten)
+                        {
+                            if (v >= 1000000000 || v <= -1000000000)
+                                return string.Format("{0:C} {1}", v / 1000000000, Translator.GetInstance().GetString("General", "2001"));
+                            if (v >= 1000000 || v <= -1000000)
+                                return string.Format("{0:C} {1}", v / 1000000, Translator.GetInstance().GetString("General", "2000"));
+                            return string.Format("{0:C}", value);
+                        }
+                        else
+                            return string.Format("{0:C}", value);
+                    }
+                    else
+                    {
+                        double currencyValue = v * currency.Rate;
+
+                        if (Settings.GetInstance().CurrencyShorten)
+                        {
+                            if (currencyValue >= 1000000 || currencyValue <= -1000000)
+                            {
+                                double sValue = currencyValue / 1000000;
+                                string sFormat = Translator.GetInstance().GetString("General", "2000");
+
+                                if (currencyValue >= 1000000000 || currencyValue <= -1000000000)
+                                {
+                                    sValue = currencyValue / 1000000000;
+                                    sFormat = Translator.GetInstance().GetString("General", "2001");
+                                }
+
+                                if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                    return string.Format("{0:#,0.00} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
+                                else
+                                    return string.Format("{1}{0:#,0.00} {2}", sValue, currency.CurrencySymbol, sFormat);
+
+                            }
+                            else
+                            {
+                                if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                    return string.Format("{0:#,0.00} {1}", currencyValue, currency.CurrencySymbol);
+                                else
+                                    return string.Format("{1}{0:#,0.00}", currencyValue, currency.CurrencySymbol);
+
+                            }
+                        }
+                        else
+                        {
+
+                            if (currency.Position == CountryCurrency.CurrencyPosition.Right)
+                                return string.Format("{0:#,0.00} {1}", currencyValue, currency.CurrencySymbol);
+                            else
+                                return string.Format("{1}{0:#,0.00}", currencyValue, currency.CurrencySymbol);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return string.Format("{0:C}", value);
+
+            }
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+   
     //the converter for a boolean to visibility
     public class BooleanToVisibility : IValueConverter
     {
@@ -86,7 +179,9 @@ namespace TheAirline.GUIModel.HelpersModel
             try
             {
                 var x = bool.Parse(value.ToString());
-                if (x && !negation)
+
+                if (negation) x = !x;
+                if (x)
                 {
                     rv = Visibility.Visible;
                 }

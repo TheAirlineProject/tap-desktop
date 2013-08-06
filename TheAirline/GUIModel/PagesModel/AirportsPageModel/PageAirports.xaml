@@ -40,7 +40,7 @@
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirportsContent">
-            <Frame NavigationUIVisibility="Hidden" Name="frmContent" Source="PageShowAirports.xaml" />
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent" />
 
 
         </DataTemplate>

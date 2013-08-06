@@ -29,7 +29,17 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             this.HumanAirports = GameObject.GetInstance().HumanAirline.Airports.OrderBy(a=>a.Profile.Pax).ToList().GetRange(0,Math.Min(GameObject.GetInstance().HumanAirline.Airports.Count,5));
             this.HumanHubs = GameObject.GetInstance().HumanAirline.getHubs();
+
+            this.Loaded += PageAirports_Loaded;
+            
             InitializeComponent();
+        }
+
+        private void PageAirports_Loaded(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+
+            frmContent.Navigate(new PageShowAirports() { Tag = this });
         }
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

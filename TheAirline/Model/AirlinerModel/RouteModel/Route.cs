@@ -22,7 +22,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     {
         public double Balance { get { return getBalance(); } set { ;} }
         public double FillingDegree { get { return getFillingDegree(); } set { ;} }
-
+        public Boolean IsCargoRoute { get { return this.Type == RouteType.Cargo; } set { ;} }
         public Boolean HasStopovers { get { return this.Stopovers.Count > 0; } set { ;} }
        [DataMember]
       

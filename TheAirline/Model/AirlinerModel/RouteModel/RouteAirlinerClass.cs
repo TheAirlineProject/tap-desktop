@@ -20,8 +20,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public SeatingType Seating { get; set; }
         
         public double FarePrice { get; set; }
-        
-        private List<RouteFacility> Facilities;
+
+        public List<RouteFacility> Facilities { get; set; }
         
         public AirlinerClass.ClassType Type { get; set; }
         //public int CabinCrew { get; set; }

@@ -39,7 +39,7 @@
                </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AlliancesContent">
-            <Frame NavigationUIVisibility="Hidden" Name="frmContent" Source="PageShowAlliances.xaml" />
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent"/>
         </DataTemplate>
     </Page.Resources>
     <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource AlliancesQuickLinks}" MainContentArea="{StaticResource AlliancesContent}" MainContentMenuArea="{StaticResource AlliancesContentMenu}"/>

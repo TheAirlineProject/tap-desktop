@@ -1,0 +1,99 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.RoutesPageModel.PageShowRoute"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.RoutesPageModel"
+      Name="pageShowRoute"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageShowRoute">
+    <Page.Resources>
+        <local:RouteStatisticsConverter x:Key="routeStatisticsConverter"></local:RouteStatisticsConverter>
+        <DataTemplate x:Key="InvoiceItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Width="200"></TextBlock>
+                <TextBlock Text="{Binding Amount,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            </DataTemplate>
+        <DataTemplate x:Key="StopoverItem">
+            <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+        </DataTemplate>
+        <DataTemplate x:Key="FacilityItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="StatisticsItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Key}" VerticalAlignment="Bottom" Width="200" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Value}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="RouteStatisticsItem">
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel>
+                    <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}-{1}">
+                            <Binding Path="Destination1.Profile.Name" />
+                            <Binding Path="Destination2.Profile.Name" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                    <ListBox ItemTemplate="{DynamicResource StatisticsItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Converter={StaticResource routeStatisticsConverter}}"></ListBox>
+
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="ClassItem">
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel Width="300">
+                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                    <WrapPanel>
+                        <TextBlock Text="Ticket Price" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                        <TextBox Text="{Binding FarePrice}" TextAlignment="Right" VerticalAlignment="Bottom" Width="50"></TextBox>
+                        <TextBlock Text="$" VerticalAlignment="Center" Margin="5 0 0 0"></TextBlock>
+                    </WrapPanel>
+                    <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Facilities}"></ListBox>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" >
+            <StackPanel>
+                <TextBlock Text="Route Information" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                <WrapPanel>
+                    <TextBlock Text="Route Type" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Type}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Outbound" FontWeight="Bold" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                    <ContentControl Content="{Binding Destination1}" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+                </WrapPanel>
+            
+                <WrapPanel>
+                    <TextBlock Text="Homebound" FontWeight="Bold" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                    <ContentControl Content="{Binding Destination2}" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+                </WrapPanel>
+            <WrapPanel Visibility="{Binding HasStopovers,Converter={StaticResource BooleanToVisibility}}">
+                <TextBlock Text="Stopovers" FontWeight="Bold" VerticalAlignment="Center" Width="100"/>
+                 <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{DynamicResource StopoverItem}" ItemsSource="{Binding Stopovers}"></ListBox>
+              
+            </WrapPanel>
+            <StackPanel Visibility="{Binding IsCargoRoute,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}">
+                    <TextBlock Text="Classes, Prices and Facilities"  Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemTemplate="{DynamicResource ClassItem}"></ListBox> 
+                </StackPanel>
+                <StackPanel Visibility="{Binding IsCargoRoute,Converter={StaticResource BooleanToVisibility}}">
+                <TextBlock Text="Cargo Information" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                </StackPanel>
+            <TextBlock Text="Route Statistics" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemTemplate="{DynamicResource RouteStatisticsItem}" ItemsSource="{Binding Path=Legs,ElementName=pageShowRoute}"></ListBox>
+            <TextBlock Text="Route Finances" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+            <ListBox ItemTemplate="{DynamicResource InvoiceItem}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Path=Invoices,ElementName=pageShowRoute}"></ListBox>
+
+        </StackPanel>
+     </ScrollViewer>
+</Page>

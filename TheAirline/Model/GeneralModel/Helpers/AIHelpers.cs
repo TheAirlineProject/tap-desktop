@@ -549,8 +549,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     FleetAirliner fAirliner;
 
                     KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing, airline.AirlineRouteFocus == Route.RouteType.Cargo);
-
-
+                    
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
