@@ -11,7 +11,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
         <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
-            <h:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1000'}">
+            <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1000'}">
                 <h:QuickInfoValue.Value>
                         <TextBox Width="200" Name="txtName" Text="Alliance Name">
                             <TextBox.Style>
@@ -26,7 +26,7 @@
                         </TextBox>
                     </h:QuickInfoValue.Value>
             </h:QuickInfoValue>
-                <h:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1003'}">
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1003'}">
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
                             <RadioButton Name="rbFull" FlowDirection="RightToLeft" GroupName="AllianceType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1004'}"></RadioButton>
@@ -34,12 +34,12 @@
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
-                <h:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1001'}">
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1001'}">
                     <h:QuickInfoValue.Value>
                         <ComboBox Name="cbHeadquarter" Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="250"></ComboBox>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
-                <h:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1002'}">
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateAlliance 1002'}">
                     <h:QuickInfoValue.Value>
                         <WrapPanel>
                             <Image Name="imgLogo" RenderOptions.BitmapScalingMode="HighQuality" Height="32"></Image>

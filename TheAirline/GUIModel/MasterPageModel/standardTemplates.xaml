@@ -102,4 +102,14 @@
         <Rectangle Width="50" Height="20" Stroke="Black" StrokeThickness="2" Fill="{Binding Converter={StaticResource airlineColorConverter}}" RadiusX="10" RadiusY="10" Margin="0 5 0 0">
         </Rectangle>
     </DataTemplate>
+    <DataTemplate x:Key="QuickInfoItem">
+        <Grid Visibility="{Binding Visibility}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <TextBlock Text="{Binding Text}" Grid.Column="0" HorizontalAlignment="Left" FontWeight="Bold" VerticalAlignment="Bottom"/>
+            <ContentControl Grid.Column="1" HorizontalAlignment="Left" Content="{Binding Value}" VerticalAlignment="Bottom"></ContentControl>
+        </Grid>
+    </DataTemplate>
 </ResourceDictionary>

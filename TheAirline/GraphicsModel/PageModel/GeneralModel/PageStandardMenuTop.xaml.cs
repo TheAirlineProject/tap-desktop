@@ -203,7 +203,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkRoutes_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageRoutes());
+            PageNavigator.NavigateTo(new GUIModel.PagesModel.RoutesPageModel.PageRoutes());
         }
 
         private void lnkAirliners_Click(object sender, RoutedEventArgs e)

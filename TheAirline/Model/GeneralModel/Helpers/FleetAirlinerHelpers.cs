@@ -191,6 +191,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return stopoverRoute;
         }
+        public static void CreateStopoverRoute(Route route, Airport stopover1, Airport stopover2 = null)
+        {
+
+            if (stopover1 != null)
+            {
+                if (stopover2 != null)
+                    route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(route.Destination1, route.Destination2, stopover2, route, false, route.Type));
+                else
+                    route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(route.Destination1, stopover1, route.Destination2, route, false, route.Type));
+            }
+
+            if (stopover2 != null && stopover1!=null)
+            {
+               route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(stopover1, stopover2, route.Destination2, route, true, route.Type));
+              
+            }
+        }
         //returns the minimum time between flights for an airliner
         public static TimeSpan GetMinTimeBetweenFlights(FleetAirliner airliner)
         {

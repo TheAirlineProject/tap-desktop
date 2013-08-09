@@ -1759,7 +1759,7 @@ namespace TheAirline.Model.GeneralModel
 
                 Alliances.AddAlliance(alliance);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 /*
                 System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairlinestartup.log", true);
@@ -2162,8 +2162,8 @@ namespace TheAirline.Model.GeneralModel
                 if (activeMembers > 1)
                 {
                     List<AllianceMember> members = new List<AllianceMember>(alliance.Members);
-
-                    foreach (AllianceMember member in alliance.Members.Where(m => !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate > GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
+                    
+                    foreach (AllianceMember member in members.Where(m => !Airlines.GetAllAirlines().Contains(m.Airline) || m.JoinedDate > GameObject.GetInstance().GameTime || GameObject.GetInstance().GameTime > m.ExitedDate))
                         alliance.removeMember(member);
 
                 }

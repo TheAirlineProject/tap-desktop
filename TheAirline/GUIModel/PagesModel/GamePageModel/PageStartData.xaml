@@ -11,37 +11,37 @@
    
     <StackPanel HorizontalAlignment="Center">
          <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
-            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbContinent_SelectionChanged" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbContinent"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1012'}">
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1012'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbRegion" SelectionChanged="cbRegion_SelectionChanged"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" Name="cbYear" SelectionChanged="cbYear_SelectionChanged"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1013'}">
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1013'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbFocus"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1011'}">
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1011'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name" SelectedValuePath="Name"  Width="100" SelectedIndex="0" Name="cbDifficulty"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1010'}">
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1010'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbOpponents"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1020'}">
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1020'}">
                 <g:QuickInfoValue.Value>
                     <StackPanel>
                         <CheckBox Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}" VerticalAlignment="Bottom" Name="cbSameRegion"></CheckBox>
@@ -52,7 +52,7 @@
                     </StackPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Name="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1023'}">
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1023'}">
                 <g:QuickInfoValue.Value>
                     <WrapPanel>
                         <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1024'}" Name="rbDayTurns" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>

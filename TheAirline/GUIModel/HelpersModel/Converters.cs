@@ -212,12 +212,87 @@ namespace TheAirline.GUIModel.HelpersModel
 
                 return Translator.GetInstance().GetString(values[0], values[1]);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return "";
             }
         }
 
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+     //the converter for a value to a color for minus
+    public class ValueIsMinusConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            try
+            {
+                double amount = double.Parse(value.ToString());
+
+                if (amount >= 0)
+                    return Brushes.White;
+                else
+                    return Brushes.DarkRed;
+            }
+            catch
+            {
+                return Brushes.White;
+            }
+
+        }
+
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for a country to get current country (used for temporary countries)
+    public class CountryCurrentCountryConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Union)
+                return value;
+
+            Country country = (Country)value;
+
+            if (country is TerritoryCountry)
+            {
+                return ((TerritoryCountry)country).MainCountry;
+            }
+            if (!(country is TemporaryCountry))
+            {
+                TemporaryCountry tempCountry = TemporaryCountries.GetTemporaryCountry(country, GameObject.GetInstance().GameTime);
+
+                if (tempCountry == null)
+                    return country;
+                else
+                {
+                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
+                        return country;
+                    else
+                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                }
+            }
+            else
+            {
+                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime, country);
+
+            }
+            //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();

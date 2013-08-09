@@ -27,30 +27,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     {
         public PageHumanRoutes()
         {
-            double price = 10;
-
-            PassengerRoute route = new PassengerRoute("Route1", Airports.GetAllAirports()[10], Airports.GetAllAirports()[87], 10);
-
-            route.addStopover(FleetAirlinerHelpers.CreateStopoverRoute(route.Destination1,Airports.GetAllAirports()[139], route.Destination2, route, false,Route.RouteType.Passenger));
-         
-            RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute)route);
-            
-            foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
-            {
-                ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).FarePrice = price * GeneralHelpers.ClassToPriceFactor(classConfiguration.Type);
-
-                foreach (RouteFacility facility in classConfiguration.getFacilities())
-                    ((PassengerRoute)route).getRouteAirlinerClass(classConfiguration.Type).addFacility(facility);
-            }
-
-            GameObject.GetInstance().HumanAirline.addRoute(route);
-
-            var cls = configuration.getClasses().Select(c => c.Type);
-            var missingClasses = new List<RouteAirlinerClass>(route.Classes.Where(c=>!cls.Contains(c.Type)));
-
-            foreach (RouteAirlinerClass rac in missingClasses)
-                route.Classes.Remove(rac);
-
             this.DataContext = GameObject.GetInstance().HumanAirline.Routes;
             this.Loaded += PageHumanRoutes_Loaded;  
 

@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                     x:Class="TheAirline.GUIModel.MasterPageModel.standardStylesEvents"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--brushes-->
     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F"></SolidColorBrush>
     <SolidColorBrush x:Key="BackgroundTransparentBrush" Opacity="0.5" Color="Black"></SolidColorBrush>
@@ -21,6 +22,11 @@
         <Setter Property="Foreground" Value="White"></Setter>
         <Setter Property="BorderThickness" Value="1"></Setter>
         <Setter Property="BorderBrush" Value="Black"></Setter>
+    </Style>
+    <Style x:Key="NumericTextBox" TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
+        <Setter Property="TextAlignment" Value="Right"></Setter>
+        <EventSetter Event="PreviewTextInput" Handler="NumericTextBox_Input"></EventSetter>
+        <EventSetter Event="PreviewKeyDown" Handler="NumericTextBox_CheckSpace"></EventSetter>
     </Style>
     <!--textblocks-->
     <Style TargetType="{x:Type TextBlock}">
@@ -164,6 +170,7 @@
     </Style>
     <Style TargetType="ListBox" x:Key="VerticalListBoxStyle">
         <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"></Setter>
+        <Setter Property="BorderThickness" Value="0"></Setter>
         <Setter Property="Background" Value="Transparent"></Setter>
         <Setter Property="ItemContainerStyle">
             <Setter.Value>

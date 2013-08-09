@@ -12,7 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.Converters;
 using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;

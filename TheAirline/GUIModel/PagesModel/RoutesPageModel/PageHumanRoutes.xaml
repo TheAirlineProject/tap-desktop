@@ -6,7 +6,12 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageHumanRoutes">
-    <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Column="0">
+    <Page.Resources>
+        <DataTemplate x:Key="StopoverItem">
+            <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+        </DataTemplate>
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
         <ListView x:Name="AirportsList" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}">
             <ListView.View>
                 <GridView>
@@ -19,21 +24,37 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Origin" Width="250">
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1000'}" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding Destination1}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="Destination" Width="250">
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1001'}" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ContentControl Content="{Binding Destination2}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}" Width="500">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemTemplate="{DynamicResource StopoverItem}" ItemsSource="{Binding Stopovers}"></ListBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1003'}" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}" Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
+                
+             
             </ListView.View>
 
         </ListView>

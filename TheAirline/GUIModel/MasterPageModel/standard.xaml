@@ -32,7 +32,7 @@
             <StackPanel VerticalAlignment="Center" Grid.Column="2" Margin="0 0 10 0">
                 <TextBlock Text="{Binding GameObject.HumanAirline.Profile.CEO,Source={StaticResource gameObject}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},StringFormat={}{0:MMMM dd yyyy HH:mm}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="$1.234.567" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding GameObject.HumanAirline.Money,Source={StaticResource gameObject},Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
             </StackPanel>
 
         </Grid>

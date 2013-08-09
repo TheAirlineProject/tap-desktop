@@ -43,9 +43,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 cbRegion.Items.Add(region);
 
             for (int i = 1960; i < 2014; i++)
-                cbYear.Items.Add(i);
+                cbYear.Items.Insert(0,i);
 
-            cbYear.SelectedIndex = cbYear.Items.Count - 1;
+            cbYear.SelectedIndex = 0;
 
             cbDifficulty.ItemsSource = DifficultyLevels.GetDifficultyLevels();
 

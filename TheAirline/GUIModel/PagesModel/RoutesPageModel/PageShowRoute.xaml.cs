@@ -27,91 +27,85 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     {
         private Route Route;
         public List<MonthlyInvoice> Invoices { get; set; }
+        public List<MVVMRouteClass> Classes { get; set; }
         public List<Route> Legs { get; set; }
-        public PageShowRoute(Route route)
+         public PageShowRoute(Route route)
         {
+           
+             this.Classes = new List<MVVMRouteClass>();
+
+            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            {
+                MVVMRouteClass rClass = new MVVMRouteClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
+
+                this.Classes.Add(rClass);
+            }
+
             this.Route = route;
             this.DataContext = this.Route;
 
             this.Invoices = new List<MonthlyInvoice>();
-            
+
             foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
-                this.Invoices.Add(new MonthlyInvoice(type,1950,1, this.Route.getRouteInvoiceAmount(type)));
+                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1, this.Route.getRouteInvoiceAmount(type)));
 
             this.Legs = new List<Route>();
             this.Legs.Add(this.Route);
-            this.Legs.AddRange(this.Route.Stopovers.SelectMany(s=>s.Legs));
+            this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
 
             InitializeComponent();
+                 
+            Boolean inRoute = this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+                
+            cbEdit.Visibility = inRoute ? Visibility.Collapsed : System.Windows.Visibility.Visible;
+                       
+            this.Loaded += PageShowRoute_Loaded;
+        }
 
-            if (!route.IsCargoRoute)
-                lbClasses.ItemsSource = ((PassengerRoute)route).Classes;
+        private void PageShowRoute_Loaded(object sender, RoutedEventArgs e)
+        {
+            if (!this.Route.IsCargoRoute)
+            {
 
+
+                foreach (MVVMRouteClass rClass in this.Classes)
+                {
+                    foreach (MVVMRouteFacility rFacility in rClass.Facilities)
+                    {
+                        var facility = ((PassengerRoute)this.Route).Classes.Find(c => c.Type == rClass.Type).Facilities.Find(f => f.Type == rFacility.Type);
+                        rFacility.SelectedFacility = facility;
+                    }
+
+                }
+            }
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+            //passenger route
+            if (!this.Route.IsCargoRoute)
+            {
+                
+                foreach (MVVMRouteClass rac in this.Classes)
+                {
+                    ((PassengerRoute)this.Route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+
+                    ((PassengerRoute)this.Route).getRouteAirlinerClass(rac.Type).Facilities.Clear();
+
+                    foreach (MVVMRouteFacility facility in rac.Facilities)
+                        ((PassengerRoute)this.Route).getRouteAirlinerClass(rac.Type).addFacility(facility.SelectedFacility);
+
+                }
+            }
+            //cargo route
+            else
+            {
+                double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
+                ((CargoRoute)this.Route).PricePerUnit = cargoPrice;
+    
+            }
         }
 
     }
-    //the converter for the statistics for a route
-    public class RouteStatisticsConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            Route route = (Route)value;
-            List<KeyValuePair<string, object>> stats = new List<KeyValuePair<string, object>>();
-
-            if (route.Type == Route.RouteType.Passenger)
-            {
-                RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
-
-                double passengers = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
-                double avgPassengers = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
-
-                stats.Add(new KeyValuePair<string, object>("Total Passengers", passengers));
-                stats.Add(new KeyValuePair<string, object>("Average Passengers", avgPassengers));
-            
-            }
-            if (route.Type == Route.RouteType.Cargo)
-            {
-                double cargo = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
-                double avgCargo = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
-
-                stats.Add(new KeyValuePair<string, object>("Total Cargo", cargo));
-                stats.Add(new KeyValuePair<string, object>("Average Cargo", avgCargo));
-            }
-
-            stats.Add(new KeyValuePair<string,object>("Filling Degree",string.Format("{0:0.##} %", route.FillingDegree * 100)));
-
-            return stats;
-            /*
-             * 
-             *   if (leg.Type == Route.RouteType.Mixed || leg.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger)
-            {
-                RouteAirlinerClass raClass = ((PassengerRoute)leg).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
-
-                double passengers = leg.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
-                double avgPassengers = leg.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
-
-                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1009"), UICreator.CreateTextBlock(String.Format("{0:0,0}", passengers))));
-                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1010"), UICreator.CreateTextBlock(string.Format("{0:0.##}", avgPassengers))));
-             }
-            if (leg.Type == Route.RouteType.Mixed || leg.Type == Route.RouteType.Cargo)
-            {
-                double cargo = leg.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
-                double avgCargo = leg.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
-
-                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1013"), UICreator.CreateTextBlock(String.Format("{0:0,0}", cargo))));
-                lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1014"), UICreator.CreateTextBlock(string.Format("{0:0.##}", avgCargo))));
-        
-            }
-            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1011"), UICreator.CreateTextBlock(string.Format("{0:0.##} %", leg.FillingDegree * 100))));
-     
-            lbLegStatistics.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PanelRoute", "1012"), UICreator.CreateTextBlock(new ValueCurrencyConverter().Convert(leg.Balance).ToString())));
-*/
-
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+  
 }

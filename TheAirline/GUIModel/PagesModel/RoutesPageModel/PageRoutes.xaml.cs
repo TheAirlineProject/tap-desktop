@@ -34,8 +34,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             var requestedRoutes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.Destination1.getDestinationPassengersRate(r.Destination2,AirlinerClass.ClassType.Economy_Class) + r.Destination2.getDestinationPassengersRate(r.Destination1,AirlinerClass.ClassType.Economy_Class));
             this.RequestedRoutes = requestedRoutes.Take(Math.Min(5,routes.Count())).ToList();
-            
-
+         
             this.Loaded += PageRoutes_Loaded;
             InitializeComponent();
         }
@@ -58,6 +57,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             if (selection == "Routes" && frmContent != null)
                 frmContent.Navigate(new PageHumanRoutes() { Tag = this });
 
+            if (selection == "Create" && frmContent != null)
+                frmContent.Navigate(new PageCreateRoute() { Tag = this });
+
+            if (selection == "Airliners" && frmContent != null)
+                frmContent.Navigate(new PageAssignAirliners() { Tag = this });
           
            
         }

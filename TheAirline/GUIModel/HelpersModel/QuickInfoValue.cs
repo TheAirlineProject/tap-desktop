@@ -5,27 +5,29 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace TheAirline.GUIModel.HelpersModel
 {
-    public class QuickInfoValue : DependencyObject
+    public class QuickInfoValue : FrameworkElement
     {
-        public static readonly DependencyProperty NameProperty =
-                            DependencyProperty.Register("Name",
+        public static readonly DependencyProperty TextProperty =
+                            DependencyProperty.Register("Text",
                             typeof(string), typeof(QuickInfoValue));
 
-
         [Category("Common Properties")]
-        public string Name
+        public string Text
         {
-            get { return (string)GetValue(NameProperty); }
-            set { SetValue(NameProperty, value); }
+            get { return (string)GetValue(TextProperty); }
+            set { SetValue(TextProperty, value); }
         }
         //public string Name { get; set; }
         public UIElement Value { get; set; }
         public QuickInfoValue()
         {
+               
         }
+
        
     }
 }
