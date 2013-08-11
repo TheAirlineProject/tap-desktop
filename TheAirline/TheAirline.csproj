@@ -362,147 +362,147 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\CalendarModel\AppointmentControl.xaml">
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\AppointmentControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\CalendarModel\DayBoxControl.xaml">
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\DayBoxControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\CalendarModel\ucCalendar.xaml">
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\ucCalendar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml">
+    <Page Include="GraphicsModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerConfiguration.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpDifficulty.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpDifficulty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpSelectOpponents.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSelectOpponents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpSingleElement.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSingleElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpTimeTable.xaml">
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTimeTable.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\ucChartBar.xaml">
+    <Page Include="GraphicsModel\UserControlModel\ucChartBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\ucFinanceControl.xaml">
+    <Page Include="GraphicsModel\UserControlModel\ucFinanceControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\ucNumericUpDown.xaml">
+    <Page Include="GraphicsModel\UserControlModel\ucNumericUpDown.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GraphicsModel\PageModel\UserControlModel\ucSelectButton.xaml">
+    <Page Include="GraphicsModel\UserControlModel\ucSelectButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -570,7 +570,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -809,118 +817,118 @@
     <Compile Include="GraphicsModel\ResourceDirectiories\GameResourceEvents.cs" />
     <Compile Include="GraphicsModel\ResourceDirectiories\GameTemplatesEvents.cs" />
     <Compile Include="GraphicsModel\SkinsModel\Skin.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\CalendarModel\AppointmentControl.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\AppointmentControl.xaml.cs">
       <DependentUpon>AppointmentControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\CalendarModel\DayBoxControl.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\DayBoxControl.xaml.cs">
       <DependentUpon>DayBoxControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\CalendarModel\ucCalendar.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\ucCalendar.xaml.cs">
       <DependentUpon>ucCalendar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\MessageBoxModel\DelegateCommand.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\MessageBoxModel\IconHelper.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\MessageBoxModel\MessageBoxViewModel.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\DelegateCommand.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\IconHelper.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\MessageBoxViewModel.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml.cs">
       <DependentUpon>WPFMessageBox.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml.cs">
       <DependentUpon>PopUpAirportContract.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml.cs">
       <DependentUpon>PopUpConfirmInsurance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml.cs">
       <DependentUpon>PageAirlinerAdvancedRoute.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml.cs">
       <DependentUpon>PageAirlinerAutoRoute.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml.cs">
       <DependentUpon>PopUpAirlinerAutoRoutes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml.cs">
       <DependentUpon>PopUpAirlinerClassConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerConfiguration.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerConfiguration.xaml.cs">
       <DependentUpon>PopUpAirlinerConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml.cs">
       <DependentUpon>PopUpAirlinerFacility.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml.cs">
       <DependentUpon>PopUpAirlinerImage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml.cs">
       <DependentUpon>PopUpAirlinerRoutes.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml.cs">
       <DependentUpon>PopUpAirportMap.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml.cs">
       <DependentUpon>PopUpAirportSlot.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml.cs">
       <DependentUpon>PopUpAutogenerateRoute.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml.cs">
       <DependentUpon>PopUpBuildRunway.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpDifficulty.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpDifficulty.xaml.cs">
       <DependentUpon>PopUpDifficulty.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml.cs">
       <DependentUpon>PopUpEditAirlinerName.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpHomeBase.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpHomeBase.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
       <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml.cs">
       <DependentUpon>PopUpLoad.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml.cs">
       <DependentUpon>PopUpLoan.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml.cs">
       <DependentUpon>PopUpMap.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpNewAirlinerHomeBase.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewAirlinerHomeBase.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml.cs">
       <DependentUpon>PopUpNewSubsidiary.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
       <DependentUpon>PopUpRouteFacilities.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml.cs">
       <DependentUpon>PopUpSave.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpSelectOpponents.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSelectOpponents.xaml.cs">
       <DependentUpon>PopUpSelectOpponents.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpSingleElement.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSingleElement.xaml.cs">
       <DependentUpon>PopUpSingleElement.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml.cs">
       <DependentUpon>PopUpTerminal.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml.cs">
       <DependentUpon>PopUpTest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpTimeTable.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTimeTable.xaml.cs">
       <DependentUpon>PopUpTimeTable.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\PopUpWindowsModel\PopUpWindow.cs" />
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\ucChartBar.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpWindow.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\ucChartBar.xaml.cs">
       <DependentUpon>ucChartBar.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\ucFinanceControl.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\ucFinanceControl.xaml.cs">
       <DependentUpon>ucFinanceControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\ucNumericUpDown.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\ucNumericUpDown.xaml.cs">
       <DependentUpon>ucNumericUpDown.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GraphicsModel\PageModel\UserControlModel\ucSelectButton.xaml.cs">
+    <Compile Include="GraphicsModel\UserControlModel\ucSelectButton.xaml.cs">
       <DependentUpon>ucSelectButton.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\ComparerControl.xaml.cs">
@@ -968,8 +976,14 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml.cs">
       <DependentUpon>PageNewGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml.cs">
+      <DependentUpon>PageScenario.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml.cs">
+      <DependentUpon>PageShowScenario.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartData.xaml.cs">
       <DependentUpon>PageStartData.xaml</DependentUpon>

@@ -84,11 +84,11 @@
         </DockPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineItem">
-        <DockPanel>
+        <WrapPanel>
             <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Profile.Name}">
             </TextBlock>
-        </DockPanel>
+        </WrapPanel>
     </DataTemplate>
     <DataTemplate x:Key="AirlineLongItem">
         <DockPanel>

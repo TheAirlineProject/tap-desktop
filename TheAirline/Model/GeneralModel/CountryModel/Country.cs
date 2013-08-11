@@ -28,6 +28,7 @@ namespace TheAirline.Model.GeneralModel
         public CountryTailNumber TailNumbers { get; set; }
         [DataMember]
         public List<CountryCurrency> Currencies { get; set; }
+        public Boolean HasLocalCurrency { get { return this.Currencies.Count > 0; } private set { ;} }
         public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {
             Country.Section = section;

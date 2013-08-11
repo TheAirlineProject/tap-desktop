@@ -36,7 +36,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnPlayScenario_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PagePlayScenario());
+            //PageNavigator.NavigateTo(new PagePlayScenario());
+            PageNavigator.NavigateTo(new PageScenario());
         }
         private void btnExitGame_Click(object sender, RoutedEventArgs e)
         {

@@ -58,6 +58,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             SetupScenarioAirlines(scenario);
             SetupScenario();
+            Setup.SetupAlliances();
 
             PassengerHelpers.CreateAirlineDestinationDemand();
 

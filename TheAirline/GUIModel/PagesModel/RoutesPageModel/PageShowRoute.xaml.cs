@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
@@ -106,6 +108,36 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
         }
 
+        private void btnDeleteRoute_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2503"), string.Format(Translator.GetInstance().GetString("MessageBox", "2503", "message"), this.Route.Destination1.Profile.Name, this.Route.Destination2.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                GameObject.GetInstance().HumanAirline.removeRoute(this.Route);
+
+               
+                if (this.Route.HasAirliner)
+                    this.Route.getAirliners().ForEach(a => a.removeRoute(this.Route));
+
+                TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+
+                if (tab_main != null)
+                {
+                    var matchingItem =
+         tab_main.Items.Cast<TabItem>()
+           .Where(item => item.Tag.ToString() == "Routes")
+           .FirstOrDefault();
+
+                    tab_main.SelectedItem = matchingItem;
+                }
+
+
+            }
+        }
+
     }
   
 }
+
+

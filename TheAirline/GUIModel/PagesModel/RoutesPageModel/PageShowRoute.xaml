@@ -112,7 +112,18 @@
                     </Style>
                     </Button.Style>
                 </Button>
-            
+                <Button Margin="5 0 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 201'}" Click="btnDeleteRoute_Click">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbEdit, Path=IsChecked}" Value="False">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+              
             </WrapPanel>
         </StackPanel>
             

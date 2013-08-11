@@ -73,7 +73,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.StartData.CEO = (string)txtCEO.Text;
             this.StartData.HomeCountry = (Country)cbCountry.SelectedItem;
             this.StartData.TimeZone = (GameTimeZone)cbTimeZone.SelectedItem;
-            this.StartData.LocalCurrency = cbLocalCurrency.IsChecked.Value && this.StartData.HomeCountry.Currencies.Count > 0;
+            this.StartData.LocalCurrency = cbLocalCurrency.IsChecked.Value && this.StartData.HomeCountry.HasLocalCurrency;
 
             Size s = PageNavigator.MainWindow.RenderSize;
 
