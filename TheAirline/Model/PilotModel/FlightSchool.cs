@@ -20,7 +20,7 @@ namespace TheAirline.Model.PilotModel
         public string ID { get; set; }
         public int NumberOfInstructors { get { return this.Instructors.Count; } set { ;} }
         public int NumberOfStudents { get { return this.Students.Count; } set { ;} }
-        
+       
         public List<PilotStudent> Students { get; set; }
         
         public List<Instructor> Instructors { get; set; }
@@ -37,10 +37,15 @@ namespace TheAirline.Model.PilotModel
             this.TrainingAircrafts = new List<TrainingAircraft>();
             this.ID = id.ToString();
         }
-        //adds a training aircraft to the flights school
+        //adds a training aircraft to the flight school
         public void addTrainingAircraft(TrainingAircraft aircraft)
         {
             this.TrainingAircrafts.Add(aircraft);
+        }
+        //removes an aircraft from the flight school
+        public void removeTrainingAircraft(TrainingAircraft aircraft)
+        {
+            this.TrainingAircrafts.Remove(aircraft);
         }
         //adds an instructor to the flight school
         public void addInstructor(Instructor instructor)

@@ -1,0 +1,110 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.PilotsPageModel.PageFlightSchools"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      Name="pageFlightSchools"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageFlightSchools">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="5 5 5 5">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1007'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+
+                    <ListView x:Name="lvInstructors" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllInstructors,ElementName=pageFlightSchools}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Width="20" VerticalAlignment="Bottom" Click="btnHire_Click" Background="Transparent" Tag="{Binding}"> 
+                                                <Image Source="/data/images/money.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding ElementName=lvFlightSchools, Path=Items.Count}" Value="0">
+                                                                <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1000'}" Width="200" util:GridViewSort.PropertyName="Profile.Name" DisplayMemberBinding="{Binding Profile.Name}">
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1001'}" Width="50" util:GridViewSort.PropertyName="Profile.Age">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1002'}" Width="50" util:GridViewSort.PropertyName="Rating">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1003'}" Width="200" util:GridViewSort.PropertyName="Profile.Town.Country.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Profile.Town.Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 5 5 5">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1008'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <ListView x:Name="lvFlightSchools" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding FlightSchools,ElementName=pageFlightSchools}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1000'}" Width="200" util:GridViewSort.PropertyName="Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom">
+                            <Hyperlink Tag="{Binding}" Click="lnkFlightSchool_Click" >
+                                <Run Text="{Binding Name}"></Run>
+                            </Hyperlink>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1004'}" Width="200" util:GridViewSort.PropertyName="Airport.Profile.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Airport}" ContentTemplate="{StaticResource AirportCountryItem}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1005'}" Width="100" util:GridViewSort.PropertyName="NumberOfInstructors" DisplayMemberBinding="{Binding NumberOfInstructors}">
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1006'}" Width="100" util:GridViewSort.PropertyName="NumberOfStudents" DisplayMemberBinding="{Binding NumberOfStudents}">
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <WrapPanel Margin="0 10 0 0">
+                        <Button Click="btnBuild_Click"  Style="{StaticResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 200'}">
+                        </Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+
+    </ScrollViewer>
+</Page>

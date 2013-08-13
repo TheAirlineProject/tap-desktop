@@ -10,6 +10,21 @@
             <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
         </DockPanel>
     </DataTemplate>
+    <DataTemplate x:Key="CountryShortFlagItem">
+        <DockPanel>
+            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Text="{Binding ShortName}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
+        </DockPanel>
+    </DataTemplate>
+    <!--town templates-->
+    <DataTemplate x:Key="TownItem">
+        <WrapPanel>
+            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Text="{Binding Country.Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+            <Image Source="{Binding Country.Flag}" Width="20" Height="20" Margin="5 0 0 0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+        </WrapPanel>
+    </DataTemplate>
     <!--airport templates-->
     <DataTemplate x:Key="AirportCountryLink">
         <DockPanel>

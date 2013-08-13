@@ -288,7 +288,8 @@ namespace TheAirline.GraphicsModel.PageModel.PagePilotsModel.PanelPilotsModel
         private void lnkStudent_Click(object sender, RoutedEventArgs e)
         {
             PilotStudent student = (PilotStudent)((Hyperlink)sender).Tag;
-             ComboBox cbInstructor = new ComboBox();
+             
+            ComboBox cbInstructor = new ComboBox();
             cbInstructor.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbInstructor.Width = 200;
             cbInstructor.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;

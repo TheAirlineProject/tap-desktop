@@ -56,7 +56,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         {
 
             // If parameter is null return false:
-            if (u == null)
+            if (u == null || !(u is Town))
             {
                 return false;
             }

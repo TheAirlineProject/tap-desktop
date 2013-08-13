@@ -530,6 +530,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirportsPageModel\PageAirportsStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirportsPageModel\PageSearchAirports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -587,6 +591,26 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PageFlightSchools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PagePilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PagePilotsFS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PageShowFlightSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PageShowPilot.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -935,6 +959,7 @@
       <DependentUpon>ComparerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\HelpersModel\Converters.cs" />
+    <Compile Include="GUIModel\HelpersModel\GridViewSort.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
     <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
@@ -945,6 +970,9 @@
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageAirports.xaml.cs">
       <DependentUpon>PageAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageAirportsStatistics.xaml.cs">
+      <DependentUpon>PageAirportsStatistics.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageSearchAirports.xaml.cs">
       <DependentUpon>PageSearchAirports.xaml</DependentUpon>
@@ -990,6 +1018,22 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml.cs">
       <DependentUpon>PageStartMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\FlightSchoolMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageFlightSchools.xaml.cs">
+      <DependentUpon>PageFlightSchools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PagePilots.xaml.cs">
+      <DependentUpon>PagePilots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PagePilotsFS.xaml.cs">
+      <DependentUpon>PagePilotsFS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageShowFlightSchool.xaml.cs">
+      <DependentUpon>PageShowFlightSchool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageShowPilot.xaml.cs">
+      <DependentUpon>PageShowPilot.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageAssignAirliners.xaml.cs">
       <DependentUpon>PageAssignAirliners.xaml</DependentUpon>

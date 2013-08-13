@@ -54,6 +54,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
            
             if (selection == "Airports" && frmContent != null)
                 frmContent.Navigate(new PageShowAirports() { Tag = this });
+
+            if (selection == "Statistics" && frmContent != null)
+                frmContent.Navigate(new PageAirportsStatistics() { Tag = this });
            
         }
     }

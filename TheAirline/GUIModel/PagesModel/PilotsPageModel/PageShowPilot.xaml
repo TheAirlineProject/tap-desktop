@@ -1,0 +1,53 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.PilotsPageModel.PageShowPilot"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+       xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
+      mc:Ignorable="d" 
+      Name="pageShowPilot"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageShowPilot">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1000'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBlock Width="200" Text="{Binding Pilot.Profile.Name,ElementName=pageShowPilot}" VerticalAlignment="Bottom"></TextBlock>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1001'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBlock Width="200" Text="{Binding Pilot.Profile.Birthdate,ElementName=pageShowPilot,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1002'}">
+                    <g:QuickInfoValue.Value>
+                        <ContentControl Content="{Binding Pilot.Profile.Town,ElementName=pageShowPilot}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource TownItem}"></ContentControl>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue> 
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1003'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBlock Width="200" Text="{Binding Pilot.EducationTime,ElementName=pageShowPilot,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1004'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBlock Width="200" Text="{Binding Pilot.Rating,ElementName=pageShowPilot}" VerticalAlignment="Bottom"></TextBlock>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 1005'}">
+                    <g:QuickInfoValue.Value>
+                        <TextBlock Width="200" Text="{Binding Salary,ElementName=pageShowPilot,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                    </g:QuickInfoValue.Value>
+                </g:QuickInfoValue>
+            </ListBox>
+            <WrapPanel Margin="0 10 0 0">
+                <Button Click="btnHire_Click" Style="{StaticResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 200'}">
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

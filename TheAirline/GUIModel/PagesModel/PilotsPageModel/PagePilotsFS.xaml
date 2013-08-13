@@ -1,0 +1,36 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.PilotsPageModel.PagePilotsFS"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PagePilotsFS">
+
+    <Page.Resources>
+        <DataTemplate x:Key="PilotsQuickLinks">
+           
+        </DataTemplate>
+        <DataTemplate x:Key="PilotsContentMenu">
+            <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilotsFS 2000'}" Tag="Pilots">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilotsFS 2001'}" Tag="Flightschools">
+                </TabItem>
+                <TabItem Header="" Tag="Flightschool" Visibility="Collapsed">
+                </TabItem>
+                <TabItem Header="" Tag="Pilot" Visibility="Collapsed">
+                </TabItem>
+            </TabControl>
+        </DataTemplate>
+        <DataTemplate x:Key="PilotsContent">
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent"/>
+
+
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource PilotsQuickLinks}" MainContentArea="{StaticResource PilotsContent}" MainContentMenuArea="{StaticResource PilotsContentMenu}"/>
+</Page>
+
+

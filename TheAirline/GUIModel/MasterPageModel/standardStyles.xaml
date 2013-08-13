@@ -1,6 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      x:Class="TheAirline.GUIModel.MasterPageModel.standardStylesEvents"
-                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel" 
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
     <!--brushes-->
     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F"></SolidColorBrush>
     <SolidColorBrush x:Key="BackgroundTransparentBrush" Opacity="0.5" Color="Black"></SolidColorBrush>
@@ -84,6 +85,7 @@
         </Setter>
     </Style>
     <!--grid & list views-->
+   
     <Style x:Key="GridViewColumnHeaderGripper" TargetType="Thumb">
         <Setter Property="Width" Value="18"/>
         <Setter Property="Background" Value="White"/>
@@ -194,6 +196,9 @@
               </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="GridViewHeaderRightAlign" BasedOn="{StaticResource {x:Type GridViewColumnHeader}}" TargetType="{x:Type GridViewColumnHeader}">
+        <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
+    </Style>
     <!--borders-->
 
     <Style TargetType="Border" x:Key="RoundedBorderStyle">
@@ -218,7 +223,6 @@
         </Setter>
     </Style>
     <Style x:Key="MenuButtonStyle" TargetType="{x:Type Button}">
-
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
         <Setter Property="Background" Value="#3772A1"/>
         <!--   <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>-->

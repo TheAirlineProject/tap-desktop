@@ -7,6 +7,7 @@ using System.Windows;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GUIModel.PagesModel.AirportsPageModel;
 using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
+using TheAirline.GUIModel.PagesModel.PilotsPageModel;
 using TheAirline.GUIModel.PagesModel.RoutesPageModel;
 
 namespace TheAirline.GUIModel.MasterPageModel
@@ -28,6 +29,10 @@ namespace TheAirline.GUIModel.MasterPageModel
         private void Alliances_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageAlliances());
+        }
+        private void Pilots_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PagePilotsFS());
         }
     }
 }
