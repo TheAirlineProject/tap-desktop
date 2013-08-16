@@ -27,14 +27,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         public PageUsedAirliners()
         {
             this.Loaded += PageUsedAirliners_Loaded;
-                 
-           this.AllAirliners = Airliners.GetAirlinersForSale().OrderByDescending(a => a.BuiltDate.Year).Take(20).ToList();
-     this.AllAirliners.Add(Airliners.GetAirlinersForSale().Find(a=>a.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo));
+
+            this.AllAirliners = Airliners.GetAirlinersForSale().OrderBy(a => a.Price).Take(100).ToList();//.OrderByDescending(a => a.BuiltDate.Year).ToList();
                 
             InitializeComponent();
-      
-               
-      
         }
 
         private void PageUsedAirliners_Loaded(object sender, RoutedEventArgs e)

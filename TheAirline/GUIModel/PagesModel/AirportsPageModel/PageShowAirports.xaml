@@ -3,21 +3,55 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:sys="clr-namespace:System;assembly=mscorlib"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageShowAirports"
 	Title="PageShowAirports">
+
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
-        <ListView x:Name="AirportsList" VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAirports, Path=AllAirports}">
+        <ListView x:Name="AirportsList" VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAirports, Path=AllAirports}">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1000'}" Width="250">
+                    <GridViewColumn Header="">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                <Image Source="/data/images/human.png" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
+                                        <Image.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsHuman}" Value="False">
+                                                        <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <Button Width="20" VerticalAlignment="Bottom" Click="btnContract_Click" Tag="{Binding}" Background="Transparent">
+                                        <Image Source="/data/images/add.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <Button.Style>
+                                            <Style TargetType="Button">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding IsHuman}" Value="True">
+                                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Button.Style>
+                                    </Button>
+                                 </WrapPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1000'}"  util:GridViewSort.PropertyName="Airport.Profile.Name" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock>
-                            <Hyperlink Tag="{Binding}" Click="clName_Click">
-                                <Run Text="{Binding Profile.Name}"></Run>
+                            <Hyperlink Tag="{Binding Airport}" Click="clName_Click">
+                                <Run Text="{Binding Airport.Profile.Name}"></Run>
                             </Hyperlink>
                                 </TextBlock>
                             </DataTemplate>
@@ -25,14 +59,14 @@
 
                     </GridViewColumn>
 
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1001'}" Width="100">
+                    <GridViewColumn  util:GridViewSort.PropertyName="Airport.Profile.IATACode" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1001'}" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0}/{1}">
-                                            <Binding Path="Profile.IATACode" />
-                                            <Binding Path="Profile.ICAOCode" />
+                                            <Binding Path="Airport.Profile.IATACode" />
+                                            <Binding Path="Airport.Profile.ICAOCode" />
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
@@ -40,22 +74,31 @@
                         </GridViewColumn.CellTemplate>
 
                     </GridViewColumn>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1002'}" Width="150" DisplayMemberBinding="{Binding Profile.Town.Name}"></GridViewColumn>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1003'}" Width="75">
+                    <GridViewColumn  util:GridViewSort.PropertyName="Airport.Profile.Town.Name" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1002'}" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}"></ContentControl>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Airport.Profile.Town.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding Airport.Profile.Town.State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+                                </WrapPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1004'}" Width="100">
+                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1003'}"  util:GridViewSort.PropertyName="Airport.Profile.Town.Country.Name" Width="75">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Airport.Profile.Town.Country}"></ContentControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  util:GridViewSort.PropertyName="Airport.Terminals.NumberOfFreeGates" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1004'}" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0}/{1}">
-                                            <Binding Path="Terminals.NumberOfFreeGates" />
-                                            <Binding Path="Terminals.NumberOfGates" />
+                                            <Binding Path="Airport.Terminals.NumberOfFreeGates" />
+                                            <Binding Path="Airport.Terminals.NumberOfGates" />
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>

@@ -1,0 +1,144 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinePageModel.PageAirlineInfo"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineInfo">
+
+    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+            <StackPanel>
+                <TextBlock Text="Airline Profile" Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0} ({1})">
+                            <Binding Path="Airline.Profile.Name" />
+                            <Binding Path="Airline.Profile.IATACode" />
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+               
+              
+            <Image                                  
+                               Source="{Binding Airline.Profile.Logo}"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                HorizontalAlignment="Center" Width="96" Grid.Column="0"/>
+                <StackPanel Margin="5 0 0 0" Grid.Column="1">
+                <WrapPanel>
+                    <TextBlock Text="CEO" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Airline.Profile.CEO}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Airline Color" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <ContentControl ContentTemplate="{StaticResource AirlineColorItem}" Content="{Binding Airline.Profile.Color}" HorizontalAlignment="Center"></ContentControl>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Country" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <ContentControl Content="{Binding Airline.Profile.Country}"  ContentTemplate="{StaticResource CountryLongFlagItem}" VerticalAlignment="Bottom"/>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Founded" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Airline.Profile.Founded}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Airline Focus" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Airline.AirlineRouteFocus,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                </StackPanel>
+                </Grid>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 5 0">
+            <StackPanel>
+                <TextBlock Text="Airline Fleet" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                <ListView Name="lvFleet" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding DeliveredFleet}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" util:GridViewSort.PropertyName="Name" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Type" util:GridViewSort.PropertyName="Airliner.Type.Name" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                           
+                        </GridView>
+                    </ListView.View>
+                    <ListView.GroupStyle>
+                        <GroupStyle>
+                            <GroupStyle.HeaderTemplate>
+                                <DataTemplate>
+                                    <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}"/>
+                                </DataTemplate>
+                            </GroupStyle.HeaderTemplate>
+                        </GroupStyle>
+                    </ListView.GroupStyle>
+                </ListView>
+                <TextBlock Text="Airline Ordered Fleet" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                <ListView  VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding OrderedFleet}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Name" util:GridViewSort.PropertyName="Name" Width="100">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="Type" util:GridViewSort.PropertyName="Airliner.Type.Name" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </StackPanel>
+        </Border>
+        <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="2" Margin="5 0 0 0">
+            <StackPanel>
+                <TextBlock Text="Airline Destinations" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListView VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Airline.Airports}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Destination"  util:GridViewSort.PropertyName="Profile.Name" Width="250">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding}" VerticalAlignment="Bottom"></ContentControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            </StackPanel>
+        </Border>
+       
+     
+    </Grid>
+    </ScrollViewer>
+</Page>

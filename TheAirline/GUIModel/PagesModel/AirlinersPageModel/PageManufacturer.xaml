@@ -56,7 +56,13 @@
                             <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" Width="200" util:GridViewSort.PropertyName="Name">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock ToolTipService.ShowDuration="30000" Text="{Binding Name}" VerticalAlignment="Bottom">
+                                            <TextBlock.ToolTip>
+                                                <ToolTip>
+                                                    <ContentControl Content="{Binding}" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
+                                                </ToolTip>
+                                            </TextBlock.ToolTip>
+                                        </TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

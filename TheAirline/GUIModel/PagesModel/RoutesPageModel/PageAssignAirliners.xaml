@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.RoutesPageModel"
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
       Name="pageAssignAirliners"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -16,11 +17,9 @@
             <WrapPanel>
                 <TextBlock Text="{Binding StartDate,StringFormat=d, ConverterCulture={x:Static g:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                 <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="50" FontWeight="Bold"></TextBlock>
-                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryFlagLongItem}" Content="{Binding From,Converter={StaticResource CountryCurrentCountryConverter}}">
+                <ContentControl ToolTipService.ShowDuration="30000" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryFlagLongItem}" Content="{Binding From,Converter={StaticResource CountryCurrentCountryConverter}}">
                     <ContentControl.ToolTip>
-                        <Border Margin="-4,0,-4,-3" Padding="5" Background="DarkBlue">
-                            <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource CountryFlagLongItem}" ItemsSource="{Binding From, Converter={StaticResource unionMemberConverter}}"></ListBox>
-                        </Border>
+                           <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource CountryFlagLongItem}" ItemsSource="{Binding From, Converter={StaticResource unionMemberConverter}}"></ListBox>
                     </ContentControl.ToolTip>
                 </ContentControl>
                 <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold"></TextBlock>
@@ -39,10 +38,10 @@
         <StackPanel>
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1000'}"  Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{DynamicResource RestrictionItem}" ItemsSource="{Binding Path=Restrictions,ElementName=pageAssignAirliners}"></ListBox>
-            <ListView Name="lvFleet" Margin="0 10 0 0" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Path=Airliners,ElementName=pageAssignAirliners}">
+            <ListView Name="lvFleet"  util:GridViewSort.AutoSort="True" Margin="0 10 0 0" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Path=Airliners,ElementName=pageAssignAirliners}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1001'}" Width="100">
+                        <GridViewColumn  util:GridViewSort.PropertyName="Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1001'}" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Bottom">
@@ -53,7 +52,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1002'}" Width="200">
+                        <GridViewColumn util:GridViewSort.PropertyName="Airliner.Type.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1002'}" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>

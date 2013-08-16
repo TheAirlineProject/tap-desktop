@@ -578,6 +578,30 @@
         </Setter>
 
     </Style>
+    <!--tooltips-->
+    <Style x:Key="{x:Type ToolTip}"
+       TargetType="ToolTip">
+        <Setter Property="ToolTipService.ShowDuration" Value="60000"></Setter>
+        <Setter Property="OverridesDefaultStyle"
+          Value="true" />
+        <Setter Property="HasDropShadow"
+          Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToolTip">
+                    <Border Background="#2A4861" Name="Border"
+                BorderThickness="1"
+                Width="{TemplateBinding Width}"
+                Height="{TemplateBinding Height}">
+                        <ContentPresenter Margin="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top" />
+
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--checkboxes-->
     <Style TargetType="{x:Type CheckBox}">
         <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>

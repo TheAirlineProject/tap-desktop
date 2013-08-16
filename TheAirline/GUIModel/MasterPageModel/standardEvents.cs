@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
 using TheAirline.GUIModel.PagesModel.AirportsPageModel;
 using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
 using TheAirline.GUIModel.PagesModel.PilotsPageModel;
 using TheAirline.GUIModel.PagesModel.RoutesPageModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.MasterPageModel
 {
@@ -29,7 +31,7 @@ namespace TheAirline.GUIModel.MasterPageModel
         }
         private void Home_Click(object sender, RoutedEventArgs e)
         {
-   
+            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
         }
         private void Alliances_Click(object sender, RoutedEventArgs e)
         {

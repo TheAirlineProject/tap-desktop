@@ -14,8 +14,11 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
@@ -24,7 +27,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     /// </summary>
     public partial class PageShowAirports : Page
     {
-        public List<Airport> AllAirports { get; set; }
+        public List<AirportMVVM> AllAirports { get; set; }
 
         public PageShowAirports(List<Airport> airports)
         {
@@ -38,8 +41,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         //creates the page
         private void createPage(List<Airport> airports)
         {
+            this.AllAirports = new List<AirportMVVM>();
 
-            this.AllAirports = airports.OrderBy(a=>a.Profile.Name).ToList();
+            foreach (Airport airport in airports.OrderBy(a=>a.Profile.Name))
+                this.AllAirports.Add(new AirportMVVM(airport));
 
             InitializeComponent();
 
@@ -66,5 +71,33 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             PageNavigator.NavigateTo(new PageAirport(airport));
         }
+
+        private void btnContract_Click(object sender, RoutedEventArgs e)
+        {
+            AirportMVVM airport = (AirportMVVM)((Button)sender).Tag;
+            
+            Boolean hasCheckin = airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
+
+            object o = PopUpAirportContract.ShowPopUp(airport.Airport);
+
+           //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+            
+           if (o!=null)
+           {
+               if (!hasCheckin)
+               {
+                   AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                   airport.Airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                   AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+               }
+
+               airport.addAirlineContract((AirportContract)o);
+          
+            }
+
+        }
+        
     }
 }

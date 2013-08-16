@@ -1,0 +1,59 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinePageModel.PageAirlineFinances"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineFinances">
+
+    <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="Financial Summary" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <WrapPanel>
+                <TextBlock FontWeight="Bold" Text="Cash On Hand" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Airline.Money,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock FontWeight="Bold" Text="Balance" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <TextBlock Text="Financial Specifications" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListView  ItemsSource="{Binding Finances}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="Category" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding InvoiceType,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="This Month" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding CurrentMonth,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding CurrentMonth,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Last Month" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding LastMonth,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding LastMonth,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Year to Date" Width="150">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding YearToDate,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding YearToDate,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

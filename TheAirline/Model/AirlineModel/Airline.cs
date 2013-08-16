@@ -73,7 +73,6 @@ namespace TheAirline.Model.AirlineModel
         public List<Loan> Loans { get; set; }
         [DataMember]
         private List<string> FlightCodes;
-        [DataMember]
         public List<FleetAirliner> DeliveredFleet { get { return getDeliveredFleet(); } set { ;} }
         [DataMember]
         public List<Alliance> Alliances { get; set; }

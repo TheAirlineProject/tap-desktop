@@ -329,9 +329,9 @@ namespace TheAirline.GUIModel.HelpersModel
             double cargo = (double)value;
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:0.##} m3", cargo);
+                return string.Format("{0:0} m3", cargo);
             else
-                return string.Format("{0:0.##} cu feet", MathHelpers.MeterToFeet(cargo) * 10);
+                return string.Format("{0:0} cu feet", MathHelpers.MeterToFeet(cargo) * 10);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -351,9 +351,9 @@ namespace TheAirline.GUIModel.HelpersModel
             double v = Double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:#,0.00} {1}", v, new StringToLanguageConverter().Convert("km."));
+                return string.Format("{0:#,0} {1}", v, new StringToLanguageConverter().Convert("km."));
             else
-                return string.Format("{0:#,0.00} {1}", MathHelpers.KMToMiles(v), new StringToLanguageConverter().Convert("km."));
+                return string.Format("{0:#,0} {1}", MathHelpers.KMToMiles(v), new StringToLanguageConverter().Convert("km."));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -372,7 +372,7 @@ namespace TheAirline.GUIModel.HelpersModel
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
                 return v + " m.";
             else
-                return string.Format("{0:#,0.00} feet", MathHelpers.MeterToFeet(v));
+                return string.Format("{0:#,0} feet", MathHelpers.MeterToFeet(v));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -389,9 +389,9 @@ namespace TheAirline.GUIModel.HelpersModel
             double v = Double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:#,0.00} {1}", v, new StringToLanguageConverter().Convert("km/t"));
+                return string.Format("{0:#,0} {1}", v, new StringToLanguageConverter().Convert("km/t"));
             else
-                return string.Format("{0:#,0.00} {1}", MathHelpers.KMToMiles(v), new StringToLanguageConverter().Convert("km/t"));
+                return string.Format("{0:#,0} {1}", MathHelpers.KMToMiles(v), new StringToLanguageConverter().Convert("km/t"));
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
@@ -464,9 +464,9 @@ namespace TheAirline.GUIModel.HelpersModel
             double v = Double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:#,0.00} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
+                return string.Format("{0:#,0} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
             else
-                return string.Format("{0:#,0.00} {1}", MathHelpers.LKMToMPG(v), new StringToLanguageConverter().Convert("l/seat/km"));
+                return string.Format("{0:#,0} {1}", MathHelpers.LKMToMPG(v), new StringToLanguageConverter().Convert("l/seat/km"));
             }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
