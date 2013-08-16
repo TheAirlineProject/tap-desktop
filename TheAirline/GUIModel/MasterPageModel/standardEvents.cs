@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
 using TheAirline.GUIModel.PagesModel.AirportsPageModel;
 using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
 using TheAirline.GUIModel.PagesModel.PilotsPageModel;
@@ -17,6 +18,10 @@ namespace TheAirline.GUIModel.MasterPageModel
         private void RoutesManager_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageRoutes());
+        }
+        private void Airliners_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageAirliners());
         }
         private void Airports_Click(object sender, RoutedEventArgs e)
         {

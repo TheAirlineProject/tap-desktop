@@ -1,8 +1,16 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:c="clr-namespace:TheAirline.GUIModel.HelpersModel"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
                     x:Class="TheAirline.GUIModel.MasterPageModel.standardTemplatesEvents">
     <c:AirlineColorConverter x:Key="airlineColorConverter"></c:AirlineColorConverter>
+    <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter"></c:SpeedToUnitConverter>
+    <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter"></c:DistanceToUnitConverter>
+    <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
+    <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
+    <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
+    <c:CargoSizeConverter x:Key="CargoSizeConverter"></c:CargoSizeConverter>
+
     <!--countries templates-->
     <DataTemplate x:Key="CountryLongFlagItem">
         <DockPanel>
@@ -21,9 +29,93 @@
         <WrapPanel>
             <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
             <TextBlock Text="{Binding Country.Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
             <Image Source="{Binding Country.Flag}" Width="20" Height="20" Margin="5 0 0 0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
-
         </WrapPanel>
+    </DataTemplate>
+    <!--airliner templates-->
+    <DataTemplate x:Key="AirlinerTypeSpecificationItem">
+        <StackPanel>
+            <WrapPanel>
+                <TextBlock Text="Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Manufacturer" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
+                <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Airliner Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Body Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Engine Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Engine,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Length" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Length,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Wing Span" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Range" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+              <WrapPanel>
+                <TextBlock Text="Cruising Speed" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Req. Runway Length" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBlock Text="Fuel Comsuption" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Cargo">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel>
+                        <TextBlock Text="Seating Capacity" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
+                    </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="Max. Airliner Classes" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Passenger">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel>
+                    <TextBlock Text="Cargo Capacity" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+             </StackPanel>
+        </StackPanel>
     </DataTemplate>
     <!--airport templates-->
     <DataTemplate x:Key="AirportCountryLink">

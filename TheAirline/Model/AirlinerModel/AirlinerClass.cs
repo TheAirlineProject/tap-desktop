@@ -17,6 +17,12 @@ namespace TheAirline.Model.AirlinerModel
     [DataContract]
     public class AirlinerClass
     {
+        public List<AirlinerFacility> AllFacilities
+        {
+            get
+            { return getFacilities(); }
+            private set { ;}
+        }
         [DataMember]
         private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
         

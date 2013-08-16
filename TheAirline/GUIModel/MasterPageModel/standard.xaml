@@ -6,10 +6,11 @@
                     xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
                     xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel">
     <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="standardResources.xaml"></ResourceDictionary>
+
         <ResourceDictionary Source="standardStyles.xaml"></ResourceDictionary>
         <ResourceDictionary Source="standardTemplates.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="standardResources.xaml"></ResourceDictionary>
-    </ResourceDictionary.MergedDictionaries>
+     </ResourceDictionary.MergedDictionaries>
     <g:GUIObject x:Key="gameObject"></g:GUIObject>
     <DataTemplate x:Key="HeaderContent">
         <Grid>
@@ -49,7 +50,7 @@
         <StackPanel>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1000'}" Style="{StaticResource MenuButtonStyle}" Click="Home_Click"></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1001'}" Style="{StaticResource MenuButtonStyle}" Click="RoutesManager_Click" Margin="0 5 0 0"></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1002'}" Style="{StaticResource MenuButtonStyle}" Margin="0 5 0 0"></Button>
+            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1002'}" Style="{StaticResource MenuButtonStyle}" Click="Airliners_Click"  Margin="0 5 0 0"></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1003'}" Style="{StaticResource MenuButtonStyle}" Click="Airports_Click" Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1004'}" Style="{StaticResource MenuButtonStyle}" Click="Alliances_Click" Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1005'}" Style="{StaticResource MenuButtonStyle}" Click="Pilots_Click"  Margin="0 5 0 0" ></Button>

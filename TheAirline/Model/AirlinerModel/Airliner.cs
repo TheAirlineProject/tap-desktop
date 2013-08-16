@@ -12,7 +12,8 @@ namespace TheAirline.Model.AirlinerModel
     [Serializable]
     public class Airliner
     {
-        
+
+        public Country Registered { get { return Countries.GetCountryFromTailNumber(this.TailNumber);} private set { ;} }
         public string TailNumber { get; set; }
         
         public string ID { get; set; }

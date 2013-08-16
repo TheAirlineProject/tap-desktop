@@ -117,6 +117,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice);
         }
+
         //reallocate all gates and facilities from one airport to another - gates, facilities and routes
         public static void ReallocateAirport(Airport oldAirport, Airport newAirport, Airline airline)
         {

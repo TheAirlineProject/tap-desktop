@@ -16,7 +16,7 @@ namespace TheAirline.Model.AirlinerModel
  
     public abstract class AirlinerType
     {
-
+        public double Maintenance { get { return getMaintenance(); } private set { ;} }
         [DataMember]
         public string Name { get; set; }
 
@@ -72,9 +72,12 @@ namespace TheAirline.Model.AirlinerModel
         public AirlinerType BaseType { get; set; }
         [DataMember]
         public int ProductionRate { get; set; }
-        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
+        [DataMember]
+        public string AirlinerFamily { get; set; }
+        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name,string family, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
         {
             this.TypeAirliner = typeOfAirliner;
+            this.AirlinerFamily = family;
             this.Manufacturer = manufacturer;
             this.Name = name;
             this.CruisingSpeed = speed;
@@ -94,10 +97,10 @@ namespace TheAirline.Model.AirlinerModel
             this.ProductionRate = prodRate;
         }
        
-        //returns the montly maintenance
+        //returns the yearly maintenance
         public long getMaintenance()
         {
-            double maintenance = 0.0013 * (double)this.Price;
+            double maintenance = 0.0013 * (double)this.Price * 12;
             return Convert.ToInt64(maintenance);
         }
         // chs, 2011-10-10 changed the leasing price
@@ -119,7 +122,7 @@ namespace TheAirline.Model.AirlinerModel
         public int MaxSeatingCapacity { get; set; }
         public int CabinCrew { get; set; }
         public int MaxAirlinerClasses { get; set; }
-        public AirlinerPassengerType(Manufacturer manufacturer, string name, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
+        public AirlinerPassengerType(Manufacturer manufacturer, string name,string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
             this.MaxSeatingCapacity = seating;
             this.CabinCrew = cabincrew;
@@ -131,7 +134,7 @@ namespace TheAirline.Model.AirlinerModel
     public class AirlinerCargoType : AirlinerType
     {
         public double CargoSize { get; set; }
-        public AirlinerCargoType(Manufacturer manufacturer, string name, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
+        public AirlinerCargoType(Manufacturer manufacturer, string name,string family, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
             this.CargoSize = cargoSize;
         }

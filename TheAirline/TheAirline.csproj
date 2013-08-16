@@ -526,6 +526,26 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirportsPageModel\PageAirports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -968,6 +988,22 @@
     <Compile Include="GUIModel\MasterPageModel\standardTemplatesEvents.cs" />
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\AirlinersMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml.cs">
+      <DependentUpon>PageAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml.cs">
+      <DependentUpon>PageManufacturer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturers.xaml.cs">
+      <DependentUpon>PageManufacturers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliner.xaml.cs">
+      <DependentUpon>PageUsedAirliner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliners.xaml.cs">
+      <DependentUpon>PageUsedAirliners.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageAirports.xaml.cs">
       <DependentUpon>PageAirports.xaml</DependentUpon>
     </Compile>

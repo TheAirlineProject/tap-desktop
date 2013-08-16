@@ -428,7 +428,7 @@ VerticalAlignment="Center"/>
                         <Trigger Property="IsEditable"
                Value="true">
                             <Setter Property="IsTabStop" Value="false"/>
-                            <Setter TargetName="PART_EditableTextBox" Property="Visibility"    Value="Visible"/>
+                            <Setter TargetName="PART_EditableTextBox" Property="Visibility" />
                             <Setter TargetName="ContentSite" Property="Visibility" Value="Hidden"/>
                         </Trigger>
                        

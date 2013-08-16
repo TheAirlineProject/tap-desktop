@@ -1,0 +1,44 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinersPageModel.PageManufacturers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      Name="pageManufacturers"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageManufacturers">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <ListView x:Name="lvInstructors" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllManufacturers,ElementName=pageManufacturers}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturers 1000'}" Width="250">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="{Binding Logo}" RenderOptions.BitmapScalingMode="HighQuality" Width="32"></Image>
+                                        <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                            <Hyperlink Tag="{Binding}" Click="lnkManufacturer_Click">
+                                <Run Text="{Binding Name}"></Run>
+                            </Hyperlink>
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturers 1001'}" Width="200">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl ContentTemplate="{StaticResource CountryLongFlagItem}" VerticalAlignment="Bottom" Content="{Binding Country}"></ContentControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 
@@ -125,17 +127,17 @@ namespace TheAirline.GUIModel.HelpersModel
                                 }
 
                                 if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                    return string.Format("{0:#,0.00} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
+                                    return string.Format("{0:#,0.##} {2} {1}", sValue, currency.CurrencySymbol, sFormat);
                                 else
-                                    return string.Format("{1}{0:#,0.00} {2}", sValue, currency.CurrencySymbol, sFormat);
+                                    return string.Format("{1}{0:#,0.##} {2}", sValue, currency.CurrencySymbol, sFormat);
 
                             }
                             else
                             {
                                 if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                    return string.Format("{0:#,0.00} {1}", currencyValue, currency.CurrencySymbol);
+                                    return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
                                 else
-                                    return string.Format("{1}{0:#,0.00}", currencyValue, currency.CurrencySymbol);
+                                    return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
 
                             }
                         }
@@ -143,9 +145,9 @@ namespace TheAirline.GUIModel.HelpersModel
                         {
 
                             if (currency.Position == CountryCurrency.CurrencyPosition.Right)
-                                return string.Format("{0:#,0.00} {1}", currencyValue, currency.CurrencySymbol);
+                                return string.Format("{0:#,0.##} {1}", currencyValue, currency.CurrencySymbol);
                             else
-                                return string.Format("{1}{0:#,0.00}", currencyValue, currency.CurrencySymbol);
+                                return string.Format("{1}{0:#,0.##}", currencyValue, currency.CurrencySymbol);
                         }
                     }
                 }
@@ -309,6 +311,163 @@ namespace TheAirline.GUIModel.HelpersModel
         {
             return value.ToString().Replace('_', ' ');
         }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the cargo size from an airliner
+    public class CargoSizeConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double cargo = (double)value;
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:0.##} m3", cargo);
+            else
+                return string.Format("{0:0.##} cu feet", MathHelpers.MeterToFeet(cargo) * 10);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for a number (in km) to the selected unit
+    public class DistanceToUnitConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:#,0.00} {1}", v, new StringToLanguageConverter().Convert("km."));
+            else
+                return string.Format("{0:#,0.00} {1}", MathHelpers.KMToMiles(v), new StringToLanguageConverter().Convert("km."));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for a small distance (in m) to the selected unit
+    public class SmallDistanceToUnitConverter : IValueConverter
+    {
+        
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return v + " m.";
+            else
+                return string.Format("{0:#,0.00} feet", MathHelpers.MeterToFeet(v));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for a number (in km/h) to the selected unit
+    public class SpeedToUnitConverter : IValueConverter
+    {
+       
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:#,0.00} {1}", v, new StringToLanguageConverter().Convert("km/t"));
+            else
+                return string.Format("{0:#,0.00} {1}", MathHelpers.KMToMiles(v), new StringToLanguageConverter().Convert("km/t"));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //converter for airport code
+    public class AirportCodeConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is Airport)
+            {
+                Airport airport = (Airport)value;
+
+                if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
+                    return airport.Profile.IATACode;
+                else
+                    return airport.Profile.ICAOCode;
+            }
+            else
+                return "";
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for a string to a language string
+    public class StringToLanguageConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            String text = (String)value;
+            try
+            {
+                return AppSettings.GetInstance().getLanguage().convert(text);
+            }
+            catch
+            {
+                return text;
+            }
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for l/seat/km to the selected unit
+    public class FuelConsumptionToUnitConverter : IValueConverter
+    {
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:#,0.00} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
+            else
+                return string.Format("{0:#,0.00} {1}", MathHelpers.LKMToMPG(v), new StringToLanguageConverter().Convert("l/seat/km"));
+            }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

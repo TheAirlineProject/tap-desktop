@@ -8,4 +8,9 @@
     <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector"></c:ListBoxItemStyleSelectorTransparent>
     <c:ValueIsMinusConverter x:Key="ValueIsMinusConverter"/>
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
-</ResourceDictionary>
+    <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
+    <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter"></c:SpeedToUnitConverter>
+    <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter"></c:DistanceToUnitConverter>
+    <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
+    <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
+ </ResourceDictionary>

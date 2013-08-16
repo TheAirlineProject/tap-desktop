@@ -37,6 +37,7 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageFinancesModel;
 using ucLibrary;
+using TheAirline.GUIModel.PagesModel.PilotsPageModel;
 
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
@@ -193,8 +194,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkAlliances_Click(object sender, RoutedEventArgs e)
         {
-            //PageNavigator.NavigateTo(new GUIModel.PagesModel.AlliancesPageModel.PageAlliances());
-            PageNavigator.NavigateTo(new PageAlliances());
+            PageNavigator.NavigateTo(new GUIModel.PagesModel.AlliancesPageModel.PageAlliances());
+            //PageNavigator.NavigateTo(new PageAlliances());
         }
         private void lnkAirlines_Click(object sender, RoutedEventArgs e)
         {
@@ -307,7 +308,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkPilots_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PagePilots());
+            PageNavigator.NavigateTo(new PagePilotsFS());
         }
         private void lnkLoadGame_Click(object sender, RoutedEventArgs e)
         {

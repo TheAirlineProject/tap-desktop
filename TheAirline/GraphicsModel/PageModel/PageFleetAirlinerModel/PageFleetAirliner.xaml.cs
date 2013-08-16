@@ -430,7 +430,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel
 
                     double cargoSize = AirlinerHelpers.ConvertPassengersToCargoSize(currentType);
          
-                    AirlinerType newCargoType = new AirlinerCargoType(currentType.Manufacturer,airlinerName,currentType.CockpitCrew,cargoSize,currentType.CruisingSpeed,currentType.Range,currentType.Wingspan,currentType.Length,currentType.FuelConsumption,currentType.Price,currentType.MinRunwaylength,currentType.FuelCapacity,currentType.Body,currentType.RangeType,currentType.Engine,currentType.Produced,currentType.ProductionRate, false);
+                    AirlinerType newCargoType = new AirlinerCargoType(currentType.Manufacturer,airlinerName,currentType.AirlinerFamily, currentType.CockpitCrew,cargoSize,currentType.CruisingSpeed,currentType.Range,currentType.Wingspan,currentType.Length,currentType.FuelConsumption,currentType.Price,currentType.MinRunwaylength,currentType.FuelCapacity,currentType.Body,currentType.RangeType,currentType.Engine,currentType.Produced,currentType.ProductionRate, false);
                     newCargoType.BaseType = currentType;
                     AirlinerTypes.AddType(newCargoType);
 
