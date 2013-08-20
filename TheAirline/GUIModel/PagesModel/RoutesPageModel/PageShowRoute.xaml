@@ -21,8 +21,8 @@
         </DataTemplate>
         <DataTemplate x:Key="FacilityItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
-                <ComboBox  Width="100" Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding Path=SelectedFacility,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding Path=Facilities}">
+             <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+               <ComboBox  Width="100" Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding Path=SelectedFacility,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding Path=Facilities}">
                 </ComboBox>
             </WrapPanel>
         </DataTemplate>

@@ -16,7 +16,7 @@
                         <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1005'}" Width="200" util:GridViewSort.PropertyName="Profile.Name">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                                    <TextBlock VerticalAlignment="Bottom">
                             <Hyperlink Tag="{Binding}" Click="lnkPilot_Click">
                                 <Run Text="{Binding Profile.Name}"></Run>
                             </Hyperlink>

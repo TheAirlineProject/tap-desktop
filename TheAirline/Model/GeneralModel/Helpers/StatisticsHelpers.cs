@@ -145,7 +145,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 return fillDegree.DefaultIfEmpty(0).Average();
             }
+            //returns the fill degree for an airline
+            public static double GetAirlineFillAverage(Airline airline)
+            {
+                List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
 
+                return fillDegree.DefaultIfEmpty(0).Average();
+            }
             //returns dictionary of AI average fill degrees
             public static Dictionary<Airline,Double> GetAIFillDegree()
             {
@@ -165,7 +171,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return  GameObject.GetInstance().HumanAirline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
           
             }
-
+            //returns the on-time % for an airline
+            public static double GetOnTimePercent(Airline airline)
+            {
+                return airline.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("On-Time%"));
+            }
             //calculates AI airline average on-time %
             public static Dictionary<Airline, Double> GetAIonTime()
             {

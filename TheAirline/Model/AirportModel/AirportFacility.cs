@@ -77,7 +77,7 @@ namespace TheAirline.Model.AirportModel
         {
             return facilities.Values.ToList();
         }
-        //returns all facilities of a specific type
+       //returns all facilities of a specific type
         public static List<AirportFacility> GetFacilities(AirportFacility.FacilityType type)
         {
             return GetFacilities().FindAll((delegate(AirportFacility facility) { return facility.Type ==type; }));

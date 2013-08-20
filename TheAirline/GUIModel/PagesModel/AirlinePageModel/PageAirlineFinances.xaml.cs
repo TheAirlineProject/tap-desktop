@@ -12,6 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -27,6 +30,23 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.DataContext = this.Airline;
 
             InitializeComponent();
+        }
+
+        private void btnApplyLoan_Click(object sender, RoutedEventArgs e)
+        {
+            Loan loan = (Loan)PopUpLoan.ShowPopUp();
+
+            if (loan != null)
+            {
+                this.Airline.addLoan(loan);
+
+
+                AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, loan.Amount);
+
+           
+
+
+            }
         }
     }
 }

@@ -91,8 +91,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel
         {
             Airline airline = (Airline)((Hyperlink)sender).Tag;
 
-            PageNavigator.NavigateTo(new PageAirline(airline));
-
+            //PageNavigator.NavigateTo(new PageAirline(airline));
+            PageNavigator.NavigateTo(new GUIModel.PagesModel.AirlinePageModel.PageAirline(airline));
         }
         //creates the panel for the symbols
         private WrapPanel createSymbolsPanel()

@@ -1,0 +1,122 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinePageModel.PageAirlineEmployees"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:h="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      Name="pageAirlineEmployees"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineEmployees">
+    <Page.Resources>
+        <DataTemplate x:Key="OpponentWageItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="HumanWageItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <Slider IsSnapToTickEnabled="True" Width="200" Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
+                <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+       
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+
+                <StackPanel>
+                    <TextBlock Text="Employees" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"> </TextBlock>
+                      <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+            <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
+                <h:QuickInfoValue.Value>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.CockpitCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                </h:QuickInfoValue.Value>
+            </h:QuickInfoValue>
+                              <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
+                <h:QuickInfoValue.Value>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.CabinCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                </h:QuickInfoValue.Value>
+            </h:QuickInfoValue>
+                              <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
+                <h:QuickInfoValue.Value>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.SupportCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                </h:QuickInfoValue.Value>
+            </h:QuickInfoValue>
+                              <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
+                <h:QuickInfoValue.Value>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.MaintenanceCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                </h:QuickInfoValue.Value>
+            </h:QuickInfoValue>
+        </ListBox>
+                   
+                    <TextBlock Text="Pilots" Margin="0 5 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <ListView VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Pilots}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button VerticalAlignment="Bottom" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Background="Transparent" Click="btnFirePilot_Click" Width="20" Tag="{Binding}">
+                                                <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1005'}" Width="200" util:GridViewSort.PropertyName="Profile.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Name}"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1006'}" Width="50" util:GridViewSort.PropertyName="Profile.Age">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1007'}" Width="50" util:GridViewSort.PropertyName="Rating">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Hometown" Width="200" util:GridViewSort.PropertyName="Profile.Town.Country.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Profile.Town}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource TownItem}"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
+
+                <StackPanel>
+                    <TextBlock Text="Employee Wages" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <ListBox ItemsSource="{Binding Wages}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" ItemTemplate="{StaticResource OpponentWageItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
+                    <ListBox ItemsSource="{Binding Wages}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" ItemTemplate="{StaticResource HumanWageItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
+                      <WrapPanel Margin="0 5 0 0" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                        <Button Content="Save Changes" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
+                        <Button Content="Undo" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

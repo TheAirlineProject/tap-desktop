@@ -46,6 +46,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
            lvAirliners.ItemsSource = this.Airliners;
 
            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvAirliners.ItemsSource);
+           view.GroupDescriptions.Clear();
+
            PropertyGroupDescription groupDescription = new PropertyGroupDescription("AirlinerFamily");
            view.GroupDescriptions.Add(groupDescription);
      

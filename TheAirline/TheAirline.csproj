@@ -526,7 +526,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineRatings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -535,6 +543,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineServices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1001,14 +1013,23 @@
     <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
     <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\AirlineMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineRatings.xaml.cs">
+      <DependentUpon>PageAirlineRatings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirline.xaml.cs">
       <DependentUpon>PageAirline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEmployees.xaml.cs">
+      <DependentUpon>PageAirlineEmployees.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFinances.xaml.cs">
       <DependentUpon>PageAirlineFinances.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInfo.xaml.cs">
       <DependentUpon>PageAirlineInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineServices.xaml.cs">
+      <DependentUpon>PageAirlineServices.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\AirlinersMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml.cs">
@@ -1428,6 +1449,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Plane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\tickgrey.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

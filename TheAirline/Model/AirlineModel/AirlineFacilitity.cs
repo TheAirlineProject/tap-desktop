@@ -71,5 +71,9 @@ namespace TheAirline.Model.AirlineModel
         {
             return facilities;
         }
+        public static List<AirlineFacility> GetFacilities(Predicate<AirlineFacility> match)
+        {
+            return facilities.FindAll(match);
+        }
     }
 }
