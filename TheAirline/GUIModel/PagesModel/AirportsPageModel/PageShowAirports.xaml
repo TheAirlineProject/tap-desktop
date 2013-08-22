@@ -38,8 +38,14 @@
                                                     <DataTrigger Binding="{Binding IsHuman}" Value="True">
                                                         <Setter Property="Button.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
+                                                    <DataTrigger Binding="{Binding NumberOfFreeGates}" Value="0">
+                                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+
+                                                    </DataTrigger>
+                                                                 
                                                 </Style.Triggers>
-                                            </Style>
+                                             </Style>
+                                          
                                         </Button.Style>
                                     </Button>
                                  </WrapPanel>
@@ -91,13 +97,13 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="Airport.Terminals.NumberOfFreeGates" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1004'}" Width="100">
+                    <GridViewColumn  util:GridViewSort.PropertyName="NumberOfFreeGates" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1004'}" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
                                     <TextBlock.Text>
                                         <MultiBinding StringFormat="{}{0}/{1}">
-                                            <Binding Path="Airport.Terminals.NumberOfFreeGates" />
+                                            <Binding Path="NumberOfFreeGates" />
                                             <Binding Path="Airport.Terminals.NumberOfGates" />
                                         </MultiBinding>
                                     </TextBlock.Text>

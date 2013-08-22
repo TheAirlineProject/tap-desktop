@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -30,7 +31,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineFeeMVVM> Discounts { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Chargers { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Fees { get; set; }
-       
+        public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
+        public ObservableCollection<AirlineInsurance> Insurances { get; set; }
+        public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
 
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
@@ -67,6 +70,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Facilities = new ObservableCollection<AirlineFacilityMVVM>();
             this.Fees = new ObservableCollection<AirlineFeeMVVM>();
             this.Chargers = new ObservableCollection<AirlineFeeMVVM>();
+            this.Subsidiaries = new ObservableCollection<SubsidiaryAirline>();
+            this.Insurances = new ObservableCollection<AirlineInsurance>();
+            this.Advertisements = new ObservableCollection<AirlineAdvertisementMVVM>();
 
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(l));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
@@ -76,6 +82,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
             FeeTypes.GetTypes(FeeType.eFeeType.Fee).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Fees.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+
+            this.Airline.Subsidiaries.ForEach(s => this.Subsidiaries.Add(s));
+            this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
 
             setValues();
         }
@@ -109,7 +118,27 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
 
         }
-        //adds a facility
+        //adds an airline insurance
+        public void addAirlineInsurance(AirlineInsurance insurance)
+        {
+            this.Insurances.Add(insurance);
+            this.Airline.addInsurance(insurance);
+        }
+        //adds a subsidiary airline
+        public void addSubsidiaryAirline(SubsidiaryAirline airline)
+        {
+            this.Subsidiaries.Add(airline);
+
+            AirlineHelpers.AddSubsidiaryAirline(GameObject.GetInstance().MainAirline, airline, airline.Money, airline.Airports[0]);
+            airline.Airports.RemoveAt(0);
+             
+        }
+        //removes a subsidiary airline
+        public void removeSubsidiaryAirline(SubsidiaryAirline airline)
+        {
+            this.Subsidiaries.Remove(airline);
+        }
+       //adds a facility
         public void addFacility(AirlineFacilityMVVM facility)
         {
             facility.Type = AirlineFacilityMVVM.MVVMType.Purchased;
@@ -143,6 +172,15 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             setValues();
 
         }
+        //saves the advertisements
+        public void saveAdvertisements()
+        {
+            foreach (AirlineAdvertisementMVVM advertisement in this.Advertisements)
+            {
+                AdvertisementType type = advertisement.SelectedType;
+                this.Airline.setAirlineAdvertisement(type);
+            }
+        }
         //sets the values
         private void setValues()
         {
@@ -162,9 +200,18 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (AirlineFacility facility in AirlineFacilities.GetFacilities(f=>f.FromYear<=GameObject.GetInstance().GameTime.Year).OrderBy(f=>f.Name))
                 this.Facilities.Add(new AirlineFacilityMVVM(this.Airline,facility,this.Airline.Facilities.Exists(f=>f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
 
-            /*
-            foreach (AirlineFacility facility in this.Airline.Facilities)
-                this.Facilities.Add(new AirlineFacilityMVVM(facility, AirlineFacilityMVVM.MVVMType.Purchased));*/
+            foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
+            {
+                if (GameObject.GetInstance().GameTime.Year >= (int)type)
+                {
+                    AirlineAdvertisementMVVM advertisement = new AirlineAdvertisementMVVM(type);
+
+                    advertisement.Types = AdvertisementTypes.GetTypes(type);
+
+                    this.Advertisements.Add(advertisement);
+             
+                }
+            }
         
           
         }
@@ -350,6 +397,31 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         }
 
+    }
+    //the class for an advertisement object
+    public class AirlineAdvertisementMVVM : INotifyPropertyChanged
+    {
+        public AdvertisementType.AirlineAdvertisementType Type { get; set; }
+        public List<AdvertisementType> Types { get; set; }
+        private AdvertisementType _selectedType;
+        public AdvertisementType SelectedType
+        {
+            get { return _selectedType; }
+            set { _selectedType = value; NotifyPropertyChanged("SelectedType"); }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+        public AirlineAdvertisementMVVM(AdvertisementType.AirlineAdvertisementType type)
+        {
+            this.Type = type;
+        }
     }
     //the class for a rating/score
     public class AirlineScoreMVVM

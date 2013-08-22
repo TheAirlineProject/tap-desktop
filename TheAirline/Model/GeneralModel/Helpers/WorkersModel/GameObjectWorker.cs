@@ -10,13 +10,18 @@ using System.Collections;
 namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
 {
     //the worker class for updating game object (non-graphics)
-    public class GameObjectWorker
+    public class GameObjectWorker : INotifyPropertyChanged
     {
         private static GameObjectWorker Instance;
         private BackgroundWorker Worker;
         private Boolean Cancelled;
         private Boolean CancelWorker;
-        private Boolean Paused;
+        private Boolean _isPaused;
+        public Boolean IsPaused
+        {
+            get { return _isPaused; }
+            set { _isPaused = value; NotifyPropertyChanged("IsPaused"); }
+        }
         public Boolean Sleeping { get; set; }
         public Boolean IsStarted { get; set; }
         private GameObjectWorker()
@@ -30,7 +35,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             this.Cancelled = false;
             this.CancelWorker = false;
-            this.Paused = false;
+            this.IsPaused = false;
             this.IsStarted = true;
             this.Sleeping = false;
         }
@@ -55,12 +60,12 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         //pause the worker
         public void pause()
         {
-            this.Paused = true;
+            this.IsPaused = true;
         }
         //restarts the worker
         public void restart()
         {
-            this.Paused = false;
+            this.IsPaused = false;
         }
         //starts the worker
         public void start()
@@ -82,7 +87,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         //returns if the worker is paused
         public Boolean isPaused()
         {
-            return this.Paused;
+            return this.IsPaused;
         }
         //returns if the worker is busy
         public Boolean isBusy()
@@ -92,7 +97,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
         private void bw_DoWork(object sender, DoWorkEventArgs e)
         {
             
-            if (!Paused)
+            if (!IsPaused)
             {
                 Stopwatch sw = new Stopwatch();
 
@@ -149,6 +154,15 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             else
             {
                 this.Worker.RunWorkerAsync();
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

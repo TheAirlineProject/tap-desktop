@@ -39,7 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             var airports = this.Airline.Airline.Airports;
 
             this.ProfitRoutes = routes.OrderByDescending(r => r.Balance).Take(Math.Min(5, routes.Count)).ToList();
-            this.MostGates = airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates)).ToList();
+            this.MostGates = airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates)).Take(Math.Min(5,airports.Count)).ToList();
             this.MostUsedAircrafts = new List<AirlinerType>();
 
             var query = GameObject.GetInstance().HumanAirline.Fleet.GroupBy(a => a.Airliner.Type)
@@ -108,6 +108,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (selection == "Ratings" && frmContent != null)
                 frmContent.Navigate(new PageAirlineRatings(this.Airline) { Tag = this });
+
+            if (selection == "Insurances" && frmContent != null)
+                frmContent.Navigate(new PageAirlineInsurance(this.Airline) { Tag = this });
         }
     }
 }

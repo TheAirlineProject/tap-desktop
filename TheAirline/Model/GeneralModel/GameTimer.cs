@@ -6,6 +6,7 @@ using System.Text;
 using TheAirline.Model.GeneralModel.Helpers;
 using System.Windows.Threading;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using System.ComponentModel;
 
 
 namespace TheAirline.Model.GeneralModel
@@ -17,7 +18,7 @@ namespace TheAirline.Model.GeneralModel
 */
    
      
-    public class GameTimer
+    public class GameTimer 
     {
         private static GameTimer gameTimer;
 
@@ -26,7 +27,12 @@ namespace TheAirline.Model.GeneralModel
         public delegate void TimeChanged();
         public event TimeChanged OnTimeChanged;
         public event TimeChanged OnTimeChangedForced; //will be forced to update eventhough the game is paused
-        private Boolean IsPaused;
+        private Boolean _isPaused;
+        public Boolean IsPaused
+        {
+            get { return _isPaused; }
+            set { _isPaused = value; }
+        }
         private GameTimer()
         {
 
@@ -98,7 +104,8 @@ namespace TheAirline.Model.GeneralModel
             gameTimer = new GameTimer();
             GetInstance().start();
         }
-
+          
+       
 
 
     }

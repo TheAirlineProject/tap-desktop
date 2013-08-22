@@ -7,43 +7,43 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlineFinances">
 
-    <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
-            <TextBlock Text="Financial Summary" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <WrapPanel>
-                <TextBlock FontWeight="Bold" Text="Cash On Hand" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1001'}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                 <TextBlock Text="{Binding Money,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel>
-                <TextBlock FontWeight="Bold" Text="Balance" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1002'}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                 <TextBlock Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
-            <TextBlock Text="Financial Specifications" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1003'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <ListView  ItemsSource="{Binding Finances}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Category" Width="200">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1004'}" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding InvoiceType,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="This Month" Width="150">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1005'}" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding CurrentMonth,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding CurrentMonth,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Last Month" Width="150">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1006'}" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding LastMonth,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding LastMonth,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Year to Date" Width="150">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1007'}" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding YearToDate,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding YearToDate,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>

@@ -190,6 +190,17 @@
             </TextBlock>
         </DockPanel>
     </DataTemplate>
+    <DataTemplate x:Key="AirlineLongLink">
+        <DockPanel>
+            <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                            <Hyperlink Tag="{Binding}">
+                                <Run Text="{Binding Profile.Name}"></Run>
+                            </Hyperlink>
+            </TextBlock>
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.IATACode,StringFormat={} ({0})}"></TextBlock>
+        </DockPanel>
+    </DataTemplate>
     <DataTemplate x:Key="AirlineItem">
         <WrapPanel>
             <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>

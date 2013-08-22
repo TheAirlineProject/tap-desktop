@@ -34,7 +34,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.AirlineStatistics = new ObservableCollection<AirlineStatisticsMVVM>();
             this.Airline = airline;
             this.DataContext = this.Airline;
-
+            Oversæt
             InitializeComponent();
 
             this.AirlineRatings.Add(new AirlineScoreMVVM("Security Rating", this.Airline.Airline.Ratings.SecurityRating));

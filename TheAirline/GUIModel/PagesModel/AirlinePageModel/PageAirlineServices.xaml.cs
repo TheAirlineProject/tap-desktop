@@ -76,6 +76,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             SortDescription sortFacilityDescription = new SortDescription("Facility.Name",ListSortDirection.Ascending);
             view.SortDescriptions.Add(sortFacilityDescription);
 
+            for (int i = 120; i < 300; i += 15)
+                cbCancellationPolicy.Items.Add(i);
+
+            cbCancellationPolicy.SelectedItem = this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
+
         }
 
         private void PageAirlineServices_Loaded(object sender, RoutedEventArgs e)
@@ -132,10 +137,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
             this.Airline.saveFees();
+
+            int cancellationMinutes = (int)cbCancellationPolicy.SelectedItem;
+
+            GameObject.GetInstance().HumanAirline.setAirlinePolicy("Cancellation Minutes", cancellationMinutes);
         }
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             this.Airline.resetFees();
+
+            cbCancellationPolicy.SelectedItem = this.Airline.Airline.getAirlinePolicy("Cancellation Minutes").PolicyValue;
         }
 
         private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)

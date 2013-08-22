@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
 using TheAirline.GUIModel.PagesModel.AirportsPageModel;
@@ -12,6 +13,7 @@ using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
 using TheAirline.GUIModel.PagesModel.PilotsPageModel;
 using TheAirline.GUIModel.PagesModel.RoutesPageModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 
 namespace TheAirline.GUIModel.MasterPageModel
 {
@@ -40,6 +42,16 @@ namespace TheAirline.GUIModel.MasterPageModel
         private void Pilots_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PagePilotsFS());
+        }
+        private void btnPause_Click(object sender, RoutedEventArgs e)
+        {
+            GameObjectWorker.GetInstance().pause();
+       
+        }
+        private void btnStart_Click(object sender, RoutedEventArgs e)
+        {
+            GameObjectWorker.GetInstance().restart();
+       
         }
     }
 }

@@ -14,6 +14,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     public class AirportMVVM : INotifyPropertyChanged
     {
         public Airport Airport { get; set; }
+        private int _numberOfFreeGates;
+        public int NumberOfFreeGates
+        {
+            get { return _numberOfFreeGates; }
+            set { _numberOfFreeGates = value; NotifyPropertyChanged("NumberOfFreeGates"); }
+        }
         private Boolean _isHuman;
         public Boolean IsHuman
         {
@@ -24,11 +30,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             this.Airport = airport;
             this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
+            this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
+
         }
         public void addAirlineContract(AirportContract contract)
         {
             this.Airport.addAirlineContract(contract);
             this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
+            this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
+
   
         }
         public event PropertyChangedEventHandler PropertyChanged;

@@ -12,7 +12,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -35,6 +40,66 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Purchased");
             view.GroupDescriptions.Add(groupDescription);
    
+        }
+
+        private void btnCreateSubsidiary_Click(object sender, RoutedEventArgs e)
+        {
+            SubsidiaryAirline airline = (SubsidiaryAirline)PopUpNewSubsidiary.ShowPopUp();
+
+            if (airline != null)
+            {
+               this.Airline.addSubsidiaryAirline(airline);
+
+
+            }
+        }
+
+        private void btnReleaseSubsidiary_Click(object sender, RoutedEventArgs e)
+        {
+            SubsidiaryAirline airline = (SubsidiaryAirline)((Button)sender).Tag;
+
+            if (airline == GameObject.GetInstance().HumanAirline)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2112"), string.Format(Translator.GetInstance().GetString("MessageBox", "2112", "message"), airline.Profile.Name), WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2118"), string.Format(Translator.GetInstance().GetString("MessageBox", "2118", "message"), airline.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+
+                    AirlineHelpers.MakeSubsidiaryAirlineIndependent(airline);
+
+                    this.Airline.removeSubsidiaryAirline(airline);
+
+                }
+            }
+        }
+
+        private void btnDeleteSubsidiary_Click(object sender, RoutedEventArgs e)
+        {
+            SubsidiaryAirline airline = (SubsidiaryAirline)((Button)sender).Tag;
+
+            if (airline == GameObject.GetInstance().HumanAirline)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2112"), string.Format(Translator.GetInstance().GetString("MessageBox", "2112", "message"), airline.Profile.Name), WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2111"), string.Format(Translator.GetInstance().GetString("MessageBox", "2111", "message"), airline.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+
+                    AirlineHelpers.CloseSubsidiaryAirline(airline);
+
+                    this.Airline.removeSubsidiaryAirline(airline);
+
+                }
+            }
         }
     }
 }

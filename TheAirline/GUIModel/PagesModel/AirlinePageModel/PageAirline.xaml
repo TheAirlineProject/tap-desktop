@@ -13,21 +13,21 @@
             <StackPanel>
                 <Border Style="{StaticResource RoundedBorderStyle}">
                     <StackPanel>
-                        <TextBlock Text="Most Profitable Routes" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1000'}" FontWeight="Bold" FontSize="14"></TextBlock>
                         <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource RouteItem}" ItemsSource="{Binding ElementName=pageAirline, Path=ProfitRoutes}">
                         </ListBox>
                     </StackPanel>
                 </Border>
                 <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
                     <StackPanel>
-                        <TextBlock Text="Most Used Aircrafts" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1001'}" FontWeight="Bold" FontSize="14"></TextBlock>
                         <ListBox Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"  DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding ElementName=pageAirline, Path=MostUsedAircrafts}">
                         </ListBox>
                     </StackPanel>
                 </Border>
                 <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
                     <StackPanel>
-                        <TextBlock Text="Most Gates" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1002'}" FontWeight="Bold" FontSize="14"></TextBlock>
                         <ListBox Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource AirportShortCountryLink}" ItemsSource="{Binding ElementName=pageAirline, Path=MostGates}">
                         </ListBox>
                     </StackPanel>
@@ -39,17 +39,16 @@
             <TabControl Background="Transparent" BorderThickness="0" Name="tcMenu" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="" Tag="Overview">
                 </TabItem>
-                <TabItem Header="Ratings &amp; Statistics" Tag="Ratings">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2000'}" Tag="Ratings">
                 </TabItem>
-                <TabItem Header="Employees" Tag="Employees">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2001'}" Tag="Employees">
                 </TabItem>
-                <TabItem Header="Policies &amp; Incurances" Tag="Policies">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2002'}" Tag="Insurances">
                 </TabItem>
-                <TabItem Header="Services &amp; Fees" Tag="Services">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2003'}" Tag="Services">
                 </TabItem>
-                <TabItem Header="Finances" Tag="Finances">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2004'}" Tag="Finances">
                 </TabItem>
-         
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirlineContent">
