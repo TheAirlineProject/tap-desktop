@@ -79,6 +79,19 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 this.Worker.RunWorkerAsync();
             }
         }
+        //starts the worker paused
+        public void startPaused()
+        {
+            if (!this.Worker.IsBusy)
+            {
+                this.IsStarted = false;
+                this.IsPaused = true;
+                this.Cancelled = false;
+                this.CancelWorker = false;
+
+                this.Worker.RunWorkerAsync();
+            }
+        }
         //returns if the worker is cancelled
         public Boolean isCancelled()
         {

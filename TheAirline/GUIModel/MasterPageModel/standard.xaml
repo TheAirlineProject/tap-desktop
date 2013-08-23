@@ -63,7 +63,7 @@
                 </Button.Style>
                 <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
             </Button>
-            <Button Margin="0 5 0 0" Background="Transparent" Width="20" HorizontalAlignment="Left" Click="btnStart_Click">
+            <Button Background="Transparent" Width="20" HorizontalAlignment="Left" Click="btnStart_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -81,9 +81,8 @@
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1003'}" Style="{StaticResource MenuButtonStyle}" Click="Airports_Click" Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1004'}" Style="{StaticResource MenuButtonStyle}" Click="Alliances_Click" Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1005'}" Style="{StaticResource MenuButtonStyle}" Click="Pilots_Click"  Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1006'}" Style="{StaticResource MenuButtonStyle}" Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1007'}" Style="{StaticResource MenuButtonStyle}" Margin="0 5 0 0" ></Button>
-            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1008'}" Style="{StaticResource MenuButtonStyle}" Margin="0 5 0 0" ></Button>
+            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1008'}" Style="{StaticResource MenuButtonStyle}" Click="Options_Click" Margin="0 5 0 0" ></Button>
           
         </StackPanel>
 

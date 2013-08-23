@@ -1682,8 +1682,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             //PassengerHelpers.CreateDestinationPassengers();
 
-            GameTimer.GetInstance().start();
-            GameObjectWorker.GetInstance().start();
+            //GameTimer.GetInstance().start();
+            
+         
+            if (startData.IsPaused)
+                GameObjectWorker.GetInstance().startPaused();
+            else
+                GameObjectWorker.GetInstance().start();
+
             // AIWorker.GetInstance().start();
 
         

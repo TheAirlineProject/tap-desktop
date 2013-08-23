@@ -44,7 +44,6 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             cbAirline.ItemsSource = airlines;
 
-           // cbLocalCurrency.Visibility = airline.Profile.Country.Currencies.Count > 0 ? Visibility.Visible : System.Windows.Visibility.Collapsed;
               
         }
 

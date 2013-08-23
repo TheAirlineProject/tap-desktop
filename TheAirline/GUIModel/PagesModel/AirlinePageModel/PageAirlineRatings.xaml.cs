@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
@@ -34,19 +35,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.AirlineStatistics = new ObservableCollection<AirlineStatisticsMVVM>();
             this.Airline = airline;
             this.DataContext = this.Airline;
-            Oversæt
+           
             InitializeComponent();
 
-            this.AirlineRatings.Add(new AirlineScoreMVVM("Security Rating", this.Airline.Airline.Ratings.SecurityRating));
-            this.AirlineRatings.Add(new AirlineScoreMVVM("Safety Rating", this.Airline.Airline.Ratings.SafetyRating));
-            this.AirlineRatings.Add(new AirlineScoreMVVM("Employee Happiness Rating", this.Airline.Airline.Ratings.EmployeeHappinessRating));
-            this.AirlineRatings.Add(new AirlineScoreMVVM("Customer Happiness Rating", this.Airline.Airline.Ratings.CustomerHappinessRating));
-            this.AirlineRatings.Add(new AirlineScoreMVVM("Maintenance Rating", this.Airline.Airline.Ratings.MaintenanceRating));
+            this.AirlineRatings.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.Ratings.SecurityRating));
+            this.AirlineRatings.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.Ratings.SafetyRating));
+            this.AirlineRatings.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.Ratings.EmployeeHappinessRating));
+            this.AirlineRatings.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.Ratings.CustomerHappinessRating));
+            this.AirlineRatings.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.Ratings.MaintenanceRating));
 
-            this.AirlineScores.Add(new AirlineScoreMVVM("Overall Score", this.Airline.Airline.OverallScore));
-            this.AirlineScores.Add(new AirlineScoreMVVM("Reputation", this.Airline.Airline.Reputation));
-            this.AirlineScores.Add(new AirlineScoreMVVM("Flight On-time Percent", (int)StatisticsHelpers.GetOnTimePercent(this.Airline.Airline)));
-            this.AirlineScores.Add(new AirlineScoreMVVM("Average Fill Degree", (int)StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline)));
+            this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.OverallScore));
+            this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), this.Airline.Airline.Reputation));
+            this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), (int)StatisticsHelpers.GetOnTimePercent(this.Airline.Airline)));
+            this.AirlineScores.Add(new AirlineScoreMVVM(Translator.GetInstance().GetString("PageAirlineRatings", "1007"), (int)StatisticsHelpers.GetAirlineFillAverage(this.Airline.Airline)));
 
             this.AirlineStatistics.Add(new AirlineStatisticsMVVM(this.Airline.Airline, StatisticsTypes.GetStatisticsType("Passengers")));
             this.AirlineStatistics.Add(new AirlineStatisticsMVVM(this.Airline.Airline, StatisticsTypes.GetStatisticsType("Passengers%")));

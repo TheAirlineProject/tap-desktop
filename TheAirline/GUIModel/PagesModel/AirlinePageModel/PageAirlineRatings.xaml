@@ -25,41 +25,41 @@
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
 
                 <StackPanel>
-                    <TextBlock Text="Airline Ratings" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListBox ItemTemplate="{DynamicResource ScoreItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineRatings,ElementName=pageAirlineRatings}"></ListBox>
-                    <TextBlock Text="Airline Scores" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
                     <ListBox ItemTemplate="{DynamicResource ScoreItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineScores,ElementName=pageAirlineRatings}"></ListBox>
 
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
                 <StackPanel>
-                    <TextBlock Text="Airline Statistics" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1002'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView ItemsSource="{Binding AirlineStatistics,ElementName=pageAirlineRatings}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Statistics Type" Width="200">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1003'}" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Last Year" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1004'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding LastYear,StringFormat={}{0:0}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Current Year" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1005'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding CurrentYear,StringFormat={}{0:0}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Change%" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineRatings 1006'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Change,StringFormat={}{0:0.00 %}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>

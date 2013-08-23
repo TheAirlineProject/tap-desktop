@@ -22,6 +22,7 @@ namespace TheAirline.GUIModel.ObjectsModel
         public Airline.AirlineFocus Focus { get; set; }
         public Boolean SameRegion { get; set; }
         public Boolean RandomOpponents { get; set; }
+        public Boolean IsPaused { get; set; }
 
         public Airport Airport { get; set; }
         public Airline Airline { get; set; }

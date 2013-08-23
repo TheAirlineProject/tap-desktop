@@ -57,19 +57,19 @@
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
 
                 <StackPanel>
-                    <TextBlock Text="Charges" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <ListBox ItemsSource="{Binding Chargers}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" ItemTemplate="{StaticResource OpponentFeeItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
                     <ListBox ItemsSource="{Binding Chargers}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" ItemTemplate="{StaticResource HumanFeeItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
-                    <TextBlock Text="Fees" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <ListBox ItemsSource="{Binding Fees}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" ItemTemplate="{StaticResource OpponentFeeItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
                     <ListBox ItemsSource="{Binding Fees}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" ItemTemplate="{StaticResource HumanFeeItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
-                    <TextBlock Text="Airline Discounts" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1002'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <ListBox ItemsSource="{Binding Discounts}" ItemTemplate="{StaticResource OpponentDiscountItem}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
                     <ListBox ItemsSource="{Binding Discounts}" ItemTemplate="{StaticResource HumanDiscountItem}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
                     <StackPanel Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
-                    <TextBlock Text="General Policies" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1003'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                         <WrapPanel>
-                            <TextBlock Text="Cancellation Policy" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1004'}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
                         <ComboBox Name="cbCancellationPolicy" Style="{StaticResource ComboBoxTransparentStyle}" Width="125" VerticalAlignment="Bottom">
                             <ComboBox.ItemTemplate>
                                 <DataTemplate>
@@ -83,25 +83,25 @@
                         </WrapPanel>
                     </StackPanel>
                     <WrapPanel Margin="0 5 0 0" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
-                        <Button Content="Save Changes" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
-                        <Button Content="Undo" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>
+                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 200'}" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
+                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 201'}" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>
                     </WrapPanel>
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
                 <StackPanel>
-                    <TextBlock Text="Airline Services" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1005'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <ListView Name="lvFacilities" ItemsSource="{Binding Facilities}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Facility" Width="200">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1006'}" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Facility.Name}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Per Month" Width="150">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1007'}" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Facility.MonthlyCost,Converter={StaticResource ValueCurrencyConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
@@ -157,7 +157,7 @@
                         </ListView.GroupStyle>
                     </ListView>
                     <StackPanel Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
-                    <TextBlock Text="Inflight Services" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1008'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <WrapPanel>
                         <ListBox Width="100" Margin="0 20 0 0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding FacilityTypes,ElementName=pageAirlineServices}" BorderThickness="0">
                             <ListBox.ItemTemplate>
@@ -171,8 +171,8 @@
                     <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Classes,ElementName=pageAirlineServices}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
                     </WrapPanel>
                         <WrapPanel Margin="0 5 0 0">
-                            <Button Content="Save Configuration" Click="btnSaveConfiguration_Click" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
-                            <Button Content="Load Configuration" Click="btnLoadConfiguration_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 202'}" Click="btnSaveConfiguration_Click" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
+                            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 203'}" Click="btnLoadConfiguration_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
                         </WrapPanel>
                     </StackPanel>
                 </StackPanel>

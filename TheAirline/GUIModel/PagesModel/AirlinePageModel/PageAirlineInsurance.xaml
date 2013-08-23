@@ -125,7 +125,7 @@
                             </ComboBox>
                         </WrapPanel>
                         <WrapPanel>
-                        <Button Style="{StaticResource StandardButtonStyle}" Click="btnCreateInsurance_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 200'}"/>
+                        <Button Style="{StaticResource StandardButtonStyle}" Margin="0 5 0 0" Click="btnCreateInsurance_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 200'}"/>
                         </WrapPanel>
                     </StackPanel>
                 </StackPanel>

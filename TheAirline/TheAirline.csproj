@@ -642,6 +642,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageShowOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\PilotsPageModel\PageFlightSchools.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1105,6 +1113,13 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml.cs">
       <DependentUpon>PageStartMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\OptionsMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml.cs">
+      <DependentUpon>PageOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageShowOptions.xaml.cs">
+      <DependentUpon>PageShowOptions.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\PilotsPageModel\FlightSchoolMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageFlightSchools.xaml.cs">
