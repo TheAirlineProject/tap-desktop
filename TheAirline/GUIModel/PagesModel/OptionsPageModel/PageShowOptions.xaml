@@ -3,10 +3,12 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.OptionsPageModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageShowOptions">
     <Page.Resources>
+        <local:GameSpeedConverter x:Key="GameSpeedConverter"></local:GameSpeedConverter>
         <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
             <Setter Property="Background">
                 <Setter.Value>
@@ -44,8 +46,8 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Select Language" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <ComboBox  Style="{StaticResource ComboBoxTransparentStyle}" ItemsSource="{Binding AllLanguages}" SelectedItem="{Binding SelectedLanguage}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1000'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <ComboBox  Style="{StaticResource ComboBoxTransparentStyle}" ItemsSource="{Binding AllLanguages}" Name="cbLanguage" SelectedItem="{Binding SelectedLanguage}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <WrapPanel>
@@ -57,7 +59,15 @@
                 </ComboBox>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Display Airport Codes" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1001'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <Slider TickPlacement="BottomRight" Width="150" Name="slGameSpeed"
+                    IsSnapToTickEnabled="True"
+                    Ticks="{Binding GameSpeeds}" Maximum="2500" Minimum="500" IsDirectionReversed="True" Value="{Binding CurrentGameSpeed}"/> 
+                <TextBlock Text="{Binding Value,ElementName=slGameSpeed,Converter={StaticResource GameSpeedConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
+
+            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1002'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <RadioButton Content="IATA" GroupName="AirportCode" VerticalAlignment="Bottom" Name="rbIATA">
                     <RadioButton.Style>
                         <Style TargetType="RadioButton" BasedOn="{StaticResource {x:Type RadioButton}}">
@@ -83,21 +93,26 @@
 
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}" Visibility="{Binding HourRoundEnabled,Converter={StaticResource BooleanToVisibility}}">
-                <TextBlock Text="Select Minutes per Round" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom" ItemsSource="{Binding GameMinutes}" SelectedItem="{Binding SelectedGameMinutes}"></ComboBox>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1003'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Name="cbHours" VerticalAlignment="Bottom" ItemsSource="{Binding GameMinutes}" SelectedItem="{Binding SelectedGameMinutes}"></ComboBox>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Use Shorten Currency" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" IsChecked="{Binding ShortenCurrency}"></CheckBox>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbShortenCurrency" VerticalAlignment="Bottom" IsChecked="{Binding ShortenCurrency}"></CheckBox>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Send Mails on Landings" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnLandings}"></CheckBox>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbLandings" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnLandings}"></CheckBox>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Send Mails on Bad Weather" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnBadWeather}"></CheckBox>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbWeather" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnBadWeather}"></CheckBox>
             </WrapPanel>
+            <WrapPanel Margin="0 5 0 0">
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 200'}" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 201'}" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>
+            </WrapPanel>
+
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -5,11 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
 using TheAirline.GUIModel.PagesModel.AirportsPageModel;
 using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
+using TheAirline.GUIModel.PagesModel.GamePageModel;
 using TheAirline.GUIModel.PagesModel.OptionsPageModel;
 using TheAirline.GUIModel.PagesModel.PilotsPageModel;
 using TheAirline.GUIModel.PagesModel.RoutesPageModel;
@@ -56,6 +58,37 @@ namespace TheAirline.GUIModel.MasterPageModel
         {
             GameObjectWorker.GetInstance().restart();
        
+        }
+        private void btnNewGame_Click(object sender, RoutedEventArgs e)
+        {
+             GameObjectWorker.GetInstance().cancel();
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1001"), Translator.GetInstance().GetString("MessageBox", "1001", "message"), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                GameObjectWorker.GetInstance().cancel();
+
+                while (GameObjectWorker.GetInstance().isBusy())
+                {
+                }
+                PageNavigator.NavigateTo(new PageNewGame());
+                GameObject.RestartInstance();
+                GameTimer.RestartInstance();
+
+                Setup.SetupGame();
+
+
+
+            }
+
+        }
+        private void btnExitGame_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+                PageNavigator.MainWindow.Close();
         }
     }
 }

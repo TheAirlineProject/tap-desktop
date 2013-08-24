@@ -44,6 +44,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             if (selection == "Options" && frmContent != null)
                 frmContent.Navigate(new PageShowOptions() { Tag = this });
 
+            if (selection == "Save" && frmContent != null)
+                frmContent.Navigate(new PageSaveGame() { Tag = this });
+
+            if (selection == "Load" && frmContent != null)
+                frmContent.Navigate(new PageLoadGame() { Tag = this });
+
 
         }
     }

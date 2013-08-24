@@ -51,7 +51,8 @@
     </DataTemplate>
     <DataTemplate x:Key="LeftContent">
         <StackPanel>
-            <Button Background="Transparent" Width="20" HorizontalAlignment="Left" Click="btnPause_Click">
+            <WrapPanel>
+            <Button Background="Transparent" Width="32" Click="btnPause_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -63,7 +64,7 @@
                 </Button.Style>
                 <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
             </Button>
-            <Button Background="Transparent" Width="20" HorizontalAlignment="Left" Click="btnStart_Click">
+            <Button Background="Transparent" Width="32" Click="btnStart_Click">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -75,6 +76,13 @@
                 </Button.Style>
                 <Image Source="/data/images/play.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
             </Button>
+                <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnNewGame_Click">
+                    <Image Source="/data/images/newgame.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnExitGame_Click">
+                    <Image Source="/data/images/exit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1000'}" Style="{StaticResource MenuButtonStyle}" Click="Home_Click" Margin="0 5 0 0"></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1001'}" Style="{StaticResource MenuButtonStyle}" Click="RoutesManager_Click" Margin="0 5 0 0"></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1002'}" Style="{StaticResource MenuButtonStyle}" Click="Airliners_Click"  Margin="0 5 0 0"></Button>

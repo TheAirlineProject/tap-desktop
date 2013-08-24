@@ -642,7 +642,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageSaveGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1115,8 +1123,14 @@
       <DependentUpon>PageStartMenu.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\OptionsMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml.cs">
+      <DependentUpon>PageLoadGame.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml.cs">
       <DependentUpon>PageOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageSaveGame.xaml.cs">
+      <DependentUpon>PageSaveGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageShowOptions.xaml.cs">
       <DependentUpon>PageShowOptions.xaml</DependentUpon>
@@ -1478,6 +1492,10 @@
   <ItemGroup>
     <Resource Include="Data\images\pause.png" />
     <Resource Include="Data\images\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\exit.png" />
+    <Resource Include="Data\images\newgame.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
