@@ -648,4 +648,29 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="ImageCheckBoxStyle" TargetType="{x:Type CheckBox}">
+        <Setter Property="SnapsToDevicePixels" Value="true"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" Value="Transparent"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type CheckBox}">
+                    <Border>
+                        <WrapPanel>
+                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" VerticalAlignment="Bottom" Margin="{TemplateBinding Padding}"  />
+                            <Image Source="/data/images/tickgrey.png" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Name="tick" VerticalAlignment="Bottom"></Image>
+                        </WrapPanel>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="tick" Property="Source" Value="/data/images/tick.png"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

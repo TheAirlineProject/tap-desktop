@@ -44,7 +44,7 @@
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1020'}">
                 <g:QuickInfoValue.Value>
                     <StackPanel>
-                        <CheckBox Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}" VerticalAlignment="Bottom" Name="cbSameRegion"></CheckBox>
+                        <CheckBox Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}" Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" Name="cbSameRegion"></CheckBox>
                     <WrapPanel>
                             <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1018'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True" x:Name="rbRandomOpponents"></RadioButton>
                             <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1019'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
@@ -62,7 +62,7 @@
             </g:QuickInfoValue>
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1026'}">
                 <g:QuickInfoValue.Value>
-                    <CheckBox VerticalAlignment="Bottom" IsChecked="False" Name="cbPaused"></CheckBox>
+                    <CheckBox VerticalAlignment="Bottom" IsChecked="False" Name="cbPaused" Style="{StaticResource ImageCheckBoxStyle}"></CheckBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
         </ListBox>

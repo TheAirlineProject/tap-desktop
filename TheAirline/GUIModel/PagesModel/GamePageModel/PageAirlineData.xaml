@@ -45,7 +45,7 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                     </Style>
                 </g:QuickInfoValue.Style>
                 <g:QuickInfoValue.Value>
-                    <CheckBox FlowDirection="RightToLeft" HorizontalAlignment="Left" Name="cbLocalCurrency">
+                    <CheckBox FlowDirection="RightToLeft" HorizontalAlignment="Left" Name="cbLocalCurrency" Padding="0 0 5 0" Style="{StaticResource ImageCheckBoxStyle}">
                     </CheckBox>
 
                 </g:QuickInfoValue.Value>
