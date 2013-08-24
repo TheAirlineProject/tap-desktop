@@ -543,15 +543,10 @@ namespace TheAirline.Model.AirlineModel
          */
         public double getAverageFleetAge()
         {
-            double totalAge = 0;
-
-            foreach (FleetAirliner airliner in this.Fleet)
-                totalAge += airliner.Airliner.Age;
-
-            if (getFleetSize() == 0)
-                return 0;
+            if (this.Fleet.Count > 0)
+                return this.Fleet.Average(f => f.Airliner.Age);
             else
-                return totalAge / getFleetSize();
+                return 0;
         }
 
         //returns total current value of fleet

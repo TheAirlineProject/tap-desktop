@@ -1,0 +1,33 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.OptionsPageModel.PageSaveGame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      Name="pageSaveGame"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageSaveGame">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Name="lbSaves" ItemsSource="{Binding Saves,ElementName=pageSaveGame}">
+             
+            </ListBox>
+            <TextBox Width="400" Text="{Binding ElementName=lbSaves, Path=SelectedItem}" VerticalAlignment="Bottom" Margin="0 5 0 0" Name="txtName"></TextBox>
+            <WrapPanel Margin="0 10 0 0">
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 201'}" Click="btnSaveGame_Click">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                        <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txtName, Path=Text.Length}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

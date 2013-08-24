@@ -184,7 +184,7 @@
         <DockPanel>
             <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}">
+                            <Hyperlink Tag="{Binding}" Click="Airline_Click">
                                 <Run Text="{Binding Profile.Name}"></Run>
                             </Hyperlink>
             </TextBlock>
@@ -194,7 +194,7 @@
         <DockPanel>
             <Image Source="{Binding Profile.Logo}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}">
+                            <Hyperlink Tag="{Binding}" Click="Airline_Click">
                                 <Run Text="{Binding Profile.Name}"></Run>
                             </Hyperlink>
             </TextBlock>

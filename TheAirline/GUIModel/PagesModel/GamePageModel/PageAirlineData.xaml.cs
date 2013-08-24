@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Model.AirlineModel;

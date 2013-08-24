@@ -9,6 +9,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
+using TheAirline.GUIModel.PagesModel.AirlinesPageModel;
 using TheAirline.GUIModel.PagesModel.AirportsPageModel;
 using TheAirline.GUIModel.PagesModel.AlliancesPageModel;
 using TheAirline.GUIModel.PagesModel.GamePageModel;
@@ -49,6 +50,10 @@ namespace TheAirline.GUIModel.MasterPageModel
         private void Pilots_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PagePilotsFS());
+        }
+        private void Airlines_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageAirlines());
         }
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {

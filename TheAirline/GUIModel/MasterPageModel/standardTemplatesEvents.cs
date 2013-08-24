@@ -7,6 +7,8 @@ using System.Windows;
 using System.Windows.Documents;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageAirportModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
+using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirportModel;
 
 namespace TheAirline.GUIModel.MasterPageModel
@@ -20,6 +22,11 @@ namespace TheAirline.GUIModel.MasterPageModel
         }
         private void Alliance_Click(object sender, RoutedEventArgs e)
         {
+        }
+        private void Airline_Click(object sender, RoutedEventArgs e)
+        {
+            Airline airline = (Airline)((Hyperlink)sender).Tag;
+            PageNavigator.NavigateTo(new PageAirline(airline));
         }
     }
 }

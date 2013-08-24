@@ -1,0 +1,35 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.OptionsPageModel.PageLoadGame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      Name="pageLoadGame"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageLoadGame">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Name="lbSaves" ItemsSource="{Binding Saves,ElementName=pageLoadGame}">
+            </ListBox>
+            <WrapPanel Width="400" Margin="0 5 0 0">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 1001'}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Text="{Binding ElementName=lbSaves, Path=SelectedItem}" VerticalAlignment="Bottom" Name="txtName"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Margin="0 10 0 0">
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 200'}" Click="btnLoadGame_Click">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txtName, Path=Text.Length}" Value="0">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>
