@@ -32,7 +32,7 @@ namespace TheAirline.Model.AirlinerModel
         
         public long FuelCapacity { get; set; }
         
-        public double Damaged { get; set; }
+        public double Condition { get; set; }
         public int Age { get { return getAge(); } private set { } }
         
         public List<AirlinerClass> Classes { get; set; }
@@ -45,7 +45,7 @@ namespace TheAirline.Model.AirlinerModel
             this.LastServiceCheck = 0;
             this.TailNumber = tailNumber;
             this.Flown = 0;
-            this.Damaged = rnd.Next(90, 100);
+            this.Condition = rnd.Next(90, 100);
             this.Classes = new List<AirlinerClass>();
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
@@ -120,7 +120,7 @@ namespace TheAirline.Model.AirlinerModel
             double devaluationPercent = 1 - (0.02 * (double)age);
 
 
-            return Convert.ToInt64(basePrice * devaluationPercent * (this.Damaged / 100));
+            return Convert.ToInt64(basePrice * devaluationPercent * (this.Condition / 100));
         }
 
 

@@ -12,10 +12,12 @@
     <Page.Resources>
         <DataTemplate x:Key="LanguageItem">
             <WrapPanel>
-                <Image Height="32" Width="32" Source="{Binding ImageFile}" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom"></Image>
-                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                <TextBlock VerticalAlignment="Bottom">
                     <Hyperlink Tag="{Binding}" Click="Language_Click">
-                        <Run Text="{Binding Name}"></Run>
+                        <WrapPanel>
+                             <Image Height="32" Width="32" Source="{Binding ImageFile}" RenderOptions.BitmapScalingMode="HighQuality" VerticalAlignment="Bottom"></Image>
+                             <TextBlock Text="{Binding Name}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                        </WrapPanel>
                     </Hyperlink>
                 </TextBlock>
 

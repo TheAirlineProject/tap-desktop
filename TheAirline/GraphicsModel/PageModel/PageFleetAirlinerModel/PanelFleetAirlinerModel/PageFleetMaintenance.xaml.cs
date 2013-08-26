@@ -28,6 +28,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
         private FleetAirliner Airliner;
         public PageFleetMaintenance(FleetAirliner airliner)
         {
+
+            
             this.Airliner = airliner;
             InitializeComponent();
 
@@ -45,11 +47,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAi
             cbAirport.Items.Clear();
             
 
-            var airports = this.Airliner.Airliner.Airline.Airports.Where(a=>a.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service).Facility.TypeLevel>1);
-
-            foreach (Airport airport in airports)
-                cbAirport.Items.Add(airport);
-
+           
             btnSet.IsEnabled = cbAirport.Items.Count > 0; 
 
             cbAirport.SelectedIndex = 0;

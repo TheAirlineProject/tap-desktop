@@ -378,8 +378,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().HumanAirline.Money -= expense;
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Airline.addInvoice(maintCheck);
-                airliner.Airliner.Damaged += rnd.Next(3, 10);
-                if (airliner.Airliner.Damaged > 100) airliner.Airliner.Damaged = 100;
+                airliner.Airliner.Condition += rnd.Next(3, 10);
+                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastAMaintenance = GameObject.GetInstance().GameTime;
                 airliner.SchedAMaintenance = airliner.SchedAMaintenance.AddDays(airliner.AMaintenanceInterval);
                 airliner.MaintenanceHistory.Add(maintCheck, "A");
@@ -391,8 +391,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObject.GetInstance().HumanAirline.Money -= expense;
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Airline.addInvoice(maintCheck);
-                airliner.Airliner.Damaged += rnd.Next(12, 20);
-                if (airliner.Airliner.Damaged > 100) airliner.Airliner.Damaged = 100;
+                airliner.Airliner.Condition += rnd.Next(12, 20);
+                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastBMaintenance = GameObject.GetInstance().GameTime;
                 airliner.SchedBMaintenance = airliner.SchedBMaintenance.AddDays(airliner.BMaintenanceInterval);
                 airliner.MaintenanceHistory.Add(maintCheck, "B");
@@ -401,12 +401,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.SchedCMaintenance == GameObject.GetInstance().GameTime.Date)
             {
                 double expense = (airliner.Airliner.getValue() * 0.025) + 156000;
-                airliner.OOSDate = airliner.SchedCMaintenance.AddDays(airliner.Airliner.Damaged + 20);
+                airliner.OOSDate = airliner.SchedCMaintenance.AddDays(airliner.Airliner.Condition + 20);
                 GameObject.GetInstance().HumanAirline.Money -= expense;
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Airline.addInvoice(maintCheck);
-                airliner.Airliner.Damaged += rnd.Next(20, 30);
-                if (airliner.Airliner.Damaged > 100) airliner.Airliner.Damaged = 100;
+                airliner.Airliner.Condition += rnd.Next(20, 30);
+                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastCMaintenance = GameObject.GetInstance().GameTime;
                 airliner.SchedCMaintenance = airliner.CMaintenanceInterval > -1 ? airliner.SchedCMaintenance.AddMonths(airliner.CMaintenanceInterval) : airliner.DueCMaintenance = GameObject.GetInstance().GameTime.AddMonths(18);
                 airliner.MaintenanceHistory.Add(maintCheck, "C");
@@ -420,12 +420,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airliner.SchedDMaintenance == GameObject.GetInstance().GameTime.Date)
             {
                 double expense = (airliner.Airliner.getValue() * 0.03) + 1200000;
-                airliner.OOSDate = airliner.SchedDMaintenance.AddDays(airliner.Airliner.Damaged + 50);
+                airliner.OOSDate = airliner.SchedDMaintenance.AddDays(airliner.Airliner.Condition + 50);
                 GameObject.GetInstance().HumanAirline.Money -= expense;
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Airline.addInvoice(maintCheck);
-                airliner.Airliner.Damaged += rnd.Next(35, 50);
-                if (airliner.Airliner.Damaged > 100) airliner.Airliner.Damaged = 100;
+                airliner.Airliner.Condition += rnd.Next(35, 50);
+                if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastDMaintenance = GameObject.GetInstance().GameTime;
                 airliner.SchedDMaintenance = airliner.DMaintenanceInterval > -1 ? airliner.SchedDMaintenance.AddMonths(airliner.DMaintenanceInterval) : airliner.DueDMaintenance = GameObject.GetInstance().GameTime.AddMonths(60);
                 airliner.DueDMaintenance = GameObject.GetInstance().GameTime.AddMonths(60);

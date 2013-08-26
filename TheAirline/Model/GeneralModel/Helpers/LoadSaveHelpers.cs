@@ -140,7 +140,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                       double damaged = Convert.ToDouble(airlinerNode.Attributes["damaged"].Value, new CultureInfo("de-DE", false));
 
                       Airliner airliner = new Airliner(id, type, tailnumber, built);
-                      airliner.Damaged = damaged;
+                      airliner.Condition = damaged;
                       airliner.Flown = flown;
                       airliner.clearAirlinerClasses();
 
@@ -1201,7 +1201,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airlinerNode.SetAttribute("last_service", airliner.LastServiceCheck.ToString());
                 airlinerNode.SetAttribute("built", airliner.BuiltDate.ToString(new CultureInfo("de-DE")));
                 airlinerNode.SetAttribute("flown", airliner.Flown.ToString(new CultureInfo("de-DE", false)));
-                airlinerNode.SetAttribute("damaged", airliner.Damaged.ToString());
+                airlinerNode.SetAttribute("damaged", airliner.Condition.ToString());
 
                 XmlElement airlinerClassesNode = xmlDoc.CreateElement("classes");
                 foreach (AirlinerClass aClass in airliner.Classes)

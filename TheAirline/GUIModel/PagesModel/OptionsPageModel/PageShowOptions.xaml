@@ -9,14 +9,7 @@
 	Title="PageShowOptions">
     <Page.Resources>
         <local:GameSpeedConverter x:Key="GameSpeedConverter"></local:GameSpeedConverter>
-        <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
-            <Setter Property="Background">
-                <Setter.Value>
-                    <SolidColorBrush Color="Black" Opacity="0.2"></SolidColorBrush>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Margin" Value="0 2 0 2"></Setter>
-        </Style>
+       
       
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">

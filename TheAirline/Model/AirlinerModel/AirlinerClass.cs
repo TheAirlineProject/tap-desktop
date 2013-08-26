@@ -20,7 +20,9 @@ namespace TheAirline.Model.AirlinerModel
         public List<AirlinerFacility> AllFacilities
         {
             get
-            { return getFacilities(); }
+            { 
+                return getFacilities(); 
+            }
             private set { ;}
         }
         [DataMember]

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
@@ -20,6 +22,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     //the mvvm object for an airline
     public class AirlineMVVM : INotifyPropertyChanged
     {
+        public List<PropertyInfo> Colors { get; set; }
         public Airline Airline { get; set; }
         public List<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
@@ -87,6 +90,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
 
             setValues();
+
+            this.Colors = new List<PropertyInfo>();
+      
+            foreach (PropertyInfo c in typeof(Colors).GetProperties())
+                this.Colors.Add(c);
+
         }
         //saves all the fees
         public void saveFees()

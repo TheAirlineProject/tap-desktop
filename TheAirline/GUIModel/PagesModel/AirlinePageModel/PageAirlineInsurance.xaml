@@ -7,14 +7,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlineInsurance">
     <Page.Resources>
-            <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
-                <Setter Property="Background">
-                    <Setter.Value>
-                        <SolidColorBrush Color="Black" Opacity="0.2"></SolidColorBrush>
-                    </Setter.Value>
-                </Setter>
-                <Setter Property="Margin" Value="0 2 0 2"></Setter>
-            </Style>
+            
            <DataTemplate x:Key="OpponentAdvertisementItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Type, Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
@@ -102,7 +95,7 @@
                         </WrapPanel>
                         <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                            <CheckBox IsChecked="False" Name="cbAllAirliners"></CheckBox>
+                            <CheckBox IsChecked="False" Name="cbAllAirliners" Style="{StaticResource ImageCheckBoxStyle}"></CheckBox>
                         </WrapPanel>
                         <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>

@@ -5,7 +5,7 @@
         MinWidth="400" MaxWidth="400" 
     Title="{Binding Title}" ResizeMode="NoResize" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" 
     ShowInTaskbar="False"
-    WindowStartupLocation="CenterOwner" Background="{StaticResource HeaderBackgroundBrush2}">
+    WindowStartupLocation="CenterOwner" Background="#004A7F">
     <Window.Resources>
         <c:TranslatorConverter x:Key="translatorConverter"></c:TranslatorConverter>
     </Window.Resources>

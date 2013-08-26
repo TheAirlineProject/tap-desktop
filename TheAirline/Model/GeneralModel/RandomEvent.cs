@@ -80,7 +80,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (rEvent.DateOccurred.DayOfYear == time.DayOfYear)
                 {
-                    rEvent.Airliner.Airliner.Damaged += AircraftDamageEffect;
+                    rEvent.Airliner.Airliner.Condition += AircraftDamageEffect;
                     airline.Money += rEvent.FinancialPenalty;
                     airline.Scores.CHR.Add(rEvent.CustomerHappinessEffect);
                     airline.Scores.EHR.Add(rEvent.EmployeeHappinessEffect);

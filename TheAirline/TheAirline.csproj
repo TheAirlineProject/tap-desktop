@@ -614,6 +614,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirliner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInsurances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1109,6 +1121,16 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliances.xaml.cs">
       <DependentUpon>PageShowAlliances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\FleetAirlinerMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirliner.xaml.cs">
+      <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInformation.xaml.cs">
+      <DependentUpon>PageFleetAirlinerInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInsurances.xaml.cs">
+      <DependentUpon>PageFleetAirlinerInsurances.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>

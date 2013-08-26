@@ -34,6 +34,7 @@
     <Style x:Key="CalendarPickerStyle" TargetType="{x:Type Calendar}">
         <Setter Property="Background" Value="{DynamicResource HeaderBackgroundBrush}"></Setter>
     </Style>
+    
         <Style x:Key="{x:Static MenuItem.SeparatorStyleKey}"
        TargetType="Separator">
         <Setter Property="Height" Value="1"/>

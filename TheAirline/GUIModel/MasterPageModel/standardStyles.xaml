@@ -49,6 +49,111 @@
         <Setter Property="Background" Value="#004A7F"></Setter>
         <Setter Property="FontSize" Value="14"></Setter>
     </Style>
+    <!--expander-->
+    <ControlTemplate x:Key="ExpanderButton" 
+             TargetType="{x:Type ToggleButton}">
+        <Border x:Name="ExpanderButtonBorder"
+            Background="{TemplateBinding Background}"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}"
+            Padding="{TemplateBinding Padding}"
+            >
+            <Grid Background="#004A7F">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Rectangle Fill="Transparent"
+                       Grid.ColumnSpan="2"/>
+                <Ellipse Name="Circle"
+                 Grid.Column="0"
+                 Stroke="DarkGray"
+                 Width="20"
+                 Height="20"
+                 HorizontalAlignment="Center"
+                 VerticalAlignment="Center"
+                 />
+                <Path x:Name="Sign"
+              Grid.Column="0"
+              Data="M 0,5 H 10 M 5,0 V 10 Z"
+              Stroke="#FF666666"
+              Width="10"
+              Height="10"
+              StrokeThickness="2"
+              HorizontalAlignment="Center"
+              VerticalAlignment="Center"
+              RenderTransformOrigin="0.5,0.5"
+              >
+                    <Path.RenderTransform>
+                        <RotateTransform Angle="0"/>
+                    </Path.RenderTransform>
+                </Path>
+                <ContentPresenter x:Name="HeaderContent" Margin="4 0 0 0" Grid.Column="1"
+                          VerticalAlignment="Bottom"
+                                                  ContentSource="Content" TextBlock.FontWeight="Bold" TextBlock.FontFamily="Calibri"/>
+
+            </Grid>
+        </Border>
+        <ControlTemplate.Triggers>
+            <!--Change the sign to minus when toggled-->
+            <Trigger Property="IsChecked"
+                 Value="True">
+                <Setter Property="Data" 
+               TargetName="Sign" Value="M 0,5 H 10 Z"/>
+            </Trigger>
+
+            <!-- MouseOver, Pressed behaviours-->
+            <Trigger Property="IsMouseOver"
+                         Value="true">
+                <Setter Property="Stroke"
+                            Value="#FF3C7FB1"
+                            TargetName="Circle"/>
+                <Setter Property="Stroke"
+                            Value="#222"
+                            TargetName="Sign"/>
+            </Trigger>
+            <Trigger Property="IsPressed"
+                         Value="true">
+                <Setter Property="Stroke"
+                            Value="#FF526C7B"
+                            TargetName="Circle"/>
+                <Setter Property="StrokeThickness"
+                            Value="1.5"
+                            TargetName="Circle"/>
+                <Setter Property="Stroke"
+                            Value="#FF003366"
+                            TargetName="Sign"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+     <Style TargetType="{x:Type Expander}" x:Key="ExpanderStyle">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <DockPanel>
+                        <ToggleButton x:Name="ExpanderButton" 
+                              DockPanel.Dock="Top"
+                              Template="{StaticResource ExpanderButton}"
+                              Content="{TemplateBinding Header}"
+                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                              OverridesDefaultStyle="True"
+                              Padding="1.5,0">
+                        </ToggleButton>
+                        <ContentPresenter x:Name="ExpanderContent"
+                                  Grid.Row="1" 
+                                  Visibility="Collapsed"
+                                  DockPanel.Dock="Bottom"/>
+                    </DockPanel>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Setter TargetName="ExpanderContent" Property="Visibility" Value="Visible"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
     <!--tabs-->
     <Style TargetType="{x:Type TabItem}">
         <Setter Property="Foreground" Value="White"></Setter>
@@ -673,4 +778,8 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <Style x:Key="CalendarPickerStyle" TargetType="{x:Type Calendar}">
+        <Setter Property="Background" Value="{StaticResource HeaderBackgroundBrush}"></Setter>
+    </Style>
+
 </ResourceDictionary>

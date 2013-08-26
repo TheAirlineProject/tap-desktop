@@ -368,7 +368,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             foreach (FleetAirliner a in airline.Fleet)
             {
-                airline.Scores.Maintenance.Add((int)a.Airliner.Damaged);
+                airline.Scores.Maintenance.Add((int)a.Airliner.Condition);
             }
 
             if (airline.Scores.Maintenance.Count > (airline.Fleet.Count * 2))
