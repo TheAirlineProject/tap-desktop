@@ -16,7 +16,10 @@
                     <GridViewColumn Header="">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
+                                <WrapPanel>
                                 <Image Source="/data/images/human.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"/>
+                                    <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}"/>
+                                </WrapPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>

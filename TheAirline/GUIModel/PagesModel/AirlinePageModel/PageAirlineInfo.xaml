@@ -100,34 +100,34 @@
                         </ListBox>
 
                     </StackPanel>
-                    <Expander Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Margin="0 10 0 0" Header="Add Subsidiary" Style="{StaticResource ExpanderStyle}">
+                    <Expander Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Margin="0 10 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1018'}" Style="{StaticResource ExpanderStyle}">
                         <StackPanel>
                         <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                            <TextBlock Text="Select Subsidiary Name" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1019'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                             <TextBox Width="200" Name="txtAirlineName" VerticalAlignment="Bottom"></TextBox>
                         </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                                <TextBlock Text="Select IATA Code" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1020'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <TextBox Width="50" MaxLength="2" Name="txtIATA" VerticalAlignment="Bottom"></TextBox>
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                                <TextBlock Text="Select Airline Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1021'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <RadioButton Name="rbPassengerType" FlowDirection="RightToLeft" GroupName="AirlineType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1007'}"></RadioButton>
                                 <RadioButton FlowDirection="RightToLeft" Margin="5 0 0 0" GroupName="AirlineType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1008'}"></RadioButton>
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                                <TextBlock Text="Select Airline Color" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1022'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <ComboBox Name="cbColor" Width="150" SelectedIndex="0" ItemTemplate="{DynamicResource ColorItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Colors}"></ComboBox>
                             </WrapPanel>
                            
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                                <TextBlock Text="Select Logo" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1023'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <Image Name="imgLogo" RenderOptions.BitmapScalingMode="HighQuality" Height="32"></Image>
                                 <Button Style="{DynamicResource StandardButtonStyle}" Click="btnLogo_Click" Height="20" Content=".." VerticalAlignment="Bottom" Margin="5 0 0 0"></Button>
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                                <TextBlock Text="Select Homebase" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <ComboBox Name="cbAirport" Width="200" IsSynchronizedWithCurrentItem="True" SelectedIndex="0" ItemsSource="{Binding AllAirports,ElementName=pageAirlineInfo}" ItemTemplate="{DynamicResource AirportCountryItem}" Style="{DynamicResource ComboBoxTransparentStyle}"></ComboBox>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1024'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <ComboBox Name="cbAirport" Width="200" ItemsSource="{Binding AllAirports,ElementName=pageAirlineInfo}" ItemTemplate="{DynamicResource AirportCountryItem}" Style="{DynamicResource ComboBoxTransparentStyle}"></ComboBox>
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
                                 <Button Click="btnCreateSubsidiary_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 200'}">
@@ -221,6 +221,41 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1013'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <ListView VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Airline.Routes}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1014'}" Width="100" util:GridViewSort.PropertyName="Destination1.Profile.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource RouteItem}"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1015'}" Width="100" util:GridViewSort.PropertyName="Type">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Type}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1016'}" Width="100" util:GridViewSort.PropertyName="Balance">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}" Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1017'}" Width="75" util:GridViewSort.PropertyName="FillingDegree">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:0.00 %}}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

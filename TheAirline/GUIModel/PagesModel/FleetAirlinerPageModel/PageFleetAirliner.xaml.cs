@@ -43,13 +43,22 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             if (tab_main != null)
             {
-                var matchingItem =
+                var infoItem =
      tab_main.Items.Cast<TabItem>()
        .Where(item => item.Tag.ToString() == "Information")
        .FirstOrDefault();
 
                 //matchingItem.IsSelected = true;
-                matchingItem.Header = this.Airliner.Airliner.Name;
+                infoItem.Header = this.Airliner.Airliner.Name;
+
+                var maintenanceItem =
+    tab_main.Items.Cast<TabItem>()
+      .Where(item => item.Tag.ToString() == "Maintenance")
+      .FirstOrDefault();
+
+                if (!this.Airliner.Airliner.Airliner.Airline.IsHuman)
+                    maintenanceItem.Visibility = System.Windows.Visibility.Collapsed;
+
            }
 
         }
@@ -66,6 +75,9 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             if (selection == "Maintenance" && frmContent != null)
                 frmContent.Navigate(new PageFleetAirlinerInsurances(this.Airliner) { Tag = this });
+
+            if (selection == "Statistics" && frmContent != null)
+                frmContent.Navigate(new PageFleetAirlinerStatistics(this.Airliner) { Tag = this });
 
 
         }

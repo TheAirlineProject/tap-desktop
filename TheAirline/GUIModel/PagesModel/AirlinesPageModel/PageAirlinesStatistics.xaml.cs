@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.SubsidiaryModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 {
@@ -27,8 +28,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             this.AllAirlines = new ObservableCollection<AirlinesMVVM>();
 
-            foreach (Airline airline in Airlines.GetAllAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary))
+            {
                 this.AllAirlines.Add(new AirlinesMVVM(airline));
+
+                foreach (SubsidiaryAirline sAirline in airline.Subsidiaries)
+                    this.AllAirlines.Add(new AirlinesMVVM(sAirline));
+            }
 
             InitializeComponent();
         }

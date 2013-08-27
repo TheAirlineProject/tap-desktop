@@ -7,11 +7,51 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
-    public class FleetAirlinerMVVM
+    
+    public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
+        private DateTime _SchedCMaintenance;
+        public DateTime SchedCMaintenance
+        {
+            get { return _SchedCMaintenance; }
+            set { _SchedCMaintenance = value; NotifyPropertyChanged("SchedCMaintenance"); }
+        }
+        private DateTime _SchedDMaintenance;
+        public DateTime SchedDMaintenance
+        {
+            get { return _SchedDMaintenance; }
+            set { _SchedDMaintenance = value; NotifyPropertyChanged("SchedDMaintenance"); }
+        }
+        private int _AMaintenanceInterval;
+        public int AMaintenanceInterval
+        {
+            get { return _AMaintenanceInterval; }
+            set { _AMaintenanceInterval = value; NotifyPropertyChanged("AMaintenanceInterval"); }
+        }
+        private int _BMaintenanceInterval;
+        public int BMaintenanceInterval
+        {
+            get { return _BMaintenanceInterval; }
+            set { _BMaintenanceInterval = value; NotifyPropertyChanged("BMaintenanceInterval"); }
+        }
+        private int _CMaintenanceInterval;
+        public int CMaintenanceInterval
+        {
+            get { return _CMaintenanceInterval; }
+            set { _CMaintenanceInterval = value; NotifyPropertyChanged("CMaintenanceInterval"); }
+        }
+        private int _DMaintenanceInterval;
+        public int DMaintenanceInterval
+        {
+            get { return _DMaintenanceInterval; }
+            set { _DMaintenanceInterval = value; NotifyPropertyChanged("DMaintenanceInterval"); }
+        }
+
         public FleetAirliner Airliner { get; set; }
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
         public FleetAirlinerMVVM(FleetAirliner airliner)
@@ -22,7 +62,23 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
                 this.Classes.Add(new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity,aClass.RegularSeatingCapacity));
 
+            this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
+            this.BMaintenanceInterval = this.Airliner.BMaintenanceInterval;
+            this.CMaintenanceInterval = this.Airliner.CMaintenanceInterval;
+            this.DMaintenanceInterval = this.Airliner.DMaintenanceInterval;
+
+            this.SchedCMaintenance = this.Airliner.SchedCMaintenance;
+            this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
        
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     //the mvvm class for an airliner facility class
@@ -105,6 +161,56 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    //the mvvm object for airline statistics
+    public class FleetAirlinerStatisticsMVVM
+    {
+        public StatisticsType Type { get; set; }
+        public double LastYear { get { return getLastYear(); } private set { ;} }
+        public double CurrentYear { get { return getCurrentYear(); } private set { ;} }
+        public double Change { get { return getChange(); } private set { ;} }
+        public FleetAirliner Airliner { get; set; }
+        public FleetAirlinerStatisticsMVVM(FleetAirliner airliner, StatisticsType type)
+        {
+            this.Type = type;
+            this.Airliner = airliner;
+        }
+        //returns the value for the last year
+        private double getLastYear()
+        {
+            int year = GameObject.GetInstance().GameTime.Year - 1;
+
+            return this.Airliner.Statistics.getStatisticsValue(year, this.Type);
+        }
+        //returns the value for the current year
+        private double getCurrentYear()
+        {
+            int year = GameObject.GetInstance().GameTime.Year;
+
+            return this.Airliner.Statistics.getStatisticsValue(year, this.Type);
+
+        }
+        //returns the change in %
+        private double getChange()
+        {
+            double currentYear = getCurrentYear();
+            double lastYear = getLastYear();
+
+            if (lastYear == 0)
+                return 1;
+
+            double changePercent = System.Convert.ToDouble(currentYear - lastYear) / lastYear;
+
+            if (double.IsInfinity(changePercent))
+                return 1;
+            if (double.IsNaN(changePercent))
+                return 0;
+
+            return changePercent;
+
+
+        }
+
     }
     public class ValueIsMaxAirlinerClasses : IMultiValueConverter
     {

@@ -36,6 +36,24 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 this.AllAirports.Add(airport);
 
             InitializeComponent();
+
+            rbDateC.IsChecked = this.Airliner.CMaintenanceInterval == -1;
+            rbDateD.IsChecked = this.Airliner.DMaintenanceInterval == -1;
+
+            rbIntervalC.IsChecked = !rbDateC.IsChecked;
+            rbIntervalD.IsChecked = !rbDateD.IsChecked;
+
+            if (rbDateC.IsChecked.Value)
+                this.dpMaintenanceC.SelectedDate = this.Airliner.SchedCMaintenance;
+            else
+                slMaintenanceC.Value = this.Airliner.CMaintenanceInterval;
+
+            if (rbDateD.IsChecked.Value)
+                this.dpMaintenanceD.SelectedDate = this.Airliner.SchedDMaintenance;
+            else
+                slMaintenanceD.Value = this.Airliner.DMaintenanceInterval;
+
+             
         }
     }
 }

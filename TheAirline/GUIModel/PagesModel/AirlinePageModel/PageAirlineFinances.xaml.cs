@@ -34,19 +34,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnApplyLoan_Click(object sender, RoutedEventArgs e)
         {
-            Loan loan = (Loan)PopUpLoan.ShowPopUp();
+            double amount = slAmount.Value;
+            int length = Convert.ToInt16(slLenght.Value)*12;
 
-            if (loan != null)
-            {
-                this.Airline.addLoan(loan);
-
-
-                AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, loan.Amount);
-
-           
+            Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, length, this.Airline.LoanRate);
+            this.Airline.addLoan(loan);
+            
+            AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, loan.Amount);
+            
 
 
-            }
         }
     }
 }

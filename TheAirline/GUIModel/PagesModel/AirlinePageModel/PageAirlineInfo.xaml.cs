@@ -78,6 +78,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     AirlineProfile profile = new AirlineProfile(name, iata, color, GameObject.GetInstance().MainAirline.Profile.CEO, false, GameObject.GetInstance().GameTime.Year, 2199);
+
+                    profile.Logos.Clear();
                     profile.addLogo(new AirlineLogo(logoPath));
                     profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
 

@@ -10,6 +10,7 @@
     <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
     <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
     <c:CargoSizeConverter x:Key="CargoSizeConverter"></c:CargoSizeConverter>
+    <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
             <Setter.Value>
@@ -169,8 +170,18 @@
         <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}-{1}">
-                    <Binding Path="Destination1.Profile.IATACode" />
-                    <Binding Path="Destination2.Profile.IATACode" />
+                    <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
+                    <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+    </DataTemplate>
+    <DataTemplate x:Key="RouteLongItem">
+        <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center">
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}-{1}">
+                    <Binding Path="Destination1.Profile.Name" />
+                    <Binding Path="Destination2.Profile.Name" />
                 </MultiBinding>
             </TextBlock.Text>
         </TextBlock>

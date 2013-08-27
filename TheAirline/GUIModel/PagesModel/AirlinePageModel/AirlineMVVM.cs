@@ -6,7 +6,9 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Media;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
@@ -37,6 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
+        public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
@@ -65,6 +68,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.DeliveredFleet = this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime);
             this.OrderedFleet = this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
             this.Finances = new ObservableCollection<AirlineFinanceMVVM>();
+            this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
 
             this.Loans = new ObservableCollection<Loan>();
             this.Pilots = new ObservableCollection<Pilot>();
@@ -441,6 +445,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Name = name;
             this.Score = score;
+        }
+    }
+    //the converter for the montly payment of a loan
+    public class MonthlyPaymentConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double amount = System.Convert.ToDouble(values[0]);
+            int lenght = System.Convert.ToInt16(values[1]) * 12;
+
+            return new ValueCurrencyConverter().Convert(MathHelpers.GetMonthlyPayment(amount, GeneralHelpers.GetAirlineLoanRate(GameObject.GetInstance().HumanAirline), lenght) * GameObject.GetInstance().Difficulty.LoanLevel);
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -241,7 +241,7 @@ namespace TheAirline.GUIModel.HelpersModel
                 if (amount >= 0)
                     return Brushes.White;
                 else
-                    return Brushes.DarkRed;
+                    return Brushes.Red;
             }
             catch
             {
@@ -464,9 +464,9 @@ namespace TheAirline.GUIModel.HelpersModel
             double v = Double.Parse(value.ToString());
 
             if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
-                return string.Format("{0:#,0} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
+                return string.Format("{0:0.00} {1}", v, new StringToLanguageConverter().Convert("l/seat/km"));
             else
-                return string.Format("{0:#,0} {1}", MathHelpers.LKMToMPG(v), new StringToLanguageConverter().Convert("l/seat/km"));
+                return string.Format("{0:0.00} {1}", MathHelpers.LKMToMPG(v), new StringToLanguageConverter().Convert("l/seat/km"));
             }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

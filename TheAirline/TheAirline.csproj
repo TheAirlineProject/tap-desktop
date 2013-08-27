@@ -614,6 +614,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirliner.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1123,6 +1127,9 @@
       <DependentUpon>PageShowAlliances.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\FleetAirlinerMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerStatistics.xaml.cs">
+      <DependentUpon>PageFleetAirlinerStatistics.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirliner.xaml.cs">
       <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
     </Compile>

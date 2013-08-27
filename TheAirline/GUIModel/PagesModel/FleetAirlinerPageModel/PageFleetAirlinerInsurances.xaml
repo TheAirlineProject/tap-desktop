@@ -26,7 +26,7 @@
                             </WrapPanel>
                             <WrapPanel>
                                 <RadioButton Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1006'}" GroupName="MaintenanceCType" x:Name="rbIntervalC" Width="100"></RadioButton>
-                                <Slider IsEnabled="{Binding ElementName=rbIntervalC,Path=IsChecked}" x:Name="slMaintenanceC" Width="200" Maximum="36" Minimum="6" Value="18" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                            <Slider IsEnabled="{Binding ElementName=rbIntervalC,Path=IsChecked}" x:Name="slMaintenanceC" Width="200" Maximum="36" Minimum="6" Value="{Binding CMaintenanceInterval}" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
                                 <TextBlock Text="{Binding ElementName=slMaintenanceC,Path=Value,StringFormat={}{0} months}" VerticalAlignment="Bottom"/>
                             </WrapPanel>
                         </StackPanel>
@@ -39,7 +39,7 @@
                             </WrapPanel>
                             <WrapPanel>
                                 <RadioButton Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1006'}" GroupName="MaintenanceDType" x:Name="rbIntervalD" Width="100"></RadioButton>
-                                <Slider IsEnabled="{Binding ElementName=rbIntervalD,Path=IsChecked}"  x:Name="slMaintenanceD" Width="200" Maximum="120" Minimum="12" Value="60" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                                <Slider IsEnabled="{Binding ElementName=rbIntervalD,Path=IsChecked}"  x:Name="slMaintenanceD" Width="200" Maximum="120" Minimum="12" Value="{Binding DMaintenanceInterval}" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
                                 <TextBlock Text="{Binding ElementName=slMaintenanceD,Path=Value,StringFormat={}{0} months}" VerticalAlignment="Bottom"/>
                             </WrapPanel>
                         </StackPanel>
@@ -47,22 +47,38 @@
                     <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1004'}" FontWeight="Bold"  Style="{StaticResource SmallHeaderStyle}" Margin="0 5 0 0"></TextBlock>
                     <WrapPanel>
                         <TextBlock Text="Maintenance A" Width="100" VerticalAlignment="Bottom"></TextBlock>
-                        <Slider x:Name="slMaintenanceA" Width="200" Maximum="45" Minimum="3" Value="10" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                        <Slider x:Name="slMaintenanceA" Width="200" Maximum="45" Minimum="3"  Value="{Binding AMaintenanceInterval}" IsSnapToTickEnabled="True" TickFrequency="1"/>
                         <TextBlock Text="{Binding ElementName=slMaintenanceA,Path=Value,StringFormat={}{0} days}" VerticalAlignment="Bottom"/>
                     </WrapPanel>
                     <WrapPanel>
                         <TextBlock Text="Maintenance B" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                        <Slider x:Name="slMaintenanceB" Maximum="72" Minimum="14" Value="10" IsSnapToTickEnabled="True" TickFrequency="1" Width="200"/>
+                        <Slider x:Name="slMaintenanceB" Maximum="72" Minimum="14"  Value="{Binding BMaintenanceInterval}" IsSnapToTickEnabled="True" TickFrequency="1" Width="200"/>
                         <TextBlock Text="{Binding ElementName=slMaintenanceB,Path=Value,StringFormat={}{0} days}"/>
                     </WrapPanel>
-                    <WrapPanel Margin="0 10 0 0" HorizontalAlignment="Left">
+                    <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
+                        <Button Content="Save Changes" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"/>
+                        <Button Content="Undo Changes" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"/>
                     </WrapPanel>
                     <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetMaintenance 1001'}" FontWeight="Bold"  Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
                     <WrapPanel>
-                        <ComboBox Name="cbMaintenanceType" Style="{DynamicResource ComboBoxTransparentStyle}" Width="50"></ComboBox>
+                        <ComboBox Name="cbMaintenanceType" Style="{DynamicResource ComboBoxTransparentStyle}" Width="50" SelectedIndex="0">
+                            <ComboBoxItem Content="C"></ComboBoxItem>
+                            <ComboBoxItem Content="D"></ComboBoxItem>
+                        </ComboBox>
                         <ComboBox Name="cbAirport" Style="{DynamicResource ComboBoxTransparentStyle}" Width="200" ItemsSource="{Binding AllAirports, ElementName=pageFleetAirlinerInsurances}" Margin="5 0 0 0" ItemTemplate="{StaticResource AirportCountryItem}"></ComboBox>
                     </WrapPanel>
                     <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
+                        <Button Content="Set Maintenance" VerticalAlignment="Bottom">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=cbAirport, Path=SelectedItem}" Value="{x:Null}">
+                                            <Setter Property="Button.IsEnabled" Value="False" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </WrapPanel>
                 </StackPanel>
             </Border>

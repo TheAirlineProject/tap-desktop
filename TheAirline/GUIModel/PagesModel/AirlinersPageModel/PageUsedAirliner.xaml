@@ -40,7 +40,8 @@
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding Type.Maintenance,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
-               
+             
+
             </StackPanel>
         </DataTemplate>
     </Page.Resources>
@@ -55,6 +56,10 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                         <ContentControl Content="{Binding Registered}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
                    </WrapPanel>
+                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom"></TextBlock>
+                    </WrapPanel>
                 </StackPanel>
             </Border>
             <StackPanel>
