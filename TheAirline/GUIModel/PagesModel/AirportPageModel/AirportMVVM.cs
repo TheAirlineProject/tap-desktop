@@ -9,6 +9,7 @@ using System.Windows.Data;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -29,7 +30,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public double TerminalGatePrice { get; set; }
         public List<AirportFacility> AirportFacilities { get; set; }
         public ObservableCollection<AirlineAirportFacility> AirlineFacilities { get; set; }
+        public List<AirportTrafficMVVM> Traffic { get; set; }
         public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
+        public List<DestinationFlightsMVVM> Flights { get; set; }
         private int _freeGates;
         public int FreeGates
         {
@@ -85,6 +88,42 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 
                 this.AirlineStatistics.Add(new AirportStatisticsMVMM(airline, passengers, passengersAvg, arrivals));
             }
+
+            this.Traffic = new List<AirportTrafficMVVM>();
+            
+            var passengerDestinations = from a in Airports.GetAllActiveAirports() orderby this.Airport.getDestinationPassengerStatistics(a) descending select a;
+            var cargoDestinations = from a in Airports.GetAllActiveAirports() orderby this.Airport.getDestinationCargoStatistics(a) descending select a;
+
+            foreach (Airport a in passengerDestinations.Take(20))
+                this.Traffic.Add(new AirportTrafficMVVM(a, this.Airport.getDestinationPassengerStatistics(a),AirportTrafficMVVM.TrafficType.Passengers));
+           
+            foreach (Airport a in cargoDestinations.Take(20))
+                this.Traffic.Add(new AirportTrafficMVVM(a, Convert.ToInt64(this.Airport.getDestinationCargoStatistics(a)), AirportTrafficMVVM.TrafficType.Cargo));
+
+            this.Flights = new List<DestinationFlightsMVVM>();
+
+            Dictionary<Airport, int> destinations = new Dictionary<Airport, int>();
+            foreach (Route route in AirportHelpers.GetAirportRoutes(this.Airport).FindAll(r => r.getAirliners().Count > 0))
+            {
+                if (route.Destination1 != this.Airport)
+                {
+                    if (!destinations.ContainsKey(route.Destination1))
+                        destinations.Add(route.Destination1, 0);
+                    destinations[route.Destination1] += route.TimeTable.getEntries(route.Destination1).Count;
+
+
+                }
+                if (route.Destination2 != this.Airport)
+                {
+                    if (!destinations.ContainsKey(route.Destination2))
+                        destinations.Add(route.Destination2, 0);
+                    destinations[route.Destination2] += route.TimeTable.getEntries(route.Destination2).Count;
+                }
+            }
+
+            foreach (Airport a in destinations.Keys)
+                this.Flights.Add(new DestinationFlightsMVVM(a, destinations[a]));
+
                
         }
         //adds a terminal to the airport
@@ -146,6 +185,20 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm class for airport traffic
+    public class AirportTrafficMVVM
+    {
+        public Airport Destination { get; set; }
+        public long Value { get; set; }
+        public enum TrafficType { Passengers, Cargo }
+        public TrafficType Type { get; set; }
+        public AirportTrafficMVVM(Airport destination, long value, TrafficType type)
+        {
+            this.Destination = destination;
+            this.Value = value;
+            this.Type = type;
         }
     }
     //the mvvm class for passenger demand
@@ -246,6 +299,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             this.Destination = destination;
             this.Distance = distance;
+        }
+    }
+    //the mvvm object for airport flights
+    //the class for a destination with number of weekly flights
+    public class DestinationFlightsMVVM
+    {
+        public int Flights { get; set; }
+        public Airport Airport { get; set; }
+        public DestinationFlightsMVVM(Airport airport, int flights)
+        {
+            this.Flights = flights;
+            this.Airport = airport;
         }
     }
     //the mvvm object for airport statistics
