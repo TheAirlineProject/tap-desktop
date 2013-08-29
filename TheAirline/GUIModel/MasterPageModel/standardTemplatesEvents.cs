@@ -18,7 +18,7 @@ namespace TheAirline.GUIModel.MasterPageModel
         private void Airport_Click(object sender, RoutedEventArgs e)
         {
             Airport airport = (Airport)((Hyperlink)sender).Tag;
-            PageNavigator.NavigateTo(new PageAirport(airport));
+            PageNavigator.NavigateTo(new GUIModel.PagesModel.AirportPageModel.PageAirport(airport));
         }
         private void Alliance_Click(object sender, RoutedEventArgs e)
         {

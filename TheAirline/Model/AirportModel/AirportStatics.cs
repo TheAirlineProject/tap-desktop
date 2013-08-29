@@ -103,6 +103,16 @@ namespace TheAirline.Model.AirportModel
             }
 
         }
+        //returns all demands
+        public List<DestinationDemand> getDemands()
+        {
+            var demands = new List<DestinationDemand>();
+
+            demands.AddRange(this.CargoDemand);
+            demands.AddRange(this.PassengerDemand);
+
+            return demands;
+        }
         //returns the distance for an airport
         public double getDistance(Airport airport)
         {

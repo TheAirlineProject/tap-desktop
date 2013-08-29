@@ -1,0 +1,337 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Data;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
+
+namespace TheAirline.GUIModel.PagesModel.AirportPageModel
+{
+  
+    public class AirportMVVM : INotifyPropertyChanged
+    {
+        public Airport Airport { get; set; }
+        public List<Weather> Weather { get; set; }
+        public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
+        public ObservableCollection<ContractMVVM> Contracts { get; set; }
+        public List<DemandMVVM> Demands { get; set; }
+        public double TerminalPrice { get; set; }
+        public double TerminalGatePrice { get; set; }
+        public List<AirportFacility> AirportFacilities { get; set; }
+        public ObservableCollection<AirlineAirportFacility> AirlineFacilities { get; set; }
+        public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
+        private int _freeGates;
+        public int FreeGates
+        {
+            get { return _freeGates; }
+            set { _freeGates = value; NotifyPropertyChanged("FreeGates"); }
+        }
+        public AirportMVVM(Airport airport)
+        {
+           
+            this.Airport = airport;
+
+            this.TerminalGatePrice = this.Airport.getTerminalGatePrice();
+            this.TerminalPrice = this.Airport.getTerminalPrice();
+            
+            this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
+
+            foreach (Terminal terminal in this.Airport.Terminals.getTerminals())
+                this.Terminals.Add(new AirportTerminalMVVM(terminal.Name, terminal.Gates.NumberOfGates, terminal.Airline, terminal.DeliveryDate,terminal.IsBuyable));
+
+            this.Contracts = new ObservableCollection<ContractMVVM>();
+
+            foreach (AirportContract contract in this.Airport.AirlineContracts)
+                this.Contracts.Add(new ContractMVVM(contract));
+
+            this.Weather = this.Airport.Weather.ToList();
+            this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+
+            this.Demands = new List<DemandMVVM>();
+
+            foreach (Airport destination in this.Airport.getDestinationDemands())
+                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination), destination.Profile.Country == this.Airport.Profile.Country ? DemandMVVM.DestinationType.Domestic : DemandMVVM.DestinationType.International));
+
+            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null).Select(f=>f.Facility).ToList();
+
+            this.AirlineFacilities = new ObservableCollection<AirlineAirportFacility>();
+           
+            foreach (var facility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
+                if (facility.Facility.TypeLevel != 0)
+                    this.AirlineFacilities.Add(facility);
+
+            this.AirlineStatistics = new List<AirportStatisticsMVMM>();
+            
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+             
+                StatisticsType passengersType = StatisticsTypes.GetStatisticsType("Passengers");
+                StatisticsType passengersAvgType = StatisticsTypes.GetStatisticsType("Passengers%");
+                StatisticsType arrivalsType = StatisticsTypes.GetStatisticsType("Arrivals");
+
+                double passengers = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year,airline,passengersType);
+                double passengersAvg = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year,airline,passengersAvgType);
+                double arrivals = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year,airline,arrivalsType);
+                
+                this.AirlineStatistics.Add(new AirportStatisticsMVMM(airline, passengers, passengersAvg, arrivals));
+            }
+               
+        }
+        //adds a terminal to the airport
+        public void addTerminal(Terminal terminal)
+        {
+            this.Airport.addTerminal(terminal);
+
+            this.Terminals.Add(new AirportTerminalMVVM(terminal.Name, terminal.Gates.NumberOfGates, terminal.Airline, terminal.DeliveryDate, false));
+        }
+        //adds an airline contract to the airport
+        public void addAirlineContract(AirportContract contract)
+        {
+            this.Airport.addAirlineContract(contract);
+
+            this.Contracts.Add(new ContractMVVM(contract));
+
+            this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+    
+        }
+        //removes an airline contract from the airport
+        public void removeAirlineContract(ContractMVVM contract)
+        {
+            this.Airport.removeAirlineContract(contract.Contract);
+
+            this.Contracts.Remove(contract);
+
+            this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+    
+        }
+        //removes an airline facility from the airport
+        public void removeAirlineFacility(AirlineAirportFacility facility)
+        {
+            
+            this.Airport.downgradeFacility(facility.Airline, facility.Facility.Type);
+
+            this.AirlineFacilities.Remove(facility);
+
+            if (this.Airport.getAirlineAirportFacility(facility.Airline, facility.Facility.Type).Facility.TypeLevel > 0)
+                this.AirlineFacilities.Add(this.Airport.getAirlineAirportFacility(facility.Airline, facility.Facility.Type));
+        }
+        //adds an airline facility to the airport
+        public void addAirlineFacility(AirportFacility facility)
+        {
+            AirlineAirportFacility nextFacility = new AirlineAirportFacility(GameObject.GetInstance().HumanAirline,this.Airport, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+            this.Airport.setAirportFacility(nextFacility);
+
+            AirlineAirportFacility currentFacility = this.AirlineFacilities.Where(f=>f.Facility.Type == facility.Type).FirstOrDefault();
+
+            if (currentFacility != null)
+                this.AirlineFacilities.Remove(currentFacility);
+
+            this.AirlineFacilities.Add(nextFacility);
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm class for passenger demand
+    public class DemandMVVM
+    {
+        public int Cargo { get; set; }
+        public int Passengers { get; set; }
+        public Airport Destination { get; set; }
+        public enum DestinationType { Domestic, International }
+        public DestinationType Type{ get; set; }
+        public DemandMVVM(Airport destination, int passengers, int cargo,DestinationType type)
+        {
+            this.Cargo = cargo;
+            this.Passengers = passengers;
+            this.Destination = destination;
+            this.Type = type;
+        }
+    }
+    //the mvvm class for an airline contract
+    public class ContractMVVM : INotifyPropertyChanged
+    {
+        public AirportContract Contract { get; set; }
+        public Airline Airline { get; set; }
+        public int NumberOfGates { get; set; }
+        public int MonthsLeft { get; set; }
+        public ContractMVVM(AirportContract contract)
+        {
+            this.Contract = contract;
+            this.Airline = this.Contract.Airline;
+            this.NumberOfGates = this.Contract.NumberOfGates;
+            this.MonthsLeft = this.Contract.MonthsLeft;
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm class for an airport terminal
+    public class AirportTerminalMVVM : INotifyPropertyChanged
+    {
+        public string Name { get; set; }
+
+        private Airline _airline;
+        public Airline Airline
+        {
+            get { return _airline; }
+            set { _airline = value; NotifyPropertyChanged("Airline"); }
+        }
+     
+        public int Gates { get; set; }
+        
+       
+        private Boolean _isBuyable;
+        public Boolean IsBuyable
+        {
+            get { return _isBuyable; }
+            set { _isBuyable = value; NotifyPropertyChanged("IsBuyable"); }
+        }
+        public DateTime DeliveryDate { get; set; }
+
+        public enum DeliveryType { Delivered, Building }
+        public DeliveryType Type { get; set; }
+        public AirportTerminalMVVM(string name, int gates, Airline airline,DateTime deliveryDate, Boolean isBuyable)
+        {
+            this.Name = name;
+            this.Airline = airline;
+            this.Gates = gates;
+            this.IsBuyable = isBuyable;
+            this.DeliveryDate = deliveryDate;
+
+            this.Type = GameObject.GetInstance().GameTime < this.DeliveryDate ? DeliveryType.Building : DeliveryType.Delivered;
+
+     
+        }
+
+         public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm object for airport distance
+    public class AirportDistanceMVVM
+    {
+        public Airport Destination { get; set; }
+        public double Distance { get; set; }
+        public AirportDistanceMVVM(Airport destination,double distance)
+        {
+            this.Destination = destination;
+            this.Distance = distance;
+        }
+    }
+    //the mvvm object for airport statistics
+    public class AirportStatisticsMVMM
+    {
+        public double Passengers { get; set; }
+        public double PassengersPerFlight { get; set; }
+        public double Flights { get; set; }
+        public Airline Airline { get; set; }
+        public AirportStatisticsMVMM(Airline airline, double passengers, double passengersPerFlight, double flights)
+        {
+            this.Passengers = passengers;
+            this.Airline = airline;
+            this.PassengersPerFlight = passengersPerFlight;
+            this.Flights = flights;
+        }
+           
+    }
+    //the converter for the next facility
+    public class NextFacilityConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            AirportFacility.FacilityType type = (AirportFacility.FacilityType)values[0];
+            Airport airport = (Airport)values[1];
+
+            AirlineAirportFacility currentFacility = airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type);
+
+            List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
+            facilities = facilities.OrderBy(f=>f.TypeLevel).ToList();
+          
+            int index = facilities.FindIndex(f=>currentFacility.Facility == f);
+
+            if (index < facilities.Count - 1)
+                return string.Format("{0} ({1})", facilities[index + 1].Name,new ValueCurrencyConverter().Convert(facilities[index+1].Price));
+            else
+                return "None";
+
+
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the weather
+    public class WeatherImageConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Weather weather = (Weather)value;
+
+            string weatherCondition = "clear";
+
+            if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+                weatherCondition = weather.Precip.ToString();
+            else
+                weatherCondition = weather.Cover.ToString();
+
+            return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the yearly payment of a contract
+    public class ContractYearlyPaymentConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            int gates = System.Convert.ToInt16(values[0]);
+            int lenght = System.Convert.ToInt16(values[1]);
+            Airport airport = (Airport)values[2];
+
+            return new ValueCurrencyConverter().Convert(AirportHelpers.GetYearlyContractPayment(airport, gates, lenght));
+
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

@@ -67,26 +67,26 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-                <TextBlock Text="Airline Loans" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1008'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}">
                 </TextBlock>
                 <ListView  ItemsSource="{Binding Loans}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn Header="Amount" Width="200">
+                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1009'}" Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding Amount,Converter={StaticResource ValueCurrencyConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Monthly Payment" Width="150">
+                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1010'}" Width="150">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding MonthlyPayment,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
-                            <GridViewColumn Header="Months Left" Width="150">
+                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1011'}" Width="150">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding MonthsLeft}" VerticalAlignment="Bottom"></TextBlock>
@@ -97,20 +97,20 @@
                     </ListView.View>
                 </ListView>
             </StackPanel>
-            <Expander Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Margin="0 10 0 0" Header="Apply for New Loan" Style="{StaticResource ExpanderStyle}">
+            <Expander Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Margin="0 10 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1014'}" Style="{StaticResource ExpanderStyle}">
                 <StackPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                        <TextBlock Text="Loan Amount" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1009'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                         <Slider Name="slAmount" Minimum="5000000" Maximum="50000000" TickFrequency="500000" Width="200" IsSnapToTickEnabled="True"></Slider> 
                         <TextBlock Text="{Binding Value,ElementName=slAmount,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                        <TextBlock Text="Loan Lenght" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1012'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                         <Slider Name="slLenght" Minimum="1" Maximum="25" Ticks="1,2,5,10,15,20,25" Width="200" IsSnapToTickEnabled="True"></Slider>
                         <TextBlock Text="{Binding Value,ElementName=slLenght,StringFormat={}{0} years}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                        <TextBlock Text="Monthly Payment" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1010'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                         <TextBlock VerticalAlignment="Bottom">
                             <TextBlock.Text>
                                 <MultiBinding Converter="{StaticResource MonthlyPaymentConverter}">
@@ -121,11 +121,11 @@
                         </TextBlock>
                     </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                        <TextBlock Text="Loan Rate" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1013'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                         <TextBlock Text="{Binding LoanRate,StringFormat={}{0} %}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
                     <WrapPanel>
-                        <Button Content="Apply for Loan" Click="btnApplyLoan_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Style="{StaticResource StandardButtonStyle}"></Button>
+                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 200'}" Click="btnApplyLoan_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Style="{StaticResource StandardButtonStyle}"></Button>
                     </WrapPanel>
                 </StackPanel>
             </Expander>

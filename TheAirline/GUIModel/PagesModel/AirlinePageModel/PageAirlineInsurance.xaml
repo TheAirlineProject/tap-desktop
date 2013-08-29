@@ -109,13 +109,9 @@
                         </WrapPanel>
                         <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                            <ComboBox Name="cbAmount" Style="{StaticResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom" Width="150">
-                                <ComboBox.ItemTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                                    </DataTemplate>
-                                </ComboBox.ItemTemplate>
-                            </ComboBox>
+                            <Slider Name="slAmount" VerticalAlignment="Bottom" Width="200" Minimum="500000" Maximum="1000000000" IsSnapToTickEnabled="True" TickFrequency="50000"></Slider>
+                            <TextBlock Text="{Binding Value,ElementName=slAmount,Converter={StaticResource ValueCurrencyConverter}}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                      
                         </WrapPanel>
                         <WrapPanel>
                         <Button Style="{StaticResource StandardButtonStyle}" Margin="0 5 0 0" Click="btnCreateInsurance_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 200'}"/>

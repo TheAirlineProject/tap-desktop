@@ -225,6 +225,17 @@ namespace TheAirline.Model.AirportModel
                     this.DestinationCargo.Add(new DestinationDemand(destination, rate));
             }
         }
+        //returns all airports where the airport has demand
+        public List<Airport> getDestinationDemands()
+        {
+            var destinations = new List<DestinationDemand>();
+
+            destinations.AddRange(this.Statics.getDemands());
+            destinations.AddRange(this.DestinationCargo);
+            destinations.AddRange(this.DestinationPassengers);
+
+            return destinations.Select(d => d.Destination).Distinct().ToList();
+        }
         //returns if the destination has passengers rate
         public Boolean hasDestinationPassengersRate(Airport destination)
         {
@@ -352,6 +363,12 @@ namespace TheAirline.Model.AirportModel
         {
             this.Facilities.RemoveAll(f => f.Airline == airline && f.Facility.Type == facility.Type);
             this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
+        }
+        //sets the facility for an airline
+        public void setAirportFacility(AirlineAirportFacility facility)
+        {
+            this.Facilities.RemoveAll(f => f.Airline == facility.Airline && f.Facility.Type == facility.Facility.Type);
+            this.Facilities.Add(facility);
         }
         //returns the facility of a specific type for an airline - useAirport == true if it should also check for the airports facility
         public AirportFacility getAirportFacility(Airline airline, AirportFacility.FacilityType type, Boolean useAirport = false)
@@ -516,6 +533,11 @@ namespace TheAirline.Model.AirportModel
         public void removeHub(Hub hub)
         {
             this._Hubs.Remove(hub);
+        }
+        //returns if an airline have a hub
+        public Boolean hasHub(Airline airline)
+        {
+            return this.Hubs.Exists(h => h.Airline == airline);
         }
         // chs, 2011-31-10 added for pricing of a terminal
         //returns the price for a terminal

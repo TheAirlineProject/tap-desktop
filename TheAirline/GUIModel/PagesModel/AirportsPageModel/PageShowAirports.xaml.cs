@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -97,6 +98,27 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
           
             }
 
+        }
+
+        private void cbHuman_Checked(object sender, RoutedEventArgs e)
+        {
+            var source = this.AirportsList.Items as ICollectionView;
+            source.Filter = o =>
+            {
+                AirportMVVM a = o as AirportMVVM;
+                return  a!=null && a.IsHuman;       
+            };
+
+        }
+
+        private void cbHuman_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var source = this.AirportsList.Items as ICollectionView;
+            source.Filter = o =>
+            {
+                AirportMVVM a = o as AirportMVVM;
+                return !a.IsHuman || a.IsHuman;
+            };
         }
         
     }

@@ -214,13 +214,20 @@
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="2" Margin="5 0 0 0">
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1011'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                    <ListView VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Airline.Airports}">
+                    <ListView VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Destinations}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1012'}"  util:GridViewSort.PropertyName="Profile.Name" Width="250">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1012'}"  util:GridViewSort.PropertyName="Airport.Profile.Name" Width="250">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding}" VerticalAlignment="Bottom"></ContentControl>
+                                            <ContentControl ContentTemplate="{StaticResource AirportCountryLink}" Content="{Binding Airport}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1025'}"  util:GridViewSort.PropertyName="Airport.Profile.Name" Width="250">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="/data/images/tick.png" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20" Visibility="{Binding IsHub,Converter={StaticResource BooleanToVisibility}}"></Image>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

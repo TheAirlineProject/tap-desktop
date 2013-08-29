@@ -39,6 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
+        public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
@@ -80,6 +81,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Subsidiaries = new ObservableCollection<SubsidiaryAirline>();
             this.Insurances = new ObservableCollection<AirlineInsurance>();
             this.Advertisements = new ObservableCollection<AirlineAdvertisementMVVM>();
+            this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
 
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(l));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
@@ -99,6 +101,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
       
             foreach (PropertyInfo c in typeof(Colors).GetProperties())
                 this.Colors.Add(c);
+
+            foreach (Airport airport in this.Airline.Airports)
+                this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
+
 
         }
         //saves all the fees
@@ -445,6 +451,32 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Name = name;
             this.Score = score;
+        }
+    }
+    //the mvvm class for a destination
+    public class AirlineDestinationMVVM : INotifyPropertyChanged
+    {
+        public Airport Airport { get; set; }
+        private Boolean _isHub;
+        public Boolean IsHub
+        {
+            get { return _isHub; }
+            set { _isHub = value; NotifyPropertyChanged("IsHub"); }
+           
+        }
+        public AirlineDestinationMVVM(Airport airport, Boolean isHub)
+        {
+            this.IsHub = isHub;
+            this.Airport = airport;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     //the converter for the montly payment of a loan

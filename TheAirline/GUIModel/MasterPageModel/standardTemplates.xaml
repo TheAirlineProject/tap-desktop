@@ -148,7 +148,7 @@
             <Image Source="{Binding Profile.Town.Country.Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
                             <Hyperlink Tag="{Binding}" Click="Airport_Click">
-                                <Run Text="{Binding Profile.IATACode}"></Run>
+                                <Run Text="{Binding Path=.,Converter={StaticResource AirportCodeConverter}}"></Run>
                             </Hyperlink>
             </TextBlock>
         </DockPanel>

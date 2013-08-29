@@ -59,12 +59,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 cbScope.Items.Add(scope);
             cbScope.SelectedIndex = 0;
 
-            cbAmount.Items.Clear();
-            for (int i = 500000; i < 1000000000; i += 500000)
-                cbAmount.Items.Add(GeneralHelpers.GetInflationPrice(i));
-            cbAmount.SelectedIndex = 0;
-
-            cbLength.Items.Clear();
+             cbLength.Items.Clear();
             for (int i = 0; i < 20; i++)
                 cbLength.Items.Add(i + 1);
             cbLength.SelectedIndex = 0;
@@ -87,7 +82,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             AirlineInsurance.PaymentTerms terms = (AirlineInsurance.PaymentTerms)cbTerms.SelectedItem;
             Boolean allAirliners = cbAllAirliners.IsChecked.Value;
             int lenght = Convert.ToInt16(cbLength.SelectedItem);
-            int amount = Convert.ToInt32(cbAmount.SelectedItem);
+            int amount = Convert.ToInt32(slAmount.Value);
 
             AirlineInsurance insurance = AirlineInsuranceHelpers.CreatePolicy(this.Airline.Airline, type, scope, terms, allAirliners, lenght, amount);
 
