@@ -41,20 +41,5 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
          }
     }
-    //the converter for the airports statistics
-    public class AirportStatisticsConverter : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            Airport airport = (Airport)value;
-            StatisticsType statType = StatisticsTypes.GetStatisticsType("Passengers");
-          
-            return airport.Statistics.getTotalValue(GameObject.GetInstance().GameTime.Year, statType);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
-    }
+   
 }

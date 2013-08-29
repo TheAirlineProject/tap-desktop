@@ -16,11 +16,11 @@
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
                 <StackPanel>
-                    <TextBlock Text="Airport Flights" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView VerticalAlignment="Stretch" BorderThickness="0" util:GridViewSort.AutoSort="True" Background="Transparent" ItemsSource="{Binding Flights}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Destination" Width="250" util:GridViewSort.PropertyName="Airport.Profile.Name">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1001'}" Width="250" util:GridViewSort.PropertyName="Airport.Profile.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">
@@ -29,7 +29,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Weekly Flights" Width="100" util:GridViewSort.PropertyName="Flights">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1002'}" Width="100" util:GridViewSort.PropertyName="Flights">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">
@@ -45,11 +45,11 @@
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
                 <StackPanel>
-                    <TextBlock Text="Airport Traffic" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1003'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView Name="lvTraffic" VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Traffic}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Destination" Width="250">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1004'}" Width="250">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">
@@ -58,7 +58,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Value" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1005'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom">

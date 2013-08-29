@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
@@ -23,6 +24,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     /// </summary>
     public partial class PageAirports : Page
     {
+       
+
         public List<Airport> HumanAirports { get; set; }
         public List<Airport> HumanHubs { get; set; }
         public PageAirports()
@@ -33,6 +36,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             this.Loaded += PageAirports_Loaded;
             
             InitializeComponent();
+
+     
+           
         }
 
         private void PageAirports_Loaded(object sender, RoutedEventArgs e)
@@ -40,6 +46,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 
             frmContent.Navigate(new PageShowAirports() { Tag = this });
+
+            var countries = Airports.GetAllAirports().Select(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country).Distinct().ToList();
+            countries.Add(Countries.GetCountry("100"));
+
+            ComboBox cbCountry = UIHelpers.FindChild<ComboBox>(this, "cbCountry");
+            ComboBox cbRegion = UIHelpers.FindChild<ComboBox>(this, "cbRegion");
+
+            cbCountry.ItemsSource = countries.OrderByDescending(c => c.Uid == "100").ThenBy(c => c.Name);
+
+            var regions = countries.Select(c => c.Region).Distinct().ToList().OrderByDescending(r => r.Uid == "100").ThenBy(r => r.Name);
+
+            cbRegion.ItemsSource = regions;
         }
         private void tcMenu_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -58,6 +76,45 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             if (selection == "Statistics" && frmContent != null)
                 frmContent.Navigate(new PageAirportsStatistics() { Tag = this });
            
+        }
+        private void btnClear_Click(object sender, RoutedEventArgs e)
+        {
+            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+
+            if (frmContent != null)
+                frmContent.Navigate(new PageShowAirports() { Tag = this.Tag });
+        }
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbCountry = UIHelpers.FindChild<ComboBox>(this, "cbCountry");
+            ComboBox cbRegion = UIHelpers.FindChild<ComboBox>(this, "cbRegion");
+            TextBox txtText = UIHelpers.FindChild<TextBox>(this, "txtText");
+
+            string text = txtText.Text.Trim();
+            Country country = (Country)cbCountry.SelectedItem;
+            Region region = (Region)cbRegion.SelectedItem;
+
+            var airports = Airports.GetAllAirports().Where(a => a.Profile.IATACode.StartsWith(text) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
+
+            Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
+
+            if (frmContent != null)
+                frmContent.Navigate(new PageShowAirports(airports.ToList()) { Tag = this.Tag });
+
+        }
+        private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cbCountry = UIHelpers.FindChild<ComboBox>(this, "cbCountry");
+            ComboBox cbRegion = UIHelpers.FindChild<ComboBox>(this, "cbRegion");
+         
+            Region region = (Region)cbRegion.SelectedItem;
+
+            var countries = region.Uid == "100" ? Airports.GetAllAirports().Select(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country).Distinct().ToList() : Countries.GetCountries(region);
+
+            countries.Add(Countries.GetCountry("100"));
+
+            cbCountry.ItemsSource = countries.OrderByDescending(c => c.Uid == "100").ThenBy(c => c.Name);
+
         }
     }
 }

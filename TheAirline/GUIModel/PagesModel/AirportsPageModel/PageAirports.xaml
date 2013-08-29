@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
       xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:uc="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageAirports"
@@ -26,6 +27,18 @@
                         </ListBox>
                     </StackPanel>
                 </Border>
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 1004'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ComboBox Name="cbRegion" Style="{DynamicResource ComboBoxTransparentStyle}" HorizontalAlignment="Stretch" SelectionChanged="cbRegion_SelectionChanged" VerticalAlignment="Bottom" SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="Name"></ComboBox>
+                        <ComboBox Name="cbCountry" Style="{DynamicResource ComboBoxTransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" ItemTemplate="{StaticResource CountryLongFlagItem}"></ComboBox>
+                        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="txtText"></TextBox>
+                        <WrapPanel Margin="0 5 0 0">
+                        <Button Style="{DynamicResource StandardButtonStyle}" Click="btnSearch_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 109'}" Width="NaN"></Button>
+                            <Button Style="{DynamicResource StandardButtonStyle}" Click="btnClear_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 110'}" Width="NaN" Margin="5 0 0 0"></Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </Border>
 
             </StackPanel>
         </DataTemplate>
@@ -33,7 +46,7 @@
             <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 2000'}" Tag="Airports">
                 </TabItem>
-                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 2001'}" Tag="Search">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 2001'}" Visibility="Collapsed" Tag="Search">
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 2002'}" Tag="Statistics">
                 </TabItem>

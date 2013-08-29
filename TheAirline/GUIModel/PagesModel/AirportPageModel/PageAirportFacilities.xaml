@@ -29,7 +29,7 @@
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
-                        <TextBlock Text="Airport Facilities" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                         <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding AirportFacilities}">
                         </ListBox>
                     </StackPanel>
@@ -43,7 +43,7 @@
                                 </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
-                        <TextBlock Text="Airline Facilities" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                         <ListBox Background="Transparent" Name="lbFacilities" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineFacilities}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -67,14 +67,14 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
-                    <Expander Margin="0 5 0 0" Header="Buy Facilities" Style="{StaticResource ExpanderStyle}">
+                    <Expander Margin="0 5 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1002'}" Style="{StaticResource ExpanderStyle}">
                         <StackPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="Facility Type" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1003'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                 <ComboBox VerticalAlignment="Bottom" Name="cbNextFacility" Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding FacilityTypes,ElementName=pageAirportFacilities}" Width="100"></ComboBox>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="Facility Name" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1004'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                 <TextBlock Name="txtNextFacility" VerticalAlignment="Bottom">
                                     <TextBlock.Text>
                                         <MultiBinding Converter="{StaticResource NextFacilityConverter}">
@@ -86,7 +86,7 @@
                                
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0" >
-                            <Button Content="Buy Facility" Click="btnBuyFacility_Click">
+                                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 200'}" Click="btnBuyFacility_Click">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                         <Style.Triggers>
@@ -117,28 +117,28 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1000'}" Width="200">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1005'}" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1005'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1006'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1006'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1007'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1007'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1008'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom"></TextBlock>

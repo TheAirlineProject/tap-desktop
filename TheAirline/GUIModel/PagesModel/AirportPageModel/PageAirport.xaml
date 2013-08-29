@@ -13,7 +13,7 @@
             <StackPanel>
                 <Border Style="{StaticResource RoundedBorderStyle}">
                     <StackPanel>
-                        <TextBlock Text="Distances" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 1000'}" FontWeight="Bold" FontSize="14"></TextBlock>
                         <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageAirport, Path=Distances}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>

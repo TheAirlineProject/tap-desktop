@@ -14,7 +14,7 @@
         <StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <CheckBox Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" Checked="cbHuman_Checked" Unchecked="cbHuman_Unchecked"></CheckBox>
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}"  VerticalAlignment="Bottom" Checked="cbHuman_Checked" Unchecked="cbHuman_Unchecked"></CheckBox>
                 </WrapPanel>
             <ListView x:Name="AirportsList" VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAirports, Path=AllAirports}">
             <ListView.View>
