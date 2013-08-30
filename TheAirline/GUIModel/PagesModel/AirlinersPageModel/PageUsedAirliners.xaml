@@ -7,12 +7,10 @@
       Name="pageUsedAirliners"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-	Title="PageUsedAirliners">
+    Title="PageUsedAirliners">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel>
-            <ListView x:Name="lvAirliners" ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}" util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
-                    <ListView.View>
+             <ListView x:Name="lvAirliners" ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}" util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
+                <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" Width="150" util:GridViewSort.PropertyName="Type.Name">
                             <GridViewColumn.CellTemplate>
@@ -96,6 +94,5 @@
                 </ListView.View>
              </ListView>
 
-        </StackPanel>
-    </ScrollViewer>
+
 </Page>

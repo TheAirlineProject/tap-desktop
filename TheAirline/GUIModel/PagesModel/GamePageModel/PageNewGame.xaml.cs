@@ -51,7 +51,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 frmContent.Navigate(new PageNewAirline());
 
             if (selection == "Difficulty" && frmContent != null)
-                frmContent.Navigate(new PageCreateDifficulty());
+                frmContent.Navigate(new PageCreateDifficulty() { Tag = this });
         }
     }
 }

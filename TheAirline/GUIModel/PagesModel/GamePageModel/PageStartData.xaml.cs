@@ -15,7 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.PageGameModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.MasterPageModel.PopUpPageModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
@@ -129,6 +131,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         }
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {
+            //WPFPopUpTest test = new WPFPopUpTest();
+          
             PageNavigator.NavigateTo(new PageStartMenu());
         }
     }

@@ -28,7 +28,6 @@
                         </ListBox>
                     </StackPanel>
                 </Border>
-
             </StackPanel>
         </DataTemplate>
         <DataTemplate x:Key="RoutesContentMenu">

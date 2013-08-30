@@ -31,11 +31,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         public PopUpSingleElement(string title, UIElement element)
         {
             this.Element = element;
-           
+
             InitializeComponent();
 
             this.Title = title;
-
+          
             this.Width = 400;
 
             this.Height = 125;

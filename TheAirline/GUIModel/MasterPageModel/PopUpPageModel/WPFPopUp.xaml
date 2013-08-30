@@ -1,0 +1,20 @@
+﻿<Window x:Class="TheAirline.GUIModel.MasterPageModel.PopUpPageModel.WPFPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Name="wpfPopUp"
+        Title="{Binding Title}" WindowStartupLocation="CenterOwner">
+    <Window.Style>
+    <Style TargetType="Window">
+            <Setter Property="MinHeight" Value="400"></Setter>
+            <Setter Property="MinWidth" Value="400"></Setter>
+            <Setter Property="ResizeMode" Value="NoResize"></Setter>
+            <Setter Property="WindowStyle" Value="ToolWindow"></Setter>
+            <Setter Property="SizeToContent" Value="WidthAndHeight"></Setter>
+            <Setter Property="ShowInTaskbar" Value="False"></Setter>
+            <Setter Property="Background" Value="#004A7F"></Setter>
+     </Style>
+    </Window.Style>
+    <Border Margin="5 5 5 5">
+        <ContentControl x:Name="ContentArea" Grid.Column="0" ContentTemplate="{Binding PopUpContent,ElementName=wpfPopUp}"/>
+    </Border>
+</Window>

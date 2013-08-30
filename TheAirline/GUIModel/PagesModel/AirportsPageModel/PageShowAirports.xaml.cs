@@ -17,6 +17,8 @@ using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -29,6 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     public partial class PageShowAirports : Page
     {
         public List<AirportMVVM> AllAirports { get; set; }
+        public List<Airline> AllAirlines { get; set; }
 
         public PageShowAirports(List<Airport> airports)
         {
@@ -42,6 +45,16 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         //creates the page
         private void createPage(List<Airport> airports)
         {
+            this.AllAirlines = new List<Airline>();
+
+            Airline dummyAirline = new Airline(new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900), Airline.AirlineMentality.Safe, Airline.AirlineFocus.Domestic, Airline.AirlineLicense.Domestic, Route.RouteType.Passenger);
+            dummyAirline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
+
+            this.AllAirlines.Add(dummyAirline);
+
+            foreach (Airline airline in Airlines.GetAllAirlines().Where(a => a != GameObject.GetInstance().HumanAirline).OrderBy(a=>a.Profile.Name))
+                this.AllAirlines.Add(airline);
+
             this.AllAirports = new List<AirportMVVM>();
 
             foreach (Airport airport in airports.OrderBy(a=>a.Profile.Name))
@@ -119,6 +132,23 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                 AirportMVVM a = o as AirportMVVM;
                 return !a.IsHuman || a.IsHuman;
             };
+
+            cbAirlines.SelectedIndex = 0;
+        }
+
+        private void cbAirline_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Airline airline = (Airline)((ComboBox)sender).SelectedItem;
+
+            if (this.AirportsList != null)
+            {
+                var source = this.AirportsList.Items as ICollectionView;
+                source.Filter = o =>
+                {
+                    AirportMVVM a = o as AirportMVVM;
+                    return a != null && a.Airport.AirlineContracts.Exists(c => c.Airline == airline) || airline.Profile.IATACode == "99";
+                };
+            }
         }
         
     }

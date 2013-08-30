@@ -510,6 +510,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\MasterPageModel\standard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1066,6 +1074,12 @@
     <Compile Include="GUIModel\HelpersModel\GridViewSort.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
     <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUp.xaml.cs">
+      <DependentUpon>WPFPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpTest.xaml.cs">
+      <DependentUpon>WPFPopUpTest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
     <Compile Include="GUIModel\MasterPageModel\StandardMasterPage.cs" />
     <Compile Include="GUIModel\MasterPageModel\standardStylesEvents.cs" />
@@ -1168,6 +1182,7 @@
     <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInsurances.xaml.cs">
       <DependentUpon>PageFleetAirlinerInsurances.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\DifficultyMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>
     </Compile>

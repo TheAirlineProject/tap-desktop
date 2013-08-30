@@ -78,7 +78,7 @@ namespace TheAirline.GUIModel.HelpersModel
                 {
                     var frameworkElement = child as FrameworkElement;
                     // If the child's name is set for search
-                    if (frameworkElement != null && frameworkElement.Name == childName)
+                    if (frameworkElement != null && (frameworkElement.Name == childName || (frameworkElement.Tag != null && frameworkElement.Tag.ToString() == childName)))
                     {
                         // if the child's name is of the request name
                         foundChild = (T)child;
