@@ -5,6 +5,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
@@ -15,7 +17,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     public class AirlinerOrdersMVVM : INotifyPropertyChanged
     {
         public ObservableCollection<AirlinerOrderMVVM> Orders { get; set; }
-        public ObservableCollection<Airport> Homebases { get; set; }
         private long _totalamount;
         public long TotalAmount
         {
@@ -30,7 +31,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         }
         public AirlinerOrdersMVVM()
         {
-            this.Homebases = new ObservableCollection<Airport>();
             this.Orders = new ObservableCollection<AirlinerOrderMVVM>();
             this.Orders.CollectionChanged += Orders_CollectionChanged;
 
@@ -52,13 +52,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             this.Orders.Add(order);
             order.PropertyChanged += order_PropertyChanged;
 
-            long minRequiredRunway = this.Orders.Count == 0 ? 0 : this.Orders.Max(o => o.Type.MinRunwaylength);
 
-            this.Homebases.Clear();
-
-            foreach (var homebase in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= minRequiredRunway))
-                this.Homebases.Add(homebase);
-           
 
         }
         private void order_PropertyChanged(object sender, PropertyChangedEventArgs e)
@@ -126,7 +120,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     {
         public AirlinerType Type { get; set; }
         public List<AirlinerClass> Classes { get; set; }
-    
+        public List<Airport> Homebases { get; set; }
         private int _amount;
         public int Amount
         {
@@ -134,11 +128,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             set { _amount = value; NotifyPropertyChanged("Amount"); }
         }
 
+        private Airport _homebase;
+        public Airport Homebase
+        {
+            get { return _homebase; }
+            set { _homebase = value; NotifyPropertyChanged("Homebase"); }
+        }
+
         public AirlinerOrderMVVM(AirlinerType type, int amount = 1)
         {
             this.Type = type;
             this.Amount = amount;
             this.Classes = new List<AirlinerClass>();
+            this.Homebases = new List<Airport>();
 
             if (this.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
             {
@@ -146,6 +148,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 eClass.createBasicFacilities(null);
                 this.Classes.Add(eClass);
             }
+
+            long minRequiredRunway = this.Type.MinRunwaylength;
+
+            foreach (var homebase in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= minRequiredRunway))
+                this.Homebases.Add(homebase);
+
 
 
         }
@@ -157,6 +165,58 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm class for the manufacturer contract
+    public class ManufacturerContractMVVM : INotifyPropertyChanged
+    {
+        private Boolean _hascontract;
+        public Boolean HasContract
+        {
+            get { return _hascontract; }
+            set { _hascontract = value; NotifyPropertyChanged("HasContract"); }
+        }  
+        private Manufacturer _contracted;
+        public Manufacturer Contracted
+        {
+            get { return _contracted; }
+            set { _contracted = value; this.HasContract = (value != null && this.Manufacturer == value); NotifyPropertyChanged("Contracted"); }
+        }
+        public Manufacturer Manufacturer { get; set; }
+
+        public ManufacturerContractMVVM(Manufacturer manufacturer, Manufacturer contracted)
+        {
+            this.Contracted = contracted;
+            this.Manufacturer = manufacturer;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the converter if the human has contract with the manufacturer
+    public class HumanManufacturerContractConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Manufacturer manufacturer = (Manufacturer)value;
+
+            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == manufacturer)
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 }

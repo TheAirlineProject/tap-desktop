@@ -85,7 +85,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                     SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline, profile, Model.AirlineModel.Airline.AirlineMentality.Safe, Model.AirlineModel.Airline.AirlineFocus.Local, Model.AirlineModel.Airline.AirlineLicense.Domestic, focus);
                     subAirline.addAirport(airport);
-                 //   subAirline.Money = slMoney.Value;
+                     subAirline.Money = slMoney.Value;
 
                     this.Airline.addSubsidiaryAirline(subAirline);
 
@@ -169,6 +169,15 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
 
             PageNavigator.NavigateTo(new PageFleetAirliner(airliner));
+        }
+
+        private void imgAirline_Click(object sender, MouseButtonEventArgs e)
+        {
+            Airline airline = (Airline)((Image)sender).Tag;
+
+            GameObject.GetInstance().HumanAirline = airline;
+            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+         
         }
     }
 }

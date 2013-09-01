@@ -42,6 +42,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
             imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
+
+            txtCEO.Text = string.Format("{0} {1}", Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName());
         }
 
         private void cbCountry_SelectionChanged(object sender, SelectionChangedEventArgs e)

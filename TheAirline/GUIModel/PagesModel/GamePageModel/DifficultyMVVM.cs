@@ -15,7 +15,6 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         public string UID { get; set; }
         public double MaxValue { get; set; }
         public double MinValue { get; set; }
-        public double AvgValue { get; set; }
         public Boolean Reversed { get; set; }
         public DoubleCollection Ticks { get; set; }
         private double _selectedValue;
@@ -30,8 +29,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.UID = uid;
             this.MinValue = Math.Min(maxValue,minValue);
             this.MaxValue = Math.Max(minValue,maxValue);
-            this.AvgValue = avgValue;
-            this.SelectedValue = minValue;
+            this.SelectedValue = avgValue;
             this.Ticks = new DoubleCollection();
 
              double stepValue = (avgValue - Math.Min(maxValue, minValue)) / 3;

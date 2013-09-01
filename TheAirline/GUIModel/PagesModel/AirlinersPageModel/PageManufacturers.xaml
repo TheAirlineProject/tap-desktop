@@ -4,19 +4,22 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirlinersPageModel"
       Name="pageManufacturers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageManufacturers">
-
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+    <Page.Resources>
+        <local:HumanManufacturerContractConverter x:Key="HumanManufacturerContractConverter"></local:HumanManufacturerContractConverter>
+     </Page.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
-            <ListView x:Name="lvInstructors" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllManufacturers,ElementName=pageManufacturers}">
+            <ListView x:Name="lvManufacturers" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllManufacturers,ElementName=pageManufacturers}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturers 1000'}" Width="250">
                             <GridViewColumn.CellTemplate>
-                                <DataTemplate>
+                               <DataTemplate>
                                     <WrapPanel>
                                         <Image Source="{Binding Logo}" RenderOptions.BitmapScalingMode="HighQuality" Width="32"></Image>
                                         <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
@@ -32,6 +35,27 @@
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <ContentControl ContentTemplate="{StaticResource CountryLongFlagItem}" VerticalAlignment="Bottom" Content="{Binding Country}"></ContentControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="200" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturers 1003'}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="/data/images/tick.png" Name="imgTick" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Converter={StaticResource HumanManufacturerContractConverter}}" Width="20"></Image>
+                                        <Image Source="/data/images/tickgrey.png" Tag="{Binding}" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
+                                            <Image.Style>
+                                                <Style TargetType="Image">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding ElementName=imgTick, Path=Visibility}" Value="Visible">
+                                                            <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+
+                                    </WrapPanel>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

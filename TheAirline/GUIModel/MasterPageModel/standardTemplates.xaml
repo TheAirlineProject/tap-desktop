@@ -11,6 +11,7 @@
     <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
     <c:CargoSizeConverter x:Key="CargoSizeConverter"></c:CargoSizeConverter>
     <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
+    <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
             <Setter.Value>
@@ -45,48 +46,48 @@
     <DataTemplate x:Key="AirlinerTypeSpecificationItem">
         <StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1000'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Manufacturer" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1001'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <Image Source="{Binding Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
                 <TextBlock Text="{Binding Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Airliner Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Body Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Engine Type" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1004'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Engine,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Length" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1005'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Length,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Wing Span" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1006'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Wingspan,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Range" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1007'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Cruising Speed" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Req. Runway Length" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                <TextBlock Text="Fuel Comsuption" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <StackPanel>
@@ -100,11 +101,11 @@
                     </Style>
                 </StackPanel.Style>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                        <TextBlock Text="Seating Capacity" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                         <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="Max. Airliner Classes" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
             </StackPanel>
@@ -119,7 +120,7 @@
                     </Style>
                 </StackPanel.Style>
                 <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="Cargo Capacity" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                     <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom"></TextBlock>
                 </WrapPanel>
              </StackPanel>

@@ -133,6 +133,22 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
+                    <GridViewColumn  util:GridViewSort.PropertyName="NumberOfAirlines" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfAirlines}">
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  util:GridViewSort.PropertyName="NumberOfRoutes" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfRoutes}">
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

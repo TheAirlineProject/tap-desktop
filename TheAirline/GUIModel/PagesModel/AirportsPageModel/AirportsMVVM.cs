@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
@@ -15,6 +16,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     public class AirportMVVM : INotifyPropertyChanged
     {
         public Airport Airport { get; set; }
+        private int _numberOfRoutes;
+        public int NumberOfRoutes
+        {
+            get { return _numberOfRoutes; }
+            set { _numberOfRoutes = value; NotifyPropertyChanged("NumberOfRoutes"); }
+        }
+        private int _numberOfAirlines;
+        public int NumberOfAirlines
+        {
+            get { return _numberOfAirlines; }
+            set { _numberOfAirlines = value; NotifyPropertyChanged("NumberOfAirlines"); }
+        }
         private int _numberOfFreeGates;
         public int NumberOfFreeGates
         {
@@ -32,14 +45,17 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             this.Airport = airport;
             this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
             this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
-
+            this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
+            this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
         }
         public void addAirlineContract(AirportContract contract)
         {
             this.Airport.addAirlineContract(contract);
             this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
             this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
-
+            this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();
+            this.NumberOfRoutes = AirportHelpers.GetAirportRoutes(this.Airport).Count;
+       
   
         }
         public event PropertyChangedEventHandler PropertyChanged;

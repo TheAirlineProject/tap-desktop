@@ -30,27 +30,32 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     {
         public Manufacturer Manufacturer { get; set; }
         public ObservableCollection<AirlinerType> Airliners { get; set; }
-        public AirlinerOrdersMVVM Orders {get;set;}
+        public AirlinerOrdersMVVM Orders { get; set; }
+        public ManufacturerContractMVVM Contract { get; set; }
         public PageManufacturer(Manufacturer manufacturer)
         {
             this.Manufacturer = manufacturer;
 
             this.Orders = new AirlinerOrdersMVVM();
-     
+
             this.Airliners = new ObservableCollection<AirlinerType>();
-            AirlinerTypes.GetTypes(a => a.Manufacturer == manufacturer && a.Produced.From<=GameObject.GetInstance().GameTime && a.Produced.To>=GameObject.GetInstance().GameTime).ForEach(t=>this.Airliners.Add(t));
+            AirlinerTypes.GetTypes(a => a.Manufacturer == manufacturer && a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime).ForEach(t => this.Airliners.Add(t));
             this.DataContext = this.Airliners;
 
-           InitializeComponent();
+            this.Contract = new ManufacturerContractMVVM(this.Manufacturer, GameObject.GetInstance().HumanAirline.Contract != null ? GameObject.GetInstance().HumanAirline.Contract.Manufacturer : null);
+           
+            InitializeComponent();
 
-           lvAirliners.ItemsSource = this.Airliners;
+            lvAirliners.ItemsSource = this.Airliners;
 
-           CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvAirliners.ItemsSource);
-           view.GroupDescriptions.Clear();
+            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvAirliners.ItemsSource);
+            view.GroupDescriptions.Clear();
 
-           PropertyGroupDescription groupDescription = new PropertyGroupDescription("AirlinerFamily");
-           view.GroupDescriptions.Add(groupDescription);
-     
+            PropertyGroupDescription groupDescription = new PropertyGroupDescription("AirlinerFamily");
+            view.GroupDescriptions.Add(groupDescription);
+
+      
+
         }
 
         private void btnAddType_Click(object sender, RoutedEventArgs e)
@@ -86,19 +91,24 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             {
                 order.Classes = classes;
 
-                
+
             }
         }
 
         private void btnOrder_Click(object sender, RoutedEventArgs e)
         {
+            Boolean hasHomebases = true;
+            foreach (AirlinerOrderMVVM order in this.Orders.Orders)
+            {
+                if (order.Homebase == null)
+                    hasHomebases = false;
+            }
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            Airport airport = (Airport)cbHomebase.SelectedItem;
             DateTime deliveryDate = this.Orders.getDeliveryDate();
-   
-            if (airport == null)
+
+            if (!hasHomebases)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2002"), Translator.GetInstance().GetString("MessageBox", "2002", "message"), WPFMessageBoxButtons.Ok);
             }
@@ -117,6 +127,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                         {
                             AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
                             GameObject.GetInstance().HumanAirline.Contract = null;
+
+                            this.Contract.Contracted = null;
 
                         }
                         tryOrder = result == WPFMessageBoxResult.Yes;
@@ -171,11 +183,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                                             airliner.addAirlinerClass(tClass);
                                         }
 
-                                        
+
                                         Model.AirlinerModel.Airliners.AddAirliner(airliner);
 
                                         FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.BoughtDownPayment;
-                                        GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airport);
+                                        GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, order.Homebase);
 
 
                                     }
@@ -218,7 +230,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                                 if (result == WPFMessageBoxResult.Yes)
                                 {
                                     orderAirliners(contractedOrder ? GameObject.GetInstance().HumanAirline.Contract.Discount : 0);
-                              
+
                                     TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
                                     if (tab_main != null)
@@ -239,14 +251,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                         }
                     }
                 }
-          
+
             }
-            
+
         }
         //orders the airliners
         private void orderAirliners(double discount = 0)
         {
-            Airport airport = (Airport)cbHomebase.SelectedItem;
             DateTime deliveryDate = this.Orders.getDeliveryDate();
 
             Guid id = Guid.NewGuid();
@@ -259,7 +270,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     Model.AirlinerModel.Airliners.AddAirliner(airliner);
 
                     FleetAirliner.PurchasedType pType = FleetAirliner.PurchasedType.Bought;
-                    GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, airport);
+                    GameObject.GetInstance().HumanAirline.addAirliner(pType, airliner, order.Homebase);
 
                     airliner.clearAirlinerClasses();
 
@@ -288,6 +299,70 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -totalPrice);
 
+        }
+
+        private void btnSignContract_Click(object sender, RoutedEventArgs e)
+        {
+            Boolean newContract = true;
+            if (GameObject.GetInstance().HumanAirline.Contract != null)
+            {
+
+                double terminationFee = GameObject.GetInstance().HumanAirline.Contract.getTerminationFee();
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2010"), string.Format(Translator.GetInstance().GetString("MessageBox", "2010", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name, terminationFee), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -terminationFee);
+                    GameObject.GetInstance().HumanAirline.Contract = null;
+                }
+                else
+                    newContract = false;
+
+            }
+            else
+            {
+                  WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2013"), string.Format(Translator.GetInstance().GetString("MessageBox", "2013", "message"), this.Manufacturer.Name), WPFMessageBoxButtons.YesNo);
+
+                  if (result == WPFMessageBoxResult.No)
+                  {
+                      newContract = false;
+                  }
+            }
+
+            if (newContract)
+            {
+
+                int length = Convert.ToInt16(((ComboBoxItem)cbContractLenth.SelectedItem).Tag);
+
+                double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline, length, true);
+
+                ManufacturerContract contract = new ManufacturerContract(this.Manufacturer, GameObject.GetInstance().GameTime, length, discount);
+                GameObject.GetInstance().HumanAirline.Contract = contract;
+
+                this.Contract.Contracted = contract.Manufacturer;
+            }
+  
+        }
+
+        private void btnExtendContract_Click(object sender, RoutedEventArgs e)
+        {
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2011"), string.Format(Translator.GetInstance().GetString("MessageBox", "2011", "message"), GameObject.GetInstance().HumanAirline.Contract.Manufacturer.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+
+                int nLength = Convert.ToInt16(((ComboBoxItem)cbContractLenth.SelectedItem).Tag);
+
+                int length = GameObject.GetInstance().HumanAirline.Contract.Length + nLength;
+
+                double discount = AirlineHelpers.GetAirlineManufactorerDiscountFactor(GameObject.GetInstance().HumanAirline, length, true);
+
+                GameObject.GetInstance().HumanAirline.Contract.Length = length;
+                GameObject.GetInstance().HumanAirline.Contract.Discount = discount;
+                GameObject.GetInstance().HumanAirline.Contract.Airliners = length;
+                GameObject.GetInstance().HumanAirline.Contract.ExpireDate = GameObject.GetInstance().HumanAirline.Contract.ExpireDate.AddYears(nLength);
+
+            }
         }
     }
 }

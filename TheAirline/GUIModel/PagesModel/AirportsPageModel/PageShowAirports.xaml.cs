@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
@@ -92,11 +93,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             
             Boolean hasCheckin = airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
-            object o = PopUpAirportContract.ShowPopUp(airport.Airport);
+            int gates = Math.Min(2, airport.Airport.Terminals.NumberOfFreeGates);
 
-           //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+           WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
             
-           if (o!=null)
+           if (result == WPFMessageBoxResult.Yes)
            {
                if (!hasCheckin)
                {
@@ -107,7 +108,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
                }
 
-               airport.addAirlineContract((AirportContract)o);
+               double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,gates,2);
+
+               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,GameObject.GetInstance().GameTime,gates,2,yearlyPayment);
+
+               airport.addAirlineContract(contract);
           
             }
 

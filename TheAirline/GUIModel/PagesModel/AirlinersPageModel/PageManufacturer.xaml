@@ -13,6 +13,8 @@
             <WrapPanel>
             <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="200"></TextBlock>
                 <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Homebase}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" ItemsSource="{Binding Homebases}"></ComboBox>
+
                 <Button Margin="10 0 0 0" Width="20" Background="Transparent" Click="btnAddToOrder_Click" Tag="{Binding}">
                     <Image Source="/data/images/add.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
@@ -145,16 +147,13 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1011'}" Width="200" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                         <CheckBox Name="cbDownPayment" VerticalAlignment="Bottom"></CheckBox>
                     </WrapPanel>
-                    <WrapPanel>
-                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1012'}" Width="200" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbHomebase" ItemsSource="{Binding Path=Orders.Homebases,ElementName=pageManufacturer}"></ComboBox>
-                    </WrapPanel>
+                
                     <WrapPanel Margin="0 10 0 0">
                         <Button Click="btnOrder_Click"  Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 200'}">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                     <Style.Triggers>
-                                        <DataTrigger Binding="{Binding ElementName=cbHomebase, Path=SelectedItem}" Value="{x:Null}">
+                                        <DataTrigger Binding="{Binding Orders.Orders.Count,ElementName=pageManufacturer}" Value="0">
                                             <Setter Property="Button.IsEnabled" Value="False" />
                                         </DataTrigger>
                                     </Style.Triggers>
@@ -162,6 +161,48 @@
                             </Button.Style>
                         </Button>
                     </WrapPanel>
+                    <Expander Margin="0 10 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1013'}" Style="{StaticResource ExpanderStyle}">
+                        <StackPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1015'}" Width="150" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding Contract.Contracted.Name,FallbackValue='-',ElementName=pageManufacturer}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1014'}" Width="150" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" ItemStringFormat="{}{0} years"  Name="cbContractLenth" VerticalAlignment="Bottom" Width="100">
+                                    <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
+                                    <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
+                                    <ComboBoxItem Content="7" Tag="7"></ComboBoxItem>
+                                    <ComboBoxItem Content="10" Tag="10"></ComboBoxItem>
+                                </ComboBox>
+                            </WrapPanel>
+                            <WrapPanel Margin="0 5 0 0">
+                                <Button Click="btnExtendContract_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 202'}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Contract.HasContract,ElementName=pageManufacturer}" Value="False">
+                                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                                <Button Click="btnSignContract_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 201'}">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Contract.HasContract,ElementName=pageManufacturer}" Value="True">
+                                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Expander>
+
                 </StackPanel>
             </Border>
            

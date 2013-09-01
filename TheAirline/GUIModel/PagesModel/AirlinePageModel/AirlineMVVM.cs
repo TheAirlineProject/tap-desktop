@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.GUIModel.HelpersModel;
@@ -40,11 +41,18 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
+        public ObservableCollection<Airline> AirlineAirlines { get; set; }
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
         public int MaintenanceCrew { get; set; }
+        private double _maxsubsidiarymoney;
+        public double MaxSubsidiaryMoney
+        {
+            get { return _maxsubsidiarymoney; }
+            set { _maxsubsidiarymoney = value; NotifyPropertyChanged("MaxSubsidiaryMoney"); }
+        }
         private int _cockpitCrew;
         public int CockpitCrew
         {
@@ -82,6 +90,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Insurances = new ObservableCollection<AirlineInsurance>();
             this.Advertisements = new ObservableCollection<AirlineAdvertisementMVVM>();
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
+            this.AirlineAirlines = new ObservableCollection<Airline>();
 
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(l));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
@@ -105,7 +114,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (Airport airport in this.Airline.Airports)
                 this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
 
-
+            
+     
         }
         //saves all the fees
         public void saveFees()
@@ -150,12 +160,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             AirlineHelpers.AddSubsidiaryAirline(GameObject.GetInstance().MainAirline, airline, airline.Money, airline.Airports[0]);
             airline.Airports.RemoveAt(0);
-             
+
+            this.MaxSubsidiaryMoney = this.Airline.Money / 2;
+
+            this.AirlineAirlines.Add(airline);
         }
         //removes a subsidiary airline
         public void removeSubsidiaryAirline(SubsidiaryAirline airline)
         {
             this.Subsidiaries.Remove(airline);
+            this.AirlineAirlines.Remove(airline);
         }
        //adds a facility
         public void addFacility(AirlineFacilityMVVM facility)
@@ -231,7 +245,25 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
              
                 }
             }
-        
+
+            this.MaxSubsidiaryMoney = this.Airline.Money / 2;
+
+           
+            if (this.Airline.IsSubsidiary)
+            {
+                this.AirlineAirlines.Add(((SubsidiaryAirline)this.Airline).Airline);
+
+                foreach (SubsidiaryAirline airline in ((SubsidiaryAirline)this.Airline).Airline.Subsidiaries)
+                    this.AirlineAirlines.Add(airline);
+            }
+            else
+            {
+                foreach (SubsidiaryAirline airline in this.Subsidiaries)
+                    this.AirlineAirlines.Add(airline);
+
+                this.AirlineAirlines.Add(this.Airline);
+
+            }
           
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -491,6 +523,25 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter if an airline is the human airline in use
+    public class AirlineInuseConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Airline airline = (Airline)value;
+
+            if (GameObject.GetInstance().HumanAirline == airline)
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+            
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
         }
