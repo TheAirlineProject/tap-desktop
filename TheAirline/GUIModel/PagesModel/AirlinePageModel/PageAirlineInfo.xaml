@@ -67,9 +67,28 @@
                                 <TextBlock Text="{Binding Airline.Profile.Founded}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1005'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <TextBlock Text="{Binding Airline.AirlineRouteFocus,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1029'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding License,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                 <Button Margin="5 0 0 0" Background="Transparent" Click="btnUpgradeLicens_Click" Width="20" VerticalAlignment="Bottom">
+                                    <Button.Style>
+                                        <Style>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding License}" Value="Long_Haul">
+                                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                        <Image Source="/data/images/upgrade.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                    </Button>
+                             
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1027'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>

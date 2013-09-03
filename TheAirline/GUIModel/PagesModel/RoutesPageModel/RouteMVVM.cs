@@ -45,13 +45,17 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         }
     }
     //the route class
-    public class MVVMRouteClass
+    public class MVVMRouteClass : INotifyPropertyChanged
     {
 
         public RouteAirlinerClass.SeatingType Seating { get; set; }
 
-        public double FarePrice { get; set; }
-
+        private double _fareprice;
+        public double FarePrice
+        {
+            get { return _fareprice; }
+            set { _fareprice = value; NotifyPropertyChanged("FarePrice"); }
+        }
         public List<MVVMRouteFacility> Facilities { get; set; }
 
         public AirlinerClass.ClassType Type { get; set; }
@@ -78,6 +82,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     this.Facilities.Add(facility);
                 }
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
 

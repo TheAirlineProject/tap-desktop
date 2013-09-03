@@ -276,9 +276,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
 
         private void btnPayLoan_Click(object sender, RoutedEventArgs e)
         {
-            Loan loan = (Loan)((Button)sender).Tag;
-
+          
             TextBox txtboxLoan=(TextBox)((Panel)((Button)sender).Parent).FindName("txtboxLoan");
+            Loan loan = (Loan)txtboxLoan.Tag;
 
             if (txtboxLoan.Text.Length > 0)
             {

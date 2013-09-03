@@ -31,7 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
         public ObservableCollection<AirlineFinanceMVVM> Finances { get; set; }
-        public ObservableCollection<Loan> Loans { get; set; }
+        public ObservableCollection<LoanMVVM> Loans { get; set; }
         public ObservableCollection<Pilot> Pilots { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Wages { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Discounts { get; set; }
@@ -47,6 +47,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
         public int MaintenanceCrew { get; set; }
+      
         private double _maxsubsidiarymoney;
         public double MaxSubsidiaryMoney
         {
@@ -71,6 +72,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _balance; }
             set { _balance = value; NotifyPropertyChanged("Balance"); }
         }
+        private Airline.AirlineLicense _license;
+        public Airline.AirlineLicense License
+        {
+            get { return _license; }
+            set { _license = value; NotifyPropertyChanged("License"); }
+        }
         public AirlineMVVM(Airline airline)
         {
             this.Airline = airline;
@@ -79,7 +86,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Finances = new ObservableCollection<AirlineFinanceMVVM>();
             this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
 
-            this.Loans = new ObservableCollection<Loan>();
+            this.Loans = new ObservableCollection<LoanMVVM>();
             this.Pilots = new ObservableCollection<Pilot>();
             this.Wages = new ObservableCollection<AirlineFeeMVVM>();
             this.Discounts = new ObservableCollection<AirlineFeeMVVM>();
@@ -92,7 +99,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
             this.AirlineAirlines = new ObservableCollection<Airline>();
 
-            this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(l));
+            this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
 
             FeeTypes.GetTypes(FeeType.eFeeType.Wage).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
@@ -198,7 +205,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         //adds a loan
         public void addLoan(Loan loan)
         {
-            this.Loans.Add(loan);
+            this.Loans.Add(new LoanMVVM(loan));
 
             this.Airline.addLoan(loan);
 
@@ -247,7 +254,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
 
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
-
+            this.License = this.Airline.License;
            
             if (this.Airline.IsSubsidiary)
             {
@@ -277,7 +284,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         }
     }
     //the mvvm object for airline facilities
-    public class AirlineFacilityMVVM
+    public class AirlineFacilityMVVM : INotifyPropertyChanged
     {
         public Airline Airline { get; set; }
         public enum MVVMType { Purchased, Available }
@@ -474,7 +481,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Type = type;
         }
     }
-    //the class for a rating/score
+    //the mvvm class for a rating/score
     public class AirlineScoreMVVM
     {
         public string Name { get; set; }
@@ -483,6 +490,45 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Name = name;
             this.Score = score;
+        }
+    }
+    //the mvvm class for a loan
+    public class LoanMVVM : INotifyPropertyChanged
+    {
+        public Loan Loan { get; set; }
+        private int _monthsLeft;
+        public int MonthsLeft
+        {
+            get { return _monthsLeft; }
+            set { _monthsLeft = value; NotifyPropertyChanged("MonthsLeft"); }
+        }
+        private double _paymentLeft;
+        public double PaymentLeft
+        {
+            get { return _paymentLeft; }
+            set { _paymentLeft = value; NotifyPropertyChanged("PaymentLeft"); }
+        }
+        public LoanMVVM(Loan loan)
+        {
+            this.Loan = loan;
+            this.PaymentLeft = loan.PaymentLeft;
+            this.MonthsLeft = loan.MonthsLeft;
+        }
+        //pay some of the loan
+        public void payOnLoan(double amount)
+        {
+            this.Loan.PaymentLeft -= amount;
+            this.PaymentLeft = this.Loan.PaymentLeft;
+            this.MonthsLeft = this.Loan.MonthsLeft;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     //the mvvm class for a destination

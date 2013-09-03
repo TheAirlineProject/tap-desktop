@@ -83,5 +83,16 @@ namespace TheAirline.Model.AirlinerModel
             }
 
         }
+        //returns all airliner types in the correct order
+        public static List<ClassType> GetAirlinerTypes()
+        {
+            var types = new List<ClassType>();
+
+            types.Add(ClassType.Economy_Class);
+            types.Add(ClassType.Business_Class);
+            types.Add(ClassType.First_Class);
+
+            return types;
+        }
     }
 }

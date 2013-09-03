@@ -670,6 +670,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1195,6 +1199,9 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml.cs">
       <DependentUpon>PageNewGame.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml.cs">
+      <DependentUpon>PageNews.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml.cs">
       <DependentUpon>PageScenario.xaml</DependentUpon>
     </Compile>
@@ -1587,6 +1594,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\upgrade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\mail.png" />
+    <Resource Include="Data\images\nomail.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

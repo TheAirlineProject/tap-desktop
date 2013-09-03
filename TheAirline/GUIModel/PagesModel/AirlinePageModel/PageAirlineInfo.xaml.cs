@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
@@ -178,6 +179,24 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             GameObject.GetInstance().HumanAirline = airline;
             PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
          
+        }
+
+        private void btnUpgradeLicens_Click(object sender, RoutedEventArgs e)
+        {
+            double upgradeLicensPrice = GeneralHelpers.GetInflationPrice(1000000);
+
+            Airline.AirlineLicense nextLicenseType = this.Airline.License + 1;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2119"), string.Format(Translator.GetInstance().GetString("MessageBox", "2119", "message"), new TextUnderscoreConverter().Convert(nextLicenseType), new ValueCurrencyConverter().Convert(upgradeLicensPrice)), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                this.Airline.License = nextLicenseType;
+                this.Airline.Airline.License = nextLicenseType;
+
+                AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -upgradeLicensPrice);
+
+            }
         }
     }
 }

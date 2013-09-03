@@ -55,8 +55,7 @@
                     <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
                     <WrapPanel Margin="0 5 0 0">
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1000'}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
-                        <TextBox Text="{Binding FarePrice}" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="50"></TextBox>
-                        <TextBlock Text="$" VerticalAlignment="Center" Margin="5 0 0 0"></TextBlock>
+                        <TextBox Text="{Binding FarePrice,StringFormat={}{0:0.##}}" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="100"></TextBox>
                     </WrapPanel>
                     <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Facilities}"></ListBox>
                 </StackPanel>

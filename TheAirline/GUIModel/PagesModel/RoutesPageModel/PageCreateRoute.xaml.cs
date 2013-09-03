@@ -36,19 +36,22 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             this.Classes = new List<MVVMRouteClass>();
 
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
             {
-              
-                MVVMRouteClass rClass = new MVVMRouteClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
+                if ((int)type <= GameObject.GetInstance().GameTime.Year)
+                {     
+                    MVVMRouteClass rClass = new MVVMRouteClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
 
-                this.Classes.Add(rClass);
+                    this.Classes.Add(rClass);
+                }
             }
+          
             this.Airports = GameObject.GetInstance().HumanAirline.Airports;
             this.Loaded += PageCreateRoute_Loaded;
-        
+
             InitializeComponent();
 
-            
+
         }
 
         private void PageCreateRoute_Loaded(object sender, RoutedEventArgs e)
@@ -74,7 +77,49 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             }
         }
+        private void btnCreateNew_Click(object sender, RoutedEventArgs e)
+        {
+            if (createRoute())
+            {
+                TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+
+                if (tab_main != null)
+                {
+                    var matchingItem =
+       tab_main.Items.Cast<TabItem>()
+         .Where(item => item.Tag.ToString() == "Routes")
+         .FirstOrDefault();
+
+                    tab_main.SelectedItem = matchingItem;
+
+                    var matchingCreateItem =
+         tab_main.Items.Cast<TabItem>()
+           .Where(item => item.Tag.ToString() == "Create")
+           .FirstOrDefault();
+
+                    tab_main.SelectedItem = matchingCreateItem;
+                }
+            }
+        }
         private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+            if (createRoute())
+            {
+                TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+
+                if (tab_main != null)
+                {
+                    var matchingItem =
+         tab_main.Items.Cast<TabItem>()
+           .Where(item => item.Tag.ToString() == "Routes")
+           .FirstOrDefault();
+
+                    tab_main.SelectedItem = matchingItem;
+                }
+            }
+        }
+        //creates a route and returns if success
+        private Boolean createRoute()
         {
             Route route = null;
             Airport destination1 = (Airport)cbDestination1.SelectedItem;
@@ -115,26 +160,19 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     GameObject.GetInstance().HumanAirline.addRoute(route);
 
-                    TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
-
-                    if (tab_main != null)
-                    {
-                        var matchingItem =
-             tab_main.Items.Cast<TabItem>()
-               .Where(item => item.Tag.ToString() == "Routes")
-               .FirstOrDefault();
-
-                        tab_main.SelectedItem = matchingItem;
-                    }
+                    return true;
 
                 }
             }
             catch (Exception ex)
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", ex.Message), Translator.GetInstance().GetString("MessageBox", ex.Message, "message"), WPFMessageBoxButtons.Ok);
-            }
-        }
 
+                return false;
+            }
+
+            return false;
+        }
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
         {
             ComboBox cbConfigurations = new ComboBox();
@@ -149,27 +187,27 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             cbConfigurations.SelectedIndex = 0;
 
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageCreateRoute","1012"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageCreateRoute", "1012"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
-                
+
                 RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
                     MVVMRouteClass rClass = this.Classes.Find(c => c.Type == classConfiguration.Type);
 
-                     foreach (RouteFacility facility in classConfiguration.getFacilities())
-                     {
-                         MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
+                    foreach (RouteFacility facility in classConfiguration.getFacilities())
+                    {
+                        MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
 
-                         rFacility.SelectedFacility = facility;
+                        rFacility.SelectedFacility = facility;
 
-                     }
-                 
+                    }
+
                 }
             }
 
-           
+
         }
 
         private void btnStopover1_Click(object sender, RoutedEventArgs e)
@@ -181,10 +219,25 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             cbStopover2.SelectedItem = null;
 
-         }
+        }
 
-        
+        private void cbDestination_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Airport destination1 = (Airport)cbDestination1.SelectedItem;
+            Airport destination2 = (Airport)cbDestination2.SelectedItem;
+
+            if (destination1 != null && destination2 != null)
+            {
+                foreach (MVVMRouteClass rClass in this.Classes)
+                {
+                    rClass.FarePrice = PassengerHelpers.GetPassengerPrice(destination1, destination2) * GeneralHelpers.ClassToPriceFactor(rClass.Type);
+                }
+            }
+        }
+
+
+
     }
-   
-   
+
+
 }

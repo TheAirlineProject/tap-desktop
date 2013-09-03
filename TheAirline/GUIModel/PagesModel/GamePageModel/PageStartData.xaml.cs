@@ -131,8 +131,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         }
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {
-            //WPFPopUpTest test = new WPFPopUpTest();
-          
+           
             PageNavigator.NavigateTo(new PageStartMenu());
         }
     }

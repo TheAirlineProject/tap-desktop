@@ -64,6 +64,11 @@ namespace TheAirline.GUIModel.MasterPageModel
             GameObjectWorker.GetInstance().restart();
        
         }
+        private void btnNews_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageNews());
+
+        }
         private void btnNewGame_Click(object sender, RoutedEventArgs e)
         {
              GameObjectWorker.GetInstance().cancel();

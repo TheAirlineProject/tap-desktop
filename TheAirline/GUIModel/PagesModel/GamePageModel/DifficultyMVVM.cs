@@ -5,9 +5,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
+    //the mvvm object for a selected new
+    public class SelectedNewsMVVM : INotifyPropertyChanged
+    {
+        private News _selectedNews;
+        public News SelectedNews
+        {
+            get { return _selectedNews; }
+            set { _selectedNews = value; NotifyPropertyChanged("SelectedNews"); }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm object for news
+    public class NewsMVVM : INotifyPropertyChanged
+    {
+        public News News { get; set; }
+        private Boolean _isread;
+        public Boolean IsRead
+        {
+            get { return _isread; }
+            set { _isread = value; this.IsUnRead = !value; NotifyPropertyChanged("IsRead"); }
+        }
+        private Boolean _isunread;
+        public Boolean IsUnRead
+        {
+            get { return _isunread; }
+            set { _isunread = value; NotifyPropertyChanged("IsUnRead"); }
+        }
+        public NewsMVVM(News news)
+        {
+            this.News = news;
+            this.IsRead = news.IsRead;
+            this.IsUnRead = !news.IsRead;
+        }
+        //sets the news to read
+        public void markAsRead()
+        {
+            this.IsRead = true;
+            this.News.IsRead = true;
+            GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.getUnreadNews().Count > 0;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     //the mvvm object for difficulty
     public class DifficultyMVVM : INotifyPropertyChanged
     {

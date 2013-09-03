@@ -36,15 +36,19 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
            
              this.Classes = new List<MVVMRouteClass>();
 
-            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
-            {
-                MVVMRouteClass rClass = new MVVMRouteClass(type, RouteAirlinerClass.SeatingType.Reserved_Seating, 1);
-
-                this.Classes.Add(rClass);
-            }
-
             this.Route = route;
             this.DataContext = this.Route;
+
+            foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
+            {
+                if (this.Route is PassengerRoute)
+                {
+                   RouteAirlinerClass rClass = ((PassengerRoute)this.Route).getRouteAirlinerClass(type);
+                    MVVMRouteClass mClass = new MVVMRouteClass(type, rClass.Seating, rClass.FarePrice);
+
+                    this.Classes.Add(mClass);
+                }
+            }
 
             this.Invoices = new List<MonthlyInvoice>();
 

@@ -11,12 +11,13 @@ namespace TheAirline.GUIModel.ObjectsModel
     //the class for the GUI object
     public class GUIObject
     {
-
+        
         public GameObjectWorker GameWorker { get { return GameObjectWorker.GetInstance(); } private set { ;} }
         public GameObject GameObject { get { return getGameObject(); } private set { ;} }
         private GameObject getGameObject()
         {
             return GameObject.GetInstance();
+
 
         }
     }

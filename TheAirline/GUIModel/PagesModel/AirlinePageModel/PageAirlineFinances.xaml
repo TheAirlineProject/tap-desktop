@@ -75,14 +75,21 @@
                             <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1009'}" Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Amount,Converter={StaticResource ValueCurrencyConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding Loan.Amount,Converter={StaticResource ValueCurrencyConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
                             <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1010'}" Width="150">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding MonthlyPayment,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        <TextBlock Text="{Binding Loan.MonthlyPayment,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1015'}" Width="150">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding PaymentLeft,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>
@@ -90,6 +97,16 @@
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding MonthsLeft}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                            </GridViewColumn>
+                            <GridViewColumn Header="" Width="200">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <WrapPanel>
+                                            <TextBox Text="1000" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="150" Name="txtPay" Tag="{Binding}"></TextBox>
+                                            <Button Style="{StaticResource StandardButtonStyle}" Click="btnPayLoan_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" Content="Pay" Tag="{Binding ElementName=txtPay}"></Button>
+                                        </WrapPanel>
                                     </DataTemplate>
                                 </GridViewColumn.CellTemplate>
                             </GridViewColumn>

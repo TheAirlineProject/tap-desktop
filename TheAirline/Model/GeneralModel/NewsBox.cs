@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 
@@ -8,11 +9,16 @@ namespace TheAirline.Model.GeneralModel
 {
     //the class for a news box
     [Serializable]
-    public class NewsBox
+    public class NewsBox : INotifyPropertyChanged
     {
-        
+        private Boolean _hasunreadnews;
+        public Boolean HasUnreadNews
+        {
+            get { return _hasunreadnews; }
+            set { _hasunreadnews = value; NotifyPropertyChanged("HasUnreadNews"); }
+        }
         private List<News> News;
-         public NewsBox()
+        public NewsBox()
         {
             this.News = new List<News>();
   
@@ -20,7 +26,14 @@ namespace TheAirline.Model.GeneralModel
         //adds a news to the news box
         public void addNews(News news)
         {
+            this.HasUnreadNews = true;
             this.News.Add(news);
+        }
+        //removes a news from the news box
+        public void removeNews(News news)
+        {
+            this.News.Remove(news);
+            this.HasUnreadNews = this.News.Exists(n => n.IsUnRead);
         }
         //returns all new
         public List<News> getNews()
@@ -46,6 +59,15 @@ namespace TheAirline.Model.GeneralModel
         public void clear()
         {
             this.News.Clear();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
 
     }

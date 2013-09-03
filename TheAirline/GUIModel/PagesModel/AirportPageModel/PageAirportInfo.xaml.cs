@@ -40,7 +40,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
             viewTerminals.GroupDescriptions.Add(groupDescription);
 
-          
+
 
             CollectionView viewDemands = (CollectionView)CollectionViewSource.GetDefaultView(lvDemand.ItemsSource);
             viewDemands.GroupDescriptions.Clear();
@@ -62,11 +62,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             int lenght = Convert.ToInt16(slContractLenght.Value);
 
             Boolean hasCheckin = this.Airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
-            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport.Airport,gates,lenght);
+            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport.Airport, gates, lenght);
 
             Boolean payFull = lenght <= 2;
-               
-            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,this.Airport.Airport,GameObject.GetInstance().GameTime,gates,lenght,yearlyPayment,payFull);
+
+            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, GameObject.GetInstance().GameTime, gates, lenght, yearlyPayment, payFull);
 
             if (!hasCheckin)
             {
@@ -76,7 +76,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
             }
-            
+
             //25 % off if paying up front
             if (contract.PayFull)
             {
@@ -86,7 +86,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             }
 
             this.Airport.addAirlineContract(contract);
-            
+
         }
         private void btnRemoveContract_Click(object sender, RoutedEventArgs e)
         {
@@ -113,7 +113,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -penaltyFee);
 
                     this.Airport.removeAirlineContract(tContract);
-           
+
                 }
             }
 
@@ -150,6 +150,41 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         }
 
-      
+        private void btnCreateHub_Click(object sender, RoutedEventArgs e)
+        {
+
+            HubType type = HubTypes.GetHubType(HubType.TypeOfHub.Hub);//(HubType)cbHubType.SelectedItem;
+
+            if (AirportHelpers.GetHubPrice(this.Airport.Airport, type) > GameObject.GetInstance().HumanAirline.Money)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2212"), Translator.GetInstance().GetString("MessageBox", "2212", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2213"), string.Format(Translator.GetInstance().GetString("MessageBox", "2213", "message"),AirportHelpers.GetHubPrice(this.Airport.Airport, type)), WPFMessageBoxButtons.YesNo);
+                
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+
+                    this.Airport.addHub(new Hub(GameObject.GetInstance().HumanAirline, type));
+
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -AirportHelpers.GetHubPrice(this.Airport.Airport, type));
+                }
+            }
+
+        }
+        private void btnRemoveHub_Click(object sender, RoutedEventArgs e)
+        {
+            Hub hub = (Hub)((Button)sender).Tag;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2227"), string.Format(Translator.GetInstance().GetString("MessageBox", "2227", "message"),this.Airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+             
+              if (result == WPFMessageBoxResult.Yes)
+              {
+
+                  this.Airport.removeHub(hub);
+              }
+
+        }
+
     }
 }

@@ -25,6 +25,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public List<Weather> Weather { get; set; }
         public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
         public ObservableCollection<ContractMVVM> Contracts { get; set; }
+        public ObservableCollection<Hub> Hubs { get; set; }
         public List<DemandMVVM> Demands { get; set; }
         public double TerminalPrice { get; set; }
         public double TerminalGatePrice { get; set; }
@@ -33,6 +34,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public List<AirportTrafficMVVM> Traffic { get; set; }
         public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
         public List<DestinationFlightsMVVM> Flights { get; set; }
+        private Boolean _canBuildHub;
+        public Boolean CanBuildHub
+        {
+            get { return _canBuildHub; }
+            set { _canBuildHub = value; NotifyPropertyChanged("CanBuildHub"); }
+        }
         private int _freeGates;
         public int FreeGates
         {
@@ -124,7 +131,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             foreach (Airport a in destinations.Keys)
                 this.Flights.Add(new DestinationFlightsMVVM(a, destinations[a]));
 
-               
+            this.Hubs = new ObservableCollection<Hub>();
+
+            foreach (Hub hub in this.Airport.getHubs())
+                this.Hubs.Add(hub);
+
+            this.CanBuildHub = this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline) > 0;
         }
         //adds a terminal to the airport
         public void addTerminal(Terminal terminal)
@@ -132,6 +144,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Airport.addTerminal(terminal);
 
             this.Terminals.Add(new AirportTerminalMVVM(terminal.Name, terminal.Gates.NumberOfGates, terminal.Airline, terminal.DeliveryDate, false));
+
         }
         //adds an airline contract to the airport
         public void addAirlineContract(AirportContract contract)
@@ -141,6 +154,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Contracts.Add(new ContractMVVM(contract));
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+
+            this.CanBuildHub = this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline) > 0;
     
         }
         //removes an airline contract from the airport
@@ -152,6 +167,24 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
     
+        }
+        //adds a hub
+        public void addHub(Hub hub)
+        {
+            this.Hubs.Add(hub);
+            this.Airport.addHub(hub);
+
+            this.CanBuildHub = false;
+
+
+        }
+        //removes a hub
+        public void removeHub(Hub hub)
+        {
+            this.Hubs.Remove(hub);
+            this.Airport.removeHub(hub);
+
+            this.CanBuildHub = true;
         }
         //removes an airline facility from the airport
         public void removeAirlineFacility(AirlineAirportFacility facility)

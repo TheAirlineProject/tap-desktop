@@ -22,8 +22,7 @@
                          <TextBlock HorizontalAlignment="Center" Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
                     <WrapPanel>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1000'}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
-                        <TextBox Text="{Binding FarePrice}" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="50"></TextBox>
-                        <TextBlock Text="$" VerticalAlignment="Center" Margin="5 0 0 0"></TextBlock>
+                        <TextBox Text="{Binding FarePrice,StringFormat={}{0:0.##}}" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="100"></TextBox>
                     </WrapPanel>
                     <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Path=Facilities,Mode=TwoWay}"></ListBox>
                 </StackPanel>
@@ -44,12 +43,12 @@
                 </h:QuickInfoValue>
                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}">
                     <h:QuickInfoValue.Value>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbDestination1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" SelectionChanged="cbDestination_SelectionChanged" Width="300" Name="cbDestination1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1003'}">
                     <h:QuickInfoValue.Value>
-                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbDestination2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" SelectionChanged="cbDestination_SelectionChanged" Name="cbDestination2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">
@@ -118,6 +117,20 @@
             </StackPanel>
             <WrapPanel Margin="0 10 0 0">
                 <Button Click="btnCreate_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 200'}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbDestination1, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=cbDestination2, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Click="btnCreateNew_Click" Margin="5 0 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 202'}">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                             <Style.Triggers>
