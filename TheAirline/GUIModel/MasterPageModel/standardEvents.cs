@@ -55,6 +55,10 @@ namespace TheAirline.GUIModel.MasterPageModel
         {
             PageNavigator.NavigateTo(new PageAirlines());
         }
+        private void Flights_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageFlights());
+        }
         private void btnPause_Click(object sender, RoutedEventArgs e)
         {
             GameObjectWorker.GetInstance().pause();

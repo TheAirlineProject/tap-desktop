@@ -101,10 +101,6 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
-    <Reference Include="ucLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Debug\ucLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -662,6 +658,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1192,6 +1192,9 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml.cs">
       <DependentUpon>PageCreateDifficulty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml.cs">
+      <DependentUpon>PageFlights.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml.cs">
       <DependentUpon>PageNewAirline.xaml</DependentUpon>
