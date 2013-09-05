@@ -138,7 +138,10 @@
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1005'}" Style="{StaticResource MenuButtonStyle}" Click="Pilots_Click"  Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1007'}" Style="{StaticResource MenuButtonStyle}" Click="Airlines_Click" Margin="0 5 0 0" ></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1008'}" Style="{StaticResource MenuButtonStyle}" Click="Options_Click" Margin="0 5 0 0" ></Button>
-          
+            <WrapPanel Margin="0 10 0 0">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 1001'}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding GameObject.FuelPrice,Source={StaticResource gameObject},Converter={StaticResource FuelUnitConverter}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
         </StackPanel>
 
     </DataTemplate>

@@ -13,6 +13,17 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
+    //the class for the fleet sizes (most used aircrafts)
+    public class AirlineFleetSizeMVVM
+    {
+        public AirlinerType Type { get; set; }
+        public int Count { get; set; }
+        public AirlineFleetSizeMVVM(AirlinerType type, int count)
+        {
+            this.Type = type;
+            this.Count = count;
+        }
+    }
     //the class for the airliner orders
     public class AirlinerOrdersMVVM : INotifyPropertyChanged
     {

@@ -18,6 +18,8 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.GUIModel.PagesModel.RoutesPageModel;
+using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -27,22 +29,30 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     public partial class PageAirline : Page
     {
         private AirlineMVVM Airline;
-        public List<Route> ProfitRoutes { get; set; }
-        public List<AirlinerType> MostUsedAircrafts { get; set; }
+        public List<RouteProfitMVVM> ProfitRoutes { get; set; }
+        public List<AirlineFleetSizeMVVM> MostUsedAircrafts { get; set; }
         public List<Airport> MostGates { get; set; }
 
         public PageAirline(Airline airline)
         {
             this.Airline = new AirlineMVVM(airline);
 
-            var routes = this.Airline.Airline.Routes;
             var airports = this.Airline.Airline.Airports;
 
-            this.ProfitRoutes = routes.OrderByDescending(r => r.Balance).Take(Math.Min(5, routes.Count)).ToList();
-            this.MostGates = airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates)).Take(Math.Min(5,airports.Count)).ToList();
-            this.MostUsedAircrafts = new List<AirlinerType>();
+            var routes = this.Airline.Airline.Routes.OrderByDescending(r => r.Balance);
 
-            var query = GameObject.GetInstance().HumanAirline.Fleet.GroupBy(a => a.Airliner.Type)
+            double totalProfit = routes.Sum(r => r.Balance);
+
+            this.ProfitRoutes = new List<RouteProfitMVVM>();
+            foreach (Route route in routes.Take(Math.Min(5, routes.Count())))
+            {
+                this.ProfitRoutes.Add(new RouteProfitMVVM(route, totalProfit));
+            }
+            
+            this.MostGates = airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates)).Take(Math.Min(5, airports.Count)).ToList();
+            this.MostUsedAircrafts = new List<AirlineFleetSizeMVVM>();
+
+            var query = this.Airline.Airline.Fleet.GroupBy(a => a.Airliner.Type)
                   .Select(group =>
                         new
                         {
@@ -53,8 +63,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             foreach (var group in query)
             {
-                this.MostUsedAircrafts.Add(group.Type);
+                this.MostUsedAircrafts.Add(new AirlineFleetSizeMVVM(group.Type,group.Fleet.Count()));
             }
+
+            
 
             this.Loaded += PageAirline_Loaded;
 

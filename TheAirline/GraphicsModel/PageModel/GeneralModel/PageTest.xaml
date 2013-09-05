@@ -5,13 +5,13 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
                    xmlns:uc="clr-namespace:TheAirline.GraphicsModel.UserControlModel"
-      xmlns:ucLibrary="clr-namespace:ucLibrary;assembly=ucLibrary" x:Class="TheAirline.GraphicsModel.PageModel.GeneralModel.PageTest"
+     x:Class="TheAirline.GraphicsModel.PageModel.GeneralModel.PageTest"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageTest">
     <StackPanel>
         <uc:ucFinanceControl Text="Radio Budget" Value="3" Width="300"/>
         <uc:ucFinanceControl Text="TV Budget" Width="300"/>
-    	<ucLibrary:ucLoader/>
+    	
      </StackPanel>
 </page:StandardPage>

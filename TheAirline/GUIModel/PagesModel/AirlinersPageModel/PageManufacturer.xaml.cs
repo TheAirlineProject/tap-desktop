@@ -86,7 +86,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             AirlinerOrderMVVM order = (AirlinerOrderMVVM)((Button)sender).Tag;
 
             List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(order.Type, order.Classes);
-
+            //seats + Video/audio + 
             if (classes != null)
             {
                 order.Classes = classes;

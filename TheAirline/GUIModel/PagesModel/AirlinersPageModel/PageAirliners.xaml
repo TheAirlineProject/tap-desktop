@@ -15,7 +15,15 @@
                 <Border Style="{StaticResource RoundedBorderStyle}">
                     <StackPanel>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 1000'}" FontWeight="Bold" FontSize="14"></TextBlock>
-                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding ElementName=pageAirliners, Path=MostUsedAircrafts}">
+                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageAirliners, Path=MostUsedAircrafts}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Count,StringFormat={}#{0}}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
                 </Border>

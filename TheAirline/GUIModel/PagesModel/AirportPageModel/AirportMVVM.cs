@@ -48,7 +48,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
         public AirportMVVM(Airport airport)
         {
-           
             this.Airport = airport;
 
             this.TerminalGatePrice = this.Airport.getTerminalGatePrice();
@@ -57,8 +56,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
 
             foreach (Terminal terminal in this.Airport.Terminals.getTerminals())
-                this.Terminals.Add(new AirportTerminalMVVM(terminal.Name, terminal.Gates.NumberOfGates, terminal.Airline, terminal.DeliveryDate,terminal.IsBuyable));
-
+            {
+                Boolean isSellable = terminal.Airline != null && terminal.Airline == GameObject.GetInstance().HumanAirline; 
+       
+                this.Terminals.Add(new AirportTerminalMVVM(terminal,terminal.IsBuyable,isSellable));
+            }
             this.Contracts = new ObservableCollection<ContractMVVM>();
 
             foreach (AirportContract contract in this.Airport.AirlineContracts)
@@ -143,8 +145,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             this.Airport.addTerminal(terminal);
 
-            this.Terminals.Add(new AirportTerminalMVVM(terminal.Name, terminal.Gates.NumberOfGates, terminal.Airline, terminal.DeliveryDate, false));
+            this.Terminals.Add(new AirportTerminalMVVM(terminal, false,terminal.Airline!=null && terminal.Airline == GameObject.GetInstance().HumanAirline));
 
+        }
+        //removes a terminal from the airport
+        public void removeTerminal(AirportTerminalMVVM terminal)
+        {
+            this.Airport.removeTerminal(terminal.Terminal);
+
+            this.Terminals.Remove(terminal);
         }
         //adds an airline contract to the airport
         public void addAirlineContract(AirportContract contract)
@@ -175,8 +184,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Airport.addHub(hub);
 
             this.CanBuildHub = false;
-
-
+            
         }
         //removes a hub
         public void removeHub(Hub hub)
@@ -256,7 +264,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public AirportContract Contract { get; set; }
         public Airline Airline { get; set; }
         public int NumberOfGates { get; set; }
-        public int MonthsLeft { get; set; }
+        private int _monthsleft;
+        public int MonthsLeft
+        {
+            get { return _monthsleft; }
+            set { _monthsleft = value; NotifyPropertyChanged("MonthsLeft"); }
+        }
         public ContractMVVM(AirportContract contract)
         {
             this.Contract = contract;
@@ -264,7 +277,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.NumberOfGates = this.Contract.NumberOfGates;
             this.MonthsLeft = this.Contract.MonthsLeft;
         }
-
+        //extends the contract with a number of year
+        public void extendContract(int years)
+        {
+            this.Contract.Length += years;
+            this.MonthsLeft = this.Contract.MonthsLeft;
+        }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {
@@ -296,23 +314,40 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             get { return _isBuyable; }
             set { _isBuyable = value; NotifyPropertyChanged("IsBuyable"); }
         }
+
+        private Boolean _isSellable;
+        public Boolean IsSellable
+        {
+            get { return _isSellable; }
+            set { _isSellable = value; NotifyPropertyChanged("IsSellable"); }
+        }
         public DateTime DeliveryDate { get; set; }
 
         public enum DeliveryType { Delivered, Building }
         public DeliveryType Type { get; set; }
-        public AirportTerminalMVVM(string name, int gates, Airline airline,DateTime deliveryDate, Boolean isBuyable)
+
+        public Terminal Terminal { get; set; }
+        public AirportTerminalMVVM(Terminal terminal, Boolean isBuyable, Boolean isSellable)
         {
-            this.Name = name;
-            this.Airline = airline;
-            this.Gates = gates;
+            this.Terminal = terminal;
+
+            this.Name = this.Terminal.Name;
+            this.Airline = this.Terminal.Airline;
+            this.Gates = this.Terminal.Gates.NumberOfGates;
             this.IsBuyable = isBuyable;
-            this.DeliveryDate = deliveryDate;
+            this.DeliveryDate = this.Terminal.DeliveryDate;
+            this.IsSellable = isSellable;
 
             this.Type = GameObject.GetInstance().GameTime < this.DeliveryDate ? DeliveryType.Building : DeliveryType.Delivered;
 
      
         }
-
+        //purchase a terminal
+        public void purchaseTerminal(Airline airline)
+        {
+            this.Terminal.purchaseTerminal(airline);
+            this.Airline = airline;
+        }
          public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {

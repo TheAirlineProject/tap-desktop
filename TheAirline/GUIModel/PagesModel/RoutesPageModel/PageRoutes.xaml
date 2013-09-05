@@ -17,7 +17,15 @@
                 <Border Style="{StaticResource RoundedBorderStyle}">
                     <StackPanel>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1006'}" FontWeight="Bold" FontSize="14"></TextBlock>
-                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource RouteItem}" ItemsSource="{Binding ElementName=pageRoutes, Path=ProfitRoutes}">
+                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageRoutes, Path=ProfitRoutes}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
+                                        <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
                 </Border>

@@ -26,7 +26,30 @@
                     <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
                     <WrapPanel Margin="0 5 0 0">
                         <TextBlock Text="Number of Seats" VerticalAlignment="Bottom" Width="100"></TextBlock>
-                    <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChangeableSeats}" Value="True">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                    </TextBlock>
+                        <WrapPanel>
+                            <WrapPanel.Style>
+                                <Style TargetType="WrapPanel">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ChangeableSeats}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </WrapPanel.Style>
+                            <Slider Width="200" Maximum="{Binding MaxSeats}" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=OneWayToSource}" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="slSeats_ValueChanged" Name="slSeats" VerticalAlignment="Bottom"></Slider>
+                            <TextBlock Text="{Binding Value,ElementName=slSeats}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                        </WrapPanel>
                     </WrapPanel>
                     <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Facilities}"></ListBox>
                 </StackPanel>

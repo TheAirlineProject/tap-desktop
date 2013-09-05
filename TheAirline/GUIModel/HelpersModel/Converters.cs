@@ -399,6 +399,24 @@ namespace TheAirline.GUIModel.HelpersModel
             throw new NotImplementedException();
         }
     }
+    //the converter for fuel
+    public class FuelUnitConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+             double v = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Imperial)
+                v = MathHelpers.LtrToGallons(v);
+ 
+            return string.Format("{0}/{1}",new ValueCurrencyConverter().Convert(v), new StringToLanguageConverter().Convert("ltr"));
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //converter for airport code
     public class AirportCodeConverter : IValueConverter
     {

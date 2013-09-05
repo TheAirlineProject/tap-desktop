@@ -58,25 +58,23 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
             Button btnOk = new Button();
             btnOk.Uid = "100";
-            btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnOk.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
             btnOk.Height = Double.NaN;
             btnOk.Width = Double.NaN;
             btnOk.Content = Translator.GetInstance().GetString("General", btnOk.Uid);
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
-            btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
+    
             buttonsPanel.Children.Add(btnOk);
 
             Button btnCancel = new Button();
             btnCancel.Uid = "101";
-            btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnCancel.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
             btnCancel.Height = Double.NaN;
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Width = Double.NaN;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Content = Translator.GetInstance().GetString("General", btnCancel.Uid);
-            btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
+         
             buttonsPanel.Children.Add(btnCancel);
 
 

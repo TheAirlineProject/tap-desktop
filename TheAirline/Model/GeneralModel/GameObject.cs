@@ -33,8 +33,13 @@ namespace TheAirline.Model.GeneralModel
         public Airline MainAirline { get; set; }
         
         public NewsBox NewsBox { get; set; }
-        
-        public double FuelPrice { get; set; }
+
+        private double _fuelprice;
+        public double FuelPrice 
+        {
+            get { return _fuelprice; }
+            set { _fuelprice = value; NotifyPropertyChanged("FuelPrice"); } 
+        }
         
         public long StartMoney { get { return getStartMoney(); } set { ;} }
         

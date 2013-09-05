@@ -186,5 +186,78 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         }
 
+        private void btnExtendContract_Click(object sender, RoutedEventArgs e)
+        {
+            ContractMVVM tContract = (ContractMVVM)((Button)sender).Tag;
+
+            int length = 2;
+           
+              WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2228"), string.Format(Translator.GetInstance().GetString("MessageBox", "2228", "message"),length), WPFMessageBoxButtons.YesNo);
+
+              if (result == WPFMessageBoxResult.Yes)
+              {
+                  tContract.extendContract(length);
+              }
+        }
+
+        private void btnSellTerminal_Click(object sender, RoutedEventArgs e)
+        {
+            AirportTerminalMVVM terminal = (AirportTerminalMVVM)((Button)sender).Tag;
+
+            int totalRentedGates = this.Airport.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
+
+            Boolean isTerminalFree = this.Airport.Airport.Terminals.getNumberOfGates() - terminal.Gates >= totalRentedGates;
+            if (isTerminalFree)
+            {
+
+                // chs, 2011-31-10 changed for the possibility of having delivered and non-delivered terminals
+
+                string strRemove;
+                if (terminal.DeliveryDate > GameObject.GetInstance().GameTime)
+                    strRemove = Translator.GetInstance().GetString("MessageBox", "2207", "message");
+                else
+                    strRemove = string.Format(Translator.GetInstance().GetString("MessageBox", "2208", "message"), terminal.Gates);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2207"), strRemove, WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airport.removeTerminal(terminal);
+
+                }
+            }
+            else
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2209"), Translator.GetInstance().GetString("MessageBox", "2209", "message"), WPFMessageBoxButtons.Ok);
+            }
+        }
+        private void btnBuyTerminal_Click(object sender, RoutedEventArgs e)
+        {
+            AirportTerminalMVVM terminal = (AirportTerminalMVVM)((Button)sender).Tag;
+
+            long price = terminal.Gates * this.Airport.Airport.getTerminalGatePrice() + this.Airport.Airport.getTerminalPrice();
+
+            if (price > GameObject.GetInstance().HumanAirline.Money)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2205"), Translator.GetInstance().GetString("MessageBox", "2205", "message"), WPFMessageBoxButtons.Ok);
+
+            }
+            else
+            {
+
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2211"), string.Format(Translator.GetInstance().GetString("MessageBox", "2211", "message"), price), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    terminal.purchaseTerminal(GameObject.GetInstance().HumanAirline);
+             
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+
+                }
+
+
+            }
+        
+        }
+
     }
 }

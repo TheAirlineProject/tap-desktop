@@ -36,7 +36,6 @@ using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel;
 using TheAirline.GraphicsModel.PageModel.PageFinancesModel;
-using ucLibrary;
 using TheAirline.GUIModel.PagesModel.PilotsPageModel;
 
 
@@ -209,7 +208,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
         private void lnkAirliners_Click(object sender, RoutedEventArgs e)
         {
-            PageNavigator.NavigateTo(new PageAirliners());
+            PageNavigator.NavigateTo(new GUIModel.PagesModel.AirlinersPageModel.PageAirliners());
         }
 
         private void lnkAirports_Click(object sender, RoutedEventArgs e)

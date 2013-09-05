@@ -23,12 +23,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     /// </summary>
     public partial class PageAirliners : Page
     {
-        public List<AirlinerType> MostUsedAircrafts { get; set; }
+        public List<AirlineFleetSizeMVVM> MostUsedAircrafts { get; set; }
         public List<AirlinerType> NewestAircrafts { get; set; }
         public PageAirliners()
         {
             this.NewestAircrafts = AirlinerTypes.GetTypes(a => a.Produced.From <= GameObject.GetInstance().GameTime).OrderByDescending(a => a.Produced.From).Take(5).ToList();
-            this.MostUsedAircrafts = new List<AirlinerType>();
+            this.MostUsedAircrafts = new List<AirlineFleetSizeMVVM>();
 
             var query = GameObject.GetInstance().HumanAirline.Fleet.GroupBy(a=>a.Airliner.Type)
                   .Select(group =>
@@ -41,7 +41,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             foreach (var group in query)
             {
-                this.MostUsedAircrafts.Add(group.Type);
+                this.MostUsedAircrafts.Add(new AirlineFleetSizeMVVM(group.Type,group.Fleet.Count()));
             }
 
             this.Loaded += PageAirliners_Loaded;

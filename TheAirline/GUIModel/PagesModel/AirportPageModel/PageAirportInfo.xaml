@@ -140,6 +140,20 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                                <GridViewColumn>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                            <Button Background="Transparent" VerticalAlignment="Bottom" Width="20" Click="btnBuyTerminal_Click" Tag="{Binding}" Visibility="{Binding IsBuyable,Converter={StaticResource BooleanToVisibility}}">
+                                                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/data/images/buy.png"></Image>
+                                            </Button>
+                                            <Button Background="Transparent" VerticalAlignment="Bottom" Width="20" Click="btnSellTerminal_Click" Tag="{Binding}" Visibility="{Binding IsSellable,Converter={StaticResource BooleanToVisibility}}">
+                                                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/data/images/delete.png"></Image>
+                                            </Button>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                             </GridView>
                         </ListView.View>
                     </ListView>
@@ -235,9 +249,14 @@
                                 <GridViewColumn Header="">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Background="Transparent" Width="20" Tag="{Binding}" Click="btnRemoveContract_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                                            <WrapPanel>
+                                            <Button Background="Transparent" Width="20" Tag="{Binding}" Click="btnExtendContract_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                                                <Image Source="/data/images/edit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            </Button>
+                                            <Button Background="Transparent" Width="20" Tag="{Binding}" Margin="5 0 0 0" Click="btnRemoveContract_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
                                                 <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                             </Button>
+                                            </WrapPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

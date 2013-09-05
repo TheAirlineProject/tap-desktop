@@ -59,8 +59,16 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.Airliner = airliner;
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
 
+            AirlinerClass tClass = this.Airliner.Airliner.Classes[0];
+               
             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
-                this.Classes.Add(new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity,aClass.RegularSeatingCapacity));
+            {
+                Boolean changeable = this.Airliner.Airliner.Classes.IndexOf(aClass) > 0;
+
+                int maxSeats =tClass.RegularSeatingCapacity -1;
+
+                this.Classes.Add(new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, aClass.RegularSeatingCapacity,maxSeats,changeable));
+            }
 
             this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
             this.BMaintenanceInterval = this.Airliner.BMaintenanceInterval;
@@ -114,8 +122,11 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         }
         private void setSeating()
         {
-           if (this.Type == AirlinerFacility.FacilityType.Seat && _selectedFacility != null)
-               this.AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.RegularSeatingCapacity) / _selectedFacility.SeatUses); 
+            if (this.Type == AirlinerFacility.FacilityType.Seat && _selectedFacility != null)
+            {
+                this.AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.RegularSeatingCapacity) / _selectedFacility.SeatUses);
+                this.AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.MaxSeatsCapacity) / _selectedFacility.SeatUses);
+            }
         }
     }
     //the mvvm class for an airliner class
@@ -129,15 +140,27 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         public int Seating
         {
             get { return _seating; }
-            set { _seating = value; NotifyPropertyChanged("Seating"); }
+            set { _seating = value;  NotifyPropertyChanged("Seating"); }
     
         }
+        private int _maxseats;
+        public int MaxSeats
+        {
+            get { return _maxseats; }
+            set { _maxseats = value; NotifyPropertyChanged("MaxSeats"); }
+
+        }
+        public Boolean ChangeableSeats { get; set; }
         public int RegularSeatingCapacity { get; set; }
-        public AirlinerClassMVVM(AirlinerClass.ClassType type, int seating, int regularSeating)
+        public int MaxSeatsCapacity { get; set; }
+        public AirlinerClassMVVM(AirlinerClass.ClassType type, int seating, int regularSeating, int maxseats, Boolean changeableSeats = false)
         {
             this.Type = type;
             this.Seating = seating;
             this.RegularSeatingCapacity = regularSeating;
+            this.ChangeableSeats = changeableSeats;
+            this.MaxSeats = maxseats;
+            this.MaxSeatsCapacity = maxseats;
 
             this.Facilities = new List<AirlinerFacilityMVVM>();
 

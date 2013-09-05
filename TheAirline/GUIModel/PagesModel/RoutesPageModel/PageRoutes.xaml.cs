@@ -25,13 +25,20 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// </summary>
     public partial class PageRoutes : Page
     {
-        public List<Route> ProfitRoutes { get; set; }
+        public List<RouteProfitMVVM> ProfitRoutes { get; set; }
         public List<Route> RequestedRoutes { get; set; }
         public PageRoutes()
         {
             var routes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.Balance);
-            this.ProfitRoutes = routes.Take(Math.Min(5, routes.Count())).ToList();
 
+            double totalProfit = routes.Sum(r=>r.Balance);
+
+            this.ProfitRoutes = new List<RouteProfitMVVM>();
+            foreach (Route route in routes.Take(Math.Min(5,routes.Count())))
+            {
+                this.ProfitRoutes.Add(new RouteProfitMVVM(route,totalProfit));
+            }
+         
             var requestedRoutes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.Destination1.getDestinationPassengersRate(r.Destination2,AirlinerClass.ClassType.Economy_Class) + r.Destination2.getDestinationPassengersRate(r.Destination1,AirlinerClass.ClassType.Economy_Class));
             this.RequestedRoutes = requestedRoutes.Take(Math.Min(5,routes.Count())).ToList();
          

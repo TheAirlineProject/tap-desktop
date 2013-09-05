@@ -14,6 +14,20 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
+    //the profit for a route
+    public class RouteProfitMVVM
+    {
+        public Route Route { get; set; }
+        public double Percent { get; set; }
+        public RouteProfitMVVM(Route route, double total)
+        {
+            this.Route = route;
+
+            double balance = this.Route.Balance;
+
+            this.Percent = balance / total * 100;
+        }
+    }
     //the facilities for a route
     public class MVVMRouteFacility : INotifyPropertyChanged
     {

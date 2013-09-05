@@ -13,4 +13,5 @@
     <c:DistanceToUnitConverter x:Key="DistanceToUnitConverter"></c:DistanceToUnitConverter>
     <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
     <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
+    <c:FuelUnitConverter x:Key="FuelUnitConverter"></c:FuelUnitConverter>
  </ResourceDictionary>

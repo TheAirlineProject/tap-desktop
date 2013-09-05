@@ -1422,6 +1422,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.de-DE.resx">
       <Link>Data\languagefiles\language.de-DE.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.en-GB.resx">
       <Link>Data\languagefiles\language.en-GB.resx</Link>
