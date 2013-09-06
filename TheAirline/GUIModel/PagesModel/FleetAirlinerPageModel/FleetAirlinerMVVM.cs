@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
@@ -239,10 +240,16 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
     {
         public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            if (values.Length != 2)
+            try
+            {
+                 return (System.Convert.ToInt16(values[0]) == System.Convert.ToInt16(values[1]));
+            }
+            catch (Exception)
+            {
                 return false;
-            else
-                return (System.Convert.ToInt16(values[0]) == System.Convert.ToInt16(values[1]));
+            }
+           
+               
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)

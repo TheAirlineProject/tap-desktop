@@ -23,6 +23,7 @@ using System.Diagnostics;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.GUIModel.PagesModel.GamePageModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -1607,21 +1608,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new game
         public static void CreateGame(StartDataObject startData)
         {
-            object o = null;
             int startYear = startData.Year;
-            int opponents = startData.Opponents;
+            int opponents = startData.NumberOfOpponents;
             Airline airline = startData.Airline;
             Continent continent = startData.Continent;
             Region region = startData.Region;
             
-            if (!startData.RandomOpponents)
-            {
-                if (startData.SameRegion)
-                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, airline.Profile.Country.Region);
-                else
-                    o = PopUpSelectOpponents.ShowPopUp(airline, opponents, startYear, region, continent);
-            }
-
             GameTimeZone gtz = startData.TimeZone;
             GameObject.GetInstance().DayRoundEnabled = startData.UseDayTurns;
             GameObject.GetInstance().TimeZone = gtz;
@@ -1670,35 +1662,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             AirlinerHelpers.CreateStartUpAirliners();
 
-            if (startData.RandomOpponents || o == null)
+            if (startData.RandomOpponents || startData.Opponents == null)
                 Setup.SetupMainGame(opponents, startData.SameRegion);
             else
-                Setup.SetupMainGame((List<Airline>)o);
+                Setup.SetupMainGame(startData.Opponents);
 
 
             airline.MarketFocus = startData.Focus;
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
 
-            //PassengerHelpers.CreateDestinationPassengers();
-
-            //GameTimer.GetInstance().start();
-            
-         
             if (startData.IsPaused)
                 GameObjectWorker.GetInstance().startPaused();
             else
                 GameObjectWorker.GetInstance().start();
 
-            // AIWorker.GetInstance().start();
-
-        
-            //GameObject.GetInstance().HumanAirline.Money = 10000000000000;
-
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
-
-       
-
 
 
             Action action = () =>

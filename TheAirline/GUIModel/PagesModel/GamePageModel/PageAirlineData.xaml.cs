@@ -79,11 +79,18 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             GraphicsHelpers.SetContentHeight(s.Height/2);
             GraphicsHelpers.SetContentWidth(s.Width / 2);
 
-            GameObjectHelpers.CreateGame(this.StartData);
+            if (!this.StartData.RandomOpponents)
+            {
+                PageNavigator.NavigateTo(new PageSelectOpponents(this.StartData));
+            }
+            else
+            {
+                GameObjectHelpers.CreateGame(this.StartData);
 
-            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
-            PageNavigator.ClearNavigator();
+                PageNavigator.ClearNavigator();
+            }
 
         }
         private void btnBack_Click(object sender, RoutedEventArgs e)

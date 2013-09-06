@@ -42,6 +42,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
+        public Boolean IsBuyable { get; set; }
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
@@ -122,7 +123,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (Airport airport in this.Airline.Airports)
                 this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
 
-            
+            double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
+            this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
      
         }
         //saves all the fees

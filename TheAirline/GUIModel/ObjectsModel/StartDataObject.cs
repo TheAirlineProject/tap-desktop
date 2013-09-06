@@ -16,7 +16,8 @@ namespace TheAirline.GUIModel.ObjectsModel
         public int Year { get; set; }
         public Continent Continent { get; set; }
         public Region Region { get; set; }
-        public int Opponents { get; set; }
+        public int NumberOfOpponents { get; set; }
+        public List<Airline> Opponents { get; set; }
         public DifficultyLevel Difficulty { get; set; }
         public Boolean UseDayTurns { get; set; }
         public Airline.AirlineFocus Focus { get; set; }

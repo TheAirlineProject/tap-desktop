@@ -198,5 +198,104 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
         }
+
+        private void btnBuyAirline_Click(object sender, RoutedEventArgs e)
+        {
+            double buyingPrice = this.Airline.Airline.getValue() * 1000000 * 1.10; 
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2113"), string.Format(Translator.GetInstance().GetString("MessageBox", "2113", "message"), this.Airline.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2114"), string.Format(Translator.GetInstance().GetString("MessageBox", "2114", "message"), this.Airline.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    while (this.Airline.Subsidiaries.Count > 0)
+                    {
+                        SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
+                        subAirline.Profile.CEO = GameObject.GetInstance().HumanAirline.Profile.CEO;
+
+                        subAirline.Airline = GameObject.GetInstance().HumanAirline;
+                        this.Airline.removeSubsidiaryAirline(subAirline);
+                        GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(subAirline);
+
+                    }
+                }
+                else
+                {
+                    while (this.Airline.Subsidiaries.Count > 0)
+                    {
+                        SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
+
+                        subAirline.Airline = null;
+
+                        this.Airline.removeSubsidiaryAirline(subAirline);
+                    }
+                }
+                if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
+                    GameObject.GetInstance().HumanAirline.License = this.Airline.License;
+
+                AirlineHelpers.SwitchAirline(this.Airline.Airline, GameObject.GetInstance().HumanAirline);
+
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
+
+                Airlines.RemoveAirline(this.Airline.Airline);
+
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+            }
+        }
+
+        private void btnBuyAsSubsidiary_Click(object sender, RoutedEventArgs e)
+        {
+            double buyingPrice = this.Airline.Airline.getValue() * 1000000 * 1.10;
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2113"), string.Format(Translator.GetInstance().GetString("MessageBox", "2113", "message"), this.Airline.Airline.Profile.Name, buyingPrice), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                List<AirlineLogo> oldLogos = this.Airline.Airline.Profile.Logos;
+                string oldColor = this.Airline.Airline.Profile.Color;
+
+                //creates independent airlines for each subsidiary 
+                while (this.Airline.Subsidiaries.Count > 0)
+                {
+                    SubsidiaryAirline subAirline = this.Airline.Subsidiaries[0];
+
+                    subAirline.Airline = null;
+
+                    this.Airline.removeSubsidiaryAirline(subAirline);
+                }
+
+                if (this.Airline.License > GameObject.GetInstance().HumanAirline.License)
+                    GameObject.GetInstance().HumanAirline.License = this.Airline.License;
+
+                SubsidiaryAirline sAirline = new SubsidiaryAirline(GameObject.GetInstance().HumanAirline, this.Airline.Airline.Profile, this.Airline.Airline.Mentality, this.Airline.Airline.MarketFocus, this.Airline.License, this.Airline.Airline.AirlineRouteFocus);
+
+                AirlineHelpers.SwitchAirline(this.Airline.Airline, sAirline);
+
+                GameObject.GetInstance().HumanAirline.addSubsidiaryAirline(sAirline);
+
+                AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -buyingPrice);
+
+                Airlines.RemoveAirline(this.Airline.Airline);
+                Airlines.AddAirline(sAirline);
+
+                sAirline.Profile.Logos = oldLogos;
+                sAirline.Profile.Color = oldColor;
+
+                foreach (AirlinePolicy policy in this.Airline.Airline.Policies)
+                    sAirline.addAirlinePolicy(policy);
+
+                sAirline.Money = this.Airline.Money;
+                sAirline.StartMoney = this.Airline.Money;
+
+                sAirline.Fees = new AirlineFees();
+
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+
+            }
+        }
     }
 }

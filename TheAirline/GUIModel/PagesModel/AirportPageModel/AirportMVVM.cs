@@ -87,7 +87,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
-             
                 StatisticsType passengersType = StatisticsTypes.GetStatisticsType("Passengers");
                 StatisticsType passengersAvgType = StatisticsTypes.GetStatisticsType("Passengers%");
                 StatisticsType arrivalsType = StatisticsTypes.GetStatisticsType("Arrivals");
@@ -164,8 +163,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Contracts.Add(new ContractMVVM(contract));
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+                       
 
             this.CanBuildHub = this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline) > 0;
+
+            foreach (AirportTerminalMVVM terminal in Terminals)
+            {
+                terminal.FreeGates = terminal.Terminal.getFreeGates();
+            }
     
         }
         //removes an airline contract from the airport
@@ -176,6 +181,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Contracts.Remove(contract);
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
+
+            foreach (AirportTerminalMVVM terminal in Terminals)
+            {
+                terminal.FreeGates = terminal.Terminal.getFreeGates();
+            }
     
         }
         //adds a hub
@@ -185,7 +195,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Airport.addHub(hub);
 
             this.CanBuildHub = false;
-            
+
         }
         //removes a hub
         public void removeHub(Hub hub)
@@ -307,8 +317,14 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
      
         public int Gates { get; set; }
-        
-       
+
+        private int _freegates;
+        public int FreeGates
+        {
+            get { return _freegates; }
+            set { _freegates = value; NotifyPropertyChanged("FreeGates"); }
+        }
+
         private Boolean _isBuyable;
         public Boolean IsBuyable
         {
@@ -335,6 +351,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Name = this.Terminal.Name;
             this.Airline = this.Terminal.Airline;
             this.Gates = this.Terminal.Gates.NumberOfGates;
+            this.FreeGates = this.Terminal.getFreeGates();
             this.IsBuyable = isBuyable;
             this.DeliveryDate = this.Terminal.DeliveryDate;
             this.IsSellable = isSellable;
@@ -348,6 +365,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             this.Terminal.purchaseTerminal(airline);
             this.Airline = airline;
+
+            this.FreeGates = 0;
         }
          public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

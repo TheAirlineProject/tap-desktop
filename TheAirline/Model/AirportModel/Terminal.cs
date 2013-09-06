@@ -73,6 +73,38 @@ namespace TheAirline.Model.AirportModel
         {
             return GameObject.GetInstance().GameTime > this.DeliveryDate;
         }
+        //returns the number of free gates
+        public int getFreeGates()
+        {
+            if (this.Airline != null)
+                return this.Gates.NumberOfGates;
+
+            int terminalIndex = this.Airport.Terminals.AirportTerminals.Where(a=>a.Airline==null).ToList().IndexOf(this);
+
+            int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
+
+            
+            int terminalGates = this.Airport.Terminals.AirportTerminals.Where(a => a.Airline != null).Sum(t => t.Gates.NumberOfGates);
+
+            int gates = 0;
+
+            int i = 0;
+            while (gates < contracts)
+            {
+                gates += this.Airport.Terminals.AirportTerminals.Where(a => a.Airline == null).ToList()[i].Gates.NumberOfGates;
+
+                i++;
+            }
+
+            if (i > terminalIndex+1 || contracts==0)
+                return this.Gates.NumberOfGates;
+
+            else if (i < terminalIndex+1)
+                return 0;
+
+            else
+                return gates - contracts;
+        }
     }
     //the collection of terminals at an airport
     [Serializable]

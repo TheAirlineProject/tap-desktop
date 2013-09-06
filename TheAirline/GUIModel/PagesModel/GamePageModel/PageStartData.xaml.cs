@@ -127,7 +127,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         {
             Frame frmContent = UIHelpers.FindChild<Frame>((Page)this.Tag, "frmContent");
 
-            frmContent.Navigate(new PageAirlineData(new StartDataObject() { IsPaused = cbPaused.IsChecked.Value,Focus = (Airline.AirlineFocus)cbFocus.SelectedItem, SameRegion = cbSameRegion.IsChecked.Value, RandomOpponents = rbRandomOpponents.IsChecked.Value,  UseDayTurns=rbDayTurns.IsChecked.Value, Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem, Opponents = (int)cbOpponents.SelectedItem, Year = (int)cbYear.SelectedItem, Continent = (Continent)cbContinent.SelectedItem, Region = (Region)cbRegion.SelectedItem}) { Tag = this.Tag });
+            frmContent.Navigate(new PageAirlineData(new StartDataObject() { IsPaused = cbPaused.IsChecked.Value,Focus = (Airline.AirlineFocus)cbFocus.SelectedItem, SameRegion = cbSameRegion.IsChecked.Value, RandomOpponents = rbRandomOpponents.IsChecked.Value,  UseDayTurns=rbDayTurns.IsChecked.Value, Difficulty = (DifficultyLevel)cbDifficulty.SelectedItem, NumberOfOpponents = (int)cbOpponents.SelectedItem, Year = (int)cbYear.SelectedItem, Continent = (Continent)cbContinent.SelectedItem, Region = (Region)cbRegion.SelectedItem}) { Tag = this.Tag });
         }
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {

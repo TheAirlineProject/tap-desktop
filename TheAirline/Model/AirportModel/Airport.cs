@@ -234,7 +234,7 @@ namespace TheAirline.Model.AirportModel
             destinations.AddRange(this.DestinationCargo);
             destinations.AddRange(this.DestinationPassengers);
 
-            return destinations.Select(d => d.Destination).Distinct().ToList();
+            return destinations.Where(d=>d.Destination.Profile.Period.From<=GameObject.GetInstance().GameTime && d.Destination.Profile.Period.To>=GameObject.GetInstance().GameTime).Select(d => d.Destination).Distinct().ToList();
         }
         //returns if the destination has passengers rate
         public Boolean hasDestinationPassengersRate(Airport destination)

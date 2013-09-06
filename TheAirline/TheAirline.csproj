@@ -678,7 +678,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageScreenMode.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1208,8 +1216,14 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml.cs">
       <DependentUpon>PageScenario.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageScreenMode.xaml.cs">
+      <DependentUpon>PageScreenMode.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml.cs">
+      <DependentUpon>PageSelectOpponents.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml.cs">
       <DependentUpon>PageShowScenario.xaml</DependentUpon>
@@ -1599,6 +1613,10 @@
   <ItemGroup>
     <Resource Include="Data\images\mail.png" />
     <Resource Include="Data\images\nomail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\fullscreen.png" />
+    <Resource Include="Data\images\windowed.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />

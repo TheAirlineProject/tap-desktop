@@ -18,6 +18,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         public double Passengers { get; set; }
         public double PassengersPerFlight { get; set; }
         public double Flights { get; set; }
+        public double Cargo { get; set; }
+        public double CargoPerFlight { get; set; }
         public AirlinesMVVM(Airline airline)
         {
             this.Airline = airline;
@@ -27,10 +29,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
             StatisticsType passengersType = StatisticsTypes.GetStatisticsType("Passengers");
             StatisticsType passengersAvgType = StatisticsTypes.GetStatisticsType("Passengers%");
             StatisticsType arrivalsType = StatisticsTypes.GetStatisticsType("Arrivals");
+            StatisticsType cargoType = StatisticsTypes.GetStatisticsType("Cargo");
+            StatisticsType cargoAvgType = StatisticsTypes.GetStatisticsType("Cargo%");
 
             this.Passengers = this.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, passengersType);
             this.PassengersPerFlight = this.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, passengersAvgType);
             this.Flights = this.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, arrivalsType);
+            this.Cargo = this.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, cargoType);
+            this.CargoPerFlight = this.Airline.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year, cargoAvgType);
         }
     }
 }
