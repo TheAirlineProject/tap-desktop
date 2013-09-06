@@ -106,8 +106,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             FeeTypes.GetTypes(FeeType.eFeeType.Discount).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
 
             FeeTypes.GetTypes(FeeType.eFeeType.FoodDrinks).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Chargers.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
+            
             FeeTypes.GetTypes(FeeType.eFeeType.Fee).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Fees.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
-
+          
             this.Airline.Subsidiaries.ForEach(s => this.Subsidiaries.Add(s));
             this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
 

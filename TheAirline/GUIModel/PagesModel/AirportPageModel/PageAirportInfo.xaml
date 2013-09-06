@@ -12,6 +12,7 @@
     <Page.Resources>
         <local:WeatherImageConverter x:Key="WeatherImageConverter"></local:WeatherImageConverter>
         <local:ContractYearlyPaymentConverter x:Key="ContractYearlyPaymentConverter"></local:ContractYearlyPaymentConverter>
+        <local:TemperatureToTextConverter x:Key="TemperatureToTextConverter"></local:TemperatureToTextConverter>
         <DataTemplate x:Key="RunwayItem">
             <WrapPanel>
                 
@@ -22,8 +23,8 @@
             <WrapPanel>
                 <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                 <Image Source="{Binding Converter={StaticResource WeatherImageConverter}}" RenderOptions.BitmapScalingMode="HighQuality" Height="16" VerticalAlignment="Bottom"></Image>
-                <TextBlock Text="{Binding TemperatureHigh, StringFormat={}{0:0}°}" FontWeight="Bold" VerticalAlignment="Bottom" Width="50" Margin="20 0 0 0" TextAlignment="Right"></TextBlock>
-                <TextBlock Text="{Binding TemperatureLow, StringFormat={}{0:0}°}" FontWeight="Light" VerticalAlignment="Bottom" Width="50" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding TemperatureHigh,Converter={StaticResource TemperatureToTextConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" Width="50" Margin="20 0 0 0" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding TemperatureLow,Converter={StaticResource TemperatureToTextConverter}}" FontWeight="Light" VerticalAlignment="Bottom" Width="50" TextAlignment="Right"></TextBlock>
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
@@ -40,7 +41,7 @@
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Text="{Binding Airport.Profile.Name}"/>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 

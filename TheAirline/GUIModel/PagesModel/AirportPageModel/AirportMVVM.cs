@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -412,15 +413,53 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
           
             int index = facilities.FindIndex(f=>currentFacility.Facility == f);
 
-            if (index < facilities.Count - 1)
-                return string.Format("{0} ({1})", facilities[index + 1].Name,new ValueCurrencyConverter().Convert(facilities[index+1].Price));
-            else
-                return "None";
+            if (parameter.ToString() == "Name")
+            {
+                if (index < facilities.Count - 1)
+                    return facilities[index + 1].Name;
+                else
+                    return "None";
+            }
+            if (parameter.ToString() == "Price")
+            {
+                if (index < facilities.Count - 1)
+                    return new ValueCurrencyConverter().Convert(facilities[index + 1].Price);
+                else
+                    return "-";
+            }
+            if (parameter.ToString() == "Employees")
+            {
+                if (index < facilities.Count - 1)
+                    return facilities[index + 1].NumberOfEmployees.ToString();
+                else
+                    return "-";
+            }
 
-
+            return "-";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
+    //the converter for the temperature (in celsius) to text
+    public class TemperatureToTextConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            double temperature = Double.Parse(value.ToString());
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Metric)
+                return string.Format("{0:0.0}°C", temperature);
+            else
+                return string.Format("{0:0}°F", MathHelpers.CelsiusToFahrenheit(temperature));
+
+
+        }
+       
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotImplementedException();
         }

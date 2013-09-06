@@ -84,7 +84,7 @@
               
             </WrapPanel>
             <StackPanel Visibility="{Binding IsCargoRoute,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}">
-                <CheckBox Name="cbEdit" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1003'}" FlowDirection="RightToLeft" HorizontalAlignment="Left"></CheckBox>
+                <CheckBox Name="cbEdit" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowRoute 1003'}" Style="{StaticResource ImageCheckBoxStyle}" HorizontalAlignment="Left"></CheckBox>
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1010'}"  Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
                 <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Path=Classes,ElementName=pageShowRoute}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
             </StackPanel>

@@ -2711,14 +2711,14 @@ namespace TheAirline.Model.GeneralModel
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Drinks", 0.2, 0.1, 0.8, 75));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Snacks", 0.35, 0.25, 0.5, 70));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "Meal", 1.40, 1.25, 2, 50));
+            FeeTypes.AddType(new FeeType(FeeType.eFeeType.FoodDrinks, "WiFi", 1.4, 0, 6.25, 25, 2007));
 
             //fees
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "1 Bag", 0, 0, 5, 95));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "2 Bags", 0, 0, 5.25, 25));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "3+ Bags", 0, 0, 6, 2));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "Pets", 0, 0, 18, 1));
-            FeeTypes.AddType(new FeeType(FeeType.eFeeType.Fee, "WiFi", 1.4, 0, 6.25, 25, 2007));
-
+          
             //discounts
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Employee Discount", 0, 0, 100, 1));
             FeeTypes.AddType(new FeeType(FeeType.eFeeType.Discount, "Government Discount", 0, 0, 100, 3));

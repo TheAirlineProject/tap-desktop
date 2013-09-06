@@ -28,7 +28,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             this.AllAirlines = new ObservableCollection<AirlinesMVVM>();
 
-            foreach (Airline airline in Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary))
+            foreach (Airline airline in Airlines.GetAllAirlines().FindAll(a => !a.IsSubsidiary).OrderByDescending(a=>a.IsHuman))
             {
                 this.AllAirlines.Add(new AirlinesMVVM(airline));
 

@@ -37,8 +37,8 @@
     <DataTemplate x:Key="TownItem">
         <WrapPanel>
             <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
-            <TextBlock Text="{Binding Country.Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
             <TextBlock Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+            <TextBlock Text="{Binding Country.Name,StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
             <Image Source="{Binding Country.Flag}" Width="20" Height="20" Margin="5 0 0 0" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
         </WrapPanel>
     </DataTemplate>

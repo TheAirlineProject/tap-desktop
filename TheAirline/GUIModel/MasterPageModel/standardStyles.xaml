@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                      x:Class="TheAirline.GUIModel.MasterPageModel.standardStylesEvents"
                     xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel" 
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
     <!--brushes-->
     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F"></SolidColorBrush>
     <SolidColorBrush x:Key="BackgroundTransparentBrush" Opacity="0.5" Color="Black"></SolidColorBrush>
@@ -16,6 +17,53 @@
         <Setter Property="Foreground" Value="White" />
         <Setter Property="TextBlock.TextDecorations" Value="{x:Null}" />
 
+    </Style>
+    <!--radiobutton-->
+    <Style x:Key="RadioButtonLeftSideText" TargetType="{x:Type RadioButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RadioButton}">
+                    <BulletDecorator Background="Transparent" Cursor="Hand">
+                        <BulletDecorator.Bullet>
+                            <Grid Height="16" Width="16">
+                                <!--Define size of the Bullet-->
+
+                                <!--The two borders-->
+                                <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="2" />
+                                <Path 
+                                Width="11" Height="11" 
+                                Visibility="Hidden"
+                                    Name="TickMark"
+                                SnapsToDevicePixels="False" 
+                                Stroke="#9BCF0E"
+                                StrokeThickness="2"
+                                Data="M 0 5 L 3 10 10 0" 
+                                    StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
+                            
+                            </Grid>
+                        </BulletDecorator.Bullet>
+
+                        <!--Text element-->
+                        <TextBlock Margin="3,1,0,0">
+       <ContentPresenter />
+                        </TextBlock>
+                    </BulletDecorator>
+
+                    <!--If item is checked, trigger the visibility of the mark-->
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="true">
+
+                            <!--If item is checked, trigger the visibility of the mark
+and change the color of the selected bullet into a darker gray for better highlighting-->
+                            <Setter TargetName="TickMark" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="RadioOuter" Property="BorderBrush" Value="Black" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <!--textboxes-->
     <Style TargetType="{x:Type TextBox}">
@@ -713,47 +761,51 @@
         </Setter>
     </Style>
     <!--checkboxes-->
-    <Style TargetType="{x:Type CheckBox}">
-        <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
-    </Style>
-    <Style x:Key="CheckedCheckBoxStyle" TargetType="{x:Type CheckBox}">
+    <Style x:Key="CheckboxLeftSideText" TargetType="{x:Type CheckBox}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
-        <Setter Property="FocusVisualStyle" Value="{DynamicResource CheckBoxFocusVisual}"/>
-        <Setter Property="Background" Value="{DynamicResource NormalBrush}"/>
-        <Setter Property="BorderBrush" Value="{DynamicResource NormalBorderBrush}"/>
+        <Setter Property="FocusVisualStyle" 
+            Value="{DynamicResource ButtonFocusVisual}"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderBrush" 
+            Value="Black"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type CheckBox}">
-                    <Border>
-                        <Grid>
-                            <ContentPresenter Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" Margin="{TemplateBinding Padding}"  />
-                            <Border>
-                                <Border.Background>
-                                    <VisualBrush Opacity="1.0" Stretch="None">
-                                        <VisualBrush.Visual>
-                                            <Path Name="path" Opacity="0.1" Data="M 0 5 L 3 10 10 0" Stroke="#FF3838BA" StrokeThickness="1.5"
-                                  StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
-                                        </VisualBrush.Visual>
-                                    </VisualBrush>
-                                </Border.Background>
-                            </Border>
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter TargetName="path" Property="Opacity" Value="1.0" />
-                            <Setter TargetName="path" Property="Stroke" Value="#FF70A16F" />
-                            <Setter TargetName="path" Property="StrokeThickness" Value="2.5" />
-                        </Trigger>
-                        <Trigger Property="IsEnabled" Value="False">
-                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
+
+                    <DockPanel 
+          HorizontalAlignment="Stretch" 
+          VerticalAlignment="Top" 
+          Width="Auto" 
+          LastChildFill="True">
+
+                        <Microsoft_Windows_Themes:BulletChrome 
+            DockPanel.Dock="Right" 
+            Margin="4,0,0,0"
+            Background="{TemplateBinding Background}" 
+            BorderBrush="{TemplateBinding BorderBrush}" 
+            IsChecked="{TemplateBinding IsChecked}" 
+            RenderMouseOver="{TemplateBinding IsMouseOver}" 
+            RenderPressed="{TemplateBinding IsPressed}" 
+            HorizontalAlignment="Stretch" 
+            VerticalAlignment="Center" 
+            Width="Auto" 
+            Height="Auto"/>
+
+                        <ContentPresenter 
+            Content="{TemplateBinding Content}" 
+            RecognizesAccessKey="True" 
+            Height="Auto" 
+            HorizontalAlignment="Left" />
+
+                    </DockPanel>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style x:Key="ImageCheckBoxStyle" TargetType="{x:Type CheckBox}">
+    <Style TargetType="{x:Type CheckBox}">
+        <Setter Property="TextBlock.FontWeight" Value="Bold"></Setter>
+    </Style>
+       <Style x:Key="ImageCheckBoxStyle" TargetType="{x:Type CheckBox}">
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="BorderBrush" Value="Transparent"/>

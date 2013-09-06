@@ -149,8 +149,8 @@
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1021'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <RadioButton Name="rbPassengerType" FlowDirection="RightToLeft" GroupName="AirlineType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1007'}"></RadioButton>
-                                <RadioButton FlowDirection="RightToLeft" Margin="5 0 0 0" GroupName="AirlineType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1008'}"></RadioButton>
+                                <RadioButton Name="rbPassengerType"  Style="{StaticResource RadioButtonLeftSideText}" GroupName="AirlineType" IsChecked="True" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1007'}"></RadioButton>
+                                <RadioButton  Style="{StaticResource RadioButtonLeftSideText}" Margin="5 0 0 0" GroupName="AirlineType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1008'}"></RadioButton>
                             </WrapPanel>
                             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1022'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>

@@ -46,8 +46,8 @@
                     <StackPanel>
                         <CheckBox Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}" Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" Name="cbSameRegion"></CheckBox>
                     <WrapPanel>
-                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1018'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True" x:Name="rbRandomOpponents"></RadioButton>
-                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1019'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1018'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True" x:Name="rbRandomOpponents"></RadioButton>
+                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1019'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
                     </WrapPanel>
                     </StackPanel>
                 </g:QuickInfoValue.Value>
@@ -55,8 +55,8 @@
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1023'}">
                 <g:QuickInfoValue.Value>
                     <WrapPanel>
-                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1024'}" Name="rbDayTurns" FlowDirection="RightToLeft" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
-                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1025'}" FlowDirection="RightToLeft" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1024'}" Name="rbDayTurns" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1025'}"  Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
                     </WrapPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>

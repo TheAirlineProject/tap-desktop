@@ -1570,12 +1570,6 @@
     <Resource Include="GraphicsModel\PageModel\PageFinancesModel\darkbg.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ucLibrary\ucLibrary.csproj">
-      <Project>{7369ec47-88e5-423e-af33-66f9c63c536a}</Project>
-      <Name>ucLibrary</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Data\images\configuration.png" />
   </ItemGroup>
   <ItemGroup>
