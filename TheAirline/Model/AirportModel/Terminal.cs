@@ -81,11 +81,12 @@ namespace TheAirline.Model.AirportModel
 
             int terminalIndex = this.Airport.Terminals.AirportTerminals.Where(a=>a.Airline==null).ToList().IndexOf(this);
 
-            int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates);
-
-            
             int terminalGates = this.Airport.Terminals.AirportTerminals.Where(a => a.Airline != null).Sum(t => t.Gates.NumberOfGates);
 
+
+            int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates) - terminalGates;
+                        
+       
             int gates = 0;
 
             int i = 0;

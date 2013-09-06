@@ -58,6 +58,40 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1002'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Cargo">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Passenger">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+            </StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
@@ -90,40 +124,7 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1010'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
-            <StackPanel>
-                <StackPanel.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Cargo">
-                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Style>
-                <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1011'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                        <TextBlock Text="{Binding MaxSeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
-                    </WrapPanel>
-                <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1012'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding MaxAirlinerClasses}" VerticalAlignment="Bottom"></TextBlock>
-                </WrapPanel>
-            </StackPanel>
-            <StackPanel>
-                <StackPanel.Style>
-                    <Style>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding TypeAirliner}" Value="Passenger">
-                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </StackPanel.Style>
-                <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1013'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                    <TextBlock Text="{Binding CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                </WrapPanel>
-             </StackPanel>
+           
         </StackPanel>
     </DataTemplate>
     <!--airport templates-->

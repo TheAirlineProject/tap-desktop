@@ -366,6 +366,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Terminal.purchaseTerminal(airline);
             this.Airline = airline;
 
+            this.IsBuyable = false;
+
             this.FreeGates = 0;
         }
          public event PropertyChangedEventHandler PropertyChanged;
