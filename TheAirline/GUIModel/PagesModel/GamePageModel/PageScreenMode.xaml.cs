@@ -29,6 +29,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void btnFullscreen_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.MainWindow.WindowStyle = WindowStyle.None;
+            PageNavigator.MainWindow.WindowState = WindowState.Maximized;
             PageNavigator.MainWindow.Focus();
 
             PageNavigator.NavigateTo(new PageSelectLanguage());

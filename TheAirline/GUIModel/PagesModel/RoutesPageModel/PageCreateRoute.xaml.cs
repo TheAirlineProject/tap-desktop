@@ -232,6 +232,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 {
                     rClass.FarePrice = PassengerHelpers.GetPassengerPrice(destination1, destination2) * GeneralHelpers.ClassToPriceFactor(rClass.Type);
                 }
+
+                txtDistance.Text = new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2)).ToString();
             }
         }
 
