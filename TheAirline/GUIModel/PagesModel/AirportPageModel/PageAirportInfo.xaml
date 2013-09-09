@@ -99,10 +99,26 @@
                             </WrapPanel>
                              </StackPanel>
                     </Grid>
+                    <StackPanel Margin=" 0 10 0 0">
+                        <StackPanel.Style>
+                            <Style TargetType="StackPanel">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding CurrentWeather}" Value="{x:Null}">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1034'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <WrapPanel>
+                            <Image Width="48" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding CurrentWeather,Converter={StaticResource WeatherImageConverter}}"></Image>
+                        <TextBlock Text="{Binding CurrentWeather.Temperature,Converter={StaticResource TemperatureToTextConverter}}" Margin="5 0 0 0" FontWeight="Bold" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                        </WrapPanel>
+                    </StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1007'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{DynamicResource WeatherItem}" ItemsSource="{Binding Weather}">
                     </ListBox>
-
+                   
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 5 0">

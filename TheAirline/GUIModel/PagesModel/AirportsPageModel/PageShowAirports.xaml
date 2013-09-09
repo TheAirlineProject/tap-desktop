@@ -35,7 +35,7 @@
             </WrapPanel>
         </StackPanel>
         <ListView x:Name="AirportsList" Grid.Row="1" VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAirports, Path=AllAirports}">
-            <ListView.View>
+           <ListView.View>
                 <GridView>
                     <GridViewColumn Header="">
                         <GridViewColumn.CellTemplate>

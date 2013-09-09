@@ -82,10 +82,23 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         //returns a town
         public static Town GetTown(string name)
         {
-            if (Airports.GetAirport(a => a.Profile.Town.Name == name) == null)
-                return null;
+            if (name.Contains(','))
+            {
+                string town = name.Split(',')[0].Trim();
+                string state = name.Split(',')[1].Trim();
 
-            return Airports.GetAirport(a => a.Profile.Town.Name == name).Profile.Town;
+                if (Airports.GetAirport(a => a.Profile.Town.Name == town && a.Profile.Town.State != null && a.Profile.Town.State.ShortName == state) == null)
+                    return null;
+
+                return Airports.GetAirport(a => a.Profile.Town.Name == town && a.Profile.Town.State != null && a.Profile.Town.State.ShortName == state).Profile.Town;
+            }
+            else
+            {
+                if (Airports.GetAirport(a => a.Profile.Town.Name == name) == null)
+                    return null;
+
+                return Airports.GetAirport(a => a.Profile.Town.Name == name).Profile.Town;
+            }
         }
         public static Town GetTown(string name, State state)
         {

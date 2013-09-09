@@ -24,6 +24,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public Airport Airport { get; set; }
         public List<Weather> Weather { get; set; }
+        public HourlyWeather CurrentWeather { get; set; }
         public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
         public ObservableCollection<ContractMVVM> Contracts { get; set; }
         public ObservableCollection<Hub> Hubs { get; set; }
@@ -68,6 +69,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 this.Contracts.Add(new ContractMVVM(contract));
 
             this.Weather = this.Airport.Weather.ToList();
+
+            if (!GameObject.GetInstance().DayRoundEnabled)
+                this.CurrentWeather = this.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour];
+            
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
 
             this.Demands = new List<DemandMVVM>();
@@ -490,16 +495,35 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            Weather weather = (Weather)value;
+            if (value is Weather)
+            {
+                Weather weather = (Weather)value;
 
-            string weatherCondition = "clear";
+                string weatherCondition = "clear";
 
-            if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
-                weatherCondition = weather.Precip.ToString();
-            else
-                weatherCondition = weather.Cover.ToString();
+                if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+                    weatherCondition = weather.Precip.ToString();
+                else
+                    weatherCondition = weather.Cover.ToString();
 
-            return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+                return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+            }
+            if (value is HourlyWeather)
+            {
+                HourlyWeather weather = (HourlyWeather)value;
+
+                string weatherCondition = "clear";
+
+                if (weather.Cover == Weather.CloudCover.Overcast && weather.Precip != Weather.Precipitation.None)
+                    weatherCondition = weather.Precip.ToString();
+                else
+                    weatherCondition = weather.Cover.ToString();
+
+                return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
+ 
+            }
+
+            return "";
 
 
         }
@@ -509,6 +533,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             throw new NotImplementedException();
         }
     }
+   
     //the converter for the yearly payment of a contract
     public class ContractYearlyPaymentConverter : IMultiValueConverter
     {
