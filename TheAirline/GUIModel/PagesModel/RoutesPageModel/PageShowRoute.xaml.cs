@@ -84,6 +84,18 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                 }
             }
+            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+
+            if (tab_main != null)
+            {
+               
+
+                var airlinerItem = tab_main.Items.Cast<TabItem>()
+       .Where(item => item.Tag.ToString() == "Airliner")
+       .FirstOrDefault();
+
+                airlinerItem.Visibility = System.Windows.Visibility.Collapsed;
+            }
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)

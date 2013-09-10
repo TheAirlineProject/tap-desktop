@@ -45,6 +45,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
        .FirstOrDefault();
 
                 matchingItem.Visibility = System.Windows.Visibility.Collapsed;
+
+                var airlinerItem = tab_main.Items.Cast<TabItem>()
+  .Where(item => item.Tag.ToString() == "Airliner")
+  .FirstOrDefault();
+
+                airlinerItem.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 

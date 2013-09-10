@@ -79,6 +79,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
        .FirstOrDefault();
 
                 matchingItem.Visibility = System.Windows.Visibility.Collapsed;
+
+                
+                    var airlinerItem = tab_main.Items.Cast<TabItem>()
+           .Where(item => item.Tag.ToString() == "Airliner")
+           .FirstOrDefault();
+
+                    airlinerItem.Visibility = System.Windows.Visibility.Collapsed;
             }
 
             //sets the selected items for the facilities
@@ -97,13 +104,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                 if (tab_main != null)
                 {
-                    var matchingItem =
-       tab_main.Items.Cast<TabItem>()
-         .Where(item => item.Tag.ToString() == "Routes")
-         .FirstOrDefault();
-
-                    tab_main.SelectedItem = matchingItem;
-
                     var matchingCreateItem =
          tab_main.Items.Cast<TabItem>()
            .Where(item => item.Tag.ToString() == "Create")
@@ -127,6 +127,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
            .FirstOrDefault();
 
                     tab_main.SelectedItem = matchingItem;
+
+
                 }
             }
         }

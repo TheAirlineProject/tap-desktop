@@ -47,6 +47,7 @@
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1005'}" Tag="Airliners">
                 </TabItem>
                 <TabItem Header="" Tag="Route" Visibility="Collapsed"></TabItem>
+                <TabItem Header="" Tag="Airliner" Visibility="Collapsed"></TabItem>
             </TabControl>
         </DataTemplate>
     </Page.Resources>

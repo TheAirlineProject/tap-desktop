@@ -750,6 +750,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageRoutePlanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\RoutesPageModel\PageRoutes.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1272,6 +1276,9 @@
     <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageHumanRoutes.xaml.cs">
       <DependentUpon>PageHumanRoutes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageRoutePlanner.xaml.cs">
+      <DependentUpon>PageRoutePlanner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageRoutes.xaml.cs">
       <DependentUpon>PageRoutes.xaml</DependentUpon>
     </Compile>
@@ -1279,6 +1286,7 @@
       <DependentUpon>PageShowRoute.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\RoutesPageModel\RouteMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\RoutePlannerMVVM.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>

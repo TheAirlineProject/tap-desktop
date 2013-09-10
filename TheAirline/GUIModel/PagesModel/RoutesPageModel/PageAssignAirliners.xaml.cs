@@ -36,7 +36,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Airliners = GameObject.GetInstance().HumanAirline.Fleet;
 
             this.Loaded += PageAssignAirliners_Loaded;
-            
+
             InitializeComponent();
         }
 
@@ -52,6 +52,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
        .FirstOrDefault();
 
                 matchingItem.Visibility = System.Windows.Visibility.Collapsed;
+
+                var airlinerItem = tab_main.Items.Cast<TabItem>()
+       .Where(item => item.Tag.ToString() == "Airliner")
+       .FirstOrDefault();
+
+                airlinerItem.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
 
@@ -67,14 +73,36 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void hlAirliner_Click(object sender, RoutedEventArgs e)
         {
+
             FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
+
+            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+            Frame frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
 
             if (airliner.NumberOfPilots == airliner.Airliner.Type.CockpitCrew)
             {
 
-                PopUpAirlinerAutoRoutes.ShowPopUp(airliner);
-                ICollectionView view = CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
-                view.Refresh();
+                if (tab_main != null)
+                {
+                    var matchingItem =
+         tab_main.Items.Cast<TabItem>()
+           .Where(item => item.Tag.ToString() == "Airliner")
+           .FirstOrDefault();
+
+                    //matchingItem.IsSelected = true;
+                    matchingItem.Header = airliner.Name;
+                    matchingItem.Visibility = System.Windows.Visibility.Visible;
+
+                    tab_main.SelectedItem = matchingItem;
+                }
+
+             
+                if (frmContent != null)
+                {
+                    frmContent.Navigate(new PageRoutePlanner(airliner) { Tag = this.Tag });
+
+                }
+             
             }
             else
             {
@@ -93,12 +121,30 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                             airliner.addPilot(unassignedPilots[i]);
                         }
 
-                        // PopUpAirlinerRoutes.ShowPopUp(airliner, true);
-                        PopUpAirlinerAutoRoutes.ShowPopUp(airliner);
+                        
+                        if (tab_main != null)
+                        {
+                            var matchingItem =
+                 tab_main.Items.Cast<TabItem>()
+                   .Where(item => item.Tag.ToString() == "Airliner")
+                   .FirstOrDefault();
 
-                        ICollectionView view = CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
-                        view.Refresh();
+                            //matchingItem.IsSelected = true;
+                            matchingItem.Header = airliner.Name;
+                            matchingItem.Visibility = System.Windows.Visibility.Visible;
+
+                            tab_main.SelectedItem = matchingItem;
+                        }
+
+                     
+                        if (frmContent != null)
+                        {
+                            frmContent.Navigate(new PageRoutePlanner(airliner) { Tag = this.Tag });
+
+                        }
                     }
+
+
                 }
                 else
                 {
@@ -124,10 +170,26 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                             airliner.addPilot(pilot);
                         }
 
-                        PopUpAirlinerAutoRoutes.ShowPopUp(airliner);
+                        if (tab_main != null)
+                        {
+                            var matchingItem =
+                 tab_main.Items.Cast<TabItem>()
+                   .Where(item => item.Tag.ToString() == "Airliner")
+                   .FirstOrDefault();
 
-                        ICollectionView view = CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
-                        view.Refresh();
+                            //matchingItem.IsSelected = true;
+                            matchingItem.Header = airliner.Name;
+                            matchingItem.Visibility = System.Windows.Visibility.Visible;
+
+                            tab_main.SelectedItem = matchingItem;
+                        }
+
+                   
+                        if (frmContent != null)
+                        {
+                            frmContent.Navigate(new PageRoutePlanner(airliner) { Tag = this.Tag });
+
+                        }
 
 
                     }

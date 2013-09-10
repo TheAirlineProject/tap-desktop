@@ -36,9 +36,20 @@
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
-            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1000'}"  Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Restrictions.Count,ElementName=pageAssignAirliners}" Value="0">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1000'}"  Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{DynamicResource RestrictionItem}" ItemsSource="{Binding Path=Restrictions,ElementName=pageAssignAirliners}"></ListBox>
-            <ListView Name="lvFleet"  util:GridViewSort.AutoSort="True" Margin="0 10 0 0" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Path=Airliners,ElementName=pageAssignAirliners}">
+            </StackPanel>
+                <ListView Name="lvFleet"  util:GridViewSort.AutoSort="True" Margin="0 10 0 0" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Path=Airliners,ElementName=pageAssignAirliners}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn  util:GridViewSort.PropertyName="Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAssignAirliners 1001'}" Width="100">
