@@ -490,6 +490,28 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             throw new NotImplementedException();
         }
     }
+    public class WindSpeedToUnitConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            Weather.eWindSpeed windspeed = (Weather.eWindSpeed)value;
+
+            double v = (double)windspeed;
+
+            if (AppSettings.GetInstance().getLanguage().Unit == Language.UnitSystem.Imperial)
+                v =  MathHelpers.KMToMiles(v);
+
+            return string.Format("{0:0} {1}", v, new StringToLanguageConverter().Convert("km/t"));
+        }
+        public object Convert(object value)
+        {
+            return this.Convert(value, null, null, null);
+        }
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for the weather
     public class WeatherImageConverter : IValueConverter
     {
@@ -519,6 +541,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 else
                     weatherCondition = weather.Cover.ToString();
 
+                if (GameObject.GetInstance().GameTime.Hour < Weather.Sunrise || GameObject.GetInstance().GameTime.Hour > Weather.Sunset)
+                    weatherCondition += "-night";
+                
                 return AppSettings.getDataPath() + "\\graphics\\weather\\" + weatherCondition + ".png";
  
             }

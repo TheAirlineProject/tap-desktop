@@ -19,6 +19,7 @@ using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
@@ -33,7 +34,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     {
         public List<AirportMVVM> AllAirports { get; set; }
         public List<Airline> AllAirlines { get; set; }
-
+        public List<AirlinerType> HumanAircrafts { get; set; }
         public PageShowAirports(List<Airport> airports)
         {
             object o = this.Tag;
@@ -60,6 +61,16 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             foreach (Airport airport in airports.OrderBy(a=>a.Profile.Name))
                 this.AllAirports.Add(new AirportMVVM(airport));
+
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now,DateTime.Now), 0);
+
+            this.HumanAircrafts = new List<AirlinerType>();
+
+            this.HumanAircrafts.Add(dummyAircraft);
+
+
+            foreach (AirlinerType type in GameObject.GetInstance().HumanAirline.Fleet.Select(f => f.Airliner.Type).Distinct())
+                this.HumanAircrafts.Add(type);
 
             InitializeComponent();
 
@@ -152,6 +163,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
                 {
                     AirportMVVM a = o as AirportMVVM;
                     return a != null && a.Airport.AirlineContracts.Exists(c => c.Airline == airline) || airline.Profile.IATACode == "99";
+                };
+            }
+        }
+
+        private void cbAircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AirlinerType type = (AirlinerType)((ComboBox)sender).SelectedItem;
+
+            if (this.AirportsList != null)
+            {
+                var source = this.AirportsList.Items as ICollectionView;
+                source.Filter = o =>
+                {
+                    AirportMVVM a = o as AirportMVVM;
+                    return a != null && a.Airport.getMaxRunwayLength()>=type.MinRunwaylength || type.Manufacturer.Name == "Dummy" ;
                 };
             }
         }

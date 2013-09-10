@@ -31,6 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     public partial class PageCreateRoute : Page
     {
         public List<Airport> Airports { get; set; }
+        public List<AirlinerType> HumanAircrafts { get; set; }
         public List<MVVMRouteClass> Classes { get; set; }
         public PageCreateRoute()
         {
@@ -47,8 +48,19 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
           
             this.Airports = GameObject.GetInstance().HumanAirline.Airports;
-            this.Loaded += PageCreateRoute_Loaded;
 
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
+
+            this.HumanAircrafts = new List<AirlinerType>();
+
+            this.HumanAircrafts.Add(dummyAircraft);
+
+
+            foreach (AirlinerType type in GameObject.GetInstance().HumanAirline.Fleet.Select(f => f.Airliner.Type).Distinct())
+                this.HumanAircrafts.Add(type);
+                        
+            this.Loaded += PageCreateRoute_Loaded;
+            
             InitializeComponent();
 
 
@@ -234,6 +246,21 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 }
 
                 txtDistance.Text = new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2)).ToString();
+            }
+        }
+
+        private void cbAircraft_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            AirlinerType type = (AirlinerType)((ComboBox)sender).SelectedItem;
+
+            if (cbDestination2.ItemsSource != null && cbDestination1.SelectedItem != null)
+            {
+                var source = cbDestination2.Items as ICollectionView;
+                source.Filter = o =>
+                {
+                    Airport a = o as Airport;
+                    return a != null && a.getMaxRunwayLength() >= type.MinRunwaylength && MathHelpers.GetDistance((Airport)cbDestination1.SelectedItem,a)<= type.Range || type.Manufacturer.Name == "Dummy"; 
+                };
             }
         }
 

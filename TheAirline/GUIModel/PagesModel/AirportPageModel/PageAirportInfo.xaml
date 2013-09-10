@@ -13,6 +13,7 @@
         <local:WeatherImageConverter x:Key="WeatherImageConverter"></local:WeatherImageConverter>
         <local:ContractYearlyPaymentConverter x:Key="ContractYearlyPaymentConverter"></local:ContractYearlyPaymentConverter>
         <local:TemperatureToTextConverter x:Key="TemperatureToTextConverter"></local:TemperatureToTextConverter>
+        <local:WindSpeedToUnitConverter x:Key="WindSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
         <DataTemplate x:Key="RunwayItem">
             <WrapPanel>
                 
@@ -21,7 +22,7 @@
        
         <DataTemplate x:Key="WeatherItem">
             <WrapPanel>
-                <TextBlock Text="{Binding Date.DayOfWeek}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                <TextBlock Text="{Binding Date,StringFormat=D,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                 <Image Source="{Binding Converter={StaticResource WeatherImageConverter}}" RenderOptions.BitmapScalingMode="HighQuality" Height="16" VerticalAlignment="Bottom"></Image>
                 <TextBlock Text="{Binding TemperatureHigh,Converter={StaticResource TemperatureToTextConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" Width="50" Margin="20 0 0 0" TextAlignment="Right"></TextBlock>
                 <TextBlock Text="{Binding TemperatureLow,Converter={StaticResource TemperatureToTextConverter}}" FontWeight="Light" VerticalAlignment="Bottom" Width="50" TextAlignment="Right"></TextBlock>
@@ -113,6 +114,16 @@
                         <WrapPanel>
                             <Image Width="48" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding CurrentWeather,Converter={StaticResource WeatherImageConverter}}"></Image>
                         <TextBlock Text="{Binding CurrentWeather.Temperature,Converter={StaticResource TemperatureToTextConverter}}" Margin="5 0 0 0" FontWeight="Bold" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                            <StackPanel Margin="25 0 0 0" VerticalAlignment="Center">
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1035'}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding CurrentWeather.WindSpeed,Converter={StaticResource WindSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                </WrapPanel>
+                                <WrapPanel>
+                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1036'}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding CurrentWeather.Direction,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                </WrapPanel>
+                            </StackPanel>
                         </WrapPanel>
                     </StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1007'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>

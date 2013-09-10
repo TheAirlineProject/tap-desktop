@@ -19,10 +19,10 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public enum WindDirection { E, NE, N, NW, W, SW,S, SE }
         
         public WindDirection Direction { get; set; }
-        public enum Precipitation { None,Fog, Light_rain, Heavy_rain, Light_snow,Heavy_snow, Hail,Sleet,Freezing_rain}
+        public enum Precipitation { None, Fog, Light_rain, Heavy_rain, Light_snow, Heavy_snow, Mixed_rain_and_snow, Sleet, Freezing_rain }
         
         public Precipitation Precip { get; set; }
-        public enum CloudCover {Clear, Broken, Overcast}
+        public enum CloudCover {Clear, Partly_Cloudy, Overcast}
         
         public CloudCover Cover { get; set; }
         

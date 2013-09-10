@@ -111,6 +111,7 @@ namespace TheAirline.Model.GeneralModel
                 string s = e.ToString();
             }
 
+          
         /*
             var townGroups =
                 from a in Airports.GetAllAirports() where a.Profile.Town.Name.Trim().Length == 0

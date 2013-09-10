@@ -48,7 +48,20 @@
                 </h:QuickInfoValue>
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1003'}">
                     <h:QuickInfoValue.Value>
+                        <WrapPanel>
                         <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" SelectionChanged="cbDestination_SelectionChanged" Name="cbDestination2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                            <ComboBox Margin="10 0 0 0" Width="200" Name="cbAircraft" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbAircraft_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding Path=HumanAircrafts,ElementName=pageCreateRoute}">
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxTransparentStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=cbDestination1, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                        </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">

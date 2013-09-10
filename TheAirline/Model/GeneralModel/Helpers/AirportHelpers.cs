@@ -362,7 +362,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
             else
-                cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Broken;
+                cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Partly_Cloudy;
 
             HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
 
@@ -441,7 +441,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (temperature <= 5 && temperature >= -3)
             {
-                Weather.Precipitation[] values = { Weather.Precipitation.Freezing_rain, Weather.Precipitation.Hail, Weather.Precipitation.Sleet, Weather.Precipitation.Light_snow };
+                Weather.Precipitation[] values = { Weather.Precipitation.Freezing_rain, Weather.Precipitation.Mixed_rain_and_snow, Weather.Precipitation.Sleet, Weather.Precipitation.Light_snow };
                 return values[rnd.Next(values.Length)];
 
             }

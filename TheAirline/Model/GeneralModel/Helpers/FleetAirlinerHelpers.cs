@@ -103,7 +103,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 case WeatherModel.Weather.Precipitation.Freezing_rain:
                     weatherFactor = 6;
                     break;
-                case WeatherModel.Weather.Precipitation.Hail:
+                case WeatherModel.Weather.Precipitation.Mixed_rain_and_snow:
                     weatherFactor = 6;
                     break;
                 case WeatherModel.Weather.Precipitation.Light_rain:

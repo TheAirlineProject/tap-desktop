@@ -33,6 +33,10 @@
                 <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <ComboBox  Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbAirlines" IsSynchronizedWithCurrentItem="True" Width="250" SelectionChanged="cbAirline_SelectionChanged" ItemTemplate="{StaticResource AirlineItem}" ItemsSource="{Binding AllAirlines,ElementName=pageShowAirports}" VerticalAlignment="Bottom"></ComboBox>
             </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1009'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" Width="250" SelectionChanged="cbAircraft_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Name" VerticalAlignment="Bottom" ItemsSource="{Binding HumanAircrafts,ElementName=pageShowAirports}"></ComboBox>
+            </WrapPanel>
         </StackPanel>
         <ListView x:Name="AirportsList" Grid.Row="1" VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAirports, Path=AllAirports}">
            <ListView.View>
