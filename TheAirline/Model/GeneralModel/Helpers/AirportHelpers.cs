@@ -342,9 +342,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double maxTemp = Math.Min(average.TemperatureMax, previousTemperature + 5);
 
                 temperatureHigh = MathHelpers.GetRandomDoubleNumber(Math.Max(maxTemp - 5, temperatureLow), maxTemp + 5);//rnd.NextDouble() * ((maxTemp + 5) - Math.Max(maxTemp - 5, temperatureLow + 2)) + Math.Max(maxTemp - 5, temperatureLow + 2);
-
-
-
             }
 
             double tempDiff = temperatureHigh - temperatureLow;
@@ -433,23 +430,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the precipitation for a temperature
         private static Weather.Precipitation GetPrecipitation(double temperature)
         {
-            if (temperature > 5)
+            if (temperature > 10)
+            {
+                Weather.Precipitation[] values = { Weather.Precipitation.Thunderstorms, Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain };
+                return values[rnd.Next(values.Length)];
+            }
+            if (temperature <= 10 && temperature >= 5)
             {
                 Weather.Precipitation[] values = { Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain };
                 return values[rnd.Next(values.Length)];
-
             }
-            if (temperature <= 5 && temperature >= -3)
+            if (temperature < 5 && temperature >= -3)
             {
                 Weather.Precipitation[] values = { Weather.Precipitation.Freezing_rain, Weather.Precipitation.Mixed_rain_and_snow, Weather.Precipitation.Sleet, Weather.Precipitation.Light_snow };
                 return values[rnd.Next(values.Length)];
-
             }
             if (temperature < -3)
             {
                 Weather.Precipitation[] values = { Weather.Precipitation.Heavy_snow, Weather.Precipitation.Light_snow };
                 return values[rnd.Next(values.Length)];
-
             }
             return Weather.Precipitation.Light_rain;
         }

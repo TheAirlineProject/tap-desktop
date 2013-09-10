@@ -91,6 +91,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             switch (departureAirport.Weather[0].Temperatures[GameObject.GetInstance().GameTime.Hour].Precip)
             {
+                case WeatherModel.Weather.Precipitation.Isolated_snow:
+                    weatherFactor = 2;
+                    break;
                 case WeatherModel.Weather.Precipitation.Light_snow:
                     weatherFactor = 4;
                     break;
@@ -100,20 +103,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 case WeatherModel.Weather.Precipitation.Fog:
                     weatherFactor = 4;
                     break;
+                case WeatherModel.Weather.Precipitation.Sleet:
+                    weatherFactor = 4;
+                    break;
                 case WeatherModel.Weather.Precipitation.Freezing_rain:
                     weatherFactor = 6;
                     break;
                 case WeatherModel.Weather.Precipitation.Mixed_rain_and_snow:
                     weatherFactor = 6;
                     break;
-                case WeatherModel.Weather.Precipitation.Light_rain:
+                case WeatherModel.Weather.Precipitation.Isolated_rain:
                     weatherFactor = 1;
+                    break;
+                case WeatherModel.Weather.Precipitation.Light_rain:
+                    weatherFactor = 2;
                     break;
                 case WeatherModel.Weather.Precipitation.Heavy_rain:
                     weatherFactor = 4;
                     break;
-                case WeatherModel.Weather.Precipitation.Sleet:
-                    weatherFactor = 4;
+                case WeatherModel.Weather.Precipitation.Isolated_thunderstorms:
+                    weatherFactor = 5;
+                    break;
+                case WeatherModel.Weather.Precipitation.Thunderstorms:
+                    weatherFactor = 8;
                     break;
             }
 
