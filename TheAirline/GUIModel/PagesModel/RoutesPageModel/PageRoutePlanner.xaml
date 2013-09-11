@@ -11,20 +11,41 @@
    
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
-            <ListView  x:Name="AirportsList" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0"  ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
+            <ListView  x:Name="AirportsList" Background="Transparent" BorderThickness="0"  ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
                 <ListView.View>
                     <GridView>
+                        <GridViewColumn Header="">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality" Width="20" VerticalAlignment="Bottom"></Image>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Route" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Bottom">
                                         <TextBlock.Text>
                                             <MultiBinding StringFormat="{}{0}-{1}">
-                                                <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
-                                                <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
+                                                <Binding Path="Route.Destination1" Converter="{StaticResource AirportCodeConverter}" />
+                                                <Binding Path="Route.Destination2" Converter="{StaticResource AirportCodeConverter}" />
                                             </MultiBinding>
                                         </TextBlock.Text>
                                     </TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Stopovers" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Stopovers}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Stopover,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

@@ -296,8 +296,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureHigh = hourlyTemperature.Max(t => t.Temperature);
             cover = (from c in hourlyTemperature group c by c.Cover into g select new { Cover = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Cover;
             precip = (from c in hourlyTemperature group c by c.Precip into g select new { Precip = g.Key, Qty = g.Count() }).OrderByDescending(g => g.Qty).First().Precip;
-
-
+            
             Weather weather = new Weather(date, windSpeed, windDirection, cover, precip, hourlyTemperature, temperatureLow, temperatureHigh);
 
 
@@ -348,7 +347,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             temperatureSunrise = temperatureLow + MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
             temperatureSunset = temperatureHigh - MathHelpers.GetRandomDoubleNumber(-2, Math.Min(tempDiff, 2));
             temperatureDayend = temperatureLow + rnd.Next(-2, 2);
-
+            
             temperature = (temperatureLow + temperatureHigh) / 2;
 
             Boolean isOvercast = rnd.Next(100) < average.Precipitation;
@@ -359,8 +358,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
             else
-                cover = rnd.Next(2) == 1 ? Weather.CloudCover.Clear : Weather.CloudCover.Partly_Cloudy;
-
+            {
+                Weather.CloudCover[] notOvercastCovers = new Weather.CloudCover[] { Weather.CloudCover.Clear, Weather.CloudCover.Mostly_Cloudy, Weather.CloudCover.Partly_Cloudy };
+                cover = notOvercastCovers[rnd.Next(notOvercastCovers.Length)];
+            }
+       
             HourlyWeather[] hourlyTemperature = new HourlyWeather[24];
 
             if (previousWeather == null)
@@ -432,22 +434,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (temperature > 10)
             {
-                Weather.Precipitation[] values = { Weather.Precipitation.Thunderstorms, Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain };
+                Weather.Precipitation[] values = { Weather.Precipitation.Thunderstorms, Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain,Weather.Precipitation.Isolated_thunderstorms };
                 return values[rnd.Next(values.Length)];
             }
             if (temperature <= 10 && temperature >= 5)
             {
-                Weather.Precipitation[] values = { Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain };
+                Weather.Precipitation[] values = { Weather.Precipitation.Heavy_rain, Weather.Precipitation.Light_rain,Weather.Precipitation.Isolated_rain,Weather.Precipitation.Isolated_thunderstorms };
                 return values[rnd.Next(values.Length)];
             }
             if (temperature < 5 && temperature >= -3)
             {
-                Weather.Precipitation[] values = { Weather.Precipitation.Freezing_rain, Weather.Precipitation.Mixed_rain_and_snow, Weather.Precipitation.Sleet, Weather.Precipitation.Light_snow };
+                Weather.Precipitation[] values = { Weather.Precipitation.Freezing_rain, Weather.Precipitation.Mixed_rain_and_snow, Weather.Precipitation.Sleet, Weather.Precipitation.Light_snow,Weather.Precipitation.Isolated_snow };
                 return values[rnd.Next(values.Length)];
             }
             if (temperature < -3)
             {
-                Weather.Precipitation[] values = { Weather.Precipitation.Heavy_snow, Weather.Precipitation.Light_snow };
+                Weather.Precipitation[] values = { Weather.Precipitation.Heavy_snow, Weather.Precipitation.Light_snow,Weather.Precipitation.Isolated_snow};
                 return values[rnd.Next(values.Length)];
             }
             return Weather.Precipitation.Light_rain;
