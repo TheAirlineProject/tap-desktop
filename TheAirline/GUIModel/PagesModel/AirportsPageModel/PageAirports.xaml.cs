@@ -90,11 +90,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             ComboBox cbRegion = UIHelpers.FindChild<ComboBox>(this, "cbRegion");
             TextBox txtText = UIHelpers.FindChild<TextBox>(this, "txtText");
 
-            string text = txtText.Text.Trim();
+            string text = txtText.Text.Trim().ToUpper();
             Country country = (Country)cbCountry.SelectedItem;
             Region region = (Region)cbRegion.SelectedItem;
-
-            var airports = Airports.GetAllAirports().Where(a => (a.Profile.IATACode.StartsWith(text) || a.Profile.ICAOCode.StartsWith(text) || a.Profile.Name.StartsWith(text)) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
+          
+            var airports = Airports.GetAllAirports().Where(a => (a.Profile.IATACode.ToUpper().StartsWith(text) || a.Profile.ICAOCode.ToUpper().StartsWith(text) || a.Profile.Name.ToUpper().StartsWith(text) || a.Profile.Town.Name.ToUpper().StartsWith(text)) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
 
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 

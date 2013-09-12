@@ -8,7 +8,16 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageRoutePlanner">
-   
+    <Page.Resources>
+        <DataTemplate x:Key="DayBarItem">
+            <Border Style="{StaticResource RoundedBorderStyle}" BorderBrush="Black" BorderThickness="2">
+            <WrapPanel>
+                <TextBlock Text="{Binding}" FontWeight="Bold" Width="100" VerticalAlignment="Bottom"></TextBlock>
+                    <Border Background="White" Width="960"></Border>
+                </WrapPanel>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
             <ListView  x:Name="AirportsList" Background="Transparent" BorderThickness="0"  ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
@@ -38,14 +47,13 @@
                         <GridViewColumn Header="Stopovers" Width="100">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Stopovers}">
+                                    <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Route.Stopovers}">
                                         <ListBox.ItemTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding Stopover,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                             </DataTemplate>
                                         </ListBox.ItemTemplate>
                                     </ListBox>
-
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
