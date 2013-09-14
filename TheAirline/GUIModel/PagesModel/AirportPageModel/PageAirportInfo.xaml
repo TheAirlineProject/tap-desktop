@@ -95,7 +95,11 @@
                                 <TextBlock Text="{Binding Airport.Profile.Cargo,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1037'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
                                 <TextBlock Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1038'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
                                 <TextBlock Text="{Binding Airport.Profile.Season,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                              </StackPanel>
@@ -113,15 +117,37 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1034'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                         <WrapPanel>
                             <Image Width="48" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Source="{Binding CurrentWeather,Converter={StaticResource WeatherImageConverter}}"></Image>
-                        <TextBlock Text="{Binding CurrentWeather.Temperature,Converter={StaticResource TemperatureToTextConverter}}" Margin="5 0 0 0" FontWeight="Bold" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
+                        <TextBlock Text="{Binding CurrentWeather.Temperature,Converter={StaticResource TemperatureToTextConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" FontSize="24"></TextBlock>
                             <StackPanel Margin="25 0 0 0" VerticalAlignment="Center">
                                 <WrapPanel>
-                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1035'}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding CurrentWeather.WindSpeed,Converter={StaticResource WindSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1035'}" VerticalAlignment="Bottom" Width="50" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding CurrentWeather.Cover,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                            <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CurrentWeather.HasPrecip}" Value="True">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding CurrentWeather.Precip,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom">
+                                        <TextBlock.Style>
+                                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding CurrentWeather.HasPrecip}" Value="False">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
                                 </WrapPanel>
                                 <WrapPanel>
-                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1036'}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
-                                    <TextBlock Text="{Binding CurrentWeather.Direction,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1036'}" VerticalAlignment="Bottom" Width="50" FontWeight="Bold"></TextBlock>
+                                    <TextBlock Text="{Binding CurrentWeather.WindSpeed,Converter={StaticResource WindSpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                    <TextBlock Text="{Binding CurrentWeather.Direction,Converter={StaticResource TextUnderscoreConverter}}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
                                 </WrapPanel>
                             </StackPanel>
                         </WrapPanel>
@@ -369,7 +395,7 @@
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="2" Margin="5 0 0 0">
-                <StackPanel>
+                  <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1029'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView  x:Name="lvDemand" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Demands}">
                         <ListView.GroupStyle>

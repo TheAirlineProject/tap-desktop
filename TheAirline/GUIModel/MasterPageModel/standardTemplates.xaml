@@ -197,6 +197,20 @@
 
         </DockPanel>
     </DataTemplate>
+    <DataTemplate x:Key="AirportCodeItem">
+        <DockPanel>
+            <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
+                <ContentControl.ContentTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </DockPanel>
+                    </DataTemplate>
+                </ContentControl.ContentTemplate>
+            </ContentControl>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0" Text="{Binding Converter={StaticResource AirportCodeConverter}}"></TextBlock>
+        </DockPanel>
+    </DataTemplate>
     <DataTemplate x:Key="AirportShortCountryLink">
         <DockPanel>
             <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">

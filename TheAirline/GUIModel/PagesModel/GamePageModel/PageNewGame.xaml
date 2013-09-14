@@ -43,6 +43,8 @@
             <TabControl Background="Transparent" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2000'}" Tag="New">
                 </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2003'}" Tag="Scenario">
+                </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2002'}" Tag="Difficulty">
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2001'}" Tag="Airline">

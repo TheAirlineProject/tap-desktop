@@ -52,6 +52,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             if (selection == "Difficulty" && frmContent != null)
                 frmContent.Navigate(new PageCreateDifficulty() { Tag = this });
+
+            if (selection == "Scenario" && frmContent != null)
+                frmContent.Navigate(new PageShowScenario() { Tag = this });
         }
     }
 }

@@ -20,6 +20,12 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         public Weather.WindDirection Direction { get; set; }
         
         public Weather.eWindSpeed WindSpeed { get; set; }
+
+        public Boolean HasPrecip
+        {
+            private set { ;}
+            get { return this.Cover == Weather.CloudCover.Overcast && this.Precip != Weather.Precipitation.None; }
+        }
         public HourlyWeather(double temperature, Weather.CloudCover cover, Weather.Precipitation precip, Weather.eWindSpeed windspeed, Weather.WindDirection direction)
         {
             this.Temperature = temperature;

@@ -24,12 +24,13 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
     public partial class PageShowScenario : Page
     {
         public Scenario Scenario  { get; set; }
-        public PageShowScenario(Scenario scenario)
+        public List<Scenario> AllScenarios { get; set; }
+        public PageShowScenario()
         {
-            this.Scenario = scenario;
-            this.DataContext = this.Scenario;
-
+            this.AllScenarios = Scenarios.GetScenarios();
+     
             InitializeComponent();
+
         }
 
         private void btnBack_Click(object sender, RoutedEventArgs e)
@@ -46,6 +47,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             ScenarioHelpers.SetupScenario(this.Scenario);
         
+        }
+
+        private void cbScenario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            this.Scenario = (Scenario)((ComboBox)sender).SelectedItem;
+            this.DataContext = this.Scenario;
         }
     }
 }

@@ -674,19 +674,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUIModel\PagesModel\GamePageModel\PageScreenMode.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageSettings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1217,17 +1213,14 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml.cs">
       <DependentUpon>PageNews.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageScenario.xaml.cs">
-      <DependentUpon>PageScenario.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GUIModel\PagesModel\GamePageModel\PageScreenMode.xaml.cs">
-      <DependentUpon>PageScreenMode.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml.cs">
       <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml.cs">
       <DependentUpon>PageSelectOpponents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSettings.xaml.cs">
+      <DependentUpon>PageSettings.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml.cs">
       <DependentUpon>PageShowScenario.xaml</DependentUpon>

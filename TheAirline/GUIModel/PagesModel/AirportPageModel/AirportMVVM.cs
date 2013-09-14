@@ -78,7 +78,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Demands = new List<DemandMVVM>();
 
             foreach (Airport destination in this.Airport.getDestinationDemands())
-                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination), destination.Profile.Country == this.Airport.Profile.Country ? DemandMVVM.DestinationType.Domestic : DemandMVVM.DestinationType.International));
+                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination), new CountryCurrentCountryConverter().Convert(destination.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country) ? DemandMVVM.DestinationType.Domestic : DemandMVVM.DestinationType.International));
 
             this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null).Select(f=>f.Facility).ToList();
 

@@ -28,6 +28,8 @@ namespace TheAirline.Model.GeneralModel
         public Boolean CurrencyShorten { get; set; }
         public enum Difficulty { Easy, Normal, Hard }
 
+        public enum ScreenMode {Fullscreen, Windowed}
+        public ScreenMode Mode { get; set; }
         private Settings()
         {
             this.AirportCodeDisplay = AirportCode.IATA;
@@ -36,6 +38,7 @@ namespace TheAirline.Model.GeneralModel
             this.MailsOnBadWeather = true;
             this.MinutesPerTurn = 60;
             this.CurrencyShorten = true;
+            this.Mode = ScreenMode.Windowed;
         }
         //returns the settings instance
         public static Settings GetInstance()

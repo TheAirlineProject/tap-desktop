@@ -19,8 +19,14 @@
         </DataTemplate>
     </Page.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
-        <StackPanel>
-            <ListView  x:Name="AirportsList" Background="Transparent" BorderThickness="0"  ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="0.25*"></RowDefinition>
+                <RowDefinition Height="0.25*"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+            <ListView  Background="Transparent" BorderThickness="0" ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="">
@@ -74,6 +80,31 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-        </StackPanel>
+            </StackPanel>
+            <Expander Grid.Row="1" Margin="0 5 0 0" Header="Scheduling" Style="{StaticResource ExpanderStyle}">
+                <StackPanel>
+                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                        <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
+                        <ComboBox  Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbRoutes" IsSynchronizedWithCurrentItem="True" Width="150" ItemsSource="{Binding AllRoutes,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Route.Destination1}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCodeItem}"></ContentControl>
+                                        <TextBlock Text=" - " VerticalAlignment="Bottom"></TextBlock>
+                                        <ContentControl Content="{Binding Route.Destination2}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCodeItem}"></ContentControl>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="Flight Number" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
+                    <TextBlock Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBox Text="0000" Style="{StaticResource NumericTextBox}" Margin="5 0 0 0" MaxLength="4" VerticalAlignment="Bottom" Width="50" Name="txtFlightNumber"></TextBox>
+                </WrapPanel>
+                </StackPanel>
+            </Expander>
+        </Grid>
+            
     </ScrollViewer>
 </Page>

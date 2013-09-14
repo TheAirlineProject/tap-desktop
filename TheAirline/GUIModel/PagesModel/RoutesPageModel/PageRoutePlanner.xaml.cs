@@ -35,7 +35,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (Route route in Airlines.GetAllAirlines().SelectMany(a => a.Routes))
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route,this.Airliner.Airliner.Type));
 
-           this.Loaded += PageRoutePlanner_Loaded;
+            this.Loaded += PageRoutePlanner_Loaded;
             InitializeComponent();
         }
 

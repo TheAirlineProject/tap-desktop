@@ -45,7 +45,7 @@ namespace TheAirline
                 this.Width = SystemParameters.PrimaryScreenWidth;
                 this.Height = SystemParameters.PrimaryScreenHeight;
                 
-                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageScreenMode());
+                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
 
             }
             catch (Exception e)

@@ -44,7 +44,7 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
-                <TextBlock Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture},StringFormat={}{0:d}}" HorizontalAlignment="Center" FontWeight="Bold">
+                <TextBlock Text="{Binding GameObject.GameTime,Source={StaticResource gameObject},ConverterCulture={x:Static gl:CultureInfo.CurrentCulture},StringFormat={}{0:D}}" HorizontalAlignment="Center" FontWeight="Bold">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                             <Style.Triggers>

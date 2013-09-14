@@ -35,11 +35,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             PageNavigator.NavigateTo(new PageNewGame());
         }
 
-        private void btnPlayScenario_Click(object sender, RoutedEventArgs e)
-        {
-            //PageNavigator.NavigateTo(new PagePlayScenario());
-            PageNavigator.NavigateTo(new PageScenario());
-        }
+       
         private void btnExitGame_Click(object sender, RoutedEventArgs e)
         {
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1003"), Translator.GetInstance().GetString("MessageBox", "1003", "message"), WPFMessageBoxButtons.YesNo);
@@ -50,6 +46,10 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
             
+        }
+        private void btnSettings_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageSettings());
         }
     }
 }
