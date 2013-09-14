@@ -764,6 +764,7 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style TargetType="{x:Type ScrollViewer}">
+        <EventSetter Event="PreviewMouseWheel" Handler="ScrollViewer_PreviewMouseWheel"></EventSetter>
         <Setter Property="OverridesDefaultStyle" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
@@ -1337,6 +1338,7 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style TargetType="ListView">
+        
         <Style.Resources>
             <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
         </Style.Resources>

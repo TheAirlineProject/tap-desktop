@@ -436,7 +436,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             double price = gates * airport.getTerminalGatePrice() + airport.getTerminalPrice();
 
             return new ValueCurrencyConverter().Convert(price);
-
+          
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

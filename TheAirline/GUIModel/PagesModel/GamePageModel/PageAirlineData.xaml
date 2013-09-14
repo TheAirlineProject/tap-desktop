@@ -67,7 +67,7 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
             </g:QuickInfoValue>
 
         </ListBox>
-        <TextBlock Name="txtNarrative" Width="500" FontStyle="Italic" TextWrapping="Wrap" Text="{Binding SelectedItem.Profile.Narrative,ElementName=cbAirline}">
+        <TextBlock Name="txtNarrative" Width="500" Padding="5 5 5 5" FontStyle="Italic" TextWrapping="Wrap" Text="{Binding SelectedItem.Profile.Narrative,ElementName=cbAirline}">
             <TextBlock.Background>
                 <SolidColorBrush Color="Black" Opacity="0.8"></SolidColorBrush>
             </TextBlock.Background>
