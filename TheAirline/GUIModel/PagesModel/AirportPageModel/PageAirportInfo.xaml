@@ -14,6 +14,7 @@
         <local:ContractYearlyPaymentConverter x:Key="ContractYearlyPaymentConverter"></local:ContractYearlyPaymentConverter>
         <local:TemperatureToTextConverter x:Key="TemperatureToTextConverter"></local:TemperatureToTextConverter>
         <local:WindSpeedToUnitConverter x:Key="WindSpeedToUnitConverter"></local:WindSpeedToUnitConverter>
+        <local:TerminalPriceConverter x:Key="TerminalPriceConverter"></local:TerminalPriceConverter>
         <DataTemplate x:Key="RunwayItem">
             <WrapPanel>
                 
@@ -246,6 +247,17 @@
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1016'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                                 <TextBlock Text="{Binding TerminalGatePrice,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1039'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                                <TextBlock VerticalAlignment="Bottom">
+                                    <TextBlock.Text>
+                                    <MultiBinding Converter="{StaticResource TerminalPriceConverter}">
+                                        <Binding Path="Value" ElementName="slGates"></Binding>
+                                        <Binding Path="Airport"></Binding>
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                                   </TextBlock>
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0">
                                 <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 200'}" Click="btnBuildTerminal_Click"></Button>

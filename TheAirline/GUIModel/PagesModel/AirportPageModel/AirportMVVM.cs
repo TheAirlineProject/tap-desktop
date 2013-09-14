@@ -424,6 +424,26 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
            
     }
+    //the converter for the price of a terminal
+    public class TerminalPriceConverter : IMultiValueConverter
+    {
+
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            int gates = System.Convert.ToInt16(values[0]);
+            Airport airport = (Airport)values[1];
+
+            double price = gates * airport.getTerminalGatePrice() + airport.getTerminalPrice();
+
+            return new ValueCurrencyConverter().Convert(price);
+
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+    }
     //the converter for the next facility
     public class NextFacilityConverter : IMultiValueConverter
     {
