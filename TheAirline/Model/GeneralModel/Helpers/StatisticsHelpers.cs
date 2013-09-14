@@ -328,6 +328,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         /*===============================================================================================
          * =======================score methods =====================================================*/
 
+            //this is the main method that is called once a week
             public static int GetWeeklyScore(Airline airline)
             {
                 int score = 0;
@@ -356,6 +357,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return score;
             }
 
+            //just a helper method to get a score for a given year
             public static int GetScore(Airline airline, int year)
             {
                 int yScore = 0;
@@ -370,6 +372,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return yScore;
             }
 
+            //helper method to get a score for a given month of a given year
             public static int GetScore(Airline airline, int year, int month)
             {
                 int mScore = 0;
@@ -384,6 +387,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return mScore;
             }
 
+            //helper method to get the score inclusively for a provided date range
             public static int GetYearScore(Airline airline, int startYear, int endYear)
             {
                 int mScore = 0;
@@ -409,6 +413,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return mScore;
             }
 
+            //returns the airlines best year in terms of score
             public static int GetBestYear(Airline airline)
             {
                 int high = 0;

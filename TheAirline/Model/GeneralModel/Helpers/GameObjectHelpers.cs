@@ -639,6 +639,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
 
+            if (GameObject.GetInstance().GameTime.Day % 7 == 0)
+            {
+                GameObject.GetInstance().HumanAirline.OverallScore += StatisticsHelpers.GetWeeklyScore(GameObject.GetInstance().HumanAirline);
+            }
+
         }
 
         //do the yearly update
