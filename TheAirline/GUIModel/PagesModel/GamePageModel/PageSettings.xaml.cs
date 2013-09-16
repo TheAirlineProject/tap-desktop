@@ -66,6 +66,10 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             ComboBox cbLanguage = UIHelpers.FindChild<ComboBox>(this, "cbLanguage");
             AppSettings.GetInstance().setLanguage((Language)cbLanguage.SelectedItem);
 
+            System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\game.settings");
+            file.WriteLine(AppSettings.GetInstance().getLanguage().Name);
+            file.WriteLine(Settings.GetInstance().Mode);
+            file.Close();
       
             //PageNavigator.NavigateTo(new PageStartMenu());
         }

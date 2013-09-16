@@ -14,6 +14,41 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
+    //the mvvm object for an airliner
+    public class FleetAirlinerMVVM : INotifyPropertyChanged
+    {
+        public enum StatusMVVM { Stopped, Started }
+        
+        private StatusMVVM _status;
+        public StatusMVVM Status
+        {
+            get { return _status; }
+            set { _status= value; NotifyPropertyChanged("Status"); }
+        }
+        public FleetAirliner Airliner { get; set; }
+        public FleetAirlinerMVVM(FleetAirliner airliner)
+        {
+            this.Airliner = airliner;
+            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped ? StatusMVVM.Stopped : StatusMVVM.Started;
+        }
+        //sets the status of the airliner
+        public void setStatus(FleetAirliner.AirlinerStatus status)
+        {
+            this.Airliner.Status = status;
+
+            this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped ? StatusMVVM.Stopped : StatusMVVM.Started;
+       
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     //the profit for a route
     public class RouteProfitMVVM
     {
@@ -179,36 +214,5 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             throw new NotImplementedException();
         }
     }
-    //the converter for possibility of starting a flight
-    public class StartFlightBooleanToVisibility : IValueConverter
-    {
-        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            FleetAirliner airliner = (FleetAirliner)value;
-
-            if (parameter.ToString() == "start")
-            {
-                if (airliner.HasRoute && airliner.Status == FleetAirliner.AirlinerStatus.Stopped)
-                    return Visibility.Visible;
-                else
-                    return Visibility.Collapsed;
-            }
-
-            if (parameter.ToString() == "stop")
-            {
-                if (airliner.HasRoute && airliner.Status != FleetAirliner.AirlinerStatus.Stopped)
-                    return Visibility.Visible;
-                else
-                    return Visibility.Collapsed;
-            }
-
-            return Visibility.Collapsed;
-
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
-        {
-            return value;
-        }
-    }
+    
 }

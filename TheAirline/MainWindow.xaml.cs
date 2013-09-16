@@ -38,14 +38,22 @@ namespace TheAirline
             {
                 Setup.SetupGame();
 
-                //DatabaseObject.GetInstance();
-
+                if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
+                {
+                    this.WindowStyle = WindowStyle.None;
+                    this.WindowState = WindowState.Maximized;
+                    this.Focus();
+                }
+              
                 PageNavigator.MainWindow = this;
 
                 this.Width = SystemParameters.PrimaryScreenWidth;
                 this.Height = SystemParameters.PrimaryScreenHeight;
-                
-                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
+
+                if (AppSettings.GetInstance().hasLanguage())
+                    frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageStartMenu());
+                else
+                    frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
 
             }
             catch (Exception e)

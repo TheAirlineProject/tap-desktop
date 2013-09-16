@@ -1338,7 +1338,6 @@ and change the color of the selected bullet into a darker gray for better highli
         </Setter>
     </Style>
     <Style TargetType="ListView">
-        
         <Style.Resources>
             <Style TargetType="ScrollBar" BasedOn="{StaticResource ScrollBarStyle}"></Style>
         </Style.Resources>

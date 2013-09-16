@@ -12,12 +12,10 @@
         <DataTemplate x:Key="OrderItem">
             <WrapPanel>
             <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="200"></TextBlock>
-                <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock>
-                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Homebase}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" ItemsSource="{Binding Homebases}"></ComboBox>
-
-                <Button Margin="10 0 0 0" Width="20" Background="Transparent" Click="btnAddToOrder_Click" Tag="{Binding}">
-                    <Image Source="/data/images/add.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
+             <!--   <TextBlock Text="{Binding Amount}" VerticalAlignment="Bottom" Width="50"></TextBlock> -->
+                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Amount}" Width="50" SelectionChanged="cbNumberOfAirliners_SelectionChanged" Tag="{Binding}" ItemsSource="{Binding NumberOfAirliners,ElementName=pageManufacturer}" VerticalAlignment="Bottom"></ComboBox>
+                <ComboBox Margin="25 0 0 0" Style="{DynamicResource ComboBoxTransparentStyle}" SelectedItem="{Binding Homebase}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" ItemsSource="{Binding Homebases}"></ComboBox>
+                
                 <Button Width="20" Background="Transparent" Click="btnRemoveFromOrder_Click" Margin="5 0 0 0"  Tag="{Binding}">
                     <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>

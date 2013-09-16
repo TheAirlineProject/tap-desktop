@@ -11,6 +11,7 @@ namespace TheAirline.Model.GeneralModel
     public class AppSettings
     {
         private static AppSettings AppSettingsInstance;
+        private Boolean IsLanguageSet;
         private Language Language;
 
         /*! private static variable basePath.
@@ -35,6 +36,8 @@ namespace TheAirline.Model.GeneralModel
             Translator.Init();
             this.setLanguage(Languages.GetLanguages()[0]);
             Translator.DefaultLanguage = System.Threading.Thread.CurrentThread.CurrentUICulture.ToString();
+
+            this.IsLanguageSet = false;
         }
 
         //returns the game instance
@@ -109,6 +112,13 @@ namespace TheAirline.Model.GeneralModel
              System.Threading.Thread.CurrentThread.CurrentCulture = ci;
             System.Threading.Thread.CurrentThread.CurrentUICulture = ci;
 
+            this.IsLanguageSet = true;
+
+        }
+        //returns if language has been set
+        public Boolean hasLanguage()
+        {
+            return this.IsLanguageSet;
         }
         //sets the currency format
         public void setCurrencyFormat(string format)

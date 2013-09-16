@@ -29,11 +29,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     public partial class PageAssignAirliners : Page
     {
         public List<FlightRestriction> Restrictions { get; set; }
-        public List<FleetAirliner> Airliners { get; set; }
+        public List<FleetAirlinerMVVM> Airliners { get; set; }
         public PageAssignAirliners()
         {
             this.Restrictions = FlightRestrictions.GetRestrictions().FindAll(r => r.StartDate < GameObject.GetInstance().GameTime && r.EndDate > GameObject.GetInstance().GameTime);
-            this.Airliners = GameObject.GetInstance().HumanAirline.Fleet;
+           
+            this.Airliners = new List<FleetAirlinerMVVM>();
+            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
+                this.Airliners.Add(new FleetAirlinerMVVM(airliner));
 
             this.Loaded += PageAssignAirliners_Loaded;
 
@@ -60,15 +63,29 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 airlinerItem.Visibility = System.Windows.Visibility.Collapsed;
             }
         }
-
         private void btnStart_Click(object sender, RoutedEventArgs e)
         {
+            FleetAirlinerMVVM airliner = (FleetAirlinerMVVM)((Button)sender).Tag;
+
+            if (airliner.Airliner.Pilots.Count == airliner.Airliner.Airliner.Type.CockpitCrew)
+            {
+                if (GameObject.GetInstance().DayRoundEnabled)
+                    airliner.setStatus(FleetAirliner.AirlinerStatus.On_route);
+                else
+                    airliner.setStatus(FleetAirliner.AirlinerStatus.To_route_start);
+
+           }
+            else
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2507"), string.Format(Translator.GetInstance().GetString("MessageBox", "2507", "message")), WPFMessageBoxButtons.Ok);
 
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
         {
+            FleetAirlinerMVVM airliner = (FleetAirlinerMVVM)((Button)sender).Tag;
 
+            airliner.setStatus(FleetAirliner.AirlinerStatus.Stopped);
+      
         }
 
         private void hlAirliner_Click(object sender, RoutedEventArgs e)

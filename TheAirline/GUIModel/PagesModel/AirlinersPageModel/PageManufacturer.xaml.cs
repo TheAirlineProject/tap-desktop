@@ -32,8 +32,14 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         public ObservableCollection<AirlinerType> Airliners { get; set; }
         public AirlinerOrdersMVVM Orders { get; set; }
         public ManufacturerContractMVVM Contract { get; set; }
+        public List<int> NumberOfAirliners { get; set; }
         public PageManufacturer(Manufacturer manufacturer)
         {
+            this.NumberOfAirliners = new List<int>();
+
+            for (int i = 1; i <= 50; i++)
+                this.NumberOfAirliners.Add(i);
+
             this.Manufacturer = manufacturer;
 
             this.Orders = new AirlinerOrdersMVVM();
@@ -64,22 +70,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.Orders.addOrder(new AirlinerOrderMVVM(type));
         }
-
+        /*
         private void btnAddToOrder_Click(object sender, RoutedEventArgs e)
         {
             AirlinerOrderMVVM order = (AirlinerOrderMVVM)((Button)sender).Tag;
 
             order.Amount++;
         }
-
+        */
         private void btnRemoveFromOrder_Click(object sender, RoutedEventArgs e)
         {
             AirlinerOrderMVVM order = (AirlinerOrderMVVM)((Button)sender).Tag;
 
-            order.Amount--;
-
-            if (order.Amount == 0)
-                this.Orders.Orders.Remove(order);
+            this.Orders.Orders.Remove(order);
         }
         private void btnEquipped_Click(object sender, RoutedEventArgs e)
         {
@@ -363,6 +366,15 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 GameObject.GetInstance().HumanAirline.Contract.ExpireDate = GameObject.GetInstance().HumanAirline.Contract.ExpireDate.AddYears(nLength);
 
             }
+        }
+
+        private void cbNumberOfAirliners_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ComboBox cbAmount = (ComboBox)sender;
+
+            AirlinerOrderMVVM order = (AirlinerOrderMVVM)cbAmount.Tag;
+
+            order.Amount = (int)cbAmount.SelectedItem ;
         }
     }
 }

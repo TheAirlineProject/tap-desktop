@@ -48,6 +48,7 @@ namespace TheAirline.Model.GeneralModel
            
             try
             {
+                ReadSettingsFile();
                 GeneralHelpers.CreateBigImageCanvas();
                 ClearLists();
 
@@ -185,6 +186,25 @@ namespace TheAirline.Model.GeneralModel
             Scenarios.Clear();
             HubTypes.Clear();
 
+        }
+        /*! reads the settings file if existing
+         */
+        private static void ReadSettingsFile()
+        {
+            if (File.Exists(AppSettings.getCommonApplicationDataPath() + "\\game.settings"))
+            {
+                System.IO.StreamReader file = new System.IO.StreamReader(AppSettings.getCommonApplicationDataPath() + "\\game.settings");
+
+                string language = file.ReadLine();
+                string screenMode = file.ReadLine();
+
+
+
+                AppSettings.GetInstance().setLanguage(Languages.GetLanguage(language)); 
+                Settings.GetInstance().Mode =  (Settings.ScreenMode)Enum.Parse(typeof(Settings.ScreenMode), screenMode, true);
+  
+            }
+          
         }
         /*! creates some pilots
          */

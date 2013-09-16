@@ -143,7 +143,16 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             foreach (Hub hub in this.Airport.getHubs())
                 this.Hubs.Add(hub);
 
-            this.CanBuildHub = this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline) > 0;
+            this.CanBuildHub = canBuildHub();
+        }
+        //returns if hub can be build
+        private Boolean canBuildHub()
+        {
+            Boolean hasServiceCenter = this.Airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service).Facility.TypeLevel > 0;
+            
+            double gatesPercent = Convert.ToDouble(this.Contracts.Count(c=>c.Airline == GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.NumberOfGates);
+          
+            return gatesPercent > 0.2 && this.Hubs.Count == 0 && hasServiceCenter;
         }
         //adds a terminal to the airport
         public void addTerminal(Terminal terminal)
@@ -199,7 +208,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Hubs.Add(hub);
             this.Airport.addHub(hub);
 
-            this.CanBuildHub = false;
+            this.CanBuildHub = canBuildHub();
 
         }
         //removes a hub
@@ -208,7 +217,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Hubs.Remove(hub);
             this.Airport.removeHub(hub);
 
-            this.CanBuildHub = true;
+            this.CanBuildHub = canBuildHub();
         }
         //removes an airline facility from the airport
         public void removeAirlineFacility(AirlineAirportFacility facility)
