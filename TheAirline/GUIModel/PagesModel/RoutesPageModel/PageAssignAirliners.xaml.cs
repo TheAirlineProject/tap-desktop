@@ -91,12 +91,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         private void hlAirliner_Click(object sender, RoutedEventArgs e)
         {
 
-            FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
+            FleetAirlinerMVVM airliner = (FleetAirlinerMVVM)((Hyperlink)sender).Tag;
 
             TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
             Frame frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
 
-            if (airliner.NumberOfPilots == airliner.Airliner.Type.CockpitCrew)
+            if (airliner.Airliner.NumberOfPilots == airliner.Airliner.Airliner.Type.CockpitCrew)
             {
 
                 if (tab_main != null)
@@ -107,7 +107,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
            .FirstOrDefault();
 
                     //matchingItem.IsSelected = true;
-                    matchingItem.Header = airliner.Name;
+                    matchingItem.Header = airliner.Airliner.Name;
                     matchingItem.Visibility = System.Windows.Visibility.Visible;
 
                     tab_main.SelectedItem = matchingItem;
@@ -116,14 +116,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
              
                 if (frmContent != null)
                 {
-                    frmContent.Navigate(new PageRoutePlanner(airliner) { Tag = this.Tag });
+                    frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = this.Tag });
 
                 }
              
             }
             else
             {
-                int missingPilots = airliner.Airliner.Type.CockpitCrew - airliner.NumberOfPilots;
+                int missingPilots = airliner.Airliner.Airliner.Type.CockpitCrew - airliner.Airliner.NumberOfPilots;
                 if (GameObject.GetInstance().HumanAirline.Pilots.FindAll(p => p.Airliner == null).Count >= missingPilots)
                 {
                     WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2505"), string.Format(Translator.GetInstance().GetString("MessageBox", "2505", "message")), WPFMessageBoxButtons.YesNo);
@@ -134,8 +134,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                         for (int i = 0; i < missingPilots; i++)
                         {
-                            unassignedPilots[i].Airliner = airliner;
-                            airliner.addPilot(unassignedPilots[i]);
+                            unassignedPilots[i].Airliner = airliner.Airliner;
+                            airliner.Airliner.addPilot(unassignedPilots[i]);
                         }
 
                         
@@ -147,7 +147,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                    .FirstOrDefault();
 
                             //matchingItem.IsSelected = true;
-                            matchingItem.Header = airliner.Name;
+                            matchingItem.Header = airliner.Airliner.Name;
                             matchingItem.Visibility = System.Windows.Visibility.Visible;
 
                             tab_main.SelectedItem = matchingItem;
@@ -156,7 +156,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                      
                         if (frmContent != null)
                         {
-                            frmContent.Navigate(new PageRoutePlanner(airliner) { Tag = this.Tag });
+                            frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = this.Tag });
 
                         }
                     }
@@ -170,21 +170,21 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                     if (result == WPFMessageBoxResult.Yes)
                     {
-                        while (airliner.Airliner.Type.CockpitCrew > airliner.NumberOfPilots)
+                        while (airliner.Airliner.Airliner.Type.CockpitCrew > airliner.Airliner.NumberOfPilots)
                         {
-                            var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airline.Profile.Country);
+                            var pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country == airliner.Airliner.Airliner.Airline.Profile.Country);
 
                             if (pilots.Count == 0)
-                                pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airline.Profile.Country.Region);
+                                pilots = Pilots.GetUnassignedPilots(p => p.Profile.Town.Country.Region == airliner.Airliner.Airliner.Airline.Profile.Country.Region);
 
                             if (pilots.Count == 0)
                                 pilots = Pilots.GetUnassignedPilots();
 
                             Pilot pilot = pilots.First();
 
-                            airliner.Airliner.Airline.addPilot(pilot);
-                            pilot.Airliner = airliner;
-                            airliner.addPilot(pilot);
+                            airliner.Airliner.Airliner.Airline.addPilot(pilot);
+                            pilot.Airliner = airliner.Airliner;
+                            airliner.Airliner.addPilot(pilot);
                         }
 
                         if (tab_main != null)
@@ -195,7 +195,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                    .FirstOrDefault();
 
                             //matchingItem.IsSelected = true;
-                            matchingItem.Header = airliner.Name;
+                            matchingItem.Header = airliner.Airliner.Name;
                             matchingItem.Visibility = System.Windows.Visibility.Visible;
 
                             tab_main.SelectedItem = matchingItem;
@@ -204,7 +204,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                    
                         if (frmContent != null)
                         {
-                            frmContent.Navigate(new PageRoutePlanner(airliner) { Tag = this.Tag });
+                            frmContent.Navigate(new PageRoutePlanner(airliner.Airliner) { Tag = this.Tag });
 
                         }
 

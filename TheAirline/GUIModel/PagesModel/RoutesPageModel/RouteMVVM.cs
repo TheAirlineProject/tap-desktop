@@ -25,10 +25,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             get { return _status; }
             set { _status= value; NotifyPropertyChanged("Status"); }
         }
+        public Boolean HasRoute { get; set; }
         public FleetAirliner Airliner { get; set; }
         public FleetAirlinerMVVM(FleetAirliner airliner)
         {
             this.Airliner = airliner;
+            this.HasRoute = this.Airliner.HasRoute;
             this.Status = this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped ? StatusMVVM.Stopped : StatusMVVM.Started;
         }
         //sets the status of the airliner

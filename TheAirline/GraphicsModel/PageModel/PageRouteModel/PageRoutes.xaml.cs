@@ -198,8 +198,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageRouteModel
         private void showRoutes()
         {
 
-            ICollectionView dataView =
-            CollectionViewSource.GetDefaultView(lbRoutes.ItemsSource);
+            ICollectionView dataView =  CollectionViewSource.GetDefaultView(lbRoutes.ItemsSource);
             dataView.Refresh();
         }
         //shows the fleet

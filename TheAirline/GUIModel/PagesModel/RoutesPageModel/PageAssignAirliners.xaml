@@ -91,6 +91,9 @@
                                                         <DataTrigger Binding="{Binding Status}" Value="Started">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
+                                                        <DataTrigger Binding="{Binding HasRoute}" Value="False">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </Button.Style>
@@ -103,6 +106,10 @@
                                                         <DataTrigger Binding="{Binding Status}" Value="Stopped">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
+                                                        <DataTrigger Binding="{Binding HasRoute}" Value="False">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+
                                                     </Style.Triggers>
                                                 </Style>
                                             </Button.Style>

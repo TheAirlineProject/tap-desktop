@@ -22,8 +22,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"></RowDefinition>
-                <RowDefinition Height="0.25*"></RowDefinition>
-                <RowDefinition Height="0.25*"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
             <ListView  Background="Transparent" BorderThickness="0" ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
@@ -81,29 +80,129 @@
                 </ListView.View>
             </ListView>
             </StackPanel>
-            <Expander Grid.Row="1" Margin="0 5 0 0" Header="Scheduling" Style="{StaticResource ExpanderStyle}">
-                <StackPanel>
-                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                        <TextBlock Text="Route" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
-                        <ComboBox  Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbRoutes" IsSynchronizedWithCurrentItem="True" Width="150" ItemsSource="{Binding AllRoutes,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom">
-                            <ComboBox.ItemTemplate>
-                                <DataTemplate>
-                                    <WrapPanel>
-                                        <ContentControl Content="{Binding Route.Destination1}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCodeItem}"></ContentControl>
-                                        <TextBlock Text=" - " VerticalAlignment="Bottom"></TextBlock>
-                                        <ContentControl Content="{Binding Route.Destination2}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCodeItem}"></ContentControl>
-                                    </WrapPanel>
-                                </DataTemplate>
-                            </ComboBox.ItemTemplate>
-                        </ComboBox>
+            <StackPanel Grid.Row="1" Margin="0 5 0 0">
+                <Expander Header="Route Generator" Style="{StaticResource ExpanderStyle}">
+                    <WrapPanel>
+                        <StackPanel VerticalAlignment="Bottom">
+                            <TextBlock Text="Region" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="150" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbRegion_SelectionChanged"  DisplayMemberPath="Name" SelectedValuePath="Name" Name="cbRegion" ItemsSource="{Binding AllRegions,ElementName=pageRoutePlanner}"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
+                            <TextBlock Text="Route" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource RouteFlagItem}" Width="150" IsSynchronizedWithCurrentItem="True" Name="cbRoute" ItemsSource="{Binding Routes,ElementName=pageRoutePlanner}"></ComboBox>
+                        </StackPanel>
+                        <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
+                            <TextBlock Text="Flight No." HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <WrapPanel>
+                                <TextBlock Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBox Text="0000" Style="{StaticResource NumericTextBox}" Margin="5 0 0 0" MaxLength="4" VerticalAlignment="Bottom" Width="50" Name="txtFlightNumber"></TextBox>
+                            </WrapPanel>
+                        </StackPanel>
+                        <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
+                            <TextBlock Text="Flights Per" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <WrapPanel>
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding IntervalTypes,ElementName=pageRoutePlanner}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="50" Margin="5 0 0 0" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Intervals,ElementName=pageRoutePlanner}"></ComboBox>
+                            </WrapPanel>
+                        </StackPanel>
+                        <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
+                            <TextBlock Text="Ops. Schedule" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="150" IsSynchronizedWithCurrentItem="True" Name="cbSchedule" ItemsSource="{Binding OpsTypes,ElementName=pageRoutePlanner}"></ComboBox>
+                        </StackPanel>
+                        <Button Margin="5 0 0 0" VerticalAlignment="Bottom" Content="Add">
+                            <Button.Style>
+                                <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SelectedItem,ElementName=cbRoute}" Value="{x:Null}">
+                                            <Setter Property="IsEnabled" Value="False" />
+                                        </DataTrigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
                     </WrapPanel>
-                <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                    <TextBlock Text="Flight Number" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
-                    <TextBlock Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom"></TextBlock>
-                    <TextBox Text="0000" Style="{StaticResource NumericTextBox}" Margin="5 0 0 0" MaxLength="4" VerticalAlignment="Bottom" Width="50" Name="txtFlightNumber"></TextBox>
-                </WrapPanel>
-                </StackPanel>
-            </Expander>
+                </Expander>
+                <Expander Margin="0 5 0 0" Header="Route Scheduler" Style="{StaticResource ExpanderStyle}">
+                    <WrapPanel>
+                        <StackPanel>
+                            <WrapPanel>
+                                <StackPanel>
+                                    <TextBlock Text="Outbound" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                    <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbOutbound_SelectionChanged" Name="cbOutbound" ItemTemplate="{StaticResource AirportCodeItem}" ItemsSource="{Binding OutboundAirports,ElementName=pageRoutePlanner}"></ComboBox>
+                                </StackPanel>
+                                <StackPanel Margin="10 0 0 0">
+                                    <TextBlock Text="Homebound" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                    <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" Name="cbHomebound" ItemTemplate="{StaticResource AirportCodeItem}"></ComboBox>
+                                </StackPanel>
+                            </WrapPanel>
+                            <Button HorizontalAlignment="Center" Content="Swap Airports" Margin="0 5 0 0" Click="BtnSwap_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItem,ElementName=cbOutbound}" Value="{x:Null}">
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                        <StackPanel Margin="10 0 0 0">
+                            <TextBlock Text="Interval" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                            <WrapPanel>
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Width="100" VerticalAlignment="Bottom" Content="Daily" GroupName="Interval" IsChecked="True"></RadioButton>
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Width="100" VerticalAlignment="Bottom" Content="Weekdays" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Width="100" VerticalAlignment="Bottom" Content="TTS" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                            </WrapPanel>
+                            <WrapPanel Margin="0 5 0 0">
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Width="100" VerticalAlignment="Bottom" Content="Every Other" GroupName="Interval"></RadioButton>
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Width="100" VerticalAlignment="Bottom" Content="Weekend" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Width="100" VerticalAlignment="Bottom" Content="MWF" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                            </WrapPanel>
+                            <RadioButton Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Name="rbManual" Content="Manual" GroupName="Interval" Margin="0 5 0 0"></RadioButton>
+                            <WrapPanel Margin="0 5 0 0">
+                                <WrapPanel.Style>
+                                    <Style TargetType="WrapPanel">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsChecked,ElementName=rbManual}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </WrapPanel.Style>
+                                <CheckBox Content="M" VerticalAlignment="Bottom" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                <CheckBox Content="Tu" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                <CheckBox Content="W" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                <CheckBox Content="Th" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                <CheckBox Content="F" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                <CheckBox Content="Sa" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                                <CheckBox Content="Su" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
+                            </WrapPanel>
+                            <Button HorizontalAlignment="Center" Content="Add" Margin="0 5 0 0">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectedItem,ElementName=cbOutbound}" Value="{x:Null}">
+                                                <Setter Property="IsEnabled" Value="False" />
+                                            </DataTrigger>
+
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                        </StackPanel>
+                    </WrapPanel>
+
+                </Expander>
+            </StackPanel>
         </Grid>
             
     </ScrollViewer>

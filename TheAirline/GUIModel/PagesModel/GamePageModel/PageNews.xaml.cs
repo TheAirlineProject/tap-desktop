@@ -14,6 +14,13 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
+using TheAirline.GUIModel.PagesModel.AirportPageModel;
+using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
+using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
@@ -77,6 +84,92 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             foreach (NewsMVVM news in this.SelectedNewsList)
                 news.markAsRead();
        
+        }
+    }
+    public class NewsTextConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            string text = value.ToString();
+
+            TextBlock txtBlock = new TextBlock();
+            txtBlock.TextWrapping = TextWrapping.Wrap;
+
+            char[] delimiterChars = { '[', ']' };
+            string[] splittedText = text.Split(delimiterChars);
+
+            foreach (string subText in splittedText)
+            {
+                if (subText.StartsWith("LI"))
+                    txtBlock.Inlines.Add(getNewsLink(subText));
+                else
+                    txtBlock.Inlines.Add(subText);
+            }
+
+            return txtBlock;
+
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
+        //creates the link for a news link
+        private Hyperlink getNewsLink(string text)
+        {
+            string linkType = text.Substring(3).Split('=')[0];
+            string linkObject = text.Split('=')[1];
+            object o = null;
+
+            string objectText = "";
+            switch (linkType)
+            {
+                case "airline":
+                    o = Airlines.GetAirline(linkObject);
+                    objectText = ((Airline)o).Profile.Name;
+                    break;
+                case "airport":
+                    o = Airports.GetAirport(linkObject);
+                    objectText = ((Airport)o).Profile.Name;
+                    break;
+                case "airliner":
+                    o = Airlines.GetAllAirlines().SelectMany(a => a.Fleet).ToList().Find(f => f.Airliner.TailNumber == linkObject);
+                    objectText = ((FleetAirliner)o).Name;
+                    break;
+            }
+
+
+            Run run = new Run(objectText);
+
+            Hyperlink hyperLink = new Hyperlink(run);
+            hyperLink.Tag = o;
+            hyperLink.TextDecorations = TextDecorations.Underline;
+            hyperLink.TargetName = linkType;
+            hyperLink.Click += new RoutedEventHandler(hyperLink_Click);
+
+            return hyperLink;
+        }
+
+        private void hyperLink_Click(object sender, RoutedEventArgs e)
+        {
+            object o = ((Hyperlink)sender).Tag;
+            string linkType = (string)((Hyperlink)sender).TargetName;
+
+            switch (linkType)
+            {
+                case "airline":
+                    PageNavigator.NavigateTo(new PageAirline((Airline)o));
+                    break;
+                case "airport":
+                    PageNavigator.NavigateTo(new PageAirport((Airport)o));
+                    break;
+                case "airliner":
+                    PageNavigator.NavigateTo(new PageFleetAirliner((FleetAirliner)o));
+                    break;
+            }
+
+
         }
     }
 }

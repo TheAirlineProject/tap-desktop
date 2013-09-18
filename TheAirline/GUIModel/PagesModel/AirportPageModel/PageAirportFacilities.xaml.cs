@@ -83,7 +83,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
            facilities = facilities.OrderBy(f => f.TypeLevel).ToList();
 
            int index = facilities.FindIndex(f => currentFacility.Facility == f);
-
+            
             AirportFacility facility = facilities[index + 1];
 
            if (facility.Price > GameObject.GetInstance().HumanAirline.Money)

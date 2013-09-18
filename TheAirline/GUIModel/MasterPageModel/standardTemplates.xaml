@@ -251,8 +251,23 @@
         </DockPanel>
     </DataTemplate>
     <!--route templates-->
+    <DataTemplate x:Key="RouteFlagItem">
+        <WrapPanel VerticalAlignment="Bottom">
+            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0">
+                <TextBlock.Text>
+                    <MultiBinding StringFormat="{}{0}-{1}">
+                        <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
+                        <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
+                    </MultiBinding>
+                </TextBlock.Text>
+            </TextBlock>
+            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+
+        </WrapPanel>
+    </DataTemplate>
     <DataTemplate x:Key="RouteItem">
-        <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center">
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}-{1}">
                     <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
@@ -262,7 +277,7 @@
         </TextBlock>
     </DataTemplate>
     <DataTemplate x:Key="RouteLongItem">
-        <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" HorizontalAlignment="Center">
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}-{1}">
                     <Binding Path="Destination1.Profile.Name" />
