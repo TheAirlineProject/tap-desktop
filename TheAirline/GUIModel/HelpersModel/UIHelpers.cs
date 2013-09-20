@@ -51,7 +51,53 @@ namespace TheAirline.GUIModel.HelpersModel
     //the class for some UI helpers
     public class UIHelpers
     {
-     //finds an element on a page
+        //finds the list of radio buttons on a page with a specific group name
+        public static List<RadioButton> FindRBChildren(DependencyObject parent, string groupName)
+        {
+            // Confirm parent and childName are valid. 
+            if (parent == null) return null;
+
+            List<RadioButton> children = new List<RadioButton>();
+
+            int childrenCount = VisualTreeHelper.GetChildrenCount(parent);
+            for (int i = 0; i < childrenCount; i++)
+            {
+                var child = VisualTreeHelper.GetChild(parent, i);
+                // If the child is not of the request child type child
+                RadioButton childType = child as RadioButton;
+                if (childType == null)
+                {
+                    // recursively drill down the tree
+                    children.AddRange(FindRBChildren(child, groupName));
+
+                    // If the child is found, break so we do not overwrite the found child. 
+                    //if (foundChild != null) break;
+                }
+                else if (!string.IsNullOrEmpty(groupName))
+                {
+                    var frameworkElement = child as FrameworkElement;
+                    // If the child's name is set for search
+                    if (frameworkElement != null && frameworkElement is RadioButton && ((RadioButton)frameworkElement).GroupName == groupName)
+                    {
+                        // if the child's name is of the request name
+                        children.Add((RadioButton)child);
+
+                    }
+                }
+                else
+                {
+                    // child element found.
+                    children.Add((RadioButton)child);
+
+
+                }
+
+            }
+
+            return children;
+        }
+
+        //finds an element on a page
         public static T FindChild<T>(DependencyObject parent, string childName)
   where T : DependencyObject
         {

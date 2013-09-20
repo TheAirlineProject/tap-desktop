@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    public enum IntervalType {Daily, Weekly, Biweekly}
+    public enum IntervalType {Day, Week, Biweek}
     public enum OpsType { Regular, Business, Whole_Day }
     //the class for the route planner mvvm item
     public class RoutePlannerItemMVVM
@@ -61,6 +63,29 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.DepartureTime = departure;
         }
 
+    }
+    //the converter for the homebound airport
+    public class RouteHomeboundConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            try
+            {
+                Airport airport = (Airport)values[0];
+                Route route = (Route)values[1];
+
+                return route.Destination1 == airport ? route.Destination2 : route.Destination1;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
   
 }
