@@ -670,6 +670,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageMMLoadGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1218,6 +1222,9 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml.cs">
       <DependentUpon>PageFlights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageMMLoadGame.xaml.cs">
+      <DependentUpon>PageMMLoadGame.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml.cs">
       <DependentUpon>PageNewAirline.xaml</DependentUpon>

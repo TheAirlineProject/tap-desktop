@@ -44,6 +44,5 @@
         <uc:ucTimeline Text="Thursday" Entries="{Binding ThursdayEntries,ElementName=timetable}" Tag="Thursday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
         <uc:ucTimeline Text="Friday" Entries="{Binding FridayEntries,ElementName=timetable}" Tag="Friday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
         <uc:ucTimeline Text="Saturday" Entries="{Binding SaturdayEntries,ElementName=timetable}" Tag="Saturday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-            
     </StackPanel>
 </UserControl>

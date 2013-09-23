@@ -45,7 +45,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
-            
+            PageNavigator.NavigateTo(new PageMMLoadGame());
         }
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {

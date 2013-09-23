@@ -18,6 +18,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
     //the helper class for loading and saving using serialization
     public class SerializedLoadSaveHelpers
     {
+        //deletes a saved game
+        public static void DeleteSavedGame(string name)
+        {
+            string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
+
+            File.Delete(fileName);
+        }
         //returns if a saved game exits
         public static Boolean SaveGameExists(string name)
         {

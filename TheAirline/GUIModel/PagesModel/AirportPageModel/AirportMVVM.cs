@@ -36,6 +36,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public List<AirportTrafficMVVM> Traffic { get; set; }
         public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
         public List<DestinationFlightsMVVM> Flights { get; set; }
+        public DateTime LocalTime { get; set; }
+        public Boolean ShowLocalTime { get; set; }
         private Boolean _canBuildHub;
         public Boolean CanBuildHub
         {
@@ -144,6 +146,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 this.Hubs.Add(hub);
 
             this.CanBuildHub = canBuildHub();
+
+            this.LocalTime = MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, this.Airport.Profile.TimeZone);
+
+            this.ShowLocalTime = !GameObject.GetInstance().DayRoundEnabled;
         }
         //returns if hub can be build
         private Boolean canBuildHub()

@@ -1,0 +1,55 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageMMLoadGame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageMMLoadGame">
+
+    <Page.Resources>
+        <DataTemplate x:Key="LoadGameContent">
+            <StackPanel>
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent" Source="../OptionsPageModel/PageLoadGame.xaml"/>
+              
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="QuickLinksContent">
+
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderContent">
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                              Margin="0 0 20 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+                <TextBlock   Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                  
+                    
+                              Margin="20 0 0 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+          
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NoLeftContent"></DataTemplate>
+        <DataTemplate x:Key="NoContentMenu">
+            <TabControl Background="Transparent" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 2000'}" IsSelected="False" Tag="Back">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 2001'}" IsSelected="True" Tag="Load">
+                </TabItem>
+            </TabControl>
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" HeaderContentArea="{StaticResource HeaderContent}" LeftContentArea="{StaticResource NoLeftContent}"  MainContentArea="{StaticResource LoadGameContent}" RightContentArea="{StaticResource QuickLinksContent}" MainContentMenuArea="{StaticResource NoContentMenu}"/>
+
+</Page>

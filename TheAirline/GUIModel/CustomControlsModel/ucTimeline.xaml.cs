@@ -75,6 +75,11 @@ namespace TheAirline.GUIModel.CustomControlsModel
             }
         }
 
+        private void timeline_Drop(object sender, DragEventArgs e)
+        {
+           
+        }
+
         
     }
     //the converter for the time to position

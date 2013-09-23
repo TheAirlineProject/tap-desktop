@@ -8,13 +8,14 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirportTraffic">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView VerticalAlignment="Stretch" BorderThickness="0" util:GridViewSort.AutoSort="True" Background="Transparent" ItemsSource="{Binding Flights}">
@@ -42,8 +43,11 @@
                         </ListView.View>
                     </ListView>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+        </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1003'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView Name="lvTraffic" VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Traffic}">
@@ -80,7 +84,7 @@
                         </ListView.GroupStyle>
                     </ListView>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+        </Border>
         </Grid>
-    </ScrollViewer>
 </Page>

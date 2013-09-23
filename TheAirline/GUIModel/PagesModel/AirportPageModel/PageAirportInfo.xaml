@@ -30,14 +30,14 @@
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
-        <Grid>
+         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1000'}" Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom"></TextBlock>
                     <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" FontSize="18" HorizontalAlignment="Center" Text="{Binding Airport.Profile.Name}"/>
@@ -87,6 +87,19 @@
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
                                 <TextBlock Text="{Binding Airport.Profile.TimeZone.DisplayName}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
+                            <WrapPanel>
+                                <WrapPanel.Style>
+                                    <Style  BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel" >
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ShowLocalTime}" Value="False">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                    </Style>
+                                </WrapPanel.Style>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1040'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
+                                <TextBlock Text="{Binding LocalTime,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
+                            </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
                                 <TextBlock Text="{Binding Airport.Profile.Size,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
@@ -97,7 +110,7 @@
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1037'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
-                                <TextBlock Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                                <TextBlock Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1038'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
@@ -158,8 +171,11 @@
                     </ListBox>
                    
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+
+        </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 5 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1008'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView  x:Name="lvTerminals" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Terminals}">
@@ -405,9 +421,11 @@
                         <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 202'}" Click="btnCreateHub_Click"></Button>
                     </WrapPanel>
                 </StackPanel>
-            </Border>
-            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="2" Margin="5 0 0 0">
-                  <StackPanel>
+            </ScrollViewer>
+        </Border>
+             <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="2" Margin="5 0 0 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1029'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView  x:Name="lvDemand" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Demands}">
                         <ListView.GroupStyle>
@@ -446,8 +464,8 @@
                         </ListView.View>
                     </ListView>
                 </StackPanel>
-            </Border>
-            
-        </Grid>
-    </ScrollViewer>
+            </ScrollViewer>
+        </Border>
+         </Grid>
+  
 </Page>
