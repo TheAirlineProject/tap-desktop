@@ -6,6 +6,7 @@
          xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.RoutesPageModel"
       xmlns:t="http://schemas.xceed.com/wpf/xaml/toolkit"
+       xmlns:uc="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
        Name="pageRoutePlanner"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
@@ -28,6 +29,7 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
+                <!--
                 <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Entries,ElementName=pageRoutePlanner}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -39,61 +41,8 @@
                             </WrapPanel>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
-                </ListBox>
-                <ListView  Background="Transparent" BorderThickness="0" ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
-                <ListView.View>
-                    <GridView>
-                        <GridViewColumn Header="">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality" Width="20" VerticalAlignment="Bottom"></Image>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Route" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock VerticalAlignment="Bottom">
-                                        <TextBlock.Text>
-                                            <MultiBinding StringFormat="{}{0}-{1}">
-                                                <Binding Path="Route.Destination1" Converter="{StaticResource AirportCodeConverter}" />
-                                                <Binding Path="Route.Destination2" Converter="{StaticResource AirportCodeConverter}" />
-                                            </MultiBinding>
-                                        </TextBlock.Text>
-                                    </TextBlock>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Stopovers" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Route.Stopovers}">
-                                        <ListBox.ItemTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding Stopover,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                                            </DataTemplate>
-                                        </ListBox.ItemTemplate>
-                                    </ListBox>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Color" Width="75">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Border Width="50" Height="20" Style="{StaticResource RoundedBorderStyle}" BorderBrush="Black" BorderThickness="2" Background="{Binding Brush}"></Border>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                        <GridViewColumn Header="Flight Time" Width="100">
-                            <GridViewColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding FlightTime,StringFormat=hh\\:mm}" Margin="20 0 0 0" VerticalAlignment="Bottom"/>
-                                </DataTemplate>
-                            </GridViewColumn.CellTemplate>
-                        </GridViewColumn>
-                    </GridView>
-                </ListView.View>
-            </ListView>
+                </ListBox>-->
+                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding Entries,ElementName=pageRoutePlanner}" EntryDeleted="EntryDeleted_Event"></uc:ucTimeTable>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0 5 0 0">
                 <Expander Header="Route Generator" Style="{StaticResource ExpanderStyle}">
@@ -104,7 +53,7 @@
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
                             <TextBlock Text="Route" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource RouteFlagItem}" Width="150" IsSynchronizedWithCurrentItem="True" Name="cbRoute" ItemsSource="{Binding Routes,ElementName=pageRoutePlanner}"></ComboBox>
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbRoute_SelectionChanged" VerticalAlignment="Bottom"  ItemTemplate="{StaticResource RouteFlagItem}" Width="150" IsSynchronizedWithCurrentItem="True" Name="cbRoute" ItemsSource="{Binding Routes,ElementName=pageRoutePlanner}"></ComboBox>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
                             <TextBlock Text="Flight No." HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
@@ -124,10 +73,10 @@
                                 </Style>
                             </StackPanel.Style>
                             <TextBlock Text="Start Time" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" Name="cbStartTime" ItemsSource="{Binding StartTimes,ElementName=pageRoutePlanner}">
+                            <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="75" IsSynchronizedWithCurrentItem="True" Name="cbStartTime" ItemsSource="{Binding StartTimes,ElementName=pageRoutePlanner}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock VerticalAlignment="Bottom" TextAlignment="Right" Text="{Binding StringFormat=hh\\:mm}"></TextBlock>
+                                        <TextBlock VerticalAlignment="Bottom" TextAlignment="Right" HorizontalAlignment="Stretch" Text="{Binding StringFormat=hh\\:mm}"></TextBlock>
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                            </ComboBox>
@@ -144,14 +93,14 @@
                             </StackPanel.Style>
                             <TextBlock Text="Flights Per" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <WrapPanel>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbIntervalType" Width="100" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding IntervalTypes,ElementName=pageRoutePlanner}">
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbIntervalType" Width="75" SelectionChanged="cbIntervalType_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding IntervalTypes,ElementName=pageRoutePlanner}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" TextAlignment="Right" HorizontalAlignment="Stretch" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </ComboBox.ItemTemplate>
                                 </ComboBox>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbInterval" Width="50" Margin="5 0 0 0" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding Intervals,ElementName=pageRoutePlanner}"></ComboBox>
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbInterval" Width="50" Margin="5 0 0 0" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbInterval_SelectionChanged"  ItemsSource="{Binding Intervals,ElementName=pageRoutePlanner}"></ComboBox>
                             </WrapPanel>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
@@ -166,7 +115,7 @@
                             </StackPanel.Style>
                             <TextBlock Text="Stopover Time" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <WrapPanel>
-                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbDelayMinutes" Width="100" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding StopoverMinutes,ElementName=pageRoutePlanner}">
+                                <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbDelayMinutes" Width="100" SelectionChanged="cbDelayMinutes_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding StopoverMinutes,ElementName=pageRoutePlanner}">
                                     <ComboBox.ItemTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding StringFormat={}{0} Minutes}" VerticalAlignment="Bottom"></TextBlock>
@@ -177,7 +126,7 @@
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
                             <TextBlock Text="Ops. Schedule" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
-                            <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="150" IsSynchronizedWithCurrentItem="True" Name="cbSchedule" ItemsSource="{Binding OpsTypes,ElementName=pageRoutePlanner}">
+                            <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" SelectionChanged="cbSchedule_SelectionChanged"  Width="150" IsSynchronizedWithCurrentItem="True" Name="cbSchedule" ItemsSource="{Binding OpsTypes,ElementName=pageRoutePlanner}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
                                         <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource TextUnderscoreConverter}}"></TextBlock>
@@ -305,6 +254,63 @@
                     <Button Content="Undo All" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnUndo_Click"></Button>
                     <Button Content="Clear Timetable" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnClear_Click"></Button>
                 </WrapPanel>
+                <Expander Margin="0 10 0 0" Header="Routes" Style="{StaticResource ExpanderStyle}">
+
+                    <ListView Background="Transparent" BorderThickness="0" ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality" Width="20" VerticalAlignment="Bottom"></Image>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Route" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom">
+                                                <TextBlock.Text>
+                                                    <MultiBinding StringFormat="{}{0}-{1}">
+                                                        <Binding Path="Route.Destination1" Converter="{StaticResource AirportCodeConverter}" />
+                                                        <Binding Path="Route.Destination2" Converter="{StaticResource AirportCodeConverter}" />
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Stopovers" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Route.Stopovers}">
+                                                <ListBox.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <TextBlock Text="{Binding Stopover,Converter={StaticResource AirportCodeConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                                    </DataTemplate>
+                                                </ListBox.ItemTemplate>
+                                            </ListBox>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Color" Width="75">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Border Width="50" Height="20" Style="{StaticResource RoundedBorderStyle}" BorderBrush="Black" BorderThickness="2" Background="{Binding Brush}"></Border>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="Flight Time" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding FlightTime,StringFormat=hh\\:mm}" Margin="20 0 0 0" VerticalAlignment="Bottom"/>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </Expander>
             </StackPanel>
         </Grid>
             

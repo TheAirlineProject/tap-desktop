@@ -12,7 +12,7 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
-    public enum IntervalType {Day, Week, Biweek}
+    public enum IntervalType {Day, Week}
     public enum OpsType { Regular, Business, Whole_Day }
     //the class for the route planner mvvm item
     public class RoutePlannerItemMVVM

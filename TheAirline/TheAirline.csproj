@@ -506,6 +506,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\ucTimeline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\ucTimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1081,6 +1089,13 @@
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\ComparerControl.xaml.cs">
       <DependentUpon>ComparerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\TimelineEntry.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\ucTimeline.xaml.cs">
+      <DependentUpon>ucTimeline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\ucTimeTable.xaml.cs">
+      <DependentUpon>ucTimeTable.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\HelpersModel\Converters.cs" />
     <Compile Include="GUIModel\HelpersModel\GridViewSort.cs" />
