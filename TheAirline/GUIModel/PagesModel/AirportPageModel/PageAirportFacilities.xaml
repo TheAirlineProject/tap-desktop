@@ -50,7 +50,7 @@
                                     <WrapPanel>
                                         <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200"></ContentControl>
                                         <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                                        <Button Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Click="btnDeleteFacility_Click" ToolTip="Downgrade the current facility" Width="20" Tag="{Binding}" VerticalAlignment="Bottom" Background="Transparent">
+                                        <Button Click="btnDeleteFacility_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}" Width="20" Tag="{Binding}" VerticalAlignment="Bottom" Background="Transparent">
                                             <Button.Style>
                                                 <Style>
                                                     <Style.Triggers>
@@ -62,6 +62,39 @@
                                             </Button.Style>
                                             <Image Source="/data/images/down.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                         </Button>
+                                        <WrapPanel>
+                                            <WrapPanel.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                            <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=txtUpgrade, Path=Text}" Value="None">
+                                                            <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </WrapPanel.Style>
+                                            <Button Tag="{Binding}" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3001'}" Margin="5 0 0 0" Width="20" Click="btnQuickUpgradeFacility_Click" VerticalAlignment="Bottom" Background="Transparent">
+                                                <Image Source="/data/images/up.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            </Button>
+                                            <TextBlock Name="txtUpgrade" Margin="5 0 0 0" VerticalAlignment="Bottom" FontWeight="Bold">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Name">
+                                                        <Binding Path="Facility.Type"></Binding>
+                                                        <Binding Path="Airport"></Binding>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock Margin="5 0 0 0" VerticalAlignment="Bottom">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Price">
+                                                        <Binding Path="Facility.Type"></Binding>
+                                                        <Binding Path="Airport"></Binding>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </WrapPanel>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

@@ -439,6 +439,27 @@
                         </ListView.GroupStyle>
                         <ListView.View>
                             <GridView>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Width="20" VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnDemandContract_Click">
+                                                <Image Source="/data/images/add.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Contracted}" Value="True">
+                                                                <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Destination.Terminals.NumberOfFreeGates}" Value="0">
+                                                                <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                                 <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1030'}" Width="200">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
@@ -460,6 +481,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
+                               
                             </GridView>
                         </ListView.View>
                     </ListView>

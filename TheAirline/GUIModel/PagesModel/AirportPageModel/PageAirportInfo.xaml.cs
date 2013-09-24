@@ -259,5 +259,38 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         
         }
 
+        private void btnDemandContract_Click(object sender, RoutedEventArgs e)
+        {
+            DemandMVVM demand = (DemandMVVM)((Button)sender).Tag;
+
+            Airport airport = demand.Destination;
+
+            Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
+
+            int gates = Math.Min(2, airport.Terminals.NumberOfFreeGates);
+
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"), gates, airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+            if (result == WPFMessageBoxResult.Yes)
+            {
+                if (!hasCheckin)
+                {
+                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
+
+                    airport.addAirportFacility(GameObject.GetInstance().HumanAirline, checkinFacility, GameObject.GetInstance().GameTime);
+                    AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
+
+                }
+
+                double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, gates, 2);
+
+                AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, airport, GameObject.GetInstance().GameTime, gates, 2, yearlyPayment);
+
+                airport.addAirlineContract(contract);
+
+                demand.Contracted = true;
+            }
+        }
+
     }
 }

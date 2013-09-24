@@ -274,19 +274,35 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
     }
     //the mvvm class for passenger demand
-    public class DemandMVVM
+    public class DemandMVVM : INotifyPropertyChanged
     {
         public int Cargo { get; set; }
         public int Passengers { get; set; }
         public Airport Destination { get; set; }
         public enum DestinationType { Domestic, International }
         public DestinationType Type{ get; set; }
-        public DemandMVVM(Airport destination, int passengers, int cargo,DestinationType type)
+        private Boolean _contracted;
+        public Boolean Contracted
+        {
+            get { return _contracted; }
+            set { _contracted = value; NotifyPropertyChanged("Contracted"); }
+        }
+        public DemandMVVM(Airport destination, int passengers, int cargo, DestinationType type)
         {
             this.Cargo = cargo;
             this.Passengers = passengers;
             this.Destination = destination;
             this.Type = type;
+            this.Contracted = this.Destination.AirlineContracts.Exists(c => c.Airline == GameObject.GetInstance().HumanAirline);
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
         }
     }
     //the mvvm class for an airline contract
