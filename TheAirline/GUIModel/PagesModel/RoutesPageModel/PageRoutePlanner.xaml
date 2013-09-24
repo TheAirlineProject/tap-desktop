@@ -45,18 +45,18 @@
                 <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding Entries,ElementName=pageRoutePlanner}" EntryDeleted="EntryDeleted_Event"></uc:ucTimeTable>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0 5 0 0">
-                <Expander Header="Route Generator" Style="{StaticResource ExpanderStyle}">
+                <Expander Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1018'}" Style="{StaticResource ExpanderStyle}"> 
                     <WrapPanel>
                         <StackPanel VerticalAlignment="Bottom">
-                            <TextBlock Text="Region" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1000'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="150" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbRegion_SelectionChanged"  DisplayMemberPath="Name" SelectedValuePath="Name" Name="cbRegion" ItemsSource="{Binding AllRegions,ElementName=pageRoutePlanner}"></ComboBox>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
-                            <TextBlock Text="Route" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1001'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbRoute_SelectionChanged" VerticalAlignment="Bottom"  ItemTemplate="{StaticResource RouteFlagItem}" Width="150" IsSynchronizedWithCurrentItem="True" Name="cbRoute" ItemsSource="{Binding Routes,ElementName=pageRoutePlanner}"></ComboBox>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
-                            <TextBlock Text="Flight No." HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1002'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <WrapPanel>
                                 <TextBlock Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom"></TextBlock>
                                 <TextBox Text="0000" Style="{StaticResource NumericTextBox}" Margin="5 0 0 0" MaxLength="4" VerticalAlignment="Bottom" Width="50" Name="txtFlightNumber"></TextBox>
@@ -72,7 +72,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </StackPanel.Style>
-                            <TextBlock Text="Start Time" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1003'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="75" IsSynchronizedWithCurrentItem="True" Name="cbStartTime" ItemsSource="{Binding StartTimes,ElementName=pageRoutePlanner}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -91,7 +91,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </StackPanel.Style>
-                            <TextBlock Text="Flights Per" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1004'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <WrapPanel>
                                 <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbIntervalType" Width="75" SelectionChanged="cbIntervalType_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding IntervalTypes,ElementName=pageRoutePlanner}">
                                     <ComboBox.ItemTemplate>
@@ -113,7 +113,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </StackPanel.Style>
-                            <TextBlock Text="Stopover Time" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1005'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <WrapPanel>
                                 <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Name="cbDelayMinutes" Width="100" SelectionChanged="cbDelayMinutes_SelectionChanged" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding StopoverMinutes,ElementName=pageRoutePlanner}">
                                     <ComboBox.ItemTemplate>
@@ -125,7 +125,7 @@
                             </WrapPanel>
                         </StackPanel>
                         <StackPanel Margin="10 0 0 0" VerticalAlignment="Bottom">
-                            <TextBlock Text="Ops. Schedule" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1006'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                             <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" SelectionChanged="cbSchedule_SelectionChanged"  Width="150" IsSynchronizedWithCurrentItem="True" Name="cbSchedule" ItemsSource="{Binding OpsTypes,ElementName=pageRoutePlanner}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
@@ -134,7 +134,7 @@
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
                         </StackPanel>
-                        <Button Margin="5 0 0 0" VerticalAlignment="Bottom" Content="Add" Click="btnAddGenerator_Click">
+                        <Button Margin="5 0 0 0" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 204'}" Click="btnAddGenerator_Click">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                     <Style.Triggers>
@@ -147,7 +147,7 @@
                         </Button>
                     </WrapPanel>
                 </Expander>
-                <Expander Margin="0 5 0 0" Header="Route Scheduler" Style="{StaticResource ExpanderStyle}">
+                <Expander Margin="0 5 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1007'}" Style="{StaticResource ExpanderStyle}">
                     <WrapPanel>
                         <Border Style="{StaticResource RoundedBorderStyle}">
 
@@ -155,15 +155,15 @@
                                 <WrapPanel>
 
                                     <StackPanel>
-                                        <TextBlock Text="Outbound" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1008'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                                         <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbOutbound_SelectionChanged" Name="cbOutbound" ItemTemplate="{StaticResource AirportCodeItem}" ItemsSource="{Binding OutboundAirports,ElementName=pageRoutePlanner}"></ComboBox>
-                                        <TextBlock Text="Depart" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0"></TextBlock>
+                                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1009'}" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0"></TextBlock>
                                         <Border BorderBrush="Black" BorderThickness="1">
                                         <t:DateTimeUpDown  Name="tpTime" Format="ShortTime" Value="12:00" Background="Transparent" BorderBrush="Black" BorderThickness="0" Foreground="White" VerticalAlignment="Bottom"></t:DateTimeUpDown>
                                         </Border>
                                     </StackPanel>
                                     <StackPanel Margin="10 0 0 0">
-                                        <TextBlock Text="Homebound" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
+                                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1010'}" HorizontalAlignment="Center" FontWeight="Bold"></TextBlock>
                                         <ComboBox Style="{StaticResource ComboBoxTransparentStyle}" Width="100" IsSynchronizedWithCurrentItem="True" Name="cbHomebound">
                                             <ComboBox.ItemTemplate>
                                                 <DataTemplate>
@@ -178,14 +178,14 @@
                                                 </DataTemplate>
                                             </ComboBox.ItemTemplate>
                                         </ComboBox>
-                                        <TextBlock Text="Flight No." HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0"></TextBlock>
+                                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1011'}" HorizontalAlignment="Center" FontWeight="Bold" Margin="0 5 0 0"></TextBlock>
                                         <WrapPanel>
                                             <TextBlock Text="{Binding Airliner.Airliner.Airline.Profile.IATACode,ElementName=pageRoutePlanner}" VerticalAlignment="Bottom"></TextBlock>
                                             <TextBox Text="0000" Style="{StaticResource NumericTextBox}" Margin="5 0 0 0" MaxLength="4" VerticalAlignment="Bottom" Width="50" Name="txtSchedulerFlightNumber"></TextBox>
                                         </WrapPanel>
                                     </StackPanel>
                                 </WrapPanel>
-                                <Button HorizontalAlignment="Center" Content="Swap Airports" Margin="0 5 0 0" Click="btnSwap_Click">
+                                <Button HorizontalAlignment="Center" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 203'}" Margin="0 5 0 0" Click="btnSwap_Click">
                                     <Button.Style>
                                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                             <Style.Triggers>
@@ -201,18 +201,18 @@
                         </Border>
                         <Border Style="{StaticResource RoundedBorderStyle}"  Margin="10 0 0 0">
                             <StackPanel>
-                                <TextBlock Text="Interval" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1012'}" FontWeight="Bold" HorizontalAlignment="Center"></TextBlock>
                                 <WrapPanel>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Daily" Width="100" VerticalAlignment="Bottom" Content="Daily" GroupName="Interval" IsChecked="True"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Weekdays" Width="100" VerticalAlignment="Bottom" Content="Weekdays" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="TTS"  Width="100" VerticalAlignment="Bottom" Content="TTS" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Daily" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1019'}" GroupName="Interval" IsChecked="True"></RadioButton>
+                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Weekdays" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1020'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="TTS"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1021'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
                                 </WrapPanel>
                                 <WrapPanel Margin="0 5 0 0">
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="EveryOther" Width="100" VerticalAlignment="Bottom" Content="Every Other" GroupName="Interval"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Weekend" Width="100" VerticalAlignment="Bottom" Content="Weekend" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
-                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="MWF" Width="100" VerticalAlignment="Bottom" Content="MWF" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="EveryOther" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1022'}" GroupName="Interval"></RadioButton>
+                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Weekend" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1023'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
+                                    <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="MWF" Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1024'}" GroupName="Interval" Margin="10 0 0 0"></RadioButton>
                                 </WrapPanel>
-                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Manual" VerticalAlignment="Bottom" Name="rbManual" Content="Manual" GroupName="Interval" Margin="0 5 0 0"></RadioButton>
+                                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Manual" VerticalAlignment="Bottom" Name="rbManual" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1025'}" GroupName="Interval" Margin="0 5 0 0"></RadioButton>
                                 <WrapPanel Margin="0 5 0 0">
                                     <WrapPanel.Style>
                                         <Style TargetType="WrapPanel">
@@ -232,7 +232,7 @@
                                     <CheckBox Content="Su" Name="cbSunday" VerticalAlignment="Bottom" Margin="10 0 0 0" Style="{StaticResource CheckboxLeftSideText}"></CheckBox>
                                 </WrapPanel>
                                 <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Center">
-                                    <Button Content="Add" Margin="0 5 0 0" Click="btnAddScheduler_Click">
+                                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 204'}" Margin="0 5 0 0" Click="btnAddScheduler_Click">
                                         <Button.Style>
                                             <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                                 <Style.Triggers>
@@ -250,11 +250,11 @@
                     </WrapPanel>
                 </Expander>
                 <WrapPanel Margin="0 5 0 0">
-                    <Button Content="Save Changes" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnSave_Click"></Button>
-                    <Button Content="Undo All" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnUndo_Click"></Button>
-                    <Button Content="Clear Timetable" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnClear_Click"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 200'}" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnSave_Click"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 201'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnUndo_Click"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnClear_Click"></Button>
                 </WrapPanel>
-                <Expander Margin="0 10 0 0" Header="Routes" Style="{StaticResource ExpanderStyle}">
+                <Expander Margin="0 10 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1013'}" Style="{StaticResource ExpanderStyle}">
 
                     <ListView Background="Transparent" BorderThickness="0" ItemsSource="{Binding ElementName=pageRoutePlanner,Path=AllRoutes}">
                         <ListView.View>
@@ -280,7 +280,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Stopovers" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1014'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Route.Stopovers}">
@@ -293,14 +293,14 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Color" Width="75">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1015'}" Width="75">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Border Width="50" Height="20" Style="{StaticResource RoundedBorderStyle}" BorderBrush="Black" BorderThickness="2" Background="{Binding Brush}"></Border>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Flight Time" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1016'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding FlightTime,StringFormat=hh\\:mm}" Margin="20 0 0 0" VerticalAlignment="Bottom"/>
