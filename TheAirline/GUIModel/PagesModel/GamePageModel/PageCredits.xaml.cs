@@ -12,21 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.PageModel.GeneralModel;
 
-namespace TheAirline.GUIModel.MasterPageModel.PopUpPageModel
+namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
     /// <summary>
-    /// Interaction logic for WPFPopUpTest.xaml
+    /// Interaction logic for PageCredits.xaml
     /// </summary>
-    public partial class WPFPopUpTest : UserControl
+    public partial class PageCredits : Page
     {
-        public WPFPopUpTest()
+        public PageCredits()
         {
             InitializeComponent();
+        }
 
-            DataTemplate dt = this.Resources["TestTemplate"] as DataTemplate;
-
-            WPFPopUp.Show("Test",dt);
+        private void btnStartMenu_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageStartMenu());
         }
     }
 }

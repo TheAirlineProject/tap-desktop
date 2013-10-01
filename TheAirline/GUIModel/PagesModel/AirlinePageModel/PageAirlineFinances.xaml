@@ -142,7 +142,7 @@
                         <TextBlock Text="{Binding LoanRate,StringFormat={}{0} %}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
                     <WrapPanel>
-                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 200'}" Click="btnApplyLoan_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Style="{StaticResource StandardButtonStyle}"></Button>
+                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 200'}" IsDefault="True" Click="btnApplyLoan_Click" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" Style="{StaticResource StandardButtonStyle}"></Button>
                     </WrapPanel>
                 </StackPanel>
             </Expander>

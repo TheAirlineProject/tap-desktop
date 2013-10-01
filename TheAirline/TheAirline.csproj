@@ -82,6 +82,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\BBM\WpfLab\WpfLab\WpfLab\bin\Debug\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -514,11 +517,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUp.xaml">
+    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpLoadConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpTest.xaml">
+    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFRegularPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -663,6 +666,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageCredits.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1105,11 +1112,12 @@
     <Compile Include="GUIModel\HelpersModel\GridViewSort.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
     <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
-    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUp.xaml.cs">
-      <DependentUpon>WPFPopUp.xaml</DependentUpon>
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\PopUpViewModel.cs" />
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpLoadConfiguration.xaml.cs">
+      <DependentUpon>WPFPopUpLoadConfiguration.xaml</DependentUpon>
     </Compile>
-    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpTest.xaml.cs">
-      <DependentUpon>WPFPopUpTest.xaml</DependentUpon>
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFRegularPopUp.xaml.cs">
+      <DependentUpon>WPFRegularPopUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
     <Compile Include="GUIModel\MasterPageModel\StandardMasterPage.cs" />
@@ -1219,6 +1227,9 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml.cs">
       <DependentUpon>PageCreateDifficulty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageCredits.xaml.cs">
+      <DependentUpon>PageCredits.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml.cs">
       <DependentUpon>PageFlights.xaml</DependentUpon>

@@ -22,7 +22,7 @@ namespace TheAirline.GUIModel.CustomControlsModel
     /// </summary>
     public partial class ucTimeTable : UserControl
     {
-        public List<TimeSpan> Times { get; set; }
+        public ObservableCollection<DateTime> Times { get; set; }
         public ObservableCollection<TimelineEntry> MondayEntries { get; set; }
         public ObservableCollection<TimelineEntry> TuesdayEntries { get; set; }
         public ObservableCollection<TimelineEntry> WednesdayEntries { get; set; }
@@ -63,12 +63,19 @@ namespace TheAirline.GUIModel.CustomControlsModel
             this.SaturdayEntries = new ObservableCollection<TimelineEntry>();
             this.SundayEntries = new ObservableCollection<TimelineEntry>();
 
-            this.Times = new List<TimeSpan>();
+            this.Times = new ObservableCollection<DateTime>();
 
-            for (int i = 0; i < 24; i++)
-                this.Times.Add(new TimeSpan(i, 0, 0));
-
+            this.Loaded += ucTimeTable_Loaded;
+            
             InitializeComponent();
+        }
+
+        private void ucTimeTable_Loaded(object sender, RoutedEventArgs e)
+        {
+          
+            for (int i = 0; i < 24; i++)
+                this.Times.Add(new DateTime(1900,1,1,i,0,0));
+
         }
 
        
@@ -186,5 +193,26 @@ namespace TheAirline.GUIModel.CustomControlsModel
             RaiseEvent(new RoutedEventArgs(EntryDeletedEvent, entry));
         }
 
+    }
+    //the converter for the time interval width
+    public class TimeIntervalWidthConverter : IValueConverter
+    {
+
+        public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            double width = (double)value;
+
+            double dx = width / (24 * 60);
+
+            return System.Convert.ToDouble(60 * dx);
+
+       
+
+       }
+
+        public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

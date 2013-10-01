@@ -13,8 +13,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.MasterPageModel.PopUpPageModel;
 using TheAirline.GUIModel.PagesModel.OptionsPageModel;
 using TheAirline.Model.GeneralModel;
 
@@ -45,11 +46,29 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         }
         private void btnLoadGame_Click(object sender, RoutedEventArgs e)
         {
+            //WPFPopUpLoadConfiguration conf = new WPFPopUpLoadConfiguration(Configuration.ConfigurationType.Airliner);
+            /*
+            DataTemplate template = this.Resources["TestTemplate"] as DataTemplate;
+
+             WPFRegularPopUp.Show("Test",template,WPFPopUpButtons.YesNo);
+
+             DependencyObject o= template.LoadContent();
+
+             FrameworkElementFactory ff= template.VisualTree;
+             ComboBox cb = UIHelpers.FindChild<ComboBox>(o, "cbTest");
+
+             object jj = cb.SelectedItem;
+            */
+            
             PageNavigator.NavigateTo(new PageMMLoadGame());
         }
         private void btnSettings_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageSettings());
+        }
+        private void btnCredits_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new PageCredits());
         }
     }
 }

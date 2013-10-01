@@ -16,7 +16,7 @@
             </Grid.ColumnDefinitions>
             <Border Margin="0 0 5 0" Style="{StaticResource RoundedBorderStyle}" Grid.Column="0">
                 <StackPanel>
-                    <TextBlock Text="Airliner Statistics" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView ItemsSource="{Binding AirlinerStatistics,ElementName=pageFleetAirlinerStatistics}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                         <ListView.View>
                             <GridView>
@@ -57,32 +57,32 @@
             </Border>
             <Border Margin="5 0 0 0" Style="{StaticResource RoundedBorderStyle}" Grid.Column="1">
                 <StackPanel>
-                    <TextBlock Text="Airliner Routes" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView ItemsSource="{Binding Airliner.Routes}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="Route" Width="300">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1002'}" Width="300">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource RouteLongItem}"></ContentControl>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Type" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1003'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Type}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Balace" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1004'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding Balance,Converter={StaticResource ValueCurrencyConverter}}" Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="Filling Degree" Width="75">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1005'}" Width="75">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:0.00 %}}" VerticalAlignment="Bottom"></TextBlock>

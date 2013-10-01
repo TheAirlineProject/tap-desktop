@@ -4,16 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:uc="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
+             xmlns:local="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
+             xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
              mc:Ignorable="d" 
              Name="timetable"
              d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:TimeIntervalWidthConverter x:Key="TimeIntervalWidthConverter"></local:TimeIntervalWidthConverter>
+    </UserControl.Resources>
     <StackPanel>
       
-            <Grid Background="#004A7F">
+        <Grid Background="#004A7F">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
+            <!--
                 <Grid Grid.Column="1">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -35,8 +41,18 @@
                     <TextBlock Text="18:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="6"></TextBlock>
                     <TextBlock Text="21:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="7"></TextBlock>
                     <TextBlock Text="23:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="8"></TextBlock>
-                </Grid>
-            </Grid>
+                </Grid>-->
+            <ListBox Style="{StaticResource VerticalListBoxStyle}" Grid.Column="1" Name="lbTimes" ItemsSource="{Binding Times,ElementName=timetable}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding StringFormat=hh,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="{Binding ElementName=lbTimes,
+                        Path=ActualWidth,Mode=OneTime,Converter={StaticResource TimeIntervalWidthConverter}}">
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+          
+        </Grid>
         <uc:ucTimeline Text="Sunday" Entries="{Binding SundayEntries,ElementName=timetable}" Tag="Sunday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
         <uc:ucTimeline Text="Monday" Entries="{Binding MondayEntries,ElementName=timetable}" Tag="Monday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
         <uc:ucTimeline Text="Thuesday" Entries="{Binding TuesdayEntries,ElementName=timetable}" Tag="Tuesday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>

@@ -25,7 +25,7 @@
                 <StackPanel Width="350">
                     <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
                     <WrapPanel Margin="0 5 0 0">
-                        <TextBlock Text="Number of Seats" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1000'}" VerticalAlignment="Bottom" Width="100"></TextBlock>
                     <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom">
                             <TextBlock.Style>
                                 <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
@@ -58,37 +58,37 @@
     </Page.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
           <StackPanel>
-            <TextBlock Text="Airliner Information" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Homebase" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1002'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <ContentControl Content="{Binding Airliner.Homebase}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Built Date" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Airliner.Airliner.BuiltDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Date of Purchase" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1004'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Airliner.PurchasedDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Condition Level" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1005'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <ProgressBar HorizontalAlignment="Center" Width="100" Value="{Binding Airliner.Airliner.Condition}" VerticalAlignment="Bottom" Height="15" Background="Transparent" BorderBrush="Black"></ProgressBar>
                 <TextBlock Text="{Binding Airliner.Airliner.Condition}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
              </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Total Flown" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1006'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Airliner.Airliner.Flown,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Flown Since Last Service" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1007'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Airliner.Airliner.LastServiceCheck,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
-                <TextBlock Text="Registered in" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <ContentControl Content="{Binding Airliner.Airliner.Registered}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
             </WrapPanel>
-            <TextBlock Text="Aircraft Specifications" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1009'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
                     <ContentControl Content="{Binding Airliner.Airliner.Type}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
               <StackPanel>
                 <StackPanel.Style>
@@ -103,10 +103,10 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
-              <TextBlock Text="Airliner Classes" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1010'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
               <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemsSource="{Binding Classes}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
             <WrapPanel Margin="0 5 0 0">
-                <Button Content="Add Airliner Class" VerticalAlignment="Bottom" Click="btnAddClass_Click">
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 200'}" VerticalAlignment="Bottom" Click="btnAddClass_Click">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                 <Style.Triggers>
@@ -123,8 +123,8 @@
                              </Style>
                     </Button.Style>
                 </Button>
-                <Button Content="Save Changes" Click="btnSaveChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
-                <Button Content="Undo Changes" Click="btnUndoChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 201'}" Click="btnSaveChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 202'}" Click="btnUndoChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
             </WrapPanel>
             </StackPanel>
         </StackPanel>

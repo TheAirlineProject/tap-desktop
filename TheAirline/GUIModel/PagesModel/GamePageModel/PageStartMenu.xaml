@@ -8,6 +8,17 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageStartMenu">
     <Page.Resources>
+        <DataTemplate x:Key="TestTemplate">
+            <StackPanel>
+                <TextBlock Text="Test" VerticalAlignment="Bottom"></TextBlock>
+                <ComboBox Name="cbTest" VerticalAlignment="Bottom" Width="100">
+                    <ComboBoxItem>AGF</ComboBoxItem>
+                    <ComboBoxItem>Steelers</ComboBoxItem>
+                    <ComboBoxItem>Penguins</ComboBoxItem>
+
+                </ComboBox>
+            </StackPanel>
+        </DataTemplate>
         <DataTemplate x:Key="QuickLinksContent">
 
         </DataTemplate>
@@ -40,7 +51,7 @@
                 <Button Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 200'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnNewGame_Click"></Button>
                 <Button Margin="0 5 0 0" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 201'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnLoadGame_Click"></Button>
                 <Button Margin="0 5 0 0" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 202'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnSettings_Click"></Button>
-                <Button IsEnabled="False" Margin="0 5 0 0" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 203'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnLoadGame_Click"></Button>
+                <Button Margin="0 5 0 0" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 203'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnCredits_Click"></Button>
                 <Button Margin="0 5 0 0" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageFrontMenu 204'}" Style="{StaticResource StartMenuButtonStyle}" Click="btnExitGame_Click"></Button>
                 
 

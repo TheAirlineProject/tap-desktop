@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.MasterPageModel.PopUpPageModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -200,6 +201,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 cbConfigurations.Items.Add(confItem);
 
             cbConfigurations.SelectedIndex = 0;
+
+            WPFPopUpLoadConfiguration loadConfiguration = new WPFPopUpLoadConfiguration(Configuration.ConfigurationType.Routeclasses);
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageCreateRoute", "1012"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
