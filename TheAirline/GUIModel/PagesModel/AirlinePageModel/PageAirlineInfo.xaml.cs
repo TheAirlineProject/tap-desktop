@@ -176,7 +176,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             Airline airline = (Airline)((Image)sender).Tag;
 
-            GameObject.GetInstance().HumanAirline = airline;
+            GameObject.GetInstance().setHumanAirline(airline);
             PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
          
         }

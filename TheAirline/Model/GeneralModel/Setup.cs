@@ -1815,7 +1815,7 @@ namespace TheAirline.Model.GeneralModel
                      f = file.Name;
                     LoadAirline(file.FullName);
                 }
-                GameObject.GetInstance().HumanAirline = Airlines.GetAllAirlines()[0];
+                GameObject.GetInstance().setHumanAirline(Airlines.GetAllAirlines()[0]);
                 GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
 
                 CreateAirlineLogos();
@@ -2140,6 +2140,10 @@ namespace TheAirline.Model.GeneralModel
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 airline.Money = GameObject.GetInstance().StartMoney;
+
+                if (airline.IsHuman)
+                    GameObject.GetInstance().HumanMoney = airline.Money;
+                
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();
                 airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));

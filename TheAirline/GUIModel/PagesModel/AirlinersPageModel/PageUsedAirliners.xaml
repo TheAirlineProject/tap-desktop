@@ -23,7 +23,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1000'}" Width="200" util:GridViewSort.PropertyName="Type.Manufacturer.Name">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1000'}" Width="200" util:GridViewSort.Filtering="True" util:GridViewSort.PropertyName="Type.Manufacturer.Name">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <WrapPanel>

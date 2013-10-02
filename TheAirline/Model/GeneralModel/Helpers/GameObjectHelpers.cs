@@ -1631,7 +1631,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airline.Profile.Country = startData.HomeCountry;
             airline.Profile.CEO = startData.CEO;
 
-            GameObject.GetInstance().HumanAirline = airline;
+            GameObject.GetInstance().setHumanAirline(airline);
             GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
 
             if (startData.LocalCurrency)
@@ -1653,7 +1653,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 var airlines = Airlines.GetAirlines(a => a.Profile.Country.Region == region || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Founded <= startYear && a.Profile.Folded > startYear);
                 var airports = Airports.GetAirports(a => a.Profile.Country.Region == region || (region.Uid == "100" && continent.hasRegion(a.Profile.Country.Region)) && a.Profile.Period.From.Year <= startYear && a.Profile.Period.To.Year > startYear);
 
-                //Airports.RemoveAirports(a => (a.Profile.Country.Region != region && !continent.hasRegion(a.Profile.Country.Region)) || (a.Profile.Town.State != null && a.Profile.Town.State.IsOverseas));
                 Airports.Clear();
                 foreach (Airport a in airports)
                     Airports.AddAirport(a);

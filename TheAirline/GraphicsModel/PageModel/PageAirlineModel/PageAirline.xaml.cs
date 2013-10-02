@@ -377,7 +377,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel
 
             if (airline != GameObject.GetInstance().HumanAirline)
             {
-                GameObject.GetInstance().HumanAirline = airline;
+                GameObject.GetInstance().setHumanAirline(airline);
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
             }
         }

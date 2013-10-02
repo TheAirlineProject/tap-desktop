@@ -637,8 +637,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
              GameObject.GetInstance().Name = gameSettingsNode.Attributes["name"].Value;
 
              Airline humanAirline = Airlines.GetAirline(gameSettingsNode.Attributes["human"].Value);
-             GameObject.GetInstance().HumanAirline = humanAirline;
-
+             GameObject.GetInstance().setHumanAirline(humanAirline);
+       
              Airline mainAirline = Airlines.GetAirline(gameSettingsNode.Attributes["mainairline"].Value);
              GameObject.GetInstance().MainAirline = mainAirline;
 

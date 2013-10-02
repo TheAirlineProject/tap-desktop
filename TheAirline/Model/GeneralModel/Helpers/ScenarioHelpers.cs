@@ -33,7 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //sets the fuel price
             GameObject.GetInstance().FuelPrice = Inflations.GetInflation(GameObject.GetInstance().GameTime.Year).FuelPrice;
 
-            GameObject.GetInstance().HumanAirline = airline;
+            GameObject.GetInstance().setHumanAirline(airline);
             GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
             GameObject.GetInstance().HumanAirline.Money = scenario.StartCash;
 

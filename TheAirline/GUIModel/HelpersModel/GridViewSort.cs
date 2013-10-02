@@ -11,6 +11,7 @@ using System.Windows.Media;
 
 namespace TheAirline.GUIModel.HelpersModel
 {
+   
     public class GridViewSort
     {
         #region Attached properties
@@ -63,7 +64,20 @@ namespace TheAirline.GUIModel.HelpersModel
         {
             obj.SetValue(AutoSortProperty, value);
         }
+        
+        public static readonly DependencyProperty FilteringProperty =
+                            DependencyProperty.Register("Filtering",
+                            typeof(Boolean), typeof(GridViewSort));
 
+        public static Boolean GetFiltering(DependencyObject obj)
+        {
+            return (Boolean)obj.GetValue(FilteringProperty);
+        }
+
+        public static void SetFiltering(DependencyObject obj, Boolean value)
+        {
+            obj.SetValue(FilteringProperty, value);
+        }
         // Using a DependencyProperty as the backing store for AutoSort.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty AutoSortProperty =
             DependencyProperty.RegisterAttached(
@@ -165,6 +179,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
         public static void ApplySort(ICollectionView view, string propertyName)
         {
+            
             ListSortDirection direction = ListSortDirection.Ascending;
             if (view.SortDescriptions.Count > 0)
             {

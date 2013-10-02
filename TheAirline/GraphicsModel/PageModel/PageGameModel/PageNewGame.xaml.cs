@@ -726,7 +726,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
                 airline.Profile.Country = (Country)cbCountry.SelectedItem;
                 airline.Profile.CEO = txtName.Text.Trim();
 
-                GameObject.GetInstance().HumanAirline = airline;
+                GameObject.GetInstance().setHumanAirline(airline);
                 GameObject.GetInstance().MainAirline = GameObject.GetInstance().HumanAirline;
 
                 if (cbLocalCurrency.IsChecked.Value)

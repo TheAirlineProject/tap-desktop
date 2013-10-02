@@ -29,7 +29,7 @@ namespace TheAirline.Model.GeneralModel
         //public DateTime GameTime { get; set; }
         
         public DateTime StartDate { get; set; }
-        public Airline HumanAirline { get; set; }
+        public Airline HumanAirline { get; private set; }
         public Airline MainAirline { get; set; }
         
         public NewsBox NewsBox { get; set; }
@@ -58,7 +58,12 @@ namespace TheAirline.Model.GeneralModel
             get { return _gameTime; }
             set { _gameTime = value; NotifyPropertyChanged("GameTime"); }
         }
-
+        private double _humanMoney;
+        public double HumanMoney
+        {
+            get { return _humanMoney; }
+            set { _humanMoney = value; NotifyPropertyChanged("HumanMoney"); }
+        }
        
         private GameObject()
         {
@@ -71,7 +76,12 @@ namespace TheAirline.Model.GeneralModel
             this.FinancePageEnabled = false;
             this.DayRoundEnabled = true;
         }
-       
+         //sets the money for the human airline
+        public void setHumanMoney(double value)
+        {
+            this.HumanMoney += value;
+            this.HumanAirline.Money += value;
+        }
         //returns the start money based on year of start
         private long getStartMoney()
         {
@@ -82,7 +92,12 @@ namespace TheAirline.Model.GeneralModel
           
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(baseStartMoney));
         }
-
+        //sets the human airline
+        public void setHumanAirline(Airline airline)
+        {
+            this.HumanAirline = airline;
+            this.HumanMoney = airline.Money;
+        }
         //returns the game instance
         public static GameObject GetInstance()
         {
@@ -110,7 +125,7 @@ namespace TheAirline.Model.GeneralModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-         
+       
         
 
     }
