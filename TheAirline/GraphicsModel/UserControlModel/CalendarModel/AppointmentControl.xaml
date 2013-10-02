@@ -16,7 +16,7 @@
            <TextBlock.ToolTip>
 
           <ToolTip Name="PreviousValue" Placement="Bottom" 
-           DataContext="{Binding RelativeSource={RelativeSource Self},Path=PlacementTarget.Parent.Parent}"  Background="{StaticResource HeaderBackgroundBrush2}">
+           DataContext="{Binding RelativeSource={RelativeSource Self},Path=PlacementTarget.Parent.Parent}"  Background="#004A7F">
             <TextBlock Text="{Binding Item.Subject}"/>
 
           </ToolTip>

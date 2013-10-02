@@ -665,6 +665,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1224,6 +1228,9 @@
     <Compile Include="GUIModel\PagesModel\GamePageModel\DifficultyMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
       <DependentUpon>PageAirlineData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageCalendar.xaml.cs">
+      <DependentUpon>PageCalendar.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml.cs">
       <DependentUpon>PageCreateDifficulty.xaml</DependentUpon>

@@ -26,7 +26,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
     /// </summary>
     public partial class ucCalendar : UserControl, INotifyPropertyChanged
     {
-        public Boolean ShowAll { get; set; }
+        private static void OnShowAllPropertyChanged(DependencyObject source,
+         DependencyPropertyChangedEventArgs e)
+        {
+            ucCalendar control = source as ucCalendar;
+
+            control.showMonth();
+     
+        }
+        public static readonly DependencyProperty ShowAllProperty =
+                                DependencyProperty.Register("ShowAll",
+                                typeof(Boolean), typeof(ucCalendar),new FrameworkPropertyMetadata(true,OnShowAllPropertyChanged));
+
+        [Category("Common Properties")]
+        public Boolean ShowAll
+        {
+            get { return (Boolean)GetValue(ShowAllProperty); }
+            set { SetValue(ShowAllProperty, value);  }
+        }
         private DateTime ___Date;
         public DateTime Date
         {
@@ -48,8 +65,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
         public ucCalendar()
         {
-            this.ShowAll = false;
-
+            
             this.Date = GameObject.GetInstance().GameTime;
 
             InitializeComponent();
@@ -61,53 +77,56 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
         //show current month
         private void showMonth()
         {
-            MonthViewGrid.Children.Clear();
-
-            int daysInMonth = DateTime.DaysInMonth(this.Date.Year, this.Date.Month);
-
-            DateTime startDate = new DateTime(this.Date.Year, this.Date.Month, 1);
-   
-            int startDayOfWeek = (int)startDate.DayOfWeek;
-    
-            Grid grdDays = UICreator.CreateGrid(7, 6);
-            for (int i = 0; i < 7; i++)
+            if (this.MonthViewGrid != null)
             {
-                for (int j = 0; j < 6; j++)
+                this.MonthViewGrid.Children.Clear();
+
+                int daysInMonth = DateTime.DaysInMonth(this.Date.Year, this.Date.Month);
+
+                DateTime startDate = new DateTime(this.Date.Year, this.Date.Month, 1);
+
+                int startDayOfWeek = (int)startDate.DayOfWeek;
+
+                Grid grdDays = UICreator.CreateGrid(7, 6);
+                for (int i = 0; i < 7; i++)
                 {
-                    int day = i + 7 * j + 1;
-                    DayBoxControl dbcDay = new DayBoxControl();
-
-                    if (day > startDayOfWeek && day <= daysInMonth + startDayOfWeek)
+                    for (int j = 0; j < 6; j++)
                     {
-                        dbcDay.Day = day - startDayOfWeek;
+                        int day = i + 7 * j + 1;
+                        DayBoxControl dbcDay = new DayBoxControl();
 
-
-                        DateTime currentDate = new DateTime(this.Date.Year, this.Date.Month, dbcDay.Day);
-
-                        foreach (CalendarItem item in getCalendarItems(currentDate))
+                        if (day > startDayOfWeek && day <= daysInMonth + startDayOfWeek)
                         {
-                            AppointmentControl aControl = new AppointmentControl();
-                            aControl.Item = item;
+                            dbcDay.Day = day - startDayOfWeek;
 
-                            dbcDay.DayAppointmentsStack.Children.Add(aControl);
+
+                            DateTime currentDate = new DateTime(this.Date.Year, this.Date.Month, dbcDay.Day);
+
+                            foreach (CalendarItem item in getCalendarItems(currentDate))
+                            {
+                                AppointmentControl aControl = new AppointmentControl();
+                                aControl.Item = item;
+
+                                dbcDay.DayAppointmentsStack.Children.Add(aControl);
+                            }
+
+
+
                         }
+                        else
+                            dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;
 
 
 
+                        Grid.SetColumn(dbcDay, i);
+                        Grid.SetRow(dbcDay, j);
+
+                        grdDays.Children.Add(dbcDay);
                     }
-                    else
-                        dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;
-
-              
-
-                    Grid.SetColumn(dbcDay, i);
-                    Grid.SetRow(dbcDay, j);
-
-                    grdDays.Children.Add(dbcDay);
                 }
-            }
 
-            MonthViewGrid.Children.Add(grdDays);
+                MonthViewGrid.Children.Add(grdDays);
+            }
         }
         //shows the current month
         public void showCurrentMonth()

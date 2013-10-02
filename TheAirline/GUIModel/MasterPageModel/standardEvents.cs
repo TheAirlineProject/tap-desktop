@@ -68,6 +68,11 @@ namespace TheAirline.GUIModel.MasterPageModel
             GameObjectWorker.GetInstance().restart();
        
         }
+        private void btnCalendar_Click(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.NavigateTo(new TheAirline.GUIModel.PagesModel.GamePageModel.PageCalendar());
+
+        }
         private void btnNews_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageNews());
