@@ -40,7 +40,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public ObservableCollection<TimeSpan> StartTimes { get; set; }
         public List<int> StopoverMinutes { get; set; }
         public ObservableCollection<int> Intervals { get; set; }
-
+        private Point startPoint;
         public List<IntervalType> IntervalTypes
         {
             get { return Enum.GetValues(typeof(IntervalType)).Cast<IntervalType>().ToList(); }
@@ -72,7 +72,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (Region region in routeRegions.Distinct())
                 this.AllRegions.Add(region);
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes)
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.Where(r=>r.getDistance()<= this.Airliner.Airliner.Type.Range))
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
 
             this.OutboundAirports = new List<Airport>();
@@ -397,12 +397,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                  rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, interval, false, delayMinutes, startTime, flightcode1, flightcode2);
 
             }
-            /*
-            if (intervalType == IntervalType.Biweek && opsType != OpsType.Business)
-            {
-                rt = AIHelpers.CreateAirlinerRouteTimeTable(route, this.Airliner, interval, false, delayMinutes, startTime, flightcode1, flightcode2);
-            }*/
-
             if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.Entries.ToList(), false))
             {
                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2705"), Translator.GetInstance().GetString("MessageBox", "2705", "message"), WPFMessageBoxButtons.YesNo);
@@ -442,6 +436,48 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Entries.Remove(rEntry);
          
+        }
+        private void EntryAdded_Event(object sender, System.Windows.RoutedEventArgs e)
+        {
+           
+            TimelineDropItem item = e.OriginalSource as TimelineDropItem;
+            /*
+             RouteTimeTable rt = new RouteTimeTable(item.Object);
+
+            string flightCode = this.Airliner.Airliner.Airline.Profile.IATACode + txtSchedulerFlightNumber.Text;
+
+            RouteTimeTableEntry rEntry = new RouteTimeTableEntry(rt,item.Day,item.Time,new RouteEntryDestination(,flightCode));
+            
+            this.Entries.Add(rEntry);
+            */
+
+        }
+        private void EntryChanged_Event(object sender, System.Windows.RoutedEventArgs e)
+        {
+            object[] entries =  e.OriginalSource as object[];
+            
+            TimelineEntry oldEntry = entries[0] as TimelineEntry;
+            TimelineEntry newEntry = entries[1] as TimelineEntry;
+
+            RouteTimeTableEntry oEntry = (RouteTimeTableEntry)oldEntry.Source;
+
+            RouteTimeTable rt = new RouteTimeTable(oEntry.TimeTable.Route);
+            RouteTimeTableEntry nEntry = new RouteTimeTableEntry(rt,(DayOfWeek)newEntry.StartTime.Days,newEntry.StartTime,oEntry.Destination);
+            nEntry.Airliner = this.Airliner;
+            rt.addEntry(nEntry);
+            
+            List<RouteTimeTableEntry> tEntries = new List<RouteTimeTableEntry>(this.Entries);
+            tEntries.Remove(oEntry);
+
+            if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, tEntries))
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2706"), Translator.GetInstance().GetString("MessageBox", "2706", "message"), WPFMessageBoxButtons.Ok);
+            else
+            {
+                this.Entries.Remove(oEntry);
+
+                this.Entries.Add(nEntry);
+            }
+
         }
         private void Entries_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
@@ -580,6 +616,29 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
 
 
+        }
+
+        private void Rectangle_MouseMove(object sender, MouseEventArgs e)
+        {
+            // Get the current mouse position
+            Point mousePos = e.GetPosition(null);
+            Vector diff = startPoint - mousePos;
+
+            if (e.LeftButton == MouseButtonState.Pressed &&
+                (Math.Abs(diff.X) > SystemParameters.MinimumHorizontalDragDistance ||
+                Math.Abs(diff.Y) > SystemParameters.MinimumVerticalDragDistance))
+            {
+                Rectangle rect = (Rectangle)sender;
+
+                // Initialize the drag & drop operation
+                DataObject dragData = new DataObject("Route", GameObject.GetInstance().HumanAirline.Airports[0]);
+                DragDrop.DoDragDrop(rect, dragData, DragDropEffects.Move);
+            } 
+        }
+
+        private void Rectangle_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            startPoint = e.GetPosition(null);
         }
 
       

@@ -53,12 +53,12 @@
             </ListBox>
           
         </Grid>
-        <uc:ucTimeline Text="Sunday" Entries="{Binding SundayEntries,ElementName=timetable}" Tag="Sunday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-        <uc:ucTimeline Text="Monday" Entries="{Binding MondayEntries,ElementName=timetable}" Tag="Monday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-        <uc:ucTimeline Text="Thuesday" Entries="{Binding TuesdayEntries,ElementName=timetable}" Tag="Tuesday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-        <uc:ucTimeline Text="Wednesday" Entries="{Binding WednesdayEntries,ElementName=timetable}" Tag="Wednesday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-        <uc:ucTimeline Text="Thursday" Entries="{Binding ThursdayEntries,ElementName=timetable}" Tag="Thursday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-        <uc:ucTimeline Text="Friday" Entries="{Binding FridayEntries,ElementName=timetable}" Tag="Friday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
-        <uc:ucTimeline Text="Saturday" Entries="{Binding SaturdayEntries,ElementName=timetable}" Tag="Saturday" EntryDeleted="EntryDeleted_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Sunday" Entries="{Binding SundayEntries,ElementName=timetable}" Tag="Sunday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Monday" Entries="{Binding MondayEntries,ElementName=timetable}" Tag="Monday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Tuesday" Entries="{Binding TuesdayEntries,ElementName=timetable}" Tag="Tuesday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Wednesday" Entries="{Binding WednesdayEntries,ElementName=timetable}" Tag="Wednesday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Thursday" Entries="{Binding ThursdayEntries,ElementName=timetable}" Tag="Thursday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Friday" Entries="{Binding FridayEntries,ElementName=timetable}" Tag="Friday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Saturday" Entries="{Binding SaturdayEntries,ElementName=timetable}" Tag="Saturday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
     </StackPanel>
 </UserControl>

@@ -42,7 +42,7 @@ namespace TheAirline.GUIModel.CustomControlsModel
             set { SetValue(EntriesProperty, value);  }
         }
 
-        // Register the routed event
+        // Register the routed events
         public static readonly RoutedEvent EntryDeletedEvent =
             EventManager.RegisterRoutedEvent("EntryDeleted", RoutingStrategy.Bubble,
             typeof(RoutedEventHandler), typeof(ucTimeTable));
@@ -52,7 +52,26 @@ namespace TheAirline.GUIModel.CustomControlsModel
             add { AddHandler(EntryDeletedEvent, value); }
             remove { RemoveHandler(EntryDeletedEvent, value); }
         }
- 
+
+        public static readonly RoutedEvent EntryAddedEvent =
+            EventManager.RegisterRoutedEvent("EntryAdded", RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(ucTimeTable));
+
+        public event RoutedEventHandler EntryAdded
+        {
+            add { AddHandler(EntryAddedEvent, value); }
+            remove { RemoveHandler(EntryAddedEvent, value); }
+        }
+        
+        public static readonly RoutedEvent EntryChangedEvent =
+              EventManager.RegisterRoutedEvent("EntryChanged", RoutingStrategy.Bubble,
+              typeof(RoutedEventHandler), typeof(ucTimeTable));
+
+        public event RoutedEventHandler EntryChanged
+        {
+            add { AddHandler(EntryChangedEvent, value); }
+            remove { RemoveHandler(EntryChangedEvent, value); }
+        }
         public ucTimeTable()
         {
             this.MondayEntries = new ObservableCollection<TimelineEntry>();
@@ -103,7 +122,6 @@ namespace TheAirline.GUIModel.CustomControlsModel
 
             if (entries.Exists(e => e.StartTime == startTime && e.EndTime == endTime && e.Text == text))
             {
-
                 if (startTime.Days == 2)
                     this.TuesdayEntries.Remove(this.TuesdayEntries.First(e => e.StartTime == startTime && e.EndTime == endTime && e.Text == text));
 
@@ -162,6 +180,16 @@ namespace TheAirline.GUIModel.CustomControlsModel
                 this.MondayEntries.Add(entry);
 
 
+        }
+        private void EntryAdded_Event(object sender, System.Windows.RoutedEventArgs e)
+        {
+          
+            RaiseEvent(new RoutedEventArgs(EntryAddedEvent, e.OriginalSource));
+        }
+        private void EntryChanged_Event(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+            RaiseEvent(new RoutedEventArgs(EntryChangedEvent, e.OriginalSource));
         }
         private void EntryDeleted_Event(object sender, System.Windows.RoutedEventArgs e)
         {
