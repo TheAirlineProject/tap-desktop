@@ -19,30 +19,7 @@
                     <ColumnDefinition Width="100"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-            <!--
-                <Grid Grid.Column="1">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                        <ColumnDefinition Width="*"></ColumnDefinition>
-                    </Grid.ColumnDefinitions>
-                    <TextBlock Text="00:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="0"></TextBlock>
-                    <TextBlock Text="03:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="1"></TextBlock>
-                    <TextBlock Text="06:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="2"></TextBlock>
-                    <TextBlock Text="09:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="3"></TextBlock>
-                    <TextBlock Text="12:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="4"></TextBlock>
-                    <TextBlock Text="15:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="5"></TextBlock>
-                    <TextBlock Text="18:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="6"></TextBlock>
-                    <TextBlock Text="21:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="7"></TextBlock>
-                    <TextBlock Text="23:00" VerticalAlignment="Bottom" FontWeight="Bold" Grid.Column="8"></TextBlock>
-                </Grid>-->
-            <ListBox Style="{StaticResource VerticalListBoxStyle}" Grid.Column="1" Name="lbTimes" ItemsSource="{Binding Times,ElementName=timetable}">
+             <ListBox Style="{StaticResource VerticalListBoxStyle}" Grid.Column="1" Name="lbTimes" ItemsSource="{Binding Times,ElementName=timetable}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding StringFormat=hh,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="{Binding ElementName=lbTimes,
@@ -51,7 +28,6 @@
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-          
         </Grid>
         <uc:ucTimeline Day="Sunday" Entries="{Binding SundayEntries,ElementName=timetable}" Tag="Sunday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
         <uc:ucTimeline Day="Monday" Entries="{Binding MondayEntries,ElementName=timetable}" Tag="Monday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>

@@ -234,8 +234,6 @@ namespace TheAirline.GUIModel.CustomControlsModel
 
             return System.Convert.ToDouble(60 * dx);
 
-       
-
        }
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
