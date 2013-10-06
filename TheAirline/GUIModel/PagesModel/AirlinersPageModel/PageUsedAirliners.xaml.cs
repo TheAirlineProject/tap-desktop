@@ -28,9 +28,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             this.Loaded += PageUsedAirliners_Loaded;
 
+
             this.AllAirliners = Airliners.GetAirlinersForSale().OrderByDescending(a => a.BuiltDate.Year).ToList();
-                
+
             InitializeComponent();
+
         }
 
         private void PageUsedAirliners_Loaded(object sender, RoutedEventArgs e)
@@ -53,6 +55,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
                 matchingItem.Visibility = System.Windows.Visibility.Collapsed;
             }
+
         }
 
         private void lnkAirliner_Click(object sender, RoutedEventArgs e)

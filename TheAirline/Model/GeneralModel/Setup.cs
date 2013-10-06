@@ -2013,7 +2013,10 @@ namespace TheAirline.Model.GeneralModel
 
             airline.Profile.Narrative = narrative;
 
-
+            if (Airlines.GetAirline(airline.Profile.IATACode) != null)
+            {
+                Console.WriteLine("{0} exits for both {1} and {2}", airline.Profile.IATACode, airline.Profile.Name, Airlines.GetAirline(airline.Profile.IATACode).Profile.Name);
+            }
             Airlines.AddAirline(airline);
 
         }

@@ -6,7 +6,7 @@
                       xmlns:Microsoft_Windows_Themes="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero">
     <!--brushes-->
     <SolidColorBrush x:Key="HeaderBackgroundBrush" Color="#004A7F"></SolidColorBrush>
-    <SolidColorBrush x:Key="BackgroundTransparentBrush" Opacity="0.5" Color="Black"></SolidColorBrush>
+    <SolidColorBrush x:Key="BackgroundTransparentBrush" Color="#004A7F" Opacity="0.95"></SolidColorBrush>
     <SolidColorBrush x:Key="BorderBrush" Opacity="0.25" Color="Black"></SolidColorBrush>
     <!--hyperlinks-->
     <Style TargetType="{x:Type Hyperlink}">
@@ -1275,7 +1275,7 @@ and change the color of the selected bullet into a darker gray for better highli
                     </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="true">
-                            <Setter TargetName="HeaderContent" Property="TextElement.FontSize" Value="13"/>
+                            <Setter TargetName="HeaderContent" Property="Cursor" Value="Hand"/>
                         </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
@@ -1293,14 +1293,13 @@ and change the color of the selected bullet into a darker gray for better highli
             </Setter.Value>
         </Setter>
         <Setter Property="Foreground" Value="White"></Setter>
-
-        <Setter Property="Padding" Value="1,0,0,0"/>
+            <Setter Property="Padding" Value="1,0,0,0"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ListViewItem}">
 
-                    <Border Background="{TemplateBinding Background}" x:Name="Bd" SnapsToDevicePixels="True" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
-                        <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                 <Border Background="{TemplateBinding Background}" x:Name="Bd" SnapsToDevicePixels="True" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}">
+                             <GridViewRowPresenter VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsEnabled" Value="False">
