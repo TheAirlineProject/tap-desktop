@@ -1105,6 +1105,9 @@
     <Compile Include="GUIModel\CustomControlsModel\ComparerControl.xaml.cs">
       <DependentUpon>ComparerControl.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\FilterableListView.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\SortableGridViewColumn.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\SortableListView.cs" />
     <Compile Include="GUIModel\CustomControlsModel\TimelineEntry.cs" />
     <Compile Include="GUIModel\CustomControlsModel\ucTimeline.xaml.cs">
       <DependentUpon>ucTimeline.xaml</DependentUpon>

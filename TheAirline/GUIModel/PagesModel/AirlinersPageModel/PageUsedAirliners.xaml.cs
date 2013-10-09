@@ -28,10 +28,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             this.Loaded += PageUsedAirliners_Loaded;
 
-
             this.AllAirliners = Airliners.GetAirlinersForSale().OrderByDescending(a => a.BuiltDate.Year).ToList();
 
             InitializeComponent();
+  
+      
 
         }
 

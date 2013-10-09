@@ -5,8 +5,8 @@
     <c:BooleanToVisibility x:Key="BooleanToVisibility"></c:BooleanToVisibility>
     <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
     <c:ValueCurrencyConverter x:Key="ValueCurrencyConverter"></c:ValueCurrencyConverter>
-    <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector"></c:ListBoxItemStyleSelectorTransparent>
     <c:ValueIsMinusConverter x:Key="ValueIsMinusConverter"/>
+    <c:ListBoxItemStyleSelectorTransparent x:Key="ListBoxItemStyleSelector"></c:ListBoxItemStyleSelectorTransparent>
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
     <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
     <c:SpeedToUnitConverter x:Key="SpeedToUnitConverter"></c:SpeedToUnitConverter>

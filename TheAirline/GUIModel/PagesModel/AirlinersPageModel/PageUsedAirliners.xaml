@@ -4,15 +4,17 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
       Name="pageUsedAirliners"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
     Title="PageUsedAirliners">
-
-    <ListView x:Name="lvAirliners" ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}" util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
+    <filter:FilterableListView x:Name="lvAirliners" ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}" ItemContainerStyle="{StaticResource ListViewItemStyle}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
+                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
+       
         <ListView.View>
-            <GridView>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" Width="150" util:GridViewSort.PropertyName="Type.Name">
+            <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" CanFilter="False" SortPropertyName="Type.Name" Width="150">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
@@ -22,8 +24,8 @@
                             </TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1000'}" Width="200" util:GridViewSort.Filtering="True" util:GridViewSort.PropertyName="Type.Manufacturer.Name">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1000'}" CanFilter="True" SortPropertyName="Type.Manufacturer.Name" Width="200">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <WrapPanel>
@@ -32,67 +34,65 @@
                             </WrapPanel>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1001'}" Width="100" util:GridViewSort.PropertyName="Type.TypeAirliner">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1001'}" CanFilter="True" SortPropertyName="Type.TypeAirliner" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type.TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" Width="100" util:GridViewSort.PropertyName="Type.Range">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="False" SortPropertyName="Type.Range" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Type.Range,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}" Width="100" util:GridViewSort.PropertyName="Type.CruisingSpeed">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}" CanFilter="False" SortPropertyName="Type.CruisingSpeed" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type.CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}" Width="100" util:GridViewSort.PropertyName="Type.MinRunwaylength">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}" CanFilter="False" SortPropertyName="Type.MinRunwayLength" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type.MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
-
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1005'}" Width="100" util:GridViewSort.PropertyName="Type.FuelConsumption">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1005'}" CanFilter="False" SortPropertyName="Type.FuelConsumption" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type.FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1001'}" Width="75" util:GridViewSort.PropertyName="BuiltDate.Year">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1001'}" CanFilter="True" SortPropertyName="BuiltDate.Year" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1002'}" Width="100" util:GridViewSort.PropertyName="Flown">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1002'}" CanFilter="False" SortPropertyName="Flown" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Flown,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1007'}" Width="125" util:GridViewSort.PropertyName="Price">
+                </filter:SortableGridViewColumn>
+                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1007'}" CanFilter="False" SortPropertyName="Price" Width="125">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
-                </GridViewColumn>
+                </filter:SortableGridViewColumn>
             </GridView>
         </ListView.View>
-    </ListView>
-
+    </filter:FilterableListView>
 
 </Page>
