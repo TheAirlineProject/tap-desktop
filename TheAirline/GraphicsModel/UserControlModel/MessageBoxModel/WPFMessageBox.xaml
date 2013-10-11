@@ -5,7 +5,7 @@
         MinWidth="400" MaxWidth="400" 
     Title="{Binding Title}" ResizeMode="NoResize" WindowStyle="ToolWindow" SizeToContent="WidthAndHeight" 
     ShowInTaskbar="False"
-    WindowStartupLocation="CenterOwner" Background="#004A7F">
+    WindowStartupLocation="CenterScreen"  Background="#004A7F">
     <Window.Resources>
         <c:TranslatorConverter x:Key="translatorConverter"></c:TranslatorConverter>
     </Window.Resources>
@@ -23,10 +23,10 @@
 
             <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Center" 
                         HorizontalAlignment="Right" Margin="0 0 5 0">
-                <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgYes}" Visibility="{Binding YesNoVisibility}" Command="{Binding YesCommand}" Margin="5 5 5 5" Height="24" Width="80" />
-            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgNo}" Visibility="{Binding YesNoVisibility}" Command="{Binding NoCommand}" Margin="5 5 5 5" Height="24" Width="80" />
-            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgCancel}" Visibility="{Binding CancelVisibility}" Command="{Binding CancelCommand}" Margin="5 5 5 5" Height="24" Width="80" />
-            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgOk}" Visibility="{Binding OkVisibility}" Command="{Binding OkCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+                <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgYes}" Visibility="{Binding YesNoVisibility}" IsDefault="True" Command="{Binding YesCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgNo}" Visibility="{Binding YesNoVisibility}" IsCancel="True" Command="{Binding NoCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgCancel}" Visibility="{Binding CancelVisibility}" IsCancel="True" Command="{Binding CancelCommand}" Margin="5 5 5 5" Height="24" Width="80" />
+            <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgOk}" Visibility="{Binding OkVisibility}" IsDefault="True" Command="{Binding OkCommand}" Margin="5 5 5 5" Height="24" Width="80" />
             <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgContinue}" Visibility="{Binding ContinueExitVisibility}" Command="{Binding ContinueCommand}" Margin="5 5 5 5" Height="24" Width="80" />
             <Button Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MsgExit}" Visibility="{Binding ContinueExitVisibility}" Command="{Binding ExitCommand}" Margin="5 5 5 5" Height="24" Width="80" />
 

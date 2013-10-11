@@ -73,7 +73,19 @@
     <DataTemplate x:Key="LeftContent">
         <StackPanel>
             <WrapPanel HorizontalAlignment="Center">
-                <Button Background="Transparent" Width="32" Click="btnPause_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3002'}">
+                <Button Background="Transparent" Width="32" Click="btnBack_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3006'}">
+                    <Button.Style>
+                    <Style TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding NavigatorCanGoBack,Source={StaticResource gameObject}}" Value="False">
+                                <Setter Property="Button.IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                    </Button.Style>
+                    <Image Source="/data/images/back.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button Background="Transparent" Width="32" Margin="5 0 0 0"  Click="btnPause_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3002'}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -85,7 +97,7 @@
                 </Button.Style>
                 <Image Source="/data/images/pause.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
             </Button>
-                <Button Background="Transparent" Width="32" Click="btnStart_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3003'}">
+                <Button Background="Transparent" Margin="5 0 0 0" Width="32" Click="btnStart_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3003'}">
                 <Button.Style>
                     <Style TargetType="Button">
                         <Style.Triggers>
@@ -97,17 +109,15 @@
                 </Button.Style>
                 <Image Source="/data/images/play.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
             </Button>
+               
                 <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnNewGame_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3000'}">
                     <Image Source="/data/images/newgame.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
-                <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnExitGame_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3001'}">
-                    
-                    <Image Source="/data/images/exit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                </Button>
+               
                 </WrapPanel>
                     
                 <WrapPanel HorizontalAlignment="Center" Margin="0 5 0 0">
-                <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnNews_Click"  ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
+                <Button Background="Transparent" Width="32" Click="btnNews_Click"  ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>
@@ -134,7 +144,10 @@
                 <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnCalendar_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3005'}">
                     <Image Source="/data/images/calendar.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
+                <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnExitGame_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3001'}">
 
+                    <Image Source="/data/images/exit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
             </WrapPanel>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1000'}" Style="{StaticResource MenuButtonStyle}" Click="Home_Click" Margin="0 5 0 0"></Button>
             <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 1001'}" Style="{StaticResource MenuButtonStyle}" Click="RoutesManager_Click" Margin="0 5 0 0"></Button>

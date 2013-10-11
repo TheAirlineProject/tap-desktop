@@ -403,8 +403,7 @@ namespace TheAirline.Model.AirportModel
                     facilities.Add(noneFacility);
 
                 }
-            
-            }
+             }
             return facilities.FirstOrDefault();
         }
         //return the airport facility for a specific type for an airline

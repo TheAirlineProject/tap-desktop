@@ -76,17 +76,16 @@ namespace TheAirline.Model.AirportModel
         //returns the number of free gates
         public int getFreeGates()
         {
+            //4 fordelt på 24 gates og 5 gates - burde være 20/24 og 5/5
             if (this.Airline != null)
                 return this.Gates.NumberOfGates;
 
             int terminalIndex = this.Airport.Terminals.AirportTerminals.Where(a=>a.Airline==null).ToList().IndexOf(this);
 
             int terminalGates = this.Airport.Terminals.AirportTerminals.Where(a => a.Airline != null).Sum(t => t.Gates.NumberOfGates);
-
-
-            int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates) - terminalGates;
                         
-       
+            int contracts = this.Airport.AirlineContracts.Sum(c => c.NumberOfGates) - terminalGates;
+            
             int gates = 0;
 
             int i = 0;
@@ -94,17 +93,20 @@ namespace TheAirline.Model.AirportModel
             {
                 gates += this.Airport.Terminals.AirportTerminals.Where(a => a.Airline == null).ToList()[i].Gates.NumberOfGates;
 
-                i++;
+                if (gates < contracts)
+                    i++;
             }
-
-            if (i > terminalIndex+1 || contracts==0)
+            if (terminalIndex > i || contracts == 0)
                 return this.Gates.NumberOfGates;
 
-            else if (i < terminalIndex+1)
+            if (terminalIndex < i)
                 return 0;
 
-            else
+            if (terminalIndex == i)
                 return gates - contracts;
+
+            return this.Gates.NumberOfGates;
+          
         }
     }
     //the collection of terminals at an airport

@@ -67,6 +67,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _money; }
             set { _money = value; NotifyPropertyChanged("Money"); }
         }
+        private double _maxLoan;
+        public double MaxLoan
+        {
+            get { return _maxLoan; }
+            set { _maxLoan = value; NotifyPropertyChanged("MaxLoan"); }
+        }
         private double _balance;
         public double Balance
         {
@@ -189,6 +195,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.addFacility(facility.Facility);
 
             AirlineHelpers.AddAirlineInvoice(this.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.Facility.Price);
+
+            
             
         }
         //removes a facility 
@@ -198,6 +206,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             facility.Type = AirlineFacilityMVVM.MVVMType.Available;
 
+          
         }
         //removes a pilot
         public void removePilot(Pilot pilot)
@@ -274,6 +283,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 this.AirlineAirlines.Add(this.Airline);
 
             }
+
+            this.MaxLoan = this.Airline.getValue() * 500000;
           
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -413,7 +424,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     //the facilities for a airline
     public class AirlineClassFacilityMVVM : INotifyPropertyChanged
     {
-        public List<RouteFacility> Facilities { get; set; }
+        public ObservableCollection<RouteFacility> Facilities { get; set; }
 
         private RouteFacility _selectedFacility;
         public RouteFacility SelectedFacility
@@ -425,7 +436,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public RouteFacility.FacilityType Type { get; set; }
         public AirlineClassFacilityMVVM(RouteFacility.FacilityType type)
         {
-            this.Facilities = new List<RouteFacility>();
+            this.Facilities = new ObservableCollection<RouteFacility>();
 
             this.Type = type;
 

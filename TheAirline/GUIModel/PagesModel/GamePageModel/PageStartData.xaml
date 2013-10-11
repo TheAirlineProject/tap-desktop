@@ -43,16 +43,21 @@
             </g:QuickInfoValue>
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1020'}">
                 <g:QuickInfoValue.Value>
-                    <StackPanel>
-                        <CheckBox Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}" Style="{StaticResource ImageCheckBoxStyle}" VerticalAlignment="Bottom" Name="cbSameRegion"></CheckBox>
                     <WrapPanel>
                             <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1018'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True" x:Name="rbRandomOpponents"></RadioButton>
                             <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1019'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
                     </WrapPanel>
-                    </StackPanel>
+                   </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="SameRegion" Name="cbSameRegion" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                        <RadioButton GroupName="SameRegion" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                    </WrapPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
-            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1023'}">
+                <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1023'}">
                 <g:QuickInfoValue.Value>
                     <WrapPanel>
                         <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1024'}" Name="rbDayTurns" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
@@ -62,7 +67,11 @@
             </g:QuickInfoValue>
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1026'}">
                 <g:QuickInfoValue.Value>
-                    <CheckBox VerticalAlignment="Bottom" IsChecked="False" Name="cbPaused" Style="{StaticResource ImageCheckBoxStyle}"></CheckBox>
+                    <WrapPanel>
+                        <RadioButton GroupName="Paused" Name="cbPaused" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"></RadioButton>
+                        <RadioButton GroupName="Paused" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"  IsChecked="True"></RadioButton>
+                    </WrapPanel>
+           
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
         </ListBox>

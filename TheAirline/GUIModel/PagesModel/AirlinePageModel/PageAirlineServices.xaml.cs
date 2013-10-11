@@ -49,18 +49,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
                     {
                         AirlineClassFacilityMVVM facility = new AirlineClassFacilityMVVM(facilityType);
-                        facility.Facilities = AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType);
+
+                        facility.Facilities.Clear();
+
+                        foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
+                            facility.Facilities.Add(rFacility);
 
                         rClass.Facilities.Add(facility);
                     }
                 }
                 this.Classes.Add(rClass);
-            }   
+            }
 
             this.Airline = airline;
             this.DataContext = this.Airline;
             this.Loaded += PageAirlineServices_Loaded;
-            
+
             InitializeComponent();
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
@@ -73,7 +77,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             SortDescription sortTypeDescription = new SortDescription("Type", ListSortDirection.Ascending);
             view.SortDescriptions.Add(sortTypeDescription);
 
-            SortDescription sortFacilityDescription = new SortDescription("Facility.Name",ListSortDirection.Ascending);
+            SortDescription sortFacilityDescription = new SortDescription("Facility.Name", ListSortDirection.Ascending);
             view.SortDescriptions.Add(sortFacilityDescription);
 
             for (int i = 120; i < 300; i += 15)
@@ -85,7 +89,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void PageAirlineServices_Loaded(object sender, RoutedEventArgs e)
         {
-            
+
             foreach (AirlineClassMVVM rClass in this.Classes)
             {
                 foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
@@ -96,26 +100,61 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
         }
-
-        private void imgSell_Click(object sender, MouseButtonEventArgs e)
+        //updates the facilities
+        private void updateClassFacilities()
         {
-            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)((Image)sender).Tag;
-          
+            foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
+            {
+                AirlineClassMVVM rClass = this.Classes.First(c => c.Type == type);
+
+                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                {
+
+                    if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
+                    {
+                        AirlineClassFacilityMVVM facility = rClass.Facilities.FirstOrDefault(c => c.Type == facilityType);
+
+                        if (facility == null)
+                        {
+                            facility = new AirlineClassFacilityMVVM(facilityType);
+
+                            rClass.Facilities.Add(facility);
+                        }
+
+                        facility.Facilities.Clear();
+
+                        foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
+                            facility.Facilities.Add(rFacility);
+
+                        facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
+
+
+                    }
+                }
+
+            }
+        }
+        private void btnSell_Click(object sender, RoutedEventArgs e)
+        {
+            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)((Button)sender).Tag;
+
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2103"), string.Format(Translator.GetInstance().GetString("MessageBox", "2103", "message"), facility.Facility.Name), WPFMessageBoxButtons.YesNo);
 
             if (result == WPFMessageBoxResult.Yes)
             {
                 this.Airline.removeFacility(facility);
+
+                updateClassFacilities();
             }
 
-         
+
             ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
             view.Refresh();
         }
-        private void imgBuy_Click(object sender, MouseButtonEventArgs e)
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
         {
-            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)((Image)sender).Tag;
-        
+            AirlineFacilityMVVM facility = (AirlineFacilityMVVM)((Button)sender).Tag;
+
             if (facility.Facility.Price > GameObject.GetInstance().HumanAirline.Money)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2101"), Translator.GetInstance().GetString("MessageBox", "2101", "message"), WPFMessageBoxButtons.Ok);
             else
@@ -126,13 +165,15 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
                     this.Airline.addFacility(facility);
 
+                    updateClassFacilities();
+
                 }
             }
-           
-     
+
+
             ICollectionView view = CollectionViewSource.GetDefaultView(lvFacilities.ItemsSource);
             view.Refresh();
-         
+
         }
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
@@ -173,7 +214,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                     configuration.addClass(classConfiguration);
                 }
-               
+
                 Configurations.AddConfiguration(configuration);
             }
         }
@@ -203,7 +244,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                         AirlineClassMVVM aClass = this.Classes.Where(c => c.Type == classConfiguration.Type).First();
                         aClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
-                     
+
                     }
                 }
             }

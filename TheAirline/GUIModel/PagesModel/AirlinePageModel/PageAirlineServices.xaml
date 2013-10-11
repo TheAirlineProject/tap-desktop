@@ -111,35 +111,38 @@
                                 <GridViewColumn Header="">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <WrapPanel>                                            
-                                            <Image Source="/data/images/tick.png" Width="20" Tag="{Binding}" MouseDown="imgSell_Click" VerticalAlignment="Bottom">
-                                                    <Image.Style>
-                                                        <Style>
+                                            <WrapPanel>
+                                                <Button Width="20" VerticalAlignment="Bottom" Click="btnSell_Click" Tag="{Binding}" Background="Transparent">
+                                                    <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding Type}" Value="Available">
-                                                                    <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
-                                                                    <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
-                                                    </Image.Style>
-                                                </Image>
-                                                <Image Source="/data/images/tickgrey.png" Tag="{Binding}" MouseDown="imgBuy_Click" Width="20" VerticalAlignment="Bottom">
-                                                    <Image.Style>
-                                                        <Style>
+                                                    </Button.Style>
+                                                </Button>
+                                                <Button Width="20" VerticalAlignment="Bottom" Click="btnBuy_Click" Tag="{Binding}" Background="Transparent">
+                                                    <Image Source="/data/images/add.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                                    <Button.Style>
+                                                        <Style TargetType="Button">
                                                             <Style.Triggers>
                                                                 <DataTrigger Binding="{Binding Type}" Value="Purchased">
-                                                                    <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                                 <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
-                                                                    <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                                    <Setter Property="Visibility" Value="Collapsed" />
                                                                 </DataTrigger>
                                                             </Style.Triggers>
                                                         </Style>
-                                                    </Image.Style>
-                                                </Image>
+                                                    </Button.Style>
+                                                </Button>
+                                               
                                             </WrapPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>

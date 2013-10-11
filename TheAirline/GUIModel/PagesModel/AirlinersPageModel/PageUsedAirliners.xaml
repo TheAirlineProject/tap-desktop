@@ -29,7 +29,7 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <WrapPanel>
-                                <Image Source="{Binding Type.Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
+                                <Image Source="{Binding Type.Manufacturer.Logo}" Visibility="Collapsed" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
                                 <TextBlock Text="{Binding Type.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                             </WrapPanel>
                         </DataTemplate>
@@ -45,7 +45,7 @@
                 <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="False" SortPropertyName="Type.Range" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.Range,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Type.Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>

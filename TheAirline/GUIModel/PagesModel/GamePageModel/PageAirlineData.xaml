@@ -45,8 +45,11 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
                     </Style>
                 </g:QuickInfoValue.Style>
                 <g:QuickInfoValue.Value>
-                    <CheckBox FlowDirection="RightToLeft" HorizontalAlignment="Left" Name="cbLocalCurrency" Padding="0 0 5 0" Style="{StaticResource ImageCheckBoxStyle}">
-                    </CheckBox>
+                    <WrapPanel>
+                        <RadioButton GroupName="Currency" Name="cbLocalCurrency" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                        <RadioButton GroupName="Currency" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                    </WrapPanel>
+                  
 
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>

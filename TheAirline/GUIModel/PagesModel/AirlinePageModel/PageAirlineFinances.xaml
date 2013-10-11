@@ -118,7 +118,7 @@
                 <StackPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1009'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                        <Slider Name="slAmount" Minimum="5000000" Maximum="50000000" TickFrequency="500000" Width="200" IsSnapToTickEnabled="True"></Slider> 
+                       <Slider Name="slAmount" Minimum="5000000" Maximum="{Binding MaxLoan}" TickFrequency="500000" Width="200" IsSnapToTickEnabled="True"></Slider> 
                         <TextBlock Text="{Binding Value,ElementName=slAmount,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
                     <WrapPanel Style="{DynamicResource WrapPanelStyle}">
