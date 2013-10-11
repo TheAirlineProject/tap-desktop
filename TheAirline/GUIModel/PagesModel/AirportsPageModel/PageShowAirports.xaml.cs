@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -74,6 +75,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             InitializeComponent();
 
+         
             TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
             if (tab_main != null)

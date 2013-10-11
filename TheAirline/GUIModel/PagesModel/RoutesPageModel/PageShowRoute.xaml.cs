@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,17 +30,18 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     {
         private Route Route;
         public List<MonthlyInvoice> Invoices { get; set; }
-        public List<MVVMRouteClass> Classes { get; set; }
+        public ObservableCollection<MVVMRouteClass> Classes { get; set; }
         public List<Route> Legs { get; set; }
          public PageShowRoute(Route route)
         {
-           
-             this.Classes = new List<MVVMRouteClass>();
+
+            this.Classes = new ObservableCollection<MVVMRouteClass>();
 
             this.Route = route;
             this.DataContext = this.Route;
-
-            foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
+             
+            
+             foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
             {
                 if (this.Route is PassengerRoute)
                 {
@@ -49,7 +51,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     this.Classes.Add(mClass);
                 }
             }
-
+            
             this.Invoices = new List<MonthlyInvoice>();
 
             foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
@@ -70,6 +72,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void PageShowRoute_Loaded(object sender, RoutedEventArgs e)
         {
+            
             if (!this.Route.IsCargoRoute)
             {
 
@@ -80,6 +83,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     {
                         var facility = ((PassengerRoute)this.Route).Classes.Find(c => c.Type == rClass.Type).Facilities.Find(f => f.Type == rFacility.Type);
                         rFacility.SelectedFacility = facility;
+                    
                     }
 
                 }

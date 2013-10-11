@@ -116,7 +116,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             this.Type = type;
             this.Seating = seating;
-            this.FarePrice = 10;
+            this.FarePrice = fareprice;
 
             this.Facilities = new List<MVVMRouteFacility>();
 
@@ -162,7 +162,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 double avgPassengers = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
 
                 stats.Add(new KeyValuePair<string, object>("Total Passengers", passengers));
-                stats.Add(new KeyValuePair<string, object>("Average Passengers", avgPassengers));
+                stats.Add(new KeyValuePair<string, object>("Average Passengers", Math.Max(0,avgPassengers)));
 
             }
             if (route.Type == Route.RouteType.Cargo)
@@ -171,7 +171,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 double avgCargo = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
 
                 stats.Add(new KeyValuePair<string, object>("Total Cargo", cargo));
-                stats.Add(new KeyValuePair<string, object>("Average Cargo", avgCargo));
+                stats.Add(new KeyValuePair<string, object>("Average Cargo", Math.Max(0,avgCargo)));
             }
 
             stats.Add(new KeyValuePair<string, object>("Filling Degree", string.Format("{0:0.##} %", route.FillingDegree * 100)));

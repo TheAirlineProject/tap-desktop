@@ -3,8 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
       xmlns:sys="clr-namespace:System;assembly=mscorlib"
+      xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Name="pageShowAirports"
@@ -38,14 +38,16 @@
                 <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" Width="250" SelectionChanged="cbAircraft_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Name" VerticalAlignment="Bottom" ItemsSource="{Binding HumanAircrafts,ElementName=pageShowAirports}"></ComboBox>
             </WrapPanel>
         </StackPanel>
-        <ListView x:Name="AirportsList" Grid.Row="1" VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageShowAirports, Path=AllAirports}">
-           <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="">
+        <filter:FilterableListView x:Name="AirportsList" Grid.Row="1" ItemContainerStyle="{StaticResource ListViewItemStyle}" ItemsSource="{Binding AllAirports,ElementName=pageShowAirports}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
+                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
+
+                    <filter:SortableGridViewColumn Header="" SortPropertyName="IsHuman" CanFilter="False">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <WrapPanel>
-                                <Image Source="/data/images/human.png" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
+                                    <Image Source="/data/images/human.png" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
                                         <Image.Style>
                                             <Style>
                                                 <Style.Triggers>
@@ -66,32 +68,25 @@
                                                     </DataTrigger>
                                                     <DataTrigger Binding="{Binding NumberOfFreeGates}" Value="0">
                                                         <Setter Property="Button.Visibility" Value="Collapsed" />
-
                                                     </DataTrigger>
-                                                                 
                                                 </Style.Triggers>
-                                             </Style>
-                                          
+                                            </Style>
                                         </Button.Style>
                                     </Button>
-                                 </WrapPanel>
+                                </WrapPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1000'}"  util:GridViewSort.PropertyName="Airport.Profile.Name" Width="250">
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1000'}" CanFilter="False" SortPropertyName="Airport.Profile.Name" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock>
-                            <Hyperlink Tag="{Binding Airport}" Click="clName_Click">
-                                <Run Text="{Binding Airport.Profile.Name}"></Run>
-                            </Hyperlink>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airport.Profile.Name}">
+                                   
                                 </TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-
-                    </GridViewColumn>
-
-                    <GridViewColumn  util:GridViewSort.PropertyName="Airport.Profile.IATACode" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1001'}" Width="100">
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1001'}" CanFilter="False" SortPropertyName="Airport.Profile.IATACode" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
@@ -104,9 +99,8 @@
                                 </TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-
-                    </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="Airport.Profile.Town.Name" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1002'}" Width="150">
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1002'}" CanFilter="False" SortPropertyName="Airport.Profile.Town.Name" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <WrapPanel>
@@ -115,15 +109,32 @@
                                 </WrapPanel>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1003'}"  util:GridViewSort.PropertyName="Airport.Profile.Town.Country.Name" Width="75">
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1003'}" CanFilter="False" SortPropertyName="Airport.Profile.Town.Country.Name" Width="75">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Airport.Profile.Town.Country}"></ContentControl>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="NumberOfFreeGates" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1004'}" Width="100">
+                    </filter:SortableGridViewColumn>
+                   
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1011'}" CanFilter="True" SortPropertyName="Airport.Profile.Type" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airport.Profile.Type,Converter={StaticResource TextUnderscoreConverter}}">
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1010'}" CanFilter="True" SortPropertyName="Airport.Profile.Size" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airport.Profile.Size,Converter={StaticResource TextUnderscoreConverter}}">
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1004'}" CanFilter="False" SortPropertyName="NumberOfFreeGates" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom">
@@ -136,25 +147,28 @@
                                 </TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="NumberOfAirlines" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" Width="100">
+                    </filter:SortableGridViewColumn>
+
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" CanFilter="False" SortPropertyName="NumberOfAirlines" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfAirlines}">
                                 </TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="NumberOfRoutes" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" Width="100">
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" CanFilter="False" SortPropertyName="NumberOfRoutes" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfRoutes}">
                                 </TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
+                    </filter:SortableGridViewColumn>
                 </GridView>
             </ListView.View>
-        </ListView>
+            
+        </filter:FilterableListView>
+       
     </Grid>
 </Page>

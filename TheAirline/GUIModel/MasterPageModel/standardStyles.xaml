@@ -28,9 +28,9 @@
                     <BulletDecorator Background="Transparent" Cursor="Hand">
                         <BulletDecorator.Bullet>
                             <Grid Height="16" Width="16">
-                                 <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black" BorderThickness="1" CornerRadius="8" Padding="2 2 2 2" />
+                                 <Border Name="RadioOuter" Background="Transparent" BorderBrush="Black" BorderThickness="2" CornerRadius="8" Padding="2 2 2 2" />
                                 <Path 
-                                Width="11" Height="11" 
+                                Width="10" Height="10" 
                                 Visibility="Hidden"
                                     Name="TickMark"
                                 SnapsToDevicePixels="False" 
@@ -38,7 +38,6 @@
                                 StrokeThickness="2"
                                 Data="M 0 5 L 3 10 10 0" 
                                     StrokeStartLineCap="Round" StrokeEndLineCap="Round" StrokeLineJoin="Round" />
-                            
                             </Grid>
                         </BulletDecorator.Bullet>
 
@@ -444,8 +443,8 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="SnapsToDevicePixels" Value="true"/>
         <Setter Property="OverridesDefaultStyle" Value="true"/>
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
-        <Setter Property="MinHeight" Value="23"/>
-        <Setter Property="MinWidth" Value="75"/>
+        <Setter Property="MinHeight" Value="25"/>
+        <Setter Property="MinWidth" Value="200"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

@@ -8,17 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageStartMenu">
     <Page.Resources>
-        <DataTemplate x:Key="TestTemplate">
-            <StackPanel>
-                <TextBlock Text="Test" VerticalAlignment="Bottom"></TextBlock>
-                <ComboBox Name="cbTest" VerticalAlignment="Bottom" Width="100">
-                    <ComboBoxItem>AGF</ComboBoxItem>
-                    <ComboBoxItem>Steelers</ComboBoxItem>
-                    <ComboBoxItem>Penguins</ComboBoxItem>
-
-                </ComboBox>
-            </StackPanel>
-        </DataTemplate>
+        
         <DataTemplate x:Key="QuickLinksContent">
 
         </DataTemplate>
