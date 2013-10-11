@@ -161,6 +161,7 @@
                     </ListView>
                     <StackPanel Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 1008'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                        <StackPanel Name="panelCreateConfiguration" Visibility="Collapsed">
                     <WrapPanel>
                         <ListBox Width="100" Margin="0 20 0 0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding FacilityTypes,ElementName=pageAirlineServices}" BorderThickness="0">
                             <ListBox.ItemTemplate>
@@ -172,10 +173,14 @@
                             </ListBox.ItemTemplate>
                         </ListBox>
                     <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Classes,ElementName=pageAirlineServices}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
-                    </WrapPanel>
+                
+                        </WrapPanel>
+                        </StackPanel>
                         <WrapPanel Margin="0 5 0 0">
-                            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 202'}" Click="btnSaveConfiguration_Click" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
-                            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 203'}" Click="btnLoadConfiguration_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                            <Button Name="btnCreate" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 204'}" Click="btnCreateConfiguration_Click" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
+                            <Button Name="btnSave" Visibility="Collapsed" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 202'}" Click="btnSaveConfiguration_Click" VerticalAlignment="Bottom" Margin="5 0 0 0"  Style="{StaticResource StandardButtonStyle}"></Button>
+                            <Button Name="btnLoad" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineServices 203'}" Click="btnLoadConfiguration_Click" VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                        
                         </WrapPanel>
                     </StackPanel>
                 </StackPanel>
