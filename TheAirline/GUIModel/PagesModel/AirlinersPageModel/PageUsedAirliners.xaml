@@ -74,7 +74,14 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
-                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="False" SortPropertyName="Type.Range" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1006'}" CanFilter="False" SortPropertyName="TailNumber" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding TailNumber}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="False" SortPropertyName="Type.Range" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Type.Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
