@@ -47,7 +47,7 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
-
+<!--
                         <Image                                  
                                Source="{Binding Airport.Profile.Logo}"
                                RenderOptions.BitmapScalingMode="HighQuality"
@@ -61,7 +61,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </Image.Style>
-                        </Image>
+                        </Image>-->
                         <StackPanel Margin="5 0 0 0" Grid.Column="1">
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1001'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>

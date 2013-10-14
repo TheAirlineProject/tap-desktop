@@ -16,7 +16,7 @@
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1001'}" VerticalAlignment="Bottom" Width="150"></TextBlock>
-                <TextBlock Text="{Binding Money,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Money,Converter={StaticResource ValueCurrencyConverter}}"  Foreground="{Binding Money,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock FontWeight="Bold" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFinances 1002'}" VerticalAlignment="Bottom" Width="150"></TextBlock>

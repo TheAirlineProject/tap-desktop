@@ -45,7 +45,7 @@ namespace TheAirline.Model.AirportModel
         {
             int freeGates = this.Airport.Terminals.getFreeGates();
 
-            return freeGates > this.Gates.NumberOfGates && this.Airport.Terminals.getNumberOfAirportTerminals()>1;
+            return freeGates > this.Gates.NumberOfGates && this.Airport.Terminals.getNumberOfAirportTerminals()>1 && this.Airline == null;
         }
         //purchases a terminal for an airline
         public void purchaseTerminal(Airline airline)

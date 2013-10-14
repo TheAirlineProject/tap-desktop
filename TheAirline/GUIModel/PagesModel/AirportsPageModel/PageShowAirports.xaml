@@ -43,7 +43,7 @@
             <ListView.View>
                 <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
 
-                    <filter:SortableGridViewColumn Header="" SortPropertyName="IsHuman" CanFilter="False">
+                    <filter:SortableGridViewColumn Header="" CanFilter="False">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <WrapPanel>

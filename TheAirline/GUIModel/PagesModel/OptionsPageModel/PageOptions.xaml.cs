@@ -50,6 +50,9 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             if (selection == "Load" && frmContent != null)
                 frmContent.Navigate(new PageLoadGame() { Tag = this });
 
+            if (selection == "Credits" && frmContent != null)
+                frmContent.Navigate(new PageOptionsCredits() { Tag = this });
+
 
         }
     }

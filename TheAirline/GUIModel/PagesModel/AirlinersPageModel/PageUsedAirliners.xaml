@@ -9,12 +9,44 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
     Title="PageUsedAirliners">
-    <filter:FilterableListView x:Name="lvAirliners" ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}" ItemContainerStyle="{StaticResource ListViewItemStyle}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
+    <Grid>
+    <Grid.RowDefinitions>
+        <RowDefinition Height="Auto"></RowDefinition>
+        <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+    <StackPanel Grid.Row="0">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1003'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <CheckBox Style="{StaticResource ImageCheckBoxStyle}"  VerticalAlignment="Bottom" Name="cbPossibleHomebase" Checked="cbPossibleHomebase_Checked" Unchecked="cbPossibleHomebase_Unchecked" ></CheckBox>
+            </WrapPanel> 
+        </StackPanel>
+    <filter:FilterableListView x:Name="lvAirliners" Grid.Row="1" ItemsSource="{Binding AllAirliners, ElementName=pageUsedAirliners}" ItemContainerStyle="{StaticResource ListViewItemStyle}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
                                 FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
        
         <ListView.View>
             <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
-                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" CanFilter="False" SortPropertyName="Type.Name" Width="150">
+                    <filter:SortableGridViewColumn Header="" CanFilter="False">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox VerticalAlignment="Bottom" IsChecked="False" Checked="cbCompare_Checked" Unchecked="cbCompare_Unchecked" Tag="{Binding}">
+                                    <CheckBox.Style>
+                                        <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxNormalStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="2">
+                                                    <Setter Property="IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                                <Trigger Property="IsChecked" Value="True">
+                                                    <Setter Property="IsEnabled" Value="True" />
+                                                </Trigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </CheckBox.Style>
+                                </CheckBox>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" CanFilter="False" SortPropertyName="Type.Name" Width="150">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
@@ -77,7 +109,37 @@
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
-                <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1002'}" CanFilter="False" SortPropertyName="Flown" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1004'}" CanFilter="False" SortPropertyName="Type.Capacity" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Type.MaxSeatingCapacity,StringFormat={}{0} pax}" VerticalAlignment="Bottom">
+                                        <TextBlock.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                                                        <Setter Property="TextBlock.Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                    <TextBlock Text="{Binding Type.CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom">
+                                        <TextBlock.Style>
+                                            <Style>
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Passenger">
+                                                        <Setter Property="TextBlock.Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </TextBlock.Style>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1002'}" CanFilter="False" SortPropertyName="Flown" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <TextBlock Text="{Binding Flown,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
@@ -94,5 +156,22 @@
             </GridView>
         </ListView.View>
     </filter:FilterableListView>
-
+        <StackPanel Grid.Row="2" Margin="0 5 0 0">
+            <Button Click="btnCompare_Click"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1005'}">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="1">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+         
+          </StackPanel>
+</Grid>
 </Page>

@@ -40,7 +40,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (airline.IsHuman)
             {
                 GameObject.GetInstance().setHumanMoney(amount);
-                GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(date, type, amount));
+                GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(date, type, amount),false);
             }
             else
                 airline.addInvoice(new Invoice(date, type, amount));
@@ -861,8 +861,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (policy.NextPaymentDue.Month == GameObject.GetInstance().GameTime.Month)
                     {
                         airline.Money -= policy.PaymentAmount;
-                        Invoice payment = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
-                        airline.addInvoice(payment);
+                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
                         policy.RemainingPayments--;
                         switch (policy.InsTerms)
                         {

@@ -76,7 +76,7 @@
                         <ComboBox Name="cbColor" Width="300" SelectedIndex="0" ItemTemplate="{DynamicResource ColorItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Colors,ElementName=pageNewAirline}"></ComboBox>
                     </g:QuickInfoValue.Value>
                 </g:QuickInfoValue>
-                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1005'}">
+                <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewAirline 1010'}">
                     <g:QuickInfoValue.Value>
                         <ComboBox Name="cbCountry" Width="300" SelectedIndex="0" ItemTemplate="{DynamicResource CountryLongFlagItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding AllCountries,ElementName=pageNewAirline}" SelectionChanged="cbCountry_SelectionChanged"></ComboBox>
                     </g:QuickInfoValue.Value>

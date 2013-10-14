@@ -208,14 +208,17 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         ///
         private void Sort(string sortBy, ListSortDirection direction)
         {
-            lastDirection = direction;
-            ICollectionView dataView = CollectionViewSource.GetDefaultView(this.ItemsSource);
+            if (sortBy.Length > 0)
+            {
+                lastDirection = direction;
+                ICollectionView dataView = CollectionViewSource.GetDefaultView(this.ItemsSource);
 
-            dataView.SortDescriptions.Clear();
-            SortDescription sd = new SortDescription(sortBy, direction);
+                dataView.SortDescriptions.Clear();
+                SortDescription sd = new SortDescription(sortBy, direction);
 
-            dataView.SortDescriptions.Add(sd);
-            dataView.Refresh();
+                dataView.SortDescriptions.Add(sd);
+                dataView.Refresh();
+            }
         }
 
     }

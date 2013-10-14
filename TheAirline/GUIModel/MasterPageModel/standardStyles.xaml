@@ -933,6 +933,62 @@ and change the color of the selected bullet into a darker gray for better highli
         <Setter Property="HorizontalContentAlignment" Value="Left"></Setter>
     </Style>
     <!--checkboxes-->
+    <Style TargetType="CheckBox" x:Key="CheckBoxNormalStyle">
+        <Setter Property="SnapsToDevicePixels" Value="False" />
+        <Setter Property="OverridesDefaultStyle" Value="true" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="BorderBrush" Value="LightGray" />
+        <Setter Property="Cursor" Value="Hand"></Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <BulletDecorator Background="Transparent">
+                        <BulletDecorator.Bullet>
+                            <Border x:Name="Border"
+                                          Width="15"
+                                          Height="15"
+                                          Background="{TemplateBinding Background}"
+                                          BorderBrush="{TemplateBinding BorderBrush}"
+                                          BorderThickness="1"
+                                          ClipToBounds="True">
+                                <Border.Effect>
+                                    <DropShadowEffect BlurRadius="5" ShadowDepth="2" />
+                                </Border.Effect>
+                                <Path x:Name="CheckMark"
+                                          Width="8"
+                                            Height="8"
+                                           HorizontalAlignment="Center"
+                                            VerticalAlignment="Center"
+                                            Data="M 0 0 L 8 8 M 0 8 L 8 0"
+                                            Stretch="Fill"
+                                            Stroke="LightGray"
+                                            StrokeEndLineCap="Round"
+                                          StrokeStartLineCap="Round"
+                                            StrokeThickness="2" />
+                            </Border>
+                        </BulletDecorator.Bullet>
+                        <ContentPresenter Margin="4,0,0,0"
+                                                HorizontalAlignment="Left"
+                                                VerticalAlignment="Center"
+                                                RecognizesAccessKey="True" />
+                    </BulletDecorator>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="false">
+                            <Setter TargetName="CheckMark" Property="Visibility" Value="Collapsed" />
+                        </Trigger>
+                        <Trigger Property="IsFocused" Value="true">
+                            <Setter Property="BorderBrush" Value="White" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush" Value="Gray" />
+                            <Setter TargetName="CheckMark" Property="Stroke" Value="Gray" />
+                        </Trigger>
+                       
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="CheckboxLeftSideText" TargetType="{x:Type CheckBox}">
         <Setter Property="Template">
             <Setter.Value>

@@ -263,9 +263,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 btnSave.Visibility = System.Windows.Visibility.Visible;
 
-               // On the airlines page (Airline Manager, select an airliner in the Airline Fleet table). There's no option to select a pre-defined configuration (class, audio, video, seat). The only options are "Add Airliner Class", "Save Changes" and "Undo Changes" but no option to use a pre-defined configuration.
+         
 
-                //    If it isn't something "simple" I will add code to print all that stuff to a text file and see what the issue is
             }
         }
     }

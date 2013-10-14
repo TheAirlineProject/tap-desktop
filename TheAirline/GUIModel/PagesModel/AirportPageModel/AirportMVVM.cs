@@ -465,7 +465,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             Airport airport = (Airport)values[1];
 
             double price = gates * airport.getTerminalGatePrice() + airport.getTerminalPrice();
-
+                       
             return new ValueCurrencyConverter().Convert(price);
           
         }

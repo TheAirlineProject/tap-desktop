@@ -389,7 +389,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double expense = (airliner.Airliner.getValue() * 0.01) + 2000;
                 GameObject.GetInstance().setHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
-                airliner.Airliner.Airline.addInvoice(maintCheck);
+                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Condition += rnd.Next(3, 10);
                 if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastAMaintenance = GameObject.GetInstance().GameTime;
@@ -402,7 +402,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 double expense = (airliner.Airliner.getValue() * 0.02) + 4500;
                 GameObject.GetInstance().setHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
-                airliner.Airliner.Airline.addInvoice(maintCheck);
+                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Condition += rnd.Next(12, 20);
                 if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastBMaintenance = GameObject.GetInstance().GameTime;
@@ -416,7 +416,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.OOSDate = airliner.SchedCMaintenance.AddDays(airliner.Airliner.Condition + 20);
                 GameObject.GetInstance().setHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
-                airliner.Airliner.Airline.addInvoice(maintCheck);
+                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Condition += rnd.Next(20, 30);
                 if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastCMaintenance = GameObject.GetInstance().GameTime;
@@ -435,7 +435,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.OOSDate = airliner.SchedDMaintenance.AddDays(airliner.Airliner.Condition + 50);
                 GameObject.GetInstance().setHumanMoney((long)-expense);
                 Invoice maintCheck = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
-                airliner.Airliner.Airline.addInvoice(maintCheck);
+                AirlineHelpers.AddAirlineInvoice(airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, expense);
                 airliner.Airliner.Condition += rnd.Next(35, 50);
                 if (airliner.Airliner.Condition > 100) airliner.Airliner.Condition = 100;
                 airliner.LastDMaintenance = GameObject.GetInstance().GameTime;
@@ -851,8 +851,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (policy.NextPaymentDue.Month == GameObject.GetInstance().GameTime.Month)
                     {
                         airline.Money -= policy.PaymentAmount;
-                        Invoice payment = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
-                        airline.addInvoice(payment);
+                        //Invoice payment = new Invoice(GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
+                        AirlineHelpers.AddAirlineInvoice(airline,GameObject.GetInstance().GameTime,Invoice.InvoiceType.Maintenances,policy.PaymentAmount);
                         policy.RemainingPayments--;
                         switch (policy.insTerms)
                         {

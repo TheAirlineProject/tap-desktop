@@ -19,7 +19,7 @@
         <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
             <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageOptions 1000'}" Tag="Options">
             </TabItem>
-                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageOptions 1003'}" Tag="Credits" IsEnabled="False">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageOptions 1003'}" Tag="Credits">
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageOptions 1001'}" Tag="Save">
             </TabItem>

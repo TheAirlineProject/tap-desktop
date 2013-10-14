@@ -243,7 +243,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             this.Money = this.Airline.Money;
             this.Balance = this.Airline.Money - this.Airline.StartMoney;
-
+            double tMoney = GameObject.GetInstance().HumanMoney;
             this.CockpitCrew = this.Airline.Pilots.Count;
             this.CabinCrew = this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);

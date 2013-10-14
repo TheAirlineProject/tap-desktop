@@ -381,6 +381,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpCompareAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -729,6 +733,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageOptionsCredits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\OptionsPageModel\PageSaveGame.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1006,6 +1014,9 @@
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml.cs">
       <DependentUpon>PopUpAirportContract.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpCompareAirliners.xaml.cs">
+      <DependentUpon>PopUpCompareAirliners.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml.cs">
       <DependentUpon>PopUpConfirmInsurance.xaml</DependentUpon>
     </Compile>
@@ -1280,6 +1291,9 @@
     </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml.cs">
       <DependentUpon>PageOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageOptionsCredits.xaml.cs">
+      <DependentUpon>PageOptionsCredits.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageSaveGame.xaml.cs">
       <DependentUpon>PageSaveGame.xaml</DependentUpon>

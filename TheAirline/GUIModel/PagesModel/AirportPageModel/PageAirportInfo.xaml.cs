@@ -232,6 +232,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
         private void btnBuyTerminal_Click(object sender, RoutedEventArgs e)
         {
+            
             AirportTerminalMVVM terminal = (AirportTerminalMVVM)((Button)sender).Tag;
 
             long price = terminal.Gates * this.Airport.Airport.getTerminalGatePrice() + this.Airport.Airport.getTerminalPrice();

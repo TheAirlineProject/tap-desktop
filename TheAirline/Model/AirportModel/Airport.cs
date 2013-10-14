@@ -545,14 +545,14 @@ namespace TheAirline.Model.AirportModel
         //returns the price for a terminal
         public long getTerminalPrice()
         {
-            long price = 200000 + 15000 * ((int)this.Profile.Size + 1);
+            long price = 500000 + 15000 * ((int)this.Profile.Size + 1);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
 
         }
         //returns the price for a gate at a bough terminal
         public long getTerminalGatePrice()
         {
-            long price = 12500 * ((int)this.Profile.Size + 1);
+            long price = 75000 * ((int)this.Profile.Size + 1);
             return Convert.ToInt64(GeneralHelpers.GetInflationPrice(price));
 
         }

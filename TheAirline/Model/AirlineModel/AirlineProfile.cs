@@ -58,6 +58,7 @@ namespace TheAirline.Model.AirlineModel
         private string getCurrentLogo()
         {
             return this.Logos.Find(l => l.FromYear <= GameObject.GetInstance().GameTime.Year && l.ToYear >= GameObject.GetInstance().GameTime.Year).Path;
+
         }
     }
     //the class for an airline logo

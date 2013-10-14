@@ -354,12 +354,14 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Invoices.addInvoice(type, year, month, amount);
         }
-        //adds an invoice for the airline - both incoming and expends
-        public void addInvoice(Invoice invoice)
+        //adds an invoice for the airline - both incoming and expends - if updateMoney == true the money is updated as well
+        public void addInvoice(Invoice invoice, Boolean updateMoney = true)
         {
 
             this.Invoices.addInvoice(invoice);
-            this.Money += invoice.Amount;
+
+            if (updateMoney)
+                this.Money += invoice.Amount;
 
 
         }

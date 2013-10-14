@@ -74,6 +74,7 @@ namespace TheAirline.Model.AirlinerModel
         public int ProductionRate { get; set; }
         [DataMember]
         public string AirlinerFamily { get; set; }
+        public int Capacity { get { return getCapacity(); } private set { ;} }
         public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name,string family, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
         {
             this.TypeAirliner = typeOfAirliner;
@@ -113,6 +114,8 @@ namespace TheAirline.Model.AirlinerModel
             return Convert.ToInt64(leasingPrice);
 
         }
+        //returns the capacity of the airliner
+        public abstract int getCapacity();
        
     }
     //the class for a passenger airliner type
@@ -128,6 +131,11 @@ namespace TheAirline.Model.AirlinerModel
             this.CabinCrew = cabincrew;
             this.MaxAirlinerClasses = maxAirlinerClasses;
         }
+
+        public override int getCapacity()
+        {
+            return this.MaxSeatingCapacity;
+        }
     }
     //the class for a cargo airliner type
     [Serializable]
@@ -137,6 +145,11 @@ namespace TheAirline.Model.AirlinerModel
         public AirlinerCargoType(Manufacturer manufacturer, string name,string family, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
         {
             this.CargoSize = cargoSize;
+        }
+
+        public override int getCapacity()
+        {
+            return (int)this.CargoSize;
         }
     }
   
