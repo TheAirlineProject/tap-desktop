@@ -115,6 +115,7 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
         }
         private void btnBuyAircraft_Click(object sender, RoutedEventArgs e)
         {
+            
             ComboBox cbAircraft = new ComboBox();
             cbAircraft.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbAircraft.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
@@ -125,8 +126,8 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
                 cbAircraft.Items.Add(type);
 
             cbAircraft.SelectedIndex = 0;
-
-            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PanelFlightSchool", "1005"), cbAircraft) == PopUpSingleElement.ButtonSelected.OK && cbAircraft.SelectedItem != null)
+            
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageShowFlightSchool", "1014"), cbAircraft) == PopUpSingleElement.ButtonSelected.OK && cbAircraft.SelectedItem != null)
             {
 
                 TrainingAircraftType aircraft = (TrainingAircraftType)cbAircraft.SelectedItem;

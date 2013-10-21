@@ -4,7 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
-      Name="pageFlightSchools"
+         xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
+    Name="pageFlightSchools"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageFlightSchools">
@@ -17,14 +18,14 @@
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="5 5 5 5">
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1007'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-
-                    <ListView x:Name="lvInstructors" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllInstructors,ElementName=pageFlightSchools}">
+                    <filter:FilterableListView x:Name="lvInstructors" ItemsSource="{Binding AllInstructors,ElementName=pageFlightSchools}" ItemContainerStyle="{StaticResource ListViewItemStyle}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
+                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
                         <ListView.View>
-                            <GridView>
-                                <GridViewColumn Header="">
+                            <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
+                                <filter:SortableGridViewColumn CanFilter="False">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Width="20" VerticalAlignment="Bottom" Click="btnHire_Click" Background="Transparent" Tag="{Binding}"> 
+                                            <Button Width="20" VerticalAlignment="Bottom" Click="btnHire_Click" Background="Transparent" Tag="{Binding}">
                                                 <Image Source="/data/images/money.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                                 <Button.Style>
                                                     <Style TargetType="Button">
@@ -38,33 +39,39 @@
                                             </Button>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1000'}" Width="200" util:GridViewSort.PropertyName="Profile.Name" DisplayMemberBinding="{Binding Profile.Name}">
-                                </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1001'}" Width="50" util:GridViewSort.PropertyName="Profile.Age">
+                                </filter:SortableGridViewColumn>
+                                <filter:SortableGridViewColumn CanFilter="False" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1000'}" Width="200" SortPropertyName="Profile.Name">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Name}"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </filter:SortableGridViewColumn>
+                                <filter:SortableGridViewColumn CanFilter="False" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1001'}" Width="50" SortPropertyName="Profile.Age">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1002'}" Width="50" util:GridViewSort.PropertyName="Rating">
+                                </filter:SortableGridViewColumn>
+                                <filter:SortableGridViewColumn CanFilter="True" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1002'}" Width="100" SortPropertyName="Rating">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating}"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1003'}" Width="200" util:GridViewSort.PropertyName="Profile.Town.Country.Name">
+                                </filter:SortableGridViewColumn>
+                                <filter:SortableGridViewColumn CanFilter="False" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlightSchools 1003'}" Width="200" SortPropertyName="Profile.Town.Country.Name">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl Content="{Binding Profile.Town.Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                                </filter:SortableGridViewColumn>
                             </GridView>
                         </ListView.View>
-                    </ListView>
+                    </filter:FilterableListView>
+                   
                 </StackPanel>
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 5 5 5">

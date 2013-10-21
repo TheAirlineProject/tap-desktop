@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -31,6 +32,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Loaded += PageHumanRoutes_Loaded;  
 
             InitializeComponent();
+  
         }
 
         private void PageHumanRoutes_Loaded(object sender, RoutedEventArgs e)
@@ -81,6 +83,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 frmContent.Navigate(new PageShowRoute(route) { Tag = this.Tag });
 
             }
+        }
+
+        private void btnMap_Click(object sender, RoutedEventArgs e)
+        {
+
+            PopUpMap.ShowPopUp(GameObject.GetInstance().HumanAirline.Routes);
+  
         }
     }
 }

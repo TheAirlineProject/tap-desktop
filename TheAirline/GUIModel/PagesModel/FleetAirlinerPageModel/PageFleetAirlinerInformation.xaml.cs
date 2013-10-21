@@ -52,15 +52,16 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             foreach (AirlinerClassMVVM aClass in this.Airliner.Classes)
             {
-                AirlinerClass nClass = new AirlinerClass(aClass.Type,aClass.RegularSeatingCapacity);
+                AirlinerClass nClass = new AirlinerClass(aClass.Type, aClass.RegularSeatingCapacity);
                 nClass.SeatingCapacity = aClass.Seating;
 
                 foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
                 {
-                    nClass.forceSetFacility(aFacility.SelectedFacility);      
- 
+
+                    nClass.forceSetFacility(aFacility.SelectedFacility);
+
                 }
-             
+
                 this.Airliner.Airliner.Airliner.addAirlinerClass(nClass);
             }
         }
@@ -69,7 +70,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             var classes = new List<AirlinerClassMVVM>(this.Airliner.Classes);
 
-            foreach (AirlinerClassMVVM aClass in classes.Where(c=>!this.Airliner.Airliner.Airliner.Classes.Exists(ac=>ac.Type == c.Type)))
+            foreach (AirlinerClassMVVM aClass in classes.Where(c => !this.Airliner.Airliner.Airliner.Classes.Exists(ac => ac.Type == c.Type)))
             {
                 this.Airliner.Classes.Remove(aClass);
             }
@@ -102,30 +103,35 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 }
             }
 
-             cbClasses.SelectedIndex = 0;
+            cbClasses.SelectedIndex = 0;
 
-             AirlinerClassMVVM tClass = this.Airliner.Classes[0];
-  
-             if (PopUpSingleElement.ShowPopUp("Select Class to Add", cbClasses) == PopUpSingleElement.ButtonSelected.OK && cbClasses.SelectedItem!=null)
-             {
-                 int maxseats = tClass.RegularSeatingCapacity - 1;
+            AirlinerClassMVVM tClass = this.Airliner.Classes[0];
 
-                 AirlinerClassMVVM aClass = new AirlinerClassMVVM((AirlinerClass.ClassType)cbClasses.SelectedItem, 1, 1,maxseats,true);
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageFleetAirlinerInformation", "1011"), cbClasses) == PopUpSingleElement.ButtonSelected.OK && cbClasses.SelectedItem != null)
+            {
+                int maxseats;
 
-                 foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
-                 {
-                     var facility = AirlinerFacilities.GetBasicFacility(aFacility.Type);
-                     aFacility.SelectedFacility = facility;
-                 }
+                if (this.Airliner.Classes.Count == 2)
+                    maxseats = tClass.RegularSeatingCapacity - 1 - this.Airliner.Classes[1].RegularSeatingCapacity;
+                else
+                    maxseats = tClass.RegularSeatingCapacity - 1;
 
-                 this.Airliner.Classes.Add(aClass);
-   
-                 tClass.RegularSeatingCapacity -= aClass.RegularSeatingCapacity;
+                AirlinerClassMVVM aClass = new AirlinerClassMVVM((AirlinerClass.ClassType)cbClasses.SelectedItem, 1, 1, maxseats, true);
 
-                 tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Find(f=>f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
+                foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
+                {
+                    var facility = AirlinerFacilities.GetBasicFacility(aFacility.Type);
+                    aFacility.SelectedFacility = facility;
+                }
 
-                
-             }
+                this.Airliner.Classes.Add(aClass);
+
+                tClass.RegularSeatingCapacity -= aClass.RegularSeatingCapacity;
+
+                tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
+
+
+            }
 
         }
 
@@ -133,16 +139,37 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Slider)sender).Tag;
 
-            double diff = (e.NewValue - e.OldValue);// *aClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses;
+            if (aClass.Type != AirlinerClass.ClassType.Economy_Class)
+            {
+                
+                double diff = (e.NewValue - e.OldValue);// *aClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses;
 
-            AirlinerClassMVVM tClass = this.Airliner.Classes[0];
+                if (this.Airliner.Classes.Count == 3)
+                {
+                    if (this.Airliner.Classes[1] == aClass)
+                    {
+                        //     this.Airliner.Classes[2].RegularSeatingCapacity -= Convert.ToInt16(diff);
+                        this.Airliner.Classes[2].MaxSeats = Convert.ToInt16(Convert.ToDouble(this.Airliner.Classes[2].RegularSeatingCapacity) / this.Airliner.Classes[2].Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
 
-            tClass.RegularSeatingCapacity -= Convert.ToInt16(diff);
+                    }
 
-            tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
-            
-        }
+                    if (this.Airliner.Classes[2] == aClass)
+                    {
+                        //       this.Airliner.Classes[1].RegularSeatingCapacity -= Convert.ToInt16(diff);
+                        this.Airliner.Classes[1].MaxSeats = Convert.ToInt16(Convert.ToDouble(this.Airliner.Classes[1].RegularSeatingCapacity) / this.Airliner.Classes[1].Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
 
-     
+                    }
+                }
+
+                AirlinerClassMVVM tClass = this.Airliner.Classes[0];
+
+                tClass.RegularSeatingCapacity -= Convert.ToInt16(diff);
+
+                tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
+            }
+         }
+
+
+
     }
 }

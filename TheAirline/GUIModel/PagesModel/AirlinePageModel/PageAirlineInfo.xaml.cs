@@ -80,13 +80,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
                     AirlineProfile profile = new AirlineProfile(name, iata, color, GameObject.GetInstance().MainAirline.Profile.CEO, false, GameObject.GetInstance().GameTime.Year, 2199);
 
-                    profile.Logos.Clear();
-                    profile.addLogo(new AirlineLogo(logoPath));
                     profile.Country = GameObject.GetInstance().MainAirline.Profile.Country;
 
                     SubsidiaryAirline subAirline = new SubsidiaryAirline(GameObject.GetInstance().MainAirline, profile, Model.AirlineModel.Airline.AirlineMentality.Safe, Model.AirlineModel.Airline.AirlineFocus.Local, Model.AirlineModel.Airline.AirlineLicense.Domestic, focus);
                     subAirline.addAirport(airport);
-                     subAirline.Money = slMoney.Value;
+                    subAirline.Profile.Logos.Clear();
+                    subAirline.Profile.addLogo(new AirlineLogo(logoPath));
+                    subAirline.Money = slMoney.Value;
 
                     this.Airline.addSubsidiaryAirline(subAirline);
 

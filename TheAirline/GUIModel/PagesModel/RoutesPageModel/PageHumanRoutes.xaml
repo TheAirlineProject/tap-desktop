@@ -13,7 +13,8 @@
         </DataTemplate>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
-        <ListView  util:GridViewSort.AutoSort="True" x:Name="AirportsList" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}">
+        <StackPanel>
+        <ListView  util:GridViewSort.AutoSort="True" x:Name="RoutesList" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding}">
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="" Width="40">
@@ -59,5 +60,17 @@
             </ListView.View>
 
         </ListView>
+            <Button Click="btnMap_Click" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0 5 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 200'}"> 
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=Count}" Value="0">
+                                <Setter Property="Button.IsEnabled" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </StackPanel>
     </ScrollViewer>
 </Page>

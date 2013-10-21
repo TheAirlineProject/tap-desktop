@@ -18,9 +18,10 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageAirportModel;
 using TheAirline.GraphicsModel.Converters;
 using TheAirline.Model.AirlineModel;
+using System.ComponentModel;
+using TheAirline.GUIModel.PagesModel.AirportPageModel;
 
 namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 {
@@ -177,7 +178,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
                 eSize.Height = 20;
                 eSize.StrokeThickness = 2;
                 eSize.Stroke = Brushes.Black;
-                eSize.Fill = new SolidColorBrush(getSizeColor(size));
+                eSize.Fill = getSizeColor(size);
 
                 panelSize.Children.Add(eSize);
 
@@ -212,22 +213,22 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             WrapPanel panelZoomButtons = new WrapPanel();
 
             Button btnZoomIn = new Button();
-            btnZoomIn.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnZoomIn.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
             //btnZoomIn.Height = Double.NaN;
             btnZoomIn.Width = 30;
             btnZoomIn.Content = "+";
             btnZoomIn.Click += btnZoomIn_Click;
-            btnZoomIn.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+          //  btnZoomIn.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
 
             panelZoomButtons.Children.Add(btnZoomIn);
 
             Button btnZoomOut = new Button();
-            btnZoomOut.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnZoomOut.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
             //btnZoomOut.Height = Double.NaN;
             btnZoomOut.Width = 30;
             btnZoomOut.Content = "-";
             btnZoomOut.Margin = new Thickness(5, 0, 0, 0);
-            btnZoomOut.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
+           // btnZoomOut.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnZoomOut.Click += btnZoomOut_Click;
 
             panelZoomButtons.Children.Add(btnZoomOut);
@@ -270,27 +271,48 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
           
         }
 
-        //returns the color for a specific airport size
-        private Color getSizeColor(GeneralHelpers.Size size)
+        //returns the brush for a specific airport size
+        private Brush getSizeColor(GeneralHelpers.Size size)
         {
+            Color color = Colors.DarkRed;
             switch (size)
             {
                 case GeneralHelpers.Size.Large:
-                    return Colors.DarkBlue;
+                    color= Colors.DarkBlue;
+                    break;
                 case GeneralHelpers.Size.Largest:
-                    return Colors.DarkRed;
+                    color= Colors.DarkRed;
+                    break;
                 case GeneralHelpers.Size.Medium:
-                    return Colors.Black;
+                    color= Colors.Black;
+                    break;
                 case GeneralHelpers.Size.Small:
-                    return Colors.White;
+                    color = Colors.White;
+                    break;
                 case GeneralHelpers.Size.Smallest:
-                    return Colors.Gray;
+                    color= Colors.Gray;
+                    break;
                 case GeneralHelpers.Size.Very_large:
-                    return Colors.Yellow;
+                    color= Colors.Yellow;
+                    break;
                 case GeneralHelpers.Size.Very_small:
-                    return Colors.Violet;
+                    color=Colors.Violet;
+                    break;
+              
             }
-            return Colors.DarkRed;
+
+            TypeConverter colorConverter = new ColorConverter();
+          
+            Color c2 = Color.FromArgb(25, color.R, color.G, color.B);
+
+            LinearGradientBrush colorBrush = new LinearGradientBrush();
+            colorBrush.StartPoint = new Point(0, 0);
+            colorBrush.EndPoint = new Point(0, 1);
+            colorBrush.GradientStops.Add(new GradientStop(c2, 0.15));
+            colorBrush.GradientStops.Add(new GradientStop(color, 0.85));
+            colorBrush.GradientStops.Add(new GradientStop(c2, 1));
+
+            return colorBrush;
         }
         //shows an airport
         private void showAirport(Airport airport, Panel panelMap, int zoom, Point margin)
@@ -608,7 +630,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             Ellipse imgPin = new Ellipse();
             imgPin.Tag = airport;
-            imgPin.Fill = new SolidColorBrush(getSizeColor(airport.Profile.Size));
+            imgPin.Fill = getSizeColor(airport.Profile.Size);
             imgPin.Height = 8;
             imgPin.Width = imgPin.Height;
             imgPin.Stroke = Brushes.Black;
@@ -619,11 +641,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             Border brdToolTip = new Border();
             brdToolTip.Margin = new Thickness(-4, 0, -4, -3);
             brdToolTip.Padding = new Thickness(5);
-            brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
+           // brdToolTip.SetResourceReference(Border.BackgroundProperty, "HeaderBackgroundBrush2");
 
 
             ContentControl lblAirport = new ContentControl();
-            lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItemNormal");
+            lblAirport.SetResourceReference(ContentControl.ContentTemplateProperty, "AirportCountryItem");
             lblAirport.Content = airport;
 
             brdToolTip.Child = lblAirport;

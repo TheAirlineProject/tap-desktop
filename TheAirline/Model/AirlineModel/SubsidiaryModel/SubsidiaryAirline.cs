@@ -17,7 +17,9 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
             : base(profile, mentality, market,license,routefocus)
         {
             this.Airline = airline;
-            this.Profile.Logos = this.Airline.Profile.Logos;
+
+            foreach (AirlineLogo logo in this.Airline.Profile.Logos)
+                this.Profile.addLogo(logo);
         }
         public override bool isHuman()
         {

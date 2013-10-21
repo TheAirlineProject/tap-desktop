@@ -106,26 +106,24 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             panelButtons.Margin = new Thickness(0, 5, 0, 0);
 
             Button btnOk = new Button();
-            btnOk.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnOk.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
             btnOk.Height = 16;
             btnOk.Width = Double.NaN;
             btnOk.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnOk.Click += new RoutedEventHandler(btnOk_Click);
             btnOk.Content = "OK";
-            btnOk.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
+       
             panelButtons.Children.Add(btnOk);
 
             Button btnCancel = new Button();
-            btnCancel.SetResourceReference(Button.StyleProperty, "RoundedButton");
+            btnCancel.SetResourceReference(Button.StyleProperty, "StandardButtonStyle");
             btnCancel.Height = 16;
             btnCancel.Width = Double.NaN;
             btnCancel.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             btnCancel.Click += new RoutedEventHandler(btnCancel_Click);
             btnCancel.Margin = new Thickness(5, 0, 0, 0);
             btnCancel.Content = "Cancel";
-            btnCancel.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
-
+         
             panelButtons.Children.Add(btnCancel);
 
             panelClasses.Children.Add(panelButtons);

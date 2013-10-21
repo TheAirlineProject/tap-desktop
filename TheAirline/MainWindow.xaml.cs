@@ -28,38 +28,33 @@ namespace TheAirline
     /// </summary>
     public partial class MainWindow : Window
     {
-       
+
         public MainWindow()
         {
-           
+
             InitializeComponent();
 
-            try
+
+            Setup.SetupGame();
+
+            if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
             {
-                Setup.SetupGame();
-
-                if (Settings.GetInstance().Mode == Settings.ScreenMode.Fullscreen)
-                {
-                    this.WindowStyle = WindowStyle.None;
-                    this.WindowState = WindowState.Maximized;
-                    this.Focus();
-                }
-              
-                PageNavigator.MainWindow = this;
-
-                this.Width = SystemParameters.PrimaryScreenWidth;
-                this.Height = SystemParameters.PrimaryScreenHeight;
-
-                if (AppSettings.GetInstance().hasLanguage())
-                    frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageStartMenu());
-                else
-                    frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
-
+                this.WindowStyle = WindowStyle.None;
+                this.WindowState = WindowState.Maximized;
+                this.Focus();
             }
-            catch (Exception e)
-            {
-                string s = e.ToString();
-            }
+
+            PageNavigator.MainWindow = this;
+
+            this.Width = SystemParameters.PrimaryScreenWidth;
+            this.Height = SystemParameters.PrimaryScreenHeight;
+
+            if (AppSettings.GetInstance().hasLanguage())
+                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageStartMenu());
+            else
+                frmContent.Navigate(new GUIModel.PagesModel.GamePageModel.PageSelectLanguage());
+
+
         }
 
         private void Window_KeyDown(object sender, KeyEventArgs e)
@@ -80,7 +75,7 @@ namespace TheAirline
 
                 WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
             }
-        
+
         }
 
         //clears the navigator
@@ -115,11 +110,11 @@ namespace TheAirline
         //navigates to a new page
         public void navigateTo(Page page)
         {
-          
+
             frmContent.Navigate(page);
             frmContent.NavigationService.RemoveBackEntry();
 
-          
+
         }
 
         //moves the navigator forward
@@ -137,7 +132,7 @@ namespace TheAirline
             if (frmContent.NavigationService.CanGoBack)
                 frmContent.NavigationService.GoBack();
         }
-       
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //social groups + passenger happiness

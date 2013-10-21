@@ -66,7 +66,18 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             {
                 Boolean changeable = this.Airliner.Airliner.Classes.IndexOf(aClass) > 0;
 
-                int maxSeats =tClass.RegularSeatingCapacity -1;
+                int maxSeats;
+               
+                if (this.Airliner.Airliner.Classes.Count == 3)
+                {
+                    if (this.Airliner.Airliner.Classes.IndexOf(aClass) == 1)
+                        maxSeats = tClass.RegularSeatingCapacity - 1 - this.Airliner.Airliner.Classes[2].RegularSeatingCapacity;
+                    else
+                        maxSeats = tClass.RegularSeatingCapacity - 1 - this.Airliner.Airliner.Classes[1].RegularSeatingCapacity;
+                }
+                else
+                    maxSeats =tClass.RegularSeatingCapacity -1;
+
 
                 this.Classes.Add(new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, aClass.RegularSeatingCapacity,maxSeats,changeable));
             }
@@ -141,7 +152,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         public int Seating
         {
             get { return _seating; }
-            set { _seating = value;  NotifyPropertyChanged("Seating"); }
+            set { _seating = value; if (!ChangeableSeats) NotifyPropertyChanged("Seating"); }
     
         }
         private int _maxseats;

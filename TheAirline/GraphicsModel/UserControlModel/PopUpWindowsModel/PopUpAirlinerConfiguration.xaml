@@ -5,7 +5,7 @@
                     xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
         xmlns:local="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
                x:Name="PopUp"
-        Title="PopUpAirlinerConfiguration" Height="300" Width="300">
+        Title="PopUpAirlinerConfiguration" Height="300" Width="300" WindowStartupLocation="CenterScreen" Background="#004A7F">
     <Window.Resources>
         <local:NumberOfPassengersConverter x:Key="numberOfPassengersConverter"></local:NumberOfPassengersConverter>
         <local:FreeClassesConverter x:Key="freeClassesConverter"></local:FreeClassesConverter>   

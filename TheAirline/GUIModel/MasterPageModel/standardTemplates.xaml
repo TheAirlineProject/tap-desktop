@@ -127,6 +127,10 @@
                 </WrapPanel>
             </StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1014'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding CockpitCrew}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='AirlinerTypeSpecifications 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <TextBlock Text="{Binding Body,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
@@ -197,6 +201,7 @@
 
         </DockPanel>
     </DataTemplate>
+   
     <DataTemplate x:Key="AirportCodeItem">
         <DockPanel>
             <ContentControl Content="{Binding Profile.Town.Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
@@ -305,6 +310,16 @@
                             <Hyperlink Tag="{Binding}" Click="Airline_Click">
                                 <Run Text="{Binding Profile.Name}"></Run>
                             </Hyperlink>
+            </TextBlock>
+        </DockPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="AirlineLargeLogoLink">
+        <DockPanel>
+            <Image Source="{Binding Profile.Logo}" Width="48" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <Hyperlink Tag="{Binding}" Click="Airline_Click" >
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
             </TextBlock>
         </DockPanel>
     </DataTemplate>

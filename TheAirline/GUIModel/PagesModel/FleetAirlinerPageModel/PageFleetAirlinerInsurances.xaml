@@ -68,7 +68,7 @@
                         <ComboBox Name="cbAirport" Style="{DynamicResource ComboBoxTransparentStyle}" Width="200" ItemsSource="{Binding AllAirports, ElementName=pageFleetAirlinerInsurances}" Margin="5 0 0 0" ItemTemplate="{StaticResource AirportCountryItem}"></ComboBox>
                     </WrapPanel>
                     <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
-                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 1003'}" VerticalAlignment="Bottom">
+                        <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInsurances 202'}" VerticalAlignment="Bottom">
                             <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                     <Style.Triggers>

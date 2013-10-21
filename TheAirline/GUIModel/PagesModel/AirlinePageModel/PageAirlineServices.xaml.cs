@@ -55,6 +55,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                         foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
                             facility.Facilities.Add(rFacility);
 
+                        facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
+
+
                         rClass.Facilities.Add(facility);
                     }
                 }
@@ -191,10 +194,21 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         }
         private void btnCreateConfiguration_Click(object sender, RoutedEventArgs e)
         {
-            panelCreateConfiguration.Visibility = Visibility.Visible;
+        
+            foreach (AirlineClassMVVM rClass in this.Classes)
+            {
+                foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
+                {
+                    rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
 
-            btnCreate.Visibility = System.Windows.Visibility.Collapsed;
-            btnSave.Visibility = System.Windows.Visibility.Visible;
+                }
+
+            }
+
+             btnCreate.Visibility = System.Windows.Visibility.Collapsed;
+             btnSave.Visibility = System.Windows.Visibility.Visible;
+
+        
         }
         private void btnSaveConfiguration_Click(object sender, RoutedEventArgs e)
         {
@@ -223,8 +237,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
                 Configurations.AddConfiguration(configuration);
 
-                panelCreateConfiguration.Visibility = Visibility.Collapsed;
-
                 btnSave.Visibility = System.Windows.Visibility.Collapsed;
                 btnCreate.Visibility = System.Windows.Visibility.Visible;
             }
@@ -232,6 +244,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
         private void btnLoadConfiguration_Click(object sender, RoutedEventArgs e)
         {
+    
             ComboBox cbConfigurations = new ComboBox();
             cbConfigurations.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbConfigurations.SelectedValuePath = "Name";
@@ -246,6 +259,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirlineWages", "1013"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
+           
+                foreach (AirlineClassMVVM rClass in this.Classes)
+                {
+                    foreach (AirlineClassFacilityMVVM rFacility in rClass.Facilities)
+                    {
+                        rFacility.SelectedFacility = RouteFacilities.GetBasicFacility(rFacility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
+
+                    }
+
+                }
+
                 RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
 
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
@@ -259,8 +283,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     }
                 }
 
-                panelCreateConfiguration.Visibility = System.Windows.Visibility.Visible;
-
+                
                 btnSave.Visibility = System.Windows.Visibility.Visible;
 
          
