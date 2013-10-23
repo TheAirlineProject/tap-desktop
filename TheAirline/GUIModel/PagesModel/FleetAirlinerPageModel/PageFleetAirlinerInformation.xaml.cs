@@ -30,7 +30,9 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             this.DataContext = this.Airliner;
             this.Loaded += PageFleetAirlinerInformation_Loaded;
+            
             InitializeComponent();
+
         }
 
         private void PageFleetAirlinerInformation_Loaded(object sender, RoutedEventArgs e)
@@ -68,6 +70,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         private void btnUndoChanges_Click(object sender, RoutedEventArgs e)
         {
+          
             var classes = new List<AirlinerClassMVVM>(this.Airliner.Classes);
 
             foreach (AirlinerClassMVVM aClass in classes.Where(c => !this.Airliner.Airliner.Airliner.Classes.Exists(ac => ac.Type == c.Type)))
@@ -84,6 +87,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 }
 
             }
+        
         }
 
         private void btnAddClass_Click(object sender, RoutedEventArgs e)
@@ -96,7 +100,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                Boolean hasClass = this.Airliner.Airliner.Airliner.Classes.Exists(c => c.Type == type);
+                Boolean hasClass = this.Airliner.Classes.ToList().Exists(c => c.Type == type);
                 if ((int)type <= GameObject.GetInstance().GameTime.Year && !hasClass)
                 {
                     cbClasses.Items.Add(type);
@@ -111,27 +115,35 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             {
                 int maxseats;
 
-                if (this.Airliner.Classes.Count == 2)
-                    maxseats = tClass.RegularSeatingCapacity - 1 - this.Airliner.Classes[1].RegularSeatingCapacity;
+                int maxCapacity;
+
+                if (this.Airliner.Airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                    maxCapacity = ((AirlinerPassengerType)this.Airliner.Airliner.Airliner.Type).MaxSeatingCapacity;
                 else
-                    maxseats = tClass.RegularSeatingCapacity - 1;
+                    maxCapacity = tClass.RegularSeatingCapacity;
+
+                if (this.Airliner.Classes.Count == 2)
+                    maxseats =maxCapacity - 1 - this.Airliner.Classes[1].RegularSeatingCapacity;
+                else
+                    maxseats = maxCapacity - 1;
 
                 AirlinerClassMVVM aClass = new AirlinerClassMVVM((AirlinerClass.ClassType)cbClasses.SelectedItem, 1, 1, maxseats, true);
-
+            
                 foreach (AirlinerFacilityMVVM aFacility in aClass.Facilities)
                 {
                     var facility = AirlinerFacilities.GetBasicFacility(aFacility.Type);
                     aFacility.SelectedFacility = facility;
                 }
-
+               
                 this.Airliner.Classes.Add(aClass);
 
                 tClass.RegularSeatingCapacity -= aClass.RegularSeatingCapacity;
 
-                tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
-
+                tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
+                
 
             }
+
 
         }
 
@@ -141,23 +153,23 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             if (aClass.Type != AirlinerClass.ClassType.Economy_Class)
             {
-                
                 double diff = (e.NewValue - e.OldValue);// *aClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses;
+
+                Console.WriteLine("Class: {0}, Old value: {1}, New value: {2}", aClass.Type, e.OldValue, e.NewValue);
 
                 if (this.Airliner.Classes.Count == 3)
                 {
                     if (this.Airliner.Classes[1] == aClass)
                     {
-                        //     this.Airliner.Classes[2].RegularSeatingCapacity -= Convert.ToInt16(diff);
-                        this.Airliner.Classes[2].MaxSeats = Convert.ToInt16(Convert.ToDouble(this.Airliner.Classes[2].RegularSeatingCapacity) / this.Airliner.Classes[2].Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
-
+                       // this.Airliner.Classes[2].RegularSeatingCapacity -= Convert.ToInt16(diff);
+                        this.Airliner.Classes[2].MaxSeats = Convert.ToInt16(Convert.ToDouble(this.Airliner.Classes[2].RegularSeatingCapacity) / this.Airliner.Classes[2].Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
+           
                     }
-
+                    
                     if (this.Airliner.Classes[2] == aClass)
                     {
-                        //       this.Airliner.Classes[1].RegularSeatingCapacity -= Convert.ToInt16(diff);
-                        this.Airliner.Classes[1].MaxSeats = Convert.ToInt16(Convert.ToDouble(this.Airliner.Classes[1].RegularSeatingCapacity) / this.Airliner.Classes[1].Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
-
+                       // this.Airliner.Classes[1].RegularSeatingCapacity -= Convert.ToInt16(diff);
+                        this.Airliner.Classes[1].MaxSeats = Convert.ToInt16(Convert.ToDouble(this.Airliner.Classes[1].RegularSeatingCapacity) / this.Airliner.Classes[1].Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
                     }
                 }
 
@@ -165,10 +177,11 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
                 tClass.RegularSeatingCapacity -= Convert.ToInt16(diff);
 
-                tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Find(f => f.Type == AirlinerFacility.FacilityType.Seat).SelectedFacility.SeatUses);
+                tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
             }
          }
 
+      
 
 
     }

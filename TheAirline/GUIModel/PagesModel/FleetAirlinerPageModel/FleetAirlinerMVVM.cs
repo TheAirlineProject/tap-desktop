@@ -59,11 +59,18 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             this.Airliner = airliner;
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
-
+     
             AirlinerClass tClass = this.Airliner.Airliner.Classes[0];
                
             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
             {
+                int maxCapacity;
+
+                if (airliner.Airliner.Type.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger)
+                    maxCapacity = ((AirlinerPassengerType)airliner.Airliner.Type).MaxSeatingCapacity;
+                else
+                    maxCapacity = tClass.RegularSeatingCapacity;
+
                 Boolean changeable = this.Airliner.Airliner.Classes.IndexOf(aClass) > 0;
 
                 int maxSeats;
@@ -71,15 +78,16 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 if (this.Airliner.Airliner.Classes.Count == 3)
                 {
                     if (this.Airliner.Airliner.Classes.IndexOf(aClass) == 1)
-                        maxSeats = tClass.RegularSeatingCapacity - 1 - this.Airliner.Airliner.Classes[2].RegularSeatingCapacity;
+                        maxSeats = maxCapacity - 1 - this.Airliner.Airliner.Classes[2].RegularSeatingCapacity;
                     else
-                        maxSeats = tClass.RegularSeatingCapacity - 1 - this.Airliner.Airliner.Classes[1].RegularSeatingCapacity;
+                        maxSeats = maxCapacity - 1 - this.Airliner.Airliner.Classes[1].RegularSeatingCapacity;
                 }
                 else
-                    maxSeats =tClass.RegularSeatingCapacity -1;
+                    maxSeats =maxCapacity -1;
 
 
-                this.Classes.Add(new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, aClass.RegularSeatingCapacity,maxSeats,changeable));
+                AirlinerClassMVVM amClass = new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, aClass.RegularSeatingCapacity, maxSeats, changeable);
+                this.Classes.Add(amClass);
             }
 
             this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
@@ -91,6 +99,8 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
        
         }
+
+        
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {
@@ -101,23 +111,32 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             }
         }
     }
+  
     //the mvvm class for an airliner facility class
     public class AirlinerFacilityMVVM : INotifyPropertyChanged
     {
         private AirlinerClassMVVM AirlinerClass;
-        public List<AirlinerFacility> Facilities { get; set; }
+        public ObservableCollection<AirlinerFacility> Facilities { get; set; }
 
         private AirlinerFacility _selectedFacility;
         public AirlinerFacility SelectedFacility
         {
             get { return _selectedFacility; }
-            set { _selectedFacility = value; NotifyPropertyChanged("SelectedFacility"); setSeating(); }
+            set 
+            {
+                if (value != null)
+                {
+                    _selectedFacility = value; 
+                    NotifyPropertyChanged("SelectedFacility"); 
+                    setSeating(); 
+                }
+            }
         }
 
         public AirlinerFacility.FacilityType Type { get; set; }
         public AirlinerFacilityMVVM(AirlinerFacility.FacilityType type,AirlinerClassMVVM airlinerClass)
         {
-            this.Facilities = new List<AirlinerFacility>();
+            this.Facilities = new ObservableCollection<AirlinerFacility>();
            
             this.AirlinerClass = airlinerClass;
             this.Type = type;
@@ -127,7 +146,8 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         private void NotifyPropertyChanged(String propertyName)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
-            if (null != handler)
+
+             if (null != handler)
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
@@ -137,14 +157,15 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             if (this.Type == AirlinerFacility.FacilityType.Seat && _selectedFacility != null)
             {
                 this.AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.RegularSeatingCapacity) / _selectedFacility.SeatUses);
-                this.AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.MaxSeatsCapacity) / _selectedFacility.SeatUses);
+                this.AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.MaxSeatsCapacity) / _selectedFacility.SeatUses); 
             }
         }
     }
+  
     //the mvvm class for an airliner class
     public class AirlinerClassMVVM : INotifyPropertyChanged
     {
-        public List<AirlinerFacilityMVVM> Facilities { get; set; }
+        public ObservableCollection<AirlinerFacilityMVVM> Facilities { get; set; }
 
         public AirlinerClass.ClassType Type { get; set; }
 
@@ -174,7 +195,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.MaxSeats = maxseats;
             this.MaxSeatsCapacity = maxseats;
 
-            this.Facilities = new List<AirlinerFacilityMVVM>();
+            this.Facilities = new ObservableCollection<AirlinerFacilityMVVM>();
 
             foreach (AirlinerFacility.FacilityType facType in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
@@ -182,7 +203,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
                 foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType))
                     facility.Facilities.Add(fac);
-               
+
                 this.Facilities.Add(facility);
 
             }

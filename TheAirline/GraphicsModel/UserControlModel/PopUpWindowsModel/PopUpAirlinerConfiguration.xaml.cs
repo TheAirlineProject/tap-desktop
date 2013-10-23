@@ -141,6 +141,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
         private void btnOk_Click(object sender, RoutedEventArgs e)
         {
+            
             this.Selected = this.Classes;
             this.Close();
         }

@@ -270,6 +270,7 @@ namespace TheAirline.Model.GeneralModel
         //converts l/km to mpg
         public static double LKMToMPG(double kml)
         {
+           
             double aMPG = 2.35;
 
             return kml * aMPG;

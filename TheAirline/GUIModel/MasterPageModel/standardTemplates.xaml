@@ -172,8 +172,7 @@
                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
-
-                            <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                             <Image Source="{Binding Flag}" Width="20" Height="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
                         </DockPanel>
                     </DataTemplate>
                 </ContentControl.ContentTemplate>

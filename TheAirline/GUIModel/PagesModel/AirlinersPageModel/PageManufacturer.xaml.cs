@@ -88,7 +88,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             AirlinerOrderMVVM order = (AirlinerOrderMVVM)((Button)sender).Tag;
 
-            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerConfiguration.ShowPopUp(order.Type, order.Classes);
+            List<AirlinerClass> classes = (List<AirlinerClass>)PopUpAirlinerSeatsConfiguration.ShowPopUp(order.Type, order.Classes);
      
             if (classes != null)
             {
@@ -375,6 +375,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             AirlinerOrderMVVM order = (AirlinerOrderMVVM)cbAmount.Tag;
 
             order.Amount = (int)cbAmount.SelectedItem ;
+
         }
     }
 }

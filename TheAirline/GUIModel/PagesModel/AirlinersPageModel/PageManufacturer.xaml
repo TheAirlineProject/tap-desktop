@@ -32,7 +32,8 @@
                         <Image Source="/data/images/configuration.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
             </WrapPanel>
-            </DataTemplate>
+               
+        </DataTemplate>
     </Page.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>

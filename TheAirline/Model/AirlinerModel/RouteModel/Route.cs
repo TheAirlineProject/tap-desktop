@@ -193,8 +193,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public List<FleetAirliner> getAirliners()
         {
             var entries = new List<RouteTimeTableEntry>(this.TimeTable.Entries);
-            List<FleetAirliner> mainEntries = (from e in entries where e.MainEntry != null && e.MainEntry.Airliner != null select e.MainEntry.Airliner).Distinct().ToList();
-            List<FleetAirliner> allAirliners = (from e in entries where e.Airliner != null select e.Airliner).Distinct().ToList();
+            List<FleetAirliner> mainEntries = (from e in entries where e!=null && e.MainEntry != null && e.MainEntry.Airliner != null select e.MainEntry.Airliner).Distinct().ToList();
+            List<FleetAirliner> allAirliners = (from e in entries where e!=null && e.Airliner != null select e.Airliner).Distinct().ToList();
             allAirliners.AddRange(mainEntries);
 
             return allAirliners;

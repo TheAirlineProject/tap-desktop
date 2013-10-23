@@ -1124,6 +1124,7 @@ namespace TheAirline.Model.GeneralModel
                     else
                         eTown = new Town(town, Countries.GetCountry(country));
 
+
                     AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, new Coordinates(latitude, longitude), cargoSize, cargovolume, season);
                     profile.PaxValues = paxValues;
 

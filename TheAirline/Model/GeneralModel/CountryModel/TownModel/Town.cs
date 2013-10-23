@@ -23,6 +23,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         }
         public Town(string name, Country country, State state)
         {
+          
             this.Name = name;
             this.Country = country;
             this.State = state;
