@@ -73,7 +73,12 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             if (!gameworkerPaused)
                 GameObjectWorker.GetInstance().start();
        
-           
+         
+        }
+
+        private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            txtName.Text =  lbSaves.SelectedItem.ToString();
         }
     }
 }

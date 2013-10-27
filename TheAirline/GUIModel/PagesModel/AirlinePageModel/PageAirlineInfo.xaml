@@ -208,7 +208,7 @@
                         <StackPanel.Style>
                             <Style TargetType="StackPanel">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding AirlineAirlines.Count}" Value="1">
+                                    <DataTrigger Binding="{Binding AirlineAirlines.Count}" Value="0">
                                         <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>
@@ -248,6 +248,24 @@
                     <ListView Name="lvFleet" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding DeliveredFleet}">
                         <ListView.View>
                             <GridView>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Click="btnSellAirliner_Click" Background="Transparent" Tag="{Binding}" Width="20" VerticalAlignment="Bottom">
+                                                <Button.Style>
+                                                    <Style TargetType="Button">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Airliner.Airline.IsHuman}" Value="False">
+                                                                <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Button.Style>
+                                                <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            </Button>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
                                 <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}" util:GridViewSort.PropertyName="Name" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>

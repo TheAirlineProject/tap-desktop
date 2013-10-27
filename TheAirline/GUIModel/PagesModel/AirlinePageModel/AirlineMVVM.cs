@@ -27,7 +27,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     {
         public List<PropertyInfo> Colors { get; set; }
         public Airline Airline { get; set; }
-        public List<FleetAirliner> DeliveredFleet { get; set; }
+        public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
         public ObservableCollection<AirlineFinanceMVVM> Finances { get; set; }
@@ -88,7 +88,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public AirlineMVVM(Airline airline)
         {
             this.Airline = airline;
-            this.DeliveredFleet = this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime);
+            this.DeliveredFleet = new ObservableCollection<FleetAirliner>();
+            foreach (FleetAirliner airliner in this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime))
+                this.DeliveredFleet.Add(airliner);
+
             this.OrderedFleet = this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
             this.Finances = new ObservableCollection<AirlineFinanceMVVM>();
             this.LoanRate = GeneralHelpers.GetAirlineLoanRate(this.Airline);
@@ -207,6 +210,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             facility.Type = AirlineFacilityMVVM.MVVMType.Available;
 
           
+        }
+        //removes a fleet airliner
+        public void removeAirliner(FleetAirliner airliner)
+        {
+            this.DeliveredFleet.Remove(airliner);
         }
         //removes a pilot
         public void removePilot(Pilot pilot)

@@ -57,14 +57,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             so.instance = GameObject.GetInstance();
         
-            
+            /*
             var settings = new XmlWriterSettings
             {
                 Encoding = Encoding.UTF8,
                 Indent = true,
                 NewLineChars = Environment.NewLine
 
-            };
+            };*/
      DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
                       Int32.MaxValue,
                       false,
@@ -75,6 +75,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
          using (GZipStream compress = new GZipStream(stream, CompressionMode.Compress))
          {
              serializer.WriteObject(compress, so);
+             stream.Position = 0;
 
          }
      }
