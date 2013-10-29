@@ -51,5 +51,17 @@ namespace TheAirline.Model.GeneralModel
         {
             return (int)Math.Ceiling(this.PaymentLeft / this.MonthlyPayment);
         }
+
+        
+        public bool approveLoan(Loan loan, AirlineModel.Airline airline)
+        {
+            int loans = 0;
+            foreach (Loan l in airline.Loans)
+            {
+                loans += (int) l.Amount;
+            }
+            
+            return loan.Amount + loans < 2 * airline.getValue();
+        }
     }
 }
