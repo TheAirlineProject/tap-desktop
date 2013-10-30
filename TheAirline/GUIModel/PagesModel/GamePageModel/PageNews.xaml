@@ -20,8 +20,13 @@
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Border Style="{StaticResource RoundedBorderStyle}" Grid.Column="0" Margin="0 0 5 0">
-                    <StackPanel>
-            <ListView  x:Name="lvNews" Grid.Column="0" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllNews,ElementName=pageNews}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="Auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+                      
+            <ListView Grid.Row="0"  x:Name="lvNews" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllNews,ElementName=pageNews}">
                 
                 <ListView.View>
                     <GridView>
@@ -82,7 +87,7 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-                        <WrapPanel Margin="0 5 0 0">
+                        <WrapPanel Margin="0 5 0 0" Grid.Row="1">
                             <Button Content="Mark Selected as Read" Click="btnMarkSelected_Click">
                                 <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
@@ -109,7 +114,7 @@
                             </Button>
             
                         </WrapPanel>
-                    </StackPanel>
+                        </Grid>
                 </Border>
                 <Border Style="{StaticResource RoundedBorderStyle}" Margin="5 0 0 0" Grid.Column="1" Padding="5 5 5 5">
                     <StackPanel DataContext="{Binding SelectedNews.SelectedNews,ElementName=pageNews}">

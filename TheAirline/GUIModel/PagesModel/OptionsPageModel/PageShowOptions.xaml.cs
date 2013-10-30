@@ -42,6 +42,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                  Settings.GetInstance().AirportCodeDisplay = rbIATA.IsChecked.Value ? Settings.AirportCode.IATA : Settings.AirportCode.ICAO;
                  Settings.GetInstance().MailsOnLandings = cbLandings.IsChecked.Value;
                  Settings.GetInstance().MailsOnBadWeather = cbWeather.IsChecked.Value;
+                 Settings.GetInstance().MailsOnAirlineRoutes = cbAirlineDestinations.IsChecked.Value;
                  Settings.GetInstance().CurrencyShorten = cbShortenCurrency.IsChecked.Value;
 
                  if (this.Options.HourRoundEnabled)

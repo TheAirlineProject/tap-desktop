@@ -1854,7 +1854,7 @@ namespace TheAirline.Model.GeneralModel
             List<Country> countries = new List<Country>();
 
             foreach (string sCountry in sCountries.Split(';'))
-                countries.Add(Countries.GetCountry(sCountry));
+                 countries.Add(Countries.GetCountry(sCountry));
 
             //Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
             string ceo = profileElement.Attributes["CEO"].Value;

@@ -84,7 +84,8 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             this.IsSaving = false;
          
-            WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1008"), Translator.GetInstance().GetString("MessageBox", "1008", "message"), WPFMessageBoxButtons.Ok);
+            if (doSave)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1008"), Translator.GetInstance().GetString("MessageBox", "1008", "message"), WPFMessageBoxButtons.Ok);
 
         }
 

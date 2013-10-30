@@ -194,10 +194,17 @@ namespace TheAirline.Model.AirlineModel
         //adds a route to the airline
         public void addRoute(Route route)
         {
+
+            var routes = new List<Route>(this.Routes);
+
+           
             lock (this._Routes)
             {
                 this._Routes.Add(route);
                 route.Airline = this;
+
+                foreach (string flightCode in route.TimeTable.Entries.Select(e => e.Destination.FlightCode).Distinct())
+                    this.FlightCodes.Remove(flightCode);
             }
          
         }
@@ -207,12 +214,17 @@ namespace TheAirline.Model.AirlineModel
             lock (this._Routes)
             {
                 this._Routes.Remove(route);
+
+                foreach (string flightCode in route.TimeTable.Entries.Select(e => e.Destination.FlightCode).Distinct())
+                    this.FlightCodes.Add(flightCode);
+     
             }
        
         }
         //get routes for the airline
         private List<Route> getRoutes()
         {
+
             List<Route> routes;
             lock (this._Routes)
             {
@@ -468,6 +480,7 @@ namespace TheAirline.Model.AirlineModel
         //returns the list of flight codes for the airline
         public List<string> getFlightCodes()
         {
+            /*
             List<string> codes = new List<string>(this.FlightCodes);
 
             var routes = new List<Route>(this.Routes);
@@ -482,8 +495,12 @@ namespace TheAirline.Model.AirlineModel
             }
 
             codes.Sort(delegate(string s1, string s2) { return s1.CompareTo(s2); });
+            
+
 
             return codes;
+             *  * */
+            return this.FlightCodes;
         }
         //adds an insurance to the airline
         public void addInsurance(AirlineInsurance insurance)
