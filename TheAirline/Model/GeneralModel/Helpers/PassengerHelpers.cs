@@ -525,13 +525,13 @@ namespace TheAirline.Model.GeneralModel
             if (largestAirports.Count > 0)
             {
                 foreach (var lAirport in largestAirports)
-                    airport.addDestinationPassengersRate(new DestinationDemand(lAirport, (ushort)rnd.Next(1, maxValue)));
+                    airport.addDestinationPassengersRate(new DestinationDemand(lAirport.Profile.IATACode, (ushort)rnd.Next(1, maxValue)));
 
             }
             else
             {
                 subAirports = subAirports.OrderByDescending(a => a.Profile.Size).ToList();
-                airport.addDestinationPassengersRate(new DestinationDemand(subAirports[0], (ushort)rnd.Next(1, maxValue)));
+                airport.addDestinationPassengersRate(new DestinationDemand(subAirports[0].Profile.IATACode, (ushort)rnd.Next(1, maxValue)));
             }
 
 
@@ -763,7 +763,7 @@ namespace TheAirline.Model.GeneralModel
             volume *= 35.1;
 
             if (volume >= 1)
-                airport.addDestinationCargoRate(new DestinationDemand(dAirport, (ushort)volume));
+                airport.addDestinationCargoRate(new DestinationDemand(dAirport.Profile.IATACode, (ushort)volume));
 
         }
         //creates the airport destinations passengers between two destinations 
@@ -3392,7 +3392,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (rate > 0)
             {
-                airport.addDestinationPassengersRate(new DestinationDemand(dAirport, rate));
+                airport.addDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IATACode, rate));
                 //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
             }
 

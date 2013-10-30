@@ -228,6 +228,9 @@
                                                         <DataTrigger Binding="{Binding ElementName=imgTick, Path=Visibility}" Value="Visible">
                                                             <Setter Property="Image.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
+                                                        <DataTrigger Binding="{Binding Path=IsHuman}" Value="False">
+                                                            <Setter Property="Image.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
                                                     </Style.Triggers>
                                                 </Style>
                                             </Image.Style>

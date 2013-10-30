@@ -39,9 +39,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             int length = Convert.ToInt16(slLenght.Value)*12;
 
             Loan loan = new Loan(GameObject.GetInstance().GameTime, amount, length, this.Airline.LoanRate);
-            this.Airline.addLoan(loan);
-            
-            AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, loan.Amount);
+
+            if (AirlineHelpers.CanApplyForLoan(GameObject.GetInstance().HumanAirline, loan))
+            {
+
+                this.Airline.addLoan(loan);
+
+                AirlineHelpers.AddAirlineInvoice(this.Airline.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Loans, loan.Amount);
+            }
+            else
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2124"), Translator.GetInstance().GetString("MessageBox", "2124", "message"), WPFMessageBoxButtons.Ok);
+   
             
 
 

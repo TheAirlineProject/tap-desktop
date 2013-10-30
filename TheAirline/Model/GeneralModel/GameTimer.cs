@@ -91,7 +91,7 @@ namespace TheAirline.Model.GeneralModel
                 gameTimer = new GameTimer();
         }
         //returns the instance of the timer
-        public static GameTimer GetInstance()
+        public static GameTimer GetInstancec()
         {
             if (gameTimer == null)
                 gameTimer = new GameTimer();

@@ -23,6 +23,7 @@ namespace TheAirline
         {
             AppSettings.Init();
 
+           
             AppDomain currentDomain = AppDomain.CurrentDomain;
             currentDomain.UnhandledException += currentDomain_UnhandledException;
                  

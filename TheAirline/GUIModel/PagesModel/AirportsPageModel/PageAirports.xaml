@@ -32,7 +32,37 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 1004'}" FontWeight="Bold" FontSize="14"></TextBlock>
                         <ComboBox Name="cbRegion" Style="{DynamicResource ComboBoxTransparentStyle}" HorizontalAlignment="Stretch" SelectionChanged="cbRegion_SelectionChanged" VerticalAlignment="Bottom" SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="Name"></ComboBox>
                         <ComboBox Name="cbCountry" Style="{DynamicResource ComboBoxTransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" ItemTemplate="{StaticResource CountryLongFlagItem}"></ComboBox>
-                        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="txtText"></TextBox>
+                        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="txtText">
+                            <TextBox.Style>
+                                <Style TargetType="TextBox">
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="TextBox">
+                                                <Border BorderBrush="Black" BorderThickness="1">
+                                                    <Grid>
+                                                        <Grid.ColumnDefinitions>
+                                                            <ColumnDefinition Width="20"/>
+                                                            <ColumnDefinition Width="*"/>
+                                                        </Grid.ColumnDefinitions>
+                                                        <Image Grid.Column="0" Source="/data/search.png" Width="16" Height="16" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+                                                        <TextBox Style="{x:Null}" Grid.Column="1" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                       Text="{TemplateBinding Text}"
+                                             BorderThickness="0"
+                                       Foreground="{TemplateBinding Foreground}"                                           
+                                       Background="{TemplateBinding Background}" 
+                                       FontFamily="{TemplateBinding FontFamily}"
+                                       FontSize="{TemplateBinding FontSize}"
+                                       FontWeight="{TemplateBinding FontWeight}"/>
+
+                                                    </Grid>
+                                                </Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </TextBox.Style>
+                        </TextBox>
                         <WrapPanel Margin="0 5 0 0">
                         <Button Style="{DynamicResource StandardButtonStyle}" Click="btnSearch_Click" IsDefault="True" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 109'}" Width="NaN"></Button>
                             <Button Style="{DynamicResource StandardButtonStyle}" Click="btnClear_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='General 110'}" Width="NaN" Margin="5 0 0 0"></Button>

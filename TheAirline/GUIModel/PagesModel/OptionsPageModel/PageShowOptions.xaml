@@ -77,6 +77,10 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbWeather" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnBadWeather}"></CheckBox>
             </WrapPanel>
+            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1007'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbAirlineDestinations" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnAirlineDestinations}"></CheckBox>
+            </WrapPanel>
             <WrapPanel Margin="0 5 0 0">
                 <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 200'}" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
                 <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 201'}" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>

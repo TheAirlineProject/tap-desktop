@@ -392,6 +392,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airline.Ratings.EmployeeHappinessRating = (int)airline.Scores.EHR.Average();
             airline.Ratings.MaintenanceRating = (int)airline.Scores.Maintenance.Average();
         }
+        //returns the max loan sum for an airline
+        public static double GetMaxLoanAmount(Airline airline)
+        {
+            return airline.getValue() * 500000;
+        }
+        //returns if an airline can apply for a loan
+        public static Boolean CanApplyForLoan(Airline airline, Loan loan)
+        {
+            double loans = airline.Loans.Sum(l => l.Amount);
+           
+            return loan.Amount + loans < GetMaxLoanAmount(airline);
+        }
         //returns if an airline has licens for flying between two airports
         public static Boolean HasAirlineLicens(Airline airline, Airport airport1, Airport airport2)
         {

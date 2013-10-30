@@ -35,7 +35,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.Restrictions = FlightRestrictions.GetRestrictions().FindAll(r => r.StartDate < GameObject.GetInstance().GameTime && r.EndDate > GameObject.GetInstance().GameTime);
            
             this.Airliners = new List<FleetAirlinerMVVM>();
-            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet)
+            foreach (FleetAirliner airliner in GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime))
                 this.Airliners.Add(new FleetAirlinerMVVM(airliner));
 
             this.Loaded += PageAssignAirliners_Loaded;

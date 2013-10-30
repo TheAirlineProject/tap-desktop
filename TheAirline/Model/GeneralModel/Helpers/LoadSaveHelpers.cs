@@ -384,11 +384,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                              long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
                              targetAirport.addPassengerDestinationStatistics(destAirport, destPassengers);
-                             targetAirport.addDestinationPassengersRate(new DestinationDemand(destAirport, rate));
+                             targetAirport.addDestinationPassengersRate(new DestinationDemand(destAirport.Profile.IATACode, rate));
 
                              if (destinationElement.HasAttribute("cargo"))
                              {
-                                 targetAirport.addDestinationCargoRate(new DestinationDemand(destAirport, ushort.Parse(destinationElement.Attributes["cargo"].Value)));
+                                 targetAirport.addDestinationCargoRate(new DestinationDemand(destAirport.Profile.IATACode, ushort.Parse(destinationElement.Attributes["cargo"].Value)));
                                  targetAirport.addCargoDestinationStatistics(destAirport, Convert.ToDouble(destinationElement.Attributes["cargostats"].Value, new CultureInfo("de-DE", false)));
                              }
                          }

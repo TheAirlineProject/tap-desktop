@@ -51,6 +51,7 @@ namespace TheAirline.Model.AirportModel
         [DataMember]
         private List<AirportContract> _Contracts;
         public List<AirportContract> AirlineContracts { get { return getAirlineContracts();} set { this._Contracts = value; } }
+        [IgnoreDataMember]
         public AirportStatics Statics { get; set; }
         public Airport(AirportProfile profile)
         {
@@ -153,7 +154,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination passengers for a specific destination for a class
         public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination);
+            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IATACode);
 
             var values = Enum.GetValues(typeof(AirlinerClass.ClassType));
  
@@ -179,7 +180,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination cargo for a specific destination
         public ushort getDestinationCargoRate(Airport destination)
         {
-            DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination);
+            DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination.Profile.IATACode);
 
          
             if (cargo == null)
@@ -211,7 +212,7 @@ namespace TheAirline.Model.AirportModel
                 if (destinationPassengers != null)
                     destinationPassengers.Rate += rate;
                 else
-                    this.DestinationPassengers.Add(new DestinationDemand(destination, rate));
+                    this.DestinationPassengers.Add(new DestinationDemand(destination.Profile.IATACode, rate));
             }
         }
         //adds a cargo rate value to a destination
@@ -225,7 +226,7 @@ namespace TheAirline.Model.AirportModel
                 if (destinationCargo != null)
                     destinationCargo.Rate += rate;
                 else
-                    this.DestinationCargo.Add(new DestinationDemand(destination, rate));
+                    this.DestinationCargo.Add(new DestinationDemand(destination.Profile.IATACode, rate));
             }
         }
         //returns all airports where the airport has demand
@@ -237,22 +238,22 @@ namespace TheAirline.Model.AirportModel
             destinations.AddRange(this.DestinationCargo);
             destinations.AddRange(this.DestinationPassengers);
 
-            return destinations.Where(d=>d.Destination.Profile.Period.From<=GameObject.GetInstance().GameTime && d.Destination.Profile.Period.To>=GameObject.GetInstance().GameTime).Select(d => d.Destination).Distinct().ToList();
+            return destinations.Select(d => Airports.GetAirport(d.Destination)).Distinct().ToList();
         }
         //returns if the destination has passengers rate
         public Boolean hasDestinationPassengersRate(Airport destination)
         {
-            return this.Statics.hasDestinationPassengersRate(destination) || this.DestinationPassengers.Exists(a => a.Destination == destination);
+            return this.Statics.hasDestinationPassengersRate(destination) || this.DestinationPassengers.Exists(a => a.Destination == destination.Profile.IATACode);
         }
         //returns a destination passengers object
         public DestinationDemand getDestinationPassengersObject(Airport destination)
         {
-            return this.DestinationPassengers.Find(a => a.Destination == destination);
+            return this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IATACode);
         }
         //returns a destination cargo object
         public DestinationDemand getDestinationCargoObject(Airport destination)
         {
-            return this.DestinationCargo.Find(a => a.Destination == destination);
+            return this.DestinationCargo.Find(a => a.Destination == destination.Profile.IATACode);
         }
         //clears the destination passengers
         public void clearDestinationPassengers()

@@ -73,6 +73,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _maxLoan; }
             set { _maxLoan = value; NotifyPropertyChanged("MaxLoan"); }
         }
+      
         private double _balance;
         public double Balance
         {
@@ -215,6 +216,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public void removeAirliner(FleetAirliner airliner)
         {
             this.DeliveredFleet.Remove(airliner);
+            this.Airline.removeAirliner(airliner);
         }
         //removes a pilot
         public void removePilot(Pilot pilot)
@@ -230,6 +232,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.addLoan(loan);
 
             setValues();
+         
 
         }
         //saves the advertisements
@@ -292,8 +295,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
 
-            this.MaxLoan = this.Airline.getValue() * 500000;
-          
+            this.MaxLoan = AirlineHelpers.GetMaxLoanAmount(this.Airline);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

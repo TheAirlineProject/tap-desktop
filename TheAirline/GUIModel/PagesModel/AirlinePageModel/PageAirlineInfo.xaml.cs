@@ -44,7 +44,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.DataContext = this.Airline;
             this.AllAirports = new List<Airport>();
 
-
             InitializeComponent();
 
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);

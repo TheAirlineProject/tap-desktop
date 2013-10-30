@@ -34,7 +34,15 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             set { _mailsOnLanding = value; NotifyPropertyChanged("MailsOnLandings"); } 
         }
 
-        private Boolean _mailsOnBadWeather;
+        private Boolean _mailsOnAirlineDestinations;
+         public Boolean MailsOnAirlineDestinations
+         {
+             get { return _mailsOnAirlineDestinations; }
+             set { _mailsOnAirlineDestinations = value; NotifyPropertyChanged("MailsOnAirlineDestinations"); } 
+        }
+
+
+         private Boolean _mailsOnBadWeather;
         public Boolean MailsOnBadWeather
         {
             get { return _mailsOnBadWeather; }
@@ -86,6 +94,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             this.MailsOnLandings = Settings.GetInstance().MailsOnLandings;
             this.MailsOnBadWeather = Settings.GetInstance().MailsOnBadWeather;
             this.ShortenCurrency = Settings.GetInstance().CurrencyShorten;
+            this.MailsOnAirlineDestinations = Settings.GetInstance().MailsOnAirlineRoutes;
             this.HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
             this.SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
             this.GameMinutes = new ObservableCollection<int>() { 15, 30, 60 };

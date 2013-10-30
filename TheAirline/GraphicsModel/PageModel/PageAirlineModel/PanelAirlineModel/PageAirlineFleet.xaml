@@ -14,7 +14,7 @@
         <c:ValueIsMinusConverter x:Key="valueIsMinusConverter"></c:ValueIsMinusConverter>
             <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
         <c:ValueCurrencyConverter x:Key="valueCurrencyConverter"></c:ValueCurrencyConverter>
-        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetCargoViewItem">
+        <GridView AllowsColumnReorder="False" x:Key="FleetCargoViewItem">
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
@@ -52,7 +52,7 @@
             </GridViewColumn>
 
         </GridView>
-        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetRouteViewItem">
+        <GridView AllowsColumnReorder="False" x:Key="FleetRouteViewItem">
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
@@ -96,7 +96,7 @@
             </GridViewColumn>
             
         </GridView>
-        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetViewLeasedItem">
+        <GridView AllowsColumnReorder="False" x:Key="FleetViewLeasedItem">
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
@@ -138,7 +138,7 @@
             <GridViewColumn Header="Pilots" DisplayMemberBinding="{Binding NumberOfPilots}"  />
 
         </GridView>
-        <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" AllowsColumnReorder="False" x:Key="FleetViewBoughtItem">
+        <GridView AllowsColumnReorder="False" x:Key="FleetViewBoughtItem">
             <GridViewColumn>
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>

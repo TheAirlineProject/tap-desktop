@@ -244,8 +244,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
                 if (passengers > 0 || cargo > 0)
                 {
-                    DestinationDemand passengerDemand = new DestinationDemand(airport, (ushort)passengers);
-                    DestinationDemand cargoDemand = new DestinationDemand(airport, (ushort)cargo);
+                    DestinationDemand passengerDemand = new DestinationDemand(airport.Profile.IATACode, (ushort)passengers);
+                    DestinationDemand cargoDemand = new DestinationDemand(airport.Profile.IATACode, (ushort)cargo);
 
                      
                     int demand = passengers;
@@ -566,7 +566,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
         private void btnRent_Click(object sender, RoutedEventArgs e)
         {
             KeyValuePair<DestinationDemand, int> v = (KeyValuePair<DestinationDemand, int>)((Button)sender).Tag;
-            Airport airport = v.Key.Destination;
+            Airport airport = Airports.GetAirport(v.Key.Destination);
 
             Boolean hasCheckin = airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
 
@@ -617,7 +617,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             try
             {
                 KeyValuePair<DestinationDemand, int> v = (KeyValuePair<DestinationDemand, int>)value;
-                Airport airport = v.Key.Destination;
+                Airport airport = Airports.GetAirport(v.Key.Destination);
 
                 Boolean isEnabled = airport.Terminals.getFreeGates() > 0;// && airport.AirlineContract == null;
 
@@ -645,7 +645,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             DestinationDemand destination = (DestinationDemand)value;
 
 
-            if (GameObject.GetInstance().HumanAirline.Airports.Contains(destination.Destination))
+            if (GameObject.GetInstance().HumanAirline.Airports.Contains(Airports.GetAirport(destination.Destination)))
                 return Visibility.Visible;
             else
                 return Visibility.Collapsed;

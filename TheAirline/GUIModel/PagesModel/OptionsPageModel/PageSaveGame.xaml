@@ -27,6 +27,17 @@
                 </Button.Style>
                 </Button>
             </WrapPanel>
+            <TextBlock Text="Saving........" FontSize="20" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=pageSaveGame,Path=IsSaving}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed"></Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
         </StackPanel>
     </ScrollViewer>
 </Page>

@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
          xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.RoutesPageModel"
-      xmlns:t="http://schemas.xceed.com/wpf/xaml/toolkit"
+     xmlns:t="http://schemas.xceed.com/wpf/xaml/toolkit"
        xmlns:uc="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
        Name="pageRoutePlanner"
       mc:Ignorable="d" 

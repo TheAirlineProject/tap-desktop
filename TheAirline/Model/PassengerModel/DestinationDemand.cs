@@ -15,8 +15,8 @@ namespace TheAirline.Model.PassengerModel
     {
         
         public ushort Rate { get; set; }
-        public Airport Destination { get; set; }
-         public DestinationDemand(Airport destination, ushort rate)
+        public string Destination { get; set; }
+         public DestinationDemand(string destination, ushort rate)
         {
              this.Rate = rate;
             this.Destination = destination;

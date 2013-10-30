@@ -22,7 +22,9 @@ namespace TheAirline.Model.GeneralModel
         public Boolean MailsOnLandings { get; set; }
         
         public Boolean MailsOnBadWeather { get; set; }
-        
+
+        public Boolean MailsOnAirlineRoutes { get; set; }
+
         public int MinutesPerTurn { get; set; }
         
         public Boolean CurrencyShorten { get; set; }
@@ -35,6 +37,7 @@ namespace TheAirline.Model.GeneralModel
             this.AirportCodeDisplay = AirportCode.IATA;
             this.DifficultyDisplay = Difficulty.Normal;
             this.MailsOnLandings = false;
+            this.MailsOnAirlineRoutes = false;
             this.MailsOnBadWeather = true;
             this.MinutesPerTurn = 60;
             this.CurrencyShorten = true;

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,9 +24,15 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
     /// <summary>
     /// Interaction logic for PageSaveGame.xaml
     /// </summary>
-    public partial class PageSaveGame : Page
+    public partial class PageSaveGame : Page, INotifyPropertyChanged
     {
         public ObservableCollection<string> Saves { get; set; }
+        private Boolean _isSaving;
+        public Boolean IsSaving
+        {
+            get { return _isSaving; }
+            set { _isSaving = value; NotifyPropertyChanged("IsSaving"); }
+        }
         public PageSaveGame()
         {
             this.Saves = new ObservableCollection<string>();
@@ -64,6 +71,8 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             if (doSave)
             {
+                this.IsSaving = true;
+
                 GameObject.GetInstance().Name = name;
 
                 SerializedLoadSaveHelpers.SaveGame(name);
@@ -72,13 +81,24 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
           
             if (!gameworkerPaused)
                 GameObjectWorker.GetInstance().start();
-       
-         
+
+            this.IsSaving = false;
+    
         }
 
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txtName.Text =  lbSaves.SelectedItem.ToString();
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+
         }
     }
 }

@@ -597,13 +597,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         if (isDestOk && isDeptOk)
                         {
 
-                            airline.addRoute(route);
-
                             Boolean humanHasRoute = Airlines.GetHumanAirlines().SelectMany(a => a.Routes).ToList().Exists(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination1 == route.Destination2 && r.Destination2 == route.Destination1));
 
-                            if (humanHasRoute)
-                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode, route.Destination1.Profile.IATACode, route.Destination2.Profile.IATACode)));
+                            if (humanHasRoute && Settings.GetInstance().MailsOnAirlineRoutes)
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode, route.Destination1.Profile.IATACode, route.Destination2.Profile.IATACode)));
 
+                            Country newDestination = airline.Routes.Count(r=>r.Destination1.Profile.Country == airport.Profile.Country || r.Destination2.Profile.Country == airport.Profile.Country) == 0 ? airport.Profile.Country : null;
+
+                            newDestination = airline.Routes.Count(r => r.Destination1.Profile.Country == destination.Profile.Country || r.Destination2.Profile.Country == destination.Profile.Country) == 0 ? destination.Profile.Country : newDestination;
+
+                            if (newDestination != null && Settings.GetInstance().MailsOnAirlineRoutes)
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1014"), string.Format(Translator.GetInstance().GetString("News", "1014", "message"), airline.Profile.IATACode, ((Country)new CountryCurrentCountryConverter().Convert(newDestination)).Name)));
 
                             if (!AirportHelpers.HasFreeGates(airport, airline))
                                 AirportHelpers.RentGates(airport, airline);
@@ -611,6 +615,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (!AirportHelpers.HasFreeGates(destination, airline))
                                 AirportHelpers.RentGates(airport, airline);
 
+                            airline.addRoute(route);
 
                             if (fAirliner == null)
                             {

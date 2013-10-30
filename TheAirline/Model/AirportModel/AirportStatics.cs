@@ -49,12 +49,12 @@ namespace TheAirline.Model.AirportModel
         //returns if the airport have passenger demand to another airport
         public Boolean hasDestinationPassengersRate(Airport destination)
         {
-            return this.PassengerDemand.Exists(a => a.Destination == destination);
+            return this.PassengerDemand.Exists(a => a.Destination == destination.Profile.IATACode);
         }
         //returns if the airport have cargo demand to another airport
         public Boolean hasDestinationCargoRate(Airport destination)
         {
-            return this.CargoDemand.Exists(a => a.Destination == destination);
+            return this.CargoDemand.Exists(a => a.Destination == destination.Profile.IATACode);
         }
         //returns the sum of passenger demand
         public int getDestinationPassengersSum()
@@ -69,7 +69,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination cargo for a specific destination
         public ushort getDestinationCargoRate(Airport destination)
         {
-            DestinationDemand cargo = this.CargoDemand.Find(a => a.Destination == destination);
+            DestinationDemand cargo = this.CargoDemand.Find(a => a.Destination == destination.Profile.IATACode);
 
             if (cargo == null)
                 return 0;
@@ -80,7 +80,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination passengers for a specific destination for a class
         public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationDemand pax = this.PassengerDemand.Find(a => a.Destination == destination);
+            DestinationDemand pax = this.PassengerDemand.Find(a => a.Destination == destination.Profile.IATACode);
 
             var values = Enum.GetValues(typeof(AirlinerClass.ClassType));
 
