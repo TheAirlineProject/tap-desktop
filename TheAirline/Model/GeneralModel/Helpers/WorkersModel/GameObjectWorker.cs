@@ -118,7 +118,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 GameObjectHelpers.SimulateTurn();
                 sw.Stop();
 
-                long waittime = (int)GameTimer.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
+                long waittime = (int)Settings.GetInstance().GameSpeed - (sw.ElapsedMilliseconds);
 
               
                 /*

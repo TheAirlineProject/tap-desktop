@@ -53,16 +53,11 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
 
             this.Content = panelWeather;
 
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirportWeather_OnTimeChanged);
+          //  GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirportWeather_OnTimeChanged);
 
-            this.Unloaded += new RoutedEventHandler(PageAirportWeather_Unloaded);
         }
 
-        private void PageAirportWeather_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirportWeather_OnTimeChanged);
-        }
-
+      
         private void PageAirportWeather_OnTimeChanged()
         {
             if (this.IsLoaded)

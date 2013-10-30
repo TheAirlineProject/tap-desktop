@@ -105,10 +105,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             currentNews = new List<NewsFeed>();
 
-            GameTimer.GetInstance().OnTimeChangedForced += new GameTimer.TimeChanged(PageBottomMenu_OnTimeChanged);
-
-            this.Unloaded += new RoutedEventHandler(PageBottomMenu_Unloaded);
-        }
+          }
 
       
 
@@ -122,13 +119,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             PageNavigator.NavigateTo(new PageCalendar());
         }
 
-        private void PageBottomMenu_Unloaded(object sender, RoutedEventArgs e)
-        {
-
-            GameTimer.GetInstance().OnTimeChangedForced -= new GameTimer.TimeChanged(PageBottomMenu_OnTimeChanged);
-        }
-
-
+      
         private void PageBottomMenu_OnTimeChanged()
         {
             if (this.IsLoaded)
@@ -169,11 +160,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                         Setup.SetupGame();
                         PageNavigator.NavigateTo(new PageNewGame());
                         GameObject.RestartInstance();
-                        GameTimer.RestartInstance();
-
-                        GameTimer.GetInstance().start();
-                        //GameObjectWorker.GetInstance().start();
-      
+                  
                     }
            
                 }

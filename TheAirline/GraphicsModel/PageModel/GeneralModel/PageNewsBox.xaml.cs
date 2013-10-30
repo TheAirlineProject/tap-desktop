@@ -120,10 +120,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             showNews(true);
 
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
-
-            this.Unloaded += new RoutedEventHandler(PageNewsBox_Unloaded);
-        }
+         }
 
         private void btnDeleteAll_Click(object sender, RoutedEventArgs e)
         {
@@ -157,11 +154,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             showNews(true);
         }
 
-        private void PageNewsBox_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageNewsBox_OnTimeChanged);
-
-        }
 
         private void PageNewsBox_OnTimeChanged()
         {

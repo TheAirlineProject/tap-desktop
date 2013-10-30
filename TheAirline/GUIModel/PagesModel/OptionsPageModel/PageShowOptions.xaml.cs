@@ -49,7 +49,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
                  GeneralHelpers.GameSpeedValue gameSpeed = (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
                  
-                 GameTimer.GetInstance().setGameSpeed(gameSpeed);
+                 Settings.GetInstance().setGameSpeed(gameSpeed);
              }
         
 

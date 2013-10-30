@@ -68,14 +68,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             createStats();
         }
 
-        private void PageAirlinesStatistics_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
-
-         
-        }
-
-      
+             
 
         //creates the stats panel
         private void createStats()

@@ -240,12 +240,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             if (airliner.Airliner.Airline.IsHuman)
                             {
-                                GameTimer.GetInstance().pause();
-
+                              
                                 airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner);
 
-                                GameTimer.GetInstance().start();
-
+                              
                             }
                             else
                             {

@@ -22,7 +22,6 @@ namespace TheAirline.Model.GeneralModel
     {
         private static GameTimer gameTimer;
 
-        public GeneralHelpers.GameSpeedValue GameSpeed { get; private set; }
         private DispatcherTimer Timer;
         public delegate void TimeChanged();
         public event TimeChanged OnTimeChanged;
@@ -36,7 +35,6 @@ namespace TheAirline.Model.GeneralModel
         private GameTimer()
         {
 
-            this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             this.Timer = new DispatcherTimer();
             this.Timer.Interval = new TimeSpan(0, 0, 0, 0,100);//(int)this.GameSpeed;
             this.Timer.Tick += new EventHandler(Timer_Tick);
@@ -62,11 +60,7 @@ namespace TheAirline.Model.GeneralModel
 
             this.IsPaused = false;
         }
-        //sets the speed of the game
-        public void setGameSpeed(GeneralHelpers.GameSpeedValue gameSpeed)
-        {
-            this.GameSpeed = gameSpeed;
-        }
+       
         private void GameTimer_OnTimeChanged()
         {
             if (!GameObjectWorker.GetInstance().IsStarted)
@@ -97,6 +91,7 @@ namespace TheAirline.Model.GeneralModel
                 gameTimer = new GameTimer();
             return gameTimer;
         }
+        /*
         //restarts the instance
         public static void RestartInstance()
         {
@@ -104,7 +99,7 @@ namespace TheAirline.Model.GeneralModel
             gameTimer = new GameTimer();
             GetInstance().start();
         }
-          
+          */
        
 
 

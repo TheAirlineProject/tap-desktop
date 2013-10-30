@@ -774,7 +774,6 @@ namespace TheAirline.GraphicsModel.PageModel.PageGameModel
 
                 //PassengerHelpers.CreateDestinationPassengers();
 
-                GameTimer.GetInstance().start();
                 GameObjectWorker.GetInstance().start();
                 // AIWorker.GetInstance().start();
 

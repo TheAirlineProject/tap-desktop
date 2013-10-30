@@ -63,7 +63,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             PassengerHelpers.CreateAirlineDestinationDemand();
 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
-            GameTimer.GetInstance().start();
             GameObjectWorker.GetInstance().start();
 
             PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));

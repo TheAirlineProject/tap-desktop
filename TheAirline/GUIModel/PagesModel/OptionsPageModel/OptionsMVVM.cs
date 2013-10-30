@@ -98,7 +98,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             this.HourRoundEnabled = !GameObject.GetInstance().DayRoundEnabled;
             this.SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
             this.GameMinutes = new ObservableCollection<int>() { 15, 30, 60 };
-            this.CurrentGameSpeed = (int)GameTimer.GetInstance().GameSpeed;
+            this.CurrentGameSpeed = (int)Settings.GetInstance().GameSpeed;
 
             DoubleCollection cGameSpeeds = new DoubleCollection();
          

@@ -69,12 +69,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel
             showStats();
         }
 
-        private void PageAirportStatistics_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirportStatistics_OnTimeChanged);
-
-        }
-
+       
         //shows the stats
         private void showStats()
         {

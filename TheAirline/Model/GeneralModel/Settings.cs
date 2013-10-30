@@ -32,10 +32,14 @@ namespace TheAirline.Model.GeneralModel
 
         public enum ScreenMode {Fullscreen, Windowed}
         public ScreenMode Mode { get; set; }
+
+        public GeneralHelpers.GameSpeedValue GameSpeed { get; private set; }
+       
         private Settings()
         {
             this.AirportCodeDisplay = AirportCode.IATA;
             this.DifficultyDisplay = Difficulty.Normal;
+            this.GameSpeed = GeneralHelpers.GameSpeedValue.Normal;
             this.MailsOnLandings = false;
             this.MailsOnAirlineRoutes = false;
             this.MailsOnBadWeather = true;
@@ -50,5 +54,11 @@ namespace TheAirline.Model.GeneralModel
                 Instance = new Settings();
             return Instance;
         }
+        //sets the speed of the game
+        public void setGameSpeed(GeneralHelpers.GameSpeedValue gameSpeed)
+        {
+            this.GameSpeed = gameSpeed;
+        }
+      
     }
 }

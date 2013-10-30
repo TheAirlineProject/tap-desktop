@@ -66,13 +66,11 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 
             panelSpeed.Children.Add(slGameSpeed);
             
-            txtGameSpeed = UICreator.CreateTextBlock(GameTimer.GetInstance().GameSpeed.ToString());
             txtGameSpeed.Margin = new Thickness(5, 0, 0, 0);
             txtGameSpeed.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
 
             panelSpeed.Children.Add(txtGameSpeed);
 
-            slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
             lbSettings.Items.Add(new QuickInfoValue(Translator.GetInstance().GetString("PageSettings","1001"),panelSpeed));
 
             cbTurnMinutes = new ComboBox();
@@ -199,8 +197,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             cbSkin.SelectedItem = SkinObject.GetInstance().CurrentSkin;
-            slGameSpeed.Value = (int)GameTimer.GetInstance().GameSpeed;
-            cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
+           cbLanguage.SelectedItem = AppSettings.GetInstance().getLanguage();
             cbMailOnLandings.IsChecked = Settings.GetInstance().MailsOnLandings;
             cbMailOnBadWeather.IsChecked = Settings.GetInstance().MailsOnBadWeather;
             cbTurnMinutes.SelectedItem = Settings.GetInstance().MinutesPerTurn;
@@ -220,8 +217,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                    SkinObject.GetInstance().setCurrentSkin(selectedSkin);
 
                    GeneralHelpers.GameSpeedValue speed = (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
-                   GameTimer.GetInstance().setGameSpeed(speed);
-
+        
                    Language language = (Language)cbLanguage.SelectedItem;
                    AppSettings.GetInstance().setLanguage(language);
                    Settings.GetInstance().MailsOnLandings = cbMailOnLandings.IsChecked.Value;

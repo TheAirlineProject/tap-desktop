@@ -72,11 +72,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlinesModel.PanelAirlinesMode
             showStats();
         }
 
-        private void PageAirlinesExtendedStatistics_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirlinesStatistics_OnTimeChanged);
-
-        }
+     
         //shows the stats
         private void showStats()
         {

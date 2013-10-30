@@ -59,7 +59,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         public PageStandardMenuTop()
         {
-       
+
             setNewsText();
 
             InitializeComponent();
@@ -67,22 +67,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             Menu menu = this.Resources["MenuMain"] as Menu;
             menu.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             Grid.SetColumn(menu, 0);
-         
+
             panelMain.Children.Add(menu);
-                   
+
 
             this.Content = base.panelMain;
-
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageStandardMenuTop_OnTimeChanged);
-
-            this.Unloaded += new RoutedEventHandler(PageStandardMenuTop_Unloaded);
         }
-     
-        private void PageStandardMenuTop_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageStandardMenuTop_OnTimeChanged);
-
-        }
+      
 
         private void PageStandardMenuTop_OnTimeChanged()
         {
@@ -144,7 +135,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkNewGame_Click(object sender, RoutedEventArgs e)
         {
-            GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().cancel();
  
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1001"), Translator.GetInstance().GetString("MessageBox", "1001", "message"), WPFMessageBoxButtons.YesNo);
@@ -158,15 +148,13 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 }
                 PageNavigator.NavigateTo(new PageFrontMenu());
                 GameObject.RestartInstance();
-                GameTimer.RestartInstance();
-
+       
                 Setup.SetupGame();
               
               
                
             }
 
-            GameTimer.GetInstance().start();
             //GameObjectWorker.GetInstance().start();
 
         }
@@ -233,10 +221,8 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         }
         private void lnkSaveGame_Click(object sender, RoutedEventArgs e)
         {
-            Boolean gametimerPaused = GameTimer.GetInstance().isPaused();
             Boolean gameworkerPaused = GameObjectWorker.GetInstance().isPaused();
 
-            GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().cancel();
                       
             Popup popUpSplash = new Popup();
@@ -297,9 +283,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                 }
             }
             
-            if (!gametimerPaused)
-                GameTimer.GetInstance().start();
-
+           
             if (!gameworkerPaused)
                 GameObjectWorker.GetInstance().start();
             
@@ -317,7 +301,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             popUpSplash.PlacementTarget = PageNavigator.MainWindow;
             popUpSplash.IsOpen = false;
      
-            GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().cancel();
 
             while (GameObjectWorker.GetInstance().isBusy())
@@ -351,7 +334,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
               
             }
 
-            GameTimer.GetInstance().start();
             GameObjectWorker.GetInstance().start();
            
         }

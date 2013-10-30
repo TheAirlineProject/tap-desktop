@@ -98,8 +98,7 @@ namespace TheAirline.GUIModel.MasterPageModel
                 }
                 PageNavigator.NavigateTo(new PageNewGame());
                 GameObject.RestartInstance();
-                GameTimer.RestartInstance();
-
+        
                 Setup.SetupGame();
 
 

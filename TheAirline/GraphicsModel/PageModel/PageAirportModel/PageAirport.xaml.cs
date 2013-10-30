@@ -68,18 +68,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
             base.setHeaderContent(this.Title + " - " + this.Airport.Profile.Name);
 
             showPage(this);
-
-          
-            GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageAirport_OnTimeChanged);
-
-            this.Unloaded += new RoutedEventHandler(PageAirport_Unloaded);
         }
-
-        private void PageAirport_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirport_OnTimeChanged);
-        }
-
+     
         private void PageAirport_OnTimeChanged()
         {
             if (this.IsLoaded)

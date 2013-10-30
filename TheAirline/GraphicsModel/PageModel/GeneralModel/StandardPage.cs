@@ -109,7 +109,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnPause.Width = 32;
             btnPause.Margin = new Thickness(2, 0, 0, 0);
             btnPause.Content = "||";
-            btnPause.Visibility = GameTimer.GetInstance().isPaused() ? Visibility.Collapsed : Visibility.Visible;
             btnPause.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
             btnPause.Click += new RoutedEventHandler(btnPause_Click);
             panelNavigation.Children.Add(btnPause);
@@ -119,7 +118,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
             btnStart.SetResourceReference(Button.StyleProperty, "RoundedButton");
             btnStart.Height = 24;
             btnStart.Width = 32;
-            btnStart.Visibility = GameTimer.GetInstance().isPaused() ? Visibility.Visible : System.Windows.Visibility.Collapsed;
             btnStart.Margin = new Thickness(2, 0, 0, 0);
             btnStart.Content = ">";
             btnStart.SetResourceReference(Button.BackgroundProperty, "ButtonBrush");
@@ -214,7 +212,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
               string text = string.Format("Gameobjectworker paused: {0}\n", GameObjectWorker.GetInstance().isPaused());
               text += string.Format("Gameobjectworker cancelled: {0}\n", GameObjectWorker.GetInstance().isCancelled());
-              text += string.Format("Gametimer paused: {0}\n", GameTimer.GetInstance().isPaused());
               text += string.Format("Gameobjectworker sleeping: {0}", GameObjectWorker.GetInstance().Sleeping);
              
               WPFMessageBox.Show("Threads states", text, WPFMessageBoxButtons.Ok);
@@ -225,7 +222,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             this.btnStart.Visibility = System.Windows.Visibility.Collapsed;
             this.btnPause.Visibility = System.Windows.Visibility.Visible;
-            GameTimer.GetInstance().start();
             GameObjectWorker.GetInstance().restart();
         }
 
@@ -233,7 +229,6 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         {
             this.btnStart.Visibility = System.Windows.Visibility.Visible;
             this.btnPause.Visibility = System.Windows.Visibility.Collapsed;
-            GameTimer.GetInstance().pause();
             GameObjectWorker.GetInstance().pause();
         }
 
@@ -366,18 +361,10 @@ public class PageInformation : Page
 
         this.Content = panelContent;
 
-        GameTimer.GetInstance().OnTimeChanged += new GameTimer.TimeChanged(PageInformation_OnTimeChanged);
-
-        this.Unloaded += new RoutedEventHandler(PageInformation_Unloaded);
     }
 
 
-    private void PageInformation_Unloaded(object sender, RoutedEventArgs e)
-    {
-        GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageInformation_OnTimeChanged);
-
-    }
-
+   
     private void PageInformation_OnTimeChanged()
     {
 

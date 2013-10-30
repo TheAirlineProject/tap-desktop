@@ -213,12 +213,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel
                        
 
         }
-       REMOVE THIS LINE AFTER 0.3.6 PUBLIC RELEASE *************************/
-        private void PageAirlineFinances_Unloaded(object sender, RoutedEventArgs e)
-        {
-            GameTimer.GetInstance().OnTimeChanged -= new GameTimer.TimeChanged(PageAirlineFinances_OnTimeChanged);
-
-        }
+       */
 
         private void btnLoan_Click(object sender, RoutedEventArgs e)
         {
