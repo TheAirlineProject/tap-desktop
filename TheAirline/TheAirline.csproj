@@ -1451,7 +1451,6 @@
     <Compile Include="Model\GeneralModel\CountryModel\TownModel\State.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\UnionMember.cs" />
     <Compile Include="Model\GeneralModel\GameObject.cs" />
-    <Compile Include="Model\GeneralModel\GameTimer.cs" />
     <Compile Include="Model\GeneralModel\GameTimeZone.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AIHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AirlineHelpers.cs" />

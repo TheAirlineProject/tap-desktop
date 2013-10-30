@@ -60,6 +60,7 @@ namespace TheAirline.Model.GeneralModel
         {
             this.News.Clear();
         }
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {

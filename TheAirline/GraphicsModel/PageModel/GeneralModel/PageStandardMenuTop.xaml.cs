@@ -238,10 +238,7 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
                
             if (doSave)
             {
-                while (!GameObjectWorker.GetInstance().isCancelled())
-                {
-                }
-          
+              
                 if (SerializedLoadSaveHelpers.SaveGameExists(name))
                 {
                     WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1007"), Translator.GetInstance().GetString("MessageBox", "1007", "message"),WPFMessageBoxButtons.YesNo);

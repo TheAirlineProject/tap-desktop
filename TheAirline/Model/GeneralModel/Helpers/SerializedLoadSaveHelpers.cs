@@ -75,7 +75,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
          using (GZipStream compress = new GZipStream(stream, CompressionMode.Compress))
          {
              serializer.WriteObject(compress, so);
-             stream.Position = 0;
+             //stream.Position = 0;
 
          }
      }

@@ -59,9 +59,9 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
              
                 if (file != null)
                 {
-                   
-                    LoadSaveHelpers.LoadGame(file);
 
+                    SerializedLoadSaveHelpers.LoadGame(file);
+                   
                     PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
                     HolidayYear.Clear();

@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -51,11 +53,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             string name = txtName.Text.Trim();
 
-            while (!GameObjectWorker.GetInstance().isCancelled())
-            {
-            }
-
-            Boolean doSave = true;
+           Boolean doSave = true;
 
             if (SerializedLoadSaveHelpers.SaveGameExists(name))
             {
@@ -71,6 +69,8 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             if (doSave)
             {
+                DoEvents();
+
                 this.IsSaving = true;
 
                 GameObject.GetInstance().Name = name;
@@ -83,7 +83,9 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                 GameObjectWorker.GetInstance().start();
 
             this.IsSaving = false;
-    
+         
+            WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1008"), Translator.GetInstance().GetString("MessageBox", "1008", "message"), WPFMessageBoxButtons.Ok);
+
         }
 
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -99,6 +101,10 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
 
+        }
+        public static void DoEvents()
+        {
+            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
         }
     }
 }

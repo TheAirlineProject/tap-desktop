@@ -115,7 +115,7 @@ namespace TheAirline.Model.GeneralModel
         {
             GameInstance = new GameObject();
         }
-        
+        [field: NonSerialized]
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
         {
