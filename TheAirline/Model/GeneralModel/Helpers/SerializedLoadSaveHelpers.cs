@@ -9,6 +9,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
@@ -35,6 +36,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves a game
         public static void SaveGame(string name)
         {
+            //Pause the game so we can save without the clock running :)
+            GameObjectWorker.GetInstance().pause();
+
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             Stopwatch sw = new Stopwatch();
@@ -56,15 +60,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.eventsList.AddRange(RandomEvents.GetEvents());
 
             so.instance = GameObject.GetInstance();
-        
-            /*
-            var settings = new XmlWriterSettings
-            {
-                Encoding = Encoding.UTF8,
-                Indent = true,
-                NewLineChars = Environment.NewLine
 
-            };*/
      DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
                       Int32.MaxValue,
                       false,
@@ -75,41 +71,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
          using (GZipStream compress = new GZipStream(stream, CompressionMode.Compress))
          {
              serializer.WriteObject(compress, so);
-             //stream.Position = 0;
-
          }
      }
-            /*
-            using (var buffer = new FileStream(fileName, FileMode.Create))
-            {
-                var serializer = new DataContractSerializer(typeof(SaveObject), null,
-                      Int32.MaxValue,
-                      false,
-                      true,
-                      null); //new XmlSerializer(typeof(SaveObject));
-
-                Stream stream = new GZipStream(buffer, CompressionMode.Compress);
-
-                using (var writer = XmlWriter.Create(stream, settings))
-                {
-                    serializer.WriteObject(writer, so);
-
-                }
-                stream.Close();
-            }
-              
-             * */
-            /*
-            using (var file = File.Create("c:\\bbm\\person.bin"))
-            {
-                Serializer.Serialize<SaveObject>(file, so);
-            }*/
+           
             sw.Stop();
           
         }
         //loads a game 
         public static void LoadGame(string file)
         {
+            
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
@@ -123,30 +94,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                    (SaveObject)serializer.ReadObject(decompress);
                 }
             }
-            /*
-            using (FileStream fs = new FileStream(fileName, FileMode.Open))
-            {
-                DataContractSerializer ser = new DataContractSerializer(typeof(SaveObject));
-
-                Stream stream = new GZipStream(fs, CompressionMode.Decompress);
-               
-                XmlDictionaryReaderQuotas quotas = new XmlDictionaryReaderQuotas();
-                quotas.MaxDepth = Int32.MaxValue;
-
-                XmlDictionaryReader reader =
-       XmlDictionaryReader.CreateTextReader(stream, quotas);
-         
-                // Deserialize the data and read it from the instance.
-                deserializedSaveObject =
-                    (SaveObject)ser.ReadObject(reader, true);
-                
-                reader.Close();
-                stream.Close();
-          
-
-            }
-            */
-         
 
             Airlines.Clear();
 
@@ -180,9 +127,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (RandomEvent e in deserializedSaveObject.eventsList)
                 RandomEvents.AddEvent(e);
-
+          
             GameObject.SetInstance(deserializedSaveObject.instance);
+
+            //Maybe this helps? But i doubt this is the best way
+            Action action = () =>
+            {
+                Stopwatch swPax = new Stopwatch();
+                swPax.Start();
+
+                PassengerHelpers.CreateDestinationDemand();
+
+                Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+                swPax.Stop();
+            };
+
+            //Start the game paused
+            GameObjectWorker.GetInstance().startPaused();
+
+            //Task is needed this unlocks the game agian.
+            Task.Factory.StartNew(action);
+
         }
+
     }
     
     [DataContract(Name = "game")]
@@ -202,7 +169,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [DataMember]
         public GameObject instance { get; set; }
-
+        
         [DataMember]
         public List<Configuration> configurationList { get; set; }
 
