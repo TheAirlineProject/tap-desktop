@@ -50,7 +50,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
-                // foreach (Airline airline in Airlines.GetAllAirlines())
                 {
                     if (!airline.IsHuman)
                     {
@@ -61,8 +60,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 });
           
-
-              //  Console.WriteLine("{0} airlines: {1} airliners: {2} routes: {3} flights: {4} airports: {5} total time per round: {6} ms.", GameObject.GetInstance().GameTime.ToShortDateString(), Airlines.GetAllAirlines().Count, Airlines.GetAllAirlines().Sum(a => a.Fleet.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Sum(r => r.TimeTable.Entries.Count)), Airports.GetAllAirports().Count, sw.ElapsedMilliseconds);
+                // Console.WriteLine("{0} airlines: {1} airliners: {2} routes: {3} flights: {4} airports: {5} total time per round: {6} ms.", GameObject.GetInstance().GameTime.ToShortDateString(), Airlines.GetAllAirlines().Count, Airlines.GetAllAirlines().Sum(a => a.Fleet.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Sum(r => r.TimeTable.Entries.Count)), Airports.GetAllAirports().Count, sw.ElapsedMilliseconds);
                 sw.Stop();
             }
             else
@@ -79,56 +77,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 var airlines = new List<Airline>(Airlines.GetAllAirlines());
 
-                int airlineCounter = 0;
+                //int airlineCounter = 0;
                 Parallel.ForEach(airlines, airline =>
                 {
-                    if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
-                    {
-                        if (!airline.IsHuman)
-                            AIHelpers.UpdateCPUAirline(airline);
 
+                   //Load stall bug is located here, possible due to AIHelpers.UpdateCPUAirline() removing the whole if solves it.
+                    if (!airline.IsHuman) { 
+                        AIHelpers.UpdateCPUAirline(airline);
                     }
-
-                    int airlineCount = airline.Fleet.Count;
 
                     Parallel.ForEach(airline.Fleet, airliner =>
                         {
                             UpdateAirliner(airliner);
                         });
 
-                    /*
-                    for (int i = 0; i < airlineCount; i++)
-                        UpdateAirliner(airline.Fleet[i]);
-                    */
-                    airlineCounter++;
                 });
-                /*
-                int airlineCounter = 0;
-                foreach (Airline airline in airlines)
-                {
-
-
-                    if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
-                    {
-                        if (!airline.IsHuman)
-                            AIHelpers.UpdateCPUAirline(airline);
-
-                    }
-
-                    int airlineCount = airline.Fleet.Count;
-
-                    for (int i = 0; i < airlineCount; i++)
-                        UpdateAirliner(airline.Fleet[i]);
-
-                    airlineCounter++;
-                }
-                */
             }
-            //GC.Collect();
-            //GC.WaitForPendingFinalizers();
-            //GC.Collect();
-
+            
         }
+
         //calibrates the time if needed
         private static void CalibrateTime()
         {
@@ -138,6 +105,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (Settings.GetInstance().MinutesPerTurn == 30 && GameObject.GetInstance().GameTime.Minute == 15)
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(15);
         }
+
         //do the daily update
         private static void DoDailyUpdate()
         {
