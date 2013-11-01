@@ -160,7 +160,8 @@ namespace TheAirline.Model.GeneralModel
         //gets the distance in kilometers between two coordinates
         public static double GetDistance(Coordinates coordinates1, Coordinates coordinates2)
         {
-           
+            //left for readability
+           /* 
             long circumference = 40074;
 
             double lat1 = coordinates1.Latitude.toDecimal();
@@ -170,18 +171,14 @@ namespace TheAirline.Model.GeneralModel
 
             double distLat = Math.Abs(lat1 - lat2);
             double distLon = Math.Abs(lon1 - lon2);
-            double polar1 = 90 - lat1;
-            double polar2 = 90 - lat2;
 
-            double b = DegreeToRadian(polar1);
-            double c = DegreeToRadian(polar2);
-            double A = DegreeToRadian(distLon);
+            double b = DegreeToRadian(90 - coordinates1.Latitude.toDecimal());
+            double c = DegreeToRadian(90 - coordinates2.Latitude.toDecimal());
+            double A = DegreeToRadian(coordinates1.Latitude.toDecimal());
+            */
 
-            double dist = (Math.Cos(b) * Math.Cos(c)) + (Math.Sin(b) * Math.Sin(c) * Math.Cos(A));
-            dist = RadianToDegree(Math.Acos(dist));
-
-
-            return circumference * dist / 360;
+            //
+            return 111.317 * RadianToDegree(Math.Acos((Math.Cos(DegreeToRadian(90 - coordinates1.Latitude.toDecimal())) * Math.Cos(DegreeToRadian(90 - coordinates2.Latitude.toDecimal()))) + (Math.Sin(DegreeToRadian(90 - coordinates1.Latitude.toDecimal())) * Math.Sin(DegreeToRadian(90 - coordinates2.Latitude.toDecimal())) * Math.Cos(DegreeToRadian(coordinates1.Latitude.toDecimal())))));
         }
         //returns the coordinates for a route in a distance of a specific lenghth
         public static Coordinates GetRoutePoint(Coordinates c1, Coordinates c2, double distance)
