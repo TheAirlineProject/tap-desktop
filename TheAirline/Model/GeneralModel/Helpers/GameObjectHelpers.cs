@@ -149,29 +149,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             List<Airport> openedAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
             List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
 
-            foreach (Airport airport in openedAirports)
-            {
-                if (closedAirports.Find(a => a.Profile.Town == airport.Profile.Town) != null)
-                    AirportHelpers.ReallocateAirport(closedAirports.Find(a => a.Profile.Town == airport.Profile.Town), airport);
-                else
-                    PassengerHelpers.CreateDestinationPassengers(airport);
-
-                foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
-                    PassengerHelpers.CreateDestinationPassengers(dAirport, airport);
-
-                int count = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().MainAirline) > 0).Count;
-
-                if (count == 1)
-                {
-                    Airport allocateFromAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
-                }
-                else
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
-
-
-
-            }
             //checks for airports which are closing down
             foreach (Airport airport in closedAirports)
             {
@@ -672,6 +649,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the monthly update
         private static void DoMonthlyUpdate()
         {
+            //checks for new airports which are opening
+            List<Airport> openedAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+            List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
+
+
+            foreach (Airport airport in openedAirports)
+            {
+                if (closedAirports.Find(a => a.Profile.Town == airport.Profile.Town) != null)
+                    AirportHelpers.ReallocateAirport(closedAirports.Find(a => a.Profile.Town == airport.Profile.Town), airport);
+                else
+                    PassengerHelpers.CreateDestinationPassengers(airport);
+
+                foreach (Airport dAirport in Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 25))
+                    PassengerHelpers.CreateDestinationPassengers(dAirport, airport);
+
+                int count = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().MainAirline) > 0).Count;
+
+                if (count == 1)
+                {
+                    Airport allocateFromAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
+                }
+                else
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+
+
+
+            }
+
             int retirementAge = Pilot.RetirementAge;
 
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
