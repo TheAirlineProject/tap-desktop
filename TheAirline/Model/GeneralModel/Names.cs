@@ -48,11 +48,14 @@ namespace TheAirline.Model.GeneralModel
                 var line = reader.ReadLine();
                 var values = line.Split(',');
 
-                if (values[0].Trim().Length > 1)
-                    this.FirstNames.Add(values[0]);
+                if (values.Length > 1)
+                {
+                    if (values[0].Replace('\'',' ').Trim().Length > 1)
+                        this.FirstNames.Add(values[0]);
 
-                if (values[1].Trim().Length > 1)
-                    this.LastNames.Add(values[1]);
+                    if (values[1].Replace('\'',' ').Trim().Length > 1)
+                        this.LastNames.Add(values[1]);
+                }
             }
         }
     }

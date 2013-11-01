@@ -56,7 +56,8 @@ namespace TheAirline.Model.PilotModel
         //adds a pilot to the list
         public static void AddPilot(Pilot pilot)
         {
-            pilots.Add(pilot);
+            if (pilot != null)
+                pilots.Add(pilot);
         }
         //clears the list of pilots
         public static void Clear()
@@ -71,6 +72,7 @@ namespace TheAirline.Model.PilotModel
         //returns all unassigned pilots
         public static List<Pilot> GetUnassignedPilots()
         {
+    
             return pilots.FindAll(p => p.Airline == null);
         }
         public static List<Pilot> GetUnassignedPilots(Predicate<Pilot> match)

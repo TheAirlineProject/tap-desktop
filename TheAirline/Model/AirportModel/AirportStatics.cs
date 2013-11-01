@@ -40,6 +40,7 @@ namespace TheAirline.Model.AirportModel
         //adds a distance to the airport
         public void addDistance(Airport airport, double distance)
         {
+           
             lock (this.AirportDistances)
             {
                 if (!this.AirportDistances.ContainsKey(airport))

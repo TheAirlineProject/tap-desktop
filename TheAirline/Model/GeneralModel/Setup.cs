@@ -1854,8 +1854,8 @@ namespace TheAirline.Model.GeneralModel
             List<Country> countries = new List<Country>();
 
             foreach (string sCountry in sCountries.Split(';'))
-                 countries.Add(Countries.GetCountry(sCountry));
-
+                countries.Add(Countries.GetCountry(sCountry));
+          
             //Country country = Countries.GetCountry(profileElement.Attributes["country"].Value);
             string ceo = profileElement.Attributes["CEO"].Value;
             Airline.AirlineMentality mentality = (Airline.AirlineMentality)Enum.Parse(typeof(Airline.AirlineMentality), profileElement.Attributes["mentality"].Value);
@@ -2258,7 +2258,12 @@ namespace TheAirline.Model.GeneralModel
                     airports = Airports.GetAirports(airline.Profile.Country.Region).FindAll(a => a.Terminals.getFreeGates() > 1);
 
                 Dictionary<Airport, int> list = new Dictionary<Airport, int>();
-                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * AirportHelpers.GetAirportsNearAirport(a, 1000).Count));
+                airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * (AirportHelpers.GetAirportsNearAirport(a, 1000).Count)+1));
+
+                if (list.Sum(a=>a.Value)==0)
+                {
+                    string s;
+                }
 
                 return AIHelpers.GetRandomItem(list);
             }

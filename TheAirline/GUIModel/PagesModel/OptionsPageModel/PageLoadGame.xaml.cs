@@ -74,7 +74,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             }
 
-           GameObjectWorker.GetInstance().start();
+            GameObjectWorker.GetInstance().pause();
         }
     }
 }

@@ -221,7 +221,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                 {
-                    ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type).FarePrice;
+                    if (airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type) != null)
+                        ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type).FarePrice;
                 }
 
                 FeeType employeeDiscountType = FeeTypes.GetType("Employee Discount");
