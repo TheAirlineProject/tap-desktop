@@ -718,7 +718,8 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
         }
-    public static void CreateDestinationCargo(Airport airport, Airport dAirport)
+
+        public static void CreateDestinationCargo(Airport airport, Airport dAirport)
         {
             //origin airport out
             double originMassPerDay = GetAirportCargoMass(airport) / 2;
@@ -744,491 +745,713 @@ namespace TheAirline.Model.GeneralModel
             if (volume >= 1)
                 airport.addDestinationCargoRate(new DestinationDemand(dAirport.Profile.IATACode, (ushort)volume));
         }
+
         //creates the airport destinations cargo between two destinations in cu m.
-    public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
-    {
-        Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
-
-        double estimatedPassengerLevel = 0;
-        Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
-        Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region && !isSameCountry;
-
-        String dAirportSize = dAirport.Profile.Size.ToString();
-        String airportSize = airport.Profile.Size.ToString();
-        double dist = MathHelpers.GetDistance(dAirport, airport);
-        int largest = (int)Airports.LargestAirports;
-        int vlarge = (int)Airports.VeryLargeAirports;
-        int large = (int)Airports.LargestAirports;
-        int med = (int)Airports.MediumAirports;
-        int small = (int)Airports.SmallAirports;
-        int vsmall = (int)Airports.VerySmallAirports;
-        int smallest = (int)Airports.SmallestAirports;
-
-        double paxLargest = MathHelpers.GetRandomDoubleNumber(0.9, 1.11) * (airport.Profile.Pax * 0.21 / largest) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-        double paxVeryLarge = MathHelpers.GetRandomDoubleNumber(0.9, 1.12) * (airport.Profile.Pax * 0.24 / vlarge) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-        double paxLarge = MathHelpers.GetRandomDoubleNumber(0.9, 1.14) * (airport.Profile.Pax * 0.24 / large) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-        double paxMedium = MathHelpers.GetRandomDoubleNumber(0.9, 1.16) * (airport.Profile.Pax * 0.15 / med) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-        double paxSmall = MathHelpers.GetRandomDoubleNumber(0.9, 1.10) * (airport.Profile.Pax * 0.10 / small) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-        double paxVerySmall = MathHelpers.GetRandomDoubleNumber(0.9, 1.06) * (airport.Profile.Pax * 0.04 / vsmall) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-        double paxSmallest = MathHelpers.GetRandomDoubleNumber(0.9, 1.04) * (airport.Profile.Pax * 0.02 / smallest) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
-
-        if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IATACode))
+        public static void CreateDestinationPassengers(Airport airport, Airport dAirport)
         {
-            estimatedPassengerLevel = (Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IATACode]) * 1000) / 365;
-            estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-        }
-        else
-        {
-            /* switch (airportSize)
-             {
-                 #region Origin"Largest" switches
+            Array values = Enum.GetValues(typeof(GeneralHelpers.Size));
 
-                 case "Largest":*/
+            double estimatedPassengerLevel = 0;
+            //Boolean isSameCountry = airport.Profile.Country == dAirport.Profile.Country;
+            //Boolean isSameContinent = airport.Profile.Country.Region == dAirport.Profile.Country.Region && !isSameCountry;
 
-            switch (dAirportSize)
+            String dAirportSize = dAirport.Profile.Size.ToString();
+            String airportSize = airport.Profile.Size.ToString();
+            double dist = MathHelpers.GetDistance(dAirport, airport);
+            int largest = (int)Airports.LargestAirports;
+            int vlarge = (int)Airports.VeryLargeAirports;
+            int large = (int)Airports.LargestAirports;
+            int med = (int)Airports.MediumAirports;
+            int small = (int)Airports.SmallAirports;
+            int vsmall = (int)Airports.VerySmallAirports;
+            int smallest = (int)Airports.SmallestAirports;
+
+            double paxLargest = MathHelpers.GetRandomDoubleNumber(0.9, 1.11) * (airport.Profile.Pax * 0.21 / largest) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+            double paxVeryLarge = MathHelpers.GetRandomDoubleNumber(0.9, 1.12) * (airport.Profile.Pax * 0.24 / vlarge) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+            double paxLarge = MathHelpers.GetRandomDoubleNumber(0.9, 1.14) * (airport.Profile.Pax * 0.24 / large) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+            double paxMedium = MathHelpers.GetRandomDoubleNumber(0.9, 1.16) * (airport.Profile.Pax * 0.15 / med) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+            double paxSmall = MathHelpers.GetRandomDoubleNumber(0.9, 1.10) * (airport.Profile.Pax * 0.10 / small) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+            double paxVerySmall = MathHelpers.GetRandomDoubleNumber(0.9, 1.06) * (airport.Profile.Pax * 0.04 / vsmall) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+            double paxSmallest = MathHelpers.GetRandomDoubleNumber(0.9, 1.04) * (airport.Profile.Pax * 0.02 / smallest) * 1000 / 365 * GameObject.GetInstance().Difficulty.PassengersLevel;
+
+           /* if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IATACode))
             {
-                case "Largest":
-                    estimatedPassengerLevel = paxLargest;
-                    break;
-
-                case "Very_large":
-                    estimatedPassengerLevel = paxVeryLarge;
-                    break;
-
-                case "Large":
-                    estimatedPassengerLevel = paxLarge;
-                    break;
-
-                case "Medium":
-                    estimatedPassengerLevel = paxMedium;
-                    break;
-
-                case "Small":
-                    estimatedPassengerLevel = paxSmall;
-                    break;
-
-                case "Very_small":
-                    estimatedPassengerLevel = paxVerySmall;
-                    break;
-
-                case "Smallest":
-                    estimatedPassengerLevel = paxSmallest;
-                    break;
+                estimatedPassengerLevel = (Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IATACode]) * 1000) / 365;
+                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
             }
-            /*  break;
-
-          #endregion Origin"Largest" switches
-
-          #region Origin "Very_large" switches
-
-          case "Very_large":
-              switch (dAirportSize)
-              {
-                  case "Largest":
-                      double paxLargest = airport.Profile.Pax * 0.21 / largest;
-                      paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-                      estimatedPassengerLevel = paxLargest * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Very_large":
-                      double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
-                      paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-                      estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Large":
-                      double paxLarge = airport.Profile.Pax * 0.24 / large;
-                      paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-                      estimatedPassengerLevel = (paxLarge * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Medium":
-                      double paxMedium = airport.Profile.Pax * 0.15 / med;
-                      paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-                      estimatedPassengerLevel = (paxMedium * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Small":
-                      double paxSmall = airport.Profile.Pax * 0.10 / small;
-                      paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-                      estimatedPassengerLevel = (paxSmall * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Very_small":
-                      double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
-                      paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                      estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Smallest":
-                      double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
-                      paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-                      estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-              }
-              break;
-
-          #endregion Origin "Very_large" switches
-
-          #region Origin "Large" switches
-
-          case "Large":
-              switch (dAirportSize)
-              {
-                  case "Largest":
-                      double paxLargest = airport.Profile.Pax * 0.21 / largest;
-                      paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-                      estimatedPassengerLevel = paxLargest * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Very_large":
-                      double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
-                      paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-                      estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Large":
-                      double paxLarge = airport.Profile.Pax * 0.24 / large;
-                      paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-                      estimatedPassengerLevel = (paxLarge * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-
-                  case "Medium":
-
-                      double paxMedium = airport.Profile.Pax * 0.15 / med;
-                      paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-                      estimatedPassengerLevel = (paxMedium * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-
-                      break;
-
-                  case "Small":
-
-                      double paxSmall = airport.Profile.Pax * 0.10 / small;
-                      paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-                      estimatedPassengerLevel = (paxSmall * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+            else
+            {*/
+                /* switch (airportSize)
+                 {
+                     #region Origin"Largest" switches
+
+                     case "Largest":*/
+
+                switch (dAirportSize)
+                {
+                    case "Largest":
+                        estimatedPassengerLevel = paxLargest;
+                        break;
+
+                    case "Very_large":
+                        estimatedPassengerLevel = paxVeryLarge;
+                        break;
+
+                    case "Large":
+                        estimatedPassengerLevel = paxLarge;
+                        break;
+
+                    case "Medium":
+                        estimatedPassengerLevel = paxMedium;
+                        break;
+
+                    case "Small":
+                        estimatedPassengerLevel = paxSmall;
+                        break;
+
+                    case "Very_small":
+                        estimatedPassengerLevel = paxVerySmall;
+                        break;
+
+                    case "Smallest":
+                        estimatedPassengerLevel = paxSmallest;
+                        break;
+                }
+
+                #region commented switches
+              
+                /*  break;
+    
+              #endregion Origin"Largest" switches
+
+              #region Origin "Very_large" switches
+
+              case "Very_large":
+                  switch (dAirportSize)
+                  {
+                      case "Largest":
+                          double paxLargest = airport.Profile.Pax * 0.21 / largest;
+                          paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                          estimatedPassengerLevel = paxLargest * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+
+                      case "Very_large":
+                          double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
+                          paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                          estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+
+                      case "Large":
+                          double paxLarge = airport.Profile.Pax * 0.24 / large;
+                          paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                          estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+
+                      case "Medium":
+                          double paxMedium = airport.Profile.Pax * 0.15 / med;
+                          paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                          estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+
+                      case "Small":
+                          double paxSmall = airport.Profile.Pax * 0.10 / small;
+                          paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                          estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+
+                      case "Very_small":
+                          double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
+                          paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                          estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+
+                      case "Smallest":
+                          double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
+                          paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                          estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+                  }
+                  break;
+
+              #endregion Origin "Very_large" switches
 
-                      break;
+              #region Origin "Large" switches
 
-                  case "Very_small":
+              case "Large":
+                  switch (dAirportSize)
+                  {
+                      case "Largest":
+                          double paxLargest = airport.Profile.Pax * 0.21 / largest;
+                          paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                          estimatedPassengerLevel = paxLargest * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
-                      paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                      estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Very_large":
+                          double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
+                          paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                          estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
+                      case "Large":
+                          double paxLarge = airport.Profile.Pax * 0.24 / large;
+                          paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                          estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                  case "Smallest":
+                      case "Medium":
 
-                      double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
-                      paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-                      estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxMedium = airport.Profile.Pax * 0.15 / med;
+                          paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                          estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
-              }
-              break;
+                          break;
 
-          #endregion Origin "Large" switches
+                      case "Small":
 
-          #region Origin "Medium" switches
+                          double paxSmall = airport.Profile.Pax * 0.10 / small;
+                          paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                          estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-          case "Medium":
-              switch (dAirportSize)
-              {
-                  case "Largest":
+                          break;
 
-                      double paxLargest = airport.Profile.Pax * 0.21 / largest;
-                      paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-                      estimatedPassengerLevel = paxLargest * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Very_small":
 
-                      break;
+                          double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
+                          paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                          estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Very_large":
+                          break;
 
-                      double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
-                      paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-                      estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Smallest":
 
-                      break;
+                          double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
+                          paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                          estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Large":
+                          break;
+                  }
+                  break;
 
-                      double paxLarge = airport.Profile.Pax * 0.24 / large;
-                      paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-                      estimatedPassengerLevel = (paxLarge * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+              #endregion Origin "Large" switches
 
-                      break;
+              #region Origin "Medium" switches
 
-                  case "Medium":
-                      double paxMedium = airport.Profile.Pax * 0.15 / med;
-                      paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-                      estimatedPassengerLevel = (paxMedium * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+              case "Medium":
+                  switch (dAirportSize)
+                  {
+                      case "Largest":
 
-                      break;
+                          double paxLargest = airport.Profile.Pax * 0.21 / largest;
+                          paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                          estimatedPassengerLevel = paxLargest * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Small":
-                      double paxSmall = airport.Profile.Pax * 0.10 / small;
-                      paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-                      estimatedPassengerLevel = (paxSmall * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
+                      case "Very_large":
 
-                  case "Very_small":
-                      double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
-                      paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                      estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
+                          paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                          estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Smallest":
-                      double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
-                      paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-                      estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
-              }
-              break;
+                      case "Large":
 
-          #endregion Origin "Medium" switches
+                          double paxLarge = airport.Profile.Pax * 0.24 / large;
+                          paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                          estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-          #region Origin "Small" switches
+                          break;
 
-          case "Small":
-              switch (dAirportSize)
-              {
-                  case "Largest":
+                      case "Medium":
+                          double paxMedium = airport.Profile.Pax * 0.15 / med;
+                          paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                          estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      double paxLargest = airport.Profile.Pax * 0.21 / largest;
-                      paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-                      estimatedPassengerLevel = paxLargest * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
+                      case "Small":
+                          double paxSmall = airport.Profile.Pax * 0.10 / small;
+                          paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                          estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Very_large":
+                          break;
 
-                      double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
-                      paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-                      estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Very_small":
+                          double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
+                          paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                          estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Large":
+                      case "Smallest":
+                          double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
+                          paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                          estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
+                  }
+                  break;
 
-                      double paxLarge = airport.Profile.Pax * 0.24 / large;
-                      paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-                      estimatedPassengerLevel = (paxLarge * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+              #endregion Origin "Medium" switches
 
-                      break;
+              #region Origin "Small" switches
 
-                  case "Medium":
+              case "Small":
+                  switch (dAirportSize)
+                  {
+                      case "Largest":
 
-                      double paxMedium = airport.Profile.Pax * 0.15 / med;
-                      paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-                      estimatedPassengerLevel = (paxMedium * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxLargest = airport.Profile.Pax * 0.21 / largest;
+                          paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                          estimatedPassengerLevel = paxLargest * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Small":
+                      case "Very_large":
 
-                      double paxSmall = airport.Profile.Pax * 0.10 / small;
-                      paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-                      estimatedPassengerLevel = (paxSmall * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
+                          paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                          estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Very_small":
+                      case "Large":
 
-                      double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
-                      paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                      estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxLarge = airport.Profile.Pax * 0.24 / large;
+                          paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                          estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Smallest":
+                      case "Medium":
 
-                      double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
-                      paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-                      estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxMedium = airport.Profile.Pax * 0.15 / med;
+                          paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                          estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
-              }
-              break;
+                          break;
 
-          #endregion Origin "Small" switches
+                      case "Small":
 
-          #region Origin "Very_small" switches
+                          double paxSmall = airport.Profile.Pax * 0.10 / small;
+                          paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                          estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-          case "Very_small":
-              switch (dAirportSize)
-              {
-                  case "Largest":
+                          break;
 
-                      double paxLargest = airport.Profile.Pax * 0.21 / largest;
-                      paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-                      estimatedPassengerLevel = paxLargest * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Very_small":
 
-                      break;
+                          double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
+                          paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                          estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Very_large":
-                      double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
-                      paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-                      estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
+                      case "Smallest":
 
-                  case "Large":
-                      double paxLarge = airport.Profile.Pax * 0.24 / large;
-                      paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-                      estimatedPassengerLevel = (paxLarge * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
+                          paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                          estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
+                  }
+                  break;
 
-                  case "Medium":
-                      double paxMedium = airport.Profile.Pax * 0.15 / med;
-                      paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-                      estimatedPassengerLevel = (paxMedium * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      break;
+              #endregion Origin "Small" switches
 
-                  case "Small":
+              #region Origin "Very_small" switches
 
-                      double paxSmall = airport.Profile.Pax * 0.10 / small;
-                      paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-                      estimatedPassengerLevel = (paxSmall * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+              case "Very_small":
+                  switch (dAirportSize)
+                  {
+                      case "Largest":
 
-                      break;
+                          double paxLargest = airport.Profile.Pax * 0.21 / largest;
+                          paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                          estimatedPassengerLevel = paxLargest * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Very_small":
-                      double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
-                      paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                      estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
+                      case "Very_large":
+                          double paxVeryLarge = airport.Profile.Pax * 0.24 / vlarge;
+                          paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                          estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Smallest":
-                      double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
-                      paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-                      estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
-              }
-              break;
+                      case "Large":
+                          double paxLarge = airport.Profile.Pax * 0.24 / large;
+                          paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                          estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-          #endregion Origin "Very_small" switches
+                          break;
 
-          #region Origin "Smallest" switches
+                      case "Medium":
+                          double paxMedium = airport.Profile.Pax * 0.15 / med;
+                          paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                          estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-          case "Smallest":
-              switch (dAirportSize)
-              {
-                  case "Largest":
+                      case "Small":
 
-                      double paxLargest = airport.Profile.Pax * 0.25 / largest;
-                      paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-                      estimatedPassengerLevel = paxLargest * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          double paxSmall = airport.Profile.Pax * 0.10 / small;
+                          paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                          estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Very_large":
-                      double paxVeryLarge = airport.Profile.Pax * 0.32 / vlarge;
-                      paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-                      estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Very_small":
+                          double paxVery_small = airport.Profile.Pax * 0.04 / vsmall;
+                          paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                          estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
 
-                  case "Large":
-                      double paxLarge = airport.Profile.Pax * 0.32 / large;
-                      paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-                      estimatedPassengerLevel = (paxLarge * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                      case "Smallest":
+                          double paxSmallest = airport.Profile.Pax * 0.02 / smallest;
+                          paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                          estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                      break;
+                          break;
+                  }
+                  break;
 
-                  case "Medium":
-                      double paxMedium = airport.Profile.Pax * 0.09 / med;
-                      paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-                      estimatedPassengerLevel = (paxMedium * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      estimatedPassengerLevel *= 2;
+              #endregion Origin "Very_small" switches
 
-                      break;
+              #region Origin "Smallest" switches
 
-                  case "Small":
-                      double paxSmall = airport.Profile.Pax * 0.02 / small;
-                      paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-                      estimatedPassengerLevel = (paxSmall * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-                      estimatedPassengerLevel *= 1.2;
+              case "Smallest":
+                  switch (dAirportSize)
+                  {
+                      case "Largest":
 
-                      break;
+                          double paxLargest = airport.Profile.Pax * 0.25 / largest;
+                          paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                          estimatedPassengerLevel = paxLargest * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Very_small":
-                      double paxVery_small = airport.Profile.Pax * 0 / vsmall;
-                      paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-                      estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
+                      case "Very_large":
+                          double paxVeryLarge = airport.Profile.Pax * 0.32 / vlarge;
+                          paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                          estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-                  case "Smallest":
-                      double paxSmallest = airport.Profile.Pax * 0 / smallest;
-                      paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-                      estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-                      estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          break;
 
-                      break;
-              } break;
+                      case "Large":
+                          double paxLarge = airport.Profile.Pax * 0.32 / large;
+                          paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                          estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
 
-          #endregion Origin "Smallest" switches
+                          break;
+
+                      case "Medium":
+                          double paxMedium = airport.Profile.Pax * 0.09 / med;
+                          paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                          estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          estimatedPassengerLevel *= 2;
+
+                          break;
+
+                      case "Small":
+                          double paxSmall = airport.Profile.Pax * 0.02 / small;
+                          paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                          estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                          estimatedPassengerLevel *= 1.2;
+
+                          break;
+
+                      case "Very_small":
+                          double paxVery_small = airport.Profile.Pax * 0 / vsmall;
+                          paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                          estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+
+                          break;
+
+                      case "Smallest":
+                          double paxSmallest = airport.Profile.Pax * 0 / smallest;
+                          paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                          estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                          estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+
+                          break;
+                  } break;
+
+              #endregion Origin "Smallest" switches
+          }
       }
-  }
 
-  #region Demand with "if" statements
+      #region Demand with "if" statements
 
-  //PLEASE don't change the same country/continent/international values. Most of these were specifically calculated and are not yet calculated
-  //by the program itself! Based largely on US airport system values.
-  /*     #region largest airports
-       if (dAirportSize.Equals("Largest") && airportSize.Equals("Largest"))
-       {
-           if (airport.Profile.Pax > 0)
+      //PLEASE don't change the same country/continent/international values. Most of these were specifically calculated and are not yet calculated
+      //by the program itself! Based largely on US airport system values.
+      /*     #region largest airports
+           if (dAirportSize.Equals("Largest") && airportSize.Equals("Largest"))
            {
-               double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
+               if (airport.Profile.Pax > 0)
+               {
+                   double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
+                   paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                   estimatedPassengerLevel = (paxLargest * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+               else
+               {
+                   double paxLargest = 40000 * 0.21 / Airports.LargestAirports;
+                   paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+                   estimatedPassengerLevel = (paxLargest * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+           }
+
+           if (dAirportSize.Equals("Very_large") && airportSize.Equals("Largest"))
+           {
+               if (airport.Profile.Pax == 0)
+               {
+                   double paxVeryLarge = 40000 * 0.24 / Airports.VeryLargeAirports;
+                   paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                   estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+               else
+               {
+                   double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
+                   paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+                   estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+           }
+
+           if (dAirportSize.Equals("Large") && airportSize.Equals("Largest"))
+           {
+               if (airport.Profile.Pax == 0)
+               {
+                   double paxLarge = 40000 * 0.24 / Airports.LargeAirports;
+                   paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                   estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+               else
+               {
+                   double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
+                   paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+                   estimatedPassengerLevel = (paxLarge * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+           }
+
+           if (dAirportSize.Equals("Medium") && airportSize.Equals("Largest"))
+           {
+               if (airport.Profile.Pax == 0)
+               {
+                   double paxMedium = 40000 * 0.15 / Airports.MediumAirports;
+                   paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                   estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+               else
+               {
+                   double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
+                   paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+                   estimatedPassengerLevel = (paxMedium * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.55;
+               }
+           }
+
+           if (dAirportSize.Equals("Small") && airportSize.Equals("Largest"))
+           {
+               if (airport.Profile.Pax == 0)
+               {
+                   double paxSmall = 40000 * 0.10 / Airports.SmallAirports;
+                   paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                   estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.2;
+               }
+               else
+               {
+                   double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
+                   paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+                   estimatedPassengerLevel = (paxSmall * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.2;
+               }
+           }
+
+           if (dAirportSize.Equals("Very_small") && airportSize.Equals("Largest"))
+           {
+               if (airport.Profile.Pax == 0)
+               {
+                   double paxVery_small = 40000 * 0.04 / Airports.VerySmallAirports;
+                   paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                   estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.1;
+               }
+               else
+               {
+                   double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
+                   paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+                   estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.67;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 1.39;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0.1;
+               }
+           }
+
+           if (dAirportSize.Equals("Smallest") && airportSize.Equals("Largest"))
+           {
+               if (dist > 1600)
+               { estimatedPassengerLevel = 0; }
+
+               else if (airport.Profile.Pax == 0)
+               {
+                   double paxSmallest = 40000 * 0.02 / Airports.SmallestAirports;
+                   paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                   estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.8;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 0.8;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0;
+               }
+               else
+               {
+                   double paxSmallest = 40000 * 0.02 / Airports.SmallestAirports;
+                   paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+                   estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+                   estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+                   if (isSameCountry)
+                       estimatedPassengerLevel *= 1.8;
+                   if (isSameContinent)
+                       estimatedPassengerLevel *= 0.8;
+                   if (!isSameContinent && !isSameCountry)
+                       estimatedPassengerLevel *= 0;
+               }
+           }
+       }
+
+           #endregion Demand with "if" statements
+
+       #region very large airports
+
+       if (dAirportSize.Equals("Largest") && airportSize.Equals("Very_large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLargest = 20000 * 0.21 / Airports.LargestAirports;
                paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-               estimatedPassengerLevel = (paxLargest * 1000) / 365;
+               estimatedPassengerLevel = paxLargest * 1000 / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
                    estimatedPassengerLevel *= 1.67;
@@ -1239,11 +1462,10 @@ namespace TheAirline.Model.GeneralModel
            }
            else
            {
-               double paxLargest = 40000 * 0.21 / Airports.LargestAirports;
+               double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
                paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
                estimatedPassengerLevel = (paxLargest * 1000) / 365;
-               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-               if (isSameCountry)
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
                    estimatedPassengerLevel *= 1.67;
                if (isSameContinent)
                    estimatedPassengerLevel *= 1.39;
@@ -1252,11 +1474,11 @@ namespace TheAirline.Model.GeneralModel
            }
        }
 
-       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Largest"))
+       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Very_large"))
        {
            if (airport.Profile.Pax == 0)
            {
-               double paxVeryLarge = 40000 * 0.24 / Airports.VeryLargeAirports;
+               double paxVeryLarge = 20000 * 0.24 / Airports.VeryLargeAirports;
                paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
                estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
@@ -1282,11 +1504,11 @@ namespace TheAirline.Model.GeneralModel
            }
        }
 
-       if (dAirportSize.Equals("Large") && airportSize.Equals("Largest"))
+       if (dAirportSize.Equals("Large") && airportSize.Equals("Very_large"))
        {
            if (airport.Profile.Pax == 0)
            {
-               double paxLarge = 40000 * 0.24 / Airports.LargeAirports;
+               double paxLarge = 20000 * 0.24 / Airports.LargeAirports;
                paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
                estimatedPassengerLevel = (paxLarge * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
@@ -1312,11 +1534,11 @@ namespace TheAirline.Model.GeneralModel
            }
        }
 
-       if (dAirportSize.Equals("Medium") && airportSize.Equals("Largest"))
+       if (dAirportSize.Equals("Medium") && airportSize.Equals("Very_large"))
        {
            if (airport.Profile.Pax == 0)
            {
-               double paxMedium = 40000 * 0.15 / Airports.MediumAirports;
+               double paxMedium = 20000 * 0.15 / Airports.MediumAirports;
                paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
                estimatedPassengerLevel = (paxMedium * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
@@ -1342,20 +1564,20 @@ namespace TheAirline.Model.GeneralModel
            }
        }
 
-       if (dAirportSize.Equals("Small") && airportSize.Equals("Largest"))
+       if (dAirportSize.Equals("Small") && airportSize.Equals("Very_large"))
        {
            if (airport.Profile.Pax == 0)
            {
-               double paxSmall = 40000 * 0.10 / Airports.SmallAirports;
+               double paxSmall = 20000 * 0.10 / Airports.SmallAirports;
                paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
                estimatedPassengerLevel = (paxSmall * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
-                   estimatedPassengerLevel *= 1.67;
+                   estimatedPassengerLevel *= 1.7;
                if (isSameContinent)
-                   estimatedPassengerLevel *= 1.39;
+                   estimatedPassengerLevel *= 1.1;
                if (!isSameContinent && !isSameCountry)
-                   estimatedPassengerLevel *= 0.2;
+                   estimatedPassengerLevel *= 0.35;
            }
            else
            {
@@ -1364,26 +1586,461 @@ namespace TheAirline.Model.GeneralModel
                estimatedPassengerLevel = (paxSmall * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
-                   estimatedPassengerLevel *= 1.67;
+                   estimatedPassengerLevel *= 1.7;
                if (isSameContinent)
                    estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.35;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Very_large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxVery_small = 20000 * 0.04 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.75;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.2;
+           }
+           else
+           {
+               double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.75;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1;
                if (!isSameContinent && !isSameCountry)
                    estimatedPassengerLevel *= 0.2;
            }
        }
 
-       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Largest"))
+       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Very_large"))
+       {
+           if (dist > 800)
+           { estimatedPassengerLevel = 0; }
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmallest = 20000 * 0.02 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.8;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.8;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.1;
+           }
+           else
+           {
+               double paxSmallest = 20000 * 0.02 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.8;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.8;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.1;
+           }
+       }
+
+       #endregion very large airports
+
+       #region large airports
+
+       if (dAirportSize.Equals("Largest") && airportSize.Equals("Large"))
        {
            if (airport.Profile.Pax == 0)
            {
-               double paxVery_small = 40000 * 0.04 / Airports.VerySmallAirports;
-               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               double paxLargest = 10000 * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = paxLargest * 1000 / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
                    estimatedPassengerLevel *= 1.67;
                if (isSameContinent)
                    estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = (paxLargest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxVeryLarge = 10000 * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Large") && airportSize.Equals("Large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLarge = 10000 * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Medium") && airportSize.Equals("Large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxMedium = 10000 * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Small") && airportSize.Equals("Large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxSmall = 10000 * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.75;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.15;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.3;
+           }
+           else
+           {
+               double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.75;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.15;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.3;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Large"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxVery_small = 10000 * 0.04 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.8;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.9;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.13;
+           }
+           else
+           {
+               double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.8;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.9;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.13;
+           }
+       }
+
+       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Large"))
+       {
+           if (dist > 800)
+           { estimatedPassengerLevel = 0; }
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmallest = 10000 * 0.02 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.9;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.7;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.05;
+           }
+           else
+           {
+               double paxSmallest = 10000 * 0.02 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.9;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.7;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.05;
+           }
+       }
+
+       #endregion large airports
+
+       #region medium airports
+
+       if (dAirportSize.Equals("Largest") && airportSize.Equals("Medium"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLargest = 6000 * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = paxLargest * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = (paxLargest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Medium"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxVeryLarge = 6000 * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Large") && airportSize.Equals("Medium"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLarge = 6000 * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Medium") && airportSize.Equals("Medium"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxMedium = 6000 * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Small") && airportSize.Equals("Medium"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxSmall = 6000 * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.8;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.25;
+           }
+           else
+           {
+               double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.8;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.25;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Medium"))
+       {
+           if (dist > 800)
+           { estimatedPassengerLevel = 0; }
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxVery_small = 6000 * 0.04 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.95;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.75;
                if (!isSameContinent && !isSameCountry)
                    estimatedPassengerLevel *= 0.1;
            }
@@ -1394,1486 +2051,831 @@ namespace TheAirline.Model.GeneralModel
                estimatedPassengerLevel = (paxVery_small * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
-                   estimatedPassengerLevel *= 1.67;
+                   estimatedPassengerLevel *= 1.95;
                if (isSameContinent)
-                   estimatedPassengerLevel *= 1.39;
+                   estimatedPassengerLevel *= 0.75;
                if (!isSameContinent && !isSameCountry)
                    estimatedPassengerLevel *= 0.1;
            }
        }
 
-       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Largest"))
+       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Medium"))
        {
-           if (dist > 1600)
+           if (dist > 1200 )
            { estimatedPassengerLevel = 0; }
 
            else if (airport.Profile.Pax == 0)
            {
-               double paxSmallest = 40000 * 0.02 / Airports.SmallestAirports;
+               double paxSmallest = 6000 * 0.02 / Airports.SmallestAirports;
                paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
                estimatedPassengerLevel = (paxSmallest * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
-                   estimatedPassengerLevel *= 1.8;
+                   estimatedPassengerLevel *= 2;
                if (isSameContinent)
-                   estimatedPassengerLevel *= 0.8;
+                   estimatedPassengerLevel *= 0.5;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.05;
+           }
+           else
+           {
+               double paxSmallest = 6000 * 0.02 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.5;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.05;
+           }
+       }
+
+       #endregion medium airports
+
+       #region small airports
+
+       if (dAirportSize.Equals("Largest") && airportSize.Equals("Small"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLargest = 1250 * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = paxLargest * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = (paxLargest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Small"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxVeryLarge = 1250 * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Large") && airportSize.Equals("Small"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLarge = 1250 * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Medium") && airportSize.Equals("Small"))
+       {
+           if (airport.Profile.Pax == 0)
+           {
+               double paxMedium = 1250 * 0.17 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
+
+       if (dAirportSize.Equals("Small") && airportSize.Equals("Small"))
+       {
+           if (dist > 1600)
+           { estimatedPassengerLevel = 0;}
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmall = 1250 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.9;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= .9;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.15;
+           }
+           else
+           {
+               double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.9;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= .7;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.15;
+           }
+       }
+
+       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Small"))
+       {
+           if (dist > 1200)
+           {estimatedPassengerLevel = 0;}
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxVery_small = 1250 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.1;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.4;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.05;
+           }
+           else
+           {
+               double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.1;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.4;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.05;
+           }
+       }
+
+       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Small"))
+       {
+           if (dist > 800)
+           { estimatedPassengerLevel = 0;}
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmallest = 0 * 0.02 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.25;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.25;
                if (!isSameContinent && !isSameCountry)
                    estimatedPassengerLevel *= 0;
            }
            else
            {
-               double paxSmallest = 40000 * 0.02 / Airports.SmallestAirports;
+               double paxSmallest = airport.Profile.Pax * 0 / Airports.SmallestAirports;
                paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
                estimatedPassengerLevel = (paxSmallest * 1000) / 365;
                estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                if (isSameCountry)
-                   estimatedPassengerLevel *= 1.8;
+                   estimatedPassengerLevel *= 1.67;
                if (isSameContinent)
-                   estimatedPassengerLevel *= 0.8;
+                   estimatedPassengerLevel *= 1.39;
                if (!isSameContinent && !isSameCountry)
                    estimatedPassengerLevel *= 0;
            }
        }
-   }
 
-       #endregion Demand with "if" statements
+       #endregion small airports
 
-   #region very large airports
+       #region very small airports
 
-   if (dAirportSize.Equals("Largest") && airportSize.Equals("Very_large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Largest") && airportSize.Equals("Very_small"))
        {
-           double paxLargest = 20000 * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = paxLargest * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLargest = 350 * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = paxLargest * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = (paxLargest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
        }
-       else
-       {
-           double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = (paxLargest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
 
-   if (dAirportSize.Equals("Very_large") && airportSize.Equals("Very_large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Very_small"))
        {
-           double paxVeryLarge = 20000 * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           if (airport.Profile.Pax == 0)
+           {
+               double paxVeryLarge = 350 * 0.27 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
        }
-       else
-       {
-           double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
 
-   if (dAirportSize.Equals("Large") && airportSize.Equals("Very_large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Large") && airportSize.Equals("Very_small"))
        {
-           double paxLarge = 20000 * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           if (airport.Profile.Pax == 0)
+           {
+               double paxLarge = 350 * 0.27 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 1.67;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.39;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
        }
-       else
-       {
-           double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
 
-   if (dAirportSize.Equals("Medium") && airportSize.Equals("Very_large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Medium") && airportSize.Equals("Very_small"))
        {
-           double paxMedium = 20000 * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
+           if ( dist > 1600)
+           { estimatedPassengerLevel = 0;}
 
-   if (dAirportSize.Equals("Small") && airportSize.Equals("Very_large"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxSmall = 20000 * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.7;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.1;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.35;
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxMedium = 350 * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.5;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.15;
+           }
+           else
+           {
+               double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.5;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.15;
+           }
        }
-       else
-       {
-           double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.7;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.35;
-       }
-   }
 
-   if (dAirportSize.Equals("Very_small") && airportSize.Equals("Very_large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Small") && airportSize.Equals("Very_small"))
        {
-           double paxVery_small = 20000 * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.75;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.2;
-       }
-       else
-       {
-           double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.75;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.2;
-       }
-   }
+           if (dist > 1200 )
+           { estimatedPassengerLevel = 0; }
 
-   if (dAirportSize.Equals("Smallest") && airportSize.Equals("Very_large"))
-   {
-       if (dist > 800)
-       { estimatedPassengerLevel = 0; }
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmall = 350 * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.25;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.35;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+           else
+           {
+               double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.25;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.35;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+           }
+       }
 
-       else if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Very_small"))
        {
-           double paxSmallest = 20000 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.8;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.8;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.1;
-       }
-       else
-       {
-           double paxSmallest = 20000 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.8;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.8;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.1;
-       }
-   }
+           if (dist > 800)
+           { estimatedPassengerLevel = 0;}
 
-   #endregion very large airports
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxVery_small = 350 * 0 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.35;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+           }
+           else
+           {
+               double paxVery_small = airport.Profile.Pax * 0 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.35;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+           }
+       }
 
-   #region large airports
+       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Very_small"))
+       {
+           if ( dist > 800)
+           {estimatedPassengerLevel = 0;}
 
-   if (dAirportSize.Equals("Largest") && airportSize.Equals("Large"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxLargest = 10000 * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = paxLargest * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmallest = 350 * 0 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.5;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+           }
+           else
+           {
+               double paxSmallest = 350 * 0 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.5;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+           }
        }
-       else
-       {
-           double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = (paxLargest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
 
-   if (dAirportSize.Equals("Very_large") && airportSize.Equals("Large"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxVeryLarge = 10000 * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
+       #endregion very small airports
 
-   if (dAirportSize.Equals("Large") && airportSize.Equals("Large"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxLarge = 10000 * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
+       #region smallest airports
 
-   if (dAirportSize.Equals("Medium") && airportSize.Equals("Large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Largest") && airportSize.Equals("Smallest"))
        {
-           double paxMedium = 10000 * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           if (dist > 1600)
+           { estimatedPassengerLevel = 0; }
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxLargest = 50 * 0.25 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = paxLargest * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxLargest = airport.Profile.Pax * 0.25 / Airports.LargestAirports;
+               paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
+               estimatedPassengerLevel = (paxLargest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           if (dist < 1600)
+           { estimatedPassengerLevel *= 2; }
+           else if (dist < 2400)
+           { estimatedPassengerLevel *= 0.5; }
+           else
+           { estimatedPassengerLevel = 0; }
        }
-       else
-       {
-           double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
 
-   if (dAirportSize.Equals("Small") && airportSize.Equals("Large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Very_large") && airportSize.Equals("Smallest"))
        {
-           double paxSmall = 10000 * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.75;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.15;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.3;
+           if (dist > 1600)
+           { estimatedPassengerLevel = 0; }
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxVeryLarge = 50 * 0.32 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxVeryLarge = airport.Profile.Pax * 0.32 / Airports.VeryLargeAirports;
+               paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
+               estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           if (dist < 1600)
+           { estimatedPassengerLevel *= 2; }
+           else if (dist < 2400)
+           { estimatedPassengerLevel *= 0.5; }
+           else
+           { estimatedPassengerLevel = 0; }
        }
-       else
-       {
-           double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.75;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.15;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.3;
-       }
-   }
 
-   if (dAirportSize.Equals("Very_small") && airportSize.Equals("Large"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Large") && airportSize.Equals("Smallest"))
        {
-           double paxVery_small = 10000 * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.8;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.9;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.13;
+           if (dist > 1600)
+           { estimatedPassengerLevel = 0; }
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxLarge = 50 * 0.32 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxLarge = airport.Profile.Pax * 0.32 / Airports.LargeAirports;
+               paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
+               estimatedPassengerLevel = (paxLarge * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           if (dist < 1600)
+           { estimatedPassengerLevel *= 2; }
+           else if (dist < 2400)
+           { estimatedPassengerLevel *= 0.5; }
+           else
+           { estimatedPassengerLevel = 0; }
        }
-       else
-       {
-           double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.8;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.9;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.13;
-       }
-   }
 
-   if (dAirportSize.Equals("Smallest") && airportSize.Equals("Large"))
-   {
-       if (dist > 800)
-       { estimatedPassengerLevel = 0; }
+       if (dAirportSize.Equals("Medium") && airportSize.Equals("Smallest"))
+       {
+           if (dist > 1200)
+           {estimatedPassengerLevel = 0;}
 
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmallest = 10000 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.9;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.7;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.05;
-       }
-       else
-       {
-           double paxSmallest = 10000 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.9;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.7;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.05;
-       }
-   }
-
-   #endregion large airports
-
-   #region medium airports
-
-   if (dAirportSize.Equals("Largest") && airportSize.Equals("Medium"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxLargest = 6000 * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = paxLargest * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = (paxLargest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Very_large") && airportSize.Equals("Medium"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxVeryLarge = 6000 * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Large") && airportSize.Equals("Medium"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxLarge = 6000 * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Medium") && airportSize.Equals("Medium"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxMedium = 6000 * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Small") && airportSize.Equals("Medium"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxSmall = 6000 * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.8;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.25;
-       }
-       else
-       {
-           double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.8;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.25;
-       }
-   }
-
-   if (dAirportSize.Equals("Very_small") && airportSize.Equals("Medium"))
-   {
-       if (dist > 800)
-       { estimatedPassengerLevel = 0; }
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxVery_small = 6000 * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.95;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.75;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.1;
-       }
-       else
-       {
-           double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.95;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.75;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.1;
-       }
-   }
-
-   if (dAirportSize.Equals("Smallest") && airportSize.Equals("Medium"))
-   {
-       if (dist > 1200 )
-       { estimatedPassengerLevel = 0; }
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmallest = 6000 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxMedium = 50 * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                estimatedPassengerLevel *= 2;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.5;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.05;
-       }
-       else
-       {
-           double paxSmallest = 6000 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
+               paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
+               estimatedPassengerLevel = (paxMedium * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
                estimatedPassengerLevel *= 2;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.5;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.05;
+               if (isSameCountry && dist < 500)
+                   estimatedPassengerLevel *= 5;
+               else if (isSameCountry && dist < 1000)
+                   estimatedPassengerLevel *= 3;
+               else estimatedPassengerLevel *= 1.25;
+               if (isSameContinent && dist < 2000)
+                   estimatedPassengerLevel *= 2;
+               else estimatedPassengerLevel *= 1.25;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0.55;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
        }
-   }
 
-   #endregion medium airports
-
-   #region small airports
-
-   if (dAirportSize.Equals("Largest") && airportSize.Equals("Small"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Small") && airportSize.Equals("Smallest"))
        {
-           double paxLargest = 1250 * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = paxLargest * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = (paxLargest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
+           if (dist > 800)
+           {estimatedPassengerLevel = 0;}
 
-   if (dAirportSize.Equals("Very_large") && airportSize.Equals("Small"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxVeryLarge = 1250 * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmall = 50 * 0 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               estimatedPassengerLevel *= 1.2;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.0;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxSmall = airport.Profile.Pax * 0 / Airports.SmallAirports;
+               paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
+               estimatedPassengerLevel = (paxSmall * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               estimatedPassengerLevel *= 1.2;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.0;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 1.00;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
        }
-       else
-       {
-           double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
 
-   if (dAirportSize.Equals("Large") && airportSize.Equals("Small"))
-   {
-       if (airport.Profile.Pax == 0)
+       if (dAirportSize.Equals("Very_small") && airportSize.Equals("Smallest"))
        {
-           double paxLarge = 1250 * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
+           if (dist > 500)
+           {estimatedPassengerLevel = 0;}
+
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxVery_small = 50 * 0 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.35;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.75;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxVery_small = airport.Profile.Pax * 0 / Airports.VerySmallAirports;
+               paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
+               estimatedPassengerLevel = (paxVery_small * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.35;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.75;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
        }
-       else
+
+       if (dAirportSize.Equals("Smallest") && airportSize.Equals("Smallest"))
        {
-           double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
+           if (dist > 200)
+           {estimatedPassengerLevel = 0;}
 
-   if (dAirportSize.Equals("Medium") && airportSize.Equals("Small"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxMedium = 1250 * 0.17 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
+           else if (airport.Profile.Pax == 0)
+           {
+               double paxSmallest = 50 * 0 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.5;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel *= 0;
+               if (estimatedPassengerLevel < 10)
+               { estimatedPassengerLevel *= 0; }
+               else { estimatedPassengerLevel *= 1; }
+           }
+           else
+           {
+               double paxSmallest = 50 * 0 / Airports.SmallestAirports;
+               paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
+               estimatedPassengerLevel = (paxSmallest * 1000) / 365;
+               estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
+               if (isSameCountry)
+                   estimatedPassengerLevel *= 2.5;
+               if (isSameContinent)
+                   estimatedPassengerLevel *= 0.5;
+               if (!isSameContinent && !isSameCountry)
+                   estimatedPassengerLevel = 0;
+           }
+       }*/
 
-   if (dAirportSize.Equals("Small") && airportSize.Equals("Small"))
-   {
-       if (dist > 1600)
-       { estimatedPassengerLevel = 0;}
+                #endregion
 
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmall = 1250 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.9;
-           if (isSameContinent)
-               estimatedPassengerLevel *= .9;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.15;
-       }
-       else
-       {
-           double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.9;
-           if (isSameContinent)
-               estimatedPassengerLevel *= .7;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.15;
-       }
-   }
+                double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
 
-   if (dAirportSize.Equals("Very_small") && airportSize.Equals("Small"))
-   {
-       if (dist > 1200)
-       {estimatedPassengerLevel = 0;}
+            //    double distance = MathHelpers.GetDistance(airport, dAirport);
 
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxVery_small = 1250 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.1;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.4;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.05;
-       }
-       else
-       {
-           double paxVery_small = airport.Profile.Pax * 0.04 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.1;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.4;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.05;
-       }
-   }
+                ushort rate = (ushort)value;
 
-   if (dAirportSize.Equals("Smallest") && airportSize.Equals("Small"))
-   {
-       if (dist > 800)
-       { estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmallest = 0 * 0.02 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.25;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-       }
-       else
-       {
-           double paxSmallest = airport.Profile.Pax * 0 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-       }
-   }
-
-   #endregion small airports
-
-   #region very small airports
-
-   if (dAirportSize.Equals("Largest") && airportSize.Equals("Very_small"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxLargest = 350 * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = paxLargest * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxLargest = airport.Profile.Pax * 0.21 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = (paxLargest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel; if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Very_large") && airportSize.Equals("Very_small"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxVeryLarge = 350 * 0.27 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxVeryLarge = airport.Profile.Pax * 0.24 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Large") && airportSize.Equals("Very_small"))
-   {
-       if (airport.Profile.Pax == 0)
-       {
-           double paxLarge = 350 * 0.27 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxLarge = airport.Profile.Pax * 0.24 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 1.67;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.39;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Medium") && airportSize.Equals("Very_small"))
-   {
-       if ( dist > 1600)
-       { estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxMedium = 350 * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.5;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.15;
-       }
-       else
-       {
-           double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.5;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.15;
-       }
-   }
-
-   if (dAirportSize.Equals("Small") && airportSize.Equals("Very_small"))
-   {
-       if (dist > 1200 )
-       { estimatedPassengerLevel = 0; }
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmall = 350 * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.25;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.35;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-       else
-       {
-           double paxSmall = airport.Profile.Pax * 0.10 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.25;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.35;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-       }
-   }
-
-   if (dAirportSize.Equals("Very_small") && airportSize.Equals("Very_small"))
-   {
-       if (dist > 800)
-       { estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxVery_small = 350 * 0 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.35;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-       }
-       else
-       {
-           double paxVery_small = airport.Profile.Pax * 0 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.35;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-       }
-   }
-
-   if (dAirportSize.Equals("Smallest") && airportSize.Equals("Very_small"))
-   {
-       if ( dist > 800)
-       {estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmallest = 350 * 0 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.5;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-       }
-       else
-       {
-           double paxSmallest = 350 * 0 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.5;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-       }
-   }
-
-   #endregion very small airports
-
-   #region smallest airports
-
-   if (dAirportSize.Equals("Largest") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 1600)
-       { estimatedPassengerLevel = 0; }
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxLargest = 50 * 0.25 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = paxLargest * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxLargest = airport.Profile.Pax * 0.25 / Airports.LargestAirports;
-           paxLargest *= MathHelpers.GetRandomDoubleNumber(0.9, 1.11);
-           estimatedPassengerLevel = (paxLargest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       if (dist < 1600)
-       { estimatedPassengerLevel *= 2; }
-       else if (dist < 2400)
-       { estimatedPassengerLevel *= 0.5; }
-       else
-       { estimatedPassengerLevel = 0; }
-   }
-
-   if (dAirportSize.Equals("Very_large") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 1600)
-       { estimatedPassengerLevel = 0; }
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxVeryLarge = 50 * 0.32 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = paxVeryLarge * 1000 / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxVeryLarge = airport.Profile.Pax * 0.32 / Airports.VeryLargeAirports;
-           paxVeryLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.12);
-           estimatedPassengerLevel = (paxVeryLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       if (dist < 1600)
-       { estimatedPassengerLevel *= 2; }
-       else if (dist < 2400)
-       { estimatedPassengerLevel *= 0.5; }
-       else
-       { estimatedPassengerLevel = 0; }
-   }
-
-   if (dAirportSize.Equals("Large") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 1600)
-       { estimatedPassengerLevel = 0; }
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxLarge = 50 * 0.32 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxLarge = airport.Profile.Pax * 0.32 / Airports.LargeAirports;
-           paxLarge *= MathHelpers.GetRandomDoubleNumber(0.9, 1.14);
-           estimatedPassengerLevel = (paxLarge * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       if (dist < 1600)
-       { estimatedPassengerLevel *= 2; }
-       else if (dist < 2400)
-       { estimatedPassengerLevel *= 0.5; }
-       else
-       { estimatedPassengerLevel = 0; }
-   }
-
-   if (dAirportSize.Equals("Medium") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 1200)
-       {estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxMedium = 50 * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           estimatedPassengerLevel *= 2;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxMedium = airport.Profile.Pax * 0.15 / Airports.MediumAirports;
-           paxMedium *= MathHelpers.GetRandomDoubleNumber(0.9, 1.16);
-           estimatedPassengerLevel = (paxMedium * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           estimatedPassengerLevel *= 2;
-           if (isSameCountry && dist < 500)
-               estimatedPassengerLevel *= 5;
-           else if (isSameCountry && dist < 1000)
-               estimatedPassengerLevel *= 3;
-           else estimatedPassengerLevel *= 1.25;
-           if (isSameContinent && dist < 2000)
-               estimatedPassengerLevel *= 2;
-           else estimatedPassengerLevel *= 1.25;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0.55;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-   }
-
-   if (dAirportSize.Equals("Small") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 800)
-       {estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmall = 50 * 0 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           estimatedPassengerLevel *= 1.2;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.0;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxSmall = airport.Profile.Pax * 0 / Airports.SmallAirports;
-           paxSmall *= MathHelpers.GetRandomDoubleNumber(0.95, 1.10);
-           estimatedPassengerLevel = (paxSmall * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           estimatedPassengerLevel *= 1.2;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.0;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 1.00;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-   }
-
-   if (dAirportSize.Equals("Very_small") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 500)
-       {estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxVery_small = 50 * 0 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.35;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.75;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxVery_small = airport.Profile.Pax * 0 / Airports.VerySmallAirports;
-           paxVery_small *= MathHelpers.GetRandomDoubleNumber(0.97, 1.06);
-           estimatedPassengerLevel = (paxVery_small * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.35;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.75;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-   }
-
-   if (dAirportSize.Equals("Smallest") && airportSize.Equals("Smallest"))
-   {
-       if (dist > 200)
-       {estimatedPassengerLevel = 0;}
-
-       else if (airport.Profile.Pax == 0)
-       {
-           double paxSmallest = 50 * 0 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.5;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel *= 0;
-           if (estimatedPassengerLevel < 10)
-           { estimatedPassengerLevel *= 0; }
-           else { estimatedPassengerLevel *= 1; }
-       }
-       else
-       {
-           double paxSmallest = 50 * 0 / Airports.SmallestAirports;
-           paxSmallest *= MathHelpers.GetRandomDoubleNumber(0.98, 1.04);
-           estimatedPassengerLevel = (paxSmallest * 1000) / 365;
-           estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
-           if (isSameCountry)
-               estimatedPassengerLevel *= 2.5;
-           if (isSameContinent)
-               estimatedPassengerLevel *= 0.5;
-           if (!isSameContinent && !isSameCountry)
-               estimatedPassengerLevel = 0;
-       }
-   }*/
-
-            //#endregion smallest airports
-
-            double value = estimatedPassengerLevel * GetDemandYearFactor(GameObject.GetInstance().GameTime.Year);
-
-            double distance = MathHelpers.GetDistance(airport, dAirport);
-
-            ushort rate = (ushort)value;
-
-            if (rate > 0)
-            {
-                airport.addDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IATACode, rate));
-                //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
-            }
+                    airport.addDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IATACode, rate));
+                    //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
+            
         }
-    }
 
         //returns the demand factor based on the year of playing
         private static double GetDemandYearFactor(int year)
