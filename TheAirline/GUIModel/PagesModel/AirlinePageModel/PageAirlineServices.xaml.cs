@@ -42,26 +42,29 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                AirlineClassMVVM rClass = new AirlineClassMVVM(type);
-
-                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                if ((int)type <= GameObject.GetInstance().GameTime.Year)
                 {
-                    if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
+                    AirlineClassMVVM rClass = new AirlineClassMVVM(type);
+
+                    foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {
-                        AirlineClassFacilityMVVM facility = new AirlineClassFacilityMVVM(facilityType);
+                        if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
+                        {
+                            AirlineClassFacilityMVVM facility = new AirlineClassFacilityMVVM(facilityType);
 
-                        facility.Facilities.Clear();
+                            facility.Facilities.Clear();
 
-                        foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
-                            facility.Facilities.Add(rFacility);
+                            foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
+                                facility.Facilities.Add(rFacility);
 
-                        facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
+                            facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);//GetFacilities(rFacility.Type).OrderBy(f => f.ServiceLevel).First();
 
 
-                        rClass.Facilities.Add(facility);
+                            rClass.Facilities.Add(facility);
+                        }
                     }
+                    this.Classes.Add(rClass);
                 }
-                this.Classes.Add(rClass);
             }
 
             this.Airline = airline;
@@ -277,9 +280,15 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                     foreach (RouteFacility facility in classConfiguration.getFacilities())
                     {
 
-                        AirlineClassMVVM aClass = this.Classes.Where(c => c.Type == classConfiguration.Type).First();
-                        aClass.Facilities.Where(f => f.Type == facility.Type).First().SelectedFacility = facility;
+                        AirlineClassMVVM aClass = this.Classes.Where(c => c.Type == classConfiguration.Type).FirstOrDefault();
 
+                        if (aClass != null)
+                        {
+                            AirlineClassFacilityMVVM aFacility = aClass.Facilities.Where(f => f.Type == facility.Type).FirstOrDefault();
+
+                            if (aFacility != null)
+                             aFacility.SelectedFacility = facility;
+                        }
                     }
                 }
 

@@ -213,12 +213,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 {
                     MVVMRouteClass rClass = this.Classes.Find(c => c.Type == classConfiguration.Type);
 
-                    foreach (RouteFacility facility in classConfiguration.getFacilities())
+                    if (rClass != null)
                     {
-                        MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
+                        foreach (RouteFacility facility in classConfiguration.getFacilities())
+                        {
+                            MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
 
-                        rFacility.SelectedFacility = facility;
+                            rFacility.SelectedFacility = facility;
 
+                        }
                     }
 
                 }

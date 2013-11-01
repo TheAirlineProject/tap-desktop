@@ -338,17 +338,7 @@ namespace TheAirline.Model.GeneralModel
         //returns a random double
         public static double GetRandomDoubleNumber(double minimum, double maximum)
         {
-            //do we need crytpo functionality? if it is to loop duplication, we simply instantiate the random outside the function - problem solved
-            /*
-            System.Security.Cryptography.RNGCryptoServiceProvider rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
-            byte[] buffer = new byte[4];
-
-            rng.GetBytes(buffer);
-            int result = BitConverter.ToInt32(buffer, 0);
-
-             return new Random(result).NextDouble() * (Math.Max(minimum,maximum) - Math.Min(maximum,minimum)) + Math.Min(maximum,minimum);
-             */
-
+           
             return rnd.NextDouble() * (maximum - minimum) + minimum;
         }
         //converts a route time table entry to datetime
