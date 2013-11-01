@@ -523,7 +523,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates a new route for an airline
         private static void CreateNewRoute(Airline airline)
         {
-        /* Need to check the bug inhere, something is stalling the game.
             Airport airport = GetRouteStartDestination(airline);
 
             if (airport != null)
@@ -704,7 +703,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
-            */
+            
         }
         //returns if a given route is a business route
         private static Boolean IsBusinessRoute(Route route, FleetAirliner airliner)
