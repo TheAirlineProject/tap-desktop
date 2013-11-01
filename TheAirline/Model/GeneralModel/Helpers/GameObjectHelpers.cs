@@ -65,6 +65,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else
             {
+
+                Stopwatch sw = new Stopwatch();
+                sw.Start();
                 GameObject.GetInstance().GameTime = GameObject.GetInstance().GameTime.AddMinutes(Settings.GetInstance().MinutesPerTurn);
 
                 CalibrateTime();
@@ -75,23 +78,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
-                var airlines = new List<Airline>(Airlines.GetAllAirlines());
-
-                //int airlineCounter = 0;
-                Parallel.ForEach(airlines, airline =>
+                int airlineCounter = 0;
+                Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
                 {
 
-                   //Load stall bug is located here, possible due to AIHelpers.UpdateCPUAirline() removing the whole if solves it.
-                    if (!airline.IsHuman) { 
-                        AIHelpers.UpdateCPUAirline(airline);
-                    }
+                   
+                   if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                   {
+                        if (!airline.IsHuman){
+                            AIHelpers.UpdateCPUAirline(airline);
+                       }
+                   }
 
                     Parallel.ForEach(airline.Fleet, airliner =>
                         {
                             UpdateAirliner(airliner);
                         });
-
+                    airlineCounter++;
                 });
+                sw.Stop();
+                
             }
             
         }
