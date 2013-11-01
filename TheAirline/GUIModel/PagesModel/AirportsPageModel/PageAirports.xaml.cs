@@ -90,7 +90,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             ComboBox cbRegion = UIHelpers.FindChild<ComboBox>(this, "cbRegion");
             TextBox txtText = UIHelpers.FindChild<TextBox>(this, "txtText");
 
-            string text = txtText.Text.Trim().ToUpper();
+
+             string text = txtText.Text.Trim().ToUpper();
             Country country = (Country)cbCountry.SelectedItem;
             Region region = (Region)cbRegion.SelectedItem;
 

@@ -32,9 +32,9 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirports 1004'}" FontWeight="Bold" FontSize="14"></TextBlock>
                         <ComboBox Name="cbRegion" Style="{DynamicResource ComboBoxTransparentStyle}" HorizontalAlignment="Stretch" SelectionChanged="cbRegion_SelectionChanged" VerticalAlignment="Bottom" SelectedIndex="0" DisplayMemberPath="Name" SelectedValuePath="Name"></ComboBox>
                         <ComboBox Name="cbCountry" Style="{DynamicResource ComboBoxTransparentStyle}" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" SelectedIndex="0" ItemTemplate="{StaticResource CountryLongFlagItem}"></ComboBox>
-                        <TextBox HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Name="txtText">
-                            <TextBox.Style>
-                                <Style TargetType="TextBox">
+                        <TextBox HorizontalAlignment="Stretch" Name="txtText" VerticalAlignment="Bottom">
+                             <TextBox.Style>
+                                <Style TargetType="TextBox" BasedOn="{StaticResource {x:Type TextBox}}">
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="TextBox">
@@ -44,16 +44,19 @@
                                                             <ColumnDefinition Width="20"/>
                                                             <ColumnDefinition Width="*"/>
                                                         </Grid.ColumnDefinitions>
-                                                        <Image Grid.Column="0" Source="/data/search.png" Width="16" Height="16" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                                        <Image Grid.Column="0" Source="/data/images/search.png" Width="16" Height="16" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
 
-                                                        <TextBox Style="{x:Null}" Grid.Column="1" VerticalAlignment="Bottom" Margin="5 0 0 0"
+                                                        <TextBlock Name="text" Style="{x:Null}" Grid.Column="1" VerticalAlignment="Bottom" Margin="5 0 0 0"
                                        Text="{TemplateBinding Text}"
-                                             BorderThickness="0"
+                                          
                                        Foreground="{TemplateBinding Foreground}"                                           
                                        Background="{TemplateBinding Background}" 
                                        FontFamily="{TemplateBinding FontFamily}"
                                        FontSize="{TemplateBinding FontSize}"
-                                       FontWeight="{TemplateBinding FontWeight}"/>
+                                       FontWeight="{TemplateBinding FontWeight}"
+                                                                   Cursor="IBeam">
+                                                           
+                                                        </TextBlock>
 
                                                     </Grid>
                                                 </Border>
