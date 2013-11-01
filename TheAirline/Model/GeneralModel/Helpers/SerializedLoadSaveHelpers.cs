@@ -51,6 +51,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.calendaritemsList = new List<CalendarItem>();
             so.configurationList = new List<Configuration>();
             so.eventsList = new List<RandomEvent>();
+            so.allianceList = new List<Alliance>();
 
             so.airlinesList.AddRange(Airlines.GetAllAirlines());
             so.airportsList.AddRange(Airports.GetAllAirports());
@@ -58,6 +59,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
             so.configurationList.AddRange(Configurations.GetConfigurations());
             so.eventsList.AddRange(RandomEvents.GetEvents());
+            so.allianceList.AddRange(Alliances.GetAlliances());
 
             so.instance = GameObject.GetInstance();
 
@@ -127,6 +129,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (RandomEvent e in deserializedSaveObject.eventsList)
                 RandomEvents.AddEvent(e);
+
+            Alliances.Clear();
+
+            foreach (Alliance alliance in deserializedSaveObject.allianceList)
+                Alliances.AddAlliance(alliance);
           
             GameObject.SetInstance(deserializedSaveObject.instance);
 
@@ -138,7 +145,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 PassengerHelpers.CreateDestinationDemand();
 
-                Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
+                //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                 swPax.Stop();
             };
 
@@ -174,7 +181,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public List<Configuration> configurationList { get; set; }
 
         [DataMember]
-        public List<RandomEvent> eventsList { get; set; } 
+        public List<RandomEvent> eventsList { get; set; }
+
+        [DataMember]
+        public List<Alliance> allianceList { get; set; } 
        
 
     }
