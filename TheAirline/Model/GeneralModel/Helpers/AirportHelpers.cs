@@ -98,6 +98,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return routes.ToList();
         }
+        //returns the number of routes between two airports
+        public static int GetNumberOfAirportsRoutes(Airport airport1, Airport airport2)
+        {
+            int count = 0;
+            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
+
+            lock (routes)
+            {
+                count = routes.Count(r => (r.Destination1 == airport1 && r.Destination2 == airport2) || (r.Destination1 == airport2 && r.Destination2 == airport1));
+            }
+            
+            return count;
+        }
         //returns all routes between two airports
         public static List<Route> GetAirportRoutes(Airport airport1, Airport airport2)
         {

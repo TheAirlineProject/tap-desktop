@@ -607,6 +607,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             airline.addRoute(route);
 
+                            //Console.WriteLine("{3}: {0} has created a route between {1} and {2}", airline.Profile.Name, route.Destination1.Profile.Name, route.Destination2.Profile.Name,GameObject.GetInstance().GameTime.ToShortDateString());
+
                             if (fAirliner == null)
                             {
 

@@ -129,7 +129,7 @@ namespace TheAirline.Model.GeneralModel
 
                 double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
 
-                int directRoutes = AirportHelpers.GetAirportRoutes(airportCurrent, tDest).Count;
+                int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
                 if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
@@ -144,7 +144,7 @@ namespace TheAirline.Model.GeneralModel
 
                 double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
 
-                int directRoutes = AirportHelpers.GetAirportRoutes(tDest, airportDestination).Count;
+                int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
                 if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                 {
@@ -164,7 +164,7 @@ namespace TheAirline.Model.GeneralModel
 
                     double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
 
-                    int directRoutes = AirportHelpers.GetAirportRoutes(airportCurrent, tDest).Count;
+                    int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
                     if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                     {
@@ -179,7 +179,7 @@ namespace TheAirline.Model.GeneralModel
 
                     double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
 
-                    int directRoutes = AirportHelpers.GetAirportRoutes(tDest, airportDestination).Count;
+                    int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
                     if (route.getDistance() + legDistance < totalDistance * 3 && directRoutes < 2)
                     {

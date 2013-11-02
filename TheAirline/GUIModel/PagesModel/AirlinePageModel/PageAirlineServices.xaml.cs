@@ -111,30 +111,33 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             foreach (AirlinerClass.ClassType type in Enum.GetValues(typeof(AirlinerClass.ClassType)))
             {
-                AirlineClassMVVM rClass = this.Classes.First(c => c.Type == type);
+                AirlineClassMVVM rClass = this.Classes.FirstOrDefault(c => c.Type == type);
 
-                foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
+                if (rClass != null)
                 {
-
-                    if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
+                    foreach (RouteFacility.FacilityType facilityType in Enum.GetValues(typeof(RouteFacility.FacilityType)))
                     {
-                        AirlineClassFacilityMVVM facility = rClass.Facilities.FirstOrDefault(c => c.Type == facilityType);
 
-                        if (facility == null)
+                        if (GameObject.GetInstance().GameTime.Year >= (int)facilityType)
                         {
-                            facility = new AirlineClassFacilityMVVM(facilityType);
+                            AirlineClassFacilityMVVM facility = rClass.Facilities.FirstOrDefault(c => c.Type == facilityType);
 
-                            rClass.Facilities.Add(facility);
+                            if (facility == null)
+                            {
+                                facility = new AirlineClassFacilityMVVM(facilityType);
+
+                                rClass.Facilities.Add(facility);
+                            }
+
+                            facility.Facilities.Clear();
+
+                            foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
+                                facility.Facilities.Add(rFacility);
+
+                            facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
+
+
                         }
-
-                        facility.Facilities.Clear();
-
-                        foreach (RouteFacility rFacility in AirlineHelpers.GetRouteFacilities(GameObject.GetInstance().HumanAirline, facilityType))
-                            facility.Facilities.Add(rFacility);
-
-                        facility.SelectedFacility = RouteFacilities.GetBasicFacility(facility.Type);
-
-
                     }
                 }
 
