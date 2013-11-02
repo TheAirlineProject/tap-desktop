@@ -52,6 +52,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.configurationList = new List<Configuration>();
             so.eventsList = new List<RandomEvent>();
             so.allianceList = new List<Alliance>();
+            so.Airportfacilitieslist = new List<AirportFacility>();
 
             so.airlinesList.AddRange(Airlines.GetAllAirlines());
             so.airportsList.AddRange(Airports.GetAllAirports());
@@ -60,7 +61,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             so.configurationList.AddRange(Configurations.GetConfigurations());
             so.eventsList.AddRange(RandomEvents.GetEvents());
             so.allianceList.AddRange(Alliances.GetAlliances());
-
+            so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
             so.instance = GameObject.GetInstance();
 
      DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
@@ -134,6 +135,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Alliance alliance in deserializedSaveObject.allianceList)
                 Alliances.AddAlliance(alliance);
+
+            AirportFacilities.Clear();
+
+            foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
+                AirportFacilities.AddFacility(facility);
           
             GameObject.SetInstance(deserializedSaveObject.instance);
 
@@ -147,7 +153,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                 swPax.Stop();
-            };
+            };          
 
             //Start the game paused
             GameObjectWorker.GetInstance().startPaused();
@@ -184,8 +190,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public List<RandomEvent> eventsList { get; set; }
 
         [DataMember]
-        public List<Alliance> allianceList { get; set; } 
-       
+        public List<Alliance> allianceList { get; set; }
+        
+        [DataMember]
+        public List<AirportFacility> Airportfacilitieslist { get; set; }   
 
     }
 }
