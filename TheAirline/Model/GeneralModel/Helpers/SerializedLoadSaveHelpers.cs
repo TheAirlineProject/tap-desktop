@@ -89,7 +89,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                       null);
      using (Stream stream = new FileStream(fileName, FileMode.Create))
      {
-         using (GZipStream compress = new GZipStream(stream, CompressionMode.Compress))
+         using (DeflateStream compress = new DeflateStream(stream, CompressionMode.Compress))
          {
              serializer.WriteObject(compress, so);
          }
@@ -109,7 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
-                using (GZipStream decompress = new GZipStream(stream, CompressionMode.Decompress))
+                using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
                 {
                     deserializedSaveObject =
                    (SaveObject)serializer.ReadObject(decompress);
