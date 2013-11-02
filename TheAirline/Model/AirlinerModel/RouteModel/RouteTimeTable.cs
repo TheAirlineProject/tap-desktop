@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 
@@ -132,7 +133,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         }
     
         //returns the next entry after a specific date and not to a specific coordinates (airport)
-        public RouteTimeTableEntry getNextEntry(DateTime time, Coordinates coordinates)
+        public RouteTimeTableEntry getNextEntry(DateTime time, GeoCoordinate coordinates)
         {
             DayOfWeek day = time.DayOfWeek;
 
@@ -147,7 +148,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 foreach (RouteTimeTableEntry dEntry in (from e in entries orderby e.Time select e))
                 {
-                    if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)) && dEntry.Destination.Airport.Profile.Coordinates.CompareTo(coordinates) != 0)
+                    if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)) && !dEntry.Destination.Airport.Profile.Coordinates.Equals(coordinates))
                         return dEntry;
                 }
                 day++;

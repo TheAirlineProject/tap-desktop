@@ -124,7 +124,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport.Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
 
-                    if (entry.Destination.Airport.Profile.Coordinates.CompareTo(airport.Profile.Coordinates) != 0)
+                    if (!entry.Destination.Airport.Profile.Coordinates.Equals(airport.Profile.Coordinates))
                         entries.Add(entry);
 
                     while (entries.Count<4)

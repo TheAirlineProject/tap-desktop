@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlineModel;
@@ -1079,7 +1080,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (airliner.CurrentFlight != null)
             {
-                double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+                double adistance = airliner.CurrentPosition.GetDistanceTo(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
                 double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
 
@@ -1130,7 +1131,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (airliner.CurrentFlight != null)
             {
-                Coordinates destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
+                GeoCoordinate destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
 
                 double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
 
@@ -1151,7 +1152,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (MathHelpers.GetDistance(airliner.CurrentPosition, destination) < 5)
                 {
                     airliner.Status = FleetAirliner.AirlinerStatus.Resting;
-                    airliner.CurrentPosition = new Coordinates(destination.Latitude, destination.Longitude);
+                    airliner.CurrentPosition = new GeoCoordinate(destination.Latitude, destination.Longitude);
 
                 }
 
@@ -1166,11 +1167,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a route airliner going to homebase
         private static void SimulateToHomebase(FleetAirliner airliner)
         {
-            airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
+            airliner.CurrentPosition = new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             Airport airport = Airports.GetAirport(airliner.CurrentPosition);
             airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
 
-            if (airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.CompareTo(airliner.Homebase.Profile.Coordinates) == 0)
+            if (!airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Equals(airliner.Homebase.Profile.Coordinates))
                 airliner.Status = FleetAirliner.AirlinerStatus.Stopped;
             else
                 airliner.CurrentFlight = new Flight(new RouteTimeTableEntry(airliner.CurrentFlight.Entry.TimeTable, GameObject.GetInstance().GameTime.DayOfWeek, GameObject.GetInstance().GameTime.TimeOfDay, new RouteEntryDestination(airliner.Homebase, "Service")));
@@ -1417,7 +1418,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double servicePrice = 10000;
 
-            airliner.CurrentPosition = new Coordinates(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
+            airliner.CurrentPosition = new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.CurrentPosition);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using System.Device.Location;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -26,7 +27,7 @@ namespace TheAirline.Model.AirportModel
         public string ICAOCode { get; set; }
         public Town Town { get; set; }
         public Country Country { get { return this.Town.Country; } private set { ;} }
-        public Coordinates Coordinates { get; set; }
+        public GeoCoordinate Coordinates { get; set; }
         public string Logo { get; set; }
         // chs, 2012-23-01 added for airport maps
         public string Map { get; set; }
@@ -40,7 +41,7 @@ namespace TheAirline.Model.AirportModel
         public double CargoVolume { get; set; }
 
         public Dictionary<string, int> MajorDestionations { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, Coordinates coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, GeoCoordinate coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
         {
             this.PaxValues = new List<PaxValue>();
 

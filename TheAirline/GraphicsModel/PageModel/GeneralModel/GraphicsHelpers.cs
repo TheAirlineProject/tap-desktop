@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using System.Windows;
 using TheAirline.Model.GeneralModel;
 
@@ -13,10 +14,10 @@ namespace TheAirline.GraphicsModel.PageModel.GeneralModel
         private static double ContentHeight;
         private static double ContentWidth;
         //converts coordinates to a map position
-        public static Point WorldToTilePos(Coordinates coordinates, int zoom)
+        public static Point WorldToTilePos(GeoCoordinate coordinates, int zoom)
         {
-            double lon = coordinates.Longitude.toDecimal();
-            double lat = coordinates.Latitude.toDecimal();
+            double lon = coordinates.Longitude;
+            double lat = coordinates.Latitude;
 
             Point p = new Point();
             p.X = (float)((lon + 180.0) / 360.0 * (1 << zoom));

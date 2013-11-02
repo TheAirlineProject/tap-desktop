@@ -5,6 +5,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using System.Xml;
+using System.Device.Location;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
@@ -924,11 +925,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 FleetAirliner.AirlinerStatus status = (FleetAirliner.AirlinerStatus)Enum.Parse(typeof(FleetAirliner.AirlinerStatus), airlineAirlinerNode.Attributes["status"].Value);
                 DateTime groundedDate = DateTime.Parse(airlineAirlinerNode.Attributes["groundeddate"].Value, new CultureInfo("de-DE", false));
 
-                Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
-                Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
+               // Coordinate latitude = Coordinate.Parse(airlineAirlinerNode.Attributes["latitude"].Value);
+                //Coordinate longitude = Coordinate.Parse(airlineAirlinerNode.Attributes["longitude"].Value);
+
+                string[] latitude = airlineAirlinerNode.Attributes["value"].Value.Split(new Char[] { '°', '\'', '\'' });
+                string[] longitude = airlineAirlinerNode.Attributes["value"].Value.Split(new Char[] { '°', '\'', '\'' });
+                int[] coords = new int[6];
+                foreach (string l in latitude)
+                {
+                    int c = 0;
+                    int.TryParse(l, out coords[c]);
+                    c++;
+                }
+
+                foreach (string l in longitude)
+                {
+                    int c = 3;
+                    int.TryParse(l, out coords[c]);
+                    c++;
+                }
+
+                //cleaning up
+                latitude = null;
+                longitude = null;
+
+                GeoCoordinate pos = new GeoCoordinate(MathHelpers.DMStoDeg(coords[0], coords[1], coords[2]), MathHelpers.DMStoDeg(coords[3], coords[4], coords[5]));
 
                 FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, homebase);
-                fAirliner.CurrentPosition = new Coordinates(latitude, longitude);
+                fAirliner.CurrentPosition = pos;
                 fAirliner.Status = status;
                 fAirliner.GroundedToDate = groundedDate;
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
@@ -53,7 +54,7 @@ namespace TheAirline.Model.AirlinerModel
         /*Changed for deleting routeairliner*/
         public enum AirlinerStatus { Stopped, On_route, On_service, Resting, To_homebase, To_route_start }
         public AirlinerStatus Status { get; set; }
-        public Coordinates CurrentPosition { get; set; }
+        public GeoCoordinate CurrentPosition { get; set; }
         public List<Route> Routes { get; private set; }
         public Flight CurrentFlight { get; set; }
         public DateTime GroundedToDate { get; set; }
@@ -76,7 +77,7 @@ namespace TheAirline.Model.AirlinerModel
             this.Status = AirlinerStatus.Stopped;
             this.MaintRoutes = new List<RouteModel.Route>();
 
-            this.CurrentPosition = new Coordinates(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);
+            this.CurrentPosition = new GeoCoordinate(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);
 
             this.Routes = new List<Route>();
             this.Pilots = new List<Pilot>();

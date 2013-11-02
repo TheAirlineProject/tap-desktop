@@ -1,6 +1,7 @@
 ﻿using System;using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -72,14 +73,14 @@ namespace TheAirline.Model.GeneralModel
             return years;
         }
         //moves a object with coordinates in a direction for a specific distance in kilometers
-        public static void MoveObject(Coordinates coordinates, Coordinates destination, double dist)
+        public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist)
         {
             int rad = 6371;
             dist = dist / rad;  // convert dist to angular distance in radians
             double brng = MathHelpers.GetDirection(coordinates, destination);
             brng = MathHelpers.DegreeToRadian(brng);
-            double lon1 = MathHelpers.DegreeToRadian(coordinates.Longitude.toDecimal());
-            double lat1 = MathHelpers.DegreeToRadian(coordinates.Latitude.toDecimal());
+            double lon1 = coordinates.Latitude;
+            double lat1 = coordinates.Longitude;
 
             double lat2 = Math.Asin(Math.Sin(lat1) * Math.Cos(dist) +
                                   Math.Cos(lat1) * Math.Sin(dist) * Math.Cos(brng));
@@ -92,28 +93,21 @@ namespace TheAirline.Model.GeneralModel
                 Console.WriteLine(destination.ToString());
 
 
-            coordinates.Latitude = Coordinate.LatitudeToCoordinate(MathHelpers.RadianToDegree(lat2));
-            coordinates.Longitude = Coordinate.LongitudeToCoordinate(MathHelpers.RadianToDegree(lon2));
+            coordinates.Latitude = lat2;
+            coordinates.Longitude = lon2;
         }
         //gets the angle between two coordinates
-        public static double GetDirection(Coordinates coordinates1, Coordinates coordinates2)
+        public static double GetDirection(GeoCoordinate coordinates1, GeoCoordinate coordinates2)
         {
-
-
-            var latitude1 = DegreeToRadian(coordinates1.Latitude.toDecimal());
-
-            var latitude2 = DegreeToRadian(coordinates2.Latitude.toDecimal());
-
-
-            var longitudeDifference = DegreeToRadian(coordinates2.Longitude.toDecimal() - coordinates1.Longitude.toDecimal());
+            var longitudeDifference = coordinates2.Longitude - coordinates1.Longitude;
 
 
 
-            var y = Math.Sin(longitudeDifference) * Math.Cos(latitude2);
+            var y = Math.Sin(longitudeDifference) * Math.Cos(coordinates2.Latitude);
 
-            var x = Math.Cos(latitude1) * Math.Sin(latitude2) -
+            var x = Math.Cos(coordinates1.Latitude) * Math.Sin(coordinates2.Latitude) -
 
-                     Math.Sin(latitude1) * Math.Cos(latitude2) * Math.Cos(longitudeDifference);
+                     Math.Sin(coordinates1.Latitude) * Math.Cos(coordinates2.Latitude) * Math.Cos(longitudeDifference);
 
 
 
@@ -152,68 +146,56 @@ namespace TheAirline.Model.GeneralModel
                 airport2.Statics = new AirportStatics(airport2);
 
             if (airport1.Statics.getDistance(airport2) == 0 && airport2.Statics.getDistance(airport1) == 0)
-                return GetDistance(airport1.Profile.Coordinates, airport2.Profile.Coordinates);
+                return airport1.Profile.Coordinates.GetDistanceTo(airport2.Profile.Coordinates);
             else
                 return Math.Max(airport1.Statics.getDistance(airport2), airport2.Statics.getDistance(airport1));
           
         }
-        //gets the distance in kilometers between two coordinates
-        public static double GetDistance(Coordinates coordinates1, Coordinates coordinates2)
+
+        public static double DMStoDeg(int degrees, int minutes, int seconds)
         {
-            //left for readability
-           /* 
-            long circumference = 40074;
+            return degrees + (minutes / 60) + (seconds / 3600);
+        }
 
-            double lat1 = coordinates1.Latitude.toDecimal();
-            double lat2 = coordinates2.Latitude.toDecimal();
-            double lon1 = coordinates1.Longitude.toDecimal();
-            double lon2 = coordinates2.Longitude.toDecimal();
-
-            double distLat = Math.Abs(lat1 - lat2);
-            double distLon = Math.Abs(lon1 - lon2);
-
-            double b = DegreeToRadian(90 - coordinates1.Latitude.toDecimal());
-            double c = DegreeToRadian(90 - coordinates2.Latitude.toDecimal());
-            double A = DegreeToRadian(coordinates1.Latitude.toDecimal());
-            */
-
-            //
-            return 111.317 * RadianToDegree(Math.Acos((Math.Cos(DegreeToRadian(90 - coordinates1.Latitude.toDecimal())) * Math.Cos(DegreeToRadian(90 - coordinates2.Latitude.toDecimal()))) + (Math.Sin(DegreeToRadian(90 - coordinates1.Latitude.toDecimal())) * Math.Sin(DegreeToRadian(90 - coordinates2.Latitude.toDecimal())) * Math.Cos(DegreeToRadian(coordinates1.Latitude.toDecimal())))));
+        //gets the distance in kilometers between two coordinates
+        public static double GetDistance(GeoCoordinate c1, GeoCoordinate c2)
+        {
+            return c1.GetDistanceTo(c2) / 1000;
         }
         //returns the coordinates for a route in a distance of a specific lenghth
-        public static Coordinates GetRoutePoint(Coordinates c1, Coordinates c2, double distance)
+        public static GeoCoordinate GetRoutePoint(GeoCoordinate c1, GeoCoordinate c2, double distance)
         {
            
-            var tc = DegreeToRadian(GetDirection(c1, c2));
+            var tc = GetDirection(c1, c2);
             const double radiusEarthKilometres = 6371.01;
             var distRatio = distance / radiusEarthKilometres;
             var distRatioSine = Math.Sin(distRatio);
             var distRatioCosine = Math.Cos(distRatio);
 
-            var startLatRad = DegreeToRadian(c1.Latitude.toDecimal());
-            var startLonRad = DegreeToRadian(c1.Longitude.toDecimal());
+            var startLatRad = DegreeToRadian(c1.Latitude);
+            var startLonRad = DegreeToRadian(c1.Longitude);
 
             var startLatCos = Math.Cos(startLatRad);
             var startLatSin = Math.Sin(startLatRad);
 
-            var endLatRads = Math.Asin((startLatSin * distRatioCosine) + (startLatCos * distRatioSine * Math.Cos(tc)));
+            double endLatRads = Math.Asin((startLatSin * distRatioCosine) + (startLatCos * distRatioSine * Math.Cos(tc)));
 
-            var endLonRads = startLonRad
+            double endLonRads = startLonRad
                 + Math.Atan2(
                     Math.Sin(tc) * distRatioSine * startLatCos,
                     distRatioCosine - startLatSin * Math.Sin(endLatRads));
 
-            return new Coordinates(Coordinate.LatitudeToCoordinate(RadianToDegree(endLatRads)), Coordinate.LongitudeToCoordinate(RadianToDegree(endLonRads)));
+            return new GeoCoordinate(RadianToDegree(endLatRads), RadianToDegree(endLonRads));
 
         }
         //returns the flight time between two coordinates with a given speed
-        public static TimeSpan GetFlightTime(Coordinates coordinate1, Coordinates coordinate2, double speed)
+        public static TimeSpan GetFlightTime(GeoCoordinate coordinate1, GeoCoordinate coordinate2, double speed)
         {
 
-            if (coordinate1.CompareTo(coordinate2) == 0)
+            if (coordinate1.Equals(coordinate2))
                 return new TimeSpan();
 
-            double dist = MathHelpers.GetDistance(coordinate1, coordinate2);
+            double dist = coordinate1.GetDistanceTo(coordinate2);
 
             double dtime = dist / speed;
 
@@ -226,9 +208,9 @@ namespace TheAirline.Model.GeneralModel
             return new TimeSpan(hours, minutes, 0);
         }
         //returns the flight time for a given airliner type between two coordinates
-        public static TimeSpan GetFlightTime(Coordinates coordinate1, Coordinates coordinate2, AirlinerType type)
+        public static TimeSpan GetFlightTime(GeoCoordinate coordinate1, GeoCoordinate coordinate2, AirlinerType type)
         {
-            double dist = MathHelpers.GetDistance(coordinate1, coordinate2);
+            double dist = coordinate1.GetDistanceTo(coordinate2);
 
             if (dist == 0)
                 return new TimeSpan(0, 0, 0);

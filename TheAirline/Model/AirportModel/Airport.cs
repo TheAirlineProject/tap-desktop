@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
@@ -642,9 +643,9 @@ namespace TheAirline.Model.AirportModel
             return airports; ;
         }
         //returns a possible match for coordinates
-        public static Airport GetAirport(Coordinates coordinates)
+        public static Airport GetAirport(GeoCoordinate coordinates)
         {
-            return GetAllActiveAirports().Find(a => a.Profile.Coordinates.CompareTo(coordinates) == 0);
+            return GetAllActiveAirports().Find(a => a.Profile.Coordinates.Equals(coordinates));
 
         }
         //returns all airports with a specific size

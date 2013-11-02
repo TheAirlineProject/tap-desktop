@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Device.Location;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -35,7 +36,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private int Zoom;
         private List<Airport> AirportsList;
         private List<Route> RoutesList;
-        private Coordinates ZoomCoordinates;
+        private GeoCoordinate ZoomCoordinates;
         private Boolean ShowingAirports;
         //shows the pop up for an airport
         public static void ShowPopUp(Airport airport)
@@ -98,7 +99,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.KeyDown += new KeyEventHandler(PopUpMap_KeyDown);
             this.AirportsList = airports;
             this.Width = MapSize + 200;
-            this.ZoomCoordinates = new Coordinates(new Coordinate(0, 0, 0, Coordinate.Directions.N), new Coordinate(0, 0, 0, Coordinate.Directions.E)); 
+            this.ZoomCoordinates = new GeoCoordinate(0.0,0.0); 
             this.Zoom = 1;
         
 
@@ -114,36 +115,36 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             {
                 zoomMap(e.Key == Key.OemPlus);
             }
-            if (e.Key == Key.Left && this.ZoomCoordinates.Longitude.Degrees > -180 + (40 * zoomer))
+            if (e.Key == Key.Left && this.ZoomCoordinates.Longitude > -180 + (40 * zoomer))
             {
-                this.ZoomCoordinates = new Coordinates(this.ZoomCoordinates.Latitude, new Coordinate(this.ZoomCoordinates.Longitude.Degrees - 40 * zoomer, this.ZoomCoordinates.Longitude.Minutes, this.ZoomCoordinates.Longitude.Seconds, this.ZoomCoordinates.Longitude.Direction));
+                this.ZoomCoordinates = new GeoCoordinate(this.ZoomCoordinates.Latitude, this.ZoomCoordinates.Longitude - 40 * zoomer);
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
 
             }
-            if (e.Key == Key.Right && this.ZoomCoordinates.Longitude.Degrees < 180 - (40 * zoomer))
+            if (e.Key == Key.Right && this.ZoomCoordinates.Longitude < 180 - (40 * zoomer))
             {
-                this.ZoomCoordinates = new Coordinates(this.ZoomCoordinates.Latitude, new Coordinate(this.ZoomCoordinates.Longitude.Degrees + 40 * zoomer, this.ZoomCoordinates.Longitude.Minutes, this.ZoomCoordinates.Longitude.Seconds, this.ZoomCoordinates.Longitude.Direction));
+                this.ZoomCoordinates = new GeoCoordinate(this.ZoomCoordinates.Latitude, this.ZoomCoordinates.Longitude + 40 * zoomer);
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
 
             }
-            if (e.Key == Key.Up && this.ZoomCoordinates.Latitude.Degrees < 90 - (30 * zoomer))
+            if (e.Key == Key.Up && this.ZoomCoordinates.Latitude < 90 - (30 * zoomer))
             {
-                this.ZoomCoordinates = new Coordinates(new Coordinate(this.ZoomCoordinates.Latitude.Degrees + 30 * zoomer, this.ZoomCoordinates.Latitude.Minutes, this.ZoomCoordinates.Latitude.Seconds, this.ZoomCoordinates.Latitude.Direction), this.ZoomCoordinates.Longitude);
+                this.ZoomCoordinates = new GeoCoordinate(this.ZoomCoordinates.Latitude + 30 * zoomer, this.ZoomCoordinates.Longitude);
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
                     showMap(this.RoutesList, this.Zoom, this.ZoomCoordinates);
 
             }
-            if (e.Key == Key.Down && this.ZoomCoordinates.Latitude.Degrees > -90 + (30 * zoomer))
+            if (e.Key == Key.Down && this.ZoomCoordinates.Latitude > -90 + (30 * zoomer))
             {
-                this.ZoomCoordinates = new Coordinates(new Coordinate(this.ZoomCoordinates.Latitude.Degrees - 30 * zoomer, this.ZoomCoordinates.Latitude.Minutes, this.ZoomCoordinates.Latitude.Seconds, this.ZoomCoordinates.Latitude.Direction), this.ZoomCoordinates.Longitude);
+                this.ZoomCoordinates = new GeoCoordinate(this.ZoomCoordinates.Latitude - 30 * zoomer, this.ZoomCoordinates.Longitude);
                 if (this.ShowingAirports)
                     showMap(this.AirportsList, this.Zoom, this.ZoomCoordinates);
                 else
@@ -156,7 +157,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             this.KeyDown += new KeyEventHandler(PopUpMap_KeyDown);
             this.Zoom = 1;
-            this.ZoomCoordinates = new Coordinates(new Coordinate(0, 0, 0, Coordinate.Directions.N), new Coordinate(0, 0, 0, Coordinate.Directions.E));
+            this.ZoomCoordinates = new GeoCoordinate(0.0, 0.0);
             this.Width = MapSize + 200;
             this.RoutesList = routes;
           
@@ -363,9 +364,9 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
            int d = 50;
            
-            double distance = MathHelpers.GetDistance(a1, a2);
+            double distance = a1.Profile.Coordinates.GetDistanceTo(a2.Profile.Coordinates);
 
-           Coordinates c1 = a1.Profile.Coordinates;
+           GeoCoordinate c1 = a1.Profile.Coordinates;
 
           int i = 0;
 
@@ -379,7 +380,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
           while (i < distance)
           {
-              Coordinates c3 = MathHelpers.GetRoutePoint(c1, a2.Profile.Coordinates, d);
+              GeoCoordinate c3 = MathHelpers.GetRoutePoint(c1, a2.Profile.Coordinates, d);
 
               Point pos1 = GraphicsHelpers.WorldToTilePos(c1, zoom);
               Point pos2 = GraphicsHelpers.WorldToTilePos(c3, zoom);
@@ -430,7 +431,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             showMap(airport.Profile.Coordinates, true);
         }
         //shows the map for a list of routes with specific coordinates in focus
-        private void showMap(List<Route> routes, int zoom, Coordinates focused)
+        private void showMap(List<Route> routes, int zoom, GeoCoordinate focused)
         {
             double px, py;
 
@@ -496,7 +497,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Content = panelMap;
         }
         //shows the map for a list of airport with specific coordinates in focus
-        private void showMap(List<Airport> airports, int zoom, Coordinates focused)
+        private void showMap(List<Airport> airports, int zoom, GeoCoordinate focused)
         {
             double px, py;
 
@@ -558,7 +559,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             this.Content = panelMap;
         }
         //creates the map for coordinates
-        private void showMap(Coordinates coordinates, Boolean isAirport)
+        private void showMap(GeoCoordinate coordinates, Boolean isAirport)
         {
             this.Zoom = 3;
 
