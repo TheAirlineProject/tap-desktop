@@ -45,24 +45,42 @@ namespace TheAirline.Model.GeneralModel.Helpers
             sw.Start();
 
             SaveObject so = new SaveObject();
-            so.airportsList = new List<Airport>();
-            so.airlinesList = new List<Airline>();
-            so.airlinersList = new List<Airliner>();
-            so.calendaritemsList = new List<CalendarItem>();
-            so.configurationList = new List<Configuration>();
-            so.eventsList = new List<RandomEvent>();
-            so.allianceList = new List<Alliance>();
-            so.Airportfacilitieslist = new List<AirportFacility>();
-
-            so.airlinesList.AddRange(Airlines.GetAllAirlines());
-            so.airportsList.AddRange(Airports.GetAllAirports());
-            so.airlinersList.AddRange(Airliners.GetAllAirliners());
-            so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
-            so.configurationList.AddRange(Configurations.GetConfigurations());
-            so.eventsList.AddRange(RandomEvents.GetEvents());
-            so.allianceList.AddRange(Alliances.GetAlliances());
-            so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
-            so.instance = GameObject.GetInstance();
+            Parallel.Invoke(() =>
+            {
+                so.airportsList = new List<Airport>();
+                so.airportsList.AddRange(Airports.GetAllAirports());
+            }, () =>
+            {
+                so.airlinesList = new List<Airline>();
+                so.airlinesList.AddRange(Airlines.GetAllAirlines());
+            }, () =>
+            {
+                so.airlinersList = new List<Airliner>();
+                so.airlinersList.AddRange(Airliners.GetAllAirliners());
+            }, () =>
+            {
+                so.calendaritemsList = new List<CalendarItem>();
+                so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
+            }, () =>
+            {
+                so.configurationList = new List<Configuration>();
+                so.configurationList.AddRange(Configurations.GetConfigurations());
+            }, () =>
+            {
+                so.eventsList = new List<RandomEvent>();
+                so.eventsList.AddRange(RandomEvents.GetEvents());
+            }, () =>
+            {
+                so.allianceList = new List<Alliance>();
+                so.allianceList.AddRange(Alliances.GetAlliances());
+            }, () =>
+            {
+                so.Airportfacilitieslist = new List<AirportFacility>();
+                so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
+            }, () =>
+            {
+                so.instance = GameObject.GetInstance();
+            });
 
      DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
                       Int32.MaxValue,
@@ -98,11 +116,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
 
+            //Parrarel for loading the game
+            Parallel.Invoke(() =>
+            {
             Airlines.Clear();
 
             foreach (Airline airline in deserializedSaveObject.airlinesList)
                 Airlines.AddAirline(airline);
-
+            }, 
+            () => 
+            {
             Airports.Clear();
 
             foreach (Airport airport in deserializedSaveObject.airportsList)
@@ -110,12 +133,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airport.Statics = new AirportStatics(airport);
                 Airports.AddAirport(airport);
             }
-
+            }, 
+            () =>
+            {
             Airliners.Clear();
 
             foreach (Airliner airliner in deserializedSaveObject.airlinersList)
                 Airliners.AddAirliner(airliner);
-
+            }, 
+            () =>
+            {
             CalendarItems.Clear();
 
             foreach (CalendarItem item in deserializedSaveObject.calendaritemsList)
@@ -125,23 +152,32 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Configuration configuration in deserializedSaveObject.configurationList)
                 Configurations.AddConfiguration(configuration);
-
+            }, 
+            () =>
+            {
             RandomEvents.Clear();
-
+    
             foreach (RandomEvent e in deserializedSaveObject.eventsList)
                 RandomEvents.AddEvent(e);
-
+            }, 
+            () =>
+            {
             Alliances.Clear();
 
             foreach (Alliance alliance in deserializedSaveObject.allianceList)
                 Alliances.AddAlliance(alliance);
-
+            },
+            () =>
+            {
             AirportFacilities.Clear();
 
             foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
                 AirportFacilities.AddFacility(facility);
-          
+            },
+            () =>
+            {
             GameObject.SetInstance(deserializedSaveObject.instance);
+            } ); //close parallel.invoke
 
             //Maybe this helps? But i doubt this is the best way
             Action action = () =>
