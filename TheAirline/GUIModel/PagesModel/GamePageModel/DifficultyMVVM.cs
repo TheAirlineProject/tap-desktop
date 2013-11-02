@@ -32,6 +32,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
     public class NewsMVVM : INotifyPropertyChanged
     {
         public News News { get; set; }
+        private Boolean _isselected;
+        public Boolean IsSelected
+        {
+            get { return _isselected; }
+            set { _isselected = value;  NotifyPropertyChanged("IsSelected"); }
+        }
         private Boolean _isread;
         public Boolean IsRead
         {
@@ -56,6 +62,13 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.IsRead = true;
             this.News.IsRead = true;
             GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.getUnreadNews().Count > 0;
+        }
+        public void markAsUnRead()
+        {
+            this.IsRead = false;
+            this.News.IsRead = false;
+            GameObject.GetInstance().NewsBox.HasUnreadNews = GameObject.GetInstance().NewsBox.getUnreadNews().Count > 0;
+     
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

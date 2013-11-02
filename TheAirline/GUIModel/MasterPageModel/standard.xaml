@@ -129,7 +129,7 @@
                     </Button.Style>
                     <Image Source="/data/images/mail.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
-                <Button Background="Transparent" Width="32" Margin="5 0 0 0" Click="btnNews_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
+                <Button Background="Transparent" Width="32" Click="btnNews_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>

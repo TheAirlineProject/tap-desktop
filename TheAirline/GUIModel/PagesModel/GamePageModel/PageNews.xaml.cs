@@ -56,8 +56,25 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.SelectedNews.SelectedNews = news.News;
      
         }
-         
-
+        private void btnSelectAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (NewsMVVM news in this.AllNews)
+            {
+                if (!this.SelectedNewsList.Contains(news))
+                {
+                    //this.SelectedNewsList.Add(news);
+                    news.IsSelected = true;
+                }
+            }
+        }
+        private void btnDeselectAll_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (NewsMVVM news in this.AllNews)
+            {
+                news.IsSelected = false;
+            }
+            //this.SelectedNewsList.Clear();
+        }
         private void cbNews_Checked(object sender, RoutedEventArgs e)
         {
             NewsMVVM news = (NewsMVVM)((CheckBox)sender).Tag;

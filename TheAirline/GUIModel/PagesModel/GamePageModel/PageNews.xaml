@@ -33,7 +33,7 @@
                         <GridViewColumn Width="25">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <CheckBox VerticalAlignment="Bottom" Tag="{Binding}" Checked="cbNews_Checked" Unchecked="cbNews_Unchecked"></CheckBox>
+                                    <CheckBox VerticalAlignment="Bottom" Tag="{Binding}" IsChecked="{Binding IsSelected,Mode=TwoWay}" Checked="cbNews_Checked" Unchecked="cbNews_Unchecked"></CheckBox>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
@@ -47,7 +47,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1030'}" Width="200">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNews 1001'}" Width="200">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock VerticalAlignment="Bottom">
@@ -67,7 +67,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1030'}" Width="125">
+                        <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNews 1000'}" Width="125">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding News.Date,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom">
@@ -88,7 +88,13 @@
                 </ListView.View>
             </ListView>
                         <WrapPanel Margin="0 5 0 0" Grid.Row="1">
-                            <Button Content="Mark Selected as Read" Click="btnMarkSelected_Click">
+                            <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNews 200'}" Click="btnSelectAll_Click" Style="{StaticResource StandardButtonStyle}">
+                                
+                            </Button>
+                            <Button Margin="5 0 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNews 201'}" Click="btnDeselectAll_Click" Style="{StaticResource StandardButtonStyle}">
+                               
+                            </Button>
+                            <Button Margin="5 0 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNews 202'}" Click="btnMarkSelected_Click"> 
                                 <Button.Style>
                                 <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                     <Style.Triggers>
@@ -100,7 +106,7 @@
                                 </Style>
                                 </Button.Style>
                             </Button>
-                            <Button Margin="5 0 0 0" Content="Delete Selected" Click="btnDeleteSelected_Click">
+                            <Button Margin="5 0 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNews 203'}" Click="btnDeleteSelected_Click">
                                 <Button.Style>
                                     <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                     <Style.Triggers>
