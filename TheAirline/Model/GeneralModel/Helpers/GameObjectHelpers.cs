@@ -942,29 +942,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (airline.Alliances != null)
                     {
                         int highest = 0;
-                        foreach(Alliance alliance in airline.Alliances){
-                            if(alliance.Type == Alliance.AllianceType.Full){
-                                foreach(AllianceMember a in alliance.Members)
-                                {
-                            
-                                    if (airport.getAirlineAirportFacility(a.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > highest){
-
-                                        highest = airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel;
-                                       
-                                    }
-                                }
-
+                        foreach(Alliance alliance in airline.Alliances.Where(a => a.Type == Alliance.AllianceType.Full)){
+                            foreach(AllianceMember a in alliance.Members.Where(x=>airport.getAirlineAirportFacility(x.Airline,AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > highest)) {
                                 foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
-                                {
+                                    {
                                     Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
-
-                                    airport.addDestinationPassengersRate(destination, (ushort)highest);
+                                    highest = airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel;
+                                    airport.addDestinationPassengersRate(destination, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
                                 }
-                            } 
-                       }
-
+                            }
+                        }
                     }
-                    //Not in an alliance so we will look for the airline only
+
+                    //Not in an alliance so we will look for the only airline
                     else
                     {
                         if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)

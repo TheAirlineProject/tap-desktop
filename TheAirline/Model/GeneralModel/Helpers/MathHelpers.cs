@@ -43,9 +43,9 @@ namespace TheAirline.Model.GeneralModel
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {
             //left for readability
-            //int days = rnd.Next(0,Math.Abs(((TimeSpan)(maxDate - minDate)).Days));
+            int days = rnd.Next(0,Math.Abs(((TimeSpan)(maxDate - minDate)).Days));
 
-            return new DateTime(minDate.AddDays(rnd.Next(0, Math.Abs(((TimeSpan)(maxDate - minDate)).Days))).Year, minDate.AddDays(rnd.Next(0, Math.Abs(((TimeSpan)(maxDate - minDate)).Days))).Month, minDate.AddDays(rnd.Next(0,Math.Abs(((TimeSpan)(maxDate - minDate)).Days))).Day);
+            return new DateTime(minDate.AddDays(days).Year, minDate.AddDays(days).Month, minDate.AddDays(days).Day);
 
 
         }
