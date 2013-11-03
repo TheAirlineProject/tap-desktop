@@ -146,7 +146,7 @@ namespace TheAirline.Model.GeneralModel
                 airport2.Statics = new AirportStatics(airport2);
 
             if (airport1.Statics.getDistance(airport2) == 0 && airport2.Statics.getDistance(airport1) == 0)
-                return airport1.Profile.Coordinates.GetDistanceTo(airport2.Profile.Coordinates);
+                return airport1.Profile.Coordinates.GetDistanceTo(airport2.Profile.Coordinates) / 1000;
             else
                 return Math.Max(airport1.Statics.getDistance(airport2), airport2.Statics.getDistance(airport1));
           
@@ -154,7 +154,7 @@ namespace TheAirline.Model.GeneralModel
 
         public static double DMStoDeg(int degrees, int minutes, int seconds)
         {
-            return degrees + (minutes / 60) + (seconds / 3600);
+            return Convert.ToDouble(degrees) + (Convert.ToDouble(minutes) / 60) + (Convert.ToDouble(seconds) / 3600);
         }
 
         //gets the distance in kilometers between two coordinates

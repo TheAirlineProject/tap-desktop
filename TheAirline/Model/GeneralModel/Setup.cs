@@ -113,6 +113,10 @@ namespace TheAirline.Model.GeneralModel
 				string s = e.ToString();
 			}
 
+            Airport cph = Airports.GetAirport("AMS");
+            Airport bll = Airports.GetAirport("SEA");
+
+            Console.WriteLine("Distance between AMS and SEA is: {0} km.", MathHelpers.GetDistance(cph, bll));
 		  
 		/*
 			var townGroups =
@@ -1070,16 +1074,16 @@ namespace TheAirline.Model.GeneralModel
 
 					XmlElement latitudeElement = (XmlElement)airportElement.SelectSingleNode("coordinates/latitude");
 					XmlElement longitudeElement = (XmlElement)airportElement.SelectSingleNode("coordinates/longitude");
-					string [] latitude = latitudeElement.Attributes["value"].Value.Split(new Char [] {'°','\'','\''});
-					string [] longitude = longitude = longitudeElement.Attributes["value"].Value.Split(new Char [] { '°', '\'', '\'' });
+                    string[] latitude = latitudeElement.Attributes["value"].Value.Split(new Char[] { '°', '\'' }, StringSplitOptions.RemoveEmptyEntries);
+                    string[] longitude = longitude = longitudeElement.Attributes["value"].Value.Split(new Char[] { '°', '\'' }, StringSplitOptions.RemoveEmptyEntries);
 					int[] coords = new int[6];
 
                     //latitude
                     coords[0] = int.Parse(latitude[0]);
                     coords[1] = int.Parse(latitude[1]);
                     coords[2] = int.Parse(latitude[2]);
-
-                    if (latitude[4] == "S")
+                                        
+                    if (latitude[3] == "S")
                         coords[0] = -coords[0];
 
                     //longitude
@@ -1087,7 +1091,7 @@ namespace TheAirline.Model.GeneralModel
                     coords[4] = int.Parse(longitude[1]);
                     coords[5] = int.Parse(longitude[2]);
 
-                    if (longitude[4] == "E")
+                    if (longitude[3] == "W")
                         coords[3] = -coords[3];
 
               
