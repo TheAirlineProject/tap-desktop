@@ -1073,18 +1073,40 @@ namespace TheAirline.Model.GeneralModel
 					string [] latitude = latitudeElement.Attributes["value"].Value.Split(new Char [] {'°','\'','\''});
 					string [] longitude = longitude = longitudeElement.Attributes["value"].Value.Split(new Char [] { '°', '\'', '\'' });
 					int[] coords = new int[6];
-					foreach(string l in latitude ) {
-						int c = 0;
-						int.TryParse(l, out coords[c]);
+
+                    //latitude
+                    coords[0] = int.Parse(latitude[0]);
+                    coords[1] = int.Parse(latitude[1]);
+                    coords[2] = int.Parse(latitude[2]);
+
+                    if (latitude[4] == "S")
+                        coords[0] = -coords[0];
+
+                    //longitude
+                    coords[3] = int.Parse(longitude[0]);
+                    coords[4] = int.Parse(longitude[1]);
+                    coords[5] = int.Parse(longitude[2]);
+
+                    if (longitude[4] == "E")
+                        coords[3] = -coords[3];
+
+              
+                    /*
+					foreach(string l in latitude ) 
+                    {
+						//int.TryParse(l, out coords[c]);
+                        coords[c] = int.Parse(l);
 						c++;
 					}
-
+                    c = 3;
+					
 					foreach (string l in longitude)
 					{
-						int c = 3;
-						int.TryParse(l, out coords[c]);
+						//int.TryParse(l, out coords[c]);
+                        coords[c] = int.Parse(l);
+					
 						c++;
-					}
+					}*/
 
 					//cleaning up
 					latitude = null;
