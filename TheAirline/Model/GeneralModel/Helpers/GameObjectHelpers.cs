@@ -6,7 +6,6 @@ using System.Device.Location;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlineModel;
-using TheAirline.Model.AirlineModel.Alliance;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PassengerModel;
