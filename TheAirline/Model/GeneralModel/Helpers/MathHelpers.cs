@@ -42,24 +42,17 @@ namespace TheAirline.Model.GeneralModel
         //returns a random date 
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {
-            int range = Math.Abs(((TimeSpan)(maxDate - minDate)).Days);
+            //left for readability
+            //int days = rnd.Next(0,Math.Abs(((TimeSpan)(maxDate - minDate)).Days));
 
-            int days = GetRandomInt(0,range);
-          
-            return new DateTime(minDate.AddDays(days).Year,minDate.AddDays(days).Month,minDate.AddDays(days).Day);
+            return new DateTime(minDate.AddDays(rnd.Next(0, Math.Abs(((TimeSpan)(maxDate - minDate)).Days))).Year, minDate.AddDays(rnd.Next(0, Math.Abs(((TimeSpan)(maxDate - minDate)).Days))).Month, minDate.AddDays(rnd.Next(0,Math.Abs(((TimeSpan)(maxDate - minDate)).Days))).Day);
 
 
         }
         //returns a random number
         public static int GetRandomInt(int min, int max)
         {
-            System.Security.Cryptography.RNGCryptoServiceProvider rng = new System.Security.Cryptography.RNGCryptoServiceProvider();
-            byte[] buffer = new byte[4];
-
-            rng.GetBytes(buffer);
-            int result = BitConverter.ToInt32(buffer, 0);
-
-            return new Random(result).Next(min, max);
+            return rnd.Next(min, max);
         }
         //returns the age 
         public static int GetAge(DateTime date)
