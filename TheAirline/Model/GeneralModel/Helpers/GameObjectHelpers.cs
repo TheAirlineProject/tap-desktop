@@ -942,12 +942,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     //checking if someone in the alliance has a ticket office for the route (if in an alliance).
                     if (airline.Alliances != null)
                     {
-                        foreach(Alliance alliance in airline.Alliance){
-                            if(Alliance.AllianceType.Full){
-                                foreach(AllianceMember.GetAllianceMember(Alliances.GetAlliances(alliance))
+                        foreach(Alliance alliance in airline.Alliances){
+                            if(alliance.Type == Alliance.AllianceType.Full){
+                                foreach(AllianceMember a in alliance.Members)
                                 {
                             
-                                    if (airport.getAirlineAirportFacility(Allianceairline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0){
+                                    if (airport.getAirlineAirportFacility(a.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0){
                                         foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
                                             {
                                             Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
