@@ -941,25 +941,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     //checking if someone in the alliance has a ticket office for the route (if in an alliance).
                     if (airline.Alliances != null)
                     {
+                        int highest = 0;
                         foreach(Alliance alliance in airline.Alliances){
                             if(alliance.Type == Alliance.AllianceType.Full){
                                 foreach(AllianceMember a in alliance.Members)
                                 {
                             
-                                    if (airport.getAirlineAirportFacility(a.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0){
-                                        foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
-                                            {
-                                            Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
+                                    if (airport.getAirlineAirportFacility(a.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > highest){
 
-                                            airport.addDestinationPassengersRate(destination, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
-                                            }
+                                        highest = airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel;
+                                       
                                     }
+                                }
+
+                                foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
+                                {
+                                    Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
+
+                                    airport.addDestinationPassengersRate(destination, (ushort)highest);
                                 }
                             } 
                        }
 
                     }
-                    //Not in an alliance so we will look for the only airline
+                    //Not in an alliance so we will look for the airline only
                     else
                     {
                         if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)
