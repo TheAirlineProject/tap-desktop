@@ -6,6 +6,7 @@ using System.Device.Location;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.Alliance;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PassengerModel;
@@ -73,7 +74,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 CalibrateTime();
 
-                if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
+                if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate(); 
 
                 if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
 
@@ -84,17 +85,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
 
                    
-                   if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
-                   {
+                  if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                  {
                         if (!airline.IsHuman){
                             AIHelpers.UpdateCPUAirline(airline);
                        }
-                   }
+                      
+                  }
+
 
                     Parallel.ForEach(airline.Fleet, airliner =>
-                        {
-                            UpdateAirliner(airliner);
-                        });
+                       {
+                           UpdateAirliner(airliner);
+                       });
                     airlineCounter++;
                 });
                 sw.Stop();
@@ -935,18 +938,43 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
                     }
                     //passenger growth if ticket office
-                    if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)
+                    
+                    //checking if someone in the alliance has a ticket office for the route (if in an alliance).
+                    if (airline.Alliances != null)
                     {
-                        foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
-                        {
-                            Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
+                        foreach(Alliance alliance in airline.Alliance){
+                            if(Alliance.AllianceType.Full){
+                                foreach(AllianceMember.GetAllianceMember(Alliances.GetAlliances(alliance))
+                                {
+                            
+                                    if (airport.getAirlineAirportFacility(Allianceairline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0){
+                                        foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
+                                            {
+                                            Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
 
-                            airport.addDestinationPassengersRate(destination, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
+                                            airport.addDestinationPassengersRate(destination, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
+                                            }
+                                    }
+                                }
+                            } 
+                       }
 
-                        }
                     }
+                    //Not in an alliance so we will look for the only airline
+                    else
+                    {
+                        if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)
+                        {
+                            foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
+                            {
+                                Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
 
+                                airport.addDestinationPassengersRate(destination, (ushort)airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
 
+                            }
+                        }
+
+                    }
                 }
                 //passenger demand
                 int advertisementFactor = airline.getAirlineAdvertisements().Sum(a => a.ReputationLevel);
