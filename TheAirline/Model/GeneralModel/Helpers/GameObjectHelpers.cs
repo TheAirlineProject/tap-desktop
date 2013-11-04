@@ -49,7 +49,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
-                
+
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
                 {
                     if (!airline.IsHuman)
@@ -60,7 +60,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     DayTurnHelpers.SimulateAirlineFlights(airline);
 
                 });
-          
+
                 // Console.WriteLine("{0} airlines: {1} airliners: {2} routes: {3} flights: {4} airports: {5} total time per round: {6} ms.", GameObject.GetInstance().GameTime.ToShortDateString(), Airlines.GetAllAirlines().Count, Airlines.GetAllAirlines().Sum(a => a.Fleet.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Count), Airlines.GetAllAirlines().Sum(a => a.Routes.Sum(r => r.TimeTable.Entries.Count)), Airports.GetAllAirports().Count, sw.ElapsedMilliseconds);
                 sw.Stop();
             }
@@ -73,7 +73,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 CalibrateTime();
 
-                if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate(); 
+                if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
 
                 if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
 
@@ -83,14 +83,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
                 {
 
-                   
-                  if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
-                  {
-                        if (!airline.IsHuman){
+
+                    if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                    {
+                        if (!airline.IsHuman)
+                        {
                             AIHelpers.UpdateCPUAirline(airline);
-                       }
-                      
-                  }
+                        }
+
+                    }
 
 
                     Parallel.ForEach(airline.Fleet, airliner =>
@@ -100,11 +101,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airlineCounter++;
                 });
                 sw.Stop();
-                
+
             }
 
-         
-            
+
+
         }
 
         //calibrates the time if needed
@@ -120,7 +121,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the daily update
         private static void DoDailyUpdate()
         {
-             
+
             var humanAirlines = Airlines.GetAirlines(a => a.IsHuman);
 
             int totalRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) select r).Count();
@@ -196,10 +197,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             if (airliner.Airliner.Airline.IsHuman)
                             {
-                              
+
                                 airliner.Homebase = (Airport)PopUpNewAirlinerHomeBase.ShowPopUp(airliner);
 
-                              
+
                             }
                             else
                             {
@@ -345,20 +346,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                if (gatesDiff > 0)
                                {
-                                   int length = oldContracts.Max(c=>c.Length);
-                                   AirportContract newContract = new AirportContract(terminal.Airline,airport,GameObject.GetInstance().GameTime,gatesDiff,length,AirportHelpers.GetYearlyContractPayment(airport,gatesDiff,length)/2);
+                                   int length = oldContracts.Max(c => c.Length);
+                                   AirportContract newContract = new AirportContract(terminal.Airline, airport, GameObject.GetInstance().GameTime, gatesDiff, length, AirportHelpers.GetYearlyContractPayment(airport, gatesDiff, length) / 2);
 
                                    airport.addAirlineContract(newContract);
                                }
-                               
+
                                foreach (AirportContract oldContract in oldContracts)
                                    airport.removeAirlineContract(oldContract);
-                               
-                           }
-                           double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport,terminal.Gates.NumberOfGates,20);
 
-                           airport.addAirlineContract(new AirportContract(terminal.Airline, airport, GameObject.GetInstance().GameTime, terminal.Gates.NumberOfGates, 20,yearlyPayment*0.75,false,false,terminal ));
-                          
+                           }
+                           double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, terminal.Gates.NumberOfGates, 20);
+
+                           airport.addAirlineContract(new AirportContract(terminal.Airline, airport, GameObject.GetInstance().GameTime, terminal.Gates.NumberOfGates, 20, yearlyPayment * 0.75, false, false, terminal));
+
                            if (terminal.Airport.getAirportFacility(terminal.Airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
                            {
 
@@ -393,11 +394,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                terminalContract.YearlyPayment = yearlyPayment;
                            }
                        }
-                       
-                       
+
+
                    }
                    //expired contracts
-                   var airlineContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c=>c.ExpireDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()));
+                   var airlineContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c => c.ExpireDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString()));
 
                    foreach (AirportContract contract in airlineContracts)
                    {
@@ -407,15 +408,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                            var airlineRoutes = new List<Route>(AirportHelpers.GetAirportRoutes(airport, contract.Airline));
 
-                           var remainingContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c=>c.Airline == contract.Airline && c != contract));
+                           var remainingContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c => c.Airline == contract.Airline && c != contract));
 
-                           Boolean canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport,contract.Airline,remainingContracts);
+                           Boolean canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts);
 
                            if (!canFillRoutes)
                            {
                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired, and a number of routes has been cancelled", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
 
-                               int currentRoute=0;
+                               int currentRoute = 0;
                                while (!canFillRoutes)
                                {
                                    Route routeToDelete = airlineRoutes[currentRoute];
@@ -427,7 +428,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                    }
 
                                    contract.Airline.removeRoute(routeToDelete);
-                                   
+
                                    currentRoute++;
 
                                    canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts);
@@ -444,7 +445,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                        }
                        else
                        {
-                           int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport,contract.Airline).Count;
+                           int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport, contract.Airline).Count;
 
                            if (numberOfRoutes > 0)
                            {
@@ -547,7 +548,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     string oldLogo = merger.Airline2.Profile.Logo;
 
-                    SubsidiaryAirline sAirline = new SubsidiaryAirline(merger.Airline1, merger.Airline2.Profile, merger.Airline2.Mentality, merger.Airline2.MarketFocus, merger.Airline2.License,merger.Airline2.AirlineRouteFocus);
+                    SubsidiaryAirline sAirline = new SubsidiaryAirline(merger.Airline1, merger.Airline2.Profile, merger.Airline2.Mentality, merger.Airline2.MarketFocus, merger.Airline2.License, merger.Airline2.AirlineRouteFocus);
 
                     AirlineHelpers.SwitchAirline(merger.Airline2, merger.Airline1);
 
@@ -586,7 +587,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airline a in Airlines.GetAllAirlines())
             {
                 AirlineHelpers.CheckInsuranceSettlements(a);
-                foreach (FleetAirliner airliner in a.Fleet) 
+                foreach (FleetAirliner airliner in a.Fleet)
                 {
                     FleetAirlinerHelpers.DoMaintenance(airliner);
                     FleetAirlinerHelpers.RestoreMaintRoutes(airliner);
@@ -615,7 +616,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (FeeType feeType in FeeTypes.GetTypes())
                     airline.Fees.setValue(feeType, airline.Fees.getValue(feeType) * yearlyRaise);
-         
+
             }
 
             //creates some new used airliners for the year
@@ -650,7 +651,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             GeneralHelpers.CreatePilots(15);
             GeneralHelpers.CreateInstructors(10);
 
-            foreach(Airline airline in Airlines.GetAllAirlines())
+            foreach (Airline airline in Airlines.GetAllAirlines())
             {
                 EventsHelpers.GenerateEvents(airline);
             }
@@ -693,7 +694,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
             {
-            
+
                 var pilotsToRetire = airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge).AddMonths(-1) < GameObject.GetInstance().GameTime);
                 var pilotsToRetirement = new List<Pilot>(airline.Pilots.FindAll(p => p.Profile.Birthdate.AddYears(retirementAge) < GameObject.GetInstance().GameTime));
 
@@ -900,27 +901,27 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     long airportIncome = Convert.ToInt64(contractPrice);
                     airport.Income += airportIncome;
-                   
-                   //expired contracts
-                   var airlineContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c=>c.ExpireDate < GameObject.GetInstance().GameTime.AddMonths(2)));
 
-                   foreach (AirportContract contract in airlineContracts)
-                   {
-                       if (contract.Airline.IsHuman)
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expires", string.Format("Your contract for {0} gates at [LI airport={1}], {2} expires soon. Please extend the contracts.", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
-                       else
-                       {
-                           int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport, contract.Airline).Count;
+                    //expired contracts
+                    var airlineContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c => c.ExpireDate < GameObject.GetInstance().GameTime.AddMonths(2)));
 
-                           if (numberOfRoutes > 0)
-                           {
-                               contract.ContractDate = GameObject.GetInstance().GameTime;
-                               contract.ExpireDate = GameObject.GetInstance().GameTime.AddYears(contract.Length);
-                           }
-                           else
-                               airport.removeAirlineContract(contract);
-                       }
-                   }
+                    foreach (AirportContract contract in airlineContracts)
+                    {
+                        if (contract.Airline.IsHuman)
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expires", string.Format("Your contract for {0} gates at [LI airport={1}], {2} expires soon. Please extend the contracts.", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+                        else
+                        {
+                            int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport, contract.Airline).Count;
+
+                            if (numberOfRoutes > 0)
+                            {
+                                contract.ContractDate = GameObject.GetInstance().GameTime;
+                                contract.ExpireDate = GameObject.GetInstance().GameTime.AddYears(contract.Length);
+                            }
+                            else
+                                airport.removeAirlineContract(contract);
+                        }
+                    }
 
                     //wages
                     foreach (AirportFacility facility in airport.getCurrentAirportFacilities(airline))
@@ -937,28 +938,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Wages, -facilityWage);
                     }
                     //passenger growth if ticket office
-                    
                     //checking if someone in the alliance has a ticket office for the route (if in an alliance).
-                    if (airline.Alliances != null){
-                        int highest = 0;
-                        //check for the alliances
-                        foreach(Alliance alliance in airline.Alliances.Where(a => a.Type == Alliance.AllianceType.Full)){
-                            //Check if soemone in the alliance has a ticket office and what service level it is
-                            foreach(AllianceMember a in alliance.Members.Where(x=>airport.getAirlineAirportFacility(x.Airline,AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > highest)) {
-                                //Only use the highest server level
-                                highest = airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel;
-                            }
-                            //If there is an service level update the routes
-                            if (highest > 0) { 
-                                foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport)){
-                                    Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
-                                    airport.addDestinationPassengersRate(destination, (ushort)highest);
-                                }
+                    if (airline.Alliances.Count>0)
+                    {
+                        int highest = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Max(m => airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
+                        Boolean hasTicketOffice = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Where(m => airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0) != null;
+
+                        //If there is an service level update the routes
+                        if (hasTicketOffice)
+                        {
+                            foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport))
+                            {
+                                Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
+                                airport.addDestinationPassengersRate(destination, (ushort)highest);
                             }
                         }
                     }
 
-                    //Not in an alliance so we will look for the airline only
+
+                    //not in an alliance so we will look for the airline only
                     else
                     {
                         if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)
@@ -980,7 +978,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (Route route in airline.Routes)
                 {
                     route.Destination1.addDestinationPassengersRate(route.Destination2, (ushort)(5 * advertisementFactor));
-                    route.Destination2.addDestinationPassengersRate(route.Destination1,  (ushort)(5 * advertisementFactor));
+                    route.Destination2.addDestinationPassengersRate(route.Destination1, (ushort)(5 * advertisementFactor));
 
                 }
                 foreach (Loan loan in airline.Loans)
@@ -1012,7 +1010,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     }
                 }
                 //maintenance, insurance, and ratings
-       
+
                 AirlineInsuranceHelpers.CheckExpiredInsurance(airline);
                 if (airline.InsurancePolicies != null)
                 {
@@ -1023,7 +1021,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             });
 
-        
+
             if (Pilots.GetNumberOfUnassignedPilots() < 25)
                 GeneralHelpers.CreatePilots(100);
 
@@ -1054,8 +1052,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (GameObject.GetInstance().Scenario != null)
                 ScenarioHelpers.UpdateScenario(GameObject.GetInstance().Scenario);
 
-             
-             }
+
+        }
         //updates an airliner
         private static void UpdateAirliner(FleetAirliner airliner)
         {
@@ -1284,12 +1282,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, FleetAirlinerHelpers.GetCruisingSpeed(airliner)));
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates, airliner.CurrentPosition);
-      
+
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
             double groundTaxPerPassenger = 5;
 
-            double tax=0;
-        
+            double tax = 0;
+
             if (airliner.CurrentFlight.Entry.Destination.Airport.Profile.Country.Name != airliner.CurrentFlight.getDepartureAirport().Profile.Country.Name)
                 tax = 2 * tax;
 
@@ -1300,9 +1298,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                 tax   = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers(); 
+                tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
                 fuelExpenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption;
-        
+
                 foreach (AirlinerClass aClass in airliner.Airliner.Classes)
                 {
                     ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type).FarePrice;
@@ -1357,17 +1355,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 tax = groundTaxPerPassenger * airliner.CurrentFlight.Cargo;
                 fuelExpenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.Cargo * airliner.Airliner.Type.FuelConsumption;
-        
+
                 ticketsIncome = airliner.CurrentFlight.Cargo * airliner.CurrentFlight.getCargoPrice();
             }
 
-          
+
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
 
             double dist = MathHelpers.GetDistance(dest.Profile.Coordinates, dept.Profile.Coordinates);
 
-           double expenses = fuelExpenses + dest.getLandingFee() + tax;
+            double expenses = fuelExpenses + dest.getLandingFee() + tax;
             if (double.IsNaN(expenses))
                 expenses = 0;
 
@@ -1410,14 +1408,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
-         
+
             airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Airliner_Income"), ticketsIncome - expenses - mealExpenses + feesIncome - wages);
 
             airliner.Airliner.Flown += fdistance;
 
             if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IATACode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IATACode, dept.Profile.Country.Name })));
-            
+
             SetNextFlight(airliner);
 
             CheckForService(airliner);
@@ -1625,7 +1623,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airline airline = startData.Airline;
             Continent continent = startData.Continent;
             Region region = startData.Region;
-            
+
             GameTimeZone gtz = startData.TimeZone;
             GameObject.GetInstance().DayRoundEnabled = startData.UseDayTurns;
             GameObject.GetInstance().TimeZone = gtz;

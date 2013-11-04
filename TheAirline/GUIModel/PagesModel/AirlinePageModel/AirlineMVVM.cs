@@ -134,9 +134,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             foreach (PropertyInfo c in typeof(Colors).GetProperties())
                 this.Colors.Add(c);
 
-            foreach (Airport airport in this.Airline.Airports)
+            foreach (Airport airport in this.Airline.Airports.OrderByDescending(a=>this.Airline.Airports[0]==a).ThenBy(a=>a.Profile.Name))
                 this.Destinations.Add(new AirlineDestinationMVVM(airport, airport.hasHub(this.Airline)));
 
+           
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
      
