@@ -23,14 +23,33 @@ namespace TheAirline.Model.StatisticsModel
             IDictionary<Airline, Double> scaleAvgFill = StatisticsHelpers.GetRatingScale(fillAverages);
             IDictionary<Airline, Double> scaleOnTimeP = StatisticsHelpers.GetRatingScale(onTimePercent);
             IDictionary<Airline, Double> scalePPD = StatisticsHelpers.GetRatingScale(ticketPPD);
+            IDictionary<Airline, Double> scaleLuxury = StatisticsHelpers.GetRatingScale(GetAirlinesLuxuryLevels());
 
             double airlineAvgFill = scaleAvgFill[airline]; 
             double airlineOTP = scaleOnTimeP[airline];
             double airlinePPD = scalePPD[airline];
+            double airlineLuxury = scaleLuxury[airline];
 
-            return ((airlinePPD * negInt + 100) * 0.4) + (airlineAvgFill * 0.2) + (airlineOTP * 0.4);
+            return ((airlinePPD * negInt + 100) * 0.4) + (airlineAvgFill * 0.2) + (airlineOTP * 0.2) + (airlineLuxury * 0.2);
         }
- 
+        //returns all airline luxury levels
+        private static Dictionary<Airline, Double> GetAirlinesLuxuryLevels()
+        {
+            Dictionary<Airline, Double> values = new Dictionary<Airline, Double>();
+            foreach (Airline airline in Airlines.GetAllAirlines())
+            {
+                values.Add(airline, GetAirlineLuxuryLevel(airline));
+            }
+
+            return values;
+        }
+        //calculates the value of facilities for an airline for use in happiness
+        private static double GetAirlineLuxuryLevel(Airline airline)
+        {
+            int luxuryLevel = airline.Facilities.Sum(f => f.LuxuryLevel);
+
+            return luxuryLevel;
+        }
         //calculates employee happiness as a function of wages, discounts, and free pilots (relative to workload)
         public static double GetEmployeeHappiness(Airline airline)
         {
