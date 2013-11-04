@@ -68,12 +68,14 @@ namespace TheAirline.Model.GeneralModel
         //moves a object with coordinates in a direction for a specific distance in kilometers
         public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist)
         {
+         
             int rad = 6371;
             dist = dist / rad;  // convert dist to angular distance in radians
+           
             double brng = MathHelpers.GetDirection(coordinates, destination);
             brng = MathHelpers.DegreeToRadian(brng);
-            double lon1 = coordinates.Latitude;
-            double lat1 = coordinates.Longitude;
+            double lon1 = MathHelpers.DegreeToRadian(coordinates.Latitude);
+            double lat1 = MathHelpers.DegreeToRadian(coordinates.Longitude);
 
             double lat2 = Math.Asin(Math.Sin(lat1) * Math.Cos(dist) +
                                   Math.Cos(lat1) * Math.Sin(dist) * Math.Cos(brng));
@@ -81,26 +83,26 @@ namespace TheAirline.Model.GeneralModel
                                          Math.Cos(dist) - Math.Sin(lat1) * Math.Sin(lat2));
             lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180...+180
 
-      
-            if (Double.IsNaN(lat2))
-                Console.WriteLine(destination.ToString());
-
-
-            coordinates.Latitude = lat2;
-            coordinates.Longitude = lon2;
+            coordinates.Latitude = MathHelpers.RadianToDegree(lat2);
+            coordinates.Longitude = MathHelpers.RadianToDegree(lon2);
+            
         }
         //gets the angle between two coordinates
         public static double GetDirection(GeoCoordinate coordinates1, GeoCoordinate coordinates2)
         {
-            var longitudeDifference = coordinates2.Longitude - coordinates1.Longitude;
+             var latitude1 = DegreeToRadian(coordinates1.Latitude);
+
+            var latitude2 = DegreeToRadian(coordinates2.Latitude);
+
+            var longitudeDifference = MathHelpers.DegreeToRadian(coordinates2.Longitude - coordinates1.Longitude);
 
 
 
-            var y = Math.Sin(longitudeDifference) * Math.Cos(coordinates2.Latitude);
+            var y = Math.Sin(longitudeDifference) * Math.Cos(latitude2);
 
-            var x = Math.Cos(coordinates1.Latitude) * Math.Sin(coordinates2.Latitude) -
+            var x = Math.Cos(latitude1) * Math.Sin(latitude2) -
 
-                     Math.Sin(coordinates1.Latitude) * Math.Cos(coordinates2.Latitude) * Math.Cos(longitudeDifference);
+                     Math.Sin(latitude1) * Math.Cos(latitude2) * Math.Cos(longitudeDifference);
 
 
 
@@ -159,7 +161,7 @@ namespace TheAirline.Model.GeneralModel
         public static GeoCoordinate GetRoutePoint(GeoCoordinate c1, GeoCoordinate c2, double distance)
         {
            
-            var tc = GetDirection(c1, c2);
+            var tc = DegreeToRadian(GetDirection(c1, c2));
             const double radiusEarthKilometres = 6371.01;
             var distRatio = distance / radiusEarthKilometres;
             var distRatioSine = Math.Sin(distRatio);

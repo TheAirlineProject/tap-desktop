@@ -113,11 +113,7 @@ namespace TheAirline.Model.GeneralModel
 				string s = e.ToString();
 			}
 
-            Airport cph = Airports.GetAirport("AMS");
-            Airport bll = Airports.GetAirport("SEA");
-
-            Console.WriteLine("Distance between AMS and SEA is: {0} km.", MathHelpers.GetDistance(cph, bll));
-		  
+          
 		/*
 			var townGroups =
 				from a in Airports.GetAllAirports() where a.Profile.Town.Name.Trim().Length == 0
