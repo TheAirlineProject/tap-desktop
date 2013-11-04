@@ -46,8 +46,16 @@ namespace TheAirline.Model.StatisticsModel
         //calculates the value of facilities for an airline for use in happiness
         private static double GetAirlineLuxuryLevel(Airline airline)
         {
-            int luxuryLevel = airline.Facilities.Sum(f => f.LuxuryLevel);
-
+            int luxuryLevel = 0;
+            //The same goes for the GameObjectHelpers.cs ticket offices but it should only work when an allaince is full wich it is not now.
+            if (airline.Alliances.Count > 0)
+            {
+               luxuryLevel = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
+            }
+            else
+            {
+                luxuryLevel = airline.Facilities.Sum(f => f.LuxuryLevel);
+            }
             return luxuryLevel;
         }
         //calculates employee happiness as a function of wages, discounts, and free pilots (relative to workload)
