@@ -43,6 +43,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
         public Boolean IsBuyable { get; set; }
+        public Alliance Alliance { get; set; }
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
@@ -89,6 +90,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public AirlineMVVM(Airline airline)
         {
             this.Airline = airline;
+
+            this.Alliance = this.Airline.Alliances.Count == 0 ? null : this.Airline.Alliances[0];
+
             this.DeliveredFleet = new ObservableCollection<FleetAirliner>();
             foreach (FleetAirliner airliner in this.Airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime))
                 this.DeliveredFleet.Add(airliner);

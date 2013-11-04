@@ -10,6 +10,12 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirlineInfo">
     <Page.Resources>
+        <DataTemplate x:Key="AllianceItem">
+            <WrapPanel>
+                <Image Source="{Binding Logo}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 0 5 0"/>
+                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name}"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
         <local:AirlineInuseConverter x:Key="AirlineInuseConverter"></local:AirlineInuseConverter>
         <util:StringToBrushConverter x:Key="stringToBrushConverter"></util:StringToBrushConverter>
         <DataTemplate x:Key="ColorItem">
@@ -90,6 +96,21 @@
                                     </Button>
                              
                             </WrapPanel>
+                            <WrapPanel>
+                                <WrapPanel.Style>
+                                        <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Alliance}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </WrapPanel.Style>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1030'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200"/>
+                            </WrapPanel>
+                                
+             
                             <WrapPanel Style="{StaticResource WrapPanelStyle}" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1027'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <ContentControl Content="{Binding Airline.Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
