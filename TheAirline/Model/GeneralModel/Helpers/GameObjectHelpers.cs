@@ -939,21 +939,26 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     //passenger growth if ticket office
                     
                     //checking if someone in the alliance has a ticket office for the route (if in an alliance).
-                    if (airline.Alliances != null)
-                    {
+                    if (airline.Alliances != null){
                         int highest = 0;
+                        //check for the alliances
                         foreach(Alliance alliance in airline.Alliances.Where(a => a.Type == Alliance.AllianceType.Full)){
+                            //Check if soemone in the alliance has a ticket office and what service level it is
                             foreach(AllianceMember a in alliance.Members.Where(x=>airport.getAirlineAirportFacility(x.Airline,AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > highest)) {
+                                //Only use the highest server level
                                 highest = airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel;
                             }
-                            foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport)){
-                                Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
-                                airport.addDestinationPassengersRate(destination, (ushort)highest);
+                            //If there is an service level update the routes
+                            if (highest > 0) { 
+                                foreach (Route route in airline.Routes.Where(r => r.Destination1 == airport || r.Destination2 == airport)){
+                                    Airport destination = airport == route.Destination1 ? route.Destination2 : route.Destination1;
+                                    airport.addDestinationPassengersRate(destination, (ushort)highest);
+                                }
                             }
                         }
                     }
 
-                    //Not in an alliance so we will look for the only airline
+                    //Not in an alliance so we will look for the airline only
                     else
                     {
                         if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0)
