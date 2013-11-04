@@ -47,8 +47,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     this.Classes.Add(rClass);
                 }
             }
-          
-            this.Airports = GameObject.GetInstance().HumanAirline.Airports;
+
+            this.Airports = GameObject.GetInstance().HumanAirline.Airports.OrderByDescending(a=>a==GameObject.GetInstance().HumanAirline.Airports[0]).ThenBy(a => a.Profile.Name).ToList();
 
             AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
 

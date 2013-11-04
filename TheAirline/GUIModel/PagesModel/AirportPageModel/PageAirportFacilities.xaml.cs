@@ -47,22 +47,22 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         private void btnDeleteFacility_Click(object sender, RoutedEventArgs e)
         {
-            AirlineAirportFacility facility = (AirlineAirportFacility)((Button)sender).Tag;
+            AirlineAirportFacilityMVVM facility = (AirlineAirportFacilityMVVM)((Button)sender).Tag;
 
             Boolean hasHub = this.Airport.Airport.getHubs().Count(h => h.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             Boolean hasCargoRoute = GameObject.GetInstance().HumanAirline.Routes.Exists(r => (r.Destination1 == this.Airport.Airport || r.Destination2 == this.Airport.Airport) && r.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo);
             Boolean airportHasCargoTerminal = this.Airport.Airport.getCurrentAirportFacility(null, AirportFacility.FacilityType.Cargo) != null && this.Airport.Airport.getCurrentAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel > 0;
 
-            if ((facility.Facility.TypeLevel == 1 && facility.Facility.Type == AirportFacility.FacilityType.Service && this.Airport.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
+            if ((facility.Facility.Facility.TypeLevel == 1 && facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && this.Airport.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
-            else if (facility.Facility.Type == AirportFacility.FacilityType.Service && hasHub && facility.Facility == Hub.MinimumServiceFacility)
+            else if (facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && hasHub && facility.Facility.Facility == Hub.MinimumServiceFacility)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2214"), string.Format(Translator.GetInstance().GetString("MessageBox", "2214", "message"), Hub.MinimumServiceFacility.Name), WPFMessageBoxButtons.Ok);
-            else if (facility.Facility.Type == AirportFacility.FacilityType.Cargo && facility.Facility.TypeLevel == 1 && hasCargoRoute && !airportHasCargoTerminal)
+            else if (facility.Facility.Facility.Type == AirportFacility.FacilityType.Cargo && facility.Facility.Facility.TypeLevel == 1 && hasCargoRoute && !airportHasCargoTerminal)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2223"), Translator.GetInstance().GetString("MessageBox", "2223", "message"), WPFMessageBoxButtons.Ok);
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), facility.Facility.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2204"), string.Format(Translator.GetInstance().GetString("MessageBox", "2204", "message"), facility.Facility.Facility.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -110,12 +110,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
         private void btnQuickUpgradeFacility_Click(object sender, RoutedEventArgs e)
         {
-            AirlineAirportFacility currentFacility = (AirlineAirportFacility)((Button)sender).Tag;
+            AirlineAirportFacilityMVVM currentFacility = (AirlineAirportFacilityMVVM)((Button)sender).Tag;
 
-            List<AirportFacility> facilities = AirportFacilities.GetFacilities(currentFacility.Facility.Type);
+            List<AirportFacility> facilities = AirportFacilities.GetFacilities(currentFacility.Facility.Facility.Type);
             facilities = facilities.OrderBy(f=>f.TypeLevel).ToList();
           
-            int index = facilities.FindIndex(f=>currentFacility.Facility == f);
+            int index = facilities.FindIndex(f=>currentFacility.Facility.Facility == f);
 
             AirportFacility facility = facilities[index+1] ;
 

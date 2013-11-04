@@ -105,6 +105,12 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
                 }
             }
         }
+        private void btnRouteMap_Click(object sender, RoutedEventArgs e)
+        {
+            var routes = this.Alliance.Members.SelectMany(m => m.Airline.Routes);
+            PopUpMap.ShowPopUp(routes.ToList());
+  
+        }
         private void btnAccept_Click(object sender, RoutedEventArgs e)
         {
             PendingAllianceMember member = (PendingAllianceMember)((Button)sender).Tag;

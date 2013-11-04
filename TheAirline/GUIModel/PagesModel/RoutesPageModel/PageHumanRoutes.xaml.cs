@@ -87,9 +87,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
         private void btnMap_Click(object sender, RoutedEventArgs e)
         {
-
             PopUpMap.ShowPopUp(GameObject.GetInstance().HumanAirline.Routes);
-  
         }
     }
 }

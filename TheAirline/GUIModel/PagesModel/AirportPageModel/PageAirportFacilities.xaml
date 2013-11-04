@@ -10,6 +10,12 @@
 	Title="PageAirportFacilities">
     <Page.Resources>
         <local:NextFacilityConverter x:Key="NextFacilityConverter"></local:NextFacilityConverter>
+        <DataTemplate x:Key="AllianceItem">
+            <WrapPanel>
+                <Image Source="{Binding Logo}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 0 5 0"/>
+                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name}"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
     </Page.Resources>
         <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
@@ -48,13 +54,24 @@
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
-                                        <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200"></ContentControl>
-                                        <TextBlock Text="{Binding Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <ContentControl Content="{Binding Facility.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200"></ContentControl>
+                                        <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200">
+                                            <ContentControl.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Alliance}" Value="{x:Null}">
+                                                            <Setter Property="ContentControl.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </ContentControl.Style>
+                                        </ContentControl>
+                                            <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                         <Button Click="btnDeleteFacility_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}" Width="20" Tag="{Binding}" VerticalAlignment="Bottom" Background="Transparent">
                                             <Button.Style>
                                                 <Style>
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                        <DataTrigger Binding="{Binding Facility.Airline.IsHuman}" Value="False">
                                                             <Setter Property="Button.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                     </Style.Triggers>
@@ -66,7 +83,7 @@
                                             <WrapPanel.Style>
                                                 <Style>
                                                     <Style.Triggers>
-                                                        <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                        <DataTrigger Binding="{Binding Facility.Airline.IsHuman}" Value="False">
                                                             <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
                                                         </DataTrigger>
                                                         <DataTrigger Binding="{Binding ElementName=txtUpgrade, Path=Text}" Value="None">
@@ -81,16 +98,16 @@
                                             <TextBlock Name="txtUpgrade" Margin="5 0 0 0" VerticalAlignment="Bottom" FontWeight="Bold">
                                                 <TextBlock.Text>
                                                     <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Name">
-                                                        <Binding Path="Facility.Type"></Binding>
-                                                        <Binding Path="Airport"></Binding>
+                                                        <Binding Path="Facility.Facility.Type"></Binding>
+                                                        <Binding Path="Facility.Airport"></Binding>
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>
                                             <TextBlock Margin="5 0 0 0" VerticalAlignment="Bottom">
                                                 <TextBlock.Text>
                                                     <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Price">
-                                                        <Binding Path="Facility.Type"></Binding>
-                                                        <Binding Path="Airport"></Binding>
+                                                        <Binding Path="Facility.Facility.Type"></Binding>
+                                                        <Binding Path="Facility.Airport"></Binding>
                                                     </MultiBinding>
                                                 </TextBlock.Text>
                                             </TextBlock>

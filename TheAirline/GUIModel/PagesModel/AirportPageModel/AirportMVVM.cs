@@ -32,7 +32,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public double TerminalPrice { get; set; }
         public double TerminalGatePrice { get; set; }
         public List<AirportFacility> AirportFacilities { get; set; }
-        public ObservableCollection<AirlineAirportFacility> AirlineFacilities { get; set; }
+        public ObservableCollection<AirlineAirportFacilityMVVM> AirlineFacilities { get; set; }
         public List<AirportTrafficMVVM> Traffic { get; set; }
         public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
         public List<DestinationFlightsMVVM> Flights { get; set; }
@@ -84,11 +84,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null).Select(f=>f.Facility).ToList();
 
-            this.AirlineFacilities = new ObservableCollection<AirlineAirportFacility>();
+            this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
            
             foreach (var facility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
                 if (facility.Facility.TypeLevel != 0)
-                    this.AirlineFacilities.Add(facility);
+                {
+                    Alliance alliance = facility.Airline.Alliances.Count == 0 ? null : facility.Airline.Alliances[0];
+      
+                    this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(facility,alliance));
+                }
 
             this.AirlineStatistics = new List<AirportStatisticsMVMM>();
             
@@ -226,15 +230,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.CanBuildHub = canBuildHub();
         }
         //removes an airline facility from the airport
-        public void removeAirlineFacility(AirlineAirportFacility facility)
+        public void removeAirlineFacility(AirlineAirportFacilityMVVM facility)
         {
             
-            this.Airport.downgradeFacility(facility.Airline, facility.Facility.Type);
+            this.Airport.downgradeFacility(facility.Facility.Airline, facility.Facility.Facility.Type);
 
             this.AirlineFacilities.Remove(facility);
 
-            if (this.Airport.getAirlineAirportFacility(facility.Airline, facility.Facility.Type).Facility.TypeLevel > 0)
-                this.AirlineFacilities.Add(this.Airport.getAirlineAirportFacility(facility.Airline, facility.Facility.Type));
+            if (this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type).Facility.TypeLevel > 0)
+            {
+                Alliance alliance = facility.Facility.Airline.Alliances.Count == 0 ? null : facility.Facility.Airline.Alliances[0];
+                this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type),alliance));
+            }
         }
         //adds an airline facility to the airport
         public void addAirlineFacility(AirportFacility facility)
@@ -242,12 +249,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             AirlineAirportFacility nextFacility = new AirlineAirportFacility(GameObject.GetInstance().HumanAirline,this.Airport, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
             this.Airport.setAirportFacility(nextFacility);
 
-            AirlineAirportFacility currentFacility = this.AirlineFacilities.Where(f=>f.Facility.Type == facility.Type).FirstOrDefault();
+            AirlineAirportFacilityMVVM currentFacility = this.AirlineFacilities.Where(f=>f.Facility.Facility.Type == facility.Type).FirstOrDefault();
 
             if (currentFacility != null)
                 this.AirlineFacilities.Remove(currentFacility);
+            
+            Alliance alliance = nextFacility.Airline.Alliances.Count == 0 ? null : nextFacility.Airline.Alliances[0];
+      
 
-            this.AirlineFacilities.Add(nextFacility);
+            this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(nextFacility,alliance));
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -454,6 +464,17 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Flights = flights;
         }
            
+    }
+    //the mvvm object for airline airport facility
+    public class AirlineAirportFacilityMVVM
+    {
+        public AirlineAirportFacility Facility { get; set; }
+        public Alliance Alliance { get; set; }
+        public AirlineAirportFacilityMVVM(AirlineAirportFacility facility, Alliance alliance)
+        {
+            this.Facility = facility;
+            this.Alliance = alliance;
+        }
     }
     //the converter for the price of a terminal
     public class TerminalPriceConverter : IMultiValueConverter
