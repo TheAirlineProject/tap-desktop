@@ -67,9 +67,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int minRoutesForTicketOffice = 3 + (int)airline.Mentality;
             List<Airport> airports = airline.Airports.FindAll(a => AirlineHelpers.GetAirportOutboundRoutes(airline, a) >= minRoutesForTicketOffice);
 
+
+
             foreach (Airport airport in airports)
             {
-                if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel == 0)
+                int airlineticketoffice = 0;
+                //Check if someone in the alliance has an Ticket office there, else build one if needed
+                if (airline.Alliances != null)
+                {
+                    foreach (Alliance alliance in airline.Alliances.Where(a => a.Type == Alliance.AllianceType.Full))
+                    {
+                        foreach (AllianceMember a in alliance.Members.Where(x => airport.getAirlineAirportFacility(x.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0))
+                        {
+                            airlineticketoffice++;
+                            break;
+                        }
+                    }
+                }
+
+                if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel == 0 && airlineticketoffice == 0)
                 {
                     AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice).Find(f => f.TypeLevel == 1);
                     double price = facility.Price;
