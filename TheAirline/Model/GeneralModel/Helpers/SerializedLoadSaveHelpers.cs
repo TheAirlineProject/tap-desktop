@@ -82,6 +82,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 so.instance = GameObject.GetInstance();
             });
 
+
      DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
                       Int32.MaxValue,
                       false,
@@ -190,6 +191,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 //Console.WriteLine("Demand have been created in {0} ms.", swPax.ElapsedMilliseconds);
                 swPax.Stop();
             };          
+
+            //Create some pilots for the game
+			int pilotsPool = 100 * Airlines.GetAllAirlines().Count;
+			GeneralHelpers.CreatePilots(pilotsPool);
+			int instructorsPool = 75 * Airlines.GetAllAirlines().Count;
+			GeneralHelpers.CreateInstructors(instructorsPool);
 
             //Start the game paused
             GameObjectWorker.GetInstance().startPaused();
