@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Text;
 using System.Device.Location;
+using System.Windows;
+using System.Windows.Threading;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -66,27 +68,51 @@ namespace TheAirline.Model.GeneralModel
             return years;
         }
         //moves a object with coordinates in a direction for a specific distance in kilometers
-        public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist)
+        public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist, double speed, double course)
         {
-         
-            int rad = 6371;
-            dist = dist / rad;  // convert dist to angular distance in radians
-           
-            double brng = MathHelpers.GetDirection(coordinates, destination);
-            brng = MathHelpers.DegreeToRadian(brng);
-            double lon1 = MathHelpers.DegreeToRadian(coordinates.Latitude);
-            double lat1 = MathHelpers.DegreeToRadian(coordinates.Longitude);
+            var now = DateTime.Now;
+            GeoCoordinate oldPosition = coordinates;
+            double newSpeed = speed;
+            TimeSpan timeperturn = TimeSpan.FromTicks((Settings.GetInstance().MinutesPerTurn)*60);
+            TimeSpan timeParsed = timeperturn;
+            double newCourse = course;
+			while (newCourse < 0) newCourse += 360;
+			while (newCourse >= 360) newCourse -= 360;
+            double distanceTravelled = (newSpeed + newSpeed) * .5 * timeParsed.TotalSeconds;
+            double accuracy = Math.Min(500, Math.Max(20, oldPosition.HorizontalAccuracy + (rnd.NextDouble() * 100 - 50)));       
+            var pos = GetPointFromHeadingGeodesic(new Point(oldPosition.Longitude, oldPosition.Latitude), distanceTravelled, newCourse - 180);
 
-            double lat2 = Math.Asin(Math.Sin(lat1) * Math.Cos(dist) +
-                                  Math.Cos(lat1) * Math.Sin(dist) * Math.Cos(brng));
-            double lon2 = lon1 + Math.Atan2(Math.Sin(brng) * Math.Sin(dist) * Math.Cos(lat1),
-                                         Math.Cos(dist) - Math.Sin(lat1) * Math.Sin(lat2));
-            lon2 = (lon2 + 3 * Math.PI) % (2 * Math.PI) - Math.PI;  // normalise to -180...+180
-
-            coordinates.Latitude = MathHelpers.RadianToDegree(lat2);
-            coordinates.Longitude = MathHelpers.RadianToDegree(lon2);
-            
+            var newPosition = new GeoPosition<GeoCoordinate>(
+                   new DateTimeOffset(now), new GeoCoordinate()
+                   {
+                       Latitude = pos.Y,
+                       Longitude = pos.X,
+                       Altitude = oldPosition.Altitude + oldPosition.Altitude + rnd.NextDouble() * 20,
+                       Speed = newSpeed,
+                       Course = newCourse,
+                       HorizontalAccuracy = accuracy,
+                       VerticalAccuracy = rnd.NextDouble() * 300,
+                   });
+            coordinates = new GeoCoordinate(newPosition.Location.Latitude, newPosition.Location.Longitude);
         }
+        //added newly for route simulation
+        private static Point GetPointFromHeadingGeodesic(Point start, double distance, double heading)
+        {
+            double brng = heading / 180 * Math.PI;
+            double lon1 = start.X / 180 * Math.PI;
+            double lat1 = start.Y / 180 * Math.PI;
+            double dR = distance / 6378137; //Angular distance in radians
+            double lat2 = Math.Asin(Math.Sin(lat1) * Math.Cos(dR) + Math.Cos(lat1) * Math.Sin(dR) * Math.Cos(brng));
+            double lon2 = lon1 + Math.Atan2(Math.Sin(brng) * Math.Sin(dR) * Math.Cos(lat1), Math.Cos(dR) - Math.Sin(lat1) * Math.Sin(lat2));
+            double lon = lon2 / Math.PI * 180;
+            double lat = lat2 / Math.PI * 180;
+            while (lon < -180) lon += 360;
+            while (lat < -90) lat += 180;
+            while (lon > 180) lon -= 360;
+            while (lat > 90) lat -= 180;
+            return new Point(lon, lat);
+        }
+
         //gets the angle between two coordinates
         public static double GetDirection(GeoCoordinate coordinates1, GeoCoordinate coordinates2)
         {

@@ -1116,7 +1116,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                 if (adistance > 4)
-                    MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates)));
+                    MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed, airliner.CurrentPosition.Course);
 
                 double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
@@ -1136,6 +1136,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
         }
+
         //the method for updating a route airliner with status toroutestart
         private static void UpdateToRouteStartAirliner(FleetAirliner airliner)
         {
@@ -1169,7 +1170,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
                 if (adistance > 4)
-                    MathHelpers.MoveObject(airliner.CurrentPosition, destination, Math.Min(speed, MathHelpers.GetDistance(airliner.CurrentPosition, destination)));
+                    MathHelpers.MoveObject(airliner.CurrentPosition, destination, adistance, speed, airliner.CurrentPosition.Course);
 
                 double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
 
