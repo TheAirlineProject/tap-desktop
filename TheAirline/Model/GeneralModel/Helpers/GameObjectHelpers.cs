@@ -942,7 +942,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (airline.Alliances.Count>0)
                     {
                         int highest = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Max(m => airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice).Facility.ServiceLevel);
-                        Boolean hasTicketOffice = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Where(m => airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0) != null;
+                        Boolean hasTicketOffice = airline.Alliances.Where(a=>a.Type == Alliance.AllianceType.Full).SelectMany(a => a.Members).Select(m => m.Airline).Where(m => airport.getAirlineAirportFacility(m, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0) != null;
 
                         //If there is an service level update the routes
                         if (hasTicketOffice)

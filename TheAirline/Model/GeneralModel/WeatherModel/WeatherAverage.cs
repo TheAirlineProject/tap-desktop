@@ -72,14 +72,18 @@ namespace TheAirline.Model.GeneralModel.WeatherModel
         //returns the weather average for a specific airport and specific month
         public static WeatherAverage GetWeatherAverage(int month, Airport airport)
         {
-            if (averages.Exists(w => airport == w.Airport && w.Month == month))
-                return averages.Find(w => w.Airport == airport && w.Month == month);
+            WeatherAverage airportAverage = averages.Find(w => w.Airport == airport && w.Month == month);
+            WeatherAverage townAverage = averages.Find(w => w.Town == airport.Profile.Town && w.Month == month);
+            WeatherAverage countryAverage = averages.Find(w => w.Country == airport.Profile.Town.Country && w.Month == month);
 
-            if (averages.Exists(w=>airport.Profile.Town == w.Town && w.Month == month))
-                return averages.Find(w=>w.Town == airport.Profile.Town && w.Month == month);
+            if (airportAverage != null)
+                return airportAverage;
 
-            if (averages.Exists(w => airport.Profile.Town.Country == w.Country && w.Month == month))
-                return averages.Find(w => w.Country == airport.Profile.Town.Country && w.Month == month);
+            if (townAverage != null)
+                return townAverage ;
+
+            if (countryAverage != null)
+                return countryAverage;
         
             return null;
         }
