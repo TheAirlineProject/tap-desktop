@@ -1,4 +1,5 @@
-﻿using System;using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Device.Location;
@@ -16,6 +17,7 @@ namespace TheAirline.Model.GeneralModel
     public class MathHelpers
     {
         private static Random rnd = new Random();
+        public static double ToDegree(double val) { return val * 180 / Math.PI; } 
         //shuffles a list of items
         public static List<T> Shuffle<T>(List<T> list)
         {
@@ -68,14 +70,28 @@ namespace TheAirline.Model.GeneralModel
             return years;
         }
         //moves a object with coordinates in a direction for a specific distance in kilometers
-        public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist, double speed, double course)
+        public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist, double speed)
         {
+            //Get an Degree of the current flight plan
+            var dLat = coordinates.Latitude - destination.Latitude;
+            var dLon = destination.Longitude - coordinates.Longitude;
+            var dPhi = Math.Log(Math.Tan(destination.Latitude / 2 + Math.PI / 4) / Math.Tan(coordinates.Latitude / 2 + Math.PI / 4));
+            var q = (Math.Abs(dLat) > 0) ? dLat / dPhi : Math.Cos(coordinates.Latitude);
+            
+            if (Math.Abs(dLon) > Math.PI)
+            {
+                dLon = dLon > 0 ? -(2 * Math.PI - dLon) : (2 * Math.PI + dLon);
+            }
+            var brng = ToDegree(Math.Atan2(dLon, dPhi));
+
+            //Now calculate the 
             var now = DateTime.Now;
             GeoCoordinate oldPosition = coordinates;
             double newSpeed = speed;
-            TimeSpan timeperturn = TimeSpan.FromTicks((Settings.GetInstance().MinutesPerTurn)*60);
+            TimeSpan timeperturn = TimeSpan.FromTicks(36000000000);
             TimeSpan timeParsed = timeperturn;
-            double newCourse = course;
+            //Doing *2 atm because it was heading the wrong way.
+            double newCourse = brng*2;
 			while (newCourse < 0) newCourse += 360;
 			while (newCourse >= 360) newCourse -= 360;
             double distanceTravelled = (newSpeed + newSpeed) * .5 * timeParsed.TotalSeconds;
@@ -87,13 +103,15 @@ namespace TheAirline.Model.GeneralModel
                    {
                        Latitude = pos.Y,
                        Longitude = pos.X,
-                       Altitude = oldPosition.Altitude + oldPosition.Altitude + rnd.NextDouble() * 20,
+                       Altitude = 10000,
                        Speed = newSpeed,
                        Course = newCourse,
                        HorizontalAccuracy = accuracy,
                        VerticalAccuracy = rnd.NextDouble() * 300,
                    });
             coordinates = new GeoCoordinate(newPosition.Location.Latitude, newPosition.Location.Longitude);
+            //coordinates.Latitude = newPosition.Location.Latitude;
+            //coordinates.Longitude = newPosition.Location.Longitude;
         }
         //added newly for route simulation
         private static Point GetPointFromHeadingGeodesic(Point start, double distance, double heading)
