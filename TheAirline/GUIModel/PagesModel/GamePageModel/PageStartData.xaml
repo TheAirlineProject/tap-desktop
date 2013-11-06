@@ -38,7 +38,10 @@
             </g:QuickInfoValue>
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1010'}">
                 <g:QuickInfoValue.Value>
-                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbOpponents"></ComboBox>
+                    <StackPanel>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbOpponents" HorizontalAlignment="Left"></ComboBox>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1027'}" VerticalAlignment="Bottom" Foreground="DarkBlue" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1020'}">

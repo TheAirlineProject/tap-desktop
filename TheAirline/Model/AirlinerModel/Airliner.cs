@@ -100,7 +100,9 @@ namespace TheAirline.Model.AirlinerModel
 
             double facilityPrice = 0;
 
-            foreach (AirlinerClass aClass in this.Classes)
+            var classes = new List<AirlinerClass>(this.Classes);
+
+            foreach (AirlinerClass aClass in classes)
             {
                 AirlinerFacility audioFacility = aClass.getFacility(AirlinerFacility.FacilityType.Audio);
                 AirlinerFacility videoFacility = aClass.getFacility(AirlinerFacility.FacilityType.Video);

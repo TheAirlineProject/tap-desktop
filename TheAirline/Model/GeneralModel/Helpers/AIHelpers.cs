@@ -27,22 +27,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Parallel.Invoke(() =>
             {
                 CheckForNewRoute(airline);
-            }, 
-                            
+            },
+
                             () =>
                             {
                                 CheckForNewHub(airline);
-                            }, 
-                            
+                            },
+
                             () =>
                             {
                                 CheckForUpdateRoute(airline);
-                            }, 
+                            },
 
                             () =>
                             {
                                 CheckForAirlinersWithoutRoutes(airline);
-                            }, 
+                            },
 
                             () =>
                             {
@@ -52,7 +52,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             () =>
                             {
                                 CheckForSubsidiaryAirline(airline);
-                            }, 
+                            },
                             () =>
                             {
                                 CheckForAirlineAirportFacilities(airline);
@@ -103,10 +103,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for any airliners without routes
         private static void CheckForAirlinersWithoutRoutes(Airline airline)
         {
-            int max = airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute).Count;
+            lock (airline.Fleet)
+            {
+                var fleet = new List<FleetAirliner>(airline.Fleet.FindAll(a => a.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && !a.HasRoute));
+                int max = fleet.Count;
+                if (max > 0)
+                    CreateNewRoute(airline);
+            }
 
-            if (max > 0)
-                CreateNewRoute(airline);
 
 
         }
@@ -175,7 +179,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                 List<AirlinerOrder> orders = new List<AirlinerOrder>();
-                orders.Add(new AirlinerOrder(type, classes, numberToOrder,false));
+                orders.Add(new AirlinerOrder(type, classes, numberToOrder, false));
 
                 int days = rnd.Next(30);
                 AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
@@ -227,7 +231,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (airline.MarketFocus == Airline.AirlineFocus.Regional)
                 type = HubType.TypeOfHub.Regional_hub;
-            
+
             airports = airline.Airports.FindAll(a => AirlineHelpers.CanCreateHub(airline, a, HubTypes.GetHubType(type)));
 
             if (airports.Count > 0)
@@ -236,7 +240,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 Airport airport = (from a in airports orderby a.Profile.Size descending select a).First();
 
-                airport.addHub(new Hub(airline,hubtype));
+                airport.addHub(new Hub(airline, hubtype));
 
                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, AirportHelpers.GetHubPrice(airport, hubtype)); ;
 
@@ -245,7 +249,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
         }
-            //checks for the creation of a subsidiary airline for an airline
+        //checks for the creation of a subsidiary airline for an airline
         private static void CheckForSubsidiaryAirline(Airline airline)
         {
             int subAirlines = airline.Subsidiaries.Count;
@@ -555,7 +559,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     FleetAirliner fAirliner;
 
                     KeyValuePair<Airliner, Boolean>? airliner = GetAirlinerForRoute(airline, airport, destination, doLeasing, airline.AirlineRouteFocus == Route.RouteType.Cargo);
-                    
+
                     fAirliner = GetFleetAirliner(airline, airport, destination);
 
                     if (airliner.HasValue || fAirliner != null)
@@ -573,7 +577,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
                             route = new PassengerRoute(id.ToString(), airport, destination, price);
-                            
+
                             RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute)route);
 
                             foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
@@ -598,7 +602,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             isDeptOk = AirportHelpers.RentGates(airport, airline);
 
                         if (!AirportHelpers.HasFreeGates(destination, airline))
-                            isDestOk = AirportHelpers.RentGates(airport,airline);
+                            isDestOk = AirportHelpers.RentGates(airport, airline);
 
                         if (isDestOk && isDeptOk)
                         {
@@ -608,7 +612,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (humanHasRoute && Settings.GetInstance().MailsOnAirlineRoutes)
                                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode, route.Destination1.Profile.IATACode, route.Destination2.Profile.IATACode)));
 
-                            Country newDestination = airline.Routes.Count(r=>r.Destination1.Profile.Country == airport.Profile.Country || r.Destination2.Profile.Country == airport.Profile.Country) == 0 ? airport.Profile.Country : null;
+                            Country newDestination = airline.Routes.Count(r => r.Destination1.Profile.Country == airport.Profile.Country || r.Destination2.Profile.Country == airport.Profile.Country) == 0 ? airport.Profile.Country : null;
 
                             newDestination = airline.Routes.Count(r => r.Destination1.Profile.Country == destination.Profile.Country || r.Destination2.Profile.Country == destination.Profile.Country) == 0 ? destination.Profile.Country : newDestination;
 
@@ -721,7 +725,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
-            
+
         }
         //returns if a given route is a business route
         private static Boolean IsBusinessRoute(Route route, FleetAirliner airliner)
@@ -820,7 +824,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double distance = MathHelpers.GetDistance(dest1.Profile.Coordinates, dest2.Profile.Coordinates);
 
             Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
-            
+
             return isOk;
         }
         //returns if two destinations for a cargo route is correct
@@ -1256,7 +1260,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //changes the service level for a route
         private static void ChangeRouteServiceLevel(PassengerRoute route)
         {
-            
+
             var oRoutes = new List<Route>(Airlines.GetAirlines(a => a != route.Airline).SelectMany(a => a.Routes));
 
             var sameRoutes = oRoutes.Where(r => (r.Type == Route.RouteType.Mixed || r.Type == Route.RouteType.Passenger) && (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination2 == route.Destination1 && r.Destination1 == route.Destination2));

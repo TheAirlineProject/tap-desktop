@@ -180,7 +180,19 @@ namespace TheAirline.Model.GeneralModel
                     Math.Sin(tc) * distRatioSine * startLatCos,
                     distRatioCosine - startLatSin * Math.Sin(endLatRads));
 
-            return new GeoCoordinate(RadianToDegree(endLatRads), RadianToDegree(endLonRads));
+            var lat = RadianToDegree(endLatRads);
+            var lon = RadianToDegree(endLonRads);
+
+            while (lon < -180 || lon > 180)
+            {
+                if (lon < -180)
+                    lon = 180 + (lon + 180);
+
+                if (lon > 180)
+                    lon = -180 + (lon - 180);
+            }
+
+            return new GeoCoordinate(lat, lon);
 
         }
         //returns the flight time between two coordinates with a given speed

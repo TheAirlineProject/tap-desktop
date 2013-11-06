@@ -169,6 +169,7 @@ namespace TheAirline.Model.GeneralModel
 			
 			// XML-Daten lesen
 			try {
+              //  Languages.Clear();
                 // read available languages
                 foreach (XmlNode LanguageNode in xDoc.SelectNodes("Translator/Languages"))
                 {

@@ -20,7 +20,8 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             get { return _isPaused; }
             set { _isPaused = value; NotifyPropertyChanged("IsPaused"); }
         }
-        private Boolean IsFinish;
+        public Boolean IsFinish { get; set; }
+        public Boolean IsError { get; set; }
         private GameObjectWorker()
         {
             this.Worker = new BackgroundWorker();
@@ -32,6 +33,7 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             //this.Worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bw_RunWorkerCompleted);
             this.IsPaused = false;
             this.IsFinish = false;
+            this.IsError = false;
         }
         //returns the instance
         public static GameObjectWorker GetInstance()
@@ -139,6 +141,8 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
             if (this.Worker.CancellationPending == true)
             {
                  Console.WriteLine("Canceled!");
+
+                 this.IsFinish = true;
             }
 
             else if (!(e.Error == null))
@@ -156,10 +160,12 @@ namespace TheAirline.Model.GeneralModel.Helpers.WorkersModel
                 file.WriteLine(e.Error.StackTrace);
                 file.Close();
 
-          
+                this.IsError = true;
+                
                 this.Worker.RunWorkerAsync();
             }
 
+            this.IsFinish = true;
           
         }
         public event PropertyChangedEventHandler PropertyChanged;

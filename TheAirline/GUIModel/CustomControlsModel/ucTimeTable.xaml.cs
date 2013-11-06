@@ -149,37 +149,39 @@ namespace TheAirline.GUIModel.CustomControlsModel
         {
             if (startTime.Days != endTime.Days)
             {
-                TimeSpan endTimeSplit = new TimeSpan(startTime.Days,23,59,0);
-                addTimelineEntry(source,startTime, endTimeSplit, text, brush, tooltip);
+                TimeSpan endTimeSplit = new TimeSpan(startTime.Days, 23, 59, 0);
+                addTimelineEntry(source, startTime, endTimeSplit, text, brush, tooltip);
 
                 TimeSpan startTimeSplit = new TimeSpan(endTime.Days, 0, 0, 0);
-                addTimelineEntry(source,startTimeSplit, endTime, text, brush, tooltip);
+                addTimelineEntry(source, startTimeSplit, endTime, text, brush, tooltip);
             }
-            
-            TimelineEntry entry = new TimelineEntry(source,startTime, endTime,text, brush,tooltip);
-            
-            if (entry.StartTime.Days == 2)
-                this.TuesdayEntries.Add(entry);
+            else
+            {
 
-            if (entry.StartTime.Days == 3)
-                this.WednesdayEntries.Add(entry);
+                TimelineEntry entry = new TimelineEntry(source, startTime, endTime, text, brush, tooltip);
 
-            if (entry.StartTime.Days == 4)
-                this.ThursdayEntries.Add(entry);
+                if (entry.StartTime.Days == 2)
+                    this.TuesdayEntries.Add(entry);
 
-            if (entry.StartTime.Days == 5)
-                this.FridayEntries.Add(entry);
+                if (entry.StartTime.Days == 3)
+                    this.WednesdayEntries.Add(entry);
 
-            if (entry.StartTime.Days == 6)
-                this.SaturdayEntries.Add(entry);
+                if (entry.StartTime.Days == 4)
+                    this.ThursdayEntries.Add(entry);
 
-            if (entry.StartTime.Days == 0  || entry.StartTime.Days == 7)
-                this.SundayEntries.Add(entry);
+                if (entry.StartTime.Days == 5)
+                    this.FridayEntries.Add(entry);
 
-            if (entry.StartTime.Days == 1)
-                this.MondayEntries.Add(entry);
+                if (entry.StartTime.Days == 6)
+                    this.SaturdayEntries.Add(entry);
 
+                if (entry.StartTime.Days == 0 || entry.StartTime.Days == 7)
+                    this.SundayEntries.Add(entry);
 
+                if (entry.StartTime.Days == 1)
+                    this.MondayEntries.Add(entry);
+
+            }
         }
         private void EntryAdded_Event(object sender, System.Windows.RoutedEventArgs e)
         {

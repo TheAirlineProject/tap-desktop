@@ -79,12 +79,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
-                int airlineCounter = 0;
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
                 {
 
 
-                    if (GameObject.GetInstance().GameTime.Hour == airlineCounter && GameObject.GetInstance().GameTime.Minute == 0)
+                    if (GameObject.GetInstance().GameTime.Minute == 0 && GameObject.GetInstance().GameTime.Hour == airline.Airports.Count % 24)
                     {
                         if (!airline.IsHuman)
                         {
@@ -98,7 +97,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                        {
                            UpdateAirliner(airliner);
                        });
-                    airlineCounter++;
                 });
                 sw.Stop();
 

@@ -392,9 +392,12 @@ namespace TheAirline.Model.AirportModel
         public AirportFacility getCurrentAirportFacility(Airline airline, AirportFacility.FacilityType type)
         {
             List<AirportFacility> facilities = new List<AirportFacility>();
+
+            var tFacilities = new List<AirlineAirportFacility>(this.Facilities);
             lock (this.Facilities)
             {
-                facilities = (from f in this.Facilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility).ToList();
+
+                facilities = (from f in tFacilities where f.Airline == airline && f.Facility.Type == type && f.FinishedDate <= GameObject.GetInstance().GameTime orderby f.Facility.TypeLevel descending select f.Facility).ToList();
                 int numberOfFacilities = facilities.Count();
 
                 if (numberOfFacilities == 0 && airline != null)
@@ -442,8 +445,14 @@ namespace TheAirline.Model.AirportModel
         //return all the facilities for an airline
         public List<AirlineAirportFacility> getAirportFacilities(Airline airline)
         {
-            return this.Facilities.FindAll(f => f.Airline == airline);
+            var fac = new List<AirlineAirportFacility>();
 
+            lock (this.Facilities)
+            {
+                fac = this.Facilities.FindAll(f => f.Airline == airline);
+            }
+
+            return fac;
         }
         //returns all facilities
         public List<AirlineAirportFacility> getAirportFacilities()

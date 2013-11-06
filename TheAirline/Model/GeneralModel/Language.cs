@@ -47,7 +47,8 @@ namespace TheAirline.Model.GeneralModel
         //adds a language to the collection
         public static void AddLanguage(Language language)
         {
-            languages.Add(language.Name, language);
+            if (!languages.ContainsKey(language.Name))
+                languages.Add(language.Name, language);
         }
         //returns a language 
         public static Language GetLanguage(string name)
