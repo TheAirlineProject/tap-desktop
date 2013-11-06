@@ -1465,8 +1465,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     fleetAirlinerNode.SetAttribute("groundeddate", airliner.GroundedToDate.ToString(new CultureInfo("de-DE")));
 
                     fleetAirlinerNode.SetAttribute("status", airliner.Status.ToString());
-                    fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
-                    fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());
+                   // fleetAirlinerNode.SetAttribute("latitude", airliner.CurrentPosition.Latitude.ToString());
+                   // fleetAirlinerNode.SetAttribute("longitude", airliner.CurrentPosition.Longitude.ToString());
 
                     XmlElement airlinerStatsNode = xmlDoc.CreateElement("stats");
                     foreach (StatisticsType type in StatisticsTypes.GetStatisticsTypes())

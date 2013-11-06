@@ -81,7 +81,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (route.HasAirliner && route.getCurrentAirliner()!=null)
                 {
-                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, (airport == route.Destination1 ? route.Destination2 : route.Destination1).Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, (airport == route.Destination1 ? route.Destination2 : route.Destination1)) : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     for (int i = 0; i < route.TimeTable.Entries.Count; i++)
                     {
@@ -122,7 +122,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 if (route.HasAirliner && route.getCurrentAirliner() != null)
                 {
-                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport.Profile.Coordinates) : route.getCurrentAirliner().CurrentFlight.Entry;
+                    RouteTimeTableEntry entry = route.getCurrentAirliner().CurrentFlight == null ? route.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airport) : route.getCurrentAirliner().CurrentFlight.Entry;
 
                     if (!entry.Destination.Airport.Profile.Coordinates.Equals(airport.Profile.Coordinates))
                         entries.Add(entry);

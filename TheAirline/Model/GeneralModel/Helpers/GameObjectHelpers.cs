@@ -1118,7 +1118,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (adistance > 4)
                     MathHelpers.MoveObject(airliner, speed);//(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
                 
-                double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+                double distance = MathHelpers.GetDistance(airliner.CurrentPosition.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
                 if (airliner.CurrentFlight.DistanceToDestination < 5)
                 {
@@ -1156,7 +1156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (airliner.CurrentFlight != null)
             {
-                GeoCoordinate destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
+                //GeoCoordinate destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
 
                 double adistance = airliner.CurrentFlight.DistanceToDestination;//MathHelpers.GetDistance(airliner.CurrentPosition, destination);
 
@@ -1177,7 +1177,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (airliner.CurrentFlight.DistanceToDestination < 5)
                 {
                     airliner.Status = FleetAirliner.AirlinerStatus.Resting;
-                    airliner.CurrentPosition = new GeoCoordinate(destination.Latitude, destination.Longitude);
+                    airliner.CurrentPosition = airliner.CurrentFlight.Entry.DepartureAirport;// new GeoCoordinate(destination.Latitude, destination.Longitude);
 
                 }
 
@@ -1192,8 +1192,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a route airliner going to homebase
         private static void SimulateToHomebase(FleetAirliner airliner)
         {
-            airliner.CurrentPosition = new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
-            Airport airport = Airports.GetAirport(airliner.CurrentPosition);
+            airliner.CurrentPosition = airliner.CurrentFlight.Entry.Destination.Airport; //new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
+            Airport airport = airliner.CurrentPosition;
             airliner.Status = FleetAirliner.AirlinerStatus.To_homebase;
 
             if (!airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Equals(airliner.Homebase.Profile.Coordinates))
@@ -1282,7 +1282,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void SimulateLanding(FleetAirliner airliner)
         {
             DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, FleetAirlinerHelpers.GetCruisingSpeed(airliner)));
-            double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates, airliner.CurrentPosition);
+            double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport(), airliner.CurrentPosition);
 
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
             double groundTaxPerPassenger = 5;
@@ -1443,11 +1443,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double servicePrice = 10000;
 
-            airliner.CurrentPosition = new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
+            airliner.CurrentPosition = airliner.CurrentFlight.Entry.Destination.Airport;// new GeoCoordinate(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Latitude, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.Longitude);
             airliner.Status = FleetAirliner.AirlinerStatus.To_route_start;
 
-            double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.CurrentPosition);
-            double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption + Airports.GetAirport(airliner.CurrentPosition).getLandingFee();
+            double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.Entry.Destination.Airport, airliner.CurrentPosition);
+            double expenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption + airliner.CurrentPosition.getLandingFee();
 
             servicePrice += expenses;
 
@@ -1482,7 +1482,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //gets the weather for an airliner
         private static Weather GetAirlinerWeather(FleetAirliner airliner)
         {
-            double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+            double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport);
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.getDepartureAirport();
 
@@ -1526,7 +1526,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if the wind is tail (1), head (-1), or from side (0)
         private static int GetWindInfluence(FleetAirliner airliner)
         {
-            double direction = MathHelpers.GetDirection(airliner.CurrentPosition, airliner.CurrentFlight.getNextDestination().Profile.Coordinates);
+            double direction = MathHelpers.GetDirection(airliner.CurrentPosition.Profile.Coordinates, airliner.CurrentFlight.getNextDestination().Profile.Coordinates);
 
             Weather.WindDirection windDirection = MathHelpers.GetWindDirectionFromDirection(direction);
 

@@ -133,7 +133,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         }
     
         //returns the next entry after a specific date and not to a specific coordinates (airport)
-        public RouteTimeTableEntry getNextEntry(DateTime time, GeoCoordinate coordinates)
+        public RouteTimeTableEntry getNextEntry(DateTime time, Airport airport)
         {
             DayOfWeek day = time.DayOfWeek;
 
@@ -148,7 +148,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
                 foreach (RouteTimeTableEntry dEntry in (from e in entries orderby e.Time select e))
                 {
-                    if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)) && !dEntry.Destination.Airport.Profile.Coordinates.Equals(coordinates))
+                    if (!((dEntry.Day == time.DayOfWeek && dEntry.Time <= time.TimeOfDay)) && dEntry.Destination.Airport != airport)
                         return dEntry;
                 }
                 day++;
