@@ -1106,17 +1106,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 double adistance = airliner.CurrentFlight.DistanceToDestination;//airliner.CurrentPosition.GetDistanceTo(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
-                double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                double speed = airliner.Airliner.Type.CruisingSpeed;
 
+                /* Leaving it out until we get a position implemented agian
                 Weather currentWeather = GetAirlinerWeather(airliner);
-                
-                int wind = GetWindInfluence(airliner) * ((int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn));
-
-                speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
-
+                int wind = GetWindInfluence(airliner) * (int)currentWeather.WindSpeed;
+                speed = airliner.Airliner.Type.CruisingSpeed  + wind;
+                */
 
                 if (adistance > 4)
-                    MathHelpers.MoveObject(airliner, speed);//(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
+                    MathHelpers.MoveObject(airliner, speed);
                 
                 double distance = MathHelpers.GetDistance(airliner.CurrentPosition.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
@@ -1156,24 +1155,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (airliner.CurrentFlight != null)
             {
-                //GeoCoordinate destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
 
-                double adistance = airliner.CurrentFlight.DistanceToDestination;//MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+                double adistance = airliner.CurrentFlight.DistanceToDestination;
 
-                double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
+                double speed = airliner.Airliner.Type.CruisingSpeed;
+
+                /* leaving it out until we get position working agian
                 if (airliner.CurrentFlight != null)
                 {
                     Weather currentWeather = GetAirlinerWeather(airliner);
 
-                    int wind = GetWindInfluence(airliner) * ((int)currentWeather.WindSpeed / (60 / Settings.GetInstance().MinutesPerTurn));
-                    speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn) + wind;
+                    int wind = GetWindInfluence(airliner) * (int)currentWeather.WindSpeed;
+                    speed = airliner.Airliner.Type.CruisingSpeed  + wind;
 
-                }
+                } */
+
                 if (adistance > 4)
-                    MathHelpers.MoveObject(airliner,speed);// (airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
-
-                //double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
-
+                    MathHelpers.MoveObject(airliner, speed);
+                
                 if (airliner.CurrentFlight.DistanceToDestination < 5)
                 {
                     airliner.Status = FleetAirliner.AirlinerStatus.Resting;
