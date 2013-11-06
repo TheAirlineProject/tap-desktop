@@ -651,7 +651,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //creates some new used airliners for the year
 
             //Set the amount if planes that should be made
-            int upper = Airlines.GetAllAirlines().Count*2;
+            int upper = Airlines.GetAllAirlines().Count;
             int lower = Airlines.GetAllAirlines().Count/2;
             
             int airliners = rnd.Next(lower, upper);
