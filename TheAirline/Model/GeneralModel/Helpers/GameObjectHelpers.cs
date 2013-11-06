@@ -617,17 +617,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             }
 
-            //creates some new used airliners for the year
-            int airliners = rnd.Next(5, 10);
-
-            for (int i = 0; i < airliners; i++)
-                Airliners.AddAirliner(AirlinerHelpers.CreateAirlinerFromYear(GameObject.GetInstance().GameTime.Year - 1));
-
-            //deletes all used airliners older than 30 years
-            List<Airliner> oldAirliners = new List<Airliner>(Airliners.GetAirlinersForSale(a => a.BuiltDate.Year == GameObject.GetInstance().GameTime.Year - 31));
-
-            foreach (Airliner airliner in oldAirliners)
-                Airliners.RemoveAirliner(airliner);
 
             //increases the passenger demand between airports with up to 5%
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
@@ -659,6 +648,23 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the monthly update
         private static void DoMonthlyUpdate()
         {
+            //creates some new used airliners for the year
+
+            //Set the amount if planes that should be made
+            int upper = Airlines.GetAllAirlines().Count*2;
+            int lower = Airlines.GetAllAirlines().Count/2;
+            
+            int airliners = rnd.Next(lower, upper);
+
+            for (int i = 0; i < airliners; i++)
+                Airliners.AddAirliner(AirlinerHelpers.CreateAirlinerFromYear(GameObject.GetInstance().GameTime.Year - 1));
+
+            //deletes all used airliners older than 30 years
+            List<Airliner> oldAirliners = new List<Airliner>(Airliners.GetAirlinersForSale(a => a.BuiltDate.Year == GameObject.GetInstance().GameTime.Year - 31));
+
+            foreach (Airliner airliner in oldAirliners)
+                Airliners.RemoveAirliner(airliner);
+            
             //checks for new airports which are opening
             List<Airport> openedAirports = Airports.GetAllAirports(a => a.Profile.Period.From.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
             List<Airport> closedAirports = Airports.GetAllAirports(a => a.Profile.Period.To.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString());
