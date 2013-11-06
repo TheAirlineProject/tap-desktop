@@ -69,9 +69,16 @@ namespace TheAirline.Model.GeneralModel
 
             return years;
         }
+        //moves an airliner with a specific speed
+        public static void MoveObject(FleetAirliner airliner, double speed)
+        {
+            airliner.CurrentFlight.DistanceToDestination -= speed;
+        }
         //moves a object with coordinates in a direction for a specific distance in kilometers
         public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist, double speed)
         {
+            
+            
             //Get an Degree of the current flight plan
             var dLat = coordinates.Latitude - destination.Latitude;
             var dLon = destination.Longitude - coordinates.Longitude;
@@ -234,7 +241,7 @@ namespace TheAirline.Model.GeneralModel
             if (coordinate1.Equals(coordinate2))
                 return new TimeSpan();
 
-            double dist = coordinate1.GetDistanceTo(coordinate2);
+            double dist = GetDistance(coordinate1,coordinate2);
 
             double dtime = dist / speed;
 
@@ -249,7 +256,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the flight time for a given airliner type between two coordinates
         public static TimeSpan GetFlightTime(GeoCoordinate coordinate1, GeoCoordinate coordinate2, AirlinerType type)
         {
-            double dist = coordinate1.GetDistanceTo(coordinate2);
+            double dist = GetDistance(coordinate1,coordinate2);
 
             if (dist == 0)
                 return new TimeSpan(0, 0, 0);

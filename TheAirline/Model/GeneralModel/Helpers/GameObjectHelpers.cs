@@ -1104,7 +1104,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (airliner.CurrentFlight != null)
             {
-                double adistance = airliner.CurrentPosition.GetDistanceTo(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
+                double adistance = airliner.CurrentFlight.DistanceToDestination;//airliner.CurrentPosition.GetDistanceTo(airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
                 double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
 
@@ -1116,11 +1116,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
                 if (adistance > 4)
-                    MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
+                    MathHelpers.MoveObject(airliner, speed);//(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
                 
                 double distance = MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates);
 
-                if (MathHelpers.GetDistance(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates) < 5)
+                if (airliner.CurrentFlight.DistanceToDestination < 5)
                 {
                     if (airliner.Status == FleetAirliner.AirlinerStatus.On_route)
                         SimulateLanding(airliner);
@@ -1158,7 +1158,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 GeoCoordinate destination = airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates;
 
-                double adistance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+                double adistance = airliner.CurrentFlight.DistanceToDestination;//MathHelpers.GetDistance(airliner.CurrentPosition, destination);
 
                 double speed = airliner.Airliner.Type.CruisingSpeed / (60 / Settings.GetInstance().MinutesPerTurn);
                 if (airliner.CurrentFlight != null)
@@ -1170,11 +1170,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 }
                 if (adistance > 4)
-                    MathHelpers.MoveObject(airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
+                    MathHelpers.MoveObject(airliner,speed);// (airliner.CurrentPosition, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, adistance, speed);
 
-                double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
+                //double distance = MathHelpers.GetDistance(airliner.CurrentPosition, destination);
 
-                if (MathHelpers.GetDistance(airliner.CurrentPosition, destination) < 5)
+                if (airliner.CurrentFlight.DistanceToDestination < 5)
                 {
                     airliner.Status = FleetAirliner.AirlinerStatus.Resting;
                     airliner.CurrentPosition = new GeoCoordinate(destination.Latitude, destination.Longitude);

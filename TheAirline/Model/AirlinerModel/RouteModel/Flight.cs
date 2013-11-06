@@ -17,7 +17,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     [KnownType(typeof(StopoverFlight))]
     public class Flight
     {
-
+        [DataMember]
+        public double DistanceToDestination { get; set; }
         [DataMember]
         public RouteTimeTableEntry Entry { get; set; }
         [DataMember]
@@ -70,6 +71,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 this.IsOnTime = true;
             }
 
+            this.DistanceToDestination = MathHelpers.GetDistance(this.Entry.Destination.Airport.Profile.Coordinates,this.Entry.DepartureAirport.Profile.Coordinates);
 
         }
         //adds some delay minutes to the flight

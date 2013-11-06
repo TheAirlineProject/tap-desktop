@@ -952,7 +952,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GeoCoordinate pos = new GeoCoordinate(MathHelpers.DMStoDeg(coords[0], coords[1], coords[2]), MathHelpers.DMStoDeg(coords[3], coords[4], coords[5]));
 
                 FleetAirliner fAirliner = new FleetAirliner(purchasedtype, purchasedDate, airline, airliner, homebase);
-                fAirliner.CurrentPosition = pos;
+                fAirliner.CurrentPosition = null;
                 fAirliner.Status = status;
                 fAirliner.GroundedToDate = groundedDate;
 

@@ -145,6 +145,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
 
             this.IsOnTime = true;
 
+            this.DistanceToDestination = MathHelpers.GetDistance(entry.Destination.Airport.Profile.Coordinates, entry.DepartureAirport.Profile.Coordinates);
+
             CurrentFlight++;
 
         }

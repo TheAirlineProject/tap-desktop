@@ -363,8 +363,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             dottedDash.Add(2);
 
            int d = 50;
-           
-            double distance = a1.Profile.Coordinates.GetDistanceTo(a2.Profile.Coordinates);
+
+           double distance = MathHelpers.GetDistance(a1, a2);
 
            GeoCoordinate c1 = a1.Profile.Coordinates;
 

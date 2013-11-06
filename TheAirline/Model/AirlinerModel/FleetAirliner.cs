@@ -16,28 +16,28 @@ namespace TheAirline.Model.AirlinerModel
     [Serializable]
     public class FleetAirliner
     {
-        
+
         public Airliner Airliner { get; set; }
-        
+
         public string Name { get; set; }
         public Airport Homebase { get; set; }
-        public enum PurchasedType { Bought, Leased,BoughtDownPayment }
-        
+        public enum PurchasedType { Bought, Leased, BoughtDownPayment }
+
         public DateTime PurchasedDate { get; set; }
-        
+
         public PurchasedType Purchased { get; set; }
         public Boolean HasRoute { get { return this.Routes.Count > 0; } set { ;} }
-        
+
         public AirlinerStatistics Statistics { get; set; }
-        
+
         public DateTime LastAMaintenance { get; set; }
-        
+
         public int AMaintenanceInterval { get; set; }
-        
+
         public DateTime LastBMaintenance { get; set; }
-        
+
         public int BMaintenanceInterval { get; set; }
-        
+
         public DateTime LastCMaintenance { get; set; }
         public int CMaintenanceInterval { get; set; }
         public DateTime DueCMaintenance { get; set; }
@@ -60,8 +60,8 @@ namespace TheAirline.Model.AirlinerModel
         public DateTime GroundedToDate { get; set; }
         public List<Pilot> Pilots { get; set; }
         public List<AirlinerInsurance> InsurancePolicies { get; set; }
-        public int NumberOfPilots {get {return this.Pilots.Count;} private set {;}}
-        public FleetAirliner(PurchasedType purchased,DateTime purchasedDate, Airline airline,Airliner airliner,Airport homebase)
+        public int NumberOfPilots { get { return this.Pilots.Count; } private set { ;} }
+        public FleetAirliner(PurchasedType purchased, DateTime purchasedDate, Airline airline, Airliner airliner, Airport homebase)
         {
             this.Airliner = airliner;
             this.Purchased = purchased;
@@ -77,8 +77,8 @@ namespace TheAirline.Model.AirlinerModel
             this.Status = AirlinerStatus.Stopped;
             this.MaintRoutes = new List<RouteModel.Route>();
 
-            this.CurrentPosition = new GeoCoordinate(this.Homebase.Profile.Coordinates.Latitude, this.Homebase.Profile.Coordinates.Longitude);
-
+            this.CurrentPosition = new GeoCoordinate(this.Homebase.Profile.Coordinates.Latitude,this.Homebase.Profile.Coordinates.Longitude);
+      
             this.Routes = new List<Route>();
             this.Pilots = new List<Pilot>();
             this.InsurancePolicies = new List<AirlinerInsurance>();
@@ -105,7 +105,7 @@ namespace TheAirline.Model.AirlinerModel
         {
             this.Routes.Add(route);
 
-       
+
         }
         //removes a route from the airliner
         public void removeRoute(Route route)
@@ -113,12 +113,12 @@ namespace TheAirline.Model.AirlinerModel
             this.Routes.Remove(route);
 
             route.TimeTable.Entries.RemoveAll(e => e.Airliner == this);
-         
+
 
         }
 
-     
-       
+
+
     }
-  
+
 }
