@@ -69,74 +69,23 @@ namespace TheAirline.Model.GeneralModel
 
             return years;
         }
-        //moves an airliner with a specific speed
+        //moves a object by substracting the speed from the distance
         public static void MoveObject(FleetAirliner airliner, double speed)
         {
-            airliner.CurrentFlight.DistanceToDestination -= speed;
-        }
-        //moves a object with coordinates in a direction for a specific distance in kilometers
-        public static void MoveObject(GeoCoordinate coordinates, GeoCoordinate destination, double dist, double speed)
-        {
-            
-            
-            //Get an Degree of the current flight plan
-            var dLat = coordinates.Latitude - destination.Latitude;
-            var dLon = destination.Longitude - coordinates.Longitude;
-            var dPhi = Math.Log(Math.Tan(destination.Latitude / 2 + Math.PI / 4) / Math.Tan(coordinates.Latitude / 2 + Math.PI / 4));
-            var q = (Math.Abs(dLat) > 0) ? dLat / dPhi : Math.Cos(coordinates.Latitude);
-            
-            if (Math.Abs(dLon) > Math.PI)
-            {
-                dLon = dLon > 0 ? -(2 * Math.PI - dLon) : (2 * Math.PI + dLon);
-            }
-            var brng = ToDegree(Math.Atan2(dLon, dPhi));
+            double distanceToDestination;
+            double distance = airliner.CurrentFlight.DistanceToDestination;
+            double timepermove = Settings.GetInstance().MinutesPerTurn;
 
-            //Now calculate the 
-            var now = DateTime.Now;
-            GeoCoordinate oldPosition = coordinates;
-            double newSpeed = speed;
-            TimeSpan timeperturn = TimeSpan.FromTicks(36000000000);
-            TimeSpan timeParsed = timeperturn;
-            //Doing *2 atm because it was heading the wrong way.
-            double newCourse = brng*2;
-			while (newCourse < 0) newCourse += 360;
-			while (newCourse >= 360) newCourse -= 360;
-            double distanceTravelled = (newSpeed + newSpeed) * .5 * timeParsed.TotalSeconds;
-            double accuracy = Math.Min(500, Math.Max(20, oldPosition.HorizontalAccuracy + (rnd.NextDouble() * 100 - 50)));       
-            var pos = GetPointFromHeadingGeodesic(new Point(oldPosition.Longitude, oldPosition.Latitude), distanceTravelled, newCourse - 180);
+            //Making sure that if the game time is not an hour, the plane is not moving an hour forward.
+            if (timepermove == 15) { speed = speed / 4; }
+            else if (timepermove == 30) { speed = speed / 2; }
 
-            var newPosition = new GeoPosition<GeoCoordinate>(
-                   new DateTimeOffset(now), new GeoCoordinate()
-                   {
-                       Latitude = pos.Y,
-                       Longitude = pos.X,
-                       Altitude = 10000,
-                       Speed = newSpeed,
-                       Course = newCourse,
-                       HorizontalAccuracy = accuracy,
-                       VerticalAccuracy = rnd.NextDouble() * 300,
-                   });
-            coordinates = new GeoCoordinate(newPosition.Location.Latitude, newPosition.Location.Longitude);
-            //coordinates.Latitude = newPosition.Location.Latitude;
-            //coordinates.Longitude = newPosition.Location.Longitude;
-        }
-        //added newly for route simulation
-        private static Point GetPointFromHeadingGeodesic(Point start, double distance, double heading)
-        {
-            double brng = heading / 180 * Math.PI;
-            double lon1 = start.X / 180 * Math.PI;
-            double lat1 = start.Y / 180 * Math.PI;
-            double dR = distance / 6378137; //Angular distance in radians
-            double lat2 = Math.Asin(Math.Sin(lat1) * Math.Cos(dR) + Math.Cos(lat1) * Math.Sin(dR) * Math.Cos(brng));
-            double lon2 = lon1 + Math.Atan2(Math.Sin(brng) * Math.Sin(dR) * Math.Cos(lat1), Math.Cos(dR) - Math.Sin(lat1) * Math.Sin(lat2));
-            double lon = lon2 / Math.PI * 180;
-            double lat = lat2 / Math.PI * 180;
-            while (lon < -180) lon += 360;
-            while (lat < -90) lat += 180;
-            while (lon > 180) lon -= 360;
-            while (lat > 90) lat -= 180;
-            return new Point(lon, lat);
-        }
+            distanceToDestination = distance - speed;
+            if (distanceToDestination < 0) 
+                distanceToDestination  = 0;
+
+            airliner.CurrentFlight.DistanceToDestination = distanceToDestination;
+        }  
 
         //gets the angle between two coordinates
         public static double GetDirection(GeoCoordinate coordinates1, GeoCoordinate coordinates2)
