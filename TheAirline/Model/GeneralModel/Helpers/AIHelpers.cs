@@ -763,8 +763,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the sorted list of possible destinations for an airline with a start airport
         public static List<Airport> GetDestinationAirports(Airline airline, Airport airport)
         {
-            double maxDistance = (from a in Airliners.GetAirlinersForSale()
-                                  select a.Type.Range).Max();
+            var airliners = from a in Airliners.GetAirlinersForSale()
+                                  select a.Type.Range;
+            double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
 
             double minDistance = (from a in Airports.GetAirports(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
 
