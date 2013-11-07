@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -59,22 +62,43 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
              
                 if (file != null)
                 {
+                    SplashControl scLoading = UIHelpers.FindChild<SplashControl>(this, "scLoading");
 
-                    SerializedLoadSaveHelpers.LoadGame(file);
-                   
-                    PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+                    scLoading.Visibility = System.Windows.Visibility.Visible;
+                    // Disable here also your UI to not allow the user to do things that are not allowed during login-validation
+                    BackgroundWorker bgWorker = new BackgroundWorker();
+                    bgWorker.DoWork += (s, x) =>
+                    {
+                        SerializedLoadSaveHelpers.LoadGame(file);
 
-                    HolidayYear.Clear();
+                    };
+                    bgWorker.RunWorkerCompleted += (s, x) =>
+                    {
+                        scLoading.Visibility = System.Windows.Visibility.Collapsed;
 
-                    GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+                        HolidayYear.Clear();
 
-                    Setup.SetupMergers();
+                        GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
+
+                        Setup.SetupMergers();
+
+                        GameObjectWorker.GetInstance().pause();
+
+                        PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+                     };
+                    bgWorker.RunWorkerAsync();
+                    
+              
+
+                 
+
 
                 }
 
             }
 
-            GameObjectWorker.GetInstance().pause();
+     
         }
     }
 }

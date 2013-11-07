@@ -17,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
@@ -29,12 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
     public partial class PageSaveGame : Page, INotifyPropertyChanged
     {
         public ObservableCollection<string> Saves { get; set; }
-        private Boolean _isSaving;
-        public Boolean IsSaving
-        {
-            get { return _isSaving; }
-            set { _isSaving = value; NotifyPropertyChanged("IsSaving"); }
-        }
+
         public PageSaveGame()
         {
             this.Saves = new ObservableCollection<string>();
@@ -53,7 +50,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             string name = txtName.Text.Trim();
 
-           Boolean doSave = true;
+            Boolean doSave = true;
 
             if (SerializedLoadSaveHelpers.SaveGameExists(name))
             {
@@ -69,29 +66,41 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             if (doSave)
             {
-                DoEvents();
+                SplashControl scSaving = UIHelpers.FindChild<SplashControl>(this, "scSaving");
 
-                this.IsSaving = true;
+                scSaving.Visibility = System.Windows.Visibility.Visible;
+                // Disable here also your UI to not allow the user to do things that are not allowed during login-validation
+                BackgroundWorker bgWorker = new BackgroundWorker();
+                bgWorker.DoWork += (s,x) =>
+                {
+                    GameObject.GetInstance().Name = name;
 
-                GameObject.GetInstance().Name = name;
+                    SerializedLoadSaveHelpers.SaveGame(name);
 
-                SerializedLoadSaveHelpers.SaveGame(name);
-                
+               
+
+                };
+                bgWorker.RunWorkerCompleted += (s, x) =>
+                {
+                    if (!gameworkerPaused)
+                        GameObjectWorker.GetInstance().start();
+
+                    scSaving.Visibility = System.Windows.Visibility.Collapsed;
+                 };
+                bgWorker.RunWorkerAsync();
+
+               
+               
+              
+             
+
             }
-          
-            if (!gameworkerPaused)
-                GameObjectWorker.GetInstance().start();
 
-            this.IsSaving = false;
-         
-            if (doSave)
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1008"), Translator.GetInstance().GetString("MessageBox", "1008", "message"), WPFMessageBoxButtons.Ok);
-
-        }
+                 }
 
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            txtName.Text =  lbSaves.SelectedItem.ToString();
+            txtName.Text = lbSaves.SelectedItem.ToString();
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -103,9 +112,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             }
 
         }
-        public static void DoEvents()
-        {
-            Application.Current.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
-        }
+       
     }
+
 }

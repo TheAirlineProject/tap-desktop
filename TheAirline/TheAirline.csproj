@@ -536,7 +536,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\Block.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\ComparerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\SplashControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1143,12 +1151,18 @@
     <Compile Include="GraphicsModel\UserControlModel\ucSelectButton.xaml.cs">
       <DependentUpon>ucSelectButton.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\ComparerControl.xaml.cs">
       <DependentUpon>ComparerControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\FilterableListView\FilterableListView.cs" />
     <Compile Include="GUIModel\CustomControlsModel\FilterableListView\SortableGridViewColumn.cs" />
     <Compile Include="GUIModel\CustomControlsModel\FilterableListView\SortableListView.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\SplashControl.xaml.cs">
+      <DependentUpon>SplashControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\TimelineEntry.cs" />
     <Compile Include="GUIModel\CustomControlsModel\ucTimeline.xaml.cs">
       <DependentUpon>ucTimeline.xaml</DependentUpon>
