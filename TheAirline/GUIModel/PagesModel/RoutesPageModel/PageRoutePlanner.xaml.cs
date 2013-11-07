@@ -120,6 +120,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (RouteTimeTableEntry entry in this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == this.Airliner)))
                 this.Entries.Add(entry);
 
+            cbRoute.SelectedIndex = 0;
+            cbOutbound.SelectedIndex = 0;
+
         }
 
         private void cbRegion_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -168,6 +171,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
                 for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
                     this.Intervals.Add(i + 1);
+
 
             }
         }
