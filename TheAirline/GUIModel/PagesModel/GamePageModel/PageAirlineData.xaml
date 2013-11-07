@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
        xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:c="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
       xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity" 
 xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions" 
       mc:Ignorable="d" 
@@ -89,6 +90,7 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
             <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 119'}" Width="NaN" Click="btnBack_Click" Margin="5 0 0 0"></Button>
             <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}" Width="NaN" Click="btnStartMenu_Click" Margin="5 0 0 0"></Button>
         </WrapPanel>
+        <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="scCreating"></c:SplashControl>
 
 
     </StackPanel>

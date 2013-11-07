@@ -65,7 +65,7 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                     SplashControl scLoading = UIHelpers.FindChild<SplashControl>(this, "scLoading");
 
                     scLoading.Visibility = System.Windows.Visibility.Visible;
-                    // Disable here also your UI to not allow the user to do things that are not allowed during login-validation
+               
                     BackgroundWorker bgWorker = new BackgroundWorker();
                     bgWorker.DoWork += (s, x) =>
                     {

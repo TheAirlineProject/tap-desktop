@@ -21,6 +21,8 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GUIModel.CustomControlsModel;
+using System.ComponentModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -85,11 +87,28 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             }
             else
             {
-                GameObjectHelpers.CreateGame(this.StartData);
+                SplashControl scCreating = UIHelpers.FindChild<SplashControl>(this, "scCreating");
 
-                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+                scCreating.Visibility = System.Windows.Visibility.Visible;
 
-                PageNavigator.ClearNavigator();
+                BackgroundWorker bgWorker = new BackgroundWorker();
+                bgWorker.DoWork += (y, x) =>
+                {
+                    GameObjectHelpers.CreateGame(this.StartData);
+
+                };
+                bgWorker.RunWorkerCompleted += (y, x) =>
+                {
+                    scCreating.Visibility = System.Windows.Visibility.Collapsed;
+
+                    PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+                    PageNavigator.ClearNavigator();
+
+                };
+                bgWorker.RunWorkerAsync();
+
+            
             }
 
         }
