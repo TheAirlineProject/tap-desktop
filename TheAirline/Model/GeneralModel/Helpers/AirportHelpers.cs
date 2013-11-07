@@ -604,23 +604,22 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static void RentGates(Airport airport, Airline airline, int gates)
         {
+            int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline).Sum(c => c.NumberOfGates);
             AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport, gates, 20));
 
-            airport.addAirlineContract(contract);
-
+            if (currentgates == 0)
+            {
+                airport.addAirlineContract(contract);
+            }
+            else
+            {
+                foreach (AirportContract c in airport.AirlineContracts.Where(a => a.Airline == airline))
+                { 
+                c.NumberOfGates += gates;
+                }
+            }
         }
-        //rents a number of gates for an airline at an airport
-        public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length, string s)
-        {
-
-            CreateAirportContract(airport, airline, gates, length, GetYearlyContractPayment(airport, gates, length));
-        }
-        public static void CreateAirportContract(Airport airport, Airline airline, int gates, int length, double yearlypayment)
-        {
-            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, length, yearlypayment);
-            airport.addAirlineContract(contract);
-
-        }
+       
         //returns all occupied slot times for an airline at an airport (15 minutes slots)
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts)
         {
