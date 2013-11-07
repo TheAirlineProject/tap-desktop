@@ -299,9 +299,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (airliner.CurrentFlight.isPassengerFlight())
             {
-                foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
-                    RouteAirlinerClass raClass = ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type);
+                    RouteAirlinerClass raClass = ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(fac.AirlinerClass.Type);
 
                     airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.addStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"), airliner.CurrentFlight.getFlightAirlinerClass(raClass.Type).Passengers);
                     double routePassengers = airliner.CurrentFlight.Entry.TimeTable.Route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));

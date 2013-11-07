@@ -71,6 +71,7 @@ namespace TheAirline.Model.AirportModel
             this.LastExpansionDate = new DateTime(1900, 1, 1);
             this.Statics = new AirportStatics(this);
             this.AirlineContracts = new List<AirportContract>();
+
         }
         //adds a major destination to the airport
         public void addMajorDestination(string destination, int pax)

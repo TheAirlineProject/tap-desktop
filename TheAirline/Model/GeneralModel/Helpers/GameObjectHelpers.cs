@@ -1267,7 +1267,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         if (airliner.CurrentFlight.isPassengerFlight())
                         {
-                            foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                            var classes = new List<AirlinerClass>(airliner.Airliner.Classes);
+                      
+                            foreach (AirlinerClass aClass in classes)
                             {
                                 airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type), GetPassengers(airliner, aClass.Type)));
                             }
@@ -1305,9 +1307,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 tax = groundTaxPerPassenger * airliner.CurrentFlight.getTotalPassengers();
                 fuelExpenses = GameObject.GetInstance().FuelPrice * fdistance * airliner.CurrentFlight.getTotalPassengers() * airliner.Airliner.Type.FuelConsumption;
 
-                foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
-                    ticketsIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type).FarePrice;
+                   
+                    ticketsIncome += fac.Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(fac.AirlinerClass.Type).FarePrice;
                 }
 
                 FeeType employeeDiscountType = FeeTypes.GetType("Employee Discount");
@@ -1320,7 +1323,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 {
                     if (GameObject.GetInstance().GameTime.Year >= feeType.FromYear)
                     {
-                        foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                        foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                         {
                             double percent = 0.10;
                             double maxValue = Convert.ToDouble(feeType.Percentage) * (1 + percent);
@@ -1328,17 +1331,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                            feesIncome += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                            feesIncome += fac.Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
                         }
                     }
                 }
 
-                foreach (AirlinerClass aClass in airliner.Airliner.Classes)
+                foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
-                    foreach (RouteFacility facility in ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type).getFacilities())
+                    foreach (RouteFacility facility in ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(fac.AirlinerClass.Type).getFacilities())
                     {
                         if (facility.EType == RouteFacility.ExpenseType.Fixed)
-                            mealExpenses += airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * facility.ExpensePerPassenger;
+                            mealExpenses += fac.Passengers * facility.ExpensePerPassenger;
                         else
                         {
                             FeeType feeType = facility.FeeType;
@@ -1348,7 +1351,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             double value = Convert.ToDouble(rnd.Next((int)minValue, (int)maxValue)) / 100;
 
-                            mealExpenses -= airliner.CurrentFlight.getFlightAirlinerClass(aClass.Type).Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
+                            mealExpenses -= fac.Passengers * value * airliner.Airliner.Airline.Fees.getValue(feeType);
 
                         }
                     }
