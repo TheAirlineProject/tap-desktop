@@ -79,9 +79,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
+                int airlinecounter = 0;
+                int perhour = Airlines.GetAllAirlines().Count / 24;
+                int startudate = GameObject.GetInstance().GameTime.Hour * perhour;
+
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
                 {
-
 
                     if (GameObject.GetInstance().GameTime.Minute == 0 && GameObject.GetInstance().GameTime.Hour == airline.Airports.Count % 24)
                     {
@@ -100,8 +103,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                               });
                      }
 
-                     if (!airline.IsHuman && MathHelpers.IsNewDay(GameObject.GetInstance().GameTime))
+                     if (airlinecounter > startudate && airlinecounter < (startudate + perhour))
                             DayTurnHelpers.SimulateAirlineFlights(airline);
+                     
+                    airlinecounter++;
                 });
                 sw.Stop();
 
