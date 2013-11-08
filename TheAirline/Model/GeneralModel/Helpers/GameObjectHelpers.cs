@@ -1689,7 +1689,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (startData.MajorAirports)
             {
-                var majorAirports = Airports.GetAllAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large || a.Profile.Size == GeneralHelpers.Size.Very_large);
+                var majorAirports = Airports.GetAllAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large || a.Profile.Size == GeneralHelpers.Size.Very_large || a.Profile.Size == GeneralHelpers.Size.Medium);
                 var usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
 
                 majorAirports.AddRange(usedAirports);
