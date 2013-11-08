@@ -92,11 +92,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     }
 
+                     if (airline.IsHuman)
+                     {
+                          Parallel.ForEach(airline.Fleet, airliner =>
+                              {
+                              UpdateAirliner(airliner);
+                              });
+                     }
 
-                    Parallel.ForEach(airline.Fleet, airliner =>
-                       {
-                           UpdateAirliner(airliner);
-                       });
+                     if (!airline.IsHuman && MathHelpers.IsNewDay(GameObject.GetInstance().GameTime))
+                            DayTurnHelpers.SimulateAirlineFlights(airline);
                 });
                 sw.Stop();
 
@@ -656,9 +661,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             
             int airliners = rnd.Next(lower, upper);
 
-            for (int i = 0; i < airliners; i++)
+            for (int i = 0; i < airliners; i++) { 
                 Airliners.AddAirliner(AirlinerHelpers.CreateAirlinerFromYear(GameObject.GetInstance().GameTime.Year - 1));
-
+            }
             //deletes all used airliners older than 30 years
             List<Airliner> oldAirliners = new List<Airliner>(Airliners.GetAirlinersForSale(a => a.BuiltDate.Year == GameObject.GetInstance().GameTime.Year - 31));
 
