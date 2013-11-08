@@ -268,8 +268,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 SetHistoricEventInfluence(influence, true);
             }
             //updates the weather forecasts
+            
             var weatherAirports = Airports.GetAllActiveAirports();
-
+            
             foreach (WeatherAverage average in WeatherAverages.GetWeatherAverages(w => w.Airport != null && w.Month == GameObject.GetInstance().GameTime.Month))
             {
                 var airports = weatherAirports.FindAll(a => a == average.Airport);
@@ -302,7 +303,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (var airport in weatherAirports)
                 AirportHelpers.CreateAirportWeather(airport);
 
-
+            
             //updates airports
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
            {

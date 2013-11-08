@@ -242,7 +242,8 @@ namespace TheAirline.Model.AirlineModel
         //removes an alliance
         public void removeAlliance(Alliance alliance)
         {
-            this.Alliances.Remove(alliance);
+            if (this.Alliances.Contains(alliance))
+                this.Alliances.Remove(alliance);
         }
         //adds an airliner to the airlines fleet
         public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner,  Airport homeBase)
