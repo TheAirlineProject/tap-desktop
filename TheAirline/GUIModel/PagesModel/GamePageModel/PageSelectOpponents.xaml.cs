@@ -75,10 +75,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             this.StartData.Opponents = airlines;
 
-            SplashControl scCreating = UIHelpers.FindChild<SplashControl>(this, "scCreating");
-
-            scCreating.Visibility = System.Windows.Visibility.Visible;
-
+         
             BackgroundWorker bgWorker = new BackgroundWorker();
             bgWorker.DoWork += (y, x) =>
             {
@@ -87,8 +84,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             };
             bgWorker.RunWorkerCompleted += (y, x) =>
             {
-                scCreating.Visibility = System.Windows.Visibility.Collapsed;
-
+            
                 PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
 
                 PageNavigator.ClearNavigator();
