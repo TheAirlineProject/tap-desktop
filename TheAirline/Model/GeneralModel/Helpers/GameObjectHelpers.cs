@@ -1709,6 +1709,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
 
+            if (startData.MajorAirports)
+            {
+                var majorAirports = Airports.GetAllAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Very_large);
+                var usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
+
+                majorAirports.AddRange(usedAirports);
+
+                Airports.Clear();
+
+                foreach (Airport majorAirport in majorAirports.Distinct())
+                    Airports.AddAirport(majorAirport);
+
+            }
 
             Action action = () =>
             {

@@ -21,6 +21,14 @@
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbRegion" SelectionChanged="cbRegion_SelectionChanged"></ComboBox>
                 </g:QuickInfoValue.Value>
             </g:QuickInfoValue>
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1028'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="MajorAirports" Name="cbMajorAirports" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"></RadioButton>
+                        <RadioButton GroupName="MajorAirports" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0" IsChecked="True"></RadioButton>
+                    </WrapPanel>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
             <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
                 <g:QuickInfoValue.Value>
                     <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" Name="cbYear" SelectionChanged="cbYear_SelectionChanged"></ComboBox>

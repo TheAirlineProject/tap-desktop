@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.CustomControlsModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Model.AirlineModel;
@@ -72,12 +75,30 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
             this.StartData.Opponents = airlines;
 
-            GameObjectHelpers.CreateGame(this.StartData);
+            SplashControl scCreating = UIHelpers.FindChild<SplashControl>(this, "scCreating");
 
-            PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+            scCreating.Visibility = System.Windows.Visibility.Visible;
 
-            PageNavigator.ClearNavigator();
+            BackgroundWorker bgWorker = new BackgroundWorker();
+            bgWorker.DoWork += (y, x) =>
+            {
+                GameObjectHelpers.CreateGame(this.StartData);
+
+            };
+            bgWorker.RunWorkerCompleted += (y, x) =>
+            {
+                scCreating.Visibility = System.Windows.Visibility.Collapsed;
+
+                PageNavigator.NavigateTo(new PageAirline(GameObject.GetInstance().HumanAirline));
+
+                PageNavigator.ClearNavigator();
        
+
+            };
+            bgWorker.RunWorkerAsync();
+
+        
+          
         }
     }
 }
