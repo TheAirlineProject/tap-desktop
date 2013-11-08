@@ -81,10 +81,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 int airlinecounter = 0;
 
-                int perhour = Airlines.GetAllAirlines().Count / 24;
-                if (perhour == 0) 
-                    perhour = 1; 
+                int perhour = (Airlines.GetAllAirlines().Count / 24);
 
+                if (perhour == 0)
+                    perhour = 1;
+               
                 int startupdate = GameObject.GetInstance().GameTime.Hour * perhour;
 
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
@@ -1711,7 +1712,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (startData.MajorAirports)
             {
-                var majorAirports = Airports.GetAllAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Very_large);
+                var majorAirports = Airports.GetAllAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large || a.Profile.Size == GeneralHelpers.Size.Very_large);
                 var usedAirports = Airlines.GetAllAirlines().SelectMany(a => a.Airports);
 
                 majorAirports.AddRange(usedAirports);
