@@ -1,0 +1,24 @@
+﻿<page:StandardPage x:Class="TheAirline.GraphicsModel.PageModel.PageGameModel.PageSelectLanguage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageSelectLanguage">
+    <Page.Resources>
+        <DataTemplate x:Key="LanguageItem">
+            <StackPanel>
+                <Button Click="Button_Click" Height="96" Width="96" Background="Transparent" Tag="{Binding}">
+                    <Image Source="{Binding ImageFile}" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <TextBlock Text="{Binding Name}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</page:StandardPage>

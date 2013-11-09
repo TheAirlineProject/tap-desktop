@@ -1,0 +1,16 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpRouteFacilities"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+                    xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+        Title="PopUpRouteFacilities" Height="300" Width="300">
+    <Window.Resources>
+        <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <DataTemplate x:Key="SeatingItem">
+            <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource textUnderscoreConverter}}"></TextBlock>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        
+    </Grid>
+</window:PopUpWindow>

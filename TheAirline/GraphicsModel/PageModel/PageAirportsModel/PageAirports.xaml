@@ -1,0 +1,63 @@
+﻿<page:StandardPage x:Class="TheAirline.GraphicsModel.PageModel.PageAirportsModel.PageAirports"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+                   xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+                   xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirportsModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirports">
+    <Page.Resources>
+        <local:RentingGateVisibility x:Key="rentingGateVisibility"></local:RentingGateVisibility>
+        <local:IsHumanAirportConverter x:Key="isHumanAirportConverter"></local:IsHumanAirportConverter>
+        <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
+        <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
+        <DataTemplate x:Key="AirportsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Width="300" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Name" Click="Header_Click">
+                        <Run Text="Name"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="50" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="IATA" Click="Header_Click">
+                        <Run Text="{Binding AirportCodeDisplay, Source={StaticResource SettingsClass}}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="50" VerticalAlignment="Bottom" FontWeight="Bold">
+                    <Hyperlink Tag="Country" Click="Header_Click">
+                        <Run Text="Country"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" Margin="15 0 0 0">
+                    <Hyperlink Tag="Size" Click="Header_Click">
+                        <Run Text="Size"></Run>
+                    </Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AirportItem">
+            <WrapPanel>
+                <TextBlock Width="300" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding }" Click="Hyperlink_Click">
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airportCodeConverter}}" Width="50" VerticalAlignment="Bottom"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+                <TextBlock Text="{Binding Profile.Size,Converter={StaticResource textUnderscoreConverter}}" VerticalAlignment="Bottom" Margin="10 0 0 0" Width="75"></TextBlock>
+                <Button VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Click="btnRent_Click"  Visibility="{Binding Converter={StaticResource rentingGateVisibility}}">
+                    <Image Source="/Data/images/add.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Image Source="/Data/images/human.png" Height="16" Width="16"  VerticalAlignment="Bottom" Margin="5 0 0 0" RenderOptions.BitmapScalingMode="HighQuality"  Visibility="{Binding Converter={StaticResource isHumanAirportConverter}}"></Image>
+
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</page:StandardPage>

@@ -1,0 +1,70 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel.PageFleetMaintenance"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+    xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageFleetAirlinerModel.PanelFleetAirlinerModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageFleetMaintenance">
+    <Page.Resources>
+        <c:ExtendedTranslatorConverter x:Key="translatorConverter"></c:ExtendedTranslatorConverter>
+    </Page.Resources>
+        <StackPanel Margin="0 10 50 0">
+        <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1000'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}"></TextBlock>
+        <WrapPanel>
+            <StackPanel>
+                <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1002'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush}"></TextBlock>
+
+                <WrapPanel>
+                    <RadioButton Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1005'}" IsChecked="True" GroupName="MaintenanceCType" x:Name="rbDateC" Width="100"></RadioButton>
+                    <DatePicker IsEnabled="{Binding ElementName=rbDateC,Path=IsChecked}" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceC" Margin="5 0 0 0"></DatePicker>
+                </WrapPanel>
+                <WrapPanel>
+                    <RadioButton Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1006'}" GroupName="MaintenanceCType" x:Name="rbIntervalC" Width="100"></RadioButton>
+                    <Slider IsEnabled="{Binding ElementName=rbIntervalC,Path=IsChecked}" x:Name="slMaintenanceC" Width="200" Maximum="36" Minimum="6" Value="18" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <TextBlock Text="{Binding ElementName=slMaintenanceC,Path=Value,StringFormat={}{0} months}" VerticalAlignment="Bottom"/>
+                </WrapPanel>
+            </StackPanel>
+        </WrapPanel>
+        <WrapPanel>
+            <StackPanel>
+                <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1003'}" Margin="0 5 0 0" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush}"></TextBlock>
+                <WrapPanel>
+                    <RadioButton Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1005'}" IsChecked="True" GroupName="MaintenanceDType" x:Name="rbDateD" Width="100"></RadioButton>
+                    <DatePicker IsEnabled="{Binding ElementName=rbDateD,Path=IsChecked}" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpMaintenanceD" Margin="5 0 0 0"></DatePicker>
+                </WrapPanel>
+                <WrapPanel>
+                    <RadioButton Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1006'}" GroupName="MaintenanceDType" x:Name="rbIntervalD" Width="100"></RadioButton>
+                    <Slider IsEnabled="{Binding ElementName=rbIntervalD,Path=IsChecked}"  x:Name="slMaintenanceD" Width="200" Maximum="120" Minimum="12" Value="60" HorizontalAlignment="Right" IsSnapToTickEnabled="True" TickFrequency="1"/>
+                    <TextBlock Text="{Binding ElementName=slMaintenanceD,Path=Value,StringFormat={}{0} months}" VerticalAlignment="Bottom"/>
+                </WrapPanel>
+            </StackPanel>
+        </WrapPanel>
+        <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1004'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush}" Margin="0 5 0 0"></TextBlock>
+        <WrapPanel>
+            <TextBlock Text="Maintenance A" Width="100" VerticalAlignment="Bottom"></TextBlock>
+            <Slider x:Name="slMaintenanceA" Width="200" Maximum="45" Minimum="3" Value="10" IsSnapToTickEnabled="True" TickFrequency="1"/>
+            <TextBlock Text="{Binding ElementName=slMaintenanceA,Path=Value,StringFormat={}{0} days}" VerticalAlignment="Bottom"/>
+        </WrapPanel>
+        <WrapPanel>
+            <TextBlock Text="Maintenance B" VerticalAlignment="Bottom" Width="100"></TextBlock>
+            <Slider x:Name="slMaintenanceB" Maximum="72" Minimum="14" Value="10" IsSnapToTickEnabled="True" TickFrequency="1" Width="200"/>
+            <TextBlock Text="{Binding ElementName=slMaintenanceB,Path=Value,StringFormat={}{0} days}"/>
+        </WrapPanel>
+        <WrapPanel Margin="0 10 0 0" HorizontalAlignment="Left">
+            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Click="btnOK_onClick"  Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 100'}"></Button>
+            <Button Style="{DynamicResource RoundedButton}" Background="{DynamicResource ButtonBrush}" Click="btnUndo_Click"  Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 103'}" Margin="5 0 0 0"></Button>
+        </WrapPanel>
+            <TextBlock Text="{Binding Converter={StaticResource translatorConverter},ConverterParameter='PageFleetMaintenance 1001'}" FontWeight="Bold" Background="{StaticResource HeaderBackgroundBrush2}" Margin="0 10 0 0"></TextBlock>
+        <WrapPanel>
+            <ComboBox Name="cbMaintenanceType" Style="{DynamicResource ComboBoxTransparentStyle}" Width="50"></ComboBox>
+            <ComboBox Name="cbAirport" Style="{DynamicResource ComboBoxTransparentStyle}" Width="150" Margin="5 0 0 0" DisplayMemberPath="Profile.Name" SelectedValuePath="Profile.Name"></ComboBox>
+        </WrapPanel>
+        <WrapPanel Margin="0 5 0 0" HorizontalAlignment="Left">
+            <Button Style="{DynamicResource RoundedButton}" Click="btnSet_Click" Name="btnSet" Background="{DynamicResource ButtonBrush}" Width="NaN" Height="NaN" Content="{Binding Converter={StaticResource translatorConverter},ConverterParameter='General 118'}"></Button>
+        </WrapPanel>
+        
+        </StackPanel>
+</Page>

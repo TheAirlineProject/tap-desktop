@@ -1,0 +1,51 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.PilotsPageModel.PagePilots"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"    
+      xmlns:filter="clr-namespace:TheAirline.GUIModel.CustomControlsModel.FilterableListView"
+      Name="pagePilots"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PagePilots">
+        <filter:FilterableListView x:Name="lvAirliners" ItemsSource="{Binding AllPilots,ElementName=pagePilots}" ItemContainerStyle="{StaticResource ListViewItemStyle}"  FilterButtonActiveStyle="{StaticResource filterButtonActive}"           
+                                FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
+            <ListView.View>
+                <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1005'}" Width="200"  SortPropertyName="Profile.Name"  CanFilter="False">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom">
+                            <Hyperlink Tag="{Binding}" Click="lnkPilot_Click">
+                                <Run Text="{Binding Profile.Name}"></Run>
+                            </Hyperlink>
+                                </TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1006'}" Width="50"  SortPropertyName="Profile.Age"  CanFilter="False">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Profile.Age}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1007'}" Width="100"  SortPropertyName="Rating"  CanFilter="True">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Rating}"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PagePilots 1008'}" Width="200"  SortPropertyName="Profile.Town.Country.Name"  CanFilter="False">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Profile.Town.Country}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </filter:SortableGridViewColumn>
+                </GridView>
+            </ListView.View>
+        </filter:FilterableListView>
+
+  </Page>

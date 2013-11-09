@@ -1,0 +1,208 @@
+﻿<page:StandardPage
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:AirlineModel="clr-namespace:TheAirline.Model.AirlineModel" mc:Ignorable="d"
+	x:Class="TheAirline.GraphicsModel.PageModel.PageFinancesModel.PageFinances"
+    xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+    xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+	WindowTitle="Budgets"
+	FlowDirection="LeftToRight">
+    <Viewbox x:Name="panelViewbox" Stretch="Uniform">
+        <Grid x:Name="LayoutRoot">
+
+            <TextBlock x:Name="financesHeader" HorizontalAlignment="Center" Margin="146.306,536.813,449,0" TextWrapping="Wrap" Text="Finances and Budgets" VerticalAlignment="Top" Foreground="White" FontSize="21.333"/>
+            <TextBlock x:Name="budgetsLabel" HorizontalAlignment="Left" Height="23" Margin="-33,75,0,0" TextWrapping="Wrap" Text="Primary Budgets" VerticalAlignment="Top" Width="93" Background="Transparent"  RenderTransformOrigin="0.492,0.475">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="marketingSubLabel" HorizontalAlignment="Left" Height="21" Margin="-31,176.6,0,0" TextWrapping="Wrap" Text="Marketing" VerticalAlignment="Top" Width="92" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5"  Opacity="0.85" TextAlignment="Center">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="maintenanceSubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,271.5,0,0" TextWrapping="Wrap" Text="Maintenance" VerticalAlignment="Top" Width="88" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" FontSize="13.333" RenderTransformOrigin="0.5,0.5"  Opacity="0.845" TextAlignment="Center">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90.35"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="securitySubLabel" HorizontalAlignment="Left" Height="21" Margin="-29,369.166,0,0" TextWrapping="Wrap" Text="Security" VerticalAlignment="Top" Width="88"  Opacity="0.85" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" TextAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <TextBlock x:Name="csSubLabel" HorizontalAlignment="Left" Height="23" Margin="-36.001,468.667,0,0" TextWrapping="Wrap" Text="Customer Service" VerticalAlignment="Top" Width="102" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"  RenderTransformOrigin="0.5,0.5" TextAlignment="Center">
+                <TextBlock.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="-90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </TextBlock.RenderTransform>
+            </TextBlock>
+            <Button x:Name="buttonApply" Content="Apply" HorizontalAlignment="Left" Margin="321,141,0,0" VerticalAlignment="Top" Width="43"  FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold" RenderTransformOrigin="6.86,-17.05"/>
+            <Button x:Name="buttonReset" Content="Reset" HorizontalAlignment="Left" Margin="390,141,0,0" VerticalAlignment="Top" Width="43" FontSize="10.667" Background="{DynamicResource ButtonBrush}" Foreground="{DynamicResource ButtonTextColor}" BorderBrush="DarkBlue" FontWeight="Bold"/>
+            <StackPanel x:Name="mainSliderPanel" HorizontalAlignment="Left" Height="96" Margin="20,40,0,0" VerticalAlignment="Top" Width="200">
+                <Slider x:Name="marketingSlider" Maximum="10000000" LargeChange="500000" SmallChange="50000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Cursor="None" Background="Transparent"/>
+                <Slider x:Name="maintenanceSlider" Maximum="50000000" LargeChange="1000000" SmallChange="250000" TickFrequency="2500000" TickPlacement="BottomRight" Value="2500000"/>
+                <Slider x:Name="securitySlider" LargeChange="500000" Maximum="10000000" SmallChange="250000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000"/>
+                <Slider x:Name="csSlider" LargeChange="500000" Maximum="10000000" SmallChange="250000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000"/>
+            </StackPanel>
+            <StackPanel x:Name="sliderValues" HorizontalAlignment="Left" Height="96" Margin="227,39.333,0,0" VerticalAlignment="Top" Width="100">
+                <TextBlock x:Name="marketingValue" Height="22" TextWrapping="Wrap" Text="{Binding Value, ElementName=marketingSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="Transparent" />
+                <TextBlock x:Name="maintenanceValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=maintenanceSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="Transparent" />
+                <TextBlock x:Name="securityValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=securitySlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="Transparent" />
+                <TextBlock x:Name="csValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=csSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="Transparent" />
+            </StackPanel>
+            <StackPanel x:Name="labelPanel" HorizontalAlignment="Left" Height="89.333" Margin="321,40.333,0,0" VerticalAlignment="Top" Width="136">
+                <TextBlock x:Name="marketingLabel" TextWrapping="Wrap" Text="Marketing Budget" Height="22"/>
+                <TextBlock x:Name="maintenanceLabel" TextWrapping="Wrap" Text="Maintenance Budget" Height="22"/>
+                <TextBlock x:Name="securityLabel" TextWrapping="Wrap" Text="Security Budget" Height="22"/>
+                <TextBlock x:Name="csLabel" TextWrapping="Wrap" Text="Customer Service Budget" Height="22"/>
+            </StackPanel>
+            <WrapPanel x:Name="marketingSliderPanel" HorizontalAlignment="Left" Height="92" Margin="25,141,0,0" VerticalAlignment="Top" Width="200">
+                <Slider x:Name="printSlider" Width="104" Height="23" Maximum="10000000" SmallChange="250000" LargeChange="1000000" TickFrequency="400000" TickPlacement="BottomRight" Value="125000" FontFamily="Segoe UI" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <TextBlock x:Name="printLabel" Height="23" TextWrapping="Wrap" Text="Print Budget" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+                <Slider x:Name="televisionSlider" Width="104" Height="23" Maximum="10000000" SmallChange="250000" LargeChange="1000000" TickFrequency="400000" TickPlacement="BottomRight" Value="125000" FontFamily="Segoe UI" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <TextBlock x:Name="tvLabel" Height="23" TextWrapping="Wrap" Text="TV" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+                <Slider x:Name="radioSlider" Width="104" Height="23" Maximum="10000000" SmallChange="250000" LargeChange="1000000" TickFrequency="400000" TickPlacement="BottomRight" Value="125000" FontFamily="Segoe UI" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <TextBlock x:Name="radioLabel" Height="23" TextWrapping="Wrap" Text="Radio" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+                <Slider x:Name="internetSlider" Width="104" Height="23" Maximum="10000000" SmallChange="250000" LargeChange="1000000" TickFrequency="400000" TickPlacement="BottomRight" Value="125000" FontFamily="Segoe UI" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <TextBlock x:Name="internetLabel" Height="23" TextWrapping="Wrap" Text="Internet" Width="75" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+            </WrapPanel>
+            <StackPanel x:Name="marketingValuePanel" HorizontalAlignment="Left" Height="92" Margin="204,141,0,0" VerticalAlignment="Top" Width="100">
+                <TextBlock x:Name="printValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=printSlider, Mode=TwoWay, StringFormat=\{0:C\}}"  Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <TextBlock x:Name="televisionValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=televisionSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+                <TextBlock x:Name="radioValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=radioSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+                <TextBlock x:Name="internetValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=internetSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Opacity="0.845"/>
+            </StackPanel>
+            <StackPanel x:Name="maintenanceSliderPanel" HorizontalAlignment="Left" Height="97" Margin="25,238,0,0" VerticalAlignment="Top" Width="106">
+                <Slider x:Name="overhaulSlider" Height="22" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Foreground="LightBlue" Opacity="0.845" LargeChange="1000000" Maximum="25000000" SmallChange="250000" TickFrequency="1000000" TickPlacement="BottomRight" Value="2000000"/>
+                <Slider x:Name="partsSlider" Height="22" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Foreground="LightBlue" Opacity="0.845" LargeChange="1000000" Maximum="25000000" SmallChange="250000" TickFrequency="1000000" TickPlacement="BottomRight" Value="2000000"/>
+                <Slider x:Name="engineSlider" Height="22" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Foreground="LightBlue" Opacity="0.845" LargeChange="1000000" Maximum="25000000" SmallChange="250000" TickFrequency="1000000" TickPlacement="BottomRight" Value="2000000"/>
+                <Slider x:Name="rsSlider" Height="22" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Foreground="LightBlue" Opacity="0.845" LargeChange="1000000" Maximum="25000000" SmallChange="250000" TickFrequency="1000000" TickPlacement="BottomRight" Value="2000000"/>
+            </StackPanel>
+            <StackPanel x:Name="maintenanceLabelPanel" HorizontalAlignment="Left" Height="97" Margin="131,238,0,0" VerticalAlignment="Top" Width="116">
+                <TextBlock x:Name="overhaulLabel" Height="22" TextWrapping="Wrap" Text="Interior Overhaul" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue" Opacity="0.845"/>
+                <TextBlock x:Name="partsLabel" Height="22" TextWrapping="Wrap" Text="Parts Replacement" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue" Opacity="0.845"/>
+                <TextBlock x:Name="engineRestorLabel" Height="22" TextWrapping="Wrap" Text="Engine Restoration" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue" Opacity="0.845"/>
+                <TextBlock x:Name="remoteServiceLabel" Height="22" TextWrapping="Wrap" Text="Remote Service" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue" Opacity="0.845"/>
+            </StackPanel>
+            <StackPanel x:Name="maintenanceValuePanel" HorizontalAlignment="Left" Height="88" Margin="247,238,0,0" VerticalAlignment="Top" Width="100">
+                <TextBlock x:Name="overhaulValue" Height="22" TextWrapping="Wrap" Text="{Binding Value, ElementName=overhaulSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.85" />
+                <TextBlock x:Name="partsValue" Height="22" TextWrapping="Wrap" Text="{Binding Value, ElementName=partsSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.85" />
+                <TextBlock x:Name="engineValue" Height="22" TextWrapping="Wrap" Text="{Binding Value, ElementName=engineSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.85" />
+                <TextBlock x:Name="rsValue" Height="22" TextWrapping="Wrap" Text="{Binding Value, ElementName=rsSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.85" />
+            </StackPanel>
+            <StackPanel x:Name="securitySliderPanel" HorizontalAlignment="Left" Height="100" Margin="25,335,0,0" VerticalAlignment="Top" Width="106" Opacity="0.85">
+                <Slider x:Name="inflightSlider" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" LargeChange="500000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="1000000"/>
+                <Slider x:Name="airportSlider" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" LargeChange="500000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="1000000"/>
+                <Slider x:Name="baggageSlider" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" LargeChange="500000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="1000000"/>
+                <Slider x:Name="itSlider" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" LargeChange="500000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="1000000"/>
+            </StackPanel>
+            <StackPanel x:Name="securityLabelPanel" HorizontalAlignment="Left" Height="88" Margin="131,335,0,0" VerticalAlignment="Top" Width="120" Opacity="0.85">
+                <TextBlock x:Name="inflightLabel" Height="22" TextWrapping="Wrap" Text="In-Flight Security" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue"/>
+                <TextBlock x:Name="airportLabel" Height="22" TextWrapping="Wrap" Text="Airport Security" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue"/>
+                <TextBlock x:Name="equipmentLabel" Height="22" TextWrapping="Wrap" Text="Security Equipment" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue"/>
+                <TextBlock x:Name="itLabel" Height="22" TextWrapping="Wrap" Text="Computer Security" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}"  Foreground="LightBlue"/>
+            </StackPanel>
+            <StackPanel x:Name="securityValuePanel" HorizontalAlignment="Left" Height="88" Margin="251,335,0,0" VerticalAlignment="Top" Width="100" Opacity="0.85">
+                <TextBlock x:Name="inflightValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=inflightSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" />
+                <TextBlock x:Name="airportValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=airportSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" />
+                <TextBlock x:Name="equipmentValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=baggageSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" />
+                <TextBlock x:Name="itValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=itSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" />
+            </StackPanel>
+            <StackPanel x:Name="csSliderPanel" HorizontalAlignment="Left" Height="88" Margin="25,435,0,0" VerticalAlignment="Top" Width="106">
+                <Slider x:Name="compSlider" Width="106" LargeChange="250000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <Slider x:Name="promoSlider" Width="106" LargeChange="250000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <Slider x:Name="scSlider" Width="106" LargeChange="250000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+                <Slider x:Name="prSlider" Width="106" LargeChange="250000" Maximum="10000000" SmallChange="100000" TickFrequency="500000" TickPlacement="BottomRight" Value="500000" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845"/>
+            </StackPanel>
+            <StackPanel x:Name="csLabelPanel" HorizontalAlignment="Left" Height="88" Margin="131,435,0,0" VerticalAlignment="Top" Width="100">
+                <TextBlock x:Name="compLabel" Height="22" TextWrapping="Wrap" Text="Compensation" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+                <TextBlock x:Name="promoLabel" Height="22" TextWrapping="Wrap" Text="Promotionals" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+                <TextBlock x:Name="scLabel" Height="22" TextWrapping="Wrap" Text="Service Center" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+                <TextBlock x:Name="prLabel" Height="22" TextWrapping="Wrap" Text="Public Relations" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+            </StackPanel>
+            <StackPanel x:Name="csValuePanel" HorizontalAlignment="Left" Height="88" Margin="231,435,0,0" VerticalAlignment="Top" Width="100">
+                <TextBlock x:Name="compValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=compSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+                <TextBlock x:Name="promoValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=promoSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+                <TextBlock x:Name="scValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=scSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+                <TextBlock x:Name="prValue" Height="23" TextWrapping="Wrap" Text="{Binding Value, ElementName=prSlider, Mode=TwoWay, StringFormat=\{0:C\}}" Background="{DynamicResource {x:Static SystemColors.ControlDarkDarkBrushKey}}" Opacity="0.845" />
+            </StackPanel>
+            <TextBlock x:Name="foHeader" HorizontalAlignment="Center" Height="23" Margin="565,37.896,111,0" TextWrapping="Wrap" Text="Financial Overview" VerticalAlignment="Top" Width="124" Background="Transparent" Foreground="LightGray"  FontSize="13.333" FontWeight="Bold">
+                <TextBlock.Effect>
+                    <DropShadowEffect BlurRadius="3" Color="#FF88AAF3" ShadowDepth="2" Opacity="0.925"/>
+                </TextBlock.Effect>
+            </TextBlock>
+            <StackPanel x:Name="labelPanel1" HorizontalAlignment="Left" Height="275" Margin="462,60,0,0" VerticalAlignment="Top" Width="120" Opacity="0.995">
+                <TextBlock x:Name="totalCash" Height="23" TextWrapping="Wrap" Text="Total Cash" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalBudget" Height="23" TextWrapping="Wrap" Text="Total Budget" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="remBudget" Height="23" TextWrapping="Wrap" Text="Remaining Budget" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="eoyCash" Height="23" TextWrapping="Wrap" Text="End of Year Cash" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="fleetSize" Height="23" TextWrapping="Wrap" Text="Fleet Size" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalFleetVal" Height="23" TextWrapping="Wrap" Text="Total Fleet Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="avgAirlinerVal" Height="23" TextWrapping="Wrap" Text="Avg Airliner Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="susbsidiaries" Height="23" TextWrapping="Wrap" Text="Subsidiaries" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalSubVal" Height="23" TextWrapping="Wrap" Text="Total Subs. Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="avgSubVal" Height="23" TextWrapping="Wrap" Text="Avg Subs. Value" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalEmployees" Height="23" TextWrapping="Wrap" Text="Total Employees" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+                <TextBlock x:Name="totalPayroll" Height="23" TextWrapping="Wrap" Text="Total Annual Payroll" Background="#BF808080"  Foreground="White" FontWeight="Bold"/>
+            </StackPanel>
+            <StackPanel x:Name="currentYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="582,60,0,0" VerticalAlignment="Top" Width="92" Opacity="0.995">
+                <TextBlock x:Name="mCashValue" Height="23" TextWrapping="Wrap" Text="$37,501,400" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mBudgetValue" Height="23" TextWrapping="Wrap" Text="$77,500,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mrBudgetValue" Height="23" TextWrapping="Wrap" Text="$19,400,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="meoyCashValue" Height="23" TextWrapping="Wrap" Text="$41,622,920" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intFleetSizeValue" Height="23" TextWrapping="Wrap" Text="27" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalFleetValue" Height="23" TextWrapping="Wrap" Text="$813,561,774" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgAirlinerValue" Height="23" TextWrapping="Wrap" Text="$30,111,111" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intSubsValue" Height="23" TextWrapping="Wrap" Text="1" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalEmployees" Height="23" TextWrapping="Wrap" Text="722" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalPayroll" Height="23" TextWrapping="Wrap" Text="$29,983,216" Background="#BF808080" Foreground="LightGray"/>
+            </StackPanel>
+            <StackPanel x:Name="previousYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="674,60,0,0" VerticalAlignment="Top" Width="92" Opacity="0.995">
+                <TextBlock x:Name="mCashValue1" Height="23" TextWrapping="Wrap" Text="$71,422,800" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mBudgetValue1" Height="23" TextWrapping="Wrap" Text="$62,500,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mrBudgetValue1" Height="23" TextWrapping="Wrap" Text="$31,350,000" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="meoyCashValue1" Height="23" TextWrapping="Wrap" Text="$52,675,300" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intFleetSizeValue1" Height="23" TextWrapping="Wrap" Text="14" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalFleetValue1" Height="23" TextWrapping="Wrap" Text="$367,190,632" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgAirlinerValue1" Height="23" TextWrapping="Wrap" Text="$26,215,688" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intSubsValue1" Height="23" TextWrapping="Wrap" Text="0" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mAvgSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="intTotalEmployees1" Height="23" TextWrapping="Wrap" Text="381" Background="#BF808080" Foreground="LightGray"/>
+                <TextBlock x:Name="mTotalPayroll1" Height="23" TextWrapping="Wrap" Text="$14,308,836" Background="#BF808080" Foreground="LightGray"/>
+            </StackPanel>
+            <TextBlock x:Name="current" TextWrapping="Wrap" Text="Current" Margin="582,335,126,242" Width="92" Height="23" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
+            <TextBlock x:Name="oneYearAgo" HorizontalAlignment="Left" Height="23" Margin="674,335,0,0" TextWrapping="Wrap" Text="One Year Ago" VerticalAlignment="Top" Width="92" TextAlignment="Center" Background="#CC808080" Foreground="White"/>
+            <Button x:Name="_1year" Content="1 Year Ago" HorizontalAlignment="Left" Margin="462,16,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="_5year" Content="5 Years Ago" HorizontalAlignment="Left" Margin="582,16,0,0" VerticalAlignment="Top" Width="75"/>
+            <Button x:Name="_10year" Content="10 Years Ago" HorizontalAlignment="Left" Margin="694,16,0,0" VerticalAlignment="Top" Width="75"/>
+        </Grid>
+    </Viewbox>
+</page:StandardPage>

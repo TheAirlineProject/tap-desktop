@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner manufacturer="DH" name="DH.114 Heron" price="75149">
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+	<specs wingspan="21.8" length="14.79" range="1473" speed="295" fuelcapacity="1190" consumption="0.061" runwaylengthrequired="1182"/>
+	<capacity passengers="14" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+	<produced from="1950" to="1963" rate="8"/>
+  </airliner>
+  <airliner manufacturer="DH" name="DH.104 Dove" price="271440">
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+	<specs wingspan="17.4" length="11.96" range="1415" speed="370" fuelcapacity="979" consumption="0.065" runwaylengthrequired="1182"/>
+	<capacity passengers="8" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+	<produced from="1946" to="1967" rate="7"/>
+  </airliner>
+</airliners>

@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Eaglexpress" iata="9A" color="Red" country="173" CEO="Azlan Zainal Abidin" mentality="Aggressive" market="Regional" preferedairport="KUL">
+    <narrative narrative="Eaglexpress is a charter airline baes in Malaysia. It is a Joint Venture of Malaysian and South Korean investors, with a 60-40 split. Specializing in Pilgrimage Charters, they operate a single Boeing 747-400 acquired from Malaysia Airlines, and is in the process of adding 2 Boeing 747-400's and up to 8 Boeing 737-800 aircraft.   " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="KUL" destinations="5" minimumsize="Large">
+<countries>
+<country value="173"></country>
+<country value="165"></country>
+<country value="136"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Boeing 747-400" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

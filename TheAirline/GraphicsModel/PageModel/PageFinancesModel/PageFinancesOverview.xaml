@@ -1,0 +1,63 @@
+﻿<Page
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="TheAirline.PageFinancesOverview"
+	x:Name="Page"
+	WindowTitle="Page"
+	FlowDirection="LeftToRight"
+	Width="370" Height="460"
+	WindowWidth="640" WindowHeight="480" Background="Black">
+
+	<Grid x:Name="LayoutRoot" Background="Transparent">
+		<TextBox x:Name="current" TextWrapping="Wrap" Text="Current" Margin="10,191,0,0" Width="60" Height="20" TextAlignment="Center" BorderThickness="0,1,0,0" Background="Transparent" Foreground="White"/>
+		<TextBox x:Name="foHeader" HorizontalAlignment="Center" Height="23" Margin="132.5,10,118.5,0" TextWrapping="Wrap" Text="Financial Overview" VerticalAlignment="Top" Width="124" Background="Transparent" Foreground="Blue" BorderThickness="0" FontSize="13.333" FontWeight="Bold">
+			<TextBox.Effect>
+				<DropShadowEffect BlurRadius="3" Color="#FF88AAF3" ShadowDepth="2" Opacity="0.925"/>
+			</TextBox.Effect>
+		</TextBox>
+		<StackPanel x:Name="labelPanel" HorizontalAlignment="Left" Height="275" Margin="10,33,0,0" VerticalAlignment="Top" Width="120">
+			<TextBox x:Name="totalCash" Height="23" TextWrapping="Wrap" Text="Total Cash" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="totalBudget" Height="23" TextWrapping="Wrap" Text="Total Budget" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="remBudget" Height="23" TextWrapping="Wrap" Text="Remaining Budget" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="eoyCash" Height="23" TextWrapping="Wrap" Text="End of Year Cash" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="fleetSize" Height="23" TextWrapping="Wrap" Text="Fleet Size" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="totalFleetVal" Height="23" TextWrapping="Wrap" Text="Total Fleet Value" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="avgAirlinerVal" Height="23" TextWrapping="Wrap" Text="Avg Airliner Value" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="susbsidiaries" Height="23" TextWrapping="Wrap" Text="Subsidiaries" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="totalSubVal" Height="23" TextWrapping="Wrap" Text="Total Subs. Value" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="avgSubVal" Height="23" TextWrapping="Wrap" Text="Avg Subs. Value" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="totalEmployees" Height="23" TextWrapping="Wrap" Text="Total Employees" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+			<TextBox x:Name="totalPayroll" Height="23" TextWrapping="Wrap" Text="Total Annual Payroll" Background="Transparent" BorderThickness="0,0,0,1" Foreground="White" FontWeight="Bold"/>
+		</StackPanel>
+		<StackPanel x:Name="currentYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="144,33,0,0" VerticalAlignment="Top" Width="92">
+			<TextBox x:Name="mCashValue" Height="23" TextWrapping="Wrap" Text="$37,501,400" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mBudgetValue" Height="23" TextWrapping="Wrap" Text="$77,500,000" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mrBudgetValue" Height="23" TextWrapping="Wrap" Text="$19,400,000" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="meoyCashValue" Height="23" TextWrapping="Wrap" Text="$41,622,920" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intFleetSizeValue" Height="23" TextWrapping="Wrap" Text="27" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mTotalFleetValue" Height="23" TextWrapping="Wrap" Text="$813,561,774" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mAvgAirlinerValue" Height="23" TextWrapping="Wrap" Text="$30,111,111" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intSubsValue" Height="23" TextWrapping="Wrap" Text="1" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intTotalSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mAvgSubsValue" Height="23" TextWrapping="Wrap" Text="$391,475,000" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intTotalEmployees" Height="23" TextWrapping="Wrap" Text="722" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mTotalPayroll" Height="23" TextWrapping="Wrap" Text="$29,983,216" Background="Transparent" Foreground="LightGray"/>
+		</StackPanel>
+		<StackPanel x:Name="previousYearValuePanel" HorizontalAlignment="Left" Height="275" Margin="256,33,0,0" VerticalAlignment="Top" Width="92">
+			<TextBox x:Name="mCashValue1" Height="23" TextWrapping="Wrap" Text="$71,422,800" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mBudgetValue1" Height="23" TextWrapping="Wrap" Text="$62,500,000" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mrBudgetValue1" Height="23" TextWrapping="Wrap" Text="$31,350,000" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="meoyCashValue1" Height="23" TextWrapping="Wrap" Text="$52,675,300" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intFleetSizeValue1" Height="23" TextWrapping="Wrap" Text="14" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mTotalFleetValue1" Height="23" TextWrapping="Wrap" Text="$367,190,632" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mAvgAirlinerValue1" Height="23" TextWrapping="Wrap" Text="$26,215,688" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intSubsValue1" Height="23" TextWrapping="Wrap" Text="0" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intTotalSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mAvgSubsValue1" Height="23" TextWrapping="Wrap" Text="$0" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="intTotalEmployees1" Height="23" TextWrapping="Wrap" Text="381" Background="Transparent" Foreground="LightGray"/>
+			<TextBox x:Name="mTotalPayroll1" Height="23" TextWrapping="Wrap" Text="$14,308,836" Background="Transparent" Foreground="LightGray"/>
+		</StackPanel>
+		<TextBox x:Name="oneYearAgo" HorizontalAlignment="Left" Height="23" Margin="256,315.5,0,0" TextWrapping="Wrap" Text="One Year Ago" VerticalAlignment="Top" Width="92" TextAlignment="Center" Background="Transparent" BorderThickness="0,1,0,0" Foreground="White"/>
+	</Grid>
+</Page>

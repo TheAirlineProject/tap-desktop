@@ -1,0 +1,54 @@
+﻿<page:StandardPage x:Class="TheAirline.GraphicsModel.PageModel.GeneralModel.PageNewsBox"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"  
+                   xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+                   xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageNewsBox">
+    <Page.Resources>
+        <local:NewsTextConverter x:Key="newsTextConverter"></local:NewsTextConverter>
+        <c:LanguageTranslationConverter x:Key="languageTranslationConverter"></c:LanguageTranslationConverter>
+        <c:BooleanToBold x:Key="booleanToBold"></c:BooleanToBold>
+        <c:TextUnderscoreConverter x:Key="textUnderscoreConverter"></c:TextUnderscoreConverter>
+        <DataTemplate x:Key="NewsShowItem">
+            <StackPanel>
+                <TextBlock Text="{Binding Subject}" FontWeight="Bold" FontSize="20" VerticalAlignment="Bottom"></TextBlock>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1002',StringFormat={}{0}:}" FontWeight="Black" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy HH:mm}}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                </WrapPanel>
+                <Separator/>
+              <!--  <TextBlock Text="{Binding Body}" VerticalAlignment="Bottom" TextWrapping="Wrap" HorizontalAlignment="Left" FontWeight="Bold"></TextBlock>-->
+                <ContentControl Content="{Binding Body,Converter={StaticResource newsTextConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></ContentControl>
+            </StackPanel>
+        </DataTemplate>
+            <DataTemplate x:Key="NewsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock VerticalAlignment="Bottom" Margin="20 0 0 0" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1000'}" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1001'}" Width="200" FontWeight="Bold" Margin="0 0 5 0"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource languageTranslationConverter},ConverterParameter='1002'}" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NewsItem">
+            <WrapPanel>
+                <CheckBox VerticalAlignment="Bottom" IsChecked="False" Width="20" Checked="cbNews_Checked" Unchecked="cbNews_Unchecked" Tag="{Binding}"></CheckBox>
+                 <TextBlock VerticalAlignment="Bottom" Text="{Binding Type,Converter={StaticResource textUnderscoreConverter}}" Width="100" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Width="200" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}" Margin="0 0 5 0">
+                    <Hyperlink Tag="{Binding}" Click="LnkNews_Click">
+                        <Run  Text="{Binding Subject}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Date, StringFormat={}{0:MM/dd/yyyy HH:mm}}" Width="125" FontWeight="{Binding IsUnRead,Converter={StaticResource booleanToBold}}"></TextBlock>
+
+
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+    <Grid>
+
+    </Grid>
+</page:StandardPage>

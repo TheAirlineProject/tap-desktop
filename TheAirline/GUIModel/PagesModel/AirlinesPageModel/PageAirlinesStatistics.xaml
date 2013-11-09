@@ -1,0 +1,107 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinesPageModel.PageAirlinesStatistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      Name="pageAirlinesStastistics"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlinesStatistics">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <ListView  util:GridViewSort.AutoSort="True" x:Name="AirportsList" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllAirlines,ElementName=pageAirlinesStastistics}">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                <Image Source="/data/images/human.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"/>
+                                    <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}"/>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1000'}" util:GridViewSort.PropertyName="Airline.Profile.Name" Width="200">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1001'}" util:GridViewSort.PropertyName="Airline.Reputation" Width="120">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ProgressBar HorizontalAlignment="Center" Width="100" Value="{Binding Airline.Reputation}" VerticalAlignment="Bottom" Height="15" Background="Transparent" BorderBrush="Black"></ProgressBar>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1002'}" util:GridViewSort.PropertyName="Airline.Fleet.Count" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Airline.Fleet.Count}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1003'}" util:GridViewSort.PropertyName="AvgFleetAge" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding AvgFleetAge,StringFormat={}{0:0.#}}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1004'}" util:GridViewSort.PropertyName="Airline.Airports.Count" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Airline.Airports.Count}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1005'}" util:GridViewSort.PropertyName="Flights" Width="75">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1006'}" util:GridViewSort.PropertyName="Passengers" Width="75">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1007'}" util:GridViewSort.PropertyName="PassengersPerFlight" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1009'}" util:GridViewSort.PropertyName="Passengers" Width="75">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Cargo}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1010'}" util:GridViewSort.PropertyName="PassengersPerFlight" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding CargoPerFlight}" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 1008'}" util:GridViewSort.PropertyName="Profit" Width="150">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Profit,Converter={StaticResource ValueCurrencyConverter}}" Foreground="{Binding Profit,Converter={StaticResource ValueIsMinusConverter}}" HorizontalAlignment="Center" VerticalAlignment="Bottom"></TextBlock>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </ScrollViewer>
+</Page>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Ariana Afghan Airlines" iata="FG" color="LightBlue" country="253" CEO="Moin Khan Wardak" mentality="Moderate" market="Local" preferedairport="KBL">
+<narrative narrative="Ariana Afgan Airlines is the largest airline of Afghanistan and serves as the country's national carrier"/>
+</profile>
+<info real="True" from="1955" to="2199"></info>
+</airline>

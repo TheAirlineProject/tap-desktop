@@ -1,0 +1,63 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel.PageAirportFlights"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirportFlights">
+    <Page.Resources>
+        
+        <DataTemplate x:Key="AirportDestinationItem">
+            <WrapPanel>
+                <ContentControl ContentTemplate="{DynamicResource AirlineLogoItem}" Content="{Binding Airline}" Width="150"></ContentControl>
+                <TextBlock Text="{Binding Entry.Destination.FlightCode}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Time,StringFormat={}{0:MM/dd HH:mm}}" VerticalAlignment="Bottom" Width="75"></TextBlock>
+                <TextBlock Text="{Binding AirlinerType.Name}" VerticalAlignment="Bottom" Width="200"></TextBlock>
+           </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="DestinationsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Width="300" FontWeight="Bold">
+                      <Hyperlink Tag="Destination" Click="Header_Click">
+                        <Run Text="Destination"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="50" Margin="5 0 0 0" FontWeight="Bold">
+                      <Hyperlink Tag="Flights" Click="Header_Click">
+                        <Run Text="Flights"></Run>
+                    </Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock VerticalAlignment="Bottom" Text="Time" Width="50" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Airline" Width="150" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Flight" Width="50" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="Airport" Width="50" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightItem">
+            <WrapPanel>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:HH:mm}}" Width="50"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource AirlineLogoItem}" Content="{Binding Airline}" Width="150"></ContentControl>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Flight}" Width="50"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding Airport}" Width="200" Margin="0 0 5 0"></ContentControl>
+
+
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="DestinationItem">
+            <WrapPanel>
+
+                <ContentControl ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Airport}" VerticalAlignment="Bottom" Width="300"></ContentControl>
+
+                <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom" Width="50" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</Page>

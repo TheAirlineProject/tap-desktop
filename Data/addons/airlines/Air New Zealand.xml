@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air New Zealand" iata="NZ" color="Black" country="186" CEO="Rob Fyfe" mentality="Aggressive" market="Global " preferedairport="AKL">
+    <narrative narrative="Air New Zealand is the flag carrier of New Zealand, based out of Auckland. They ahve been in operation since 1939 and operate a fleet of 50 aircraft on the main line. They fly to an equal number of domestic and international destinations, with a fleet consisting of Airbus A320/Boeing 737s, and Boeing 767/777s." />
+  </profile>
+  <info real="True" from="1965" to="2199" />
+</airline>

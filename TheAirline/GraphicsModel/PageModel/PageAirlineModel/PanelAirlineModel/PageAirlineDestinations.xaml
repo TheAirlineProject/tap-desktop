@@ -1,0 +1,51 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel.PageAirlineDestinations"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineDestinations">
+    <Page.Resources>
+        <c:AirportCodeConverter x:Key="airportCodeConverter"></c:AirportCodeConverter>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <c:CountryCurrentCountryConverter x:Key="countryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
+        <DataTemplate x:Key="RouteItem">
+            <WrapPanel>
+                    
+              
+                <TextBlock VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Destination1}" Click="LnkAirport_Click">
+                               <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding Destination1}">
+          </ContentControl>
+                       <!-- <Run Text="{Binding Route.Destination1.Profile.Name}"></Run>-->
+                    </Hyperlink>
+                </TextBlock>
+                 <TextBlock VerticalAlignment="Bottom" Text="&lt;->" Margin="5 0 5 0" FontWeight="Bold"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Destination2}" Click="LnkAirport_Click">
+                                                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryItemNormal}" Content="{Binding Destination2}">
+          </ContentControl>
+      
+                    </Hyperlink>
+                </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AirportItem">
+            <WrapPanel>
+                <TextBlock Width="250" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding }" Click="LnkAirport_Click">
+                        <Run Text="{Binding Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Converter={StaticResource airportCodeConverter}}" Margin="5 0 0 0" Width="50" VerticalAlignment="Bottom"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Country,Converter={StaticResource countryCurrentCountryConverter}}"></ContentControl>
+                <TextBlock Text="Hub" FontWeight="Bold" VerticalAlignment="Bottom" Margin="10 0 0 0"  Visibility="{Binding IsHub,Converter={StaticResource booleanToVisibility}}"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</Page>

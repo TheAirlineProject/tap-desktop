@@ -1,0 +1,25 @@
+﻿<page:StandardPage x:Class="TheAirline.GraphicsModel.PageModel.PageGameModel.PagePlayScenario"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PagePlayScenario">
+    <Page.Resources>
+        <DataTemplate x:Key="ScenarioItem">
+            <WrapPanel>
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                    <Hyperlink Tag="{Binding}" Click="lnkScenario_Click">
+                        <Run Text="{Binding Name}"></Run>
+                    </Hyperlink>
+            </TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Difficulty.Name,StringFormat=({0})}" Margin="5 0 0 0"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+ </page:StandardPage>

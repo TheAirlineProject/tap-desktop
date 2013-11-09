@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<majordestinations>
+	<majordestination airport="MEX">
+		<destinations>
+			<destination airport="LAX" pax="827"/>
+			<destination airport="MIA" pax="713"/>
+			<destination airport="JFK" pax="417"/>
+			<destination airport="EWR" pax="225"/>
+			<destination airport="IAH" pax="605"/>
+			<destination airport="MAD" pax="477"/>
+			<destination airport="CDG" pax="425"/>
+			<destination airport="DFW" pax="403"/>
+			<destination airport="BOG" pax="383"/>
+			<destination airport="ORD" pax="299"/>
+			<destination airport="MDW" pax="78"/>
+			<destination airport="ATL" pax="319"/>
+			<destination airport="PTY" pax="317"/>
+			<destination airport="SAT" pax="310"/>
+			<destination airport="LIM" pax="295"/>
+			<destination airport="LAS" pax="290"/>
+			<destination airport="GRU" pax="278"/>
+			<destination airport="GUA" pax="223"/>
+			<destination airport="HAV" pax="222"/>
+			<destination airport="SFO" pax="221"/>
+			<destination airport="FRA" pax="214"/>
+			<destination airport="SJO" pax="207"/>
+			<destination airport="SCL" pax="200"/>
+			<destination airport="AMS" pax="187"/>
+			<destination airport="EZE" pax="158"/>
+			<destination airport="PHX" pax="155"/>
+			<destination airport="MCO" pax="140"/>
+			<destination airport="CUN" pax="3103"/>
+			<destination airport="mont" pax="2365"/>
+			<destination airport="GDL" pax="2023"/>
+			<destination airport="TIJ" pax="1089"/>
+			<destination airport="merida" pax="975"/>
+			<destination airport="villa" pax="705"/>
+			<destination airport="tuxtla" pax="648"/>
+			<destination airport="HMO" pax="595"/>
+			<destination airport="CUU" pax="530"/>
+			<destination airport="puerto" pax="466"/>
+			<destination airport="vera" pax="453"/>
+			<destination airport="cabos" pax="427"/>
+			<destination airport="CUL" pax="423"/>
+			<destination airport="tamp" pax="422"/>
+			<destination airport="bahia" pax="390"/>
+			<destination airport="CJS" pax="375"/>
+			<destination airport="oaxa" pax="343"/>
+			<destination airport="palacio" pax="300"/>
+			<destination airport="mexicali" pax="278"/>
+			<destination airport="CME" pax="261"/>
+			<destination airport="BJX" pax="241"/>
+			<destination airport="mazat" pax="226"/>
+			<destination airport="reyno" pax="221"/>
+			<destination airport="ixtapa" pax="212"/>
+		</destinations>
+	</majordestination>
+</majordestinations>

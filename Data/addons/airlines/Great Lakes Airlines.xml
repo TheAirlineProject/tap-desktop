@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Great Lakes Airlines" iata="ZK" color="DarkBlue" country="122" CEO="Doug Voss" mentality="Moderate" market="Local" preferedairport="DEN">
+  <narrative narrative="Great Lakes Airlines serves 48 of its destinations through the Essential Air Service program and is the largest Essential Air Service provider in the United States." />
+   </profile>
+    <info real="True" from="1977" to="2199" />
+    </airline>

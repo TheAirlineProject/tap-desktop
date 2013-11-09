@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<weather type="town" value="Manila">
+  <months>
+	<month month="1" precipitation="6">
+	  <temp min="21" max="30"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="2" precipitation="3">
+	  <temp min="21" max="31"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="3" precipitation="7">
+	  <temp min="22" max="33"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="4" precipitation="9">
+	  <temp min="24" max="34"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="5" precipitation="113">
+	  <temp min="25" max="34"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="6" precipitation="272">
+	  <temp min="24" max="32"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="7" precipitation="341">
+	  <temp min="24" max="31"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="8" precipitation="398">
+	  <temp min="24" max="31"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="9" precipitation="326">
+	  <temp min="24" max="31"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="10" precipitation="230">
+	  <temp min="23" max="31"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="11" precipitation="120">
+	  <temp min="23" max="31"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+	<month month="12" precipitation="49">
+	  <temp min="22" max="30"/>
+	  <wind min="Calm" max="Near_Gale"/>
+	</month>
+  </months>
+</weather>

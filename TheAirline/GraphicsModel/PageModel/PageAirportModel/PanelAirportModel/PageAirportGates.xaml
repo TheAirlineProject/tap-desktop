@@ -1,0 +1,82 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel.PageAirportGates"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+      xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirportModel.PanelAirportModel"
+        xmlns:g="clr-namespace:System.Globalization;assembly=mscorlib"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirportGates">
+    <Page.Resources>
+        <c:AirlineBrushConverter x:Key="airlineBrushConverter"></c:AirlineBrushConverter>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+        <DataTemplate x:Key="HubItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type.Name}" Width="100" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter},FallbackValue=Green}">
+                        <Run Text="{Binding Airline.Profile.Name,FallbackValue=Airport Terminal}"></Run>
+                    </Hyperlink>
+
+                       <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveHub_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                </TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="TerminalItem">
+            <WrapPanel>
+                <TextBlock Width="80" VerticalAlignment="Bottom" Text="{Binding Name}"></TextBlock>
+                <TextBlock Width="125" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter},FallbackValue=Green}">
+                        <Run Text="{Binding Airline.Profile.Name,FallbackValue=Airport Terminal}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Width="50" VerticalAlignment="Bottom" Text="{Binding Gates.NumberOfGates,StringFormat={}{0} gate(s)}"></TextBlock>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnRemoveTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding }" Margin="5 0 0 0" Background="Transparent" Click="btnEditTerminal_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
+                    <Image Source="/Data/images/edit.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Background="Transparent" Click="btnPurchaseTerminal_Click" Visibility="{Binding IsBuyable,Converter={StaticResource booleanToVisibility}}">
+                    <Image Source="/Data/images/buy.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+             </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AirlineContractItem">
+            <WrapPanel>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter}}">
+                        <Run Text="{Binding Airline.Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding NumberOfGates}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding MonthsLeft}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Height="16" Width="16" Background="Transparent" Click="btnRemoveContract_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
+                    <Image Source="/Data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Height="16" Width="16" Margin="5 0 0 0" Background="Transparent" Click="btnEditContract_Click"  Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility},FallbackValue=Collapsed}">
+                    <Image Source="/Data/images/edit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AirlineGatesItem">
+            <WrapPanel>
+                <TextBlock Width="150" VerticalAlignment="Bottom">
+                    <Hyperlink Tag="{Binding Airline}" Click="Hyperlink_Click" FontWeight="Bold" Foreground="{Binding Airline,Converter={StaticResource airlineBrushConverter}}">
+                        <Run Text="{Binding Airline.Profile.Name}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <TextBlock Text="{Binding Gates}" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="/" VerticalAlignment="Bottom" Margin="5 0 5 0"></TextBlock>
+                <TextBlock Text="{Binding Used}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</Page>

@@ -1,0 +1,135 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinePageModel.PageAirlineInsurance"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlineInsurance">
+    <Page.Resources>
+            
+           <DataTemplate x:Key="OpponentAdvertisementItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type, Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <TextBlock Text="{Binding SelectedType.Name}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="HumanAdvertisementItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type, Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                <ComboBox  Width="200" Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding Path=SelectedType,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding Path=Types}">
+                </ComboBox>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1000'}" Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom"></TextBlock>
+                    <ListView ItemsSource="{Binding Insurances}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
+                        <ListView.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding Insurances.Count}" Value="0">
+                                        <Setter Property="ListView.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.Style>
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1001'}" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding InsType, Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1002'}" Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding InsScope, Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1003'}" Width="150">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding InsTerms, Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1004'}" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding InsuredAmount, Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Margin="0 10 0 0" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                        <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1001'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            <ComboBox Name="cbType" VerticalAlignment="Bottom" Width="150" Style="{StaticResource ComboBoxTransparentStyle}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1002'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            <ComboBox Name="cbScope" VerticalAlignment="Bottom" Width="150" Style="{StaticResource ComboBoxTransparentStyle}"></ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1003'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            <ComboBox Name="cbTerms" VerticalAlignment="Bottom" Width="150" Style="{StaticResource ComboBoxTransparentStyle}"></ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            <CheckBox IsChecked="False" Name="cbAllAirliners" Style="{StaticResource ImageCheckBoxStyle}"></CheckBox>
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            <ComboBox Name="cbLength" VerticalAlignment="Bottom" Style="{StaticResource ComboBoxTransparentStyle}" Width="150">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding StringFormat={}{0} year(s)}" VerticalAlignment="Bottom"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                        </WrapPanel>
+                        <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                            <Slider Name="slAmount" VerticalAlignment="Bottom" Width="200" Minimum="500000" Maximum="1000000000" IsSnapToTickEnabled="True" TickFrequency="50000"></Slider>
+                            <TextBlock Text="{Binding Value,ElementName=slAmount,Converter={StaticResource ValueCurrencyConverter}}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                      
+                        </WrapPanel>
+                        <WrapPanel>
+                        <Button Style="{StaticResource StandardButtonStyle}" Margin="0 5 0 0" Click="btnCreateInsurance_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 200'}"/>
+                        </WrapPanel>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 0 0">
+                <StackPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 1007'}" Style="{StaticResource SmallHeaderStyle}" VerticalAlignment="Bottom"></TextBlock>
+                    <ListBox ItemsSource="{Binding Advertisements}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" ItemTemplate="{StaticResource OpponentAdvertisementItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
+                    <ListBox ItemsSource="{Binding Advertisements}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" ItemTemplate="{StaticResource HumanAdvertisementItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
+                    <WrapPanel Margin="0 10 0 0" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                        <Button Style="{StaticResource StandardButtonStyle}" Click="btnSetAdvertisement_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInsurance 201'}"/>
+                    </WrapPanel>
+
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

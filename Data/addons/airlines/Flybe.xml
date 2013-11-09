@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Flybe" iata="BE" color="Aqua" country="130" CEO="Jim French" mentality="Safe" market="Regional" preferedairport="SOU">
+    <narrative narrative="Flybe is Europe's largest regional airline and from Jersey European and British European airways merged to form the Flybe Group in 2007.  It carried over 6.7 million passengers in 2010. "></narrative>
+  </profile>
+  <info real="True" from="1979" to="2199" />
+</airline>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Qatar Airways" iata="QR" color="Purple" country="180" CEO="Akbar Al Baker" mentality="Aggressive" market="Global " preferedairport="DOH"></profile>
+  <info real="True" from="1994" to="2199" />
+</airline>

@@ -1,0 +1,40 @@
+﻿<UserControl x:Class="TheAirline.GUIModel.CustomControlsModel.ucTimeTable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:uc="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
+             xmlns:local="clr-namespace:TheAirline.GUIModel.CustomControlsModel"
+             xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
+             mc:Ignorable="d" 
+             Name="timetable"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <local:TimeIntervalWidthConverter x:Key="TimeIntervalWidthConverter"></local:TimeIntervalWidthConverter>
+    </UserControl.Resources>
+    <StackPanel>
+      
+        <Grid Background="#004A7F">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+             <ListBox Style="{StaticResource VerticalListBoxStyle}" Grid.Column="1" Name="lbTimes" ItemsSource="{Binding Times,ElementName=timetable}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding StringFormat=hh,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="{Binding ElementName=lbTimes,
+                        Path=ActualWidth,Mode=OneTime,Converter={StaticResource TimeIntervalWidthConverter}}">
+                        </TextBlock>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Grid>
+        <uc:ucTimeline Day="Sunday" Entries="{Binding SundayEntries,ElementName=timetable}" Tag="Sunday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Monday" Entries="{Binding MondayEntries,ElementName=timetable}" Tag="Monday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Tuesday" Entries="{Binding TuesdayEntries,ElementName=timetable}" Tag="Tuesday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Wednesday" Entries="{Binding WednesdayEntries,ElementName=timetable}" Tag="Wednesday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Thursday" Entries="{Binding ThursdayEntries,ElementName=timetable}" Tag="Thursday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Friday" Entries="{Binding FridayEntries,ElementName=timetable}" Tag="Friday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+        <uc:ucTimeline Day="Saturday" Entries="{Binding SaturdayEntries,ElementName=timetable}" Tag="Saturday" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeline>
+    </StackPanel>
+</UserControl>

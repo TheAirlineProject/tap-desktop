@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Bearskin Airlines" iata="JV" color="Orange" country="113" CEO="John Hegland" mentality="Moderate" market="Local" preferedairport="YXL">
+<narrative narrative="The airline was established in 1963 by bush pilot Otto John Hegland and started operations in July 1963 from its base at Big Trout Lake, Ontario (but was named after Bearskin Lake where Hegland had a general store)"/>
+</profile>
+<info real="True" from="1963" to="2199"></info>
+</airline>

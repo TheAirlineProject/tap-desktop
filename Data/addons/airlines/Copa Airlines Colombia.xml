@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Copa Airlines Colombia" iata="CM" color="DarkBlue" country="183" CEO="Eduardo Lombana" mentality="Moderate" market="Regional" preferedairport="BOG">
+<narrative narrative="Copa Airlines Colombia is an airline based in Bogotá, Colombia. It is the third largest air carrier in Colombia."/>
+</profile>
+<info real="True" from="1992" to="2199"></info>
+</airline>

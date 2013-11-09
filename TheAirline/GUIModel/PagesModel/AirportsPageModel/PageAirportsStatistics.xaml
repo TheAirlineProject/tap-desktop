@@ -1,0 +1,42 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirportsPageModel.PageAirportsStatistics"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirportsPageModel"
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      mc:Ignorable="d" 
+      Name="pageAirportsStatistics"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirportsStatistics">
+    <Page.Resources>
+        <local:AirportStatisticsConverter x:Key="airportStatisticsConverter"></local:AirportStatisticsConverter>
+    </Page.Resources>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportsStatistics 1002'}"  Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+
+            <ListView x:Name="AirportsList" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True"  BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ElementName=pageAirportsStatistics, Path=AllAirports}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportsStatistics 1003'}" util:GridViewSort.PropertyName="Profile.Name" Width="300">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl ContentTemplate="{StaticResource AirportCountryLink}" VerticalAlignment="Bottom" Content="{Binding}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn HeaderContainerStyle="{StaticResource GridViewHeaderRightAlign}" Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportsStatistics 1004'}" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource airportStatisticsConverter}}" Width="100" VerticalAlignment="Bottom"></TextBlock>
+                                  </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

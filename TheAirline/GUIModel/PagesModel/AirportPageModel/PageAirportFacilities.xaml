@@ -1,0 +1,217 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirportPageModel.PageAirportFacilities"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirportPageModel"
+      mc:Ignorable="d" 
+      Name="pageAirportFacilities"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirportFacilities">
+    <Page.Resources>
+        <local:NextFacilityConverter x:Key="NextFacilityConverter"></local:NextFacilityConverter>
+        <DataTemplate x:Key="AllianceItem">
+            <WrapPanel>
+                <Image Source="{Binding Logo}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Margin="0 0 5 0"/>
+                <TextBlock VerticalAlignment="Bottom" Width="100" Text="{Binding Name}"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+                <StackPanel>
+                    <StackPanel>
+                        <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AirportFacilities.Count}" Value="0">
+                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding AirportFacilities}">
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
+                        <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding AirlineFacilities.Count}" Value="0">
+                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <ListBox Background="Transparent" Name="lbFacilities" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineFacilities}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Facility.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
+                                        <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200" />
+                                            <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <Button Click="btnDeleteFacility_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}" Width="20" Tag="{Binding}" VerticalAlignment="Bottom" Background="Transparent">
+                                            <Button.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Facility.Airline.IsHuman}" Value="False">
+                                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Button.Style>
+                                            <Image Source="/data/images/down.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        </Button>
+                                        <WrapPanel>
+                                            <WrapPanel.Style>
+                                                <Style>
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding Facility.Airline.IsHuman}" Value="False">
+                                                            <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding ElementName=txtUpgrade, Path=Text}" Value="None">
+                                                            <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </WrapPanel.Style>
+                                            <Button Tag="{Binding}" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3001'}" Margin="5 0 0 0" Width="20" Click="btnQuickUpgradeFacility_Click" VerticalAlignment="Bottom" Background="Transparent">
+                                                <Image Source="/data/images/up.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                            </Button>
+                                            <TextBlock Name="txtUpgrade" Margin="5 0 0 0" VerticalAlignment="Bottom" FontWeight="Bold">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Name">
+                                                        <Binding Path="Facility.Facility.Type"></Binding>
+                                                        <Binding Path="Facility.Airport"></Binding>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                            <TextBlock Margin="5 0 0 0" VerticalAlignment="Bottom">
+                                                <TextBlock.Text>
+                                                    <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Price">
+                                                        <Binding Path="Facility.Facility.Type"></Binding>
+                                                        <Binding Path="Facility.Airport"></Binding>
+                                                    </MultiBinding>
+                                                </TextBlock.Text>
+                                            </TextBlock>
+                                        </WrapPanel>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <Expander Margin="0 5 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1002'}" Style="{StaticResource ExpanderStyle}">
+                        <StackPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1003'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                <ComboBox VerticalAlignment="Bottom" Name="cbNextFacility" Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemsSource="{Binding FacilityTypes,ElementName=pageAirportFacilities}" Width="100"></ComboBox>
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1004'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                <TextBlock Name="txtNextFacility" VerticalAlignment="Bottom">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Name">
+                                            <Binding Path="SelectedItem" ElementName="cbNextFacility"></Binding>
+                                            <Binding Path="Airport"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                               
+                            </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1009'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                <TextBlock VerticalAlignment="Bottom">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Price">
+                                            <Binding Path="SelectedItem" ElementName="cbNextFacility"></Binding>
+                                            <Binding Path="Airport"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                         </WrapPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1010'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                <TextBlock VerticalAlignment="Bottom">
+                                    <TextBlock.Text>
+                                        <MultiBinding Converter="{StaticResource NextFacilityConverter}" ConverterParameter="Employees">
+                                            <Binding Path="SelectedItem" ElementName="cbNextFacility"></Binding>
+                                            <Binding Path="Airport"></Binding>
+                                        </MultiBinding>
+                                    </TextBlock.Text>
+                                </TextBlock>
+                            </WrapPanel>
+                            <WrapPanel Margin="0 5 0 0" >
+                                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 200'}" Click="btnBuyFacility_Click">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=txtNextFacility, Path=Text}" Value="None">
+                                                <Setter Property="Button.IsEnabled" Value="False" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
+                            </Button>
+                            </WrapPanel>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+            </Border>
+            <Border Margin="5 0 0 0" Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1">
+                <StackPanel>
+                    <ListView  VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AirlineStatistics}">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <WrapPanel>
+                                                <Image Source="/data/images/human.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}"/>
+                                                <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlinesStatistics 3000'}"/>
+                                            </WrapPanel>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1005'}" Width="200">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1006'}" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Flights}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1007'}" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1008'}" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding PassengersPerFlight}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                </StackPanel>
+            </Border>
+        </Grid>
+    </ScrollViewer>
+</Page>

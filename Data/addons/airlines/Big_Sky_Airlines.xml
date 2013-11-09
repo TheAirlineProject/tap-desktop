@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Big Sky Airlines" iata="CQ" color="DarkBlue" country="122" CEO="George Clark" mentality="Aggressive" market="Local" preferedairport="BIL">
+  <narrative narrative="Big Sky Airlines was a US commuter airline in service from 1978 to 2008 out of Billings, Montana. They operated 10 Beechcraft 1900Ds to several regional destiations." />
+</profile>
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Druk Air Corporation" iata="KB" color="Orange" country="252" CEO="Tandin Jamso" mentality="Safe" market="Regional" preferedairport="PBH">
+    <narrative narrative="Druk Air Corporation is the national flag carrier of Bhutan and serves destinations in South and South East Asia through its hub in Paro Airport."></narrative>
+  </profile>
+  <info real="True" from="1981" to="2199" />
+</airline>

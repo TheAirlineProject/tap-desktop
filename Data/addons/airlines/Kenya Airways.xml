@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Kenya Airways" iata="KQ" color="Red" country="146" CEO="Titus Naikuni" mentality="Moderate" market="Regional" preferedairport="NBO">
+ <narrative narrative="Kenya Airways is the flag carrier of Kenya. The company was founded in 1977, after the dissolution of East African Airways"></narrative></profile>
+<info real="True" from="1977" to="2199"></info>
+</airline>

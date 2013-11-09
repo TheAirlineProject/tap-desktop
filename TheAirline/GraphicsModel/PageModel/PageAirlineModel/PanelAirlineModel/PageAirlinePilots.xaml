@@ -1,0 +1,43 @@
+﻿<Page x:Class="TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel.PageAirlinePilots"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+      xmlns:local="clr-namespace:TheAirline.GraphicsModel.PageModel.PageAirlineModel.PanelAirlineModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirlinePilots">
+    <Page.Resources>
+        <c:BooleanToVisibility x:Key="booleanToVisibility"></c:BooleanToVisibility>
+          <DataTemplate x:Key="PilotsHeader">
+            <WrapPanel Background="{DynamicResource HeaderBackgroundBrush}">
+                <TextBlock Text="Name" Width="175" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Age" Width="50" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Rating" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Country" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="Airliner" Width="75" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="PilotItem">
+            <WrapPanel>
+                <Image Source="/data/images/pilot.png" RenderOptions.BitmapScalingMode="HighQuality" Width="25"></Image>
+                <TextBlock Text="{Binding Profile.Name}" Width="150" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Profile.Age}" Width="50" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Rating}" Width="75" VerticalAlignment="Bottom"></TextBlock>
+                <ContentControl ContentTemplate="{DynamicResource CountryFlagItem}" Content="{Binding Profile.Town.Country}" Width="75"></ContentControl>
+                <TextBlock Width="100" VerticalAlignment="Bottom" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}">
+                    <Hyperlink Tag="{Binding}" Click="lnk_Pilot">
+                        <Run Text="{Binding Airliner.Name, FallbackValue=Unassigned}"></Run>
+                    </Hyperlink>
+                </TextBlock>
+                <Button Click="btnDelete_Click"  Height="16" Width="16" Margin="0 0 5 0" VerticalAlignment="Bottom" Background="Transparent" Visibility="{Binding Airline.IsHuman,Converter={StaticResource booleanToVisibility}}" Tag="{Binding}">
+                    <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <Grid>
+        
+    </Grid>
+</Page>

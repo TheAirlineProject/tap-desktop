@@ -1,0 +1,19 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpNewSubsidiary"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+        xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+        Title="PopUpNewSubsidiary" Height="300" Width="300">
+    <Window.Resources>
+        <c:StringToBrushConverter x:Key="stringToBrushConverter"></c:StringToBrushConverter>
+        <DataTemplate x:Key="ColorItem">
+            <WrapPanel>
+                <Rectangle Width="20" Height="10" Fill="{Binding Name,Converter={StaticResource stringToBrushConverter}}" Margin="0 0 5 0"></Rectangle>
+                <TextBlock Text="{Binding Name}"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <Grid>
+        
+    </Grid>
+</window:PopUpWindow>

@@ -1,0 +1,87 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageFlights"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:util="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Name="pageFlights"
+	Title="PageFlights">
+    <!-- <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" Width="200"></ContentControl>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Destination.FlightCode}" Width="75"></TextBlock>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}" Width="300"/>
+                <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}" Width="300"/>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route,Converter={StaticResource stopoverConverter}}" Width="75"></TextBlock>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route.Type}"></TextBlock>
+ -->
+    <Page.Resources>
+        <DataTemplate x:Key="FlightsContent">
+            <ListView  x:Name="lvFlights" Grid.Column="0" util:GridViewSort.AutoSort="True"  VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AllFlights,ElementName=pageFlights}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn Width="200" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 1000'}" util:GridViewSort.PropertyName="Airliner.Airliner.Airline.Profile.Name">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl ContentTemplate="{DynamicResource AirlineLargeLogoLink}" Content="{Binding Airliner.Airliner.Airline}" VerticalAlignment="Bottom"></ContentControl>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 1001'}" util:GridViewSort.PropertyName="Destination.FlightCode">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Destination.FlightCode}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="250" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 1002'}" util:GridViewSort.PropertyName="DepartureAirport.Profile.Name">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding DepartureAirport}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="250" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 1003'}" util:GridViewSort.PropertyName="Destination.Airport.Profile.Name">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource AirportCountryLink}" Content="{Binding Destination.Airport}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 1004'}" util:GridViewSort.PropertyName="Time">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding Time,StringFormat={}{0:hh\\:mm}}" Width="75"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Width="100" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 1005'}" util:GridViewSort.PropertyName="TimeTable.Route.Type">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding TimeTable.Route.Type}"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DataTemplate>
+        <DataTemplate x:Key="FlightsQuickLinks">
+
+        </DataTemplate>
+        <DataTemplate x:Key="FlightsContentMenu">
+            <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2000'}" Tag="Monday"></TabItem> 
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2001'}" Tag="Tuesday"></TabItem>
+                    <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2002'}" Tag="Wednesday"></TabItem>
+                    <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2003'}" Tag="Thursday"></TabItem>
+                    <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2004'}" Tag="Friday"></TabItem>
+                    <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2005'}" Tag="Saturday"></TabItem>
+                    <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFlights 2006'}" Tag="Sunday"></TabItem>
+            </TabControl>
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" MainContentArea="{StaticResource FlightsContent}" RightContentArea="{StaticResource FlightsQuickLinks}" MainContentMenuArea="{StaticResource FlightsContentMenu}"/>
+</Page>

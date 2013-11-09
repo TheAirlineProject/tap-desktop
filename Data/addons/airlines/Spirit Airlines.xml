@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Spirit Airlines" iata="NK" color="Black" country="122" CEO="Ben Bal danza" mentality="Safe" market="Global" preferedairport="DTW"></profile>
+  <info real="True" from="1980" to="2199" />
+</airline>

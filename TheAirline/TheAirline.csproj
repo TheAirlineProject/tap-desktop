@@ -1,0 +1,1745 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">X64</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{63A09097-FD0E-4159-A2ED-528EA26FD097}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TheAirline</RootNamespace>
+    <AssemblyName>TheAirline</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SignAssembly>False</SignAssembly>
+    <DelaySign>False</DelaySign>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
+    <NoStdLib>False</NoStdLib>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <ExpressionBlendVersion>5.2.30810.0</ExpressionBlendVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <StartWorkingDirectory>..\</StartWorkingDirectory>
+    <DebugType>Full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <DebugSymbols>true</DebugSymbols>
+    <PlatformTarget>x64</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <StartWorkingDirectory>
+    </StartWorkingDirectory>
+    <DebugType>PdbOnly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <DebugSymbols>false</DebugSymbols>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
+    <RegisterForComInterop>False</RegisterForComInterop>
+    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <BaseAddress>4194304</BaseAddress>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>Full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>PdbOnly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Expression.Interactions, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\..\BBM\WpfLab\WpfLab\WpfLab\bin\Debug\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationFramework.Aero" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Device" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Runtime.Caching" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\BBM\Prism\Lib\Desktop\System.Windows.Interactivity.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.Toolkit">
+      <HintPath>..\..\BBM\ExtendedWPFToolkit_Binaries\Xceed.Wpf.Toolkit.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Page Include="GraphicsModel\PageModel\PageAirlineFacilityModel\PageAirlineFacilityMaintenance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageCredits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageNewsBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PagePerformance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageStandardMenuTop.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\GeneralModel\PageTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PageAirline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineDestinations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineFinances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineFleet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineInsurances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlinePilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineSubsidiaries.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineWages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinerModel\PageAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PageOrderAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinesModel\PageAirlines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesExtendedStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PageSearchAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PageAirport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportDistances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFacilities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportGates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportRunways.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportTraffic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportWeather.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportsModel\PageAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PageAirportsStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PageExtendedSearchAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PageSearchAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PageAlliances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelNewAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFinancesModel\PageFinancesOverview.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetFacilities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetInsurance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetMaintenance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetTimeslot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageFlightsModel\PageFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PageNewAirline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PageNewGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PagePlayScenario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageGameModel\PageSelectLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelFlightSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelInstructor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelPilot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\PageModel\PageRouteModel\PageRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\ResourceDirectiories\GameStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\ResourceDirectiories\GameTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\AppointmentControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\DayBoxControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\CalendarModel\ucCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerSeatsConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpCompareAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpDifficulty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSelectOpponents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSingleElement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\ucChartBar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\ucFinanceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\ucNumericUpDown.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GraphicsModel\UserControlModel\ucSelectButton.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\Block.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\ComparerControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\SplashControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\ucTimeline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\CustomControlsModel\ucTimeTable.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpLoadConfiguration.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFRegularPopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\standard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\standardResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\standardStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\MasterPageModel\standardTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInsurance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineRatings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEmployees.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFinances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineServices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlines.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlinesStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportPageModel\PageAirport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportPageModel\PageAirportFacilities.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportPageModel\PageAirportInfo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportPageModel\PageAirportTraffic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportsPageModel\PageAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportsPageModel\PageAirportsStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportsPageModel\PageSearchAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AirportsPageModel\PageShowAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageAlliances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageCreateAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliance.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerStatistics.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirliner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInformation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInsurances.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageCalendar.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageCredits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageMMLoadGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageStartData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageOptionsCredits.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageSaveGame.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\OptionsPageModel\PageShowOptions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PageFlightSchools.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PagePilots.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PagePilotsFS.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PageShowFlightSchool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\PilotsPageModel\PageShowPilot.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageAssignAirliners.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageCreateRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageHumanRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageRoutePlanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GUIModel\PagesModel\RoutesPageModel\PageShowRoute.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="GraphicsModel\Converters\GeneralConverters.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\Warnings.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirlineFacilityModel\PageAirlineFacilityMaintenance.xaml.cs">
+      <DependentUpon>PageAirlineFacilityMaintenance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\GraphicsHelpers.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageBottomMenu.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageCalendar.xaml.cs">
+      <DependentUpon>PageCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageContent.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageCredits.xaml.cs">
+      <DependentUpon>PageCredits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageHeader.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageNavigator.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageNewsBox.xaml.cs">
+      <DependentUpon>PageNewsBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PagePerformance.xaml.cs">
+      <DependentUpon>PagePerformance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageSettings.xaml.cs">
+      <DependentUpon>PageSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageStandardMenuTop.xaml.cs">
+      <DependentUpon>PageStandardMenuTop.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageTest.xaml.cs">
+      <DependentUpon>PageTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\PageTopMenu.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\StandardPage.cs" />
+    <Compile Include="GraphicsModel\PageModel\GeneralModel\UICreator.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PageAirline.xaml.cs">
+      <DependentUpon>PageAirline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineDestinations.xaml.cs">
+      <DependentUpon>PageAirlineDestinations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineFinances.xaml.cs">
+      <DependentUpon>PageAirlineFinances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineFleet.xaml.cs">
+      <DependentUpon>PageAirlineFleet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineInsurances.xaml.cs">
+      <DependentUpon>PageAirlineInsurances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlinePilots.xaml.cs">
+      <DependentUpon>PageAirlinePilots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineStatistics.xaml.cs">
+      <DependentUpon>PageAirlineStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineSubsidiaries.xaml.cs">
+      <DependentUpon>PageAirlineSubsidiaries.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PageAirlineWages.xaml.cs">
+      <DependentUpon>PageAirlineWages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlineModel\PanelAirlineModel\PanelAirline.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PageAirliners.xaml.cs">
+      <DependentUpon>PageAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PageOrderAirliners.xaml.cs">
+      <DependentUpon>PageOrderAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PageSearchAirliners.xaml.cs">
+      <DependentUpon>PageSearchAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PanelAirliner.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirlinerModel\PanelAirlinersModel\PanelUsedAirliner.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PageAirlines.xaml.cs">
+      <DependentUpon>PageAirlines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesExtendedStatistics.xaml.cs">
+      <DependentUpon>PageAirlinesExtendedStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PageAirlinesStatistics.xaml.cs">
+      <DependentUpon>PageAirlinesStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirlinesModel\PanelAirlinesModel\PanelAirlines.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PageAirport.xaml.cs">
+      <DependentUpon>PageAirport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportDistances.xaml.cs">
+      <DependentUpon>PageAirportDistances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFacilities.xaml.cs">
+      <DependentUpon>PageAirportFacilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportFlights.xaml.cs">
+      <DependentUpon>PageAirportFlights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportGates.xaml.cs">
+      <DependentUpon>PageAirportGates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportRunways.xaml.cs">
+      <DependentUpon>PageAirportRunways.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportStatistics.xaml.cs">
+      <DependentUpon>PageAirportStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportTraffic.xaml.cs">
+      <DependentUpon>PageAirportTraffic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PageAirportWeather.xaml.cs">
+      <DependentUpon>PageAirportWeather.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportModel\PanelAirportModel\PanelAirport.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PageAirports.xaml.cs">
+      <DependentUpon>PageAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PageAirportsStatistics.xaml.cs">
+      <DependentUpon>PageAirportsStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PageExtendedSearchAirports.xaml.cs">
+      <DependentUpon>PageExtendedSearchAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PageSearchAirports.xaml.cs">
+      <DependentUpon>PageSearchAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAirportsModel\PanelAirportsModel\PanelAirports.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PageAlliances.xaml.cs">
+      <DependentUpon>PageAlliances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelAlliance.xaml.cs">
+      <DependentUpon>PanelAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageAlliancesModel\PanelAlliancesModel\PanelNewAlliance.xaml.cs">
+      <DependentUpon>PanelNewAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFinancesModel\PageFinances.xaml.cs">
+      <DependentUpon>PageFinances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFinancesModel\PageFinancesOverview.xaml.cs">
+      <DependentUpon>PageFinancesOverview.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PageFleetAirliner.xaml.cs">
+      <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetFacilities.xaml.cs">
+      <DependentUpon>PageFleetFacilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetInsurance.xaml.cs">
+      <DependentUpon>PageFleetInsurance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetMaintenance.xaml.cs">
+      <DependentUpon>PageFleetMaintenance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetRoute.xaml.cs">
+      <DependentUpon>PageFleetRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetStatistics.xaml.cs">
+      <DependentUpon>PageFleetStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PageFleetTimeslot.xaml.cs">
+      <DependentUpon>PageFleetTimeslot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageFleetAirlinerModel\PanelFleetAirlinerModel\PanelFleetAirliner.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageFlightsModel\PageFlights.xaml.cs">
+      <DependentUpon>PageFlights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PageFrontMenu.xaml.cs">
+      <DependentUpon>PageFrontMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PageNewAirline.xaml.cs">
+      <DependentUpon>PageNewAirline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PageNewGame.xaml.cs">
+      <DependentUpon>PageNewGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PagePlayScenario.xaml.cs">
+      <DependentUpon>PagePlayScenario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageGameModel\PageSelectLanguage.xaml.cs">
+      <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PagePilots.xaml.cs">
+      <DependentUpon>PagePilots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelFlightSchool.xaml.cs">
+      <DependentUpon>PanelFlightSchool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelInstructor.xaml.cs">
+      <DependentUpon>PanelInstructor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PagePilotsModel\PanelPilotsModel\PanelPilot.xaml.cs">
+      <DependentUpon>PanelPilot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageRouteModel\PageRoutes.xaml.cs">
+      <DependentUpon>PageRoutes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\PageModel\PageRouteModel\PanelRoutesModel\PanelNewRoute.cs" />
+    <Compile Include="GraphicsModel\PageModel\PageRouteModel\PanelRoutesModel\PanelRoute.cs" />
+    <Compile Include="GraphicsModel\ResourceDirectiories\GameResourceEvents.cs" />
+    <Compile Include="GraphicsModel\ResourceDirectiories\GameTemplatesEvents.cs" />
+    <Compile Include="GraphicsModel\SkinsModel\Skin.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\AppointmentControl.xaml.cs">
+      <DependentUpon>AppointmentControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\DayBoxControl.xaml.cs">
+      <DependentUpon>DayBoxControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\CalendarModel\ucCalendar.xaml.cs">
+      <DependentUpon>ucCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\DelegateCommand.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\IconHelper.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\MessageBoxViewModel.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\MessageBoxModel\WPFMessageBox.xaml.cs">
+      <DependentUpon>WPFMessageBox.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerSeatsConfiguration.xaml.cs">
+      <DependentUpon>PopUpAirlinerSeatsConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportContract.xaml.cs">
+      <DependentUpon>PopUpAirportContract.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpCompareAirliners.xaml.cs">
+      <DependentUpon>PopUpCompareAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpConfirmInsurance.xaml.cs">
+      <DependentUpon>PopUpConfirmInsurance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAdvancedRoute.xaml.cs">
+      <DependentUpon>PageAirlinerAdvancedRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PageAirlinerAutoRoute.xaml.cs">
+      <DependentUpon>PageAirlinerAutoRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerAutoRoutes.xaml.cs">
+      <DependentUpon>PopUpAirlinerAutoRoutes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerClassConfiguration.xaml.cs">
+      <DependentUpon>PopUpAirlinerClassConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerConfiguration.xaml.cs">
+      <DependentUpon>PopUpAirlinerConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml.cs">
+      <DependentUpon>PopUpAirlinerFacility.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirlinerImage.xaml.cs">
+      <DependentUpon>PopUpAirlinerImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAirlinerRoutes.xaml.cs">
+      <DependentUpon>PopUpAirlinerRoutes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportMap.xaml.cs">
+      <DependentUpon>PopUpAirportMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpAirportSlot.xaml.cs">
+      <DependentUpon>PopUpAirportSlot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRoutesModel\PopUpAutogenerateRoute.xaml.cs">
+      <DependentUpon>PopUpAutogenerateRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpBuildRunway.xaml.cs">
+      <DependentUpon>PopUpBuildRunway.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpDifficulty.xaml.cs">
+      <DependentUpon>PopUpDifficulty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpEditAirlinerName.xaml.cs">
+      <DependentUpon>PopUpEditAirlinerName.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpHomeBase.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
+      <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoad.xaml.cs">
+      <DependentUpon>PopUpLoad.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpLoan.xaml.cs">
+      <DependentUpon>PopUpLoan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpMap.xaml.cs">
+      <DependentUpon>PopUpMap.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewAirlinerHomeBase.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpNewSubsidiary.xaml.cs">
+      <DependentUpon>PopUpNewSubsidiary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpRouteFacilities.xaml.cs">
+      <DependentUpon>PopUpRouteFacilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSave.xaml.cs">
+      <DependentUpon>PopUpSave.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSelectOpponents.xaml.cs">
+      <DependentUpon>PopUpSelectOpponents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpSingleElement.xaml.cs">
+      <DependentUpon>PopUpSingleElement.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTerminal.xaml.cs">
+      <DependentUpon>PopUpTerminal.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTest.xaml.cs">
+      <DependentUpon>PopUpTest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpTimeTable.xaml.cs">
+      <DependentUpon>PopUpTimeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\PopUpWindowsModel\PopUpWindow.cs" />
+    <Compile Include="GraphicsModel\UserControlModel\ucChartBar.xaml.cs">
+      <DependentUpon>ucChartBar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\ucFinanceControl.xaml.cs">
+      <DependentUpon>ucFinanceControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\ucNumericUpDown.xaml.cs">
+      <DependentUpon>ucNumericUpDown.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GraphicsModel\UserControlModel\ucSelectButton.xaml.cs">
+      <DependentUpon>ucSelectButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\Block.xaml.cs">
+      <DependentUpon>Block.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\ComparerControl.xaml.cs">
+      <DependentUpon>ComparerControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\FilterableListView.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\SortableGridViewColumn.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\SortableListView.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\SplashControl.xaml.cs">
+      <DependentUpon>SplashControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\TimelineEntry.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\ucTimeline.xaml.cs">
+      <DependentUpon>ucTimeline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\ucTimeTable.xaml.cs">
+      <DependentUpon>ucTimeTable.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\HelpersModel\Converters.cs" />
+    <Compile Include="GUIModel\HelpersModel\GridViewSort.cs" />
+    <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
+    <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\PopUpViewModel.cs" />
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpLoadConfiguration.xaml.cs">
+      <DependentUpon>WPFPopUpLoadConfiguration.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFRegularPopUp.xaml.cs">
+      <DependentUpon>WPFRegularPopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
+    <Compile Include="GUIModel\MasterPageModel\StandardMasterPage.cs" />
+    <Compile Include="GUIModel\MasterPageModel\standardStylesEvents.cs" />
+    <Compile Include="GUIModel\MasterPageModel\standardTemplatesEvents.cs" />
+    <Compile Include="GUIModel\ObjectsModel\GUIObject.cs" />
+    <Compile Include="GUIModel\ObjectsModel\StartDataObject.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\AirlineMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInsurance.xaml.cs">
+      <DependentUpon>PageAirlineInsurance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineRatings.xaml.cs">
+      <DependentUpon>PageAirlineRatings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirline.xaml.cs">
+      <DependentUpon>PageAirline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineEmployees.xaml.cs">
+      <DependentUpon>PageAirlineEmployees.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineFinances.xaml.cs">
+      <DependentUpon>PageAirlineFinances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineInfo.xaml.cs">
+      <DependentUpon>PageAirlineInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinePageModel\PageAirlineServices.xaml.cs">
+      <DependentUpon>PageAirlineServices.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\AirlinersMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageAirliners.xaml.cs">
+      <DependentUpon>PageAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturer.xaml.cs">
+      <DependentUpon>PageManufacturer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageManufacturers.xaml.cs">
+      <DependentUpon>PageManufacturers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliner.xaml.cs">
+      <DependentUpon>PageUsedAirliner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinersPageModel\PageUsedAirliners.xaml.cs">
+      <DependentUpon>PageUsedAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinesPageModel\AirlinesMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlines.xaml.cs">
+      <DependentUpon>PageAirlines.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlinesStatistics.xaml.cs">
+      <DependentUpon>PageAirlinesStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportPageModel\AirportMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirport.xaml.cs">
+      <DependentUpon>PageAirport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirportFacilities.xaml.cs">
+      <DependentUpon>PageAirportFacilities.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirportInfo.xaml.cs">
+      <DependentUpon>PageAirportInfo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportPageModel\PageAirportTraffic.xaml.cs">
+      <DependentUpon>PageAirportTraffic.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportsPageModel\AirportsMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageAirports.xaml.cs">
+      <DependentUpon>PageAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageAirportsStatistics.xaml.cs">
+      <DependentUpon>PageAirportsStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageSearchAirports.xaml.cs">
+      <DependentUpon>PageSearchAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageShowAirports.xaml.cs">
+      <DependentUpon>PageShowAirports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageAlliances.xaml.cs">
+      <DependentUpon>PageAlliances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageCreateAlliance.xaml.cs">
+      <DependentUpon>PageCreateAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliance.xaml.cs">
+      <DependentUpon>PageShowAlliance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageShowAlliances.xaml.cs">
+      <DependentUpon>PageShowAlliances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\FleetAirlinerMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerStatistics.xaml.cs">
+      <DependentUpon>PageFleetAirlinerStatistics.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirliner.xaml.cs">
+      <DependentUpon>PageFleetAirliner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInformation.xaml.cs">
+      <DependentUpon>PageFleetAirlinerInformation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\FleetAirlinerPageModel\PageFleetAirlinerInsurances.xaml.cs">
+      <DependentUpon>PageFleetAirlinerInsurances.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\DifficultyMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageAirlineData.xaml.cs">
+      <DependentUpon>PageAirlineData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageCalendar.xaml.cs">
+      <DependentUpon>PageCalendar.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageCreateDifficulty.xaml.cs">
+      <DependentUpon>PageCreateDifficulty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageCredits.xaml.cs">
+      <DependentUpon>PageCredits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageFlights.xaml.cs">
+      <DependentUpon>PageFlights.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageMMLoadGame.xaml.cs">
+      <DependentUpon>PageMMLoadGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewAirline.xaml.cs">
+      <DependentUpon>PageNewAirline.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageNewGame.xaml.cs">
+      <DependentUpon>PageNewGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageNews.xaml.cs">
+      <DependentUpon>PageNews.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectLanguage.xaml.cs">
+      <DependentUpon>PageSelectLanguage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSelectOpponents.xaml.cs">
+      <DependentUpon>PageSelectOpponents.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageSettings.xaml.cs">
+      <DependentUpon>PageSettings.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageShowScenario.xaml.cs">
+      <DependentUpon>PageShowScenario.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartData.xaml.cs">
+      <DependentUpon>PageStartData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\GamePageModel\PageStartMenu.xaml.cs">
+      <DependentUpon>PageStartMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\OptionsMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageLoadGame.xaml.cs">
+      <DependentUpon>PageLoadGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageOptions.xaml.cs">
+      <DependentUpon>PageOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageOptionsCredits.xaml.cs">
+      <DependentUpon>PageOptionsCredits.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageSaveGame.xaml.cs">
+      <DependentUpon>PageSaveGame.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\OptionsPageModel\PageShowOptions.xaml.cs">
+      <DependentUpon>PageShowOptions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\FlightSchoolMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageFlightSchools.xaml.cs">
+      <DependentUpon>PageFlightSchools.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PagePilots.xaml.cs">
+      <DependentUpon>PagePilots.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PagePilotsFS.xaml.cs">
+      <DependentUpon>PagePilotsFS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageShowFlightSchool.xaml.cs">
+      <DependentUpon>PageShowFlightSchool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\PilotsPageModel\PageShowPilot.xaml.cs">
+      <DependentUpon>PageShowPilot.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageAssignAirliners.xaml.cs">
+      <DependentUpon>PageAssignAirliners.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageCreateRoute.xaml.cs">
+      <DependentUpon>PageCreateRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageHumanRoutes.xaml.cs">
+      <DependentUpon>PageHumanRoutes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageRoutePlanner.xaml.cs">
+      <DependentUpon>PageRoutePlanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageRoutes.xaml.cs">
+      <DependentUpon>PageRoutes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\PageShowRoute.xaml.cs">
+      <DependentUpon>PageShowRoute.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\RouteMVVM.cs" />
+    <Compile Include="GUIModel\PagesModel\RoutesPageModel\RoutePlannerMVVM.cs" />
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Model\AirlineModel\Airline.cs" />
+    <Compile Include="Model\AirlineModel\AdvertisementType.cs" />
+    <Compile Include="Model\AirlineModel\AirlineBudget.cs" />
+    <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
+    <Compile Include="Model\AirlineModel\AirlineFees.cs" />
+    <Compile Include="Model\AirlineModel\AirlineInsurance.cs" />
+    <Compile Include="Model\AirlineModel\AirlinePolicy.cs" />
+    <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
+    <Compile Include="Model\AirlineModel\AirlineRatings.cs" />
+    <Compile Include="Model\AirlineModel\AirlineScores.cs" />
+    <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
+    <Compile Include="Model\AirportModel\AirportContract.cs" />
+    <Compile Include="Model\AirlineModel\Alliance.cs" />
+    <Compile Include="Model\AirlineModel\AllianceMember.cs" />
+    <Compile Include="Model\AirlineModel\FeeType.cs" />
+    <Compile Include="Model\AirlineModel\SubsidiaryModel\AirlineMerger.cs" />
+    <Compile Include="Model\AirlineModel\SubsidiaryModel\FutureSubsidiaryAirline.cs" />
+    <Compile Include="Model\AirlineModel\SubsidiaryModel\SubsidiaryAirline.cs" />
+    <Compile Include="Model\AirlinerModel\Airliner.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerClass.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerConfiguration.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerFacility.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerStatistics.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerType.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerTypeConfiguration.cs" />
+    <Compile Include="Model\AirlinerModel\FleetAirliner.cs" />
+    <Compile Include="Model\AirlinerModel\Manufacturer.cs" />
+    <Compile Include="Model\AirlinerModel\ManufacturerContract.cs" />
+    <Compile Include="Model\AirlinerModel\AirlinerOrder.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\CargoRoute.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\Flight.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\FlightAirlinerClass.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\Route.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteAirlinerClass.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteConfiguration.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteEntryDestination.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteFacility.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\PassengerRoute.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteStatistics.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTable.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\RouteTimeTableEntry.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\StopoverFlight.cs" />
+    <Compile Include="Model\AirlinerModel\RouteModel\StopoverRoute.cs" />
+    <Compile Include="Model\AirportModel\AirlineAirportFacility.cs" />
+    <Compile Include="Model\AirportModel\Airport.cs" />
+    <Compile Include="Model\AirportModel\AirportFacility.cs" />
+    <Compile Include="Model\AirportModel\AirportProfile.cs" />
+    <Compile Include="Model\AirportModel\AirportStatistics.cs" />
+    <Compile Include="Model\AirportModel\AirportStatisticsValue.cs" />
+    <Compile Include="Model\AirportModel\AirportStatics.cs" />
+    <Compile Include="Model\AirportModel\Gate.cs" />
+    <Compile Include="Model\AirportModel\Hub.cs" />
+    <Compile Include="Model\AirportModel\HubType.cs" />
+    <Compile Include="Model\GeneralModel\CalendarItem.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Continent.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\EventsHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\SerializedLoadSaveHelpers.cs" />
+    <Compile Include="Model\GeneralModel\NewsFeed.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\BudgetHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\ScenarioHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\StatisticsHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\TimeTableHelpers.cs" />
+    <Compile Include="Model\GeneralModel\RandomEvent.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\Scenario.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioAirline.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioFailure.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioObject.cs" />
+    <Compile Include="Model\GeneralModel\ScenarioModel\ScenarioPassengerDemand.cs" />
+    <Compile Include="Model\GeneralModel\StatisticsModel\Ratings.cs" />
+    <Compile Include="Model\AirportModel\Runway.cs" />
+    <Compile Include="Model\AirportModel\Terminal.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\CountryCurrency.cs" />
+    <Compile Include="Model\GeneralModel\DifficultyLevel.cs" />
+    <Compile Include="Model\GeneralModel\AppSettings.cs" />
+    <Compile Include="Model\GeneralModel\Configuration.cs" />
+    <Compile Include="Model\GeneralModel\Coordinates.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\BaseUnit.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Country.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\CountryTailNumber.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\TownModel\State.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\UnionMember.cs" />
+    <Compile Include="Model\GeneralModel\GameObject.cs" />
+    <Compile Include="Model\GeneralModel\GameTimeZone.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\AIHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\AirlineHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\AirlinerHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\AirportHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\DayTurnHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\FleetAirlinerHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\GameObjectHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\GeneralHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\LoadSaveHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\PerformanceCounter.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\WorkersModel\AIWorker.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\WorkersModel\GameObjectWorker.cs" />
+    <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEvent.cs" />
+    <Compile Include="Model\GeneralModel\HistoricEventModel\HistoricEventInfluence.cs" />
+    <Compile Include="Model\GeneralModel\HolidaysModel\Holiday.cs" />
+    <Compile Include="Model\GeneralModel\HolidaysModel\HolidayYear.cs" />
+    <Compile Include="Model\GeneralModel\Inflation.cs" />
+    <Compile Include="Model\GeneralModel\InvoicesModel\Invoice.cs" />
+    <Compile Include="Model\GeneralModel\InvoicesModel\Invoices.cs" />
+    <Compile Include="Model\GeneralModel\InvoicesModel\MonthlyInvoice.cs" />
+    <Compile Include="Model\GeneralModel\Language.cs" />
+    <Compile Include="Model\GeneralModel\Loan.cs" />
+    <Compile Include="Model\GeneralModel\Names.cs" />
+    <Compile Include="Model\GeneralModel\NewsBox.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
+    <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\TemporaryCountry.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
+    <Compile Include="Model\GeneralModel\Period.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
+    <Compile Include="Model\GeneralModel\WeatherModel\HourlyWeather.cs" />
+    <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
+    <Compile Include="Model\PassengerModel\DestinationDemand.cs" />
+    <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
+    <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
+    <Compile Include="Model\GeneralModel\CountryModel\Region.cs" />
+    <Compile Include="Model\GeneralModel\Settings.cs" />
+    <Compile Include="Model\GeneralModel\Setup.cs" />
+    <Compile Include="Model\GeneralModel\StatisticsModel\GeneralStatistics.cs" />
+    <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsType.cs" />
+    <Compile Include="Model\GeneralModel\StatisticsModel\StatisticsValue.cs" />
+    <Compile Include="Model\GeneralModel\Translator.cs" />
+    <Compile Include="Model\GeneralModel\WeatherModel\Weather.cs" />
+    <Compile Include="Model\PilotModel\FlightSchool.cs" />
+    <Compile Include="Model\PilotModel\Instructor.cs" />
+    <Compile Include="Model\PilotModel\Pilot.cs" />
+    <Compile Include="Model\PilotModel\PilotProfile.cs" />
+    <Compile Include="Model\PilotModel\PilotStudent.cs" />
+    <Compile Include="Model\PilotModel\TrainingAircraft.cs" />
+    <Compile Include="Model\PilotModel\TrainingAircraftType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="..\Data\languages\language.da-DK.resx">
+      <Link>Data\languagefiles\language.da-DK.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.de-DE.resx">
+      <Link>Data\languagefiles\language.de-DE.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.en-GB.resx">
+      <Link>Data\languagefiles\language.en-GB.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.es-ES.resx">
+      <Link>Data\languagefiles\language.es-ES.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.nl-NL.resx">
+      <Link>Data\languagefiles\language.nl-NL.resx</Link>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.resx">
+      <Link>Data\languagefiles\language.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="..\Data\languages\language.zh-CN.resx">
+      <Link>Data\languagefiles\language.zh-CN.resx</Link>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <AppDesigner Include="Properties\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\add.png" />
+    <Resource Include="Data\images\Airplane.png" />
+    <Resource Include="Data\images\AirplanePin.png" />
+    <Resource Include="Data\images\Airplane_Logo.png" />
+    <Resource Include="Data\images\Airport.png" />
+    <Resource Include="Data\images\Arrivals.png" />
+    <Resource Include="Data\images\Audio.png" />
+    <Resource Include="Data\images\Circle.png" />
+    <Resource Include="Data\images\Coins.png" />
+    <Resource Include="Data\images\Coins_gray.png" />
+    <Resource Include="Data\images\delete.png" />
+    <Resource Include="Data\images\Departures.png" />
+    <Resource Include="Data\images\drinks.png" />
+    <Resource Include="Data\images\Edit.png" />
+    <Resource Include="Data\images\food.png" />
+    <Resource Include="Data\images\gas-white.png" />
+    <Resource Include="Data\images\gas.png" />
+    <Resource Include="Data\images\info.png" />
+    <Resource Include="Data\images\map.png" />
+    <Resource Include="Data\images\money.png" />
+    <Resource Include="Data\images\money_gray.png" />
+    <Resource Include="Data\images\pin.png" />
+    <Resource Include="Data\images\schedule.png" />
+    <Resource Include="Data\images\seat.png" />
+    <Resource Include="Data\images\star_gray.png" />
+    <Resource Include="Data\images\tick.png" />
+    <Resource Include="Data\images\Timetable.png" />
+    <Resource Include="Data\images\United Nations.png" />
+    <Resource Include="Data\images\video.png" />
+    <Resource Include="Data\images\Wind.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Airplane-white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\BlankImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\buy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\human.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\contract.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Pilot.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Key.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="App_Readme\MathNet.Numerics.readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="App_Readme\MathNet.Numerics.copyright.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="App_Readme\MathNet.Numerics.authors.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Cargo.png" />
+    <Resource Include="Data\images\Passenger.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\transfer.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Fonts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="GraphicsModel\PageModel\PageFinancesModel\darkbg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\configuration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\Plane.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\tickgrey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\pause.png" />
+    <Resource Include="Data\images\play.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\exit.png" />
+    <Resource Include="Data\images\newgame.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\down.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\upgrade.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\mail.png" />
+    <Resource Include="Data\images\nomail.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\fullscreen.png" />
+    <Resource Include="Data\images\windowed.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\up.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\buytext.png" />
+    <Resource Include="Data\images\selltext.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Data\images\search.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\Expression\Blend\.NETFramework\v4.5\Microsoft.Expression.Blend.WPF.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

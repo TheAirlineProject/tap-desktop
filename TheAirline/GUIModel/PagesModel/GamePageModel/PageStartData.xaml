@@ -1,0 +1,96 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageStartData"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:g="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      
+	Title="PageStartData">
+   
+    <StackPanel HorizontalAlignment="Center">
+         <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1022'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbContinent_SelectionChanged" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbContinent"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1012'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" SelectedValuePath="Name" Width="200" DisplayMemberPath="Name" Name="cbRegion" SelectionChanged="cbRegion_SelectionChanged"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1028'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="MajorAirports" Name="cbMajorAirports" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"></RadioButton>
+                        <RadioButton GroupName="MajorAirports" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0" IsChecked="True"></RadioButton>
+                    </WrapPanel>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1008'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" SelectedIndex="0" Name="cbYear" SelectionChanged="cbYear_SelectionChanged"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1013'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbFocus"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1011'}">
+                <g:QuickInfoValue.Value>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" DisplayMemberPath="Name" SelectedValuePath="Name"  Width="100" SelectedIndex="0" Name="cbDifficulty"></ComboBox>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1010'}">
+                <g:QuickInfoValue.Value>
+                    <StackPanel>
+                    <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" Width="100" SelectedIndex="0" Name="cbOpponents" HorizontalAlignment="Left"></ComboBox>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1027'}" VerticalAlignment="Bottom" Foreground="DarkBlue" FontWeight="Bold"></TextBlock>
+                    </StackPanel>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1020'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1018'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True" x:Name="rbRandomOpponents"></RadioButton>
+                            <RadioButton GroupName="Opponents" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1019'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                    </WrapPanel>
+                   </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1017'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="SameRegion" Name="cbSameRegion" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                        <RadioButton GroupName="SameRegion" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                    </WrapPanel>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+                <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1023'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1024'}" Name="rbDayTurns" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" IsChecked="True"></RadioButton>
+                        <RadioButton GroupName="Gameclock" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1025'}"  Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"></RadioButton>
+                    </WrapPanel>
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+            <g:QuickInfoValue  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 1026'}">
+                <g:QuickInfoValue.Value>
+                    <WrapPanel>
+                        <RadioButton GroupName="Paused" Name="cbPaused" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 106'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"></RadioButton>
+                        <RadioButton GroupName="Paused" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 107'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"  IsChecked="True"></RadioButton>
+                    </WrapPanel>
+           
+                </g:QuickInfoValue.Value>
+            </g:QuickInfoValue>
+        </ListBox>
+        <WrapPanel Margin="0 10 0 0">
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 203'}" Width="NaN" Click="btnNext_Click">
+           </Button>
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}" Width="NaN" Click="btnStartMenu_Click" Margin="5 0 0 0"></Button>
+        </WrapPanel>
+
+    </StackPanel>
+</Page>

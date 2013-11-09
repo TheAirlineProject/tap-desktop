@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Mandala Airlines" iata="RI" color="Black" country="162" CEO="Paul Rombeek" mentality="Safe" market="Global" preferedairport="CGK"></profile>
+  <info real="True" from="1969" to="2199" />
+</airline>

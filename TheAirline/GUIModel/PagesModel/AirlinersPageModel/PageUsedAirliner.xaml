@@ -1,0 +1,119 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinersPageModel.PageUsedAirliner"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      Name="pageUsedAirliner"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageUsedAirliner">
+    <Page.Resources>
+        <DataTemplate x:Key="FacilityItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ClassItem">
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel Width="300">
+                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                    <WrapPanel Margin="0 5 0 0">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1000'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding SeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
+                    </WrapPanel>
+                    <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AllFacilities}"></ListBox>
+                    </StackPanel>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="PriceInformationItem">
+            <StackPanel>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1001'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1002'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding LeasingPrice,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Type.Maintenance,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+             
+
+            </StackPanel>
+        </DataTemplate>
+    </Page.Resources>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1008'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel>
+                     <ContentControl Content="{Binding Type}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
+                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                        <ContentControl Content="{Binding Registered}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                   </WrapPanel>
+                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                        <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom"></TextBlock>
+                    </WrapPanel>
+                </StackPanel>
+            </Border>
+            <StackPanel>
+                <StackPanel.Style>
+                <Style>
+                    <Style.Triggers>
+                            <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                            <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+                </StackPanel.Style>
+                <TextBlock Margin="0 5 0 0" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1005'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Classes}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
+            </StackPanel>
+            <TextBlock  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1006'}"  Margin="0 5 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel>
+                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource PriceInformationItem}">
+                    </ContentControl>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1007'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" IsSynchronizedWithCurrentItem="True" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbHomebase" ItemsSource="{Binding Path=Homebases,ElementName=pageUsedAirliner}"></ComboBox>
+                    </WrapPanel>
+             
+        </StackPanel>
+            </Border>
+          
+            <WrapPanel Margin="0 10 0 0">
+                <Button Click="btnBuy_Click" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 200'}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbHomebase, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Click="btnLease_Click"  Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 201'}" Margin="5 0 0 0">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbHomebase, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+           </WrapPanel>
+        </StackPanel>
+            
+    </ScrollViewer>
+</Page>

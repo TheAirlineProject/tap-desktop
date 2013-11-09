@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="SkyWest Airlines" iata="OO" color="DarkRed" country="122" CEO="Jerry Atkin" mentality="Moderate" market="Regional" preferedairport="SLC" isfeeder="True">
+  <narrative narrative="SkyWest Airlines is a North American airline owned by SkyWest, Inc. and headquartered in St. George, Utah, USA. Financially speaking, and according to the Airlines for America definitions, SkyWest Airlines is a North American major airline" />
+   </profile>
+    <info real="True" from="1972" to="2199" />
+    </airline>

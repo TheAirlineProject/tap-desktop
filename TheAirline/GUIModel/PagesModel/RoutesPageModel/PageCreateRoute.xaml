@@ -1,0 +1,174 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.RoutesPageModel.PageCreateRoute"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:h="clr-namespace:TheAirline.GUIModel.HelpersModel"
+      Name="pageCreateRoute"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageCreateRoute">
+    <Page.Resources>
+
+        <DataTemplate x:Key="FacilityItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                <ComboBox  Width="100" SelectedItem="{Binding Path=SelectedFacility,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="Name" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding Path=Facilities}"></ComboBox>
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="ClassItem">
+            <Border Style="{StaticResource RoundedBorderStyle}">
+                <StackPanel Width="300">
+                         <TextBlock HorizontalAlignment="Center" Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1000'}" VerticalAlignment="Bottom" Width="150" FontWeight="Bold"></TextBlock>
+                        <TextBox Text="{Binding FarePrice,StringFormat={}{0:0.##}}" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="100"></TextBox>
+                    </WrapPanel>
+                    <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Path=Facilities,Mode=TwoWay}"></ListBox>
+                </StackPanel>
+            </Border>
+        </DataTemplate>
+    </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1001'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <ListBox BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1011'}">
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel VerticalAlignment="Bottom">
+                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1008'}" Name="rbPassenger" IsChecked="True"></RadioButton>
+                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1009'}" Margin="5 0 0 0"></RadioButton>
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+               <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}">
+                    <h:QuickInfoValue.Value>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" SelectionChanged="cbDestination_SelectionChanged" Width="300" Name="cbDestination1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1003'}">
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" SelectionChanged="cbDestination_SelectionChanged" Name="cbDestination2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                            <ComboBox Margin="10 0 0 0" Width="200" Name="cbAircraft" IsSynchronizedWithCurrentItem="True" SelectionChanged="cbAircraft_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding Path=HumanAircrafts,ElementName=pageCreateRoute}">
+                                <ComboBox.Style>
+                                    <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxTransparentStyle}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding ElementName=cbDestination1, Path=SelectedItem}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ComboBox.Style>
+                            </ComboBox>
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbStopover1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                        <Button Margin="5 0 0 0" Height="16" Click="btnStopover1_Click" VerticalAlignment="Bottom" Background="Transparent">
+                            <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                        </Button>
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">
+                    <h:QuickInfoValue.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbStopover1, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="h:QuickInfoValue.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </h:QuickInfoValue.Style>
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel>
+                        <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" VerticalAlignment="Bottom" ItemTemplate="{StaticResource AirportCountryItem}" Width="300" Name="cbStopover2" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
+                            <Button Margin="5 0 0 0" Height="16" Click="btnStopover2_Click" VerticalAlignment="Bottom" Background="Transparent">
+                                <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                            </Button>
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                 </h:QuickInfoValue>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1005'}">
+                    <h:QuickInfoValue.Value>
+                        <TextBlock Text="-" Name="txtDistance"></TextBlock>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+            </ListBox>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=rbPassenger, Path=IsChecked}" Value="False">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1010'}"  Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Path=Classes,ElementName=pageCreateRoute}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
+            </StackPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=rbPassenger, Path=IsChecked}" Value="True">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1006'}"  Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1007'}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                    <TextBox Text="10" Style="{StaticResource NumericTextBox}" VerticalAlignment="Bottom" Width="100" Name="txtCargoPrice"></TextBox>
+                </WrapPanel>
+            </StackPanel>
+            <WrapPanel Margin="0 10 0 0">
+                <Button Click="btnCreate_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 200'}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbDestination1, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=cbDestination2, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Click="btnCreateNew_Click" Margin="5 0 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 202'}">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=cbDestination1, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding ElementName=cbDestination2, Path=SelectedItem}" Value="{x:Null}">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 201'}" Margin="5 0 0 0" Click="btnLoadConfiguration_Click">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=rbPassenger, Path=IsChecked}" Value="False">
+                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</Page>

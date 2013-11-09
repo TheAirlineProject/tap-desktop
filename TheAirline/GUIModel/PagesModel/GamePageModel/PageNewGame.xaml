@@ -1,0 +1,57 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageNewGame"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageNewGame">
+    <Page.Resources>
+        <DataTemplate x:Key="NewGameContent">
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent"/>
+        </DataTemplate>
+        <DataTemplate x:Key="QuickLinksContent">
+
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderContent">
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                              Margin="0 0 20 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+                <TextBlock   Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                  
+                    
+                              Margin="20 0 0 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+                <!--is working
+                <TextBlock Text="{Binding GameObject.HumanAirline.Profile.IATACode,Source={StaticResource gameObject}}" Style="{StaticResource HeaderStyle}"  HorizontalAlignment="Center" VerticalAlignment="Center"></TextBlock>
+     !-->
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NoLeftContent"></DataTemplate>
+        <DataTemplate x:Key="NewGameContentMenu">
+            <TabControl Background="Transparent" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2000'}" Tag="New">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2003'}" Tag="Scenario">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2002'}" Tag="Difficulty">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 2001'}" Tag="Airline">
+                </TabItem>
+            </TabControl>
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" HeaderContentArea="{StaticResource HeaderContent}" LeftContentArea="{StaticResource NoLeftContent}"  MainContentArea="{StaticResource NewGameContent}" RightContentArea="{StaticResource QuickLinksContent}" MainContentMenuArea="{StaticResource NewGameContentMenu}"/>
+
+</Page>

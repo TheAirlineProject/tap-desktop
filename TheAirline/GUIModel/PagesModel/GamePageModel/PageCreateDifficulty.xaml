@@ -1,0 +1,38 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageCreateDifficulty"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      mc:Ignorable="d" 
+      Name="pageCreateDifficulty"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageCreateDifficulty">
+  
+    <StackPanel HorizontalAlignment="Center">
+        <WrapPanel>
+            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateDifficulty 1006'}" Width="200" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+        <Grid Width="200">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateDifficulty 1007'}" Grid.Column="0" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateDifficulty 1008'}" Grid.Column="1" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateDifficulty 1009'}" Grid.Column="2" FontWeight="Bold" VerticalAlignment="Bottom" HorizontalAlignment="Right"></TextBlock>
+            </Grid>
+        </WrapPanel>
+        <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Difficulties,ElementName=pageCreateDifficulty}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <WrapPanel>
+                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Width="200" FontWeight="Bold"></TextBlock>
+                     <Slider Tag="{Binding UID}" Value="{Binding SelectedValue}" Width="200" Minimum="{Binding MinValue}" Maximum="{Binding MaxValue}" IsDirectionReversed="{Binding Reversed}" IsSnapToTickEnabled="True" IsMoveToPointEnabled="True" Ticks="{Binding Ticks}"></Slider>
+               </WrapPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateDifficulty 200'}" Width="NaN" Margin="0 5 0 0" HorizontalAlignment="Left" Click="btnCreate_Click"></Button>
+
+    </StackPanel>
+</Page>

@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="FedEx Express" iata="FX" color="Orange" country="122" CEO="Frederick W. Smith" mentality="Aggressive" market="Global" preferedairport="MEM" routefocus="Cargo">
+  <narrative narrative="FedEx Express is a cargo airline based in Memphis, Tennessee, United States. It is the world's largest airline in terms of freight tons flown and the world's fourth largest in terms of fleet size." />
+   </profile>
+    <info real="True" from="1971" to="2199" />
+<startdata>
+  <airliners>
+   <airliner type="Boeing 757-200PF" early="0" late="72"></airliner>  
+   <airliner type="Airbus A300-600F" early="0" late="71"></airliner> 
+  </airliners>
+  </startdata>
+</airline>

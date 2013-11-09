@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Icelandair" iata="FI" color="MidnightBlue" country="121" CEO="Bikir Holm Guonason" mentality="Safe" market="Regional" preferedairport="KEF"></profile>
+  <info real="True" from="1937" to="2199" />
+</airline>

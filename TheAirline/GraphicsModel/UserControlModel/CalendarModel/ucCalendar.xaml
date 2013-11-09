@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="TheAirline.GraphicsModel.UserControlModel.CalendarModel.ucCalendar"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             x:Name="CalendarControl"
+         
+          d:DesignHeight="300" d:DesignWidth="300" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+    <UserControl.Resources>
+        
+    </UserControl.Resources>
+    <Grid VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Orientation="Horizontal" Background="#004A7F">
+            <Button Style="{StaticResource RoundedButton}" Width="30" Height="20" Content="&lt;" Background="#004A7F" Margin="20 0 6 0" Click="ButtonPrev_Click"></Button>
+            <Button Style="{StaticResource RoundedButton}" Width="30" Height="20" Content=">" Background="#004A7F" Click="ButtonNext_Click" Margin="0 0 6 0"></Button>
+            <TextBlock Text="{Binding ElementName=CalendarControl, Path=Date, StringFormat={}{0:MMMM yyyy}}" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Grid Grid.Row="1">
+            <Grid.Background>
+                <SolidColorBrush Color="#004A7F" Opacity="0.6"></SolidColorBrush>
+            </Grid.Background>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="1" Content="Sunday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0,0,1,0"/>
+            <Label Grid.Column="2" Content="Monday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0,0,1,0"/>
+            <Label Grid.Column="3" Content="Tuesday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0,0,1,0"/>
+            <Label Grid.Column="4" Content="Wednesday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0,0,1,0"/>
+            <Label Grid.Column="5" Content="Thursday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0,0,1,0"/>
+            <Label Grid.Column="6" Content="Friday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center" BorderThickness="0,0,1,0"/>
+            <Label Grid.Column="7" Content="Saturday" FontSize="12" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        </Grid>
+       
+        <Grid x:Name="MonthViewGrid" Grid.Row="2">
+            <Grid.RowDefinitions>
+            </Grid.RowDefinitions>
+        </Grid>
+
+    </Grid>
+</UserControl>
+

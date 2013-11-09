@@ -1,0 +1,81 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.AirlinePageModel.PageAirline"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      Name="pageAirline"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageAirline">
+    <Page.Resources>
+        <DataTemplate x:Key="AirlineQuickLinks">
+            <StackPanel>
+                <Border Style="{StaticResource RoundedBorderStyle}">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1000'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageAirline, Path=ProfitRoutes}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="75"></ContentControl>
+                                        <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1001'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ListBox Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"  ItemsSource="{Binding ElementName=pageAirline, Path=MostUsedAircrafts}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom" Width="100"></TextBlock>
+                                        <TextBlock Text="{Binding Count,StringFormat={}#{0}}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1002'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ListBox Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource AirportShortCountryLink}" ItemsSource="{Binding ElementName=pageAirline, Path=MostGates}">
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+
+            </StackPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="AirlineContentMenu">
+            <TabControl Background="Transparent" BorderThickness="0" Name="tcMenu" SelectionChanged="tcMenu_SelectionChanged">
+                <TabItem Header="" Tag="Overview">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2000'}" Tag="Ratings">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2001'}" Tag="Employees">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2002'}" Tag="Insurances">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2003'}" Tag="Services">
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 2004'}" Tag="Finances">
+                </TabItem>
+            </TabControl>
+        </DataTemplate>
+        <DataTemplate x:Key="AirlineContent">
+            <Frame NavigationUIVisibility="Hidden" Name="frmContent"  />
+
+
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource AirlineQuickLinks}" MainContentArea="{StaticResource AirlineContent}" MainContentMenuArea="{StaticResource AirlineContentMenu}"/>
+
+</Page>
+
+
+

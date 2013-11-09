@@ -1,0 +1,76 @@
+﻿<Page x:Class="TheAirline.GUIModel.PagesModel.GamePageModel.PageSettings"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:m="clr-namespace:TheAirline.GUIModel.MasterPageModel"
+      mc:Ignorable="d" 
+      Name="pageSettings"
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageSettings">
+
+    <Page.Resources>
+        <DataTemplate x:Key="SettingsContent">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+                <StackPanel HorizontalAlignment="Center">
+                    <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSettings 1002'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                        <RadioButton Name="rbFullScreen" GroupName="Screen" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSettings 1000'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom"></RadioButton>
+                        <RadioButton Name="rbWindowed" GroupName="Screen" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSettings 1001'}" Style="{StaticResource RadioButtonLeftSideText}" VerticalAlignment="Bottom" Margin="5 0 0 0"  IsChecked="True"></RadioButton>
+                   
+                    </WrapPanel>
+                    <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSettings 1003'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                        <ComboBox  Style="{StaticResource ComboBoxTransparentStyle}" ItemsSource="{Binding AllLanguages,ElementName=pageSettings}" Name="cbLanguage">
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="{Binding ImageFile}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                        <TextBlock Text="{Binding Name}" Width="150" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                    </WrapPanel>
+                    <WrapPanel Margin="0 10 0 0">
+                        <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSettings 200'}" Width="NaN" Click="btnSave_Click"></Button>
+                        <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageSettings 201'}" Width="NaN" Click="btnUndo_Click"  Margin="5 0 0 0"></Button>
+                        <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 119'}" Width="NaN" Click="btnBack_Click"  Margin="5 0 0 0"></Button>
+
+                    </WrapPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </DataTemplate>
+        <DataTemplate x:Key="QuickLinksContent">
+
+        </DataTemplate>
+        <DataTemplate x:Key="HeaderContent">
+            <WrapPanel HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                              Margin="0 0 20 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+                <TextBlock   Text="The Airline Project" Style="{StaticResource HeaderStyle}" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+                <Image                                  
+                               Source="/data/images/logo_banner.png"
+                               RenderOptions.BitmapScalingMode="HighQuality"
+                               HorizontalAlignment="Left"
+                  
+                    
+                              Margin="20 0 0 0" Opacity="2"
+                VerticalAlignment="Center"
+                              Height="32"/>
+        
+            </WrapPanel>
+        </DataTemplate>
+        <DataTemplate x:Key="NoLeftContent"></DataTemplate>
+        <DataTemplate x:Key="NoContentMenu">
+           
+        </DataTemplate>
+    </Page.Resources>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" HeaderContentArea="{StaticResource HeaderContent}" LeftContentArea="{StaticResource NoLeftContent}"  MainContentArea="{StaticResource SettingsContent}" RightContentArea="{StaticResource QuickLinksContent}" MainContentMenuArea="{StaticResource NoContentMenu}"/>
+
+</Page>

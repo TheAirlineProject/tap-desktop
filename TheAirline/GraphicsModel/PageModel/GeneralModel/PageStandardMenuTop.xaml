@@ -1,0 +1,80 @@
+﻿<page:PageTopMenu x:Class="TheAirline.GraphicsModel.PageModel.GeneralModel.PageStandardMenuTop"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:page="clr-namespace:TheAirline.GraphicsModel.PageModel.GeneralModel"
+                  xmlns:c="clr-namespace:TheAirline.GraphicsModel.Converters"
+                  x:Name="PageControl"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+	Title="PageStandardMenuTop">
+    <Page.Resources>
+        <c:MenuEnabledConverter x:Key="menuEnabledConverter"></c:MenuEnabledConverter>
+        <c:TranslatorConverter x:Key="translatorConverter"></c:TranslatorConverter>
+        <Style x:Key="MenuHeaderStyle" TargetType="MenuItem" >
+            <Setter Property="FontFamily" Value="{DynamicResource NormalFont}"></Setter>
+            <Setter Property="Margin" Value="0,0,0,0"></Setter>
+            <Setter Property="FontWeight" Value="Bold"></Setter>
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="VerticalContentAlignment" Value="Bottom"></Setter>
+           
+        </Style>
+        <Style x:Key="RectSeparatorStyle" TargetType="Rectangle">
+            <Setter Property="VerticalAlignment" Value="Bottom"></Setter>
+            <Setter Property="Width" Value="2"></Setter>
+            <Setter Property="Height" Value="15"></Setter>
+            <Setter Property="Fill" Value="LightGray"></Setter>
+            <Setter Property="IsEnabled" Value="False"></Setter>
+        </Style>
+           
+       
+            <Menu x:Key="MenuMain">
+
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuHome}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkHome_Click" />
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding ElementName=PageControl, Path=NewsText}"  Style="{DynamicResource MenuHeaderStyle}" Click="lnkNews_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAirports}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirports_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAirliners}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirliners_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageRoutes}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkRoutes_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAirlines}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAirlines_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageAlliances}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkAlliances_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PagePilots}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkPilots_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageFlights}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkFlights_Click"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+            <MenuItem Header="Finances" Style="{DynamicResource MenuHeaderStyle}" Click="lnkFinances_Click" Visibility="Collapsed"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Visibility="{Binding Converter={StaticResource menuEnabledConverter},ConverterParameter=Finance}" Margin="0,10,0,2" />
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageCalendar}" Style="{DynamicResource MenuHeaderStyle}" Click="lnkCalendar_Click" Visibility="Collapsed"/>
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2" />
+
+            <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuOptions}" Style="{DynamicResource MenuHeaderStyle}">
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpLoad}" Style="{DynamicResource MenuItemStyle}" Visibility="Collapsed" IsEnabled="True" Click="lnkLoadGame_Click"></MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PopUpSave}" Style="{DynamicResource MenuItemStyle}" IsEnabled="True" Click="lnkSaveGame_Click"> </MenuItem>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuNewGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkNewGame_Click"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageSettings}" Style="{DynamicResource MenuItemStyle}" Click="lnkSettings_Click"></MenuItem>
+                <MenuItem Header="Performance counters" Visibility="{Binding Converter={StaticResource menuEnabledConverter},ConverterParameter=Performance}" Style="{DynamicResource MenuItemStyle}" Click="lnkPerformance_Click"></MenuItem>
+                <Separator></Separator>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=PageCredits}" Style="{DynamicResource MenuItemStyle}" Click="lnkCredits_Click"></MenuItem>
+
+                <Separator></Separator>
+                <MenuItem Header="{Binding Converter={StaticResource translatorConverter},ConverterParameter=MenuExitGame}" Style="{DynamicResource MenuItemStyle}" Click="lnkExit_Click"></MenuItem>
+                <MenuItem Header="Test Page" Style="{DynamicResource MenuItemStyle}" Visibility="Collapsed" Click="lnkTest_Click"></MenuItem>
+            </MenuItem>
+               
+            <Separator Style="{StaticResource {x:Static ToolBar.SeparatorStyleKey}}" Margin="0,10,0,2"/>
+
+        </Menu>
+       
+    </Page.Resources>
+    <Grid>
+        
+    </Grid>
+</page:PageTopMenu>
