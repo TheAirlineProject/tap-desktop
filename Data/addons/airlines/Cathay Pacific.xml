@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Cathay Pacific " iata="CX" color="MediumSeaGreen" country="176" CEO="John Slosar" mentality="Aggressive" market="Global " preferedairport="HKG">
+    <narrative narrative="Cathay Pacific is a large international airline and the flag carrier of Hong Kong, in operation since 1946. They serve 168 destinations throughout the world, including a comprehensive service to Asia. Their fleet of long range widebodys from both Boeing and Airbus." />
+  </profile>
+  <info real="True" from="1946" to="2199" />
+</airline>

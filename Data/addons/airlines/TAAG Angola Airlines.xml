@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="TAAG Angola Airlines" iata="DT" color="Orange" country="224" CEO="Pimentel Araújo" mentality="Moderate" market="Regional" preferedairport="LAD">
+<narrative narrative="Based in Luanda, the airline operates domestic services within Angola, as well as medium-haul services in Africa and long-haul services to Brazil, Cuba, China and Portugal"/>
+</profile>
+<info real="True" from="1938" to="2199"></info>
+</airline>

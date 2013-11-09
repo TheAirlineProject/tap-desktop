@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Boliviana de Aviacion" iata="OB" color="Red" country="211" CEO="Ronald Casso" mentality="Moderate" market="Local" preferedairport="LPB">
+<narrative narrative="Boliviana de Aviacion or simply called BoA is the state-owned national flag carrier airline of Bolivia along with private airline AeroSur"/>
+</profile>
+<info real="True" from="2007" to="2199"></info>
+</airline>

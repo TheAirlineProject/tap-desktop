@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<unions>
+  <union uid="101" shortname="EU" flag="European Union">
+    <translations>
+      <en-US name="European Union" />
+      <de-DE name="Europäische Union" />
+      <en-GB name="European Union" />
+      <nl-NL name="Europese Unie" />
+      <zh-CN name="欧洲联盟" />
+      <da-DK name="Europæiske Union" />
+      <es-ES name="Unión Europea" />
+    </translations>
+    <period creation="11.01.1993 00:00:00" obsolete="03.10.2090 00:00:00" />
+    <members>
+      <member country="102" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="103" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="105" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="107" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="110" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="117" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="118" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="119" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+	  <member country="120" memberfrom="07.01.2013 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="123" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="130" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="132" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="135" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="137" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="140" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="141" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+	  <member country="147" memberfrom="01.01.2007 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="150" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+	  <member country="154" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="159" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="163" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="166" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="167" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="168" memberfrom="01.01.1995 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="169" memberfrom="01.01.1995 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="179" memberfrom="11.01.1993 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+      <member country="185" memberfrom="01.01.2007 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+	  <member country="231" memberfrom="05.01.2004 00:00:00" memberto="03.10.2090 00:00:00">
+      </member>
+    </members>
+  </union>
+  <union uid="102" shortname="WP" flag="Soviet Union">
+    <translations>
+      <en-US name="Warsaw Pact" />
+      <de-DE name="Warsaw Pact" />
+      <en-GB name="Warsaw Pact" />
+      <nl-NL name="Warschaupact" />
+      <zh-CN name="华沙条约组织" />
+      <da-DK name="Warszawapagten" />
+      <es-ES name="Pacto de Varsovia" />
+    </translations>
+    <period creation="05.14.1955 00:00:00" obsolete="07.01.1991 00:00:00" />
+    <members>
+      <member country="135" memberfrom="05.14.1955 00:00:00" memberto="07.01.1991 00:00:00">
+      </member>
+      <member country="147" memberfrom="05.14.1955 00:00:00" memberto="07.01.1991 00:00:00">
+      </member>
+      <member country="159" memberfrom="05.14.1955 00:00:00" memberto="07.01.1991 00:00:00">
+      </member>
+      <member country="185" memberfrom="05.14.1955 00:00:00" memberto="07.01.1991 00:00:00">
+      </member>
+      <member country="242" memberfrom="05.14.1955 00:00:00" memberto="09.13.1968 00:00:00">
+      </member>
+      <member country="1001" memberfrom="05.14.1955 00:00:00" memberto="03.10.1990 00:00:00">
+      </member>
+      <member country="1003" memberfrom="05.14.1955 00:00:00" memberto="07.01.1991 00:00:00">
+      </member>
+      <member country="1004" memberfrom="05.14.1955 00:00:00" memberto="07.01.1991 00:00:00">
+      </member>
+    </members>
+  </union>
+  <union uid="103" shortname="NATO" flag="NATO">
+    <translations>
+      <en-US name="NATO" />
+      <de-DE name="NATO" />
+      <en-GB name="NATO" />
+      <nl-NL name="NAVO" />
+      <zh-CN name="北大西洋公约组织" />
+      <da-DK name="NATO" />
+      <es-ES name="OTAN" />
+    </translations>
+    <period creation="04.04.1949 00:00:00" obsolete="07.01.2099 00:00:00" />
+    <members>
+      <member country="102" memberfrom="03.29.2004 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="103" memberfrom="03.29.2004 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="105" memberfrom="03.29.2004 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="107" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="110" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="111" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="113" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="117" memberfrom="03.29.2004 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="118" memberfrom="02.18.1952 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="119" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="120" memberfrom="04.01.2009 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="121" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="122" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="123" memberfrom="05.30.1982 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="130" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="135" memberfrom="03.12.1999 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="139" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="140" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="141" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="147" memberfrom="03.29.2004 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="150" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="159" memberfrom="03.12.1999 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="161" memberfrom="02.18.1952 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="163" memberfrom="10.03.1990 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="166" memberfrom="03.12.1999 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="179" memberfrom="04.04.1949 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="185" memberfrom="03.29.2004 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="242" memberfrom="04.01.2009 00:00:00" memberto="07.01.2099 00:00:00">
+      </member>
+      <member country="1002" memberfrom="05.09.1955 00:00:00" memberto="3.10.1990 00:00:00">
+      </member>
+    </members>
+  </union>
+</unions>

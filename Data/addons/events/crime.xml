@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Name is messagebox header/title. Text is messagebox content. Number is max per instance. Frequency are
+the odds of event happening in a 36 month period. Money is the fine or amount to reimburse for the 
+event. If "important" value is "yes", the message box should pop up. If no, it should send a mail.-->
+<events type="crime">
+	<event name="Theft" text="A theft has occured on [Eflight] out of [Eairport]. You should increase 
+	funding to your security budget" number="1" frequency="6" important="No">
+		<effects duration="1" customerHappiness="-2" money="-500" EcountryNameValue="-2" 
+		globalNameValue="0" />
+	</event>
+</events>

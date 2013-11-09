@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Firefly" iata="FY" color="Orange" country="173" CEO="Ignatius Ong" mentality="Aggressive" market="Global" preferedairport="KUL">
+    <narrative narrative="Firefly is a full-service point-to-point carrier and a full subsidiary of Air Asia. Operating a fleet composed of 12 ATR-72-500's, with orders for 20 ATR 72-600 aircraft, Firefly flies to 19 destinations in Malaysia, Singapore, Indonesia and Thailand. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="KUL" destinations="25" minimumsize="Smallest">
+<countries>
+<country value="173"></country>
+<country value="162"></country>
+<country value="174"></country>
+<country value="175"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="ATR 72-500" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="MASWings" iata="MH" color="MediumSeaGreen" country="173" CEO="Nasip Roslan" mentality="Aggressive" market="Global" preferedairport="KUL">
+    <narrative narrative="MASwings is a regional airline owned by Malaysia Airlines and is dedicated to flying subsidized Rural Air Services in Malaysia, as well as limited service in Brunei and Indonesia. They operate 3 DHC-6 aircraft for poor runways and also the ATR 72-500 which is the backbone of their fleet, of which they have 10. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="KUL" destinations="20" minimumsize="Smallest">
+<countries>
+<country value="173"></country>
+<country value="162"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="ATR 72-500" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

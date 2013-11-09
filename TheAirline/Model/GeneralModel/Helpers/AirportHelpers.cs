@@ -144,6 +144,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return GetAirportRoutes(airport).SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates, e.DepartureAirport.Profile.Coordinates, e.Airliner.Airliner.Type)) >= startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates, e.DepartureAirport.Profile.Coordinates, e.Airliner.Airliner.Type)) < endTime && e.Day == day)).ToList();
         }
+        //creates the weather for an airport
+        public static void CreateAirportWeather(Airport airport)
+        {
+            airport.Weather[0] = null;
+
+            WeatherAverage average = WeatherAverages.GetWeatherAverages(w => w.Airport != null && w.Airport == airport && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
+
+            if (average == null)
+                average = WeatherAverages.GetWeatherAverages(w => w.Town != null && w.Town == airport.Profile.Town && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
+
+            if (average == null)
+                average = WeatherAverages.GetWeatherAverages(w => w.Country != null && w.Country == airport.Profile.Town.Country && w.Month == GameObject.GetInstance().GameTime.Month).FirstOrDefault();
+
+            if (average == null)
+                CreateFiveDaysAirportWeather(airport);
+            else
+            {
+                var lAirport = new List<Airport>();
+                lAirport.Add(airport);
+
+                CreateAirportsWeather(lAirport, average);
+            }
+
+            
+        }
         //creates the weather (5 days) for a number of airport with an average
         public static void CreateAirportsWeather(List<Airport> airports, WeatherAverage average)
         {
@@ -173,7 +198,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
         }
         //creates the weather (5 days) for an airport
-        public static void CreateAirportWeather(Airport airport)
+        public static void CreateFiveDaysAirportWeather(Airport airport)
         {
             int maxDays = 5;
             if (airport.Weather[0] == null)

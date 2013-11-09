@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Juneyao Airlines" iata="HO" color="Black" country="148" CEO="Wang Junjin" mentality="Safe" market="Global" preferedairport="PVG"></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

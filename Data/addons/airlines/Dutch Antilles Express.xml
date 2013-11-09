@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Dutch Antilles Express" iata="9H" color="LightGreen" country="246" CEO="Nelson Ramiz" mentality="Moderate" market="Local" preferedairport="CUR">
+<narrative narrative="Dutch Antilles Express is an airline of the Dutch country of Curaçao. It operates high-frequency scheduled services in the Dutch Caribbean to Venezuela, United States, and the Dominican Republic. Its main base is at Hato International Airport, Curaçao"/>
+</profile>
+<info real="True" from="2005" to="2199"></info>
+</airline>

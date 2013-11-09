@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Eastar Jet" iata="ZE" color="Black" country="165" CEO="Dal-Ho Kang" mentality="Safe" market="Global" preferedairport="ICN"></profile>
+  <info real="True" from="2007" to="2199" />
+</airline>

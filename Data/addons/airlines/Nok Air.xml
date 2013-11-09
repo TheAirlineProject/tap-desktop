@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Nok Air" iata="DD" color="Black" country="175" CEO="Mr. Patee Sarasin" mentality="Safe" market="Global" preferedairport="DMK"></profile>
+  <info real="True" from="2004" to="2199" />
+</airline>

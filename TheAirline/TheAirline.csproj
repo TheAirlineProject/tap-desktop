@@ -1624,7 +1624,6 @@
     <Resource Include="Data\images\pin.png" />
     <Resource Include="Data\images\schedule.png" />
     <Resource Include="Data\images\seat.png" />
-    <Resource Include="Data\images\star_gold.png" />
     <Resource Include="Data\images\star_gray.png" />
     <Resource Include="Data\images\tick.png" />
     <Resource Include="Data\images\Timetable.png" />
@@ -1692,7 +1691,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\bg.jpg" />
-    <Resource Include="Data\images\logo_banner.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Plane.png" />

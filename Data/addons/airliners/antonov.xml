@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airliners>
+  <airliner manufacturer="Antonov" name="Antonov An-10" price="3200090">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop"/>
+	<specs wingspan="38" length="34" range="4075" speed="610" fuelcapacity="17120" consumption="0.042" runwaylengthrequired="720"/>
+	<capacity passengers="100" cockpitcrew="2" cabincrew="4" maxclasses="2"/>
+	<produced from="1960" to="1972" rate="8"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-24" price="1900000">
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop"/>
+	<specs wingspan="29.2" length="23.53" range="2761" speed="450" fuelcapacity="6200" consumption="0.045" runwaylengthrequired="650"/>
+	<capacity passengers="50" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1960" to="1979" rate="68"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-38" price="8553480">
+	<type body="Single_Aisle" rangetype="Regional" engine="Turboprop"/>
+	<specs wingspan="22.06" length="15.67" range="1750" speed="380" fuelcapacity="1940" consumption="0.041" runwaylengthrequired="600"/>
+	<capacity passengers="27" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+	<produced from="2000" to="2008" rate="1"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-74" price="9770390"> <!--20000000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+	<specs wingspan="31.89" length="28.07" range="4325" speed="575" fuelcapacity="16250" consumption="0.072" runwaylengthrequired="2050"/>
+	<capacity passengers="52" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1977" to="2016" rate="2"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-124" price="27607360"> <!--90000000-->
+	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+	<specs wingspan="73.3" length="68.96" range="10500" speed="825" fuelcapacity="254557" consumption="0.055" runwaylengthrequired="3000"/>
+	<capacity passengers="438" cockpitcrew="2" cabincrew="10" maxclasses="3"/>
+	<produced from="1982" to="2019" rate="3"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-140" price="1659900"> <!--9000000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+	<specs wingspan="24.51" length="22.60" range="1380" speed="460" fuelcapacity="5912" consumption="0.082" runwaylengthrequired="1750"/>
+	<capacity passengers="52" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1997" to="2014" rate="2"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-148 100A" price="2726860"> <!--18000000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="28.91" length="29.13" range="2100" speed="840" fuelcapacity="2200" consumption="0.012" runwaylengthrequired="1560"/>
+	<capacity passengers="85" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="2005" to="2015" rate="3"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-148 100B" price="2878350"> <!--19000000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="28.91" length="29.13" range="3500" speed="820" fuelcapacity="3670" consumption="0.013" runwaylengthrequired="1800"/>
+	<capacity passengers="80" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="2005" to="2013" rate="3"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-148 100E" price="2998710"> <!--21000000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+	<specs wingspan="28.91" length="29.13" range="4400" speed="850" fuelcapacity="4800" consumption="0.014" runwaylengthrequired="1885"/>
+	<capacity passengers="80" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="2007" to="2016" rate="3"/>
+  </airliner>
+  <airliner manufacturer="Antonov" name="Antonov An-158" price="2985880"> <!--22000000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="28.91" length="34.36" range="2500" speed="860" fuelcapacity="4500" consumption="0.018" runwaylengthrequired="1900"/>
+	<capacity passengers="99" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="2010" to="2016" rate="3"/>
+  </airliner>
+</airliners>

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Sun Country Airlines" iata="SY" color="Black" country="122" CEO="Jim Olsen" mentality="Safe" market="Global" preferedairport="MSP"></profile>
+  <info real="True" from="1982" to="2199" />
+</airline>

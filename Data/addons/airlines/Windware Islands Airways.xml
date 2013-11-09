@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Windward Islands Airways" iata="WM" color="Yellow" country="109" CEO="Georges E. Greaux" mentality="Safe" market="Local " preferedairport="SXM">
+  <narrative narrative="Windward Islands Airways is a government-owned airline based in the Netherlands Antilles. Founded in 1961 by Georges Greaux, It has a fleet of four aircraft serving ten destinations, all within the Leeward Islands group of the Lesser Antilles in the North East Caribbean"></narrative>
+  </profile>
+    <info real="True" from="1962" to="2199" />
+</airline>

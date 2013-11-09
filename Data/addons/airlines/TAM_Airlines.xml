@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="TAM Airlines" iata="JJ" color="DarkGreen" country="138" CEO="Marco Bologna" mentality="Aggressive" market="Global" preferedairport="GRU">
+<narrative narrative="TAM Airlines is the Brazilian brand of LATAM Airlines Group. The merger of TAM with LAN Airlines was completed on June 22, 2012. The company is currently the largest Brazilian airline." />
+  </profile>
+  <startdata>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="88"></airliner>  
+    <airliner type="Airbus A319-100" early="0" late="30"></airliner>
+    <airliner type="Airbus A321-200" early="0" late="9"></airliner>
+    <airliner type="Airbus A330-300" early="0" late="20"></airliner>
+    <airliner type="Boeing 767-300ER" early="0" late="3"></airliner>
+    <airliner type="Boeing 777-300ER" early="0" late="6"></airliner>      
+  </airliners>
+  </startdata>
+ </airline>

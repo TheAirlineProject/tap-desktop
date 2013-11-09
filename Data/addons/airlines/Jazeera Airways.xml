@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Jazeera Airways" iata="J9" color="Black" country="126" CEO="Stefan Pichler" mentality="Safe" market="Global" preferedairport="KWI"></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

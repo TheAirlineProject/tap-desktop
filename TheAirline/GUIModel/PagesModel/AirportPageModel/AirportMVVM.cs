@@ -70,6 +70,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             foreach (AirportContract contract in this.Airport.AirlineContracts)
                 this.Contracts.Add(new ContractMVVM(contract));
 
+            AirportHelpers.CreateAirportWeather(this.Airport);
+
             this.Weather = this.Airport.Weather.ToList();
 
             if (!GameObject.GetInstance().DayRoundEnabled)

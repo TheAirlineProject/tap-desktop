@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airliners>
+  <airliner manufacturer="BAC" name="BAC One-Eleven 200" price="3477440"> <!--3700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="26.98" length="28.50" range="1140" speed="882" fuelcapacity="14020" consumption="0.138" runwaylengthrequired="1605"/>
+    <capacity passengers="89" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+    <produced from="1965" to="1969" rate="9"/>
+  </airliner>
+  <airliner manufacturer="BAC" name="BAC One-Eleven 300" price="3665410"> <!--3900000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="26.98" length="28.50" range="2300" speed="882" fuelcapacity="29050" consumption="0.142" runwaylengthrequired="1620"/>
+    <capacity passengers="89" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+    <produced from="1965" to="1969" rate="9"/>
+  </airliner>
+  <airliner manufacturer="BAC" name="BAC One-Eleven 400" price="3653000"> <!--4000000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="26.98" length="28.50" range="2300" speed="882" fuelcapacity="29050" consumption="0.142" runwaylengthrequired="1625"/>
+    <capacity passengers="89" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+    <produced from="1966" to="1979" rate="9"/>
+  </airliner>
+  <airliner manufacturer="BAC" name="BAC One-Eleven 475" price="3656460"> <!--4300000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="28.50" length="28.50" range="3000" speed="871" fuelcapacity="38400" consumption="0.144" runwaylengthrequired="1500"/>
+    <capacity passengers="89" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+    <produced from="1968" to="1982" rate="9"/>
+  </airliner>
+  <airliner manufacturer="BAC" name="BAC One-Eleven 500" price="4875890"> <!--5500000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+    <specs wingspan="28.50" length="32.61" range="2744" speed="871" fuelcapacity="38400" consumption="0.118" runwaylengthrequired="1590"/>
+    <capacity passengers="119" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="1967" to="1982" rate="9"/>
+  </airliner>
+</airliners>

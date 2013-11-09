@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Mauritius" iata="MK" color="Red" country="206" CEO="Andr Viljoen" mentality="Aggressive" market="Global" preferedairport="MRU">
+<narrative narrative="Air Mauritius Limited, doing business as Air Mauritius, is the flag carrier of Mauritius. The airline is headquartered at the Air Mauritius Centre in Port Louis, Mauritius. Its main base is Sir Seewoosagur Ramgoolam International Airport." />
+  </profile>
+  <startdata>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Airbus A319-100" early="0" late="2"></airliner> 
+    <airliner type="Airbus A330-200" early="0" late="2"></airliner> 
+    <airliner type="Airbus A340-300" early="0" late="6"></airliner> 
+    <airliner type="Airbus A320-200" early="0" late="2"></airliner> 
+    <airliner type="ATR 72-500" early="0" late="3"></airliner>    
+  </airliners>
+  </startdata>
+</airline>

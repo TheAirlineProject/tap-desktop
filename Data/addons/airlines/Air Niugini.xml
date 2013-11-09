@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Niugini" iata="PX" color="Red" country="280" CEO="Wasantha Kumarasiri" mentality="Moderate" market="Regional" preferedairport="POM">
+<narrative narrative="Air Niugini Limited is the national airline of Papua New Guinea, based in Air Niugini House on the property of Jacksons International Airport, Port Moresby"/>
+</profile>
+<info real="True" from="1973" to="2199"></info>
+</airline>

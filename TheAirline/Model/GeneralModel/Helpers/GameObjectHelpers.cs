@@ -267,42 +267,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 SetHistoricEventInfluence(influence, true);
             }
-            //updates the weather forecasts
-            
-            var weatherAirports = Airports.GetAllActiveAirports();
-            
-            foreach (WeatherAverage average in WeatherAverages.GetWeatherAverages(w => w.Airport != null && w.Month == GameObject.GetInstance().GameTime.Month))
-            {
-                var airports = weatherAirports.FindAll(a => a == average.Airport);
-
-                AirportHelpers.CreateAirportsWeather(airports.ToList(), average);
-
-                foreach (var airport in airports)
-                    weatherAirports.Remove(airport);
-
-            }
-            foreach (WeatherAverage average in WeatherAverages.GetWeatherAverages(w => w.Town != null && w.Month == GameObject.GetInstance().GameTime.Month))
-            {
-
-                var airports = weatherAirports.FindAll(a => a.Profile.Town == average.Town);
-
-                AirportHelpers.CreateAirportsWeather(airports.ToList(), average);
-
-                foreach (var airport in airports)
-                    weatherAirports.Remove(airport);
-            }
-            foreach (WeatherAverage average in WeatherAverages.GetWeatherAverages(w => w.Country != null && w.Month == GameObject.GetInstance().GameTime.Month))
-            {
-                var airports = weatherAirports.FindAll(a => a.Profile.Country == average.Country);
-
-                AirportHelpers.CreateAirportsWeather(airports.ToList(), average);
-
-                foreach (var airport in airports)
-                    weatherAirports.Remove(airport);
-            }
-            foreach (var airport in weatherAirports)
-                AirportHelpers.CreateAirportWeather(airport);
-
+   
             
             //updates airports
             Parallel.ForEach(Airports.GetAllActiveAirports(), airport =>
