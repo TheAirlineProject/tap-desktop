@@ -1,0 +1,10 @@
+#
+# This is SubGit authors mapping file.
+# Authors mapping is used to map Subversion committers names to Git committers names and vice versa.
+#
+# This file uses git-svn format, as described at 'http://www.kernel.org/pub/software/scm/git/docs/git-svn.html'
+# and consists of the lines in the following format:
+#
+# svnUser = Git User <user@example.com>
+# 
+
