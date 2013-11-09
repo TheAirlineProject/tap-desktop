@@ -2,3 +2,5 @@
 bin/Debug/*
 obj/x86/Debug/*
 *.csproj
+*.user
+*.suo
