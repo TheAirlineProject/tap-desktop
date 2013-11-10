@@ -119,17 +119,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
                 {
+
                     try
+                    {
+                        deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
+                        loading = "old";
+                    }
+
+                    catch
                     {
                         XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(decompress, new XmlDictionaryReaderQuotas());
                         deserializedSaveObject = (SaveObject)serializer.ReadObject(reader);
                         loading = "new";
                     }
-                    catch
-                    {
-                        deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
-                        loading = "old";
-                    }
+                   
                 }
             }
 
@@ -190,17 +193,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
                     AirportFacilities.AddFacility(facility);
-            },
+            }, 
             () =>
             {
-                if (loading == "new")
-                {
-                    FeeTypes.Clear();
+             if(loading == "new") { 
+                FeeTypes.Clear();
 
-                    foreach (FeeType type in deserializedSaveObject.feeTypeslist)
-                        FeeTypes.AddType(type);
-                }
-            },
+                foreach (FeeType type in deserializedSaveObject.feeTypeslist)
+                FeeTypes.AddType(type);
+            }
+            }, 
             () =>
             {
                 GameObject.SetInstance(deserializedSaveObject.instance);
@@ -263,9 +265,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [DataMember]
         public List<AirportFacility> Airportfacilitieslist { get; set; }
-
+        
         [DataMember]
         public List<FeeType> feeTypeslist { get; set; }
-
+        
     }
 }
