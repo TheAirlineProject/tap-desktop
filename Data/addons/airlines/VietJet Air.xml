@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="VietJet Air" iata="VJ" color="Black" country="170" CEO="Ibrahim Dogan" mentality="Safe" market="Global" preferedairport="SGN"></profile>
-  <info real="True" from="2007" to="2199" />
-</airline>

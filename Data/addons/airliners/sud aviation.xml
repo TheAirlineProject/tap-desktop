@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<airliners>
-  <airliner manufacturer="Sud Aviation" name="Sud Aviation Caravelle I" price="2200000">
-	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
-    <specs wingspan="34.30" length="31.01" range="1700" speed="805" fuelcapacity="7500" consumption="0.055" runwaylengthrequired="2000"/>
-    <capacity passengers="80" cockpitcrew="3" cabincrew="2" maxclasses="2"/>
-    <produced from="1959" to="1967" rate="14"/>
-  </airliner>
-</airliners>

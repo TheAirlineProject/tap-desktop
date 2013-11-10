@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Agni Air" iata="AG" color="DarkRed" country="251" CEO="Sudip Basnyat" mentality="Safe" market="Domestic" preferedairport="KTM">
-  <narrative narrative="Agni Air is a new Nepalese airline in operation since 2006. They fly to 8 destinations with a Dornier 228 and 3-Jetstream41s." />
-</profile>
-<info real="True" from="2006" to="2199"></info>
-</airline>
