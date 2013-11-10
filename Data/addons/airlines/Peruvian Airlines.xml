@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Peruvian Airlines" iata="P9" color="Black" country="182" CEO="Cesar Catano" mentality="Safe" market="Global" preferedairport="LIM"></profile>
-  <info real="True" from="2007" to="2199" />
-</airline>

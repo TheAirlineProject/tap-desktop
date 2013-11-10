@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="Adam Air" iata="KI" color="LightGreen" country="162" CEO="Adam Adhitya Suherman" mentality="Aggressive" market="Local" preferedairport="CGK">
-  <narrative narrative="Adam Air was a short-lived Indonesian airline which operated from 2002 to 2008. They operated a fleet of 22 Boeing 737s. " />
-</profile>
-<info real="True" from="2002" to="2008"></info>
-</airline> 
