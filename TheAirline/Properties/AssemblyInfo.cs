@@ -8,7 +8,11 @@ using System.Windows;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("The Airline Project")]
+<<<<<<< HEAD
 [assembly: AssemblyDescription("")]
+=======
+[assembly: AssemblyDescription("The Airline Project")]
+>>>>>>> 038-patch
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("The Airline Project")]
 [assembly: AssemblyProduct("The Airline Project")]
@@ -51,6 +55,11 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
+<<<<<<< HEAD
 [assembly: AssemblyVersion("0.3.9.0")]
 [assembly: AssemblyFileVersion("0.3.9.0")]
+=======
+[assembly: AssemblyVersion("0.3.8.1")]
+[assembly: AssemblyFileVersion("0.3.8.1")]
+>>>>>>> 038-patch
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
