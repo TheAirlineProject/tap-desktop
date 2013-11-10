@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air India" iata="AI" color="Red" country="152" CEO="Rohit Nandan" mentality="Safe" market="Global" preferedairport="DEL">
+    <narrative narrative="Air India is the national flag carrier of India."></narrative>
+  </profile>
+  <info real="True" from="1932" to="2199" />
+</airline>

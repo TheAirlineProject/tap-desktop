@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="British Airways" iata="BA" color="GreenYellow" country="130" CEO="Keith Williams" mentality="Aggressive" market="Global" preferedairport="LHR">
+  <narrative narrative="British Airways is the flag airline of the UK, based out of London since 1974. They operate a fleet of over 250 aircraft to 169 destionations, excluding subsidiaries. Their fleet consists of Airbus A320s and Boeing 747, 767, and 777s." />
+<logos>
+<logo from="1975" to="1984" path="BA1975-1984"></logo>
+<logo from="1985" to="1997" path="BA1985-1997"></logo>
+</logos>
+</profile>
+<info real="True" from="1974" to="2199"></info>
+<startdata>
+   <airliners>
+    <airliner type="Airbus A320-200" early="0" late="46"></airliner>  
+    <airliner type="Airbus A319-100" early="0" late="44"></airliner>
+    <airliner type="Airbus A318-100" early="0" late="2"></airliner>
+    <airliner type="Airbus A321-200" early="0" late="17"></airliner>
+    <airliner type="Boeing 737-400" early="0" late="19"></airliner>
+    <airliner type="Boeing 747-400" early="0" late="55"></airliner>
+    <airliner type="Boeing 767-300ER" early="0" late="28"></airliner>
+    <airliner type="Boeing 777-200" early="0" late="3"></airliner>
+    <airliner type="Boeing 777-200ER" early="0" late="43"></airliner> 
+    <airliner type="Boeing 777-300ER" early="0" late="6"></airliner>     
+  </airliners>
+</startdata>
+<subsidiaries>
+<subsidiary name="British Midland International" IATA="BD" homebase="LHR" mentality="Moderate" market="Regional" logo="BD"></subsidiary>
+</subsidiaries>
+</airline>
+

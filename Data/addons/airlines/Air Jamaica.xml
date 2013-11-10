@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Jamaica" iata="JM" color="Purple" country="199" CEO="Rubindra Moonan" mentality="Moderate" market="Domestic" preferedairport="KIN">
+ <narrative narrative="Air Jamaica is the current national airline of Jamaica. Air Jamaica was established in October 1968 and started operations on April 1, 1969."></narrative></profile>
+<info real="True" from="1968" to="2199"></info>
+</airline>

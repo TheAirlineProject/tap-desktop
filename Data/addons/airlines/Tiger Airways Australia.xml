@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Tiger Airways Australia" iata="TT" color="Black" country="116" CEO="Andrew David" mentality="Safe" market="Global" preferedairport="MEL"></profile>
+  <info real="True" from="2007" to="2199" />
+</airline>

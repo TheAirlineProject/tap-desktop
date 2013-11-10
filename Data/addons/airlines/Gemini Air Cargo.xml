@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Gemini Air Cargo" iata="GR" color="Yellow" country="122" CEO="Sam Woodward" mentality="Moderate" market="Global " preferedairport="MIA" routefocus="Cargo">
+  <narrative narrative="Gemini Air Cargo was an american cargo airline, which was established in December 1995 by William Stockbridge, with financial backing from Lehman Brothers and Green Tree Capital." />
+   </profile>
+    <info real="True" from="1995" to="2008" />
+    </airline>

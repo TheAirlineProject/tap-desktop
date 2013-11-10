@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Citilink" iata="QG" color="Black" country="162" CEO="Arif Wibowo" mentality="Safe" market="Global" preferedairport="SUB"></profile>
+  <info real="True" from="2001" to="2199" />
+</airline>

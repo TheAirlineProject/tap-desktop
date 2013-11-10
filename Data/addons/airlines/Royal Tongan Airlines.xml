@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Royal Tongan Airlines" iata="WR" color="Red" country="208" CEO="Logan Appu" mentality="Moderate" market="Local" preferedairport="TBU">
+<narrative narrative="Royal Tongan Airlines was the national airline of Tonga until liquidation in 2004. It was a government agency and operated interisland services and international routes."/>
+</profile>
+<info real="True" from="1985" to="2004"></info>
+</airline>

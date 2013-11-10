@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Airlines PNG" iata="CG" color="Blue" country="280" CEO="John Wild Sr." mentality="Moderate" market="Local" preferedairport="POM">
+<narrative narrative="The airline was established and started operations in 1987 and was originally known as Milne Bay Air or simply MBA. It operated as a charter company in the resource development industry. The airline obtained an RPT licence in September 1992 and received its airline licence in March 1997"/>
+</profile>
+<info real="True" from="1987" to="2199"></info>
+</airline>

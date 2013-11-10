@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Tahiti Nui" iata="TN" color="LightBlue" country="140" CEO="Etienne Howan" mentality="Moderate" market="Regional" preferedairport="PPT">
+<narrative narrative="Air Tahiti Nui is French Polynesia's flag carrier airline with its head office in the Immeuble Dexter in Papeete, Tahiti. It operates international services for the low and high-end leisure travel markets. Its main base is Faa'a International Airport, Papeete"/>
+</profile>
+<info real="True" from="1997" to="2199"></info>
+</airline>

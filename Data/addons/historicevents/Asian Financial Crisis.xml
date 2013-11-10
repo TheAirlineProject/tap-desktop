@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="Asian Financial Crisis" text="The Thai Baht has collapsed causing contagion throughout the region" date="07.01.1997 00:00:00">
+  <influences>
+    <influence type="PassengerDemand" value="-15" enddate="01.01.2000 00:00:00"></influence>
+    <influence type="Stocks" value="-15" enddate="01.01.2000 00:00:00"></influence>
+    <influence type="FuelPrices" value="-10" enddate="01.01.2000 00:00:00"></influence>
+  </influences>
+</event>

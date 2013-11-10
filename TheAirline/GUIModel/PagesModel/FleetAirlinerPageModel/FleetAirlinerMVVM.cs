@@ -10,6 +10,7 @@ using System.Windows.Data;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
@@ -55,6 +56,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
         public FleetAirliner Airliner { get; set; }
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
+        public ObservableCollection<Pilot> Pilots { get; set; }
         public FleetAirlinerMVVM(FleetAirliner airliner)
         {
             this.Airliner = airliner;
@@ -90,6 +92,11 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 this.Classes.Add(amClass);
             }
 
+            this.Pilots = new ObservableCollection<Pilot>();
+
+            foreach (Pilot pilot in this.Airliner.Pilots)
+                this.Pilots.Add(pilot);
+
             this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
             this.BMaintenanceInterval = this.Airliner.BMaintenanceInterval;
             this.CMaintenanceInterval = this.Airliner.CMaintenanceInterval;
@@ -99,7 +106,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
        
         }
-
+        //removes a pilot from the airliner
+        public void removePilot(Pilot pilot)
+        {
+            this.Pilots.Remove(pilot);
+            this.Airliner.removePilot(pilot);
+        }
         
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

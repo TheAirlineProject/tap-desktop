@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Piedmont Airlines" iata="PD" color="DarkRed" country="122" CEO="Stephen Farrow" mentality="Aggressive" market="Local" preferedairport="SBY">
+<narrative narrative="Piedmont is a subsidiary of US Airways operating out of the small town of Salisbury, Maryland, US. They operate a fleet of 44 Dash-8s to 47 destinations along the East Coast."/>
+</profile>
+<info real="True" from="1962" to="2099"></info>
+</airline>

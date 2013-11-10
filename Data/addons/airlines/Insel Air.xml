@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Insel Air" iata="7I" color="Blue" country="246" CEO="Henry van der Kwast " mentality="Safe" market="Local " preferedairport="CUR">
+  <narrative narrative="Insel Air started operations in August 2006 with one Embraer 110-P1 Bandeirante flying from Curaçao. The first flight was to the neighbouring island of Aruba"></narrative>
+  </profile>
+    <info real="True" from="2006" to="2199" />
+</airline>

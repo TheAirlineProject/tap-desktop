@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner manufacturer="Bombardier" name="Bombardier CRJ100" price="3417720"> <!--16200000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="21.21" length="26.77" range="2050" speed="809" fuelcapacity="5300" consumption="0.052" runwaylengthrequired="1575"/>
+    <capacity passengers="50" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1992" to="2008" rate="60"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CRJ200" price="3594970"> <!--18000000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="21.21" length="26.77" range="2350" speed="809" fuelcapacity="8080" consumption="0.069" runwaylengthrequired="1500"/>
+    <capacity passengers="50" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1994" to="2008" rate="60"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CRJ700" price="4149760"> <!--22500000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="23.24" length="32.51" range="2656" speed="876" fuelcapacity="10841" consumption="0.058" runwaylengthrequired="1560"/>
+    <capacity passengers="70" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="1997" to="2016" rate="62"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CRJ900" price="4849500"> <!--29000000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="24.85" length="36.40" range="2500" speed="850" fuelcapacity="10841" consumption="0.050" runwaylengthrequired="1870"/>
+    <capacity passengers="86" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2001" to="2007" rate="62"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CRJ900LR" price="4997860"> <!--35000000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+    <specs wingspan="24.85" length="36.40" range="3385" speed="881" fuelcapacity="14678" consumption="0.050" runwaylengthrequired="1940"/>
+    <capacity passengers="86" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2007" to="2020" rate="62"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CRJ1000" price="5669000"> <!--39700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+    <specs wingspan="26.18" length="39.13" range="2491" speed="850" fuelcapacity="10841" consumption="0.044" runwaylengthrequired="2050"/>
+    <capacity passengers="100" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2007" to="2021" rate="62"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier Dash 8-100" price="2136750"> <!--7500000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="25.89" length="22.25" range="1889" speed="500" fuelcapacity="3160" consumption="0.050" runwaylengthrequired="800"/>
+    <capacity passengers="37" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1984" to="2005" rate="36"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier Dash 8-200" price="2233440"> <!--11500000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="25.89" length="22.25" range="1713" speed="537" fuelcapacity="3160" consumption="0.050" runwaylengthrequired="800"/>
+    <capacity passengers="37" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1995" to="2009" rate="36"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier Dash 8-300" price="2912390"> <!--12200000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="27.43" length="25.68" range="1558" speed="528" fuelcapacity="3160" consumption="0.050" runwaylengthrequired="1180"/>
+    <capacity passengers="50" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1989" to="2009" rate="36"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier Dash 8-400" price="4640770"> <!--27000000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="28.40" length="32.81" range="2522" speed="667" fuelcapacity="6526" consumption="0.033" runwaylengthrequired="1400"/>
+    <capacity passengers="78" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+    <produced from="2000" to="2019" rate="36"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier Global 5000" price="5499040"> <!--40000000-->
+    <type body="Single_Aisle" rangetype="Long_Range" engine="Jet"/>
+    <specs wingspan="28.65" length="29.5" range="9360" speed="904" fuelcapacity="21850" consumption="0.123" runwaylengthrequired="1689"/>
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1996" to="2016" rate="20"/>
+ </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CS-100" price="7423260"> <!--58280000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.1" length="34.9" range="4074" speed="828" fuelcapacity="15775" consumption="0.035" runwaylengthrequired="1509"/>
+    <capacity passengers="110" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2013" to="2026" rate="24"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CS-100ER" price="7954400"> <!--63611340-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.1" length="34.9" range="5463" speed="828" fuelcapacity="20431" consumption="0.034" runwaylengthrequired="1509"/>
+    <capacity passengers="110" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2014" to="2022"/>
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CS-300" price="8324370"> <!--66570000-->
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.10" length="38.0" range="4074" speed="828" fuelcapacity="16947" consumption="0.032" runwaylengthrequired="1902"/>
+    <capacity passengers="130" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2013" to="2025" rate="24"/>    
+  </airliner>
+  <airliner manufacturer="Bombardier" name="Bombardier CS-300ER" price="8705000">
+    <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.1" length="38.0" range="5463" speed="828" fuelcapacity="22015" consumption="0.031" runwaylengthrequired="1890"/>
+    <capacity passengers="130" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="2014" to="2019" rate="24"/>    
+  </airliner>
+</airliners>

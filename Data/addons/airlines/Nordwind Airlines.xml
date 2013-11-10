@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Nordwind Airlines" iata="N4" color="DarkRed" country="149" CEO="Lengarov A. Olegovich" mentality="Moderate" market="Regional" preferedairport="SVO">
+  <narrative narrative="Nordwind Airlines is headquartered in Moscow, with the city's Sheremetyevo International Airport (Terminal C) being the most important base for its flight operations. Nordwind Airlines links a multitude of airports in Russia with holiday destinations around the Mediterranean Sea and the Indian Ocean." />
+   </profile>
+    <info real="True" from="2008" to="2199" />
+</airline>

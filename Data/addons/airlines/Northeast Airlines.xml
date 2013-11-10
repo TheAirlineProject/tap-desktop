@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Northeast Airlines" iata="NS" color="Gold" country="130" CEO="James Barnby" mentality="Aggressive" market="Local" preferedairport="NCL"></profile>
+</airline>

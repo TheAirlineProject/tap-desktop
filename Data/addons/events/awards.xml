@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Event name is the title/header of the messagebox. Text is the main content in message box.
+	 Number is the number of awards given, frequency is how often the award(s) are given, in months
+	 Effects duration, in months, is how long the effects of the award will last.
+	 Specific effects (except money) are arbitrary at this point, and are only relative to other awards
+	 in this document. If "important" value is "Yes", it should pop up message box. If no, send mail.
+	Money is a cash reward for all awards given. Ecoutnry will be any country the airline flies to.-->
+<events type="awards">
+	<event name="Most Destinations Award" text="You have received an award for serving the most different
+	destinations in the world. Congratulations!" number="1" frequency="12" important="Yes">
+		<effects duration="4" customerHappiness="7" money="250000" EcountryNameValue="7" globalNameValue="5" />
+	</event>
+</events>
+	
+	

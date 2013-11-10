@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Lion Air" iata="JT" color="Red" country="162" CEO="Rudsi Kirana" mentality="Safe " market="Local" preferedairport="CGK"></profile>
+  <info real="True" from="1996" to="2199" />
+</airline>

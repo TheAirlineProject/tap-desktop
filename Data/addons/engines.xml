@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<engines>
+  <engine manufacturer="Rolls-Royce" model="Trent 800" >
+	  <specs type="jet" noise="high" consumptionModifier="0.97" price="21150000" />
+	  <performance maxSpeed="950" ceiling="43000" />
+	  <aircraft models="Boeing 777-200, Boeing 777-300, Boeing 777-200ER, Boeing 777-200LR, Boeing 777-300ER" />
+	  <produced from="1995" to="2024" />
+  </engine>
+  <engine manufacturer="GE" model="CT7-9B" >
+	  <specs type="turboprop" noise="Low" consumptionModifier="1" price="" />
+	  <performance maxSpeed="467" ceiling="31000" />
+	  <aircraft models="Saab 340" />
+	  <produced from="1984" to="2024" />
+  </engine>
+</engines>

@@ -1,0 +1,8 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Ethiopian Airlines" iata="ET" color="Gold" country="124" CEO="Tewolde Gebremariam" mentality="Moderate" market="Regional" preferedairport="ADD">
+<narrative narrative="Ethiopian Airlines is its country's flag carrier and is wholly owned by the Government of Ethiopia" /> 
+</profile>
+<info real="True" from="1945" to="2199"></info>
+</airline>
+
