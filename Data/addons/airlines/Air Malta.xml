@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<airline>
-  <profile name="Air Malta" iata="KM" color="Red" country="132" CEO="Peter Davies" mentality="Safe" market="Regional" preferedairport="MLA">
-    <narrative narrative="Air Malta is the national airline of Malta, in service since 1973 with routes to Europe and North Africa. Their fleet is small and consists of only Airbus A320 family aircraft." />
-  </profile>
-  <info real="True" from="1973" to="2199"/>
-</airline>
