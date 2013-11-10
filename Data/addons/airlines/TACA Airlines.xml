@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="TACA Airlines" iata="TA" color="White" country="193" CEO="Fabio Villegas" mentality="Safe" market="Domestic" preferedairport="SAL">
+  <narrative narrative="TACA Airlines is the flag-carrier of El Salvador and trade name 'brand' comprising a group of five independently IATA-coded and -owned Central American airlines"></narrative>
+</profile>
+<info real="True" from="1931" to="2014"></info>
+</airline>

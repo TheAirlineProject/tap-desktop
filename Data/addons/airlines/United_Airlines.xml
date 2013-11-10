@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="United Airlines" iata="UA" color="DarkBlue" country="122" CEO="Jeffrey Smisek" mentality="Aggressive" market="Global" preferedairport="ORD">
+<narrative narrative="United Airlines is a major U.S. airline headquartered in Chicago, Illinois. It is the world's largest airline by number of destinations and scheduled passenger-kilometer flown" />
+<logos>
+<logo from="1954" to="1961" path="UA1954-1961"></logo>
+<logo from="1962" to="1973" path="UA1962-1973"></logo>
+<logo from="1974" to="1993" path="UA1974-1993"></logo>
+<logo from="1994" to="1998" path="UA1994-1998"></logo>
+<logo from="1999" to="2010" path="UA1999-2010"></logo>
+</logos>
+</profile>
+</airline> 

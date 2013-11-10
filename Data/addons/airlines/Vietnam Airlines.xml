@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Vietnam Airlines" iata="VN" color="Aqua" country="1007" CEO="Pham Viet Thanh" mentality="Safe" market="Global" preferedairport="HAN"></profile>
+  <info real="True" from="1956" to="2199" />
+</airline>

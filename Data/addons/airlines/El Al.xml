@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="El Al Israel Airlines" iata="LY" color="Blue" country="128" CEO="Eliezer Shkedi" mentality="Safe" market="Global" preferedairport="TLV">
+    <narrative narrative="Considered one of the most secure airlines in the world, El Al is Israel's flag carrier, flying globally with an all-Boeing fleet."></narrative>
+  </profile>
+  <info real="True" from="1948" to="2199" />
+</airline>

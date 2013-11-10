@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Gulf Air" iata="GF" color="DarkBlue" country="151" CEO="Maher Salman Jabor Al Musallam" mentality="Moderate" market="Local" preferedairport="BAH">
+<narrative narrative="Gulf Air  is the principal flag carrier of the Kingdom of Bahrain. Headquartered in Muharraq, adjacent to Bahrain International Airport, the airline operates scheduled services to 41 destinations in 30 countries across Africa, Asia and Europe. Its main base is Bahrain International Airport."/>
+</profile>
+<info real="True" from="1950" to="2199"></info>
+</airline>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="EasyJet" iata="U2" color="Orange" country="130" CEO="Carolyn McCall" mentality="Aggressive" market="Regional" preferedairport="LGW">
+    <narrative narrative="EasyJet Airline Company Limited is a British airline headquartered at London Luton Airport. It is the largest airline of the United Kingdom, measured by number of passengers carried, operating domestic and international scheduled services on over 600 routes across more than 30 countries. The parent company, EasyJet plc, is listed on the London Stock Exchange and is a constituent of the FTSE 250 Index. As of 30 September 2012, it employs 8,446 people, based throughout Europe but mainly in the UK." />
+  </profile>
+  <startdata>
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="49"></airliner>  
+    <airliner type="Airbus A319-100" early="0" late="141"></airliner>    
+  </airliners>
+  </startdata>
+ </airline>

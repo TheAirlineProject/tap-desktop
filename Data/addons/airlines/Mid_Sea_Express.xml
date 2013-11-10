@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Mid-Sea Express" iata="MX" color="MediumSeaGreen" country="131" CEO="Ronan Villanueva" mentality="Aggressive" market="Regional" preferedairport="MNL">
+    <narrative narrative="Mid-Sea Express started operations as an airline with a mission of serving places unserved by the major carriers. They started with a BAe Jetstream 37 but is now using 3 NAMC YS-11 aircraft to serve 7 destinations all over the Philippines. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="MNL" destinations="20" minimumsize="Smallest">
+<countries>
+<country value="131"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="BAe Jetstream 37" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

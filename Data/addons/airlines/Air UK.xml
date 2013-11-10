@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air UK" iata="UK" color="Blue" country="130" CEO="Peter Villa" mentality="Aggressive" market="Regional" preferedairport="STN" >
+    <narrative narrative="Air UK was a regional British airline founded in 1980, which eventually was renamed KLM UK. They operated domestic routes on a fleet consisting primarily of Fokker and BAe aircraft." />
+  </profile>
+  <info real="True" from="1980" to="1998"/>
+</airline>

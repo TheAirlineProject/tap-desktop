@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Name is the messagebox title/header. Text is the messagebox content. Number is the max occurences per
+instance. Frequency is average occurences per airline, per 36 month period. Important "yes" should show
+messagebox. Important "no" should go to mail. Money is the cost of fixing the damage, fine, or reimbursing.
+-->
+<events type="safety">
+	<event name="Bird Strike" text="[Eflight] recently encountered a bird strike at an [Eairport]
+	in [Ecity],[Ecountry].
+	You should increase your training budget to so pilots will better be able to avoid this." number="1" 
+	frequency="8" important="No">
+		<effects duration="1" customerHappiness="-1" money="100000" EcountryNameValue="-1"
+		globalNameValue="0" />
+	</event>
+</events>

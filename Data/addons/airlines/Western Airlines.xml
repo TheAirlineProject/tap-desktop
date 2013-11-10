@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Western Airlines" iata="WA" color="DarkRed" country="122" CEO="Harris Hanshue" mentality="Moderate" market="Regional" preferedairport="LAX">
+ <narrative narrative="Western Airlines was a large airline based in California, with operations throughout the western United States and western Canada, as well as into Mexico. Western Airlines used a fleet of mainly Boeing airliners"></narrative>
+</profile>
+<info real="True" from="1925" to="1988"></info>
+</airline>

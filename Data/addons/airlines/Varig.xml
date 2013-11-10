@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Varig" iata="RG" color="Yellow" country="138" CEO="Otto Ernst Meyer" mentality="Moderate" market="Global" preferedairport="GIG">
+  <narrative narrative="VARIG (acronym for Viação Aérea RIo-Grandense) was the first airline founded in Brazil, in 1927. From 1965 until 1990 it was Brazil's leading and almost only international airline." />
+   </profile>
+    <info real="True" from="1927" to="2006" />
+    </airline>

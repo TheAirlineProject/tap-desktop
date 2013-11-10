@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Tunisair" iata="TU" color="Red" country="144" CEO="Mohamed Thamri" mentality="Aggressive" market="Regional" preferedairport="TUN">
+<narrative narrative="Tunisian Air Company , or Tunisair is the flag carrier airline of Tunisia. Formed in 1948, it operates scheduled international services to European, African and Middle Eastern destinations. Its main base is Tunis-Carthage International Airport. The airline's head office is in Tunis, near Tunis Airport. Tunisair is a member of the Arab Air Carriers Organization." />
+  </profile>
+  <startdata>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Boeing 737-500" early="0" late="4"></airliner> 
+    <airliner type="Boeing 737-600" early="0" late="7"></airliner> 
+    <airliner type="Airbus A319-100" early="0" late="4"></airliner> 
+    <airliner type="Airbus A320-200" early="0" late="16"></airliner> 
+    <airliner type="Airbus A300-600" early="0" late="3"></airliner>    
+  </airliners>
+  </startdata>
+</airline>

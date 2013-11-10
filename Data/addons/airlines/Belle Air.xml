@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Belle Air" iata="LZ" color="Black" country="242" CEO="A. Xhelo" mentality="Safe" market="Global" preferedairport="TIA"></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

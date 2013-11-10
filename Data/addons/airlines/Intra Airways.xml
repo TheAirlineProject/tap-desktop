@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Intra Airways" iata="JY" color="Red" country="130" CEO="Mike Thomas" mentality="Aggressive" market="Local" preferedairport="JER"></profile>
+</airline>

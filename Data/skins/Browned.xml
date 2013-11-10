@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<skin name="Browned">
+  <property name="ButtonBrush">
+    <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+      <LinearGradientBrush.GradientStops>
+        <GradientStop Color="#6C592F" Offset="0.1" />
+        <GradientStop Color="#3B2C03" Offset="0.95" />
+        <GradientStop Color="#6C592F" Offset="1" />
+      </LinearGradientBrush.GradientStops>
+    </LinearGradientBrush>
+  </property>
+  <property name="HeaderBackgroundBrush">
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#6C592F</SolidColorBrush>
+  </property>
+  <property name="HeaderBackgroundBrush2">
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#3B2C03</SolidColorBrush>
+  </property>
+  <property name="BackgroundImage">
+    <BitmapImage BaseUri="{x:Null}" UriSource="Data/skins/airport.jpg" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" />
+  </property>
+  <property name="BackgroundTop">
+    <SolidColorBrush Color="#FFFFD700" Opacity="0.6" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
+  </property>
+  <property name="BackgroundBottom">
+    <SolidColorBrush Color="#FFFFD700" Opacity="0.6" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
+  </property>
+  <property name="TextColor">
+    <SolidColorBrush xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">#FFFFFF</SolidColorBrush>
+  </property>
+  <property name="HeaderTextColor">
+    <SolidColorBrush Color="#FFFFD700" Opacity="0.6" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" />
+  </property>
+</skin>

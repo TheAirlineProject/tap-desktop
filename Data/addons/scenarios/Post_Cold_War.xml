@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<scenario name="Post Cold War" startYear="1990" startCash="70000000" difficulty="Hard" endYear="2000">
+ <intro text="In the aftermath of the Cold War in Eastern Europe, international air traffic is virtually non-existent. As the CEO of a new airline operating a flight of outdated aircraft, your job is to build the demand for international traffic from major Russian and former USSR destinations. You will have 10 years to establish routes to 20 destinations, from at least 3 different airports. Your fleet must be an average of less than 10 years old by 2000. You must transport at least 5,000,000 passengers in the year 2000."/>
+ <success text="Congratulations! You have successfully established Russia and Eastern Europe as a worthwhile market in the aviation industry!"/>
+  <start airline="UN" homeBase="DME">
+   <destinations>
+   </destinations>
+   <fleet>
+	<aircraft name="Tupolev Tu-134" quantity="8"/>
+	<aircraft name="Tupolev Tu-154" quantity="2"/>
+   </fleet>
+ </start>
+ <modifiers>
+	<paxDemand country="149" change="-30" length="7"/>
+	<paxDemand country="134" change="-30" length="7"/>
+	<paxDemand country="147" change="-30" length="7"/>
+	<paxDemand country="159" change="-30" length="7"/>
+	<paxDemand country="166" change="-30" length="7"/>
+	<paxDemand country="233" change="-30" length="7"/>
+	<paxDemand country="234" change="-30" length="7"/>
+	<paxDemand country="235" change="-30" length="7"/>
+	<paxDemand country="236" change="-30" length="7"/>
+	<paxDemand country="237" change="-30" length="7"/>
+	<paxDemand country="238" change="-30" length="7"/>
+	<paxDemand country="239" change="-30" length="7"/>
+	<paxDemand country="240" change="-30" length="7"/>
+ </modifiers>
+ <parameters>
+	<failure id="1" type="Cash" value="0" for="2" text="You have failed the scenario because your cash balance was negative for two consecutive years!"/>
+	<failure id="2" type="Fleet" value="24" at="10" text="You have failed the scenario because you did not expand your fleet to 25 aircraft within 10 years!"/>
+	<failure id="3" type="FleetAge" value="10" at="10" text="You have failed the scenario because you did not modernize your fleet with aircraft less than 10 years old!"/>
+	<failure id="4" type="Intl" value="19" at="10" text="You have failed the scenario because you did not set up at least 20 international routes within 10 years!"/>
+	<failure id="5" type="Pax" value="5000" at="10" text="You have failed the scenario because you did not have 5,000,000 passengers in the year 2000!"/>
+	<failure id="6" type="Bases" value="2" at="10" text="You have failed the scenario because you did not successfully set up 3 different operating bases within 10 years!"/>
+</parameters>
+</scenario>

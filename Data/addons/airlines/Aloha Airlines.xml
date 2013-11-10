@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Aloha Airlines" iata="AQ" color="Orangered" country="122" CEO="David Banmiller" mentality="Safe" market="Regional" preferedairport="HNL">
+    <narrative narrative="Aloha Airlines was an American airline based in Honolulu, Hawaii, operating from Honolulu.  Operations began in 1946 but in the face of difficult economic conditions ceased in 2008. "></narrative>
+  </profile>
+  <info real="True" from="1946" to="2008" />
+</airline>

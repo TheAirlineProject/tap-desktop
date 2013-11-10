@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="SkyPasada" iata="SP" color="Red" country="131" CEO="Ramon Guico III" mentality="Aggressive" market="Global" preferedairport="MNL">
+    <narrative narrative="SkyPasada is a relatively new airline in the Philippines which operates mostly missionary routes to isolated locals in the country. They operate the Let L-410 aircraft, of which they have 3. They serve 8 destinations, all in the Philippines. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="MNL" destinations="10" minimumsize="Smallest">
+<countries>
+<country value="131"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Let L-410" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="PAL Airlines" iata="5P" color="Black" country="160" CEO="Carlos Musiet" mentality="Safe" market="Global" preferedairport="SCL"></profile>
+  <info real="True" from="2003" to="2199" />
+</airline>

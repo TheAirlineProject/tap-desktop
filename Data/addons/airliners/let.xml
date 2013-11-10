@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airliners>
+  <airliner manufacturer="Let" name="Let L-610" price="8450370">
+  	<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop"/>
+	  <specs wingspan="25.6" length="21.72" range="2420" speed="438" fuelcapacity="4840" consumption="0.050" runwaylengthrequired="900"/>
+  	<capacity passengers="50" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+  	<produced from="1988" to="1999" rate="2"/>
+  </airliner>
+  <airliner manufacturer="Let" name="Let L-410" price="1788400">
+    <type body="Single_Aisle" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="20.0" length="14.4" range="1040" speed="310" fuelcapacity="1090" consumption="0.055" runwaylengthrequired="830"/>
+    <capacity passengers="19" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    	<produced from="1988" to="1999" rate="28" />
+  </airliner>
+</airliners>

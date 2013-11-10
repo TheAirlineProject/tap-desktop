@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="AirAsia Philippines" iata="PQ" color="Black" country="131" CEO="Marianne Hontiveros" mentality="Safe" market="Global" preferedairport="CRK"></profile>
+  <info real="True" from="2010" to="2199" />
+</airline>

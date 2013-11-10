@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="China Eastern Airlines" iata="MU" color="Blue" country="148" CEO="Liu Shaoyang" mentality="Aggressive" market="Global " preferedairport="SHA">
+    <narrative narrative="China Eastern is a major Chinese airline in operation out of Shanghai since 1988. They operate a fleet of 300 aircraft to 110 domestic and international locations. Their fleet is a broad mix of Boeing, Airbus, Bombardier, and Embraer." />
+  </profile>
+  <info real="True" from="1988" to="2199" />
+</airline>
