@@ -189,13 +189,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
                     AirportFacilities.AddFacility(facility);
             },
-                /*() =>
-                {
-                FeeTypes.Clear();
+            () =>
+            {
+            FeeTypes.Clear();
 
-                 foreach (FeeType type in deserializedSaveObject.feeTypeslist)
-                    FeeTypes.AddType(type);
-                },*/
+            foreach (FeeType type in deserializedSaveObject.feeTypeslist)
+            FeeTypes.AddType(type);
+            },
             () =>
             {
                 GameObject.SetInstance(deserializedSaveObject.instance);
