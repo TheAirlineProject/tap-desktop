@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Azerbaijan Airlines" iata="J2" color="LightBlue" country="235" CEO="Jahangir Askerov" mentality="Moderate" market="Local" preferedairport="GYD">
+<narrative narrative="Azerbaijan Airlines is the flag carrier of Azerbaijan, with its head office in Baku. Its main base is Heydar Aliyev International Airport in Baku, from which it operates a network of scheduled passenger and cargo services"/>
+</profile>
+<info real="True" from="1992" to="2199"></info>
+</airline>

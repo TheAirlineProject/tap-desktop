@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="EuroLOT" iata="K2" color="Black" country="135" CEO="Grazyna Zaleska Ston" mentality="Safe" market="Global" preferedairport="WAW"></profile>
+  <info real="True" from="1996" to="2199" />
+</airline>

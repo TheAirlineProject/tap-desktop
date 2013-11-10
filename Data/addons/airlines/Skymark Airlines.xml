@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Skymark Airlines" iata="BC" color="Black" country="171" CEO="Shinichi Nishikubo" mentality="Safe" market="Global" preferedairport="NRT"></profile>
+  <info real="True" from="1996" to="2199" />
+</airline>

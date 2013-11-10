@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Kingfisher Airlines" iata="IT" color="Firebrick" country="152" CEO="Sanjay Aggarwal" mentality="Safe" market="Local" preferedairport="BLR"></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

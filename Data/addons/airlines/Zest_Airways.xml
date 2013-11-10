@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Zest Airways" iata="Z2" color="MediumSeaGreen" country="131" CEO="Alfredo Yao" mentality="Aggressive" market="Global" preferedairport="MNL">
+    <narrative narrative="Zest Airways started life as Asian Spirit, the first airline in the Philippines to be run as a cooperative. Operating out of Manila, Zest has 18 aircraft, namely the Airbus A319, A320 and the Xian MA60. They also have 31 aircraft on order. They currently serve 19 destinations in the Philippines, Taiwan, China, and South Korea. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="MNL" destinations="20" minimumsize="Smallest">
+<countries>
+<country value="131"></country>
+<country value="165"></country>
+<country value="148"></country>
+<country value="172"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

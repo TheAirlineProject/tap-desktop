@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="TUIfly" iata="X3" color="Black" country="1002" CEO="Dr. Michael Frenzel" mentality="Safe" market="Global" preferedairport="FRA"></profile>
+  <info real="True" from="2007" to="2199" />
+</airline>

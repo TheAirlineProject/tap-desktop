@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="Financial Crisis" text="Lehman's Brothers has declared bankruptcy, causing the world's economy to contract" date="09.16.2008 00:00:00">
+  <influences>
+    <influence type="PassengerDemand" value="-15" enddate="01.01.2010 00:00:00"></influence>
+    <influence type="Stocks" value="-15" enddate="03.10.2009 00:00:00"></influence>
+  </influences>
+</event>

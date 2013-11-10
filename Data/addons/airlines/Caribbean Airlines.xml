@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Caribbean Airlines" iata="BW" color="DeepPink" country="205" CEO="Robert Corbie" mentality="Safe" market="Regional" preferedairport="POS">
+    <narrative narrative="Caribbean Airlines is the flag carrier to Trinidad and Tobago and Jamaica (through its acqusition of Air Jamaica)."></narrative>
+  </profile>
+  <info real="True" from="1939" to="2199" />
+</airline>

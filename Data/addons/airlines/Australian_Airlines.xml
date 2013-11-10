@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Australian Airlines" iata="AO" color="Orange" country="116" CEO="Clive MacPherson" mentality="Aggressive" market="Global" preferedairport="SYD">
+  <narrative narrative="Australian Airlines was a commuter subsidiary of Qantas, based out of Cairns from 2001 to 2006. They fleet to 13 mainly Asian desinations on a fleet of 5 Boeing 767s." />
+</profile>
+</airline> 

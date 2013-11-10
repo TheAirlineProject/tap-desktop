@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Allegiant Air" iata="G4" color="Black" country="122" CEO="Maurice J. Gallagher, Jr." mentality="Safe" market="Global" preferedairport="LAX"></profile>
+  <info real="True" from="1997" to="2199" />
+</airline>

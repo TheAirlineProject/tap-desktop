@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Swiss Air Lines" iata="LX" color="Red" country="164" CEO="Harry Hohmeister" mentality="Aggressive" market="Global" preferedairport="ZRH">
+    <narrative narrative="Swiss International Air Lines AG is the flag carrier airline of Switzerland operating scheduled services in Europe and to North America, South America, Africa and Asia. Its main hub is Zurich Airport. The airline was formed after the 2002 bankruptcy of Swissair, Switzerland's former flag carrier." />
+  </profile>
+  <startdata>
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="25"></airliner>  
+    <airliner type="Airbus A319-100" early="0" late="7"></airliner>
+    <airliner type="Airbus A321-100" early="0" late="6"></airliner>
+    <airliner type="Airbus A330-300" early="0" late="14"></airliner>
+    <airliner type="Airbus A340-300" early="0" late="15"></airliner>
+    <airliner type="Airbus A321-200" early="0" late="1"></airliner>  
+  </airliners>
+  </startdata>
+ </airline>

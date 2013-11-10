@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Pacific Sun" iata="F4" color="Yellow" country="114" CEO=" Shaenaz Voss" mentality="Safe" market="Local" preferedairport="NAN">
+<narrative narrative="Fiji Airlines Limited, trading as Pacific Sun is an airline headquartered at the Pacific Sun office in the Civil Aviation Authority of the Fiji Islands"/>
+</profile>
+<info real="True" from="2006" to="2199"></info>
+</airline>

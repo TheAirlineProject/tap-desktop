@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Wizz Air" iata="V6" color="Blue" country="159" CEO="József Váradi" mentality="Aggressive" market="Regional" preferedairport="BUD">
+    <narrative narrative="Wizz Air Hungary Airlines Ltd. is a Hungarian low-cost airline with its head office on the property of Budapest Liszt Ferenc International Airport in Budapest. The airline typically uses secondary airports serving many cities across Europe. It has the largest aircraft fleet of all the Hungarian airlines." />
+  </profile>
+  <startdata>
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="37"></airliner>  
+  </airliners>
+ </startdata>
+</airline>

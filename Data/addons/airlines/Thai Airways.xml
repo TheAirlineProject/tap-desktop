@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Thai Airways" iata="TG" color="DarkMagenta" country="175" CEO="Ampon Kittiampon" mentality="Aggressive" market="Global " preferedairport="BKK"></profile>
+  <info real="True" from="1960" to="2199" />
+</airline>

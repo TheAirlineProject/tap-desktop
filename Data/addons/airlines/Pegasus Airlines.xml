@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Pegasus Airlines" iata="PC" color="Black" country="161" CEO="Ali Sabanci" mentality="Safe" market="Global" preferedairport="SAW"></profile>
+  <info real="True" from="1990" to="2199" />
+</airline>

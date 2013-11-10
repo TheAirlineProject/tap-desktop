@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner manufacturer="Fokker" name="Fokker F27" price="950000">
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="29.00" length="25.06" range="1826" speed="518" fuelcapacity="4560" consumption="0.052" runwaylengthrequired="1020"/>
+    <capacity passengers="48" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1955" to="1975" rate="18"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker 50" price="2371030"> <!--9100000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop"/>
+    <specs wingspan="29.00" length="25.25" range="2055" speed="453" fuelcapacity="3700" consumption="0.031" runwaylengthrequired="890"/>
+    <capacity passengers="58" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1987" to="1997" rate="20"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker 70" price="3395240"> <!--17000000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+    <specs wingspan="28.08" length="30.91" range="2010" speed="835" fuelcapacity="12743" consumption="0.080" runwaylengthrequired="1110"/>
+    <capacity passengers="79" cockpitcrew="2" cabincrew="2" maxclasses="1"/>
+    <produced from="1994" to="1997" rate="10"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker 100" price="4978730"> <!--19900000-->
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+    <specs wingspan="28.08" length="35.53" range="2450" speed="845" fuelcapacity="13365" consumption="0.051" runwaylengthrequired="1520"/>
+    <capacity passengers="107" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+    <produced from="1988" to="1997" rate="24"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker F28-1000" price="5214000">
+    <type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="23.57" length="27.41" range="2000" speed="849" fuelcapacity="8390" consumption="0.065" runwaylengthrequired="1744"/>
+	<capacity passengers="65" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1967" to="1980" rate="12"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker F28-2000" price="5723810">
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="23.57" length="29.62" range="2743" speed="843" fuelcapacity="13435" consumption="0.061" runwaylengthrequired="2000"/>
+	<capacity passengers="79" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="1968" to="1982" rate="12"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker F28-3000" price="6311270">
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="25.07" length="29.61" range="1900" speed="843" fuelcapacity="8390" consumption="0.068" runwaylengthrequired="1744"/>
+	<capacity passengers="65" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1968" to="1984" rate="12"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker F28-4000" price="6611700">
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="25.07" length="29.62" range="1790" speed="843" fuelcapacity="9200" consumption="0.060" runwaylengthrequired="2000"/>
+	<capacity passengers="85" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="1970" to="1987" rate="12"/>
+  </airliner>
+  <airliner manufacturer="Fokker" name="Fokker F28-6000" price="6488360">
+	<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
+	<specs wingspan="25.07" length="29.62" range="1900" speed="843" fuelcapacity="9000" consumption="0.060" runwaylengthrequired="2000"/>
+	<capacity passengers="79" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+	<produced from="1971" to="1987" rate="12"/>
+  </airliner>
+</airliners>

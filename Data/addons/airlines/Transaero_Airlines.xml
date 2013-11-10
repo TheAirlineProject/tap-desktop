@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Transaero Airlines" iata="UN" color="Blue" country="149" CEO="Olga Pleshakova" mentality="Safe" market="Regional" preferedairport="DME">
+<narrative narrative="Transaero Airlines is a Russian airline that has been operating since 1990 out of Moscow's Domodedovo International Airport. It operates a a fleet of 94 Boeing aircraft to over 150 primarily Eurasian destinations."/>
+</profile>
+<info real="True" from="1990" to="2099"></info>
+<startdata>
+ <routes>
+	<route destination1="DME" destination2="SVO" opened="1990" closed="2099"></route>
+	<route destination1="DME" destination2="VKO" opened="1990" closed="2099"></route>
+	<route destination1="DME" destination2="LED" opened="1990" closed="2099"></route>
+	<route destination1="DME" destination2="SVX" opened="1990" closed="2099"></route>
+ </routes>
+ <random_routes>
+ <routes origin="DME" destinations="4" minimumsize="Smallest">
+ <countries>
+  <country value="149"></country>
+ </countries>
+ </routes>
+ </random_routes>
+<airliners>
+  <airliner type="Boeing 747-400" early="0" late="4"></airliner>
+  <airliner type="Boeing 737-800" early="0" late="6"></airliner>
+  <airliner type="Boeing 767-300ER" early="0" late="1"></airliner>
+</airliners>
+</startdata>
+</airline>

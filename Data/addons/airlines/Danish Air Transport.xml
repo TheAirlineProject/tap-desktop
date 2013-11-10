@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Danish Air Transport" iata="DX" color="Red" country="110" CEO="Jesper Rungholm" mentality="Aggressive" market="Regional" preferedairport="CPH">
+    <narrative narrative="Danish Air Transport, abbreviated DAT, is an airline based at Vamdrup, Denmark, operating scheduled and chartered passenger and cargo flights." />
+  </profile>
+  <startdata>
+  <routes>
+  <route destination1="CPH" destination2="SGD" opened="1960" closed="2199"></route>
+  </routes>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="CPH" destinations="5" minimumsize="Smallest">
+ <countries>
+ <country value="168"></country>
+ <country value="139"></country>
+ <country value="110"></country>
+ </countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="ATR 42-500" early="0" late="8"></airliner>  
+   
+  </airliners>
+  </startdata>
+ </airline>

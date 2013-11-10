@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Indonesia AirAsia" iata="QZ" color="Black" country="162" CEO="Pin Harris" mentality="Safe" market="Global" preferedairport="CGK"></profile>
+  <info real="True" from="2004" to="2199" />
+</airline>

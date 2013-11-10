@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="flydubai" iata="FZ" color="Black" country="156" CEO="Kenneth Gile" mentality="Safe" market="Global" preferedairport="DXB"></profile>
+  <info real="True" from="2008" to="2199" />
+</airline>

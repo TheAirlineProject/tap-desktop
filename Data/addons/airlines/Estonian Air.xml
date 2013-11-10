@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Estonian Air" iata="OV" color="DarkCyan" country="117" CEO="Jan Palmer" mentality="Safe" market="Local" preferedairport="TLL">
+    <narrative narrative="Estonian Air is the flag airline of Estonia, based out of Tallinn since 1991. They operate a fleet of 11 Embraer, SAAB, and Bombardier aircraft to 24 European destinations"/>
+  </profile>
+  <info real="True" from="1991" to="2199" />
+</airline>

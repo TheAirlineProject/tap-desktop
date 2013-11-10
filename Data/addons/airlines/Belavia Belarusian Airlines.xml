@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Belavia Belarusian Airlines" iata="B2" color="Red" country="217" CEO="Anatoliy Nikolaevich Gusarov" mentality="Moderate" market="Regional" preferedairport="MSQ">
+<narrative narrative="Belavia Belarusian Airlines is the national airline company of Belarus, headquartered in Minsk"/>
+</profile>
+<info real="True" from="1996" to="2199"></info>
+</airline>
