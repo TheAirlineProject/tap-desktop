@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Interjet" iata="4O" color="Black" country="157" CEO="Miguel Aleman Magnani " mentality="Safe" market="Global" preferedairport="MEX"></profile>
+  <info real="True" from="2005" to="2199" />
+</airline>

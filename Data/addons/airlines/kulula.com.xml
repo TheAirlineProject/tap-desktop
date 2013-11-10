@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="kulula.com" iata="MN" color="Black" country="158" CEO="Gidon Novick" mentality="Safe" market="Global" preferedairport="JNB"></profile>
+  <info real="True" from="2001" to="2199" />
+</airline>

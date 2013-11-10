@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Silkair" iata="MI" color="MediumSeaGreen" country="174" CEO="Marvin Tan" mentality="Aggressive" market="Regional" preferedairport="SIN">
+    <narrative narrative="Silkair is regional wing of Singapore Airlines, and serves markets which cannot support the fielding of a widebody from Singapore Airlines. They currently operate 6 Airbus A319's and 16 Airbus A320-200 aircraft, which are slated to be replaced by the Boeing 737-800 and 737 MAX 8 which have been ordered. They serve 42 destinations over 11 countries. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="SIN" destinations="20" minimumsize="Smallest">
+<countries>
+<country value="174"></country>
+<country value="175"></country>
+<country value="162"></country>
+<country value="152"></country>
+<country value="131"></country>
+<country value="148"></country>
+<country value="170"></country>
+<country value="172"></country>
+<country value="251"></country>
+<country value="173"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

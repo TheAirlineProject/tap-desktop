@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="WestJet" iata="WS" color="Black" country="113" CEO="Gregg Saretsky" mentality="Safe" market="Global" preferedairport="YYC"></profile>
+  <info real="True" from="1996" to="2199" />
+</airline>

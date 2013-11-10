@@ -1,0 +1,4 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Olympic Airways" iata="OA" color="Aqua" country="118" CEO="Pyrros Papadimitriou" mentality="Aggressive" market="Global" preferedairport="ATH"></profile>
+</airline>

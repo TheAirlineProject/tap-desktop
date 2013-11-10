@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Atlas Air" iata="5Y" color="DarkBlue" country="122" CEO="William J. Flynn" mentality="Aggressive" market="Global " preferedairport="JFK" routefocus="Cargo">
+  <narrative narrative="Atlas Air, Inc. is an American cargo and passenger charter airline based in Purchase, Harrison, New York. The airline was founded in April 1992 by the late Pakistani American aerospace enthusiast Michael Chowdry, to specialise in the long-term contract outsourcing of its Boeing 747 aircraft." />
+   </profile>
+    <info real="True" from="1992" to="2199" />
+    </airline>

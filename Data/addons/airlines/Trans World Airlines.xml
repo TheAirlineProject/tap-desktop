@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Trans World Airlines" iata="TW" color="Red" country="122" CEO="Howard Hughes" mentality="Aggressive" market="Global" preferedairport="JFK">
+<narrative narrative="Trans World Airlines (TWA) was an American airline from 1925 until bought out by and merged with American Airlines in 2001. TWA was a major domestic airline in the United States and the main U.S.-based competitor of Pan American World Airways (Pan Am) on intercontinental routes from 1946 until deregulation in 1978"/>
+</profile>
+<info real="True" from="1925" to="2001"></info>
+</airline>

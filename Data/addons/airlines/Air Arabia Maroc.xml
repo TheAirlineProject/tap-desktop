@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Air Arabia Maroc" iata="3O" color="Black" country="133" CEO="Amin Alhaimy" mentality="Safe" market="Global" preferedairport="CMN"></profile>
+  <info real="True" from="2009" to="2199" />
+</airline>

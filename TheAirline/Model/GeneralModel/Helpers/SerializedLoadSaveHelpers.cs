@@ -114,7 +114,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
             SaveObject deserializedSaveObject;
-
+            string loading;
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
@@ -123,10 +123,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
                         XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(decompress, new XmlDictionaryReaderQuotas());
                         deserializedSaveObject = (SaveObject)serializer.ReadObject(reader);
+                        loading = "new";
                     }
                     catch
                     {
                         deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
+                        loading = "old";
                     }
                 }
             }
@@ -188,14 +190,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (AirportFacility facility in deserializedSaveObject.Airportfacilitieslist)
                     AirportFacilities.AddFacility(facility);
-            }, /*
+            },
             () =>
             {
-            FeeTypes.Clear();
+                if (loading == "new")
+                {
+                    FeeTypes.Clear();
 
-            foreach (FeeType type in deserializedSaveObject.feeTypeslist)
-            FeeTypes.AddType(type);
-            }, */
+                    foreach (FeeType type in deserializedSaveObject.feeTypeslist)
+                        FeeTypes.AddType(type);
+                }
+            },
             () =>
             {
                 GameObject.SetInstance(deserializedSaveObject.instance);

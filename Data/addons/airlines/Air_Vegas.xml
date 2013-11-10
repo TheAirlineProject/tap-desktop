@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Vegas" iata="6V" color="LightCoral" country="122" CEO="Michael Smith" mentality="Aggressive" market="Local" preferedairport="LAS">
+  <narrative narrative="Air Vegas was a sight-seeing airline based out of Las Vegas from 1971 to 2004. They operated flights to the Grand Canyon on a fleet of 9 Beechcraft C99s." />
+</profile>
+<info real="True" from="1971" to="2004"></info>
+</airline>

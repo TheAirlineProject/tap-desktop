@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="SpiceJet" iata="SG" color="Maroon" country="152" CEO="Neil Raymond Mills" mentality="Aggressive" market="Regional" preferedairport="DEL">
+    <narrative narrative="Spicejet is a low cost carrier and third largest airline in India."></narrative>
+  </profile>
+  <info real="True" from="2004" to="2199" />
+</airline>

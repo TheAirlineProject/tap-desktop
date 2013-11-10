@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="TAP Portugal" iata="TP" color="Chartreuse" country="150" CEO="Fernando Pinto" mentality="Aggressive" market="Global" preferedairport="LIS">
+<narrative narrative="AP Portugal, founded 1945 as Transportes Aéreos Portugueses, SGPS, S.A., commonly known as TAP, is the national airline of Portugal. TAP Portugal is 100% state owned and has its head office in Building 25 on the grounds of Portela Airport in Santa Maria dos Olivais, Lisbon,[2][3] and has been a member of the Star Alliance since 14 March 2005, the same day on which the company celebrated its 60th anniversary. Its hub in Lisbon is a key European gateway at the crossroads of Africa, South America and North America." />  
+</profile>
+<startdata>
+   <airliners>
+    <airliner type="Airbus A319-100" early="0" late="19"></airliner>  
+    <airliner type="Airbus A320-200" early="0" late="17"></airliner>
+    <airliner type="Airbus A310-200" early="0" late="3"></airliner>
+    <airliner type="Airbus A330-200" early="0" late="12"></airliner> 
+    <airliner type="Airbus A340-300" early="0" late="4"></airliner>  
+  </airliners>
+</startdata>
+</airline>

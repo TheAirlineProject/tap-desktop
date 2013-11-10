@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="jetBlue" iata="B6" color="Blue" country="122" CEO="David Barger" mentality="Aggressive" market="Global" preferedairport="JFK">
+    <narrative narrative="jetBlue is an American Low-Cost Airline founded by David Neeleman and is headquartered in Long Island, New York. Operating a fleet of 126 Airbus A320-200 and 53 Embraer E190 aircraft, jetBlue serves 75 destinations in 12 countries." />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="JFK" destinations="100" minimumsize="Smallest">
+<countries>
+<country value="122"></country>
+<country value="244"></country>
+<country value="203"></country>
+<country value="227"></country>
+<country value="183"></country>
+<country value="192"></country>
+<country value="199"></country>
+<country value="207"></country>
+<country value="157"></country>
+<country value="109"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Boeing 737-300" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

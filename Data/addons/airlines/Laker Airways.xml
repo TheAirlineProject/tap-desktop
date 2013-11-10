@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Laker Airways" iata="6F" color="Firebrick" country="130" CEO="Sir Freddie Laker" mentality="Moderate" market="Local" preferedairport="LGW">
+<narrative narrative="Laker Airways was a wholly private, British independent airline founded by Sir Freddie Laker in 1966. It originally was a charter airline flying passengers and cargo worldwide"/>
+</profile>
+<info real="True" from="1966" to="1982"></info>
+</airline>

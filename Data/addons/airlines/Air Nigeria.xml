@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Nigeria" iata="VK" color="DarkGreen" country="145" CEO="Jimoh Ibrahim" mentality="Moderate" market="Local" preferedairport="LOS">
+<narrative narrative="Air Nigeria (originally Virgin Nigeria Airways, and then Nigerian Eagle Airlines), was the national flag carrier of Nigeria, which operated scheduled regional and domestic passenger services"/>
+</profile>
+<info real="True" from="2004" to="2012"></info>
+</airline>

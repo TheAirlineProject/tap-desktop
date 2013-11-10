@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Fiji Airways" iata="FJ" color="Gray" country="114" CEO="Dave Pflieger" mentality="Moderate" market="Local" preferedairport="NAN">
+<narrative narrative="Fiji Airways is Fiji's national airline was established and started operations in 1951. It was founded by Australian aviator Harold Gatty."/>
+</profile>
+<info real="True" from="1947" to="2199"></info>
+</airline>

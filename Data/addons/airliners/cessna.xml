@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+	<airliner manufacturer="Cessna" name="Cessna 206" price="71010"> <!--557500-->
+		<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+		<specs wingspan="10.97" length="8.61" range="1352" speed="263" fuelcapacity="1250" consumption="0.049" runwaylengthrequired="1100"/>
+		<capacity passengers="5" cockpitcrew="1" cabincrew="0" maxclasses="1"/>
+		<produced from="1962" to="2099" rate="212"/>
+	</airliner>
+	<airliner manufacturer="Cessna" name="Cessna 208B" price="266180"> <!--2022400-->
+		<type body="Narrow_Body"  rangetype="Regional" engine="Turboprop"/>
+		<specs wingspan="15.88" length="12.67" range="2000" speed="317" fuelcapacity="1250" consumption="0.069" runwaylengthrequired="1100"/>
+		<capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+		<produced from="1984" to="2099" rate="212"/>
+	</airliner>
+	<airliner type="Cargo" manufacturer="Cessna" name="Cessna 208B Super Cargomaster" price="262470"> <!--2099000-->
+		<type body="Narrow_Body"  rangetype="Regional" engine="Turboprop"/>
+		<specs wingspan="15.88" length="12.67" range="2000" speed="317" fuelcapacity="1250" consumption="0.069" runwaylengthrequired="1100"/>
+		<capacity cockpitcrew="2" cargo="7"/>
+		<produced from="1984" to="2099" rate="212"/>
+	</airliner>
+	<airliner manufacturer="Cessna" name="Cessna 560XL" price="1872200"> <!--14225000-->
+		<type body="Narrow_Body" rangetype="Short_Range" engine="Jet" />
+		<specs wingspan="17.17" length="16.0" range="3441" speed="815" fuelcapacity="3808" consumption="0.123" runwaylengthrequired="1450"/>
+		<capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+		<produced from="2005" to="2023" rate="36"/>
+	</airliner>
+	<airliner manufacturer="Cessna" name="Cessna 680" price="2544150"> <!--19330450-->
+		<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+		<specs wingspan="19.24" length="19.37" range="5273" speed="848" fuelcapacity="5457" consumption="0.115" runwaylengthrequired="1450"/>
+		<capacity passengers="9" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+		<produced from="2004" to="2038" rate="40"/>
+	</airliner>
+	<airliner manufacturer="Cessna" name="Cessna Citation X" price="3214390"> <!--24422900-->
+		<type body="Narrow_Body" rangetype="Long_Range" engine="Jet"/>
+		<specs wingspan="19.38" length="22.05" range="5956" speed="972" fuelcapacity="7291" consumption="0.102" runwaylengthrequired="1600"/>
+		<capacity passengers="12" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+		<produced from="1993" to="2019" rate="36"/>
+	</airliner>
+</airliners>
+	

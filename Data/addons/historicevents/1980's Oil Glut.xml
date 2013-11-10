@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="1980's oil glut" text="With the rapid rise in oil prices throughout the 70's and technological evolution in extracting offshore reserves, has meant that huge new oil fields such as Alaska and North Sea have now come on stream" date="01.02.1981 00:00:00">
+  <influences>
+    <influence type="FuelPrices" value="-4" enddate="08.01.1990 00:00:00"></influence>
+  </influences>
+</event>

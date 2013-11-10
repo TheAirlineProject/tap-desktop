@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="Oil Crisis" text="The attacks by Syria and Egypt on Israel has triggered an oil crisis" date="10.06.1973 00:00:00">
+  <influences>
+    <influence type="FuelPrices" value="10" enddate="01.01.1974 00:00:00"></influence>
+  </influences>
+</event>

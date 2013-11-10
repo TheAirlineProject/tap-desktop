@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Dinar Lineas Aereas" iata="D7" color="Gold" country="106" CEO="Manuel Santosa" mentality="Aggressive" market="Local" preferedairport="EZE">
+  <narrative narrative="Dinar Lineas Aereas was an Argentinian airline based in Salta which operated through the 1990s until 2002. They operated regular flights to several South American destinations on a varied fleet of Boeing, Airbus, and McDonell Douglas aircraft."/>
+</profile>
+  <info real="True" from="1992" to="2002"/>
+</airline> 

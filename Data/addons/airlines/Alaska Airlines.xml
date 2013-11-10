@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Alaska Airlines" iata="AS" color="Black" country="122" CEO="Brad Tilden" mentality="Moderate" market="Regional" preferedairport="SEA">
+ <narrative narrative="The airline originated in 1932 as McGee Airways. After many mergers with and acquisitions of other airlines, including Star Air Service, it renamed itself Alaska Airlines in 1944. Since the retirement of its MD-80s in 2008, Alaska Airlines has been operating a fleet consisting of only Boeing 737s"></narrative></profile>
+<info real="True" from="1944" to="2199"></info>
+</airline>

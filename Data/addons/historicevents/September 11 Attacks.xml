@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="September 11 Attacks" text="Terrorists have attacked the World Trade Center in New York, NY and Pentagon in Washington, DC" date="09.11.2001 00:00:00">
+  <influences>
+    <influence type="PassengerDemand" value="-10" enddate="11.11.2001 00:00:00"></influence>
+    <influence type="Stocks" value="-7.5" enddate="09.17.2001 00:00:00"></influence>
+  </influences>
+</event>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Wideroe" iata="WF" color="DarkGreen" country="139" CEO="Lars Kobberstad" mentality="Safe" market="Regional" preferedairport="ALF">
+<narrative narrative="Wideroe is a regional airline in Norway"/>
+  </profile>
+  <info real="True" from="1934" to="2199" />
+</airline>
