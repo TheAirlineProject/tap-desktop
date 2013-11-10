@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<airliners>
+  <airliner manufacturer="Convair" name="Convair 880" price="4000000">
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="36.58" length="39.42" range="4430" speed="990" fuelcapacity="40443" consumption="0.083" runwaylengthrequired="2805"/>
+    <capacity passengers="110" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+    <produced from="1959" to="1962" rate="21"/>
+  </airliner>
+  <airliner manufacturer="Convair" name="Convair 990" price="6138610"> <!--6200000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="36.58" length="42.49" range="5400" speed="920" fuelcapacity="57231" consumption="0.088" runwaylengthrequired="3000"/>
+    <capacity passengers="121" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+    <produced from="1961" to="1963" rate="18"/>
+  </airliner>
+  <airliner manufacturer="Convair" name="Convair 990A" price="5392150"> <!--5500000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="36.58" length="42.49" range="6900" speed="1015" fuelcapacity="59336" consumption="0.071" runwaylengthrequired="2260"/>
+    <capacity passengers="121" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+    <produced from="1962" to="1963" rate="18"/>
+  </airliner>
+</airliners>

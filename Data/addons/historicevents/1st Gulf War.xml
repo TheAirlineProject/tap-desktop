@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<event name="The First Gulf War" text="Saddam Hussein has invaded Kuwait, causing oil prices to rise" date="08.02.1990 00:00:00">
+  <influences>
+    <influence type="FuelPrices" value="10" enddate="02.28.1991 00:00:00"></influence>
+  </influences>
+</event>

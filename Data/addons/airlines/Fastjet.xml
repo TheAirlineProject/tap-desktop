@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Fastjet" iata="FN" color="Black" country="146" CEO="Ed Winter" mentality="Safe" market="Global" preferedairport="DAR"></profile>
+  <info real="True" from="2011" to="2199" />
+</airline>

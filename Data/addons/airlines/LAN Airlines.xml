@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="LAN Airlines" iata="LA" color="Darkblue" country="160" CEO="Enrique Cueto" mentality="Aggressive" market="Global" preferedairport="SCL">
+<narrative narrative="LAN Airlines S.A. is a group of South American Airlines based in Santiago, Chile and part of LATAM Airlines Group, Latin America's largest Airline holding. LATAM was formed by the takeover by LAN of Brazilian TAM Airlines which was completed on June 22, 2012, although both companies operate with different certificates and liveries. Its headquarters is located in Las Condes, Santiago Province." />
+  </profile>
+  <startdata>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="52"></airliner> 
+    <airliner type="Airbus A318-100" early="0" late="5"></airliner> 
+    <airliner type="Airbus A319-100" early="0" late="26"></airliner>
+    <airliner type="Airbus A340-300" early="0" late="4"></airliner>
+    <airliner type="Boeing 767-300ER" early="0" late="40"></airliner>
+    <airliner type="Boeing 787-8" early="0" late="3"></airliner>
+  </airliners>
+  </startdata>
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Northwest Airlines" iata="NW" color="Gray" country="122" CEO="Ed Bastian" mentality="Aggressive" market="Local" preferedairport="MSP">
+<narrative narrative="Northwest Airlines Corp. (often abbreviated NWA) was a major United States airline founded in 1926 and with headquarter in Minnesota"/>
+</profile>
+<info real="True" from="1926" to="2011"></info>
+</airline>

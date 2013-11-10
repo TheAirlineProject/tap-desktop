@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Jetstar Airways" iata="JQ" color="Black" country="116" CEO="Jayne Hrdlicka" mentality="Safe" market="Local" preferedairport="MEL"></profile>
+  <info real="True" from="2003" to="2199" />
+</airline>

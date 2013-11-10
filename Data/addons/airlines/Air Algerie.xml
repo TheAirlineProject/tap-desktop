@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Air Algérie" iata="AH" color="DarkRed" country="142" CEO="Mohamed-Salah Boultif" mentality="Moderate" market="Regional" preferedairport="ALG">
+  <narrative narrative="Air Algérie operates scheduled international services to 39 destinations in 28 countries in Europe, North America, Africa, Asia, and the Middle East, as well as domestic services to 32 airports. The airline is the national airline of Algeria" />
+   </profile>
+    <info real="True" from="1947" to="2199" />
+    </airline>

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Scoot" iata="TZ" color="Orange" country="174" CEO="Campbell Wilson" mentality="Aggressive" market="Global" preferedairport="SIN">
+    <narrative narrative="Scoot is a fully-owned subsidiary of Singapore Airlines. It was established as a medium to long-haul low-cost carrier and operates 4 Boeing 777-200ER aircraft from Singapore Airlines. The airline has 20 Boeing 787-9 aircraft on order. These aircraft are utilized for service to 9 airports over 6 countries. " />
+  </profile>
+  <startdata>
+  <!--some random routes from an origin-->
+  <random_routes>
+  <routes origin="SIN" destinations="15" minimumsize="Smallest">
+<countries>
+<country value="174"></country>
+<country value="116"></country>
+<country value="171"></country>
+<country value="148"></country>
+<country value="172"></country>
+<country value="175"></country>
+</countries>  
+  </routes>  
+  </random_routes>
+  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <airliners>
+    <airliner type="Boeing 777-200ER" early="0" late="10"></airliner>  
+  </airliners>
+  </startdata>
+</airline>
+

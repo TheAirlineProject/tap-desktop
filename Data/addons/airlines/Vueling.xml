@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Vueling Airlines" iata="VY" color="Tan" country="123" CEO="Alex Cruz" mentality="Aggressive" market="Regional" preferedairport="BCN">
+    <narrative narrative="Vueling Airlines, S.A. is a low cost airline based in Spain. The airline's head office is located near its main hub at Barcelona–El Prat Airport in El Prat de Llobregat, Barcelona. Its name comes from the Spanish word Vuelo, which means flight. There are eleven additional bases at A Coruña, Amsterdam, Bilbao, Florence, Madrid, Málaga, Palma de Mallorca, Paris-Orly, Rome-Fiumicino, Seville and Valencia. A thirteenth summer seasonal base is located at Ibiza." />
+  </profile>
+  <startdata>
+  <airliners>
+    <airliner type="Airbus A320-200" early="0" late="52"></airliner>  
+    <airliner type="Airbus A319-100" early="0" late="2"></airliner>  
+  </airliners>
+  </startdata>
+ </airline>

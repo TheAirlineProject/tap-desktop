@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Cubana de Aviación" iata="CU" color="Blue" country="198" CEO="Arturo Bada Álvarez" mentality="Safe" market="Local " preferedairport="HAV">
+  <narrative narrative=" Cubana is Cuba's flag carrier, as well as the country's largest airline. It was founded in October 1929, becoming one of the earliest airlines to emerge in Latin America"></narrative>
+  </profile>
+    <info real="True" from="1929" to="2199" />
+</airline>

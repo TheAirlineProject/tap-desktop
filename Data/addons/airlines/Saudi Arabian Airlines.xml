@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Saudi Arabian Airlines" iata="SV" color="Blue" country="136" CEO="Khalid Abdullah Almolhem" mentality="Aggressive" market="Global " preferedairport="DOH"></profile>
+  <info real="True" from="1945" to="2199" />
+</airline>

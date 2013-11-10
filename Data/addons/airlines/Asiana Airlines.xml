@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Asiana Airlines" iata="OZ" color="Gray" country="165" CEO="Park Chan-Bup" mentality="Aggressive" market="Global " preferedairport="ICN">
+    <narrative narrative="Asiana is a major South Korean airline operated since 1988 out of Seoul. They operate a fleet of 80 aircraft to 96 destinations worldwide. Their fleet consists of a mixture of Boeing and Airbus aircraft" />
+  </profile>
+  <info real="True" from="1988" to="2199" />
+</airline>

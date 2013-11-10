@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Garuda Indonesia" iata="GA" color="LightSlateGray" country="162" CEO="Emirsyah Satar" mentality="Aggressive" market="Global " preferedairport="CGK">
+    <narrative narrative="Garuda Indonesia is the flag airline of Indonesia, operating out of Jakarta since 1949. They operate flights to 85 destinations, mostly domestic, on a fleet dominated by the Boeing 737 and Airbus A330." />
+  </profile>
+  <info real="True" from="1949" to="2199" />
+</airline>

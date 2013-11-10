@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="AirTran Airways" iata="FL" color="Black" country="122" CEO="Bob Fornaro" mentality="Safe" market="Global" preferedairport="BWI"></profile>
+  <info real="True" from="1992" to="2199" />
+</airline>

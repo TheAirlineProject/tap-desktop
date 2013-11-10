@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Aerolineas Argentinas" iata="AR" color="LightBlue" country="106" CEO="Nelson Ramiz" mentality="Moderate" market="Global" preferedairport="AEP">
+<narrative narrative="Aerolineas Argentinas is Argentina's largest airline and serves as the country's flag carrier."/>
+</profile>
+<info real="True" from="1950" to="2199"></info>
+</airline>

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Air Canada" iata="AC" color="DarkSlateBlue" country="113" CEO="David Richardson" mentality="Aggressive" market="Global" preferedairport="YYC">
+  <narrative narrative="Air Canada is the flag airline and largest carrier in Canada, in operation since 1936 and now based at Toronto. They operate a fleet of over 200 to 96 destinations worldwide. Their fleet is primarily Embraer 190, Boeing 767, and Airbus A320, with lesser numbers of other models. " />
+</profile>
+<info real="True" from="1936" to="2199"></info>
+</airline>

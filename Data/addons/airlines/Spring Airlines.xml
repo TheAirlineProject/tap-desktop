@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<airline>
+  <profile name="Spring Airlines" iata="9C" color="Black" country="148" CEO="Wang Zhenghua" mentality="Safe" market="Global" preferedairport="PVG"></profile>
+  <info real="True" from="2004" to="2199" />
+</airline>
