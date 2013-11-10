@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-<profile name="AccessAir" iata="ZA" color="Firebrick" country="122" CEO="Benjamin Watson" mentality="Aggressive" market="Local" preferedairport="DSM">
-<narrative narrative="AccessAir was a regional US airline that operated for only 3 years a fleet that was exclusively Boeing 737-200s."/>
-</profile>
-<info real="True" from="1998" to="2001"></info>
-</airline>

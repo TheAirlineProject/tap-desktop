@@ -7,12 +7,12 @@ using System.Windows;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TheAirline")]
+[assembly: AssemblyTitle("The Airline Project")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
-[assembly: AssemblyProduct("TheAirline")]
-[assembly: AssemblyCopyright("Copyright © Microsoft 2011")]
+[assembly: AssemblyCompany("The Airline Project")]
+[assembly: AssemblyProduct("The Airline Project")]
+[assembly: AssemblyCopyright("Copyright © 2013 The Airline Project")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -51,6 +51,6 @@ using System.Windows;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.2.9.0")]
-[assembly: AssemblyFileVersion("0.2.9.0")]
+[assembly: AssemblyVersion("0.3.9.0")]
+[assembly: AssemblyFileVersion("0.3.9.0")]
 [assembly: NeutralResourcesLanguageAttribute("en-US")]
