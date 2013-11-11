@@ -1,5 +1,4 @@
-﻿using Microsoft.Practices.Unity;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -23,8 +22,7 @@ namespace TheAirline.GUIModel.MasterPageModel.PopUpPageModel
     /// </summary>
     public partial class WPFPopUpLoadConfiguration : Window
     {
-        private readonly IUnityContainer _container;
-
+     
         public WPFPopUpLoadConfiguration(Configuration.ConfigurationType type)
         {
             InitializeComponent();

@@ -1,0 +1,77 @@
+Revision 52:
+Changed Feature: Creation of terminals
+Description: Changed different things regarding purchase of terminals:
+* Change so an "owner" of a terminal only have to pay 75 % of the monthly gate fee
+* Added the possibility of defining how many gates needed for the terminal. The amount of gates defines the time and cost of building the terminal
+TODO: Change the loading and saving of terminals. Currently this doesn't work
+TODO: Change the possibility of buying existing terminals
+TODO: Implement the real amount of terminals for an airport
+TODO: Add the possibility of extending a terminal
+--------------------------------------------------------------------------------
+Revision 40:
+New Feature: Creation of terminals
+Description: Terminal.xml file added. Changed the way gates are created at an airport, so the gates are located in a terminal, and it is possible for the airlines to create a new terminal to create more gates.
+TODO: Change the loading and saving of terminals. Currently this doesn't work
+TODO: It should only cost 75 % of monthly fee for gates at an airline terminal
+TODO: The cost of a terminal
+--------------------------------------------------------------------------------
+Revision 39:
+New Feature: Translation.
+Description: Translator class and language.xml file added. First translations implemented, based on [region] and [uid].
+             A button or static text field needs a unique [uid] in its [region] to be translatable. A [region] is a 
+             page, or popup window of the game. The [region] "General" is used for gamewide identical translations, like
+             "Ok", "Cancel", aso.
+TODO: add unique [uid] to buttons or text fields to make them translatable. Use Translator class to get the translated string
+      into the content of button or text field. See code for examples.
+TODO: Read available languages from file and use this for language setting menu.
+TODO: connect unit conversion to the translation and store the conversion scheme or a selection in the xml file.
+TODO: cleanup code. Consolide all things which have to do with translations and culture settings. Store actual language setting
+      in systems registry. Read systems registry on game start for language configuration. If none is set, start in en-US.
+TODO: Create LanguageEditor for comfortable editing and extending the language.xml file
+TODO: Check possibilities for storing and loading a precompiled binary language file copy, to speed up game start.
+--------------------------------------------------------------------------------
+Revision 30:
+Bug fix 1: The game crashes when loading it
+Description: The program crashes when trying to load a game saved with an US culture info
+Solution: In LoadSaveHelpers.cs->LoadGame/SaveGame it should loan and save the game time in a specific format, not related to the format the user uses
+TODO: -
+--------------------------------------------------------------------------------
+Revision 20:
+Bug fix 1: Airliner facilities are set to standard on loading a saved game
+Description: If a game is saved where airliners have other than the standard facilities on airliner class the loading of the game resets the facilities to the standard facility
+Solution: The airliner facilities for an airliner class wasn't saved, so this has be implemented
+TODO: -
+--------------------------------------------------------------------------------
+Bug fix 2: On loading of a saved game invoices are paid once again
+Description: When loading a saved game all invoices are paid once again, so each invoice ends up being paid for twice
+Solution: Added a function so it is possible to add an invoice to an airline without having to pay for it. This is called from the loading of a saved game
+TODO: -
+Revision 18:
+--------------------------------------------------------------------------------
+Bug fix 1: Wrong calculation of seats when changing economy class seats from luxury to standard
+Description: When adding a new airliner class to an airliner and changing the seats in economy from standard to luxury and back, more seats than the seating capacity is available
+Solution: Changed the regular seating capacity of economy to reflect the addition of a new airliner class
+TODO: -
+Revision 15:
+--------------------------------------------------------------------------------
+Bug fix 1: Exception will loading a saved game
+Description: The program crashes when trying to load a game saved with an US culture info
+Reason: In LoadSaveHelpers.cs->LoadGame(string name) a datetime was read using Convert.ToDateTime. This throws an exception if the culture info is en-US.
+Solution: Use DateTime.Parse instead
+TODO: Check if it also needed to save the datetime with a specific cultureinfo
+
+Bug fix 2: .....
+Description: .....
+
+Bug fix 3: .....
+Description: .....
+
+--------------------------------------------------------------------------------
+Revision 14:
+--------------------------------------------------------------------------------
+Bug fix 1: .....
+Description .....
+
+--------------------------------------------------------------------------------
+Start of logbook.txt
+--------------------------------------------------------------------------------

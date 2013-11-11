@@ -42,7 +42,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <StartWorkingDirectory>..\</StartWorkingDirectory>
     <DebugType>Full</DebugType>
-    <Optimize>true</Optimize>
+    <Optimize>false</Optimize>
     <OutputPath>..\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
@@ -104,8 +104,11 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\BBM\Prism\Lib\Desktop\Microsoft.Expression.Interactions.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\..\..\Documents\Unity\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.Unity">
-      <HintPath>..\..\Unity\Microsoft.Practices.Unity.dll</HintPath>
+      <HintPath>..\..\..\Documents\Unity\Microsoft.Practices.Unity.dll</HintPath>
     </Reference>
     <Reference Include="PresentationFramework.Aero" />
     <Reference Include="System" />
@@ -1638,6 +1641,7 @@
     <Resource Include="Data\images\pin.png" />
     <Resource Include="Data\images\schedule.png" />
     <Resource Include="Data\images\seat.png" />
+    <Resource Include="Data\images\star_gold.png" />
     <Resource Include="Data\images\star_gray.png" />
     <Resource Include="Data\images\tick.png" />
     <Resource Include="Data\images\Timetable.png" />
@@ -1705,6 +1709,7 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\bg.jpg" />
+    <Resource Include="Data\images\logo_banner.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Data\images\Plane.png" />

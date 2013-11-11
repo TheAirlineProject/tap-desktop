@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 {
@@ -24,9 +25,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
     public partial class PageFleetAirlinerInformation : Page
     {
         public FleetAirlinerMVVM Airliner { get; set; }
+        public Boolean InRoute { get; set; }
         public PageFleetAirlinerInformation(FleetAirlinerMVVM airliner)
         {
             this.Airliner = airliner;
+
+            this.InRoute = this.Airliner.Airliner.Status != FleetAirliner.AirlinerStatus.Stopped;
 
             this.DataContext = this.Airliner;
             this.Loaded += PageFleetAirlinerInformation_Loaded;
@@ -180,6 +184,13 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
             }
          }
+
+        private void btnDeletePilot_Click(object sender, RoutedEventArgs e)
+        {
+            Pilot pilot = (Pilot)((Button)sender).Tag;
+
+            this.Airliner.removePilot(pilot);
+        }
 
       
 

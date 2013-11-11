@@ -3,11 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="Version" Type="System.String" Scope="Application">
-<<<<<<< HEAD
-      <Value Profile="(Default)">0.3.9 Alpha</Value>
-=======
-      <Value Profile="(Default)">0.3.8.1</Value>
->>>>>>> 038-patch
+      <Value Profile="(Default)">0.3.9 x64 Alpha (r1633)</Value>
     </Setting>
   </Settings>
 </SettingsFile>
