@@ -87,6 +87,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
             }, () =>
             {
+                so.airlinerfacilitieslist = new List<AirlinerFacility>();
+                so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
+            },  () =>
+            {
                 so.instance = GameObject.GetInstance();
                 so.savetype = "new";
             });
@@ -207,6 +211,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             },
             () =>
+            {   //Do this only with new savegames for now
+                if (loading == "new")
+                {
+                    AirlinerFacilities.Clear();
+
+                    foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
+                        AirlinerFacilities.AddFacility(airlinerfas);
+                }
+            },
+            () =>
             {
                 GameObject.SetInstance(deserializedSaveObject.instance);
             }); //close parallel.invoke
@@ -277,6 +291,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [DataMember]
         public List<AdvertisementType> advertisementTypeslist { get; set; }
+
+        [DataMember]
+        public List<AirlinerFacility> airlinerfacilitieslist { get; set; }
 
     }
 }
