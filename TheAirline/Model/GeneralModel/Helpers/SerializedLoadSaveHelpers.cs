@@ -83,10 +83,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 so.feeTypeslist.AddRange(FeeTypes.GetTypes());
             }, () =>
             {
+                so.advertisementTypeslist = new List<AdvertisementType>();
+                so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
+            }, () =>
+            {
+                so.airlinerfacilitieslist = new List<AirlinerFacility>();
+                so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetFacilities());
+            }, () =>
+            {
                 so.instance = GameObject.GetInstance();
+                so.savetype = "new";
             });
 
-           
+
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
                              Int32.MaxValue,
                              false,
@@ -97,10 +106,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 using (DeflateStream compress = new DeflateStream(stream, CompressionLevel.Fastest))
                 {
-                    XmlDictionaryWriter binaryDictionaryWriter = XmlDictionaryWriter.CreateBinaryWriter(compress);
-                    serializer.WriteObject(binaryDictionaryWriter, so);
-                    binaryDictionaryWriter.Flush();
-                    
+                    serializer.WriteObject(compress, so);
                 }
             }
 
@@ -120,27 +126,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
                 {
-                    try
-                    {
-                        using (XmlDictionaryReader r = XmlDictionaryReader.CreateBinaryReader(decompress,
-                                XmlDictionaryReaderQuotas.Max))
-                        {
-
-                            deserializedSaveObject = (SaveObject)serializer.ReadObject(r);
-                        }
-
-                       loading = "old";
-                    }
-
-                    catch
-                    {
-                        XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(decompress, new XmlDictionaryReaderQuotas());
-                        deserializedSaveObject = (SaveObject)serializer.ReadObject(reader);
-                        loading = "new";
-                    }
-
+                    deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
                 }
             }
+
+            loading = deserializedSaveObject.savetype;
 
             //Parrarel for loading the game
             Parallel.Invoke(() =>
@@ -201,13 +191,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirportFacilities.AddFacility(facility);
             },
             () =>
-            {
+            {   //Do this only with new savegames for now
                 if (loading == "new")
                 {
                     FeeTypes.Clear();
 
                     foreach (FeeType type in deserializedSaveObject.feeTypeslist)
                         FeeTypes.AddType(type);
+                }
+            },
+            () =>
+            {   //Do this only with new savegames for now
+                if (loading == "new")
+                {
+                    AdvertisementTypes.Clear();
+
+                    foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
+                        AdvertisementTypes.AddAdvertisementType(addtype);
+                }
+            },
+            () =>
+            {   //Do this only with new savegames for now
+                if (loading == "new")
+                {
+                    /*
+                    AirlinerFacilities.Clear();
+
+                    foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
+                        AirlinerFacilities.AddFacility(airlinerfas);*/
                 }
             },
             () =>
@@ -262,6 +273,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public GameObject instance { get; set; }
 
         [DataMember]
+        public string savetype { get; set; }
+
+        [DataMember]
         public List<Configuration> configurationList { get; set; }
 
         [DataMember]
@@ -275,6 +289,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [DataMember]
         public List<FeeType> feeTypeslist { get; set; }
+
+        [DataMember]
+        public List<AdvertisementType> advertisementTypeslist { get; set; }
+
+        [DataMember]
+        public List<AirlinerFacility> airlinerfacilitieslist { get; set; }
 
     }
 }

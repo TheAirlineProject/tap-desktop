@@ -59,7 +59,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             int windFactor = 0;
 
-            switch (departureAirport.Weather[0].WindSpeed)
+            if (departureAirport.Weather[0] == null)
+                return 0;
+
+            switch (departureAirport.Weather[0].WindSpeed) 
             {
                 case Weather.eWindSpeed.Strong_Breeze:
                     windFactor = 2;
@@ -349,7 +352,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the flight crusing speed based on the wind
         public static int GetCruisingSpeed(FleetAirliner airliner)
         {
-            Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
+            Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;s
             Airport dept = airliner.CurrentFlight.getDepartureAirport();
 
             double windFirstHalf = ((int)dept.Weather[0].WindSpeed) * GetWindInfluence(airliner, dept.Weather[0]);
