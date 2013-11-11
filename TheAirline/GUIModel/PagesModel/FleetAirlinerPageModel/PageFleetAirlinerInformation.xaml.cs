@@ -12,7 +12,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.PilotModel;
@@ -189,7 +191,29 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             Pilot pilot = (Pilot)((Button)sender).Tag;
 
-            this.Airliner.removePilot(pilot);
+             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2125"), string.Format(Translator.GetInstance().GetString("MessageBox", "2125", "message"),pilot.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+             if (result == WPFMessageBoxResult.Yes)
+             {
+            
+                 this.Airliner.removePilot(pilot);
+             }
+        }
+
+        private void btnBuy_Click(object sender, RoutedEventArgs e)
+        {
+              
+            if (this.Airliner.Airliner.Airliner.getPrice() > GameObject.GetInstance().HumanAirline.Money)
+                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2006"), Translator.GetInstance().GetString("MessageBox", "2006", "message"), WPFMessageBoxButtons.Ok);
+             else
+             {
+                 WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2007"), string.Format(Translator.GetInstance().GetString("MessageBox", "2007", "message"), new ValueCurrencyConverter().Convert(this.Airliner.Airliner.Airliner.getPrice())), WPFMessageBoxButtons.YesNo);
+
+                 if (result == WPFMessageBoxResult.Yes)
+                 {
+                     this.Airliner.buyAirliner();
+                 }
+             }
         }
 
       

@@ -129,11 +129,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             deserializedSaveObject = (SaveObject)serializer.ReadObject(r);
                         }
 
-//                        deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
-                        loading = "old";
+                       loading = "old";
                     }
 
-                    catch (Exception e)
+                    catch
                     {
                         XmlDictionaryReader reader = XmlDictionaryReader.CreateBinaryReader(decompress, new XmlDictionaryReaderQuotas());
                         deserializedSaveObject = (SaveObject)serializer.ReadObject(reader);

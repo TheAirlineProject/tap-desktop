@@ -4437,4 +4437,19 @@ Good luck.</value>
   <data name="PageFleetAirlinerInformation_1012_name" xml:space="preserve">
     <value>Pilots</value>
   </data>
+  <data name="MessageBox_2125_message" xml:space="preserve">
+    <value>Are you sure you want to fire {0}?</value>
+  </data>
+  <data name="MessageBox_2125_name" xml:space="preserve">
+    <value>Fire pilot</value>
+  </data>
+  <data name="MessageBox_2126_message" xml:space="preserve">
+    <value>Are you sure you want to but this airliner for {0}?</value>
+  </data>
+  <data name="MessageBox_2126_name" xml:space="preserve">
+    <value>Buy airliner</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_203_name" xml:space="preserve">
+    <value>Buy Airliner</value>
+  </data>
 </root>

@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Data;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.Model.PilotModel;
 
@@ -53,7 +54,13 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             get { return _DMaintenanceInterval; }
             set { _DMaintenanceInterval = value; NotifyPropertyChanged("DMaintenanceInterval"); }
         }
-
+        private Boolean _isbuyable;
+        public Boolean IsBuyable
+        {
+            get { return _isbuyable; }
+            set { _isbuyable = value; NotifyPropertyChanged("IsBuyable"); }
+        }
+           
         public FleetAirliner Airliner { get; set; }
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
         public ObservableCollection<Pilot> Pilots { get; set; }
@@ -104,7 +111,18 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
             this.SchedCMaintenance = this.Airliner.SchedCMaintenance;
             this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
-       
+
+            this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased;
+        }
+        //buys the airliner if leased
+        public void buyAirliner()
+        {
+            this.Airliner.Purchased = FleetAirliner.PurchasedType.Bought;
+            this.IsBuyable = false;
+
+            AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airliner.Airliner.getPrice());
+
+
         }
         //removes a pilot from the airliner
         public void removePilot(Pilot pilot)

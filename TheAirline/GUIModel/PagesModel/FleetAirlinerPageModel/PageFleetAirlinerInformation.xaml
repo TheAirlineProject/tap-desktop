@@ -93,6 +93,18 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <ContentControl Content="{Binding Airliner.Airliner.Registered}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
             </WrapPanel>
+            <WrapPanel Margin="0 5 0 0">
+                <WrapPanel.Style>
+                    <Style TargetType="WrapPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsBuyable}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 203'}" Click="btnBuy_Click"  VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
+            </WrapPanel>
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1009'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
                     <ContentControl Content="{Binding Airliner.Airliner.Type}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
               <StackPanel>
@@ -108,6 +120,7 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
+               
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1010'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
               <ListBox Style="{StaticResource VerticalListBoxStyle}"  ItemsSource="{Binding Classes}" Name="lbClasses" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
             <WrapPanel Margin="0 5 0 0">
@@ -128,7 +141,7 @@
                              </Style>
                     </Button.Style>
                 </Button>
-                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 201'}" Click="btnSaveChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 201'}" Click="btnSaveChanges_Click"  VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 202'}" Click="btnUndoChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
             </WrapPanel>
             </StackPanel>
