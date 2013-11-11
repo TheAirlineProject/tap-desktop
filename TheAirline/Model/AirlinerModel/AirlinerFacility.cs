@@ -79,6 +79,12 @@ namespace TheAirline.Model.AirlinerModel
             else
                 return new List<AirlinerFacility>();
         }
+        //Return all the facilities
+        public static List<AirlinerFacility> GetAllFacilities()
+        {
+             return facilities.Values.SelectMany(v => v).ToList();
+        }
+
         // chs, 2011-13-10 added function to return a specific airliner facility
         //returns a facility based on name and type
         public static AirlinerFacility GetFacility(AirlinerFacility.FacilityType type, string uid)
