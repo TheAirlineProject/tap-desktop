@@ -1244,7 +1244,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a route airliner landing
         public static void SimulateLanding(FleetAirliner airliner)
         {
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, FleetAirlinerHelpers.GetCruisingSpeed(airliner)));
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type));
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport(), airliner.CurrentPosition);
 
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
