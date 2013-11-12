@@ -55,8 +55,23 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         public int getTotalCabinCrew()
         {
             int cabinCrew = 0;
+
             if (getAirliners().Count > 0)
-                cabinCrew = getAirliners().Max(c => ((AirlinerPassengerType)c.Airliner.Type).CabinCrew);
+                foreach (FleetAirliner fa in getAirliners())
+                {
+                    if (fa.Airliner.Type.TypeAirliner != AirlinerType.TypeOfAirliner.Passenger)
+                    {
+
+                    }
+
+                    else
+                    {
+                        if (((AirlinerPassengerType)fa.Airliner.Type).CabinCrew > cabinCrew)
+                        {
+                            cabinCrew = ((AirlinerPassengerType)fa.Airliner.Type).CabinCrew;
+                        }
+                    }
+                }
 
             return cabinCrew;
         }
