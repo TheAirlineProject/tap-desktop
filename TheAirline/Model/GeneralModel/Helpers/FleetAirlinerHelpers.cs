@@ -352,7 +352,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the flight crusing speed based on the wind
         public static int GetCruisingSpeed(FleetAirliner airliner)
         {
-            Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;s
+            Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.getDepartureAirport();
 
             double windFirstHalf = ((int)dept.Weather[0].WindSpeed) * GetWindInfluence(airliner, dept.Weather[0]);
