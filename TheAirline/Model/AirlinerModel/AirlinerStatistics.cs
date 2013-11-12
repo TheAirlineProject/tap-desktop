@@ -17,7 +17,8 @@ namespace TheAirline.Model.AirlinerModel
            public double FillingDegree { get { return getFillingDegree(); } set { ;} }
            public double Balance { get { return getBalance(); } set { ;} }
            public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
-        public AirlinerStatistics(FleetAirliner airliner)
+        
+      public AirlinerStatistics(FleetAirliner airliner)
         {
             this.Airliner = airliner;
         }

@@ -17,6 +17,7 @@ namespace TheAirline.Model.AirlineModel
 {
     [DataContract]
     [KnownType(typeof(SubsidiaryAirline))]
+    [KnownType(typeof(GeneralStatistics))]
     //the class for an airline
     public class Airline
     {

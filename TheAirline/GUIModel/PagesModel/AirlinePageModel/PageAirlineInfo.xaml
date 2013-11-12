@@ -270,7 +270,10 @@
                                     <DataTrigger Binding="{Binding FundsAirlines.Count}" Value="0">
                                         <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                                     </DataTrigger>
-                                </Style.Triggers>
+                                        <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                            <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
                             </Style>
                             </StackPanel.Style>
                             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1031'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
