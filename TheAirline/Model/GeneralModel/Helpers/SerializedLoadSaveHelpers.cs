@@ -87,8 +87,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
             }, () =>
             {
-                so.airlinerfacilitieslist = new List<AirlinerFacility>();
-                so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetFacilities());
+            //    so.airlinerfacilitieslist = new List<AirlinerFacility>();
+            //    so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetFacilities());
             }, () =>
             {
                 so.instance = GameObject.GetInstance();
@@ -96,11 +96,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             });
 
 
-            DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
-                             Int32.MaxValue,
-                             false,
-                             true,
-                             null);
+            DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null, Int32.MaxValue, false, true, null);
 
             using (Stream stream = new FileStream(fileName, FileMode.Create))
             {
@@ -163,7 +159,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (CalendarItem item in deserializedSaveObject.calendaritemsList)
                     CalendarItems.AddCalendarItem(item);
-
+            },
+            () =>
+            {
                 Configurations.Clear();
 
                 foreach (Configuration configuration in deserializedSaveObject.configurationList)
@@ -214,11 +212,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {   //Do this only with new savegames for now
                 if (loading == "new")
                 {
-                    /*
                     AirlinerFacilities.Clear();
 
                     foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
-                        AirlinerFacilities.AddFacility(airlinerfas);*/
+                        AirlinerFacilities.AddFacility(airlinerfas);
                 }
             },
             () =>
