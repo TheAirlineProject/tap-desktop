@@ -263,9 +263,31 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-
+                        <StackPanel Margin="0 5 0 0">
+                            <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FundsAirlines.Count}" Value="0">
+                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                            </StackPanel.Style>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1031'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <WrapPanel>
+                            <ComboBox Name="cbTransferType" Width="50" SelectedIndex="0" Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbTransferType_SelectionChanged">
+                                <ComboBoxItem IsSelected="True">To</ComboBoxItem>
+                                <ComboBoxItem>From</ComboBoxItem>
+                            </ComboBox>
+                            <ComboBox Margin="5 0 0 0" Name="cbTransferAirline" Width="150" ItemTemplate="{StaticResource AirlineItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding FundsAirlines}"></ComboBox>
+                            <Slider Minimum="1" Maximum="{Binding MaxTransferFunds}" Margin="5 0 0 0" Width="150" Name="slTransfer"></Slider>
+                            <TextBlock Text="{Binding Value,ElementName=slTransfer,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                      </WrapPanel>
+                        <Button Margin="0 5 0 0" Style="{StaticResource StandardButtonStyle}" HorizontalAlignment="Left" Click="btnTransferFunds_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 203'}"/>
+                        </StackPanel>
                     </StackPanel>
-                    </StackPanel>
+                    
+                </StackPanel>
 
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 5 0">

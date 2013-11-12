@@ -4452,4 +4452,10 @@ Good luck.</value>
   <data name="PageFleetAirlinerInformation_203_name" xml:space="preserve">
     <value>Buy Airliner</value>
   </data>
+  <data name="PageAirlineInfo_1031_name" xml:space="preserve">
+    <value>Transfer Funds</value>
+  </data>
+  <data name="PageAirlineInfo_203_name" xml:space="preserve">
+    <value>Transfer Funds</value>
+  </data>
 </root>

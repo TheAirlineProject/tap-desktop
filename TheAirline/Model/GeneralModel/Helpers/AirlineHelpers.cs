@@ -39,7 +39,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             if (airline.IsHuman)
             {
-                GameObject.GetInstance().setHumanMoney(amount);
+                GameObject.GetInstance().addHumanMoney(amount);
                 GameObject.GetInstance().HumanAirline.addInvoice(new Invoice(date, type, amount),false);
             }
             else
