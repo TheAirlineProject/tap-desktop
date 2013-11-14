@@ -25,8 +25,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     //the mvvm object for an airline
     public class AirlineMVVM : INotifyPropertyChanged
     {
-        public List<PropertyInfo> Colors { get; set; }
         public Airline Airline { get; set; }
+        public List<PropertyInfo> Colors { get; set; }
         public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
