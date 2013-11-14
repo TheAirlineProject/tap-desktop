@@ -65,6 +65,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return facilities.FindAll(f => f.Type == type);
         }
+        //Return all facilities
+        public static List<RouteFacility> GetAllFacilities()
+        {
+            return facilities;
+        }
         //returns the basic facility for a specific type
         public static RouteFacility GetBasicFacility(RouteFacility.FacilityType type)
         {

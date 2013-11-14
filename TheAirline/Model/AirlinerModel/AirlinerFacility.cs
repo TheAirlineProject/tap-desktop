@@ -63,7 +63,7 @@ namespace TheAirline.Model.AirlinerModel
             facilities[facility.Type].Add(facility);
         }
         //returns the list of all facilities
-        public static List<AirlinerFacility> GetFacilities()
+        public static List<AirlinerFacility> GetAllFacilities()
         {
             return facilities.Values.SelectMany(v => v).ToList();
         }

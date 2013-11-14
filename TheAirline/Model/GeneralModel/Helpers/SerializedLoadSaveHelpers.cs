@@ -12,6 +12,7 @@ using System.Xml;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
@@ -43,6 +44,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
+
+            //Clearing stats because there is no need for saving those.
+            Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
+            Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
 
             SaveObject so = new SaveObject();
             Parallel.Invoke(() =>
@@ -87,8 +92,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
             }, () =>
             {
-            //    so.airlinerfacilitieslist = new List<AirlinerFacility>();
-            //    so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetFacilities());
+                so.airlinerfacilitieslist = new List<AirlinerFacility>();
+                so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
+            }, () =>
+            {
+                so.routefacilitieslist = new List<RouteFacility>();
+                so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
             }, () =>
             {
                 so.instance = GameObject.GetInstance();
@@ -220,6 +229,16 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      * */
                 }
             },
+             () =>
+             {   //Do this only with new savegames for now
+                 if (loading == "new")
+                 {
+                     RouteFacilities.Clear();
+
+                     foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
+                         RouteFacilities.AddFacility(routefas);
+                 }
+             },
             () =>
             {
                 GameObject.SetInstance(deserializedSaveObject.instance);
@@ -295,5 +314,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         [DataMember]
         public List<AirlinerFacility> airlinerfacilitieslist { get; set; }
 
+        [DataMember]
+        public List<RouteFacility> routefacilitieslist { get; set; }
     }
 }
