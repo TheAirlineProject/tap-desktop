@@ -221,12 +221,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {   //Do this only with new savegames for now
                 if (loading == "new")
                 {
-                    /*
+                    
                     AirlinerFacilities.Clear();
 
                     foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
                         AirlinerFacilities.AddFacility(airlinerfas);
-                     * */
                 }
             },
              () =>
