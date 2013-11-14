@@ -41,8 +41,6 @@
         </DataTemplate>
         <DataTemplate x:Key="AirportContent">
             <Frame NavigationUIVisibility="Hidden" Name="frmContent"  />
-
-
         </DataTemplate>
     </Page.Resources>
     <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource AirportQuickLinks}" MainContentArea="{StaticResource AirportContent}" MainContentMenuArea="{StaticResource AirportContentMenu}"/>

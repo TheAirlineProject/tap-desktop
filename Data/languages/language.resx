@@ -2848,22 +2848,22 @@ Good luck.</value>
     <value>Create Airline</value>
   </data>
   <data name="MainMenu_1000_name" xml:space="preserve">
-    <value>Airline Manager</value>
+    <value>My Airline</value>
   </data>
   <data name="MainMenu_1001_name" xml:space="preserve">
-    <value>Routes Manager</value>
+    <value>Routes</value>
   </data>
   <data name="MainMenu_1002_name" xml:space="preserve">
-    <value>Buy/Lease Airliners</value>
+    <value>Airliners</value>
   </data>
   <data name="MainMenu_1003_name" xml:space="preserve">
     <value>Airports</value>
   </data>
   <data name="MainMenu_1004_name" xml:space="preserve">
-    <value>Create Alliance</value>
+    <value>Alliances</value>
   </data>
   <data name="MainMenu_1005_name" xml:space="preserve">
-    <value>Hire Pilots</value>
+    <value>Staff</value>
   </data>
   <data name="MainMenu_1006_name" xml:space="preserve">
     <value>Take Out Loan</value>
@@ -3853,7 +3853,7 @@ Good luck.</value>
     <value>Yearly Payment</value>
   </data>
   <data name="PageAirportInfo_1029_name" xml:space="preserve">
-    <value>Demand</value>
+    <value>Demand (Top 50 Destinations)</value>
   </data>
   <data name="PageAirportInfo_1030_name" xml:space="preserve">
     <value>Destination</value>
