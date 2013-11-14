@@ -42,7 +42,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </WrapPanel.Style>
-                            <Slider Width="200" Maximum="{Binding MaxSeats,Mode=OneWay}" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="slSeats_ValueChanged" Name="slSeats" VerticalAlignment="Bottom"></Slider>
+                            <Slider Width="200" Maximum="{Binding MaxSeats}" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="slSeats_ValueChanged" Name="slSeats" VerticalAlignment="Bottom"></Slider>
                             <TextBlock Text="{Binding Value,ElementName=slSeats}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                         </WrapPanel>
                     </WrapPanel>
@@ -124,7 +124,7 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1010'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
               <ListBox Style="{StaticResource VerticalListBoxStyle}"  ItemsSource="{Binding Classes}" Name="lbClasses" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
             <WrapPanel Margin="0 5 0 0">
-                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 200'}" VerticalAlignment="Bottom" Click="btnAddClass_Click">
+                    <Button Margin="0 0 5 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 200'}" VerticalAlignment="Bottom" Click="btnAddClass_Click">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                 <Style.Triggers>

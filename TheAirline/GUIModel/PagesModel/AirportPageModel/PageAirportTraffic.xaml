@@ -49,6 +49,7 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
 
                 <StackPanel>
+                    <!--
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportTraffic 1003'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView Name="lvTraffic" VerticalAlignment="Stretch" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Traffic}">
                         <ListView.View>
@@ -83,6 +84,7 @@
                             </GroupStyle>
                         </ListView.GroupStyle>
                     </ListView>
+                    -->
                 </StackPanel>
             </ScrollViewer>
         </Border>

@@ -95,7 +95,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                     maxSeats =maxCapacity -1;
 
 
-                AirlinerClassMVVM amClass = new AirlinerClassMVVM(aClass.Type, aClass.SeatingCapacity, aClass.RegularSeatingCapacity, maxSeats, changeable);
+                AirlinerClassMVVM amClass = new AirlinerClassMVVM(aClass, aClass.SeatingCapacity, aClass.RegularSeatingCapacity, maxSeats, changeable);
                 this.Classes.Add(amClass);
             }
 
@@ -156,9 +156,10 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             {
                 if (value != null)
                 {
+                    AirlinerFacility oldValue = _selectedFacility;
                     _selectedFacility = value; 
                     NotifyPropertyChanged("SelectedFacility"); 
-                    setSeating(); 
+                    setSeating(oldValue); 
                 }
             }
         }
@@ -182,12 +183,15 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
-        private void setSeating()
+        private void setSeating(AirlinerFacility oldValue)
         {
-            if (this.Type == AirlinerFacility.FacilityType.Seat && _selectedFacility != null)
+            if (this.Type == AirlinerFacility.FacilityType.Seat && _selectedFacility != null && oldValue != null)
             {
-                this.AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.RegularSeatingCapacity) / _selectedFacility.SeatUses);
-                this.AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.MaxSeatsCapacity) / _selectedFacility.SeatUses); 
+                this.AirlinerClass.ChangedFacility = true;
+                double diff = oldValue.SeatUses / _selectedFacility.SeatUses;
+                this.AirlinerClass.Seating = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.Seating) * diff);
+                this.AirlinerClass.MaxSeats = Convert.ToInt16(Convert.ToDouble(this.AirlinerClass.MaxSeats) * diff);
+                this.AirlinerClass.ChangedFacility = false;
             }
         }
     }
@@ -198,12 +202,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         public ObservableCollection<AirlinerFacilityMVVM> Facilities { get; set; }
 
         public AirlinerClass.ClassType Type { get; set; }
-
+        public Boolean ChangedFacility { get; set; }
         private int _seating;
         public int Seating
         {
             get { return _seating; }
-            set { _seating = value; if (!ChangeableSeats) NotifyPropertyChanged("Seating"); }
+            set { _seating = value; NotifyPropertyChanged("Seating"); }
     
         }
         private int _maxseats;
@@ -216,14 +220,15 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         public Boolean ChangeableSeats { get; set; }
         public int RegularSeatingCapacity { get; set; }
         public int MaxSeatsCapacity { get; set; }
-        public AirlinerClassMVVM(AirlinerClass.ClassType type, int seating, int regularSeating, int maxseats, Boolean changeableSeats = false)
+        public AirlinerClassMVVM(AirlinerClass type, int seating, int regularSeating, int maxseats,  Boolean changeableSeats = false)
         {
-            this.Type = type;
+            this.Type = type.Type;
             this.Seating = seating;
             this.RegularSeatingCapacity = regularSeating;
             this.ChangeableSeats = changeableSeats;
             this.MaxSeats = maxseats;
             this.MaxSeatsCapacity = maxseats;
+            this.ChangedFacility = false;
 
             this.Facilities = new ObservableCollection<AirlinerFacilityMVVM>();
 
@@ -234,9 +239,14 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 foreach (AirlinerFacility fac in AirlinerFacilities.GetFacilities(facType))
                     facility.Facilities.Add(fac);
 
-                this.Facilities.Add(facility);
 
+                AirlinerFacility selectedFacility = type.getFacility(facType) == null ? AirlinerFacilities.GetBasicFacility(facType) : type.getFacility(facType);
+                facility.SelectedFacility = selectedFacility;
+
+               this.Facilities.Add(facility);
+               
             }
+            
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

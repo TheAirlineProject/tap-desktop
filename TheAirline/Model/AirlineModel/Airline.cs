@@ -425,12 +425,14 @@ namespace TheAirline.Model.AirlineModel
                     value += facility.Facility.Price;
             }
 
-            var loans = new List<Loan>(this.Loans);
-            foreach (Loan loan in loans)
+            lock (this.Loans)
             {
-                value -= loan.PaymentLeft;
+                var loans = new List<Loan>(this.Loans);
+                foreach (Loan loan in loans)
+                {
+                    value -= loan.PaymentLeft;
+                }
             }
-
             var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
             foreach (SubsidiaryAirline subAirline in subs)
                 value += subAirline.getValue();

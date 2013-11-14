@@ -105,7 +105,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     serializer.WriteObject(compress, so);
                 }
             }
-
+          
             sw.Stop();
 
         }

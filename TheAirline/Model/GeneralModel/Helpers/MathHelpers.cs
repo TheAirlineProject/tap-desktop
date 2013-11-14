@@ -46,12 +46,13 @@ namespace TheAirline.Model.GeneralModel
         //returns a random date 
         public static DateTime GetRandomDate(DateTime minDate, DateTime maxDate)
         {
-            //left for readability
-            int days = rnd.Next(0,Math.Abs(((TimeSpan)(maxDate - minDate)).Days));
+            var range = maxDate - minDate;
 
-            return new DateTime(minDate.AddDays(days).Year, minDate.AddDays(days).Month, minDate.AddDays(days).Day);
+            var randTimeSpan = new TimeSpan((long)(rnd.NextDouble() * range.Ticks));
 
+            return minDate + randTimeSpan;
 
+         
         }
         //returns a random number
         public static int GetRandomInt(int min, int max)
