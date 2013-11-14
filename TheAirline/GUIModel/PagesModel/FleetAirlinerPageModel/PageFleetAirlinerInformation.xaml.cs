@@ -189,7 +189,30 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
 
         }
+        private void btnAddPilot_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbPilots = new ComboBox();
+            cbPilots.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbPilots.DisplayMemberPath = "Profile.Name";
+            cbPilots.SelectedValuePath = "Profile.Name";
+            cbPilots.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbPilots.Width = 200;
 
+            foreach (Pilot pilot in this.Airliner.Airliner.Airliner.Airline.Pilots.Where(p => p.Airliner == null))
+                cbPilots.Items.Add(pilot);
+
+            cbPilots.SelectedIndex = 0;
+
+            AirlinerClassMVVM tClass = this.Airliner.Classes[0];
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageFleetAirlinerInformation", "1013"), cbPilots) == PopUpSingleElement.ButtonSelected.OK && cbPilots.SelectedItem != null)
+            {
+                Pilot pilot = (Pilot)cbPilots.SelectedItem;
+                this.Airliner.addPilot(pilot);
+            }
+        }
+
+      
         private void slSeats_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
             AirlinerClassMVVM aClass = (AirlinerClassMVVM)((Slider)sender).Tag;
@@ -246,7 +269,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             }*/
          }
 
-      
+     
       
 
 

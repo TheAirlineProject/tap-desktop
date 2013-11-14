@@ -90,6 +90,7 @@ namespace TheAirline.Model.AirlinerModel
             lock (this.Pilots)
             {
                 this.Pilots.Add(pilot);
+                pilot.Airliner = this;
             }
         }
         //removes a pilot from the airliner
@@ -98,6 +99,7 @@ namespace TheAirline.Model.AirlinerModel
             lock (this.Pilots)
             {
                 this.Pilots.Remove(pilot);
+                pilot.Airliner = null;
             }
         }
         //adds a route to the airliner

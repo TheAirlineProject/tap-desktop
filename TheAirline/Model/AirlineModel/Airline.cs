@@ -179,6 +179,9 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Pilots.Remove(pilot);
             pilot.Airline = null;
+
+            if (pilot.Airliner != null)
+                pilot.Airliner.removePilot(pilot);
         }
         //adds a flight school to the airline
         public void addFlightSchool(FlightSchool school)

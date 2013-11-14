@@ -4458,4 +4458,10 @@ Good luck.</value>
   <data name="PageAirlineInfo_203_name" xml:space="preserve">
     <value>Transfer Funds</value>
   </data>
+  <data name="PageFleetAirlinerInformation_1013_name" xml:space="preserve">
+    <value>Select Pilot to Add</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_204_name" xml:space="preserve">
+    <value>Add Pilot</value>
+  </data>
 </root>

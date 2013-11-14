@@ -182,6 +182,19 @@
                     </ListBox.ItemTemplate>
                 </ListBox>
             </StackPanel>
-            </StackPanel>
+            <Button Margin="0 5 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 204'}" Click="btnAddPilot_Click"  VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMissingPilots}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
+        </StackPanel>
     </ScrollViewer>
 </Page>

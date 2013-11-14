@@ -60,7 +60,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             get { return _isbuyable; }
             set { _isbuyable = value; NotifyPropertyChanged("IsBuyable"); }
         }
-           
+        private Boolean _ismissingpilots;
+        public Boolean IsMissingPilots
+        {
+            get { return _ismissingpilots; }
+            set { _ismissingpilots = value; NotifyPropertyChanged("IsMissingPilots"); }
+        }
         public FleetAirliner Airliner { get; set; }
         public ObservableCollection<AirlinerClassMVVM> Classes { get; set; }
         public ObservableCollection<Pilot> Pilots { get; set; }
@@ -104,6 +109,8 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             foreach (Pilot pilot in this.Airliner.Pilots)
                 this.Pilots.Add(pilot);
 
+            this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
+
             this.AMaintenanceInterval = this.Airliner.AMaintenanceInterval;
             this.BMaintenanceInterval = this.Airliner.BMaintenanceInterval;
             this.CMaintenanceInterval = this.Airliner.CMaintenanceInterval;
@@ -124,11 +131,22 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
 
 
         }
+        //adds a pilot to the airliner
+        public void addPilot(Pilot pilot)
+        {
+            this.Pilots.Add(pilot);
+            this.Airliner.addPilot(pilot);
+
+            this.IsMissingPilots = this.Airliner.Airliner.Type.CockpitCrew > this.Pilots.Count;
+
+        }
         //removes a pilot from the airliner
         public void removePilot(Pilot pilot)
         {
             this.Pilots.Remove(pilot);
             this.Airliner.removePilot(pilot);
+
+            this.IsMissingPilots = true;
         }
         
         public event PropertyChangedEventHandler PropertyChanged;
