@@ -75,8 +75,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
 
-                if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
-
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
@@ -95,6 +93,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      });
 
                 });
+                if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
                 sw.Stop();
             }
         }
@@ -111,6 +110,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the daily update
         private static void DoDailyUpdate()
         {
+            //Clearing stats as an RAM work-a-round
+            Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
+            Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
 
             var humanAirlines = Airlines.GetAirlines(a => a.IsHuman);
 
