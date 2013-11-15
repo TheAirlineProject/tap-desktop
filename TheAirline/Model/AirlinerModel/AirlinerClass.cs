@@ -20,19 +20,24 @@ namespace TheAirline.Model.AirlinerModel
         public List<AirlinerFacility> AllFacilities
         {
             get
-            { 
-                return getFacilities(); 
+            {
+                return getFacilities();
             }
             private set { ;}
         }
         [DataMember]
         private Dictionary<AirlinerFacility.FacilityType, AirlinerFacility> Facilities;
-        
-        public enum ClassType { 
-            [EnumMember(Value="Economy")] Economy_Class=1921, 
-            [EnumMember(Value="Business")] Business_Class = 1976, 
-            [EnumMember(Value="First")] First_Class=1960}
-        
+
+        public enum ClassType
+        {
+            [EnumMember(Value = "Economy")]
+            Economy_Class = 1921,
+            [EnumMember(Value = "Business")]
+            Business_Class = 1976,
+            [EnumMember(Value = "First")]
+            First_Class = 1960
+        }
+
         [DataMember]
         public ClassType Type { get; set; }
         [DataMember]
@@ -54,7 +59,7 @@ namespace TheAirline.Model.AirlinerModel
 
             if (airline != null)
                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -facility.PricePerSeat * facility.PercentOfSeats / 100.0 * this.SeatingCapacity);
-   
+
 
         }
         //force sets the facility for a facility type without cost
@@ -66,7 +71,10 @@ namespace TheAirline.Model.AirlinerModel
         //returns the current facility for a facility type
         public AirlinerFacility getFacility(AirlinerFacility.FacilityType type)
         {
-            return this.Facilities[type];
+            if (this.Facilities.ContainsKey(type))
+                return this.Facilities[type];
+            else
+                return null;
         }
         //returns all facilities for the class
         public List<AirlinerFacility> getFacilities()
@@ -78,7 +86,7 @@ namespace TheAirline.Model.AirlinerModel
         {
             foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
             {
-                this.setFacility(airline,AirlinerFacilities.GetBasicFacility(type));
+                this.setFacility(airline, AirlinerFacilities.GetBasicFacility(type));
                 //this.Facilities.Add(type, AirlinerFacilities.GetBasicFacility(type));
             }
 

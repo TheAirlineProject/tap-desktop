@@ -75,8 +75,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 if (MathHelpers.IsNewDay(GameObject.GetInstance().GameTime)) DoDailyUpdate();
 
-                if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
-
                 if (MathHelpers.IsNewYear(GameObject.GetInstance().GameTime)) DoYearlyUpdate();
 
                 Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
@@ -95,6 +93,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      });
 
                 });
+                if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
                 sw.Stop();
             }
         }
@@ -111,12 +110,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the daily update
         private static void DoDailyUpdate()
         {
+            //Clearing stats as an RAM work-a-round
+            Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
+            Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
 
             var humanAirlines = Airlines.GetAirlines(a => a.IsHuman);
 
-            int totalRoutes = (from r in Airlines.GetAllAirlines().SelectMany(a => a.Routes) select r).Count();
-            int totalAirlinersOnRoute = (from a in Airlines.GetAllAirlines().SelectMany(t => t.Fleet) where a.HasRoute select a).Count();
-
+         
             //Console.WriteLine(GameObject.GetInstance().GameTime.ToShortDateString() + ": " + DateTime.Now.Subtract(LastTime).TotalMilliseconds + " ms." + " : routes: " + totalRoutes + " airliners on route: " + totalAirlinersOnRoute);
 
             LastTime = DateTime.Now;
@@ -967,7 +967,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -airline.getAirlineAdvertisement(type).Price);
 
                         if (airline.Reputation < 100)
+                        {
                             airline.Reputation += airline.getAirlineAdvertisement(type).ReputationLevel;
+                        }
 
                     }
                 }
@@ -1244,7 +1246,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //simulates a route airliner landing
         public static void SimulateLanding(FleetAirliner airliner)
         {
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, FleetAirlinerHelpers.GetCruisingSpeed(airliner)));
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type));
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport(), airliner.CurrentPosition);
 
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);

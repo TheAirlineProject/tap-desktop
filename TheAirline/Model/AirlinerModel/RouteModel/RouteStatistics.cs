@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
@@ -12,7 +13,82 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
    * This is used for statistics for a route.
    * The class needs no parameters
    */
-    [Serializable]
+     [DataContract]
+    public class RouteStatistics
+    {
+         [DataMember]
+        public List<RouteStatisticsItem> Stats { get; set; }
+        public RouteStatistics()
+        {
+            this.Stats = new List<RouteStatisticsItem>();
+        }
+        //clears the list
+        public void clear()
+        {
+            this.Stats.Clear();
+        }
+         //returns the value for a statistics type for a route class
+        public int getStatisticsValue(RouteAirlinerClass aClass, StatisticsType type)
+        {
+            RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
+
+            if (item == null)
+                return 0;
+            else
+                return item.Value;
+        }
+         public int getStatisticsValue(StatisticsType type)
+        {
+            RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class, RouteAirlinerClass.SeatingType.Free_Seating, 0);
+
+            return getStatisticsValue(aClass, type);
+        }
+        //adds the value for a statistics type to a route class
+         public void addStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
+         {
+             RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
+
+             if (item == null)
+                 this.Stats.Add(new RouteStatisticsItem(aClass, type, value));
+             else
+                 item.Value += value;
+         }
+         public void addStatisticsValue(StatisticsType type, int value)
+         {
+            RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class, RouteAirlinerClass.SeatingType.Free_Seating, 0);
+
+            addStatisticsValue(aClass,type,value);
+         }
+        //sets the value for a statistics type to a route class
+         public void setStatisticsValue(RouteAirlinerClass aClass, StatisticsType type, int value)
+         {
+             RouteStatisticsItem item = this.Stats.Find(i => i.Type.Shortname == type.Shortname && i.RouteClass == aClass);
+
+             if (item == null)
+                 this.Stats.Add(new RouteStatisticsItem(aClass, type, value));
+             else
+                 item.Value = value;
+         }
+         public void setStatisticsValue(StatisticsType type, int value)
+        {
+            RouteAirlinerClass aClass = new RouteAirlinerClass(AirlinerClass.ClassType.Economy_Class,RouteAirlinerClass.SeatingType.Free_Seating, 0);
+
+            setStatisticsValue(aClass, type, value);
+        }
+        //returns the total value of a statistics type
+         public int getTotalValue(StatisticsType type)
+         {
+             int value = 0;
+
+             lock (this.Stats)
+             {
+                 value = this.Stats.Where(s => s.Type.Shortname == type.Shortname).Sum(s => s.Value);
+             }
+
+             return value;
+         }
+    }
+    /*
     public class RouteStatistics
     {
         
@@ -91,6 +167,21 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             }
 
             return value;
+        }
+    }
+     * */
+    //the statistics item for route
+    [Serializable]
+    public class RouteStatisticsItem
+    {
+        public RouteAirlinerClass RouteClass { get; set; }
+        public StatisticsType Type { get; set; }
+        public int Value { get; set; }
+        public RouteStatisticsItem(RouteAirlinerClass routeClass, StatisticsType type, int value)
+        {
+            this.RouteClass = routeClass;
+            this.Type = type;
+            this.Value = value;
         }
     }
 }

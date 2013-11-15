@@ -17,6 +17,7 @@ namespace TheAirline.Model.AirlineModel
 {
     [DataContract]
     [KnownType(typeof(SubsidiaryAirline))]
+    [KnownType(typeof(GeneralStatistics))]
     //the class for an airline
     public class Airline
     {
@@ -178,6 +179,9 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Pilots.Remove(pilot);
             pilot.Airline = null;
+
+            if (pilot.Airliner != null)
+                pilot.Airliner.removePilot(pilot);
         }
         //adds a flight school to the airline
         public void addFlightSchool(FlightSchool school)
@@ -424,12 +428,14 @@ namespace TheAirline.Model.AirlineModel
                     value += facility.Facility.Price;
             }
 
-            var loans = new List<Loan>(this.Loans);
-            foreach (Loan loan in loans)
+            lock (this.Loans)
             {
-                value -= loan.PaymentLeft;
+                var loans = new List<Loan>(this.Loans);
+                foreach (Loan loan in loans)
+                {
+                    value -= loan.PaymentLeft;
+                }
             }
-
             var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
             foreach (SubsidiaryAirline subAirline in subs)
                 value += subAirline.getValue();

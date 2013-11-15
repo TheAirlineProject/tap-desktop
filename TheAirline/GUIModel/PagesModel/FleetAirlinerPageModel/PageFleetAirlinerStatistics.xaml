@@ -61,10 +61,10 @@
                     <ListView ItemsSource="{Binding Airliner.Routes}" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1002'}" Width="300">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerStatistics 1002'}" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource RouteLongItem}"></ContentControl>
+                                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource RouteItem}"></ContentControl>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>

@@ -135,12 +135,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         foreach (AirlinerFacility facility in aClass.getFacilities())
                             airlinerClass.setFacility(airliner.Airline, facility);
 
+                        foreach (AirlinerFacility.FacilityType type in Enum.GetValues(typeof(AirlinerFacility.FacilityType)))
+                        {
+                            if (!aClass.Facilities.Exists(f => f.Type == type))
+                            {
+                                airlinerClass.setFacility(airliner.Airline, AirlinerFacilities.GetBasicFacility(type));
+                            }
+                        }
+
                         airlinerClass.SeatingCapacity = Convert.ToInt16(Convert.ToDouble(airlinerClass.RegularSeatingCapacity) / airlinerClass.getFacility(AirlinerFacility.FacilityType.Seat).SeatUses); 
 
                          airliner.addAirlinerClass(airlinerClass);
                     }
                     
-                    int seatingDiff = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
+                                        int seatingDiff = ((AirlinerPassengerType)airliner.Type).MaxSeatingCapacity - configuration.MinimumSeats;
 
                     airliner.getAirlinerClass(AirlinerClass.ClassType.Economy_Class).RegularSeatingCapacity += seatingDiff;
 

@@ -81,9 +81,17 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.Demands = new List<DemandMVVM>();
 
-            foreach (Airport destination in this.Airport.getDestinationDemands().Where(a=> a!=null && GeneralHelpers.IsAirportActive(a)))
-                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination), new CountryCurrentCountryConverter().Convert(destination.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country) ? DemandMVVM.DestinationType.Domestic : DemandMVVM.DestinationType.International));
+            var demands = this.Airport.getDestinationDemands().Where(a => a != null && GeneralHelpers.IsAirportActive(a)).OrderByDescending(a=>this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class));
 
+            var internationalDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) != new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
+            var domesticDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
+           
+            foreach (Airport destination in internationalDemand.Take(Math.Min(50,internationalDemand.Count())))
+                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination),DemandMVVM.DestinationType.International));
+
+            foreach (Airport destination in domesticDemand.Take(Math.Min(50, domesticDemand.Count())))
+                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination), DemandMVVM.DestinationType.Domestic));
+            
             this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null).Select(f=>f.Facility).ToList();
 
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();

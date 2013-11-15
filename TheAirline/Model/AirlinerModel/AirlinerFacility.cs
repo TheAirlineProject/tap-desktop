@@ -62,6 +62,11 @@ namespace TheAirline.Model.AirlinerModel
 
             facilities[facility.Type].Add(facility);
         }
+        //returns the list of all facilities
+        public static List<AirlinerFacility> GetAllFacilities()
+        {
+            return facilities.Values.SelectMany(v => v).ToList();
+        }
         //returns the list of facilities for a specific type after a specific year
         public static List<AirlinerFacility> GetFacilities(AirlinerFacility.FacilityType type, int year)
         {

@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel"
+      Name="pageFleetAirlinerInformation"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageFleetAirlinerInformation">
@@ -41,7 +42,7 @@
                                     </Style.Triggers>
                                 </Style>
                             </WrapPanel.Style>
-                            <Slider Width="200" Maximum="{Binding MaxSeats,Mode=OneWay}" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="slSeats_ValueChanged" Name="slSeats" VerticalAlignment="Bottom"></Slider>
+                            <Slider Width="200" Maximum="{Binding MaxSeats}" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" ValueChanged="slSeats_ValueChanged" Name="slSeats" VerticalAlignment="Bottom"></Slider>
                             <TextBlock Text="{Binding Value,ElementName=slSeats}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                         </WrapPanel>
                     </WrapPanel>
@@ -92,6 +93,18 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1008'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                 <ContentControl Content="{Binding Airliner.Airliner.Registered}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
             </WrapPanel>
+            <WrapPanel Margin="0 5 0 0">
+                <WrapPanel.Style>
+                    <Style TargetType="WrapPanel">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsBuyable}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </WrapPanel.Style>
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 203'}" Click="btnBuy_Click"  VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
+            </WrapPanel>
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1009'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
                     <ContentControl Content="{Binding Airliner.Airliner.Type}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
               <StackPanel>
@@ -107,10 +120,11 @@
                         </Style.Triggers>
                     </Style>
                 </StackPanel.Style>
+               
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1010'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
               <ListBox Style="{StaticResource VerticalListBoxStyle}"  ItemsSource="{Binding Classes}" Name="lbClasses" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
             <WrapPanel Margin="0 5 0 0">
-                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 200'}" VerticalAlignment="Bottom" Click="btnAddClass_Click">
+                    <Button Margin="0 0 5 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 200'}" VerticalAlignment="Bottom" Click="btnAddClass_Click">
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                                 <Style.Triggers>
@@ -127,10 +141,60 @@
                              </Style>
                     </Button.Style>
                 </Button>
-                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 201'}" Click="btnSaveChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 201'}" Click="btnSaveChanges_Click"  VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}"></Button>
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 202'}" Click="btnUndoChanges_Click"  VerticalAlignment="Bottom" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}"></Button>
             </WrapPanel>
             </StackPanel>
+            <StackPanel>
+                <StackPanel.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Pilots.Count}" Value="0">
+                                <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </StackPanel.Style>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1012'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+            <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Pilots}">
+                    <ListBox.ItemTemplate>
+                    <DataTemplate>
+                            <WrapPanel>
+                                <TextBlock Text="{Binding Profile.Name}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                                <TextBlock Text="{Binding Rating}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                                <Button Margin="5 0 0 0" Height="16" Tag="{Binding}" VerticalAlignment="Bottom" Click="btnDeletePilot_Click" Background="Transparent">
+                                    <Button.Style>
+                                        <Style TargetType="Button">
+                                            <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                                <DataTrigger Binding="{Binding InRoute,ElementName=pageFleetAirlinerInformation}" Value="True">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                        <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                                </Button>
+                            </WrapPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </StackPanel>
+            <Button Margin="0 5 0 0" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 204'}" Click="btnAddPilot_Click"  VerticalAlignment="Bottom" HorizontalAlignment="Left">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsMissingPilots}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+
         </StackPanel>
     </ScrollViewer>
 </Page>

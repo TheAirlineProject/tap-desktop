@@ -165,7 +165,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
 
                 if (intervalType == IntervalType.Week)
-                    flightsPerDay = 6;
+                    flightsPerDay = 7;
 
                 this.Intervals.Clear();
 
@@ -215,15 +215,35 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             Route route = (Route)cbRoute.SelectedItem;
 
-            IntervalType intervalType = (IntervalType)cbIntervalType.SelectedItem;
+            if (route != null)
+            {
+                OpsType opsType = cbSchedule == null ? OpsType.Regular : (OpsType)cbSchedule.SelectedItem;
+                IntervalType intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
-            this.Intervals.Clear();
+                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
-            for (int i = 0; i < 6; i++)
-                this.Intervals.Add(i + 1);
+                int delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
-            if (cbInterval != null)
-                cbInterval.SelectedIndex = 0;
+                TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
+
+                int maxHours = 22 - 06;
+
+                if (opsType == OpsType.Whole_Day)
+                    maxHours = 24;
+
+                int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+
+                if (intervalType == IntervalType.Week)
+                    flightsPerDay = 7;
+
+                this.Intervals.Clear();
+
+                for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
+                    this.Intervals.Add(i + 1);
+
+                if (cbInterval != null)
+                    cbInterval.SelectedIndex = 0;
+            }
 
         }
         private void cbInterval_SelectionChanged(object sender, SelectionChangedEventArgs e)

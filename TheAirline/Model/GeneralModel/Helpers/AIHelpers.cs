@@ -948,15 +948,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airport airport = airports.First();
 
-                airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.Service).Facility.TypeLevel == 0)
+                {
+                    airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
-                double price = facility.Price;
+                    double price = facility.Price;
 
-                if (airport.Profile.Country != airline.Profile.Country)
-                    price = price * 1.25;
+                    if (airport.Profile.Country != airline.Profile.Country)
+                        price = price * 1.25;
 
-                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
-
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+                }
                 return airport;
             }
 

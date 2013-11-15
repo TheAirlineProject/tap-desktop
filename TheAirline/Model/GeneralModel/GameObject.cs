@@ -76,8 +76,8 @@ namespace TheAirline.Model.GeneralModel
             this.FinancePageEnabled = false;
             this.DayRoundEnabled = true;
         }
-         //sets the money for the human airline
-        public void setHumanMoney(double value)
+         //add money to the human airline
+        public void addHumanMoney(double value)
         {
             this.HumanMoney += value;
             this.HumanAirline.Money += value;

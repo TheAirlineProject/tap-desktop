@@ -144,7 +144,8 @@ namespace TheAirline.Model.GeneralModel
 			foreach (Airport airport in noRunwayAirports)
 				Console.WriteLine(airport.Profile.Name);
 
-		
+
+  	
 		}
 
 		/*! private static method ClearLists().

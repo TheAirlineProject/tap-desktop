@@ -25,8 +25,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     //the mvvm object for an airline
     public class AirlineMVVM : INotifyPropertyChanged
     {
-        public List<PropertyInfo> Colors { get; set; }
         public Airline Airline { get; set; }
+        public List<PropertyInfo> Colors { get; set; }
         public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
@@ -38,6 +38,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineFeeMVVM> Chargers { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Fees { get; set; }
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
+        public ObservableCollection<Airline> FundsAirlines { get; set; }
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
@@ -49,7 +50,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
         public int MaintenanceCrew { get; set; }
-      
+
+        private double _maxtransferfunds;
+        public double MaxTransferFunds 
+        {
+            get { return _maxtransferfunds; }
+            set { _maxtransferfunds = value; NotifyPropertyChanged("MaxTransferFunds"); }
+        }
         private double _maxsubsidiarymoney;
         public double MaxSubsidiaryMoney
         {
@@ -113,6 +120,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Advertisements = new ObservableCollection<AirlineAdvertisementMVVM>();
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
             this.AirlineAirlines = new ObservableCollection<Airline>();
+            this.FundsAirlines = new ObservableCollection<Airline>();
 
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
@@ -189,12 +197,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
 
             this.AirlineAirlines.Add(airline);
+
+            this.FundsAirlines.Add(airline);
         }
         //removes a subsidiary airline
         public void removeSubsidiaryAirline(SubsidiaryAirline airline)
         {
             this.Subsidiaries.Remove(airline);
             this.AirlineAirlines.Remove(airline);
+
+            this.FundsAirlines.Remove(airline);
         }
        //adds a facility
         public void addFacility(AirlineFacilityMVVM facility)
@@ -282,6 +294,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
 
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
+            this.MaxTransferFunds = this.Airline.Money / 2;
+
             this.License = this.Airline.License;
            
             if (this.Airline.IsSubsidiary)
@@ -300,7 +314,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
 
+            foreach (Airline airline in this.AirlineAirlines)
+                if (airline != GameObject.GetInstance().HumanAirline)
+                    this.FundsAirlines.Add(airline);
+
             this.MaxLoan = AirlineHelpers.GetMaxLoanAmount(this.Airline);
+        }
+        //sets the max transfer funds
+        public void setMaxTransferFunds(Airline airline)
+        {
+            this.MaxTransferFunds = airline.Money / 2;
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

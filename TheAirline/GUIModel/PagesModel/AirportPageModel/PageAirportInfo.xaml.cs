@@ -46,7 +46,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             viewDemands.GroupDescriptions.Clear();
 
             viewDemands.GroupDescriptions.Add(new PropertyGroupDescription("Type"));
-
+           
             SortDescription sortTypeDescription = new SortDescription("Type", ListSortDirection.Ascending);
             viewDemands.SortDescriptions.Add(sortTypeDescription);
 

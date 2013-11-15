@@ -41,7 +41,31 @@
                     </ComboBox.Style>
                 </ComboBox>
                 <TextBlock Margin="5 0 5 0" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1000'}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom" Width="50"></TextBlock>
+                <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom" Width="50">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanDelete}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <WrapPanel>
+                    <WrapPanel.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                    <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </WrapPanel.Style>
+                    <Slider Width="150" Maximum="{Binding MaxSeats}" ValueChanged="slSeats_ValueChanged" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" Name="slSeats" VerticalAlignment="Bottom"></Slider>
+                    <TextBlock Text="{Binding Value,ElementName=slSeats}" VerticalAlignment="Bottom" Margin="5 0 0 0" Width="50"></TextBlock>
+
+                </WrapPanel>
                 <Button  VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Visibility="{Binding CanDelete,Converter={StaticResource BooleanToVisibility}}" Click="btnDelete_Click">
                     <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
@@ -53,14 +77,14 @@
             <TabControl Background="Transparent" BorderThickness="0" Name="tcMenu" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1001'}" Tag="Classes">
                     <StackPanel Margin="0 10 0 0">
-                        <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" VerticalAlignment="Bottom" ItemTemplate="{StaticResource ClassItem}"></ListBox>
+                        <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" BorderThickness="0" VerticalAlignment="Bottom" ItemTemplate="{StaticResource ClassItem}"></ListBox>
                         <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 200'}" Margin="0 5 0 0" Style="{StaticResource StandardButtonStyle}" Visibility="{Binding CanAddNewClass,ElementName=popUpAirlinerSeatsConfiguration,Converter={StaticResource BooleanToVisibility}}" Click="btnAdd_Click">
                         </Button>
                     </StackPanel>
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1002'}" Tag="Facilities" BorderThickness="0">
                     <StackPanel Margin="0 10 0 0">
-                        <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" Style="{StaticResource VerticalListBoxStyle}"  VerticalAlignment="Bottom">
+                        <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" BorderThickness="0" Style="{StaticResource VerticalListBoxStyle}"  VerticalAlignment="Bottom">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <StackPanel>

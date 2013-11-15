@@ -363,5 +363,44 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
 
         }
+
+        private void cbTransferType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbTransferType != null && cbTransferAirline != null)
+            {
+                Airline airline = (Airline)cbTransferAirline.SelectedItem;
+                string transferType = cbTransferType.SelectedValue.ToString();
+
+                if (transferType == "From")
+                    this.Airline.setMaxTransferFunds(airline);
+                else
+                    this.Airline.setMaxTransferFunds(this.Airline.Airline);
+            }
+        }
+
+        private void btnTransferFunds_Click(object sender, RoutedEventArgs e)
+        {
+            Airline airline = (Airline)cbTransferAirline.SelectedItem;
+            string transferType = cbTransferType.SelectedValue.ToString();
+
+            double amount = slTransfer.Value;
+
+
+            if (transferType == "From")
+            {
+                airline.Money -= amount;
+                GameObject.GetInstance().addHumanMoney(amount);
+                this.Airline.setMaxTransferFunds(airline);
+            }
+            else
+            {
+                airline.Money += amount;
+                GameObject.GetInstance().addHumanMoney(-amount);
+                this.Airline.setMaxTransferFunds(this.Airline.Airline);
+                
+            }
+
+
+        }
     }
 }

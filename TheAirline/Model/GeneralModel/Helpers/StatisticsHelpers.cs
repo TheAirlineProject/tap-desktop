@@ -148,6 +148,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //returns the fill degree for an airline
             public static double GetAirlineFillAverage(Airline airline)
             {
+                
                 List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
 
                 return fillDegree.DefaultIfEmpty(0).Average();

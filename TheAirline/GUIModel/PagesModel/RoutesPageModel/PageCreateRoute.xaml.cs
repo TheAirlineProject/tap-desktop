@@ -219,7 +219,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                         {
                             MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
 
-                            rFacility.SelectedFacility = facility;
+                            if (rFacility != null)
+                                rFacility.SelectedFacility = facility;
 
                         }
                     }
