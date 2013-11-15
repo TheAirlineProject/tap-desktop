@@ -66,7 +66,14 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
            
             
         }
-
+        //clears the statistics
+        public void clear()
+        {
+            lock (this.StatValues)
+            {
+                this.StatValues.Clear();
+            }
+        }
 
     }
 }

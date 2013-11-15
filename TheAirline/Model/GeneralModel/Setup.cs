@@ -2308,11 +2308,7 @@ namespace TheAirline.Model.GeneralModel
 				Dictionary<Airport, int> list = new Dictionary<Airport, int>();
 				airports.ForEach(a => list.Add(a, ((int)a.Profile.Size) * (AirportHelpers.GetAirportsNearAirport(a, 1000).Count)+1));
 
-				if (list.Sum(a=>a.Value)==0)
-				{
-					string s;
-				}
-
+			
 				return AIHelpers.GetRandomItem(list);
 			}
 

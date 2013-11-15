@@ -13,12 +13,31 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks if a time table is valid
         public static Boolean IsTimeTableValid(RouteTimeTable timeTable, FleetAirliner airliner, List<RouteTimeTableEntry> entries, Boolean withSlots = true)
         {
+           
             foreach (RouteTimeTableEntry e in timeTable.Entries)
             {
+
                 if (!IsRouteEntryValid(e, airliner, entries, withSlots))
                     return false;
             }
             return true;
+        }
+        public static Boolean IsRoutePlannerTimeTableValid(RouteTimeTable timeTable, FleetAirliner airliner, List<RouteTimeTableEntry> entries, Boolean withSlots = true)
+        {
+            var tEntries = new List<RouteTimeTableEntry>();
+            tEntries.AddRange(entries);
+            tEntries.AddRange(timeTable.Entries);
+
+             foreach (RouteTimeTableEntry e in timeTable.Entries)
+            {
+                var cEntries = new List<RouteTimeTableEntry>(tEntries);
+                cEntries.Remove(e);
+
+                if (!IsRouteEntryValid(e, airliner, cEntries, withSlots))
+                    return false;
+            }
+            return true;
+            
         }
         public static Boolean IsTimeTableValid(RouteTimeTable timeTable, FleetAirliner airliner, Dictionary<Route, List<RouteTimeTableEntry>> entries, Boolean withSlots = true)
         {

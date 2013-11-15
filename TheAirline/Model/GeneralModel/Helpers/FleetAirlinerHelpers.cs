@@ -26,7 +26,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Dictionary<DelayType, int> delays = new Dictionary<DelayType, int>();
 
             delays.Add(DelayType.Airliner_problems, GetAirlinerAgeDelay(airliner));
-            delays.Add(DelayType.Bad_weather, GetAirlinerWeatherDelay(airliner));
+            //delays.Add(DelayType.Bad_weather, GetAirlinerWeatherDelay(airliner));
+            delays.Add(DelayType.Bad_weather, 0);
 
             KeyValuePair<DelayType, int> delay = new KeyValuePair<DelayType, int>(DelayType.None, 0);
             foreach (var d in delays)
@@ -43,12 +44,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int age = airliner.Airliner.Age;
 
-            int tAge = 100 - (age * 3);
+            int tAge = 100 - (age * 2);
 
             Boolean delayed = rnd.Next(100) > tAge;
 
             if (delayed)
-                return rnd.Next(0, age) * 5;
+                return rnd.Next(0, age) * 2;
             else
                 return 0;
         }
@@ -135,6 +136,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             int delayTime = rnd.Next((weatherFactor + windFactor), (weatherFactor + windFactor) * 12);
 
             return delayTime;
+        }
+        /* clears the statistics for all fleet airliners
+        */
+        public static void ClearAirlinerStatistics()
+        {
+            foreach (Airline airline in Airlines.GetAllAirlines())
+                foreach (FleetAirliner airliner in airline.Fleet)
+                    airliner.Statistics.clear();
         }
         //creates the stop over route based on the main route
         public static StopoverRoute CreateStopoverRoute(Airport dest1, Airport stopover, Airport dest2, Route mainroute, Boolean oneLegged,Route.RouteType type)

@@ -16,8 +16,8 @@ namespace TheAirline.Model.GeneralModel
 {
     public class MathHelpers
     {
-        private static Random rnd = new Random();
-        public static double ToDegree(double val) { return val * 180 / Math.PI; } 
+        private static Randomizer rnd = new Randomizer();
+        public static double ToDegree(double val) { return val * 180 / Math.PI; }
         //shuffles a list of items
         public static List<T> Shuffle<T>(List<T> list)
         {
@@ -82,16 +82,16 @@ namespace TheAirline.Model.GeneralModel
             else if (timepermove == 30) { speed = speed / 2; }
 
             distanceToDestination = distance - speed;
-            if (distanceToDestination < 0) 
-                distanceToDestination  = 0;
+            if (distanceToDestination < 0)
+                distanceToDestination = 0;
 
             airliner.CurrentFlight.DistanceToDestination = distanceToDestination;
-        }  
+        }
 
         //gets the angle between two coordinates
         public static double GetDirection(GeoCoordinate coordinates1, GeoCoordinate coordinates2)
         {
-             var latitude1 = DegreeToRadian(coordinates1.Latitude);
+            var latitude1 = DegreeToRadian(coordinates1.Latitude);
 
             var latitude2 = DegreeToRadian(coordinates2.Latitude);
 
@@ -145,7 +145,7 @@ namespace TheAirline.Model.GeneralModel
                 return airport1.Profile.Coordinates.GetDistanceTo(airport2.Profile.Coordinates) / 1000;
             else
                 return Math.Max(airport1.Statics.getDistance(airport2), airport2.Statics.getDistance(airport1));
-          
+
         }
 
         public static double DMStoDeg(int degrees, int minutes, int seconds)
@@ -161,7 +161,7 @@ namespace TheAirline.Model.GeneralModel
         //returns the coordinates for a route in a distance of a specific lenghth
         public static GeoCoordinate GetRoutePoint(GeoCoordinate c1, GeoCoordinate c2, double distance)
         {
-           
+
             var tc = DegreeToRadian(GetDirection(c1, c2));
             const double radiusEarthKilometres = 6371.01;
             var distRatio = distance / radiusEarthKilometres;
@@ -203,7 +203,7 @@ namespace TheAirline.Model.GeneralModel
             if (coordinate1.Equals(coordinate2))
                 return new TimeSpan();
 
-            double dist = GetDistance(coordinate1,coordinate2);
+            double dist = GetDistance(coordinate1, coordinate2);
 
             double dtime = dist / speed;
 
@@ -218,14 +218,14 @@ namespace TheAirline.Model.GeneralModel
         //returns the flight time for a given airliner type between two coordinates
         public static TimeSpan GetFlightTime(GeoCoordinate coordinate1, GeoCoordinate coordinate2, AirlinerType type)
         {
-            double dist = GetDistance(coordinate1,coordinate2);
+            double dist = GetDistance(coordinate1, coordinate2);
 
             if (dist == 0)
                 return new TimeSpan(0, 0, 0);
 
             double speed = type.CruisingSpeed;
 
-        
+
             double dtime = dist / speed;
 
             int hours = Convert.ToInt16(Math.Floor(dtime));
@@ -236,7 +236,7 @@ namespace TheAirline.Model.GeneralModel
 
             return new TimeSpan(hours, minutes, 0);
         }
-        public static TimeSpan GetFlightTime(Airport airport1, Airport airport2,AirlinerType type)
+        public static TimeSpan GetFlightTime(Airport airport1, Airport airport2, AirlinerType type)
         {
             return GetFlightTime(airport1.Profile.Coordinates, airport2.Profile.Coordinates, type);
         }
@@ -244,20 +244,20 @@ namespace TheAirline.Model.GeneralModel
         public static double GallonsToLtr(double gallons)
         {
             double aGallon = 0.264172051;
-            
+
             return gallons * aGallon;
         }
         //converts ltr to gallons
         public static double LtrToGallons(double ltr)
         {
             double aGallon = 3.785411784;
-            
+
             return ltr * aGallon;
         }
         //converts l/km to mpg
         public static double LKMToMPG(double kml)
         {
-           
+
             double aMPG = 2.35;
 
             return kml * aMPG;
@@ -328,7 +328,7 @@ namespace TheAirline.Model.GeneralModel
         //returns a random double
         public static double GetRandomDoubleNumber(double minimum, double maximum)
         {
-           
+
             return rnd.NextDouble() * (maximum - minimum) + minimum;
         }
         //converts a route time table entry to datetime
@@ -358,14 +358,14 @@ namespace TheAirline.Model.GeneralModel
         {
             int currentDay = (int)GameObject.GetInstance().GameTime.DayOfWeek;
 
-            int entryDay = (int)entry.Day + entry.Time.Days; 
+            int entryDay = (int)entry.Day + entry.Time.Days;
 
             if (currentDay > entryDay)
                 currentDay -= 7;
 
             int daysBetween = Math.Abs(entryDay - currentDay);
 
-            if (daysBetween == 0 && new TimeSpan(GameObject.GetInstance().GameTime.Hour, GameObject.GetInstance().GameTime.Minute, 0) > new TimeSpan(entry.Time.Hours, entry.Time.Minutes, 0).Add(new TimeSpan(0,maxMinutes,0)))
+            if (daysBetween == 0 && new TimeSpan(GameObject.GetInstance().GameTime.Hour, GameObject.GetInstance().GameTime.Minute, 0) > new TimeSpan(entry.Time.Hours, entry.Time.Minutes, 0).Add(new TimeSpan(0, maxMinutes, 0)))
             {
                 daysBetween = 7;
             }
@@ -392,8 +392,8 @@ namespace TheAirline.Model.GeneralModel
         //returns the monthly payment of a specific amount with a rate and length
         public static double GetMonthlyPayment(double amount, double rate, int length)
         {
-             double pRate = 1+ rate / 100;
-         
+            double pRate = 1 + rate / 100;
+
             return amount * pRate / length;
         }
         //returns the nth day for a given month and year
@@ -427,12 +427,67 @@ namespace TheAirline.Model.GeneralModel
             {
                 weekNum -= 1;
             }
-            
+
             var result = firstThursday.AddDays(weekNum * 7);
             return result.AddDays(-3);
 
         }
-    
-     
+
+
+    }
+    //a new randomizer class
+    public class Randomizer : RandomNumberGenerator
+    {
+        private static RandomNumberGenerator r;
+        public Randomizer()
+        {
+            r = RandomNumberGenerator.Create();
+        }
+        ///<summary>
+        /// Fills the elements of a specified array of bytes with random numbers.
+        ///</summary>
+        ///<param name=”buffer”>An array of bytes to contain random numbers.</param>
+        public override void GetBytes(byte[] buffer)
+        {
+            r.GetBytes(buffer);
+        }
+
+        ///<summary>
+        /// Returns a random number between 0.0 and 1.0.
+        ///</summary>
+        public double NextDouble()
+        {
+            byte[] b = new byte[4];
+            r.GetBytes(b);
+            return (double)BitConverter.ToUInt32(b, 0) / UInt32.MaxValue;
+        }
+
+        ///<summary>
+        /// Returns a random number within the specified range.
+        ///</summary>
+        ///<param name=”minValue”>The inclusive lower bound of the random number returned.</param>
+        ///<param name=”maxValue”>The exclusive upper bound of the random number returned. maxValue must be greater than or equal to minValue.</param>
+        public int Next(int minValue, int maxValue)
+        {
+            return (int)Math.Round(NextDouble() * (maxValue - minValue - 1)) + minValue;
+
+        }
+
+        ///<summary>
+        /// Returns a nonnegative random number.
+        ///</summary>
+        public int Next()
+        {
+            return Next(0, Int32.MaxValue);
+        }
+
+        ///<summary>
+        /// Returns a nonnegative random number less than the specified maximum
+        ///</summary>
+        ///<param name=”maxValue”>The inclusive upper bound of the random number returned. maxValue must be greater than or equal 0</param>
+        public int Next(int maxValue)
+        {
+            return Next(0, maxValue);
+        }
     }
 }

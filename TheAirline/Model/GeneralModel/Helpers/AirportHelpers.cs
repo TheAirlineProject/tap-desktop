@@ -134,6 +134,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
 
+        public static void ClearAirportStatistics()
+        {
+            foreach (Airport airport in Airports.GetAllAirports())
+                airport.Statistics.Stats.Clear();
+        }
+
         //returns all entries for a specific airport with take off in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportTakeoffs(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {

@@ -12,6 +12,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
     {
         private static Random rnd = new Random();
        
+       
         /*! create a random airliner with a minimum range.
         */
         private static Airliner CreateAirliner(double minRange)

@@ -48,6 +48,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //Clearing stats because there is no need for saving those.
             Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
             Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
+            AirlineHelpers.ClearRoutesStatistics();
 
             SaveObject so = new SaveObject();
             Parallel.Invoke(() =>
@@ -102,6 +103,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 so.instance = GameObject.GetInstance();
                 so.savetype = "new";
+                so.saveversion = "039";
             });
 
 
@@ -109,7 +111,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             using (Stream stream = new FileStream(fileName, FileMode.Create))
             {
-                using (DeflateStream compress = new DeflateStream(stream, CompressionLevel.Fastest))
+                using (DeflateStream compress = new DeflateStream(stream, CompressionLevel.Optimal))
                 {
                     serializer.WriteObject(compress, so);
                 }
@@ -127,6 +129,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
             SaveObject deserializedSaveObject;
             string loading;
+            string version;
+
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
@@ -136,6 +140,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
             loading = deserializedSaveObject.savetype;
+            version = deserializedSaveObject.saveversion;
 
             //Parrarel for loading the game
             Parallel.Invoke(() =>
@@ -291,6 +296,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [DataMember]
         public string savetype { get; set; }
+
+        [DataMember]
+        public string saveversion { get; set; }
 
         [DataMember]
         public List<Configuration> configurationList { get; set; }

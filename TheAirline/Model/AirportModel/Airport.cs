@@ -311,6 +311,7 @@ namespace TheAirline.Model.AirportModel
         {
             this.DestinationCargoStatistics.Clear();
         }
+
         //returns the number of passengers to a destination
         public long getDestinationPassengerStatistics(Airport destination)
         {

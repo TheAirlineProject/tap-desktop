@@ -424,27 +424,30 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
             {
-                foreach (FleetAirliner airliner in airline.Fleet.FindAll(a => a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment))
+                lock (airline.Fleet)
                 {
-                    if (airline.Money >= airliner.Airliner.Type.Price)
+                    var fleet = new List<FleetAirliner>(airline.Fleet);
+                    foreach (FleetAirliner airliner in airline.Fleet.FindAll(a => a.Airliner.BuiltDate == GameObject.GetInstance().GameTime && a.Purchased == FleetAirliner.PurchasedType.BoughtDownPayment))
                     {
-                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Airliner.Type.Price);
-                        airliner.Purchased = FleetAirliner.PurchasedType.Bought;
+                        if (airline.Money >= airliner.Airliner.Type.Price)
+                        {
+                            AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -airliner.Airliner.Type.Price);
+                            airliner.Purchased = FleetAirliner.PurchasedType.Bought;
 
-                        if (airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
+                            if (airline.IsHuman)
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
 
-                    }
-                    else
-                    {
-                        airline.removeAirliner(airliner);
+                        }
+                        else
+                        {
+                            airline.removeAirliner(airliner);
 
-                        if (airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner {0} can't be delivered to your fleet.\nYou don't have enough money to purchase it.", airliner.Name)));
+                            if (airline.IsHuman)
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner {0} can't be delivered to your fleet.\nYou don't have enough money to purchase it.", airliner.Name)));
 
+                        }
                     }
                 }
-
 
 
                 if (airline.Contract != null && airline.Contract.ExpireDate.ToShortDateString() == GameObject.GetInstance().GameTime.ToShortDateString())
@@ -560,6 +563,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the yearly update
         private static void DoYearlyUpdate()
         {
+            AirlineHelpers.ClearRoutesStatistics();
             //updates holidays 
             GeneralHelpers.CreateHolidays(GameObject.GetInstance().GameTime.Year);
 

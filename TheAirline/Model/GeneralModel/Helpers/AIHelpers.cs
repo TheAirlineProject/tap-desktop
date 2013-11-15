@@ -739,7 +739,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the start destination / homebase for a route
         private static Airport GetRouteStartDestination(Airline airline)
         {
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            List<Airport> homeAirports;
+            
+            lock (airline.Airports)
+            {
+                homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            }
             homeAirports.AddRange(airline.getHubs());
 
             Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline));

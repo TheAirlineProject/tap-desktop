@@ -107,6 +107,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return this.Invoices;
         }
+
+        public void Clearroutestats()
+        {
+            this.Statistics.Stats.Clear();
+        }
         //adds an invoice for a route 
         public void addRouteInvoice(Invoice invoice)
         {

@@ -179,6 +179,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 oldAirport.addAirportFacility(airline, noneFacility, GameObject.GetInstance().GameTime);
             }
         }
+        public static void ClearRoutesStatistics()
+        {
+            var routes = Airlines.GetAllAirlines().SelectMany(a => a.Routes);
+
+            foreach (Route route in routes)
+                route.Statistics.clear();
+        }
         //returns all route facilities for a given airline and type
         public static List<RouteFacility> GetRouteFacilities(Airline airline, RouteFacility.FacilityType type)
         {
