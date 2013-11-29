@@ -4,6 +4,7 @@
     <narrative narrative="Delta Air Lines is a major US airline operating out of Atlanta. Their flights serve every continent except Antarctica. The fleet is over 700 in size,
 consisting largely of Boeing 757s, MD-88s, Boeing 767, Airbus A320, and Boeing 737s." />
   </profile>
+  <info real="True" from="1924" to="2199" />
   <startdata>
   <routes>
       <route destination1="ATL" destination2="BMI" opened="2009" closed="2199"></route>
