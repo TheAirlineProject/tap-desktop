@@ -1274,14 +1274,14 @@ consisting largely of Boeing 757s, MD-88s, Boeing 767, Airbus A320, and Boeing 7
   </routes>
   <!--some random routes from an origin-->
   <random_routes>
-  <routes origin="ATL" destinations="12" minimumsize="Smallest">
+  <routes origin="ATL" destinations="1" minimumsize="Smallest">
 <countries>
 <country value="122"></country>
 <country value="130"></country>
 </countries>  
   </routes>  
   </random_routes>
-  <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
+  <!--the airliners the airline would start with which isn't on a route early (1960) late (2010)-->
   <airliners>
     <airliner type="Boeing 747-400" early="0" late="16"></airliner>
     <airliner type="Boeing 757-200" early="0" late="168"></airiner>
