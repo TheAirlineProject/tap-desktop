@@ -21,7 +21,24 @@ consisting largely of Boeing 757s, MD-88s, Boeing 767, Airbus A320, and Boeing 7
   </random_routes>
   <!--the airliners the airline would start with which isn't on a route earyl (1960) late (2010)-->
   <airliners>
-    <airliner type="Boeing 747-400" early="0" late="10"></airliner> 
+    <airliner type="Boeing 747-400" early="0" late="16"></airliner>
+    <airliner type="Boeing 757-200" early="0" late="168"></airiner>
+    <airliner type="Boeing 737-700" early="0" late="10"></airliner>
+    <airliner type="Boeing 737-800" early="0" late="73"></airliner>
+    <airliner type="Boeing 757-300" early="0" late="16"></airliner>
+    <airliner type="Boeing 767-300" early="0" late="15"></airliner>
+    <airliner type="Boeing 767-300ER" early="0" late="58"></airliner>
+    <airliner type="Boeing 767-400ER" early="0" late="21"></airliner>
+    <airliner type="Boeing 777-200ER" early="0" late="8"></airliner>
+    <airliner type="Boeing 777-200LR" early="0" late="10"></airliner>
+    <airliner type="MD DC-9-40" early="0" late="5"></airliner>
+    <airliner type="MD DC-9-50" early="0" late="34"></airliner>
+    <airliner type="MD-88 (DC-9-88)" early="0" late="117"></airliner>
+    <airliner type="MD-90-30" early="0" late="19"></airliner>
+    <airliner type="Airbus A319-100" early="0" late="57"></airliner>
+    <airliner type="Airbus A320-200" early="0" late="69"></airliner>
+    <airliner type="Airbus A330-200" early="0" late="11"></airliner>
+    <airliner type="Airbus A330-300" early="0" late="21"></airliner>
   </airliners>
   </startdata>
 </airline>
