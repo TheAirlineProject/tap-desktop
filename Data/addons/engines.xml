@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <engines>
   <engine manufacturer="Rolls-Royce" model="Trent 800" >
 	  <specs type="jet" noise="high" consumptionModifier="0.97" price="21150000" />
@@ -11,5 +11,35 @@
 	  <performance maxSpeed="467" ceiling="31000" />
 	  <aircraft models="Saab 340" />
 	  <produced from="1984" to="2024" />
+      </engine>
+  <engine manufacturer="EA" model="GP7200">
+      <specs type="jet" noise="high" consumptionModifier="1" price="13500000" />
+      <performance maxSpeed="1020" ceiling="43097" />
+      <aircraft models="Airbus A380-800"/>
+      <produced from="2006" to="2025"/>
+      </engine>
+    <engine manufacturer="GE" model="CF6-6">
+        <specs type="jet" noise="high" consumptionModifier="1.01" price=""/>
+        <performance maxSpeed="982" ceiling="42000" />
+        <aircraft models="MD DC-10-10"/>
+        <produced from="1968" to="1976" />
+        </engine>
+    <engine manufacturer="GE" model="CF6-50">
+        <specs type="jet" noise="high" consumptionModifier="1" price=""/>
+        <performance maxSpeed="982" ceiling="47000" />
+        <aircraft models="MD DC-10-30, Airbus A300B4, Boeing 747SR, Boeing 747-100, Boeing 747-200" />
+        <produced from="1972" to="1999" />
+        </engine>
+    <engine manufacturer="GE" model="CF6-80">
+        <specs type="jet" noise="medium" consumptionModifier=".99" price=""/>
+        <performance maxSpeed="913" ceiling="43000"/>
+        <aircraft models="Boeing 767-200, Boeing 767-300, Boeing 767-300ER, Boeing 767-400, Boeing 767-400ER, Boeing 767-200ER, Airbus A310-200, Airbus A310-300, Airbus A310-200F, Airbus A310-300F, Boeing 767-300F, Boeing 747-400, Boeing 747-400ER, Airbus A330-300, Airbus A330-200, Airbus A330-200F"/>
+        <produced from="1982" to="2018" />
+        </engine>
+    <engine manufacturer="GE" model="GEnx">
+        <specs type="jet" noise="medium" consumptionModifier=".96" price=""/>
+        <performance maxSpeed="954" ceiling="43000" />
+        <aircraft models="Boeing 787-8, Boeing 787-9, Boeing 787-10, Boeing 747-8I, Boeing 747-8F" />
+        <produced from="2008" to="2030" />
   </engine>
 </engines>
