@@ -4,4 +4,25 @@
 <narrative narrative="Air Tahiti Nui is French Polynesia's flag carrier airline with its head office in the Immeuble Dexter in Papeete, Tahiti. It operates international services for the low and high-end leisure travel markets. Its main base is Faa'a International Airport, Papeete"/>
 </profile>
 <info real="True" from="1997" to="2199"></info>
+<startdata>
+    <routes>
+        <route destination1="AKL" destination2="BNE" opened="2009" closed="2199"></route>
+        <route destination1="AKL" destination2="MEL" opened="2009" closed="2199"></route>
+        <route destination1="AKL" destination2="PPT" opened="2009" closed="2199"></route>
+        <route destination1="AKL" destination2="SYD" opened="2009" closed="2199"></route>
+        <route destination1="BNE" destination2="AKL" opened="2009" closed="2199"></route>
+        <route destination1="CDG" destination2="LAX" opened="2009" closed="2199"></route>
+        <route destination1="LAX" destination2="CDG" opened="2009" closed="2199"></route>
+        <route destination1="LAX" destination2="PPT" opened="2009" closed="2199"></route>
+        <route destination1="MEL" destination2="AKL" opened="2009" closed="2199"></route>
+        <route destination1="NRT" destination2="PPT" opened="2009" closed="2199"></route>
+        <route destination1="PPT" destination2="AKL" opened="2009" closed="2199"></route>
+        <route destination1="PPT" destination2="LAX" opened="2009" closed="2199"></route>
+        <route destination1="PPT" destination2="NRT" opened="2009" closed="2199"></route>
+        <route destination1="SYD" destination2="AKL" opened="2009" closed="2199"></route>
+        </routes>
+    <airliners>
+        <airliner type="Airbus A340-300" early="0" late="5"></airliner>
+        </airliners>
+    </startdata>
 </airline>
