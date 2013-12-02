@@ -1,4 +1,5 @@
 <h3>The Airline Project - freshly converted to git!</h3>
+<p>Please consider donating to support The Airline Project! The game is and will continue to be free, however donations help cover expenses like domain name registration and web hosting</p>
 
 <a data-code="b9ed2b8c01844b9a2106ffc66df3a81d" data-button-style="custom_large" href="https://coinbase.com/checkouts/b9ed2b8c01844b9a2106ffc66df3a81d">Donate BTC</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
  | | <a href="https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mjdugan14%40gmail%2ecom&lc=US&item_name=Support%20The%20Airline%20Project&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted">Donate PayPal</a>
