@@ -24,5 +24,8 @@ will all be managed within this branch and pushed to master for releases.
 If you are simply reporting a bug, please use the issues section here on GitHub. Please indicate the commit or release version you are encountering the bug on, as well as any log files or steps to reproduce it. 
 Requests for new features, tweaks, updates, etc should also be managed through GitHub issues.
 
+
+<a style="padding: 1%; border: 1px solid black;" data-code="b9ed2b8c01844b9a2106ffc66df3a81d" data-button-style="custom_large" href="https://coinbase.com/checkouts/b9ed2b8c01844b9a2106ffc66df3a81d">Donate BTC</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
+
 [![Build status](https://ci.appveyor.com/api/projects/status?id=s5f7vds1owe9g4rv)](https://ci.appveyor.com/project/theairlineproject-desktop)
 http://theairlineproject.com
