@@ -26,10 +26,7 @@ Requests for new features, tweaks, updates, etc should also be managed through G
 
 
 <a style="padding: 1%; border: 1px solid black;" data-code="b9ed2b8c01844b9a2106ffc66df3a81d" data-button-style="custom_large" href="https://coinbase.com/checkouts/b9ed2b8c01844b9a2106ffc66df3a81d">Donate BTC</a><script src="https://coinbase.com/assets/button.js" type="text/javascript"></script>
-<script src="paypal-button.min.js?merchant=mjdugan14@gmail.com" 
-    data-button="donate" 
-    data-name="Support The Airline Project"
-></script>
+https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=mjdugan14%40gmail%2ecom&lc=US&item_name=Support%20The%20Airline%20Project&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donate_SM%2egif%3aNonHosted
 
 
 [![Build status](https://ci.appveyor.com/api/projects/status?id=s5f7vds1owe9g4rv)](https://ci.appveyor.com/project/theairlineproject-desktop)
