@@ -21,7 +21,8 @@ The <a href="http://theairlineproject.com/forum">forum</a> is a great resource w
 The wiki (see links at http://theairlineproject.com) is largely incomplete, although varying degrees of work have been done to create a searchable database of airlines, aircraft, and airports. Wiki contributors are always needed!
 
 <b>Physical Resources</b>
-If you are a web or Linux-based developer and would like to get involved with the project, Mike (the web guy) has 5 U.S-based servers
+
+We (well, Mike anyway) currently have server resources available for web and Linux related development. For more information, contact Mike on the forum.
 
 <h3>I. Developing</h3>
 If you are developing new features, please do a fork and pull request. Pull requests should generally be made on the current in-development branch nnn-dev.
