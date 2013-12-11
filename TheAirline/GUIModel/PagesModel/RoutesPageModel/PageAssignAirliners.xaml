@@ -24,9 +24,7 @@
                 <TextBlock Text=">" VerticalAlignment="Bottom" Margin="5 0 5 0" FontWeight="Bold"></TextBlock>
                 <ContentControl VerticalAlignment="Bottom" ContentTemplate="{DynamicResource CountryFlagLongItem}" Content="{Binding To}">
                     <ContentControl.ToolTip>
-                        <Border Margin="-4,0,-4,-3" Padding="5" Background="DarkBlue">
                             <ListBox ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource CountryFlagLongItem}" ItemsSource="{Binding To, Converter={StaticResource unionMemberConverter}}"></ListBox>
-                        </Border>
                     </ContentControl.ToolTip>
                 </ContentControl>
             </WrapPanel>

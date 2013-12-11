@@ -11,7 +11,8 @@ using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using TheAirline.GraphicsModel.Converters;
+using TheAirline.GUIModel.HelpersModel;
+
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -43,7 +44,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             {
                                 CheckForAirlinersWithoutRoutes(airline);
                             },
-
+                            () =>
+                            {
+                                CheckForOrderOfAirliners(airline);
+                            },
                             () =>
                             {
                                 CheckForAirlineAlliance(airline);
@@ -56,6 +60,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             () =>
                             {
                                 CheckForAirlineAirportFacilities(airline);
+                            },
+                            () =>
+                            {
+                                CheckForOrderOfAirliners(airline);
                             }
                         ); //close parallel.invoke
 
@@ -162,27 +170,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
 
             List<AirlinerType> types = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+            
             types = types.OrderBy(t => t.Price).ToList();
 
             Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
+            
+            foreach (AirlinerType type in types)
+                list.Add(type,(int)((type.Range / (Convert.ToDouble(type.Price) / 100000))));
+            /*
             Parallel.ForEach(types, t =>
                 {
                     list.Add(t, (int)((t.Range / (t.Price / 100000))));
-                });
+                });*/
 
             if (list.Keys.Count > 0)
             {
                 AirlinerType type = AIHelpers.GetRandomItem(list);
 
-                List<AirlinerClass> classes = new List<AirlinerClass>();
-                classes.Add(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity));
-
-
+               
                 List<AirlinerOrder> orders = new List<AirlinerOrder>();
-                orders.Add(new AirlinerOrder(type, classes, numberToOrder, false));
+                orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
 
-                int days = rnd.Next(30);
-                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
+                DateTime deliveryDate = AirlinerHelpers.GetOrderDeliveryDate(orders);
+                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, deliveryDate);
             }
 
 
@@ -514,8 +530,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for a new route for an airline
         private static void CheckForNewRoute(Airline airline)
         {
-            List<FleetAirliner> fleet = new List<FleetAirliner>(airline.Fleet);
-            int airlinersInOrder = fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            int airlinersInOrder;
+            lock (airline.Fleet)
+            {
+                List<FleetAirliner> fleet = new List<FleetAirliner>(airline.Fleet);
+                airlinersInOrder = fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            }
 
             int newRouteInterval = 0;
             switch (airline.Mentality)
@@ -625,8 +645,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (!AirportHelpers.HasFreeGates(destination, airline))
                                 AirportHelpers.RentGates(airport, airline);
 
-                            airline.addRoute(route);
-
+                          
                             //Console.WriteLine("{3}: {0} has created a route between {1} and {2}", airline.Profile.Name, route.Destination1.Profile.Name, route.Destination2.Profile.Name,GameObject.GetInstance().GameTime.ToShortDateString());
 
                             if (fAirliner == null)
@@ -667,10 +686,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             }
 
-                            NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1001"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
+                            //NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1001"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
 
-                            fAirliner.addRoute(route);
-
+                          
                             if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
                             {
 
@@ -688,6 +706,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             route.LastUpdated = GameObject.GetInstance().GameTime;
                         }
+                        airline.addRoute(route);
+
+                        fAirliner.addRoute(route);
+
 
                         AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
                         AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
@@ -739,7 +761,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the start destination / homebase for a route
         private static Airport GetRouteStartDestination(Airline airline)
         {
-            List<Airport> homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            List<Airport> homeAirports;
+            
+            lock (airline.Airports)
+            {
+                homeAirports = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0);
+            }
             homeAirports.AddRange(airline.getHubs());
 
             Airport airport = homeAirports.Find(a => AirportHelpers.HasFreeGates(a, airline));
@@ -948,15 +975,17 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Airport airport = airports.First();
 
-                airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
+                if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.Service).Facility.TypeLevel == 0)
+                {
+                    airport.addAirportFacility(airline, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
 
-                double price = facility.Price;
+                    double price = facility.Price;
 
-                if (airport.Profile.Country != airline.Profile.Country)
-                    price = price * 1.25;
+                    if (airport.Profile.Country != airline.Profile.Country)
+                        price = price * 1.25;
 
-                AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
-
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+                }
                 return airport;
             }
 
@@ -1081,7 +1110,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     for (int i = 0; i < 3; i++)
                     {
-                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode1)));
+                        Gate outboundGate = GetFreeAirlineGate(airliner.Airliner.Airline,route.Destination1,day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)));
+                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode1),outboundGate));
 
                         day += 2;
                     }
@@ -1090,7 +1120,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     for (int i = 0; i < 3; i++)
                     {
-                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode2)));
+                        Gate outboundGate = GetFreeAirlineGate(airliner.Airliner.Airline,route.Destination2, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)));
+              
+                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode2),outboundGate));
 
                         day += 2;
                     }
@@ -1197,7 +1229,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return timeTable;
 
         }
+        //returns a free gate for an airline
+        private static Gate GetFreeAirlineGate(Airline airline, Airport airport, DayOfWeek day, TimeSpan time)
+        {
+            var airlineGates = airport.Terminals.getGates(airline);
 
+            return airlineGates.FirstOrDefault();
+
+        }
         //check if an airline can join an alliance
         public static Boolean CanJoinAlliance(Airline airline, Alliance alliance)
         {

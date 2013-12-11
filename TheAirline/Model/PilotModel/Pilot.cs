@@ -6,6 +6,7 @@ using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.PilotModel
 {
@@ -56,8 +57,11 @@ namespace TheAirline.Model.PilotModel
         //adds a pilot to the list
         public static void AddPilot(Pilot pilot)
         {
-            if (pilot != null)
-                pilots.Add(pilot);
+            lock (pilots)
+            {
+                if (pilot != null)
+                    pilots.Add(pilot);
+            }
         }
         //clears the list of pilots
         public static void Clear()
@@ -72,8 +76,17 @@ namespace TheAirline.Model.PilotModel
         //returns all unassigned pilots
         public static List<Pilot> GetUnassignedPilots()
         {
-    
-            return pilots.FindAll(p => p.Airline == null);
+            var unassigned = pilots.FindAll(p => p.Airline == null);
+
+            if (unassigned.Count < 5)
+            {
+                GeneralHelpers.CreatePilots(10);
+
+                return GetUnassignedPilots();
+            }
+
+            return unassigned;
+
         }
         public static List<Pilot> GetUnassignedPilots(Predicate<Pilot> match)
         {

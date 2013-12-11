@@ -197,8 +197,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateLanding(FleetAirliner airliner)
         {
 
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, FleetAirlinerHelpers.GetCruisingSpeed(airliner)));
-            double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport().Profile.Coordinates,airliner.CurrentPosition.Profile.Coordinates);
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type));
+            double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport(), airliner.CurrentFlight.Entry.Destination.Airport);
+
 
             TimeSpan flighttime = landingTime.Subtract(airliner.CurrentFlight.FlightTime);
             double groundTaxPerPassenger = 5;
@@ -286,6 +287,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             if (double.IsNaN(expenses))
                 expenses = 0;
+
+            if (double.IsNaN(ticketsIncome) || ticketsIncome < 0)
+                ticketsIncome = 0;
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 

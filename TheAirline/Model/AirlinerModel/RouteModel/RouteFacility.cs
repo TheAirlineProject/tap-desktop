@@ -60,10 +60,20 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             facilities.Add(facility);
         }
+        //returns all facilities
+        public static List<RouteFacility> GetFacilities()
+        {
+            return facilities;
+        }
         //returns all facilities for a specific type
         public static List<RouteFacility> GetFacilities(RouteFacility.FacilityType type)
         {
             return facilities.FindAll(f => f.Type == type);
+        }
+        //Return all facilities
+        public static List<RouteFacility> GetAllFacilities()
+        {
+            return facilities;
         }
         //returns the basic facility for a specific type
         public static RouteFacility GetBasicFacility(RouteFacility.FacilityType type)

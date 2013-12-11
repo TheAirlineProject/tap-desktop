@@ -25,8 +25,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     //the mvvm object for an airline
     public class AirlineMVVM : INotifyPropertyChanged
     {
-        public List<PropertyInfo> Colors { get; set; }
         public Airline Airline { get; set; }
+        public List<PropertyInfo> Colors { get; set; }
         public ObservableCollection<FleetAirliner> DeliveredFleet { get; set; }
         public List<FleetAirliner> OrderedFleet { get; set; }
         public ObservableCollection<AirlineFacilityMVVM> Facilities { get; set; }
@@ -38,10 +38,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineFeeMVVM> Chargers { get; set; }
         public ObservableCollection<AirlineFeeMVVM> Fees { get; set; }
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
+        public ObservableCollection<Airline> FundsAirlines { get; set; }
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
+
         public Boolean IsBuyable { get; set; }
         public Alliance Alliance { get; set; }
         public double LoanRate { get; set; }
@@ -49,19 +51,35 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public int CabinCrew { get; set; }
         public int SupportCrew { get; set; }
         public int MaintenanceCrew { get; set; }
-      
+
+        private int _unassignedpilots;
+        public int UnassignedPilots
+        {
+            get { return _unassignedpilots; }
+            set { _unassignedpilots = value; NotifyPropertyChanged("UnassignedPilots"); }
+        }
+
+        private int _pilotstoretire;
+        public int PilotsToRetire
+        {
+            get { return _pilotstoretire; }
+            set { _pilotstoretire = value; NotifyPropertyChanged("PilotsToRetire"); }
+        }
+
+
+        private double _maxtransferfunds;
+        public double MaxTransferFunds 
+        {
+            get { return _maxtransferfunds; }
+            set { _maxtransferfunds = value; NotifyPropertyChanged("MaxTransferFunds"); }
+        }
         private double _maxsubsidiarymoney;
         public double MaxSubsidiaryMoney
         {
             get { return _maxsubsidiarymoney; }
             set { _maxsubsidiarymoney = value; NotifyPropertyChanged("MaxSubsidiaryMoney"); }
         }
-        private int _cockpitCrew;
-        public int CockpitCrew
-        {
-            get { return _cockpitCrew; }
-            set { _cockpitCrew = value; NotifyPropertyChanged("CockpitCrew"); }
-        }
+      
         private double _money;
         public double Money
         {
@@ -113,9 +131,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Advertisements = new ObservableCollection<AirlineAdvertisementMVVM>();
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
             this.AirlineAirlines = new ObservableCollection<Airline>();
+            this.FundsAirlines = new ObservableCollection<Airline>();
 
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
+
+            this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
+            this.PilotsToRetire = this.Pilots.Count(p => p.Profile.Age == Pilot.RetirementAge - 1);
 
             FeeTypes.GetTypes(FeeType.eFeeType.Wage).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Wages.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
             FeeTypes.GetTypes(FeeType.eFeeType.Discount).FindAll(f => f.FromYear <= GameObject.GetInstance().GameTime.Year).ForEach(f => this.Discounts.Add(new AirlineFeeMVVM(f, this.Airline.Fees.getValue(f))));
@@ -184,17 +206,22 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Subsidiaries.Add(airline);
 
             AirlineHelpers.AddSubsidiaryAirline(GameObject.GetInstance().MainAirline, airline, airline.Money, airline.Airports[0]);
-            airline.Airports.RemoveAt(0);
+      //      airline.Airports.RemoveAt(0);
+
 
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
 
             this.AirlineAirlines.Add(airline);
+
+            this.FundsAirlines.Add(airline);
         }
         //removes a subsidiary airline
         public void removeSubsidiaryAirline(SubsidiaryAirline airline)
         {
             this.Subsidiaries.Remove(airline);
             this.AirlineAirlines.Remove(airline);
+
+            this.FundsAirlines.Remove(airline);
         }
        //adds a facility
         public void addFacility(AirlineFacilityMVVM facility)
@@ -228,6 +255,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Pilots.Remove(pilot);
             this.Airline.removePilot(pilot);
+
+            this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
+            this.PilotsToRetire = this.Pilots.Count(p => p.Profile.Age == Pilot.RetirementAge - 1);
         }
         //adds a loan
         public void addLoan(Loan loan)
@@ -260,7 +290,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Money = this.Airline.Money;
             this.Balance = this.Airline.Money - this.Airline.StartMoney;
             double tMoney = GameObject.GetInstance().HumanMoney;
-            this.CockpitCrew = this.Airline.Pilots.Count;
             this.CabinCrew = this.Airline.Routes.Where(r => r.Type == Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getTotalCabinCrew());
             this.SupportCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Support).Sum(a => a.NumberOfEmployees);
             this.MaintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
@@ -282,6 +311,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
 
             this.MaxSubsidiaryMoney = this.Airline.Money / 2;
+            this.MaxTransferFunds = this.Airline.Money / 2;
+
             this.License = this.Airline.License;
            
             if (this.Airline.IsSubsidiary)
@@ -300,7 +331,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             }
 
+            foreach (Airline airline in this.AirlineAirlines)
+                if (airline != GameObject.GetInstance().HumanAirline)
+                    this.FundsAirlines.Add(airline);
+
             this.MaxLoan = AirlineHelpers.GetMaxLoanAmount(this.Airline);
+        }
+        //sets the max transfer funds
+        public void setMaxTransferFunds(Airline airline)
+        {
+            this.MaxTransferFunds = airline.Money / 2;
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -345,10 +386,16 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
     {
         public FeeType FeeType { get; set; }
         public double Value { get; set; }
+        public double Frequency { get; set; }
         public AirlineFeeMVVM(FeeType feeType, double value)
         {
             this.FeeType = feeType;
             this.Value = value;
+
+            if (this.FeeType.MaxValue - this.FeeType.MinValue < 4)
+                this.Frequency = 0.05;
+            else
+                this.Frequency = 0.25;
         }
     }
     //the mvvm object for airline statistics

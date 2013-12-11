@@ -27,7 +27,6 @@
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
-        <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
@@ -238,7 +237,7 @@
                             </Style>
                         </StackPanel.Style>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1028'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                        <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineAirlines}">
+                        <ListBox BorderThickness="0" Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineAirlines}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
@@ -263,12 +262,41 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-
+                        <StackPanel Margin="0 5 0 0">
+                            <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding FundsAirlines.Count}" Value="0">
+                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                        <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                            <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                            </Style>
+                            </StackPanel.Style>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1031'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <WrapPanel>
+                            <ComboBox Name="cbTransferType" Width="50" VerticalAlignment="Bottom" SelectedIndex="0" Style="{DynamicResource ComboBoxTransparentStyle}" SelectionChanged="cbTransferType_SelectionChanged">
+                                <ComboBoxItem IsSelected="True">To</ComboBoxItem>
+                                <ComboBoxItem>From</ComboBoxItem>
+                            </ComboBox>
+                            <ComboBox Margin="5 0 0 0" VerticalAlignment="Bottom" Name="cbTransferAirline" Width="150" ItemTemplate="{StaticResource AirlineItem}" Style="{DynamicResource ComboBoxTransparentStyle}" ItemsSource="{Binding FundsAirlines}"></ComboBox>
+                                <StackPanel>
+                                    <Slider Minimum="1" Maximum="{Binding MaxTransferFunds}" Margin="5 0 0 0" Width="150" Name="slTransfer"></Slider>
+                            <TextBlock Text="{Binding Value,ElementName=slTransfer,Converter={StaticResource ValueCurrencyConverter}}" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                </StackPanel>
+                            </WrapPanel>
+                        <Button Margin="0 5 0 0" Style="{StaticResource StandardButtonStyle}" HorizontalAlignment="Left" Click="btnTransferFunds_Click" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 203'}"/>
+                        </StackPanel>
                     </StackPanel>
-                    </StackPanel>
+                    
+                </StackPanel>
 
             </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1" Margin="5 0 5 0">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1007'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView Name="lvFleet" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding DeliveredFleet}">
@@ -295,12 +323,13 @@
                                 <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}" util:GridViewSort.PropertyName="Name" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            
-                                            <TextBlock VerticalAlignment="Bottom">
+                                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource FleetAirlinerLink}"></ContentControl>
+                                            <!--
+                                           <TextBlock VerticalAlignment="Bottom">
                                                 <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
                                                   <Run Text="{Binding Name}"></Run>
                                             </Hyperlink>
-                                            </TextBlock>
+                                            </TextBlock>-->
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -347,8 +376,11 @@
                         </ListView.View>
                     </ListView>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+        </Border>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="2" Margin="5 0 0 0">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1011'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                     <ListView VerticalAlignment="Stretch"  util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding Destinations}">
@@ -407,9 +439,10 @@
                         </ListView.View>
                     </ListView>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+
+        </Border>
 
 
         </Grid>
-    </ScrollViewer>
-</Page>
+   </Page>

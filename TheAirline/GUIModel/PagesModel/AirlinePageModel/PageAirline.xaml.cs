@@ -52,22 +52,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.MostGates = airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates)).Take(Math.Min(5, airports.Count)).ToList();
             this.MostUsedAircrafts = new List<AirlineFleetSizeMVVM>();
 
-            var query = this.Airline.Airline.Fleet.GroupBy(a => a.Airliner.Type)
-                  .Select(group =>
-                        new
-                        {
-                            Type = group.Key,
-                            Fleet = group
-                        })
-                  .OrderByDescending(g => g.Fleet.Count());
+            var types = this.Airline.Airline.Fleet.Select(a=>a.Airliner.Type).Distinct();
 
-            foreach (var group in query)
+            foreach (AirlinerType type in types)
             {
-                this.MostUsedAircrafts.Add(new AirlineFleetSizeMVVM(group.Type,group.Fleet.Count()));
+                int count = this.Airline.Airline.Fleet.Count(a => a.Airliner.Type == type);
+
+                this.MostUsedAircrafts.Add(new AirlineFleetSizeMVVM(type, count));
             }
 
-            
-
+            this.MostUsedAircrafts = this.MostUsedAircrafts.OrderByDescending(a => a.Count).Take(Math.Min(5,this.MostUsedAircrafts.Count)).ToList();
+         
             this.Loaded += PageAirline_Loaded;
 
             InitializeComponent();

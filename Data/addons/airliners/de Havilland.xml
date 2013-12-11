@@ -12,4 +12,10 @@
 	<capacity passengers="8" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
 	<produced from="1946" to="1967" rate="7"/>
   </airliner>
+   <airliner manufacturer="DH" name="DH 106 Comet 4" price="442083">
+	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
+	<specs wingspan="35" length="33.99" range="5190" speed="840" fuelcapacity="3291" consumption="0.075" runwaylengthrequired="3000"/>
+	<capacity passengers="81" cockpitcrew="2" cabincrew="2" maxclasses="2"/>
+	<produced from="1952" to="1997" rate="10"/>
+  </airliner>
 </airliners>

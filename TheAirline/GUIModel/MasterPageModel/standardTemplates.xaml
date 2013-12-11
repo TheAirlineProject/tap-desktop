@@ -9,10 +9,12 @@
     <c:SmallDistanceToUnitConverter x:Key="SmallDistanceToUnitConverter"></c:SmallDistanceToUnitConverter>
     <c:FuelConsumptionToUnitConverter x:Key="FuelConsumptionConverter"></c:FuelConsumptionToUnitConverter>
     <c:TextUnderscoreConverter x:Key="TextUnderscoreConverter"></c:TextUnderscoreConverter>
+    <c:AirlinerClassCodeConverter x:Key="AirlinerClassCodeConverter"></c:AirlinerClassCodeConverter>
     <c:CargoSizeConverter x:Key="CargoSizeConverter"></c:CargoSizeConverter>
     <c:AirportCodeConverter x:Key="AirportCodeConverter"></c:AirportCodeConverter>
     <c:TranslatorConverter x:Key="TranslatorConverter"></c:TranslatorConverter>
     <c:CountryCurrentCountryConverter x:Key="CountryCurrentCountryConverter"></c:CountryCurrentCountryConverter>
+    
     <Style TargetType="WrapPanel" x:Key="WrapPanelStyle">
         <Setter Property="Background">
             <Setter.Value>
@@ -63,8 +65,19 @@
         <WrapPanel>
             <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
             <TextBlock Text="{Binding State.ShortName,TargetNullValue={x:Static sys:String.Empty},StringFormat='{}, {0}'}" VerticalAlignment="Bottom"></TextBlock>
+            <Image Source="{Binding State.Flag}" Margin="5 0 0 0" Height="20" Width="20" RenderOptions.BitmapScalingMode="HighQuality">
+                <Image.Style>
+                    <Style>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding State}" Value="{x:Null}">
+                                <Setter Property="Image.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image> 
             <ContentControl Content="{Binding Country,Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
-                <ContentControl.ContentTemplate>
+                 <ContentControl.ContentTemplate>
                     <DataTemplate>
                         <DockPanel>
 
@@ -77,6 +90,23 @@
         </WrapPanel>
     </DataTemplate>
     <!--airliner templates-->
+        <DataTemplate x:Key="FleetAirlinerLink">
+            <TextBlock VerticalAlignment="Bottom">
+                <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold" Text="{Binding Airliner,Converter={StaticResource AirlinerClassCodeConverter}}"></TextBlock>
+                </TextBlock.ToolTip>
+                <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
+                                                  <Run Text="{Binding Name}"></Run>
+                                            </Hyperlink>
+                </TextBlock>
+        </DataTemplate>
+    <DataTemplate x:Key="AirlinerCodeItem">
+        <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}">
+            <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" Text="{Binding Converter={StaticResource AirlinerClassCodeConverter}}"></TextBlock>
+            </TextBlock.ToolTip>
+                       </TextBlock>
+    </DataTemplate>
     <DataTemplate x:Key="AirlinerTypeSpecificationItem">
         <StackPanel>
             <WrapPanel Style="{StaticResource WrapPanelStyle}">

@@ -1,4 +1,5 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
 <profile name="Sonderholm Airlines" iata="SH" color="Teal" country="110" CEO="Christian Sonderholm" mentality="Aggressive" market="Regional" preferedairport="AAR"></profile>
+<info real="False" from="1950" to="2199" />
 </airline>

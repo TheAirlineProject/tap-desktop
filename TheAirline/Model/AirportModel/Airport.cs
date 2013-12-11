@@ -311,6 +311,7 @@ namespace TheAirline.Model.AirportModel
         {
             this.DestinationCargoStatistics.Clear();
         }
+
         //returns the number of passengers to a destination
         public long getDestinationPassengerStatistics(Airport destination)
         {
@@ -362,7 +363,10 @@ namespace TheAirline.Model.AirportModel
         //adds a facility to an airline
         public void addAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
-            this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
+            lock (this.Facilities)
+            {
+                this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
+            }
         }
         //sets the facility for an airline
         public void setAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)

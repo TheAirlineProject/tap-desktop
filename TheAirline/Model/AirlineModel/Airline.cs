@@ -17,6 +17,7 @@ namespace TheAirline.Model.AirlineModel
 {
     [DataContract]
     [KnownType(typeof(SubsidiaryAirline))]
+    [KnownType(typeof(GeneralStatistics))]
     //the class for an airline
     public class Airline
     {
@@ -178,6 +179,9 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Pilots.Remove(pilot);
             pilot.Airline = null;
+
+            if (pilot.Airliner != null)
+                pilot.Airliner.removePilot(pilot);
         }
         //adds a flight school to the airline
         public void addFlightSchool(FlightSchool school)
@@ -242,8 +246,11 @@ namespace TheAirline.Model.AirlineModel
         //removes an alliance
         public void removeAlliance(Alliance alliance)
         {
-            if (this.Alliances.Contains(alliance))
-                this.Alliances.Remove(alliance);
+            lock (this.Alliances)
+            {
+                if (this.Alliances.Contains(alliance))
+                    this.Alliances.Remove(alliance);
+            }
         }
         //adds an airliner to the airlines fleet
         public void addAirliner(FleetAirliner.PurchasedType type, Airliner airliner,  Airport homeBase)
@@ -253,7 +260,10 @@ namespace TheAirline.Model.AirlineModel
         //adds a fleet airliner to the airlines fleet
         public void addAirliner(FleetAirliner airliner)
         {
-            this.Fleet.Add(airliner);
+            lock (this.Fleet)
+            {
+                this.Fleet.Add(airliner);
+            }
         }
         //remove a fleet airliner from the airlines fleet
         public void removeAirliner(FleetAirliner airliner)
@@ -266,8 +276,11 @@ namespace TheAirline.Model.AirlineModel
         //adds an airport to the airline
         public void addAirport(Airport airport)
         {
-            if (airport!=null)
-                this.Airports.Add(airport);
+            lock (this.Airports)
+            {
+                if (airport != null)
+                    this.Airports.Add(airport);
+            }
         }
         //removes an airport from the airline
         public void removeAirport(Airport airport)
@@ -424,12 +437,14 @@ namespace TheAirline.Model.AirlineModel
                     value += facility.Facility.Price;
             }
 
-            var loans = new List<Loan>(this.Loans);
-            foreach (Loan loan in loans)
+            lock (this.Loans)
             {
-                value -= loan.PaymentLeft;
+                var loans = new List<Loan>(this.Loans);
+                foreach (Loan loan in loans)
+                {
+                    value -= loan.PaymentLeft;
+                }
             }
-
             var subs = new List<SubsidiaryAirline>(this.Subsidiaries);
             foreach (SubsidiaryAirline subAirline in subs)
                 value += subAirline.getValue();

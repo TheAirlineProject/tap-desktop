@@ -12,12 +12,13 @@ namespace TheAirline.Model.GeneralModel.StatisticsModel
     {
         
         public StatisticsType Stat { get; set; }
-        
+        public int Year { get; set; }
         public double Value { get; set; }
-        public StatisticsValue(StatisticsType stat, double value)
+        public StatisticsValue(int year,StatisticsType stat, double value)
         {
             this.Value = value;
             this.Stat = stat;
+            this.Year = year;
         }
     }
 }

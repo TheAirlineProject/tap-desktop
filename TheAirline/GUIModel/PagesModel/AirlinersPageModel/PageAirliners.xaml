@@ -40,6 +40,8 @@
             <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2000'}" Tag="Used">
                 </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2002'}" Tag="New">
+                </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirliners 2001'}" Tag="Order">
                 </TabItem>
                 <TabItem Header="" Tag="Manufacturer" Visibility="Collapsed">

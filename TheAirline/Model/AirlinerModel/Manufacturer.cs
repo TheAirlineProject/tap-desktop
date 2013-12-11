@@ -19,11 +19,16 @@ namespace TheAirline.Model.AirlinerModel
         public Country Country { get; set; }
         
         public string Logo { get; set; }
-        public Manufacturer(string name, string shortname, Country country)
+        public Boolean IsReal { get; set; }
+        public Manufacturer(string name, string shortname, Country country, Boolean isReal)
         {
             this.Name = name;
             this.ShortName = shortname;
             this.Country = country;
+            this.IsReal = isReal;
+
+           
+
         }
     }
     //the collection of manufacturers
@@ -49,6 +54,10 @@ namespace TheAirline.Model.AirlinerModel
         public static List<Manufacturer> GetAllManufacturers()
         {
             return manufacturers;
+        }
+        public static List<Manufacturer> GetManufacturers(Predicate<Manufacturer> match)
+        {
+            return manufacturers.FindAll(match);
         }
     }
 }

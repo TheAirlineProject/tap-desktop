@@ -14,12 +14,12 @@ namespace TheAirline.Model.AirportModel
     {
         
         public Airline Airline { get; set; }
-        public AirportStatisticsValue(Airline airline, StatisticsType stat, int value) : base(stat, value) 
+        public AirportStatisticsValue(Airline airline, int year, StatisticsType stat, int value) : base(year,stat, value) 
         {
             this.Airline = airline;
         }
-        public AirportStatisticsValue(Airline airline, StatisticsType stat)
-            : this(airline, stat, 0)
+        public AirportStatisticsValue(Airline airline,int year, StatisticsType stat)
+            : this(airline,year, stat, 0)
         {
         }
     }

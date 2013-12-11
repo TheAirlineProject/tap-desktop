@@ -33,9 +33,6 @@
                                     <CheckBox.Style>
                                         <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxNormalStyle}">
                                             <Style.Triggers>
-                                                <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="2">
-                                                    <Setter Property="IsEnabled" Value="False" />
-                                                </DataTrigger>
                                                 <Trigger Property="IsChecked" Value="True">
                                                     <Setter Property="IsEnabled" Value="True" />
                                                 </Trigger>
@@ -49,8 +46,16 @@
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1000'}" CanFilter="False" SortPropertyName="Type.Name" Width="150">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
-                            <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
+                                    <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                                    <TextBlock.ToolTip>
+                                        <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
+                                            <TextBlock.Text>
+                                                <Binding Converter="{StaticResource AirlinerClassCodeConverter}" Path="TailNumber"/>
+                       
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </TextBlock.ToolTip>
+                                        <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
                                 <Run Text="{Binding Type.Name}"></Run>
                             </Hyperlink>
                             </TextBlock>
@@ -170,22 +175,43 @@
             </GridView>
         </ListView.View>
     </filter:FilterableListView>
-        <StackPanel Grid.Row="2" Margin="0 5 0 0">
-            <Button Click="btnCompare_Click"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1005'}">
+        <WrapPanel Grid.Row="2" Margin="0 5 0 0">
+            <Button Click="btnCompare_Click"  VerticalAlignment="Bottom" HorizontalAlignment="Left" IsEnabled="False" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1005'}">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="2">
+                                <Setter Property="IsEnabled" Value="True" />
+                            </DataTrigger>
+                          
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+            <Button Click="btnBuy_Click" Margin="5 0 0 0"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 200'}">
                 <Button.Style>
                     <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
                         <Style.Triggers>
                             <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="0">
                                 <Setter Property="IsEnabled" Value="False" />
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="1">
-                                <Setter Property="IsEnabled" Value="False" />
-                            </DataTrigger>
+                          
                         </Style.Triggers>
                     </Style>
                 </Button.Style>
             </Button>
-         
-          </StackPanel>
-</Grid>
+            <Button Click="btnLease_Click" Margin="5 0 0 0"  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 201'}">
+                <Button.Style>
+                    <Style BasedOn="{StaticResource StandardButtonStyle}" TargetType="Button">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding SelectedAirliners.Count,ElementName=pageUsedAirliners}" Value="0">
+                                <Setter Property="IsEnabled" Value="False" />
+                            </DataTrigger>
+
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+        </WrapPanel>
+    </Grid>
 </Page>

@@ -1,5 +1,58 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Sun Country Airlines" iata="SY" color="Black" country="122" CEO="Jim Olsen" mentality="Safe" market="Global" preferedairport="MSP"></profile>
+  <profile name="Sun Country Airlines" iata="SY" color="MediumBlue" country="122" CEO="Jim Olsen" mentality="Safe" market="Global" preferedairport="MSP">
+  <narrative narrative="Sun Country is a mid-sized US Airline operating Boeing 737s from its hub at MSP mainly to vacation destinations. It also has a focus city at LAN."></narrative>
+  </profile>
   <info real="True" from="1982" to="2199" />
+  <startdata>
+      <routes>
+          <route destination1="ANC" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="BOS" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="CUN" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="CUN" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="CZM" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="DCA" destination2="LAN" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="CUN" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="CZM" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="LIR" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="MBJ" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="PUJ" opened="2009" closed="2199"></route>
+          <route destination1="DFW" destination2="PVR" opened="2009" closed="2199"></route>
+          <route destination1="JFK" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="LAN" destination2="DCA" opened="2009" closed="2199"></route>
+          <route destination1="LAN" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="LAS" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="LAX" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="LIR" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="MBJ" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="MCO" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="MDW" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="ANC" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="BOS" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="CUN" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="JFK" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="LAN" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="LAS" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="LAX" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="MCO" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="MDW" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="RSW" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="SAN" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="SEA" opened="2009" closed="2199"></route>
+          <route destination1="MSP" destination2="SFO" opened="2009" closed="2199"></route>
+          <route destination1="PUJ" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="PVR" destination2="DFW" opened="2009" closed="2199"></route>
+          <route destination1="RSW" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="SAN" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="SEA" destination2="MSP" opened="2009" closed="2199"></route>
+          <route destination1="SFO" destination2="MSP" opened="2009"
+              closed="2199"></route>
+          </routes>
+        <airliners>
+            <airliner type="Boeing 737-700" early="0" late="7"></airliner>
+            <airliner type="Boeing 737-800" early="0" late="10"></airliner>
+        </airliners>
+        </startdata>
 </airline>

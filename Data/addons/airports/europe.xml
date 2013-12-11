@@ -906,6 +906,7 @@
     </runways>
   </airport>
   <airport name="London City Airport" icao="EGLC" iata="LCY" type="Long_Haul_International" season="All_Year">
+      <period from="05.31.1987 00:00:00" to="01.01.2199 00:00:00" />
     <town town="London, ENG" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="051°30'18''N" />
@@ -1067,6 +1068,7 @@
     </runways>
   </airport>
   <airport name="Glasgow International Airport" icao="EGPF" iata="GLA" type="Long_Haul_International" season="All_Year">
+      <period from="05.02.1966 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Glasgow, SCT" country="130" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="055°52'19''N" />
@@ -1879,6 +1881,7 @@
     </runways>
   </airport>
   <airport name="Stockholm-Arlanda Airport" icao="ESSA" iata="ARN" type="Long_Haul_International" season="All_Year">
+      <period from="03.17.1962 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Stockholm" country="168" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="059°39'07''N" />
@@ -3197,6 +3200,7 @@
     </runways>
   </airport>
   <airport name="Tenerife South Airport" icao="GCTS" iata="TFS" type="Long_Haul_International" season="All_Year">
+      <period from="11.06.1978 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Tenerife Island" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="028°02'40''N" />
@@ -3377,6 +3381,7 @@
     </runways>
   </airport>
   <airport name="Paris-Charles de Gaulle Airport" icao="LFPG" iata="CDG" type="Long_Haul_International" season="All_Year">
+      <period from="03.08.1974 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Paris" country="140" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="049°00'46''N" />
@@ -4304,7 +4309,13 @@
       <latitude value="045°37'53''N" />
       <longitude value="008°43'40''E" />
     </coordinates>
-    <size value="Large" pax="19303" cargo="Smallest" cargovolume="0"/>
+       <size>
+    <yearvalues>
+    <!--inflationbefore: the growth in pax from the year before the year. inflationafter: the growth in pax after the year -->
+        <yearvalue from="1960" to="1998" value="Small" pax="1200" cargo="Very_small" cargovolume="0" inflationbefore="3"></yearvalue>
+        <yearvalue from="1999" to="2199" value="Large" pax="19303" cargo="Smallest" cargovolume="0" inflationafter="1"></yearvalue>
+    </yearvalues>
+    </size>
     <terminals>
       <terminal name="Terminal" gates="47" />
     </terminals>
@@ -4415,6 +4426,7 @@
     </runways>
   </airport>
   <airport name="Leonardo da Vinci-Fiumicino Airport" icao="LIRF" iata="FCO" type="Long_Haul_International" season="All_Year">
+      <period from="01.15.1961 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Rome" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="041°48'46''N" />
@@ -6201,6 +6213,7 @@
     </runways>
   </airport>
   <airport name="Domodedovo International Airport" icao="UUDD" iata="DME" type="Long_Haul_International" season="All_Year">
+      <period from="03.12.1964 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Moscow" country="149" GMT="04:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="055°25'09''N" />
@@ -7752,6 +7765,21 @@
       <runway name="18L/36R" length="4000" surface="Concrete" />
       <runway name="18R/36L" length="3500" surface="Concrete" />
     </runways>
+  </airport>
+    <airport name="Kyiv International Airport (Zhulyany)" icao="UKKK" iata="IEV" type="Long_Haul_International" season="All_Year">
+    <town town="Kiev" country="134" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="050°24'06''N" />
+      <longitude value="030°27'06''E" />
+    </coordinates>
+    <size value="Very_small" pax="862" cargo="Smallest" cargovolume="0"/>
+    <terminals>
+    <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal B" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2310" surface="Concrete" />
+   </runways>
   </airport>
   <airport name="Lviv Danylo Halytskyi International Airport" icao="UKLL" iata="LWO" type="Long_Haul_International" season="All_Year">
     <town town="Lviv" country="134" GMT="03:00:00" DST="02:00:00" />

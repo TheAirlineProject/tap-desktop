@@ -104,6 +104,8 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             foreach (FlightAirlinerClass aClass in this.Classes)
                 passengers += aClass.Passengers;
 
+            if (passengers < 0) { passengers = 0; }
+
             return passengers;
         }
         //returns the flight airliner class for a specific class type

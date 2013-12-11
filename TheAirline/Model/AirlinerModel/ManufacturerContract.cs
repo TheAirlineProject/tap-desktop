@@ -45,17 +45,16 @@ namespace TheAirline.Model.AirlinerModel
         {
             airliners = PurchasedAirliners;
             if (Length <= 3)
-            { this.Discount = (PurchasedAirliners / 2) + 1; }
+            { this.Discount = (this.PurchasedAirliners / 2) + 1; }
             else if (Length <= 5)
-            { this.Discount = (PurchasedAirliners / 2) + 2; }
+            { this.Discount = (this.PurchasedAirliners / 2) + 2; }
             else if (Length <= 7)
-            { this.Discount = (PurchasedAirliners / 2) + 4; }
+            { this.Discount = (this.PurchasedAirliners / 2) + 4; }
             else if (Length <= 15)
-            { this.Discount = (PurchasedAirliners / 2) + 7; }
+            { this.Discount = (this.PurchasedAirliners / 2) + 7; }
             else
                 this.Discount = 1;
 
-            this.Discount = Discount;
             return Discount;
 
            }     

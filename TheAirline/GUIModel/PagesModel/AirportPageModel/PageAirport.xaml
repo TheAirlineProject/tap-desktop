@@ -36,13 +36,13 @@
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2001'}" Tag="Traffic">
                 </TabItem>
-                
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2002'}" Tag="Gates">
+                </TabItem>
+
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirportContent">
             <Frame NavigationUIVisibility="Hidden" Name="frmContent"  />
-
-
         </DataTemplate>
     </Page.Resources>
     <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource AirportQuickLinks}" MainContentArea="{StaticResource AirportContent}" MainContentMenuArea="{StaticResource AirportContentMenu}"/>

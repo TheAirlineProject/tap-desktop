@@ -14,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
@@ -165,13 +164,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
 
         }
-        private void lnkAirliner_Click(object sender, RoutedEventArgs e)
-        {
-            FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
-
-            PageNavigator.NavigateTo(new PageFleetAirliner(airliner));
-        }
-
+      
         private void imgAirline_Click(object sender, MouseButtonEventArgs e)
         {
             Airline airline = (Airline)((Image)sender).Tag;
@@ -361,6 +354,45 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 }
 
             }
+
+        }
+
+        private void cbTransferType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cbTransferType != null && cbTransferAirline != null && cbTransferAirline.SelectedItem != null)
+            {
+                Airline airline = (Airline)cbTransferAirline.SelectedItem;
+                string transferType = (cbTransferType.SelectedItem as ComboBoxItem).Content.ToString();
+
+                if (transferType == "From")
+                    this.Airline.setMaxTransferFunds(airline);
+                else
+                    this.Airline.setMaxTransferFunds(this.Airline.Airline);
+            }
+        }
+
+        private void btnTransferFunds_Click(object sender, RoutedEventArgs e)
+        {
+            Airline airline = (Airline)cbTransferAirline.SelectedItem;
+            string transferType = (cbTransferType.SelectedItem as ComboBoxItem).Content.ToString();
+
+            double amount = slTransfer.Value;
+
+
+            if (transferType == "From")
+            {
+                airline.Money -= amount;
+                GameObject.GetInstance().addHumanMoney(amount);
+                this.Airline.setMaxTransferFunds(airline);
+            }
+            else
+            {
+                airline.Money += amount;
+                GameObject.GetInstance().addHumanMoney(-amount);
+                this.Airline.setMaxTransferFunds(this.Airline.Airline);
+                
+            }
+
 
         }
     }

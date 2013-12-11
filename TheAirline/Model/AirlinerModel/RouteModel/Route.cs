@@ -107,6 +107,11 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             return this.Invoices;
         }
+
+        public void clearRouteStats()
+        {
+            this.Statistics.Stats.Clear();
+        }
         //adds an invoice for a route 
         public void addRouteInvoice(Invoice invoice)
         {
@@ -210,7 +215,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             if (this.HasStopovers)
                 return this.Stopovers.SelectMany(s => s.Legs).Max(l => l.getDistance());
             else
-                return MathHelpers.GetDistance(this.Destination1, this.Destination2);
+                return Destination1.Profile.Coordinates.GetDistanceTo(Destination2.Profile.Coordinates) / 1000;
 
         }
         //returns the flight time for the route for a specific airliner type

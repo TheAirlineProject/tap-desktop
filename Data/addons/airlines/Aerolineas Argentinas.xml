@@ -4,4 +4,105 @@
 <narrative narrative="Aerolineas Argentinas is Argentina's largest airline and serves as the country's flag carrier."/>
 </profile>
 <info real="True" from="1950" to="2199"></info>
+<routes>
+    <route destination1="BCN" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="BOG" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="CCS" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="COR" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="CUN" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="BCN" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="BOG" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="CCS" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="CUN" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="FCO" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="MAD" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="MIA" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="SYD" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="USH" opened="2009" closed="2199"></route>
+    <route destination1="FCO" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="MAD" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="MIA" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="SYD" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="USH" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="BHI" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="BRC" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="CNQ" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="COR" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="CPC" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="CRD" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="EQS" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="FTE" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="GIG" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="GRU" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="IGR" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="MDZ" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="MVD" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="NQN" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="PDP" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="POA" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="REL" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="RES" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="RGA" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="SCL" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="SLA" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="SSA" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="TUC" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="UAQ" opened="2009" closed="2199"></route>
+    <route destination1="AEP" destination2="USH" opened="2009" closed="2199"></route>
+    <route destination1="AMS" destination2="TXL" opened="2009" closed="2199"></route>
+    <route destination1="BHI" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="BRC" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="BRC" destination2="GRU" opened="2009" closed="2199"></route>
+    <route destination1="CNQ" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="COR" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="COR" destination2="JUJ" opened="2009" closed="2199"></route>
+    <route destination1="CPC" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="CRD" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="EQS" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="IGR" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="LIM" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="VVI" opened="2009" closed="2199"></route>
+    <route destination1="FTE" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="FTE" destination2="USH" opened="2009" closed="2199"></route>
+    <route destination1="GIG" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="GIG" destination2="IGR" opened="2009" closed="2199"></route>
+    <route destination1="GRU" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="GRU" destination2="BRC" opened="2009" closed="2199"></route>
+    <route destination1="HAM" destination2="AMS" opened="2009" closed="2199"></route>
+    <route destination1="IGR" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="IGR" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="IGR" destination2="GIG" opened="2009" closed="2199"></route>
+    <route destination1="JUJ" destination2="COR" opened="2009" closed="2199"></route>
+    <route destination1="LIM" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="MDZ" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="MDZ" destination2="SCL" opened="2009" closed="2199"></route>
+    <route destination1="MVD" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="NQN" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="PDP" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="POA" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="REL" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="RES" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="RGA" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="SCL" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="SCL" destination2="MDZ" opened="2009" closed="2199"></route>
+    <route destination1="SLA" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="SSA" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="TUC" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="TXL" destination2="AMS" opened="2009" closed="2199"></route>
+    <route destination1="UAQ" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="USH" destination2="AEP" opened="2009" closed="2199"></route>
+    <route destination1="USH" destination2="FTE" opened="2009" closed="2199"></route>
+    <route destination1="VVI" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="AMS" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="AMS" opened="2009" closed="2199"></route>
+    <route destination1="BRC" destination2="EZE" opened="2009" closed="2199"></route>
+    <route destination1="EZE" destination2="BRC" opened="2009" closed="2199"></route>
+    </routes>
+<airliners>
+    <airliner type="Airbus A340-200" early="0" late="4"></airliner>
+    <airliner type="Airbus A340-300" early="0" late="8"></airliner>
+    <airliner type="Airbus A330-200" early="0" late="2"></airliner>
+    <airliner type="Boeing 737-700" early ="0" late="22"></airliner>
+    <airliner type="Boeing 737-800" early="0" late="4"></airliner>
+    </airliners>
 </airline>

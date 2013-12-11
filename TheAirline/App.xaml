@@ -6,9 +6,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="GraphicsModel\ResourceDirectiories\GameStyles.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="GraphicsModel\ResourceDirectiories\GameTemplates.xaml"></ResourceDictionary>
-                <ResourceDictionary Source="GUIModel\MasterPageModel\standard.xaml"></ResourceDictionary>
+            <ResourceDictionary Source="GUIModel\MasterPageModel\standard.xaml"></ResourceDictionary>
            </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

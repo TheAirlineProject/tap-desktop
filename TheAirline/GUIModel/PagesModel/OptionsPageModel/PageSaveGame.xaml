@@ -12,7 +12,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel HorizontalAlignment="Center">
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-            <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Name="lbSaves" ItemsSource="{Binding Saves,ElementName=pageSaveGame}" SelectionChanged="lbSaves_SelectionChanged">
+            <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" MaxHeight="400" Name="lbSaves" ItemsSource="{Binding Saves,ElementName=pageSaveGame}" SelectionChanged="lbSaves_SelectionChanged">
             </ListBox>
             <TextBox Width="400" VerticalAlignment="Bottom" Margin="0 5 0 0" Name="txtName"></TextBox>
             <WrapPanel Margin="0 10 0 0">

@@ -15,7 +15,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     [Serializable]
     public class RouteTimeTableEntry : IComparable<RouteTimeTableEntry>
     {
-        
+        public Gate Gate { get; set; }
         public DayOfWeek Day { get; set; }
         
         public TimeSpan Time { get; set; }
@@ -31,6 +31,10 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         
         public string ID { get; set; }
         public RouteTimeTableEntry(RouteTimeTable timeTable, DayOfWeek day, TimeSpan time, RouteEntryDestination destination)
+            : this(timeTable, day, time, destination, null)
+        {
+        }
+        public RouteTimeTableEntry(RouteTimeTable timeTable, DayOfWeek day, TimeSpan time, RouteEntryDestination destination, Gate outboundgate)
         {
              Guid id = Guid.NewGuid();
 
@@ -39,6 +43,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             this.TimeTable = timeTable;
             this.Destination = destination;
             this.ID = id.ToString();
+            this.Gate = outboundgate;
          }
         //returns the departure airport
         public Airport getDepartureAirport()

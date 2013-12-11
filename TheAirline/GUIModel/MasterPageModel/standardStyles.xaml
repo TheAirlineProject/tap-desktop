@@ -42,13 +42,17 @@
                         </BulletDecorator.Bullet>
 
                         <!--Text element-->
-                        <TextBlock Margin="3,1,0,0">
+                        <TextBlock Margin="3,1,0,0" Name="TxtContent" >
        <ContentPresenter />
                         </TextBlock>
                     </BulletDecorator>
 
                     <!--If item is checked, trigger the visibility of the mark-->
                     <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter TargetName="RadioOuter" Property="Background" Value="DarkGray"></Setter>
+                            <Setter TargetName="TxtContent" Property="FontStyle" Value="Italic"></Setter>
+                        </Trigger>
                         <Trigger Property="IsChecked" Value="true">
 
                             <!--If item is checked, trigger the visibility of the mark

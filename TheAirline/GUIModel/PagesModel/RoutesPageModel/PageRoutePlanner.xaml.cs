@@ -29,7 +29,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// <summary>
     /// Interaction logic for PageRoutePlanner.xaml
     /// </summary>
-    public partial class PageRoutePlanner : Page
+    public partial class PageRoutePlanner : Page, INotifyPropertyChanged
     {
         public FleetAirliner Airliner { get; set; }
         public List<RoutePlannerItemMVVM> AllRoutes { get; set; }
@@ -41,6 +41,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public List<int> StopoverMinutes { get; set; }
         public ObservableCollection<int> Intervals { get; set; }
         private Point startPoint;
+        private Boolean _islongroute;
+        public Boolean IsLongRoute
+        {
+            get { return _islongroute; }
+            set { this._islongroute = value; NotifyPropertyChanged("IsLongRoute"); }
+        }
         public List<IntervalType> IntervalTypes
         {
             get { return Enum.GetValues(typeof(IntervalType)).Cast<IntervalType>().ToList(); }
@@ -52,11 +58,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             private set { ;}
 
         }
+       
         public PageRoutePlanner(FleetAirliner airliner)
         {
             this.Airliner = airliner;
             this.Entries = new ObservableCollection<RouteTimeTableEntry>();
             this.Entries.CollectionChanged += Entries_CollectionChanged;
+
+            this.IsLongRoute = false;
 
             this.AllRoutes = new List<RoutePlannerItemMVVM>();
             this.Intervals = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6 };
@@ -162,10 +171,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 if (opsType == OpsType.Whole_Day)
                     maxHours = 24;
 
-                int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
-
+                int flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));//Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+          
                 if (intervalType == IntervalType.Week)
-                    flightsPerDay = 6;
+                    flightsPerDay = 7;
 
                 this.Intervals.Clear();
 
@@ -195,8 +204,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 if (opsType == OpsType.Whole_Day)
                     maxHours = 24;
 
-                int flightsPerDay = Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
-
+                int flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));//Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+                
                 if (intervalType == IntervalType.Week)
                     flightsPerDay = 6;
 
@@ -215,15 +224,35 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         {
             Route route = (Route)cbRoute.SelectedItem;
 
-            IntervalType intervalType = (IntervalType)cbIntervalType.SelectedItem;
+            if (route != null)
+            {
+                OpsType opsType = cbSchedule == null ? OpsType.Regular : (OpsType)cbSchedule.SelectedItem;
+                IntervalType intervalType = (IntervalType)cbIntervalType.SelectedItem;
 
-            this.Intervals.Clear();
+                TimeSpan routeFlightTime = route.getFlightTime(this.Airliner.Airliner.Type);
 
-            for (int i = 0; i < 6; i++)
-                this.Intervals.Add(i + 1);
+                int delayMinutes = (int)cbDelayMinutes.SelectedItem;
 
-            if (cbInterval != null)
-                cbInterval.SelectedIndex = 0;
+                TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(0, delayMinutes, 0));
+
+                int maxHours = 22 - 06;
+
+                if (opsType == OpsType.Whole_Day)
+                    maxHours = 24;
+
+                int flightsPerDay = (int)Math.Floor((maxHours * 60) / (2 * minFlightTime.TotalMinutes));//Convert.ToInt16(maxHours * 60 / (2 * minFlightTime.TotalMinutes));
+          
+                if (intervalType == IntervalType.Week)
+                    flightsPerDay = 7;
+
+                this.Intervals.Clear();
+
+                for (int i = 0; i < Math.Max(1, flightsPerDay); i++)
+                    this.Intervals.Add(i + 1);
+
+                if (cbInterval != null)
+                    cbInterval.SelectedIndex = 0;
+            }
 
         }
         private void cbInterval_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -505,11 +534,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                      SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(red, green, blue));
                      brush.Opacity = 0.60;
 
-                     string text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport));
-
                      TimeSpan localTimeDept = MathHelpers.ConvertTimeSpanToLocalTime(sTime, entry.DepartureAirport.Profile.TimeZone);
                      TimeSpan localTimeDest = MathHelpers.ConvertTimeSpanToLocalTime(eTime, entry.Destination.Airport.Profile.TimeZone);
 
+                   //  string text = string.Format("{0}-{1}\n{2}-{3}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport),string.Format("{0:hh\\:mm}", entry.Time),string.Format("{0:hh\\:mm}",localTimeDept));
+                     string text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport));
+                   
                      string tooltip = string.Format("{0}-{3}\n({1} {2})-({4} {5})", string.Format("{0:hh\\:mm}", entry.Time),string.Format("{0:hh\\:mm}",localTimeDept), entry.DepartureAirport.Profile.TimeZone.ShortName, string.Format("{0:hh\\:mm}", eTime),string.Format("{0:hh\\:mm}",localTimeDest),entry.Destination.Airport.Profile.TimeZone.ShortName);
                 
                      uctimetable.addTimelineEntry(entry, sTime, eTime, text, brush, tooltip);
@@ -543,6 +573,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             switch (interval)
             {
+                    
+                    //SFO -> ATH: 767-200ER
                 case "Manual":
                     addEntries(getSelectedDays());
                     break;
@@ -606,7 +638,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 rt.addEntry(entry);
             }
 
-            if (!TimeTableHelpers.IsTimeTableValid(rt, this.Airliner, this.Entries.ToList()))
+            if (!TimeTableHelpers.IsRoutePlannerTimeTableValid(rt, this.Airliner, this.Entries.ToList()))
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2706"), Translator.GetInstance().GetString("MessageBox", "2706", "message"), WPFMessageBoxButtons.Ok);
             else
             {
@@ -639,12 +671,31 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 DragDrop.DoDragDrop(rect, dragData, DragDropEffects.Move);
             } 
         }
+        private void cbHomebound_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Route route = (Route)cbHomebound.SelectedItem;
 
+            if (route != null)
+                this.IsLongRoute = MathHelpers.GetFlightTime(route.Destination1, route.Destination2, this.Airliner.Airliner.Type).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(this.Airliner.Airliner.Type)).TotalHours > 12;
+            else
+                this.IsLongRoute = false;
+
+        }
         private void Rectangle_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(null);
         }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
+      
       
     }
 }

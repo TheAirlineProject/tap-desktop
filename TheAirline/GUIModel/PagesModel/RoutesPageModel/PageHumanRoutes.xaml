@@ -9,7 +9,7 @@
 	Title="PageHumanRoutes">
     <Page.Resources>
         <DataTemplate x:Key="StopoverItem">
-            <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+            <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryShortLink}"></ContentControl>
         </DataTemplate>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -20,30 +20,30 @@
                     <GridViewColumn Header="" Width="40">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Width="24" Height="24" Background="Transparent" Tag="{Binding}" Click="btnEdit_Click">
+                                <Button Width="24" Height="24" Background="Transparent" Tag="{Binding Route}" Click="btnEdit_Click">
                                     <Image Source="/data/images/edit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
                                 </Button>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="Destination1.Profile.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1000'}" Width="250">
+                    <GridViewColumn  util:GridViewSort.PropertyName="Route.Destination1.Profile.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1000'}" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentControl Content="{Binding Destination1}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
+                                <ContentControl Content="{Binding Route.Destination1}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn  util:GridViewSort.PropertyName="Destination2.Profile.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1001'}" Width="250">
+                    <GridViewColumn  util:GridViewSort.PropertyName="Route.Destination2.Profile.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1001'}" Width="250">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ContentControl Content="{Binding Destination2}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
+                                <ContentControl Content="{Binding Route.Destination2}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}" Width="500">
+                    <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1002'}" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemTemplate="{DynamicResource StopoverItem}" ItemsSource="{Binding Stopovers}"></ListBox>
+                                <ListBox Style="{StaticResource VerticalListBoxStyle}" ItemTemplate="{DynamicResource StopoverItem}" ItemsSource="{Binding Route.Stopovers}"></ListBox>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
@@ -54,7 +54,28 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </GridViewColumn>
-                </GridView>
+                        <GridViewColumn  util:GridViewSort.PropertyName="Total" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1005'}" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Total}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  util:GridViewSort.PropertyName="Average" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1006'}" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Average}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn  util:GridViewSort.PropertyName="FillingDegree" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1004'}" Width="100">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FillingDegree,StringFormat={}{0:P2}}" VerticalAlignment="Bottom"></TextBlock>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
                 
              
             </ListView.View>

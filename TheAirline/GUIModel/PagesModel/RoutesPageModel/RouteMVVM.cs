@@ -14,6 +14,41 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
+    //the mvvm object for a route
+    public class RouteMVVM
+    {
+        public Route Route { get; set; }
+        public double FillingDegree { get; set; }
+        public double Total { get; set; }
+        public double Average { get; set; }
+        public double Balance { get; set; }
+        public RouteMVVM(Route route)
+        {
+            this.Route = route;
+            this.FillingDegree = this.Route.FillingDegree;
+            this.Balance = this.Route.Balance;
+
+            if (route.Type == Route.RouteType.Passenger)
+            {
+                RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+
+                this.Total = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
+                this.Average = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
+
+                
+            }
+            if (route.Type == Route.RouteType.Cargo)
+            {
+                this.Total = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                this.Average = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
+
+               
+            }
+
+            if (this.Average < 0)
+                this.Average = 0;
+        }
+    }
     //the mvvm object for an airliner
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {

@@ -50,7 +50,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Airports = GameObject.GetInstance().HumanAirline.Airports.OrderByDescending(a=>a==GameObject.GetInstance().HumanAirline.Airports[0]).ThenBy(a => a.Profile.Name).ToList();
 
-            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
 
             this.HumanAircrafts = new List<AirlinerType>();
 
@@ -141,7 +141,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             Airport destination2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = (Airport)cbStopover1.SelectedItem;
             Airport stopover2 = cbStopover2.Visibility == System.Windows.Visibility.Visible ? (Airport)cbStopover2.SelectedItem : null;
-
+    
             try
             {
                 if (AirlineHelpers.IsRouteDestinationsOk(GameObject.GetInstance().HumanAirline, destination1, destination2, rbPassenger.IsChecked.Value ? Route.RouteType.Passenger : Route.RouteType.Cargo, stopover1, stopover2))

@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Globalization;
 using TheAirline.Model.AirlineModel;
-using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 using System.Runtime.Serialization;
 using System.ComponentModel;
@@ -76,8 +75,8 @@ namespace TheAirline.Model.GeneralModel
             this.FinancePageEnabled = false;
             this.DayRoundEnabled = true;
         }
-         //sets the money for the human airline
-        public void setHumanMoney(double value)
+         //add money to the human airline
+        public void addHumanMoney(double value)
         {
             this.HumanMoney += value;
             this.HumanAirline.Money += value;

@@ -188,5 +188,10 @@ namespace TheAirline.Model.AirlinerModel
         {
             return types.FindAll(t => !t.IsStandardType);
         }
+        //removes an airliner type
+        public static void RemoveType(AirlinerType type)
+        {
+            types.Remove(type);
+        }
     }
 }

@@ -30,6 +30,10 @@ namespace TheAirline.Model.AirportModel
         public Gates Gates { get; set; }
         public Boolean IsBuilt { get{return isBuilt();} set{;} }
         public Boolean IsBuyable { get { return isBuyable(); } set { ;} }
+        public Terminal(Airport airport, string name, int gates, DateTime deliveryDate)
+            : this(airport, null, name, gates, deliveryDate)
+        {
+        }
         public Terminal(Airport airport, Airline airline,string name, int gates, DateTime deliveryDate)
         {
             this.Airport = airport;
@@ -37,7 +41,7 @@ namespace TheAirline.Model.AirportModel
             this.Name = name;
             this.DeliveryDate = new DateTime(deliveryDate.Year, deliveryDate.Month, deliveryDate.Day);
         
-            this.Gates = new Gates(gates, this.DeliveryDate);
+            this.Gates = new Gates(gates, this.DeliveryDate,airline);
         }
         // chs 11-10-11: changed for the possibility of purchasing an existing terminal
         //returns if the terminal is buyalbe
@@ -64,7 +68,9 @@ namespace TheAirline.Model.AirportModel
             DateTime deliveryDate = GameObject.GetInstance().GameTime.AddDays(gates * 10);
             for (int i = 0; i < gates; i++)
             {
-                Gate gate = new Gate( deliveryDate);
+                Gate gate = new Gate(deliveryDate);
+                gate.Airline = this.Airline;
+
                 this.Gates.addGate(gate);
             }
         }
@@ -158,7 +164,17 @@ namespace TheAirline.Model.AirportModel
 
             return gates;
         }
-        
+        public List<Gate> getGates(Airline airline)
+        {
+            List<Gate> gates = new List<Gate>();
+
+            foreach (Terminal terminal in getDeliveredTerminals())
+                foreach (Gate gate in terminal.Gates.getGates().Where(a=>a.Airline != null && a.Airline == airline))
+                    gates.Add(gate);
+
+
+            return gates;
+        }
         //adds a terminal to the list
         public void addTerminal(Terminal terminal)
         {
@@ -238,10 +254,16 @@ namespace TheAirline.Model.AirportModel
         public void switchAirline(Airline airlineFrom, Airline airlineTo)
         {
             List<AirportContract> contracts = this.Airport.getAirlineContracts(airlineFrom);
-
+            
             foreach (AirportContract contractFrom in contracts)
             {
                 contractFrom.Airline = airlineTo;
+
+                for (int i = 0; i < contractFrom.NumberOfGates; i++)
+                {
+                    Gate gate = contractFrom.Airport.Terminals.getGates().Where(g => g.Airline == airlineFrom).First();
+                    gate.Airline = airlineTo;
+                }
             }
           
             airlineFrom.removeAirport(this.Airport);

@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
@@ -60,7 +61,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         }
         private void btnInvite_Click(object sender, RoutedEventArgs e)
         {
-            object o = PopUpInviteAlliance.ShowPopUp(this.Alliance);
+           object o = PopUpInviteAlliance.ShowPopUp(this.Alliance);
 
             if (o != null)
             {

@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <engManufacturers>
   <manufacturer name="Rolls-Royce PLC" short="Rolls-Royce" founded="1987" country="130" prestige="95" />
-  <manufacturer name="Pratt & Whitney UTC" short="Pratt &amp; Whitney" founded="1925" country="122" prestige="88" />
+  <manufacturer name="Pratt &amp; Whitney UTC" short="Pratt &amp; Whitney" founded="1925" country="122" prestige="88" />
   <manufacturer name="GE Aviation" short="GE" founded="1925" country="122" prestige="90" />
+  <manufacturer name="International Aero Engines" short="IAE" founded="1983" country="116" prestige="75" />
+  <manufacturer name="MTU Aero Engines AG" short="MTU" founded="1934" country="163" prestice="50" />
+  <manufacturer name="Engine Alliance" short="EA" founded="1996" country="122" prestige="65"/>
+  <manufacturer name="Allison Engine Company" short="AEC" founded="1904" country="122" prestige="40"/>
 </engManufacturers>"

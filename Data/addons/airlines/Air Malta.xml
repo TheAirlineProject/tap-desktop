@@ -4,4 +4,84 @@
     <narrative narrative="Air Malta is the national airline of Malta, in service since 1973 with routes to Europe and North Africa. Their fleet is small and consists of only Airbus A320 family aircraft." />
   </profile>
   <info real="True" from="1973" to="2199"/>
+  <startdata>
+      <routes>
+          <route destination1="AMS" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="ATH" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="ATH" destination2="SOF" opened="2009" closed="2199"></route>
+          <route destination1="BEN" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="BHX" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="BRS" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="BRU" destination2="CTA" opened="2009" closed="2199"></route>
+          <route destination1="BRU" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="BUD" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="CDG" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="CTA" destination2="BRU" opened="2009" closed="2199"></route>
+          <route destination1="CTA" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="CTA" destination2="MUC" opened="2009" closed="2199"></route>
+          <route destination1="CWL" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="DME" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="DUS" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="FCO" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="FRA" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="GVA" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="HAM" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="IST" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="LCA" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="LED" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="LGW" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="LHR" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="LIN" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="LYS" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="MAN" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="AMS" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="ATH" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="BEN" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="BRU" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="BUD" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="CDG" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="CTA" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="CWL" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="DME" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="DUS" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="FCO" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="FRA" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="GVA" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="HAM" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="IST" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="LCA" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="LED" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="LGW" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="LHR" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="LIN" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="LYS" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="MAN" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="MRS" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="MUC" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="MXP" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="ORY" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="PRG" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="SVO" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="TIP" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="TXL" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="VIE" opened="2009" closed="2199"></route>
+          <route destination1="MLA" destination2="ZRH" opened="2009" closed="2199"></route>
+          <route destination1="MRS" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="MUC" destination2="CTA" opened="2009" closed="2199"></route>
+          <route destination1="MUC" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="MXP" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="ORY" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="PRG" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="SOF" destination2="ATH" opened="2009" closed="2199"></route>
+          <route destination1="SVO" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="TIP" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="TXL" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="VIE" destination2="MLA" opened="2009" closed="2199"></route>
+          <route destination1="ZRH" destination2="MLA" opened="2009" closed="2199"></route>
+</routes>
+      <airliners>
+          <airliner type="Airbus A319-100" early="0" late="4"></airliner>
+          <airliner type="Airbus A320-200" early="0" late="6"></airliner>
+          </airliners>
+      </startdata>
 </airline>

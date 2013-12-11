@@ -129,6 +129,7 @@ namespace TheAirline.Model.AirlinerModel
         //adds a new airliner class to the airliner
         public void addAirlinerClass(AirlinerClass airlinerClass)
         {
+           
             this.Classes.Add(airlinerClass);
 
             if (airlinerClass.getFacilities().Count == 0)

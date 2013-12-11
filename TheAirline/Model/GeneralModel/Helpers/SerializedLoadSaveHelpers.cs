@@ -12,6 +12,7 @@ using System.Xml;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
@@ -36,14 +37,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves a game
         public static void SaveGame(string name)
         {
-            //Pause the game so we can save without the clock running :)
-            GameObjectWorker.GetInstance().pause();
-
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             Stopwatch sw = new Stopwatch();
             sw.Start();
 
+           //Clearing stats because there is no need for saving those.
+           if (name != "autosave")
+           {
+                Airports.GetAllAirports().ForEach(a => a.clearDestinationPassengerStatistics());
+                Airports.GetAllAirports().ForEach(a => a.clearDestinationCargoStatistics());
+                AirlineHelpers.ClearRoutesStatistics();
+                AirlineHelpers.ClearAirlinesStatistics();
+                AirportHelpers.ClearAirportStatistics();
+           }
+            
             SaveObject so = new SaveObject();
             Parallel.Invoke(() =>
             {
@@ -89,18 +97,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 so.airlinerfacilitieslist = new List<AirlinerFacility>();
                 so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
-            },  () =>
+            }, () =>
+            {
+                so.routefacilitieslist = new List<RouteFacility>();
+                so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
+            }, () =>
             {
                 so.instance = GameObject.GetInstance();
-                so.savetype = "new";
+                so.settings = Settings.GetInstance();
+                so.savetype = "039";
+                so.saveversionnumber = 1;
             });
 
 
-            DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null,
-                             Int32.MaxValue,
-                             false,
-                             true,
-                             null);
+            DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null, Int32.MaxValue, false, true, null);
 
             using (Stream stream = new FileStream(fileName, FileMode.Create))
             {
@@ -109,7 +119,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     serializer.WriteObject(compress, so);
                 }
             }
-
+          
             sw.Stop();
 
         }
@@ -122,15 +132,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
             SaveObject deserializedSaveObject;
             string loading;
+            int version;
+
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
-                { 
-                deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
+                {j
+
+                    object o = serializer.ReadObject(decompress);
+   
                 }
             }
 
             loading = deserializedSaveObject.savetype;
+            version = deserializedSaveObject.saveversionnumber;
 
             //Parrarel for loading the game
             Parallel.Invoke(() =>
@@ -163,7 +178,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (CalendarItem item in deserializedSaveObject.calendaritemsList)
                     CalendarItems.AddCalendarItem(item);
-
+            },
+            () =>
+            {
                 Configurations.Clear();
 
                 foreach (Configuration configuration in deserializedSaveObject.configurationList)
@@ -192,7 +209,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             },
             () =>
             {   //Do this only with new savegames for now
-                if (loading == "new")
+                if (loading == "new" || loading == "039")
                 {
                     FeeTypes.Clear();
 
@@ -202,7 +219,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             },
             () =>
             {   //Do this only with new savegames for now
-                if (loading == "new")
+                if (loading == "new" || loading == "039")
                 {
                     AdvertisementTypes.Clear();
 
@@ -212,17 +229,29 @@ namespace TheAirline.Model.GeneralModel.Helpers
             },
             () =>
             {   //Do this only with new savegames for now
-                if (loading == "new")
+                if (loading == "039")
                 {
+                    
                     AirlinerFacilities.Clear();
 
                     foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
                         AirlinerFacilities.AddFacility(airlinerfas);
                 }
             },
+             () =>
+             {   //Do this only with new savegames for now
+                 if (loading == "new" || loading == "039")
+                 {
+                     RouteFacilities.Clear();
+
+                     foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
+                         RouteFacilities.AddFacility(routefas);
+                 }
+             },
             () =>
             {
-                GameObject.SetInstance(deserializedSaveObject.instance);
+                if (loading == "039") { GameObject.SetInstance(deserializedSaveObject.instance); }
+                Settings.SetInstance(deserializedSaveObject.settings);
             }); //close parallel.invoke
 
             //Maybe this helps? But i doubt this is the best way
@@ -270,9 +299,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         [DataMember]
         public GameObject instance { get; set; }
-        
+
+        [DataMember]
+        public Settings settings { get; set; }
+
         [DataMember]
         public string savetype { get; set; }
+
+        [DataMember]
+        public int saveversionnumber { get; set; }
 
         [DataMember]
         public List<Configuration> configurationList { get; set; }
@@ -295,5 +330,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         [DataMember]
         public List<AirlinerFacility> airlinerfacilitieslist { get; set; }
 
+        [DataMember]
+        public List<RouteFacility> routefacilitieslist { get; set; }
     }
 }

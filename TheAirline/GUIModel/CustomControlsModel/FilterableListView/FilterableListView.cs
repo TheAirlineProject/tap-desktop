@@ -146,7 +146,16 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         #endregion
 
         private Hashtable currentFilters = new Hashtable();
+        public Hashtable getCurrentFilters()
+        {
+            return currentFilters;
+        }
+        public void setCurrentFilters(Hashtable filters)
+        {
+            currentFilters = filters;
 
+            ApplyCurrentFilters();
+        }
         private void AddFilter(String property, FilterItem value, Button button)
         {
             if (currentFilters.ContainsKey(property))

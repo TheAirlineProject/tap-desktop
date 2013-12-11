@@ -26,7 +26,6 @@
                 </ComboBox>
             </WrapPanel>
         </DataTemplate>
-        
         <DataTemplate x:Key="StatisticsItem">
             <WrapPanel>
                 <TextBlock Text="{Binding Key}" VerticalAlignment="Bottom" Width="200" FontWeight="Bold"></TextBlock>
