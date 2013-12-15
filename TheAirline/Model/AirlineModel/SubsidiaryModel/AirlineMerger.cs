@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,7 +10,7 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
 {
     [Serializable]
     //the class for a merger between two airlines either as a regular merger or where one of them gets subsidiary of the other
-    public class AirlineMerger
+    public class AirlineMerger : ISerializable
     {
         public enum MergerType { Merger, Subsidiary }
         
@@ -31,6 +32,34 @@ namespace TheAirline.Model.AirlineModel.SubsidiaryModel
             this.Airline2 = airline2;
             this.Date = date;
             this.Type = type;
+        }
+
+        private AirlineMerger(SerializationInfo info, StreamingContext ctxt)
+        {
+            int version = info.GetInt16("version");
+
+            this.Name = info.GetString("name");
+            this.NewName = info.GetString("newname");
+            this.Airline1 = (Airline)info.GetValue("airline1", typeof(Airline));
+            this.Airline2 = (Airline)info.GetValue("airline2", typeof(Airline));
+            this.Date = info.GetDateTime("date");
+            this.Type = (MergerType)info.GetValue("type", typeof(MergerType));
+
+           
+            
+          
+          
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 1);
+
+            info.AddValue("name", this.Name);
+            info.AddValue("newname", this.NewName);
+            info.AddValue("airline1", this.Airline1);
+            info.AddValue("airline2", this.Airline2);
+            info.AddValue("date", this.Date);
+            info.AddValue("type", this.Type);
         }
     }
     //the list of airline mergers 

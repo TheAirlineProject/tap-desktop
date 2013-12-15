@@ -14,6 +14,7 @@ using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
+using System.Runtime.Serialization.Formatters.Binary;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -37,6 +38,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves a game
         public static void SaveGame(string name)
         {
+            Airliner airliner = Airliners.GetAllAirliners()[0];
+
+            FileSerializer.Serialize("c:\\bbm\\airline.sav", Airports.GetAllAirports());
+
+         
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
             Stopwatch sw = new Stopwatch();
@@ -137,9 +143,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             using (FileStream stream = new FileStream(fileName, FileMode.Open))
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
-                {j
-
-                    object o = serializer.ReadObject(decompress);
+                {
+                    
+                    
+                    deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
    
                 }
             }
@@ -333,4 +340,78 @@ namespace TheAirline.Model.GeneralModel.Helpers
         [DataMember]
         public List<RouteFacility> routefacilitieslist { get; set; }
     }
+     public static class FileSerializer
+        {
+
+            public static void Serialize(string filename, object objectToSerialize)
+            {
+
+                if (objectToSerialize == null)
+
+                    throw new ArgumentNullException("objectToSerialize cannot be null");
+
+                Stream stream = null;
+
+                try
+                {
+
+                    stream = File.Open(filename, FileMode.Create);
+
+                    BinaryFormatter bFormatter = new BinaryFormatter();
+
+                    bFormatter.Serialize(stream, objectToSerialize);
+                  
+                }
+
+                finally
+                {
+
+                    if (stream != null)
+
+                        stream.Close();
+
+                }
+
+            }
+
+            public static T Deserialize<T>(string filename)
+            {
+
+                T objectToSerialize = default(T);
+
+                Stream stream = null;
+
+                try
+                {
+
+                    stream = File.Open(filename, FileMode.Open);
+
+                    BinaryFormatter bFormatter = new BinaryFormatter();
+
+                    objectToSerialize = (T)bFormatter.Deserialize(stream);
+
+                }
+
+                catch (Exception err)
+                {
+
+                    Console.WriteLine(err.ToString());
+
+                }
+
+                finally
+                {
+
+                    if (stream != null)
+
+                        stream.Close();
+
+                }
+
+                return objectToSerialize;
+
+            }
+
+        }
+    
 }

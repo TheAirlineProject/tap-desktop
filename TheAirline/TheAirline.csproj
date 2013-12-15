@@ -886,6 +886,7 @@
     <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
     <Compile Include="Model\GeneralModel\Period.cs" />
     <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
+    <Compile Include="Model\GeneralModel\Versioning.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\HourlyWeather.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
     <Compile Include="Model\PassengerModel\DestinationDemand.cs" />
