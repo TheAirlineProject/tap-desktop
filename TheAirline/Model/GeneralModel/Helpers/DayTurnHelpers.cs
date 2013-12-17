@@ -197,7 +197,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SimulateLanding(FleetAirliner airliner)
         {
 
-            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates, airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type));
+            DateTime landingTime = airliner.CurrentFlight.FlightTime.Add(MathHelpers.GetFlightTime(airliner.CurrentFlight.Entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.CurrentFlight.Entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type));
             double fdistance = MathHelpers.GetDistance(airliner.CurrentFlight.getDepartureAirport(), airliner.CurrentFlight.Entry.Destination.Airport);
 
 
@@ -281,7 +281,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport dest = airliner.CurrentFlight.Entry.Destination.Airport;
             Airport dept = airliner.CurrentFlight.Entry.DepartureAirport;
 
-            double dist = MathHelpers.GetDistance(dest.Profile.Coordinates, dept.Profile.Coordinates);
+            double dist = MathHelpers.GetDistance(dest.Profile.Coordinates.convertToGeoCoordinate(), dept.Profile.Coordinates.convertToGeoCoordinate());
 
             double expenses = fuelExpenses + dest.getLandingFee() + tax;
 

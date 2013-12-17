@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="Eva Air" iata="BR" color="Green" country="172" CEO="Chang Yung-fa" mentality="Safe" market="Regional" preferedairport="TPE">
+  <narrative narrative="Since its founding in 1989 as an affiliate of shipping conglomerate Evergreen Group, EVA Air has expanded to include air cargo, airline catering, ground handling, and aviation engineering service"/>
+  </profile>
+  <info real="True" from="1989" to="2199" />
+</airline>

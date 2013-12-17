@@ -38,16 +38,68 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //saves a game
         public static void SaveGame(string name)
         {
-            Airliner airliner = Airliners.GetAllAirliners()[0];
+              SaveObject so = new SaveObject();
+            Parallel.Invoke(() =>
+            {
+                so.airportsList = new List<Airport>();
+                so.airportsList.AddRange(Airports.GetAllAirports());
+            }, () =>
+            {
+                so.airlinesList = new List<Airline>();
+                so.airlinesList.AddRange(Airlines.GetAllAirlines());
+            }, () =>
+            {
+                so.airlinersList = new List<Airliner>();
+                so.airlinersList.AddRange(Airliners.GetAllAirliners());
+            }, () =>
+            {
+                so.calendaritemsList = new List<CalendarItem>();
+                so.calendaritemsList.AddRange(CalendarItems.GetCalendarItems());
+            }, () =>
+            {
+                so.configurationList = new List<Configuration>();
+                so.configurationList.AddRange(Configurations.GetConfigurations());
+            }, () =>
+            {
+                so.eventsList = new List<RandomEvent>();
+                so.eventsList.AddRange(RandomEvents.GetEvents());
+            }, () =>
+            {
+                so.allianceList = new List<Alliance>();
+                so.allianceList.AddRange(Alliances.GetAlliances());
+            }, () =>
+            {
+                so.Airportfacilitieslist = new List<AirportFacility>();
+                so.Airportfacilitieslist.AddRange(AirportFacilities.GetFacilities());
+            }, () =>
+            {
+                so.feeTypeslist = new List<FeeType>();
+                so.feeTypeslist.AddRange(FeeTypes.GetTypes());
+            }, () =>
+            {
+                so.advertisementTypeslist = new List<AdvertisementType>();
+                so.advertisementTypeslist.AddRange(AdvertisementTypes.GetTypes());
+            }, () =>
+            {
+                so.airlinerfacilitieslist = new List<AirlinerFacility>();
+                so.airlinerfacilitieslist.AddRange(AirlinerFacilities.GetAllFacilities());
+            }, () =>
+            {
+                so.routefacilitieslist = new List<RouteFacility>();
+                so.routefacilitieslist.AddRange(RouteFacilities.GetAllFacilities());
+            }, () =>
+            {
+                so.instance = GameObject.GetInstance();
+                so.settings = Settings.GetInstance();
+            });
 
-            FileSerializer.Serialize("c:\\bbm\\airline.sav", Airports.GetAllAirports());
-
-         
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + name + ".sav";
 
-            Stopwatch sw = new Stopwatch();
-            sw.Start();
+            FileSerializer.Serialize(fileName, so);
 
+         
+         
+         
            //Clearing stats because there is no need for saving those.
            if (name != "autosave")
            {
@@ -57,7 +109,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 AirlineHelpers.ClearAirlinesStatistics();
                 AirportHelpers.ClearAirportStatistics();
            }
-            
+            /*
             SaveObject so = new SaveObject();
             Parallel.Invoke(() =>
             {
@@ -114,8 +166,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 so.savetype = "039";
                 so.saveversionnumber = 1;
             });
-
-
+            */
+            /*
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject), null, Int32.MaxValue, false, true, null);
 
             using (Stream stream = new FileStream(fileName, FileMode.Create))
@@ -125,16 +177,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     serializer.WriteObject(compress, so);
                 }
             }
-          
-            sw.Stop();
+          */
+      
 
         }
         //loads a game 
         public static void LoadGame(string file)
         {
-
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
+            SaveObject deserializedSaveObject = FileSerializer.Deserialize<SaveObject>(fileName);
+
+             /*
+          
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
             SaveObject deserializedSaveObject;
             string loading;
@@ -144,16 +199,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 using (DeflateStream decompress = new DeflateStream(stream, CompressionMode.Decompress))
                 {
-                    
-                    
                     deserializedSaveObject = (SaveObject)serializer.ReadObject(decompress);
-   
                 }
             }
 
             loading = deserializedSaveObject.savetype;
             version = deserializedSaveObject.saveversionnumber;
-
+            */
             //Parrarel for loading the game
             Parallel.Invoke(() =>
             {
@@ -215,49 +267,39 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     AirportFacilities.AddFacility(facility);
             },
             () =>
-            {   //Do this only with new savegames for now
-                if (loading == "new" || loading == "039")
-                {
+            {   
                     FeeTypes.Clear();
 
                     foreach (FeeType type in deserializedSaveObject.feeTypeslist)
                         FeeTypes.AddType(type);
-                }
+               
             },
             () =>
-            {   //Do this only with new savegames for now
-                if (loading == "new" || loading == "039")
-                {
+            {  
                     AdvertisementTypes.Clear();
 
                     foreach (AdvertisementType addtype in deserializedSaveObject.advertisementTypeslist)
                         AdvertisementTypes.AddAdvertisementType(addtype);
-                }
+                
             },
             () =>
-            {   //Do this only with new savegames for now
-                if (loading == "039")
-                {
-                    
+            {       
                     AirlinerFacilities.Clear();
 
                     foreach (AirlinerFacility airlinerfas in deserializedSaveObject.airlinerfacilitieslist)
                         AirlinerFacilities.AddFacility(airlinerfas);
-                }
+                
             },
              () =>
-             {   //Do this only with new savegames for now
-                 if (loading == "new" || loading == "039")
-                 {
-                     RouteFacilities.Clear();
+             {     RouteFacilities.Clear();
 
                      foreach (RouteFacility routefas in deserializedSaveObject.routefacilitieslist)
                          RouteFacilities.AddFacility(routefas);
-                 }
+                 
              },
             () =>
             {
-                if (loading == "039") { GameObject.SetInstance(deserializedSaveObject.instance); }
+                GameObject.SetInstance(deserializedSaveObject.instance); 
                 Settings.SetInstance(deserializedSaveObject.settings);
             }); //close parallel.invoke
 
@@ -288,56 +330,53 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
 
     }
-
-    [DataContract(Name = "game")]
+    [Serializable]
     public class SaveObject
     {
-        [DataMember]
+        [Versioning("calendaritems")]
         public List<CalendarItem> calendaritemsList { get; set; }
 
-        [DataMember]
+        [Versioning("airliners")]
         public List<Airliner> airlinersList { get; set; }
 
-        [DataMember]
+        [Versioning("airlines")]
         public List<Airline> airlinesList { set; get; }
 
-        [DataMember]
+        [Versioning("airports")]
         public List<Airport> airportsList { set; get; }
 
-        [DataMember]
+        [Versioning("instance")]
         public GameObject instance { get; set; }
 
-        [DataMember]
+        [Versioning("settings")]
         public Settings settings { get; set; }
 
-        [DataMember]
         public string savetype { get; set; }
 
-        [DataMember]
         public int saveversionnumber { get; set; }
 
-        [DataMember]
+        [Versioning("configurations")]
         public List<Configuration> configurationList { get; set; }
 
-        [DataMember]
+        [Versioning("events")]
         public List<RandomEvent> eventsList { get; set; }
 
-        [DataMember]
+        [Versioning("alliances")]
         public List<Alliance> allianceList { get; set; }
 
-        [DataMember]
+        [Versioning("airportfacilities")]
         public List<AirportFacility> Airportfacilitieslist { get; set; }
 
-        [DataMember]
+        [Versioning("feetypes")]
         public List<FeeType> feeTypeslist { get; set; }
 
-        [DataMember]
+        [Versioning("advertisementtypes")]
         public List<AdvertisementType> advertisementTypeslist { get; set; }
 
-        [DataMember]
+        [Versioning("airlinerfacilities")]
         public List<AirlinerFacility> airlinerfacilitieslist { get; set; }
 
-        [DataMember]
+        [Versioning("routefacilities")]
         public List<RouteFacility> routefacilitieslist { get; set; }
     }
      public static class FileSerializer
@@ -345,6 +384,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             public static void Serialize(string filename, object objectToSerialize)
             {
+               
 
                 if (objectToSerialize == null)
 

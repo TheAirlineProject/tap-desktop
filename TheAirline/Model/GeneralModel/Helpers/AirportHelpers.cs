@@ -148,7 +148,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns all entries for a specific airport with landings in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportLandings(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {
-            return GetAirportRoutes(airport).SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates, e.DepartureAirport.Profile.Coordinates, e.Airliner.Airliner.Type)) >= startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates, e.DepartureAirport.Profile.Coordinates, e.Airliner.Airliner.Type)) < endTime && e.Day == day)).ToList();
+            return GetAirportRoutes(airport).SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), e.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), e.Airliner.Airliner.Type)) >= startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), e.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), e.Airliner.Airliner.Type)) < endTime && e.Day == day)).ToList();
         }
         //creates the weather for an airport
         public static void CreateAirportWeather(Airport airport)

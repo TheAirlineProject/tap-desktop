@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner manufacturer="Dassault" name="Dassault Mercure" price="6528370"> <!--7700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="30.55" length="34.84" range="2084" speed="926" fuelcapacity="11300" consumption="0.073" runwaylengthrequired="1800"/>
+    <capacity passengers="162" cockpitcrew="3" cabincrew="2" maxclasses="1"/>
+    <produced from="1971" to="1975" rate="12"/>
+  </airliner>
+</airliners>

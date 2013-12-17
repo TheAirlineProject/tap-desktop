@@ -1,0 +1,33 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpAirlinerFacility"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+        Title="PopUpAirlinerFacility" Height="300" Width="300">
+
+    <Window.Resources>
+        <DataTemplate x:Key="AirlinerFacilityItem">
+            <StackPanel>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Path=Name}"></TextBlock>
+                </WrapPanel>
+                <WrapPanel>
+                    <TextBlock Text="{Binding Path=PricePerSeat, StringFormat=Price per seat: {0:c}}" x:Name="ColumnPrice"></TextBlock>
+                    <TextBlock Margin="20 0 0 0" Text="{Binding Path=PercentOfSeats, StringFormat=Percent of seats: {0} %}" x:Name="ColumnPercent"></TextBlock>
+                </WrapPanel>
+            </StackPanel>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding 
+                       RelativeSource={RelativeSource Mode=FindAncestor, 
+                                                      AncestorType=ComboBoxItem}}"
+                   Value="{x:Null}">
+                    <Setter TargetName="ColumnPrice" Property="Visibility" Value="Collapsed" />
+                    <Setter TargetName="ColumnPercent" Property="Visibility" Value="Collapsed" />
+                </DataTrigger>
+
+            </DataTemplate.Triggers>
+        </DataTemplate>
+    </Window.Resources>
+        <Grid>
+        
+    </Grid>
+</window:PopUpWindow>

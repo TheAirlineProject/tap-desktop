@@ -150,8 +150,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (nextEntry != null && previousEntry != null)
             {
 
-                TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates, nextEntry.DepartureAirport.Profile.Coordinates, airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
-                TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, previousEntry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), nextEntry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), previousEntry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
 
                 TimeSpan prevDate = new TimeSpan((int)previousEntry.Day, previousEntry.Time.Hours, previousEntry.Time.Minutes, previousEntry.Time.Seconds);
@@ -244,8 +244,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (nextEntry != null && previousEntry != null)
             {
 
-                TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates, nextEntry.DepartureAirport.Profile.Coordinates, airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
-                TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates, previousEntry.Destination.Airport.Profile.Coordinates, airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                TimeSpan flightTimeNext = MathHelpers.GetFlightTime(entry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), nextEntry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
+                TimeSpan flightTimePrevious = MathHelpers.GetFlightTime(entry.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), previousEntry.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type.CruisingSpeed).Add(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner));
 
 
                 TimeSpan prevDate = new TimeSpan((int)previousEntry.Day, previousEntry.Time.Hours, previousEntry.Time.Minutes, previousEntry.Time.Seconds);

@@ -1110,9 +1110,9 @@ namespace TheAirline.Model.GeneralModel
 					latitude = null;
 					longitude = null;
 					
-					GeoCoordinate pos = new GeoCoordinate(MathHelpers.DMStoDeg(coords[0], coords[1], coords[2]),MathHelpers.DMStoDeg(coords[3],coords[4],coords[5]));
-
-
+					//GeoCoordinate pos = new GeoCoordinate(MathHelpers.DMStoDeg(coords[0], coords[1], coords[2]),MathHelpers.DMStoDeg(coords[3],coords[4],coords[5]));
+                    Coordinates pos = new Coordinates(new Coordinate(coords[0], coords[1], coords[2]), new Coordinate(coords[3], coords[4], coords[5]));
+                  
 					//double longitude = Coordinate.Parse(longitudeElement.Attributes["value"].Value);
 
 					XmlElement sizeElement = (XmlElement)airportElement.SelectSingleNode("size");

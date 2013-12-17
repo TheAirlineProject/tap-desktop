@@ -1,0 +1,6 @@
+﻿<airline>
+  <profile name="LAM Mozambique Airlines" iata="TM" color="Red" country="283" CEO="Carlos Jeque" mentality="Moderate" market="Regional" preferedairport="MPM">
+    <narrative narrative="LAM Mozambique Airlines is the flag carrier of Mozambique. The airline was established by the Portuguese colonial government of Mozambique in August 1936 as a charter carrier named Direcção de Exploração de Transportes Aéreos, and was renamed in 1980 following reorganisation." />
+  </profile>
+  <info real="True" from="1936" to="2199"></info>
+</airline>

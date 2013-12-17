@@ -127,7 +127,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
-                double totalDistance = airportCurrent.Profile.Coordinates.GetDistanceTo(tDest.Profile.Coordinates) / 1000;
+                double totalDistance = airportCurrent.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(tDest.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                 int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
@@ -142,7 +142,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 
-                double totalDistance = tDest.Profile.Coordinates.GetDistanceTo(airportDestination.Profile.Coordinates) / 1000;
+                double totalDistance = tDest.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(airportDestination.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                 int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
@@ -162,7 +162,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
-                    double totalDistance = airportCurrent.Profile.Coordinates.GetDistanceTo(tDest.Profile.Coordinates) / 1000;
+                    double totalDistance = airportCurrent.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(tDest.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                     int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
@@ -177,7 +177,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 
-                    double totalDistance = tDest.Profile.Coordinates.GetDistanceTo(airportDestination.Profile.Coordinates) / 1000;
+                    double totalDistance = tDest.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(airportDestination.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                     int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
@@ -530,7 +530,7 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
-            var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+            var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 50);
             //Parallel.ForEach(airports, dAirport =>
             foreach (Airport dAirport in airports)
             {
