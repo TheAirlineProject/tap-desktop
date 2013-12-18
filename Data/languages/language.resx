@@ -4545,4 +4545,16 @@ Good luck.</value>
   <data name="PageNewAirliners_200_name" xml:space="preserve">
     <value>Order Airliner(s)</value>
   </data>
+  <data name="MessageBox_2609_message" xml:space="preserve">
+    <value>Are you sure you want to remove {0} from this alliance?</value>
+  </data>
+  <data name="MessageBox_2609_name" xml:space="preserve">
+    <value>Remove from alliance</value>
+  </data>
+  <data name="MessageBox_2610_message" xml:space="preserve">
+    <value>You can't remove {0} from this alliance</value>
+  </data>
+  <data name="MessageBox_2610_name" xml:space="preserve">
+    <value>Can't remove from alliance</value>
+  </data>
 </root>

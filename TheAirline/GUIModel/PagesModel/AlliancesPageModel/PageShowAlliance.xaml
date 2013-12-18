@@ -9,15 +9,32 @@
       Title="PageShowAlliance">
     <Page.Resources>
         <DataTemplate x:Key="AllianceMemberItem">
-            <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Airline}"></ContentControl>
+            <WrapPanel>
+            <ContentControl ContentTemplate="{StaticResource AirlineLink}" Width="200" Content="{Binding Airline}"></ContentControl>
+            <Button  Click="btnRemoveFromAlliance_Click" VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent">
+                    <Button.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsHumanAlliance}" Value="False">
+                                    <Setter Property="Button.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Airline.IsHuman}" Value="True">
+                                    <Setter Property="Button.Visibility" Value="Collapsed"></Setter>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                        <Image Source="/Data/images/delete.png" Height="16" Width="16" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+            </Button>
+            </WrapPanel>
         </DataTemplate>
         <DataTemplate x:Key="PendingMemberItem">
             <WrapPanel>
                 <ContentControl ContentTemplate="{StaticResource AirlineLink}" Content="{Binding Airline}" VerticalAlignment="Bottom"></ContentControl>
-                <Button  Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnAccept_Click" Style="{DynamicResource StandardButtonStyle}">
+                <Button  Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnAccept_Click" Background="Transparent">
                     <Image Source="/Data/images/add.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
-                <Button  Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnDecline_Click" Style="{DynamicResource StandardButtonStyle}">
+                <Button  Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" VerticalAlignment="Bottom" Tag="{Binding}" Margin="5 0 0 0" Click="btnDecline_Click" Background="Transparent">
                     <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
                 </Button>
             </WrapPanel>
@@ -25,7 +42,7 @@
     </Page.Resources>
         <StackPanel>
         <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1000'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-        <ListBox ItemTemplate="{DynamicResource AllianceMemberItem}" ItemsSource="{Binding Members}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
+        <ListBox ItemTemplate="{DynamicResource AllianceMemberItem}" Background="Transparent" ItemsSource="{Binding Members}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
         <StackPanel>
             <StackPanel.Style>
                 <Style>

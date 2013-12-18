@@ -24,8 +24,8 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         {
             //            this.Language = XmlLanguage.GetLanguage(new CultureInfo(GameObject.GetInstance().getLanguage().CultureInfo, true).IetfLanguageTag); 
 
-            this.SetResourceReference(Window.BackgroundProperty, "HeaderBackgroundBrush2");
-
+            this.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#004A7F")); 
+      
             this.ResizeMode = System.Windows.ResizeMode.NoResize;
 
             this.WindowStyle = System.Windows.WindowStyle.ToolWindow;

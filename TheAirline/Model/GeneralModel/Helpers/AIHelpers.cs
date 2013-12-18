@@ -1268,7 +1268,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //check if an airline accepts an invitation to an alliance
         public static Boolean DoAcceptAllianceInvitation(Airline airline, Alliance alliance)
         {
-
+            //a subsidiary of a human airline will always accept an invitation to an alliance where the parent is a member
+            if (alliance.IsHumanAlliance && airline.IsHuman)
+                return true;
+            
             IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airline.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
             IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airline.Airports).Distinct().Intersect(airline.Airports);
 
@@ -1296,6 +1299,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return false;
 
             return true;
+        }
+        //checks if it is possible for one airline to remove another airline from an alliance
+        public static Boolean CanRemoveFromAlliance(Airline remover, Airline toremove, Alliance alliance)
+        {
+            return remover.getValue() > toremove.getValue() * 0.9;
         }
         //changes the service level for a route
         private static void ChangeRouteServiceLevel(PassengerRoute route)
