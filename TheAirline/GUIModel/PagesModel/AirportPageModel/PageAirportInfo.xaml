@@ -88,7 +88,7 @@
                                 <TextBlock Text="{Binding Airport.Profile.TimeZone.DisplayName}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
-                                <TextBlock Text="Total Pax Demand" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1041'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="100"></TextBlock>
                                 <TextBlock Text="{Binding Airport.Profile.Pax}" VerticalAlignment="Bottom"></TextBlock>
                             </WrapPanel>
                             <WrapPanel>

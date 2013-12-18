@@ -40,6 +40,7 @@
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
         <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1000'}" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
         <ListBox ItemTemplate="{DynamicResource AllianceMemberItem}" Background="Transparent" ItemsSource="{Binding Members}" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
@@ -62,6 +63,37 @@
             <Button Style="{DynamicResource StandardButtonStyle}" Click="btnInvite_Click" Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 201'}" Margin="5 0 0 0"></Button>
             <Button Style="{DynamicResource StandardButtonStyle}" Margin="5 0 0 0" Click="btnExit_Click" Visibility="{Binding IsHumanAlliance,Converter={StaticResource BooleanToVisibility}}" Content="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 202'}"></Button>
         </WrapPanel>
+            <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1002'}" Margin="0 10 0 0" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1003'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Alliance.Type}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1004'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <ContentControl Content="{Binding Alliance.Headquarter}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1005'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding FleetSize}" VerticalAlignment="Bottom"></TextBlock>
+             </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1006'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Destinations}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1008'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding ServingCountries}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1007'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+          
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAlliance 1009'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <TextBlock Text="{Binding Passengers}" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </StackPanel>
        
-    </StackPanel>
+    </ScrollViewer>
 </Page>

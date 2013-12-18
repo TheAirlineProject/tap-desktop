@@ -643,6 +643,7 @@
     <Compile Include="GUIModel\PagesModel\AirportsPageModel\PageShowAirports.xaml.cs">
       <DependentUpon>PageShowAirports.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\AlliancesPageModel\AllianceMVVM.cs" />
     <Compile Include="GUIModel\PagesModel\AlliancesPageModel\PageAlliances.xaml.cs">
       <DependentUpon>PageAlliances.xaml</DependentUpon>
     </Compile>
