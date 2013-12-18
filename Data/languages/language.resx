@@ -4557,8 +4557,20 @@ Good luck.</value>
   <data name="MessageBox_2610_name" xml:space="preserve">
     <value>Can't remove from alliance</value>
   </data>
+  <data name="PageAirlineInfo_1032_name" xml:space="preserve">
+    <value>Price Index</value>
+  </data>
   <data name="PageAirportInfo_1041_name" xml:space="preserve">
     <value>Total Pax Demand</value>
+  </data>
+  <data name="PageRoutes_1008_name" xml:space="preserve">
+    <value>Last Month Routes</value>
+  </data>
+  <data name="PageRoutes_1009_name" xml:space="preserve">
+    <value>Year-to-Date Routes</value>
+  </data>
+  <data name="PageRoutes_1010_name" xml:space="preserve">
+    <value>Income Per Pax</value>
   </data>
   <data name="PageShowAlliance_1002_name" xml:space="preserve">
     <value>Alliance Information</value>

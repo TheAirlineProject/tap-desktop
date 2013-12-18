@@ -86,6 +86,22 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
         }
     }
+    //the pax/income for a route
+    public class RouteIncomePerPaxMVVM
+    {
+        public Route Route { get; set; }
+        public double IncomePerPax { get; set; }
+        public RouteIncomePerPaxMVVM(Route route)
+        {
+            StatisticsType stat = StatisticsTypes.GetStatisticsType("Passengers");
+
+            this.Route = route;
+
+            double pax = this.Route.Statistics.getStatisticsValue(stat);
+
+            this.IncomePerPax = this.Route.Balance / pax;
+        }
+    }
     //the profit for a route
     public class RouteProfitMVVM
     {

@@ -25,23 +25,51 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// </summary>
     public partial class PageRoutes : Page
     {
+        public List<RouteProfitMVVM> YearToDateProfitRoutes { get; set; }
+        public List<RouteProfitMVVM> LastMonthProfitRoutes { get; set; }
         public List<RouteProfitMVVM> ProfitRoutes { get; set; }
+        public List<RouteIncomePerPaxMVVM> IncomePaxRoutes { get; set; }
         public List<Route> RequestedRoutes { get; set; }
         public PageRoutes()
         {
-            var routes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.Balance);
+            var profitRoutes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.Balance);
 
-            double totalProfit = routes.Sum(r=>r.Balance);
+            double totalProfit = profitRoutes.Sum(r=>r.Balance);
 
             this.ProfitRoutes = new List<RouteProfitMVVM>();
-            foreach (Route route in routes.Take(Math.Min(5,routes.Count())))
+            foreach (Route route in profitRoutes.Take(Math.Min(5,profitRoutes.Count())))
             {
                 this.ProfitRoutes.Add(new RouteProfitMVVM(route,totalProfit));
             }
-         
+        
             var requestedRoutes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.Destination1.getDestinationPassengersRate(r.Destination2,AirlinerClass.ClassType.Economy_Class) + r.Destination2.getDestinationPassengersRate(r.Destination1,AirlinerClass.ClassType.Economy_Class));
-            this.RequestedRoutes = requestedRoutes.Take(Math.Min(5,routes.Count())).ToList();
-         
+            this.RequestedRoutes = requestedRoutes.Take(Math.Min(5,requestedRoutes.Count())).ToList();
+
+            var yearToDateRoutes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r => r.getBalance(new DateTime(GameObject.GetInstance().GameTime.Year, 1, 1), GameObject.GetInstance().GameTime));
+
+            double yearToDateProfit = yearToDateRoutes.Sum(r => r.getBalance(new DateTime(GameObject.GetInstance().GameTime.Year, 1, 1), GameObject.GetInstance().GameTime));
+
+            this.YearToDateProfitRoutes = new List<RouteProfitMVVM>();
+            foreach (Route route in yearToDateRoutes.Take(Math.Min(5, yearToDateRoutes.Count())))
+                this.YearToDateProfitRoutes.Add(new RouteProfitMVVM(route, yearToDateProfit));
+
+            DateTime lastMonthStartDate = new DateTime(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month,1).AddMonths(-1);
+            DateTime lastMonthEndDate = new DateTime(GameObject.GetInstance().GameTime.Year,GameObject.GetInstance().GameTime.Month,1);
+            
+            var lastMonthProfitRoutes = GameObject.GetInstance().HumanAirline.Routes.OrderByDescending(r=>r.getBalance(lastMonthStartDate,lastMonthEndDate));
+
+            double lastMonthProfit = lastMonthProfitRoutes.Sum(r=>r.getBalance(lastMonthStartDate,lastMonthEndDate));
+
+            this.LastMonthProfitRoutes = new List<RouteProfitMVVM>();
+            foreach (Route route in lastMonthProfitRoutes.Take(Math.Min(5,lastMonthProfitRoutes.Count())))
+                this.LastMonthProfitRoutes.Add(new RouteProfitMVVM(route,lastMonthProfit));
+
+            this.IncomePaxRoutes = new List<RouteIncomePerPaxMVVM>();
+            foreach (Route route in GameObject.GetInstance().HumanAirline.Routes)
+                this.IncomePaxRoutes.Add(new RouteIncomePerPaxMVVM(route));
+
+            this.IncomePaxRoutes = this.IncomePaxRoutes.OrderByDescending(r => r.IncomePerPax).Take(Math.Min(5, this.IncomePaxRoutes.Count)).ToList();
+
             this.Loaded += PageRoutes_Loaded;
             InitializeComponent();
         }

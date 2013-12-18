@@ -301,12 +301,24 @@
         </WrapPanel>
     </DataTemplate>
     <DataTemplate x:Key="RouteItem">
-        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center">
+        <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ShowDuration="60000">
+            <TextBlock.ToolTip>
+                <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}-{1}">
+                            <Binding Path="Destination1.Profile.Name"/>
+                            <Binding Path="Destination2.Profile.Name"/>
+                        </MultiBinding>
+
+                    </TextBlock.Text>
+                </TextBlock>
+            </TextBlock.ToolTip>
             <TextBlock.Text>
                 <MultiBinding StringFormat="{}{0}-{1}">
                     <Binding Path="Destination1" Converter="{StaticResource AirportCodeConverter}" />
                     <Binding Path="Destination2" Converter="{StaticResource AirportCodeConverter}" />
                 </MultiBinding>
+                
             </TextBlock.Text>
         </TextBlock>
     </DataTemplate>

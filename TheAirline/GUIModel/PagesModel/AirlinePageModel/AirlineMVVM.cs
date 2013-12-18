@@ -43,6 +43,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
+        public List<AirlineRouteMVVM> Routes { get; set; }
 
         public Boolean IsBuyable { get; set; }
         public Alliance Alliance { get; set; }
@@ -132,7 +133,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Destinations = new ObservableCollection<AirlineDestinationMVVM>();
             this.AirlineAirlines = new ObservableCollection<Airline>();
             this.FundsAirlines = new ObservableCollection<Airline>();
+            this.Routes = new List<AirlineRouteMVVM>();
 
+            this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
 
@@ -605,6 +608,21 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm class for an airline route
+    public class AirlineRouteMVVM
+    {
+        public double PriceIndex { get; set; }
+        public Route Route { get; set; }
+        public AirlineRouteMVVM(Route route)
+        {
+            this.Route = route;
+
+            if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger)
+                this.PriceIndex = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
+            else
+                this.PriceIndex = ((CargoRoute)this.Route).PricePerUnit;
         }
     }
     //the mvvm class for a destination
