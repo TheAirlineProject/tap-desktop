@@ -10,7 +10,7 @@
     <Language culture="en-GB" name="English (UK)" flag="England-round.png" UnitSystem="Metric" isEnabled="true" />
     <Language culture="de-DE" name="Deutsch (DE)" flag="Germany-round.png" UnitSystem="Metric" isEnabled="true" />
     <Language culture="nl-NL" name="Nederlands (NL)" flag="Netherlands-large.png" UnitSystem="Metric" isEnabled="false" />
-    <Language culture="zh-CN" name="中文 (CN)" flag="China-large.png" UnitSystem="Metric" isEnabled="false" />
+    <Language culture="zh-CN" name="中文 (CN)" flag="China-large.png" UnitSystem="Metric" isEnabled="true" />
     <Language culture="da-DK" name="Dansk (DA)" flag="Denmark-round.png" UnitSystem="Metric" isEnabled="true" />
     <Language culture="es-ES" name="Español (ES)" flag="Spain-round.png" UnitSystem="Metric" isEnabled="true" />
     <Language culture="it-IT" name="Italiana (IT)" flag="Italy-large.png" UnitSystem="Metric" isEnabled="false" />

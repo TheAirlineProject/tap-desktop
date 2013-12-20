@@ -11,7 +11,8 @@ using System.Collections;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using System.Threading.Tasks;
 using System.Diagnostics;
-using TheAirline.GraphicsModel.Converters;
+using TheAirline.GUIModel.HelpersModel;
+
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -43,7 +44,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             {
                                 CheckForAirlinersWithoutRoutes(airline);
                             },
-
+                            () =>
+                            {
+                                CheckForOrderOfAirliners(airline);
+                            },
                             () =>
                             {
                                 CheckForAirlineAlliance(airline);
@@ -56,6 +60,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             () =>
                             {
                                 CheckForAirlineAirportFacilities(airline);
+                            },
+                            () =>
+                            {
+                                CheckForOrderOfAirliners(airline);
                             }
                         ); //close parallel.invoke
 
@@ -162,27 +170,35 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Airport homeAirport = AIHelpers.GetRandomItem(airportsList);
 
             List<AirlinerType> types = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To >= GameObject.GetInstance().GameTime && t.Price * numberToOrder < airline.Money);
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
+                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Passenger);
+
+            if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
+                types.RemoveAll(a => a.TypeAirliner == AirlinerType.TypeOfAirliner.Cargo);
+            
             types = types.OrderBy(t => t.Price).ToList();
 
             Dictionary<AirlinerType, int> list = new Dictionary<AirlinerType, int>();
+            
+            foreach (AirlinerType type in types)
+                list.Add(type,(int)((type.Range / (Convert.ToDouble(type.Price) / 100000))));
+            /*
             Parallel.ForEach(types, t =>
                 {
                     list.Add(t, (int)((t.Range / (t.Price / 100000))));
-                });
+                });*/
 
             if (list.Keys.Count > 0)
             {
                 AirlinerType type = AIHelpers.GetRandomItem(list);
 
-                List<AirlinerClass> classes = new List<AirlinerClass>();
-                classes.Add(new AirlinerClass(AirlinerClass.ClassType.Economy_Class, ((AirlinerPassengerType)type).MaxSeatingCapacity));
-
-
+               
                 List<AirlinerOrder> orders = new List<AirlinerOrder>();
-                orders.Add(new AirlinerOrder(type, classes, numberToOrder, false));
+                orders.Add(new AirlinerOrder(type, AirlinerHelpers.GetAirlinerClasses(type), numberToOrder, false));
 
-                int days = rnd.Next(30);
-                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, GameObject.GetInstance().GameTime.AddMonths(3).AddDays(days));
+                DateTime deliveryDate = AirlinerHelpers.GetOrderDeliveryDate(orders);
+                AirlineHelpers.OrderAirliners(airline, orders, homeAirport, deliveryDate);
             }
 
 
@@ -514,8 +530,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks for a new route for an airline
         private static void CheckForNewRoute(Airline airline)
         {
-            List<FleetAirliner> fleet = new List<FleetAirliner>(airline.Fleet);
-            int airlinersInOrder = fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            int airlinersInOrder;
+            lock (airline.Fleet)
+            {
+                List<FleetAirliner> fleet = new List<FleetAirliner>(airline.Fleet);
+                airlinersInOrder = fleet.Count(a => a.Airliner.BuiltDate > GameObject.GetInstance().GameTime);
+            }
 
             int newRouteInterval = 0;
             switch (airline.Mentality)
@@ -625,8 +645,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             if (!AirportHelpers.HasFreeGates(destination, airline))
                                 AirportHelpers.RentGates(airport, airline);
 
-                            airline.addRoute(route);
-
+                          
                             //Console.WriteLine("{3}: {0} has created a route between {1} and {2}", airline.Profile.Name, route.Destination1.Profile.Name, route.Destination2.Profile.Name,GameObject.GetInstance().GameTime.ToShortDateString());
 
                             if (fAirliner == null)
@@ -667,10 +686,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             }
 
-                            NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1001"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
+                            //NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1001"), airline.Profile.Name, new AirportCodeConverter().Convert(route.Destination1), new AirportCodeConverter().Convert(route.Destination2))));
 
-                            fAirliner.addRoute(route);
-
+                          
                             if (route.Type == Route.RouteType.Passenger || route.Type == Route.RouteType.Mixed)
                             {
 
@@ -688,6 +706,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                             route.LastUpdated = GameObject.GetInstance().GameTime;
                         }
+                        airline.addRoute(route);
+
+                        fAirliner.addRoute(route);
+
 
                         AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
                         AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
@@ -732,7 +754,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double maxBusinessRouteTime = new TimeSpan(2, 0, 0).TotalMinutes;
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates.convertToGeoCoordinate(), route.Destination2.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             return minFlightTime.TotalMinutes <= maxBusinessRouteTime;
         }
@@ -772,7 +794,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                                   select a.Type.Range;
             double maxDistance = airliners.Count() == 0 ? 5000 : airliners.Max();
 
-            double minDistance = (from a in Airports.GetAirports(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates)).Min();
+            double minDistance = (from a in Airports.GetAirports(a => a != airport) select MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate())).Min();
 
             List<Airport> airports = Airports.GetAirports(a => airline.Airports.Find(ar => ar.Profile.Town == a.Profile.Town) == null && AirlineHelpers.HasAirlineLicens(airline, airport, a) && !FlightRestrictions.HasRestriction(a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airport.Profile.Country, a.Profile.Country, GameObject.GetInstance().GameTime, FlightRestriction.RestrictionType.Flights) && !FlightRestrictions.HasRestriction(airline, a.Profile.Country, airport.Profile.Country, GameObject.GetInstance().GameTime));
             List<Route> routes = airline.Routes.FindAll(r => r.Destination1 == airport || r.Destination2 == airport);
@@ -796,19 +818,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     airports = airports.FindAll(a => a.Profile.Country == airport.Profile.Country);
                     break;
                 case Airline.AirlineFocus.Global:
-                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
+                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 100 && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < maxDistance && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 100);
                     break;
                 case Airline.AirlineFocus.Local:
-                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+                    airports = airports.FindAll(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < Math.Max(minDistance, 1000) && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 50);
                     break;
                 case Airline.AirlineFocus.Regional:
-                    airports = airports.FindAll(a => a.Profile.Country.Region == airport.Profile.Country.Region && AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < maxDistance && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 100);
+                    airports = airports.FindAll(a => a.Profile.Country.Region == airport.Profile.Country.Region && AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < maxDistance && airport.Profile.Town != a.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 100);
                     break;
             }
 
             if (airports.Count == 0)
             {
-                airports = (from a in Airports.GetAirports(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50) orderby a.Profile.Size descending select a).ToList();
+                airports = (from a in Airports.GetAirports(a => AIHelpers.IsRouteInCorrectArea(airport, a) && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) < 5000 && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 50) orderby a.Profile.Size descending select a).ToList();
             }
 
             return (from a in airports where routes.Find(r => r.Destination1 == a || r.Destination2 == a) == null && (a.Terminals.getFreeGates() > 0 || AirportHelpers.HasFreeGates(a, airline)) orderby ((int)airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class)) + ((int)a.getDestinationPassengersRate(airport, AirlinerClass.ClassType.Economy_Class)) descending select a).ToList();
@@ -827,7 +849,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if the two destinations are in the correct area (the airport types are ok)
         public static Boolean IsRouteInCorrectArea(Airport dest1, Airport dest2)
         {
-            double distance = MathHelpers.GetDistance(dest1.Profile.Coordinates, dest2.Profile.Coordinates);
+            double distance = MathHelpers.GetDistance(dest1.Profile.Coordinates.convertToGeoCoordinate(), dest2.Profile.Coordinates.convertToGeoCoordinate());
 
             Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
 
@@ -842,7 +864,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static FleetAirliner GetFleetAirliner(Airline airline, Airport destination1, Airport destination2)
         {
             //Order new airliner
-            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates));
+            var fleet = airline.Fleet.FindAll(f => !f.HasRoute && f.Airliner.BuiltDate <= GameObject.GetInstance().GameTime && f.Airliner.Type.Range > MathHelpers.GetDistance(destination1.Profile.Coordinates.convertToGeoCoordinate(), destination2.Profile.Coordinates.convertToGeoCoordinate()));
 
             if (fleet.Count > 0)
                 return (from f in fleet orderby f.Airliner.Type.Range select f).First();
@@ -854,7 +876,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
 
             double maxLoanTotal = 100000000;
-            double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates, destination2.Profile.Coordinates);
+            double distance = MathHelpers.GetDistance(destination1.Profile.Coordinates.convertToGeoCoordinate(), destination2.Profile.Coordinates.convertToGeoCoordinate());
 
             AirlinerType.TypeRange rangeType = GeneralHelpers.ConvertDistanceToRangeType(distance);
 
@@ -998,7 +1020,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //creates the time table for a cargo airliner
         public static void CreateCargoRouteTimeTable(Route route, FleetAirliner airliner)
         {
-            TimeSpan routeFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type);
+            TimeSpan routeFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates.convertToGeoCoordinate(), route.Destination2.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type);
             TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int maxHours = 20 - 8; //from 08.00 to 20.00
@@ -1016,7 +1038,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static void CreateRouteTimeTable(Route route, FleetAirliner airliner)
         {
 
-            TimeSpan routeFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type);
+            TimeSpan routeFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates.convertToGeoCoordinate(), route.Destination2.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type);
             TimeSpan minFlightTime = routeFlightTime.Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int maxHours = 22 - 6; //from 06.00 to 22.00
@@ -1088,7 +1110,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     for (int i = 0; i < 3; i++)
                     {
-                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode1)));
+                        Gate outboundGate = GetFreeAirlineGate(airliner.Airliner.Airline,route.Destination1,day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)));
+                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, outTime, 0)), new RouteEntryDestination(route.Destination2, flightCode1),outboundGate));
 
                         day += 2;
                     }
@@ -1097,7 +1120,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                     for (int i = 0; i < 3; i++)
                     {
-                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode2)));
+                        Gate outboundGate = GetFreeAirlineGate(airliner.Airliner.Airline,route.Destination2, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)));
+              
+                        timeTable.addEntry(new RouteTimeTableEntry(timeTable, day, new TimeSpan(12, 0, 0).Add(new TimeSpan(0, homeTime, 0)), new RouteEntryDestination(route.Destination1, flightCode2),outboundGate));
 
                         day += 2;
                     }
@@ -1155,7 +1180,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             RouteTimeTable timeTable = new RouteTimeTable(route);
 
-            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates, route.Destination2.Profile.Coordinates, airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
+            TimeSpan minFlightTime = MathHelpers.GetFlightTime(route.Destination1.Profile.Coordinates.convertToGeoCoordinate(), route.Destination2.Profile.Coordinates.convertToGeoCoordinate(), airliner.Airliner.Type).Add(new TimeSpan(FleetAirlinerHelpers.GetMinTimeBetweenFlights(airliner).Ticks));
 
             int startHour = 6;
             int endHour = 10;
@@ -1204,7 +1229,14 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return timeTable;
 
         }
+        //returns a free gate for an airline
+        private static Gate GetFreeAirlineGate(Airline airline, Airport airport, DayOfWeek day, TimeSpan time)
+        {
+            var airlineGates = airport.Terminals.getGates(airline);
 
+            return airlineGates.FirstOrDefault();
+
+        }
         //check if an airline can join an alliance
         public static Boolean CanJoinAlliance(Airline airline, Alliance alliance)
         {
@@ -1236,7 +1268,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //check if an airline accepts an invitation to an alliance
         public static Boolean DoAcceptAllianceInvitation(Airline airline, Alliance alliance)
         {
-
+            //a subsidiary of a human airline will always accept an invitation to an alliance where the parent is a member
+            if (alliance.IsHumanAlliance && airline.IsHuman)
+                return true;
+            
             IEnumerable<Country> sameCountries = alliance.Members.SelectMany(m => m.Airline.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
             IEnumerable<Airport> sameDestinations = alliance.Members.SelectMany(m => m.Airline.Airports).Distinct().Intersect(airline.Airports);
 
@@ -1264,6 +1299,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return false;
 
             return true;
+        }
+        //checks if it is possible for one airline to remove another airline from an alliance
+        public static Boolean CanRemoveFromAlliance(Airline remover, Airline toremove, Alliance alliance)
+        {
+            return remover.getValue() > toremove.getValue() * 0.9;
         }
         //changes the service level for a route
         private static void ChangeRouteServiceLevel(PassengerRoute route)

@@ -16,13 +16,43 @@
             <StackPanel>
                 <Border Style="{StaticResource RoundedBorderStyle}">
                     <StackPanel>
-                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1006'}" FontWeight="Bold" FontSize="14"></TextBlock>
-                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageRoutes, Path=ProfitRoutes}">
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1008'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageRoutes, Path=LastMonthProfitRoutes}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
                                     <WrapPanel>
                                         <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
                                         <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1009'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageRoutes, Path=YearToDateProfitRoutes}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
+                                        <TextBlock Text="{Binding Percent,StringFormat={}{0:0.#}%}" VerticalAlignment="Bottom"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </Border>
+                <Border Style="{StaticResource RoundedBorderStyle}" Margin="0 10 0 0">
+                    <StackPanel>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutes 1010'}" FontWeight="Bold" FontSize="14"></TextBlock>
+                        <ListBox Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding ElementName=pageRoutes, Path=IncomePaxRoutes}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Route}" ContentTemplate="{StaticResource RouteItem}" VerticalAlignment="Bottom" Width="100"></ContentControl>
+                                        <TextBlock Text="{Binding IncomePerPax,StringFormat={}{0:0.##}}" VerticalAlignment="Bottom"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

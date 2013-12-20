@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
   <profile name="Delta Air Lines" iata="DL" color="MediumBlue" country="122" CEO="Richard Anderson" mentality="Aggressive" market="Global" preferedairport="ATL">
     <narrative narrative="Delta Air Lines is a major US airline operating out of Atlanta. Their flights serve every continent except Antarctica. The fleet is over 700 in size,
@@ -1285,7 +1285,7 @@ consisting largely of Boeing 757s, MD-88s, Boeing 767, Airbus A320, and Boeing 7
   <!--the airliners the airline would start with which isn't on a route early (1960) late (2010)-->
   <airliners>
     <airliner type="Boeing 747-400" early="0" late="16"></airliner>
-    <airliner type="Boeing 757-200" early="0" late="168"></airiner>
+    <airliner type="Boeing 757-200" early="0" late="168"></airliner>
     <airliner type="Boeing 737-700" early="0" late="10"></airliner>
     <airliner type="Boeing 737-800" early="0" late="73"></airliner>
     <airliner type="Boeing 757-300" early="0" late="16"></airliner>

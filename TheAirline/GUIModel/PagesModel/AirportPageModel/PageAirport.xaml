@@ -36,7 +36,9 @@
                 </TabItem>
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2001'}" Tag="Traffic">
                 </TabItem>
-                
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirport 2002'}" Tag="Gates">
+                </TabItem>
+
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirportContent">

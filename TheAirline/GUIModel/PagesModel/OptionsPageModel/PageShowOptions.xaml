@@ -81,6 +81,22 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1007'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbAirlineDestinations" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnAirlineDestinations}"></CheckBox>
             </WrapPanel>
+            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1008'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Daily"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1009'}" GroupName="AutoSave"></RadioButton>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Monthly"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1010'}" GroupName="AutoSave"></RadioButton>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Yearly"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1011'}" GroupName="AutoSave"></RadioButton>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Never"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1012'}" GroupName="AutoSave"></RadioButton>
+
+            </WrapPanel>
+            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1013'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Daily"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1009'}" GroupName="ClearStats"></RadioButton>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Monthly"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1010'}" GroupName="ClearStats"></RadioButton>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Yearly"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1011'}" GroupName="ClearStats"></RadioButton>
+                <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Never"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1012'}" GroupName="ClearStats"></RadioButton>
+
+            </WrapPanel>
             <WrapPanel Margin="0 5 0 0">
                 <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 200'}" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
                 <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 201'}" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>

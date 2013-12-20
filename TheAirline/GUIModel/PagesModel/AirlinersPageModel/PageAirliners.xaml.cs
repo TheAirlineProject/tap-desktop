@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     {
         public List<AirlineFleetSizeMVVM> MostUsedAircrafts { get; set; }
         public List<AirlinerType> NewestAircrafts { get; set; }
+        public Hashtable AirlinersFilters { get; set; }
+   
         public PageAirliners()
         {
             this.NewestAircrafts = AirlinerTypes.GetTypes(a => a.Produced.From <= GameObject.GetInstance().GameTime).OrderByDescending(a => a.Produced.From).Take(5).ToList();
@@ -39,7 +42,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                         })
                   .OrderByDescending(g=>g.Fleet.Count());
 
-            foreach (var group in query)
+            var aircrafts = query.Take(Math.Min(query.Count(),5));
+
+            foreach (var group in aircrafts)
             {
                 this.MostUsedAircrafts.Add(new AirlineFleetSizeMVVM(group.Type,group.Fleet.Count()));
             }
@@ -68,6 +73,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             if (selection == "Order" && frmContent != null)
                 frmContent.Navigate(new PageManufacturers() { Tag = this });
+
+            if (selection == "New" && frmContent != null)
+                frmContent.Navigate(new PageNewAirliners() { Tag = this });
 
 
         }

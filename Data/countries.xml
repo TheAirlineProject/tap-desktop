@@ -1940,6 +1940,17 @@
       <es-ES name="Nauru" />
     </translations>
   </country>
+          <country uid="292" shortname="ARC" region="112" flag="Antarctica" tailformat="V6-\\s3">
+    <translations>
+      <en-US name="Antarctica" />
+      <de-DE name="Antarctica" />
+      <en-GB name="Antarctica" />
+      <nl-NL name="Antarctica" />
+      <zh-CN name="Antarctica" />
+      <da-DK name="Antarctica" />
+      <es-ES name="Antarctica" />
+    </translations>
+  </country>
   <!--Territories-->
   <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />

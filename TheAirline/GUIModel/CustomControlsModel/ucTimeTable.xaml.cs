@@ -145,7 +145,7 @@ namespace TheAirline.GUIModel.CustomControlsModel
             }
         }
         //adds an entry to the time table
-        public void addTimelineEntry(object source, TimeSpan startTime, TimeSpan endTime,string text, Brush brush, string tooltip = "")
+        public void addTimelineEntry(object source, TimeSpan startTime, TimeSpan endTime,string text, Brush brush,string tooltip = "")
         {
             if (startTime.Days != endTime.Days)
             {

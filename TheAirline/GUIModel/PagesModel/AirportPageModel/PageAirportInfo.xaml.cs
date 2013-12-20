@@ -59,15 +59,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         private void btnSignContract_Click(object sender, RoutedEventArgs e)
         {
             int gates = Convert.ToInt16(slContractGates.Value);
-            int lenght = Convert.ToInt16(slContractLenght.Value);
+            int length = Convert.ToInt16(slContractLenght.Value);
 
             Boolean hasCheckin = this.Airport.Airport.getAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.CheckIn).TypeLevel > 0;
-            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport.Airport, gates, lenght);
+            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(this.Airport.Airport, gates, length);
 
-            Boolean payFull = lenght <= 2;
+            Boolean payFull = length <= 2;
 
-            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, GameObject.GetInstance().GameTime, gates, lenght, yearlyPayment, payFull);
-
+            AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, this.Airport.Airport, GameObject.GetInstance().GameTime, gates, length, yearlyPayment, payFull);
+            
             if (!hasCheckin)
             {
                 AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
@@ -83,6 +83,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 double payment = (contract.YearlyPayment * contract.Length) * 0.75;
                 AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -payment);
                 contract.YearlyPayment = 0;
+            }
+
+            for (int i = 0; i < gates; i++)
+            {
+                Gate gate = this.Airport.Airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                gate.Airline = GameObject.GetInstance().HumanAirline;
             }
 
             this.Airport.addAirlineContract(contract);
@@ -113,6 +119,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -penaltyFee);
 
                     this.Airport.removeAirlineContract(tContract);
+
+                    for (int i = 0; i < contract.NumberOfGates; i++)
+                    {
+                        Gate gate = this.Airport.Airport.Terminals.getGates().Where(g => g.Airline == GameObject.GetInstance().HumanAirline).First();
+                        gate.Airline = null;
+                    }
 
                 }
             }
@@ -190,13 +202,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             ContractMVVM tContract = (ContractMVVM)((Button)sender).Tag;
 
-            int length = 2;
            
-              WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2228"), string.Format(Translator.GetInstance().GetString("MessageBox", "2228", "message"),length), WPFMessageBoxButtons.YesNo);
+              WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2228"), string.Format(Translator.GetInstance().GetString("MessageBox", "2228", "message"),2), WPFMessageBoxButtons.YesNo);
 
               if (result == WPFMessageBoxResult.Yes)
               {
-                  tContract.extendContract(length);
+                  tContract.extendContract(2);
               }
         }
 
@@ -282,12 +293,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                     AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -checkinFacility.Price);
 
                 }
-
+                
                 double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, gates, 2);
 
                 AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline, airport, GameObject.GetInstance().GameTime, gates, 2, yearlyPayment);
 
                 airport.addAirlineContract(contract);
+
+                for (int i = 0; i < gates; i++)
+                {
+                    Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                    gate.Airline = GameObject.GetInstance().HumanAirline;
+                }
 
                 demand.Contracted = true;
             }

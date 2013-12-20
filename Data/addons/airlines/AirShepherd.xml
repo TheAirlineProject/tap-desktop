@@ -3,4 +3,5 @@
 <profile name="AirShepherd" iata="SPD" color="Gold" country="1002" CEO="Preston Shepherd" mentality="Aggressive" market="Regional" preferedairport="MUN">
   <narrative narrative="AirShepherd is a complimentary fictional airline as a thank you to one of our users." />
 </profile>
+<info real="False" from="1950" to="2199" />
 </airline>

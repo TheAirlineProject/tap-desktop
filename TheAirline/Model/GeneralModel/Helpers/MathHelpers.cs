@@ -142,7 +142,7 @@ namespace TheAirline.Model.GeneralModel
                 airport2.Statics = new AirportStatics(airport2);
 
             if (airport1.Statics.getDistance(airport2) == 0 && airport2.Statics.getDistance(airport1) == 0)
-                return airport1.Profile.Coordinates.GetDistanceTo(airport2.Profile.Coordinates) / 1000;
+                return airport1.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(airport2.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
             else
                 return Math.Max(airport1.Statics.getDistance(airport2), airport2.Statics.getDistance(airport1));
 
@@ -238,7 +238,7 @@ namespace TheAirline.Model.GeneralModel
         }
         public static TimeSpan GetFlightTime(Airport airport1, Airport airport2, AirlinerType type)
         {
-            return GetFlightTime(airport1.Profile.Coordinates, airport2.Profile.Coordinates, type);
+            return GetFlightTime(airport1.Profile.Coordinates.convertToGeoCoordinate(), airport2.Profile.Coordinates.convertToGeoCoordinate(), type);
         }
         //converts gallons to ltr
         public static double GallonsToLtr(double gallons)

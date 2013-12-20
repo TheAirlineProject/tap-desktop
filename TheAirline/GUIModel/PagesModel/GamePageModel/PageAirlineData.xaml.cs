@@ -13,7 +13,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.ObjectsModel;
@@ -76,11 +75,6 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.StartData.TimeZone = (GameTimeZone)cbTimeZone.SelectedItem;
             this.StartData.LocalCurrency = cbLocalCurrency.IsChecked.Value && this.StartData.HomeCountry.HasLocalCurrency;
          
-            Size s = PageNavigator.MainWindow.RenderSize;
-
-            GraphicsHelpers.SetContentHeight(s.Height/2);
-            GraphicsHelpers.SetContentWidth(s.Width / 2);
-
             if (!this.StartData.RandomOpponents)
             {
                 PageNavigator.NavigateTo(new PageSelectOpponents(this.StartData));

@@ -1,0 +1,9 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpSingleElement"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+        Title="PopUpSingleItem" Height="300" Width="300" Background="#004A7F">
+    <Grid>
+        
+    </Grid>
+</window:PopUpWindow>

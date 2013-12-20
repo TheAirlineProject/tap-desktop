@@ -78,10 +78,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             this.TotalAmount = price - this.Discount;
 
         }
-        //returns the delivery date for the order
+
+        //returns a date for delivery based on the aircraft production rate
         public DateTime getDeliveryDate()
         {
             double monthsToComplete = 0;
+
+
 
             foreach (AirlinerOrderMVVM order in this.Orders)
             {
@@ -115,6 +118,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             }
 
             return latestDate;
+
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -43,7 +43,7 @@
         <DataTemplate x:Key="HumanFeeItem">
             <WrapPanel>
                 <TextBlock Text="{Binding FeeType.Name}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
-                <Slider IsSnapToTickEnabled="True" Width="200" Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
+                <Slider IsSnapToTickEnabled="True" TickFrequency="{Binding Frequency}" Width="200" Maximum="{Binding FeeType.MaxValue}" Minimum="{Binding FeeType.MinValue}" Value="{Binding Value}" x:Name="slValue" />
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>

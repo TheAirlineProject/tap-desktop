@@ -1,7 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="UTF-8"?>
 <airline>
-  <profile name="Sun Country Airlines" iata="SY" color="MediumBlue" country="122" CEO="Jim Olsen" mentality="Safe" market="Global" preferedairport="MSP"></profile>
-  <narrative narrative="Sun Country is a mid-sized US Airline operating Boeing 737s from its hub at MSP mainly to vacation destinations. It also has a focus city at LAN."
+  <profile name="Sun Country Airlines" iata="SY" color="MediumBlue" country="122" CEO="Jim Olsen" mentality="Safe" market="Global" preferedairport="MSP">
+  <narrative narrative="Sun Country is a mid-sized US Airline operating Boeing 737s from its hub at MSP mainly to vacation destinations. It also has a focus city at LAN."></narrative>
+  </profile>
   <info real="True" from="1982" to="2199" />
   <startdata>
       <routes>

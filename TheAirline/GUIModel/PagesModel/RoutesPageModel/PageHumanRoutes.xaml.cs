@@ -28,7 +28,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     {
         public PageHumanRoutes()
         {
-            this.DataContext = GameObject.GetInstance().HumanAirline.Routes;
+            var routes = new List<RouteMVVM>();
+
+            foreach (Route route in GameObject.GetInstance().HumanAirline.Routes)
+                routes.Add(new RouteMVVM(route));
+
+            this.DataContext = routes;
             this.Loaded += PageHumanRoutes_Loaded;  
 
             InitializeComponent();

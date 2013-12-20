@@ -1779,7 +1779,7 @@ Loading of game aborted.</value>
     <value>Upgrade Facility</value>
   </data>
   <data name="MessageBox_2202_message" xml:space="preserve">
-    <value>Are you sure you want to upgrade the facilities to {0} for {1:c}?</value>
+    <value>Are you sure you want to upgrade the facilities to {0} for {1}?</value>
   </data>
   <data name="MessageBox_2203_name" xml:space="preserve">
     <value>Error</value>
@@ -3046,7 +3046,7 @@ Good luck.</value>
     <value>Distance error</value>
   </data>
   <data name="MessageBox_3002_message" xml:space="preserve">
-    <value>One or more airports are not of appropriate type (Regional/Domestic/Intl) or are missing some facilities</value>
+    <value>One or more airports are not of appropriate type (Regional/Domestic/Intl) </value>
   </data>
   <data name="MessageBox_3002_name" xml:space="preserve">
     <value>Airport error</value>
@@ -3262,7 +3262,7 @@ Good luck.</value>
     <value>Used Airliners</value>
   </data>
   <data name="PageAirliners_2001_name" xml:space="preserve">
-    <value>Order New Airliners</value>
+    <value>Order From Manufacturer</value>
   </data>
   <data name="PageUsedAirliner_200_name" xml:space="preserve">
     <value>Buy Airliner</value>
@@ -4444,7 +4444,7 @@ Good luck.</value>
     <value>Fire pilot</value>
   </data>
   <data name="MessageBox_2126_message" xml:space="preserve">
-    <value>Are you sure you want to but this airliner for {0}?</value>
+    <value>Are you sure you want to buy this airliner for {0}?</value>
   </data>
   <data name="MessageBox_2126_name" xml:space="preserve">
     <value>Buy airliner</value>
@@ -4463,5 +4463,152 @@ Good luck.</value>
   </data>
   <data name="PageFleetAirlinerInformation_204_name" xml:space="preserve">
     <value>Add Pilot</value>
+  </data>
+  <data name="PageShowOptions_1008_name" xml:space="preserve">
+    <value>Autosaving</value>
+  </data>
+  <data name="PageShowOptions_1009_name" xml:space="preserve">
+    <value>Daily</value>
+  </data>
+  <data name="PageShowOptions_1010_name" xml:space="preserve">
+    <value>Montly</value>
+  </data>
+  <data name="PageShowOptions_1011_name" xml:space="preserve">
+    <value>Yearly</value>
+  </data>
+  <data name="PageShowOptions_1012_name" xml:space="preserve">
+    <value>Never</value>
+  </data>
+  <data name="PageShowOptions_1013_name" xml:space="preserve">
+    <value>Clear Statistics</value>
+  </data>
+  <data name="MessageBox_1009_message" xml:space="preserve">
+    <value>Are you sure you want to delete the save game?</value>
+  </data>
+  <data name="MessageBox_1009_name" xml:space="preserve">
+    <value>Delete Game</value>
+  </data>
+  <data name="PageLoadSaveGame_202_name" xml:space="preserve">
+    <value>Delete Game</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_1014_name" xml:space="preserve">
+    <value>Select Homebase</value>
+  </data>
+  <data name="PageUsedAirliners_200_name" xml:space="preserve">
+    <value>Buy Airliners</value>
+  </data>
+  <data name="PageUsedAirliners_201_name" xml:space="preserve">
+    <value>Lease Airliners</value>
+  </data>
+  <data name="PageAirport_2002_name" xml:space="preserve">
+    <value>Gate Schedule</value>
+  </data>
+  <data name="PageAirlineEmployees_1011_name" xml:space="preserve">
+    <value>Unassigned Pilots</value>
+  </data>
+  <data name="PageAirlineEmployees_1012_name" xml:space="preserve">
+    <value>Pilots due to Retire</value>
+  </data>
+  <data name="MessageBox_2229_message" xml:space="preserve">
+    <value>Are you sure you want to upgrade the facilities to {0} for {1}?</value>
+  </data>
+  <data name="MessageBox_2229_name" xml:space="preserve">
+    <value>Buy facility</value>
+  </data>
+  <data name="MessageBox_3003_message" xml:space="preserve">
+    <value>One or more airports are missing cargo facilities</value>
+  </data>
+  <data name="MessageBox_3003_name" xml:space="preserve">
+    <value>Cargo error</value>
+  </data>
+  <data name="MessageBox_3005_message" xml:space="preserve">
+    <value>There are flight restrictions between the airports</value>
+  </data>
+  <data name="MessageBox_3005_name" xml:space="preserve">
+    <value>Airport restrictions</value>
+  </data>
+  <data name="PageHumanRoutes_1004_name" xml:space="preserve">
+    <value>Filling Degree</value>
+  </data>
+  <data name="PageHumanRoutes_1005_name" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="PageHumanRoutes_1006_name" xml:space="preserve">
+    <value>Average</value>
+  </data>
+  <data name="PageNewGame_1029_name" xml:space="preserve">
+    <value>Use Only Real Data</value>
+  </data>
+  <data name="PageAirliners_2002_name" xml:space="preserve">
+    <value>Order New Airliner</value>
+  </data>
+  <data name="PageNewAirliners_200_name" xml:space="preserve">
+    <value>Order Airliner(s)</value>
+  </data>
+  <data name="MessageBox_2609_message" xml:space="preserve">
+    <value>Are you sure you want to remove {0} from this alliance?</value>
+  </data>
+  <data name="MessageBox_2609_name" xml:space="preserve">
+    <value>Remove from alliance</value>
+  </data>
+  <data name="MessageBox_2610_message" xml:space="preserve">
+    <value>You can't remove {0} from this alliance</value>
+  </data>
+  <data name="MessageBox_2610_name" xml:space="preserve">
+    <value>Can't remove from alliance</value>
+  </data>
+  <data name="PageAirlineInfo_1032_name" xml:space="preserve">
+    <value>Price Index</value>
+  </data>
+  <data name="PageAirportInfo_1041_name" xml:space="preserve">
+    <value>Total Pax Demand</value>
+  </data>
+  <data name="PageCreateRoute_1013_name" xml:space="preserve">
+    <value>Route Season</value>
+  </data>
+  <data name="PageCreateRoute_1014_name" xml:space="preserve">
+    <value>All Year</value>
+  </data>
+  <data name="PageCreateRoute_1015_name" xml:space="preserve">
+    <value>Summer</value>
+  </data>
+  <data name="PageCreateRoute_1016_name" xml:space="preserve">
+    <value>Winter</value>
+  </data>
+  <data name="PageHumanRoutes_1007_name" xml:space="preserve">
+    <value>Season</value>
+  </data>
+  <data name="PageRoutes_1008_name" xml:space="preserve">
+    <value>Last Month Routes</value>
+  </data>
+  <data name="PageRoutes_1009_name" xml:space="preserve">
+    <value>Year-to-Date Routes</value>
+  </data>
+  <data name="PageRoutes_1010_name" xml:space="preserve">
+    <value>Income Per Pax Routes</value>
+  </data>
+  <data name="PageShowAlliance_1002_name" xml:space="preserve">
+    <value>Alliance Information</value>
+  </data>
+  <data name="PageShowAlliance_1003_name" xml:space="preserve">
+    <value>Alliance Type</value>
+  </data>
+  <data name="PageShowAlliance_1004_name" xml:space="preserve">
+    <value>Headquarter</value>
+  </data>
+  <data name="PageShowAlliance_1005_name" xml:space="preserve">
+    <value>Fleet Size</value>
+  </data>
+  <data name="PageShowAlliance_1006_name" xml:space="preserve">
+    <value>Alliance Destinations</value>
+  </data>
+  <data name="PageShowAlliance_1007_name" xml:space="preserve">
+    <value>Alliance Routes</value>
+  </data>
+  <data name="PageShowAlliance_1008_name" xml:space="preserve">
+    <value>Serving Countries</value>
+  </data>
+  <data name="PageShowAlliance_1009_name" xml:space="preserve">
+    <value>Passengers Year-to-Date</value>
   </data>
 </root>

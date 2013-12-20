@@ -14,6 +14,41 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
+    //the mvvm object for a route
+    public class RouteMVVM
+    {
+        public Route Route { get; set; }
+        public double FillingDegree { get; set; }
+        public double Total { get; set; }
+        public double Average { get; set; }
+        public double Balance { get; set; }
+        public RouteMVVM(Route route)
+        {
+            this.Route = route;
+            this.FillingDegree = this.Route.FillingDegree;
+            this.Balance = this.Route.Balance;
+
+            if (route.Type == Route.RouteType.Passenger)
+            {
+                RouteAirlinerClass raClass = ((PassengerRoute)route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class);
+
+                this.Total = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers"));
+                this.Average = route.Statistics.getStatisticsValue(raClass, StatisticsTypes.GetStatisticsType("Passengers%"));
+
+                
+            }
+            if (route.Type == Route.RouteType.Cargo)
+            {
+                this.Total = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo"));
+                this.Average = route.Statistics.getStatisticsValue(StatisticsTypes.GetStatisticsType("Cargo%"));
+
+               
+            }
+
+            if (this.Average < 0)
+                this.Average = 0;
+        }
+    }
     //the mvvm object for an airliner
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {
@@ -49,6 +84,22 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the pax/income for a route
+    public class RouteIncomePerPaxMVVM
+    {
+        public Route Route { get; set; }
+        public double IncomePerPax { get; set; }
+        public RouteIncomePerPaxMVVM(Route route)
+        {
+            StatisticsType stat = StatisticsTypes.GetStatisticsType("Passengers");
+
+            this.Route = route;
+
+            double pax = this.Route.Statistics.getStatisticsValue(stat);
+
+            this.IncomePerPax = this.Route.Balance / pax;
         }
     }
     //the profit for a route

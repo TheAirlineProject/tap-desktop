@@ -14,6 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -39,10 +40,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lbFacilities.ItemsSource);
             view.SortDescriptions.Clear();
 
-            SortDescription sortAirlineDescription = new SortDescription("Airline.Profile.Name", ListSortDirection.Ascending);
+            SortDescription sortAirlineDescription = new SortDescription("Facility.Airline.Profile.Name", ListSortDirection.Ascending);
             view.SortDescriptions.Add(sortAirlineDescription);
 
-        
+            SortDescription sortFacilityDescription = new SortDescription("Facility.Facility.Shortname", ListSortDirection.Ascending);
+            view.SortDescriptions.Add(sortFacilityDescription);
         }
 
         private void btnDeleteFacility_Click(object sender, RoutedEventArgs e)
@@ -67,6 +69,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 if (result == WPFMessageBoxResult.Yes)
                 {
                     this.Airport.removeAirlineFacility(facility);
+
+                    if (facility.Facility.Facility.Type == AirportFacility.FacilityType.Cargo && facility.Facility.Facility.TypeLevel == 1)
+                        GameObject.GetInstance().HumanAirline.removeAirport(this.Airport.Airport);
                 }
             }
 
@@ -78,34 +83,39 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
            AirportFacility.FacilityType type = (AirportFacility.FacilityType)cbNextFacility.SelectedItem;
 
            AirlineAirportFacility currentFacility = this.Airport.Airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline, type);
-
+            
            List<AirportFacility> facilities = AirportFacilities.GetFacilities(type);
            facilities = facilities.OrderBy(f => f.TypeLevel).ToList();
 
            int index = facilities.FindIndex(f => currentFacility.Facility == f);
-            
-            AirportFacility facility = facilities[index + 1];
 
-           if (facility.Price > GameObject.GetInstance().HumanAirline.Money)
-               WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2201"), Translator.GetInstance().GetString("MessageBox", "2201", "message"), WPFMessageBoxButtons.Ok);
-           else
+           if (facilities.Count >= index + 1)
            {
-               WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2202"), string.Format(Translator.GetInstance().GetString("MessageBox", "2202", "message"), facility.Name, facility.Price), WPFMessageBoxButtons.YesNo);
-
-               if (result == WPFMessageBoxResult.Yes)
+               AirportFacility facility = facilities[index + 1];
+               
+               if (facility.Price > GameObject.GetInstance().HumanAirline.Money)
+                   WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2201"), Translator.GetInstance().GetString("MessageBox", "2201", "message"), WPFMessageBoxButtons.Ok);
+               else
                {
-                   double price = facility.Price;
+                   WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2229"), string.Format(Translator.GetInstance().GetString("MessageBox", "2229", "message"), facility.Name, new ValueCurrencyConverter().Convert(facility.Price)), WPFMessageBoxButtons.YesNo);
 
-                   if (this.Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
-                       price = price * 1.25;
+                   if (result == WPFMessageBoxResult.Yes)
+                   {
+                       if (facility.Type == AirportFacility.FacilityType.Cargo && !GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport.Airport))
+                           GameObject.GetInstance().HumanAirline.addAirport(this.Airport.Airport);
 
-                   AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+                       double price = facility.Price;
 
-                   this.Airport.addAirlineFacility(facility);
- 
+                       if (this.Airport.Airport.Profile.Country != GameObject.GetInstance().HumanAirline.Profile.Country)
+                           price = price * 1.25;
+
+                       AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+
+                       this.Airport.addAirlineFacility(facility);
+
+                   }
                }
            }
-
         }
 
         private void btnQuickUpgradeFacility_Click(object sender, RoutedEventArgs e)
@@ -123,7 +133,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2201"), Translator.GetInstance().GetString("MessageBox", "2201", "message"), WPFMessageBoxButtons.Ok);
             else
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2202"), string.Format(Translator.GetInstance().GetString("MessageBox", "2202", "message"), facility.Name, facility.Price), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2202"), string.Format(Translator.GetInstance().GetString("MessageBox", "2202", "message"), facility.Name, new ValueCurrencyConverter().Convert(facility.Price)), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {

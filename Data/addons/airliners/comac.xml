@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airliners>
+  <airliner manufacturer="Comac" name="Shanghai Y-10" price="3231122"> <!--7700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="42.24" length="42.93" range="1732" speed="639" fuelcapacity="12130" consumption="0.093" runwaylengthrequired="2000"/>
+    <capacity passengers="178" cockpitcrew="3" cabincrew="2" maxclasses="2"/>
+    <produced from="1980" to="1984" rate="13"/>
+  </airliner>
+   <airliner manufacturer="Comac" name="Comac C919" price="6528370"> <!--7700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="38.9" length="35.8" range="4075" speed="834" fuelcapacity="8300" consumption="0.063" runwaylengthrequired="1700"/>
+    <capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+    <produced from="2016" to="2199" rate="17"/>
+  </airliner>
+</airliners>

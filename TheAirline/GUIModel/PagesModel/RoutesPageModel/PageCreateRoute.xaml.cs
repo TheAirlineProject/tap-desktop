@@ -23,6 +23,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -50,7 +51,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Airports = GameObject.GetInstance().HumanAirline.Airports.OrderByDescending(a=>a==GameObject.GetInstance().HumanAirline.Airports[0]).ThenBy(a => a.Profile.Name).ToList();
 
-            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
 
             this.HumanAircrafts = new List<AirlinerType>();
 
@@ -141,6 +142,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             Airport destination2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = (Airport)cbStopover1.SelectedItem;
             Airport stopover2 = cbStopover2.Visibility == System.Windows.Visibility.Visible ? (Airport)cbStopover2.SelectedItem : null;
+            
+            Weather.Season season = rbSeasonAll.IsChecked.Value ? Weather.Season.All_Year : Weather.Season.Winter;
+            season = rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
+            season = rbSeasonWinter.IsChecked.Value ? Weather.Season.Winter : season;
 
             try
             {
@@ -172,6 +177,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     }
 
                     FleetAirlinerHelpers.CreateStopoverRoute(route, stopover1, stopover2);
+
+                    route.Season = season;
 
                     GameObject.GetInstance().HumanAirline.addRoute(route);
 

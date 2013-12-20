@@ -3,7 +3,7 @@
   <manufacturer name="Aerospatiale" shortname="Aerospatiale" country="140"/>
   <manufacturer name="Airbus" shortname="Airbus" country="140"/>
   <manufacturer name="Antonov" shortname="Antonov" country="134"/>
-  <manufacturer name="Ark Aerospace Industries" shortname="Ark" country="122"/>
+  <manufacturer name="Ark Aerospace Industries" shortname="Ark" country="122" isreal="False"/>
   <manufacturer name="Avions de Transport Régional" shortname="ATR" country="141"/>
   <manufacturer name="Beechcraft" shortname="Beechcraft" country="122"/>
   <manufacturer name="Bombardier Aerospace" shortname="Bombardier" country="113"/>
@@ -12,7 +12,8 @@
   <manufacturer name="British Aircraft Corporation" shortname="BAC" country="130"/>
   <manufacturer name="Cessna Aircraft Company" shortname="Cessna" country="122"/>
   <manufacturer name="Convair" shortname="Convair" country="122"/>
-  <manufacturer name="de Havilland" shortname="DH" country="130"/>
+  <manufacturer name="de Havilland" shortname="DH" country="130"/>  
+  <manufacturer name="Dassault Aviation" shortname="Dassault" country="134"/>
   <manufacturer name="Douglas Aircraft Company" shortname="Douglas" country="122"/>
   <manufacturer name="Dornier Flugzeugwerke" shortname="Dornier" country="1002"/>
   <manufacturer name="Empresa Brasileira de Aeronáutica" shortname="Embraer" country="138"/>
@@ -25,6 +26,7 @@
   <manufacturer name="McDonnell Douglas" shortname="MD" country="122"/>
   <manufacturer name="Public Stock Company Tupolev" shortname="Tupolev" country="149"/>
   <manufacturer name="Saab AB" shortname="Saab" country="168"/>
+   <manufacturer name="Commercial Aircraft Corporation of China" shortname="Comac" country="148"/>
   <manufacturer name="Sud Aviation" shortname="Sud Aviation" country="140"/>
   <manufacturer name="Sukhoi Aviation Corporation" shortname="Sukhoi" country="149"/>
   <manufacturer name="The Boeing Company" shortname="Boeing" country="122"/>

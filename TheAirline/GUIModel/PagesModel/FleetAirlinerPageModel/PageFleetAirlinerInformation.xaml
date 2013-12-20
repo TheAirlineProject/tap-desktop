@@ -66,7 +66,10 @@
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1001'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1002'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                <ContentControl Content="{Binding Airliner.Homebase}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+                <ContentControl Content="{Binding Homebase}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirportCountryLongLink}"></ContentControl>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Height="16" Width="16" Margin="5 0 0 0" Background="Transparent" Click="btnEditHomebase_Click" Visibility="{Binding Airliner.Airliner.Airline.IsHuman,Converter={StaticResource BooleanToVisibility},FallbackValue=Collapsed}">
+                    <Image Source="/Data/images/edit.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
             </WrapPanel>
             <WrapPanel Style="{DynamicResource WrapPanelStyle}">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageFleetAirlinerInformation 1003'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>

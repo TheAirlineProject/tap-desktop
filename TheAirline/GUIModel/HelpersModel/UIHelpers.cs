@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Device.Location;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
@@ -592,7 +593,37 @@ namespace TheAirline.GUIModel.HelpersModel
             return SingleFindInTree(parent, new FinderMatchName(ElementName));
         }
 
+        /*!creates a standard text block.
+        * */
+        public static TextBlock CreateTextBlock(string text)
+        {
+            TextBlock txtText = new TextBlock();
+            txtText.Text = text;
 
+
+            return txtText;
+        }
+        //converts coordinates to a map position
+        public static Point WorldToTilePos(GeoCoordinate coordinates, int zoom)
+        {
+            double lon = coordinates.Longitude;
+            double lat = coordinates.Latitude;
+
+            Point p = new Point();
+            p.X = (float)((lon + 180.0) / 360.0 * (1 << zoom));
+            p.Y = (float)((1.0 - Math.Log(Math.Tan(lat * Math.PI / 180.0) +
+                1.0 / Math.Cos(lat * Math.PI / 180.0)) / Math.PI) / 2.0 * (1 << zoom));
+
+            double maxXValue = Math.Pow(2, zoom);
+
+            if (p.X < 0)
+                p.X = maxXValue + p.X;
+
+            if (p.X > maxXValue)
+                p.X = p.X - maxXValue;
+
+            return p;
+        }
 
 
     }
@@ -628,7 +659,7 @@ namespace TheAirline.GUIModel.HelpersModel
                 brush.Opacity = 0.50;
 
                 backGroundSetter.Value = brush;
-
+                
                 st.Resources.Add(SystemColors.HighlightBrushKey, brush);
                 st.Resources.Add(SystemColors.ControlBrushKey, brush);
 
@@ -689,6 +720,7 @@ namespace TheAirline.GUIModel.HelpersModel
 
             st.Resources.Add(SystemColors.HighlightBrushKey, brush);
             st.Resources.Add(SystemColors.ControlBrushKey, brush);
+            st.Resources.Add(SystemColors.InactiveSelectionHighlightBrushKey, brush);
 
             /*
             if (index % 2 == 0)
@@ -709,8 +741,9 @@ namespace TheAirline.GUIModel.HelpersModel
             }
              * */
             trigger.Setters.Add(backGroundSetter);
-
+         
             st.Triggers.Add(trigger);
+         
             st.Setters.Add(backGroundSetter);
             st.Setters.Add(focusVisualSetter);
             st.Setters.Add(marginSetter);

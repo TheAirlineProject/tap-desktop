@@ -338,6 +338,7 @@
   </airport>
   <!--Japan (RJ**)-->
   <airport name="Narita International Airport" icao="RJAA" iata="NRT" type="Long_Haul_International" season="All_Year">
+  <period from="05.20.1978 00:00:00" to="01.01.2199 00:00:00"/>
     <town town="Tokyo" country="171" GMT="09:00:00" DST="09:00:00"/>
     <coordinates>
       <latitude value="035°45'53''N"/>

@@ -16,6 +16,7 @@ using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
+using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.PilotModel;
 
@@ -268,6 +269,28 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
             }*/
          }
+
+        private void btnEditHomebase_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbHomebase = new ComboBox();
+            cbHomebase.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbHomebase.ItemTemplate = Application.Current.Resources["AirportCountryItem"] as DataTemplate;
+            cbHomebase.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbHomebase.Width = 200;
+
+            foreach (Airport airport in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= this.Airliner.Airliner.Airliner.Type.MinRunwaylength))
+            {
+                cbHomebase.Items.Add(airport);
+            }
+
+            cbHomebase.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageFleetAirlinerInformation", "1014"), cbHomebase) == PopUpSingleElement.ButtonSelected.OK && cbHomebase.SelectedItem != null)
+            {
+                Airport homebase = cbHomebase.SelectedItem as Airport;
+                this.Airliner.Homebase = homebase;
+            }
+        }
 
      
       

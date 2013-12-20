@@ -3936,4 +3936,18 @@
       <runway name="07/25" length="2000" surface="Asphalt" />
     </runways>
   </airport>
+    <airport name="Snow Airport" icao="GVSQ" iata="AGF" type="Short_Haul_International" season="All_Year">
+    <town town="Snow City" country="292" GMT="-01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="016°49'59''N" />
+      <longitude value="025°03'19''W" />
+    </coordinates>
+    <size value="Very_large" pax="89000" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
 </airports>

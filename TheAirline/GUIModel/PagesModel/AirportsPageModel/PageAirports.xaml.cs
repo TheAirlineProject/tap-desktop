@@ -16,6 +16,7 @@ using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using System.Collections;
 
 namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 {
@@ -24,10 +25,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
     /// </summary>
     public partial class PageAirports : Page
     {
-       
-
         public List<Airport> HumanAirports { get; set; }
         public List<Airport> HumanHubs { get; set; }
+        public Hashtable AirportsFilters { get; set; }
         public PageAirports()
         {
             this.HumanAirports = GameObject.GetInstance().HumanAirline.Airports.OrderBy(a=>a.Profile.Pax).ToList().GetRange(0,Math.Min(GameObject.GetInstance().HumanAirline.Airports.Count,5));
@@ -37,8 +37,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             
             InitializeComponent();
 
-     
-           
         }
 
         private void PageAirports_Loaded(object sender, RoutedEventArgs e)
@@ -67,9 +65,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
             
-            if (selection == "Search" && frmContent != null)
-                frmContent.Navigate(new PageSearchAirports() { Tag = this });
-           
             if (selection == "Airports" && frmContent != null)
                 frmContent.Navigate(new PageShowAirports() { Tag = this });
 

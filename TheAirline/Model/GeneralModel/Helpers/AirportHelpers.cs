@@ -148,7 +148,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns all entries for a specific airport with landings in a time span for a day
         public static List<RouteTimeTableEntry> GetAirportLandings(Airport airport, DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {
-            return GetAirportRoutes(airport).SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates, e.DepartureAirport.Profile.Coordinates, e.Airliner.Airliner.Type)) >= startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates, e.DepartureAirport.Profile.Coordinates, e.Airliner.Airliner.Type)) < endTime && e.Day == day)).ToList();
+            return GetAirportRoutes(airport).SelectMany(r => r.TimeTable.Entries.FindAll(e => e.Airliner != null && e.Destination.Airport == airport && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), e.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), e.Airliner.Airliner.Type)) >= startTime && e.Time.Add(MathHelpers.GetFlightTime(e.Destination.Airport.Profile.Coordinates.convertToGeoCoordinate(), e.DepartureAirport.Profile.Coordinates.convertToGeoCoordinate(), e.Airliner.Airliner.Type)) < endTime && e.Day == day)).ToList();
         }
         //creates the weather for an airport
         public static void CreateAirportWeather(Airport airport)
@@ -567,7 +567,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     {
 
                         for (int i = 0; i < numberOfGates; i++)
-                            minTerminal.Gates.addGate(new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild)));
+                        {
+                            Gate gate = new Gate(GameObject.GetInstance().GameTime.AddDays(daysToBuild));
+                            gate.Airline = minTerminal.Airline;
+
+                            minTerminal.Gates.addGate(gate);
+                        }
 
                         airport.Income -= price;
                         airport.LastExpansionDate = GameObject.GetInstance().GameTime;
@@ -611,6 +616,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks if an airline has any free gates at an airport - more than 90 % free
         public static Boolean HasFreeGates(Airport airport, Airline airline)
         {
+            
             List<AirportContract> contracts = airport.getAirlineContracts(airline);
 
             if (contracts.Count == 0)
@@ -637,7 +643,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline).Sum(c => c.NumberOfGates);
             AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport, gates, 20));
-
+            
             if (currentgates == 0)
             {
                 airport.addAirlineContract(contract);
@@ -646,11 +652,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 foreach (AirportContract c in airport.AirlineContracts.Where(a => a.Airline == airline))
                 { 
-                c.NumberOfGates += gates;
+                    c.NumberOfGates += gates;
                 }
             }
+
+            for (int i = 0; i < gates; i++)
+            {
+                Gate gate = airport.Terminals.getGates().Where(g => g.Airline == null).First();
+                gate.Airline = airline;
+            }
+
         }
-       
+
         //returns all occupied slot times for an airline at an airport (15 minutes slots)
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts)
         {
@@ -714,6 +727,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline)
         {
+            s
             return GetOccupiedSlotTimes(airport, airline, airport.AirlineContracts.Where(c => c.Airline == airline).ToList());
         }
         //returns if an airline has enough free slots at an airport

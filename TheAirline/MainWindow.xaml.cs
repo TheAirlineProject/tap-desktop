@@ -12,14 +12,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.Model.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageAirportsModel;
-using TheAirline.GraphicsModel.PageModel.PageAirlineModel;
-using TheAirline.GraphicsModel.PageModel.PageGameModel;
 using System.Threading;
 using System.Globalization;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.GUIModel.HelpersModel;
 
 namespace TheAirline
 {

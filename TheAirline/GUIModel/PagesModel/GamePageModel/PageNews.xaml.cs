@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
@@ -120,6 +120,12 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             {
                 if (subText.StartsWith("LI"))
                     txtBlock.Inlines.Add(getNewsLink(subText));
+                else if (subText.StartsWith("HEAD"))
+                    txtBlock.Inlines.Add(getNewsHeader(subText));
+                else if (subText.StartsWith("BOLD"))
+                    txtBlock.Inlines.Add(getNewsBold(subText));
+                else if (subText.StartsWith("WIDTH"))
+                    txtBlock.Inlines.Add(getNewsWidthText(subText));
                 else
                     txtBlock.Inlines.Add(subText);
             }
@@ -131,6 +137,45 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
             throw new NotImplementedException();
+        }
+        //creates a text for a specific width
+        private TextBlock getNewsWidthText(string text)
+        {
+            int lWidth = 6;
+            int space = text.IndexOf(' ');
+
+            string tWidth = text.Substring(lWidth, space - lWidth +1);
+
+            int width = Int16.Parse(tWidth);
+
+            TextBlock txt = new TextBlock();
+            txt.Text = text.Substring(space);
+            txt.Width = width;
+
+            return txt;
+        }
+        //creates the bold text for a news text
+        private TextBlock getNewsBold(string text)
+        {
+            text = text.Replace("BOLD=", "");
+
+            TextBlock txt = new TextBlock();
+            txt.Text = text;
+            txt.FontWeight = FontWeights.Bold;
+
+            return txt;
+        }
+        //creates the header for a news text
+        private TextBlock getNewsHeader(string text)
+        {
+            text = text.Replace("HEAD=", "");
+
+            TextBlock txtHeader = new TextBlock();
+            txtHeader.Text = text;
+            txtHeader.FontWeight = FontWeights.Bold;
+            txtHeader.FontSize = 24;
+            
+            return txtHeader;
         }
         //creates the link for a news link
         private Hyperlink getNewsLink(string text)

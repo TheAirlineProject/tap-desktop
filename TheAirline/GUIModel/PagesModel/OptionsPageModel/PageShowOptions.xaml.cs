@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
@@ -28,8 +29,14 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             this.Options = new OptionsMVVM();
             this.DataContext = this.Options;
 
-            InitializeComponent();
+            this.Loaded += PageShowOptions_Loaded;
 
+            InitializeComponent();
+        }
+
+        private void PageShowOptions_Loaded(object sender, RoutedEventArgs e)
+        {
+            setIntevalValues();
         }
         private void btnSaveChanges_Click(object sender, RoutedEventArgs e)
         {
@@ -51,6 +58,23 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
                  GeneralHelpers.GameSpeedValue gameSpeed = (GeneralHelpers.GameSpeedValue)Enum.ToObject(typeof(GeneralHelpers.GameSpeedValue), (int)slGameSpeed.Value);
                  
                  Settings.GetInstance().setGameSpeed(gameSpeed);
+
+                 var rbAutoSaves = UIHelpers.FindRBChildren(this, "AutoSave");
+
+                 foreach (RadioButton rbInterval in rbAutoSaves)
+                 { 
+                     if (rbInterval.IsChecked.Value)
+                         Settings.GetInstance().AutoSave = (Settings.Intervals)Enum.Parse(typeof(Settings.Intervals), rbInterval.Tag.ToString(), true);
+                 }
+
+                  var rbClearings = UIHelpers.FindRBChildren(this, "ClearStats");
+
+                  foreach (RadioButton rbInterval in rbClearings)
+                  {
+                      if (rbInterval.IsChecked.Value)
+                          Settings.GetInstance().ClearStats = (Settings.Intervals)Enum.Parse(typeof(Settings.Intervals), rbInterval.Tag.ToString(), true);
+          
+                  }
              }
         
 
@@ -58,7 +82,27 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
         private void btnUndo_Click(object sender, RoutedEventArgs e)
         {
             this.Options.undoChanges();
+            setIntevalValues();
 
+        }
+        //sets the values of the interval types
+        private void setIntevalValues()
+        {
+            var rbAutoSaves = UIHelpers.FindRBChildren(this, "AutoSave");
+
+            foreach (RadioButton rbInterval in rbAutoSaves)
+            {
+                if (rbInterval.Tag.ToString() == this.Options.AutoSave.ToString())
+                    rbInterval.IsChecked = true;
+            }
+
+            var rbClearings = UIHelpers.FindRBChildren(this, "ClearStats");
+
+            foreach (RadioButton rbInterval in rbClearings)
+            {
+                if (rbInterval.Tag.ToString() == this.Options.ClearStats.ToString())
+                    rbInterval.IsChecked = true;
+            }
         }
     }
 }
