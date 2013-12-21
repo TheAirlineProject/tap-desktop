@@ -4563,6 +4563,21 @@ Good luck.</value>
   <data name="PageAirportInfo_1041_name" xml:space="preserve">
     <value>Total Pax Demand</value>
   </data>
+  <data name="PageCreateRoute_1013_name" xml:space="preserve">
+    <value>Route Season</value>
+  </data>
+  <data name="PageCreateRoute_1014_name" xml:space="preserve">
+    <value>All Year</value>
+  </data>
+  <data name="PageCreateRoute_1015_name" xml:space="preserve">
+    <value>Summer</value>
+  </data>
+  <data name="PageCreateRoute_1016_name" xml:space="preserve">
+    <value>Winter</value>
+  </data>
+  <data name="PageHumanRoutes_1007_name" xml:space="preserve">
+    <value>Season</value>
+  </data>
   <data name="PageRoutes_1008_name" xml:space="preserve">
     <value>Last Month Routes</value>
   </data>
@@ -4570,7 +4585,7 @@ Good luck.</value>
     <value>Year-to-Date Routes</value>
   </data>
   <data name="PageRoutes_1010_name" xml:space="preserve">
-    <value>Income Per Pax</value>
+    <value>Income Per Pax Routes</value>
   </data>
   <data name="PageShowAlliance_1002_name" xml:space="preserve">
     <value>Alliance Information</value>

@@ -10,11 +10,11 @@
 	Title="PageAirportGateSchedule">
     <Page.Resources>
         <DataTemplate x:Key="GatesTemplate">
-            <ListBox ItemsSource="{Binding AllGates}" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
+            <ListBox ItemsSource="{Binding AllGates}" BorderThickness="0" Background="Transparent"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
-                            <TextBlock Text="{Binding GateNumber}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                            <TextBlock Text="{Binding GateNumber,StringFormat=Gate {0}}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
                             <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom">
                                 <ContentControl.Style>
                                     <Style>

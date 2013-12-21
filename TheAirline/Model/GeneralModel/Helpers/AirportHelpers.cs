@@ -616,6 +616,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //checks if an airline has any free gates at an airport - more than 90 % free
         public static Boolean HasFreeGates(Airport airport, Airline airline)
         {
+            
             List<AirportContract> contracts = airport.getAirlineContracts(airline);
 
             if (contracts.Count == 0)
@@ -726,6 +727,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline)
         {
+            
             return GetOccupiedSlotTimes(airport, airline, airport.AirlineContracts.Where(c => c.Airline == airline).ToList());
         }
         //returns if an airline has enough free slots at an airport

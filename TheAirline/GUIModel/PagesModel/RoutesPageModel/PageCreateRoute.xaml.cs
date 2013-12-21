@@ -23,6 +23,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -141,7 +142,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             Airport destination2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = (Airport)cbStopover1.SelectedItem;
             Airport stopover2 = cbStopover2.Visibility == System.Windows.Visibility.Visible ? (Airport)cbStopover2.SelectedItem : null;
-    
+            
+            Weather.Season season = rbSeasonAll.IsChecked.Value ? Weather.Season.All_Year : Weather.Season.Winter;
+            season = rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
+            season = rbSeasonWinter.IsChecked.Value ? Weather.Season.Winter : season;
+
             try
             {
                 if (AirlineHelpers.IsRouteDestinationsOk(GameObject.GetInstance().HumanAirline, destination1, destination2, rbPassenger.IsChecked.Value ? Route.RouteType.Passenger : Route.RouteType.Cargo, stopover1, stopover2))
@@ -172,6 +177,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     }
 
                     FleetAirlinerHelpers.CreateStopoverRoute(route, stopover1, stopover2);
+
+                    route.Season = season;
 
                     GameObject.GetInstance().HumanAirline.addRoute(route);
 

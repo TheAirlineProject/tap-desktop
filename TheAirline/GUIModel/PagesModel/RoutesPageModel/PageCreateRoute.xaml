@@ -41,7 +41,8 @@
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
-               <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}">
+           
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1002'}">
                     <h:QuickInfoValue.Value>
                         <ComboBox Style="{DynamicResource ComboBoxTransparentStyle}" ItemTemplate="{StaticResource AirportCountryItem}" SelectionChanged="cbDestination_SelectionChanged" Width="300" Name="cbDestination1" ItemsSource="{Binding Path=Airports,ElementName=pageCreateRoute}"></ComboBox>
                     </h:QuickInfoValue.Value>
@@ -96,6 +97,15 @@
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1005'}">
                     <h:QuickInfoValue.Value>
                         <TextBlock Text="-" Name="txtDistance"></TextBlock>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1013'}">
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel VerticalAlignment="Bottom">
+                            <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1014'}" Name="rbSeasonAll" IsChecked="True"></RadioButton>
+                            <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1015'}" Name="rbSeasonSummer" Margin="5 0 0 0"></RadioButton>
+                            <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1016'}" Name="rbSeasonWinter" Margin="5 0 0 0"></RadioButton>
+                        </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
             </ListBox>
