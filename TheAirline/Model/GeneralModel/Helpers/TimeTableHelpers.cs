@@ -43,8 +43,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static Boolean IsRouteEntryInOccupied(RouteTimeTableEntry entry, FleetAirliner airliner)
         {
             
-            var occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(entry.DepartureAirport, airliner.Airliner.Airline);
-            var occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(entry.Destination.Airport, airliner.Airliner.Airline);
+            var occupiedSlots1 = AirportHelpers.GetOccupiedSlotTimes(entry.DepartureAirport, airliner.Airliner.Airline,GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime));
+            var occupiedSlots2 = AirportHelpers.GetOccupiedSlotTimes(entry.Destination.Airport, airliner.Airliner.Airline,GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime));
 
             TimeSpan gateTimeBefore = new TimeSpan(0, 15, 0);
             TimeSpan gateTimeAfter = new TimeSpan(0, 15, 0);
@@ -135,9 +135,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             double minutesPerWeek = 7 * 24 * 60;
 
-            RouteTimeTableEntry nextEntry = GetNextEntry(entry, airliner, entries);
+            RouteTimeTableEntry nextEntry = GetNextEntry(entry, airliner, airlinerEntries);
 
-            RouteTimeTableEntry previousEntry = GetPreviousEntry(entry, airliner, entries);
+            RouteTimeTableEntry previousEntry = GetPreviousEntry(entry, airliner, airlinerEntries);
 
             if (nextEntry != null && previousEntry != null)
             {

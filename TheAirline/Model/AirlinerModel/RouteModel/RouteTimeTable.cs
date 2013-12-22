@@ -8,6 +8,7 @@ using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using System.Runtime.Serialization;
 using System.Reflection;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.AirlinerModel.RouteModel
 {
@@ -88,29 +89,37 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
                 }
             }
         }
+        /*
         //returns all entries for a specific airliner
         public List<RouteTimeTableEntry> getEntries(FleetAirliner airliner)
         {
             return this.Entries.FindAll(e => e.Airliner == airliner);
-        }
+        }*/
         //returns all entries for a specific destination
         public List<RouteTimeTableEntry> getEntries(Airport destination)
         {
-            return this.Entries.FindAll((delegate(RouteTimeTableEntry entry) { return entry.Destination.Airport == destination; }));
+        
+            return this.Entries.FindAll(e=>e.Destination.Airport == destination);
         }
         //returns all entries for a specific day
-        public List<RouteTimeTableEntry> getEntries(DayOfWeek day)
+        public List<RouteTimeTableEntry> getEntries(DayOfWeek day, Boolean useSeason = true)
         {
-            return this.Entries.FindAll((delegate(RouteTimeTableEntry entry) { return entry.Day == day; }));
+            Weather.Season season = GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime);
+
+            if (useSeason)
+                return this.Entries.FindAll(e=>e.Day == day && (e.TimeTable.Route.Season == Weather.Season.All_Year || e.TimeTable.Route.Season == season));
+            else
+                return this.Entries.FindAll(e=>e.Day == day);
         }
         //returns a entry if possible in a specific timespan on a specific day of the week
         public RouteTimeTableEntry getEntry(DayOfWeek day, TimeSpan startTime, TimeSpan endTime)
         {
-            return getEntries(day).Find((delegate(RouteTimeTableEntry entry) { return entry.Time >= startTime && entry.Time <= endTime; }));
+            return getEntries(day).Find(e=>e.Time >= startTime && e.Time <= endTime);
         }
         //returns the next entry after a specific date and with a specific airliner
         public RouteTimeTableEntry getNextEntry(DateTime time, FleetAirliner airliner) 
         {
+           
             DateTime dt = new DateTime(time.Year, time.Month, time.Day, time.Hour, time.Minute, time.Second);
 
             int counter = 0;
@@ -137,14 +146,13 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the next entry after a specific date and not to a specific coordinates (airport)
         public RouteTimeTableEntry getNextEntry(DateTime time, Airport airport)
         {
+          
             DayOfWeek day = time.DayOfWeek;
 
             int counter = 0;
 
             while (counter < 8)
             {
-
-
 
                 List<RouteTimeTableEntry> entries = getEntries(day);
 
@@ -168,7 +176,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the next entry from a specific time
         public RouteTimeTableEntry getNextEntry(DateTime time)
         {
-
+          
             DayOfWeek day = time.DayOfWeek;
 
             int counter = 0;
@@ -199,7 +207,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         //returns the next entry after a specific entry
         public RouteTimeTableEntry getNextEntry(RouteTimeTableEntry entry)
         {
-
+         
             DayOfWeek eDay = entry.Day;
 
             int counter = 0;

@@ -29,6 +29,11 @@
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
+                <WrapPanel>
+                    <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1014'}" Checked="rbSeason_Checked" Tag="AllYear" IsChecked="True"></RadioButton>
+                    <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1015'}" Checked="rbSeason_Checked" Tag="Summer" Margin="5 0 0 0"></RadioButton>
+                    <RadioButton GroupName="SeasonType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1016'}" Checked="rbSeason_Checked" Tag="Winter" Margin="5 0 0 0"></RadioButton>
+                </WrapPanel>
                 <!--
                 <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Entries,ElementName=pageRoutePlanner}">
                     <ListBox.ItemTemplate>
@@ -42,7 +47,7 @@
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>-->
-                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding Entries,ElementName=pageRoutePlanner}" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeTable>
+                <uc:ucTimeTable x:Name="uctimetable" Entries="{Binding ViewEntries,ElementName=pageRoutePlanner}" EntryDeleted="EntryDeleted_Event" EntryAdded="EntryAdded_Event" EntryChanged="EntryChanged_Event"></uc:ucTimeTable>
             </StackPanel>
             <StackPanel Grid.Row="1" Margin="0 5 0 0">
                 <Expander Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 1018'}" Style="{StaticResource ExpanderStyle}"> 

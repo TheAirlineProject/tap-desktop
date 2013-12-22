@@ -398,7 +398,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                            var remainingContracts = new List<AirportContract>(airport.AirlineContracts.FindAll(c => c.Airline == contract.Airline && c != contract));
 
-                           Boolean canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts);
+                           Boolean canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts,Weather.Season.All_Year);
 
                            if (!canFillRoutes)
                            {
@@ -419,7 +419,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                                    currentRoute++;
 
-                                   canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts);
+                                   canFillRoutes = AirportHelpers.CanFillRoutesEntries(airport, contract.Airline, remainingContracts,Weather.Season.All_Year);
                                }
 
                            }
@@ -1570,7 +1570,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static void SetNextFlight(FleetAirliner airliner)
         {
             Route route = GetNextRoute(airliner);
-
+            
             if ((airliner.CurrentFlight == null && route != null && route.HasStopovers) || (airliner.CurrentFlight != null && airliner.CurrentFlight is StopoverFlight && ((StopoverFlight)airliner.CurrentFlight).IsLastTrip) || (airliner.CurrentFlight != null && airliner.CurrentFlight.Entry.MainEntry == null && route != null && route.HasStopovers))
             {
                 if (airliner.GroundedToDate > GameObject.GetInstance().GameTime)
@@ -1634,7 +1634,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //finds the next flight time for an airliner - checks also for delay
         private static DateTime GetNextFlightTime(FleetAirliner airliner)
         {
-
+            
             if (airliner.CurrentFlight == null)
             {
                 SetNextFlight(airliner);
@@ -1665,7 +1665,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the next route for an airliner 
         private static Route GetNextRoute(FleetAirliner airliner)
         {
-
             var entries = from e in airliner.Routes.Select(r => r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner)) where e != null orderby MathHelpers.ConvertEntryToDate(e) select e;
 
             if (entries.Count() > 0)

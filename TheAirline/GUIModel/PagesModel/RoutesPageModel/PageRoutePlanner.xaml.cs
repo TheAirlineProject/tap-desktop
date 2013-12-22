@@ -23,6 +23,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
@@ -37,7 +38,9 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public List<Route> Routes { get; set; }
         public List<Airport> OutboundAirports { get; set; }
         public ObservableCollection<RouteTimeTableEntry> Entries { get; set; }
+        public ObservableCollection<RouteTimeTableEntry> ViewEntries { get; set; }
         public ObservableCollection<TimeSpan> StartTimes { get; set; }
+        private Weather.Season ShowSeason;
         public List<int> StopoverMinutes { get; set; }
         public ObservableCollection<int> Intervals { get; set; }
         private Point startPoint;
@@ -61,9 +64,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
        
         public PageRoutePlanner(FleetAirliner airliner)
         {
+            this.ShowSeason = Weather.Season.All_Year;
+
             this.Airliner = airliner;
             this.Entries = new ObservableCollection<RouteTimeTableEntry>();
             this.Entries.CollectionChanged += Entries_CollectionChanged;
+
+            this.ViewEntries = new ObservableCollection<RouteTimeTableEntry>();
+            this.ViewEntries.CollectionChanged += ViewEntries_CollectionChanged;
 
             this.IsLongRoute = false;
 
@@ -102,6 +110,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             InitializeComponent();
         }
+
+       
         //clears the time table
         private void clearTimeTable()
         {
@@ -127,7 +137,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
 
             foreach (RouteTimeTableEntry entry in this.Airliner.Routes.SelectMany(r => r.TimeTable.Entries.Where(en => en.Airliner == this.Airliner)))
+            {
                 this.Entries.Add(entry);
+    
+            }
+
+            setViewEntries();
 
             cbRoute.SelectedIndex = 0;
             cbOutbound.SelectedIndex = 0;
@@ -512,53 +527,61 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
 
         }
+        private void ViewEntries_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            ucTimeTable uctimetable = UIHelpers.FindChild<ucTimeTable>(this, "uctimetable");
+
+            if (e.NewItems != null)
+            {
+                foreach (RouteTimeTableEntry entry in e.NewItems)
+                {
+                    TimeSpan sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
+                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type));
+
+                    Guid g2 = new Guid(entry.TimeTable.Route.Id);
+
+                    byte[] bytes = g2.ToByteArray();
+
+                    byte red = bytes[0];
+                    byte green = bytes[1];
+                    byte blue = bytes[2];
+
+                    SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(red, green, blue));
+                    brush.Opacity = 0.60;
+
+                    TimeSpan localTimeDept = MathHelpers.ConvertTimeSpanToLocalTime(sTime, entry.DepartureAirport.Profile.TimeZone);
+                    TimeSpan localTimeDest = MathHelpers.ConvertTimeSpanToLocalTime(eTime, entry.Destination.Airport.Profile.TimeZone);
+
+                    //  string text = string.Format("{0}-{1}\n{2}-{3}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport),string.Format("{0:hh\\:mm}", entry.Time),string.Format("{0:hh\\:mm}",localTimeDept));
+                    string text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport));
+
+                    string tooltip = string.Format("{0}-{3}\n({1} {2})-({4} {5})", string.Format("{0:hh\\:mm}", entry.Time), string.Format("{0:hh\\:mm}", localTimeDept), entry.DepartureAirport.Profile.TimeZone.ShortName, string.Format("{0:hh\\:mm}", eTime), string.Format("{0:hh\\:mm}", localTimeDest), entry.Destination.Airport.Profile.TimeZone.ShortName);
+
+                    uctimetable.addTimelineEntry(entry, sTime, eTime, text, brush, tooltip);
+
+
+                }
+            }
+
+            if (e.OldItems != null)
+            {
+                foreach (RouteTimeTableEntry entry in e.OldItems)
+                {
+                    TimeSpan sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
+                    TimeSpan eTime = sTime.Add(entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type));
+
+                    string text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport));
+
+                    uctimetable.removeTimelineEntry(sTime, eTime, text);
+
+                }
+            }
+        }
         private void Entries_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-             ucTimeTable uctimetable = UIHelpers.FindChild<ucTimeTable>(this, "uctimetable");
+            
 
-             if (e.NewItems != null)
-             {
-                 foreach (RouteTimeTableEntry entry in e.NewItems)
-                 {
-                     TimeSpan sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
-                     TimeSpan eTime = sTime.Add(entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type));
-
-                     Guid g2 = new Guid(entry.TimeTable.Route.Id);
-
-                     byte[] bytes = g2.ToByteArray();
-
-                     byte red = bytes[0];
-                     byte green = bytes[1];
-                     byte blue = bytes[2];
-
-                     SolidColorBrush brush = new SolidColorBrush(Color.FromRgb(red, green, blue));
-                     brush.Opacity = 0.60;
-
-                     TimeSpan localTimeDept = MathHelpers.ConvertTimeSpanToLocalTime(sTime, entry.DepartureAirport.Profile.TimeZone);
-                     TimeSpan localTimeDest = MathHelpers.ConvertTimeSpanToLocalTime(eTime, entry.Destination.Airport.Profile.TimeZone);
-
-                   //  string text = string.Format("{0}-{1}\n{2}-{3}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport),string.Format("{0:hh\\:mm}", entry.Time),string.Format("{0:hh\\:mm}",localTimeDept));
-                     string text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport));
-                   
-                     string tooltip = string.Format("{0}-{3}\n({1} {2})-({4} {5})", string.Format("{0:hh\\:mm}", entry.Time),string.Format("{0:hh\\:mm}",localTimeDept), entry.DepartureAirport.Profile.TimeZone.ShortName, string.Format("{0:hh\\:mm}", eTime),string.Format("{0:hh\\:mm}",localTimeDest),entry.Destination.Airport.Profile.TimeZone.ShortName);
-                
-                     uctimetable.addTimelineEntry(entry, sTime, eTime, text, brush, tooltip);
-
-                   }
-             }
-
-             if (e.OldItems != null)
-             {
-                 foreach (RouteTimeTableEntry entry in e.OldItems)
-                 {
-                     TimeSpan sTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, 0);
-                     TimeSpan eTime = sTime.Add(entry.TimeTable.Route.getFlightTime(this.Airliner.Airliner.Type));
-
-                     string text = string.Format("{0}-{1}", new AirportCodeConverter().Convert(entry.DepartureAirport), new AirportCodeConverter().Convert(entry.Destination.Airport));
-
-                     uctimetable.removeTimelineEntry(sTime, eTime, text);
-                 }
-             }
+             setViewEntries();
         }
         private void btnAddScheduler_Click(object sender, RoutedEventArgs e)
         {
@@ -681,9 +704,37 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 this.IsLongRoute = false;
 
         }
+        private void rbSeason_Checked(object sender, RoutedEventArgs e)
+        {
+            string season = (string)((RadioButton)sender).Tag;
+
+            if (season == "Winter")
+                this.ShowSeason = Weather.Season.Winter;
+
+            if (season == "Summer")
+                this.ShowSeason = Weather.Season.Summer;
+
+            if (season == "AllYear")
+                this.ShowSeason = Weather.Season.All_Year;
+
+            setViewEntries();
+        }
         private void Rectangle_PreviewMouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             startPoint = e.GetPosition(null);
+        }
+        //sets the view entries
+        private void setViewEntries()
+        {
+            var entries = new ObservableCollection<RouteTimeTableEntry>(this.ViewEntries);
+
+            foreach (RouteTimeTableEntry entry in entries)
+                this.ViewEntries.Remove(entry);
+
+            //StartDate //load / save
+
+            foreach (RouteTimeTableEntry entry in this.Entries.Where(e => e.TimeTable.Route.Season == this.ShowSeason))
+                this.ViewEntries.Add(entry);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -694,6 +745,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+
+      
 
       
       

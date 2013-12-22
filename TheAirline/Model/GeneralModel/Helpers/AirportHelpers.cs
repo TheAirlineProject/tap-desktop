@@ -665,7 +665,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         }
 
         //returns all occupied slot times for an airline at an airport (15 minutes slots)
-        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts)
+        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts,Weather.Season season)
         {
             List<KeyValuePair<Route, TimeSpan>> occupiedSlots = new List<KeyValuePair<Route, TimeSpan>>();
 
@@ -676,11 +676,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             var routes = new List<Route>(GetAirportRoutes(airport, airline));
 
-            var entries = new List<RouteTimeTableEntry>(routes.SelectMany(r => r.TimeTable.Entries));
+            var entries = new List<RouteTimeTableEntry>(routes.Where(r=>season==Weather.Season.All_Year || season == r.Season).SelectMany(r => r.TimeTable.Entries));
 
+     
             foreach (var entry in entries)
             {
-
+                
                 TimeSpan entryTakeoffTime = new TimeSpan((int)entry.Day, entry.Time.Hours, entry.Time.Minutes, entry.Time.Seconds);
                 TimeSpan entryLandingTime = entryTakeoffTime.Add(entry.TimeTable.Route.getFlightTime(entry.Airliner.Airliner.Type));
 
@@ -725,15 +726,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return slots.Where(s => s.Slots.Count() >= gates).SelectMany(s => s.Slots).ToList();
 
         }
-        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline)
+        public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline,Weather.Season season)
         {
-            s
-            return GetOccupiedSlotTimes(airport, airline, airport.AirlineContracts.Where(c => c.Airline == airline).ToList());
+            
+            return GetOccupiedSlotTimes(airport, airline, airport.AirlineContracts.Where(c => c.Airline == airline).ToList(),season);
         }
         //returns if an airline has enough free slots at an airport
-        public static Boolean CanFillRoutesEntries(Airport airport, Airline airline, List<AirportContract> contracts)
+        public static Boolean CanFillRoutesEntries(Airport airport, Airline airline, List<AirportContract> contracts,Weather.Season season)
         {
-            int numberOfOccupiedSlots = GetOccupiedSlotTimes(airport, airline, contracts).GroupBy(s => s.Ticks).Where(x => x.Count() > 1).Count();
+            int numberOfOccupiedSlots = GetOccupiedSlotTimes(airport, airline, contracts,season).GroupBy(s => s.Ticks).Where(x => x.Count() > 1).Count();
             return numberOfOccupiedSlots == 0;
 
         }

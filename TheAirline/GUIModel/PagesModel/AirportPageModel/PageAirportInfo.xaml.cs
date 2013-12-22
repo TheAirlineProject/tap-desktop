@@ -18,6 +18,7 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 {
@@ -104,7 +105,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             var contracts = this.Airport.Airport.AirlineContracts.Where(a => a.Airline == GameObject.GetInstance().HumanAirline && a != contract).ToList();
 
-            if (!AirportHelpers.CanFillRoutesEntries(this.Airport.Airport, GameObject.GetInstance().HumanAirline, contracts))
+            if (!AirportHelpers.CanFillRoutesEntries(this.Airport.Airport, GameObject.GetInstance().HumanAirline, contracts,Weather.Season.All_Year))
             {
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2224"), Translator.GetInstance().GetString("MessageBox", "2224", "message"), WPFMessageBoxButtons.Ok);
             }
