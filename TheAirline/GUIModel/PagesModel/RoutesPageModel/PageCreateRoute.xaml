@@ -108,7 +108,16 @@
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
-            </ListBox>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1017'}">
+                    <h:QuickInfoValue.Value>
+                       <WrapPanel>
+                            <CheckBox Name="cbStartDate" VerticalAlignment="Bottom"></CheckBox>
+                            <DatePicker IsEnabled="{Binding ElementName=cbStartDate,Path=IsChecked}" CalendarStyle="{StaticResource CalendarPickerStyle}" x:Name="dpStartDate" Margin="5 0 0 0"></DatePicker>
+                        </WrapPanel>
+
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+         </ListBox>
             <StackPanel>
                 <StackPanel.Style>
                     <Style>

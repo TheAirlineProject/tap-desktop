@@ -97,6 +97,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).First();
 
             }
+
+            CalendarDateRange daysRange = new CalendarDateRange(new DateTime(2000,1,1),GameObject.GetInstance().GameTime);
+
+            dpStartDate.BlackoutDates.Add(daysRange);
+            dpStartDate.DisplayDateStart = GameObject.GetInstance().GameTime;
+            dpStartDate.DisplayDate = GameObject.GetInstance().GameTime;
         }
         private void btnCreateNew_Click(object sender, RoutedEventArgs e)
         {
@@ -142,6 +148,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             Airport destination2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = (Airport)cbStopover1.SelectedItem;
             Airport stopover2 = cbStopover2.Visibility == System.Windows.Visibility.Visible ? (Airport)cbStopover2.SelectedItem : null;
+            DateTime startDate = dpStartDate.IsEnabled && dpStartDate.SelectedDate.HasValue ? dpStartDate.SelectedDate.Value : GameObject.GetInstance().GameTime;
             
             Weather.Season season = rbSeasonAll.IsChecked.Value ? Weather.Season.All_Year : Weather.Season.Winter;
             season = rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
@@ -158,7 +165,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     //passenger route
                     if (rbPassenger.IsChecked.Value)
                     {
-                        route = new PassengerRoute(id.ToString(), destination1, destination2, 0);
+                        //Vis på showroute
+                        route = new PassengerRoute(id.ToString(), destination1, destination2,startDate, 0);
 
                         foreach (MVVMRouteClass rac in this.Classes)
                         {
@@ -173,7 +181,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                     else
                     {
                         double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
-                        route = new CargoRoute(id.ToString(), destination1, destination2, cargoPrice);
+                        route = new CargoRoute(id.ToString(), destination1, destination2,startDate, cargoPrice);
                     }
 
                     FleetAirlinerHelpers.CreateStopoverRoute(route, stopover1, stopover2);

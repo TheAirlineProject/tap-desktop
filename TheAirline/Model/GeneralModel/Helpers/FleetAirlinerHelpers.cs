@@ -156,7 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 if (mainroute.Type == Route.RouteType.Passenger || mainroute.Type == Route.RouteType.Mixed)
                 {
-                    PassengerRoute routeLegTwo = new PassengerRoute(id.ToString(), dest1, stopover, 0);
+                    PassengerRoute routeLegTwo = new PassengerRoute(id.ToString(), dest1, stopover, GameObject.GetInstance().GameTime, 0);
 
                     foreach (RouteAirlinerClass aClass in ((PassengerRoute)mainroute).Classes)
                     {
@@ -175,7 +175,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
                 if (mainroute.Type == Route.RouteType.Cargo || mainroute.Type == Route.RouteType.Mixed)
                 {
-                    CargoRoute routeLegTwo = new CargoRoute(id.ToString(), dest1, stopover, ((CargoRoute)mainroute).PricePerUnit);
+                    CargoRoute routeLegTwo = new CargoRoute(id.ToString(), dest1, stopover, GameObject.GetInstance().GameTime, ((CargoRoute)mainroute).PricePerUnit);
 
                     stopoverRoute.addLeg(routeLegTwo);
                 }
@@ -186,7 +186,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 id = Guid.NewGuid();
 
-                PassengerRoute routeLegOne = new PassengerRoute(id.ToString(), stopover, dest2, 0);
+                PassengerRoute routeLegOne = new PassengerRoute(id.ToString(), stopover, dest2, GameObject.GetInstance().GameTime, 0);
 
                 foreach (RouteAirlinerClass aClass in ((PassengerRoute)mainroute).Classes)
                 {
@@ -206,7 +206,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             if (mainroute.Type == Route.RouteType.Cargo || mainroute.Type == Route.RouteType.Mixed)
             {
-                CargoRoute routeLegOne = new CargoRoute(id.ToString(), stopover, dest2, ((CargoRoute)mainroute).PricePerUnit);
+                CargoRoute routeLegOne = new CargoRoute(id.ToString(), stopover, dest2, GameObject.GetInstance().GameTime, ((CargoRoute)mainroute).PricePerUnit);
 
                 stopoverRoute.addLeg(routeLegOne);
               

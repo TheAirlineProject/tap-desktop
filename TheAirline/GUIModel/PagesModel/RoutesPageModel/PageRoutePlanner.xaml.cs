@@ -731,8 +731,6 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (RouteTimeTableEntry entry in entries)
                 this.ViewEntries.Remove(entry);
 
-            //StartDate //load / save
-
             foreach (RouteTimeTableEntry entry in this.Entries.Where(e => e.TimeTable.Route.Season == this.ShowSeason))
                 this.ViewEntries.Add(entry);
         }

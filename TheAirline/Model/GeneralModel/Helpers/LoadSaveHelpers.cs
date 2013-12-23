@@ -2102,9 +2102,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Route route;
 
             if (routetype == Route.RouteType.Passenger || routetype == Route.RouteType.Mixed)
-                route = new PassengerRoute(id, dest1, dest2, 0);
+                route = new PassengerRoute(id, dest1, dest2, DateTime.Now,0);
             else
-                route = new CargoRoute(id, dest1, dest2, 0);
+                route = new CargoRoute(id, dest1, dest2, DateTime.Now,0);
 
             route.Banned = isBanned;
 

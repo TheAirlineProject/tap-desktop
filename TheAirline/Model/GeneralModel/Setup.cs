@@ -2392,7 +2392,7 @@ namespace TheAirline.Model.GeneralModel
 					Route route = null;
 					if (airline.AirlineRouteFocus == Route.RouteType.Passenger)
 					{
-						route = new PassengerRoute(id.ToString(), airportDestination, airline.Airports[0], price);
+                        route = new PassengerRoute(id.ToString(), airportDestination, airline.Airports[0], GameObject.GetInstance().GameTime, price);
 
 						RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration((PassengerRoute)route);
 
@@ -2406,7 +2406,7 @@ namespace TheAirline.Model.GeneralModel
 					}
 					if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
 					{
-						route = new CargoRoute(id.ToString(), airportDestination, airline.Airports[0], PassengerHelpers.GetCargoPrice(airportDestination, airline.Airports[0]));
+                        route = new CargoRoute(id.ToString(), airportDestination, airline.Airports[0], GameObject.GetInstance().GameTime, PassengerHelpers.GetCargoPrice(airportDestination, airline.Airports[0]));
 
 						airportDestination.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
 
@@ -2484,11 +2484,11 @@ namespace TheAirline.Model.GeneralModel
 
                     if (startRoute.RouteType == Route.RouteType.Mixed || startRoute.RouteType == Route.RouteType.Passenger)
                     {
-                        route = new PassengerRoute(id.ToString(), dest1, dest2, price);
+                        route = new PassengerRoute(id.ToString(), dest1, dest2, GameObject.GetInstance().GameTime, price);
                     }
 
                     if (startRoute.RouteType == Route.RouteType.Cargo)
-                        route = new CargoRoute(id.ToString(), dest1, dest2, PassengerHelpers.GetCargoPrice(dest1, dest2));
+                        route = new CargoRoute(id.ToString(), dest1, dest2,GameObject.GetInstance().GameTime, PassengerHelpers.GetCargoPrice(dest1, dest2));
 
                     KeyValuePair<Airliner, Boolean>? airliner = null;
                     if (startRoute.Type != null)
@@ -2638,10 +2638,10 @@ namespace TheAirline.Model.GeneralModel
                         double price = PassengerHelpers.GetPassengerPrice(origin, destination);
 
                         if (routes.RouteType == Route.RouteType.Mixed || routes.RouteType == Route.RouteType.Passenger)
-                            route = new PassengerRoute(id.ToString(), origin, destination, price);
+                            route = new PassengerRoute(id.ToString(), origin, destination, GameObject.GetInstance().GameTime, price);
 
                         if (routes.RouteType == Route.RouteType.Cargo)
-                            route = new CargoRoute(id.ToString(), origin, destination, PassengerHelpers.GetCargoPrice(origin, destination));
+                            route = new CargoRoute(id.ToString(), origin, destination, GameObject.GetInstance().GameTime, PassengerHelpers.GetCargoPrice(origin, destination));
 
                         KeyValuePair<Airliner, Boolean>? airliner = AIHelpers.GetAirlinerForRoute(airline, origin, destination, false, routes.RouteType == Route.RouteType.Cargo, true);
 

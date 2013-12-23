@@ -596,7 +596,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         {
                             double price = PassengerHelpers.GetPassengerPrice(airport, destination);
 
-                            route = new PassengerRoute(id.ToString(), airport, destination, price);
+                            route = new PassengerRoute(id.ToString(), airport, destination, GameObject.GetInstance().GameTime, price);
 
                             RouteClassesConfiguration configuration = GetRouteConfiguration((PassengerRoute)route);
 
@@ -611,7 +611,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                         if (airline.AirlineRouteFocus == Route.RouteType.Cargo)
                         {
-                            route = new CargoRoute(id.ToString(), airport, destination, PassengerHelpers.GetCargoPrice(airport, destination));
+                            route = new CargoRoute(id.ToString(), airport, destination, GameObject.GetInstance().GameTime, PassengerHelpers.GetCargoPrice(airport, destination));
 
                         }
 

@@ -23,7 +23,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
       [Versioning("classes")]
         public List<RouteAirlinerClass> Classes { get; set; }
         public double IncomePerPassenger { get { return getIncomePerPassenger(); } set { ;} }
-        public PassengerRoute(string id, Airport destination1, Airport destination2,double farePrice) : base(RouteType.Passenger,id,destination1,destination2)
+        public PassengerRoute(string id, Airport destination1, Airport destination2,DateTime startDate, double farePrice) : base(RouteType.Passenger,id,destination1,destination2,startDate)
         {
            
 

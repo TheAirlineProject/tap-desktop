@@ -145,7 +145,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Guid id = Guid.NewGuid();
 
-                PassengerRoute route = new PassengerRoute(id.ToString(), saroute.Destination1, saroute.Destination2, price);
+                PassengerRoute route = new PassengerRoute(id.ToString(), saroute.Destination1, saroute.Destination2, GameObject.GetInstance().GameTime, price);
 
                 RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
 
