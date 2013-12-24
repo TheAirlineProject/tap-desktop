@@ -38,8 +38,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     SimulateLanding(airliner);
                 }
 
-                var dayEntries = airliner.Routes.SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner && (e.TimeTable.Route.Season == Weather.Season.All_Year || e.TimeTable.Route.Season == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime))).OrderBy(e => e.Time);
-                
+                var dayEntries = airliner.Routes.Where(r=>r.StartDate<=GameObject.GetInstance().GameTime).SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner && (e.TimeTable.Route.Season == Weather.Season.All_Year || e.TimeTable.Route.Season == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime))).OrderBy(e => e.Time);
+              
                 if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
                 {
 

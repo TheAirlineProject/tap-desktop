@@ -1665,7 +1665,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the next route for an airliner 
         private static Route GetNextRoute(FleetAirliner airliner)
         {
-            var entries = from e in airliner.Routes.Select(r => r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner)) where e != null orderby MathHelpers.ConvertEntryToDate(e) select e;
+            var entries = from e in airliner.Routes.Where(r=>r.StartDate<=GameObject.GetInstance().GameTime).Select(r => r.TimeTable.getNextEntry(GameObject.GetInstance().GameTime, airliner)) where e != null orderby MathHelpers.ConvertEntryToDate(e) select e;
 
             if (entries.Count() > 0)
                 return entries.First().TimeTable.Route;

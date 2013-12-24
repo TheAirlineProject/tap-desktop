@@ -1070,6 +1070,10 @@ and change the color of the selected bullet into a darker gray for better highli
     <Style x:Key="CalendarPickerStyle" TargetType="{x:Type Calendar}">
         <Setter Property="Background" Value="{StaticResource HeaderBackgroundBrush}"></Setter>
     </Style>
+    <Style TargetType="{x:Type DatePickerTextBox}">
+         <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="White"></Setter>
+    </Style>
     <!--FilterableListView-->
     <Style TargetType="c:FilterableListView">
             <Style.Resources>
