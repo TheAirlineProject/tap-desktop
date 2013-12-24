@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.CustomControlsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
@@ -35,7 +36,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public FleetAirliner Airliner { get; set; }
         public List<RoutePlannerItemMVVM> AllRoutes { get; set; }
         public List<Region> AllRegions { get; set; }
-        public List<Route> Routes { get; set; }
+        public ObservableCollection<Route> Routes { get; set; }
         public List<Airport> OutboundAirports { get; set; }
         public ObservableCollection<RouteTimeTableEntry> Entries { get; set; }
         public ObservableCollection<RouteTimeTableEntry> ViewEntries { get; set; }
@@ -44,6 +45,12 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         public List<int> StopoverMinutes { get; set; }
         public ObservableCollection<int> Intervals { get; set; }
         private Point startPoint;
+        private Boolean _cantransferschedule;
+        public Boolean CanTransferSchedule
+        {
+            get { return _cantransferschedule; }
+            set { this._cantransferschedule = value; NotifyPropertyChanged("CanTransferSchedule"); }
+        }
         private Boolean _islongroute;
         public Boolean IsLongRoute
         {
@@ -78,7 +85,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             this.AllRoutes = new List<RoutePlannerItemMVVM>();
             this.Intervals = new ObservableCollection<int>() { 1, 2, 3, 4, 5, 6 };
 
-            this.Routes = this.Airliner.Airliner.Airline.Routes.Where(r => r.getDistance() <= this.Airliner.Airliner.Type.Range).ToList();
+            this.Routes = new ObservableCollection<Route>();
+
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.Where(r => r.getDistance() <= this.Airliner.Airliner.Type.Range).ToList())
+                this.Routes.Add(route);
 
             this.AllRegions = new List<Region>();
             this.AllRegions.Add(Regions.GetRegion("100"));
@@ -106,11 +116,23 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.StopoverMinutes = new List<int>() { 45, 60, 75, 90, 105, 120 };
 
+            setCanTransferSchedule();
+
             this.Loaded += PageRoutePlanner_Loaded;
 
             InitializeComponent();
-        }
 
+
+        }
+        //sets the value for transfering of schedule
+        private void setCanTransferSchedule()
+        {
+            long maxDistance = this.Airliner.Airliner.Type.Range;
+
+            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+
+            this.CanTransferSchedule = GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => r.getDistance()) <= maxDistance).Count > 0;
+        }
        
         //clears the time table
         private void clearTimeTable()
@@ -579,9 +601,53 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         }
         private void Entries_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            
-
+           
              setViewEntries();
+        }
+        private void btnTransfer_Click(object sender, RoutedEventArgs e)
+        {
+            ComboBox cbAirliners = new ComboBox();
+            cbAirliners.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAirliners.SelectedValuePath = "Name";
+            cbAirliners.DisplayMemberPath = "Name";
+            cbAirliners.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAirliners.Width = 200;
+
+            long maxDistance = this.Airliner.Airliner.Type.Range;
+
+            long requiredRunway = this.Airliner.Airliner.Type.MinRunwaylength;
+
+            var airliners = GameObject.GetInstance().HumanAirline.Fleet.FindAll(a => a != this.Airliner && a.Routes.Count > 0 && a.Status == FleetAirliner.AirlinerStatus.Stopped && a.Routes.Max(r => r.getDistance()) <= maxDistance);
+ 
+            foreach (FleetAirliner airliner in airliners)
+                cbAirliners.Items.Add(airliner);
+
+            cbAirliners.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PopUpAirlinerRoutes", "1001"), cbAirliners) == PopUpSingleElement.ButtonSelected.OK && cbAirliners.SelectedItem != null)
+            {
+                clearTimeTable();
+
+                FleetAirliner transferAirliner = (FleetAirliner)cbAirliners.SelectedItem;
+
+                foreach (Route route in transferAirliner.Routes)
+                {
+                    foreach (RouteTimeTableEntry entry in route.TimeTable.Entries.FindAll(en => en.Airliner == transferAirliner))
+                    {
+                        entry.Airliner = this.Airliner;
+
+                        this.Entries.Add(entry);
+                    }
+
+                    if (!this.Airliner.Routes.Contains(route))
+                    {
+                        this.Airliner.addRoute(route);
+                        this.Routes.Add(route);
+                    }
+                }
+                transferAirliner.Routes.Clear();
+
+            }
         }
         private void btnAddScheduler_Click(object sender, RoutedEventArgs e)
         {

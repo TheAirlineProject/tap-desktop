@@ -315,6 +315,7 @@
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 200'}" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnSave_Click"></Button>
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 201'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnUndo_Click"></Button>
                     <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnClear_Click"></Button>
+                    <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageRoutePlanner 205'}" Visibility="{Binding CanTransferSchedule,ElementName=pageRoutePlanner,Converter={StaticResource BooleanToVisibility}}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" VerticalAlignment="Bottom" Click="btnTransfer_Click"></Button>
                 </WrapPanel>
                 <Expander Margin="0 10 0 0" Visibility="Collapsed" Style="{StaticResource ExpanderStyle}">
                     <WrapPanel>
