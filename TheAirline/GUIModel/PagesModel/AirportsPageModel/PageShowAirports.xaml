@@ -159,7 +159,7 @@
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
 
-                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" CanFilter="False" SortPropertyName="NumberOfAirlines" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1007'}" CanFilter="True" FilterValues="{Binding OperatingRanges,ElementName=pageShowAirports}" SortPropertyName="NumberOfAirlines" Width="150">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfAirlines}">
@@ -167,7 +167,7 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" CanFilter="False" SortPropertyName="NumberOfRoutes" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowAirports 1008'}" FilterValues="{Binding RoutesRanges,ElementName=pageShowAirports}" CanFilter="True"  SortPropertyName="NumberOfRoutes" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock VerticalAlignment="Bottom" Text="{Binding NumberOfRoutes}">

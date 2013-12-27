@@ -37,6 +37,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             
             InitializeComponent();
 
+
         }
 
         private void PageAirports_Loaded(object sender, RoutedEventArgs e)

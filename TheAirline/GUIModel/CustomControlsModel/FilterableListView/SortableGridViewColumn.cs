@@ -41,6 +41,17 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         public static readonly DependencyProperty CanFilterProperty =
             DependencyProperty.Register("CanFilter", typeof(bool), typeof(SortableGridViewColumn), new UIPropertyMetadata(false));
 
+        public IEnumerable<FilterValue> FilterValues
+        {
+            get { return (IEnumerable<FilterValue>)GetValue(FilterValuesProperty); }
+            set { SetValue(FilterValuesProperty, value); }
+        }
+
+        public static readonly DependencyProperty FilterValuesProperty =
+                            DependencyProperty.Register("FilterValues",
+                            typeof(IEnumerable<FilterValue>), typeof(SortableGridViewColumn));
+
+
     }
     public sealed class BackgroundStripe : IValueConverter
     {

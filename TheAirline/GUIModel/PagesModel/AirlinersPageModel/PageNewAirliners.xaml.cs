@@ -15,6 +15,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
@@ -29,11 +30,20 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     {
         public List<AirlinerType> AllTypes { get; set; }
         public ObservableCollection<AirlinerType> SelectedAirliners { get; set; }
+        public List<FilterValue> RangeRanges { get; set; }
+        public List<FilterValue> SpeedRanges { get; set; }
+        public List<FilterValue> RunwayRanges { get; set; }
+        public List<FilterValue> CapacityRanges { get; set; }
         public PageNewAirliners()
         {
             this.AllTypes = new List<AirlinerType>();
             this.SelectedAirliners = new ObservableCollection<AirlinerType>();
 
+            this.RangeRanges = new List<FilterValue>() { new FilterValue("<1500", 0, 1499), new FilterValue("1500-2999", 1500, 2999), new FilterValue("3000-5999", 3000, 5999), new FilterValue("6000+", 6000, int.MaxValue) };
+            this.SpeedRanges = new List<FilterValue>() { new FilterValue("<400", 0, 399), new FilterValue("400-599", 400, 599), new FilterValue("600+", 600, int.MaxValue) };
+            this.RunwayRanges = new List<FilterValue>() { new FilterValue("<5000", 0, 4999), new FilterValue("5000-7999", 5000, 7999), new FilterValue("8000+", 8000, int.MaxValue) };
+            this.CapacityRanges = new List<FilterValue>() { new FilterValue("<100", 0, 99), new FilterValue("100-199", 100, 199), new FilterValue("200-299", 200, 299), new FilterValue("300-399", 300, 399), new FilterValue("400-499", 400, 499), new FilterValue("500+", 500, int.MaxValue) };
+    
             this.AllTypes = AirlinerTypes.GetTypes(t => t.Produced.From <= GameObject.GetInstance().GameTime && t.Produced.To > GameObject.GetInstance().GameTime);
 
             InitializeComponent();

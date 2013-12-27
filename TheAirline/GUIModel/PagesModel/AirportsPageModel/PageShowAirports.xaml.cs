@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Model.AirlineModel;
@@ -36,6 +37,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         public List<Airline> AllAirlines { get; set; }
         public List<AirlinerType> HumanAircrafts { get; set; }
         public ObservableCollection<AirportMVVM> SelectedAirports { get; set; }
+        public List<FilterValue> RoutesRanges { get; set; }
+        public List<FilterValue> OperatingRanges { get; set; }
         public PageShowAirports(List<Airport> airports)
         {
             createPage(airports);
@@ -49,6 +52,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         {
             this.AllAirlines = new List<Airline>();
             this.SelectedAirports = new ObservableCollection<AirportMVVM>();
+            this.RoutesRanges = new List<FilterValue>() { new FilterValue("0",0,0),new FilterValue("1-9",1,9), new FilterValue("10-24",10,24),new FilterValue("25+",25,int.MaxValue) };
+            this.OperatingRanges = new List<FilterValue>() { new FilterValue("0", 0, 0), new FilterValue("1-5", 1, 5), new FilterValue("6+", 5, int.MaxValue) };
 
             Airline dummyAirline = new Airline(new AirlineProfile("All Airlines", "99", "Blue", "", false, 1900, 1900), Airline.AirlineMentality.Safe, Airline.AirlineFocus.Domestic, Airline.AirlineLicense.Domestic, Route.RouteType.Passenger);
             dummyAirline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));

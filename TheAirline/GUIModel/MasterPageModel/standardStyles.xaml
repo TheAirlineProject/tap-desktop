@@ -1322,7 +1322,78 @@ and change the color of the selected bullet into a darker gray for better highli
             </Setter.Value>
         </Setter>
     </Style>
-
+    <DataTemplate x:Key="RegularFilteredPopUp">
+        <StackPanel>
+            <StackPanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+            </StackPanel.Background>
+            <ListView x:Name="filterList" ItemsSource="{Binding}"                               
+                               BorderThickness="1" Background="Transparent">
+                <ListView.View>
+                    <GridView>
+                        <!-- hide the column header -->
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Hidden" />
+                                <Setter Property="Height" Value="0" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <CheckBox IsChecked="{Binding IsChecked,Mode=TwoWay}" VerticalAlignment="Bottom"></CheckBox>
+                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom" Margin="5 0 0 0">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+            </WrapPanel>
+        </StackPanel>
+    </DataTemplate>
+    <DataTemplate x:Key="FixedFilteredPopUp">
+        <StackPanel>
+            <StackPanel.Background>
+                <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
+            </StackPanel.Background>
+            <ListView x:Name="filterList" ItemsSource="{Binding}"                               
+                               BorderThickness="1" Background="Transparent">
+                <ListView.View>
+                    <GridView>
+                        <!-- hide the column header -->
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="Visibility" Value="Hidden" />
+                                <Setter Property="Height" Value="0" />
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <RadioButton IsChecked="{Binding IsChecked,Mode=TwoWay}" VerticalAlignment="Center" GroupName="Item"></RadioButton>
+                                        <TextBlock Text="{Binding ItemView}" VerticalAlignment="Bottom" Margin="5 0 0 0">
+                                        </TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <WrapPanel HorizontalAlignment="Right" Margin="0 5 0 0">
+                <Button Content="Apply" Tag="{Binding ElementName=filterList}" x:Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+                <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
+            </WrapPanel>
+        </StackPanel>
+    </DataTemplate>
     <DataTemplate x:Key="FilterGridHeaderTemplate" >
         <StackPanel Orientation="Horizontal">
             <!-- render the header text -->
@@ -1333,9 +1404,10 @@ and change the color of the selected bullet into a darker gray for better highli
             <Button  ContentTemplate="{StaticResource filterButtonInactiveTemplate}" Name="filterButton"           
                     Command="{x:Static c:FilterableListView.ShowFilter}">
 
-
             </Button>
             <Popup StaysOpen="false" Name="filterPopup" Placement="Bottom" PlacementTarget="{Binding ElementName=filterButton}" AllowsTransparency="True">
+                <ContentControl Name="ccPopUp" Content="{Binding}" ContentTemplate="{StaticResource RegularFilteredPopUp}"></ContentControl>
+                <!--
                 <StackPanel>
                     <StackPanel.Background>
                         <SolidColorBrush Color="Black" Opacity="0.6"></SolidColorBrush>
@@ -1344,7 +1416,7 @@ and change the color of the selected bullet into a darker gray for better highli
                                BorderThickness="1" Background="Transparent">
                         <ListView.View>
                             <GridView>
-                                <!-- hide the column header -->
+                             
                                 <GridView.ColumnHeaderContainerStyle>
                                     <Style TargetType="GridViewColumnHeader">
                                         <Setter Property="Visibility" Value="Hidden" />
@@ -1369,7 +1441,7 @@ and change the color of the selected bullet into a darker gray for better highli
                         <Button Content="Apply" Tag="{Binding ElementName=filterList}" Name="btnOk" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
                         <Button Content="Cancel" VerticalAlignment="Bottom" Margin="5 0 0 0" Tag="{Binding ElementName=filterList}" Name="btnCancel"  Style="{StaticResource StandardButtonStyle}" Width="NaN" Height="NaN"></Button>
                     </WrapPanel>
-                </StackPanel>
+                </StackPanel>-->
             </Popup>
         </StackPanel>
     </DataTemplate>

@@ -74,22 +74,22 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                   
-                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="False" SortPropertyName="Range" Width="100">
+
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="True"  FilterValues="{Binding RangeRanges,ElementName=pageNewAirliners}" SortPropertyName="Range" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}" CanFilter="False" SortPropertyName="CruisingSpeed" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}" CanFilter="True" FilterValues="{Binding SpeedRanges,ElementName=pageNewAirliners}"  SortPropertyName="CruisingSpeed" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}" CanFilter="False" SortPropertyName="MinRunwayLength" Width="100">
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}" CanFilter="True" FilterValues="{Binding RunwayRanges,ElementName=pageNewAirliners}"  SortPropertyName="MinRunwayLength" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
@@ -103,8 +103,8 @@
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
-                 
-                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1004'}" CanFilter="False" SortPropertyName="Capacity" Width="100">
+
+                    <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1004'}" CanFilter="True" FilterValues="{Binding CapacityRanges,ElementName=pageNewAirliners}"  SortPropertyName="Capacity" Width="125">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>

@@ -497,6 +497,7 @@
     <Compile Include="GUIModel\CustomControlsModel\CalendarModel\ucCalendar.xaml.cs">
       <DependentUpon>ucCalendar.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\FilterableListView\FilterValue.cs" />
     <Compile Include="GUIModel\CustomControlsModel\MessageBoxModel\DelegateCommand.cs" />
     <Compile Include="GUIModel\CustomControlsModel\MessageBoxModel\IconHelper.cs" />
     <Compile Include="GUIModel\CustomControlsModel\MessageBoxModel\MessageBoxViewModel.cs" />

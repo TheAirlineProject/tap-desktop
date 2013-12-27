@@ -4620,4 +4620,7 @@ Good luck.</value>
   <data name="PageRoutePlanner_205_name" xml:space="preserve">
     <value>Transfer Schedule</value>
   </data>
+  <data name="PageShowAirports_200_name" xml:space="preserve">
+    <value>Compare Airports</value>
+  </data>
 </root>
