@@ -439,7 +439,7 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
                             if (value.Item is FilterValue)
                             {
                                 FilterValue fValue = value.Item as FilterValue;
-
+                         
                                 double num;
                                 if (double.TryParse(itemValue.ToString(), out num))
                                 {
