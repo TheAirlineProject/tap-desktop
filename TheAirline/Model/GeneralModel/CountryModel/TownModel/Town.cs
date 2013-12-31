@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using TheAirline.Model.AirportModel;
+using System.Device.Location;
 
 namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 {
@@ -17,6 +18,8 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         public Country Country { get; set; }
         
         public State State { get; set; }
+        public int Population { get; set; }
+        public GeoCoordinate Coordinates { get; set; }
         public Town(string name, Country country) : this(name,country,null)
         {
             
@@ -64,6 +67,39 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
 
             // Return true if the fields match:
             return (this == (Town)u);
+        }
+
+        /*
+         * returns a list of nearby towns
+         *  this can be replaced with a foreach/if loop depending on performance 
+        */
+        public List<Town> GetNearbyTowns(int d)
+        {
+            List<Town> towns = new List<Town>();
+            foreach (Town t in Towns.GetTowns())
+            {
+                if(this.Coordinates.GetDistanceTo(t.Coordinates) < d )
+                {
+                    towns.Add(t);
+                }
+            }
+            return towns;
+        }
+
+
+        /*
+         * returns a list of nearby airports
+         * again, can be replaced with a foreach/if for performance
+         */
+        public List<Airport> GetNearbyAirports(int d)
+        {
+            List<Airport> airports = Airports.GetAllActiveAirports();
+            var nearby =
+                from a in airports
+                where this.Coordinates.GetDistanceTo(a.Profile.Coordinates) > d
+                select a;
+            foreach (Airport a in nearby) { airports.Remove(a); }
+            return airports;
         }
 
     }

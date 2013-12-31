@@ -1487,6 +1487,33 @@ namespace TheAirline.Model.GeneralModel
 
 			}
 		}
+
+        /*
+         * loads the cities
+         * still need to generate an accurate country object based on the two-letter code
+         */
+        private static void LoadCities()
+        {
+            List<XmlElement> cities = new List<XmlElement>();
+
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\cities.xml");
+            XmlElement root = doc.DocumentElement;
+
+            XmlNodeList citiesList = root.SelectNodes("//city");
+            foreach (XmlElement e in citiesList)
+            {
+                string name = e.ChildNodes[0].Value;
+                string country = e.ChildNodes[4].Value;
+                Country c = Countries.GetCountry(country.ToString());
+                Town t = new Town(name, c);
+                double lat = double.Parse(e.ChildNodes[1].Value);
+                double lng = double.Parse(e.ChildNodes[2].Value);
+                t.Coordinates = new GeoCoordinate(lat, lng);
+                t.Population = int.Parse(e.ChildNodes[3].Value);
+            }
+        }
+
 		/*!loads the countries.
 		 */
 		private static void LoadCountries()
