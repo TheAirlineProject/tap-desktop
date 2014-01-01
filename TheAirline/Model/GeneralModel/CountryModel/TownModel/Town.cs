@@ -108,11 +108,8 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         {
             //here we use a standard loop because of the extra comparison
             var airports = Airports.GetAllActiveAirports();
-            Airport closest =
-                airports.First(_ 
-                    =>
-                        Coordinates.GetDistanceTo(_.Profile.Coordinates) ==
-                        airports.Min(x => Coordinates.GetDistanceTo(x.Profile.Coordinates)));
+            var minDist = airports.Min(_ => Coordinates.GetDistanceTo(_.Profile.Coordinates));
+            var closest = airports.First(_ => Coordinates.GetDistanceTo(_.Profile.Coordinates) == minDist);
             return closest;
         }
 

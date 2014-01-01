@@ -113,11 +113,8 @@ namespace TheAirline.Model.AirportModel
         {
             //here we use a standard loop because of the extra comparison
             var towns = Towns.GetTowns();
-            Town closest =
-                towns.First(_
-                    =>
-                        Coordinates.GetDistanceTo(_.Coordinates) ==
-                        towns.Min(x => Coordinates.GetDistanceTo(x.Coordinates)));
+            var minDist = towns.Min(_ => Coordinates.GetDistanceTo(_.Coordinates));
+            var closest = towns.First(_ => Coordinates.GetDistanceTo(_.Coordinates) == minDist);
             return closest;
         }
 
