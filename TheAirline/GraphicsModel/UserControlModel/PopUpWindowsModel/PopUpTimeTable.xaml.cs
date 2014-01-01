@@ -44,7 +44,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
 
 
 
-            this.Title = string.Format("{0} - {1}", this.Route.Destination1.Profile.IATACode, this.Route.Destination2.Profile.IATACode);
+            this.Title = string.Format("{0} - {1}", this.Route.Destination1.Profile.IataCode, this.Route.Destination2.Profile.IataCode);
 
             this.Width = 800;
 
@@ -85,7 +85,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
             ListBox lbEntries = new ListBox();
             lbEntries.ItemTemplate = this.Resources["RouteTimeTableEntryItem"] as DataTemplate;
             lbEntries.Height = 300;
-            lbEntries.Name = airport.Profile.IATACode;
+            lbEntries.Name = airport.Profile.IataCode;
             lbEntries.ItemContainerStyleSelector = new ListBoxItemStyleSelector();
 
          
@@ -107,7 +107,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel
         private void showEntries(Airport airport)
         {
             
-            ListBox lb = (ListBox)LogicalTreeHelper.FindLogicalNode((Panel)this.Content, airport.Profile.IATACode);
+            ListBox lb = (ListBox)LogicalTreeHelper.FindLogicalNode((Panel)this.Content, airport.Profile.IataCode);
             lb.Items.Clear();
 
             List<RouteTimeTableEntry> entries = this.Route.TimeTable.getEntries(airport);

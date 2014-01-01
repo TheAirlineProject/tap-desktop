@@ -16,23 +16,23 @@ namespace TheAirline.Model.AirportModel
     //the class for a profile for an airport
     public class AirportProfile
     {
-        public enum AirportType { Long_Haul_International, Regional, Domestic, Short_Haul_International }
+        public enum AirportType { LongHaulInternational, Regional, Domestic, ShortHaulInternational }
         public AirportType Type { get; set; }
         //public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
-        public GeneralHelpers.Size Size { get { return getCurrentSize(); } private set { ;} }
+        public GeneralHelpers.Size Size { get { return GetCurrentSize(); } private set { ;} }
         public GeneralHelpers.Size Cargo { get; set; }
         public Weather.Season Season { get; set; }
         public string Name { get; set; }
-        public string IATACode { get; set; }
-        public string ICAOCode { get; set; }
+        public string IataCode { get; set; }
+        public string IcaoCode { get; set; }
         public Town Town { get; set; }
         public Country Country { get { return this.Town.Country; } private set { ;} }
         public GeoCoordinate Coordinates { get; set; }
         public string Logo { get; set; }
         // chs, 2012-23-01 added for airport maps
         public string Map { get; set; }
-        public TimeSpan OffsetGMT { get; set; }
-        public TimeSpan OffsetDST { get; set; }
+        public TimeSpan OffsetGmt { get; set; }
+        public TimeSpan OffsetDst { get; set; }
         public GameTimeZone TimeZone { get { return GetTimeZone(); } set { ;} }
         public Period<DateTime> Period { get; set; }
         public string ID { get; set; }
@@ -41,14 +41,14 @@ namespace TheAirline.Model.AirportModel
         public double CargoVolume { get; set; }
 
         public Dictionary<string, int> MajorDestionations { get; set; }
-        public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGMT, TimeSpan offsetDST, GeoCoordinate coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
+        public AirportProfile(string name, string code, string icaocode, AirportType type, Period<DateTime> period, Town town, TimeSpan offsetGmt, TimeSpan offsetDst, GeoCoordinate coordinates, GeneralHelpers.Size cargo, double cargovolume, Weather.Season season)
         {
             this.PaxValues = new List<PaxValue>();
 
             this.Name = name;
             this.Period = period;
-            this.IATACode = code;
-            this.ICAOCode = icaocode;
+            this.IataCode = code;
+            this.IcaoCode = icaocode;
             this.Type = type;
             this.Town = town;
             this.Coordinates = coordinates;
@@ -56,17 +56,17 @@ namespace TheAirline.Model.AirportModel
             this.MajorDestionations = new Dictionary<string, int>();
             this.Cargo = cargo;
             this.Logo = "";
-            this.OffsetDST = offsetDST;
-            this.OffsetGMT = offsetGMT;
+            this.OffsetDst = offsetDst;
+            this.OffsetGmt = offsetGmt;
             this.Season = season;
-            this.ID = string.Format("{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}", char.ConvertToUtf32(this.IATACode, 0), char.ConvertToUtf32(this.IATACode, 1), char.ConvertToUtf32(this.IATACode, 2), name.Length, char.ConvertToUtf32(this.Name, this.Name.Length / 2), (int)this.Cargo);
+            this.ID = string.Format("{0:00}-{1:00}-{2:00}-{3:00}-{4:00}-{5:00}", char.ConvertToUtf32(this.IataCode, 0), char.ConvertToUtf32(this.IataCode, 1), char.ConvertToUtf32(this.IataCode, 2), name.Length, char.ConvertToUtf32(this.Name, this.Name.Length / 2), (int)this.Cargo);
 
 
         }
         //returns the time zone for the airport
         private GameTimeZone GetTimeZone()
         {
-            GameTimeZone zone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == this.OffsetDST; });
+            GameTimeZone zone = TimeZones.GetTimeZones().Find(gtz => gtz.UTCOffset == this.OffsetDst);
 
             return zone;
         }
@@ -111,15 +111,16 @@ namespace TheAirline.Model.AirportModel
 
         public Town GetNearestTown()
         {
+            const double tolerance = 0.01;
             //here we use a standard loop because of the extra comparison
             var towns = Towns.GetTowns();
             var minDist = towns.Min(_ => Coordinates.GetDistanceTo(_.Coordinates));
-            var closest = towns.First(_ => Coordinates.GetDistanceTo(_.Coordinates) == minDist);
+            var closest = towns.First(_ => Math.Abs(Coordinates.GetDistanceTo(_.Coordinates) - minDist) < tolerance);
             return closest;
         }
 
         //return the current size (pax) of the airport
-        private GeneralHelpers.Size getCurrentSize()
+        private GeneralHelpers.Size GetCurrentSize()
         {
 
             return AirportHelpers.ConvertAirportPaxToSize(GetCurrentPaxValue());
@@ -132,7 +133,7 @@ namespace TheAirline.Model.AirportModel
 
             PaxValue currentPaxValue = this.PaxValues.Find(p => p.FromYear <= currentYear && p.ToYear >= currentYear);
 
-            return currentPaxValue == null ? this.PaxValues[0] : currentPaxValue;
+            return currentPaxValue ?? this.PaxValues[0];
         }
 
     }

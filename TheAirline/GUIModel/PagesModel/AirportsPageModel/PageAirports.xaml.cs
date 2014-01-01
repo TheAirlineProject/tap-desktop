@@ -98,7 +98,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             if (text == "112")
                 GameObject.GetInstance().setHumanMoney(10000000);
 
-            var airports = Airports.GetAllActiveAirports().Where(a => (a.Profile.IATACode.ToUpper().StartsWith(text) || a.Profile.ICAOCode.ToUpper().StartsWith(text) || a.Profile.Name.ToUpper().StartsWith(text) || a.Profile.Town.Name.ToUpper().StartsWith(text)) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
+            var airports = Airports.GetAllActiveAirports().Where(a => (a.Profile.IataCode.ToUpper().StartsWith(text) || a.Profile.IcaoCode.ToUpper().StartsWith(text) || a.Profile.Name.ToUpper().StartsWith(text) || a.Profile.Town.Name.ToUpper().StartsWith(text)) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
 
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 

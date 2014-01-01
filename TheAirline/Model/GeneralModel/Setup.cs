@@ -1279,7 +1279,7 @@ namespace TheAirline.Model.GeneralModel
 				{
 					Airport airport = Airports.GetAirport(airportElement.Attributes["airport"].Value);
 
-					id = airport.Profile.IATACode;
+					id = airport.Profile.IataCode;
 
 					XmlNodeList destinationsList = airportElement.SelectNodes("destinations/destination");
 

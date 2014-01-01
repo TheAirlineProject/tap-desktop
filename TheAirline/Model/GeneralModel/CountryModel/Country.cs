@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Navigation;
 using TheAirline.Model.AirlinerModel;
 using System.IO;
 using TheAirline.Model.GeneralModel.CountryModel;
@@ -178,13 +179,8 @@ namespace TheAirline.Model.GeneralModel
 
         public static Country MatchIso(string iso)
         {
-            foreach (Country c in Countries.GetAllCountries())
-            {
-                if (c.ShortName == iso)
-                {
-                    return c;
-                }
-            }
+            var countries = GetAllCountries();
+            return countries.Find(_ => _.ShortName == iso);
         }
 
         //returns the list of countries from a region

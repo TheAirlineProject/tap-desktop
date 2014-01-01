@@ -30,9 +30,9 @@ namespace TheAirline.Model.PassengerModel
 
             foreach (Airport n in Nodes)
             {
-                this.Previous.Add(n.Profile.IATACode, null);
+                this.Previous.Add(n.Profile.IataCode, null);
                 this.Basis.Add(n);
-                this.Dist.Add(n.Profile.IATACode, double.MaxValue);
+                this.Dist.Add(n.Profile.IataCode, double.MaxValue);
             }
         }
 
@@ -43,7 +43,7 @@ namespace TheAirline.Model.PassengerModel
         /// <param name="start">Startknoten</param>
         public void calculateDistance(Airport start)
         {
-            this.Dist[start.Profile.IATACode] = 0;
+            this.Dist[start.Profile.IataCode] = 0;
 
             while (Basis.Count > 0)
             {
@@ -56,12 +56,12 @@ namespace TheAirline.Model.PassengerModel
                 {
                     foreach (Airport v in getNeighbors(u))
                     {
-                        double alt = Dist[u.Profile.IATACode] +
+                        double alt = Dist[u.Profile.IataCode] +
                                 getDistanceBetween(u, v);
-                        if (alt < Dist[v.Profile.IATACode])
+                        if (alt < Dist[v.Profile.IataCode])
                         {
-                            this.Dist[v.Profile.IATACode] = alt;
-                            this.Previous[v.Profile.IATACode] = u;
+                            this.Dist[v.Profile.IataCode] = alt;
+                            this.Previous[v.Profile.IataCode] = u;
                         }
                     }
                     this.Basis.Remove(u);
@@ -81,9 +81,9 @@ namespace TheAirline.Model.PassengerModel
             path.Insert(0, d);
 
 
-            while ((this.Previous.Count != 0) && (this.Previous[d.Profile.IATACode] != null))
+            while ((this.Previous.Count != 0) && (this.Previous[d.Profile.IataCode] != null))
             {
-                d = this.Previous[d.Profile.IATACode];
+                d = this.Previous[d.Profile.IataCode];
                 path.Insert(0, d);
             }
 
@@ -101,9 +101,9 @@ namespace TheAirline.Model.PassengerModel
 
             foreach (Airport n in this.Basis)
             {
-                if (this.Dist[n.Profile.IATACode] < distance)
+                if (this.Dist[n.Profile.IataCode] < distance)
                 {
-                    distance = this.Dist[n.Profile.IATACode];
+                    distance = this.Dist[n.Profile.IataCode];
                     smallest = n;
                 }
             }

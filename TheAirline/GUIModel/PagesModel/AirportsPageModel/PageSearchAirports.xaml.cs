@@ -60,7 +60,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             Country country = (Country)cbCountry.SelectedItem;
             Region region = (Region)cbRegion.SelectedItem;
 
-            var airports = Airports.GetAllAirports().Where(a => a.Profile.IATACode.StartsWith(text) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
+            var airports = Airports.GetAllAirports().Where(a => a.Profile.IataCode.StartsWith(text) && ((country.Uid == "100" && (region.Uid == "100" || a.Profile.Country.Region == region)) || new CountryCurrentCountryConverter().Convert(a.Profile.Country) as Country == country));
 
             if (compareType == ComparerControl.CompareTypes.Equal_to)
                 airports = airports.Where(a => a.Profile.Size == size);

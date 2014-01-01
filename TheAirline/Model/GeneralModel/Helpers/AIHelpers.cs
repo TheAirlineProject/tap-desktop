@@ -610,7 +610,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             Boolean humanHasRoute = Airlines.GetHumanAirlines().SelectMany(a => a.Routes).ToList().Exists(r => (r.Destination1 == route.Destination1 && r.Destination2 == route.Destination2) || (r.Destination1 == route.Destination2 && r.Destination2 == route.Destination1));
 
                             if (humanHasRoute && Settings.GetInstance().MailsOnAirlineRoutes)
-                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode, route.Destination1.Profile.IATACode, route.Destination2.Profile.IATACode)));
+                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airline_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1013"), string.Format(Translator.GetInstance().GetString("News", "1013", "message"), airline.Profile.IATACode, route.Destination1.Profile.IataCode, route.Destination2.Profile.IataCode)));
 
                             Country newDestination = airline.Routes.Count(r => r.Destination1.Profile.Country == airport.Profile.Country || r.Destination2.Profile.Country == airport.Profile.Country) == 0 ? airport.Profile.Country : null;
 
@@ -824,7 +824,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double distance = MathHelpers.GetDistance(dest1.Profile.Coordinates, dest2.Profile.Coordinates);
 
-            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
+            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.ShortHaulInternational || dest1.Profile.Type == AirportProfile.AirportType.LongHaulInternational) && (dest2.Profile.Type == AirportProfile.AirportType.ShortHaulInternational || dest2.Profile.Type == AirportProfile.AirportType.LongHaulInternational)) || (dest1.Profile.Type == AirportProfile.AirportType.LongHaulInternational && dest2.Profile.Type == AirportProfile.AirportType.LongHaulInternational));
 
             return isOk;
         }

@@ -234,8 +234,8 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportModel
 
                 if (passengers > 0 || cargo > 0)
                 {
-                    DestinationDemand passengerDemand = new DestinationDemand(airport.Profile.IATACode, (ushort)passengers);
-                    DestinationDemand cargoDemand = new DestinationDemand(airport.Profile.IATACode, (ushort)cargo);
+                    DestinationDemand passengerDemand = new DestinationDemand(airport.Profile.IataCode, (ushort)passengers);
+                    DestinationDemand cargoDemand = new DestinationDemand(airport.Profile.IataCode, (ushort)cargo);
 
                      
                     int demand = passengers;

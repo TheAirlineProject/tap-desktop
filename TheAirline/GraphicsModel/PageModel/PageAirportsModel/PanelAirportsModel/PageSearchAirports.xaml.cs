@@ -253,7 +253,7 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel.PanelAirportsMode
             }
 
           
-            airports = airports.FindAll(a => a.Profile.Name.ToUpper().Contains(searchText) || a.Profile.ICAOCode.ToUpper().Contains(searchText) || a.Profile.IATACode.ToUpper().Contains(searchText) || a.Profile.Town.Name.ToUpper().Contains(searchText) || ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)).Name.ToUpper().Contains(searchText));
+            airports = airports.FindAll(a => a.Profile.Name.ToUpper().Contains(searchText) || a.Profile.IcaoCode.ToUpper().Contains(searchText) || a.Profile.IataCode.ToUpper().Contains(searchText) || a.Profile.Town.Name.ToUpper().Contains(searchText) || ((Country)new CountryCurrentCountryConverter().Convert(a.Profile.Country)).Name.ToUpper().Contains(searchText));
            // airports = airports.FindAll((delegate(Airport airport) { return airport.Profile.Name.ToUpper().Contains(searchText) || airport.Profile.ICAOCode.ToUpper().Contains(searchText) || airport.Profile.IATACode.ToUpper().Contains(searchText) || airport.Profile.Town.ToUpper().Contains(searchText) || airport.Profile.Country.Name.ToUpper().Contains(searchText); }));
 
             this.ParentPage.showAirports(airports);

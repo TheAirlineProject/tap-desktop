@@ -30,7 +30,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
         {
             int compare = entry.FlightCode.CompareTo(this.FlightCode);
             if (compare == 0)
-                return entry.Airport.Profile.IATACode.CompareTo(this.Airport.Profile.IATACode);
+                return entry.Airport.Profile.IataCode.CompareTo(this.Airport.Profile.IataCode);
             return compare;
         }
     }

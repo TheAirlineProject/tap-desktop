@@ -24,7 +24,7 @@ namespace TheAirline.Model.GeneralModel
         public DateTime EndDate { get; set; }
         public List<OneToManyCountry> Countries { get; set; }
         public TemporaryCountry(TemporaryType type, Country country, DateTime startDate, DateTime endDate)
-            : base(Country.Section, country.Uid, country.ShortName, country.Region, country.TailNumberFormat)
+            : base(Country.Section, country.Uid, country.Iso, country.ShortName, country.Region, country.TailNumberFormat)
         {
             this.Type = type;
             this.StartDate = startDate;
@@ -34,7 +34,7 @@ namespace TheAirline.Model.GeneralModel
             this.CountryBefore = this;
         }
         //returns the current country for the country
-        public Country getCurrentCountry(DateTime date, Country originalCountry)
+        public Country GetCurrentCountry(DateTime date, Country originalCountry)
         {
             if (this.Type == TemporaryType.ManyToOne)
             {
@@ -90,12 +90,9 @@ namespace TheAirline.Model.GeneralModel
         //returns all temporary countries
         public static List<Country> GetCountries()
         {
-            List<Country> lCountries = new List<Country>();
-            foreach (TemporaryCountry country in tCountries)
-                lCountries.Add(country);
-            return lCountries;
-
+            return tCountries.Cast<Country>().ToList();
         }
+
         //returns a country
         public static Country GetCountry(string uid)
         {

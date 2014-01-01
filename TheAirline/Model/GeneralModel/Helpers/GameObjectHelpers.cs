@@ -134,9 +134,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 Airport reallocatedAirport = openingAirports.Find(a => a.Profile.Town == airport.Profile.Town);
 
                 if (reallocatedAirport == null)
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rPlease move all routes to another destination.", airport.Profile.IataCode, new AirportCodeConverter().Convert(airport).ToString())));
                 else
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport closing", string.Format("The airport [LI airport={0}]({1}) is closing in 14 days.\n\rThe airport will be replaced by {2}({3}) and all gates and routes from {0} will be reallocated to {2}.", airport.Profile.IataCode, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.Name, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
 
                 CalendarItems.AddCalendarItem(new CalendarItem(CalendarItem.ItemType.Airport_Closing, airport.Profile.Period.To, "Airport closing", string.Format("{0}, {1}", airport.Profile.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
             }
@@ -169,7 +169,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         AirlineHelpers.ReallocateAirport(airport, reallocatedAirport, airline);
 
                         if (airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport operations changed", string.Format("All your gates, routes and facilities has been moved from {0}({1}) to [LI airport={2}]({3})", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.IATACode, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport operations changed", string.Format("All your gates, routes and facilities has been moved from {0}({1}) to [LI airport={2}]({3})", airport.Profile.Name, new AirportCodeConverter().Convert(airport).ToString(), reallocatedAirport.Profile.IataCode, new AirportCodeConverter().Convert(reallocatedAirport).ToString())));
                     }
                 }
 
@@ -215,7 +215,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (AirlineAirportFacility facility in humanAirportFacilities)
             {
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at [LI airport={1}] is now finished building", facility.Facility.Name, facility.Airport.Profile.IATACode)));
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport facility", string.Format("Your airport facility {0} at [LI airport={1}] is now finished building", facility.Facility.Name, facility.Airport.Profile.IataCode)));
                 facility.FinishedDate = GameObject.GetInstance().GameTime;
             }
             //checks for changed flight restrictions
@@ -277,7 +277,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                if (Settings.GetInstance().MailsOnBadWeather && humanAirlines.SelectMany(a => a.Airports.FindAll(aa => aa == airport)).Count() > 0 && (airport.Weather[airport.Weather.Length - 1].WindSpeed == Weather.eWindSpeed.Violent_Storm || airport.Weather[airport.Weather.Length - 1].WindSpeed == Weather.eWindSpeed.Hurricane))
                {
-                   GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1002"), string.Format(Translator.GetInstance().GetString("News", "1002", "message"), airport.Profile.IATACode, GameObject.GetInstance().GameTime.AddDays(airport.Weather.Length - 1).DayOfWeek)));
+                   GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1002"), string.Format(Translator.GetInstance().GetString("News", "1002", "message"), airport.Profile.IataCode, GameObject.GetInstance().GameTime.AddDays(airport.Weather.Length - 1).DayOfWeek)));
                }
                // chs, 2011-01-11 changed for delivery of terminals
                foreach (Terminal terminal in airport.Terminals.getTerminals())
@@ -285,10 +285,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                    if (terminal.DeliveryDate.Year == GameObject.GetInstance().GameTime.Year && terminal.DeliveryDate.Month == GameObject.GetInstance().GameTime.Month && terminal.DeliveryDate.Day == GameObject.GetInstance().GameTime.Day)
                    {
                        if (terminal.Airline == null)
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("[LI airport={0}], {1} has build a new terminal with {2} gates", airport.Profile.IATACode, airport.Profile.Country.Name, terminal.Gates.NumberOfGates)));
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("[LI airport={0}], {1} has build a new terminal with {2} gates", airport.Profile.IataCode, airport.Profile.Country.Name, terminal.Gates.NumberOfGates)));
 
                        if (terminal.Airline != null && terminal.Airline.IsHuman)
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at [LI airport={0}], {1} is now finished and ready for use.", airport.Profile.IATACode, airport.Profile.Country.Name)));
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Construction of terminal", string.Format("Your terminal at [LI airport={0}], {1} is now finished and ready for use.", airport.Profile.IataCode, airport.Profile.Country.Name)));
 
                        if (terminal.Airline != null)
                        {
@@ -338,7 +338,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                        if (numberOfNewGates > 0)
                        {
-                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has expanded {2} with {3} gates", airport.Profile.IATACode, airport.Profile.Country.Name, terminal.Name, numberOfNewGates)));
+                           GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Expansion of terminal", string.Format("[LI airport={0}], {1} has expanded {2} with {3} gates", airport.Profile.IataCode, airport.Profile.Country.Name, terminal.Name, numberOfNewGates)));
 
                            double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport, numberOfNewGates + terminal.Gates.NumberOfGates, 20);
 
@@ -370,7 +370,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                            if (!canFillRoutes)
                            {
-                               GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired, and a number of routes has been cancelled", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+                               GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired, and a number of routes has been cancelled", contract.NumberOfGates, contract.Airport.Profile.IataCode, contract.Airport.Profile.Country.Name)));
 
                                int currentRoute = 0;
                                while (!canFillRoutes)
@@ -393,7 +393,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                            }
                            else
                            {
-                               GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+                               GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired", contract.NumberOfGates, contract.Airport.Profile.IataCode, contract.Airport.Profile.Country.Name)));
 
                            }
 
@@ -419,7 +419,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
            );
             //checks for airliners for the human airline
             foreach (FleetAirliner airliner in humanAirlines.SelectMany(a => a.Fleet.FindAll(f => f.Airliner.BuiltDate == GameObject.GetInstance().GameTime && f.Purchased != FleetAirliner.PurchasedType.BoughtDownPayment)))
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}.", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}.", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IataCode, airliner.Homebase.Profile.Country.Name)));
 
 
             Parallel.ForEach(Airlines.GetAllAirlines(), airline =>
@@ -432,7 +432,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         airliner.Purchased = FleetAirliner.PurchasedType.Bought;
 
                         if (airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IATACode, airliner.Homebase.Profile.Country.Name)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Fleet_News, GameObject.GetInstance().GameTime, "Delivery of airliner", string.Format("Your new airliner [LI airliner={0}] as been delivered to your fleet.\nThe airliner is currently at [LI airport={1}], {2}", airliner.Airliner.TailNumber, airliner.Homebase.Profile.IataCode, airliner.Homebase.Profile.Country.Name)));
 
                     }
                     else
@@ -643,10 +643,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (count == 1)
                 {
                     Airport allocateFromAirport = Airports.GetAirports(a => a.Profile.Town == airport.Profile.Town && airport != a && a.Terminals.getNumberOfGates(GameObject.GetInstance().HumanAirline) > 0).First();
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}.\n\rYou can reallocate all your operations from {4}({5}) for free within the next 30 days", airport.Profile.IataCode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name, allocateFromAirport.Profile.Name, new AirportCodeConverter().Convert(allocateFromAirport).ToString())));
                 }
                 else
-                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}", airport.Profile.IATACode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
+                    GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "New airport opened", string.Format("A new airport [LI airport={0}]({1}) is opened in {2}, {3}", airport.Profile.IataCode, new AirportCodeConverter().Convert(airport).ToString(), airport.Profile.Town.Name, ((Country)new CountryCurrentCountryConverter().Convert(airport.Profile.Country)).Name)));
 
 
 
@@ -870,7 +870,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     foreach (AirportContract contract in airlineContracts)
                     {
                         if (contract.Airline.IsHuman)
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expires", string.Format("Your contract for {0} gates at [LI airport={1}], {2} expires soon. Please extend the contracts.", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expires", string.Format("Your contract for {0} gates at [LI airport={1}], {2} expires soon. Please extend the contracts.", contract.NumberOfGates, contract.Airport.Profile.IataCode, contract.Airport.Profile.Country.Name)));
                         else
                         {
                             int numberOfRoutes = AirportHelpers.GetAirportRoutes(airport, contract.Airline).Count;
@@ -1180,10 +1180,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     switch (delayedMinutes.Key)
                     {
                         case FleetAirlinerHelpers.DelayType.Airliner_problems:
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IATACode, flight.Entry.Destination.Airport.Profile.IATACode)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1004"), string.Format(Translator.GetInstance().GetString("News", "1004", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IataCode, flight.Entry.Destination.Airport.Profile.IataCode)));
                             break;
                         case FleetAirlinerHelpers.DelayType.Bad_weather:
-                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IATACode, flight.Entry.Destination.Airport.Profile.IATACode)));
+                            GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1005"), string.Format(Translator.GetInstance().GetString("News", "1005", "message"), flight.Entry.Destination.FlightCode, flight.Entry.DepartureAirport.Profile.IataCode, flight.Entry.Destination.Airport.Profile.IataCode)));
                             break;
                     }
                 }
@@ -1212,7 +1212,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (airliner.Airliner.Airline.IsHuman)
                     {
                         Airport airport = AirportHelpers.HasBadWeather(airliner.CurrentFlight.Entry.Destination.Airport) ? airliner.CurrentFlight.Entry.Destination.Airport : airliner.CurrentFlight.Entry.DepartureAirport;
-                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber, airport.Profile.IATACode)));
+                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1003"), string.Format(Translator.GetInstance().GetString("News", "1003", "message"), airliner.Airliner.TailNumber, airport.Profile.IataCode)));
 
                     }
                     SetNextFlight(airliner);
@@ -1379,7 +1379,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Airliner.Flown += fdistance;
 
             if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
-                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IATACode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IATACode, dept.Profile.Country.Name })));
+                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IataCode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IataCode, dept.Profile.Country.Name })));
 
             SetNextFlight(airliner);
 

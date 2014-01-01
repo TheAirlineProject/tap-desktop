@@ -512,12 +512,12 @@ namespace TheAirline.Model.GeneralModel
             if (largestAirports.Count > 0)
             {
                 foreach (var lAirport in largestAirports)
-                    airport.addDestinationPassengersRate(new DestinationDemand(lAirport.Profile.IATACode, (ushort)rnd.Next(1, maxValue)));
+                    airport.addDestinationPassengersRate(new DestinationDemand(lAirport.Profile.IataCode, (ushort)rnd.Next(1, maxValue)));
             }
             else
             {
                 subAirports = subAirports.OrderByDescending(a => a.Profile.Size).ToList();
-                airport.addDestinationPassengersRate(new DestinationDemand(subAirports[0].Profile.IATACode, (ushort)rnd.Next(1, maxValue)));
+                airport.addDestinationPassengersRate(new DestinationDemand(subAirports[0].Profile.IataCode, (ushort)rnd.Next(1, maxValue)));
             }
         }
 
@@ -743,7 +743,7 @@ namespace TheAirline.Model.GeneralModel
             volume *= 35.1;
 
             if (volume >= 1)
-                airport.addDestinationCargoRate(new DestinationDemand(dAirport.Profile.IATACode, (ushort)volume));
+                airport.addDestinationCargoRate(new DestinationDemand(dAirport.Profile.IataCode, (ushort)volume));
         }
 
         //creates the airport destinations cargo between two destinations in cu m.
@@ -760,9 +760,9 @@ namespace TheAirline.Model.GeneralModel
             double dist = MathHelpers.GetDistance(dAirport, airport);
 
 
-            if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IATACode))
+            if (airport.Profile.MajorDestionations.Keys.Contains(dAirport.Profile.IataCode))
             {
-                estimatedPassengerLevel = (Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IATACode]) * 1000) / 365;
+                estimatedPassengerLevel = (Convert.ToDouble(airport.Profile.MajorDestionations[dAirport.Profile.IataCode]) * 1000) / 365;
                 estimatedPassengerLevel *= GameObject.GetInstance().Difficulty.PassengersLevel;
             }
             else
@@ -3372,7 +3372,7 @@ namespace TheAirline.Model.GeneralModel
 
             if (rate > 0)
             {
-                airport.addDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IATACode, rate));
+                airport.addDestinationPassengersRate(new DestinationDemand(dAirport.Profile.IataCode, rate));
                 //DatabaseObject.GetInstance().addToTransaction(airport, dAirport, classType, rate);
             }
 

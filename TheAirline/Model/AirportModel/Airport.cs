@@ -156,7 +156,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination passengers for a specific destination for a class
         public ushort getDestinationPassengersRate(Airport destination, AirlinerClass.ClassType type)
         {
-            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IATACode);
+            DestinationDemand pax = this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IataCode);
 
             var values = Enum.GetValues(typeof(AirlinerClass.ClassType));
  
@@ -182,7 +182,7 @@ namespace TheAirline.Model.AirportModel
         //returns the destination cargo for a specific destination
         public ushort getDestinationCargoRate(Airport destination)
         {
-            DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination.Profile.IATACode);
+            DestinationDemand cargo = this.DestinationCargo.Find(a => a.Destination == destination.Profile.IataCode);
 
          
             if (cargo == null)
@@ -214,7 +214,7 @@ namespace TheAirline.Model.AirportModel
                 if (destinationPassengers != null)
                     destinationPassengers.Rate += rate;
                 else
-                    this.DestinationPassengers.Add(new DestinationDemand(destination.Profile.IATACode, rate));
+                    this.DestinationPassengers.Add(new DestinationDemand(destination.Profile.IataCode, rate));
             }
         }
         //adds a cargo rate value to a destination
@@ -228,7 +228,7 @@ namespace TheAirline.Model.AirportModel
                 if (destinationCargo != null)
                     destinationCargo.Rate += rate;
                 else
-                    this.DestinationCargo.Add(new DestinationDemand(destination.Profile.IATACode, rate));
+                    this.DestinationCargo.Add(new DestinationDemand(destination.Profile.IataCode, rate));
             }
         }
         //returns all airports where the airport has demand
@@ -245,17 +245,17 @@ namespace TheAirline.Model.AirportModel
         //returns if the destination has passengers rate
         public Boolean hasDestinationPassengersRate(Airport destination)
         {
-            return this.Statics.hasDestinationPassengersRate(destination) || this.DestinationPassengers.Exists(a => a.Destination == destination.Profile.IATACode);
+            return this.Statics.hasDestinationPassengersRate(destination) || this.DestinationPassengers.Exists(a => a.Destination == destination.Profile.IataCode);
         }
         //returns a destination passengers object
         public DestinationDemand getDestinationPassengersObject(Airport destination)
         {
-            return this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IATACode);
+            return this.DestinationPassengers.Find(a => a.Destination == destination.Profile.IataCode);
         }
         //returns a destination cargo object
         public DestinationDemand getDestinationCargoObject(Airport destination)
         {
-            return this.DestinationCargo.Find(a => a.Destination == destination.Profile.IATACode);
+            return this.DestinationCargo.Find(a => a.Destination == destination.Profile.IataCode);
         }
         //clears the destination passengers
         public void clearDestinationPassengers()
@@ -609,7 +609,7 @@ namespace TheAirline.Model.AirportModel
         //returns an airport based on iata code
         public static Airport GetAirport(string iata)
         {
-            var tAirports = airports.FindAll(a => a.Profile.IATACode == iata);
+            var tAirports = airports.FindAll(a => a.Profile.IataCode == iata);
 
             if (tAirports.Count == 1)
                 return tAirports[0];

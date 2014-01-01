@@ -142,9 +142,9 @@ namespace TheAirline.GraphicsModel.PageModel.PageAirportsModel
                     break;
                 case "IATA":
                     if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
-                        sortCriteria = a => a.Profile.IATACode;
+                        sortCriteria = a => a.Profile.IataCode;
                     else
-                        sortCriteria = a => a.Profile.ICAOCode;
+                        sortCriteria = a => a.Profile.IcaoCode;
 
                     if (sortCriteria == oSort)
                         this.sortDescending = !this.sortDescending;

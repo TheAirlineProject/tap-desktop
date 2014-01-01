@@ -544,9 +544,9 @@ namespace TheAirline.GraphicsModel.Converters
                 Airport airport = (Airport)value;
 
                 if (Settings.GetInstance().AirportCodeDisplay == Settings.AirportCode.IATA)
-                    return airport.Profile.IATACode;
+                    return airport.Profile.IataCode;
                 else
-                    return airport.Profile.ICAOCode;
+                    return airport.Profile.IcaoCode;
             }
             else
                 return "";
@@ -707,15 +707,15 @@ namespace TheAirline.GraphicsModel.Converters
                     return country;
                 else
                 {
-                    if (tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
+                    if (tempCountry.GetCurrentCountry(GameObject.GetInstance().GameTime, country) == null)
                         return country;
                     else
-                        return tempCountry.getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                        return tempCountry.GetCurrentCountry(GameObject.GetInstance().GameTime, country);
                 }
             }
             else
             {
-                return ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime, country);
+                return ((TemporaryCountry)country).GetCurrentCountry(GameObject.GetInstance().GameTime, country);
 
             }
             //return country is TemporaryCountry ? ((TemporaryCountry)country).getCurrentCountry(GameObject.GetInstance().GameTime) : country;

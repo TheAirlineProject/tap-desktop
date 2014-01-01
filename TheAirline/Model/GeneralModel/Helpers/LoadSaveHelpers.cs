@@ -385,11 +385,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
                              long destPassengers = Convert.ToInt64(destinationElement.Attributes["passengers"].Value);
 
                              targetAirport.addPassengerDestinationStatistics(destAirport, destPassengers);
-                             targetAirport.addDestinationPassengersRate(new DestinationDemand(destAirport.Profile.IATACode, rate));
+                             targetAirport.addDestinationPassengersRate(new DestinationDemand(destAirport.Profile.IataCode, rate));
 
                              if (destinationElement.HasAttribute("cargo"))
                              {
-                                 targetAirport.addDestinationCargoRate(new DestinationDemand(destAirport.Profile.IATACode, ushort.Parse(destinationElement.Attributes["cargo"].Value)));
+                                 targetAirport.addDestinationCargoRate(new DestinationDemand(destAirport.Profile.IataCode, ushort.Parse(destinationElement.Attributes["cargo"].Value)));
                                  targetAirport.addCargoDestinationStatistics(destAirport, Convert.ToDouble(destinationElement.Attributes["cargostats"].Value, new CultureInfo("de-DE", false)));
                              }
                          }
@@ -1459,7 +1459,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     XmlElement fleetAirlinerNode = xmlDoc.CreateElement("airliner");
                     fleetAirlinerNode.SetAttribute("airliner", airliner.Airliner.TailNumber);
                     fleetAirlinerNode.SetAttribute("name", airliner.Airliner.ID);
-                    fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IATACode);
+                    fleetAirlinerNode.SetAttribute("homebase", airliner.Homebase.Profile.IataCode);
                     fleetAirlinerNode.SetAttribute("purchased", airliner.Purchased.ToString());
                     fleetAirlinerNode.SetAttribute("date", airliner.PurchasedDate.ToString(new CultureInfo("de-DE")));
                     fleetAirlinerNode.SetAttribute("groundeddate", airliner.GroundedToDate.ToString(new CultureInfo("de-DE")));
@@ -1796,7 +1796,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (Airport airport in Airports.GetAllAirports())
             {
                 XmlElement airportDestinationNode = xmlDoc.CreateElement("airportdestination");
-                airportDestinationNode.SetAttribute("id", airport.Profile.IATACode);
+                airportDestinationNode.SetAttribute("id", airport.Profile.IataCode);
 
                 XmlElement destinationsNode = xmlDoc.CreateElement("destinations");
                 //var dests = Airports.GetAirports(a => a != airport && (airport.hasDestinationPassengersRate(a) || airport.hasDestinationStatistics(a)));
@@ -1808,7 +1808,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (dest != airport && (airport.hasDestinationPassengersRate(dest) || airport.hasDestinationPassengerStatistics(dest) || airport.hasDestinationCargStatistics(dest)))
                     {
                         XmlElement destinationNode = xmlDoc.CreateElement("destination");
-                        destinationNode.SetAttribute("id", dest.Profile.IATACode);
+                        destinationNode.SetAttribute("id", dest.Profile.IataCode);
                         destinationNode.SetAttribute("rate", airport.getDestinationPassengersRate(dest, AirlinerClass.ClassType.Economy_Class).ToString());
                         destinationNode.SetAttribute("passengers", airport.getDestinationPassengerStatistics(dest).ToString());
 
@@ -1882,7 +1882,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 allianceNode.SetAttribute("name", alliance.Name);
                 allianceNode.SetAttribute("formation", alliance.FormationDate.ToString(new CultureInfo("de-DE")));
                 allianceNode.SetAttribute("type", alliance.Type.ToString());
-                allianceNode.SetAttribute("headquarter", alliance.Headquarter.Profile.IATACode);
+                allianceNode.SetAttribute("headquarter", alliance.Headquarter.Profile.IataCode);
 
                 XmlElement membersNode = xmlDoc.CreateElement("members");
 
@@ -2232,8 +2232,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             XmlElement routeNode = xmlDoc.CreateElement("route");
             routeNode.SetAttribute("id", route.Id);
-            routeNode.SetAttribute("destination1", route.Destination1.Profile.IATACode);
-            routeNode.SetAttribute("destination2", route.Destination2.Profile.IATACode);
+            routeNode.SetAttribute("destination1", route.Destination1.Profile.IataCode);
+            routeNode.SetAttribute("destination2", route.Destination2.Profile.IataCode);
             routeNode.SetAttribute("isbanned", route.Banned.ToString());
             routeNode.SetAttribute("type", route.Type.ToString());
 
@@ -2294,7 +2294,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             foreach (RouteTimeTableEntry entry in route.TimeTable.Entries)
             {
                 XmlElement ttEntryNode = xmlDoc.CreateElement("timetableentry");
-                ttEntryNode.SetAttribute("destination", entry.Destination.Airport.Profile.IATACode);
+                ttEntryNode.SetAttribute("destination", entry.Destination.Airport.Profile.IataCode);
                 ttEntryNode.SetAttribute("flightcode", entry.Destination.FlightCode);
                 ttEntryNode.SetAttribute("day", entry.Day.ToString());
                 ttEntryNode.SetAttribute("time", entry.Time.ToString());
