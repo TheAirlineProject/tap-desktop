@@ -1,8 +1,10 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO.Packaging;
 using System.Linq;
 using System.Text;
+using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Model.AirportModel;
 using System.Device.Location;
 
@@ -100,6 +102,18 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
                 select a;
             foreach (Airport a in nearby) { airports.Remove(a); }
             return airports;
+        }
+
+        public Airport GetNearestAirport()
+        {
+            //here we use a standard loop because of the extra comparison
+            var airports = Airports.GetAllActiveAirports();
+            Airport closest =
+                airports.First(_ 
+                    =>
+                        Coordinates.GetDistanceTo(_.Profile.Coordinates) ==
+                        airports.Min(x => Coordinates.GetDistanceTo(x.Profile.Coordinates)));
+            return closest;
         }
 
     }

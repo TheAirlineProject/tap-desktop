@@ -1262,7 +1262,7 @@ namespace TheAirline.Model.GeneralModel
 				int majorPax = airport.Profile.MajorDestionations.Sum(d => d.Value);
 
 				if (majorPax > 0)
-					airport.Profile.setPaxValue(Math.Max(0, airport.Profile.Pax - majorPax));
+					airport.Profile.SetPaxValue(Math.Max(0, airport.Profile.Pax - majorPax));
 			}
 		}
 		private static void LoadMajorDestinations(string file)

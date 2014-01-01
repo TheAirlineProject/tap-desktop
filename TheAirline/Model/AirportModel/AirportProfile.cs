@@ -33,10 +33,10 @@ namespace TheAirline.Model.AirportModel
         public string Map { get; set; }
         public TimeSpan OffsetGMT { get; set; }
         public TimeSpan OffsetDST { get; set; }
-        public GameTimeZone TimeZone { get { return getTimeZone(); } set { ;} }
+        public GameTimeZone TimeZone { get { return GetTimeZone(); } set { ;} }
         public Period<DateTime> Period { get; set; }
         public string ID { get; set; }
-        public double Pax { get { return getCurrentPaxValue(); } private set { ;} }
+        public double Pax { get { return GetCurrentPaxValue(); } private set { ;} }
         public List<PaxValue> PaxValues { get; set; }
         public double CargoVolume { get; set; }
 
@@ -64,14 +64,14 @@ namespace TheAirline.Model.AirportModel
 
         }
         //returns the time zone for the airport
-        private GameTimeZone getTimeZone()
+        private GameTimeZone GetTimeZone()
         {
             GameTimeZone zone = TimeZones.GetTimeZones().Find(delegate(GameTimeZone gtz) { return gtz.UTCOffset == this.OffsetDST; });
 
             return zone;
         }
         //sets the pax value
-        public void setPaxValue(double pax)
+        public void SetPaxValue(double pax)
         {
 
             PaxValue paxValue = this.PaxValues[0];
@@ -83,12 +83,12 @@ namespace TheAirline.Model.AirportModel
             this.PaxValues.Add(tPaxValue);
         }
         //returns the current pax value
-        private double getCurrentPaxValue()
+        private double GetCurrentPaxValue()
         {
 
             int currentYear = GameObject.GetInstance().GameTime.Year;
 
-            PaxValue currentPaxValue = getCurrentPaxValueObject();
+            PaxValue currentPaxValue = GetCurrentPaxValueObject();
 
             double pax = currentPaxValue.Pax;
 
@@ -108,14 +108,27 @@ namespace TheAirline.Model.AirportModel
 
             return pax;
         }
+
+        public Town GetNearestTown()
+        {
+            //here we use a standard loop because of the extra comparison
+            var towns = Towns.GetTowns();
+            Town closest =
+                towns.First(_
+                    =>
+                        Coordinates.GetDistanceTo(_.Coordinates) ==
+                        towns.Min(x => Coordinates.GetDistanceTo(x.Coordinates)));
+            return closest;
+        }
+
         //return the current size (pax) of the airport
         private GeneralHelpers.Size getCurrentSize()
         {
 
-            return AirportHelpers.ConvertAirportPaxToSize(getCurrentPaxValue());
+            return AirportHelpers.ConvertAirportPaxToSize(GetCurrentPaxValue());
         }
         //returns the current pax value object
-        private PaxValue getCurrentPaxValueObject()
+        private PaxValue GetCurrentPaxValueObject()
         {
 
             int currentYear = GameObject.GetInstance().GameTime.Year;
