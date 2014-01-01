@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
 using System.Windows.Markup;
 using System.Xml;
@@ -1494,19 +1495,17 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadCities()
         {
-            List<XmlElement> cities = new List<XmlElement>();
+            var cities = new List<XmlElement>();
 
-            XmlDocument doc = new XmlDocument();
+            var doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\cities.xml");
             XmlElement root = doc.DocumentElement;
 
             XmlNodeList citiesList = root.SelectNodes("//city");
             foreach (XmlElement e in citiesList)
             {
-                string name = e.ChildNodes[0].Value;
-                string country = e.ChildNodes[4].Value;
-                Country c = Countries.GetCountry(country.ToString());
-                Town t = new Town(name, c);
+                var c = Countries.MatchIso(e.ChildNodes[4].Value);
+                var t = new Town(e.ChildNodes[0].Value, c);
                 double lat = double.Parse(e.ChildNodes[1].Value);
                 double lng = double.Parse(e.ChildNodes[2].Value);
                 t.Coordinates = new GeoCoordinate(lat, lng);
@@ -1537,12 +1536,13 @@ namespace TheAirline.Model.GeneralModel
 				{
 					string section = root.Name;
 					string uid = element.Attributes["uid"].Value;
+				    string iso = element.Attributes["iso"].Value;
 					string shortname = element.Attributes["shortname"].Value;
 					string flag = element.Attributes["flag"].Value;
 					Region region = Regions.GetRegion(element.Attributes["region"].Value);
 					string tailformat = element.Attributes["tailformat"].Value;
 
-					Country country = new Country(section, uid, shortname, region, tailformat);
+					Country country = new Country(section, uid, iso, shortname, region, tailformat);
 
 					country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
 					Countries.AddCountry(country);
@@ -1579,6 +1579,7 @@ namespace TheAirline.Model.GeneralModel
 			{
 				string section = root.Name;
 				string uid = element.Attributes["uid"].Value;
+			    string iso = element.Attributes["iso"].Value;
 				string shortname = element.Attributes["shortname"].Value;
 				string flag = element.Attributes["flag"].Value;
 				Region region = Regions.GetRegion(element.Attributes["region"].Value);
@@ -1588,7 +1589,7 @@ namespace TheAirline.Model.GeneralModel
 
 				Country territoryOf = Countries.GetCountry(territoryElement.Attributes["uid"].Value);
 
-				Country country = new TerritoryCountry(section, uid, shortname, region, tailformat, territoryOf);
+				Country country = new TerritoryCountry(section, uid, iso, shortname, region, tailformat, territoryOf);
 
 				country.Flag = AppSettings.getDataPath() + "\\graphics\\flags\\" + flag + ".png";
 				Countries.AddCountry(country);
@@ -1615,6 +1616,7 @@ namespace TheAirline.Model.GeneralModel
 
 				string section = root.Name;
 				string uid = element.Attributes["uid"].Value;
+			    string iso = element.Attributes["iso"].Value;
 				string shortname = element.Attributes["shortname"].Value;
 				string flag = element.Attributes["flag"].Value;
 				Region region = Regions.GetRegion(element.Attributes["region"].Value);
@@ -1625,7 +1627,7 @@ namespace TheAirline.Model.GeneralModel
 				DateTime startDate = Convert.ToDateTime(periodElement.Attributes["start"].Value, new CultureInfo("en-US", false));
 				DateTime endDate = Convert.ToDateTime(periodElement.Attributes["end"].Value, new CultureInfo("en-US", false));
 
-				Country country = new Country(section, uid, shortname, region, tailformat);
+				Country country = new Country(section, uid, iso, shortname, region, tailformat);
 
 				if (element.SelectSingleNode("translations") != null)
 					Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));

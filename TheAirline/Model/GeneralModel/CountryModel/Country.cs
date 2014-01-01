@@ -28,14 +28,16 @@ namespace TheAirline.Model.GeneralModel
         public CountryTailNumber TailNumbers { get; set; }
         [DataMember]
         public List<CountryCurrency> Currencies { get; set; }
+        public string Iso { get; set; }
         public Boolean HasLocalCurrency { get { return this.Currencies.Count > 0; } private set { ;} }
-        public Country(string section, string uid, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
+        public Country(string section, string uid, string iso, string shortName, Region region, string tailNumberFormat) : base(uid,shortName)
         {
             Country.Section = section;
             this.Region = region;
             this.TailNumberFormat = tailNumberFormat;
             this.TailNumbers = new CountryTailNumber(this);
             this.Currencies = new List<CountryCurrency>();
+            this.Iso = iso;
         }
         //adds a currency to the country
         public void addCurrency(CountryCurrency currency)
@@ -101,8 +103,8 @@ namespace TheAirline.Model.GeneralModel
     public class TerritoryCountry : Country
     {
         public Country MainCountry { get; set; }
-        public TerritoryCountry(string section, string uid, string shortName, Region region, string tailNumberFormat, Country mainCountry)
-            : base(section,uid,shortName,region,tailNumberFormat)
+        public TerritoryCountry(string section, string uid, string iso, string shortName, Region region, string tailNumberFormat, Country mainCountry)
+            : base(section,uid,iso,shortName,region,tailNumberFormat)
         {
             this.MainCountry = mainCountry;
         }
@@ -172,6 +174,17 @@ namespace TheAirline.Model.GeneralModel
             List<Country> tCountries = countries.Values.ToList();
             tCountries.AddRange(TemporaryCountries.GetCountries());
             return tCountries;
+        }
+
+        public static Country MatchIso(string iso)
+        {
+            foreach (Country c in Countries.GetAllCountries())
+            {
+                if (c.ShortName == iso)
+                {
+                    return c;
+                }
+            }
         }
 
         //returns the list of countries from a region
