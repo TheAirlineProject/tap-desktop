@@ -492,6 +492,88 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 }
             }
         }
+        //returns the current price per share for an airline
+        public static double GetPricePerAirlineShare(Airline airline)
+        {
+            Random rnd = new Random();
+
+            double price = 0;
+            Airline.AirlineValue value = airline.getAirlineValue();
+
+            switch (value)
+            {
+                case Airline.AirlineValue.Low:
+                    price = 15 + (rnd.NextDouble() * 10);
+                    break;
+                case Airline.AirlineValue.Very_low:
+                    price = 5 + (rnd.NextDouble() * 10);
+                    break;
+                case Airline.AirlineValue.Normal:
+                    price = 25 + (rnd.NextDouble() * 10);
+                    break;
+                case Airline.AirlineValue.High:
+                    price = 40 + (rnd.NextDouble() * 10);
+                    break;
+                case Airline.AirlineValue.Very_high:
+                    price = 55 + (rnd.NextDouble() * 10);
+                    break;
+            }
+
+            return GeneralHelpers.GetInflationPrice(price);
+        }
+        //adds a number of shares to an airline
+        public static void AddAirlineShares(Airline airline, int shares,double sharePrice)
+        {
+            for (int i = 0; i < shares; i++)
+            {
+                AirlineShare share = new AirlineShare(null, sharePrice);
+                airline.Shares.Add(share);
+            }
+           
+        }
+        //sets a number of shares to an airline
+        public static void SetAirlineShares(Airline airline, Airline shareAirline, int shares)
+        {
+            for (int i = 0; i < shares; i++)
+            {
+                AirlineShare share = airline.Shares.First(s => s.Airline == null);
+                share.Airline = shareAirline;
+
+            }
+        }
+        //creates the standard number of shares for an airline
+        public static void CreateStandardAirlineShares(Airline airline)
+        {
+            double sharePrice = GetPricePerAirlineShare(airline);
+
+            Random rnd = new Random();
+         
+            int numberOfShares = 10000;
+
+            int airlinePercentShares = rnd.Next(55, 65);
+
+            airline.Shares = new List<AirlineShare>();
+
+            int airlineShares = (numberOfShares / 100) * airlinePercentShares;
+
+            //airline shares
+            for (int i = 0; i < airlineShares; i++)
+            {
+                AirlineShare share = new AirlineShare(airline,sharePrice);
+
+                airline.Shares.Add(share);
+            }
+            //'free' shares
+            for (int i = airlineShares; i < numberOfShares; i++)
+            {
+                AirlineShare share = new AirlineShare(null,sharePrice);
+
+                airline.Shares.Add(share);
+            }
+            
+
+            
+        }
         //switches from one airline to another airline
         public static void SwitchAirline(Airline airlineFrom, Airline airlineTo)
         {
@@ -917,7 +999,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             mod += (100 - airline.Ratings.SecurityRating) / 100;
             return mod;
         }
-
+        
 
         //extend or modify policy
         public static void ModifyPolicy(Airline airline, string index, AirlineInsurance newPolicy)

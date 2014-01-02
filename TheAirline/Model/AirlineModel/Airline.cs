@@ -12,6 +12,7 @@ using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.PilotModel;
 using System.Runtime.Serialization;
 using System.Reflection;
+using TheAirline.Model.GeneralModel.Helpers;
 
 
 namespace TheAirline.Model.AirlineModel
@@ -36,7 +37,8 @@ namespace TheAirline.Model.AirlineModel
 
         [Versioning("mentality")]
         public AirlineMentality Mentality { get; set; }
-
+        [Versioning("shares",Version=2)]
+        public List<AirlineShare> Shares { get; set; }
         [Versioning("reputation")]
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
            [Versioning("airports")]
@@ -117,6 +119,7 @@ namespace TheAirline.Model.AirlineModel
         public Airline(AirlineProfile profile, AirlineMentality mentality, AirlineFocus marketFocus, AirlineLicense license, Route.RouteType routeFocus)
         {
             this.Scores = new AirlineScores();
+            this.Shares = new List<AirlineShare>();
             this.Airports = new List<Airport>();
             this.Fleet = new List<FleetAirliner>();
             this._Routes = new List<Route>();
@@ -687,6 +690,12 @@ namespace TheAirline.Model.AirlineModel
 
                 }
 
+            }
+
+            if (version == 1)
+            {
+           
+                AirlineHelpers.CreateStandardAirlineShares(this);
             }
         }
 

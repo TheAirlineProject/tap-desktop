@@ -4623,4 +4623,34 @@ Good luck.</value>
   <data name="PageShowAirports_200_name" xml:space="preserve">
     <value>Compare Airports</value>
   </data>
+  <data name="PageAirlines_2001_name" xml:space="preserve">
+    <value>Stocks</value>
+  </data>
+  <data name="PageAirlinesShares_1000_name" xml:space="preserve">
+    <value>Select number of shares</value>
+  </data>
+  <data name="PageAirlinesShares_1001_name" xml:space="preserve">
+    <value>Airline</value>
+  </data>
+  <data name="PageAirlinesShares_1002_name" xml:space="preserve">
+    <value>Stock Price</value>
+  </data>
+  <data name="PageAirlinesShares_1003_name" xml:space="preserve">
+    <value>Total Stocks</value>
+  </data>
+  <data name="PageAirlinesShares_1004_name" xml:space="preserve">
+    <value>Stocks for Sale</value>
+  </data>
+  <data name="PageAirlinesShares_1005_name" xml:space="preserve">
+    <value>Airline Ownership Information</value>
+  </data>
+  <data name="PageAirlinesShares_1006_name" xml:space="preserve">
+    <value>Issue Shares</value>
+  </data>
+  <data name="PageAirlinesShares_200_name" xml:space="preserve">
+    <value>Purchase Shares</value>
+  </data>
+  <data name="PageAirlinesShares_201_name" xml:space="preserve">
+    <value>Issue new Shares</value>
+  </data>
 </root>

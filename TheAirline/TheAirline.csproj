@@ -284,6 +284,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlinesShares.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlinesStatistics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -612,6 +616,9 @@
     <Compile Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlines.xaml.cs">
       <DependentUpon>PageAirlines.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlinesShares.xaml.cs">
+      <DependentUpon>PageAirlinesShares.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\PagesModel\AirlinesPageModel\PageAirlinesStatistics.xaml.cs">
       <DependentUpon>PageAirlinesStatistics.xaml</DependentUpon>
     </Compile>
@@ -784,6 +791,7 @@
     <Compile Include="Model\AirlineModel\AirlineProfile.cs" />
     <Compile Include="Model\AirlineModel\AirlineRatings.cs" />
     <Compile Include="Model\AirlineModel\AirlineScores.cs" />
+    <Compile Include="Model\AirlineModel\AirlineShare.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirportModel\AirportContract.cs" />
@@ -940,6 +948,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.nl-NL.resx">
       <Link>Data\languagefiles\language.nl-NL.resx</Link>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="..\Data\languages\language.resx">
       <Link>Data\languagefiles\language.resx</Link>

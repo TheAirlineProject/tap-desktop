@@ -38,7 +38,7 @@ namespace TheAirline.Model.GeneralModel
 		 * holds a random number.
 		 */
 		private static Random rnd = new Random();
-
+     
 		/*! public static method SetupGame().
 		 * Tries to create game´s environment and base configuration.
 		 */
@@ -47,7 +47,8 @@ namespace TheAirline.Model.GeneralModel
 		   
 			try
 			{
-				ReadSettingsFile();
+               
+                ReadSettingsFile();
 				GeneralHelpers.CreateBigImageCanvas();
 				ClearLists();
 
@@ -2208,6 +2209,8 @@ namespace TheAirline.Model.GeneralModel
 				airline.StartMoney = airline.Money;
 				airline.Fees = new AirlineFees();
 				airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));
+
+                AirlineHelpers.CreateStandardAirlineShares(airline);
 
 				if (!airline.IsHuman)
 				{

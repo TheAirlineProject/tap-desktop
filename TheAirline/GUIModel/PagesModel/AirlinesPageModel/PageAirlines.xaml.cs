@@ -50,9 +50,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
 
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 
-            if (selection == "Stastics" && frmContent != null)
+            if (selection == "Statistics" && frmContent != null)
                 frmContent.Navigate(new PageAirlinesStatistics() { Tag = this });
 
+            if (selection == "Stocks" && frmContent != null)
+                frmContent.Navigate(new PageAirlinesShares() { Tag = this });
           
         }
     }
