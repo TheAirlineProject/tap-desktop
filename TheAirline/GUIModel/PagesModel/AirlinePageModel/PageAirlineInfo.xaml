@@ -286,75 +286,62 @@
 
                 <StackPanel>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1007'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                    <ListView Name="lvFleet" VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding DeliveredFleet}">
+                    <ListView VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding ActiveQuantity}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="">
+                                  <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}" util:GridViewSort.PropertyName="Type.Manufacturer.Name" Width="175">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <Button Click="btnSellAirliner_Click" Background="Transparent" Tag="{Binding}" Width="20" VerticalAlignment="Bottom">
-                                                <Button.Style>
-                                                    <Style TargetType="Button">
-                                                        <Style.Triggers>
-                                                            <DataTrigger Binding="{Binding Airliner.Airline.IsHuman}" Value="False">
-                                                                <Setter Property="Button.Visibility" Value="Collapsed" />
-                                                            </DataTrigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Button.Style>
-                                                <Image Source="/data/images/delete.png" RenderOptions.BitmapScalingMode="HighQuality"></Image>
-                                            </Button>
+                                            <WrapPanel>
+                                                <Image Source="{Binding Type.Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="32"></Image>
+                                                <TextBlock Text="{Binding Type.Manufacturer.Name}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                                            </WrapPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}" util:GridViewSort.PropertyName="Name" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1009'}" util:GridViewSort.PropertyName="Type.Name" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource FleetAirlinerLink}"></ContentControl>
-                                            <!--
-                                           <TextBlock VerticalAlignment="Bottom">
-                                                <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
-                                                  <Run Text="{Binding Name}"></Run>
-                                            </Hyperlink>
-                                            </TextBlock>-->
+                                            <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1009'}" util:GridViewSort.PropertyName="Airliner.Type.Name" Width="150">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1033'}" util:GridViewSort.PropertyName="Quantity" Width="100">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Quantity}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
 
                             </GridView>
                         </ListView.View>
-                        <ListView.GroupStyle>
-                            <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}"/>
-                                    </DataTemplate>
-                                </GroupStyle.HeaderTemplate>
-                            </GroupStyle>
-                        </ListView.GroupStyle>
-                    </ListView>
+                     </ListView>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1010'}" Margin="0 10 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                    <ListView  VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding OrderedFleet}">
+                    <ListView VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" BorderThickness="0"  Background="Transparent" ItemsSource="{Binding OrderedQuantity}">
                         <ListView.View>
                             <GridView>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}" util:GridViewSort.PropertyName="Name" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1008'}" util:GridViewSort.PropertyName="Type.Manufacturer.Name" Width="175">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
+                                            <WrapPanel>
+                                            <Image Source="{Binding Type.Manufacturer.Logo}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="32"></Image>
+                                                <TextBlock Text="{Binding Type.Manufacturer.Name}" Margin="5 0 0 0" VerticalAlignment="Bottom"></TextBlock>
+                                            </WrapPanel>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1009'}" util:GridViewSort.PropertyName="Airliner.Type.Name" Width="150">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1009'}" util:GridViewSort.PropertyName="Type.Name" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <TextBlock Text="{Binding Airliner.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                            <TextBlock Text="{Binding Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1033'}" util:GridViewSort.PropertyName="Quantity" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Quantity}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -408,28 +395,7 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1032'}" Width="100" util:GridViewSort.PropertyName="PriceIndex">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding PriceIndex,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1016'}" Width="100" util:GridViewSort.PropertyName="Route.Balance">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Route.Balance,Converter={StaticResource ValueCurrencyConverter}}" Foreground="{Binding Route.Balance,Converter={StaticResource ValueIsMinusConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1017'}" Width="75" util:GridViewSort.PropertyName="Route.FillingDegree">
-                                    <GridViewColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Text="{Binding Route.FillingDegree,StringFormat={}{0:0.00 %}}" VerticalAlignment="Bottom"></TextBlock>
-                                        </DataTemplate>
-                                    </GridViewColumn.CellTemplate>
-                                </GridViewColumn>
+                              
                             </GridView>
                         </ListView.View>
                     </ListView>

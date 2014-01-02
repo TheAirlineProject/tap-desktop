@@ -170,15 +170,24 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
         {
             int shares = Convert.ToInt32(slShares.Value);
 
-            AirlineHelpers.AddAirlineShares(GameObject.GetInstance().HumanAirline, shares,AirlineHelpers.GetPricePerAirlineShare(GameObject.GetInstance().HumanAirline));
+            double price =  AirlineHelpers.GetPricePerAirlineShare(GameObject.GetInstance().HumanAirline);
 
-            AirlinesMVVM humanAirline = this.AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
-            humanAirline.StocksForSale += shares;
-            humanAirline.Stocks += shares;
+            WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2127"), string.Format(Translator.GetInstance().GetString("MessageBox", "2127", "message"), shares, new ValueCurrencyConverter().Convert(price)), WPFMessageBoxButtons.YesNo);
 
-            this.NumberOfSharesToIssue -= shares;
+            if (result == WPFMessageBoxResult.Yes)
+            {
 
-            humanAirline.setOwnershipValues();
+
+                AirlineHelpers.AddAirlineShares(GameObject.GetInstance().HumanAirline, shares,price);
+
+                AirlinesMVVM humanAirline = this.AllAirlines.First(a => a.Airline == GameObject.GetInstance().HumanAirline);
+                humanAirline.StocksForSale += shares;
+                humanAirline.Stocks += shares;
+
+                this.NumberOfSharesToIssue -= shares;
+
+                humanAirline.setOwnershipValues();
+            }
 
         }
         private void btnPurchaseShares_Click(object sender, RoutedEventArgs e)
@@ -189,9 +198,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinesPageModel
             cbShares.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
             cbShares.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
             cbShares.Width = 200;
-   
+
             int dValue = Convert.ToInt16(Convert.ToDouble(airline.StocksForSale) / 10);
-            
+
             for (int i = 0; i <= airline.StocksForSale; i += dValue)
                 cbShares.Items.Add(i);
 

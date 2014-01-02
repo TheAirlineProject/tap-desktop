@@ -43,6 +43,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
+
+        public List<AirlinerQuantityMVVM> OrderedQuantity { get; set; }
+        public List<AirlinerQuantityMVVM> ActiveQuantity { get; set; }
+
         public List<AirlineRouteMVVM> Routes { get; set; }
 
         public Boolean IsBuyable { get; set; }
@@ -165,6 +169,31 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
            
             double buyingPrice = this.Airline.getValue() * 1000000 * 1.10;
             this.IsBuyable = !this.Airline.IsHuman && GameObject.GetInstance().HumanAirline.Money > buyingPrice;
+
+            this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
+            this.OrderedQuantity = new List<AirlinerQuantityMVVM>();
+
+            foreach (FleetAirliner airliner in this.Airline.Fleet)
+            {
+                if (airliner.Airliner.BuiltDate > GameObject.GetInstance().GameTime)
+                {
+                    if (this.OrderedQuantity.Any(o => o.Type == airliner.Airliner.Type))
+                    {
+                        this.OrderedQuantity.First(o => o.Type == airliner.Airliner.Type).Quantity++;
+                    }
+                    else
+                        this.OrderedQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                }
+                else
+                {
+                    if (this.ActiveQuantity.Any(o => o.Type == airliner.Airliner.Type))
+                    {
+                        this.ActiveQuantity.First(o => o.Type == airliner.Airliner.Type).Quantity++;
+                    }
+                    else
+                        this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
+                }
+            }
      
         }
         //saves all the fees
@@ -649,6 +678,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm object for the airliner quantity
+    public class AirlinerQuantityMVVM
+    {
+        public AirlinerType Type { get; set; }
+        public int Quantity { get; set; }
+        public AirlinerQuantityMVVM(AirlinerType type, int quantity)
+        {
+            this.Quantity = quantity;
+            this.Type = type;
         }
     }
     //the converter for the montly payment of a loan

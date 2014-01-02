@@ -118,6 +118,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (selection == "Insurances" && frmContent != null)
                 frmContent.Navigate(new PageAirlineInsurance(this.Airline) { Tag = this });
+
+            if (selection == "Fleet" && frmContent != null)
+                frmContent.Navigate(new PageAirlineFleet(this.Airline) { Tag = this });
         }
     }
 }

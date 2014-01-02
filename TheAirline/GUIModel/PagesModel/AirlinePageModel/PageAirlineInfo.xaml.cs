@@ -45,12 +45,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             InitializeComponent();
 
-            CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(lvFleet.ItemsSource);
-            view.GroupDescriptions.Clear();
-
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Purchased");
-            view.GroupDescriptions.Add(groupDescription);
-
             logoPath = AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png";
             imgLogo.Source = new BitmapImage(new Uri(logoPath, UriKind.RelativeOrAbsolute));
 
