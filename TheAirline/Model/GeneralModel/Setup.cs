@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -64,6 +65,7 @@ namespace TheAirline.Model.GeneralModel
 				LoadStates();
 				LoadTemporaryCountries();
 				LoadUnions();
+			    LoadCities();
 
 				CreateContinents();
 
@@ -1158,17 +1160,15 @@ namespace TheAirline.Model.GeneralModel
 						cargoSize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), sizeElement.Attributes["cargo"].Value);
 
 					Town eTown = null;
+				    var towns = Towns.GetTowns();
 					if (town.Contains(","))
 					{
-						State state = States.GetState(Countries.GetCountry(country), town.Split(',')[1].Trim());
+					    State state = States.GetState(Countries.GetCountry(country), town.Split(',')[1].Trim());
 
-						if (state == null)
-							eTown = new Town(town.Split(',')[0], Countries.GetCountry(country));
-						else
-							eTown = new Town(town.Split(',')[0], Countries.GetCountry(country), state);
+					    eTown = state == null ? towns.Find(_ => _.Name == town.Split(',')[0]) : towns.Find(_ => _.Name == town.Split(',')[0]);
 					}
 					else
-						eTown = new Town(town, Countries.GetCountry(country));
+						eTown = towns.Find(_ => _.Name == town);
 
 
 					AirportProfile profile = new AirportProfile(name, iata, icao, type, airportPeriod, eTown, gmt, dst, pos, cargoSize, cargovolume, season);
@@ -1495,22 +1495,22 @@ namespace TheAirline.Model.GeneralModel
          */
         private static void LoadCities()
         {
-            var cities = new List<XmlElement>();
-
-            var doc = new XmlDocument();
+            XmlDocument doc = new XmlDocument();
             doc.Load(AppSettings.getDataPath() + "\\cities.xml");
-            XmlElement root = doc.DocumentElement;
-
-            XmlNodeList citiesList = root.SelectNodes("//city");
-            foreach (XmlElement e in citiesList)
+            XmlNodeList citiesList = doc.ChildNodes;
+            Debug.WriteLine("City Count: " + citiesList.Count);
+            foreach (XmlNode e in citiesList)
             {
-                var c = Countries.MatchIso(e.ChildNodes[4].Value);
-                var t = new Town(e.ChildNodes[0].Value, c);
-                double lat = double.Parse(e.ChildNodes[1].Value);
-                double lng = double.Parse(e.ChildNodes[2].Value);
+                Country c = Countries.MatchIso(e.ChildNodes[5].InnerText);
+                Town t = new Town(e.ChildNodes[1].InnerText, int.Parse(c.Uid), c);
+                double lat = double.Parse(e.ChildNodes[2].InnerText);
+                double lng = double.Parse(e.ChildNodes[3].InnerText);
                 t.Coordinates = new GeoCoordinate(lat, lng);
-                t.Population = int.Parse(e.ChildNodes[3].Value);
+                t.Population = int.Parse(e.ChildNodes[4].InnerText);
+                Towns.AddTown(t);
             }
+
+            Debug.WriteLine("Actual cities: " + Towns.GetTowns().Count);
         }
 
 		/*!loads the countries.

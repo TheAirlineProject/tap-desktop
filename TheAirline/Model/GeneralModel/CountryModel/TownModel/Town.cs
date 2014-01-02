@@ -14,24 +14,24 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
     [Serializable]
     public class Town
     {
-        
         public string Name { get; set; }
-        
+        public int Uid { get; set; }
         public Country Country { get; set; }
         
         public State State { get; set; }
         public int Population { get; set; }
         public GeoCoordinate Coordinates { get; set; }
-        public Town(string name, Country country) : this(name,country,null)
+        public Town(string name, int uid, Country country) : this(name,uid,country,null)
         {
             
         }
-        public Town(string name, Country country, State state)
+        public Town(string name, int uid, Country country, State state)
         {
           
             this.Name = name;
             this.Country = country;
             this.State = state;
+            this.Uid = uid;
         }
         public static bool operator ==(Town a, Town b)
         {
@@ -75,17 +75,10 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
          * returns a list of nearby towns
          *  this can be replaced with a foreach/if loop depending on performance 
         */
-        public List<Town> GetNearbyTowns(int d)
+
+        public List<Town> getNearbyTowns(int d)
         {
-            List<Town> towns = new List<Town>();
-            foreach (Town t in Towns.GetTowns())
-            {
-                if(this.Coordinates.GetDistanceTo(t.Coordinates) < d )
-                {
-                    towns.Add(t);
-                }
-            }
-            return towns;
+            return Towns.GetTowns().Where(t => this.Coordinates.GetDistanceTo(t.Coordinates) < d).ToList();
         }
 
 
@@ -93,7 +86,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
          * returns a list of nearby airports
          * again, can be replaced with a foreach/if for performance
          */
-        public List<Airport> GetNearbyAirports(int d)
+        public List<Airport> getNearbyAirports(int d)
         {
             List<Airport> airports = Airports.GetAllActiveAirports();
             var nearby =
@@ -104,25 +97,29 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
             return airports;
         }
 
-        public Airport GetNearestAirport()
+        public Airport getNearestAirport()
         {
             //here we use a standard loop because of the extra comparison
             var airports = Airports.GetAllActiveAirports();
             var minDist = airports.Min(_ => Coordinates.GetDistanceTo(_.Profile.Coordinates));
-            var closest = airports.First(_ => Coordinates.GetDistanceTo(_.Profile.Coordinates) == minDist);
-            return closest;
+            return airports.First(_ => Coordinates.GetDistanceTo(_.Profile.Coordinates) == minDist);
         }
 
     }
     //the class which finds a town based on name
     public class Towns
     {
+        private static List<Town> towns = new List<Town>();
         //returns all towns
         public static List<Town> GetTowns()
         {
             return Airports.GetAllAirports().Select(a => a.Profile.Town).Distinct().ToList();
         }
         //returns all towns from a specific country
+        public static void AddTown(Town t)
+        {
+            towns.Add(t);
+        }
         public static List<Town> GetTowns(Country country)
         {
             return Airports.GetAllAirports().Where(a=>a.Profile.Country == country).Select(a => a.Profile.Town).Distinct().ToList();
