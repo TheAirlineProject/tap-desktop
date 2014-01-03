@@ -41,7 +41,9 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             foreach (Region region in Regions.GetAllRegions())
                 cbRegion.Items.Add(region);
 
-            for (int i = 1960; i < 2014; i++)
+            int maxYear = DateTime.Now.Year + 1;
+
+            for (int i = 1960; i < maxYear; i++)
                 cbYear.Items.Insert(0,i);
 
             cbYear.SelectedIndex = 0;
