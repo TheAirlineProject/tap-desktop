@@ -1029,7 +1029,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (policy.NextPaymentDue.Month == GameObject.GetInstance().GameTime.Month)
                     {
                         airline.Money -= policy.PaymentAmount;
-                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, policy.PaymentAmount);
+                        AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Maintenances, -policy.PaymentAmount);
                         policy.RemainingPayments--;
                         switch (policy.InsTerms)
                         {
