@@ -1164,7 +1164,15 @@ namespace TheAirline.Model.GeneralModel
 
                     profile.Town = profile.GetNearestTown();
 
-                   
+                    if (town.Contains(","))
+                    {
+                        State state = States.GetState(Countries.GetCountry(country), town.Split(',')[1].Trim());
+
+                        if (state != null)
+                            townElement.SetAttribute("state", state.ShortName);
+                    }
+
+                    townElement.Attributes["town"].Value = profile.Town.Name;
 
                     Airport airport = new Airport(profile);
 
@@ -1214,6 +1222,8 @@ namespace TheAirline.Model.GeneralModel
                     if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
                         Airports.AddAirport(airport);
                 }
+
+                doc.Save(filename);
             }
             catch (Exception e)
             {
