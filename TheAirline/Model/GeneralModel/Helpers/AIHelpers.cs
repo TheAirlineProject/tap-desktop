@@ -824,7 +824,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             double distance = MathHelpers.GetDistance(dest1.Profile.Coordinates, dest2.Profile.Coordinates);
 
-            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.ShortHaulInternational || dest1.Profile.Type == AirportProfile.AirportType.LongHaulInternational) && (dest2.Profile.Type == AirportProfile.AirportType.ShortHaulInternational || dest2.Profile.Type == AirportProfile.AirportType.LongHaulInternational)) || (dest1.Profile.Type == AirportProfile.AirportType.LongHaulInternational && dest2.Profile.Type == AirportProfile.AirportType.LongHaulInternational));
+            Boolean isOk = (dest1.Profile.Country == dest2.Profile.Country || distance < 1000 || (dest1.Profile.Country.Region == dest2.Profile.Country.Region && (dest1.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International) && (dest2.Profile.Type == AirportProfile.AirportType.Short_Haul_International || dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International)) || (dest1.Profile.Type == AirportProfile.AirportType.Long_Haul_International && dest2.Profile.Type == AirportProfile.AirportType.Long_Haul_International));
 
             return isOk;
         }

@@ -16,7 +16,7 @@ namespace TheAirline.Model.AirportModel
     //the class for a profile for an airport
     public class AirportProfile
     {
-        public enum AirportType { LongHaulInternational, Regional, Domestic, ShortHaulInternational }
+        public enum AirportType { Long_Haul_International, Regional, Domestic, Short_Haul_International }
         public AirportType Type { get; set; }
         //public enum AirportSize { Smallest, Very_small, Small, Medium, Large, Very_large, Largest }
         public GeneralHelpers.Size Size { get { return GetCurrentSize(); } private set { ;} }

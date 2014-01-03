@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <countries>
-  <country uid="100" shortname="---" region="100" flag="United Nations" tailformat="">
+  <country uid="100" iso="---" shortname="---" region="100" flag="United Nations" tailformat="">
     <translations>
       <en-US name="All countries" />
       <de-DE name="Alle Länder" />
@@ -11,7 +11,7 @@
       <es-ES name="Todos los países" />
     </translations>
   </country>
-  <country uid="101" shortname="SEN" region="105" flag="Senegal" tailformat="6V-\\s3">
+  <country uid="101" iso="SN" shortname="SEN" region="105" flag="Senegal" tailformat="6V-\\s3">
     <translations>
       <en-US name="Senegal" />
       <de-DE name="Senegal" />
@@ -22,7 +22,7 @@
       <es-ES name="Senegal" />
     </translations>
   </country>
-  <country uid="102" shortname="LVA" region="114" flag="Latvia" tailformat="YL-\\s3">
+  <country uid="102" iso="LV" shortname="LVA" region="114" flag="Latvia" tailformat="YL-\\s3">
     <translations>
       <en-US name="Latvia" />
       <de-DE name="Lettland" />
@@ -33,7 +33,7 @@
       <es-ES name="Letonia" />
     </translations>
   </country>
-  <country uid="103" shortname="LTU" region="114" flag="Lithuania" tailformat="LY-\\s3">
+  <country uid="103" iso="LT" shortname="LTU" region="114" flag="Lithuania" tailformat="LY-\\s3">
     <translations>
       <en-US name="Lithuania" />
       <de-DE name="Litauen" />
@@ -44,7 +44,7 @@
       <es-ES name="Lituania" />
     </translations>
   </country>
-  <country uid="104" shortname="SRB" region="115" flag="Serbia" tailformat="YU-\\s3">
+  <country uid="104" iso="RS" shortname="SRB" region="115" flag="Serbia" tailformat="YU-\\s3">
     <translations>
       <en-US name="Serbia" />
       <de-DE name="Serbien" />
@@ -55,7 +55,7 @@
       <es-ES name="Serbia" />
     </translations>
   </country>
-  <country uid="105" shortname="SVN" region="115" flag="Slovenia" tailformat="S5-\\s3">
+  <country uid="105" iso="SI" shortname="SVN" region="115" flag="Slovenia" tailformat="S5-\\s3">
     <translations>
       <en-US name="Slovenia" />
       <de-DE name="Slovenien" />
@@ -66,7 +66,7 @@
       <es-ES name="Eslovenia" />
     </translations>
   </country>
-  <country uid="106" shortname="ARG" region="120" flag="Argentina" tailformat="LV-\\s3">
+  <country uid="106" iso="AR" shortname="ARG" region="120" flag="Argentina" tailformat="LV-\\s3">
 	<currency symbol="$" position="Left" rate="4.90" />
     <translations>
       <en-US name="Argentina" />
@@ -78,7 +78,7 @@
       <es-ES name="Argentina" />
     </translations>
   </country>
-  <country uid="107" shortname="BEL" region="116" flag="Belgium" tailformat="OO-\\s3">
+  <country uid="107" iso="BE" shortname="BEL" region="116" flag="Belgium" tailformat="OO-\\s3">
 	<currency symbol="fr." position="Right" rate="30.54" from="01.01.1832 00:00:00" to="01.01.2002 00:00:00"/>
 	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
@@ -91,7 +91,7 @@
       <es-ES name="Bélgica" />
     </translations>
   </country>
-  <country uid="108" shortname="LCA" region="117" flag="St. Lucia" tailformat="J6-\\s3">
+  <country uid="108" iso="LC" shortname="LCA" region="117" flag="St. Lucia" tailformat="J6-\\s3">
     <translations>
       <en-US name="Saint Lucia" />
       <de-DE name="Saint Lucia" />
@@ -102,7 +102,7 @@
       <es-ES name="Saint Lucia" />
     </translations>
   </country>
-  <country uid="110" shortname="DNK" region="114" flag="Denmark" tailformat="OY-\\s4">
+  <country uid="110" iso="DE" shortname="DNK" region="114" flag="Denmark" tailformat="OY-\\s4">
 	<currency symbol="kr." position="Right" rate="5.66"/>
     <translations>
       <en-US name="Denmark" />
@@ -114,7 +114,7 @@
       <es-ES name="Dinamarca" />
     </translations>
   </country>
-  <country uid="111" shortname="HTI" region="117" flag="Haiti" tailformat="HH-\\s3">
+  <country uid="111" iso="HT" shortname="HTI" region="117" flag="Haiti" tailformat="HH-\\s3">
     <translations>
       <en-US name="Haiti" />
       <de-DE name="Haiti" />
@@ -125,7 +125,7 @@
       <es-ES name="Haiti" />
     </translations>
   </country>
-  <country uid="113" shortname="CAN" region="119" flag="Canada" tailformat="CF-\\s3">
+  <country uid="113" iso="CA" shortname="CAN" region="119" flag="Canada" tailformat="CF-\\s3">
 	<currency symbol="C$" position="Left" rate="0.99" />
     <translations>
       <en-US name="Canada" />
@@ -137,7 +137,7 @@
       <es-ES name="Canadá" />
     </translations>
   </country>
-  <country uid="114" shortname="FJI" region="112" flag="Fiji" tailformat="DQ-\\s3">
+  <country uid="114" iso="FJ" shortname="FJI" region="112" flag="Fiji" tailformat="DQ-\\s3">
     <translations>
       <en-US name="Fiji" />
       <de-DE name="Fidschi" />
@@ -148,7 +148,7 @@
       <es-ES name="Fiji" />
     </translations>
   </country>
-  <country uid="115" shortname="KIR" region="112" flag="Kiribati" tailformat="T3-\\s3">
+  <country uid="115" iso="KI" shortname="KIR" region="112" flag="Kiribati" tailformat="T3-\\s3">
     <translations>
       <en-US name="Kiribati" />
       <de-DE name="Kiribati" />
@@ -159,7 +159,7 @@
       <es-ES name="Kiribati" />
     </translations>
   </country>
-  <country uid="116" shortname="AUS" region="111" flag="Australia" tailformat="VH-\\s3">
+  <country uid="116" iso="AU" shortname="AUS" region="111" flag="Australia" tailformat="VH-\\s3">
 	<currency symbol="A$" position="Left" rate="0.96" />
     <translations>
       <en-US name="Australia" />
@@ -171,7 +171,7 @@
       <es-ES name="Australia" />
     </translations>
   </country>
-  <country uid="117" shortname="EST" region="114" flag="Estonia" tailformat="ES-\\s3">
+  <country uid="117" iso="EE" shortname="EST" region="114" flag="Estonia" tailformat="ES-\\s3">
     <translations>
       <en-US name="Estonia" />
       <de-DE name="Estland" />
@@ -182,7 +182,7 @@
       <es-ES name="Estonia" />
     </translations>
   </country>
-  <country uid="118" shortname="GRC" region="115" flag="Greece" tailformat="SX-\\s3">
+  <country uid="118" iso="GR" shortname="GRC" region="115" flag="Greece" tailformat="SX-\\s3">
 	<currency symbol="Δρχ." position="Right" rate="257.25" from="01.01.1832 00:00:00" to="01.01.2002 00:00:00"/>
 	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
@@ -195,7 +195,7 @@
       <es-ES name="Grecia" />
     </translations>
   </country>
-  <country uid="119" shortname="LUX" region="116" flag="Luxembourg" tailformat="LX-\\s3">
+  <country uid="119" iso="LU" shortname="LUX" region="116" flag="Luxembourg" tailformat="LX-\\s3">
     <translations>
       <en-US name="Luxembourg" />
       <de-DE name="Luxemburg" />
@@ -206,7 +206,7 @@
       <es-ES name="Luxemburgo" />
     </translations>
   </country>
-  <country uid="120" shortname="HRV" region="115" flag="Croatia" tailformat="9A-\\s3">
+  <country uid="120" iso="HR" shortname="HRV" region="115" flag="Croatia" tailformat="9A-\\s3">
     <translations>
       <en-US name="Croatia" />
       <de-DE name="Kroatien" />
@@ -217,7 +217,7 @@
       <es-ES name="Croacia" />
     </translations>
   </country>
-  <country uid="121" shortname="ISL" region="114" flag="Iceland" tailformat="TF-\\s3">
+  <country uid="121" iso="IS" shortname="ISL" region="114" flag="Iceland" tailformat="TF-\\s3">
     <translations>
       <en-US name="Iceland" />
       <de-DE name="Island" />
@@ -228,7 +228,7 @@
       <es-ES name="Islandia" />
     </translations>
   </country>
-  <country uid="122" shortname="USA" region="119" flag="United States" tailformat="N-\\d4">
+  <country uid="122" iso="US" shortname="USA" region="119" flag="United States" tailformat="N-\\d4">
 	<currency symbol="$" position="Left" rate="1" />
     <translations>
       <en-US name="United States" />
@@ -240,7 +240,7 @@
       <es-ES name="Estados Unidos" />
     </translations>
   </country>
-  <country uid="123" shortname="ESP" region="115" flag="Spain" tailformat="EC-\\s3">
+  <country uid="123" iso="ES" shortname="ESP" region="115" flag="Spain" tailformat="EC-\\s3">
 	<currency symbol="₧" position="Right" rate="126.46" from="01.01.1869 00:00:00" to="01.01.2002 00:00:00"/>
 	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
@@ -253,7 +253,7 @@
       <es-ES name="España" />
     </translations>
   </country>
-  <country uid="124" shortname="ETH" region="102" flag="Ethiopia" tailformat="ET-\\s3">
+  <country uid="124" iso="ET" shortname="ETH" region="102" flag="Ethiopia" tailformat="ET-\\s3">
     <translations>
       <en-US name="Ethiopia" />
       <de-DE name="Äthiopien" />
@@ -264,7 +264,7 @@
       <es-ES name="Etiopía" />
     </translations>
   </country>
-  <country uid="125" shortname="LBY" region="103" flag="Libya" tailformat="5A-\\s3">
+  <country uid="125" iso="LY" shortname="LBY" region="103" flag="Libya" tailformat="5A-\\s3">
     <translations>
       <en-US name="Libya" />
       <de-DE name="Libyen" />
@@ -275,7 +275,7 @@
       <es-ES name="Libia" />
     </translations>
   </country>
-  <country uid="126" shortname="KWT" region="110" flag="Kuwait" tailformat="9K-\\s3">
+  <country uid="126" iso="KW" shortname="KWT" region="110" flag="Kuwait" tailformat="9K-\\s3">
     <translations>
       <en-US name="Kuwait" />
       <de-DE name="Kuweit" />
@@ -286,7 +286,7 @@
       <es-ES name="Kuwait" />
     </translations>
   </country>
-  <country uid="127" shortname="IRQ" region="110" flag="Iraq" tailformat="Y1-\\s3">
+  <country uid="127" iso="IQ" shortname="IRQ" region="110" flag="Iraq" tailformat="Y1-\\s3">
     <translations>
       <en-US name="Iraq" />
       <de-DE name="Irak" />
@@ -297,7 +297,7 @@
       <es-ES name="Irak" />
     </translations>
   </country>
-  <country uid="128" shortname="ISR" region="110" flag="Israel" tailformat="4X-\\s3">
+  <country uid="128" iso="IL" shortname="ISR" region="110" flag="Israel" tailformat="4X-\\s3">
     <translations>
       <en-US name="Israel" />
       <de-DE name="Israel" />
@@ -308,7 +308,7 @@
       <es-ES name="Israel" />
     </translations>
   </country>
-  <country uid="129" shortname="LBN" region="110" flag="Lebanon" tailformat="OD-\\s3">
+  <country uid="129" iso="LB" shortname="LBN" region="110" flag="Lebanon" tailformat="OD-\\s3">
     <translations>
       <en-US name="Lebanon" />
       <de-DE name="Libanon" />
@@ -319,8 +319,8 @@
       <es-ES name="Líbano" />
     </translations>
   </country>
-  <country uid="130" shortname="GBR" region="116" flag="United Kingdom" tailformat="G-\\s4">
-	<currency symbol="£" position="Left" rate="0.62" />
+  <country uid="130" iso="GB" shortname="GBR" region="116" flag="United Kingdom" tailformat="G-\\s4">
+	 <currency symbol="£" position="Left" rate="0.62" />
     <translations>
       <en-US name="United Kingdom" />
       <de-DE name="Vereinigtes Königreich" />
@@ -331,7 +331,7 @@
       <es-ES name="Reino Unido" />
     </translations>
   </country>
-  <country uid="131" shortname="PHL" region="109" flag="Philippines" tailformat="RPC-\\s4">
+  <country uid="131" iso="PH" shortname="PHL" region="109" flag="Philippines" tailformat="RPC-\\s4">
     <translations>
       <en-US name="Philippines" />
       <de-DE name="Philippinen" />
@@ -342,7 +342,7 @@
       <es-ES name="Filipinas" />
     </translations>
   </country>
-  <country uid="132" shortname="MLT" region="115" flag="Malta" tailformat="9H-\\s3">
+  <country uid="132" iso="MT" shortname="MLT" region="115" flag="Malta" tailformat="9H-\\s3">
     <translations>
       <en-US name="Malta" />
       <de-DE name="Malta" />
@@ -353,7 +353,7 @@
       <es-ES name="Malta" />
     </translations>
   </country>
-  <country uid="133" shortname="MAR" region="103" flag="Morocco" tailformat="CN-\\s3">
+  <country uid="133" iso="MA" shortname="MAR" region="103" flag="Morocco" tailformat="CN-\\s3">
     <translations>
       <en-US name="Morocco" />
       <de-DE name="Marokko" />
@@ -364,7 +364,7 @@
       <es-ES name="Marruecos" />
     </translations>
   </country>
-  <country uid="134" shortname="UKR" region="113" flag="Ukraine" tailformat="UR-\\s3">
+  <country uid="134" iso="UA" shortname="UKR" region="113" flag="Ukraine" tailformat="UR-\\s3">
     <translations>
       <en-US name="Ukraine" />
       <de-DE name="Ukraine" />
@@ -375,7 +375,7 @@
       <es-ES name="Ucrania" />
     </translations>
   </country>
-  <country uid="135" shortname="POL" region="113" flag="Poland" tailformat="SP-\\s3">
+  <country uid="135" iso="PL" shortname="POL" region="113" flag="Poland" tailformat="SP-\\s3">
     <translations>
       <en-US name="Poland" />
       <de-DE name="Polen" />
@@ -386,7 +386,7 @@
       <es-ES name="Polonia" />
     </translations>
   </country>
-  <country uid="136" shortname="SAU" region="110" flag="Saudi Arabia" tailformat="HZ-\\s3">
+  <country uid="136" iso="SA" shortname="SAU" region="110" flag="Saudi Arabia" tailformat="HZ-\\s3">
     <translations>
       <en-US name="Saudi Arabia" />
       <de-DE name="Saudi-Arabien" />
@@ -397,7 +397,7 @@
       <es-ES name="Arabia Saudí" />
     </translations>
   </country>
-  <country uid="137" shortname="IRL" region="116" flag="Ireland" tailformat="EI-\\s3">
+  <country uid="137" iso="IE" shortname="IRL" region="116" flag="Ireland" tailformat="EI-\\s3">
     <translations>
       <en-US name="Ireland" />
       <de-DE name="Irland" />
@@ -408,7 +408,7 @@
       <es-ES name="Irlanda" />
     </translations>
   </country>
-  <country uid="138" shortname="BRA" region="120" flag="Brazil" tailformat="PP-\\s3">
+  <country uid="138" iso="BR" shortname="BRA" region="120" flag="Brazil" tailformat="PP-\\s3">
 	<currency symbol="R$" position="Left" rate="2.07" />
     <translations>
       <en-US name="Brazil" />
@@ -420,7 +420,7 @@
       <es-ES name="Brasil" />
     </translations>
   </country>
-  <country uid="139" shortname="NOR" region="114" flag="Norway" tailformat="LN-\\s3">
+  <country uid="139" iso="NO" shortname="NOR" region="114" flag="Norway" tailformat="LN-\\s3">
 	<currency symbol="kr." position="Right" rate="5.56" />
     <translations>
       <en-US name="Norway" />
@@ -432,9 +432,9 @@
       <es-ES name="Noruega" />
     </translations>
   </country>
-  <country uid="140" shortname="FRA" region="116" flag="France" tailformat="F-\\s4">
-	<currency symbol="₣" position="Right" rate="4.97" from="01.01.1795 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+  <country uid="140" iso="FR" shortname="FRA" region="116" flag="France" tailformat="F-\\s4">
+	   <currency symbol="₣" position="Right" rate="4.97" from="01.01.1795 00:00:00" to="01.01.2002 00:00:00"/>
+	   <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
       <en-US name="France" />
       <de-DE name="Frankreich" />
@@ -445,9 +445,9 @@
       <es-ES name="Francia" />
     </translations>
   </country>
-  <country uid="141" shortname="ITA" region="115" flag="Italy" tailformat="I-\\s4">
-	<currency symbol="₤" position="Right" rate="1465.87" from="01.01.1861 00:00:00" to="01.01.2002 00:00:00"/>
-	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
+  <country uid="141" iso="IT" shortname="ITA" region="115" flag="Italy" tailformat="I-\\s4">
+	 <currency symbol="₤" position="Right" rate="1465.87" from="01.01.1861 00:00:00" to="01.01.2002 00:00:00"/>
+	 <currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
       <en-US name="Italy" />
       <de-DE name="Italien" />
@@ -458,7 +458,7 @@
       <es-ES name="Italia" />
     </translations>
   </country>
-  <country uid="142" shortname="DZA" region="103" flag="Algeria" tailformat="7T-\\s3">
+  <country uid="142" iso="DZ" shortname="DZA" region="103" flag="Algeria" tailformat="7T-\\s3">
     <translations>
       <en-US name="Algeria" />
       <de-DE name="Algerien" />
@@ -469,7 +469,7 @@
       <es-ES name="Argelia" />
     </translations>
   </country>
-  <country uid="144" shortname="TUN" region="103" flag="Tunisia" tailformat="TS-\\s3">
+  <country uid="144" iso="TN" shortname="TUN" region="103" flag="Tunisia" tailformat="TS-\\s3">
     <translations>
       <en-US name="Tunisia" />
       <de-DE name="Tunesien" />
@@ -480,7 +480,7 @@
       <es-ES name="Túnez" />
     </translations>
   </country>
-  <country uid="145" shortname="NGA" region="105" flag="Nigeria" tailformat="5N-\\s3">
+  <country uid="145" iso="NG" shortname="NGA" region="105" flag="Nigeria" tailformat="5N-\\s3">
     <translations>
       <en-US name="Nigeria" />
       <de-DE name="Nigeria" />
@@ -491,7 +491,7 @@
       <es-ES name="Nigeria" />
     </translations>
   </country>
-  <country uid="146" shortname="KEN" region="102" flag="Kenya" tailformat="5Y-\\s3">
+  <country uid="146" iso="KE" shortname="KEN" region="102" flag="Kenya" tailformat="5Y-\\s3">
     <translations>
       <en-US name="Kenya" />
       <de-DE name="Kenia" />
@@ -502,7 +502,7 @@
       <es-ES name="Kenia" />
     </translations>
   </country>
-  <country uid="147" shortname="ROU" region="113" flag="Romania" tailformat="YR-\\s3">
+  <country uid="147" iso="RO" shortname="ROU" region="113" flag="Romania" tailformat="YR-\\s3">
     <translations>
       <en-US name="Romania" />
       <de-DE name="Rumänien" />
@@ -513,7 +513,7 @@
       <es-ES name="Rumania" />
     </translations>
   </country>
-  <country uid="148" shortname="CHN" region="107" flag="China" tailformat="B-\\d4">
+  <country uid="148" iso="CN" shortname="CHN" region="107" flag="China" tailformat="B-\\d4">
 	<currency symbol="CN¥" position="Left" rate="6.23" />
     <translations>
       <en-US name="China" />
@@ -525,7 +525,7 @@
       <es-ES name="China" />
     </translations>
   </country>
-  <country uid="149" shortname="RUS" region="113" flag="Russia" tailformat="RA-\\d5">
+  <country uid="149" iso="RU" shortname="RUS" region="113" flag="Russia" tailformat="RA-\\d5">
 	<currency symbol="руб." position="Right" rate="30.83" />
     <translations>
       <en-US name="Russia" />
@@ -537,7 +537,7 @@
       <es-ES name="Rusia" />
     </translations>
   </country>
-  <country uid="150" shortname="PRT" region="115" flag="Portugal" tailformat="CR-\\s3">
+  <country uid="150" iso="PT" shortname="PRT" region="115" flag="Portugal" tailformat="CR-\\s3">
     <translations>
       <en-US name="Portugal" />
       <de-DE name="Portugal" />
@@ -548,7 +548,7 @@
       <es-ES name="Portugal" />
     </translations>
   </country>
-  <country uid="151" shortname="BHR" region="110" flag="Bahrain" tailformat="A9C-\\s3">
+  <country uid="151" iso="BH" shortname="BHR" region="110" flag="Bahrain" tailformat="A9C-\\s3">
     <translations>
       <en-US name="Bahrain" />
       <de-DE name="Bahrain" />
@@ -559,7 +559,7 @@
       <es-ES name="Bahrein" />
     </translations>
   </country>
-  <country uid="152" shortname="IND" region="108" flag="India" tailformat="VT-\\s3">
+  <country uid="152" iso="IN" shortname="IND" region="108" flag="India" tailformat="VT-\\s3">
 	<currency symbol="INR" position="Left" rate="55.06" />
     <translations>
       <en-US name="India" />
@@ -571,7 +571,7 @@
       <es-ES name="India" />
     </translations>
   </country>
-  <country uid="153" shortname="LKA" region="108" flag="Sri Lanka" tailformat="4R-\\s3">
+  <country uid="153" iso="LK" shortname="LKA" region="108" flag="Sri Lanka" tailformat="4R-\\s3">
     <translations>
       <en-US name="Sri Lanka" />
       <de-DE name="Sri Lanka" />
@@ -582,7 +582,7 @@
       <es-ES name="Sri Lanka" />
     </translations>
   </country>
-  <country uid="154" shortname="CYP" region="110" flag="Cyprus" tailformat="5B-\\s3">
+  <country uid="154" iso="CY" shortname="CYP" region="110" flag="Cyprus" tailformat="5B-\\s3">
     <translations>
       <en-US name="Cyprus" />
       <de-DE name="Zypern" />
@@ -593,7 +593,7 @@
       <es-ES name="Chipre" />
     </translations>
   </country>
-  <country uid="155" shortname="EGY" region="103" flag="Egypt" tailformat="SU-\\s3">
+  <country uid="155" iso="EG" shortname="EGY" region="103" flag="Egypt" tailformat="SU-\\s3">
     <translations>
       <en-US name="Egypt" />
       <de-DE name="Ägypten" />
@@ -604,7 +604,7 @@
       <es-ES name="Egipto" />
     </translations>
   </country>
-  <country uid="156" shortname="ARE" region="110" flag="United Arab Emirates" tailformat="A6-\\s3">
+  <country uid="156" iso="AE" shortname="ARE" region="110" flag="United Arab Emirates" tailformat="A6-\\s3">
     <translations>
       <en-US name="United Arab Emirates" />
       <de-DE name="Vereinigte Arabische Emirate" />
@@ -615,7 +615,7 @@
       <es-ES name="Emiratos Árabes Unidos" />
     </translations>
   </country>
-  <country uid="157" shortname="MEX" region="118" flag="Mexico" tailformat="XA-\\s3">
+  <country uid="157" iso="MX" shortname="MEX" region="118" flag="Mexico" tailformat="XA-\\s3">
 	<currency symbol="Mex$" position="Left" rate="12.88" />
     <translations>
       <en-US name="Mexico" />
@@ -627,7 +627,7 @@
       <es-ES name="México" />
     </translations>
   </country>
-  <country uid="158" shortname="ZAF" region="104" flag="South Africa" tailformat="ZS-\\s3">
+  <country uid="158" iso="ZA" shortname="ZAF" region="104" flag="South Africa" tailformat="ZS-\\s3">
 	<currency symbol="R" position="Left" rate="1.00" />
     <translations>
       <en-US name="South Africa" />
@@ -639,7 +639,7 @@
       <es-ES name="Sudáfrica" />
     </translations>
   </country>
-  <country uid="159" shortname="HUN" region="113" flag="Hungary" tailformat="HA-\\s3">
+  <country uid="159" iso="HU" shortname="HUN" region="113" flag="Hungary" tailformat="HA-\\s3">
     <translations>
       <en-US name="Hungary" />
       <de-DE name="Ungarn" />
@@ -650,7 +650,7 @@
       <es-ES name="Hungría" />
     </translations>
   </country>
-  <country uid="160" shortname="CHL" region="120" flag="Chile" tailformat="CC-\\s3">
+  <country uid="160" iso="CL" shortname="CHL" region="120" flag="Chile" tailformat="CC-\\s3">
     <translations>
       <en-US name="Chile" />
       <de-DE name="Chile" />
@@ -661,7 +661,7 @@
       <es-ES name="Chile" />
     </translations>
   </country>
-  <country uid="161" shortname="TUR" region="110" flag="Turkey" tailformat="TC-\\s3">
+  <country uid="161" iso="TR" shortname="TUR" region="110" flag="Turkey" tailformat="TC-\\s3">
     <translations>
       <en-US name="Turkey" />
       <de-DE name="Türkei" />
@@ -672,7 +672,7 @@
       <es-ES name="Turquía" />
     </translations>
   </country>
-  <country uid="162" shortname="IDN" region="109" flag="Indonesia" tailformat="PK-\\s3">
+  <country uid="162" iso="ID" shortname="IDN" region="109" flag="Indonesia" tailformat="PK-\\s3">
     <translations>
       <en-US name="Indonesia" />
       <de-DE name="Indonesien" />
@@ -683,7 +683,7 @@
       <es-ES name="Indonesia" />
     </translations>
   </country>
-  <country uid="163" shortname="DEU" region="116" flag="Germany" tailformat="D-\\s4">
+  <country uid="163" iso="DE" shortname="DEU" region="116" flag="Germany" tailformat="D-\\s4">
 	<currency symbol="DM" position="Left" rate="1.48" from="01.01.1948 00:00:00" to="01.01.2002 00:00:00"/>
 	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
@@ -696,7 +696,7 @@
       <es-ES name="Alemania" />
     </translations>
   </country>
-  <country uid="164" shortname="CHE" region="116" flag="Switzerland" tailformat="HB-\\s3">
+  <country uid="164" iso="CH" shortname="CHE" region="116" flag="Switzerland" tailformat="HB-\\s3">
 	<currency symbol="CHF" position="Right" rate="0.92" />
     <translations>
       <en-US name="Switzerland" />
@@ -708,7 +708,7 @@
       <es-ES name="Suiza" />
     </translations>
   </country>
-  <country uid="165" shortname="KOR" region="107" flag="South Korea" tailformat="HL-\\d4">
+  <country uid="165" iso="KR" shortname="KOR" region="107" flag="South Korea" tailformat="HL-\\d4">
 	<currency symbol="₩" position="Left" rate="1076.24" />
     <translations>
       <en-US name="South Korea" />
@@ -720,7 +720,7 @@
       <es-ES name="Corea del Sur" />
     </translations>
   </country>
-  <country uid="166" shortname="CZE" region="113" flag="Czech Republic" tailformat="OK-\\s3">
+  <country uid="166" iso="CZ" shortname="CZE" region="113" flag="Czech Republic" tailformat="OK-\\s3">
     <translations>
       <en-US name="Czech Republic" />
       <de-DE name="Tschechische Republik" />
@@ -731,7 +731,7 @@
       <es-ES name="República Checa" />
     </translations>
   </country>
-  <country uid="167" shortname="FIN" region="114" flag="Finland" tailformat="OH-\\s3">
+  <country uid="167" iso="FI" shortname="FIN" region="114" flag="Finland" tailformat="OH-\\s3">
     <translations>
       <en-US name="Finland" />
       <de-DE name="Finnland" />
@@ -742,7 +742,7 @@
       <es-ES name="Finlandia" />
     </translations>
   </country>
-  <country uid="168" shortname="SWE" region="114" flag="Sweden" tailformat="SE-\\s3">
+  <country uid="168" iso="SE" shortname="SWE" region="114" flag="Sweden" tailformat="SE-\\s3">
     <translations>
       <en-US name="Sweden" />
       <de-DE name="Schweden" />
@@ -753,7 +753,7 @@
       <es-ES name="Suecia" />
     </translations>
   </country>
-  <country uid="169" shortname="AUT" region="116" flag="Austria" tailformat="OE-\\s3">
+  <country uid="169" iso="AT" shortname="AUT" region="116" flag="Austria" tailformat="OE-\\s3">
 	<currency symbol="S" position="Right" rate="10.42" from="01.01.1945 00:00:00" to="01.01.2002 00:00:00"/>
 	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
@@ -766,7 +766,7 @@
       <es-ES name="Austria" />
     </translations>
   </country>
-  <country uid="170" shortname="VNM" region="109" flag="Vietnam" tailformat="VN-\\s4">
+  <country uid="170" iso="VN" shortname="VNM" region="109" flag="Vietnam" tailformat="VN-\\s4">
     <translations>
       <en-US name="Vietnam" />
       <de-DE name="Vietnam" />
@@ -777,7 +777,7 @@
       <es-ES name="Vietnam" />
     </translations>
   </country>
-  <country uid="171" shortname="JPN" region="107" flag="Japan" tailformat="JA-\\d4">
+  <country uid="171" iso="JP" shortname="JPN" region="107" flag="Japan" tailformat="JA-\\d4">
 	<currency symbol="¥" position="Left" rate="84.09" />
     <translations>
       <en-US name="Japan" />
@@ -789,7 +789,7 @@
       <es-ES name="Japón" />
     </translations>
   </country>
-  <country uid="172" shortname="TWN" region="107" flag="Taiwan" tailformat="B-\\d5">
+  <country uid="172" iso="TW" shortname="TWN" region="107" flag="Taiwan" tailformat="B-\\d5">
     <translations>
       <en-US name="Taiwan" />
       <de-DE name="Taiwan" />
@@ -800,7 +800,7 @@
       <es-ES name="Taiwán" />
     </translations>
   </country>
-  <country uid="173" shortname="MYS" region="109" flag="Malaysia" tailformat="9M-\\s3">
+  <country uid="173" iso="MY" shortname="MYS" region="109" flag="Malaysia" tailformat="9M-\\s3">
     <translations>
       <en-US name="Malaysia" />
       <de-DE name="Malaysia" />
@@ -811,7 +811,7 @@
       <es-ES name="Malasia" />
     </translations>
   </country>
-  <country uid="174" shortname="SGP" region="109" flag="Singapore" tailformat="9V-\\s3">
+  <country uid="174" iso="SG" shortname="SGP" region="109" flag="Singapore" tailformat="9V-\\s3">
     <translations>
       <en-US name="Singapore" />
       <de-DE name="Singapur" />
@@ -822,7 +822,7 @@
       <es-ES name="Singapur" />
     </translations>
   </country>
-  <country uid="175" shortname="THA" region="109" flag="Thailand" tailformat="HS-\\s3">
+  <country uid="175" iso="TH" shortname="THA" region="109" flag="Thailand" tailformat="HS-\\s3">
     <translations>
       <en-US name="Thailand" />
       <de-DE name="Thailand" />
@@ -833,7 +833,7 @@
       <es-ES name="Tailandia" />
     </translations>
   </country>
-  <country uid="176" shortname="HKG" region="109" flag="Hong Kong" tailformat="B-\\s3">
+  <country uid="176" iso="HK" shortname="HKG" region="109" flag="Hong Kong" tailformat="B-\\s3">
 	<currency symbol="HK$" position="Left" rate="7.75" />
     <translations>
       <en-US name="Hong Kong" />
@@ -845,7 +845,7 @@
       <es-ES name="Hong Kong" />
     </translations>
   </country>
-  <country uid="177" shortname="IRN" region="108" flag="Iran" tailformat="EP-\\d3">
+  <country uid="177" iso="IR" shortname="IRN" region="108" flag="Iran" tailformat="EP-\\d3">
     <translations>
       <en-US name="Iran" />
       <de-DE name="Iran" />
@@ -856,7 +856,7 @@
       <es-ES name="Irán" />
     </translations>
   </country>
-  <country uid="178" shortname="OMN" region="110" flag="Oman" tailformat="A4O-\\s2">
+  <country uid="178" iso="OM" shortname="OMN" region="110" flag="Oman" tailformat="A4O-\\s2">
     <translations>
       <en-US name="Oman" />
       <de-DE name="Oman" />
@@ -867,7 +867,7 @@
       <es-ES name="Omán" />
     </translations>
   </country>
-  <country uid="179" shortname="NLD" region="116" flag="Netherlands" tailformat="PH-\\s3">
+  <country uid="179" iso="NL" shortname="NLD" region="116" flag="Netherlands" tailformat="PH-\\s3">
 	<currency symbol="ƒ" position="Left" rate="1.67" from="01.01.1700 00:00:00" to="01.01.2002 00:00:00"/>
 	<currency symbol="€" position="Left" rate="0.76" from="01.01.2002 00:00:00" to="01.01.2199 00:00:00"/>
     <translations>
@@ -880,7 +880,7 @@
       <es-ES name="Países Bajos" />
     </translations>
   </country>
-  <country uid="180" shortname="QAT" region="110" flag="Qatar" tailformat="A7-\\s3">
+  <country uid="180" iso="QA" shortname="QAT" region="110" flag="Qatar" tailformat="A7-\\s3">
     <translations>
       <en-US name="Qatar" />
       <de-DE name="Katar" />
@@ -891,7 +891,7 @@
       <es-ES name="Qatar" />
     </translations>
   </country>
-  <country uid="182" shortname="PER" region="120" flag="Peru" tailformat="OB-\\s4">
+  <country uid="182" iso="PE" shortname="PER" region="120" flag="Peru" tailformat="OB-\\s4">
     <translations>
       <en-US name="Peru" />
       <de-DE name="Peru" />
@@ -902,7 +902,7 @@
       <es-ES name="Perú" />
     </translations>
   </country>
-  <country uid="183" shortname="COL" region="120" flag="Colombia" tailformat="HK-\\d4">
+  <country uid="183" iso="CO" shortname="COL" region="120" flag="Colombia" tailformat="HK-\\d4">
     <translations>
       <en-US name="Colombia" />
       <de-DE name="Kolumbien" />
@@ -913,7 +913,7 @@
       <es-ES name="Colombia" />
     </translations>
   </country>
-  <country uid="184" shortname="VEN" region="120" flag="Venezuela" tailformat="YV-\\s4">
+  <country uid="184" iso="VE" shortname="VEN" region="120" flag="Venezuela" tailformat="YV-\\s4">
     <translations>
       <en-US name="Venezuela" />
       <de-DE name="Venezuela" />
@@ -924,7 +924,7 @@
       <es-ES name="Venezuela" />
     </translations>
   </country>
-  <country uid="185" shortname="BGR" region="113" flag="Bulgaria" tailformat="LZ-\\s3">
+  <country uid="185" iso="BG" shortname="BGR" region="113" flag="Bulgaria" tailformat="LZ-\\s3">
     <translations>
       <en-US name="Bulgaria" />
       <de-DE name="Bulgarien" />
@@ -935,7 +935,7 @@
       <es-ES name="Bulgaria" />
     </translations>
   </country>
-  <country uid="186" shortname="NZL" region="111" flag="New Zealand" tailformat="ZK-\s3">
+  <country uid="186" iso="NZ" shortname="NZL" region="111" flag="New Zealand" tailformat="ZK-\s3">
 	<currency symbol="NZ$" position="Left" rate="1.21" />
     <translations>
       <en-US name="New Zealand" />
@@ -947,7 +947,7 @@
       <es-ES name="Nueva Zelanda" />
     </translations>
   </country>
-  <country uid="187" shortname="BEN" region="105" flag="Benin" tailformat="TY-\s3">
+  <country uid="187" iso="BJ" shortname="BEN" region="105" flag="Benin" tailformat="TY-\s3">
     <translations>
       <en-US name="Benin" />
       <de-DE name="Benin" />
@@ -958,7 +958,7 @@
       <es-ES name="Benin" />
     </translations>
   </country>
-  <country uid="188" shortname="TGO" region="105" flag="Togo" tailformat="5V-\s3">
+  <country uid="188" iso="TG" shortname="TGO" region="105" flag="Togo" tailformat="5V-\s3">
     <translations>
       <en-US name="Togo" />
       <de-DE name="Togo" />
@@ -969,7 +969,7 @@
       <es-ES name="Togo" />
     </translations>
   </country>
-  <country uid="189" shortname="GHA" region="105" flag="Ghana" tailformat="9G-\s3">
+  <country uid="189" iso="GH" shortname="GHA" region="105" flag="Ghana" tailformat="9G-\s3">
     <translations>
       <en-US name="Ghana" />
       <de-DE name="Ghana" />
@@ -980,7 +980,7 @@
       <es-ES name="Ghana" />
     </translations>
   </country>
-  <country uid="190" shortname="BFA" region="105" flag="Burkina Faso" tailformat="XT-\s3">
+  <country uid="190" iso="BF" shortname="BFA" region="105" flag="Burkina Faso" tailformat="XT-\s3">
     <translations>
       <en-US name="Burkina Faso" />
       <de-DE name="Burkina Faso" />
@@ -991,7 +991,7 @@
       <es-ES name="Burkina Faso" />
     </translations>
   </country>
-  <country uid="191" shortname="PAN" region="118" flag="Panama" tailformat="HP-\d4">
+  <country uid="191" iso="PA" shortname="PAN" region="118" flag="Panama" tailformat="HP-\d4">
     <translations>
       <en-US name="Panama" />
       <de-DE name="Panama" />
@@ -1002,7 +1002,7 @@
       <es-ES name="Panamá" />
     </translations>
   </country>
-  <country uid="192" shortname="CRI" region="118" flag="Costa Rica" tailformat="TI-\s3">
+  <country uid="192" iso="CR" shortname="CRI" region="118" flag="Costa Rica" tailformat="TI-\s3">
     <translations>
       <en-US name="Costa Rica" />
       <de-DE name="Costa Rica" />
@@ -1013,7 +1013,7 @@
       <es-ES name="Costa Rica" />
     </translations>
   </country>
-  <country uid="193" shortname="SLV" region="118" flag="El Salvador" tailformat="YS-\s3">
+  <country uid="193" iso="SV" shortname="SLV" region="118" flag="El Salvador" tailformat="YS-\s3">
 	<currency symbol="$" position="Left" rate="1" />
     <translations>
       <en-US name="El Salvador" />
@@ -1025,7 +1025,7 @@
       <es-ES name="El Salvador" />
     </translations>
   </country>
-  <country uid="194" shortname="GTM" region="118" flag="Guatemala" tailformat="TG-\s3">
+  <country uid="194" iso="GT" shortname="GTM" region="118" flag="Guatemala" tailformat="TG-\s3">
     <translations>
       <en-US name="Guatemala" />
       <de-DE name="Guatemala" />
@@ -1036,7 +1036,7 @@
       <es-ES name="Guatemala" />
     </translations>
   </country>
-  <country uid="195" shortname="NIC" region="118" flag="Nicaragua" tailformat="YN-\s3">
+  <country uid="195" iso="NI" shortname="NIC" region="118" flag="Nicaragua" tailformat="YN-\s3">
     <translations>
       <en-US name="Nicaragua" />
       <de-DE name="Nicaragua" />
@@ -1047,7 +1047,7 @@
       <es-ES name="Nicaragua" />
     </translations>
   </country>
-  <country uid="196" shortname="HND" region="118" flag="Honduras" tailformat="HR-\s3">
+  <country uid="196" iso="HN" shortname="HND" region="118" flag="Honduras" tailformat="HR-\s3">
     <translations>
       <en-US name="Honduras" />
       <de-DE name="Honduras" />
@@ -1058,7 +1058,7 @@
       <es-ES name="Honduras" />
     </translations>
   </country>
-  <country uid="197" shortname="BLZ" region="118" flag="Belize" tailformat="V3-\s3">
+  <country uid="197" iso="BZ" shortname="BLZ" region="118" flag="Belize" tailformat="V3-\s3">
     <translations>
       <en-US name="Belize" />
       <de-DE name="Belize" />
@@ -1069,7 +1069,7 @@
       <es-ES name="Belice" />
     </translations>
   </country>
-  <country uid="198" shortname="CUB" region="117" flag="Cuba" tailformat="CU-\s3">
+  <country uid="198" iso="CU" shortname="CUB" region="117" flag="Cuba" tailformat="CU-\s3">
     <translations>
       <en-US name="Cuba" />
       <de-DE name="Kuba" />
@@ -1080,7 +1080,7 @@
       <es-ES name="Cuba" />
     </translations>
   </country>
-  <country uid="199" shortname="JAM" region="117" flag="Jamaica" tailformat="6Y-\s3">
+  <country uid="199" iso="JM" shortname="JAM" region="117" flag="Jamaica" tailformat="6Y-\s3">
     <translations>
       <en-US name="Jamaica" />
       <de-DE name="Jamaika" />
@@ -1091,7 +1091,7 @@
       <es-ES name="Jamaica" />
     </translations>
   </country>
-  <country uid="202" shortname="PAK" region="108" flag="Pakistan" tailformat="AP-\s3">
+  <country uid="202" iso="PK" shortname="PAK" region="108" flag="Pakistan" tailformat="AP-\s3">
     <translations>
       <en-US name="Pakistan" />
       <de-DE name="Pakistan" />
@@ -1102,7 +1102,7 @@
       <es-ES name="Pakistán" />
     </translations>
   </country>
-  <country uid="203" shortname="BHS" region="117" flag="Bahamas" tailformat="C6-\s3">
+  <country uid="203" iso="BS" shortname="BHS" region="117" flag="Bahamas" tailformat="C6-\s3">
     <translations>
       <en-US name="Bahamas" />
       <de-DE name="Bahamas" />
@@ -1113,7 +1113,7 @@
       <es-ES name="Bahamas" />
     </translations>
   </country>
-  <country uid="205" shortname="TTO" region="117" flag="Trinidad &amp; Tobago" tailformat="9Y-\\s3">
+  <country uid="205" iso="TT" shortname="TTO" region="117" flag="Trinidad &amp; Tobago" tailformat="9Y-\\s3">
     <translations>
       <en-US name="Trinidad &amp; Tobago" />
       <de-DE name="Trinidad &amp; Tobago" />
@@ -1124,7 +1124,7 @@
       <es-ES name="Trinidad y Tobago" />
     </translations>
   </country>
-  <country uid="206" shortname="MUS" region="102" flag="Mauritius" tailformat="3B-\\s3">
+  <country uid="206" iso="MU" shortname="MUS" region="102" flag="Mauritius" tailformat="3B-\\s3">
     <translations>
       <en-US name="Mauritius" />
       <de-DE name="Mauritius" />
@@ -1135,7 +1135,7 @@
       <es-ES name="Mauricio" />
     </translations>
   </country>
-  <country uid="207" shortname="DOM" region="117" flag="Dominican Republic" tailformat="HI-\\d3\\s2">
+  <country uid="207" iso="DO" shortname="DOM" region="117" flag="Dominican Republic" tailformat="HI-\\d3\\s2">
     <translations>
       <en-US name="Dominican Republic" />
       <de-DE name="Dominikanische Republik" />
@@ -1146,7 +1146,7 @@
       <es-ES name="República Dominicana" />
     </translations>
   </country>
-  <country uid="208" shortname="TON" region="112" flag="Tonga" tailformat="A3-\\s3">
+  <country uid="208" iso="TO" shortname="TON" region="112" flag="Tonga" tailformat="A3-\\s3">
     <translations>
       <en-US name="Tonga" />
       <de-DE name="Tonga" />
@@ -1157,7 +1157,7 @@
       <es-ES name="Tonga" />
     </translations>
   </country>
-  <country uid="210" shortname="ECU" region="120" flag="Ecuador" tailformat="HC-\\s3">
+  <country uid="210" iso="EC" shortname="ECU" region="120" flag="Ecuador" tailformat="HC-\\s3">
     <translations>
       <en-US name="Ecuador" />
       <de-DE name="Ecuador" />
@@ -1168,7 +1168,7 @@
       <es-ES name="Ecuador" />
     </translations>
   </country>
-  <country uid="211" shortname="BOL" region="120" flag="Bolivia" tailformat="CP-\\d4">
+  <country uid="211" iso="BO" shortname="BOL" region="120" flag="Bolivia" tailformat="CP-\\d4">
     <translations>
       <en-US name="Bolivia" />
       <de-DE name="Bolivia" />
@@ -1179,7 +1179,7 @@
       <es-ES name="Bolivia" />
     </translations>
   </country>
-  <country uid="212" shortname="URY" region="120" flag="Uruguay" tailformat="CX-\\s3">
+  <country uid="212" iso="UY" shortname="URY" region="120" flag="Uruguay" tailformat="CX-\\s3">
     <translations>
       <en-US name="Uruguay" />
       <de-DE name="Uruguay" />
@@ -1190,7 +1190,7 @@
       <es-ES name="Uruguay" />
     </translations>
   </country>
-  <country uid="213" shortname="PRY" region="120" flag="Paraguay" tailformat="ZP-\\s3">
+  <country uid="213" iso="PY" shortname="PRY" region="120" flag="Paraguay" tailformat="ZP-\\s3">
     <translations>
       <en-US name="Paraguay" />
       <de-DE name="Paraguay" />
@@ -1201,7 +1201,7 @@
       <es-ES name="Paraguay" />
     </translations>
   </country>
-  <country uid="214" shortname="SUR" region="120" flag="Suriname" tailformat="PZ-\\s3">
+  <country uid="214" iso="SR" shortname="SUR" region="120" flag="Suriname" tailformat="PZ-\\s3">
     <translations>
       <en-US name="Suriname" />
       <de-DE name="Suriname" />
@@ -1212,7 +1212,7 @@
       <es-ES name="Suriname" />
     </translations>
   </country>
-  <country uid="215" shortname="GUY" region="120" flag="Guyana" tailformat="8R-\\s3">
+  <country uid="215" iso="GY" shortname="GUY" region="120" flag="Guyana" tailformat="8R-\\s3">
     <translations>
       <en-US name="Guyana" />
       <de-DE name="Guyana" />
@@ -1223,7 +1223,7 @@
       <es-ES name="Guyana" />
     </translations>
   </country>
-  <country uid="216" shortname="BGD" region="108" flag="Bangladesh" tailformat="S2-\\s3">
+  <country uid="216" iso="BD" shortname="BGD" region="108" flag="Bangladesh" tailformat="S2-\\s3">
     <translations>
       <en-US name="Bangladesh" />
       <de-DE name="Bangladesh" />
@@ -1234,7 +1234,7 @@
       <es-ES name="Bangladesh" />
     </translations>
   </country>
-  <country uid="217" shortname="BLR" region="113" flag="Belarus" tailformat="EW-\\d3\\s2">
+  <country uid="217" iso="BY" shortname="BLR" region="113" flag="Belarus" tailformat="EW-\\d3\\s2">
     <translations>
       <en-US name="Belarus" />
       <de-DE name="Belarus" />
@@ -1245,7 +1245,7 @@
       <es-ES name="Bielorrusia" />
     </translations>
   </country>
-  <country uid="220" shortname="CAF" region="101" flag="Central African Republic" tailformat="TL-\\s3">
+  <country uid="220" iso="CF" shortname="CAF" region="101" flag="Central African Republic" tailformat="TL-\\s3">
     <translations>
       <en-US name="Central African Republic" />
       <de-DE name="Zentralafrikanische Republik" />
@@ -1256,7 +1256,7 @@
       <es-ES name="República Centroafricana" />
     </translations>
   </country>
-  <country uid="221" shortname="COD" region="101" flag="Congo-DRC" tailformat="9Q-\\s3">
+  <country uid="221" iso="CD" shortname="COD" region="101" flag="Congo-DRC" tailformat="9Q-\\s3">
     <translations>
       <en-US name="Democratic Republic of the Congo" />
       <de-DE name="Demokratische Republik Kongo" />
@@ -1267,7 +1267,7 @@
       <es-ES name="República Democrática del Congo" />
     </translations>
   </country>
-  <country uid="222" shortname="TZA" region="102" flag="Tanzania" tailformat="5H-\\s3">
+  <country uid="222" iso="TZ" shortname="TZA" region="102" flag="Tanzania" tailformat="5H-\\s3">
     <translations>
       <en-US name="Tanzania" />
       <de-DE name="Tansania" />
@@ -1278,7 +1278,7 @@
       <es-ES name="Tanzania" />
     </translations>
   </country>
-  <country uid="223" shortname="SDN" region="103" flag="Sudan" tailformat="ST-\\s3">
+  <country uid="223" iso="SD" shortname="SDN" region="103" flag="Sudan" tailformat="ST-\\s3">
     <translations>
       <en-US name="Sudan" />
       <de-DE name="Sudan" />
@@ -1289,7 +1289,7 @@
       <es-ES name="Sudán" />
     </translations>
   </country>
-  <country uid="224" shortname="AGO" region="101" flag="Angola" tailformat="D2-\\s3">
+  <country uid="224" iso="AO" shortname="AGO" region="101" flag="Angola" tailformat="D2-\\s3">
     <translations>
       <en-US name="Angola" />
       <de-DE name="Angola" />
@@ -1300,7 +1300,7 @@
       <es-ES name="Angola" />
     </translations>
   </country>
-  <country uid="225" shortname="ZMB" region="102" flag="Zambia" tailformat="9J-\\s3">
+  <country uid="225" iso="ZM" shortname="ZMB" region="102" flag="Zambia" tailformat="9J-\\s3">
     <translations>
       <en-US name="Zambia" />
       <de-DE name="Sambia" />
@@ -1311,7 +1311,7 @@
       <es-ES name="Zambia" />
     </translations>
   </country>
-  <country uid="227" shortname="BRB" region="117" flag="Barbados" tailformat="8P-\\s3">
+  <country uid="227" iso="BB" shortname="BRB" region="117" flag="Barbados" tailformat="8P-\\s3">
     <translations>
       <en-US name="Barbados" />
       <de-DE name="Barbados" />
@@ -1322,7 +1322,7 @@
       <es-ES name="Barbados" />
     </translations>
   </country>
-  <country uid="228" shortname="DMA" region="117" flag="Dominica" tailformat="J7-\\s3">
+  <country uid="228" iso="DM" shortname="DMA" region="117" flag="Dominica" tailformat="J7-\\s3">
     <translations>
       <en-US name="Dominica" />
       <de-DE name="Dominica" />
@@ -1333,7 +1333,7 @@
       <es-ES name="Dominica" />
     </translations>
   </country>
-  <country uid="229" shortname="GRD" region="117" flag="Grenada" tailformat="J3-\\s3">
+  <country uid="229" iso="GD" shortname="GRD" region="117" flag="Grenada" tailformat="J3-\\s3">
     <translations>
       <en-US name="Grenada" />
       <de-DE name="Grenada" />
@@ -1344,7 +1344,7 @@
       <es-ES name="Granada" />
     </translations>
   </country>
-  <country uid="230" shortname="KNA" region="117" flag="St Kitts &amp; Nevis" tailformat="V4-\\s3">
+  <country uid="230" iso="KN" shortname="KNA" region="117" flag="St Kitts &amp; Nevis" tailformat="V4-\\s3">
     <translations>
       <en-US name="Saint Kitts &amp; Nevis" />
       <de-DE name="Saint Kitts &amp; Nevis" />
@@ -1355,7 +1355,7 @@
       <es-ES name="Saint Kitts y Nevis" />
     </translations>
   </country>
-  <country uid="231" shortname="SVK" region="113" flag="Slovakia" tailformat="OM-\\s3">
+  <country uid="231" iso="SK" shortname="SVK" region="113" flag="Slovakia" tailformat="OM-\\s3">
     <translations>
       <en-US name="Slovakia" />
       <de-DE name="Slovakia" />
@@ -1366,7 +1366,7 @@
       <es-ES name="Eslovaquia" />
     </translations>
   </country>
-  <country uid="232" shortname="MDA" region="113" flag="Moldova" tailformat="ER-\\s3">
+  <country uid="232" iso="MD" shortname="MDA" region="113" flag="Moldova" tailformat="ER-\\s3">
     <translations>
       <en-US name="Moldova" />
       <de-DE name="Moldova" />
@@ -1377,7 +1377,7 @@
       <es-ES name="Moldova" />
     </translations>
   </country>
-  <country uid="233" shortname="GEO" region="110" flag="Georgia" tailformat="4L-\\s3">
+  <country uid="233" iso="GE" shortname="GEO" region="110" flag="Georgia" tailformat="4L-\\s3">
     <translations>
       <en-US name="Georgia" />
       <de-DE name="Georgia" />
@@ -1388,7 +1388,7 @@
       <es-ES name="Georgia" />
     </translations>
   </country>
-  <country uid="234" shortname="ARM" region="110" flag="Armenia" tailformat="EK-\\d5">
+  <country uid="234" iso="AM" shortname="ARM" region="110" flag="Armenia" tailformat="EK-\\d5">
     <translations>
       <en-US name="Armenia" />
       <de-DE name="Armenia" />
@@ -1399,7 +1399,7 @@
       <es-ES name="Armenia" />
     </translations>
   </country>
-  <country uid="235" shortname="AZE" region="110" flag="Azerbaijan" tailformat="4K-\\d5">
+  <country uid="235" iso="AZ" shortname="AZE" region="110" flag="Azerbaijan" tailformat="4K-\\d5">
     <translations>
       <en-US name="Azerbaijan" />
       <de-DE name="Azerbaijan" />
@@ -1410,7 +1410,7 @@
       <es-ES name="Azerbaiyán" />
     </translations>
   </country>
-  <country uid="236" shortname="KAZ" region="106" flag="Kazakhstan" tailformat="UP-\\s3\\d2">
+  <country uid="236" iso="KZ" shortname="KAZ" region="106" flag="Kazakhstan" tailformat="UP-\\s3\\d2">
     <translations>
       <en-US name="Kazakhstan" />
       <de-DE name="Kazakhstan" />
@@ -1421,7 +1421,7 @@
       <es-ES name="Kazajstán" />
     </translations>
   </country>
-  <country uid="237" shortname="UZB" region="106" flag="Uzbekistan" tailformat="UK-\\d5">
+  <country uid="237" iso="UZ" shortname="UZB" region="106" flag="Uzbekistan" tailformat="UK-\\d5">
     <translations>
       <en-US name="Uzbekistan" />
       <de-DE name="Uzbekistan" />
@@ -1432,7 +1432,7 @@
       <es-ES name="Uzbekistán" />
     </translations>
   </country>
-  <country uid="238" shortname="TKM" region="106" flag="Turkmenistan" tailformat="EZ-\\s1\\d3">
+  <country uid="238" iso="TM" shortname="TKM" region="106" flag="Turkmenistan" tailformat="EZ-\\s1\\d3">
     <translations>
       <en-US name="Turkmenistan" />
       <de-DE name="Turkmenistan" />
@@ -1443,7 +1443,7 @@
       <es-ES name="Turkmenistán" />
     </translations>
   </country>
-  <country uid="239" shortname="KGZ" region="106" flag="Kyrgyzstan" tailformat="EX-\\d5">
+  <country uid="239" iso="KG" shortname="KGZ" region="106" flag="Kyrgyzstan" tailformat="EX-\\d5">
     <translations>
       <en-US name="Kyrgyzstan" />
       <de-DE name="Kyrgyzstan" />
@@ -1454,7 +1454,7 @@
       <es-ES name="Kirguizistán" />
     </translations>
   </country>
-  <country uid="240" shortname="TJK" region="106" flag="Tajikistan" tailformat="EY-\\d5">
+  <country uid="240" iso="TJ" shortname="TJK" region="106" flag="Tajikistan" tailformat="EY-\\d5">
     <translations>
       <en-US name="Tajikistan" />
       <de-DE name="Tajikistan" />
@@ -1465,7 +1465,7 @@
       <es-ES name="Tayikistán" />
     </translations>
   </country>
-  <country uid="241" shortname="MNG" region="107" flag="Mongolia" tailformat="JU-\\d4">
+  <country uid="241" iso="MN" shortname="MNG" region="107" flag="Mongolia" tailformat="JU-\\d4">
     <translations>
       <en-US name="Mongolia" />
       <de-DE name="Mongolia" />
@@ -1476,7 +1476,7 @@
       <es-ES name="Mongolia" />
     </translations>
   </country>
-  <country uid="242" shortname="ALB" region="115" flag="Albania" tailformat="ZA-\\s3">
+  <country uid="242" iso="AL" shortname="ALB" region="115" flag="Albania" tailformat="ZA-\\s3">
     <translations>
       <en-US name="Albania" />
       <de-DE name="Albania" />
@@ -1487,7 +1487,7 @@
       <es-ES name="Albania" />
     </translations>
   </country>
-  <country uid="243" shortname="ATG" region="117" flag="Antigua &amp; Barbuda" tailformat="V2-\\s3">
+  <country uid="243" iso="AG" shortname="ATG" region="117" flag="Antigua &amp; Barbuda" tailformat="V2-\\s3">
     <translations>
       <en-US name="Antigua &amp; Barbuda" />
       <de-DE name="Antigua &amp; Barbuda" />
@@ -1498,7 +1498,7 @@
       <es-ES name="Antigua &amp; Barbuda" />
     </translations>
   </country>
-  <country uid="244" shortname="ABW" region="117" flag="Aruba" tailformat="P4-\\s3">
+  <country uid="244" iso="AW" shortname="ABW" region="117" flag="Aruba" tailformat="P4-\\s3">
     <translations>
       <en-US name="Aruba" />
       <de-DE name="Aruba" />
@@ -1509,7 +1509,7 @@
       <es-ES name="Aruba" />
     </translations>
   </country>
-  <country uid="248" shortname="BIH" region="115" flag="Bosnia &amp; Herzegovina" tailformat="T9-\\s3">
+  <country uid="248" iso="BA" shortname="BIH" region="115" flag="Bosnia &amp; Herzegovina" tailformat="T9-\\s3">
     <translations>
       <en-US name="Bosnia &amp; Herzegovina" />
       <de-DE name="Bosnia &amp; Herzegovina" />
@@ -1520,7 +1520,7 @@
       <es-ES name="Bosnia y Herzegovina" />
     </translations>
   </country>
-  <country uid="249" shortname="MNE" region="115" flag="Montenegro" tailformat="4O-\\s3">
+  <country uid="249" iso="ME" shortname="MNE" region="115" flag="Montenegro" tailformat="4O-\\s3">
     <translations>
       <en-US name="Montenegro" />
       <de-DE name="Montenegro" />
@@ -1531,7 +1531,7 @@
       <es-ES name="Montenegro" />
     </translations>
   </country>
-  <country uid="251" shortname="NPL" region="108" flag="Nepal" tailformat="9N-\\s3">
+  <country uid="251" iso="NP" shortname="NPL" region="108" flag="Nepal" tailformat="9N-\\s3">
     <currency symbol="रू" position="Left" rate="88.11" />
     <translations>
       <en-US name="Nepal" />
@@ -1543,7 +1543,7 @@
       <es-ES name="Nepal" />
     </translations>
   </country>
-  <country uid="252" shortname="BTN" region="108" flag="Bhutan" tailformat="A5-\\s3">
+  <country uid="252" iso="BT" shortname="BTN" region="108" flag="Bhutan" tailformat="A5-\\s3">
 	<translations>
 		<en-US name="Bhutan" />
 		<de-DE name="Bhutan" />
@@ -1554,8 +1554,8 @@
 		<es-ES name="Bhutan" />
 	</translations>
   </country>
-  <country uid="253" shortname="AFG" region="108" flag="Afghanistan" tailformat="YA-\\s3">
-	<translations>
+  <country uid="253" iso="AF" shortname="AFG" region="108" flag="Afghanistan" tailformat="YA-\\s3">
+	 <translations>
 		<en-US name="Afghanistan" />
 		<de-DE name="Afghanistan" />
 		<en-GB name="Afghanistan" />
@@ -1563,9 +1563,9 @@
 		<zh-CN name="Afghanistan" />
 		<da-DK name="Afghanistan" />
 		<es-ES name="Afghanistan" />
-	</translations>
+	 </translations>
   </country>
-  <country uid="255" shortname="ZWE" region="104" flag="Zimbabwe" tailformat="NP-\\s3">
+  <country uid="255" iso="ZW" shortname="ZWE" region="104" flag="Zimbabwe" tailformat="NP-\\s3">
     <translations>
       <en-US name="Zimbabwe" />
       <de-DE name="Zimbabwe" />
@@ -1576,7 +1576,7 @@
       <es-ES name="Zimbabue" />
     </translations>
   </country>
-  <country uid="256" shortname="SWZ" region="104" flag="Swaziland" tailformat="NP-\\s3">
+  <country uid="256" iso="SZ" shortname="SWZ" region="104" flag="Swaziland" tailformat="NP-\\s3">
     <translations>
       <en-US name="Swaziland" />
       <de-DE name="Swaziland" />
@@ -1587,7 +1587,7 @@
       <es-ES name="Swaziland" />
     </translations>
   </country>
-  <country uid="257" shortname="LSO" region="104" flag="Lesotho" tailformat="NP-\\s3">
+  <country uid="257" iso="LS" shortname="LSO" region="104" flag="Lesotho" tailformat="NP-\\s3">
     <translations>
       <en-US name="Lesotho" />
       <de-DE name="Lesotho" />
@@ -1598,7 +1598,7 @@
       <es-ES name="Lesotho" />
     </translations>
   </country>
-  <country uid="258" shortname="BWA" region="104" flag="Botswana" tailformat="NP-\\s3">
+  <country uid="258" iso="BW" shortname="BWA" region="104" flag="Botswana" tailformat="NP-\\s3">
     <translations>
       <en-US name="Botswana" />
       <de-DE name="Botswana" />
@@ -1609,7 +1609,7 @@
       <es-ES name="Botswana" />
     </translations>
   </country>
-  <country uid="259" shortname="NAM" region="104" flag="Namibia" tailformat="NP-\\s3">
+  <country uid="259" iso="NA" shortname="NAM" region="104" flag="Namibia" tailformat="NP-\\s3">
     <translations>
       <en-US name="Namibia" />
       <de-DE name="Namibia" />
@@ -1620,7 +1620,7 @@
       <es-ES name="Namibia" />
     </translations>
   </country>
-  <country uid="260" shortname="MDG" region="102" flag="Madagascar" tailformat="NP-\\s3">
+  <country uid="260" iso="MG" shortname="MDG" region="102" flag="Madagascar" tailformat="NP-\\s3">
     <translations>
       <en-US name="Madagascar" />
       <de-DE name="Madagascar" />
@@ -1631,7 +1631,7 @@
       <es-ES name="Madagascar" />
     </translations>
   </country>
-  <country uid="261" shortname="UGA" region="102" flag="Uganda" tailformat="NP-\\s3">
+  <country uid="261" iso="UG" shortname="UGA" region="102" flag="Uganda" tailformat="NP-\\s3">
     <translations>
       <en-US name="Uganda" />
       <de-DE name="Uganda" />
@@ -1642,7 +1642,7 @@
       <es-ES name="Uganda" />
     </translations>
   </country>
-  <country uid="262" shortname="SOM" region="102" flag="Somalia" tailformat="NP-\\s3">
+  <country uid="262" iso="SO" shortname="SOM" region="102" flag="Somalia" tailformat="NP-\\s3">
     <translations>
       <en-US name="Somalia" />
       <de-DE name="Somalia" />
@@ -1653,7 +1653,7 @@
       <es-ES name="Somalia" />
     </translations>
   </country>
-  <country uid="263" shortname="SSD" region="102" flag="South Sudan" tailformat="NP-\\s3">
+  <country uid="263" iso="SS" shortname="SSD" region="102" flag="South Sudan" tailformat="NP-\\s3">
     <translations>
       <en-US name="South Sudan" />
       <de-DE name="South Sudan" />
@@ -1664,7 +1664,7 @@
       <es-ES name="South Sudan" />
     </translations>
   </country>
-  <country uid="264" shortname="ERI" region="102" flag="Eritrea" tailformat="NP-\\s3">
+  <country uid="264" iso="ER" shortname="ERI" region="102" flag="Eritrea" tailformat="NP-\\s3">
     <translations>
       <en-US name="Eritrea" />
       <de-DE name="Eritrea" />
@@ -1675,7 +1675,7 @@
       <es-ES name="Eritrea" />
     </translations>
   </country>
-  <country uid="265" shortname="TCD" region="101" flag="Chad" tailformat="NP-\\s3">
+  <country uid="265" iso="TD" shortname="TCD" region="101" flag="Chad" tailformat="NP-\\s3">
     <translations>
       <en-US name="Chad" />
       <de-DE name="Chad" />
@@ -1686,7 +1686,7 @@
       <es-ES name="Chad" />
     </translations>
   </country>
-  <country uid="267" shortname="NER" region="103" flag="Niger" tailformat="NP-\\s3">
+  <country uid="267" iso="NE" shortname="NER" region="103" flag="Niger" tailformat="NP-\\s3">
     <translations>
       <en-US name="Niger" />
       <de-DE name="Niger" />
@@ -1697,7 +1697,7 @@
       <es-ES name="Niger" />
     </translations>
   </country>
-  <country uid="268" shortname="MLI" region="103" flag="Mali" tailformat="NP-\\s3">
+  <country uid="268" iso="ML" shortname="MLI" region="103" flag="Mali" tailformat="NP-\\s3">
     <translations>
       <en-US name="Mali" />
       <de-DE name="Mali" />
@@ -1708,7 +1708,7 @@
       <es-ES name="Mali" />
     </translations>
   </country>
-  <country uid="269" shortname="MRT" region="105" flag="Mauritania" tailformat="NP-\\s3">
+  <country uid="269" iso="MR" shortname="MRT" region="105" flag="Mauritania" tailformat="NP-\\s3">
     <translations>
       <en-US name="Mauritania" />
       <de-DE name="Mauritania" />
@@ -1719,7 +1719,7 @@
       <es-ES name="Mauritania" />
     </translations>
   </country>
-  <country uid="270" shortname="SLE" region="105" flag="Sierra Leone" tailformat="NP-\\s3">
+  <country uid="270" iso="SL" shortname="SLE" region="105" flag="Sierra Leone" tailformat="NP-\\s3">
     <translations>
       <en-US name="Sierra Leone" />
       <de-DE name="Sierra Leone" />
@@ -1730,7 +1730,7 @@
       <es-ES name="Sierra Leone" />
     </translations>
   </country>
-  <country uid="271" shortname="COM" region="102" flag="Comoros" tailformat="NP-\\s3">
+  <country uid="271" iso="KM" shortname="COM" region="102" flag="Comoros" tailformat="NP-\\s3">
     <translations>
       <en-US name="Comoros" />
       <de-DE name="Comoros" />
@@ -1742,7 +1742,7 @@
     </translations>
   </country>
   <!--272 and 273 unused-->
-  <country uid="274" shortname="JOR" region="110" flag="Jordan" tailformat="JY-\\s3">
+  <country uid="274" iso="JO" shortname="JOR" region="110" flag="Jordan" tailformat="JY-\\s3">
     <translations>
       <en-US name="Jordan" />
       <de-DE name="Jordanien" />
@@ -1753,7 +1753,7 @@
       <es-ES name="Jordania" />
     </translations>
   </country>
-  <country uid="275" shortname="CIV" region="105" flag="Cote d'Ivoire" tailformat="TU-\\s3">
+  <country uid="275" iso="CI" shortname="CIV" region="105" flag="Cote d'Ivoire" tailformat="TU-\\s3">
     <translations>
       <en-US name="Cote d'Ivoire" />
       <de-DE name="Cote d'Ivoire" />
@@ -1764,7 +1764,7 @@
       <es-ES name="Cote d'Ivoire" />
     </translations>
   </country>
-  <country uid="276" shortname="MDV" region="108" flag="Maldives" tailformat="8Q-\\s3">
+  <country uid="276" iso="MV" shortname="MDV" region="108" flag="Maldives" tailformat="8Q-\\s3">
     <translations>
       <en-US name="Maldives" />
       <de-DE name="Malediven" />
@@ -1775,7 +1775,7 @@
       <es-ES name="Maldivas" />
     </translations>
   </country>
-  <country uid="277" shortname="BRN" region="109" flag="Brunei" tailformat="V8-\\s3">
+  <country uid="277" iso="BN" shortname="BRN" region="109" flag="Brunei" tailformat="V8-\\s3">
     <translations>
       <en-US name="Brunei" />
       <de-DE name="Brunei" />
@@ -1786,7 +1786,7 @@
       <es-ES name="Brunei" />
     </translations>
   </country>
-  <country uid="278" shortname="MMR" region="109" flag="Myanmar - New" tailformat="XY-\\s3">
+  <country uid="278" iso="MM" shortname="MMR" region="109" flag="Myanmar - New" tailformat="XY-\\s3">
     <translations>
       <en-US name="Myanmar" />
       <de-DE name="Myanmar" />
@@ -1797,8 +1797,8 @@
       <es-ES name="Myanmar" />
     </translations>
   </country>
-  <country uid="279" shortname="LAO" region="109" flag="Laos" tailformat="RDPL-\\d5">
-    <translations>
+  <country uid="279" iso="LA" shortname="LAO" region="109" flag="Laos" tailformat="RDPL-\\d5">
+     <translations>
       <en-US name="Laos" />
       <de-DE name="Laos" />
       <en-GB name="Laos" />
@@ -1808,7 +1808,7 @@
       <es-ES name="Laos" />
     </translations>
   </country>
-  <country uid="280" shortname="PNG" region="112" flag="Papua New Guinea" tailformat="P2-\\s3">
+  <country uid="280" iso="PG" shortname="PNG" region="112" flag="Papua New Guinea" tailformat="P2-\\s3">
     <translations>
       <en-US name="Papua New Guinea" />
       <de-DE name="Papua New Guinea" />
@@ -1819,7 +1819,7 @@
       <es-ES name="Papua New Guinea" />
     </translations>
   </country>
-  <country uid="281" shortname="SYR" region="110" flag="Syria" tailformat="YK-\\s3">
+  <country uid="281" iso="SY" shortname="SYR" region="110" flag="Syria" tailformat="YK-\\s3">
     <translations>
       <en-US name="Syria" />
       <de-DE name="Syria" />
@@ -1830,7 +1830,7 @@
       <es-ES name="Syria" />
     </translations>
   </country>
-  <country uid="282" shortname="YEM" region="110" flag="Yemen" tailformat="7O-\\s3">
+  <country uid="282" iso="YE" shortname="YEM" region="110" flag="Yemen" tailformat="7O-\\s3">
     <translations>
       <en-US name="Yemen" />
       <de-DE name="Yemen" />
@@ -1841,7 +1841,7 @@
       <es-ES name="Yemen" />
     </translations>
   </country>
-  <country uid="283" shortname="MOZ" region="102" flag="Mozambique" tailformat="C9-\\s3">
+  <country uid="283" iso="MZ" shortname="MOZ" region="102" flag="Mozambique" tailformat="C9-\\s3">
     <translations>
       <en-US name="Mozambique" />
       <de-DE name="Mozambique" />
@@ -1852,7 +1852,7 @@
       <es-ES name="Mozambique" />
     </translations>
   </country>
-  <country uid="284" shortname="MKD" region="115" flag="Macedonia" tailformat="Z3-\\s3">
+  <country uid="284" iso="MK" shortname="MKD" region="115" flag="Macedonia" tailformat="Z3-\\s3">
     <translations>
       <en-US name="Republic of Macedonia" />
       <de-DE name="Republic of Macedonia" />
@@ -1863,7 +1863,7 @@
       <es-ES name="Republic of Macedonia" />
     </translations>
   </country>
-  <country uid="285" shortname="CPV" region="105" flag="Cape Verde" tailformat="D4-\\s3">
+  <country uid="285" iso="CV" shortname="CPV" region="105" flag="Cape Verde" tailformat="D4-\\s3">
     <translations>
       <en-US name="Cape Verde" />
       <de-DE name="Cape Verde" />
@@ -1874,7 +1874,7 @@
       <es-ES name="Cape Verde" />
     </translations>
   </country>
-    <country uid="286" shortname="MWI" region="102" flag="Malawi" tailformat="7Q-\\s3">
+    <country uid="286" iso="" shortname="MWI" region="102" flag="Malawi" tailformat="7Q-\\s3">
     <translations>
       <en-US name="Malawi" />
       <de-DE name="Malawi" />
@@ -1885,7 +1885,7 @@
       <es-ES name="Malawi" />
     </translations>
   </country>
-      <country uid="287" shortname="MHL" region="112" flag="Marshall Islands" tailformat="V7-\\d4">
+  <country uid="287" iso="MH" shortname="MHL" region="112" flag="Marshall Islands" tailformat="V7-\\d4">
     <translations>
       <en-US name="Marshall Islands" />
       <de-DE name="Marshall Islands" />
@@ -1896,7 +1896,7 @@
       <es-ES name="Marshall Islands" />
     </translations>
   </country>
-       <country uid="288" shortname="PLW" region="112" flag="Palau" tailformat="V9-\\d4">
+  <country uid="288" iso="PW" shortname="PLW" region="112" flag="Palau" tailformat="V9-\\d4">
     <translations>
       <en-US name="Palau" />
       <de-DE name="Palau" />
@@ -1907,7 +1907,7 @@
       <es-ES name="Palau" />
     </translations>
   </country>
-         <country uid="289" shortname="SLB" region="112" flag="Solomon Islands" tailformat="H4-\\s3">
+  <country uid="289" iso="SB" shortname="SLB" region="112" flag="Solomon Islands" tailformat="H4-\\s3">
     <translations>
       <en-US name="Solomon Islands" />
       <de-DE name="Solomon Islands" />
@@ -1918,7 +1918,7 @@
       <es-ES name="Solomon Islands" />
     </translations>
   </country>
-      <country uid="290" shortname="FSM" region="112" flag="Micronesia" tailformat="V6-\\s3">
+  <country uid="290" iso="FM" shortname="FSM" region="112" flag="Micronesia" tailformat="V6-\\s3">
     <translations>
       <en-US name="Federated States of Micronesia" />
       <de-DE name="Federated States of Micronesia" />
@@ -1929,7 +1929,7 @@
       <es-ES name="Federated States of Micronesia" />
     </translations>
   </country>
-        <country uid="291" shortname="NRU" region="112" flag="Nauru" tailformat="V6-\\s3">
+  <country uid="291" iso="NR" shortname="NRU" region="112" flag="Nauru" tailformat="V6-\\s3">
     <translations>
       <en-US name="Nauru" />
       <de-DE name="Nauru" />
@@ -1939,9 +1939,9 @@
       <da-DK name="Nauru" />
       <es-ES name="Nauru" />
     </translations>
-  </country>
+  </country>    
   <!--Territories-->
-  <country uid="246" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
+  <country uid="246" iso="" shortname="CUW" region="117" flag="Curacao" tailformat="PJ-\\s3">
     <territoryof uid="179" />
     <translations>
       <en-US name="Curaçao" />
@@ -1953,7 +1953,7 @@
       <es-ES name="Curaçao" />
     </translations>
   </country>
-  <country uid="245" shortname="ANT" region="117" flag="Netherlands" tailformat="PJ-\\s3">
+  <country uid="245" iso="" shortname="ANT" region="117" flag="Netherlands" tailformat="PJ-\\s3">
     <territoryof uid="179" />
     <translations>
       <en-US name="Caribbean Netherlands" />
@@ -1965,7 +1965,7 @@
       <es-ES name="Holanda Caribe" />
     </translations>
   </country>
-  <country uid="109" shortname="SXM" region="117" flag="Sint-Maarten" tailformat="PJ-\\s3">
+  <country uid="109" iso="" shortname="SXM" region="117" flag="Sint-Maarten" tailformat="PJ-\\s3">
     <territoryof uid="179" />
     <translations>
       <en-US name="Sint-Maarten" />

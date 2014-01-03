@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <countries>
-  <country uid="1001" shortname="DDR" region="113" flag="East Germany" tailformat="DDR-\\s3" type="ManyToOne">
+  <country uid="1001" iso="DD" shortname="DDR" region="113" flag="East Germany" tailformat="DDR-\\s3" type="ManyToOne">
     <translations>
       <en-US name="East Germany" />
       <de-DE name="East Germany" />
@@ -15,7 +15,7 @@
     <history before="163" after="163">
     </history>
   </country>
-  <country uid="1002" shortname="DEU" region="116" flag="Germany" tailformat="D-\\s4" type="ManyToOne">
+  <country uid="1002" iso="DE" shortname="DEU" region="116" flag="Germany" tailformat="D-\\s4" type="ManyToOne">
     <translations>
       <en-US name="West Germany" />
       <de-DE name="West Germany" />
@@ -30,7 +30,7 @@
     <history before="163" after="163">
     </history>
   </country>
-  <country uid="1003" shortname="CSK" region="113" flag="Czech Republic" tailformat="OK-\\s3" type="OneToMany">
+  <country uid="1003" iso="CS" shortname="CSK" region="113" flag="Czech Republic" tailformat="OK-\\s3" type="OneToMany">
     <translations>
       <en-US name="Czechoslovakia" />
       <de-DE name="Czechoslovakia" />
@@ -51,7 +51,7 @@
       </tempcountries>
     </history>
   </country>
-  <country uid="1004" shortname="SUN" region="113" flag="Soviet Union" tailformat="EW-\\d5" type="OneToMany">
+  <country uid="1004" iso="SU" shortname="SUN" region="113" flag="Soviet Union" tailformat="EW-\\d5" type="OneToMany">
 	<currency format="руб." rate="30.83" />
     <translations>
       <en-US name="Soviet Union" />
@@ -99,7 +99,7 @@
       </tempcountries>
     </history>
   </country>
-  <country uid="1005" shortname="YUG" region="115" flag="Yugoslavia" tailformat="YU-\\s3" type="OneToMany">
+  <country uid="1005" iso="YU" shortname="YUG" region="115" flag="Yugoslavia" tailformat="YU-\\s3" type="OneToMany">
     <translations>
       <en-US name="Yugoslavia" />
       <de-DE name="Yugoslavia" />
@@ -126,7 +126,7 @@
       </tempcountries>
     </history>
   </country>
-  <country uid="1006" shortname="SCG" region="115" flag="Serbia &amp; Montenegro" tailformat="YU-\\s3" type="OneToMany">
+  <country uid="1006" iso="CS" shortname="SCG" region="115" flag="Serbia &amp; Montenegro" tailformat="YU-\\s3" type="OneToMany">
     <translations>
       <en-US name="Serbia &amp; Montenegro" />
       <de-DE name="Serbia &amp; Montenegro" />
@@ -147,7 +147,7 @@
       </tempcountries>
     </history>
   </country>
-  <country uid="1007" shortname="VDR" region="109" flag="Vietnam" tailformat="VN-\\s4" type="ManyToOne">
+  <country uid="1007" iso="VD" shortname="VDR" region="109" flag="Vietnam" tailformat="VN-\\s4" type="ManyToOne">
     <translations>
       <en-US name="North Vietnam" />
       <de-DE name="North Vietnam" />
@@ -162,7 +162,7 @@
     <history before="170" after="170">
     </history>
   </country>
-  <country uid="1008" shortname="VNM" region="109" flag="South Vietnam" tailformat="VN-\\s4" type="ManyToOne">
+  <country uid="1008" iso="VZ" shortname="VNM" region="109" flag="South Vietnam" tailformat="VN-\\s4" type="ManyToOne">
     <translations>
       <en-US name="South Vietnam" />
       <de-DE name="South Vietnam" />
@@ -177,7 +177,7 @@
     <history before="170" after="170">
     </history>
   </country>
-  <country uid="1009" shortname="ANT" region="117" flag="Antilles" tailformat="PJ-\\s3" type="OneToMany">
+  <country uid="1009" iso="AN" shortname="ANT" region="117" flag="Antilles" tailformat="PJ-\\s3" type="OneToMany">
     <territoryof uid="179" />
     <translations>
       <en-US name="Netherlands Antilles" />

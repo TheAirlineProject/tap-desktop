@@ -180,7 +180,7 @@ namespace TheAirline.Model.GeneralModel
         public static Country MatchIso(string iso)
         {
             var countries = GetAllCountries();
-            return countries.Find(_ => _.ShortName == iso);
+            return countries.Find(_ => _.Iso == iso);
         }
 
         //returns the list of countries from a region

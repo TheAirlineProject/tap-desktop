@@ -113,7 +113,7 @@ namespace TheAirline.Model.GeneralModel.CountryModel.TownModel
         //returns all towns
         public static List<Town> GetTowns()
         {
-            return Airports.GetAllAirports().Select(a => a.Profile.Town).Distinct().ToList();
+            return towns;
         }
         //returns all towns from a specific country
         public static void AddTown(Town t)
