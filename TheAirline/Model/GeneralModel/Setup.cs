@@ -129,6 +129,20 @@ namespace TheAirline.Model.GeneralModel
 			Console.WriteLine("Airports: " + Airports.GetAllAirports().Count);
 			Console.WriteLine("Airlines: " + Airlines.GetAllAirlines().Count);
 
+            /*
+            var airlineRegionGroups =
+                from a in Airlines.GetAllAirlines()
+                group a by a.Profile.Country.Region into g
+                select new { Region = g.Key, Airports = g };
+
+            foreach (var g in airlineRegionGroups)
+            {
+                Console.WriteLine("{0} has {1} airports", g.Region.Name,g.Airports.Count());
+                
+             
+            }
+
+
 			var airlines = Airlines.GetAllAirlines().FindAll(a => a.Profile.PreferedAirport == null);
 			var airlineLogos = Airlines.GetAllAirlines().FindAll(a => a.Profile.Logos.Count==0);
 
@@ -141,7 +155,7 @@ namespace TheAirline.Model.GeneralModel
 			foreach (Airport airport in noRunwayAirports)
 				Console.WriteLine(airport.Profile.Name);
 
-
+            */
   	
 		}
 
