@@ -4,7 +4,6 @@
                     xmlns:p="clr-namespace:TheAirline.Properties"
                     xmlns:g="clr-namespace:TheAirline.GUIModel.ObjectsModel"
                     xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
-                    xmlns:popup="clr-namespace:TheAirline.GUIModel.MasterPageModel.PopUpPageModel"
                     xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel">
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="standardResources.xaml"></ResourceDictionary>

@@ -172,6 +172,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirports.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -201,14 +205,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="GUIModel\CustomControlsModel\ucTimeTable.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpLoadConfiguration.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="GUIModel\MasterPageModel\PopUpPageModel\WPFRegularPopUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -527,6 +523,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpAirlinerFacility.xaml.cs">
       <DependentUpon>PopUpAirlinerFacility.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirports.xaml.cs">
+      <DependentUpon>PopUpCompareAirports.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpInviteAlliance.xaml.cs">
       <DependentUpon>PopUpInviteAlliance.xaml</DependentUpon>
     </Compile>
@@ -562,13 +561,6 @@
     <Compile Include="GUIModel\HelpersModel\PageNavigator.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
     <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
-    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\PopUpViewModel.cs" />
-    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFPopUpLoadConfiguration.xaml.cs">
-      <DependentUpon>WPFPopUpLoadConfiguration.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="GUIModel\MasterPageModel\PopUpPageModel\WPFRegularPopUp.xaml.cs">
-      <DependentUpon>WPFRegularPopUp.xaml</DependentUpon>
-    </Compile>
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
     <Compile Include="GUIModel\MasterPageModel\StandardMasterPage.cs" />
     <Compile Include="GUIModel\MasterPageModel\standardStylesEvents.cs" />

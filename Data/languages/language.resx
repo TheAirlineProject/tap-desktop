@@ -4668,4 +4668,28 @@ Good luck.</value>
   <data name="PageAirlineInfo_1033_name" xml:space="preserve">
     <value>Quantity</value>
   </data>
+  <data name="PopUpCompareAirports_1000_name" xml:space="preserve">
+    <value>Airport Type</value>
+  </data>
+  <data name="PopUpCompareAirports_1001_name" xml:space="preserve">
+    <value>Gates</value>
+  </data>
+  <data name="PopUpCompareAirports_1002_name" xml:space="preserve">
+    <value>Runways</value>
+  </data>
+  <data name="PopUpCompareAirports_1003_name" xml:space="preserve">
+    <value>Serving Airlines</value>
+  </data>
+  <data name="PopUpCompareAirports_1004_name" xml:space="preserve">
+    <value>Routes</value>
+  </data>
+  <data name="PopUpCompareAirports_1005_name" xml:space="preserve">
+    <value>Distance</value>
+  </data>
+  <data name="PopUpCompareAirports_1006_name" xml:space="preserve">
+    <value>Compare Airports</value>
+  </data>
+  <data name="PopUpCompareAirports_1007_name" xml:space="preserve">
+    <value>Total Pax Demand</value>
+  </data>
 </root>

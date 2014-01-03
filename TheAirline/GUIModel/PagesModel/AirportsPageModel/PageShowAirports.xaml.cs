@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.GUIModel.CustomControlsModel.FilterableListView;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirportPageModel;
 using TheAirline.Model.AirlineModel;
@@ -206,7 +207,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
         private void btnCompare_Click(object sender, RoutedEventArgs e)
         {
-           
+            var airports = this.SelectedAirports.Select(s => s.Airport).ToList();
+            PopUpCompareAirports.ShowPopUp(airports);
         }
         
     }

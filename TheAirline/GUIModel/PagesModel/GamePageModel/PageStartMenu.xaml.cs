@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.MasterPageModel.PopUpPageModel;
 using TheAirline.GUIModel.PagesModel.OptionsPageModel;
 using TheAirline.Model.GeneralModel;
 

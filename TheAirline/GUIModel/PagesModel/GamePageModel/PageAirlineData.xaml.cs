@@ -38,6 +38,8 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
             this.AllTimeZones = TimeZones.GetTimeZones();
             this.AllAirports = new ObservableCollection<Airport>();
             this.StartData = startData;
+
+            GameObject.GetInstance().GameTime = new DateTime(this.StartData.Year,1,1);
             
             InitializeComponent();
 
