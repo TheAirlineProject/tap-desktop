@@ -1687,7 +1687,7 @@
   </airport>
   <!--Comoros, Madagascar, Mayotte and Reunion (FM**)-->
   <airport name="Roland Garros Airport" icao="FMEE" iata="RUN" type="Long_Haul_International" season="All_Year">
-    <town town="Triolet" country="140" GMT="00:00:00" DST="00:00:00" />
+    <town town="Triolet" country="140" GMT="00:00:00" DST="00:00:00" state="RE" />
     <coordinates>
       <latitude value="020°53'24''S" />
       <longitude value="055°30'59''E" />
@@ -1702,7 +1702,7 @@
     </runways>
   </airport>
   <airport name="Pierrefonds Airport" icao="FMEP" iata="ZSE" type="Regional" season="All_Year">
-    <town town="Vacoas" country="140" GMT="04:00:00" DST="00:00:00" />
+    <town town="Vacoas" country="140" GMT="04:00:00" DST="00:00:00" state="RE" />
     <coordinates>
       <latitude value="021°19'15''S" />
       <longitude value="055°25'29''E" />
@@ -2040,7 +2040,7 @@
     </runways>
   </airport>
   <airport name="Dzaoudzi Pamandzi International Airport" icao="FMCZ" iata="DZA" type="Long_Haul_International" season="All_Year">
-    <town town="Moutsamoudou" country="140" GMT="02:00:00" DST="02:00:00" />
+    <town town="Moutsamoudou" country="140" GMT="02:00:00" DST="02:00:00" state="YT" />
     <coordinates>
       <latitude value="012°48'16''S" />
       <longitude value="045°16'51''E" />
@@ -2054,7 +2054,7 @@
     </runways>
   </airport>
   <airport name="Pierrefonds Airport" icao="FMEP" iata="ZSE" type="Domestic" season="All_Year">
-    <town town="Vacoas" country="140" GMT="02:00:00" DST="02:00:00" />
+    <town town="Vacoas" country="140" GMT="02:00:00" DST="02:00:00" state="YT" />
     <coordinates>
       <latitude value="021°19'15''S" />
       <longitude value="055°25'29''E" />
@@ -2068,7 +2068,7 @@
     </runways>
   </airport>
   <airport name="Roland Garros Airport" icao="FMEE" iata="RUN" type="Long_Haul_International" season="All_Year">
-    <town town="Triolet" country="140" GMT="02:00:00" DST="02:00:00" />
+    <town town="Triolet" country="140" GMT="02:00:00" DST="02:00:00" state="YT" />
     <coordinates>
       <latitude value="020°53'13''S" />
       <longitude value="055°30'37''E" />
@@ -3929,6 +3929,20 @@
       <longitude value="025°03'19''W" />
     </coordinates>
     <size value="Very_small" pax="180" />
+    <terminals>
+      <terminal name="Terminal A" gates="2" />
+    </terminals>
+    <runways>
+      <runway name="07/25" length="2000" surface="Asphalt" />
+    </runways>
+  </airport>
+  <airport name="Snow Airport" icao="GVSQ" iata="AGF" type="Short_Haul_International" season="All_Year">
+    <town town="Mindelo" country="292" GMT="-01:00:00" DST="00:00:00" />
+    <coordinates>
+      <latitude value="016°49'59''N" />
+      <longitude value="025°03'19''W" />
+    </coordinates>
+    <size value="Very_large" pax="89000" />
     <terminals>
       <terminal name="Terminal A" gates="2" />
     </terminals>

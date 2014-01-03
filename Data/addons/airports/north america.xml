@@ -3,7 +3,7 @@
 <airports>
   <!--Canada (C***)-->
   <airport name="Edmonton International Airport" icao="CYEG" iata="YEG" type="Long_Haul_International" season="All_Year">
-    <town town="Camrose" country="113" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Camrose" country="113" GMT="-06:00:00" DST="-07:00:00" state="AB" />
     <coordinates>
       <latitude value="053°18'35''N" />
       <longitude value="113°34'47''W" />
@@ -30,7 +30,7 @@
     </runways>
   </airport>
   <airport name="Sioux Lookout Airport" icao="CYXL" iata="YXL" type="Domestic" season="All_Year">
-    <town town="Thunder Bay" country="113" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Thunder Bay" country="113" GMT="-05:00:00" DST="-06:00:00" state="ON" />
     <coordinates>
       <latitude value="050°06'50''N" />
       <longitude value="091°54'19''W" />
@@ -45,7 +45,7 @@
     </runways>
   </airport>
   <airport name="Dryden Regional Airport" icao="CYHD" iata="YHD" type="Domestic" season="All_Year">
-    <town town="Thunder Bay" country="113" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Thunder Bay" country="113" GMT="-05:00:00" DST="-06:00:00" state="ON" />
     <coordinates>
       <latitude value="049°49'54''N" />
       <longitude value="092°44'39''W" />
@@ -60,7 +60,7 @@
     </runways>
   </airport>
   <airport name="Halifax Stanfield International Airport" icao="CYHZ" iata="YHZ" type="Long_Haul_International" season="All_Year">
-    <town town="New Glasgow" country="113" GMT="-03:00:00" DST="-04:00:00" />
+    <town town="New Glasgow" country="113" GMT="-03:00:00" DST="-04:00:00" state="NS" />
     <coordinates>
       <latitude value="044°52'50''N" />
       <longitude value="063°30'30''W" />
@@ -75,7 +75,7 @@
     </runways>
   </airport>
   <airport name="Kelowna International Airport" icao="CYLW" iata="YLW" type="Short_Haul_International" season="All_Year">
-    <town town="Vernon" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Vernon" country="113" GMT="-07:00:00" DST="-08:00:00" state="BC" />
     <coordinates>
       <latitude value="049°57'21''N" />
       <longitude value="119°22'40''W" />
@@ -89,7 +89,7 @@
     </runways>
   </airport>
   <airport name="Ottawa/Macdonald-Cartier International Airport" icao="CYOW" iata="YOW" type="Long_Haul_International" season="All_Year">
-    <town town="Salaberry-de-Valleyfield" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Salaberry-de-Valleyfield" country="113" GMT="-04:00:00" DST="-05:00:00" state="ON" />
     <coordinates>
       <latitude value="045°19'21''N" />
       <longitude value="075°40'09''W" />
@@ -105,7 +105,7 @@
     </runways>
   </airport>
   <airport name="Québec City Jean Lesage International Airport" icao="CYQB" iata="YQB" type="Short_Haul_International" season="All_Year">
-    <town town="Bellechasse Regional County Municipality" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Bellechasse Regional County Municipality" country="113" GMT="-04:00:00" DST="-05:00:00" state="QC" />
     <coordinates>
       <latitude value="046°47'32''N" />
       <longitude value="071°23'03''W" />
@@ -120,7 +120,7 @@
     </runways>
   </airport>
   <airport name="Regina International Airport" icao="CYQR" iata="YQR" type="Short_Haul_International" season="All_Year">
-    <town town="Regina" country="113" GMT="-06:00:00" DST="-06:00:00" />
+    <town town="Regina" country="113" GMT="-06:00:00" DST="-06:00:00" state="SK" />
     <coordinates>
       <latitude value="050°25'54''N" />
       <longitude value="104°39'56''W" />
@@ -135,7 +135,7 @@
     </runways>
   </airport>
   <airport name="Thunder Bay International Airport" icao="CYQT" iata="YQT" type="Domestic" season="All_Year">
-    <town town="Thunder Bay" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Thunder Bay" country="113" GMT="-04:00:00" DST="-05:00:00" state="ON" />
     <coordinates>
       <latitude value="048°22'19''N" />
       <longitude value="089°19'18''W" />
@@ -150,7 +150,7 @@
     </runways>
   </airport>
   <airport name="Sydney/J.A. Douglas McCurdy Airport" icao="CYQY" iata="YQY" type="Domestic" season="All_Year">
-    <town town="Glace Bay" country="113" GMT="-03:00:00" DST="-04:00:00" />
+    <town town="Glace Bay" country="113" GMT="-03:00:00" DST="-04:00:00" state="NS" />
     <coordinates>
       <latitude value="046°09'41''N" />
       <longitude value="060°02'52''W" />
@@ -165,7 +165,7 @@
     </runways>
   </airport>
   <airport name="Billy Bishop Toronto City Airport" icao="CYTZ" iata="YTZ" type="Short_Haul_International" season="All_Year">
-    <town town="Oshawa" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Oshawa" country="113" GMT="-04:00:00" DST="-05:00:00" state="ON" />
     <coordinates>
       <latitude value="043°37'39''N" />
       <longitude value="079°23'46''W" />
@@ -182,7 +182,7 @@
   </airport>
   <airport name="Montréal-Mirabel International Airport" icao="CYMX" iata="YMX" type="Long_Haul_International" season="All_Year">
     <period from="10.04.1975 00:00:00" to="01.01.2199 00:00:00" />
-    <town town="Blainville" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Blainville" country="113" GMT="-04:00:00" DST="-05:00:00" state="QC" />
     <coordinates>
       <latitude value="045°40'46''N" />
       <longitude value="074°02'19''W" />
@@ -205,7 +205,7 @@
     </runways>
   </airport>
   <airport name="Montréal-Pierre Elliott Trudeau International Airport" icao="CYUL" iata="YUL" type="Long_Haul_International" season="All_Year">
-    <town town="Magog" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Magog" country="113" GMT="-04:00:00" DST="-05:00:00" state="QC" />
     <coordinates>
       <latitude value="045°28'05''N" />
       <longitude value="073°44'29''W" />
@@ -221,7 +221,7 @@
     </runways>
   </airport>
   <airport name="Vancouver International Airport" icao="CYVR" iata="YVR" type="Long_Haul_International" season="All_Year">
-    <town town="New Westminster" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="New Westminster" country="113" GMT="-07:00:00" DST="-08:00:00" state="BC" />
     <coordinates>
       <latitude value="049°11'42''N" />
       <longitude value="123°10'55''W" />
@@ -238,7 +238,7 @@
     </runways>
   </airport>
   <airport name="Winnipeg International Airport" icao="CYWG" iata="YWG" type="Short_Haul_International" season="All_Year">
-    <town town="Winnipeg" country="113" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Winnipeg" country="113" GMT="-05:00:00" DST="-06:00:00" state="MB" />
     <coordinates>
       <latitude value="049°54'36''N" />
       <longitude value="097°14'23''W" />
@@ -253,7 +253,7 @@
     </runways>
   </airport>
   <airport name="Saskatoon John G. Diefenbaker International Airport" icao="CYXE" iata="YXE" type="Long_Haul_International" season="All_Year">
-    <town town="Saskatoon" country="113" GMT="-06:00:00" DST="-06:00:00" />
+    <town town="Saskatoon" country="113" GMT="-06:00:00" DST="-06:00:00" state="SK" />
     <coordinates>
       <latitude value="052°10'14''N" />
       <longitude value="106°41'58''W" />
@@ -268,7 +268,7 @@
     </runways>
   </airport>
   <airport name="Churchill Airport" icao="CYYQ" iata="YYQ" type="Domestic" season="All_Year">
-    <town town="Prince Albert" country="113" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Prince Albert" country="113" GMT="-05:00:00" DST="-06:00:00" state="MB" />
     <coordinates>
       <latitude value="058°44'21''N" />
       <longitude value="094°03'54''W" />
@@ -283,7 +283,7 @@
     </runways>
   </airport>
   <airport name="St. John's International Airport" icao="CYYT" iata="YYT" type="Long_Haul_International" season="All_Year">
-    <town town="St. John's" country="113" GMT="-02:30:00" DST="-03:30:00" />
+    <town town="St. John's" country="113" GMT="-02:30:00" DST="-03:30:00" state="NL" />
     <coordinates>
       <latitude value="047°37'06''N" />
       <longitude value="052°45'06''W" />
@@ -299,7 +299,7 @@
     </runways>
   </airport>
   <airport name="Calgary International Airport" icao="CYYC" iata="YYC" type="Long_Haul_International" season="All_Year">
-    <town town="Calgary" country="113" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Calgary" country="113" GMT="-06:00:00" DST="-07:00:00" state="AB" />
     <coordinates>
       <latitude value="051°06'50''N" />
       <longitude value="114°01'13''W" />
@@ -315,7 +315,7 @@
     </runways>
   </airport>
   <airport name="Victoria International Airport" icao="CYYJ" iata="YYJ" type="Short_Haul_International" season="All_Year">
-    <town town="Bellingham" country="113" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Bellingham" country="113" GMT="-07:00:00" DST="-08:00:00" state="BC" />
     <coordinates>
       <latitude value="048°38'49''N" />
       <longitude value="123°25'33''W" />
@@ -331,7 +331,7 @@
     </runways>
   </airport>
   <airport name="Lester B Pearson International Airport" icao="CYYZ" iata="YYZ" type="Long_Haul_International" season="All_Year">
-    <town town="Cobourg" country="113" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Cobourg" country="113" GMT="-04:00:00" DST="-05:00:00" state="ON" />
     <coordinates>
       <latitude value="043°40'38''N" />
       <longitude value="079°37'50''W" />
@@ -366,7 +366,7 @@
   </airport>
   <!--United States (K***)-->
   <airport name="Lehigh Valley International Airport" icao="KABE" iata="ABE" type="Short_Haul_International" season="All_Year">
-    <town town="Warren Township" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Warren Township" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="040°39'08''N" />
       <longitude value="075°26'26''W" />
@@ -381,7 +381,7 @@
     </runways>
   </airport>
   <airport name="Abilene Regional Airport" icao="KABI" iata="ABI" type="Regional" season="All_Year">
-    <town town="Stephenville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Stephenville" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="032°24'47''N" />
       <longitude value="099°40'59''W" />
@@ -397,7 +397,7 @@
     </runways>
   </airport>
   <airport name="Albuquerque International Sunport" icao="KABQ" iata="ABQ" type="Domestic" season="All_Year">
-    <town town="Santa Fe" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Santa Fe" country="122" GMT="-06:00:00" DST="-07:00:00" state="NM" />
     <coordinates>
       <latitude value="035°02'25''N" />
       <longitude value="106°36'33''W" />
@@ -425,7 +425,7 @@
     </runways>
   </airport>
   <airport name="Aberdeen Regional Airport" icao="KABR" iata="ABR" type="Regional" season="All_Year">
-    <town town="Aberdeen" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Aberdeen" country="122" GMT="-05:00:00" DST="-06:00:00" state="SD" />
     <coordinates>
       <latitude value="045°26'56''N" />
       <longitude value="098°25'18''W" />
@@ -440,7 +440,7 @@
     </runways>
   </airport>
   <airport name="Southwest Georgia Regional Airport" icao="KABY" iata="ABY" type="Regional" season="All_Year">
-    <town town="Tifton" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Tifton" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="031°32'07''N" />
       <longitude value="084°11'40''W" />
@@ -455,7 +455,7 @@
     </runways>
   </airport>
   <airport name="Nantucket Memorial Airport" icao="KACK" iata="ACK" type="Regional" season="All_Year">
-    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" state="MA" />
     <coordinates>
       <latitude value="041°15'11''N" />
       <longitude value="070°03'36''W" />
@@ -471,7 +471,7 @@
     </runways>
   </airport>
   <airport name="Waco Regional Airport" icao="KACT" iata="ACT" type="Regional" season="All_Year">
-    <town town="Waco" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Waco" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="031°36'40''N" />
       <longitude value="097°13'49''W" />
@@ -486,7 +486,7 @@
     </runways>
   </airport>
   <airport name="Atlantic City International Airport" icao="KACY" iata="ACY" type="Domestic" season="All_Year">
-    <town town="Ocean Acres" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Ocean Acres" country="122" GMT="-04:00:00" DST="-05:00:00" state="NJ" />
     <coordinates>
       <latitude value="039°27'27''N" />
       <longitude value="074°34'37''W" />
@@ -501,7 +501,7 @@
     </runways>
   </airport>
   <airport name="Alexandria International Airport" icao="KAEX" iata="AEX" type="Regional" season="All_Year">
-    <town town="Natchez" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Natchez" country="122" GMT="-05:00:00" DST="-06:00:00" state="LA" />
     <coordinates>
       <latitude value="031°19'38''N" />
       <longitude value="092°32'59''W" />
@@ -516,7 +516,7 @@
     </runways>
   </airport>
   <airport name="Augusta Regional At Bush Field" icao="KAGS" iata="AGS" type="Regional" season="All_Year">
-    <town town="Summerville" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Summerville" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="033°22'11''N" />
       <longitude value="081°57'52''W" />
@@ -531,7 +531,7 @@
     </runways>
   </airport>
   <airport name="Albany International Airport" icao="KALB" iata="ALB" type="Short_Haul_International" season="All_Year">
-    <town town="Keene" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Keene" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="042°43'59''N" />
       <longitude value="073°47'59''W" />
@@ -546,7 +546,7 @@
     </runways>
   </airport>
   <airport name="Walla Walla Regional Airport" icao="KALW" iata="ALW" type="Regional" season="All_Year">
-    <town town="Walla Walla" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Walla Walla" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="046°05'41''N" />
       <longitude value="118°17'16''W" />
@@ -562,7 +562,7 @@
     </runways>
   </airport>
   <airport name="Rick Husband Amarillo International Airport" icao="KAMA" iata="AMA" type="Domestic" season="All_Year">
-    <town town="Pampa" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Pampa" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="035°13'10''N" />
       <longitude value="101°42'21''W" />
@@ -577,7 +577,7 @@
     </runways>
   </airport>
   <airport name="Aspen – Pitkin County Airport" icao="KASE" iata="ASE" type="Domestic" season="Winter">
-    <town town="Castle Rock" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Castle Rock" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="039°13'23''N" />
       <longitude value="106°52'08''W" />
@@ -591,7 +591,7 @@
     </runways>
   </airport>
   <airport name="Hartsfield-Jackson Atlanta International Airport" icao="KATL" iata="ATL" type="Long_Haul_International" season="All_Year">
-    <town town="Athens" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Athens" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="033°38'25''N" />
       <longitude value="084°25'37''W" />
@@ -632,7 +632,7 @@
     </runways>
   </airport>
   <airport name="Outagamie County Regional Airport" icao="KATW" iata="ATW" type="Regional" season="All_Year">
-    <town town="Manitowoc" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Manitowoc" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="044°15'29''N" />
       <longitude value="088°31'08''W" />
@@ -647,7 +647,7 @@
     </runways>
   </airport>
   <airport name="Austin-Bergstrom International Airport" icao="KAUS" iata="AUS" type="Short_Haul_International" season="All_Year">
-    <town town="Brenham" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Brenham" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="030°11'39''N" />
       <longitude value="097°40'12''W" />
@@ -674,7 +674,7 @@
     </runways>
   </airport>
   <airport name="Asheville Regional Airport" icao="KAVL" iata="AVL" type="Domestic" season="All_Year">
-    <town town="Shelby" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Shelby" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="035°26'10''N" />
       <longitude value="082°32'30''W" />
@@ -688,7 +688,7 @@
     </runways>
   </airport>
   <airport name="Wilkes-Barre/Scranton International Airport" icao="KAVP" iata="AVP" type="Domestic" season="All_Year">
-    <town town="South Old Bridge" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="South Old Bridge" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="040°20'18''N" />
       <longitude value="075°43'24''W" />
@@ -703,7 +703,7 @@
     </runways>
   </airport>
   <airport name="Kalamazoo/Battle Creek International Airport" icao="KAZO" iata="AZO" type="Domestic" season="All_Year">
-    <town town="Jackson" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Jackson" country="122" GMT="-04:00:00" DST="-05:00:00" state="MI" />
     <coordinates>
       <latitude value="042°14'06''N" />
       <longitude value="085°33'07''W" />
@@ -719,7 +719,7 @@
     </runways>
   </airport>
   <airport name="Branson Airport" icao="KBBG" iata="BKG" type="Regional" season="All_Year">
-    <town town="Ozark" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Ozark" country="122" GMT="-05:00:00" DST="-06:00:00" state="MO" />
     <coordinates>
       <latitude value="036°31'55''N" />
       <longitude value="093°12'02''W" />
@@ -733,7 +733,7 @@
     </runways>
   </airport>
   <airport name="Bradley International Airport" icao="KBDL" iata="BDL" type="Short_Haul_International" season="All_Year">
-    <town town="Attleboro" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Attleboro" country="122" GMT="-04:00:00" DST="-05:00:00" state="CT" />
     <coordinates>
       <latitude value="041°56'19''N" />
       <longitude value="072°40'57''W" />
@@ -761,7 +761,7 @@
     </runways>
   </airport>
   <airport name="Boeing Field King County International Airport" icao="KBFI" iata="BFI" type="Regional" season="All_Year">
-    <town town="Issaquah" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Issaquah" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="047°31'47''N" />
       <longitude value="122°18'07''W" />
@@ -776,7 +776,7 @@
     </runways>
   </airport>
   <airport name="Meadows Field" icao="KBFL" iata="BFL" type="Domestic" season="All_Year">
-    <town town="Oildale" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Oildale" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="035°26'00''N" />
       <longitude value="119°03'25''W" />
@@ -791,7 +791,7 @@
     </runways>
   </airport>
   <airport name="Greater Binghamton/Edwin A Link field" icao="KBGM" iata="BGM" type="Regional" season="All_Year">
-    <town town="Kingston" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Kingston" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="042°12'31''N" />
       <longitude value="075°58'47''W" />
@@ -806,7 +806,7 @@
     </runways>
   </airport>
   <airport name="Bangor International Airport" icao="KBGR" iata="BGR" type="Domestic" season="All_Year">
-    <town town="Saint John" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Saint John" country="122" GMT="-04:00:00" DST="-05:00:00" state="ME" />
     <coordinates>
       <latitude value="044°48'26''N" />
       <longitude value="068°49'41''W" />
@@ -820,7 +820,7 @@
     </runways>
   </airport>
   <airport name="Hancock County-Bar Harbor Airport" icao="KBHB" iata="BHB" type="Regional" season="All_Year">
-    <town town="Bangor" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Bangor" country="122" GMT="-04:00:00" DST="-05:00:00" state="ME" />
     <coordinates>
       <latitude value="044°27'00''N" />
       <longitude value="068°21'41''W" />
@@ -836,7 +836,7 @@
     </runways>
   </airport>
   <airport name="Birmingham-Shuttlesworth International Airport" icao="KBHM" iata="BHM" type="Domestic" season="All_Year">
-    <town town="Carrollton" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Carrollton" country="122" GMT="-05:00:00" DST="-06:00:00" state="AL" />
     <coordinates>
       <latitude value="033°34'00''N" />
       <longitude value="086°45'00''W" />
@@ -851,7 +851,7 @@
     </runways>
   </airport>
   <airport name="Billings Logan International Airport" icao="KBIL" iata="BIL" type="Domestic" season="All_Year">
-    <town town="Billings" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Billings" country="122" GMT="-06:00:00" DST="-07:00:00" state="MT" />
     <coordinates>
       <latitude value="045°48'28''N" />
       <longitude value="108°32'34''W" />
@@ -867,7 +867,7 @@
     </runways>
   </airport>
   <airport name="Bismarck Municipal Airport" icao="KBIS" iata="BIS" type="Domestic" season="All_Year">
-    <town town="Jamestown" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Jamestown" country="122" GMT="-05:00:00" DST="-06:00:00" state="ND" />
     <coordinates>
       <latitude value="046°46'22''N" />
       <longitude value="100°44'45''W" />
@@ -882,7 +882,7 @@
     </runways>
   </airport>
   <airport name="Bellingham International Airport" icao="KBLI" iata="BLI" type="Regional" season="All_Year">
-    <town town="Chilliwack" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Chilliwack" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="048°47'34''N" />
       <longitude value="122°32'16''W" />
@@ -896,7 +896,7 @@
     </runways>
   </airport>
   <airport name="Central Illinois Regional Airport" icao="KBMI" iata="BMI" type="Domestic" season="All_Year">
-    <town town="West Lafayette" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="West Lafayette" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="040°28'38''N" />
       <longitude value="088°54'57''W" />
@@ -911,7 +911,7 @@
     </runways>
   </airport>
   <airport name="Boise Airport" icao="KBOI" iata="BOI" type="Domestic" season="All_Year">
-    <town town="Boise" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Boise" country="122" GMT="-06:00:00" DST="-07:00:00" state="ID" />
     <coordinates>
       <latitude value="043°33'51''N" />
       <longitude value="116°13'22''W" />
@@ -926,7 +926,7 @@
     </runways>
   </airport>
   <airport name="Nashville International Airport" icao="KBNA" iata="BNA" type="Short_Haul_International" season="All_Year">
-    <town town="Cookeville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Cookeville" country="122" GMT="-05:00:00" DST="-06:00:00" state="TN" />
     <coordinates>
       <latitude value="036°07'27''N" />
       <longitude value="086°40'41''W" />
@@ -955,7 +955,7 @@
     </runways>
   </airport>
   <airport name="General Edward Lawrence Logan International Airport" icao="KBOS" iata="BOS" type="Long_Haul_International" season="All_Year">
-    <town town="Winthrop" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Winthrop" country="122" GMT="-04:00:00" DST="-05:00:00" state="MA" />
     <coordinates>
       <latitude value="042°21'51''N" />
       <longitude value="071°00'18''W" />
@@ -974,7 +974,7 @@
     </runways>
   </airport>
   <airport name="Southeast Texas Regional Airport" icao="KBPT" iata="BPT" type="Regional" season="All_Year">
-    <town town="Nederland" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Nederland" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="029°57'02''N" />
       <longitude value="094°01'14''W" />
@@ -989,7 +989,7 @@
     </runways>
   </airport>
   <airport name="Brunswick Golden Isles Airport" icao="KBQK" iata="BQK" type="Regional" season="All_Year">
-    <town town="Brunswick" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Brunswick" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="031°15'31''N" />
       <longitude value="081°27'59''W" />
@@ -1003,7 +1003,7 @@
     </runways>
   </airport>
   <airport name="Brownsville South Padre Island International Airport" icao="KBRO" iata="BRO" type="Short_Haul_International" season="All_Year">
-    <town town="Brownsville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Brownsville" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="025°54'24''N" />
       <longitude value="097°25'33''W" />
@@ -1019,7 +1019,7 @@
     </runways>
   </airport>
   <airport name="Bert Mooney Airport" icao="KBTM" iata="BTM" type="Regional" season="All_Year">
-    <town town="Bozeman" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Bozeman" country="122" GMT="-06:00:00" DST="-07:00:00" state="MT" />
     <coordinates>
       <latitude value="045°57'17''N" />
       <longitude value="112°29'49''W" />
@@ -1035,7 +1035,7 @@
     </runways>
   </airport>
   <airport name="Baton Rouge Metropolitan Airport" icao="KBTR" iata="BTR" type="Domestic" season="All_Year">
-    <town town="Central" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Central" country="122" GMT="-05:00:00" DST="-06:00:00" state="LA" />
     <coordinates>
       <latitude value="030°31'58''N" />
       <longitude value="091°09'00''W" />
@@ -1051,7 +1051,7 @@
     </runways>
   </airport>
   <airport name="Burlington International Airport" icao="KBTV" iata="BTV" type="Domestic" season="All_Year">
-    <town town="Colchester" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Colchester" country="122" GMT="-04:00:00" DST="-05:00:00" state="VT" />
     <coordinates>
       <latitude value="044°28'19''N" />
       <longitude value="073°09'12''W" />
@@ -1066,7 +1066,7 @@
     </runways>
   </airport>
   <airport name="Buffalo Niagara International Airport" icao="KBUF" iata="BUF" type="Domestic" season="All_Year">
-    <town town="Brighton" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Brighton" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="042°56'26''N" />
       <longitude value="078°43'56''W" />
@@ -1081,7 +1081,7 @@
     </runways>
   </airport>
   <airport name="Bob Hope Airport" icao="KBUR" iata="BUR" type="Domestic" season="All_Year">
-    <town town="Upland" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Upland" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="034°12'00''N" />
       <longitude value="118°20'59''W" />
@@ -1097,7 +1097,7 @@
     </runways>
   </airport>
   <airport name="Baltimore/Washington International Airport" icao="KBWI" iata="BWI" type="Long_Haul_International" season="All_Year">
-    <town town="Dover" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Dover" country="122" GMT="-04:00:00" DST="-05:00:00" state="MD" />
     <coordinates>
       <latitude value="039°10'31''N" />
       <longitude value="076°40'06''W" />
@@ -1114,7 +1114,7 @@
     </runways>
   </airport>
   <airport name="Bozeman Yellowstone International Airport" icao="KBZN" iata="BZN" type="Regional" season="All_Year">
-    <town town="Bozeman" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Bozeman" country="122" GMT="-06:00:00" DST="-07:00:00" state="MT" />
     <coordinates>
       <latitude value="045°46'39''N" />
       <longitude value="111°09'10''W" />
@@ -1130,7 +1130,7 @@
     </runways>
   </airport>
   <airport name="Columbia Metropolitan Airport" icao="KCAE" iata="CAE" type="Domestic" season="All_Year">
-    <town town="Columbia" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Columbia" country="122" GMT="-04:00:00" DST="-05:00:00" state="SC" />
     <coordinates>
       <latitude value="033°56'19''N" />
       <longitude value="081°07'10''W" />
@@ -1145,7 +1145,7 @@
     </runways>
   </airport>
   <airport name="Akron Canton Regional Airport" icao="KCAK" iata="CAK" type="Domestic" season="All_Year">
-    <town town="Boardman" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Boardman" country="122" GMT="-04:00:00" DST="-05:00:00" state="OH" />
     <coordinates>
       <latitude value="040°54'57''N" />
       <longitude value="081°26'31''W" />
@@ -1161,7 +1161,7 @@
     </runways>
   </airport>
   <airport name="Charleston International Airport" icao="KCHS" iata="CHS" type="Domestic" season="All_Year">
-    <town town="North Charleston" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="North Charleston" country="122" GMT="-04:00:00" DST="-05:00:00" state="SC" />
     <coordinates>
       <latitude value="032°53'54''N" />
       <longitude value="080°02'26''W" />
@@ -1176,7 +1176,7 @@
     </runways>
   </airport>
   <airport name="The Eastern Iowa Airport" icao="KCID" iata="CID" type="Domestic" season="All_Year">
-    <town town="Clinton" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Clinton" country="122" GMT="-05:00:00" DST="-06:00:00" state="IA" />
     <coordinates>
       <latitude value="041°53'05''N" />
       <longitude value="091°42'39''W" />
@@ -1191,7 +1191,7 @@
     </runways>
   </airport>
   <airport name="Cleveland Hopkins International Airport" icao="KCLE" iata="CLE" type="Short_Haul_International" season="All_Year">
-    <town town="Hermitage" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Hermitage" country="122" GMT="-04:00:00" DST="-05:00:00" state="OH" />
     <coordinates>
       <latitude value="041°24'42''N" />
       <longitude value="081°50'59''W" />
@@ -1207,7 +1207,7 @@
     </runways>
   </airport>
   <airport name="Charlotte/Douglas International Airport" icao="KCLT" iata="CLT" type="Short_Haul_International" season="All_Year">
-    <town town="Fort Bragg" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Fort Bragg" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="035°12'50''N" />
       <longitude value="080°56'35''W" />
@@ -1224,7 +1224,7 @@
     </runways>
   </airport>
   <airport name="Port Columbus International Airport" icao="KCMH" iata="CMH" type="Short_Haul_International" season="All_Year">
-    <town town="Wheeling" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Wheeling" country="122" GMT="-04:00:00" DST="-05:00:00" state="OH" />
     <coordinates>
       <latitude value="039°59'58''N" />
       <longitude value="082°53'16''W" />
@@ -1239,7 +1239,7 @@
     </runways>
   </airport>
   <airport name="Colorado Springs Airport" icao="KCOS" iata="COS" type="Domestic" season="All_Year">
-    <town town="Cimarron Hills" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Cimarron Hills" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="038°49'00''N" />
       <longitude value="104°43'00''W" />
@@ -1255,7 +1255,7 @@
     </runways>
   </airport>
   <airport name="Corpus Christi International Airport" icao="KCRP" iata="CRP" type="Domestic" season="All_Year">
-    <town town="Portland" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <town town="Portland" country="122" GMT="-05:00:00" DST="-04:00:00" state="TX" />
     <coordinates>
       <latitude value="027°46'13''N" />
       <longitude value="097°30'04''W" />
@@ -1270,7 +1270,7 @@
     </runways>
   </airport>
   <airport name="Yeager Airport" icao="KCRW" iata="CRW" type="Domestic" season="All_Year">
-    <town town="Beckley" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Beckley" country="122" GMT="-04:00:00" DST="-05:00:00" state="WY" />
     <coordinates>
       <latitude value="038°22'33''N" />
       <longitude value="081°35'35''W" />
@@ -1284,7 +1284,7 @@
     </runways>
   </airport>
   <airport name="Cincinnati/Northern Kentucky International Airport" icao="KCVG" iata="CVG" type="Short_Haul_International" season="All_Year">
-    <town town="Chillicothe" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Chillicothe" country="122" GMT="-04:00:00" DST="-05:00:00" state="OH" />
     <coordinates>
       <latitude value="039°02'51''N" />
       <longitude value="084°40'03''W" />
@@ -1301,7 +1301,7 @@
     </runways>
   </airport>
   <airport name="Cheyenne Regional Airport" icao="KCYS" iata="CYS" type="Regional" season="All_Year">
-    <town town="Scottsbluff" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Scottsbluff" country="122" GMT="-06:00:00" DST="-07:00:00" state="WY" />
     <coordinates>
       <latitude value="041°09'20''N" />
       <longitude value="104°48'38''W" />
@@ -1316,7 +1316,7 @@
     </runways>
   </airport>
   <airport name="Dallas Love Field" icao="KDAL" iata="DAL" type="Domestic" season="All_Year">
-    <town town="Mount Pleasant" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Mount Pleasant" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="032°50'49''N" />
       <longitude value="096°51'07''W" />
@@ -1332,7 +1332,7 @@
     </runways>
   </airport>
   <airport name="Dayton International Airport" icao="KDAY" iata="DAY" type="Domestic" season="All_Year">
-    <town town="Xenia" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Xenia" country="122" GMT="-04:00:00" DST="-05:00:00" state="OH" />
     <coordinates>
       <latitude value="039°45'00''N" />
       <longitude value="084°10'59''W" />
@@ -1365,7 +1365,7 @@
   </airport>
   <airport name="Denver International Airport" icao="KDEN" iata="DEN" type="Long_Haul_International" season="All_Year">
     <period from="02.28.1995 00:00:00" to="01.01.2199 00:00:00" />
-    <town town="Brighton" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Brighton" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="039°51'30''N" />
       <longitude value="104°40'01''W" />
@@ -1385,7 +1385,7 @@
   </airport>
   <airport name="Stapleton International Airport" icao="KDEN" iata="DEN" type="Long_Haul_International" season="All_Year">
     <period from="10.17.1929 00:00:00" to="02.28.1995 00:00:00" />
-    <town town="Parker" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Parker" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="039°46'45''N" />
       <longitude value="104°52'55''W" />
@@ -1405,7 +1405,7 @@
   </airport>
   <airport name="Dallas/Fort Worth International Airport" icao="KDFW" iata="DFW" type="Long_Haul_International" season="All_Year">
     <period from="01.13.1974 00:00:00" to="01.01.2199 00:00:00" />
-    <town town="Farmers Branch" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Farmers Branch" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="032°53'47''N" />
       <longitude value="097°02'15''W" />
@@ -1429,7 +1429,7 @@
     </runways>
   </airport>
   <airport name="Duluth International Airport" icao="KDLH" iata="DLH" type="Domestic" season="All_Year">
-    <town town="Duluth" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Duluth" country="122" GMT="-05:00:00" DST="-06:00:00" state="MN" />
     <coordinates>
       <latitude value="046°50'32''N" />
       <longitude value="092°11'37''W" />
@@ -1444,7 +1444,7 @@
     </runways>
   </airport>
   <airport name="Detroit Metropolitan Wayne County Airport" icao="KDTW" iata="DTW" type="Long_Haul_International" season="All_Year">
-    <town town="Windsor" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Windsor" country="122" GMT="-04:00:00" DST="-05:00:00" state="MI" />
     <coordinates>
       <latitude value="042°12'44''N" />
       <longitude value="083°21'12''W" />
@@ -1464,7 +1464,7 @@
     </runways>
   </airport>
   <airport name="Des Moines International Airport" icao="KDSM" iata="DSM" type="Domestic" season="All_Year">
-    <town town="Ottumwa" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Ottumwa" country="122" GMT="-05:00:00" DST="-06:00:00" state="IA" />
     <coordinates>
       <latitude value="041°32'02''N" />
       <longitude value="093°39'47''W" />
@@ -1479,7 +1479,7 @@
     </runways>
   </airport>
   <airport name="El Paso International Airport" icao="KELP" iata="ELP" type="Domestic" season="All_Year">
-    <town town="Horizon City" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Horizon City" country="122" GMT="-06:00:00" DST="-07:00:00" state="TX" />
     <coordinates>
       <latitude value="031°48'00''N" />
       <longitude value="106°22'59''W" />
@@ -1495,7 +1495,7 @@
     </runways>
   </airport>
   <airport name="Erie International Airport" icao="KERI" iata="ERI" type="Short_Haul_International" season="All_Year">
-    <town town="Erie" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Erie" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="042°04'55''N" />
       <longitude value="080°10'34''W" />
@@ -1510,7 +1510,7 @@
     </runways>
   </airport>
   <airport name="Newark Liberty International Airport" icao="KEWR" iata="EWR" type="Long_Haul_International" season="All_Year">
-    <town town="Borough of Queens" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Borough of Queens" country="122" GMT="-04:00:00" DST="-05:00:00" state="NJ" />
     <coordinates>
       <latitude value="040°41'32''N" />
       <longitude value="074°10'07''W" />
@@ -1526,7 +1526,7 @@
     </runways>
   </airport>
   <airport name="Hector International Airport" icao="KFAR" iata="FAR" type="Domestic" season="All_Year">
-    <town town="Moorhead" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Moorhead" country="122" GMT="-05:00:00" DST="-06:00:00" state="ND" />
     <coordinates>
       <latitude value="046°55'14''N" />
       <longitude value="096°48'57''W" />
@@ -1542,7 +1542,7 @@
     </runways>
   </airport>
   <airport name="Fresno Yosemite International Airport" icao="KFAT" iata="FAT" type="Short_Haul_International" season="All_Year">
-    <town town="Dinuba" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Dinuba" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="036°46'15''N" />
       <longitude value="119°43'08''W" />
@@ -1557,7 +1557,7 @@
     </runways>
   </airport>
   <airport name="Fort Lauderdale–Hollywood International Airport" icao="KFLL" iata="FLL" type="Long_Haul_International" season="All_Year">
-    <town town="Dania Beach" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Dania Beach" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="026°04'21''N" />
       <longitude value="080°09'09''W" />
@@ -1576,7 +1576,7 @@
     </runways>
   </airport>
   <airport name="Bishop International Airport" icao="KFNT" iata="FNT" type="Domestic" season="All_Year">
-    <town town="Sarnia" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Sarnia" country="122" GMT="-04:00:00" DST="-05:00:00" state="MI" />
     <coordinates>
       <latitude value="042°57'56''N" />
       <longitude value="083°44'37''W" />
@@ -1591,7 +1591,7 @@
     </runways>
   </airport>
   <airport name="Sioux Falls Regional Airport" icao="KFSD" iata="FSD" type="Regional" season="All_Year">
-    <town town="Sioux Falls" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sioux Falls" country="122" GMT="-05:00:00" DST="-06:00:00" state="SD" />
     <coordinates>
       <latitude value="043°34'55''N" />
       <longitude value="096°44'31''W" />
@@ -1607,7 +1607,7 @@
     </runways>
   </airport>
   <airport name="Spokane International Airport" icao="KGEG" iata="GEG" type="Domestic" season="All_Year">
-    <town town="Coeur d'Alene" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Coeur d'Alene" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="047°37'12''N" />
       <longitude value="117°32'02''W" />
@@ -1622,7 +1622,7 @@
     </runways>
   </airport>
   <airport name="Gulfport-Biloxi International Airport" icao="KGPT" iata="GPT" type="Domestic" season="All_Year">
-    <town town="Biloxi" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Biloxi" country="122" GMT="-05:00:00" DST="-06:00:00" state="MS" />
     <coordinates>
       <latitude value="030°24'26''N" />
       <longitude value="089°04'12''W" />
@@ -1637,7 +1637,7 @@
     </runways>
   </airport>
   <airport name="Austin Straubel International Airport" icao="KGRB" iata="GRB" type="Domestic" season="All_Year">
-    <town town="Green Bay" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Green Bay" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="044°28'59''N" />
       <longitude value="088°07'59''W" />
@@ -1652,7 +1652,7 @@
     </runways>
   </airport>
   <airport name="Gerald R. Ford International Airport" icao="KGRR" iata="GRR" type="Short_Haul_International" season="All_Year">
-    <town town="Haslett" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Haslett" country="122" GMT="-04:00:00" DST="-05:00:00" state="MI" />
     <coordinates>
       <latitude value="042°52'59''N" />
       <longitude value="085°31'59''W" />
@@ -1668,7 +1668,7 @@
     </runways>
   </airport>
   <airport name="Piedmont Triad International Airport" icao="KGSO" iata="GSO" type="Domestic" season="All_Year">
-    <town town="Rocky Mount" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Rocky Mount" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="036°05'52''N" />
       <longitude value="79°56'14''W" />
@@ -1684,7 +1684,7 @@
     </runways>
   </airport>
   <airport name="Greenville-Spartanburg International Airport" icao="KGSP" iata="GSP" type="Domestic" season="All_Year">
-    <town town="Spartanburg" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Spartanburg" country="122" GMT="-04:00:00" DST="-05:00:00" state="SC" />
     <coordinates>
       <latitude value="034°53'44''N" />
       <longitude value="082°13'08''W" />
@@ -1698,7 +1698,7 @@
     </runways>
   </airport>
   <airport name="Helena Regional Airport" icao="KHLN" iata="HLN" type="Regional" season="All_Year">
-    <town town="Bozeman" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Bozeman" country="122" GMT="-06:00:00" DST="-07:00:00" state="MT" />
     <coordinates>
       <latitude value="046°36'24''N" />
       <longitude value="111°58'57''W" />
@@ -1714,7 +1714,7 @@
     </runways>
   </airport>
   <airport name="Westchester County Airport" icao="KHPN" iata="HPN" type="Domestic" season="All_Year">
-    <town town="Madison" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Madison" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="041°04'01''N" />
       <longitude value="073°42'27''W" />
@@ -1729,7 +1729,7 @@
     </runways>
   </airport>
   <airport name="William P. Hobby Airport" icao="KHOU" iata="HOU" type="Domestic" season="All_Year">
-    <town town="Baytown" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Baytown" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="029°38'43''N" />
       <longitude value="095°16'43''W" />
@@ -1746,7 +1746,7 @@
     </runways>
   </airport>
   <airport name="Huntsville International Airport" icao="KHSV" iata="HSV" type="Domestic" season="All_Year">
-    <town town="Dalton" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Dalton" country="122" GMT="-05:00:00" DST="-06:00:00" state="AL" />
     <coordinates>
       <latitude value="034°38'13''N" />
       <longitude value="086°46'30''W" />
@@ -1781,7 +1781,7 @@
   </airport>
   <airport name="George Bush Intercontinental Airport" icao="KIAH" iata="IAH" type="Long_Haul_International" season="All_Year">
     <period from="06.08.1969 00:00:00" to="01.01.2199 00:00:00" />
-    <town town="Baytown" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Baytown" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="029°58'49''N" />
       <longitude value="095°20'23''W" />
@@ -1803,7 +1803,7 @@
     </runways>
   </airport>
   <airport name="Wichita Mid-Continent Airport" icao="KICT" iata="ICT" type="Domestic" season="All_Year">
-    <town town="Derby" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Derby" country="122" GMT="-05:00:00" DST="-06:00:00" state="KS" />
     <coordinates>
       <latitude value="037°38'59''N" />
       <longitude value="097°25'59''W" />
@@ -1819,7 +1819,7 @@
     </runways>
   </airport>
   <airport name="New Castle Airport" icao="KILG" iata="ILG" type="Domestic" season="All_Year">
-    <town town="Ocean Acres" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Ocean Acres" country="122" GMT="-04:00:00" DST="-05:00:00" state="DE" />
     <coordinates>
       <latitude value="039°40'43''N" />
       <longitude value="075°36'24''W" />
@@ -1835,7 +1835,7 @@
     </runways>
   </airport>
   <airport name="Indianapolis International Airport" icao="KIND" iata="IND" type="Short_Haul_International" season="All_Year">
-    <town town="Greenfield" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Greenfield" country="122" GMT="-04:00:00" DST="-05:00:00" state="IN" />
     <coordinates>
       <latitude value="039°43'02''N" />
       <longitude value="086°17'39''W" />
@@ -1851,7 +1851,7 @@
     </runways>
   </airport>
   <airport name="Long Island MacArthur Airport" icao="KISP" iata="ISP" type="Domestic" season="All_Year">
-    <town town="Shirley" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Shirley" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="040°47'43''N" />
       <longitude value="073°06'01''W" />
@@ -1868,7 +1868,7 @@
     </runways>
   </airport>
   <airport name="Jackson-Evers International Airport" icao="KJAN" iata="JAN" type="Domestic" season="All_Year">
-    <town town="Brandon" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Brandon" country="122" GMT="-05:00:00" DST="-06:00:00" state="MS" />
     <coordinates>
       <latitude value="032°18'39''N" />
       <longitude value="090°04'32''W" />
@@ -1883,7 +1883,7 @@
     </runways>
   </airport>
   <airport name="Jacksonville International Airport" icao="KJAX" iata="JAX" type="Domestic" season="All_Year">
-    <town town="Jacksonville Beach" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Jacksonville Beach" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="030°29'39''N" />
       <longitude value="081°41'16''W" />
@@ -1898,7 +1898,7 @@
     </runways>
   </airport>
   <airport name="John F. Kennedy International Airport" icao="KJFK" iata="JFK" type="Long_Haul_International" season="All_Year">
-    <town town="Mastic" country="122" GMT="-04:00:00" DST="-05:00:00" cargo="Large" cargovolume="1343" />
+    <town town="Mastic" country="122" GMT="-04:00:00" DST="-05:00:00" cargo="Large" cargovolume="1343" state="NY" />
     <coordinates>
       <latitude value="040°38'23''N" />
       <longitude value="073°46'44''W" />
@@ -1927,7 +1927,7 @@
     </runways>
   </airport>
   <airport name="Capital Region International Airport" icao="KLAN" iata="LAN" type="Long_Haul_International" season="All_Year">
-    <town town="Waterford" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Waterford" country="122" GMT="-04:00:00" DST="-05:00:00" state="MI" />
     <coordinates>
       <latitude value="042°46'43''N" />
       <longitude value="084°35'10''W" />
@@ -1943,7 +1943,7 @@
     </runways>
   </airport>
   <airport name="Los Angeles International Airport" icao="KLAX" iata="LAX" type="Long_Haul_International" season="All_Year">
-    <town town="Norco" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Norco" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="033°56'33''N" />
       <longitude value="118°24'29''W" />
@@ -1968,7 +1968,7 @@
     </runways>
   </airport>
   <airport name="McCarran International Airport" icao="KLAS" iata="LAS" type="Long_Haul_International" season="All_Year">
-    <town town="Boulder City" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Boulder City" country="122" GMT="-07:00:00" DST="-08:00:00" state="NV" />
     <coordinates>
       <latitude value="036°04'59''N" />
       <longitude value="115°10'00''W" />
@@ -1987,7 +1987,7 @@
     </runways>
   </airport>
   <airport name="LaGuardia Airport" icao="KLGA" iata="LGA" type="Short_Haul_International" season="All_Year">
-    <town town="Mastic" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Mastic" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="040°46'38''N" />
       <longitude value="073°52'21''W" />
@@ -2002,7 +2002,7 @@
     </runways>
   </airport>
   <airport name="Long Beach Airport" icao="KLGB" iata="LGB" type="Domestic" season="All_Year">
-    <town town="Orange" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Orange" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="33°49'04''N" />
       <longitude value="118°09'06''W" />
@@ -2020,7 +2020,7 @@
     </runways>
   </airport>
   <airport name="Little Rock National Airport" icao="KLIT" iata="LIT" type="Domestic" season="All_Year">
-    <town town="Jacksonville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Jacksonville" country="122" GMT="-05:00:00" DST="-06:00:00" state="AR" />
     <coordinates>
       <latitude value="034°43'45''N" />
       <longitude value="092°13'27''W" />
@@ -2036,7 +2036,7 @@
     </runways>
   </airport>
   <airport name="Lincoln Airport" icao="KLNK" iata="LNK" type="Domestic" season="All_Year">
-    <town town="Bellevue" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Bellevue" country="122" GMT="-05:00:00" DST="-06:00:00" state="NE" />
     <coordinates>
       <latitude value="040°51'04''N" />
       <longitude value="096°45'33''W" />
@@ -2052,7 +2052,7 @@
     </runways>
   </airport>
   <airport name="Laredo International Airport" icao="KLRD" iata="LRD" type="Domestic" season="All_Year">
-    <town town="Alice" country="122" GMT="-05:00:00" DST="-04:00:00" />
+    <town town="Alice" country="122" GMT="-05:00:00" DST="-04:00:00" state="TX" />
     <coordinates>
       <latitude value="027°32'38''N" />
       <longitude value="099°27'42''W" />
@@ -2068,7 +2068,7 @@
     </runways>
   </airport>
   <airport name="Midland International Airport" icao="KMAF" iata="MAF" type="Domestic" season="All_Year">
-    <town town="Midland" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Midland" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="031°56'33''N" />
       <longitude value="102°12'07''W" />
@@ -2085,7 +2085,7 @@
     </runways>
   </airport>
   <airport name="Kansas City International Airport" icao="KMCI" iata="MCI" type="Short_Haul_International" season="All_Year">
-    <town town="Sedalia" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sedalia" country="122" GMT="-05:00:00" DST="-06:00:00" state="MO" />
     <coordinates>
       <latitude value="039°17'51''N" />
       <longitude value="094°42'50''W" />
@@ -2103,7 +2103,7 @@
     </runways>
   </airport>
   <airport name="Orlando International Airport" icao="KMCO" iata="MCO" type="Long_Haul_International" season="Summer">
-    <town town="Cocoa" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Cocoa" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="028°25'44''N" />
       <longitude value="081°18'57''W" />
@@ -2121,7 +2121,7 @@
     </runways>
   </airport>
   <airport name="Harrisburg International Airport" icao="KMDT" iata="MDT" type="Short_Haul_International" season="All_Year">
-    <town town="Lansdale" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Lansdale" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="040°11'37''N" />
       <longitude value="076°45'48''W" />
@@ -2135,7 +2135,7 @@
     </runways>
   </airport>
   <airport name="Chicago Midway International Airport" icao="KMDW" iata="MDW" type="Short_Haul_International" season="All_Year">
-    <town town="Granger" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Granger" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="041°47'09''N" />
       <longitude value="087°45'08''W" />
@@ -2153,7 +2153,7 @@
     </runways>
   </airport>
   <airport name="Memphis International Airport" icao="KMEM" iata="MEM" type="Short_Haul_International" season="All_Year">
-    <town town="Florence" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Florence" country="122" GMT="-05:00:00" DST="-06:00:00" state="TN" />
     <coordinates>
       <latitude value="035°02'32''N" />
       <longitude value="089°58'36''W" />
@@ -2172,7 +2172,7 @@
     </runways>
   </airport>
   <airport name="Manchester-Boston Regional Airport" icao="KMHT" iata="MHT" type="Domestic" season="All_Year">
-    <town town="Portsmouth" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Portsmouth" country="122" GMT="-04:00:00" DST="-05:00:00" state="NH" />
     <coordinates>
       <latitude value="042°55'57''N" />
       <longitude value="071°26'08''W" />
@@ -2187,7 +2187,7 @@
     </runways>
   </airport>
   <airport name="Miami International Airport" icao="KMIA" iata="MIA" type="Long_Haul_International" season="Summer">
-    <town town="Miami Beach" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Miami Beach" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="025°47'35''N" />
       <longitude value="080°17'26''W" />
@@ -2206,7 +2206,7 @@
     </runways>
   </airport>
   <airport name="General Mitchell International Airport" icao="KMKE" iata="MKE" type="Short_Haul_International" season="All_Year">
-    <town town="Allendale" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Allendale" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="042°56'48''N" />
       <longitude value="087°53'48''W" />
@@ -2224,7 +2224,7 @@
     </runways>
   </airport>
   <airport name="Quad City International Airport" icao="KMLI" iata="MLI" type="Domestic" season="All_Year">
-    <town town="Sterling" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sterling" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="041°26'55''N" />
       <longitude value="090°30'27''W" />
@@ -2240,7 +2240,7 @@
     </runways>
   </airport>
   <airport name="Dane County Regional Airport" icao="KMSN" iata="MSN" type="Regional" season="All_Year">
-    <town town="Watertown" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Watertown" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="043°08'23''N" />
       <longitude value="089°20'15''W" />
@@ -2256,7 +2256,7 @@
     </runways>
   </airport>
   <airport name="Minneapolis−Saint Paul International Airport" icao="KMSP" iata="MSP" type="Long_Haul_International" season="All_Year">
-    <town town="Cottage Grove" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Cottage Grove" country="122" GMT="-05:00:00" DST="-06:00:00" state="MN" />
     <coordinates>
       <latitude value="044°52'49''N" />
       <longitude value="093°13'00''W" />
@@ -2274,7 +2274,7 @@
     </runways>
   </airport>
   <airport name="Louis Armstrong New Orleans International Airport" icao="KMSY" iata="MSY" type="Short_Haul_International" season="All_Year">
-    <town town="Chalmette" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Chalmette" country="122" GMT="-05:00:00" DST="-06:00:00" state="LA" />
     <coordinates>
       <latitude value="029°59'36''N" />
       <longitude value="090°15'28''W" />
@@ -2291,7 +2291,7 @@
     </runways>
   </airport>
   <airport name="Myrtle Beach International Airport" icao="KMYR" iata="MYR" type="Domestic" season="Summer">
-    <town town="Wilmington" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Wilmington" country="122" GMT="-04:00:00" DST="-05:00:00" state="SC" />
     <coordinates>
       <latitude value="033°40'47''N" />
       <longitude value="078°55'42''W" />
@@ -2305,7 +2305,7 @@
     </runways>
   </airport>
   <airport name="Yuma MCAS/Yuma International Airport" icao="KNYL" iata="YUM" type="Regional" season="All_Year">
-    <town town="Fortuna Foothills" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Fortuna Foothills" country="122" GMT="-07:00:00" DST="-08:00:00" state="AZ" />
     <coordinates>
       <latitude value="032°39'23''N" />
       <longitude value="114°36'21''W" />
@@ -2322,7 +2322,7 @@
     </runways>
   </airport>
   <airport name="Oakland International Airport" icao="KOAK" iata="OAK" type="Short_Haul_International" season="All_Year">
-    <town town="Livermore" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Livermore" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="037°43'16''N" />
       <longitude value="122°13'14''W" />
@@ -2340,7 +2340,7 @@
     </runways>
   </airport>
   <airport name="Will Rogers World Airport" icao="KOKC" iata="OKC" type="Domestic" season="All_Year">
-    <town town="Shawnee" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Shawnee" country="122" GMT="-05:00:00" DST="-06:00:00" state="OK" />
     <coordinates>
       <latitude value="035°23'35''N" />
       <longitude value="097°36'02''W" />
@@ -2357,7 +2357,7 @@
     </runways>
   </airport>
   <airport name="Eppley Airfield" icao="KOMA" iata="OMA" type="Domestic" season="All_Year">
-    <town town="West Des Moines" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="West Des Moines" country="122" GMT="-05:00:00" DST="-06:00:00" state="NE" />
     <coordinates>
       <latitude value="041°17'59''N" />
       <longitude value="095°54'00''W" />
@@ -2373,7 +2373,7 @@
     </runways>
   </airport>
   <airport name="Ontario International Airport" icao="KONT" iata="ONT" type="Short_Haul_International" season="All_Year">
-    <town town="Yucca Valley" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Yucca Valley" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="034°03'21''N" />
       <longitude value="117°36'04''W" />
@@ -2390,7 +2390,7 @@
     </runways>
   </airport>
   <airport name="Chicago O'Hare International Airport" icao="KORD" iata="ORD" type="Long_Haul_International" season="All_Year">
-    <town town="Granger" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Granger" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="041°58'46''N" />
       <longitude value="087°54'16''W" />
@@ -2413,7 +2413,7 @@
     </runways>
   </airport>
   <airport name="Norfolk International Airport" icao="KORF" iata="ORF" type="Domestic" season="All_Year">
-    <town town="Virginia Beach" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Virginia Beach" country="122" GMT="-04:00:00" DST="-05:00:00" state="VA" />
     <coordinates>
       <latitude value="036°53'59''N" />
       <longitude value="076°12'00''W" />
@@ -2428,7 +2428,7 @@
     </runways>
   </airport>
   <airport name="Palm Beach International Airport" icao="KPBI" iata="PBI" type="Short_Haul_International" season="Summer">
-    <town town="West Palm Beach" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="West Palm Beach" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="026°40'59''N" />
       <longitude value="080°05'44''W" />
@@ -2444,7 +2444,7 @@
     </runways>
   </airport>
   <airport name="Portland International Airport" icao="KPDX" iata="PDX" type="Short_Haul_International" season="All_Year">
-    <town town="Troutdale" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Troutdale" country="122" GMT="-07:00:00" DST="-08:00:00" state="OR" />
     <coordinates>
       <latitude value="045°35'19''N" />
       <longitude value="122°35'51''W" />
@@ -2460,7 +2460,7 @@
     </runways>
   </airport>
   <airport name="Philadelphia International Airport" icao="KPHL" iata="PHL" type="Long_Haul_International" season="All_Year">
-    <town town="Mount Laurel" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Mount Laurel" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="039°52'19''N" />
       <longitude value="075°14'28''W" />
@@ -2483,7 +2483,7 @@
     </runways>
   </airport>
   <airport name="Phoenix Sky Harbor International Airport" icao="KPHX" iata="PHX" type="Long_Haul_International" season="All_Year">
-    <town town="Tempe Junction" country="122" GMT="-07:00:00" DST="-07:00:00" />
+    <town town="Tempe Junction" country="122" GMT="-07:00:00" DST="-07:00:00" state="AZ" />
     <coordinates>
       <latitude value="033°26'03''N" />
       <longitude value="112°00'29''W" />
@@ -2501,7 +2501,7 @@
     </runways>
   </airport>
   <airport name="Peoria International Airport" icao="KPIA" iata="PIA" type="Domestic" season="All_Year">
-    <town town="Normal" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Normal" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="040°39'51''N" />
       <longitude value="089°41'36''W" />
@@ -2516,7 +2516,7 @@
     </runways>
   </airport>
   <airport name="St. Petersburg-Clearwater International Airport" icao="KPIE" iata="PIE" type="Domestic" season="Summer">
-    <town town="Poinciana" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Poinciana" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="027°54'36''N" />
       <longitude value="082°41'15''W" />
@@ -2533,7 +2533,7 @@
     </runways>
   </airport>
   <airport name="Pocatello Regional Airport" icao="KPIH" iata="PIH" type="Domestic" season="All_Year">
-    <town town="Idaho Falls" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Idaho Falls" country="122" GMT="-07:00:00" DST="-08:00:00" state="ID" />
     <coordinates>
       <latitude value="042°54'35''N" />
       <longitude value="112°35'45''W" />
@@ -2548,7 +2548,7 @@
     </runways>
   </airport>
   <airport name="Pittsburgh International Airport" icao="KPIT" iata="PIT" type="Short_Haul_International" season="All_Year">
-    <town town="Plum" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Plum" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="040°29'29''N" />
       <longitude value="080°13'58''W" />
@@ -2565,7 +2565,7 @@
     </runways>
   </airport>
   <airport name="Pensacola International Airport" icao="KPNS" iata="PNS" type="Regional" season="All_Year">
-    <town town="Navarre" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Navarre" country="122" GMT="-05:00:00" DST="-06:00:00" state="FL" />
     <coordinates>
       <latitude value="030°28'00''N" />
       <longitude value="087°10'59''W" />
@@ -2580,7 +2580,7 @@
     </runways>
   </airport>
   <airport name="Palm Springs International Airport" icao="KPSP" iata="PSP" type="Short_Haul_International" season="All_Year">
-    <town town="Twentynine Palms" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Twentynine Palms" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="033°49'59''N" />
       <longitude value="116°30'00''W" />
@@ -2595,7 +2595,7 @@
     </runways>
   </airport>
   <airport name="T. F. Green Airport" icao="KPVD" iata="PVD" type="Short_Haul_International" season="All_Year">
-    <town town="Barnstable" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Barnstable" country="122" GMT="-04:00:00" DST="-05:00:00" state="RI" />
     <coordinates>
       <latitude value="041°43'59''N" />
       <longitude value="071°25'59''W" />
@@ -2610,7 +2610,7 @@
     </runways>
   </airport>
   <airport name="Portland International Jetport" icao="KPWM" iata="PWM" type="Short_Haul_International" season="All_Year">
-    <town town="Brunswick" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Brunswick" country="122" GMT="-04:00:00" DST="-05:00:00" state="ME" />
     <coordinates>
       <latitude value="043°38'59''N" />
       <longitude value="070°17'59''W" />
@@ -2625,7 +2625,7 @@
     </runways>
   </airport>
   <airport name="Rapid City Regional Airport" icao="KRAP" iata="RAP" type="Domestic" season="All_Year">
-    <town town="Rapid City" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Rapid City" country="122" GMT="-05:00:00" DST="-06:00:00" state="SD" />
     <coordinates>
       <latitude value="044°02'43''N" />
       <longitude value="103°03'26''W" />
@@ -2640,7 +2640,7 @@
     </runways>
   </airport>
   <airport name="Raleigh-Durham International Airport" icao="KRDU" iata="RDU" type="Short_Haul_International" season="All_Year">
-    <town town="Greenville" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Greenville" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="035°52'19''N" />
       <longitude value="078°47'06''W" />
@@ -2657,7 +2657,7 @@
     </runways>
   </airport>
   <airport name="Chicago Rockford International Airport" icao="KRFD" iata="RFD" type="Domestic" season="All_Year">
-    <town town="Belvidere" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Belvidere" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="042°11'43''N" />
       <longitude value="089°05'50''W" />
@@ -2672,7 +2672,7 @@
     </runways>
   </airport>
   <airport name="Richmond International Airport" icao="KRIC" iata="RIC" type="Short_Haul_International" season="All_Year">
-    <town town="Highland Springs" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Highland Springs" country="122" GMT="-04:00:00" DST="-05:00:00" state="VA" />
     <coordinates>
       <latitude value="037°30'00''N" />
       <longitude value="077°19'00''W" />
@@ -2688,7 +2688,7 @@
     </runways>
   </airport>
   <airport name="Reno-Tahoe International Airport" icao="KRNO" iata="RNO" type="Domestic" season="All_Year">
-    <town town="Fernley" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Fernley" country="122" GMT="-07:00:00" DST="-08:00:00" state="NV" />
     <coordinates>
       <latitude value="039°29'59''N" />
       <longitude value="119°46'04''W" />
@@ -2704,7 +2704,7 @@
     </runways>
   </airport>
   <airport name="Greater Rochester International Airport" icao="KROC" iata="ROC" type="Short_Haul_International" season="All_Year">
-    <town town="Syracuse" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Syracuse" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="043°07'08''N" />
       <longitude value="077°40'21''W" />
@@ -2720,7 +2720,7 @@
     </runways>
   </airport>
   <airport name="Southwest Florida International Airport" icao="KRSW" iata="RSW" type="Long_Haul_International" season="Winter">
-    <town town="Wellington" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Wellington" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="026°32'10''N" />
       <longitude value="081°45'18''W" />
@@ -2734,7 +2734,7 @@
     </runways>
   </airport>
   <airport name="Santa Fe Municipal Airport" icao="KSAF" iata="SAF" type="Domestic" season="All_Year">
-    <town town="Santa Fe" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Santa Fe" country="122" GMT="-06:00:00" DST="-07:00:00" state="NM" />
     <coordinates>
       <latitude value="035°37'02''N" />
       <longitude value="106°05'22''W" />
@@ -2750,7 +2750,7 @@
     </runways>
   </airport>
   <airport name="San Diego International Airport" icao="KSAN" iata="SAN" type="Long_Haul_International" season="All_Year">
-    <town town="Rancho San Diego" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Rancho San Diego" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="032°44'00''N" />
       <longitude value="117°11'22''W" />
@@ -2766,7 +2766,7 @@
     </runways>
   </airport>
   <airport name="San Antonio International Airport" icao="KSAT" iata="SAT" type="Short_Haul_International" season="All_Year">
-    <town town="Seguin" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Seguin" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="029°32'01''N" />
       <longitude value="098°28'12''W" />
@@ -2782,7 +2782,7 @@
     </runways>
   </airport>
   <airport name="Savannah/Hilton Head International Airport" icao="KSAV" iata="SAV" type="Domestic" season="All_Year">
-    <town town="Hilton Head Island" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Hilton Head Island" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="032°07'59''N" />
       <longitude value="081°12'00''W" />
@@ -2797,7 +2797,7 @@
     </runways>
   </airport>
   <airport name="Santa Barbara Municipal Airport" icao="KSBA" iata="SBA" type="Regional" season="All_Year">
-    <town town="Vincent" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Vincent" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="034°25'34''N" />
       <longitude value="119°50'25''W" />
@@ -2813,7 +2813,7 @@
     </runways>
   </airport>
   <airport name="Salisbury Wicomico/Ocean City Regional Airport" icao="KSBY" iata="SBY" type="Regional" season="All_Year">
-    <town town="Salisbury" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Salisbury" country="122" GMT="-04:00:00" DST="-05:00:00" state="MD" />
     <coordinates>
       <latitude value="038°20'24''N" />
       <longitude value="75°30'34''W" />
@@ -2828,7 +2828,7 @@
     </runways>
   </airport>
   <airport name="Louisville International Airport" icao="KSDF" iata="SDF" type="Short_Haul_International" season="All_Year">
-    <town town="Winchester" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Winchester" country="122" GMT="-04:00:00" DST="-05:00:00" state="KY" />
     <coordinates>
       <latitude value="038°10'28''N" />
       <longitude value="085°44'10''W" />
@@ -2844,7 +2844,7 @@
     </runways>
   </airport>
   <airport name="Seattle-Tacoma International Airport" icao="KSEA" iata="SEA" type="Long_Haul_International" season="All_Year">
-    <town town="Issaquah" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Issaquah" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="047°26'56''N" />
       <longitude value="122°18'33''W" />
@@ -2862,7 +2862,7 @@
     </runways>
   </airport>
   <airport name="Orlando Sanford International Airport" icao="KSFB" iata="SFB" type="Long_Haul_International" season="Summer">
-    <town town="Titusville" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Titusville" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="028°46'59''N" />
       <longitude value="081°15'00''W" />
@@ -2879,7 +2879,7 @@
     </runways>
   </airport>
   <airport name="San Francisco International Airport" icao="KSFO" iata="SFO" type="Long_Haul_International" season="All_Year">
-    <town town="Livermore" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Livermore" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="037°37'08''N" />
       <longitude value="122°22'29''W" />
@@ -2898,7 +2898,7 @@
     </runways>
   </airport>
   <airport name="Springfield-Branson National Airport" icao="KSGF" iata="SGF" type="Domestic" season="All_Year">
-    <town town="Ozark" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Ozark" country="122" GMT="-05:00:00" DST="-06:00:00" state="MO" />
     <coordinates>
       <latitude value="037°15'00''N" />
       <longitude value="093°22'59''W" />
@@ -2913,7 +2913,7 @@
     </runways>
   </airport>
   <airport name="Shreveport Regional Airport" icao="KSHV" iata="SHV" type="Domestic" season="All_Year">
-    <town town="Monroe" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Monroe" country="122" GMT="-05:00:00" DST="-06:00:00" state="LA" />
     <coordinates>
       <latitude value="032°26'48''N" />
       <longitude value="093°49'32''W" />
@@ -2928,7 +2928,7 @@
     </runways>
   </airport>
   <airport name="San Jose International Airport" icao="KSJC" iata="SJC" type="Short_Haul_International" season="All_Year">
-    <town town="Chowchilla" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Chowchilla" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="037°21'10''N" />
       <longitude value="121°55'09''W" />
@@ -2945,7 +2945,7 @@
     </runways>
   </airport>
   <airport name="Salt Lake City International Airport" icao="KSLC" iata="SLC" type="Short_Haul_International" season="All_Year">
-    <town town="Rock Springs" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Rock Springs" country="122" GMT="-06:00:00" DST="-07:00:00" state="UT" />
     <coordinates>
       <latitude value="040°47'18''N" />
       <longitude value="111°58'39''W" />
@@ -2963,7 +2963,7 @@
     </runways>
   </airport>
   <airport name="Sacramento International Airport" icao="KSMF" iata="SMF" type="Short_Haul_International" season="All_Year">
-    <town town="South Lake Tahoe" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="South Lake Tahoe" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="038°41'42''N" />
       <longitude value="121°35'29''W" />
@@ -2978,7 +2978,7 @@
     </runways>
   </airport>
   <airport name="John Wayne Airport" icao="KSNA" iata="SNA" type="Short_Haul_International" season="All_Year">
-    <town town="Coachella" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Coachella" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="033°40'00''N" />
       <longitude value="117°52'00''W" />
@@ -2993,7 +2993,7 @@
     </runways>
   </airport>
   <airport name="Lambert-St. Louis International Airport" icao="KSTL" iata="STL" type="Short_Haul_International" season="All_Year">
-    <town town="Edwardsville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Edwardsville" country="122" GMT="-05:00:00" DST="-06:00:00" state="MO" />
     <coordinates>
       <latitude value="038°44'51''N" />
       <longitude value="090°21'35''W" />
@@ -3011,7 +3011,7 @@
     </runways>
   </airport>
   <airport name="Sioux Gateway Col. Bud Day Field" icao="KSUX" iata="SUX" type="Regional" season="All_Year">
-    <town town="Sioux City" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sioux City" country="122" GMT="-05:00:00" DST="-06:00:00" state="IA" />
     <coordinates>
       <latitude value="042°24'09''N" />
       <longitude value="096°23'03''W" />
@@ -3026,7 +3026,7 @@
     </runways>
   </airport>
   <airport name="Stewart International Airport" icao="KSWF" iata="SWF" type="Domestic" season="All_Year">
-    <town town="Beacon" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Beacon" country="122" GMT="-05:00:00" DST="-06:00:00" state="NY" />
     <coordinates>
       <latitude value="041°30'14''N" />
       <longitude value="074°06'17''W" />
@@ -3041,7 +3041,7 @@
     </runways>
   </airport>
   <airport name="Syracuse Hancock International Airport" icao="KSYR" iata="SYR" type="Short_Haul_International" season="All_Year">
-    <town town="Syracuse" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Syracuse" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="043°07'00''N" />
       <longitude value="076°07'00''W" />
@@ -3056,7 +3056,7 @@
     </runways>
   </airport>
   <airport name="Tallahassee Regional Airport" icao="KTLH" iata="TLH" type="Regional" season="All_Year">
-    <town town="Thomasville" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Thomasville" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="030°23'48''N" />
       <longitude value="084°21'01''W" />
@@ -3071,7 +3071,7 @@
     </runways>
   </airport>
   <airport name="Tampa International Airport" icao="KTPA" iata="TPA" type="Long_Haul_International" season="Summer">
-    <town town="Poinciana" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Poinciana" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="027°58'32''N" />
       <longitude value="082°32'00''W" />
@@ -3087,7 +3087,7 @@
     </runways>
   </airport>
   <airport name="Tri Cities Regional Tn Va Airport" icao="KTRI" iata="TRI" type="Domestic" season="All_Year">
-    <town town="Boone" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Boone" country="122" GMT="-04:00:00" DST="-05:00:00" state="TN" />
     <coordinates>
       <latitude value="036°28'30''N" />
       <longitude value="082°24'26''W" />
@@ -3102,7 +3102,7 @@
     </runways>
   </airport>
   <airport name="Tulsa International Airport" icao="KTUL" iata="TUL" type="Domestic" season="All_Year">
-    <town town="Springdale" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Springdale" country="122" GMT="-05:00:00" DST="-06:00:00" state="OK" />
     <coordinates>
       <latitude value="036°11'53''N" />
       <longitude value="095°53'17''W" />
@@ -3118,7 +3118,7 @@
     </runways>
   </airport>
   <airport name="Tupelo Regional Airport" icao="KTUP" iata="TUP" type="Regional" season="All_Year">
-    <town town="Decatur" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Decatur" country="122" GMT="-05:00:00" DST="-06:00:00" state="MS" />
     <coordinates>
       <latitude value="034°16'05''N" />
       <longitude value="088°46'11''W" />
@@ -3132,7 +3132,7 @@
     </runways>
   </airport>
   <airport name="Tucson International Airport" icao="KTUS" iata="TUS" type="Domestic" season="All_Year">
-    <town town="Douglas" country="122" GMT="-07:00:00" DST="-07:00:00" />
+    <town town="Douglas" country="122" GMT="-07:00:00" DST="-07:00:00" state="AZ" />
     <coordinates>
       <latitude value="032°06'58''N" />
       <longitude value="110°56'29''W" />
@@ -3148,7 +3148,7 @@
     </runways>
   </airport>
   <airport name="Cherry Capital Airport" icao="KTVC" iata="TVC" type="Domestic" season="All_Year">
-    <town town="Midland" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Midland" country="122" GMT="-05:00:00" DST="-06:00:00" state="MI" />
     <coordinates>
       <latitude value="044°44'29''N" />
       <longitude value="085°34'55''W" />
@@ -3164,7 +3164,7 @@
     </runways>
   </airport>
   <airport name="Joslin Field Magic Valley Regional Airport" icao="KTWF" iata="TWF" type="Regional" season="All_Year">
-    <town town="Twin Falls" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Twin Falls" country="122" GMT="-05:00:00" DST="-06:00:00" state="ID" />
     <coordinates>
       <latitude value="042°28'54''N" />
       <longitude value="114°29'16''W" />
@@ -3179,7 +3179,7 @@
     </runways>
   </airport>
   <airport name="Texarkana Regional Webb Field" icao="KTXK" iata="TXK" type="Regional" season="All_Year">
-    <town town="El Dorado" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="El Dorado" country="122" GMT="-05:00:00" DST="-06:00:00" state="AR" />
     <coordinates>
       <latitude value="033°27'13''N" />
       <longitude value="093°59'27''W" />
@@ -3194,7 +3194,7 @@
     </runways>
   </airport>
   <airport name="Tyler Pounds Regional Airport" icao="KTYR" iata="TYR" type="Regional" season="All_Year">
-    <town town="Longview" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Longview" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="032°21'14''N" />
       <longitude value="095°24'08''W" />
@@ -3210,7 +3210,7 @@
     </runways>
   </airport>
   <airport name="McGhee Tyson Airport" icao="KTYS" iata="TYS" type="Domestic" season="All_Year">
-    <town town="Morganton" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Morganton" country="122" GMT="-04:00:00" DST="-05:00:00" state="TN" />
     <coordinates>
       <latitude value="035°57'00''N" />
       <longitude value="083°55'00''W" />
@@ -3225,7 +3225,7 @@
     </runways>
   </airport>
   <airport name="Valdosta Regional Airport" icao="KVLD" iata="VLD" type="Regional" season="All_Year">
-    <town town="Valdosta" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Valdosta" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="030°46'56''N" />
       <longitude value="083°16'36''W" />
@@ -3241,7 +3241,7 @@
     </runways>
   </airport>
   <airport name="Eglin Air Force Base" icao="KVPS" iata="VPS" type="Domestic" season="All_Year">
-    <town town="Lynn Haven" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Lynn Haven" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="030°28'59''N" />
       <longitude value="086°31'31''W" />
@@ -3256,7 +3256,7 @@
     </runways>
   </airport>
   <airport name="Northwest Arkansas Regional Airport" icao="KXNA" iata="XNA" type="Regional" season="All_Year">
-    <town town="Rogers" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Rogers" country="122" GMT="-05:00:00" DST="-06:00:00" state="AR" />
     <coordinates>
       <latitude value="036°16'54''N" />
       <longitude value="094°18'24''W" />
@@ -3271,7 +3271,7 @@
     </runways>
   </airport>
   <airport name="Yakima Air Terminal McAllister Field" icao="KYKM" iata="YKM" type="Regional" season="All_Year">
-    <town town="Richland" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Richland" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="046°34'05''N" />
       <longitude value="120°32'38''W" />
@@ -3286,7 +3286,7 @@
     </runways>
   </airport>
   <airport name="Youngstown Warren Regional Airport" icao="KYNG" iata="YNG" type="Regional" season="All_Year">
-    <town town="New Castle" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="New Castle" country="122" GMT="-04:00:00" DST="-05:00:00" state="OH" />
     <coordinates>
       <latitude value="041°15'38''N" />
       <longitude value="080°40'44''W" />
@@ -3304,7 +3304,7 @@
   <!--Central America (M***)-->
   <!--Turks and Caicos Islands (MB**)-->
   <airport name="Providenciales International Airport" icao="MBPV" iata="PLS" type="Long_Haul_International" season="Winter">
-    <town town="San Fernando de Monte Cristi" country="130" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="San Fernando de Monte Cristi" country="130" GMT="-04:00:00" DST="-05:00:00" state="TC" />
     <coordinates>
       <latitude value="021°46'25''N" />
       <longitude value="072°15'57''W" />
@@ -3318,7 +3318,7 @@
     </runways>
   </airport>
   <airport name="JAGS McCartney International Airport" icao="MBGT" iata="GDT" type="Short_Haul_International" season="All_Year">
-    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" state="TC" />
     <coordinates>
       <latitude value="021°26'40''N" />
       <longitude value="071°08'32''W" />
@@ -3332,7 +3332,7 @@
     </runways>
   </airport>
   <airport name="Middle Caicos Airport" icao="MBMC" iata="MDS" type="Regional" season="All_Year">
-    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" state="TC" />
     <coordinates>
       <latitude value="021°49'33''N" />
       <longitude value="071°48'08''W" />
@@ -3346,7 +3346,7 @@
     </runways>
   </airport>
   <airport name="North Caicos Airport" icao="MBNC" iata="NCA" type="Regional" season="All_Year">
-    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" state="TC" />
     <coordinates>
       <latitude value="021°55'02''N" />
       <longitude value="071°56'22''W" />
@@ -3360,7 +3360,7 @@
     </runways>
   </airport>
   <airport name="Salt Cay Airport" icao="MBSY" iata="SLX" type="Regional" season="All_Year">
-    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" state="TC" />
     <coordinates>
       <latitude value="021°19'58''N" />
       <longitude value="071°11'59''W" />
@@ -3374,7 +3374,7 @@
     </runways>
   </airport>
   <airport name="South Caicos Airport" icao="MBSC" iata="XSC" type="Regional" season="All_Year">
-    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Puerto Plata" country="130" GMT="-05:00:00" DST="-06:00:00" state="TC" />
     <coordinates>
       <latitude value="021°30'56''N" />
       <longitude value="071°31'42''W" />
@@ -4712,7 +4712,7 @@
   </airport>
   <!--United States (Virgin Islands) (TI**)-->
   <airport name="Cyril E. King Airport" icao="TIST" iata="STT" type="Long_Haul_International" season="Summer">
-    <town town="Basseterre" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Basseterre" country="122" GMT="-04:00:00" DST="-04:00:00" state="VI" />
     <coordinates>
       <latitude value="018°20'13''N" />
       <longitude value="064°58'23''W" />
@@ -4727,7 +4727,7 @@
   </airport>
   <!--United States (Puerto Rico) (TJ**)-->
   <airport name="Luis Muñoz Marín International Airport" icao="TJSJ" iata="SJU" type="Long_Haul_International" season="Summer">
-    <town town="Punta Cana" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Punta Cana" country="122" GMT="-04:00:00" DST="-04:00:00" state="PR" />
     <coordinates>
       <latitude value="018°26'13''N" />
       <longitude value="066°00'04''W" />
@@ -4742,7 +4742,7 @@
     </runways>
   </airport>
   <airport name="Rafael Hernandez Airport" icao="TJBQ" iata="BQN" type="Short_Haul_International" season="All_Year">
-    <town town="Punta Cana" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Punta Cana" country="122" GMT="-04:00:00" DST="-04:00:00" state="PR" />
     <coordinates>
       <latitude value="018°29'41''N" />
       <longitude value="067°07'45''W" />
@@ -4756,7 +4756,7 @@
     </runways>
   </airport>
   <airport name="Mercedita Airport" icao="TJPS" iata="PSE" type="Regional" season="All_Year">
-    <town town="Basseterre" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Basseterre" country="122" GMT="-04:00:00" DST="-04:00:00" state="PR" />
     <coordinates>
       <latitude value="018°00'29''N" />
       <longitude value="066°33'46''W" />
@@ -4770,7 +4770,7 @@
     </runways>
   </airport>
   <airport name="Vieques Airport" icao="TJCG" iata="VQS" type="Regional" season="All_Year">
-    <town town="Basseterre" country="122" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Basseterre" country="122" GMT="-04:00:00" DST="-04:00:00" state="PR" />
     <coordinates>
       <latitude value="018°06'56''N" />
       <longitude value="065°25'21''W" />
@@ -4899,7 +4899,7 @@
   </airport>
   <!--United Kingdom (Virgin Islands) (TU**)-->
   <airport name="Terrance B. Lettsome International Airport" icao="TUPJ" iata="EIS" type="Short_Haul_International" season="Summer">
-    <town town="Basseterre" country="130" GMT="-04:00:00" DST="-04:00:00" />
+    <town town="Basseterre" country="130" GMT="-04:00:00" DST="-04:00:00" state="VG" />
     <coordinates>
       <latitude value="018°26'44''N" />
       <longitude value="064°32'35''W" />
@@ -4914,7 +4914,7 @@
   </airport>
   <!--Bermuda (TX**)-->
   <airport name="L.F. Wade International Airport" icao="TXKF" iata="BDA" type="Long_Haul_International" season="All_Year">
-    <town town="Yarmouth" country="130" GMT="-03:00:00" DST="-04:00:00" />
+    <town town="Yarmouth" country="130" GMT="-03:00:00" DST="-04:00:00" state="BM" />
     <coordinates>
       <latitude value="032°21'51''N" />
       <longitude value="064°40'42''W" />
@@ -4944,7 +4944,7 @@
     </runways>
   </airport>
   <airport name="Chattanooga Metropolitan Airport" icao="KCHA" iata="CHA" type="Regional" season="All_Year">
-    <town town="Cleveland" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Cleveland" country="122" GMT="-04:00:00" DST="-05:00:00" state="TN" />
     <coordinates>
       <latitude value="035°02'07''N" />
       <longitude value="085°12'13''W" />
@@ -4959,7 +4959,7 @@
     </runways>
   </airport>
   <airport name="Charlottesville Albemarle Airport" icao="KCHO" iata="CHO" type="Regional" season="All_Year">
-    <town town="Fredericksburg" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Fredericksburg" country="122" GMT="-04:00:00" DST="-05:00:00" state="VA" />
     <coordinates>
       <latitude value="038°08'18''N" />
       <longitude value="078°27'10''W" />
@@ -4973,7 +4973,7 @@
     </runways>
   </airport>
   <airport name="Chippewa County International Airport" icao="KCIU" iata="CIU" type="Regional" season="All_Year">
-    <town town="Sault Ste. Marie" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sault Ste. Marie" country="122" GMT="-05:00:00" DST="-06:00:00" state="MI" />
     <coordinates>
       <latitude value="046°15'02''N" />
       <longitude value="084°28'20''W" />
@@ -4988,7 +4988,7 @@
     </runways>
   </airport>
   <airport name="North Central West Virginia Airport" icao="KCKB" iata="CKB" type="Regional" season="All_Year">
-    <town town="Fairmont" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Fairmont" country="122" GMT="-04:00:00" DST="-05:00:00" state="WV" />
     <coordinates>
       <latitude value="039°17'47''N" />
       <longitude value="080°13'41''W" />
@@ -5002,7 +5002,7 @@
     </runways>
   </airport>
   <airport name="Raleigh County Memorial Airport" icao="KBKW" iata="BKW" type="Domestic" season="All_Year">
-    <town town="Beckley" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Beckley" country="122" GMT="-04:00:00" DST="-05:00:00" state="WV" />
     <coordinates>
       <latitude value="037°47'14''N" />
       <longitude value="081°07'27''W" />
@@ -5017,7 +5017,7 @@
     </runways>
   </airport>
   <airport name="Easterwood Field" icao="KCLL" iata="CLL" type="Regional" season="All_Year">
-    <town town="Huntsville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Huntsville" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="030°35'18''N" />
       <longitude value="096°21'49''W" />
@@ -5033,7 +5033,7 @@
     </runways>
   </airport>
   <airport name="University of Illinois Willard Airport" icao="KCMI" iata="CMI" type="Regional" season="All_Year">
-    <town town="Danville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Danville" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="040°02'21''N" />
       <longitude value="088°16'41''W" />
@@ -5050,7 +5050,7 @@
     </runways>
   </airport>
   <airport name="Houghton County Memorial Airport" icao="KCMX" iata="CMX" type="Regional" season="All_Year">
-    <town town="Marquette" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Marquette" country="122" GMT="-05:00:00" DST="-06:00:00" state="MI" />
     <coordinates>
       <latitude value="047°10'06''N" />
       <longitude value="088°29'20''W" />
@@ -5065,7 +5065,7 @@
     </runways>
   </airport>
   <airport name="Columbia Regional Airport" icao="KCOU" iata="COU" type="Regional" season="All_Year">
-    <town town="Jefferson City" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Jefferson City" country="122" GMT="-05:00:00" DST="-06:00:00" state="MO" />
     <coordinates>
       <latitude value="038°49'05''N" />
       <longitude value="092°13'10''W" />
@@ -5080,7 +5080,7 @@
     </runways>
   </airport>
   <airport name="Casper-Natrona County International Airport" icao="KCPR" iata="CPR" type="Regional" season="All_Year">
-    <town town="Casper" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Casper" country="122" GMT="-06:00:00" DST="-07:00:00" state="WY" />
     <coordinates>
       <latitude value="042°54'28''N" />
       <longitude value="106°27'50''W" />
@@ -5097,7 +5097,7 @@
     </runways>
   </airport>
   <airport name="Columbus Metropolitan Airport" icao="KCSG" iata="CSG" type="Regional" season="All_Year">
-    <town town="Dublin" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Dublin" country="122" GMT="-04:00:00" DST="-05:00:00" state="GA" />
     <coordinates>
       <latitude value="032°30'58''N" />
       <longitude value="084°56'20''W" />
@@ -5112,7 +5112,7 @@
     </runways>
   </airport>
   <airport name="Central Wisconsin Airport" icao="KCWA" iata="CWA" type="Regional" season="All_Year">
-    <town town="Howard" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Howard" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="044°46'39''N" />
       <longitude value="089°40'00''W" />
@@ -5127,7 +5127,7 @@
     </runways>
   </airport>
   <airport name="Daytona Beach International Airport" icao="KDAB" iata="DAB" type="Short_Haul_International" season="All_Year">
-    <town town="Port Orange" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Port Orange" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="029°10'47''N" />
       <longitude value="081°03'29''W" />
@@ -5144,7 +5144,7 @@
     </runways>
   </airport>
   <airport name="Dubuque Regional Airport" icao="KDBQ" iata="DBQ" type="Regional" season="All_Year">
-    <town town="Loves Park" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Loves Park" country="122" GMT="-05:00:00" DST="-06:00:00" state="IA" />
     <coordinates>
       <latitude value="042°24'07''N" />
       <longitude value="090°42'34''W" />
@@ -5159,7 +5159,7 @@
     </runways>
   </airport>
   <airport name="Dothan Regional Airport" icao="KDHN" iata="DHN" type="Regional" season="All_Year">
-    <town town="Albany" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Albany" country="122" GMT="-05:00:00" DST="-06:00:00" state="AL" />
     <coordinates>
       <latitude value="031°19'16''N" />
       <longitude value="085°26'58''W" />
@@ -5174,7 +5174,7 @@
     </runways>
   </airport>
   <airport name="Durango-La Plata County Airport" icao="KDRO" iata="DRO" type="Regional" season="All_Year">
-    <town town="Durango" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Durango" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="037°09'05''N" />
       <longitude value="107°45'14''W" />
@@ -5188,7 +5188,7 @@
     </runways>
   </airport>
   <airport name="Chippewa Valley Regional Airport" icao="KEAU" iata="EAU" type="Regional" season="All_Year">
-    <town town="Marshfield" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Marshfield" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="044°51'56''N" />
       <longitude value="091°29'03''W" />
@@ -5203,7 +5203,7 @@
     </runways>
   </airport>
   <airport name="Northwest Florida Beaches International Airport" icao="KECP" iata="ECP" type="Domestic" season="All_Year">
-    <town town="Tallahassee" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Tallahassee" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="030°20'30''N" />
       <longitude value="085°47'50''W" />
@@ -5217,7 +5217,7 @@
     </runways>
   </airport>
   <airport name="Eagle County Regional Airport" icao="KEGE" iata="EGE" type="Domestic" season="All_Year">
-    <town town="Columbine" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Columbine" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="039°38'33''N" />
       <longitude value="106°55'04''W" />
@@ -5232,7 +5232,7 @@
     </runways>
   </airport>
   <airport name="Elko Regional Airport" icao="KEKO" iata="EKO" type="Regional" season="All_Year">
-    <town town="Elko" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Elko" country="122" GMT="-07:00:00" DST="-08:00:00" state="NV" />
     <coordinates>
       <latitude value="040°49'29''N" />
       <longitude value="115°47'31''W" />
@@ -5247,7 +5247,7 @@
     </runways>
   </airport>
   <airport name="Elmira Corning Regional Airport" icao="KELM" iata="ELM" type="Domestic" season="All_Year">
-    <town town="Binghamton" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Binghamton" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="042°09'35''N" />
       <longitude value="076°53'29''W" />
@@ -5263,7 +5263,7 @@
     </runways>
   </airport>
   <airport name="Mahlon Sweet Field" icao="KEUG" iata="EUG" type="Domestic" season="All_Year">
-    <town town="Springfield" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Springfield" country="122" GMT="-07:00:00" DST="-08:00:00" state="OR" />
     <coordinates>
       <latitude value="044°07'28''N" />
       <longitude value="123°12'43''W" />
@@ -5279,7 +5279,7 @@
     </runways>
   </airport>
   <airport name="Evansville Regional Airport" icao="KEVV" iata="EVV" type="Domestic" season="All_Year">
-    <town town="Radcliff" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Radcliff" country="122" GMT="-05:00:00" DST="-06:00:00" state="IN" />
     <coordinates>
       <latitude value="038°02'13''N" />
       <longitude value="087°31'56''W" />
@@ -5295,7 +5295,7 @@
     </runways>
   </airport>
   <airport name="New Bedford Regional Airport" icao="KEWB" iata="EWB" type="Regional" season="All_Year">
-    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" state="MA" />
     <coordinates>
       <latitude value="041°40'33''N" />
       <longitude value="070°57'24''W" />
@@ -5310,7 +5310,7 @@
     </runways>
   </airport>
   <airport name="Coastal Carolina Regional Airport" icao="KEWN" iata="EWN" type="Regional" season="All_Year">
-    <town town="New Bern" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="New Bern" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="035°04'22''N" />
       <longitude value="077°02'34''W" />
@@ -5325,7 +5325,7 @@
     </runways>
   </airport>
   <airport name="Key West International Airport" icao="KEYW" iata="EYW" type="Short_Haul_International" season="All_Year">
-    <town town="Homestead" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Homestead" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="024°33'21''N" />
       <longitude value="081°45'34''W" />
@@ -5339,7 +5339,7 @@
     </runways>
   </airport>
   <airport name="Fayetteville Regional Grannis Field" icao="KFAY" iata="FAY" type="Regional" season="All_Year">
-    <town town="New Bern" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="New Bern" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="034°59'28''N" />
       <longitude value="078°52'49''W" />
@@ -5354,7 +5354,7 @@
     </runways>
   </airport>
   <airport name="Friday Harbor Airport" icao="KFHR" iata="FRD" type="Regional" season="All_Year">
-    <town town="Oak Bay" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Oak Bay" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="048°31'19''N" />
       <longitude value="123°01'26''W" />
@@ -5368,7 +5368,7 @@
     </runways>
   </airport>
   <airport name="Flagstaff Pulliam Airport" icao="KFLG" iata="FLG" type="Regional" season="All_Year">
-    <town town="Flagstaff" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Flagstaff" country="122" GMT="-07:00:00" DST="-08:00:00" state="AZ" />
     <coordinates>
       <latitude value="035°08'18''N" />
       <longitude value="111°40'15''W" />
@@ -5382,7 +5382,7 @@
     </runways>
   </airport>
   <airport name="Florence Regional Airport" icao="KFLO" iata="FLO" type="Regional" season="All_Year">
-    <town town="Wilmington" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Wilmington" country="122" GMT="-04:00:00" DST="-05:00:00" state="SC" />
     <coordinates>
       <latitude value="034°11'07''N" />
       <longitude value="079°43'26''W" />
@@ -5397,7 +5397,7 @@
     </runways>
   </airport>
   <airport name="Fort Smith Regional Airport" icao="KFSM" iata="FSM" type="Regional" season="All_Year">
-    <town town="Russellville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Russellville" country="122" GMT="-05:00:00" DST="-06:00:00" state="AR" />
     <coordinates>
       <latitude value="035°20'11''N" />
       <longitude value="094°22'02''W" />
@@ -5412,7 +5412,7 @@
     </runways>
   </airport>
   <airport name="Fort Wayne International Airport" icao="KFWA" iata="FWA" type="Domestic" season="All_Year">
-    <town town="Fort Wayne" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Fort Wayne" country="122" GMT="-05:00:00" DST="-06:00:00" state="IN" />
     <coordinates>
       <latitude value="040°58'42''N" />
       <longitude value="085°11'42''W" />
@@ -5443,7 +5443,7 @@
     </runways>
   </airport>
   <airport name="Grand Canyon National Park Airport" icao="KGCN" iata="GCN" type="Regional" season="All_Year">
-    <town town="Flagstaff" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Flagstaff" country="122" GMT="-07:00:00" DST="-08:00:00" state="AZ" />
     <coordinates>
       <latitude value="035°57'08''N" />
       <longitude value="112°08'49''W" />
@@ -5457,7 +5457,7 @@
     </runways>
   </airport>
   <airport name="Grand Forks International Airport" icao="KGFK" iata="GFK" type="Domestic" season="All_Year">
-    <town town="Grand Forks" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Grand Forks" country="122" GMT="-05:00:00" DST="-06:00:00" state="ND" />
     <coordinates>
       <latitude value="047°56'57''N" />
       <longitude value="097°10'33''W" />
@@ -5474,7 +5474,7 @@
     </runways>
   </airport>
   <airport name="East Texas Regional Airport" icao="KGGG" iata="GGG" type="Regional" season="All_Year">
-    <town town="Bossier City" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Bossier City" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="032°23'02''N" />
       <longitude value="094°42'41''W" />
@@ -5489,7 +5489,7 @@
     </runways>
   </airport>
   <airport name="Grand Junction Regional Airport" icao="KGJT" iata="GJT" type="Domestic" season="All_Year">
-    <town town="Montrose" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Montrose" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="039°07'20''N" />
       <longitude value="108°31'37''W" />
@@ -5504,7 +5504,7 @@
     </runways>
   </airport>
   <airport name="Gainesville Regional Airport" icao="KGNV" iata="GNV" type="Regional" season="All_Year">
-    <town town="Fruit Cove" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Fruit Cove" country="122" GMT="-04:00:00" DST="-05:00:00" state="FL" />
     <coordinates>
       <latitude value="029°41'24''N" />
       <longitude value="082°16'18''W" />
@@ -5519,7 +5519,7 @@
     </runways>
   </airport>
   <airport name="Glacier Park International Airport" icao="KGPI" iata="FCA" type="Domestic" season="All_Year">
-    <town town="Kalispell" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Kalispell" country="122" GMT="-06:00:00" DST="-07:00:00" state="MT" />
     <coordinates>
       <latitude value="048°18'37''N" />
       <longitude value="114°15'21''W" />
@@ -5535,7 +5535,7 @@
     </runways>
   </airport>
   <airport name="Central Nebraska Regional Airport" icao="KGRI" iata="GRI" type="Regional" season="All_Year">
-    <town town="Grand Island" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Grand Island" country="122" GMT="-05:00:00" DST="-06:00:00" state="NE" />
     <coordinates>
       <latitude value="040°58'02''N" />
       <longitude value="098°18'34''W" />
@@ -5550,7 +5550,7 @@
     </runways>
   </airport>
   <airport name="Robert Gray  Army Air Field Airport" icao="KGRK" iata="GRK" type="Regional" season="All_Year">
-    <town town="Bryan" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Bryan" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="031°04'01''N" />
       <longitude value="097°49'44''W" />
@@ -5564,7 +5564,7 @@
     </runways>
   </airport>
   <airport name="Great Falls International Airport" icao="KGTF" iata="GTF" type="Domestic" season="All_Year">
-    <town town="Great Falls" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Great Falls" country="122" GMT="-06:00:00" DST="-07:00:00" state="MT" />
     <coordinates>
       <latitude value="047°28'55''N" />
       <longitude value="111°22'15''W" />
@@ -5580,7 +5580,7 @@
     </runways>
   </airport>
   <airport name="Yampa Valley Airport" icao="KHDN" iata="HDN" type="Domestic" season="All_Year">
-    <town town="Laramie" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Laramie" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="40°28'52''N" />
       <longitude value="107°13'04''W" />
@@ -5594,7 +5594,7 @@
     </runways>
   </airport>
   <airport name="Hagerstown Regional Richard A Henson Field" icao="KHGR" iata="HGR" type="Regional" season="All_Year">
-    <town town="Bel Air North" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Bel Air North" country="122" GMT="-04:00:00" DST="-05:00:00" state="MD" />
     <coordinates>
       <latitude value="039°42'28''N" />
       <longitude value="077°43'46''W" />
@@ -5609,7 +5609,7 @@
     </runways>
   </airport>
   <airport name="Valley International Airport" icao="KHRL" iata="HRL" type="Domestic" season="All_Year">
-    <town town="Brownsville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Brownsville" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="026°13'42''N" />
       <longitude value="097°39'15''W" />
@@ -5625,7 +5625,7 @@
     </runways>
   </airport>
   <airport name="Tri-State/Milton J. Ferguson Field" icao="KHTS" iata="HTS" type="Domestic" season="All_Year">
-    <town town="Charleston" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Charleston" country="122" GMT="-04:00:00" DST="-05:00:00" state="WV" />
     <coordinates>
       <latitude value="038°22'00''N" />
       <longitude value="082°33'28''W" />
@@ -5640,7 +5640,7 @@
     </runways>
   </airport>
   <airport name="Tweed New Haven Airport" icao="KHVN" iata="HVN" type="Domestic" season="All_Year">
-    <town town="Newport" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Newport" country="122" GMT="-04:00:00" DST="-05:00:00" state="CT" />
     <coordinates>
       <latitude value="041°15'49''N" />
       <longitude value="072°53'12''W" />
@@ -5655,7 +5655,7 @@
     </runways>
   </airport>
   <airport name="Barnstable Municipal Boardman Polando Field" icao="KHYA" iata="HYA" type="Regional" season="All_Year">
-    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" state="MA" />
     <coordinates>
       <latitude value="041°40'09''N" />
       <longitude value="070°16'49''W" />
@@ -5670,7 +5670,7 @@
     </runways>
   </airport>
   <airport name="Idaho Falls Regional Airport" icao="KIDA" iata="IDA" type="Regional" season="All_Year">
-    <town town="Idaho Falls" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Idaho Falls" country="122" GMT="-06:00:00" DST="-07:00:00" state="ID" />
     <coordinates>
       <latitude value="043°30'52''N" />
       <longitude value="112°04'15''W" />
@@ -5699,7 +5699,7 @@
     </runways>
   </airport>
   <airport name="Wilmington International Airport" icao="KILM" iata="ILM" type="Domestic" season="All_Year">
-    <town town="Havelock" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Havelock" country="122" GMT="-04:00:00" DST="-05:00:00" state="NC" />
     <coordinates>
       <latitude value="034°16'14''N" />
       <longitude value="077°54'09''W" />
@@ -5714,7 +5714,7 @@
     </runways>
   </airport>
   <airport name="Falls International Airport" icao="KINL" iata="INL" type="Regional" season="All_Year">
-    <town town="Hibbing" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Hibbing" country="122" GMT="-05:00:00" DST="-06:00:00" state="MN" />
     <coordinates>
       <latitude value="048°33'58''N" />
       <longitude value="093°24'11''W" />
@@ -5729,7 +5729,7 @@
     </runways>
   </airport>
   <airport name="Ithaca Tompkins Regional Airport" icao="KITH" iata="ITH" type="Regional" season="All_Year">
-    <town town="Binghamton" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Binghamton" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="042°29'27''N" />
       <longitude value="076°27'30''W" />
@@ -5744,7 +5744,7 @@
     </runways>
   </airport>
   <airport name="Phoenix-Mesa-Gateway Airport" icao="KIWA" iata="AZA" type="Domestic" season="All_Year">
-    <town town="Florence" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Florence" country="122" GMT="-07:00:00" DST="-08:00:00" state="AZ" />
     <coordinates>
       <latitude value="033°18'28''N" />
       <longitude value="111°39'17''W" />
@@ -5760,7 +5760,7 @@
     </runways>
   </airport>
   <airport name="Jackson Hole Airport" icao="KJAC" iata="JAC" type="Domestic" season="All_Year">
-    <town town="Rexburg" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Rexburg" country="122" GMT="-06:00:00" DST="-07:00:00" state="WY" />
     <coordinates>
       <latitude value="043°36'26''N" />
       <longitude value="110°44'16''W" />
@@ -5774,7 +5774,7 @@
     </runways>
   </airport>
   <airport name="Laramie Regional Airport" icao="KLAR" iata="LAR" type="Regional" season="All_Year">
-    <town town="Cheyenne" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Cheyenne" country="122" GMT="-06:00:00" DST="-07:00:00" state="WY" />
     <coordinates>
       <latitude value="041°18'43''N" />
       <longitude value="105°40'30''W" />
@@ -5789,7 +5789,7 @@
     </runways>
   </airport>
   <airport name="Lubbock Preston Smith International Airport" icao="KLBB" iata="LBB" type="Domestic" season="All_Year">
-    <town town="Altus" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Altus" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="033°39'48''N" />
       <longitude value="101°49'22''W" />
@@ -5805,7 +5805,7 @@
     </runways>
   </airport>
   <airport name="Arnold Palmer Regional Airport" icao="KLBE" iata="LBE" type="Regional" season="All_Year">
-    <town town="Johnstown" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Johnstown" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="040°16'33''N" />
       <longitude value="079°24'17''W" />
@@ -5820,7 +5820,7 @@
     </runways>
   </airport>
   <airport name="Lake Charles Regional Airport" icao="KLCH" iata="LCH" type="Domestic" season="All_Year">
-    <town town="Lake Charles" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Lake Charles" country="122" GMT="-04:00:00" DST="-05:00:00" state="LA" />
     <coordinates>
       <latitude value="030°07'33''N" />
       <longitude value="093°13'23''W" />
@@ -5835,7 +5835,7 @@
     </runways>
   </airport>
   <airport name="Lafayette Regional Airport" icao="KLFT" iata="LFT" type="Domestic" season="All_Year">
-    <town town="Slidell" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Slidell" country="122" GMT="-05:00:00" DST="-06:00:00" state="LA" />
     <coordinates>
       <latitude value="030°12'19''N" />
       <longitude value="091°59'15''W" />
@@ -5851,7 +5851,7 @@
     </runways>
   </airport>
   <airport name="La Crosse Municipal Airport" icao="KLSE" iata="LSE" type="Regional" season="All_Year">
-    <town town="Onalaska" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Onalaska" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="043°52'44''N" />
       <longitude value="091°15'24''W" />
@@ -5867,7 +5867,7 @@
     </runways>
   </airport>
   <airport name="Lewiston Nez Perce County Airport" icao="KLWS" iata="LWS" type="Regional" season="All_Year">
-    <town town="Lewiston Orchards" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Lewiston Orchards" country="122" GMT="-06:00:00" DST="-07:00:00" state="ID" />
     <coordinates>
       <latitude value="046°22'28''N" />
       <longitude value="117°00'53''W" />
@@ -5882,7 +5882,7 @@
     </runways>
   </airport>
   <airport name="MBS International Airport" icao="KMBS" iata="MBS" type="Regional" season="All_Year">
-    <town town="Bay City" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Bay City" country="122" GMT="-05:00:00" DST="-06:00:00" state="MI" />
     <coordinates>
       <latitude value="043°31'58''N" />
       <longitude value="084°04'46''W" />
@@ -5897,7 +5897,7 @@
     </runways>
   </airport>
   <airport name="Key Field" icao="KMEI" iata="MEI" type="Regional" season="All_Year">
-    <town town="Selma" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Selma" country="122" GMT="-05:00:00" DST="-06:00:00" state="MS" />
     <coordinates>
       <latitude value="032°19'57''N" />
       <longitude value="088°45'06''W" />
@@ -5912,7 +5912,7 @@
     </runways>
   </airport>
   <airport name="Mc Allen Miller International Airport" icao="KMFE" iata="MFE" type="Regional" season="All_Year">
-    <town town="Harlingen" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Harlingen" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="026°10'32''N" />
       <longitude value="098°14'18''W" />
@@ -5927,7 +5927,7 @@
     </runways>
   </airport>
   <airport name="Montgomery Regional (Dannelly Field) Airport" icao="KMGM" iata="MGM" type="Regional" season="All_Year">
-    <town town="Auburn" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Auburn" country="122" GMT="-05:00:00" DST="-06:00:00" state="AL" />
     <coordinates>
       <latitude value="032°18'02''N" />
       <longitude value="086°23'38''W" />
@@ -5942,7 +5942,7 @@
     </runways>
   </airport>
   <airport name="Manhattan Regional Airport" icao="KMHK" iata="MHK" type="Regional" season="All_Year">
-    <town town="Lawrence" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Lawrence" country="122" GMT="-05:00:00" DST="-06:00:00" state="KS" />
     <coordinates>
       <latitude value="039°08'27''N" />
       <longitude value="096°40'14''W" />
@@ -5957,7 +5957,7 @@
     </runways>
   </airport>
   <airport name="Muskegon County Airport" icao="KMKG" iata="MKG" type="Regional" season="All_Year">
-    <town town="Walker" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Walker" country="122" GMT="-05:00:00" DST="-06:00:00" state="MI" />
     <coordinates>
       <latitude value="043°10'10''N" />
       <longitude value="086°14'17''W" />
@@ -5972,7 +5972,7 @@
     </runways>
   </airport>
   <airport name="Melbourne International Airport" icao="KMLB" iata="MLB" type="Regional" season="All_Year">
-    <town town="Sebastian" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sebastian" country="122" GMT="-05:00:00" DST="-06:00:00" state="FL" />
     <coordinates>
       <latitude value="028°06'10''N" />
       <longitude value="080°38'43''W" />
@@ -5988,7 +5988,7 @@
     </runways>
   </airport>
   <airport name="Monroe Regional Airport" icao="KMLU" iata="MLU" type="Regional" season="All_Year">
-    <town town="Monroe" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Monroe" country="122" GMT="-04:00:00" DST="-05:00:00" state="LA" />
     <coordinates>
       <latitude value="032°30'39''N" />
       <longitude value="092°02'15''W" />
@@ -6004,7 +6004,7 @@
     </runways>
   </airport>
   <airport name="Mobile Regional Airport" icao="KMOB" iata="MOB" type="Domestic" season="All_Year">
-    <town town="Daphne" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Daphne" country="122" GMT="-05:00:00" DST="-06:00:00" state="AL" />
     <coordinates>
       <latitude value="030°41'28''N" />
       <longitude value="088°14'34''W" />
@@ -6019,7 +6019,7 @@
     </runways>
   </airport>
   <airport name="Modesto City Co-Harry Sham Field" icao="KMOD" iata="MOD" type="Regional" season="All_Year">
-    <town town="Clovis" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Clovis" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="037°37'32''N" />
       <longitude value="120°57'14''W" />
@@ -6034,7 +6034,7 @@
     </runways>
   </airport>
   <airport name="Minot International Airport" icao="KMOT" iata="MOT" type="Regional" season="All_Year">
-    <town town="Minot" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Minot" country="122" GMT="-05:00:00" DST="-06:00:00" state="ND" />
     <coordinates>
       <latitude value="048°15'33''N" />
       <longitude value="101°16'47''W" />
@@ -6049,7 +6049,7 @@
     </runways>
   </airport>
   <airport name="Monterey Peninsula Airport" icao="KMRY" iata="MRY" type="Regional" season="All_Year">
-    <town town="Fresno" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Fresno" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="036°35'13''N" />
       <longitude value="121°50'34''W" />
@@ -6064,7 +6064,7 @@
     </runways>
   </airport>
   <airport name="Missoula International Airport" icao="KMSO" iata="MSO" type="Domestic" season="All_Year">
-    <town town="Missoula" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Missoula" country="122" GMT="-07:00:00" DST="-08:00:00" state="MT" />
     <coordinates>
       <latitude value="046°54'58''N" />
       <longitude value="114°05'27''W" />
@@ -6079,7 +6079,7 @@
     </runways>
   </airport>
   <airport name="Martha's Vineyard Airport" icao="KMVY" iata="MVY" type="Regional" season="All_Year">
-    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Yarmouth" country="122" GMT="-04:00:00" DST="-05:00:00" state="MA" />
     <coordinates>
       <latitude value="041°23'35''N" />
       <longitude value="070°36'51''W" />
@@ -6095,7 +6095,7 @@
     </runways>
   </airport>
   <airport name="Worcester Regional Airport" icao="KORH" iata="ORH" type="Regional" season="All_Year">
-    <town town="Gloucester" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Gloucester" country="122" GMT="-04:00:00" DST="-05:00:00" state="MA" />
     <coordinates>
       <latitude value="042°16'02''N" />
       <longitude value="071°52'32''W" />
@@ -6110,7 +6110,7 @@
     </runways>
   </airport>
   <airport name="Southwest Oregon Regional Airport" icao="KOTH" iata="OTH" type="Regional" season="All_Year">
-    <town town="Coos Bay" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Coos Bay" country="122" GMT="-07:00:00" DST="-08:00:00" state="OR" />
     <coordinates>
       <latitude value="043°25'01''N" />
       <longitude value="124°14'45''W" />
@@ -6125,7 +6125,7 @@
     </runways>
   </airport>
   <airport name="Owensboro Daviess County Airport" icao="KOWB" iata="OWB" type="Regional" season="All_Year">
-    <town town="Owensboro" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Owensboro" country="122" GMT="-05:00:00" DST="-06:00:00" state="KY" />
     <coordinates>
       <latitude value="037°44'24''N" />
       <longitude value="087°10'00''W" />
@@ -6140,7 +6140,7 @@
     </runways>
   </airport>
   <airport name="Barkley Regional Airport" icao="KPAH" iata="PAH" type="Domestic" season="All_Year">
-    <town town="Hopkinsville" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Hopkinsville" country="122" GMT="-05:00:00" DST="-06:00:00" state="KY" />
     <coordinates>
       <latitude value="037°03'38''N" />
       <longitude value="088°46'25''W" />
@@ -6155,7 +6155,7 @@
     </runways>
   </airport>
   <airport name="Plattsburgh International Airport" icao="KPBG" iata="PBG" type="Regional" season="All_Year">
-    <town town="Colchester" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Colchester" country="122" GMT="-04:00:00" DST="-05:00:00" state="NY" />
     <coordinates>
       <latitude value="044°39'03''N" />
       <longitude value="073°28'05''W" />
@@ -6169,7 +6169,7 @@
     </runways>
   </airport>
   <airport name="Newport News Williamsburg International Airport" icao="KPHF" iata="PHF" type="Domestic" season="All_Year">
-    <town town="Virginia Beach" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Virginia Beach" country="122" GMT="-04:00:00" DST="-05:00:00" state="VA" />
     <coordinates>
       <latitude value="037°07'54''N" />
       <longitude value="076°29'34''W" />
@@ -6184,7 +6184,7 @@
     </runways>
   </airport>
   <airport name="Hattiesburg Laurel Regional Airport" icao="KPIB" iata="PIB" type="Regional" season="All_Year">
-    <town town="Laurel" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Laurel" country="122" GMT="-05:00:00" DST="-06:00:00" state="MS" />
     <coordinates>
       <latitude value="031°28'01''N" />
       <longitude value="089°20'13''W" />
@@ -6198,7 +6198,7 @@
     </runways>
   </airport>
   <airport name="Pierre Regional Airport" icao="KPIR" iata="PIR" type="Regional" season="All_Year">
-    <town town="Mitchell" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Mitchell" country="122" GMT="-05:00:00" DST="-06:00:00" state="SD" />
     <coordinates>
       <latitude value="044°22'57''N" />
       <longitude value="100°17'09''W" />
@@ -6213,7 +6213,7 @@
     </runways>
   </airport>
   <airport name="Pellston Regional Airport of Emmet County Airport" icao="KPLN" iata="PLN" type="Regional" season="All_Year">
-    <town town="Sault Ste. Marie" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Sault Ste. Marie" country="122" GMT="-05:00:00" DST="-06:00:00" state="MI" />
     <coordinates>
       <latitude value="045°34'15''N" />
       <longitude value="084°47'48''W" />
@@ -6228,7 +6228,7 @@
     </runways>
   </airport>
   <airport name="Northern Maine Regional Airport at Presque Isle" icao="KPQI" iata="PQI" type="Regional" season="All_Year">
-    <town town="Edmundston" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Edmundston" country="122" GMT="-04:00:00" DST="-05:00:00" state="ME" />
     <coordinates>
       <latitude value="046°41'20''N" />
       <longitude value="068°02'41''W" />
@@ -6243,7 +6243,7 @@
     </runways>
   </airport>
   <airport name="Tri Cities Airport" icao="KPSC" iata="PSC" type="Regional" season="All_Year">
-    <town town="Pasco" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Pasco" country="122" GMT="-07:00:00" DST="-08:00:00" state="WA" />
     <coordinates>
       <latitude value="046°15'52''N" />
       <longitude value="119°07'08''W" />
@@ -6259,7 +6259,7 @@
     </runways>
   </airport>
   <airport name="Portsmouth International at Pease Airport" icao="KPSM" iata="PSM" type="Regional" season="All_Year">
-    <town town="South Portland" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="South Portland" country="122" GMT="-04:00:00" DST="-05:00:00" state="NH" />
     <coordinates>
       <latitude value="043°04'40''N" />
       <longitude value="070°49'23''W" />
@@ -6273,7 +6273,7 @@
     </runways>
   </airport>
   <airport name="Pueblo Memorial Airport" icao="KPUB" iata="PUB" type="Regional" season="All_Year">
-    <town town="Pueblo" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Pueblo" country="122" GMT="-06:00:00" DST="-07:00:00" state="CO" />
     <coordinates>
       <latitude value="038°17'20''N" />
       <longitude value="104°29'49''W" />
@@ -6290,7 +6290,7 @@
     </runways>
   </airport>
   <airport name="Redding Municipal Airport" icao="KRDD" iata="RDD" type="Regional" season="All_Year">
-    <town town="Redding" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Redding" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="040°30'32''N" />
       <longitude value="122°17'34''W" />
@@ -6305,7 +6305,7 @@
     </runways>
   </airport>
   <airport name="Roberts Field" icao="KRDM" iata="RDM" type="Regional" season="All_Year">
-    <town town="Redmond" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Redmond" country="122" GMT="-05:00:00" DST="-06:00:00" state="OR" />
     <coordinates>
       <latitude value="044°15'14''N" />
       <longitude value="121°09'00''W" />
@@ -6320,7 +6320,7 @@
     </runways>
   </airport>
   <airport name="Rhinelander Oneida County Airport" icao="KRHI" iata="RHI" type="Regional" season="All_Year">
-    <town town="Wausau" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Wausau" country="122" GMT="-05:00:00" DST="-06:00:00" state="WI" />
     <coordinates>
       <latitude value="045°37'52''N" />
       <longitude value="089°28'02''W" />
@@ -6336,7 +6336,7 @@
     </runways>
   </airport>
   <airport name="Rock Springs Sweetwater County Airport" icao="KRKS" iata="RKS" type="Regional" season="All_Year">
-    <town town="Rock Springs" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Rock Springs" country="122" GMT="-06:00:00" DST="-07:00:00" state="WY" />
     <coordinates>
       <latitude value="041°35'39''N" />
       <longitude value="109°03'54''W" />
@@ -6351,7 +6351,7 @@
     </runways>
   </airport>
   <airport name="Roanoke Regional Woodrum Field" icao="KROA" iata="ROA" type="Regional" season="All_Year">
-    <town town="Bon Air" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Bon Air" country="122" GMT="-04:00:00" DST="-05:00:00" state="VA" />
     <coordinates>
       <latitude value="037°19'31''N" />
       <longitude value="079°58'31''W" />
@@ -6366,7 +6366,7 @@
     </runways>
   </airport>
   <airport name="Roswell International Air Center Airport" icao="KROW" iata="ROW" type="Regional" season="All_Year">
-    <town town="Hobbs" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Hobbs" country="122" GMT="-06:00:00" DST="-07:00:00" state="NM" />
     <coordinates>
       <latitude value="033°18'05''N" />
       <longitude value="104°31'51''W" />
@@ -6382,7 +6382,7 @@
     </runways>
   </airport>
   <airport name="Rochester International Airport" icao="KRST" iata="RST" type="Domestic" season="All_Year">
-    <town town="Winona" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Winona" country="122" GMT="-05:00:00" DST="-06:00:00" state="MN" />
     <coordinates>
       <latitude value="043°54'29''N" />
       <longitude value="092°30'00''W" />
@@ -6397,7 +6397,7 @@
     </runways>
   </airport>
   <airport name="South Bend Regional Airport" icao="KSBN" iata="SBN" type="Domestic" season="All_Year">
-    <town town="Goshen" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Goshen" country="122" GMT="-04:00:00" DST="-05:00:00" state="IN" />
     <coordinates>
       <latitude value="041°42'31''N" />
       <longitude value="086°19'02''W" />
@@ -6413,7 +6413,7 @@
     </runways>
   </airport>
   <airport name="San Luis County Regional Airport" icao="KSBP" iata="SBP" type="Domestic" season="All_Year">
-    <town town="Shafter" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Shafter" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="035°14'12''N" />
       <longitude value="120°38'31''W" />
@@ -6428,7 +6428,7 @@
     </runways>
   </airport>
   <airport name="University Park Airport" icao="KUNV" iata="SCE" type="Regional" season="All_Year">
-    <town town="Hazleton" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Hazleton" country="122" GMT="-04:00:00" DST="-05:00:00" state="PA" />
     <coordinates>
       <latitude value="040°50'57''N" />
       <longitude value="077°50'55''W" />
@@ -6442,7 +6442,7 @@
     </runways>
   </airport>
   <airport name="Sheridan County Airport" icao="KSHR" iata="SHR" type="Regional" season="All_Year">
-    <town town="Gillette" country="122" GMT="-06:00:00" DST="-07:00:00" />
+    <town town="Gillette" country="122" GMT="-06:00:00" DST="-07:00:00" state="WY" />
     <coordinates>
       <latitude value="044°46'09''N" />
       <longitude value="106°58'48''W" />
@@ -6458,7 +6458,7 @@
     </runways>
   </airport>
   <airport name="San Angelo Regional Mathis Field" icao="KSJT" iata="SJT" type="Regional" season="All_Year">
-    <town town="Brownwood" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Brownwood" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="031°21'27''N" />
       <longitude value="100°29'45''W" />
@@ -6474,7 +6474,7 @@
     </runways>
   </airport>
   <airport name="Santa Maria Pub/Capt G Allan Hancock Field" icao="KSMX" iata="SMX" type="Regional" season="All_Year">
-    <town town="Santa Barbara" country="122" GMT="-07:00:00" DST="-08:00:00" />
+    <town town="Santa Barbara" country="122" GMT="-07:00:00" DST="-08:00:00" state="CA" />
     <coordinates>
       <latitude value="034°53'56''N" />
       <longitude value="120°27'25''W" />
@@ -6489,7 +6489,7 @@
     </runways>
   </airport>
   <airport name="Abraham Lincoln Capital Airport" icao="KSPI" iata="SPI" type="Domestic" season="All_Year">
-    <town town="Champaign" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Champaign" country="122" GMT="-05:00:00" DST="-06:00:00" state="IL" />
     <coordinates>
       <latitude value="039°50'38''N" />
       <longitude value="089°40'40''W" />
@@ -6505,7 +6505,7 @@
     </runways>
   </airport>
   <airport name="Decatur Airport" icao="KDEC" iata="DEC" type="Domestic" season="All_Year">
-    <town town="Crawfordsville" country="122" GMT="-04:00:00" DST="-05:00:00" />
+    <town town="Crawfordsville" country="122" GMT="-04:00:00" DST="-05:00:00" state="IL" />
     <coordinates>
       <latitude value="039°50'04''N" />
       <longitude value="088°51'56''W" />
@@ -6521,7 +6521,7 @@
     </runways>
   </airport>
   <airport name="Sheppard Air Force Base-Wichita Falls Municipal Airport" icao="KSPS" iata="SPS" type="Regional" season="All_Year">
-    <town town="Ardmore" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Ardmore" country="122" GMT="-05:00:00" DST="-06:00:00" state="TX" />
     <coordinates>
       <latitude value="033°59'19''N" />
       <longitude value="098°29'30''W" />
@@ -6538,7 +6538,7 @@
     </runways>
   </airport>
   <airport name="St Cloud Regional Airport" icao="KSTC" iata="STC" type="Regional" season="All_Year">
-    <town town="Saint Cloud" country="122" GMT="-05:00:00" DST="-06:00:00" />
+    <town town="Saint Cloud" country="122" GMT="-05:00:00" DST="-06:00:00" state="MN" />
     <coordinates>
       <latitude value="045°32'47''N" />
       <longitude value="094°03'35''W" />

@@ -120,7 +120,7 @@
   </airport>
   <!--Samoa, American (NS**)-->
   <airport name="Pago Pago International Airport" icao="NSTU" iata="PPG" type="Long_Haul_International" season="All_Year">
-    <town town="Nuku‘alofa" country="122" GMT="11:00:00" DST="11:00:00" />
+    <town town="Nuku‘alofa" country="122" GMT="11:00:00" DST="11:00:00" state="AS" />
     <coordinates>
       <latitude value="014°16'46''S" />
       <longitude value="170°42'02''W" />
@@ -136,7 +136,7 @@
   </airport>
   <!--French Polynesia (NT**)-->
   <airport name="Fa'a'ā International Airport" icao="NTAA" iata="PPT" type="Long_Haul_International" season="All_Year">
-    <town town="Nuku‘alofa" country="140" GMT="10:00:00" DST="10:00:00" />
+    <town town="Nuku‘alofa" country="140" GMT="10:00:00" DST="10:00:00" state="PF" />
     <coordinates>
       <latitude value="017°33'24''S" />
       <longitude value="149°36'41''W" />
@@ -150,7 +150,7 @@
     </runways>
   </airport>
   <airport name="Bora Bora Airport" icao="NTTB" iata="BOB" type="Short_Haul_International" season="All_Year">
-    <town town="Nuku‘alofa" country="140" GMT="10:00:00" DST="10:00:00" />
+    <town town="Nuku‘alofa" country="140" GMT="10:00:00" DST="10:00:00" state="PF" />
     <coordinates>
       <latitude value="016°26'37''S" />
       <longitude value="151°45'09''W" />
@@ -694,7 +694,7 @@
   <!--Eastern Pacific (P***)-->
   <!--United States (Alaska) (PA**)-->
   <airport name="Cold Bay Airport" icao="PACD" iata="CDB" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="055°12'21''N" />
       <longitude value="162°43'30''W" />
@@ -709,7 +709,7 @@
     </runways>
   </airport>
   <airport name="Bethel Airport" icao="PABE" iata="BET" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="060°46'47''N" />
       <longitude value="161°50'16''W" />
@@ -725,7 +725,7 @@
     </runways>
   </airport>
   <airport name="Wiley Post Will Rogers Memorial Airport" icao="PABR" iata="BRW" type="Regional" season="All_Year">
-    <town town="Fairbanks" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Fairbanks" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="071°17'07''N" />
       <longitude value="156°45'57''W" />
@@ -739,7 +739,7 @@
     </runways>
   </airport>
   <airport name="Kodiak Airport" icao="PADQ" iata="ADQ" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="057°45'00''N" />
       <longitude value="152°29'38''W" />
@@ -755,7 +755,7 @@
     </runways>
   </airport>
   <airport name="Merle K (Mudhole) Smith Airport" icao="PACV" iata="CDV" type="Regional" season="All_Year">
-    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="060°29'30''N" />
       <longitude value="145°28'40''W" />
@@ -770,7 +770,7 @@
     </runways>
   </airport>
   <airport name="Dillingham Airport" icao="PADL" iata="DLG" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="059°02'40''N" />
       <longitude value="158°30'18''W" />
@@ -784,7 +784,7 @@
     </runways>
   </airport>
   <airport name="Unalaska Airport" icao="PADU" iata="DUT" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="053°54'00''N" />
       <longitude value="166°32'38''W" />
@@ -798,7 +798,7 @@
     </runways>
   </airport>
   <airport name="Fairbanks International Airport" icao="PAFA" iata="FAI" type="Short_Haul_International" season="All_Year">
-    <town town="Badger" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Badger" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="064°48'54''N" />
       <longitude value="147°51'21''W" />
@@ -814,7 +814,7 @@
     </runways>
   </airport>
   <airport name="Edward G. Pitka Sr Airport" icao="PAGA" iata="GAL" type="Regional" season="All_Year">
-    <town town="Fairbanks" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Fairbanks" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="064°44'10''N" />
       <longitude value="156°56'13''W" />
@@ -829,7 +829,7 @@
     </runways>
   </airport>
   <airport name="Juneau International Airport" icao="PAJN" iata="JNU" type="Domestic" season="All_Year">
-    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="058°21'17''N" />
       <longitude value="134°34'33''W" />
@@ -843,7 +843,7 @@
     </runways>
   </airport>
   <airport name="King Salmon Airport" icao="PAKN" iata="AKN" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="058°40'36''N" />
       <longitude value="156°38'56''W" />
@@ -859,7 +859,7 @@
     </runways>
   </airport>
   <airport name="Homer Airport" icao="PAHO" iata="HOM" type="Regional" season="All_Year">
-    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Anchorage" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="059°38'44''N" />
       <longitude value="151°28'37''W" />
@@ -873,7 +873,7 @@
     </runways>
   </airport>
   <airport name="Merrill Field" icao="PAMR" iata="MRI" type="Regional" season="All_Year">
-    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="061°12'48''N" />
       <longitude value="149°50'38''W" />
@@ -889,7 +889,7 @@
     </runways>
   </airport>
   <airport name="Ted Stevens Anchorage International Airport" icao="PANC" iata="ANC" type="Long_Haul_International" season="Summer">
-    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="061°10'27''N" />
       <longitude value="149°59'46''W" />
@@ -905,7 +905,7 @@
     </runways>
   </airport>
   <airport name="Hoonah Airport" icao="PAOH" iata="HNH" type="Regional" season="All_Year">
-    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="058°05'45''N" />
       <longitude value="135°24'36''W" />
@@ -919,7 +919,7 @@
     </runways>
   </airport>
   <airport name="Petersburg James A Johnson Airport" icao="PAPG" iata="PSG" type="Regional" season="All_Year">
-    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="056°48'06''N" />
       <longitude value="132°56'42''W" />
@@ -933,7 +933,7 @@
     </runways>
   </airport>
   <airport name="Deadhorse Airport" icao="PASC" iata="SCC" type="Regional" season="All_Year">
-    <town town="Fairbanks" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Fairbanks" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="070°11'40''N" />
       <longitude value="148°27'53''W" />
@@ -947,7 +947,7 @@
     </runways>
   </airport>
   <airport name="Sitka Rocky Gutierrez Airport" icao="PASI" iata="SIT" type="Regional" season="All_Year">
-    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="057°02'49''N" />
       <longitude value="135°21'43''W" />
@@ -961,7 +961,7 @@
     </runways>
   </airport>
   <airport name="Valdez Pioneer Field" icao="PAVD" iata="VDZ" type="Regional" season="All_Year">
-    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Eagle River" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="061°08'02''N" />
       <longitude value="146°14'52''W" />
@@ -975,7 +975,7 @@
     </runways>
   </airport>
   <airport name="Wrangell Airport" icao="PAWG" iata="WRG" type="Regional" season="All_Year">
-    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" />
+    <town town="Juneau" country="122" GMT="-08:00:00" DST="-09:00:00" state="AK" />
     <coordinates>
       <latitude value="056°29'03''N" />
       <longitude value="132°22'11''W" />
@@ -990,7 +990,7 @@
   </airport>
   <!--United States (Guam) (PG**)-->
   <airport name="Francisco C. Ada Saipan International Airport" icao="PGSN" iata="SPN" type="Short_Haul_International" season="All_Year">
-    <town town="Melekeok" country="122" GMT="10:00:00" DST="10:00:00" />
+    <town town="Melekeok" country="122" GMT="10:00:00" DST="10:00:00" state="GU" />
     <coordinates>
       <latitude value="015°07'08''N" />
       <longitude value="145°43'44''E" />
@@ -1004,7 +1004,7 @@
     </runways>
   </airport>
   <airport name="Antonio B. Won Pat International Airport" icao="PGUM" iata="GUM" type="Long_Haul_International" season="All_Year">
-    <town town="Melekeok" country="122" GMT="10:00:00" DST="10:00:00" />
+    <town town="Melekeok" country="122" GMT="10:00:00" DST="10:00:00" state="GU" />
     <coordinates>
       <latitude value="013°29'02''N" />
       <longitude value="144°47'49''E" />
@@ -1020,7 +1020,7 @@
   </airport>
   <!--United States (Hawaii) (PH**)-->
   <airport name="Kona International Airport" icao="PHKO" iata="KOA" type="Short_Haul_International" season="All_Year">
-    <town town="Hilo" country="122" GMT="-10:00:00" DST="-10:00:00" />
+    <town town="Hilo" country="122" GMT="-10:00:00" DST="-10:00:00" state="HI" />
     <coordinates>
       <latitude value="019°44'20''N" />
       <longitude value="156°02'44''W" />
@@ -1034,7 +1034,7 @@
     </runways>
   </airport>
   <airport name="Lihue Airport" icao="PHLI" iata="LIH" type="Short_Haul_International" season="All_Year">
-    <town town="Schofield Barracks" country="122" GMT="-10:00:00" DST="-10:00:00" />
+    <town town="Schofield Barracks" country="122" GMT="-10:00:00" DST="-10:00:00" state="HI" />
     <coordinates>
       <latitude value="021°58'59''N" />
       <longitude value="159°20'59''W" />
@@ -1049,7 +1049,7 @@
     </runways>
   </airport>
   <airport name="Molokai Airport" icao="PHMK" iata="MKK" type="Regional" season="All_Year">
-    <town town="Wailuku" country="122" GMT="-10:00:00" DST="-11:00:00" />
+    <town town="Wailuku" country="122" GMT="-10:00:00" DST="-11:00:00" state="HI" />
     <coordinates>
       <latitude value="021°09'10''N" />
       <longitude value="157°05'45''W" />
@@ -1064,7 +1064,7 @@
     </runways>
   </airport>
   <airport name="Honolulu International Airport" icao="PHNL" iata="HNL" type="Long_Haul_International" season="All_Year">
-    <town town="Kahului" country="122" GMT="-10:00:00" DST="-10:00:00" />
+    <town town="Kahului" country="122" GMT="-10:00:00" DST="-10:00:00" state="HI" />
     <coordinates>
       <latitude value="021°18'57''N" />
       <longitude value="157°55'36''W" />
@@ -1083,7 +1083,7 @@
     </runways>
   </airport>
   <airport name="Lanai Airport" icao="PHNY" iata="LNY" type="Regional" season="All_Year">
-    <town town="Hilo" country="122" GMT="-10:00:00" DST="-11:00:00" />
+    <town town="Hilo" country="122" GMT="-10:00:00" DST="-11:00:00" state="HI" />
     <coordinates>
       <latitude value="020°47'08''N" />
       <longitude value="156°57'03''W" />
@@ -1097,7 +1097,7 @@
     </runways>
   </airport>
   <airport name="Kahului Airport" icao="PHOG" iata="OGG" type="Short_Haul_International" season="All_Year">
-    <town town="Kīhei" country="122" GMT="-10:00:00" DST="-10:00:00" />
+    <town town="Kīhei" country="122" GMT="-10:00:00" DST="-10:00:00" state="HI" />
     <coordinates>
       <latitude value="020°53'55''N" />
       <longitude value="156°25'50''W" />
@@ -1112,7 +1112,7 @@
     </runways>
   </airport>
   <airport name="Hilo International Airport" icao="PHTO" iata="ITO" type="Domestic" season="All_Year">
-    <town town="Hilo" country="122" GMT="-10:00:00" DST="-10:00:00" />
+    <town town="Hilo" country="122" GMT="-10:00:00" DST="-10:00:00" state="HI" />
     <coordinates>
       <latitude value="019°43'13''N" />
       <longitude value="155°02'54''W" />

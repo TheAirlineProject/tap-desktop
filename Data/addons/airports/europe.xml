@@ -4,7 +4,7 @@
   <!--Greenland, Iceland and Kosovo (B***)-->
   <!--Greenland (BG**)-->
   <airport name="Kangerlussuaq Airport" icao="BGSF" iata="SFJ" type="Short_Haul_International" season="All_Year">
-    <town town="Reykjavík" country="110" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Reykjavík" country="110" GMT="-02:00:00" DST="-03:00:00" state="GL" />
     <coordinates>
       <latitude value="067°01'00''N" />
       <longitude value="050°41'21''W" />
@@ -732,7 +732,7 @@
     </runways>
   </airport>
   <airport name="Belfast International Airport" icao="EGAA" iata="BFS" type="Long_Haul_International" season="All_Year">
-    <town town="Carrickfergus" country="130" GMT="00:00:00" DST="00:00:00" />
+    <town town="Carrickfergus" country="130" GMT="00:00:00" DST="00:00:00" state="NIR" />
     <coordinates>
       <latitude value="054°39'27''N" />
       <longitude value="006°12'57''W" />
@@ -747,7 +747,7 @@
     </runways>
   </airport>
   <airport name="George Best Belfast City Airport" icao="EGAC" iata="BHD" type="Domestic" season="All_Year">
-    <town town="Scarborough" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Scarborough" country="130" GMT="01:00:00" DST="00:00:00" state="NIR" />
     <coordinates>
       <latitude value="054°37'05''N" />
       <longitude value="000°35'14''W" />
@@ -761,7 +761,7 @@
     </runways>
   </airport>
   <airport name="Birmingham Airport" icao="EGBB" iata="BHX" type="Long_Haul_International" season="All_Year">
-    <town town="Peterborough" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Peterborough" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="052°27'13''N" />
       <longitude value="001°44'52''W" />
@@ -776,7 +776,7 @@
     </runways>
   </airport>
   <airport name="Manchester Airport" icao="EGCC" iata="MAN" type="Long_Haul_International" season="All_Year">
-    <town town="High Peak" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="High Peak" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="053°21'13''N" />
       <longitude value="002°16'29''W" />
@@ -793,7 +793,7 @@
     </runways>
   </airport>
   <airport name="Cardiff Airport" icao="EGFF" iata="CWL" type="Long_Haul_International" season="All_Year">
-    <town town="Bristol" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Bristol" country="130" GMT="01:00:00" DST="00:00:00" state="WAL" />
     <coordinates>
       <latitude value="051°23'59''N" />
       <longitude value="003°21'00''W" />
@@ -807,7 +807,7 @@
     </runways>
   </airport>
   <airport name="Bristol Airport" icao="EGGD" iata="BRS" type="Long_Haul_International" season="All_Year">
-    <town town="Thatcham" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Thatcham" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°22'57''N" />
       <longitude value="002°43'08''W" />
@@ -821,7 +821,7 @@
     </runways>
   </airport>
   <airport name="Liverpool John Lennon Airport" icao="EGGP" iata="LPL" type="Long_Haul_International" season="All_Year">
-    <town town="Worksop" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Worksop" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="053°20'01''N" />
       <longitude value="002°50'59''W" />
@@ -835,7 +835,7 @@
     </runways>
   </airport>
   <airport name="London Luton Airport" icao="EGGW" iata="LTN" type="Long_Haul_International" season="All_Year">
-    <town town="Braintree" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Braintree" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°52'28''N" />
       <longitude value="000°22'06''W" />
@@ -849,7 +849,7 @@
     </runways>
   </airport>
   <airport name="Southampton Airport" icao="EGHI" iata="SOU" type="Long_Haul_International" season="All_Year">
-    <town town="Uckfield" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Uckfield" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="050°57'00''N" />
       <longitude value="000°08'08''W" />
@@ -863,7 +863,7 @@
     </runways>
   </airport>
   <airport name="Guernsey Airport" icao="EGJB" iata="GCI" type="Long_Haul_International" season="All_Year">
-    <town town="Tourlaville" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Tourlaville" country="130" GMT="01:00:00" DST="00:00:00" state="GG" />
     <coordinates>
       <latitude value="049°25'59''N" />
       <longitude value="002°36'00''W" />
@@ -877,7 +877,7 @@
     </runways>
   </airport>
   <airport name="Jersey Airport" icao="EGJJ" iata="JER" type="Long_Haul_International" season="All_Year">
-    <town town="Octeville" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Octeville" country="130" GMT="01:00:00" DST="00:00:00" state="JE" />
     <coordinates>
       <latitude value="049°12'29''N" />
       <longitude value="002°11'44''W" />
@@ -891,7 +891,7 @@
     </runways>
   </airport>
   <airport name="Gatwick Airport" icao="EGKK" iata="LGW" type="Long_Haul_International" season="All_Year">
-    <town town="Royal Tunbridge Wells" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Royal Tunbridge Wells" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°08'53''N" />
       <longitude value="000°11'25''W" />
@@ -906,7 +906,8 @@
     </runways>
   </airport>
   <airport name="London City Airport" icao="EGLC" iata="LCY" type="Long_Haul_International" season="All_Year">
-    <town town="Barking" country="130" GMT="01:00:00" DST="00:00:00" />
+    <period from="05.31.1987 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Barking" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°30'18''N" />
       <longitude value="000°03'15''E" />
@@ -920,7 +921,7 @@
     </runways>
   </airport>
   <airport name="London Heathrow Airport" icao="EGLL" iata="LHR" type="Long_Haul_International" season="All_Year">
-    <town town="Gravesend" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Gravesend" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°28'39''N" />
       <longitude value="000°27'41''W" />
@@ -939,7 +940,7 @@
     </runways>
   </airport>
   <airport name="London Southend Airport" icao="EGMC" iata="SEN" type="Long_Haul_International" season="All_Year">
-    <town town="Rochford" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Rochford" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°34'17''N" />
       <longitude value="000°41'44''E" />
@@ -953,7 +954,7 @@
     </runways>
   </airport>
   <airport name="Lydd International Airport" icao="EGMD" iata="LYX" type="Short_Haul_International" season="All_Year">
-    <town town="Ashford" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Ashford" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="050°57'22''N" />
       <longitude value="000°56'21''E" />
@@ -967,7 +968,7 @@
     </runways>
   </airport>
   <airport name="Manston, Kent's International Airport" icao="EGMH" iata="MSE" type="Short_Haul_International" season="All_Year">
-    <town town="Ramsgate" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Ramsgate" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°20'32''N" />
       <longitude value="001°20'46''E" />
@@ -981,7 +982,7 @@
     </runways>
   </airport>
   <airport name="Blackpool International Airport" icao="EGNH" iata="BLK" type="Short_Haul_International" season="All_Year">
-    <town town="Lytham St Annes" country="130" GMT="01:00:00" DST="01:00:00" />
+    <town town="Lytham St Annes" country="130" GMT="01:00:00" DST="01:00:00" state="ENG" />
     <coordinates>
       <latitude value="053°46'17'N" />
       <longitude value="003°01'42'W" />
@@ -996,7 +997,7 @@
     </runways>
   </airport>
   <airport name="Leeds Bradford International Airport" icao="EGNM" iata="LBA" type="Long_Haul_International" season="All_Year">
-    <town town="Beverley" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Beverley" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="053°51'57''N" />
       <longitude value="001°39'38''W" />
@@ -1010,7 +1011,7 @@
     </runways>
   </airport>
   <airport name="Isle of Man Airport" icao="EGNS" iata="IOM" type="Short_Haul_International" season="All_Year">
-    <town town="Barrow in Furness" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Barrow in Furness" country="130" GMT="01:00:00" DST="00:00:00" state="IM" />
     <coordinates>
       <latitude value="054°05'00''N" />
       <longitude value="004°37'24''W" />
@@ -1025,7 +1026,7 @@
     </runways>
   </airport>
   <airport name="Newcastle International Airport" icao="EGNT" iata="NCL" type="Long_Haul_International" season="All_Year">
-    <town town="Redcar" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Redcar" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="055°02'15''N" />
       <longitude value="001°41'30''W" />
@@ -1039,7 +1040,7 @@
     </runways>
   </airport>
   <airport name="East Midlands Airport" icao="EGNX" iata="EMA" type="Long_Haul_International" season="All_Year">
-    <town town="Grantham" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Grantham" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="052°49'51''N" />
       <longitude value="001°19'41''W" />
@@ -1053,7 +1054,7 @@
     </runways>
   </airport>
   <airport name="Aberdeen Airport" icao="EGPD" iata="ABZ" type="Long_Haul_International" season="All_Year">
-    <town town="Aberdeen" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Aberdeen" country="130" GMT="01:00:00" DST="00:00:00" state="SCT" />
     <coordinates>
       <latitude value="057°12'15''N" />
       <longitude value="002°12'01''W" />
@@ -1067,7 +1068,8 @@
     </runways>
   </airport>
   <airport name="Glasgow International Airport" icao="EGPF" iata="GLA" type="Long_Haul_International" season="All_Year">
-    <town town="Livingston" country="130" GMT="01:00:00" DST="00:00:00" />
+    <period from="05.02.1966 00:00:00" to="01.01.2199 00:00:00" />
+    <town town="Livingston" country="130" GMT="01:00:00" DST="00:00:00" state="SCT" />
     <coordinates>
       <latitude value="055°52'19''N" />
       <longitude value="004°25'59''W" />
@@ -1081,7 +1083,7 @@
     </runways>
   </airport>
   <airport name="Edinburgh Airport" icao="EGPH" iata="EDI" type="Long_Haul_International" season="All_Year">
-    <town town="Musselburgh" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Musselburgh" country="130" GMT="01:00:00" DST="00:00:00" state="SCT" />
     <coordinates>
       <latitude value="055°57'00''N" />
       <longitude value="003°22'21''W" />
@@ -1096,7 +1098,7 @@
     </runways>
   </airport>
   <airport name="Glasgow Prestwick Airport" icao="EGPK" iata="PIK" type="Long_Haul_International" season="All_Year">
-    <town town="Penicuik" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Penicuik" country="130" GMT="01:00:00" DST="00:00:00" state="SCT" />
     <coordinates>
       <latitude value="055°30'33''N" />
       <longitude value="004°35'12''W" />
@@ -1111,7 +1113,7 @@
     </runways>
   </airport>
   <airport name="London Stansted Airport" icao="EGSS" iata="STN" type="Long_Haul_International" season="All_Year">
-    <town town="Bishops Stortford" country="130" GMT="01:00:00" DST="00:00:00" />
+    <town town="Bishops Stortford" country="130" GMT="01:00:00" DST="00:00:00" state="ENG" />
     <coordinates>
       <latitude value="051°53'06''N" />
       <longitude value="000°14'06''E" />
@@ -1484,7 +1486,7 @@
     </runways>
   </airport>
   <airport name="Vágar Airport" icao="EKVG" iata="FAE" type="Long_Haul_International" season="All_Year">
-    <town town="Shetland" country="110" GMT="01:00:00" DST="00:00:00" />
+    <town town="Shetland" country="110" GMT="01:00:00" DST="00:00:00" state="FO" />
     <coordinates>
       <latitude value="062°03'48''N" />
       <longitude value="007°16'36''W" />
@@ -1879,6 +1881,7 @@
     </runways>
   </airport>
   <airport name="Stockholm-Arlanda Airport" icao="ESSA" iata="ARN" type="Long_Haul_International" season="All_Year">
+    <period from="03.17.1962 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Märsta" country="168" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="059°39'07''N" />
@@ -3196,6 +3199,7 @@
     </runways>
   </airport>
   <airport name="Tenerife South Airport" icao="GCTS" iata="TFS" type="Long_Haul_International" season="All_Year">
+    <period from="11.06.1978 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Telde" country="123" GMT="01:00:00" DST="00:00:00" />
     <coordinates>
       <latitude value="028°02'40''N" />
@@ -3376,6 +3380,7 @@
     </runways>
   </airport>
   <airport name="Paris-Charles de Gaulle Airport" icao="LFPG" iata="CDG" type="Long_Haul_International" season="All_Year">
+    <period from="03.08.1974 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Villepinte" country="140" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="049°00'46''N" />
@@ -3425,7 +3430,7 @@
     </runways>
   </airport>
   <airport name="Saint-Pierre Airport" icao="LFVP" iata="FSP" type="Regional" season="All_Year">
-    <town town="Conception Bay South" country="140" GMT="-02:00:00" DST="-03:00:00" />
+    <town town="Conception Bay South" country="140" GMT="-02:00:00" DST="-03:00:00" state="PM" />
     <coordinates>
       <latitude value="046°45'47''N" />
       <longitude value="056°10'27''W" />
@@ -4302,7 +4307,15 @@
       <latitude value="045°37'53''N" />
       <longitude value="008°43'40''E" />
     </coordinates>
-    <size value="Large" pax="19303" cargo="Smallest" cargovolume="0" />
+    <size>
+      <yearvalues>
+        <!--inflationbefore: the growth in pax from the year before the year. inflationafter: the growth in pax after the year -->
+        <yearvalue from="1960" to="1998" value="Small" pax="1200" cargo="Very_small" cargovolume="0" inflationbefore="3">
+        </yearvalue>
+        <yearvalue from="1999" to="2199" value="Large" pax="19303" cargo="Smallest" cargovolume="0" inflationafter="1">
+        </yearvalue>
+      </yearvalues>
+    </size>
     <terminals>
       <terminal name="Terminal" gates="47" />
     </terminals>
@@ -4413,6 +4426,7 @@
     </runways>
   </airport>
   <airport name="Leonardo da Vinci-Fiumicino Airport" icao="LIRF" iata="FCO" type="Long_Haul_International" season="All_Year">
+    <period from="01.15.1961 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Fiumicino" country="141" GMT="02:00:00" DST="01:00:00" />
     <coordinates>
       <latitude value="041°48'46''N" />
@@ -6198,6 +6212,7 @@
     </runways>
   </airport>
   <airport name="Domodedovo International Airport" icao="UUDD" iata="DME" type="Long_Haul_International" season="All_Year">
+    <period from="03.12.1964 00:00:00" to="01.01.2199 00:00:00" />
     <town town="Vostryakovo" country="149" GMT="04:00:00" DST="03:00:00" />
     <coordinates>
       <latitude value="055°25'09''N" />
@@ -7748,6 +7763,21 @@
     <runways>
       <runway name="18L/36R" length="4000" surface="Concrete" />
       <runway name="18R/36L" length="3500" surface="Concrete" />
+    </runways>
+  </airport>
+  <airport name="Kyiv International Airport (Zhulyany)" icao="UKKK" iata="IEV" type="Long_Haul_International" season="All_Year">
+    <town town="Vyshneve" country="134" GMT="03:00:00" DST="02:00:00" />
+    <coordinates>
+      <latitude value="050°24'06''N" />
+      <longitude value="030°27'06''E" />
+    </coordinates>
+    <size value="Very_small" pax="862" cargo="Smallest" cargovolume="0" />
+    <terminals>
+      <terminal name="Terminal A" gates="3" />
+      <terminal name="Terminal B" gates="5" />
+    </terminals>
+    <runways>
+      <runway name="08/26" length="2310" surface="Concrete" />
     </runways>
   </airport>
   <airport name="Lviv Danylo Halytskyi International Airport" icao="UKLL" iata="LWO" type="Long_Haul_International" season="All_Year">

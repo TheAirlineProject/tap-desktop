@@ -1164,7 +1164,7 @@ namespace TheAirline.Model.GeneralModel
 
                     profile.Town = profile.GetNearestTown();
 
-                    //townElement.Attributes["town"].Value = profile.Town.Name;
+                   
 
                     Airport airport = new Airport(profile);
 
@@ -1214,7 +1214,6 @@ namespace TheAirline.Model.GeneralModel
                     if (Airports.GetAirport(a => a.Profile.ID == airport.Profile.ID) == null)
                         Airports.AddAirport(airport);
                 }
-            //    doc.Save(filename);
             }
             catch (Exception e)
             {
