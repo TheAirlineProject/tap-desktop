@@ -187,7 +187,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             string fileName = AppSettings.getCommonApplicationDataPath() + "\\saves\\" + file + ".sav";
 
             SaveObject deserializedSaveObject = FileSerializer.Deserialize<SaveObject>(fileName);
-
+            
              /*
           
             DataContractSerializer serializer = new DataContractSerializer(typeof(SaveObject));
