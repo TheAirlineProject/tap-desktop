@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+  <profile name="MIAT Mongolian Airlines" iata="OM" color="DarkBlue" country="241" CEO="Gungaagiin Jargalsaikhan " mentality="Moderate" market="Regional" preferedairport="ULN">
+    <narrative narrative="MIAT Mongolian Airlines is Mongolia's national airline, headquartered in the MIAT Building in Ulaanbaatar, the capital of Mongolia. The airline operates international scheduled services from its base at Chinggis Khaan International Airport near Ulaanbaatar." />
+  </profile>
+  <info real="True" from="1954" to="2199"></info>
+</airline>
