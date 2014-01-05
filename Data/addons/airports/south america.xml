@@ -3304,7 +3304,7 @@
       <runway name="05/23" length="1900" surface="Asphalt" />
     </runways>
   </airport>
-  <airport name="Simon Bolivar International Airport" icao="SEGU" iata="GYE" type="Long_Haul_International" season="All_Year">
+  <airport name="José Joaquín de Olmedo International Airport" icao="SEGU" iata="GYE" type="Long_Haul_International" season="All_Year">
     <town town="Guayaquil" country="210" GMT="-05:00:00" DST="-06:00:00" />
     <coordinates>
       <latitude value="002°09'26''S" />
