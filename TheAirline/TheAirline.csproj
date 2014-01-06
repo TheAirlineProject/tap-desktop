@@ -1467,6 +1467,7 @@
     <Compile Include="Model\GeographyModel\CountryModel\BaseUnit.cs" />
     <Compile Include="Model\GeographyModel\CountryModel\Country.cs" />
     <Compile Include="Model\GeographyModel\CountryModel\CountryTailNumber.cs" />
+    <Compile Include="Model\GeographyModel\MetroArea.cs" />
     <Compile Include="Model\GeographyModel\State.cs" />
     <Compile Include="Model\GeographyModel\CountryModel\UnionMember.cs" />
     <Compile Include="Model\GeneralModel\GameObject.cs" />
