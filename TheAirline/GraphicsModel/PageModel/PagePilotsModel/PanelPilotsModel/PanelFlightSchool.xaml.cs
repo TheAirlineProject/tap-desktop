@@ -11,6 +11,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using TheAirline.Model.GeographyModel;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GraphicsModel.PageModel.GeneralModel;

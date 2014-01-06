@@ -9,6 +9,7 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.WeatherModel;
+using TheAirline.Model.GeographyModel;
 
 namespace TheAirline.Model.AirportModel
 {
@@ -109,13 +110,24 @@ namespace TheAirline.Model.AirportModel
             return pax;
         }
 
-        public Town GetNearestTown()
+        public Town getNearestTown()
         {
-            const double tolerance = 0.01;
+            const double tolerance = 0.00001;
             //here we use a standard loop because of the extra comparison
             var towns = Towns.GetTowns();
             var minDist = towns.Min(_ => Coordinates.GetDistanceTo(_.Coordinates));
             var closest = towns.First(_ => Math.Abs(Coordinates.GetDistanceTo(_.Coordinates) - minDist) < tolerance);
+            return closest;
+        }
+
+        public Town getNearestTown(Country country)
+        {
+            const double tolerance = 0.0001;
+            //here we use a standard loop because of the extra comparison
+            var towns = Towns.GetTowns().FindAll(t => t.Country == country);
+            var minDist = towns.Min(_ => Coordinates.GetDistanceTo(_.Coordinates));
+            var closest = towns.First(_ => Math.Abs(Coordinates.GetDistanceTo(_.Coordinates) - minDist) < tolerance);
+
             return closest;
         }
 

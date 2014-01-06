@@ -13,6 +13,7 @@ using System.Windows.Shapes;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
+using TheAirline.Model.GeographyModel;
 
 namespace TheAirline.GraphicsModel.PageModel.GeneralModel
 {

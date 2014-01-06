@@ -23,6 +23,7 @@ using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using System.Diagnostics;
 using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.Model.GeographyModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {

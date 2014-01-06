@@ -1442,7 +1442,7 @@
     <Compile Include="Model\AirportModel\Hub.cs" />
     <Compile Include="Model\AirportModel\HubType.cs" />
     <Compile Include="Model\GeneralModel\CalendarItem.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Continent.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\Continent.cs" />
     <Compile Include="Model\GeneralModel\Helpers\EventsHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\SerializedLoadSaveHelpers.cs" />
     <Compile Include="Model\GeneralModel\NewsFeed.cs" />
@@ -1459,16 +1459,16 @@
     <Compile Include="Model\GeneralModel\StatisticsModel\Ratings.cs" />
     <Compile Include="Model\AirportModel\Runway.cs" />
     <Compile Include="Model\AirportModel\Terminal.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\CountryCurrency.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\CountryCurrency.cs" />
     <Compile Include="Model\GeneralModel\DifficultyLevel.cs" />
     <Compile Include="Model\GeneralModel\AppSettings.cs" />
     <Compile Include="Model\GeneralModel\Configuration.cs" />
     <Compile Include="Model\GeneralModel\Coordinates.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\BaseUnit.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Country.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\CountryTailNumber.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\TownModel\State.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\UnionMember.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\BaseUnit.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\Country.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\CountryTailNumber.cs" />
+    <Compile Include="Model\GeographyModel\State.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\UnionMember.cs" />
     <Compile Include="Model\GeneralModel\GameObject.cs" />
     <Compile Include="Model\GeneralModel\GameTimeZone.cs" />
     <Compile Include="Model\GeneralModel\Helpers\AIHelpers.cs" />
@@ -1497,16 +1497,16 @@
     <Compile Include="Model\GeneralModel\NewsBox.cs" />
     <Compile Include="Model\GeneralModel\Helpers\MathHelpers.cs" />
     <Compile Include="Model\GeneralModel\Helpers\PassengerHelpers.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\TemporaryCountry.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Union.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\TemporaryCountry.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\Union.cs" />
     <Compile Include="Model\GeneralModel\Period.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\TownModel\Town.cs" />
+    <Compile Include="Model\GeographyModel\Town.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\HourlyWeather.cs" />
     <Compile Include="Model\GeneralModel\WeatherModel\WeatherAverage.cs" />
     <Compile Include="Model\PassengerModel\DestinationDemand.cs" />
     <Compile Include="Model\PassengerModel\FlightRestriction.cs" />
     <Compile Include="Model\PassengerModel\PassengerRouteFinder.cs" />
-    <Compile Include="Model\GeneralModel\CountryModel\Region.cs" />
+    <Compile Include="Model\GeographyModel\CountryModel\Region.cs" />
     <Compile Include="Model\GeneralModel\Settings.cs" />
     <Compile Include="Model\GeneralModel\Setup.cs" />
     <Compile Include="Model\GeneralModel\StatisticsModel\GeneralStatistics.cs" />
@@ -1682,6 +1682,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Fonts\" />
+    <Folder Include="Model\GeographyModel\TownModel\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="GraphicsModel\PageModel\PageFinancesModel\darkbg.jpg" />

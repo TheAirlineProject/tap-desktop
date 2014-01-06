@@ -17,6 +17,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeographyModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.CountryModel;
 using TheAirline.Model.GeneralModel.HolidaysModel;
@@ -1162,7 +1163,7 @@ namespace TheAirline.Model.GeneralModel
 
                     profile.PaxValues = paxValues;
 
-                    profile.Town = profile.GetNearestTown();
+                    profile.Town = profile.getNearestTown(Countries.GetCountry(country));
 
                     if (town.Contains(","))
                     {
