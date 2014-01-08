@@ -115,11 +115,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
             int gates = Math.Min(2, airport.Airport.Terminals.NumberOfFreeGates);
 
-           WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
-            
-           if (result == WPFMessageBoxResult.Yes)
+           //WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2222"), string.Format(Translator.GetInstance().GetString("MessageBox", "2222", "message"),gates, airport.Airport.Profile.Name), WPFMessageBoxButtons.YesNo);
+
+           object o = PopUpAirportContract.ShowPopUp(airport.Airport);
+
+           if (o != null)
            {
-               if (!hasCheckin)
+               AirportContract.ContractType contractType = (AirportContract.ContractType)o;
+
+               if (!hasCheckin && contractType == AirportContract.ContractType.Full)
                {
                    AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
 
@@ -128,9 +132,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
 
                }
 
-               double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,gates,2);
+               double yearlyPayment = AirportHelpers.GetYearlyContractPayment(airport.Airport,contractType, gates,2);
 
-               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,GameObject.GetInstance().GameTime,gates,2,yearlyPayment);
+               AirportContract contract = new AirportContract(GameObject.GetInstance().HumanAirline,airport.Airport,contractType,GameObject.GetInstance().GameTime,gates,2,yearlyPayment);
 
                airport.addAirlineContract(contract);
           

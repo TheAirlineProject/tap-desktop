@@ -114,7 +114,6 @@ namespace TheAirline.Model.AirportModel
         //removes an airline airport contract from the airport
         public void removeAirlineContract(AirportContract contract)
         {
-
             lock (this._Contracts)
             {
                 this._Contracts.Remove(contract);
@@ -127,6 +126,12 @@ namespace TheAirline.Model.AirportModel
         public List<AirportContract> getAirlineContracts(Airline airline)
         {
             return this.AirlineContracts.FindAll(a => a.Airline == airline);
+        }
+        //returns if an airline has a contract of a specific type
+        public Boolean hasContractType(Airline airline, AirportContract.ContractType type)
+        {
+
+            return this.AirlineContracts.Exists(c => c.Airline == airline && c.Type == type);
         }
         //return all airline contracts
         public List<AirportContract> getAirlineContracts()

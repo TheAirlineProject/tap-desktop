@@ -165,9 +165,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 this.Classes.Add(eClass);
             }
 
-            long minRequiredRunway = this.Type.MinRunwaylength;
+            long minRunway = this.Type.MinRunwaylength;
 
-            foreach (var homebase in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= minRequiredRunway))
+            var homebases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline, AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
+         
+            foreach (var homebase in homebases)
                 this.Homebases.Add(homebase);
 
 

@@ -92,7 +92,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             foreach (Airport destination in domesticDemand.Take(Math.Min(50, domesticDemand.Count())))
                 this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination), DemandMVVM.DestinationType.Domestic));
             
-            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null).Select(f=>f.Facility).ToList();
+            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).ToList();
 
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
            
@@ -195,7 +195,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         //adds an airline contract to the airport
         public void addAirlineContract(AirportContract contract)
         {
-            this.Airport.addAirlineContract(contract);
+            AirportHelpers.AddAirlineContract(contract);
 
             this.Contracts.Add(new ContractMVVM(contract));
 
@@ -701,9 +701,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             int gates = System.Convert.ToInt16(values[0]);
             int lenght = System.Convert.ToInt16(values[1]);
-            Airport airport = (Airport)values[2];
+            AirportContract.ContractType contractType = (AirportContract.ContractType)values[2];
+            Airport airport = (Airport)values[3];
 
-            return new ValueCurrencyConverter().Convert(AirportHelpers.GetYearlyContractPayment(airport, gates, lenght));
+            return new ValueCurrencyConverter().Convert(AirportHelpers.GetYearlyContractPayment(airport,contractType, gates, lenght));
 
         }
 

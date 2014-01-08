@@ -119,7 +119,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets up an opponent airline
         private static void SetupOpponentAirline(ScenarioAirline airline)
         {
-            AirportHelpers.RentGates(airline.Homebase, airline.Airline);
+            AirportHelpers.RentGates(airline.Homebase, airline.Airline,AirportContract.ContractType.Full);
           
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
@@ -178,7 +178,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             for (int i = 0; i < quantity; i++)
             {
                 if (!AirportHelpers.HasFreeGates(airport,airline))
-                    AirportHelpers.RentGates(airport, airline);
+                    AirportHelpers.RentGates(airport, airline,AirportContract.ContractType.Full);
             }
 
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);

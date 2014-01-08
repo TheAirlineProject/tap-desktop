@@ -152,7 +152,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 oldContract.Airport = newAirport;
 
-                newAirport.addAirlineContract(oldContract);
+                AirportHelpers.AddAirlineContract(oldContract);
+
 
                 for (int i = 0; i < oldContract.NumberOfGates; i++)
                 {
@@ -301,7 +302,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airportHomeBase.addAirportFacility(sAirline, checkinFacility, GameObject.GetInstance().GameTime);
 
             if (!AirportHelpers.HasFreeGates(airportHomeBase, sAirline))
-                AirportHelpers.RentGates(airportHomeBase, sAirline, 2);
+                AirportHelpers.RentGates(airportHomeBase, sAirline,AirportContract.ContractType.Full, 2);
 
             Airlines.AddAirline(sAirline);
 

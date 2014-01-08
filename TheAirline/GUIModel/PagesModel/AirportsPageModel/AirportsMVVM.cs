@@ -50,7 +50,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
         }
         public void addAirlineContract(AirportContract contract)
         {
-            this.Airport.addAirlineContract(contract);
+            AirportHelpers.AddAirlineContract(contract);
+
             this.IsHuman = GameObject.GetInstance().HumanAirline.Airports.Contains(this.Airport);
             this.NumberOfFreeGates = this.Airport.Terminals.NumberOfFreeGates;
             this.NumberOfAirlines = this.Airport.AirlineContracts.Select(c => c.Airline).Distinct().Count();

@@ -55,10 +55,18 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             Boolean hasCargoRoute = GameObject.GetInstance().HumanAirline.Routes.Exists(r => (r.Destination1 == this.Airport.Airport || r.Destination2 == this.Airport.Airport) && r.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo);
             Boolean airportHasCargoTerminal = this.Airport.Airport.getCurrentAirportFacility(null, AirportFacility.FacilityType.Cargo) != null && this.Airport.Airport.getCurrentAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel > 0;
+            
+            AirportContract contract = this.Airport.Contracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline) ==null ? null :this.Airport.Contracts.Where(a=>a.Airline == GameObject.GetInstance().HumanAirline).First().Contract;
 
-            if ((facility.Facility.Facility.TypeLevel == 1 && facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && this.Airport.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline)))
+            Boolean isMinimumServiceFacility = facility.Facility.Facility.TypeLevel == 1 && facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && this.Airport.Airport.hasAsHomebase(GameObject.GetInstance().HumanAirline) && (contract == null || contract.Type != AirportContract.ContractType.Full_Service);
+            Boolean isMinimumHubFacility = facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && hasHub && facility.Facility.Facility == Hub.MinimumServiceFacility && (contract == null || contract.Type == AirportContract.ContractType.Full || contract.Type != AirportContract.ContractType.Medium_Service);
+            Boolean isMinimumCheckinFacility = facility.Facility.Facility.Type == AirportFacility.FacilityType.CheckIn && facility.Facility.Facility.TypeLevel == 1 && contract != null && contract.Type == AirportContract.ContractType.Full;
+
+            if (isMinimumCheckinFacility)
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2230"), Translator.GetInstance().GetString("MessageBox", "2230", "message"), WPFMessageBoxButtons.Ok);
+              else if (isMinimumServiceFacility)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2203"), Translator.GetInstance().GetString("MessageBox", "2203", "message"), WPFMessageBoxButtons.Ok);
-            else if (facility.Facility.Facility.Type == AirportFacility.FacilityType.Service && hasHub && facility.Facility.Facility == Hub.MinimumServiceFacility)
+            else if (isMinimumHubFacility)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2214"), string.Format(Translator.GetInstance().GetString("MessageBox", "2214", "message"), Hub.MinimumServiceFacility.Name), WPFMessageBoxButtons.Ok);
             else if (facility.Facility.Facility.Type == AirportFacility.FacilityType.Cargo && facility.Facility.Facility.TypeLevel == 1 && hasCargoRoute && !airportHasCargoTerminal)
                 WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2223"), Translator.GetInstance().GetString("MessageBox", "2223", "message"), WPFMessageBoxButtons.Ok);

@@ -2656,16 +2656,16 @@ Good luck.</value>
     <value>All destinations must have cargo facilities to create a route</value>
   </data>
   <data name="PopUpAirportContract_1000_name" xml:space="preserve">
-    <value>Create contract with {0}</value>
+    <value>Select Contract Type</value>
   </data>
   <data name="PopUpAirportContract_1001_name" xml:space="preserve">
-    <value>Number of gates</value>
+    <value>Full Contract</value>
   </data>
   <data name="PopUpAirportContract_1002_name" xml:space="preserve">
-    <value>Years of contract</value>
+    <value>Requires Check-In Facilities</value>
   </data>
   <data name="PopUpAirportContract_1003_name" xml:space="preserve">
-    <value>Yearly payment</value>
+    <value>Handler w/Full Services</value>
   </data>
   <data name="MessageBox_2224_message" xml:space="preserve">
     <value>You can't terminate the contract since one or more of the gates are in use.</value>
@@ -2695,7 +2695,7 @@ Good luck.</value>
     <value>Route type</value>
   </data>
   <data name="PopUpAirportContract_1004_name" xml:space="preserve">
-    <value>Pay up front</value>
+    <value>Includes Service Center, Check-In Facilities and Shared Ticket Office</value>
   </data>
   <data name="PageNewGame_203_name" xml:space="preserve">
     <value>Next</value>
@@ -4691,5 +4691,26 @@ Good luck.</value>
   </data>
   <data name="PopUpCompareAirports_1007_name" xml:space="preserve">
     <value>Total Pax Demand</value>
+  </data>
+  <data name="PageAirportInfo_1042_name" xml:space="preserve">
+    <value>Contract Type</value>
+  </data>
+  <data name="MessageBox_2230_message" xml:space="preserve">
+    <value>You have a contract at the airport so you need a least some check-in facilities.</value>
+  </data>
+  <data name="MessageBox_2230_name" xml:space="preserve">
+    <value>Error removing facility</value>
+  </data>
+  <data name="PopUpAirportContract_1005_name" xml:space="preserve">
+    <value>Handler w/Medium Services</value>
+  </data>
+  <data name="PopUpAirportContract_1006_name" xml:space="preserve">
+    <value>Includes Shared Ticket Office and Check-In Facilities</value>
+  </data>
+  <data name="PopUpAirportContract_1007_name" xml:space="preserve">
+    <value>Handler w/Minimum Services</value>
+  </data>
+  <data name="PopUpAirportContract_1008_name" xml:space="preserve">
+    <value>Includes Check-In Facilities</value>
   </data>
 </root>

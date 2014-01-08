@@ -325,17 +325,24 @@
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1023'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1023'}" Width="75">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding NumberOfGates}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
-                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1024'}" Width="100">
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1024'}" Width="75">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <TextBlock Text="{Binding MonthsLeft}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1042'}" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Contract.Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -376,7 +383,18 @@
                                 </Style.Triggers>
                             </Style>
                         </Expander.Style>
+                        
                         <StackPanel>
+                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1042'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
+                                <ComboBox IsSynchronizedWithCurrentItem="True" VerticalAlignment="Bottom" Width="150" Name="cbContractType" ItemsSource="{Binding ContractTypes,ElementName=pageAirportInfo}" Style="{StaticResource ComboBoxTransparentStyle}">
+                                    <ComboBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                        </DataTemplate>
+                                    </ComboBox.ItemTemplate>
+                                </ComboBox>
+                            </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1026'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                                 <Slider Name="slContractGates" Minimum="1" Maximum="{Binding FreeGates}" TickFrequency="1" Width="100" IsSnapToTickEnabled="True"></Slider>
@@ -389,13 +407,15 @@
                                 <TextBlock Text="{Binding Value,ElementName=slContractLenght}" VerticalAlignment="Bottom"></TextBlock>
 
                             </WrapPanel>
-                            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                            
+                                <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportInfo 1028'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                                 <TextBlock VerticalAlignment="Bottom">
                                     <TextBlock.Text>
                                         <MultiBinding Converter="{StaticResource ContractYearlyPaymentConverter}">
                                             <Binding Path="Value" ElementName="slContractGates"></Binding>
                                             <Binding Path="Value" ElementName="slContractLenght"></Binding>
+                                            <Binding Path="SelectedItem" ElementName="cbContractType"></Binding>
                                             <Binding Path="Airport"></Binding>
                                         </MultiBinding>
                                     </TextBlock.Text>

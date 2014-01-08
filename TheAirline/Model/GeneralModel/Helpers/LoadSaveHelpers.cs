@@ -351,8 +351,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      Boolean contractExclusive = Convert.ToBoolean(contractNode.Attributes["exclusive"].Value);
                      Terminal contractTerminal = contractNode.HasAttribute("terminal") ? airport.Terminals.AirportTerminals.Find(t => t.Name == contractNode.Attributes["terminal"].Value) : null;
 
-                     AirportContract contract = new AirportContract(contractAirline, airport, contractDate, contractGates, contractLength, contractPayment,false, contractExclusive, contractTerminal);
-                     airport.addAirlineContract(contract);
+                     AirportContract contract = new AirportContract(contractAirline, airport,AirportContract.ContractType.Full, contractDate, contractGates, contractLength, contractPayment,false, contractExclusive, contractTerminal);
+                     AirportHelpers.AddAirlineContract(contract);
+
                  }
 
 

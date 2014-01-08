@@ -36,7 +36,15 @@
                             </Style>
                         </StackPanel.Style>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-                        <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" DisplayMemberPath="Name" SelectedValuePath="Name" ItemsSource="{Binding AirportFacilities}">
+                        <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirportFacilities}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <Image Source="/data/images/airplane.png" VerticalAlignment="Bottom" Width="20" RenderOptions.BitmapScalingMode="HighQuality"/>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
                         </ListBox>
                     </StackPanel>
                     <StackPanel Margin="0 10 0 0">

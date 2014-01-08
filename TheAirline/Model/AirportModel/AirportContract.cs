@@ -15,6 +15,9 @@ namespace TheAirline.Model.AirportModel
     //the class for a contract at an airport for an airline
     public class AirportContract : ISerializable
     {
+        public enum ContractType { Full, Full_Service, Medium_Service, Low_Service }
+        [Versioning("type",Version=2)]
+        public ContractType Type { get; set; }
         [Versioning("airline")]
         public Airline Airline { get; set; }
         [Versioning("airport")]
@@ -36,8 +39,9 @@ namespace TheAirline.Model.AirportModel
         public DateTime ExpireDate { get; set; }
         [Versioning("payfull")]
         public Boolean PayFull { get; set; }
-        public AirportContract(Airline airline, Airport airport, DateTime date, int numberOfGates, int length, double yearlyPayment,Boolean payFull = false, Boolean isExclusiveDeal = false, Terminal terminal = null)
+        public AirportContract(Airline airline, Airport airport, ContractType type, DateTime date, int numberOfGates, int length, double yearlyPayment,Boolean payFull = false, Boolean isExclusiveDeal = false, Terminal terminal = null)
         {
+            this.Type = type;
             this.PayFull = payFull;
             this.Airline = airline;
             this.Airport = airport;
@@ -48,6 +52,7 @@ namespace TheAirline.Model.AirportModel
             this.IsExclusiveDeal = isExclusiveDeal;
             this.Terminal = terminal;
             this.ExpireDate = this.ContractDate.AddYears(this.Length);
+
         }
         //returns the number of months left for the contract
         public int getMonthsLeft()
@@ -95,13 +100,17 @@ namespace TheAirline.Model.AirportModel
 
             }
 
+            if (version == 1)
+            {
+                this.Type = ContractType.Full;
+            }
 
 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

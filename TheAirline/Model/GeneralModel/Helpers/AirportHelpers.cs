@@ -625,7 +625,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             return airport.Terminals.getFreeSlotsPercent(airline) > 90;
         }
         //rents a "standard" amount of gates at an airport for an airline
-        public static Boolean RentGates(Airport airport, Airline airline)
+        public static Boolean RentGates(Airport airport, Airline airline, AirportContract.ContractType type)
         {
             int maxGates = airport.Terminals.getFreeGates();
 
@@ -634,19 +634,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (gatesToRent == 0)
                 return false;
 
-            RentGates(airport, airline, gatesToRent);
+            RentGates(airport, airline,type, gatesToRent);
 
             return true;
 
         }
-        public static void RentGates(Airport airport, Airline airline, int gates)
+        public static void RentGates(Airport airport, Airline airline,AirportContract.ContractType type, int gates)
         {
             int currentgates = airport.AirlineContracts.Where(a => a.Airline == airline).Sum(c => c.NumberOfGates);
-            AirportContract contract = new AirportContract(airline, airport, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport, gates, 20));
+            AirportContract contract = new AirportContract(airline, airport,type, GameObject.GetInstance().GameTime, gates, 20, GetYearlyContractPayment(airport,type, gates, 20));
             
             if (currentgates == 0)
             {
-                airport.addAirlineContract(contract);
+                AddAirlineContract(contract);
             }
             else
             {
@@ -663,7 +663,43 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
 
         }
+        //adds an airport contract for an airline to an airport
+        public static void AddAirlineContract(AirportContract contract)
+        {
+            contract.Airport.addAirlineContract(contract);
 
+            AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Where(f=>f.TypeLevel==1).First();
+            AirportFacility ticketFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice).Where(f => f.TypeLevel == 1).First();
+            AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Where(f => f.TypeLevel == 1).First();
+
+            if (contract.Type == AirportContract.ContractType.Full_Service)
+            {
+                if (contract.Airport.getAirlineAirportFacility(null,AirportFacility.FacilityType.CheckIn).Facility.TypeLevel < checkinFacility.TypeLevel)
+                    contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
+                
+                if (contract.Airport.getAirlineAirportFacility(null,AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel < ticketFacility.TypeLevel)
+                    contract.Airport.addAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);   
+                
+                if (contract.Airport.getAirlineAirportFacility(null,AirportFacility.FacilityType.Service).Facility.TypeLevel < serviceFacility.TypeLevel)
+                    contract.Airport.addAirportFacility(null, serviceFacility, GameObject.GetInstance().GameTime);
+            }
+            if (contract.Type == AirportContract.ContractType.Medium_Service)
+            {
+                if (contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn).Facility.TypeLevel < checkinFacility.TypeLevel)
+                    contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
+
+                if (contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel < ticketFacility.TypeLevel)
+                    contract.Airport.addAirportFacility(null, ticketFacility, GameObject.GetInstance().GameTime);   
+              
+    
+            }
+            if (contract.Type == AirportContract.ContractType.Low_Service)
+            {
+                if (contract.Airport.getAirlineAirportFacility(null, AirportFacility.FacilityType.CheckIn).Facility.TypeLevel < checkinFacility.TypeLevel)
+                    contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
+
+            }
+        }
         //returns all occupied slot times for an airline at an airport (15 minutes slots)
         public static List<TimeSpan> GetOccupiedSlotTimes(Airport airport, Airline airline, List<AirportContract> contracts,Weather.Season season)
         {
@@ -739,9 +775,21 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
         }
         //returns the yearly payment for a number of gates
-        public static double GetYearlyContractPayment(Airport airport, int gates, int length)
+        public static double GetYearlyContractPayment(Airport airport, AirportContract.ContractType type, int gates, int length)
         {
-            double basePrice = airport.getGatePrice() * 12;
+            double basePrice = 0;
+            
+            if (type == AirportContract.ContractType.Full)
+                basePrice = airport.getGatePrice() * 12;
+
+            if (type == AirportContract.ContractType.Low_Service)
+                basePrice = airport.getGatePrice() * 15;
+
+            if (type == AirportContract.ContractType.Medium_Service)
+                basePrice = airport.getGatePrice() * 21;
+
+            if (type == AirportContract.ContractType.Full_Service)
+                basePrice = airport.getGatePrice() * 25;
 
             double lengthFactor = 100 - length;
 

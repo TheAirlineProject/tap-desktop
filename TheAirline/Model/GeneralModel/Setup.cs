@@ -2367,7 +2367,7 @@ namespace TheAirline.Model.GeneralModel
 			//creates the start data for an airline
 			if (startData != null)
 			{
-				AirportHelpers.RentGates(airportHomeBase, airline);
+				AirportHelpers.RentGates(airportHomeBase, airline,AirportContract.ContractType.Full);
 
 				CreateAirlineStartData(airline, startData);
 			}
@@ -2397,10 +2397,10 @@ namespace TheAirline.Model.GeneralModel
 				}
 				else
 				{
-					airportHomeBase.addAirlineContract(new AirportContract(airline, airportHomeBase, GameObject.GetInstance().GameTime, 2, 25, 0));
+                    AirportHelpers.AddAirlineContract(new AirportContract(airline, airportHomeBase, AirportContract.ContractType.Full, GameObject.GetInstance().GameTime, 2, 25, 0));
 
-					AirportHelpers.RentGates(airportDestination, airline);
-					airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+					AirportHelpers.RentGates(airportDestination, airline,AirportContract.ContractType.Low_Service);
+					//airportDestination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
 					Guid id = Guid.NewGuid();
 
@@ -2474,11 +2474,11 @@ namespace TheAirline.Model.GeneralModel
 
                 if (dest1 != null && dest2 != null)
                 {
-                    if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                        dest1.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    //if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                        //dest1.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
-                    if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                        dest2.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                    //if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                        //dest2.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
                     if (dest1.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && dest1.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && airline.AirlineRouteFocus == Route.RouteType.Cargo)
                         dest1.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
@@ -2486,12 +2486,11 @@ namespace TheAirline.Model.GeneralModel
                     if (dest2.getAirportFacility(airline, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && dest2.getAirportFacility(null, AirportFacility.FacilityType.Cargo).TypeLevel == 0 && airline.AirlineRouteFocus == Route.RouteType.Cargo)
                         dest2.addAirportFacility(airline, cargoTerminal, GameObject.GetInstance().GameTime);
 
-
                     if (!AirportHelpers.HasFreeGates(dest1, airline))
-                        AirportHelpers.RentGates(dest1, airline);
+                        AirportHelpers.RentGates(dest1, airline,AirportContract.ContractType.Low_Service);
 
                     if (!AirportHelpers.HasFreeGates(dest2, airline))
-                        AirportHelpers.RentGates(dest2, airline);
+                        AirportHelpers.RentGates(dest2, airline,AirportContract.ContractType.Low_Service);
 
                     Guid id = Guid.NewGuid();
 
@@ -2634,19 +2633,19 @@ namespace TheAirline.Model.GeneralModel
                 {
                     for (int i = 0; i < Math.Min(routes.Destinations / startDataFactor, origin.Terminals.getFreeGates()); i++)
                     {
-                        if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                            origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                        //if (origin.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                            //origin.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
                         if (!AirportHelpers.HasFreeGates(origin, airline))
-                            AirportHelpers.RentGates(origin, airline);
+                            AirportHelpers.RentGates(origin, airline,AirportContract.ContractType.Low_Service);
 
                         Airport destination = GetStartDataRoutesDestination(routes);
 
-                        if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
-                            destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
+                        //if (destination.getAirportFacility(airline, AirportFacility.FacilityType.CheckIn).TypeLevel == 0)
+                            //destination.addAirportFacility(airline, checkinFacility, GameObject.GetInstance().GameTime);
 
                         if (!AirportHelpers.HasFreeGates(destination, airline))
-                            AirportHelpers.RentGates(destination, airline);
+                            AirportHelpers.RentGates(destination, airline,AirportContract.ContractType.Low_Service);
 
                         Guid id = Guid.NewGuid();
 
