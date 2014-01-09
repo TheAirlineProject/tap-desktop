@@ -400,7 +400,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     BinaryFormatter bFormatter = new BinaryFormatter();
 
                     bFormatter.Serialize(stream, objectToSerialize);
-                  
+                    /*
+                     var serializer = new DataContractSerializer(objectToSerialize.GetType(), null, 
+            0x7FFF /*maxItemsInObjectGraph, */
+           // false /*ignoreExtensionDataObject*/, 
+           // true /*preserveObjectReferences : this is where the magic happens */, 
+           // null /*dataContractSurrogate*/);
+        //serializer.WriteObject(stream, objectToSerialize);
                 }
 
                 finally
@@ -409,7 +415,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     if (stream != null)
 
                         stream.Close();
-
                 }
 
             }

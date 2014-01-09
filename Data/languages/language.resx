@@ -4713,4 +4713,19 @@ Good luck.</value>
   <data name="PopUpAirportContract_1008_name" xml:space="preserve">
     <value>Includes Check-In Facilities</value>
   </data>
+  <data name="MessageBox_2014_message" xml:space="preserve">
+    <value>Are you sure you want to convert this airliner to a cargo airliner for {0}?</value>
+  </data>
+  <data name="MessageBox_2014_name" xml:space="preserve">
+    <value>Convert airliner</value>
+  </data>
+  <data name="MessageBox_2015_message" xml:space="preserve">
+    <value>You don't have enough money to convert the airliner to a cargo airliner</value>
+  </data>
+  <data name="MessageBox_2015_name" xml:space="preserve">
+    <value>Can't convert airliner</value>
+  </data>
+  <data name="PageFleetAirlinerInformation_205_name" xml:space="preserve">
+    <value>Convert to Cargo</value>
+  </data>
 </root>

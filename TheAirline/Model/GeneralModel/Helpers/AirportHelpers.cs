@@ -783,13 +783,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 basePrice = airport.getGatePrice() * 12;
 
             if (type == AirportContract.ContractType.Low_Service)
-                basePrice = airport.getGatePrice() * 15;
+                basePrice = airport.getGatePrice() * 13;
 
             if (type == AirportContract.ContractType.Medium_Service)
-                basePrice = airport.getGatePrice() * 21;
+                basePrice = airport.getGatePrice() * 17;
 
             if (type == AirportContract.ContractType.Full_Service)
-                basePrice = airport.getGatePrice() * 25;
+                basePrice = airport.getGatePrice() * 20;
 
             double lengthFactor = 100 - length;
 

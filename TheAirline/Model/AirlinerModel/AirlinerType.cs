@@ -18,7 +18,8 @@ namespace TheAirline.Model.AirlinerModel
         public double Maintenance { get { return getMaintenance(); } private set { ;} }
         [Versioning("name")]
         public string Name { get; set; }
-
+        [Versioning("isconvertable",Version=2)]
+        public Boolean IsConvertable { get; set; }
         [Versioning("speed")]
         public double CruisingSpeed { get; set; }
 
@@ -74,7 +75,7 @@ namespace TheAirline.Model.AirlinerModel
         [Versioning("family")]
         public string AirlinerFamily { get; set; }
         public int Capacity { get { return getCapacity(); } private set { ;} }
-        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name,string family, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate, Boolean standardType)
+        public AirlinerType(Manufacturer manufacturer,TypeOfAirliner typeOfAirliner, string name,string family, int cockpitCrew, double speed, long range, double wingspan, double length, double consumption, long price,long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced,int prodRate,Boolean isConvertable, Boolean standardType)
         {
             this.TypeAirliner = typeOfAirliner;
             this.AirlinerFamily = family;
@@ -95,6 +96,7 @@ namespace TheAirline.Model.AirlinerModel
             this.FuelCapacity = fuelcapacity;
             this.IsStandardType = standardType;
             this.ProductionRate = prodRate;
+            this.IsConvertable = isConvertable;
         }
        
         //returns the yearly maintenance
@@ -175,7 +177,7 @@ namespace TheAirline.Model.AirlinerModel
         public int CabinCrew { get; set; }
         [Versioning("maxclasses")]
         public int MaxAirlinerClasses { get; set; }
-        public AirlinerPassengerType(Manufacturer manufacturer, string name,string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
+        public AirlinerPassengerType(Manufacturer manufacturer, string name,string family, int seating, int cockpitcrew, int cabincrew, double speed, long range, double wingspan, double length, double consumption, long price, int maxAirlinerClasses, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate,Boolean isConvertable, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Passenger,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,isConvertable, standardType)
         {
             this.MaxSeatingCapacity = seating;
             this.CabinCrew = cabincrew;
@@ -243,7 +245,7 @@ namespace TheAirline.Model.AirlinerModel
     {
         [Versioning("cargo")]
         public double CargoSize { get; set; }
-        public AirlinerCargoType(Manufacturer manufacturer, string name,string family, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,standardType)
+        public AirlinerCargoType(Manufacturer manufacturer, string name,string family, int cockpitcrew, double cargoSize,  double speed, long range, double wingspan, double length, double consumption, long price, long minRunwaylength, long fuelcapacity, BodyType body, TypeRange rangeType, EngineType engine, Period<DateTime> produced, int prodRate,Boolean isConvertable, Boolean standardType = true) : base(manufacturer,TypeOfAirliner.Cargo,name,family,cockpitcrew,speed,range,wingspan,length,consumption,price,minRunwaylength,fuelcapacity,body,rangeType,engine,produced, prodRate,isConvertable, standardType)
         {
             this.CargoSize = cargoSize;
         }
@@ -291,12 +293,17 @@ namespace TheAirline.Model.AirlinerModel
 
                 }
 
+                if (version == 1)
+                {
+                    this.IsConvertable = false;
+                }
+
             }
         }
 
         public new void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

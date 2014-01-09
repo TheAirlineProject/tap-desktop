@@ -92,11 +92,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return airliner;
         }
-        //converts the passenger capacity for an airliner type to cargo capacity
-        public static double ConvertPassengersToCargoSize(AirlinerPassengerType type)
-        {
-            return type.MaxSeatingCapacity * 2;
-        }
+     
         //returns the airliner classes for an airliner
         public static List<AirlinerClass> GetAirlinerClasses(AirlinerType type)
         {
@@ -265,6 +261,34 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return string.Format("{0}{1}", aClass.SeatingCapacity, symbol);
         }
-       
+        //returns the cargo size for a passenger airliner if needed to converted
+        public static double GetPassengerCargoSize(AirlinerPassengerType type)
+        {
+            return Convert.ToDouble(type.MaxSeatingCapacity) * 1.25;
+        }
+        //return the days for converting a passenger airliner to a cargo airliner
+        public static int GetCargoConvertingDays(AirlinerPassengerType type)
+        {
+            return (int)(Convert.ToDouble(type.MaxSeatingCapacity) / 1.15);
+        }
+        //returns the price for converting a passenger airliner to a cargo airliner
+        public static double GetCargoConvertingPrice(AirlinerPassengerType type)
+        {
+          //  ændre fly / På passenger route check box til "Tag cargo med hvis muligt". Så kan combi airliners bruges herpå./Skal Combi route være en passenger route men med cargo price?
+            double basePrice = 650000;
+
+            if (type.Body == AirlinerType.BodyType.Single_Aisle)
+                basePrice = basePrice * 1.2;
+
+            if (type.Body == AirlinerType.BodyType.Narrow_Body)
+                basePrice = basePrice * 2.4;
+
+            if (type.Body == AirlinerType.BodyType.Wide_Body)
+                basePrice = basePrice * 3.6;
+
+            double paxRate = type.MaxSeatingCapacity * 800;
+
+            return GeneralHelpers.GetInflationPrice(basePrice + paxRate);
+        }
     }
 }

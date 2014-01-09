@@ -18,6 +18,7 @@ using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PilotModel;
 
 namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
@@ -269,6 +270,27 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
                 tClass.Seating = Convert.ToInt16(Convert.ToDouble(tClass.RegularSeatingCapacity) / tClass.Facilities.Where(f => f.Type == AirlinerFacility.FacilityType.Seat).First().SelectedFacility.SeatUses);
             }*/
          }
+        private void btnConvert_Click(object sender, RoutedEventArgs e)
+        {
+            double price = AirlinerHelpers.GetCargoConvertingPrice(this.Airliner.Airliner.Airliner.Type as AirlinerPassengerType);
+
+            if (price > GameObject.GetInstance().HumanAirline.Money)
+            {
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2015"), string.Format(Translator.GetInstance().GetString("MessageBox", "2015", "message")), WPFMessageBoxButtons.Ok);
+            }
+            else
+            {
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2014"), string.Format(Translator.GetInstance().GetString("MessageBox", "2014", "message"),new ValueCurrencyConverter().Convert(price)), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airliner.convertToCargo();
+
+                    AirlineHelpers.AddAirlineInvoice(this.Airliner.Airliner.Airliner.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -price);
+
+                }
+            }
+        }
 
         private void btnEditHomebase_Click(object sender, RoutedEventArgs e)
         {
@@ -292,6 +314,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             }
         }
 
+       
      
       
 

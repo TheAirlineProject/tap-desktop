@@ -36,7 +36,7 @@
 		<capacity passengers="62" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
 		<produced from="2011" to="2014"/> <!--stretched version-->
 	</airliner>
-	<airliner manufacturer="Ark" name="Ark 202-300" price="1600230"> <!--6000000-->
+	<airliner manufacturer="Ark" name="Ark 202-300" price="1600230" convertable="True"> <!--6000000-->
 		<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
 		<specs wingspan="26.00" length="30.00" range="1150" speed="480" fuelcapacity="2700" consumption="0.030" runwaylengthrequired="705"/>
 		<capacity passengers="74" cockpitcrew="2" cabincrew="3" maxclasses="2"/>

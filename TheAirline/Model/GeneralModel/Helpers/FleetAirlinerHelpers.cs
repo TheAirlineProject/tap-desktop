@@ -404,6 +404,20 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             return 0;
         }
+           //converts a passenger airliner to a cargo airliner
+        public static void ConvertPassengerToCargoAirliner(FleetAirliner airliner)
+        {
+            AirlinerPassengerType oldType = (AirlinerPassengerType)airliner.Airliner.Type;
+     
+            double cargoSize = AirlinerHelpers.GetPassengerCargoSize(oldType);
+            DateTime builtDate = GameObject.GetInstance().GameTime.AddDays(AirlinerHelpers.GetCargoConvertingDays(oldType));
+
+            AirlinerCargoType newType = new AirlinerCargoType(oldType.Manufacturer,oldType.Name + "F",oldType.AirlinerFamily,oldType.CockpitCrew,cargoSize,oldType.CruisingSpeed,oldType.Range,oldType.Wingspan,oldType.Length,oldType.FuelConsumption,oldType.Price,oldType.MinRunwaylength,oldType.FuelCapacity,oldType.Body,oldType.RangeType,oldType.Engine,oldType.Produced,oldType.ProductionRate,false,false);
+            
+            airliner.Airliner.Type = newType;
+            airliner.Airliner.BuiltDate = builtDate;
+        }
+    
         //does the maintenance of a given type, sends the invoice, updates the last/next maintenance, and improves the aircraft's damage
         //make sure you pass this function a string value of either "A" "B" "C" or "D" or it will throw an error!
         public static void DoMaintenance(FleetAirliner airliner)

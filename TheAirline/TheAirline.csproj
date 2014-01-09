@@ -568,6 +568,7 @@
     <Compile Include="GUIModel\HelpersModel\PageNavigator.cs" />
     <Compile Include="GUIModel\HelpersModel\QuickInfoValue.cs" />
     <Compile Include="GUIModel\HelpersModel\UIHelpers.cs" />
+    <Compile Include="GUIModel\MasterPageModel\SharedResourceDictionary.cs" />
     <Compile Include="GUIModel\MasterPageModel\standardEvents.cs" />
     <Compile Include="GUIModel\MasterPageModel\StandardMasterPage.cs" />
     <Compile Include="GUIModel\MasterPageModel\standardStylesEvents.cs" />

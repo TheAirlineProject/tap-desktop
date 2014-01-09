@@ -404,7 +404,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                            if (!canFillRoutes)
                            {
                                GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Airport_News, GameObject.GetInstance().GameTime, "Airport contract expired", string.Format("Your contract for {0} gates at [LI airport={1}], {2} is now expired, and a number of routes has been cancelled", contract.NumberOfGates, contract.Airport.Profile.IATACode, contract.Airport.Profile.Country.Name)));
-
+                               
                                int currentRoute = 0;
                                while (!canFillRoutes)
                                {

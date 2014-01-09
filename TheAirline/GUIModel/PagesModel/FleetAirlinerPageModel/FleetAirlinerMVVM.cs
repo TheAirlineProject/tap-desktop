@@ -7,6 +7,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Data;
+using TheAirline.GUIModel.HelpersModel;
+using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
@@ -66,6 +68,12 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
         {
             get { return _ismissingpilots; }
             set { _ismissingpilots = value; NotifyPropertyChanged("IsMissingPilots"); }
+        }
+        private Boolean _isconvertable;
+        public Boolean IsConvertable
+        {
+            get { return _isconvertable; }
+            set { _isconvertable= value; NotifyPropertyChanged("IsConvertable"); }
         }
         private Airport _homebase;
         public Airport Homebase
@@ -128,6 +136,7 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.SchedDMaintenance = this.Airliner.SchedDMaintenance;
 
             this.IsBuyable = this.Airliner.Airliner.Airline.IsHuman && this.Airliner.Purchased == FleetAirliner.PurchasedType.Leased;
+            this.IsConvertable = this.Airliner.Airliner.Airline.IsHuman && this.Airliner.Status == FleetAirliner.AirlinerStatus.Stopped && !this.Airliner.HasRoute && this.Airliner.Purchased == FleetAirliner.PurchasedType.Bought && this.Airliner.Airliner.Type.IsConvertable;
         }
         //buys the airliner if leased
         public void buyAirliner()
@@ -136,6 +145,14 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.IsBuyable = false;
 
             AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -this.Airliner.Airliner.getPrice());
+        }
+        //converts the airliner to a cargo airliner
+        public void convertToCargo()
+        {
+            FleetAirlinerHelpers.ConvertPassengerToCargoAirliner(this.Airliner);
+
+      
+            PageNavigator.NavigateTo(new PageAirline(this.Airliner.Airliner.Airline));
         }
         //adds a pilot to the airliner
         public void addPilot(Pilot pilot)

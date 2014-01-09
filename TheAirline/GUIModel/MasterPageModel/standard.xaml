@@ -5,11 +5,7 @@
                     xmlns:g="clr-namespace:TheAirline.GUIModel.ObjectsModel"
                     xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
                     xmlns:local="clr-namespace:TheAirline.GUIModel.MasterPageModel">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="standardResources.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="standardStyles.xaml"></ResourceDictionary>
-        <ResourceDictionary Source="standardTemplates.xaml"></ResourceDictionary>
-     </ResourceDictionary.MergedDictionaries>
+  
     <g:GUIObject x:Key="gameObject"></g:GUIObject>
     <DataTemplate x:Key="HeaderContent">
         <Grid>

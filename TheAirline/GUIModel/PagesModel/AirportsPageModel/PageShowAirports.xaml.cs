@@ -69,7 +69,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportsPageModel
             foreach (Airport airport in airports.OrderBy(a=>a.Profile.Name))
                 this.AllAirports.Add(new AirportMVVM(airport));
 
-            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now,DateTime.Now), 0);
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now,DateTime.Now), 0,false);
 
             this.HumanAircrafts = new List<AirlinerType>();
 

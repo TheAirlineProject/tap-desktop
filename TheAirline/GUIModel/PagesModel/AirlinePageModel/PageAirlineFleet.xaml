@@ -23,7 +23,7 @@
                                 FilterButtonInactiveStyle="{StaticResource filterButtonInactive}" Background="Transparent" >
                         <ListView.View>
                             <GridView ColumnHeaderContainerStyle="{StaticResource ColumnHeaderStyle}">
-                                <filter:SortableGridViewColumn Header="" CanFilter="False" SortPropertyName="Name" Width="30">
+                                <filter:SortableGridViewColumn Header="" CanFilter="False" SortPropertyName="Name" Width="40">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <Button Click="btnSellAirliner_Click" Background="Transparent" Tag="{Binding}" Width="20" VerticalAlignment="Bottom">
@@ -89,7 +89,7 @@
                                 <filter:SortableGridViewColumn Header="{Binding Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1002'}" CanFilter="False" SortPropertyName="Name" Width="150">
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
-                                            <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource FleetAirlinerLink}"></ContentControl>
+                                            <TextBlock Text="{Binding Name}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </filter:SortableGridViewColumn>
