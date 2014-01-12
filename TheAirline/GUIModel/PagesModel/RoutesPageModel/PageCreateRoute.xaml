@@ -36,8 +36,9 @@
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1011'}">
                     <h:QuickInfoValue.Value>
                         <WrapPanel VerticalAlignment="Bottom">
-                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1008'}" Name="rbPassenger" IsChecked="True"></RadioButton>
-                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1009'}" Margin="5 0 0 0"></RadioButton>
+                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1008'}"  Tag="Passenger" IsChecked="True" Checked="rbRouteType_Checked"></RadioButton>
+                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1009'}" Margin="5 0 0 0" Tag="Cargo" Checked="rbRouteType_Checked"></RadioButton>
+                            <RadioButton GroupName="RouteType" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1018'}" Margin="5 0 0 0" Tag="Mixed" Checked="rbRouteType_Checked"></RadioButton>
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
@@ -122,7 +123,7 @@
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=rbPassenger, Path=IsChecked}" Value="False">
+                            <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteType}" Value="Cargo">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -135,7 +136,7 @@
                 <StackPanel.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=rbPassenger, Path=IsChecked}" Value="True">
+                            <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteType}" Value="Passenger">
                                 <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </Style.Triggers>
@@ -180,7 +181,7 @@
                     <Button.Style>
                         <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding ElementName=rbPassenger, Path=IsChecked}" Value="False">
+                                <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=RouteType}" Value="Cargo">
                                     <Setter Property="Button.Visibility" Value="Collapsed" />
                                 </DataTrigger>
                             </Style.Triggers>

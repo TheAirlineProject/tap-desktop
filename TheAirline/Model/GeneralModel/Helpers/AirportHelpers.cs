@@ -671,9 +671,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Where(f=>f.TypeLevel==1).First();
             AirportFacility ticketFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.TicketOffice).Where(f => f.TypeLevel == 1).First();
             AirportFacility serviceFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Where(f => f.TypeLevel == 1).First();
+            AirportFacility cargoTerminal = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Cargo).Find(f => f.TypeLevel > 0);
 
             if (contract.Type == AirportContract.ContractType.Full_Service)
             {
+                if (contract.Airport.getAirlineAirportFacility(null,AirportFacility.FacilityType.Cargo).Facility.TypeLevel < cargoTerminal.TypeLevel)
+                    contract.Airport.addAirportFacility(null, cargoTerminal, GameObject.GetInstance().GameTime);
+		
                 if (contract.Airport.getAirlineAirportFacility(null,AirportFacility.FacilityType.CheckIn).Facility.TypeLevel < checkinFacility.TypeLevel)
                     contract.Airport.addAirportFacility(null, checkinFacility, GameObject.GetInstance().GameTime);
                 

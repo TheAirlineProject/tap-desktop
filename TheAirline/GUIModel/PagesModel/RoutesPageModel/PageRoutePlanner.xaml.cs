@@ -87,9 +87,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Routes = new ObservableCollection<Route>();
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.Where(r => r.getDistance() <= this.Airliner.Airliner.Type.Range).ToList())
-                this.Routes.Add(route);
+            Route.RouteType routeType = (Route.RouteType)Enum.Parse(typeof(Route.RouteType),this.Airliner.Airliner.Type.TypeAirliner.ToString(), true); ;
 
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.Where(r => r.getDistance() <= this.Airliner.Airliner.Type.Range && r.Type == routeType))
+                this.Routes.Add(route);
+           
             this.AllRegions = new List<Region>();
             this.AllRegions.Add(Regions.GetRegion("100"));
 
@@ -99,7 +101,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (Region region in routeRegions.Distinct())
                 this.AllRegions.Add(region);
 
-            foreach (Route route in this.Airliner.Airliner.Airline.Routes.Where(r=>r.getDistance()<= this.Airliner.Airliner.Type.Range))
+            foreach (Route route in this.Airliner.Airliner.Airline.Routes.Where(r=>r.getDistance()<= this.Airliner.Airliner.Type.Range && r.Type == routeType))
                 this.AllRoutes.Add(new RoutePlannerItemMVVM(route, this.Airliner.Airliner.Type));
 
             this.OutboundAirports = new List<Airport>();

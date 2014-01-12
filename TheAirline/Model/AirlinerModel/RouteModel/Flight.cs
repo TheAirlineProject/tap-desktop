@@ -135,6 +135,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return this.Entry.TimeTable.Route.Type == Route.RouteType.Mixed || this.Entry.TimeTable.Route.Type == Route.RouteType.Cargo;
 
         }
+       
          protected Flight(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");

@@ -937,11 +937,14 @@ namespace TheAirline.Model.GeneralModel
                     if (airliner.HasAttribute("convertable"))
                         isConvertable = Convert.ToBoolean(airliner.Attributes["convertable"].Value);
                     else
-                        isConvertable = false;
+                    {
+                        if (airlinerType == AirlinerType.TypeOfAirliner.Cargo || airlinerType == AirlinerType.TypeOfAirliner.Mixed)
+                            isConvertable = false;
+                        else
+                            isConvertable = true;
+                    }
 
 					long price = Convert.ToInt64(airliner.Attributes["price"].Value);
-
-
 
 					id = name;
 
@@ -989,6 +992,16 @@ namespace TheAirline.Model.GeneralModel
 						double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
 						type = new AirlinerCargoType(manufacturer, name,family, cockpitcrew, cargo, speed, range, wingspan, length, fuel, price, runwaylenght, fuelcapacity, body, rangeType, engine, new Period<DateTime>(from, to), prodRate,isConvertable);
 					}
+                    if (airlinerType == AirlinerType.TypeOfAirliner.Mixed)
+                    {
+                        int passengers = Convert.ToInt16(capacityElement.Attributes["passengers"].Value);
+                        int cockpitcrew = Convert.ToInt16(capacityElement.Attributes["cockpitcrew"].Value);
+                        double cargo = Convert.ToDouble(capacityElement.Attributes["cargo"].Value);
+				        int cabincrew = Convert.ToInt16(capacityElement.Attributes["cabincrew"].Value);
+                        int maxClasses = Convert.ToInt16(capacityElement.Attributes["maxclasses"].Value);
+					
+                        type = new AirlinerCombiType(manufacturer,name,family,passengers,cockpitcrew,cabincrew,speed,range,wingspan,length,fuel,price,maxClasses,runwaylenght,fuelcapacity,body,rangeType,engine,new Period<DateTime>(from,to),prodRate,cargo,isConvertable);
+                    }
 
 					if (airliner.HasAttribute("image") && airliner.Attributes["image"].Value.Length > 1)
 						type.Image = dir + airliner.Attributes["image"].Value + ".png";

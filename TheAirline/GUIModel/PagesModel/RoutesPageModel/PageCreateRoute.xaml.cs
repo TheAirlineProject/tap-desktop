@@ -29,11 +29,17 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// <summary>
     /// Interaction logic for PageCreateRoute.xaml
     /// </summary>
-    public partial class PageCreateRoute : Page
+    public partial class PageCreateRoute : Page, INotifyPropertyChanged
     {
         public List<Airport> Airports { get; set; }
         public List<AirlinerType> HumanAircrafts { get; set; }
         public List<MVVMRouteClass> Classes { get; set; }
+        private Route.RouteType _routetype;
+        public Route.RouteType RouteType
+        {
+            get { return _routetype; }
+            set { _routetype = value; NotifyPropertyChanged("RouteType"); }
+        }
         public PageCreateRoute()
         {
             this.Classes = new List<MVVMRouteClass>();
@@ -155,14 +161,14 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             try
             {
-                if (AirlineHelpers.IsRouteDestinationsOk(GameObject.GetInstance().HumanAirline, destination1, destination2, rbPassenger.IsChecked.Value ? Route.RouteType.Passenger : Route.RouteType.Cargo, stopover1, stopover2))
+                if (AirlineHelpers.IsRouteDestinationsOk(GameObject.GetInstance().HumanAirline, destination1, destination2, this.RouteType, stopover1, stopover2))
                 {
 
 
                     Guid id = Guid.NewGuid();
 
                     //passenger route
-                    if (rbPassenger.IsChecked.Value)
+                    if (this.RouteType == Route.RouteType.Passenger)
                     {
                         //Vis på showroute
                         route = new PassengerRoute(id.ToString(), destination1, destination2,startDate, 0);
@@ -177,10 +183,25 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                         }
                     }
                     //cargo route
-                    else
+                    else if (this.RouteType == Route.RouteType.Cargo)
                     {
                         double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
                         route = new CargoRoute(id.ToString(), destination1, destination2,startDate, cargoPrice);
+                    }
+                    else if (this.RouteType == Route.RouteType.Mixed)
+                    {
+                        double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
+
+                        route = new CombiRoute(id.ToString(), destination1, destination2, startDate, 0, cargoPrice);
+
+                        foreach (MVVMRouteClass rac in this.Classes)
+                        {
+                            ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+
+                            foreach (MVVMRouteFacility facility in rac.Facilities)
+                                ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).addFacility(facility.SelectedFacility);
+
+                        }
                     }
 
                     FleetAirlinerHelpers.CreateStopoverRoute(route, stopover1, stopover2);
@@ -253,7 +274,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             cbStopover2.SelectedItem = null;
 
         }
-
+        private void rbRouteType_Checked(object sender, RoutedEventArgs e)
+        {
+            string type = ((RadioButton)sender).Tag.ToString();
+            this.RouteType = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), type, true);
+        }
         private void cbDestination_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Airport destination1 = (Airport)cbDestination1.SelectedItem;
@@ -285,6 +310,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
         }
 
+       public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
 
 
     }

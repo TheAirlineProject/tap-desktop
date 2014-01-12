@@ -121,7 +121,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
             return this.Classes.Find(c => c.Type == type).FarePrice;
           
         }
-       private PassengerRoute(SerializationInfo info, StreamingContext ctxt) : base(info,ctxt)
+       protected PassengerRoute(SerializationInfo info, StreamingContext ctxt) : base(info,ctxt)
         {
             int version = info.GetInt16("version");
 

@@ -274,7 +274,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns the price for converting a passenger airliner to a cargo airliner
         public static double GetCargoConvertingPrice(AirlinerPassengerType type)
         {
-          //  ændre fly / På passenger route check box til "Tag cargo med hvis muligt". Så kan combi airliners bruges herpå./Skal Combi route være en passenger route men med cargo price?
             double basePrice = 650000;
 
             if (type.Body == AirlinerType.BodyType.Single_Aisle)

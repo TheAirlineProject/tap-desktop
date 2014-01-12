@@ -735,8 +735,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         private static RouteOkStatus GetRouteStatus(Airport airport1, Airport airport2, Route.RouteType routeType)
         {
             RouteOkStatus status = RouteOkStatus.Ok;
-
-            if (routeType == Route.RouteType.Cargo)
+          
+            if (routeType == Route.RouteType.Cargo || routeType==Route.RouteType.Mixed)
                 if (!AIHelpers.IsCargoRouteDestinationsCorrect(airport1, airport2, GameObject.GetInstance().HumanAirline))
                     status = RouteOkStatus.Missing_Cargo;
 
