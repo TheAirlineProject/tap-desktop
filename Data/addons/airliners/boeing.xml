@@ -114,6 +114,12 @@
     <capacity passengers="168" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
     <produced from="1985" to="1999" rate="160"/>
   </airliner>
+      <airliner type="Mixed" manufacturer="Boeing" name="Boeing 737-400M" price="7982130"> <!--159500000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="28.90" length="36.50" range="4204" speed="780" fuelcapacity="23800" consumption="0.034" runwaylengthrequired="1590"/>
+    <capacity passengers="72" cockpitcrew="2" cargo="89" cabincrew="3" maxclasses="2"/>
+    <produced from="1989" to="1997" rate="160"/>
+  </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-500" image="Boeing 737-500" price="7165190"> <!--27500000-->
 	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
     <specs wingspan="28.90" length="31.10" range="4444" speed="780" fuelcapacity="23800" consumption="0.041" runwaylengthrequired="1245"/>
@@ -185,6 +191,12 @@
     <specs wingspan="64.40" length="70.60" range="13450" speed="913" fuelcapacity="216840" consumption="0.031" runwaylengthrequired="2990"/>
     <capacity passengers="524" cockpitcrew="2" cabincrew="11" maxclasses="3"/>
     <produced from="1989" to="2007" rate="32"/>
+  </airliner>
+    <airliner type="Mixed" manufacturer="Boeing" name="Boeing 747-400M" price="33142330"> <!--159500000-->
+	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+    <specs wingspan="64.40" length="70.60" range="8230" speed="908" fuelcapacity="216840" consumption="0.031" runwaylengthrequired="3000"/>
+    <capacity passengers="266" cockpitcrew="2" cargo="295" cabincrew="11" maxclasses="3"/>
+    <produced from="1989" to="2002" rate="32"/>
   </airliner>
   <airliner type="Cargo" manufacturer="Boeing" name="Boeing 747-400F" price="32671040"> <!--159500000-->
 	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
