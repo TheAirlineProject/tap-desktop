@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
@@ -15,6 +16,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
     public class AllianceMVVM : INotifyPropertyChanged
     {
         public Alliance Alliance { get; set; }
+        public List<AllianceRouteMMVM> AllianceRoutes { get; set; }
         public ObservableCollection<AllianceMember> Members { get; set; }
         public ObservableCollection<PendingAllianceMember> PendingMembers { get; set; }
         public Boolean IsHumanAlliance { get { return this.Alliance.IsHumanAlliance; } private set { ;} }
@@ -53,6 +55,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
             this.Alliance = alliance;
             this.Members = new ObservableCollection<AllianceMember>();
             this.PendingMembers = new ObservableCollection<PendingAllianceMember>();
+            this.AllianceRoutes = new List<AllianceRouteMMVM>();
 
             foreach (AllianceMember member in this.Alliance.Members)
                 this.Members.Add(member);
@@ -66,6 +69,9 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         private void setValues()
         {
             StatisticsType stat = StatisticsTypes.GetStatisticsType("Passengers");
+
+            foreach (Route route in this.Members.SelectMany(m => m.Airline.Routes))
+                this.AllianceRoutes.Add(new AllianceRouteMMVM(route.Airline, route));
 
             this.Routes = this.Members.Sum(m => m.Airline.Routes.Count);
             this.Destinations = this.Members.SelectMany(m => m.Airline.Airports).Distinct().Count();
@@ -109,6 +115,17 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
             {
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
+        }
+    }
+    //the mvvm class for an alliance route
+    public class AllianceRouteMMVM
+    {
+        public Route Route { get; set; }
+        public Airline Airline { get; set; }
+        public AllianceRouteMMVM(Airline airline, Route route)
+        {
+            this.Route = route;
+            this.Airline = airline;
         }
     }
 }

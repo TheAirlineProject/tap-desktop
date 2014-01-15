@@ -311,6 +311,21 @@
 
         </WrapPanel>
     </DataTemplate>
+    <DataTemplate x:Key="RouteFlagLongItem">
+        <WrapPanel VerticalAlignment="Bottom">
+            <Image Source="{Binding Destination1.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+            <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" Margin="2 0 2 0" ToolTipService.ShowDuration="60000">
+                <TextBlock.Text>
+                            <MultiBinding StringFormat="{}{0}-{1}">
+                                <Binding Path="Destination1.Profile.Name"/>
+                                <Binding Path="Destination2.Profile.Name"/>
+                            </MultiBinding>
+                        </TextBlock.Text>
+            </TextBlock>
+            <Image Source="{Binding Destination2.Profile.Country.Flag}" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Height="20"></Image>
+
+        </WrapPanel>
+    </DataTemplate>
     <DataTemplate x:Key="RouteItem">
         <TextBlock VerticalAlignment="Bottom" HorizontalAlignment="Center" ToolTipService.ShowDuration="60000">
             <TextBlock.ToolTip>

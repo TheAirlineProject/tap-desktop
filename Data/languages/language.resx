@@ -4731,4 +4731,7 @@ Good luck.</value>
   <data name="PageCreateRoute_1018_name" xml:space="preserve">
     <value>Mixed Route</value>
   </data>
+  <data name="PageShowAlliance_1010_name" xml:space="preserve">
+    <value>Alliance Routes</value>
+  </data>
 </root>
