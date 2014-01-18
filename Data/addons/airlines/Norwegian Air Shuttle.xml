@@ -1,5 +1,0 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<airline>
-  <profile name="Norwegian Air Shuttle" iata="DY" color="DarkRed" country="139" CEO="Bjørn Kjos" mentality="Safe" market="Global" preferedairport="GOT"></profile>
-  <info real="True" from="1993" to="2199" />
-</airline>
