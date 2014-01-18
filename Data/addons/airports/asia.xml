@@ -2151,7 +2151,7 @@
       <runway name="10/28" length="3000" surface="Asphalt"/>
     </runways>
   </airport>
-  <airport name="Soekarno–Hatta International Airport" icao="WIII" iata="CGK" type="Long_Haul_International" season="All_Year">
+  <airport name="Soekarno-Hatta International Airport" icao="WIII" iata="CGK" type="Long_Haul_International" season="All_Year">
     <town town="Jakarta" country="162" GMT="07:00:00" DST="07:00:00"/>
     <coordinates>
       <latitude value="006°07'32''S"/>
@@ -2270,7 +2270,25 @@
       <runway name="13/31" length="1400" surface="Asphalt"/>
     </runways>
   </airport>
+    <airport name="Kuala Namu International Airport" icao="WIMM" iata="KNO" type="Long_Haul_International" season="All_Year">
+       <period from="06.25.2013 00:00:00" to="12.31.2199 00:00:00"/>
+<town town="Medan" country="162" GMT="07:00:00" DST="07:00:00" />
+<coordinates>
+<latitude value="003°38'16''N" />
+<longitude value="098°52'13''W" />
+</coordinates>
+<size value="Very_large" pax="7898" />
+<terminals>
+<terminal name="Terminal A" gates="20" />
+<terminal name="Terminal B" gates="20" />
+<terminal name="Terminal C" gates="10" />
+</terminals>
+<runways>
+<runway name="05/23" length="3750" surface="Asphalt" />
+</runways>
+</airport>
   <airport name="Polonia International Airport" icao="WIMM" iata="MES" type="Short_Haul_International" season="All_Year">
+   <period from="01.01.1930 00:00:00" to="06.25.2013 00:00:00"/>
     <town town="Medan" country="162" GMT="07:00:00" DST="07:00:00"/>
     <coordinates>
       <latitude value="003°34'00''N"/>

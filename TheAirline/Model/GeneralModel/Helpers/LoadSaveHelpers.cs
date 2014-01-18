@@ -496,10 +496,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
              {
                  string allianceName = allianceNode.Attributes["name"].Value;
                  DateTime formationDate = DateTime.Parse(allianceNode.Attributes["formation"].Value, new CultureInfo("de-DE"));
-                 Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), allianceNode.Attributes["type"].Value);
                  Airport allianceHeadquarter = Airports.GetAirport(allianceNode.Attributes["headquarter"].Value);
 
-                 Alliance alliance = new Alliance(formationDate, allianceType, allianceName, allianceHeadquarter);
+                 Alliance alliance = new Alliance(formationDate, allianceName, allianceHeadquarter);
 
                  XmlNodeList membersList = allianceNode.SelectNodes("members/member");
 
@@ -1880,7 +1879,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement allianceNode = xmlDoc.CreateElement("alliance");
                 allianceNode.SetAttribute("name", alliance.Name);
                 allianceNode.SetAttribute("formation", alliance.FormationDate.ToString(new CultureInfo("de-DE")));
-                allianceNode.SetAttribute("type", alliance.Type.ToString());
                 allianceNode.SetAttribute("headquarter", alliance.Headquarter.Profile.IATACode);
 
                 XmlElement membersNode = xmlDoc.CreateElement("members");

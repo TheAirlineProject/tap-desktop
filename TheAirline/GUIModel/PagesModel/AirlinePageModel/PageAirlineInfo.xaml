@@ -97,30 +97,34 @@
                                     </Button>
                              
                             </WrapPanel>
-                            <WrapPanel>
-                                <WrapPanel.Style>
-                                        <Style BasedOn="{StaticResource WrapPanelStyle}" TargetType="WrapPanel">
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding Alliance}" Value="{x:Null}">
-                                                    <Setter Property="Visibility" Value="Collapsed" />
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </WrapPanel.Style>
-                                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1030'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
-                                <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200"/>
-                            </WrapPanel>
-                                
-             
-                            <WrapPanel Style="{StaticResource WrapPanelStyle}" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}">
+                        <WrapPanel Style="{StaticResource WrapPanelStyle}" Visibility="{Binding Airline.IsSubsidiary,Converter={StaticResource BooleanToVisibility}}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1027'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                                 <ContentControl Content="{Binding Airline.Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
                             </WrapPanel>
-                           
                         </StackPanel>
                     </Grid>
-            
-                        <StackPanel Margin="0 10 0 0">
+                <StackPanel Margin="0 10 0 0">
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1035'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                    <ContentControl Content="{Binding Alliance}" HorizontalAlignment="Left" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200">
+                    <ContentControl.Style>
+                        <Style TargetType="ContentControl">
+                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Alliance}" Value="{x:Null}">
+                                                    <Setter Property="Visibility" Value="Collapsed" />
+                                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ContentControl.Style>
+                    </ContentControl>
+                          <ListBox BorderThickness="0" Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" HorizontalAlignment="Left"  ItemsSource="{Binding Codeshares}">
+                                <ListBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlineLink}"></ContentControl>
+                                    </DataTemplate>
+                                </ListBox.ItemTemplate>
+                            </ListBox>
+                </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
                       <StackPanel.Style>
                         <Style>
                             <Style.Triggers>
@@ -147,7 +151,6 @@
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
                         </ListBox>
-
                     </StackPanel>
                     <Expander Margin="0 10 0 0" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1018'}">
                         <Expander.Style>
@@ -220,7 +223,10 @@
                                     <DataTrigger Binding="{Binding AirlineAirlines.Count}" Value="0">
                                         <Setter Property="StackPanel.Visibility" Value="Collapsed" />
                                     </DataTrigger>
-                                </Style.Triggers>
+                                <DataTrigger Binding="{Binding Airline.IsHuman}" Value="False">
+                                    <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
                             </Style>
                         </StackPanel.Style>
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1028'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>

@@ -160,6 +160,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCodeshareAgreement.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirliners.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -518,6 +522,9 @@
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpAirportContract.xaml.cs">
       <DependentUpon>PopUpAirportContract.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCodeshareAgreement.xaml.cs">
+      <DependentUpon>PopUpCodeshareAgreement.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpCompareAirliners.xaml.cs">
       <DependentUpon>PopUpCompareAirliners.xaml</DependentUpon>
     </Compile>
@@ -800,6 +807,7 @@
     <Compile Include="Model\AirlineModel\AirlineScores.cs" />
     <Compile Include="Model\AirlineModel\AirlineShare.cs" />
     <Compile Include="Model\AirlineModel\AirlineStartData.cs" />
+    <Compile Include="Model\AirlineModel\CodeshareAgreement.cs" />
     <Compile Include="Model\AirlinerModel\AirlinerInsurance.cs" />
     <Compile Include="Model\AirlinerModel\RouteModel\CombiRoute.cs" />
     <Compile Include="Model\AirportModel\AirportContract.cs" />

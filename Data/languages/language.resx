@@ -703,10 +703,10 @@
     <value>Most Gates</value>
   </data>
   <data name="PageAirline_1003_name" xml:space="preserve">
-    <value>IATA code</value>
+    <value>Ask for Codesharing</value>
   </data>
   <data name="PageAirline_1004_name" xml:space="preserve">
-    <value>CEO</value>
+    <value>Invite to Alliance</value>
   </data>
   <data name="PageAirline_1005_name" xml:space="preserve">
     <value>Home country</value>
@@ -4733,5 +4733,32 @@ Good luck.</value>
   </data>
   <data name="PageShowAlliance_1010_name" xml:space="preserve">
     <value>Alliance Routes</value>
+  </data>
+  <data name="MessageBox_2407_message" xml:space="preserve">
+    <value>Are you sure you want to make a codeshare agreement with {0}?</value>
+  </data>
+  <data name="MessageBox_2407_name" xml:space="preserve">
+    <value>Make codeshare agreement</value>
+  </data>
+  <data name="MessageBox_2408_message" xml:space="preserve">
+    <value>{0} don't want to make a codeshare agreement with you.</value>
+  </data>
+  <data name="MessageBox_2408_name" xml:space="preserve">
+    <value>Can't make agreement</value>
+  </data>
+  <data name="PageAirlineInfo_1034_name" xml:space="preserve">
+    <value>Codesharings</value>
+  </data>
+  <data name="PageAirlineInfo_1035_name" xml:space="preserve">
+    <value>Alliances and Codesharing Agreements</value>
+  </data>
+  <data name="PopUpCodeshareAgreement_1000_name" xml:space="preserve">
+    <value>Select Agreement Type</value>
+  </data>
+  <data name="PopUpCodeshareAgreement_1001_name" xml:space="preserve">
+    <value>Both Ways</value>
+  </data>
+  <data name="PopUpCodeshareAgreement_1002_name" xml:space="preserve">
+    <value>One Way</value>
   </data>
 </root>

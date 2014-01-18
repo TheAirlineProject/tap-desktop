@@ -108,7 +108,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
         }
         private void btnRouteMap_Click(object sender, RoutedEventArgs e)
         {
-            var routes = this.Alliance.Members.SelectMany(m => m.Airline.Routes);
+            var routes = this.Alliance.Members.SelectMany(m => m.Member.Airline.Routes);
             PopUpMap.ShowPopUp(routes.ToList());
   
         }
@@ -127,15 +127,16 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 
             this.Alliance.removePendingMember(member);
 
+       
         }
 
         private void btnRemoveFromAlliance_Click(object sender, RoutedEventArgs e)
         {
-            AllianceMember member = (AllianceMember)((Button)sender).Tag;
+            AllianceMemberMVVM member = (AllianceMemberMVVM)((Button)sender).Tag;
 
-            if (AIHelpers.CanRemoveFromAlliance(GameObject.GetInstance().HumanAirline,member.Airline,this.Alliance.Alliance))
+            if (AIHelpers.CanRemoveFromAlliance(GameObject.GetInstance().HumanAirline,member.Member.Airline,this.Alliance.Alliance))
             {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2609"), string.Format(Translator.GetInstance().GetString("MessageBox", "2609", "message"), member.Airline.Profile.Name), WPFMessageBoxButtons.YesNo);
+                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2609"), string.Format(Translator.GetInstance().GetString("MessageBox", "2609", "message"), member.Member.Airline.Profile.Name), WPFMessageBoxButtons.YesNo);
 
                 if (result == WPFMessageBoxResult.Yes)
                 {
@@ -144,7 +145,7 @@ namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
                 }
             }
             else
-                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2610"), string.Format(Translator.GetInstance().GetString("MessageBox", "2610", "message"), member.Airline.Profile.Name), WPFMessageBoxButtons.Ok);
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2610"), string.Format(Translator.GetInstance().GetString("MessageBox", "2610", "message"), member.Member.Airline.Profile.Name), WPFMessageBoxButtons.Ok);
 
            
 

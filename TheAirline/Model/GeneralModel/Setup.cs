@@ -1848,11 +1848,10 @@ namespace TheAirline.Model.GeneralModel
                 string allianceName = root.Attributes["name"].Value;
                 string logo = AppSettings.getDataPath() + "\\graphics\\alliancelogos\\" + root.Attributes["logo"].Value + ".png";
                 DateTime formationDate = Convert.ToDateTime(root.Attributes["formation"].Value, new CultureInfo("en-US", false));
-                Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), root.Attributes["type"].Value);
-
+            
                 Airport headquarter = Airports.GetAirport(root.Attributes["headquarter"].Value);
 
-                Alliance alliance = new Alliance(formationDate, allianceType, allianceName, headquarter);
+                Alliance alliance = new Alliance(formationDate, allianceName, headquarter);
                 alliance.Logo = logo;
 
                 XmlNodeList membersList = root.SelectNodes("members/member");
@@ -2309,7 +2308,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-            Alliance airWorld = new Alliance(GameObject.GetInstance().GameTime, Alliance.AllianceType.Full, "AirWorld Alliance", Airports.GetAirport("JFK"));
+            Alliance airWorld = new Alliance(GameObject.GetInstance().GameTime,  "AirWorld Alliance", Airports.GetAirport("JFK"));
             Alliances.AddAlliance(airWorld);
             
             airWorld.addMember(new AllianceMember(Airlines.GetAllAirlines()[1], GameObject.GetInstance().GameTime));

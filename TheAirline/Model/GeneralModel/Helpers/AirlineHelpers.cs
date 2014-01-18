@@ -209,6 +209,40 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return RouteFacilities.GetFacilities(type).FindAll(f => f.Requires == null || airline.Facilities.Contains(f.Requires));
         }
+        //returns if an airline wants to have code sharing with another airline
+        public static Boolean AcceptCodesharing(Airline airline, Airline asker, CodeshareAgreement.CodeshareType type)
+        {
+
+            double coeff = type == CodeshareAgreement.CodeshareType.One_Way ? 0.35 : 0.50;
+
+            IEnumerable<Country> sameCountries = asker.Airports.Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+            IEnumerable<Airport> sameDestinations = asker.Airports.Distinct().Intersect(airline.Airports);
+            IEnumerable<Country> sameCodesharingCountries = airline.getCodesharingAirlines().SelectMany(a => a.Airports).Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
+
+            double airlineDestinations = airline.Airports.Count;
+            double airlineRoutes = airline.Routes.Count;
+            double airlineCountries = airline.Airports.Select(a => a.Profile.Country).Distinct().Count();
+            double airlineCodesharings = airline.Codeshares.Count;
+            double airlineAlliances = airline.Alliances.Count;
+
+            //declines if asker is much smaller than the invited airline
+            if (airlineRoutes > 2 * asker.Routes.Count)
+                return false;
+
+            //declines if there is a match for 50% of the airlines
+            if (sameDestinations.Count() >= airlineDestinations * coeff)
+                return false;
+
+            //declines if there is a match for 75% of the airlines
+            if (sameCountries.Count() >= airlineCountries * 0.75)
+                return false;
+
+            //declines if the airline already has a code sharing or alliance in that area
+            if (sameCodesharingCountries.Count() >= airlineCountries * coeff)
+                return false;
+            
+            return true;
+        }
         //launches a subsidiary to operate on its own
         public static void MakeSubsidiaryAirlineIndependent(SubsidiaryAirline airline)
         {

@@ -65,5 +65,14 @@ namespace TheAirline.GUIModel.MasterPageModel
             get { return (DataTemplate)GetValue(FooterContentAreaProperty); }
             set { SetValue(FooterContentAreaProperty, value); }
         }
+        //action menu area
+        public static DependencyProperty ActionMenuAreaProperty =
+           DependencyProperty.Register("ActionMenuArea", typeof(DataTemplate), typeof(StandardMasterPage));
+        public DataTemplate ActionMenuArea
+        {
+            get { return (DataTemplate)GetValue(ActionMenuAreaProperty); }
+            set { SetValue(ActionMenuAreaProperty, value); }
+        }
+
     }
 }

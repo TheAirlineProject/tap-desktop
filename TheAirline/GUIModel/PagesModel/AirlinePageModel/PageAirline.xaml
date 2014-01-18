@@ -9,6 +9,52 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageAirline">
     <Page.Resources>
+        <DataTemplate x:Key="AirlineActionMenu">
+            <Border>
+                <Border.Style>
+                    <Style TargetType="Border" BasedOn="{StaticResource RoundedBorderStyle}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=pageAirline, Path=ShowActionMenu}" Value="False">
+                                <Setter Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Border.Style>
+
+                <StackPanel>
+                    <TextBlock VerticalAlignment="Bottom">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=pageAirline, Path=HasCodesharing}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                            <Hyperlink Click="hlCodeSharing_Click">
+                                <Run Text="Ask for Codesharing"></Run>  <!--{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1003'}"></Run>
+                      -->      </Hyperlink>
+                    </TextBlock>
+            
+                <TextBlock VerticalAlignment="Bottom">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding ElementName=pageAirline, Path=HasAlliance}" Value="True">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                            <Hyperlink Click="hlAlliance_Click">
+                                <Run Text="Invite to Alliance"/><!-- Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirline 1004'}"></Run>
+                   -->         </Hyperlink>
+                    </TextBlock>
+                </StackPanel>
+                
+            </Border>
+        </DataTemplate>
         <DataTemplate x:Key="AirlineQuickLinks">
             <StackPanel>
                 <Border Style="{StaticResource RoundedBorderStyle}">
@@ -75,7 +121,7 @@
 
         </DataTemplate>
     </Page.Resources>
-    <m:StandardMasterPage Style="{StaticResource StandardPage}" RightContentArea="{StaticResource AirlineQuickLinks}" MainContentArea="{StaticResource AirlineContent}" MainContentMenuArea="{StaticResource AirlineContentMenu}"/>
+    <m:StandardMasterPage Style="{StaticResource StandardPage}" ActionMenuArea="{StaticResource AirlineActionMenu}" RightContentArea="{StaticResource AirlineQuickLinks}" MainContentArea="{StaticResource AirlineContent}" MainContentMenuArea="{StaticResource AirlineContentMenu}"/>
 
 </Page>
 

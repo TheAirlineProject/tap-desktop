@@ -39,6 +39,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineFeeMVVM> Fees { get; set; }
         public ObservableCollection<SubsidiaryAirline> Subsidiaries { get; set; }
         public ObservableCollection<Airline> FundsAirlines { get; set; }
+        public ObservableCollection<Airline> Codeshares { get; set; }
         public ObservableCollection<AirlineInsurance> Insurances { get; set; }
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
@@ -138,6 +139,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.AirlineAirlines = new ObservableCollection<Airline>();
             this.FundsAirlines = new ObservableCollection<Airline>();
             this.Routes = new List<AirlineRouteMVVM>();
+            this.Codeshares = new ObservableCollection<Airline>();
 
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
@@ -155,6 +157,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
           
             this.Airline.Subsidiaries.ForEach(s => this.Subsidiaries.Add(s));
             this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
+            this.Airline.Codeshares.ForEach(c => this.Codeshares.Add(c.Airline1 == this.Airline ? c.Airline2 : c.Airline1));
+
 
             setValues();
 
@@ -173,7 +177,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.ActiveQuantity = new List<AirlinerQuantityMVVM>();
             this.OrderedQuantity = new List<AirlinerQuantityMVVM>();
 
-            foreach (FleetAirliner airliner in this.Airline.Fleet)
+            var fleet = new List<FleetAirliner>(this.Airline.Fleet);
+
+            foreach (FleetAirliner airliner in fleet)
             {
                 if (airliner.Airliner.BuiltDate > GameObject.GetInstance().GameTime)
                 {
@@ -374,6 +380,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.MaxTransferFunds = airline.Money / 2;
 
+        }
+        //adds a codeshare agreement
+        public void addCodeshareAgreement(CodeshareAgreement share)
+        {
+            this.Codeshares.Add(share.Airline1 == this.Airline ? share.Airline2 : share.Airline1);
+            this.Airline.addCodeshareAgreement(share);
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

@@ -77,7 +77,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airport airport in airports)
             {
-                Boolean allianceHasTicketOffice = airline.Alliances == null ? false : airline.Alliances.Where(a => a.Type == Alliance.AllianceType.Full).SelectMany(a => a.Members).Any(m => airport.getAirlineAirportFacility(m.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0);
+                Boolean allianceHasTicketOffice = airline.Alliances == null ? false : airline.Alliances.SelectMany(a => a.Members).Any(m => airport.getAirlineAirportFacility(m.Airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel > 0);
                
                 if (airport.getAirlineAirportFacility(airline, AirportFacility.FacilityType.TicketOffice).Facility.TypeLevel == 0 && !allianceHasTicketOffice && !airport.hasContractType(airline,AirportContract.ContractType.Full_Service) && !airport.hasContractType(airline,AirportContract.ContractType.Medium_Service))
                 {
@@ -246,7 +246,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, AirportHelpers.GetHubPrice(airport, hubtype)); ;
 
-                NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1003"), airline.Profile.Name, new AirportCodeConverter().Convert(airport), airport.Profile.Town.Name, airport.Profile.Town.Country.ShortName)));
+               // NewsFeeds.AddNewsFeed(new NewsFeed(GameObject.GetInstance().GameTime, string.Format(Translator.GetInstance().GetString("NewsFeed", "1003"), airline.Profile.Name, new AirportCodeConverter().Convert(airport), airport.Profile.Town.Name, airport.Profile.Town.Country.ShortName)));
 
             }
 
@@ -420,7 +420,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             string name = Alliance.GenerateAllianceName();
             Airport headquarter = airline.Airports.FindAll(a => a.getCurrentAirportFacility(airline, AirportFacility.FacilityType.Service).TypeLevel > 0)[0];
-            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, Alliance.AllianceType.Full, name, headquarter);
+            Alliance alliance = new Alliance(GameObject.GetInstance().GameTime, name, headquarter);
             alliance.addMember(new AllianceMember(airline, GameObject.GetInstance().GameTime));
 
             Alliances.AddAlliance(alliance);

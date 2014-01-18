@@ -16,10 +16,7 @@ namespace TheAirline.Model.AirlineModel
     public class Alliance : ISerializable
     {
        
-        public enum AllianceType { Codesharing, Full }
-       [Versioning("type")] 
-        public AllianceType Type { get; set; }
-        [Versioning("name")]
+         [Versioning("name")]
         public string Name { get; set; }
         [Versioning("members")]
         public List<AllianceMember> Members { get; set; }
@@ -32,10 +29,9 @@ namespace TheAirline.Model.AirlineModel
         [Versioning("logo")]
         public string Logo { get; set; }
         public Boolean IsHumanAlliance { get{ return this.Members.ToList().Exists(m=>m.Airline.IsHuman);} private set { ;} }
-        public Alliance(DateTime formationDate, AllianceType type, string name, Airport headquarter)
+        public Alliance(DateTime formationDate, string name, Airport headquarter)
         {
             this.FormationDate = formationDate;
-            this.Type = type;
             this.Name = name;
             this.Members = new List<AllianceMember>();
             this.PendingMembers = new List<PendingAllianceMember>();

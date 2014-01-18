@@ -39,6 +39,8 @@ namespace TheAirline.Model.AirlineModel
         public AirlineMentality Mentality { get; set; }
         [Versioning("shares",Version=2)]
         public List<AirlineShare> Shares { get; set; }
+        [Versioning("codeshares", Version = 3)]
+        public List<CodeshareAgreement> Codeshares { get; set; }
         [Versioning("reputation")]
         public int Reputation { get; set; } //0-100 with 0-9 as very_low, 10-30 as low, 31-70 as normal, 71-90 as high,91-100 as very_high 
            [Versioning("airports")]
@@ -126,6 +128,7 @@ namespace TheAirline.Model.AirlineModel
             this.FutureAirlines = new List<FutureSubsidiaryAirline>();
             this.Subsidiaries = new List<SubsidiaryAirline>();
             this.Advertisements = new Dictionary<AdvertisementType.AirlineAdvertisementType, AdvertisementType>();
+            this.Codeshares = new List<CodeshareAgreement>();
             this.Statistics = new GeneralStatistics();
             this.Facilities = new List<AirlineFacility>();
             this.Invoices = new Invoices();
@@ -623,6 +626,16 @@ namespace TheAirline.Model.AirlineModel
         {
             this.Subsidiaries.Remove(subsidiary);
         }
+        //adds a code share agreement to the airline
+        public void addCodeshareAgreement(CodeshareAgreement share)
+        {
+            this.Codeshares.Add(share);
+        }
+        //removes a code share agreement from the airline
+        public void removeCodeshareAgreement(CodeshareAgreement share)
+        {
+            this.Codeshares.Remove(share);
+        }
         //adds a policy to the airline
         public void addAirlinePolicy(AirlinePolicy policy)
         {
@@ -650,6 +663,11 @@ namespace TheAirline.Model.AirlineModel
             int maintenanceCrew = this.Airports.SelectMany(a => a.getCurrentAirportFacilities(this)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
 
             return cockpitCrew + cabinCrew + serviceCrew + maintenanceCrew + instructors;
+        }
+        //returns all codesharing airlines
+        public List<Airline> getCodesharingAirlines()
+        {
+            return this.Codeshares.Select(c => c.Airline1 == this ? c.Airline2 : c.Airline1).ToList();
         }
         
       protected Airline(SerializationInfo info, StreamingContext ctxt)
@@ -707,7 +725,7 @@ namespace TheAirline.Model.AirlineModel
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 2);
+            info.AddValue("version", 3);
 
             Type myType = this.GetType();
 

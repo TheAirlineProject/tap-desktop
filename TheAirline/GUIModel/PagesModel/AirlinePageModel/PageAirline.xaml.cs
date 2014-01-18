@@ -20,22 +20,47 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.GUIModel.PagesModel.RoutesPageModel;
 using TheAirline.GUIModel.PagesModel.AirlinersPageModel;
+using System.ComponentModel;
+using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
     /// <summary>
     /// Interaction logic for PageAirline.xaml
     /// </summary>
-    public partial class PageAirline : Page
+    public partial class PageAirline : Page, INotifyPropertyChanged
     {
         private AirlineMVVM Airline;
         public List<RouteProfitMVVM> ProfitRoutes { get; set; }
         public List<AirlineFleetSizeMVVM> MostUsedAircrafts { get; set; }
         public List<Airport> MostGates { get; set; }
-
+        private Boolean _showactionmenu;
+        public Boolean ShowActionMenu
+        {
+            get { return _showactionmenu; }
+            set { _showactionmenu = value; NotifyPropertyChanged("ShowActionMenu"); }
+        }
+        private Boolean _hascodesharing;
+        public Boolean HasCodesharing
+        {
+            get { return _hascodesharing; }
+            set { _hascodesharing = value; NotifyPropertyChanged("HasCodesharing"); }
+        }
+        private Boolean _hasalliance;
+        public Boolean HasAlliance
+        {
+            get { return _hasalliance; }
+            set { _hasalliance = value; NotifyPropertyChanged("HasAlliance"); }
+        }
         public PageAirline(Airline airline)
         {
             this.Airline = new AirlineMVVM(airline);
+
+            this.HasCodesharing = this.Airline.Airline.Codeshares.Exists(c => c.Airline1 == GameObject.GetInstance().HumanAirline || c.Airline2 == GameObject.GetInstance().HumanAirline);
+            this.HasAlliance = this.Airline.Airline.Alliances.Count > 0;
+            this.ShowActionMenu = !this.Airline.Airline.IsHuman && (!this.HasAlliance || !this.HasCodesharing);
 
             var airports = this.Airline.Airline.Airports;
 
@@ -48,11 +73,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             {
                 this.ProfitRoutes.Add(new RouteProfitMVVM(route, totalProfit));
             }
-            
+
             this.MostGates = airports.OrderByDescending(a => a.getAirlineContracts(this.Airline.Airline).Sum(c => c.NumberOfGates)).Take(Math.Min(5, airports.Count)).ToList();
             this.MostUsedAircrafts = new List<AirlineFleetSizeMVVM>();
 
-            var types = this.Airline.Airline.Fleet.Select(a=>a.Airliner.Type).Distinct();
+            var types = this.Airline.Airline.Fleet.Select(a => a.Airliner.Type).Distinct();
 
             foreach (AirlinerType type in types)
             {
@@ -61,8 +86,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 this.MostUsedAircrafts.Add(new AirlineFleetSizeMVVM(type, count));
             }
 
-            this.MostUsedAircrafts = this.MostUsedAircrafts.OrderByDescending(a => a.Count).Take(Math.Min(5,this.MostUsedAircrafts.Count)).ToList();
-         
+            this.MostUsedAircrafts = this.MostUsedAircrafts.OrderByDescending(a => a.Count).Take(Math.Min(5, this.MostUsedAircrafts.Count)).ToList();
+
             this.Loaded += PageAirline_Loaded;
 
             InitializeComponent();
@@ -74,7 +99,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             Frame frmContent = UIHelpers.FindChild<Frame>(this, "frmContent");
 
-            frmContent.Navigate(new PageAirlineInfo(this.Airline){ Tag = this });
+            frmContent.Navigate(new PageAirlineInfo(this.Airline) { Tag = this });
 
             TabControl tab_main = UIHelpers.FindChild<TabControl>(this, "tcMenu");
 
@@ -86,7 +111,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
        .FirstOrDefault();
 
                 //matchingItem.IsSelected = true;
-                matchingItem.Header = this.Airline.Airline.Profile.Name ;
+                matchingItem.Header = this.Airline.Airline.Profile.Name;
                 matchingItem.Visibility = System.Windows.Visibility.Visible;
 
                 tab_main.SelectedItem = matchingItem;
@@ -122,5 +147,50 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             if (selection == "Fleet" && frmContent != null)
                 frmContent.Navigate(new PageAirlineFleet(this.Airline) { Tag = this });
         }
+        private void hlCodeSharing_Click(object sender, RoutedEventArgs e)
+        {
+
+
+            object o = PopUpCodeshareAgreement.ShowPopUp(this.Airline.Airline);
+
+            if (o != null)
+            {
+                CodeshareAgreement.CodeshareType type = (CodeshareAgreement.CodeshareType)o;
+                Boolean accepted = AirlineHelpers.AcceptCodesharing(this.Airline.Airline, GameObject.GetInstance().HumanAirline,type);
+
+                if (accepted)
+                {
+
+                    this.HasCodesharing = true;
+                    this.ShowActionMenu = !this.Airline.Airline.IsHuman && (!this.HasAlliance || !this.HasCodesharing);
+
+                    CodeshareAgreement agreement = new CodeshareAgreement(this.Airline.Airline, GameObject.GetInstance().HumanAirline,type);
+
+                    this.Airline.addCodeshareAgreement(agreement);
+                    GameObject.GetInstance().HumanAirline.addCodeshareAgreement(agreement);
+
+                }
+                else
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2408"), string.Format(Translator.GetInstance().GetString("MessageBox", "2408", "message"), this.Airline.Airline.Profile.Name), WPFMessageBoxButtons.Ok);
+            }
+
+        }
+        private void hlAlliance_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+
+
+
     }
 }
