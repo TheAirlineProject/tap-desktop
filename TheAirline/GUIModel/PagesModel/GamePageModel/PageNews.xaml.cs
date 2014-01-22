@@ -102,6 +102,31 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
                 news.markAsRead();
        
         }
+
+        private void btnNo_Click(object sender, RoutedEventArgs e)
+        {
+            News news = (News)((Button)sender).Tag;
+            this.SelectedNews.SelectedNews = null;
+
+            NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
+            this.AllNews.Remove(newsMVVM);
+
+            GameObject.GetInstance().NewsBox.removeNews(news);
+        }
+
+        private void btnYes_Click(object sender, RoutedEventArgs e)
+        {
+            News news = (News)((Button)sender).Tag;
+
+            news.executeNews();
+
+            this.SelectedNews.SelectedNews = null;
+
+            NewsMVVM newsMVVM = this.AllNews.First(n => n.News == news);
+            this.AllNews.Remove(newsMVVM);
+
+            GameObject.GetInstance().NewsBox.removeNews(news);
+        }
     }
     public class NewsTextConverter : IValueConverter
     {

@@ -51,7 +51,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public List<AirlineRouteMVVM> Routes { get; set; }
 
         public Boolean IsBuyable { get; set; }
-        public Alliance Alliance { get; set; }
+        private Alliance _alliance;
+        public Alliance Alliance
+        {
+            get { return _alliance; }
+            set { _alliance = value; NotifyPropertyChanged("Alliance"); }
+        }
+
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }

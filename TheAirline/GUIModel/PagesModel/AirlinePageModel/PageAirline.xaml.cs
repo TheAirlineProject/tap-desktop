@@ -24,6 +24,7 @@ using System.ComponentModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 {
@@ -48,19 +49,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _hascodesharing; }
             set { _hascodesharing = value; NotifyPropertyChanged("HasCodesharing"); }
         }
-        private Boolean _hasalliance;
-        public Boolean HasAlliance
+        private Boolean _canhavealliance;
+        public Boolean CanHaveAlliance
         {
-            get { return _hasalliance; }
-            set { _hasalliance = value; NotifyPropertyChanged("HasAlliance"); }
+            get { return _canhavealliance; }
+            set { _canhavealliance = value; NotifyPropertyChanged("CanHaveAlliance"); }
         }
         public PageAirline(Airline airline)
         {
             this.Airline = new AirlineMVVM(airline);
 
             this.HasCodesharing = this.Airline.Airline.Codeshares.Exists(c => c.Airline1 == GameObject.GetInstance().HumanAirline || c.Airline2 == GameObject.GetInstance().HumanAirline);
-            this.HasAlliance = this.Airline.Airline.Alliances.Count > 0;
-            this.ShowActionMenu = !this.Airline.Airline.IsHuman && (!this.HasAlliance || !this.HasCodesharing);
+            this.CanHaveAlliance = this.Airline.Airline.Alliances.Count == 0 && GameObject.GetInstance().HumanAirline.Alliances.Count > 0;
+            this.ShowActionMenu = !this.Airline.Airline.IsHuman && (this.CanHaveAlliance || !this.HasCodesharing);
 
             var airports = this.Airline.Airline.Airports;
 
@@ -162,7 +163,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                 {
 
                     this.HasCodesharing = true;
-                    this.ShowActionMenu = !this.Airline.Airline.IsHuman && (!this.HasAlliance || !this.HasCodesharing);
+                    this.ShowActionMenu = !this.Airline.Airline.IsHuman && (this.CanHaveAlliance || !this.HasCodesharing);
 
                     CodeshareAgreement agreement = new CodeshareAgreement(this.Airline.Airline, GameObject.GetInstance().HumanAirline,type);
 
@@ -177,7 +178,38 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         }
         private void hlAlliance_Click(object sender, RoutedEventArgs e)
         {
+            ComboBox cbAlliances = new ComboBox();
+            cbAlliances.SetResourceReference(ComboBox.StyleProperty, "ComboBoxTransparentStyle");
+            cbAlliances.SelectedValuePath = "Name";
+            cbAlliances.DisplayMemberPath = "Name";
+            cbAlliances.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+            cbAlliances.Width = 200;
 
+            foreach (Alliance alliance in GameObject.GetInstance().HumanAirline.Alliances)
+                cbAlliances.Items.Add(alliance);
+
+            cbAlliances.SelectedIndex = 0;
+
+            if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageAirline", "1005"), cbAlliances) == PopUpSingleElement.ButtonSelected.OK && cbAlliances.SelectedItem != null)
+            {
+                Alliance alliance = (Alliance)cbAlliances.SelectedItem;
+                if (AIHelpers.DoAcceptAllianceInvitation(this.Airline.Airline, alliance))
+                {
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2605"), string.Format(Translator.GetInstance().GetString("MessageBox", "2605", "message"),this.Airline.Airline.Profile.Name,alliance.Name), WPFMessageBoxButtons.Ok);
+                    alliance.addMember(new AllianceMember(this.Airline.Airline, GameObject.GetInstance().GameTime));
+
+                    this.Airline.Alliance = alliance;
+
+                    this.CanHaveAlliance = false;
+                    this.ShowActionMenu = !this.Airline.Airline.IsHuman && (this.CanHaveAlliance || !this.HasCodesharing);
+
+                }
+                else
+                {
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2606"), string.Format(Translator.GetInstance().GetString("MessageBox", "2606", "message"), this.Airline.Airline.Profile.Name, alliance.Name), WPFMessageBoxButtons.Ok);
+
+                }
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

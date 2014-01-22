@@ -151,6 +151,8 @@ namespace TheAirline.Model.GeneralModel
         public enum NewsType { Standard_News,Airport_News, Flight_News, Fleet_News, Airline_News, Alliance_News,Airliner_News}
         [Versioning("type")]
         public NewsType Type { get; set; }
+        [Versioning("actionnews",Version=2)]
+        public Boolean IsActionNews { get; set; }
         [Versioning("date")]
         public DateTime Date { get; set; }
         [Versioning("subject")]
@@ -160,13 +162,26 @@ namespace TheAirline.Model.GeneralModel
         [Versioning("isread")]
         public Boolean IsRead { get; set; }
         public Boolean IsUnRead {get{return !this.IsRead;} set{;}}
-        public News(NewsType type, DateTime date, string subject, string body)
+        public delegate void ActionHandler(object o);
+        public event ActionHandler Action;
+        [Versioning("actionobject", Version = 2)]
+        public object ActionObject { get; set; }
+        public News(NewsType type, DateTime date, string subject, string body,Boolean isactionnews = false)
         {
             this.Type = type;
             this.Date = date;
             this.Subject = subject;
             this.Body = body;
             this.IsRead = false;
+            this.IsActionNews = isactionnews;
+        }
+        //executes the news
+        public void executeNews()
+        {
+            if (this.Action != null)
+            {
+                this.Action(this.ActionObject);
+            }
         }
            private News(SerializationInfo info, StreamingContext ctxt)
         {
@@ -208,13 +223,17 @@ namespace TheAirline.Model.GeneralModel
                 }
 
             }
+            if (version == 1)
+            {
+                this.IsActionNews = false;
+            }
 
 
         }
 
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

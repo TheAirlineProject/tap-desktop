@@ -9,7 +9,7 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.Model.AirlineModel
 {
-    //the class for a codeshare agreement
+    //the class for a codeshare agreement - if one way then it is from airline1 to airline2
     [Serializable]
     public class CodeshareAgreement : ISerializable
     {

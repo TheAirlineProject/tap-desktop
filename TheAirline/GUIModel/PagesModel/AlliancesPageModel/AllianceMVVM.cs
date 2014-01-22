@@ -12,6 +12,16 @@ using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.AlliancesPageModel
 {
+    //the mvvm object for a codeshare agreement
+    public class CodeshareAgreementMVVM
+    {
+        public CodeshareAgreement Agreement { get; set; }
+        public Boolean IsHuman { get { return this.Agreement.Airline1.IsHuman || this.Agreement.Airline2.IsHuman;} private set { ;} }
+        public CodeshareAgreementMVVM(CodeshareAgreement agreement)
+        {
+            this.Agreement = agreement;
+        }
+    }
     //the mvvm object for an alliance member
     public class AllianceMemberMVVM
     {

@@ -52,6 +52,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
                             {
                                 CheckForAirlineAlliance(airline);
                             },
+                            () =>
+                                {
+                                    CheckForAirlineCodesharing(airline);
+                                },
 
                             () =>
                             {
@@ -298,7 +302,100 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
         }
-        //checks for the creation of alliance / join existing alliance for an airline
+        //checks for the creation of code sharing for an airline
+        private static void CheckForAirlineCodesharing(Airline airline)
+        {
+            int airlineCodesharings = airline.Codeshares.Count;
+
+            double newCodesharingInterval = 0;
+            switch (airline.Mentality)
+            {
+                case Airline.AirlineMentality.Aggressive:
+                    newCodesharingInterval = 100000;
+                    break;
+                case Airline.AirlineMentality.Moderate:
+                    newCodesharingInterval = 1000000;
+                    break;
+                case Airline.AirlineMentality.Safe:
+                    newCodesharingInterval = 10000000;
+                    break;
+            }
+            newCodesharingInterval *= GameObject.GetInstance().Difficulty.AILevel;
+
+            Boolean newCodesharing = !airline.IsSubsidiary && rnd.Next(Convert.ToInt32(newCodesharingInterval) * (airlineCodesharings + 1)) == 0;
+
+            if (newCodesharing)
+            {
+                InviteToCodesharing(airline);
+            }
+        }
+        //invites an airline to a code sharing
+        private static void InviteToCodesharing(Airline airline)
+        {
+            //find the best airline for codesharing
+            var airlines = Airlines.GetAllAirlines().Where(a => a != airline && (!a.IsSubsidiary || ((SubsidiaryAirline)a).Airline != airline));
+
+            int bestscore = 0;
+            Airline bestAirline = null;
+
+            foreach (Airline tAirline in airlines)
+            {
+                int score = GetCodesharingScore(airline, tAirline);
+
+                if (score > bestscore)
+                    bestAirline = tAirline;
+            }
+
+            int minValue = 50;
+
+            if (bestscore > minValue)
+            {
+                Boolean acceptInvitation = AirlineHelpers.AcceptCodesharing(bestAirline, airline, CodeshareAgreement.CodeshareType.Both_Ways);
+
+                if (acceptInvitation)
+                {
+                    if (bestAirline.IsHuman)
+                    {
+                        CodeshareAgreement agreement = new CodeshareAgreement(bestAirline, airline, CodeshareAgreement.CodeshareType.Both_Ways);
+
+                        News news = new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Codeshare Agreement", string.Format("[LI airline={0}] has asked you for a codeshare agreement. Do you accept it?", airline.Profile.IATACode), true);
+                        news.ActionObject = agreement;
+                        news.Action += news_Action;
+                
+                        GameObject.GetInstance().NewsBox.addNews(news);
+                    }
+                    else
+                    {
+                        CodeshareAgreement agreement = new CodeshareAgreement(bestAirline, airline, CodeshareAgreement.CodeshareType.Both_Ways);
+                        bestAirline.addCodeshareAgreement(agreement);
+                        airline.addCodeshareAgreement(agreement);
+
+                        GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Alliance_News, GameObject.GetInstance().GameTime, "Codeshare Agreement", string.Format("[LI airline={0}] and [LI airline={1}] have made a codeshare agreement", airline.Profile.IATACode, bestAirline.Profile.IATACode)));
+                    }
+                }
+            }
+        }
+
+        private static void news_Action(object o)
+        {
+            CodeshareAgreement agreement = (CodeshareAgreement)o;
+
+            agreement.Airline1.addCodeshareAgreement(agreement);
+            agreement.Airline2.addCodeshareAgreement(agreement);
+
+        }
+        //returns the code sharing "score" for an airline
+        private static int GetCodesharingScore(Airline asker, Airline airline)
+        {
+            int diffCountries = asker.Airports.Select(a=>a.Profile.Country).Intersect(airline.Airports.Select(a=>a.Profile.Country)).Distinct().Count();
+            int diffRoutes = asker.Routes.Count - airline.Routes.Count;
+            int coeff = asker.Airports.Select(a=>a.Profile.Country).Distinct().Count() > airline.Airports.Select(a=>a.Profile.Country).Distinct().Count() ? 1 : -1;
+            int askerRoutes = airline.Routes.Count;
+
+            return (diffRoutes * 7) + (diffCountries * coeff * 5) + (askerRoutes * 3);
+
+        }
+        //checks for the creation of an alliance / join existing alliance for an airline
         private static void CheckForAirlineAlliance(Airline airline)
         {
             int airlineAlliances = airline.Alliances.Count;

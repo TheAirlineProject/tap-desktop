@@ -41,7 +41,7 @@
                         <TextBlock.Style>
                             <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
                                 <Style.Triggers>
-                                    <DataTrigger Binding="{Binding ElementName=pageAirline, Path=HasAlliance}" Value="True">
+                                    <DataTrigger Binding="{Binding ElementName=pageAirline, Path=CanHaveAlliance}" Value="False">
                                         <Setter Property="Visibility" Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>

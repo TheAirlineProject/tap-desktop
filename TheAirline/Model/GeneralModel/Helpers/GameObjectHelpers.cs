@@ -96,6 +96,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 if (MathHelpers.IsNewMonth(GameObject.GetInstance().GameTime)) DoMonthlyUpdate();
                 sw.Stop();
             }
+
         }
         //calibrates the time if needed
         private static void CalibrateTime()
@@ -1780,7 +1781,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 GameObjectWorker.GetInstance().start();
 
             GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Standard_News, GameObject.GetInstance().GameTime, Translator.GetInstance().GetString("News", "1001"), string.Format(Translator.GetInstance().GetString("News", "1001", "message"), GameObject.GetInstance().HumanAirline.Profile.CEO, GameObject.GetInstance().HumanAirline.Profile.IATACode)));
-
+      
             if (startData.MajorAirports)
             {
                 var majorAirports = Airports.GetAllAirports(a => a.Profile.Size == GeneralHelpers.Size.Largest || a.Profile.Size == GeneralHelpers.Size.Large || a.Profile.Size == GeneralHelpers.Size.Very_large || a.Profile.Size == GeneralHelpers.Size.Medium);

@@ -119,7 +119,10 @@
                           <ListBox BorderThickness="0" Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" HorizontalAlignment="Left"  ItemsSource="{Binding Codeshares}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                        <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlineLink}"></ContentControl>
+                                    <WrapPanel>
+                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlineLink}" Width="200"></ContentControl>
+                                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                                   </WrapPanel>
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

@@ -2308,13 +2308,7 @@ namespace TheAirline.Model.GeneralModel
                 }
             }
 
-            Alliance airWorld = new Alliance(GameObject.GetInstance().GameTime,  "AirWorld Alliance", Airports.GetAirport("JFK"));
-            Alliances.AddAlliance(airWorld);
-            
-            airWorld.addMember(new AllianceMember(Airlines.GetAllAirlines()[1], GameObject.GetInstance().GameTime));
-            airWorld.addMember(new AllianceMember(Airlines.GetAllAirlines()[2], GameObject.GetInstance().GameTime));
-
-
+           
         }
         /*! removes some random airlines from the list bases on number of opponents.
          */

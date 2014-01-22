@@ -152,11 +152,19 @@ namespace TheAirline.Model.GeneralModel
                     demandOrigin += (demand * 0.25);
                 }
             }
-            //alliances
-            if (airliner.Airliner.Airline.Alliances.Count > 0)
+            //alliances & codesharings
+            if (airliner.Airliner.Airline.Alliances.Count > 0 || airliner.Airliner.Airline.Codeshares.Count > 0)
             {
                 var allianceRoutesFromDestination = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)))));
                 var allianceRoutesToOrigin = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)))));
+
+                var codeshares = airliner.Airliner.Airline.Codeshares.Where(a => (a.Airline2 == airliner.Airliner.Airline && a.Type == CodeshareAgreement.CodeshareType.One_Way) || a.Type == CodeshareAgreement.CodeshareType.Both_Ways);  
+
+                var codesharingRoutesFromDestination = codeshares.Select(a=>a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1).SelectMany(a => a.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent))));
+                var codesharingRoutesToOrigin= codeshares.Select(a=>a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1).SelectMany(a => a.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination))));
+
+                allianceRoutesFromDestination = allianceRoutesFromDestination.Union(codesharingRoutesFromDestination);
+                allianceRoutesToOrigin = allianceRoutesToOrigin.Union(codesharingRoutesToOrigin);
 
                 foreach (PassengerRoute route in allianceRoutesFromDestination)
                 {

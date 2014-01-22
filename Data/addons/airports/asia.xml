@@ -2151,23 +2151,40 @@
       <runway name="10/28" length="3000" surface="Asphalt"/>
     </runways>
   </airport>
-  <airport name="Soekarno-Hatta International Airport" icao="WIII" iata="CGK" type="Long_Haul_International" season="All_Year">
-    <town town="Jakarta" country="162" GMT="07:00:00" DST="07:00:00"/>
-    <coordinates>
-      <latitude value="006°07'32''S"/>
-      <longitude value="106°39'21''E"/>
-    </coordinates>
-    <size value="Largest" pax="52446" cargo="Smallest" cargovolume="0"/>
-    <terminals>
-      <terminal name="Terminal 1" gates="21"/>
-      <terminal name="Terminal 2" gates="21"/>
-      <terminal name="Terminal 3" gates="3"/>
-    </terminals>
-    <runways>
-      <runway name="07L/25R" length="3998" surface="Asphalt"/>
-      <runway name="07R/25L" length="3865" surface="Asphalt"/>
-    </runways>
-  </airport>
+  <airport name="Kemajoran Airport" icao="WIID" iata="KMO" type="Long_Haul_International" season="All_Year">
+<period from="07.08.1940 00:00:00" to="05.01.1985 00:00:00"/>
+<town town="Jakarta" country="162" GMT="07:00:00" DST="07:00:00"/>
+<coordinates>
+<latitude value="006°08'50''S"/>
+<longitude value="106°51'00''E"/>
+</coordinates>
+<size value="Very_large" pax="33446" cargo="Smallest" cargovolume="0"/>
+<terminals>
+<terminal name="Terminal 1" gates="21"/>
+</terminals>
+<runways>
+<runway name="17/35" length="2475" surface="Asphalt"/>
+<runway name="08/26" length="1900" surface="Asphalt"/>
+</runways>
+</airport>
+<airport name="Soekarno–Hatta International Airport" icao="WIII" iata="CGK" type="Long_Haul_International" season="All_Year">
+<period from="05.01.1985 00:00:00" to="12.31.2199 00:00:00"/>
+<town town="Jakarta" country="162" GMT="07:00:00" DST="07:00:00"/>
+<coordinates>
+<latitude value="006°07'32''S"/>
+<longitude value="106°39'21''E"/>
+</coordinates>
+<size value="Largest" pax="52446" cargo="Smallest" cargovolume="0"/>
+<terminals>
+<terminal name="Terminal 1" gates="21"/>
+<terminal name="Terminal 2" gates="21"/>
+<terminal name="Terminal 3" gates="3"/>
+</terminals>
+<runways>
+<runway name="07L/25R" length="3998" surface="Asphalt"/>
+<runway name="07R/25L" length="3865" surface="Asphalt"/>
+</runways>
+</airport>
   <airport name="Husein Sastranegara International Airport" icao="WICC" iata="BDO" type="Short_Haul_International" season="All_Year">
     <town town="Bandung" country="162" GMT="07:00:00" DST="07:00:00"/>
     <coordinates>

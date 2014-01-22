@@ -709,7 +709,7 @@
     <value>Invite to Alliance</value>
   </data>
   <data name="PageAirline_1005_name" xml:space="preserve">
-    <value>Home country</value>
+    <value>Select Alliance</value>
   </data>
   <data name="PageAirline_1006_name" xml:space="preserve">
     <value>Airline color</value>
@@ -4760,5 +4760,26 @@ Good luck.</value>
   </data>
   <data name="PopUpCodeshareAgreement_1002_name" xml:space="preserve">
     <value>One Way</value>
+  </data>
+  <data name="MessageBox_2611_message" xml:space="preserve">
+    <value>Are you sure you want to terminate the codeshare agreement with {0}?</value>
+  </data>
+  <data name="MessageBox_2611_name" xml:space="preserve">
+    <value>Terminate agreement</value>
+  </data>
+  <data name="PageShowAlliances_1002_name" xml:space="preserve">
+    <value>Codeshare Agreements</value>
+  </data>
+  <data name="PageShowAlliances_1003_name" xml:space="preserve">
+    <value>Alliances</value>
+  </data>
+  <data name="PageShowAlliances_1004_name" xml:space="preserve">
+    <value>Airline 1</value>
+  </data>
+  <data name="PageShowAlliances_1005_name" xml:space="preserve">
+    <value>Airline 2</value>
+  </data>
+  <data name="PageShowAlliances_1006_name" xml:space="preserve">
+    <value>Type</value>
   </data>
 </root>
