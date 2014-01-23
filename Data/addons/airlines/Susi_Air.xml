@@ -1,12 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <airline>
 <profile name="Susi Air" iata="SI" color="LightRed" country="162" CEO="Susi Pudjiastuti" mentality="Safe" market="Local" preferedairport="HLP">
-<narrative narrative="Susi Air was established in late 2004 by Susi Pudjiastuti, it was originally setup to transport the fisheries cargo of sister company PT ASI Pudjiastuti, because land transportation to Jakarta takes around 12 hours and its too long for fresh and live fishes and lobster."/>
   </profile>
   <info real="True" from="2004" to="2199" />
   <startdata>
    <airliners>
-    <airliner type="Cessna 206" early="0" late="8"></airliner>
+    <airliner type="Cessna 206" early="0" late="28"></airliner>
   </airliners>
 </startdata>
 </airline>

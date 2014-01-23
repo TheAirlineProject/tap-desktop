@@ -13,6 +13,7 @@ namespace TheAirline.Model.AirlineModel
     [Serializable]
     public class CodeshareAgreement : ISerializable
     {
+        public const double TicketSalePercent = 1;
         public enum CodeshareType { One_Way, Both_Ways }
         [Versioning("type")]
         public CodeshareType Type { get; set; }

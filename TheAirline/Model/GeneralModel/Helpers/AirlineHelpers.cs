@@ -209,6 +209,18 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             return RouteFacilities.GetFacilities(type).FindAll(f => f.Requires == null || airline.Facilities.Contains(f.Requires));
         }
+        //returns the pay for a codesharing agreement - one wayed
+        public static double GetCodesharingPrice(CodeshareAgreement agreement)
+        {
+            return GetCodesharingPrice(agreement.Airline1, agreement.Airline2);
+        }
+        //returns the pay for codesharing agreement
+        public static double GetCodesharingPrice(Airline airline1, Airline airline2)
+        {
+            //from airline1 to airline2
+            return 20000;
+
+        }
         //returns if an airline wants to have code sharing with another airline
         public static Boolean AcceptCodesharing(Airline airline, Airline asker, CodeshareAgreement.CodeshareType type)
         {

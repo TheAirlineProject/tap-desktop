@@ -129,7 +129,19 @@
 <produced from="1994" to="2013" rate="220"/>
   
 </airliner>
+
+<airliner manufacturer="Airbus" name="Airbus A319neo" image="Airbus A319" price="9225120"> <!--53200000-->
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="34.10" length="33.84" range="7800" speed="828" fuelcapacity="24210" consumption="0.014" runwaylengthrequired="1480"/>
+    
+<capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+    
+<produced from="2015" to="2199" rate="220"/>
   
+</airliner>
+   
 <airliner manufacturer="Airbus" name="Airbus A320-100" image="Airbus A320" price="11383540"> <!--45500000-->
 	
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
@@ -153,6 +165,18 @@
 <produced from="1989" to="2199" rate="220"/>
   
 </airliner>
+<airliner manufacturer="Airbus" name="Airbus A320neo" image="Airbus A320" price="12120070"> <!--72200000-->
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="36.50" length="37.57" range="6900" speed="828" fuelcapacity="30030" consumption="0.015" runwaylengthrequired="1895"/>
+    
+<capacity passengers="180" cockpitcrew="2" cabincrew="4" maxclasses="2"/>
+    
+<produced from="2014" to="2199" rate="220"/>
+  
+</airliner>
+
   
 <airliner manufacturer="Airbus" name="Airbus A321-100" image="Airbus A321" price="13481130"> <!--67500000-->
 	
@@ -177,31 +201,6 @@
 <produced from="1996" to="2199" rate="220"/>
   
 </airliner>
-
-<airliner manufacturer="Airbus" name="Airbus A319neo" image="Airbus A319" price="9225120"> <!--53200000-->
-	
-<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    
-<specs wingspan="34.10" length="33.84" range="7800" speed="828" fuelcapacity="24210" consumption="0.014" runwaylengthrequired="1480"/>
-    
-<capacity passengers="156" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
-    
-<produced from="2015" to="2199" rate="220"/>
-  
-</airliner>
- 
-<airliner manufacturer="Airbus" name="Airbus A320neo" image="Airbus A320" price="12120070"> <!--72200000-->
-	
-<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    
-<specs wingspan="36.50" length="37.57" range="6900" speed="828" fuelcapacity="30030" consumption="0.015" runwaylengthrequired="1895"/>
-    
-<capacity passengers="180" cockpitcrew="2" cabincrew="4" maxclasses="2"/>
-    
-<produced from="2014" to="2199" rate="220"/>
-  
-</airliner>
-
 <airliner manufacturer="Airbus" name="Airbus A321neo" image="Airbus A321" price="13220070"> <!--72200000-->
 	
 <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
@@ -213,7 +212,6 @@
 <produced from="2017" to="2199" rate="220"/>
   
 </airliner>
-
 <airliner manufacturer="Airbus" name="Airbus A330-200" image="Airbus A330-200" price="26366440"> <!--145200000-->
 	
 <type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>

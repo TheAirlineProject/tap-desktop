@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
+using TheAirline.Model.GeneralModel.Helpers;
 
 namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
 {
@@ -22,6 +24,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
     public partial class PopUpCodeshareAgreement : PopUpWindow
     {
         private Airline Airline;
+        public double Price { get; set; }
+        public double TicketSalePercent { get; set; }
         public static object ShowPopUp(Airline airline)
         {
             PopUpWindow window = new PopUpCodeshareAgreement(airline);
@@ -33,6 +37,8 @@ namespace TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel
         {
             this.Airline = airline;
             this.DataContext = this.Airline;
+            this.Price = AirlineHelpers.GetCodesharingPrice(this.Airline,GameObject.GetInstance().HumanAirline);
+            this.TicketSalePercent = CodeshareAgreement.TicketSalePercent;
 
             InitializeComponent();
         }

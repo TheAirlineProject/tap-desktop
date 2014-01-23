@@ -657,6 +657,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //do the monthly update
         private static void DoMonthlyUpdate()
         {
+            
             //Clear stats when it on monthly
             if (Settings.GetInstance().ClearStats == Settings.Intervals.Monthly)
                 ClearAllUsedStats();
@@ -714,7 +715,15 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
 
             }
+            //pays all codeshare agreements (one way)
+            var agreements = Airlines.GetAllAirlines().SelectMany(a=>a.Codeshares).Where(c=>c.Type == CodeshareAgreement.CodeshareType.One_Way);
 
+            foreach (CodeshareAgreement agreement in agreements)
+            {
+                double amount = AirlineHelpers.GetCodesharingPrice(agreement);
+                AirlineHelpers.AddAirlineInvoice(agreement.Airline1, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, -amount);
+                AirlineHelpers.AddAirlineInvoice(agreement.Airline2, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Airline_Expenses, amount);
+            }
             //check if pilots are retireing
             int retirementAge = Pilot.RetirementAge;
 

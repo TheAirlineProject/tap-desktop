@@ -1,7 +1,5 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <airline>
-  <profile name="Sriwijaya Air" iata="SJ" color="DarkBlue" country="162" CEO="Chandra Lie" mentality="Aggressive" market="Domestic" preferedairport="CGK">
-  <narrative narrative="Sriwijaya Air is an airline based in Jakarta with headquarters in Central Jakarta, Jakarta, Indonesia.[1] It offers domestic flights to major cities in Indonesia and limited International destinations."/>
-  </profile>
+  <profile name="Sriwijaya Air" iata="SJ" color="Blue" country="162" CEO="Chandra Lie" mentality="Aggressive" market="Domestic" preferedairport="CGK"></profile>
   <info real="True" from="2003" to="2199" />
 </airline>

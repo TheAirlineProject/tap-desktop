@@ -36,7 +36,7 @@
 		<capacity passengers="62" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
 		<produced from="2011" to="2014"/> <!--stretched version-->
 	</airliner>
-	<airliner manufacturer="Ark" name="Ark 202-300" price="1600230" convertable="True"> <!--6000000-->
+	<airliner manufacturer="Ark" name="Ark 202-300" price="1600230"> <!--6000000-->
 		<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
 		<specs wingspan="26.00" length="30.00" range="1150" speed="480" fuelcapacity="2700" consumption="0.030" runwaylengthrequired="705"/>
 		<capacity passengers="74" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
@@ -70,14 +70,8 @@
 		<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
 		<specs wingspan="28.40" length="33.04" range="2550" speed="1040" fuelcapacity="6500" consumption="0.037" runwaylengthrequired="940"/>
 		<capacity passengers="68" cockpitcrew="2" cabincrew="4" maxclasses="3"/>
-		<produced from="2014" to="2019"/><!--x-stretched/short range 242-->
+		<produced from="2014" to="2016"/><!--x-stretched/short range 242-->
 	</airliner>
-	 <airliner type="Mixed" manufacturer="Ark" name="Ark 315-300M" price="5982210"> <!--159500000-->
-	<type body="Narrow_Body" rangetype="Regional" engine="Jet"/>
-		<specs wingspan="28.40" length="33.04" range="2550" speed="1040" fuelcapacity="6500" consumption="0.037" runwaylengthrequired="940"/>
-    <capacity passengers="47" cockpitcrew="2" cargo="68" cabincrew="4" maxclasses="3"/>
-    <produced from="2014" to="2019"/>
-  </airliner>
 	<airliner manufacturer="Ark" name="Ark 325-100" price="5419440"> <!--19000000-->
 		<type body="Narrow_Body" rangetype="Short_Range" engine="Jet"/>
 		<specs wingspan="24.1" length="28.05" range="3700" speed="950" fuelcapacity="9500" consumption="0.038" runwaylengthrequired="1150"/>
