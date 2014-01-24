@@ -57,7 +57,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _alliance; }
             set { _alliance = value; NotifyPropertyChanged("Alliance"); }
         }
-
+        private Boolean _hasalliance;
+        public Boolean HasAlliance
+        {
+            get { return _hasalliance; }
+            set { _hasalliance = value; NotifyPropertyChanged("HasAlliance"); }
+        }
         public double LoanRate { get; set; }
 
         public int CabinCrew { get; set; }
@@ -206,7 +211,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
                         this.ActiveQuantity.Add(new AirlinerQuantityMVVM(airliner.Airliner.Type, 1));
                 }
             }
-     
+
+            this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
         //saves all the fees
         public void saveFees()

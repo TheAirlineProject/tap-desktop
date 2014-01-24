@@ -104,6 +104,15 @@
                         </StackPanel>
                     </Grid>
                 <StackPanel Margin="0 10 0 0">
+                    <StackPanel.Style>
+                        <Style TargetType="StackPanel">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding HasAlliance}" Value="False">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </StackPanel.Style>
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineInfo 1035'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <ContentControl Content="{Binding Alliance}" HorizontalAlignment="Left" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200">
                     <ContentControl.Style>

@@ -311,13 +311,13 @@ namespace TheAirline.Model.GeneralModel.Helpers
             switch (airline.Mentality)
             {
                 case Airline.AirlineMentality.Aggressive:
-                    newCodesharingInterval = 100000;
+                    newCodesharingInterval = 85000;
                     break;
                 case Airline.AirlineMentality.Moderate:
-                    newCodesharingInterval = 1000000;
+                    newCodesharingInterval = 850000;
                     break;
                 case Airline.AirlineMentality.Safe:
-                    newCodesharingInterval = 10000000;
+                    newCodesharingInterval = 8500000;
                     break;
             }
             newCodesharingInterval *= GameObject.GetInstance().Difficulty.AILevel;

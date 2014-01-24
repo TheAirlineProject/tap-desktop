@@ -49,6 +49,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 this.Average = 0;
         }
     }
+   
     //the mvvm object for an airliner
     public class FleetAirlinerMVVM : INotifyPropertyChanged
     {

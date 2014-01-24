@@ -3,13 +3,18 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
                     x:Name="popUpCodeshareAgreement"
-        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpCodeshareAgreement 1000'}"  Height="100" Width="200" WindowStartupLocation="CenterScreen" Background="#004A7F">
+        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpCodeshareAgreement 1000'}"  Height="150" Width="400" WindowStartupLocation="CenterScreen" Background="#004A7F">
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <StackPanel>
+            <WrapPanel>
             <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpCodeshareAgreement 1001'}" Name="rbBothWays" VerticalAlignment="Bottom" GroupName="AgreementType" Tag="Both_Ways" IsChecked="True"/>
+                <TextBlock Text="{Binding TicketSalePercent,ElementName=popUpCodeshareAgreement,StringFormat='{}({0} % of ticket revenue)'}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+
+            </WrapPanel>
             <WrapPanel>
             <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpCodeshareAgreement 1002'}" VerticalAlignment="Bottom" GroupName="AgreementType" Tag="One_Way" />
-                <TextBlock Text="{Binding Price,ElementName=popUpCodeshareAgreement,Converter={StaticResource ValueCurrencyConverter},StringFormat={}({0})}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <TextBlock Text="{Binding Price,ElementName=popUpCodeshareAgreement,Converter={StaticResource ValueCurrencyConverter},StringFormat='{}({0} per month'}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                <TextBlock Text="{Binding TicketSalePercent,ElementName=popUpCodeshareAgreement,StringFormat='{} + {0} % of ticket revenue)'}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
             <WrapPanel Margin="0 10 0 0">
             <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 100'}" Style="{StaticResource StandardButtonStyle}" Click="btnOk_Click"/>

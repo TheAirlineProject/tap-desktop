@@ -218,8 +218,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         public static double GetCodesharingPrice(Airline airline1, Airline airline2)
         {
             //from airline1 to airline2
-            return 20000;
-
+            return GeneralHelpers.GetInflationPrice(750);
         }
         //returns if an airline wants to have code sharing with another airline
         public static Boolean AcceptCodesharing(Airline airline, Airline asker, CodeshareAgreement.CodeshareType type)

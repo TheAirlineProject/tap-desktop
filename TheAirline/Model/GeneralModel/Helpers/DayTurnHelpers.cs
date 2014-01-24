@@ -293,11 +293,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
+            
 
             long airportIncome = Convert.ToInt64(dest.getLandingFee());
             dest.Income += airportIncome;
 
             Airline airline = airliner.Airliner.Airline;
+
+            var agreements = airline.Codeshares.Where(c => c.Airline1 == airline || c.Type == CodeshareAgreement.CodeshareType.Both_Ways);
+
+            foreach (CodeshareAgreement agreement in agreements)
+            {
+                var tAirline = agreement.Airline1 == airline ? agreement.Airline2 : agreement.Airline1;
+
+                double agreementIncome = ticketsIncome * (CodeshareAgreement.TicketSalePercent / 100);
+
+                AirlineHelpers.AddAirlineInvoice(tAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Tickets, agreementIncome);
+
+            }
 
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Flight_Expenses, -expenses);
             AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Tickets, ticketsIncome);
