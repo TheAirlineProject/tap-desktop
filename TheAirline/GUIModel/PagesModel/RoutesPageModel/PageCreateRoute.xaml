@@ -76,6 +76,7 @@
                         </WrapPanel>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
+                
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1004'}">
                     <h:QuickInfoValue.Style>
                         <Style>
@@ -100,6 +101,7 @@
                         <TextBlock Text="-" Name="txtDistance"></TextBlock>
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
+           
                 <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1013'}">
                     <h:QuickInfoValue.Value>
                         <WrapPanel VerticalAlignment="Bottom">
@@ -118,7 +120,26 @@
 
                     </h:QuickInfoValue.Value>
                 </h:QuickInfoValue>
-         </ListBox>
+                <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageCreateRoute 1019'}">
+                    <h:QuickInfoValue.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=pageCreateRoute, Path=ConnectingRoutes.Count}" Value="0">
+                                    <Setter Property="h:QuickInfoValue.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </h:QuickInfoValue.Style>
+                    <h:QuickInfoValue.Value>
+                        <WrapPanel>
+                        <TextBlock Text="{Binding ConnectingRoutes.Count,ElementName=pageCreateRoute}" VerticalAlignment="Bottom"></TextBlock>
+                            <Button Background="Transparent" VerticalAlignment="Bottom" Width="20" Margin="5 0 0 0" Click="btnShowConnectingRoutes_Click">
+                                <Image RenderOptions.BitmapScalingMode="HighQuality" Source="/data/images/search.png"></Image>
+                            </Button>
+                        </WrapPanel>
+                    </h:QuickInfoValue.Value>
+                </h:QuickInfoValue>
+            </ListBox>
             <StackPanel>
                 <StackPanel.Style>
                     <Style>

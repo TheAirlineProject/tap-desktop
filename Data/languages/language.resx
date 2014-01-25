@@ -4782,6 +4782,9 @@ Good luck.</value>
   <data name="PageShowAlliances_1006_name" xml:space="preserve">
     <value>Type</value>
   </data>
+  <data name="PageCreateRoute_1019_name" xml:space="preserve">
+    <value>Connecting Routes</value>
+  </data>
   <data name="PageHumanRoutes_1008_name" xml:space="preserve">
     <value>Codesharing Routes</value>
   </data>

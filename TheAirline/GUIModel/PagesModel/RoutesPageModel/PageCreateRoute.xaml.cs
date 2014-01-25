@@ -31,6 +31,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// </summary>
     public partial class PageCreateRoute : Page, INotifyPropertyChanged
     {
+        public ObservableCollection<Route> ConnectingRoutes { get; set; }
         public List<Airport> Airports { get; set; }
         public List<AirlinerType> HumanAircrafts { get; set; }
         public List<MVVMRouteClass> Classes { get; set; }
@@ -42,6 +43,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         }
         public PageCreateRoute()
         {
+            this.ConnectingRoutes = new ObservableCollection<Route>();
             this.Classes = new List<MVVMRouteClass>();
 
             foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
@@ -292,6 +294,21 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 }
 
                 txtDistance.Text = new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2)).ToString();
+
+                var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c=>c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == Model.AirlineModel.CodeshareAgreement.CodeshareType.Both_Ways).Select(c=>c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a=>a.Routes);
+                var humanConnectingRoutes = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
+
+                var codesharingConnectingRoutes = codesharingRoutes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
+
+                this.ConnectingRoutes.Clear();
+
+                foreach (Route route in humanConnectingRoutes)
+                    this.ConnectingRoutes.Add(route);
+
+                foreach (Route route in codesharingConnectingRoutes)
+                    this.ConnectingRoutes.Add(route);
+
+                
             }
         }
 
@@ -309,6 +326,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 };
             }
         }
+        private void btnShowConnectingRoutes_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
 
        public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -320,6 +341,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             }
         }
 
+      
 
     }
 

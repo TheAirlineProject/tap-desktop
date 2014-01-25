@@ -151,7 +151,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         private void hlCodeSharing_Click(object sender, RoutedEventArgs e)
         {
 
-
             object o = PopUpCodeshareAgreement.ShowPopUp(this.Airline.Airline);
 
             if (o != null)
