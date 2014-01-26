@@ -192,6 +192,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSingleElement.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -547,6 +551,9 @@
       <DependentUpon>PopUpMap.xaml</DependentUpon>
     </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpNewAirlinerHomebase.cs" />
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpShowConnectingRoutes.xaml.cs">
+      <DependentUpon>PopUpShowConnectingRoutes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpSingleElement.xaml.cs">
       <DependentUpon>PopUpSingleElement.xaml</DependentUpon>
     </Compile>

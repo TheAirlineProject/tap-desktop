@@ -10,7 +10,7 @@
 	Title="PageHumanRoutes">
     <Page.Resources>
         <DataTemplate x:Key="StopoverItem">
-            <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryShortLink}"></ContentControl>
+            <ContentControl Content="{Binding Stopover}" ContentTemplate="{StaticResource AirportCountryLink}"></ContentControl>
         </DataTemplate>
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -115,7 +115,7 @@
                 <ListView  util:GridViewSort.AutoSort="True" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding CodesharingRoutes,ElementName=pageHumanRoutes}">
                     <ListView.View>
                         <GridView>
-                            <GridViewColumn util:GridViewSort.PropertyName="Route.Airline.Profile.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1009'}" Width="200">
+                            <GridViewColumn util:GridViewSort.PropertyName="Airline.Profile.Name" Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageHumanRoutes 1009'}" Width="200">
                                 <GridViewColumn.CellTemplate>
                                     <DataTemplate>
                                         <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom"/>

@@ -4791,4 +4791,7 @@ Good luck.</value>
   <data name="PageHumanRoutes_1009_name" xml:space="preserve">
     <value>Codesharing Airline</value>
   </data>
+  <data name="PopUpShowConnectingRoutes_1000_name" xml:space="preserve">
+    <value>Connecting Routes</value>
+  </data>
 </root>

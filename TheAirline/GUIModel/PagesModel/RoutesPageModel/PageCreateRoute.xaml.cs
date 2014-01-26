@@ -16,6 +16,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
@@ -328,7 +329,10 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
         }
         private void btnShowConnectingRoutes_Click(object sender, RoutedEventArgs e)
         {
-            
+            Airport destination1 = (Airport)cbDestination1.SelectedItem;
+            Airport destination2 = (Airport)cbDestination2.SelectedItem;
+
+            PopUpShowConnectingRoutes.ShowPopUp(destination1,destination2);
         }
 
        public event PropertyChangedEventHandler PropertyChanged;
