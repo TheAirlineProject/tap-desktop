@@ -20,7 +20,7 @@
             <Button Style="{StaticResource RoundedButton}" Width="30" Height="20" Content="&lt;" Background="#004A7F" Margin="20 0 6 0" Click="ButtonPrev_Click"></Button>
             <Button Style="{StaticResource RoundedButton}" Width="30" Height="20" Content=">" Background="#004A7F" Click="ButtonNext_Click" Margin="0 0 6 0"></Button>
             <TextBlock Text="{Binding ElementName=CalendarControl, Path=Date, StringFormat={}{0:MMMM yyyy}}" FontSize="14" FontWeight="Bold" VerticalAlignment="Center"/>
-        </StackPanel>
+      </StackPanel>
         <Grid Grid.Row="1">
             <Grid.Background>
                 <SolidColorBrush Color="#004A7F" Opacity="0.6"></SolidColorBrush>
@@ -45,8 +45,7 @@
         </Grid>
        
         <Grid x:Name="MonthViewGrid" Grid.Row="2">
-            <Grid.RowDefinitions>
-            </Grid.RowDefinitions>
+
         </Grid>
 
     </Grid>

@@ -125,13 +125,13 @@
                         </Style>
                     </ContentControl.Style>
                     </ContentControl>
-                          <ListBox BorderThickness="0" Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" HorizontalAlignment="Left"  ItemsSource="{Binding Codeshares}">
+                          <ListBox BorderThickness="0" Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Codeshares}">
                                 <ListBox.ItemTemplate>
                                     <DataTemplate>
-                                    <WrapPanel>
-                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlineLink}" Width="200"></ContentControl>
-                                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
-                                   </WrapPanel>
+                                    <!--<WrapPanel>-->
+                                    <ContentControl Content="{Binding}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlineLink}"></ContentControl>
+                                  <!--  <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                             -->    <!--  </WrapPanel>-->
                                     </DataTemplate>
                                 </ListBox.ItemTemplate>
                             </ListBox>

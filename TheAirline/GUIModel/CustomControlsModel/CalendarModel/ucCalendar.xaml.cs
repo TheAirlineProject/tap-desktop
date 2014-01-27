@@ -71,8 +71,11 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
 
             showMonth();
 
+
      
         }
+
+     
         //show current month
         private void showMonth()
         {
@@ -87,13 +90,25 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                 int startDayOfWeek = (int)startDate.DayOfWeek;
 
                 Grid grdDays = new Grid();
+
+                for (int i = 0; i < 7; i++)
+                {
+                    ColumnDefinition columnDef = new ColumnDefinition();
+                    grdDays.ColumnDefinitions.Add(columnDef);
+                }
+                for (int i = 0; i < 6; i++)
+                {
+                    RowDefinition rowDef = new RowDefinition();
+                    grdDays.RowDefinitions.Add(rowDef);
+                }
+
                 for (int i = 0; i < 7; i++)
                 {
                     for (int j = 0; j < 6; j++)
                     {
                         int day = i + 7 * j + 1;
                         DayBoxControl dbcDay = new DayBoxControl();
-
+                        
                         if (day > startDayOfWeek && day <= daysInMonth + startDayOfWeek)
                         {
                             dbcDay.Day = day - startDayOfWeek;
@@ -115,7 +130,7 @@ namespace TheAirline.GraphicsModel.UserControlModel.CalendarModel
                         else
                             dbcDay.DayVisibility = System.Windows.Visibility.Collapsed;
 
-
+                        
 
                         Grid.SetColumn(dbcDay, i);
                         Grid.SetRow(dbcDay, j);

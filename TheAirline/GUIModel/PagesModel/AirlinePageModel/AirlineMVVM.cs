@@ -398,6 +398,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         {
             this.Codeshares.Add(share.Airline1 == this.Airline ? share.Airline2 : share.Airline1);
             this.Airline.addCodeshareAgreement(share);
+
+            this.HasAlliance = this.Alliance != null || this.Codeshares.Count > 0;
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)

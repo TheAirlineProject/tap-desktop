@@ -223,8 +223,8 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //returns if an airline wants to have code sharing with another airline
         public static Boolean AcceptCodesharing(Airline airline, Airline asker, CodeshareAgreement.CodeshareType type)
         {
-
-            double coeff = type == CodeshareAgreement.CodeshareType.One_Way ? 0.35 : 0.50;
+            
+            double coeff = type == CodeshareAgreement.CodeshareType.One_Way ? 0.25 : 0.40;
 
             IEnumerable<Country> sameCountries = asker.Airports.Select(a => a.Profile.Country).Distinct().Intersect(airline.Airports.Select(a => a.Profile.Country).Distinct());
             IEnumerable<Airport> sameDestinations = asker.Airports.Distinct().Intersect(airline.Airports);
@@ -237,11 +237,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
             double airlineAlliances = airline.Alliances.Count;
 
             //declines if asker is much smaller than the invited airline
-            if (airlineRoutes > 2 * asker.Routes.Count)
+            if (airlineRoutes > 3 * asker.Routes.Count)
                 return false;
 
-            //declines if there is a match for 50% of the airlines
-            if (sameDestinations.Count() >= airlineDestinations * coeff)
+            //declines if there is a match for x% of the airlines
+            if (sameDestinations.Count() >= airlineDestinations * coeff) 
                 return false;
 
             //declines if there is a match for 75% of the airlines
