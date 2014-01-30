@@ -2599,10 +2599,7 @@ namespace TheAirline.Model.GeneralModel
             });
 
             //adds the airliners
-            //foreach (StartDataAirliners airliners in startData.Airliners.GetRange(0, startData.Airliners.Count / difficultyFactor))
-            var sAirliners = startData.Airliners.GetRange(0, startData.Airliners.Count / startDataFactor);
-
-            Parallel.ForEach(sAirliners, airliners =>
+            Parallel.ForEach(startData.Airliners, airliners =>
             {
                 AirlinerType type = AirlinerTypes.GetType(airliners.Type);
 
@@ -2611,7 +2608,7 @@ namespace TheAirline.Model.GeneralModel
                 double valueSpan = Convert.ToDouble(airliners.AirlinersLate - airliners.AirlinersEarly);
                 double span = valueSpan / Convert.ToDouble(totalSpan);
 
-                int numbers = Convert.ToInt16(span * yearSpan);
+                int numbers = Math.Max(1, Convert.ToInt16(span * yearSpan) / startDataFactor);
                 //type==null
                 if (type.Produced.From <= GameObject.GetInstance().GameTime)
                 {
