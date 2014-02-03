@@ -185,7 +185,7 @@
                     <ListView  x:Name="lvTerminals" VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Terminals}">
                         <ListView.GroupStyle>
                             <GroupStyle>
-                                <GroupStyle.HeaderTemplate>
+                                <GroupStyle.HeaderTemplate<
                                     <DataTemplate>
                                         <TextBlock Style="{StaticResource SmallHeaderStyle}" Text="{Binding Name}"/>
                                     </DataTemplate>

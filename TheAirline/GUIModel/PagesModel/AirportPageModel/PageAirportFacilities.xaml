@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:TheAirline.GUIModel.PagesModel.AirportPageModel"
+      xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
       mc:Ignorable="d" 
       Name="pageAirportFacilities"
       d:DesignHeight="300" d:DesignWidth="300"
@@ -52,7 +53,7 @@
                             <Style>
                                 <Style.Triggers>
                                     <DataTrigger Binding="{Binding AirlineFacilities.Count}" Value="0">
-                                        <Setter Property="StackPanel.Visibility" Value="Collapsed" />
+                                        <Setter Property="Button.Visibility" Value="Collapsed" />
                                     </DataTrigger>
                                 </Style.Triggers>
                             </Style>
@@ -64,7 +65,7 @@
                                     <WrapPanel>
                                         <ContentControl Content="{Binding Facility.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
                                         <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200" />
-                                            <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                         <Button Click="btnDeleteFacility_Click" ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 3000'}" Width="20" Tag="{Binding}" VerticalAlignment="Bottom" Background="Transparent">
                                             <Button.Style>
                                                 <Style>
@@ -116,6 +117,30 @@
                                                 </TextBlock.Text>
                                             </TextBlock>
                                         </WrapPanel>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel Margin="0 10 0 0">
+                            <StackPanel.Style>
+                                <Style>
+                                    <Style.Triggers>
+                                    <DataTrigger Binding="{Binding BuildingAirlineFacilities.Count}" Value="0">
+                                            <Setter Property="Button.Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </StackPanel.Style>
+                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1011'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                        <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding BuildingAirlineFacilities}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <ContentControl Content="{Binding Facility.Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
+                                        <ContentControl Content="{Binding Alliance}" ContentTemplate="{StaticResource AllianceItem}" VerticalAlignment="Bottom" Width="200" />
+                                        <TextBlock Text="{Binding Facility.Facility.Name}" VerticalAlignment="Bottom" Width="150"></TextBlock>
+                                        <TextBlock Text="{Binding Facility.FinishedDate,StringFormat=d,ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                     </WrapPanel>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>

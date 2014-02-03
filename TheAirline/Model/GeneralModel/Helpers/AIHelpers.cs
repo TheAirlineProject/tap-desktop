@@ -117,8 +117,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
         {
             int newAirlinersInterval = 0;
 
-            int airliners = airline.Fleet.Count + 1;
-            int airlinersWithoutRoute = airline.Fleet.Count(a => !a.HasRoute) + 1;
+            var fleet = new List<FleetAirliner>(airline.Fleet);
+         
+            int airliners = fleet.Count + 1;
+
+            int airlinersWithoutRoute = fleet.Count(a => !a.HasRoute) + 1;
 
             switch (airline.Mentality)
             {

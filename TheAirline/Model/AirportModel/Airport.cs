@@ -592,6 +592,14 @@ namespace TheAirline.Model.AirportModel
 
             this.Terminals.removeTerminal(terminal);
         }
+        //returns the reputation score for an airline
+        public double getAirlineReputation(Airline airline)
+        {
+            //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
+            double score = 0;
+
+            return score;
+        }
            private Airport(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");

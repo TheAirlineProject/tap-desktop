@@ -33,6 +33,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public double TerminalGatePrice { get; set; }
         public List<AirportFacility> AirportFacilities { get; set; }
         public ObservableCollection<AirlineAirportFacilityMVVM> AirlineFacilities { get; set; }
+        public ObservableCollection<AirlineAirportFacilityMVVM> BuildingAirlineFacilities { get; set; }
         public List<AirportTrafficMVVM> Traffic { get; set; }
         public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
         public List<DestinationFlightsMVVM> Flights { get; set; }
@@ -95,13 +96,19 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).ToList();
 
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
+            this.BuildingAirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
            
             foreach (var facility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
                 if (facility.Facility.TypeLevel != 0)
                 {
                     Alliance alliance = facility.Airline.Alliances.Count == 0 ? null : facility.Airline.Alliances[0];
-      
-                    this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(facility,alliance));
+
+                    AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(facility, alliance);
+
+                    if (airlineFacility.IsDelivered)
+                        this.AirlineFacilities.Add(airlineFacility);
+                    else
+                        this.BuildingAirlineFacilities.Add(airlineFacility);
                 }
 
             this.AirlineStatistics = new List<AirportStatisticsMVMM>();
@@ -252,7 +259,13 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             if (this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type).Facility.TypeLevel > 0)
             {
                 Alliance alliance = facility.Facility.Airline.Alliances.Count == 0 ? null : facility.Facility.Airline.Alliances[0];
-                this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type),alliance));
+               
+                AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type),alliance);
+
+                if (airlineFacility.IsDelivered)
+                    this.AirlineFacilities.Add(airlineFacility);
+                else
+                    this.BuildingAirlineFacilities.Add(airlineFacility);
             }
         }
         //adds an airline facility to the airport
@@ -272,13 +285,19 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(nextFacility,alliance));
              * */
             this.AirlineFacilities.Clear();
-
+            this.BuildingAirlineFacilities.Clear();
+           
             foreach (var tFacility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
                 if (tFacility.Facility.TypeLevel != 0)
                 {
                     Alliance alliance = tFacility.Airline.Alliances.Count == 0 ? null : tFacility.Airline.Alliances[0];
 
-                    this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(tFacility, alliance));
+                    AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(tFacility, alliance);
+
+                    if (airlineFacility.IsDelivered)
+                        this.AirlineFacilities.Add(airlineFacility);
+                    else
+                        this.BuildingAirlineFacilities.Add(airlineFacility);
                 }
         }
         public event PropertyChangedEventHandler PropertyChanged;

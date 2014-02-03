@@ -676,8 +676,10 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
 
             if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Passenger)
                 this.PriceIndex = ((PassengerRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice;
-            else
+            else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Cargo)
                 this.PriceIndex = ((CargoRoute)this.Route).PricePerUnit;
+            else if (this.Route.Type == Model.AirlinerModel.RouteModel.Route.RouteType.Mixed)
+                this.PriceIndex = ((CombiRoute)this.Route).getRouteAirlinerClass(AirlinerClass.ClassType.Economy_Class).FarePrice + ((CombiRoute)this.Route).PricePerUnit;
         }
     }
     //the mvvm class for a destination
