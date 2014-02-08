@@ -11,6 +11,7 @@ using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Runtime.Serialization;
 using System.Reflection;
+using TheAirline.Model.AirlinerModel.RouteModel;
 
 
 
@@ -598,7 +599,27 @@ namespace TheAirline.Model.AirportModel
             //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
             double score = 0;
 
+            foreach (AirlineAirportFacility facility in this.Facilities.Where(f=>f.Airline == airline))
+                score += 10*facility.Facility.ServiceLevel;
+
+            var airportRoutes = airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
+            score += 7*airportRoutes.Count();
+            score += 6 * airportRoutes.Where(r => r.Type == AirlinerModel.RouteModel.Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+
+            foreach (Alliance alliance in airline.Alliances)
+            {
+                var allianceRoutes = alliance.Members.SelectMany(m => m.Airline.Routes).Count(r => r.Destination1 == this || r.Destination2 == this);
+                score += 5 * allianceRoutes;
+            }
+
+            foreach (CodeshareAgreement codesharing in airline.Codeshares)
+            {
+                var codesharingRoutes = (codesharing.Airline1 == airline ? codesharing.Airline2 : codesharing.Airline1).Routes.Count(r => r.Destination2 == this || r.Destination1 == this);
+                score += 4 * codesharingRoutes;
+            }
+
             return score;
+
         }
            private Airport(SerializationInfo info, StreamingContext ctxt)
         {

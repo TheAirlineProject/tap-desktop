@@ -18,13 +18,14 @@
             </WrapPanel>
         </DataTemplate>
     </Page.Resources>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
                 <StackPanel>
                     <StackPanel>
                         <StackPanel.Style>
@@ -123,16 +124,16 @@
                         </ListBox>
                     </StackPanel>
                     <StackPanel Margin="0 10 0 0">
-                            <StackPanel.Style>
-                                <Style>
-                                    <Style.Triggers>
+                        <StackPanel.Style>
+                            <Style>
+                                <Style.Triggers>
                                     <DataTrigger Binding="{Binding BuildingAirlineFacilities.Count}" Value="0">
-                                            <Setter Property="Button.Visibility" Value="Collapsed" />
-                                        </DataTrigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </StackPanel.Style>
-                            <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1011'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                                        <Setter Property="Button.Visibility" Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </StackPanel.Style>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1011'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                         <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding BuildingAirlineFacilities}">
                             <ListBox.ItemTemplate>
                                 <DataTemplate>
@@ -162,7 +163,7 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-                               
+
                             </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1009'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
@@ -174,7 +175,7 @@
                                         </MultiBinding>
                                     </TextBlock.Text>
                                 </TextBlock>
-                         </WrapPanel>
+                            </WrapPanel>
                             <WrapPanel Style="{StaticResource WrapPanelStyle}">
                                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1010'}" FontWeight="Bold" VerticalAlignment="Bottom" Width="150"></TextBlock>
                                 <TextBlock VerticalAlignment="Bottom">
@@ -188,22 +189,25 @@
                             </WrapPanel>
                             <WrapPanel Margin="0 5 0 0" >
                                 <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 200'}" Click="btnBuyFacility_Click">
-                                <Button.Style>
-                                    <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ElementName=txtNextFacility, Path=Text}" Value="None">
-                                                <Setter Property="Button.IsEnabled" Value="False" />
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Button.Style>
-                            </Button>
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding ElementName=txtNextFacility, Path=Text}" Value="None">
+                                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+                                </Button>
                             </WrapPanel>
                         </StackPanel>
                     </Expander>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+        </Border>
             <Border Margin="5 0 0 0" Style="{StaticResource RoundedBorderStyle}"  Grid.Column="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+
                 <StackPanel>
                     <ListView  VerticalAlignment="Stretch" Background="Transparent" BorderThickness="0" ItemsSource="{Binding AirlineStatistics}">
                         <ListView.View>
@@ -222,6 +226,13 @@
                                     <GridViewColumn.CellTemplate>
                                         <DataTemplate>
                                             <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLongLink}" VerticalAlignment="Bottom"></ContentControl>
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1013'}" Width="100">
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Routes}" VerticalAlignment="Bottom"></TextBlock>
                                         </DataTemplate>
                                     </GridViewColumn.CellTemplate>
                                 </GridViewColumn>
@@ -249,8 +260,20 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirportFacilities 1012'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Margin="0 10 0 0"></TextBlock>
+                    <ListBox Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AirlineReputations}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <ContentControl Content="{Binding Airline}" ContentTemplate="{StaticResource AirlineLink}" VerticalAlignment="Bottom" Width="200" />
+                                    <ProgressBar Width="100" Value="{Binding Reputation}" VerticalAlignment="Bottom" Height="15" Background="Transparent" BorderBrush="Black"></ProgressBar>
+                                    <TextBlock Text="{Binding Reputation}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
-            </Border>
+            </ScrollViewer>
+        </Border>
         </Grid>
-    </ScrollViewer>
-</Page>
+ </Page>

@@ -44,12 +44,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             InitializeComponent();
 
-            CollectionView viewTerminals = (CollectionView)CollectionViewSource.GetDefaultView(lvTerminals.ItemsSource);
-            viewTerminals.GroupDescriptions.Clear();
-
-            PropertyGroupDescription groupDescription = new PropertyGroupDescription("Type");
-            viewTerminals.GroupDescriptions.Add(groupDescription);
-
+           
 
 
             CollectionView viewDemands = (CollectionView)CollectionViewSource.GetDefaultView(lvDemand.ItemsSource);
@@ -216,7 +211,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
 
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2228"), string.Format(Translator.GetInstance().GetString("MessageBox", "2228", "message"), 2), WPFMessageBoxButtons.YesNo);
-
+            
             if (result == WPFMessageBoxResult.Yes)
             {
                 tContract.extendContract(2);

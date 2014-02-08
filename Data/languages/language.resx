@@ -3751,7 +3751,7 @@ Good luck.</value>
     <value>Facility Name</value>
   </data>
   <data name="PageAirportFacilities_1005_name" xml:space="preserve">
-    <value>Airlines</value>
+    <value>Airline</value>
   </data>
   <data name="PageAirportFacilities_1006_name" xml:space="preserve">
     <value>Flights</value>
@@ -4796,5 +4796,20 @@ Good luck.</value>
   </data>
   <data name="PageAirportFacilities_1011_name" xml:space="preserve">
     <value>Airline Facilities in Progress</value>
+  </data>
+  <data name="PageAirportFacilities_1012_name" xml:space="preserve">
+    <value>Airline Reputations</value>
+  </data>
+  <data name="PageAirportFacilities_1013_name" xml:space="preserve">
+    <value>Routes</value>
+  </data>
+  <data name="PageAirportInfo_1043_name" xml:space="preserve">
+    <value>Terminals in Progress</value>
+  </data>
+  <data name="PageAirportInfo_1044_name" xml:space="preserve">
+    <value>Delivery Date</value>
+  </data>
+  <data name="PageAirportInfo_1045_name" xml:space="preserve">
+    <value>Gates</value>
   </data>
 </root>
