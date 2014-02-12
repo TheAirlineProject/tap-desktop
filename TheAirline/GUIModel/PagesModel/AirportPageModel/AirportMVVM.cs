@@ -132,6 +132,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 int routes = airline.Routes.Count(r => r.Destination1 == this.Airport || r.Destination2 == this.Airport);
 
                 this.AirlineStatistics.Add(new AirportStatisticsMVMM(airline, passengers, passengersAvg, arrivals,routes));
+
+               
             }
 
             this.Traffic = new List<AirportTrafficMVVM>();

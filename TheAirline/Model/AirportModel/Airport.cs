@@ -599,6 +599,8 @@ namespace TheAirline.Model.AirportModel
             //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
             double score = 0;
 
+            //hotels
+
             foreach (AirlineAirportFacility facility in this.Facilities.Where(f=>f.Airline == airline))
                 score += 10*facility.Facility.ServiceLevel;
 
