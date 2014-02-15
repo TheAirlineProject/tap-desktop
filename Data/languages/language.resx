@@ -4812,4 +4812,37 @@ Good luck.</value>
   <data name="PageAirportInfo_1045_name" xml:space="preserve">
     <value>Gates</value>
   </data>
+  <data name="MessageBox_2231_message" xml:space="preserve">
+    <value>Are you sure you want to delete your cooperation with this {0}?</value>
+  </data>
+  <data name="MessageBox_2231_name" xml:space="preserve">
+    <value>Delete cooperation</value>
+  </data>
+  <data name="PageAirportFacilities_1014_name" xml:space="preserve">
+    <value>Airline Cooperations</value>
+  </data>
+  <data name="MessageBox_2232_message" xml:space="preserve">
+    <value>You don't have enough money to create this cooperation</value>
+  </data>
+  <data name="MessageBox_2232_name" xml:space="preserve">
+    <value>Not enough money</value>
+  </data>
+  <data name="PageAirlineFleet_1013_name" xml:space="preserve">
+    <value>Airline Cooperations</value>
+  </data>
+  <data name="PageAirportFacilities_201_name" xml:space="preserve">
+    <value>Add Cooperation</value>
+  </data>
+  <data name="PopUpAddCooperation_1000_name" xml:space="preserve">
+    <value>Sign Cooperation</value>
+  </data>
+  <data name="PopUpAddCooperation_1001_name" xml:space="preserve">
+    <value>Select Cooperation Type</value>
+  </data>
+  <data name="PopUpAddCooperation_1002_name" xml:space="preserve">
+    <value>Price</value>
+  </data>
+  <data name="PopUpAddCooperation_1003_name" xml:space="preserve">
+    <value>Monthly Price</value>
+  </data>
 </root>

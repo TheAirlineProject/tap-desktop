@@ -25,6 +25,7 @@ using System.Threading.Tasks;
 using TheAirline.Model.PilotModel;
 using System.Globalization;
 using TheAirline.Model.GeneralModel.ScenarioModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -69,6 +70,7 @@ namespace TheAirline.Model.GeneralModel
                 LoadAirportLogos();
                 LoadAirportMaps();
                 LoadAirportFacilities();
+                LoadCooperations();
                 LoadMajorDestinations();
 
                 LoadAirlineFacilities();
@@ -197,6 +199,7 @@ namespace TheAirline.Model.GeneralModel
             TrainingAircraftTypes.Clear();
             Scenarios.Clear();
             HubTypes.Clear();
+            CooperationTypes.Clear();
 
         }
         /*! reads the settings file if existing
@@ -1416,6 +1419,35 @@ namespace TheAirline.Model.GeneralModel
 
                 RandomEvents.AddEvent(rEvent);
 
+            }
+        }
+        /*!loads the cooperation types
+         */
+        private static void LoadCooperations()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.Load(AppSettings.getDataPath() + "\\airlinecooperations.xml");
+            XmlElement root = doc.DocumentElement;
+
+            XmlNodeList cooperationsList = root.SelectNodes("//cooperation");
+
+            foreach (XmlElement element in cooperationsList)
+            {
+                string section = root.Name;
+                string uid = element.Attributes["uid"].Value;
+                double price = Convert.ToDouble(element.Attributes["price"].Value);
+                int fromyear = Convert.ToInt16(element.Attributes["fromyear"].Value);
+                double monthlyprice = Convert.ToDouble(element.Attributes["monthlyprice"].Value);
+                int servicelevel = Convert.ToInt16(element.Attributes["servicelevel"].Value);
+                double incomeperpax = Convert.ToDouble(element.Attributes["incomeperpax"].Value);
+                GeneralHelpers.Size minsize = (GeneralHelpers.Size)Enum.Parse(typeof(GeneralHelpers.Size), element.Attributes["minsize"].Value);
+
+                CooperationType type = new CooperationType(section, uid,minsize, fromyear, price, monthlyprice, servicelevel, incomeperpax);
+                CooperationTypes.AddCooperationType(type);
+                /*uid="101" price="250000" fromyear="1980" monthlyprice="10000" servicelevel="50" incomepercent="3"*/
+
+                if (element.SelectSingleNode("translations") != null)
+                    Translator.GetInstance().addTranslation(root.Name, element.Attributes["uid"].Value, element.SelectSingleNode("translations"));
             }
         }
         /*!loads the airport facilities.

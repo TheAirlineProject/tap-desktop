@@ -14,7 +14,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
@@ -157,6 +159,37 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 }
             }
 
+        }
+        private void btnAddCooperation_Click(object sender, RoutedEventArgs e)
+        {
+            object o = PopUpAddCooperation.ShowPopUp(GameObject.GetInstance().HumanAirline, this.Airport.Airport);
+
+            if (o != null && o is CooperationType)
+            {
+                CooperationType type = (CooperationType)o;
+
+                if (type.Price < GameObject.GetInstance().HumanAirline.Money)
+                {
+
+                    Cooperation cooperation = new Cooperation(type, GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime);
+
+                    this.Airport.addCooperation(cooperation);
+                }
+                else
+                    WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2232"), string.Format(Translator.GetInstance().GetString("MessageBox", "2232", "message")), WPFMessageBoxButtons.Ok);
+            }
+        }
+        private void btnDeleteCooperation_Click(object sender, RoutedEventArgs e)
+        {
+            Cooperation cooperation = (Cooperation)((Button)sender).Tag;
+
+             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2231"), string.Format(Translator.GetInstance().GetString("MessageBox", "2231", "message"), cooperation.Type.Name), WPFMessageBoxButtons.YesNo);
+
+                if (result == WPFMessageBoxResult.Yes)
+                {
+                    this.Airport.removeCooperation(cooperation);
+                }
+            
         }
     }
 }

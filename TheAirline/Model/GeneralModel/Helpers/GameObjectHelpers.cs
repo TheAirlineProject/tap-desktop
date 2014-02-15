@@ -26,6 +26,7 @@ using TheAirline.GUIModel.PagesModel.GamePageModel;
 using System.Globalization;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -1076,6 +1077,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Parallel.ForEach(Airports.GetAllAirports(a => a.Runways.Count > 0 && a.Runways.Select(r => r.Length).Max() < longestRequiredRunwayLenght / 2), airport =>
                 {
                     AirportHelpers.CheckForExtendRunway(airport);
+
+                    foreach (Cooperation cooperation in airport.Cooperations)
+                    {
+                        AirlineHelpers.AddAirlineInvoice(cooperation.Airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Purchases, -cooperation.Type.MonthlyPrice);
+       
+                    }
                 });
 
             foreach (Airport airport in Airports.GetAllAirports(a => AirportHelpers.GetAirportRoutes(a).Count > 0))
@@ -1514,6 +1521,19 @@ namespace TheAirline.Model.GeneralModel.Helpers
             airliner.Statistics.addStatisticsValue(GameObject.GetInstance().GameTime.Year, StatisticsTypes.GetStatisticsType("Airliner_Income"), ticketsIncome - expenses - mealExpenses + feesIncome - wages);
 
             airliner.Airliner.Flown += fdistance;
+
+            if (airliner.CurrentFlight.isPassengerFlight())
+            {
+                foreach (Cooperation cooperation in airliner.CurrentFlight.Entry.Destination.Airport.Cooperations.Where(c => c.Airline == airline))
+                {
+                    double incomePerPax = MathHelpers.GetRandomDoubleNumber(cooperation.Type.IncomePerPax * 0.9, cooperation.Type.IncomePerPax * 1.1);
+
+                    double incomeFromCooperation = Convert.ToDouble(airliner.CurrentFlight.getTotalPassengers()) * incomePerPax;
+
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.OnFlight_Income, incomeFromCooperation);
+   
+                }
+            }
 
             if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IATACode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IATACode, dept.Profile.Country.Name })));

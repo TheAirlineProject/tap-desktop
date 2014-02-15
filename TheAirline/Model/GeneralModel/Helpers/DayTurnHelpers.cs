@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.IO;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
@@ -29,7 +30,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //foreach (FleetAirliner airliner in airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped))
             Parallel.ForEach(airline.Fleet.FindAll(f => f.Status != FleetAirliner.AirlinerStatus.Stopped), airliner =>
             {
-             
+
                 if (airliner.CurrentFlight != null)
                 {
 
@@ -38,25 +39,25 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     SimulateLanding(airliner);
                 }
 
-                var dayEntries = airliner.Routes.Where(r=>r.StartDate<=GameObject.GetInstance().GameTime).SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner && (e.TimeTable.Route.Season == Weather.Season.All_Year || e.TimeTable.Route.Season == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime))).OrderBy(e => e.Time);
-              
+                var dayEntries = airliner.Routes.Where(r => r.StartDate <= GameObject.GetInstance().GameTime).SelectMany(r => r.TimeTable.getEntries(GameObject.GetInstance().GameTime.DayOfWeek)).Where(e => e.Airliner == airliner && (e.TimeTable.Route.Season == Weather.Season.All_Year || e.TimeTable.Route.Season == GeneralHelpers.GetSeason(GameObject.GetInstance().GameTime))).OrderBy(e => e.Time);
+
                 if (GameObject.GetInstance().GameTime > airliner.GroundedToDate)
                 {
 
                     foreach (RouteTimeTableEntry entry in dayEntries)
                     {
-                    
+
                         if (entry.TimeTable.Route.HasStopovers)
                             SimulateStopoverFlight(entry);
                         else
                             SimulateFlight(entry);
 
-              
+
                     }
                     CheckForService(airliner);
 
                 }
-      
+
             });
 
             sw.Stop();
@@ -155,7 +156,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             }
             else
             {
-                 airliner.CurrentFlight.addDelayMinutes(delayedMinutes.Value);
+                airliner.CurrentFlight.addDelayMinutes(delayedMinutes.Value);
 
                 if (airliner.CurrentFlight.Entry.MainEntry == null)
                 {
@@ -165,7 +166,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         foreach (AirlinerClass aClass in classes)
                         {
                             airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type), PassengerHelpers.GetFlightPassengers(airliner, aClass.Type)));
-                            
+
                             //airliner.CurrentFlight.Classes.Add(new FlightAirlinerClass(((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(aClass.Type),0));
                         }
                     }
@@ -221,7 +222,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
                 foreach (FlightAirlinerClass fac in airliner.CurrentFlight.Classes)
                 {
-                     ticketsIncome += fac.Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(fac.AirlinerClass.Type).FarePrice;
+                    ticketsIncome += fac.Passengers * ((PassengerRoute)airliner.CurrentFlight.Entry.TimeTable.Route).getRouteAirlinerClass(fac.AirlinerClass.Type).FarePrice;
                 }
 
                 FeeType employeeDiscountType = FeeTypes.GetType("Employee Discount");
@@ -293,7 +294,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             FleetAirlinerHelpers.SetFlightStats(airliner);
 
-            
+
 
             long airportIncome = Convert.ToInt64(dest.getLandingFee());
             dest.Income += airportIncome;
@@ -348,10 +349,24 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             airliner.Airliner.Flown += fdistance;
 
+            if (airliner.CurrentFlight.isPassengerFlight())
+            {
+                foreach (Cooperation cooperation in airliner.CurrentFlight.Entry.Destination.Airport.Cooperations.Where(c => c.Airline == airline))
+                {
+               
+                    double incomePerPax = MathHelpers.GetRandomDoubleNumber(cooperation.Type.IncomePerPax * 0.9, cooperation.Type.IncomePerPax * 1.1);
+
+                    double incomeFromCooperation = Convert.ToDouble(airliner.CurrentFlight.getTotalPassengers()) * incomePerPax;
+
+                    AirlineHelpers.AddAirlineInvoice(airline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.OnFlight_Income, incomeFromCooperation);
+                }
+            }
+
+
+
+
             if (airliner.Airliner.Airline.IsHuman && Settings.GetInstance().MailsOnLandings)
                 GameObject.GetInstance().NewsBox.addNews(new News(News.NewsType.Flight_News, GameObject.GetInstance().GameTime, string.Format("{0} landed", airliner.Name), string.Format("Your airliner [LI airliner={0}] has landed in [LI airport={1}], {2} with {3} passengers.\nThe airliner flow from [LI airport={4}], {5}", new object[] { airliner.Airliner.TailNumber, dest.Profile.IATACode, dest.Profile.Country.Name, airliner.CurrentFlight.getTotalPassengers(), dept.Profile.IATACode, dept.Profile.Country.Name })));
-
-
 
             if (airliner.CurrentFlight is StopoverFlight && !((StopoverFlight)airliner.CurrentFlight).IsLastTrip)
             {

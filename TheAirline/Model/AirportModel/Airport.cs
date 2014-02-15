@@ -12,6 +12,7 @@ using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Runtime.Serialization;
 using System.Reflection;
 using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 
 
@@ -41,7 +42,8 @@ namespace TheAirline.Model.AirportModel
         public List<Runway> Runways { get; set; }
         [Versioning("terminals")]
         public Terminals Terminals { get; set; }
-    
+        [Versioning("cooperations",Version=2)]
+        public List<Cooperation> Cooperations { get; set; }
         private List<Hub> _Hubs;
               [Versioning("hubs")]
         public List<Hub> Hubs { private get { return getHubs(); } set { this._Hubs = value; } }
@@ -61,6 +63,7 @@ namespace TheAirline.Model.AirportModel
             this.DestinationPassengers = new List<DestinationDemand>();
             this.DestinationCargo = new List<DestinationDemand>();
             this.Facilities = new List<AirlineAirportFacility>();
+            this.Cooperations = new List<Cooperation>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather[5];
             this.Terminals = new Terminals(this);
@@ -122,6 +125,7 @@ namespace TheAirline.Model.AirportModel
 
             if (!this.AirlineContracts.Exists(c => c.Airline == contract.Airline))
                 contract.Airline.removeAirport(this);
+
         }
         //returns the contracts for an airline
         public List<AirportContract> getAirlineContracts(Airline airline)
@@ -593,13 +597,24 @@ namespace TheAirline.Model.AirportModel
 
             this.Terminals.removeTerminal(terminal);
         }
+        //adds a cooperation to the airport
+        public void addCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Add(cooperation);
+        }
+        //removes a cooperation from the airport
+        public void removeCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Remove(cooperation);
+        }
         //returns the reputation score for an airline
         public double getAirlineReputation(Airline airline)
         {
             //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
             double score = 0;
 
-            //hotels
+            foreach (Cooperation cooperation in this.Cooperations.Where(c => c.Airline == airline))
+                score += 9 * cooperation.Type.ServiceLevel;
 
             foreach (AirlineAirportFacility facility in this.Facilities.Where(f=>f.Airline == airline))
                 score += 10*facility.Facility.ServiceLevel;
@@ -623,7 +638,7 @@ namespace TheAirline.Model.AirportModel
             return score;
 
         }
-           private Airport(SerializationInfo info, StreamingContext ctxt)
+        private Airport(SerializationInfo info, StreamingContext ctxt)
         {
             int version = info.GetInt16("version");
 
@@ -661,16 +676,11 @@ namespace TheAirline.Model.AirportModel
                         ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
 
                 }
-
             }
-
-
-
         }
-
         public void GetObjectData(SerializationInfo info, StreamingContext context)
         {
-            info.AddValue("version", 1);
+            info.AddValue("version", 2);
 
             Type myType = this.GetType();
 

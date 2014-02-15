@@ -13,6 +13,7 @@ using TheAirline.Model.PilotModel;
 using System.Runtime.Serialization;
 using System.Reflection;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 
 namespace TheAirline.Model.AirlineModel
@@ -291,6 +292,8 @@ namespace TheAirline.Model.AirlineModel
         public void removeAirport(Airport airport)
         {
             this.Airports.Remove(airport);
+
+            airport.Cooperations.RemoveAll(r => r.Airline == this);
         }
         //returns all hubs airports for the airline
         public List<Airport> getHubs()

@@ -162,6 +162,17 @@
                             </GridView>
                         </ListView.View>
                     </ListView>
+                    <TextBlock  VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineFleet 1013'}" Margin="0 10 0 0 "></TextBlock>
+                    <ListBox ItemsSource="{Binding Cooperations}" Background="Transparent" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"  VerticalAlignment="Bottom">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <WrapPanel>
+                                    <ContentControl Content="{Binding Airport}" ContentTemplate="{StaticResource AirportCountryLink}" VerticalAlignment="Bottom" Width="250"></ContentControl>
+                                    <TextBlock Text="{Binding Cooperation.Type.Name}" VerticalAlignment="Bottom"></TextBlock>
+                                </WrapPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
                 </StackPanel>
             </ScrollViewer>
         </Border>

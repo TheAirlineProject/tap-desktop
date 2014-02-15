@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -33,6 +34,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public double TerminalPrice { get; set; }
         public double TerminalGatePrice { get; set; }
         public List<AirportFacility> AirportFacilities { get; set; }
+        public ObservableCollection<Cooperation> Cooperations { get; set; }
         public ObservableCollection<AirlineAirportFacilityMVVM> AirlineFacilities { get; set; }
         public ObservableCollection<AirlineAirportFacilityMVVM> BuildingAirlineFacilities { get; set; }
         public List<AirportTrafficMVVM> Traffic { get; set; }
@@ -41,6 +43,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public List<AirlineReputationMVVM> AirlineReputations { get; set; }
         public DateTime LocalTime { get; set; }
         public Boolean ShowLocalTime { get; set; }
+        private Boolean _canMakeCooperation;
+        public Boolean CanMakeCooperation
+        {
+            get { return _canMakeCooperation; }
+            set { _canMakeCooperation = value; NotifyPropertyChanged("CanMakeCooperation"); }
+        }
         private Boolean _canBuildHub;
         public Boolean CanBuildHub
         {
@@ -59,7 +67,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.TerminalGatePrice = this.Airport.getTerminalGatePrice();
             this.TerminalPrice = this.Airport.getTerminalPrice();
-            
+
+            this.Cooperations = new ObservableCollection<Cooperation>();
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
             this.BuildingTerminals = new ObservableCollection<AirportTerminalMVVM>();
 
@@ -76,6 +85,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             foreach (AirportContract contract in this.Airport.AirlineContracts)
                 this.Contracts.Add(new ContractMVVM(contract));
+
+            foreach (Cooperation cooperation in this.Airport.Cooperations)
+                this.Cooperations.Add(cooperation);
 
             AirportHelpers.CreateAirportWeather(this.Airport);
 
@@ -177,6 +189,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 this.Hubs.Add(hub);
 
             this.CanBuildHub = canBuildHub();
+            this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a=>a == this.Airport);
 
             this.LocalTime = MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, this.Airport.Profile.TimeZone);
 
@@ -192,9 +205,6 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             foreach (KeyValuePair<Airline, double> score in StatisticsHelpers.GetRatingScale(airlineScores))
                 this.AirlineReputations.Add(new AirlineReputationMVVM(score.Key, (int)score.Value));
         }
-
-       
-       
         //returns if hub can be build
         private Boolean canBuildHub()
         {
@@ -234,6 +244,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             {
                 terminal.FreeGates = terminal.Terminal.getFreeGates();
             }
+
+            this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
     
         }
         //removes an airline contract from the airport
@@ -249,6 +261,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             {
                 terminal.FreeGates = terminal.Terminal.getFreeGates();
             }
+
+            this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
+
     
         }
         //adds a hub
@@ -267,6 +282,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.Airport.removeHub(hub);
 
             this.CanBuildHub = canBuildHub();
+        }
+        //removes a cooperation from the airport
+        public void removeCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Remove(cooperation);
+            this.Airport.removeCooperation(cooperation);
+        }
+        //adds a cooperation to the airport
+        public void addCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Add(cooperation);
+            this.Airport.addCooperation(cooperation);
+            
+            AirlineHelpers.AddAirlineInvoice(cooperation.Airline, cooperation.BuiltDate, Invoice.InvoiceType.Purchases, -cooperation.Type.Price);
+            
         }
         //removes an airline facility from the airport
         public void removeAirlineFacility(AirlineAirportFacilityMVVM facility)

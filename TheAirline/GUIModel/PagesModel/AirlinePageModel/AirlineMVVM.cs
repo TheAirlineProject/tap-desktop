@@ -11,6 +11,7 @@ using System.Windows.Data;
 using System.Windows.Media;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
@@ -44,7 +45,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         public ObservableCollection<AirlineAdvertisementMVVM> Advertisements { get; set; }
         public ObservableCollection<AirlineDestinationMVVM> Destinations { get; set; }
         public ObservableCollection<Airline> AirlineAirlines { get; set; }
-
+        public List<CooperationMVVM> Cooperations { get; set; }
         public List<AirlinerQuantityMVVM> OrderedQuantity { get; set; }
         public List<AirlinerQuantityMVVM> ActiveQuantity { get; set; }
 
@@ -151,6 +152,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.FundsAirlines = new ObservableCollection<Airline>();
             this.Routes = new List<AirlineRouteMVVM>();
             this.Codeshares = new ObservableCollection<Airline>();
+            this.Cooperations = new List<CooperationMVVM>();
 
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
             this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
@@ -170,6 +172,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Airline.InsurancePolicies.ForEach(i => this.Insurances.Add(i));
             this.Airline.Codeshares.ForEach(c => this.Codeshares.Add(c.Airline1 == this.Airline ? c.Airline2 : c.Airline1));
 
+            foreach (Airport airport in this.Airline.Airports)
+                foreach (Cooperation cooperation in airport.Cooperations.Where(c => c.Airline == this.Airline))
+                    this.Cooperations.Add(new CooperationMVVM(airport, cooperation));
 
             setValues();
 
@@ -665,10 +670,21 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             }
         }
     }
+    //the mvvm class for a cooperation
+    public class CooperationMVVM
+    {
+        public Airport Airport { get; set; }
+        public Cooperation Cooperation { get; set; }
+        public CooperationMVVM(Airport airport, Cooperation cooperation)
+        {
+            this.Airport = airport;
+            this.Cooperation = cooperation;
+        }
+    }
     //the mvvm class for an airline route
     public class AirlineRouteMVVM
     {
-        public double PriceIndex { get; set; }
+        public double PriceIndex { get; set; } 
         public Route Route { get; set; }
         public AirlineRouteMVVM(Route route)
         {

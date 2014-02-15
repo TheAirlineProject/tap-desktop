@@ -152,6 +152,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpAddCooperation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpAirlinerSeatsConfiguration.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -520,6 +524,9 @@
     <Compile Include="GUIModel\CustomControlsModel\MessageBoxModel\WPFMessageBox.xaml.cs">
       <DependentUpon>WPFMessageBox.xaml</DependentUpon>
     </Compile>
+    <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpAddCooperation.xaml.cs">
+      <DependentUpon>PopUpAddCooperation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="GUIModel\CustomControlsModel\PopUpWindowsModel\PopUpAirlinerSeatsConfiguration.xaml.cs">
       <DependentUpon>PopUpAirlinerSeatsConfiguration.xaml</DependentUpon>
     </Compile>
@@ -805,6 +812,8 @@
     <Compile Include="Model\AirlineModel\Airline.cs" />
     <Compile Include="Model\AirlineModel\AdvertisementType.cs" />
     <Compile Include="Model\AirlineModel\AirlineBudget.cs" />
+    <Compile Include="Model\AirlineModel\AirlineCooperationModel\Cooperation.cs" />
+    <Compile Include="Model\AirlineModel\AirlineCooperationModel\CooperationType.cs" />
     <Compile Include="Model\AirlineModel\AirlineFacilitity.cs" />
     <Compile Include="Model\AirlineModel\AirlineFees.cs" />
     <Compile Include="Model\AirlineModel\AirlineInsurance.cs" />
