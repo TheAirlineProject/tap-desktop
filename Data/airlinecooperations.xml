@@ -30,7 +30,19 @@
       <nl-NL name="Travel Agency"/>
       <zh-CN name="Travel Agency"/>
       <da-DK name="Travel Agency"/>
-      <es-ES name="Travel Agencyl" />
+      <es-ES name="Travel Agency" />
       </translations>
 </cooperation>
+<!--
+<cooperation uid="103" minsize="Small" price="35000" fromyear="2000" monthlyprice="12500" servicelevel="70" incomeperpax="0.08">
+    <translations>
+      <en-US name="www.theairlineproject.com"/>
+      <de-DE name="www.theairlineproject.com" />
+      <en-GB name="www.theairlineproject.com"/>
+      <nl-NL name="www.theairlineproject.com"/>
+      <zh-CN name="www.theairlineproject.com"/>
+      <da-DK name="www.theairlineproject.com"/>
+      <es-ES name="www.theairlineproject.com" />
+      </translations>
+</cooperation>-->
 </cooperations>

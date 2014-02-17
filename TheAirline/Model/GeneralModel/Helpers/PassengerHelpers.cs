@@ -297,17 +297,30 @@ namespace TheAirline.Model.GeneralModel
             if (rations.ContainsKey(currentRoute))
                 routeRatioPercent = Math.Max(1, rations[currentRoute] / Math.Max(1, totalRatio));
 
+            IDictionary<Airline, double> airlineScores = new Dictionary<Airline, double>();
+
+            foreach (Airline airline in Airlines.GetAllAirlines())
+                airlineScores.Add(airline, airportCurrent.getAirlineReputation(airline));
+
+            double reputation = StatisticsHelpers.GetRatingScale(airlineScores)[airliner.Airliner.Airline];
+
+            if (reputation < 76)
+                reputation = 75;
+
+            double reputationPercent = reputation / 100;
+            
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
 
             double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
 
-            int pax = (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
+            int pax = (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * reputationPercent* capacityPercent * routePriceDiff * randomPax));
 
             if (pax < 0)
                 pax = 0;
 
+                         
             return pax;
         }
 
