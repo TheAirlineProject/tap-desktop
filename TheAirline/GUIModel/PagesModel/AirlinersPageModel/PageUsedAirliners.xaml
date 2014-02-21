@@ -29,7 +29,7 @@
                     <filter:SortableGridViewColumn Header="" CanFilter="False">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox VerticalAlignment="Bottom" IsChecked="False" Checked="cbCompare_Checked" Unchecked="cbCompare_Unchecked" Tag="{Binding}">
+                                <CheckBox VerticalAlignment="Bottom" IsChecked="{Binding IsSelected}" Checked="cbCompare_Checked" Unchecked="cbCompare_Unchecked" Tag="{Binding}">
                                     <CheckBox.Style>
                                         <Style TargetType="CheckBox" BasedOn="{StaticResource CheckBoxNormalStyle}">
                                             <Style.Triggers>
@@ -50,13 +50,13 @@
                                     <TextBlock.ToolTip>
                                         <TextBlock VerticalAlignment="Bottom" FontWeight="Bold">
                                             <TextBlock.Text>
-                                                <Binding Converter="{StaticResource AirlinerClassCodeConverter}" Path="TailNumber"/>
+                                                <Binding Converter="{StaticResource AirlinerClassCodeConverter}" Path="Airliner.TailNumber"/>
                        
                                             </TextBlock.Text>
                                         </TextBlock>
                                     </TextBlock.ToolTip>
                                         <Hyperlink Tag="{Binding}" Click="lnkAirliner_Click">
-                                <Run Text="{Binding Type.Name}"></Run>
+                                <Run Text="{Binding Airliner.Type.Name}"></Run>
                             </Hyperlink>
                             </TextBlock>
                         </DataTemplate>
@@ -66,8 +66,8 @@
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
                             <WrapPanel>
-                                <Image Source="{Binding Type.Manufacturer.Logo}" Visibility="Collapsed" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
-                                <TextBlock Text="{Binding Type.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
+                                <Image Source="{Binding Airliner.Type.Manufacturer.Logo}" Visibility="Collapsed" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality" Width="20"></Image>
+                                <TextBlock Text="{Binding Airliner.Type.Manufacturer.Name}" VerticalAlignment="Bottom" Margin="5 0 0 0"></TextBlock>
                             </WrapPanel>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -75,49 +75,49 @@
                 <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1001'}" CanFilter="True" SortPropertyName="Type.TypeAirliner" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Type.TypeAirliner}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1006'}" CanFilter="False" SortPropertyName="TailNumber" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding TailNumber}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding Airliner.TailNumber}" VerticalAlignment="Bottom"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1002'}" CanFilter="True" FilterValues="{Binding RangeRanges,ElementName=pageUsedAirliners}"  SortPropertyName="Type.Range" Width="125">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Type.Range,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1003'}" CanFilter="True" FilterValues="{Binding SpeedRanges,ElementName=pageUsedAirliners}"  SortPropertyName="Type.CruisingSpeed" Width="125">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Type.CruisingSpeed,Converter={StaticResource SpeedToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1004'}" CanFilter="True" FilterValues="{Binding RunwayRanges,ElementName=pageUsedAirliners}"  SortPropertyName="Type.MinRunwaylength" Width="125">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Type.MinRunwaylength,Converter={StaticResource SmallDistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
                 <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1005'}" CanFilter="False" SortPropertyName="Type.FuelConsumption" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Type.FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Type.FuelConsumption,Converter={StaticResource FuelConsumptionConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
                 <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1001'}" CanFilter="True" SortPropertyName="BuiltDate.Year" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding BuiltDate.Year}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.BuiltDate.Year}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
@@ -125,22 +125,22 @@
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
                                 <StackPanel>
-                                    <TextBlock Text="{Binding Type.MaxSeatingCapacity,StringFormat={}{0} pax}" VerticalAlignment="Bottom">
+                                    <TextBlock Text="{Binding Airliner.Type.MaxSeatingCapacity,StringFormat={}{0} pax}" VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Cargo">
+                                                    <DataTrigger Binding="{Binding Airliner.Type.TypeAirliner}" Value="Cargo">
                                                         <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
                                         </TextBlock.Style>
                                     </TextBlock>
-                                    <TextBlock Text="{Binding Type.CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom">
+                                    <TextBlock Text="{Binding Airliner.Type.CargoSize,Converter={StaticResource CargoSizeConverter}}" VerticalAlignment="Bottom">
                                         <TextBlock.Style>
                                             <Style>
                                                 <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding Type.TypeAirliner}" Value="Passenger">
+                                                    <DataTrigger Binding="{Binding Airliner.Type.TypeAirliner}" Value="Passenger">
                                                         <Setter Property="TextBlock.Visibility" Value="Collapsed" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
@@ -154,21 +154,21 @@
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1007'}" CanFilter="True" SortPropertyName="Classes.Count" Width="100">
                         <GridViewColumn.CellTemplate>
                             <DataTemplate>
-                                <TextBlock Text="{Binding Classes.Count}" VerticalAlignment="Bottom"></TextBlock>
+                                <TextBlock Text="{Binding Airliner.Classes.Count}" VerticalAlignment="Bottom"></TextBlock>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
                     </filter:SortableGridViewColumn>
                     <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliners 1002'}" CanFilter="False" SortPropertyName="Flown" Width="100">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Flown,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Flown,Converter={StaticResource DistanceToUnitConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>
                 <filter:SortableGridViewColumn Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageManufacturer 1007'}" CanFilter="False" SortPropertyName="Price" Width="125">
                     <GridViewColumn.CellTemplate>
                         <DataTemplate>
-                            <TextBlock Text="{Binding Price,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                            <TextBlock Text="{Binding Airliner.Price,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
                         </DataTemplate>
                     </GridViewColumn.CellTemplate>
                 </filter:SortableGridViewColumn>

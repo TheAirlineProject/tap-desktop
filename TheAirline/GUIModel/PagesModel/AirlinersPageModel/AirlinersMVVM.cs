@@ -13,6 +13,56 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
+    //the mvvm class for an airliner type
+    public class AirlinerTypeMVVM : INotifyPropertyChanged
+    {
+        public AirlinerType Type { get; set; }
+        private Boolean _isselected;
+        public Boolean IsSelected
+        {
+            get { return _isselected; }
+            set { _isselected = value; NotifyPropertyChanged("IsSelected"); }
+        }
+        public AirlinerTypeMVVM(AirlinerType type)
+        {
+            this.Type = type;
+            this.IsSelected = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm class for an airliner
+    public class AirlinerMVVM : INotifyPropertyChanged
+    {
+        public Airliner Airliner { get; set; }
+        private Boolean _isselected;
+        public Boolean IsSelected
+        {
+            get { return _isselected; }
+            set { _isselected = value; NotifyPropertyChanged("IsSelected"); }
+        }
+        public AirlinerMVVM(Airliner airliner)
+        {
+            this.Airliner = airliner;
+            this.IsSelected = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     //the class for the fleet sizes (most used aircrafts)
     public class AirlineFleetSizeMVVM
     {
