@@ -81,7 +81,7 @@
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1007'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <CheckBox Style="{DynamicResource ImageCheckBoxStyle}" Name="cbAirlineDestinations" VerticalAlignment="Bottom" IsChecked="{Binding MailsOnAirlineDestinations}"></CheckBox>
             </WrapPanel>
-            <WrapPanel Style="{DynamicResource WrapPanelStyle}">
+            <WrapPanel Style="{DynamicResource WrapPanelStyle}" IsEnabled="False">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1008'}" VerticalAlignment="Bottom" FontWeight="Bold" Width="150"></TextBlock>
                 <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Daily"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1009'}" GroupName="AutoSave"></RadioButton>
                 <RadioButton Style="{StaticResource RadioButtonLeftSideText}" Tag="Monthly"  Width="100" VerticalAlignment="Bottom" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowOptions 1010'}" GroupName="AutoSave"></RadioButton>

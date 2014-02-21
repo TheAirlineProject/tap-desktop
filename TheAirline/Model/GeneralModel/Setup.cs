@@ -1947,9 +1947,9 @@ namespace TheAirline.Model.GeneralModel
             }
 
         }
-        /*loads an airline
+        /*loads an airline and returns the object
          */
-        private static void LoadAirline(string path)
+        public static Airline LoadAirline(string path)
         {
             XmlDocument doc = new XmlDocument();
             doc.Load(path);
@@ -2132,6 +2132,8 @@ namespace TheAirline.Model.GeneralModel
 
 
             Airlines.AddAirline(airline);
+
+            return airline;
 
         }
         /*loads the flight restrictions

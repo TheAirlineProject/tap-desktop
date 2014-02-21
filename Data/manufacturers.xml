@@ -32,4 +32,5 @@
   <manufacturer name="Sukhoi Aviation Corporation" shortname="Sukhoi" country="149"/>
   <manufacturer name="The Boeing Company" shortname="Boeing" country="122"/>
   <manufacturer name="Vickers-Armstrongs Limited" shortname="Vickers" country="130"/>
-</manufacturers>
+  <manufacturer name="Commercial Aircraft Corporation of China" shortname="Comac" country="148"/>
+ </manufacturers>

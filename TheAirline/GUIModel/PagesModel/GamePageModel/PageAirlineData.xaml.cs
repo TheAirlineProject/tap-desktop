@@ -22,6 +22,8 @@ using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.GUIModel.CustomControlsModel;
 using System.ComponentModel;
+using System.IO;
+using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 
 namespace TheAirline.GUIModel.PagesModel.GamePageModel
 {
@@ -67,6 +69,45 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
         private void btnStartMenu_Click(object sender, RoutedEventArgs e)
         {
             PageNavigator.NavigateTo(new PageStartMenu());
+        }
+        private void btnLoadAirline_Click(object sender, RoutedEventArgs e)
+        {
+            string directory = AppSettings.getCommonApplicationDataPath() + "\\custom airlines";
+
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            
+            dlg.DefaultExt = ".xml";
+            dlg.Filter = "Airline XMLs (.xml)|*.xml";
+            dlg.InitialDirectory = System.IO.Path.GetFullPath(directory); 
+            dlg.Multiselect = false;
+
+            Nullable<bool> result = dlg.ShowDialog();
+
+            if (result == true)
+            {
+                string path = dlg.FileName;
+             
+                Airline airline = Setup.LoadAirline(path);
+                
+                string imagePath = string.Format("{0}\\{1}.png",directory,airline.Profile.IATACode);
+                
+                if (File.Exists(imagePath))
+                    airline.Profile.addLogo(new AirlineLogo(imagePath));
+                else
+                    airline.Profile.addLogo(new AirlineLogo(AppSettings.getDataPath() + "\\graphics\\airlinelogos\\default.png"));
+
+                if (Airlines.GetAirline(airline.Profile.IATACode) != null)
+                    Airlines.RemoveAirlines(a => a.Profile.IATACode == airline.Profile.IATACode);
+
+                Airlines.AddAirline(airline);
+
+                var airlines = Airlines.GetAirlines(a => (a.Profile.Country.Region == this.StartData.Region || (this.StartData.Region.Uid == "100" && this.StartData.Continent.Uid == "100") || (this.StartData.Region.Uid == "100" && this.StartData.Continent.hasRegion(a.Profile.Country.Region))) && a.Profile.Founded <= this.StartData.Year && a.Profile.Folded > this.StartData.Year).OrderBy(a => a.Profile.Name).ToList();
+
+                cbAirline.ItemsSource = airlines;
+
+                WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2409"), Translator.GetInstance().GetString("MessageBox", "2409", "message"), WPFMessageBoxButtons.Ok);
+
+            }
         }
         private void btnCreateGame_Click(object sender, RoutedEventArgs e)
         {

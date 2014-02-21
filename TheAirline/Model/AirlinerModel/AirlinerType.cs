@@ -38,8 +38,8 @@ namespace TheAirline.Model.AirlinerModel
         [Versioning("cockpit")]
         public int CockpitCrew { get; set; }
 
-        [Versioning("price")]
         private long APrice;
+        [Versioning("price")]
         public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
 
         [Versioning("produced")]
@@ -150,7 +150,7 @@ namespace TheAirline.Model.AirlinerModel
                 else
                     this.IsConvertable = true;
             }
-
+      
 
         }
 

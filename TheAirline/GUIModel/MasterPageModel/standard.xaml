@@ -116,7 +116,7 @@
                 </WrapPanel>
                     
                 <WrapPanel HorizontalAlignment="Center" Margin="0 5 0 0">
-                <Button Background="Transparent" Width="32" Click="btnNews_Click"  ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu 3004'}">
+                <Button Background="Transparent" Width="32" Click="btnNews_Click"  ToolTip="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='MainMenu'}">
                     <Button.Style>
                         <Style TargetType="Button">
                             <Style.Triggers>

@@ -24,7 +24,14 @@
         <Setter Property="Margin" Value="0 2 0 2"></Setter>
     </Style>
     <!--countries templates-->
-     <DataTemplate x:Key="CountryFlagItem">
+    <DataTemplate x:Key="CountryFlagLongItem">
+        <DockPanel>
+            <Image Source="{Binding Flag}" Width="20" VerticalAlignment="Bottom" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Text="{Binding Name}" Margin="5 0 0 0" TextAlignment="Left" VerticalAlignment="Bottom"/>
+        </DockPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="CountryFlagItem">
         <ContentControl Content="{Binding Converter={StaticResource CountryCurrentCountryConverter}}" VerticalAlignment="Bottom">
             <ContentControl.ContentTemplate>
                 <DataTemplate>

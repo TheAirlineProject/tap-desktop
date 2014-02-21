@@ -102,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (MVVMRouteClass rClass in this.Classes)
             {
                 foreach (MVVMRouteFacility rFacility in rClass.Facilities)
-                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).First();
+                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).FirstOrDefault();
 
             }
 

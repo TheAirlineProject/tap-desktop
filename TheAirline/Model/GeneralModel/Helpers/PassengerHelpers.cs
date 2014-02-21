@@ -319,7 +319,6 @@ namespace TheAirline.Model.GeneralModel
 
             if (pax < 0)
                 pax = 0;
-
                          
             return pax;
         }

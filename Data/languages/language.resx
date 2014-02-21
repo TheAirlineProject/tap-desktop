@@ -2140,7 +2140,7 @@ Good luck.</value>
     <value>Pilot Retired</value>
   </data>
   <data name="News_1010_message" xml:space="preserve">
-    <value>Your pilot {0} has now retired. A new pilot has been assigned to airliner {1} </value>
+    <value>Your pilot {0} has now retired. A new pilot has been assigned to airliner {1}</value>
   </data>
   <data name="News_1011_name" xml:space="preserve">
     <value>Instructor Retired</value>
@@ -4844,5 +4844,20 @@ Good luck.</value>
   </data>
   <data name="PopUpAddCooperation_1003_name" xml:space="preserve">
     <value>Monthly Price</value>
+  </data>
+  <data name="PageHumanRoutes_1010_name" xml:space="preserve">
+    <value>Route Type</value>
+  </data>
+  <data name="MessageBox_2409_message" xml:space="preserve">
+    <value>The custom airline has been loaded!</value>
+  </data>
+  <data name="MessageBox_2409_name" xml:space="preserve">
+    <value>Airline Loaded</value>
+  </data>
+  <data name="PageNewAirline_200_name" xml:space="preserve">
+    <value>Create and Save Airline</value>
+  </data>
+  <data name="PageNewGame_204_name" xml:space="preserve">
+    <value>Load Custom Airline</value>
   </data>
 </root>

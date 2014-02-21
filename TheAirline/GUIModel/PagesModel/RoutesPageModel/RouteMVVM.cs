@@ -10,10 +10,40 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.CountryModel;
+using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
+    //the mvvm object for a human route
+    public class HumanRouteMVVM
+    {
+        public Route Route { get; set; }
+        public Boolean ShowCargoInformation { get; set; }
+        public Boolean ShowPassengersInformation { get; set; }
+        public Boolean IsEditable { get; set; }
+        public List<Route> Legs { get; set; }
+        public List<MonthlyInvoice> Invoices { get; set; }
+     
+        public HumanRouteMVVM(Route route)
+        {
+            this.Route = route;
+            this.ShowCargoInformation = this.Route.Type == Route.RouteType.Cargo || this.Route.Type == Route.RouteType.Mixed;
+            this.ShowPassengersInformation = this.Route.Type == Route.RouteType.Passenger || this.Route.Type == Route.RouteType.Mixed;
+
+            this.IsEditable = !this.Route.getAirliners().Exists(a => a.Status != FleetAirliner.AirlinerStatus.Stopped);
+
+            this.Invoices = new List<MonthlyInvoice>();
+
+            foreach (Invoice.InvoiceType type in this.Route.getRouteInvoiceTypes())
+                this.Invoices.Add(new MonthlyInvoice(type, 1950, 1, this.Route.getRouteInvoiceAmount(type)));
+
+            this.Legs = new List<Route>();
+            this.Legs.Add(this.Route);
+            this.Legs.AddRange(this.Route.Stopovers.SelectMany(s => s.Legs));
+       
+        }
+    }
     //the mvvm object for a route
     public class RouteMVVM
     {
