@@ -8,6 +8,7 @@ using System.Windows.Markup;
 using System.Resources;
 using System.Globalization;
 using TheAirline.Model.GeneralModel;
+using System.Diagnostics;
 
 /*!
  * /brief Namespace of the project
@@ -36,7 +37,9 @@ namespace TheAirline
             System.IO.StreamWriter file = new System.IO.StreamWriter(AppSettings.getCommonApplicationDataPath() + "\\theairline.log");
             file.WriteLine("{0}: {1} {2}", DateTime.Now.ToShortDateString(), DateTime.Now.ToShortTimeString(), e.ExceptionObject.ToString());
             file.WriteLine("---------GAME INFORMATION----------");
-            file.Write("Gametime: {0}, human airline: {1}",GameObject.GetInstance().GameTime.ToShortDateString(),GameObject.GetInstance().HumanAirline.Profile.Name);
+            file.WriteLine("Gametime: {0}, human airline: {1}",GameObject.GetInstance().GameTime.ToShortDateString(),GameObject.GetInstance().HumanAirline.Profile.Name);
+            
+            
             file.Close();
         }
     }

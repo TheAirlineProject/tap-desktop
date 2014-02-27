@@ -103,8 +103,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 if (contractedOrder)
                     totalPrice = totalPrice * ((100 - GameObject.GetInstance().HumanAirline.Contract.Discount) / 100);
 
-
-
                 if (totalPrice > GameObject.GetInstance().HumanAirline.Money)
                 {
                     WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2001"), Translator.GetInstance().GetString("MessageBox", "2001", "message"), WPFMessageBoxButtons.Ok);

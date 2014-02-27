@@ -52,52 +52,48 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 
             Boolean doSave = true;
 
-            if (SerializedLoadSaveHelpers.SaveGameExists(name))
-            {
-                WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1007"), Translator.GetInstance().GetString("MessageBox", "1007", "message"), WPFMessageBoxButtons.YesNo);
+           
+                if (SerializedLoadSaveHelpers.SaveGameExists(name))
+                {
+                    WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "1007"), Translator.GetInstance().GetString("MessageBox", "1007", "message"), WPFMessageBoxButtons.YesNo);
 
-                doSave = result == WPFMessageBoxResult.Yes;
+                    doSave = result == WPFMessageBoxResult.Yes;
+
+                    if (doSave)
+                    {
+                        SerializedLoadSaveHelpers.DeleteSavedGame(name);
+                    }
+                }
 
                 if (doSave)
                 {
-                    SerializedLoadSaveHelpers.DeleteSavedGame(name);
-                }
-            }
+                    SplashControl scSaving = UIHelpers.FindChild<SplashControl>(this, "scSaving");
 
-            if (doSave)
-            {
-                SplashControl scSaving = UIHelpers.FindChild<SplashControl>(this, "scSaving");
+                    scSaving.Visibility = System.Windows.Visibility.Visible;
 
-                scSaving.Visibility = System.Windows.Visibility.Visible;
-             
-                BackgroundWorker bgWorker = new BackgroundWorker();
-                bgWorker.DoWork += (s,x) =>
-                {
-                    GameObject.GetInstance().Name = name;
+                    BackgroundWorker bgWorker = new BackgroundWorker();
+                    bgWorker.DoWork += (s, x) =>
+                    {
+                        GameObject.GetInstance().Name = name;
 
-                    SerializedLoadSaveHelpers.SaveGame(name);
+                        SerializedLoadSaveHelpers.SaveGame(name);
 
-               
 
-                };
-                bgWorker.RunWorkerCompleted += (s, x) =>
-                {
-                    if (!gameworkerPaused)
-                        GameObjectWorker.GetInstance().start();
 
-                    scSaving.Visibility = System.Windows.Visibility.Collapsed;
-                 };
-                bgWorker.RunWorkerAsync();
+                    };
+                    bgWorker.RunWorkerCompleted += (s, x) =>
+                    {
+                        if (!gameworkerPaused)
+                            GameObjectWorker.GetInstance().start();
 
-               
-               
-              
-             
+                        scSaving.Visibility = System.Windows.Visibility.Collapsed;
+                    };
+                    bgWorker.RunWorkerAsync();
+
+                
 
             }
-
-                 }
-
+        }
         private void lbSaves_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             txtName.Text = lbSaves.SelectedItem.ToString();

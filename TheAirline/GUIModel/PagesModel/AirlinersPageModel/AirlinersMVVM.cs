@@ -102,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
 
-            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
+            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0 && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
                 this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
 
             this.TotalAmount = price - this.Discount;
@@ -122,7 +122,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
 
-            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
+            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0 && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
                 this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
 
             this.TotalAmount = price - this.Discount;

@@ -64,7 +64,6 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.ShowActionMenu = !this.Airline.Airline.IsHuman && (this.CanHaveAlliance || !this.HasCodesharing);
 
             var airports = this.Airline.Airline.Airports;
-
             var routes = this.Airline.Airline.Routes.OrderByDescending(r => r.Balance);
 
             double totalProfit = routes.Sum(r => r.Balance);
