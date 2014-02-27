@@ -30,7 +30,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         public List<Manufacturer> AllManufacturers { get; set; }
         public PageManufacturers()
         {
-            this.AllManufacturers = (from a in AirlinerTypes.GetAllTypes() where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList();
+            var airlinerTypes = new List<AirlinerType>(AirlinerTypes.GetAllTypes());
+            this.AllManufacturers = (from a in airlinerTypes where a.Produced.From <= GameObject.GetInstance().GameTime && a.Produced.To >= GameObject.GetInstance().GameTime orderby a.Manufacturer.Name select a.Manufacturer).Distinct().ToList();
             this.Loaded += PageManufacturers_Loaded;
 
             InitializeComponent();

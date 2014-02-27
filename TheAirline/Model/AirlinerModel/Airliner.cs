@@ -65,6 +65,7 @@ namespace TheAirline.Model.AirlinerModel
                 this.Classes.Add(aClass);
 
             }
+      
 
         }
         // mjd 08/30/12 leasing price recalculated for 15 years

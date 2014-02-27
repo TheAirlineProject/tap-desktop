@@ -30,8 +30,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
     /// </summary>
     public partial class PageUsedAirliners : Page
     {
-        public ObservableCollection<Airliner> AllAirliners { get; set; }
-        public ObservableCollection<Airliner> SelectedAirliners { get; set; }
+        public ObservableCollection<AirlinerMVVM> AllAirliners { get; set; }
+        public ObservableCollection<AirlinerMVVM> SelectedAirliners { get; set; }
         public List<FilterValue> RangeRanges { get; set; }
         public List<FilterValue> SpeedRanges { get; set; }
         public List<FilterValue> RunwayRanges { get; set; }
@@ -46,11 +46,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             this.RunwayRanges = new List<FilterValue>() { new FilterValue("<5000", 0, 4999), new FilterValue("5000-7999", 5000, 7999), new FilterValue("8000+", 8000, int.MaxValue) };
             this.CapacityRanges = new List<FilterValue>() { new FilterValue("<100", 0, 99), new FilterValue("100-199", 100, 199), new FilterValue("200-299", 200, 299), new FilterValue("300-399", 300, 399), new FilterValue("400-499", 400, 499), new FilterValue("500+", 500, int.MaxValue) };
   
-            this.AllAirliners = new ObservableCollection<Airliner>();
+            this.AllAirliners = new ObservableCollection<AirlinerMVVM>();
             foreach (Airliner airliner in Airliners.GetAirlinersForSale().OrderByDescending(a => a.BuiltDate.Year).ToList())
-                this.AllAirliners.Add(airliner);
+                this.AllAirliners.Add(new AirlinerMVVM(airliner));
 
-            this.SelectedAirliners = new ObservableCollection<Airliner>();
+            this.SelectedAirliners = new ObservableCollection<AirlinerMVVM>();
 
             InitializeComponent();
 
@@ -97,7 +97,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
         private void lnkAirliner_Click(object sender, RoutedEventArgs e)
         {
-            Airliner airliner = (Airliner)((Hyperlink)sender).Tag;
+            AirlinerMVVM airliner = (AirlinerMVVM)((Hyperlink)sender).Tag;
 
             TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
@@ -108,7 +108,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
        .Where(item => item.Tag.ToString() == "Airliner")
        .FirstOrDefault();
 
-                matchingItem.Header = airliner.TailNumber;
+                matchingItem.Header = airliner.Airliner.TailNumber;
                 matchingItem.Visibility = System.Windows.Visibility.Visible;
                 tab_main.SelectedItem = matchingItem;
             }
@@ -116,7 +116,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Frame frmContent = UIHelpers.FindChild<Frame>(this.Tag as Page, "frmContent");
 
             if (frmContent != null)
-                frmContent.Navigate(new PageUsedAirliner(airliner) { Tag = this.Tag });
+                frmContent.Navigate(new PageUsedAirliner(airliner.Airliner) { Tag = this.Tag });
         }
 
         private void cbPossibleHomebase_Checked(object sender, RoutedEventArgs e)
@@ -125,9 +125,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             var source = this.lvAirliners.Items as ICollectionView;
             source.Filter = o =>
             {
-                Airliner a = o as Airliner;
+                AirlinerMVVM a = o as AirlinerMVVM;
 
-                Boolean isPossible = GameObject.GetInstance().HumanAirline.Airports.FindAll(ai => ai.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && ai.getMaxRunwayLength() >= a.Type.MinRunwaylength).Count > 0;
+                Boolean isPossible = GameObject.GetInstance().HumanAirline.Airports.FindAll(ai => ai.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && ai.getMaxRunwayLength() >= a.Airliner.Type.MinRunwaylength).Count > 0;
 
                 return isPossible;
             };
@@ -140,7 +140,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             var source = this.lvAirliners.Items as ICollectionView;
             source.Filter = o =>
             {
-                Airliner a = o as Airliner;
+                AirlinerMVVM a = o as AirlinerMVVM;
                 return true;
             };
 
@@ -149,21 +149,23 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
         private void cbCompare_Checked(object sender, RoutedEventArgs e)
         {
-            Airliner airliner = (Airliner)((CheckBox)sender).Tag;
+            AirlinerMVVM airliner = (AirlinerMVVM)((CheckBox)sender).Tag;
+            airliner.IsSelected = true;
 
             this.SelectedAirliners.Add(airliner);
         }
 
         private void cbCompare_Unchecked(object sender, RoutedEventArgs e)
         {
-            Airliner airliner = (Airliner)((CheckBox)sender).Tag;
+            AirlinerMVVM airliner = (AirlinerMVVM)((CheckBox)sender).Tag;
+            airliner.IsSelected = false;
 
             this.SelectedAirliners.Remove(airliner);
         }
 
         private void btnCompare_Click(object sender, RoutedEventArgs e)
         {
-            PopUpCompareAirliners.ShowPopUp(this.SelectedAirliners[0], this.SelectedAirliners[1]);
+            PopUpCompareAirliners.ShowPopUp(this.SelectedAirliners[0].Airliner, this.SelectedAirliners[1].Airliner);
 
         }
         private void btnBuy_Click(object sender, RoutedEventArgs e)
@@ -171,12 +173,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalPrice = this.SelectedAirliners.Sum(a => a.getPrice());
+            double totalPrice = this.SelectedAirliners.Sum(a => a.Airliner.getPrice());
 
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
-                Boolean sameManufaturer = this.SelectedAirliners.FirstOrDefault(a => a.Type.Manufacturer != GameObject.GetInstance().HumanAirline.Contract.Manufacturer) == null;
+                Boolean sameManufaturer = this.SelectedAirliners.FirstOrDefault(a => a.Airliner.Type.Manufacturer != GameObject.GetInstance().HumanAirline.Contract.Manufacturer) == null;
                 
                 if (sameManufaturer)
                     contractedOrder = true;
@@ -212,7 +214,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     cbHomebase.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     cbHomebase.Width = 200;
 
-                    long minRunway = this.SelectedAirliners.Max(a => a.Type.MinRunwaylength);
+                    long minRunway = this.SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
 
                     var homebases =  GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline,AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
          
@@ -227,17 +229,18 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     {
                         Airport airport = cbHomebase.SelectedItem as Airport;
 
-                        var selectedAirliners = new List<Airliner>(this.SelectedAirliners);
-                        foreach (Airliner airliner in selectedAirliners)
+                        var selectedAirliners = new List<AirlinerMVVM>(this.SelectedAirliners);
+                        foreach (AirlinerMVVM airliner in selectedAirliners)
                         {
                             if (contractedOrder)
-                                AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, airport, GameObject.GetInstance().HumanAirline.Contract.Discount);
+                                AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner.Airliner, airport, GameObject.GetInstance().HumanAirline.Contract.Discount);
                             else
-                                AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner, airport);
+                                AirlineHelpers.BuyAirliner(GameObject.GetInstance().HumanAirline, airliner.Airliner, airport);
 
                             if (contractedOrder)
                                 GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners++;
 
+                            airliner.IsSelected = false;
                             this.SelectedAirliners.Remove(airliner);
                             this.AllAirliners.Remove(airliner);
 
@@ -256,12 +259,12 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             Boolean contractedOrder = false;
             Boolean tryOrder = true;
 
-            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.getLeasingPrice() * 2);
+            double totalLeasingPrice = this.SelectedAirliners.Sum(a => a.Airliner.getLeasingPrice() * 2);
 
 
             if (GameObject.GetInstance().HumanAirline.Contract != null)
             {
-                Boolean sameManufaturer = this.SelectedAirliners.FirstOrDefault(a => a.Type.Manufacturer != GameObject.GetInstance().HumanAirline.Contract.Manufacturer) == null;
+                Boolean sameManufaturer = this.SelectedAirliners.FirstOrDefault(a => a.Airliner.Type.Manufacturer != GameObject.GetInstance().HumanAirline.Contract.Manufacturer) == null;
                 if (sameManufaturer)
                     contractedOrder = true;
                 else
@@ -293,7 +296,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     cbHomebase.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
                     cbHomebase.Width = 200;
 
-                    long minRunway = this.SelectedAirliners.Max(a => a.Type.MinRunwaylength);
+                    long minRunway = this.SelectedAirliners.Max(a => a.Airliner.Type.MinRunwaylength);
 
                     var homebases =  GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline,AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
                     foreach (Airport airport in homebases)
@@ -307,15 +310,15 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                     {
                         Airport airport = cbHomebase.SelectedItem as Airport;
 
-                        var selectedAirliners = new List<Airliner>(this.SelectedAirliners);
-                        foreach (Airliner airliner in selectedAirliners)
+                        var selectedAirliners = new List<AirlinerMVVM>(this.SelectedAirliners);
+                        foreach (AirlinerMVVM airliner in selectedAirliners)
                         {
-                            if (Countries.GetCountryFromTailNumber(airliner.TailNumber).Name != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
-                                airliner.TailNumber = GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
+                            if (Countries.GetCountryFromTailNumber(airliner.Airliner.TailNumber).Name != GameObject.GetInstance().HumanAirline.Profile.Country.Name)
+                                airliner.Airliner.TailNumber = GameObject.GetInstance().HumanAirline.Profile.Country.TailNumbers.getNextTailNumber();
 
-                            GameObject.GetInstance().HumanAirline.addAirliner(FleetAirliner.PurchasedType.Leased, airliner, airport);
+                            GameObject.GetInstance().HumanAirline.addAirliner(FleetAirliner.PurchasedType.Leased, airliner.Airliner, airport);
 
-                            AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.LeasingPrice * 2);
+                            AirlineHelpers.AddAirlineInvoice(GameObject.GetInstance().HumanAirline, GameObject.GetInstance().GameTime, Invoice.InvoiceType.Rents, -airliner.Airliner.LeasingPrice * 2);
 
                             if (contractedOrder)
                                 GameObject.GetInstance().HumanAirline.Contract.PurchasedAirliners++;

@@ -388,19 +388,25 @@ namespace TheAirline.GUIModel.CustomControlsModel.FilterableListView
         private object getPropertyValue(object obj, string propertyName)
         {
             object value;
-            if (propertyName.Contains('.'))
-            {
-                string[] split = propertyName.Split('.');
 
-                object tObj = obj.GetType().GetProperty(split[0]).GetValue(obj, null);
-
-                string propertyRest = propertyName.Substring(split[0].Length + 1);
-
-                return getPropertyValue(tObj, propertyRest);
-
-            }
+            if (obj == null)
+                value = "";
             else
-                value = obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+            {
+                if (propertyName.Contains('.'))
+                {
+                    string[] split = propertyName.Split('.');
+
+                    object tObj = obj.GetType().GetProperty(split[0]).GetValue(obj, null);
+
+                    string propertyRest = propertyName.Substring(split[0].Length + 1);
+
+                    return getPropertyValue(tObj, propertyRest);
+
+                }
+                else
+                    value = obj.GetType().GetProperty(propertyName).GetValue(obj, null);
+            }
 
             return value;
         }

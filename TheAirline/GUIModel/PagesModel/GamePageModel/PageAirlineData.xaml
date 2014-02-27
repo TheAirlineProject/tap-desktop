@@ -89,6 +89,8 @@ xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
             <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 201'}" Width="NaN" Click="btnCreateGame_Click"></Button>
             <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 119'}" Width="NaN" Click="btnBack_Click" Margin="5 0 0 0"></Button>
             <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 202'}" Width="NaN" Click="btnStartMenu_Click" Margin="5 0 0 0"></Button>
+            <Button Style="{DynamicResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageNewGame 204'}" Width="NaN" Click="btnLoadAirline_Click" Margin="5 0 0 0"></Button>
+
         </WrapPanel>
         <c:SplashControl Visibility="Collapsed" Text="Creating...." HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="scCreating"></c:SplashControl>
 

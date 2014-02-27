@@ -667,9 +667,10 @@ namespace TheAirline.Model.GeneralModel.Helpers
             if (Settings.GetInstance().AutoSave == Settings.Intervals.Monthly)
                 SerializedLoadSaveHelpers.SaveGame("autosave");
 
-            //deletes all used airliners older than 1 years
-            List<Airliner> oldAirliners = new List<Airliner>(Airliners.GetAirlinersForSale(a => a.BuiltDate.Year <= GameObject.GetInstance().GameTime.Year - 2));
+            //deletes all used airliners older than 30 years
+            List<Airliner> oldAirliners = new List<Airliner>(Airliners.GetAirlinersForSale(a => a.BuiltDate.Year <= GameObject.GetInstance().GameTime.Year - 30));
 
+            /*
             //creates some new used airliners
             int gametime = GameObject.GetInstance().GameTime.Year - GameObject.GetInstance().StartDate.Year;
 
@@ -683,7 +684,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             for (int i = 0; i < airliners; i++)
             {
                 Airliners.AddAirliner(AirlinerHelpers.CreateAirlinerFromYear(GameObject.GetInstance().GameTime.Year - rnd.Next(1, 10)));
-            }
+            }*/
 
             foreach (Airliner airliner in oldAirliners)
                 Airliners.RemoveAirliner(airliner);

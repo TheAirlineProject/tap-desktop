@@ -102,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (MVVMRouteClass rClass in this.Classes)
             {
                 foreach (MVVMRouteFacility rFacility in rClass.Facilities)
-                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).First();
+                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).FirstOrDefault();
 
             }
 
@@ -238,13 +238,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (RouteClassesConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
                 cbConfigurations.Items.Add(confItem);
 
-            cbConfigurations.SelectedIndex = 0;
+            cbConfigurations.SelectedIndex = 0; 
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageCreateRoute", "1012"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
 
                 RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
-
+                
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
                     MVVMRouteClass rClass = this.Classes.Find(c => c.Type == classConfiguration.Type);

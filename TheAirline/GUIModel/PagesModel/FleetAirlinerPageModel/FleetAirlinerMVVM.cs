@@ -89,8 +89,13 @@ namespace TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel
             this.Airliner = airliner;
             this.Homebase = this.Airliner.Homebase;
             this.Classes = new ObservableCollection<AirlinerClassMVVM>();
-     
-            AirlinerClass tClass = this.Airliner.Airliner.Classes[0];
+        
+            AirlinerClass tClass;
+            
+            if (this.Airliner.Airliner.Classes.Count == 0)
+                tClass = null;
+            else
+                tClass = this.Airliner.Airliner.Classes[0];
                
             foreach (AirlinerClass aClass in this.Airliner.Airliner.Classes)
             {
