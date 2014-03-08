@@ -47,6 +47,8 @@
             <WrapPanel Margin="0 10 0 0">
                 <Button Click="btnHire_Click" Style="{StaticResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageShowPilot 200'}">
                 </Button>
+                <Button Margin="5 0 0 0" Click="btnCancel_Click" Style="{StaticResource StandardButtonStyle}" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 101'}">
+                </Button>
             </WrapPanel>
         </StackPanel>
     </ScrollViewer>

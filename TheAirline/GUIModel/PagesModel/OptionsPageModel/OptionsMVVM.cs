@@ -13,6 +13,9 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
 {
     public class OptionsMVVM : INotifyPropertyChanged
     {
+        public Settings.Intervals AutoSave { get; set; }
+        public Settings.Intervals ClearStats { get; set; }
+
         private Language _selectedLanguage;
         public Language SelectedLanguage
         {
@@ -99,6 +102,9 @@ namespace TheAirline.GUIModel.PagesModel.OptionsPageModel
             this.SelectedGameMinutes = Settings.GetInstance().MinutesPerTurn;
             this.GameMinutes = new ObservableCollection<int>() { 15, 30, 60 };
             this.CurrentGameSpeed = (int)Settings.GetInstance().GameSpeed;
+
+            this.AutoSave = Settings.GetInstance().AutoSave;
+            this.ClearStats = Settings.GetInstance().ClearStats;
 
             DoubleCollection cGameSpeeds = new DoubleCollection();
          

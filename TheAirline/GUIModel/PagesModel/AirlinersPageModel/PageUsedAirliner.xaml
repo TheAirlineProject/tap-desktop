@@ -22,7 +22,7 @@
                         <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1000'}" Width="100" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
                         <TextBlock Text="{Binding SeatingCapacity}" VerticalAlignment="Bottom"></TextBlock>
                     </WrapPanel>
-                    <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AllFacilities}"></ListBox>
+                    <ListBox ItemTemplate="{DynamicResource FacilityItem}" BorderThickness="0" Background="Transparent" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding AllFacilities}"></ListBox>
                     </StackPanel>
             </Border>
         </DataTemplate>
@@ -73,7 +73,7 @@
                 </Style>
                 </StackPanel.Style>
                 <TextBlock Margin="0 5 0 0" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1005'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-            <ListBox Style="{StaticResource VerticalListBoxStyle}"  Name="lbClasses" ItemsSource="{Binding Classes}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
+            <ListBox Style="{StaticResource VerticalListBoxStyle}" Background="Transparent"  Name="lbClasses" ItemsSource="{Binding Classes}" ItemTemplate="{DynamicResource ClassItem}"></ListBox>
             </StackPanel>
             <TextBlock  Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1006'}"  Margin="0 5 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
                 <Border Style="{StaticResource RoundedBorderStyle}">

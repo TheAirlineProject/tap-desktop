@@ -1,9 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <airliners>
+  <airliner manufacturer="Saab" name="Saab 90A Scandia" price="1393730"> <!--7700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="28" length="21.30" range="2650" speed="340" fuelcapacity="9720" consumption="0.090" runwaylengthrequired="1200"/>
+    <capacity passengers="32" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1946" to="1954" rate="2"/>
+  </airliner>
   <airliner manufacturer="Saab" name="Saab 340B" price="2193730"> <!--7700000-->
 	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
     <specs wingspan="21.44" length="19.73" range="1732" speed="467" fuelcapacity="3220" consumption="0.050" runwaylengthrequired="1000"/>
     <capacity passengers="37" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
     <produced from="1984" to="1998" rate="28"/>
+  </airliner>
+  <airliner manufacturer="Saab" name="Saab 2000" price="9192130"> <!--7700000-->
+	<type body="Narrow_Body" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="24.76" length="27.28" range="2563" speed="665" fuelcapacity="4550" consumption="0.050" runwaylengthrequired="1567"/>
+    <capacity passengers="58" cockpitcrew="2" cabincrew="1" maxclasses="1"/>
+    <produced from="1992" to="1999" rate="28"/>
   </airliner>
 </airliners>

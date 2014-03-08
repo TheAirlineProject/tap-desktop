@@ -1,0 +1,53 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpCompareAirliners"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+        x:Name="popUpCompareAirliners"            
+        Title="Compare Airliners" MaxHeight="800" MinHeight="100" Height="325" Width="700" WindowStartupLocation="CenterScreen" Background="#004A7F">
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel HorizontalAlignment="Center">
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Airliner1.TailNumber,ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" TextAlignment="Center" HorizontalAlignment="Center" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Airliner2.TailNumber,ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <ContentControl Content="{Binding Airliner1.Registered, ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" HorizontalAlignment="Right" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}" HorizontalAlignment="Center" TextAlignment="Center" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <ContentControl Content="{Binding Airliner2.Registered, ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+            </WrapPanel>
+            <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                <TextBlock Text="{Binding Airliner1.BuiltDate.Year,ElementName=popUpCompareAirliners}" Width="150" VerticalAlignment="Bottom" TextAlignment="Right"></TextBlock>
+                <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" Width="150" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Airliner2.BuiltDate.Year,ElementName=popUpCompareAirliners}" Width="150" HorizontalAlignment="Left" VerticalAlignment="Bottom"></TextBlock>
+            </WrapPanel>
+        </StackPanel>
+   <!--
+        <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="{Binding Airliner1.TailNumber,ElementName=popUpCompareAirliners}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+                <ContentControl Content="{Binding Airliner1.Type,ElementName=popUpCompareAirliners}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
+            </StackPanel>
+            <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                <TextBlock Text="{Binding Airliner2.TailNumber,ElementName=popUpCompareAirliners}" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextAlignment="Center" FontSize="16" FontWeight="Bold"></TextBlock>
+                <ContentControl Content="{Binding Airliner2.Type,ElementName=popUpCompareAirliners}" VerticalAlignment="Bottom" ContentTemplate="{StaticResource AirlinerTypeSpecificationItem}"></ContentControl>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <ContentControl Content="{Binding Airliner1.Registered, ElementName=popUpCompareAirliners}" Width="200" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1004'}" TextAlignment="Center" Width="200" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <ContentControl Content="{Binding Airliner2.Registered, ElementName=popUpCompareAirliners}" Width="200" HorizontalAlignment="Right" VerticalAlignment="Bottom" ContentTemplate="{StaticResource CountryLongFlagItem}"></ContentControl>
+                </WrapPanel>
+                <WrapPanel Style="{StaticResource WrapPanelStyle}">
+                    <TextBlock Text="{Binding Airliner1.BuiltDate.Year,ElementName=popUpCompareAirliners}" Width="200" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageUsedAirliner 1009'}" Width="150" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                    <TextBlock Text="{Binding Airliner2.BuiltDate.Year,ElementName=popUpCompareAirliners}" Width="200" TextAlignment="Right" VerticalAlignment="Bottom"></TextBlock>
+                </WrapPanel>
+                
+            </StackPanel>
+         </Grid>
+        -->
+     </ScrollViewer>
+</window:PopUpWindow>

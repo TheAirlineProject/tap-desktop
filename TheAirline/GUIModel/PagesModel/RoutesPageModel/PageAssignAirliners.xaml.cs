@@ -180,6 +180,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                             if (pilots.Count == 0)
                                 pilots = Pilots.GetUnassignedPilots();
 
+                            if (pilots.Count == 0)
+                            {
+                                GeneralHelpers.CreatePilots(50);
+                                pilots = Pilots.GetUnassignedPilots();
+                            }
+
+
                             Pilot pilot = pilots.First();
 
                             airliner.Airliner.Airliner.Airline.addPilot(pilot);

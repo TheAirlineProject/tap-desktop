@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageGameModel;
-using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
 using TheAirline.Model.AirlineModel;
 using TheAirline.Model.AirlinerModel;
@@ -121,7 +119,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
         //sets up an opponent airline
         private static void SetupOpponentAirline(ScenarioAirline airline)
         {
-            AirportHelpers.RentGates(airline.Homebase, airline.Airline);
+            AirportHelpers.RentGates(airline.Homebase, airline.Airline,AirportContract.ContractType.Full);
           
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);
             AirportFacility facility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.Service).Find((delegate(AirportFacility f) { return f.TypeLevel == 1; }));
@@ -147,7 +145,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             {
                 Guid id = Guid.NewGuid();
 
-                PassengerRoute route = new PassengerRoute(id.ToString(), saroute.Destination1, saroute.Destination2, price);
+                PassengerRoute route = new PassengerRoute(id.ToString(), saroute.Destination1, saroute.Destination2, GameObject.GetInstance().GameTime, price);
 
                 RouteClassesConfiguration configuration = AIHelpers.GetRouteConfiguration(route);
 
@@ -180,7 +178,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             for (int i = 0; i < quantity; i++)
             {
                 if (!AirportHelpers.HasFreeGates(airport,airline))
-                    AirportHelpers.RentGates(airport, airline);
+                    AirportHelpers.RentGates(airport, airline,AirportContract.ContractType.Full);
             }
 
             AirportFacility checkinFacility = AirportFacilities.GetFacilities(AirportFacility.FacilityType.CheckIn).Find(f => f.TypeLevel == 1);

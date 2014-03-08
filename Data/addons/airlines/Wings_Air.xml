@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<airline>
+<profile name="Wings Air" iata="IW" color="Red" country="162" CEO="Rusdi Kirana" mentality="Safe" market="Local" preferedairport="CGK">
+  <narrative narrative="Wings Air is a subsidiary airline of Lion Air. They currently operated large amount of ATR 72." />
+</profile>
+<info real="True" from="2003" to="2199"></info>
+</airline> 

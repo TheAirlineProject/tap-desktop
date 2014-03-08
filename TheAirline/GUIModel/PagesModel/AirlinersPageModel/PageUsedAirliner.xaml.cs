@@ -32,13 +32,17 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
         {
             
             this.Airliner = airliner;
-            this.Homebases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= this.Airliner.Type.MinRunwaylength);
+
+            long minRunway = this.Airliner.Type.MinRunwaylength;
+
+            var homebases =  GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline,AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
+
+            this.Homebases = homebases;
          
             this.DataContext = this.Airliner;
 
             InitializeComponent();
 
- 
         }
 
         private void btnBuy_Click(object sender, RoutedEventArgs e)

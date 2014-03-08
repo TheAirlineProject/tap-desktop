@@ -1,0 +1,78 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel.PopUpAirportContract"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel"
+                    xmlns:local="clr-namespace:TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel"
+        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1000'}" Height="150" Width="400" WindowStartupLocation="CenterScreen" Background="#004A7F">
+    <Window.Resources>
+        <local:AirportContractPriceConverter x:Key="AirportContractPriceConverter"></local:AirportContractPriceConverter>
+    </Window.Resources>
+    <ScrollViewer Margin="5 5 0 0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <WrapPanel>
+                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1001'}" Name="rbFull" ToolTipService.ShowDuration="60000" VerticalAlignment="Bottom" GroupName="ContractType" Tag="Full" IsChecked="True" Checked="rbContractType_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1002'}" VerticalAlignment="Bottom"></TextBlock>
+                    </RadioButton.ToolTip>
+                </RadioButton>
+                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource AirportContractPriceConverter}">
+                              <Binding Path="."></Binding>
+                            <Binding ElementName="rbFull" Path="Tag"></Binding>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1003'}"  ToolTipService.ShowDuration="60000" Name="rbFullService" VerticalAlignment="Bottom" GroupName="ContractType" Tag="Full_Service" Checked="rbContractType_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1004'}" VerticalAlignment="Bottom"></TextBlock>
+                    </RadioButton.ToolTip>
+                </RadioButton>
+                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource AirportContractPriceConverter}">
+                            <Binding Path="."></Binding>
+                            <Binding ElementName="rbFullService" Path="Tag"></Binding>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1005'}"  ToolTipService.ShowDuration="60000" Name="rbMediumService" VerticalAlignment="Bottom" GroupName="ContractType" Tag="Medium_Service" Checked="rbContractType_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1006'}" VerticalAlignment="Bottom"></TextBlock>
+                    </RadioButton.ToolTip>
+                </RadioButton>
+                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource AirportContractPriceConverter}">
+                            <Binding Path="."></Binding>
+                            <Binding ElementName="rbMediumService" Path="Tag"></Binding>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </WrapPanel>
+            <WrapPanel>
+                <RadioButton Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1007'}"  ToolTipService.ShowDuration="60000" VerticalAlignment="Bottom" Name="rbLowService" GroupName="ContractType" Tag="Low_Service" Checked="rbContractType_Checked">
+                    <RadioButton.ToolTip>
+                        <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirportContract 1008'}" VerticalAlignment="Bottom"></TextBlock>
+                    </RadioButton.ToolTip>
+                </RadioButton>
+                <TextBlock VerticalAlignment="Bottom" Margin="5 0 0 0">
+                    <TextBlock.Text>
+                        <MultiBinding Converter="{StaticResource AirportContractPriceConverter}">
+                            <Binding Path="."></Binding>
+                            <Binding ElementName="rbLowService" Path="Tag"></Binding>
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+            </WrapPanel>
+                <WrapPanel Margin="0 10 0 0">
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 100'}" Style="{StaticResource StandardButtonStyle}" Click="btnOk_Click"/>
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='General 101'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" Click="btnCancel_Click"/>
+          </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</window:PopUpWindow>

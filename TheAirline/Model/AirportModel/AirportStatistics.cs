@@ -2,8 +2,11 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Runtime.Serialization;
 using System.Text;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 
 namespace TheAirline.Model.AirportModel
@@ -13,72 +16,135 @@ namespace TheAirline.Model.AirportModel
  * The class needs no parameters
  */
     [Serializable]
-    public class AirportStatistics
+    public class AirportStatistics : ISerializable
     {
-        
-        private Dictionary<int, List<AirportStatisticsValue>> Stats;
+        [Versioning("stats")]
+        public List<AirportStatisticsValue> Stats { get; set; }
         public AirportStatistics()
         {
-            this.Stats = new Dictionary<int, List<AirportStatisticsValue>>();
+            this.Stats = new List<AirportStatisticsValue>();
         }
         //returns the value for a statistics type for an airline for a year
         public double getStatisticsValue(int year, Airline airline, StatisticsType type)
         {
-            if (this.Stats.ContainsKey(year))
-            {
-                AirportStatisticsValue value = this.Stats[year].Find(asv => asv.Airline == airline && asv.Stat == type);
-                if (value != null) return value.Value;
-            }
-            return 0;
+            AirportStatisticsValue item = this.Stats.Find(s => s.Year == year && s.Airline == airline && s.Stat.Shortname == type.Shortname);
+
+            if (item == null)
+                return 0;
+            else
+                return item.Value;
+           
         }
         //returns every year with statistics
         public List<int> getYears()
         {
-            return this.Stats.Keys.ToList();
+            return this.Stats.Select(s => s.Year).Distinct().ToList();
         }
        
         //adds the value for a statistics type to an airline for a year
             public void addStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
-            lock (this.Stats)
-            {
-                if (!(this.Stats.ContainsKey(year)))
-                    this.Stats.Add(year, new List<AirportStatisticsValue>());
-                AirportStatisticsValue statValue = this.Stats[year].Find(asv => asv.Airline == airline && asv.Stat == type);
-                if (statValue != null)
-                    statValue.Value += value;
-                else
-                    this.Stats[year].Add(new AirportStatisticsValue(airline, type, value));
-            }
-                    
-         
+            AirportStatisticsValue item = this.Stats.Find(s => s.Year == year && s.Airline == airline && s.Stat.Shortname == type.Shortname);
+
+            if (item == null)
+                this.Stats.Add(new AirportStatisticsValue(airline, year, type, value));
+            else
+                item.Value += value;
         }
         //sets the value for a statistics type for an airline for a year
         public void setStatisticsValue(int year, Airline airline, StatisticsType type, int value)
         {
-            if (!(this.Stats.ContainsKey(year)))
-                this.Stats.Add(year, new List<AirportStatisticsValue>());
-            AirportStatisticsValue statValue = this.Stats[year].Find(asv => asv.Airline == airline && asv.Stat == type);
-            if (statValue != null)
-                statValue.Value = value;
-            else
-                this.Stats[year].Add(new AirportStatisticsValue(airline, type, value));
+            lock (this.Stats)
+            {
+                AirportStatisticsValue item = this.Stats.Find(s => s.Year == year && s.Airline == airline && s.Stat.Shortname == type.Shortname);
+
+                if (item == null)
+                    this.Stats.Add(new AirportStatisticsValue(airline, year, type, value));
+                else
+                    item.Value = value;
+            }
            
         }
      
         //returns the total value for a statistics type for a year
         public double getTotalValue(int year, StatisticsType type)
         {
-            if (!this.Stats.ContainsKey(year))
-                return 0;
-
-            return (from s in this.Stats[year]
-                    where s.Stat == type
-                    select s.Value).Sum();
-
-         
+            return this.Stats.Where(s => s.Year == year && s.Stat.Shortname == type.Shortname).Sum(s => s.Value);
+           
             
         
+        }
+             private AirportStatistics(SerializationInfo info, StreamingContext ctxt)
+        {
+            int version = info.GetInt16("version");
+
+            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (SerializationEntry entry in info)
+            {
+                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
+
+                if (prop != null)
+                {
+                    if (prop is FieldInfo)
+                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                    else
+                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                }
+            }
+
+            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+
+            foreach (MemberInfo notSet in notSetProps)
+            {
+                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+
+                if (ver.AutoGenerated)
+                {
+                    if (notSet is FieldInfo)
+                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    else
+                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+
+                }
+
+            }
+
+
+
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 1);
+
+            Type myType = this.GetType();
+
+            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (MemberInfo member in propsAndFields)
+            {
+                object propValue;
+
+                if (member is FieldInfo)
+                    propValue = ((FieldInfo)member).GetValue(this);
+                else
+                    propValue = ((PropertyInfo)member).GetValue(this, null);
+
+                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+
+                info.AddValue(att.Name, propValue);
+            }
+
         }
 
        

@@ -40,7 +40,9 @@
             <TabControl Background="Transparent" Name="tabMenu" BorderThickness="0" SelectionChanged="tcMenu_SelectionChanged">
                 <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlines 2000'}" Tag="Statistics">
                 </TabItem>
-              
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlines 2001'}" Tag="Stocks">
+                </TabItem>
+
             </TabControl>
         </DataTemplate>
         <DataTemplate x:Key="AirlinesContent">

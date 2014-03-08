@@ -24,6 +24,30 @@
 	  <destination airport="MEL" pax="255"/>
 	</destinations>
   </majordestination>
+<majordestination airport="KNO">
+	<destinations>
+	  <destination airport="SIN" pax="931"/>
+	  <destination airport="KUL" pax="964"/>
+	  <destination airport="BKK" pax="823"/>
+	  <destination airport="HKG" pax="854"/>
+	  <destination airport="ICN" pax="731"/>
+	  <destination airport="NRT" pax="345"/>
+	  <destination airport="PEK" pax="685"/>
+	  <destination airport="AMS" pax="700"/>
+	  <destination airport="AUH" pax="543"/>
+	  <destination airport="TPE" pax="554"/>
+	  <destination airport="DXB" pax="332"/>
+	  <destination airport="MNL" pax="534"/>
+	  <destination airport="SYD" pax="500"/>
+	  <destination airport="CMB" pax="489"/>
+	  <destination airport="SGN" pax="487"/>
+	  <destination airport="PVG" pax="388"/>
+	  <destination airport="CAN" pax="387"/>
+	  <destination airport="JED" pax="286"/>
+	  <destination airport="PER" pax="278"/>
+	  <destination airport="MEL" pax="255"/>
+	</destinations>
+  </majordestination>
   <majordestination airport="DXB">
 	<destinations>
 	  <destination airport="KWI" pax="477"/>

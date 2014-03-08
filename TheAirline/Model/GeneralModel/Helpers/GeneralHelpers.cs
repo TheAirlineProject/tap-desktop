@@ -15,6 +15,7 @@ using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.PilotModel;
 using TheAirline.Model.GeneralModel.CountryModel.TownModel;
 using System.ComponentModel;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.Model.GeneralModel
 {
@@ -230,7 +231,17 @@ namespace TheAirline.Model.GeneralModel
         {
             return airport.Profile.Period.From <= GameObject.GetInstance().GameTime && airport.Profile.Period.To > GameObject.GetInstance().GameTime && Airports.Contains(airport);
         }
-       
+        //returns the season for a date
+        public static Weather.Season GetSeason(DateTime date)
+        {
+            DateTime summertimeStart = new DateTime(date.Year, 4, 1);
+            DateTime summertimeEnd = new DateTime(date.Year, 10, 1);
+
+            if (date >= summertimeStart && date < summertimeEnd)
+                return Weather.Season.Summer;
+            else
+                return Weather.Season.Winter;
+        }
         //creates the holidays for a year
         public static void CreateHolidays(int startYear)
         {
@@ -303,8 +314,9 @@ namespace TheAirline.Model.GeneralModel
 
                 Town town = towns[rnd.Next(towns.Count)];
                 DateTime birthdate = MathHelpers.GetRandomDate(GameObject.GetInstance().GameTime.AddYears(-Pilot.RetirementAge), GameObject.GetInstance().GameTime.AddYears(-23));
+                
                 PilotProfile profile = new PilotProfile(Names.GetInstance().getRandomFirstName(), Names.GetInstance().getRandomLastName(), birthdate, town);
-
+          
                 Dictionary<Pilot.PilotRating, int> rankings = new Dictionary<Pilot.PilotRating, int>();
                 rankings.Add(Pilot.PilotRating.A, 10);
                 rankings.Add(Pilot.PilotRating.B, 20);

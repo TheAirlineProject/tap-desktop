@@ -50,7 +50,7 @@ namespace TheAirline.Model.StatisticsModel
        
             if (airline.Alliances.Count > 0)
             {
-               luxuryLevel = airline.Alliances.Where(a=>a.Type == Alliance.AllianceType.Full).SelectMany(a => a.Members).Select(m => m.Airline).Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
+               luxuryLevel = airline.Alliances.SelectMany(a => a.Members).Select(m => m.Airline).Max(m => airline.Facilities.Sum(f => f.LuxuryLevel));
             }
             else
             {

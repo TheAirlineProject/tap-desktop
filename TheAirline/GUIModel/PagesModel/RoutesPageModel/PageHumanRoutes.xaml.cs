@@ -26,10 +26,20 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
     /// </summary>
     public partial class PageHumanRoutes : Page
     {
+        public List<Route> CodesharingRoutes { get; set; }
         public PageHumanRoutes()
         {
-            this.DataContext = GameObject.GetInstance().HumanAirline.Routes;
-            this.Loaded += PageHumanRoutes_Loaded;  
+            var routes = new List<RouteMVVM>();
+
+            foreach (Route route in GameObject.GetInstance().HumanAirline.Routes)
+                routes.Add(new RouteMVVM(route));
+
+            this.DataContext = routes;
+            this.Loaded += PageHumanRoutes_Loaded;
+
+            var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c=>c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == Model.AirlineModel.CodeshareAgreement.CodeshareType.Both_Ways).Select(c=>c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a=>a.Routes);
+
+            this.CodesharingRoutes = codesharingRoutes.ToList();
 
             InitializeComponent();
   

@@ -1,0 +1,6 @@
+﻿<airline>
+  <profile name="Air Lituanica" iata="LT" color="DarkRed" country="103" CEO="Erikas Zubrus" mentality="Moderate" market="Regional" preferedairport="VNO">
+    <narrative narrative="Air Lituanica is a Lithuanian airline based in Vilnius, Lithuania. It was officially launched on 1 May 2013. The carrier is named after Lituanica, an aircraft commanded by Steponas Darius and Stasys Girenas, two pioneer Lithuanian pilots that flew it on a transatlantic flight in 1933" />
+  </profile>
+  <info real="True" from="2013" to="2199"></info>
+</airline>

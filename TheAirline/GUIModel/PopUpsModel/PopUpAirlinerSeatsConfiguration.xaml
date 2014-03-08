@@ -1,0 +1,122 @@
+﻿<window:PopUpWindow x:Class="TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel.PopUpAirlinerSeatsConfiguration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+         xmlns:window="clr-namespace:TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel" x:Name="popUpAirlinerSeatsConfiguration"
+        Title="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1003'}" Height="325" Width="800" WindowStartupLocation="CenterScreen" Background="#004A7F">
+ 
+    <Window.Resources>
+        <DataTemplate x:Key="ClassItem">
+            <WrapPanel>
+                <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="100">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                        <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=FreeClassTypes.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="2">
+                                <Setter Property="TextBlock.Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                    <Setter Property="TextBlock.Visibility" Value="Visible" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <ComboBox Width="100" ItemsSource="{Binding FreeClassTypes,ElementName=popUpAirlinerSeatsConfiguration}" SelectedItem="{Binding Type,Mode=TwoWay}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                    <ComboBox.Style>
+                        <Style TargetType="ComboBox" BasedOn="{StaticResource ComboBoxTransparentStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Path=FreeClassTypes.Count,ElementName=popUpAirlinerSeatsConfiguration}" Value="0">
+                                    <Setter Property="ComboBox.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                    <Setter Property="ComboBox.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ComboBox.Style>
+                </ComboBox>
+                <TextBlock Margin="5 0 5 0" Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1000'}" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                <TextBlock Text="{Binding Seating}" VerticalAlignment="Bottom" Width="50">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource {x:Type TextBlock}}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanDelete}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                <WrapPanel>
+                    <WrapPanel.Style>
+                        <Style>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding CanDelete}" Value="False">
+                                    <Setter Property="WrapPanel.Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </WrapPanel.Style>
+                    <Slider Width="150" Maximum="{Binding MaxSeats}" ValueChanged="slSeats_ValueChanged" Tag="{Binding}" Minimum="1" Value="{Binding Seating,Mode=TwoWay}" IsSnapToTickEnabled="True" TickFrequency="1" Name="slSeats" VerticalAlignment="Bottom"></Slider>
+                    <TextBlock Text="{Binding Value,ElementName=slSeats}" VerticalAlignment="Bottom" Margin="5 0 0 0" Width="50"></TextBlock>
+
+                </WrapPanel>
+                <Button  VerticalAlignment="Bottom" Tag="{Binding}" Background="Transparent" Visibility="{Binding CanDelete,Converter={StaticResource BooleanToVisibility}}" Click="btnDelete_Click">
+                    <Image Source="/Data/images/delete.png" Height="16" Width="16"  RenderOptions.BitmapScalingMode="HighQuality"></Image>
+                </Button>
+            </WrapPanel>
+        </DataTemplate>
+    </Window.Resources>
+    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+        <StackPanel>
+            <TabControl Background="Transparent" BorderThickness="0" Name="tcMenu" SelectionChanged="tcMenu_SelectionChanged">
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1001'}" Tag="Classes">
+                    <StackPanel Margin="0 10 0 0">
+                        <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" BorderThickness="0" VerticalAlignment="Bottom" ItemTemplate="{StaticResource ClassItem}"></ListBox>
+                        <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 200'}" Margin="0 5 0 0" Style="{StaticResource StandardButtonStyle}" Visibility="{Binding CanAddNewClass,ElementName=popUpAirlinerSeatsConfiguration,Converter={StaticResource BooleanToVisibility}}" Click="btnAdd_Click">
+                        </Button>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 1002'}" Tag="Facilities" BorderThickness="0">
+                    <StackPanel Margin="0 10 0 0">
+                        <ListBox ItemsSource="{Binding Classes, ElementName=popUpAirlinerSeatsConfiguration}" BorderThickness="0" Style="{StaticResource VerticalListBoxStyle}"  VerticalAlignment="Bottom">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <StackPanel>
+                                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold"></TextBlock>
+                                    <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemsSource="{Binding Facilities}">
+                                        <ListBox.ItemTemplate>
+                                            <DataTemplate>
+                                                <WrapPanel>
+                                                    <TextBlock Text="{Binding Type,Converter={StaticResource TextUnderscoreConverter}}" VerticalAlignment="Bottom" Width="100" FontWeight="Bold"></TextBlock>
+                                                    <ComboBox  ItemsSource="{Binding Path=Facilities}" Width="150" Style="{StaticResource ComboBoxTransparentStyle}" SelectedItem="{Binding Path=SelectedFacility,Mode=TwoWay}">
+                                                            <ComboBox.ItemTemplate>
+                                                                <DataTemplate>
+                                                                    <TextBlock VerticalAlignment="Bottom" Text="{Binding Name}"></TextBlock>
+                                                                </DataTemplate>
+                                                            </ComboBox.ItemTemplate>
+                                                        </ComboBox>
+                                                </WrapPanel>
+                                            </DataTemplate>
+                                        </ListBox.ItemTemplate>
+                                    </ListBox>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </StackPanel>
+                </TabItem>
+                </TabControl>
+            <WrapPanel Margin="0 10 0 0">
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 201'}" Style="{StaticResource StandardButtonStyle}" Click="btnSave_Click"/>
+                <Button  VerticalAlignment="Bottom" HorizontalAlignment="Left" Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PopUpAirlinerSeatsConfiguration 202'}" Margin="5 0 0 0" Style="{StaticResource StandardButtonStyle}" Click="btnCancel_Click"/>
+
+            </WrapPanel>
+        </StackPanel>
+    </ScrollViewer>
+</window:PopUpWindow>

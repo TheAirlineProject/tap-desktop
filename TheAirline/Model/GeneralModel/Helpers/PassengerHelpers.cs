@@ -127,7 +127,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
-                double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
+                double totalDistance = airportCurrent.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(tDest.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                 int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
@@ -142,7 +142,7 @@ namespace TheAirline.Model.GeneralModel
             {
                 Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 
-                double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
+                double totalDistance = tDest.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(airportDestination.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                 int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
@@ -152,17 +152,25 @@ namespace TheAirline.Model.GeneralModel
                     demandOrigin += (demand * 0.25);
                 }
             }
-            //alliances
-            if (airliner.Airliner.Airline.Alliances.Count > 0)
+            //alliances & codesharings
+            if (airliner.Airliner.Airline.Alliances.Count > 0 || airliner.Airliner.Airline.Codeshares.Count > 0)
             {
                 var allianceRoutesFromDestination = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent)))));
                 var allianceRoutesToOrigin = airliner.Airliner.Airline.Alliances.SelectMany(a => a.Members.Where(m => m.Airline != airliner.Airliner.Airline).SelectMany(m => m.Airline.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination)))));
+
+                var codeshares = airliner.Airliner.Airline.Codeshares.Where(a => (a.Airline2 == airliner.Airliner.Airline && a.Type == CodeshareAgreement.CodeshareType.One_Way) || a.Type == CodeshareAgreement.CodeshareType.Both_Ways);  
+
+                var codesharingRoutesFromDestination = codeshares.Select(a=>a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1).SelectMany(a => a.Routes.FindAll(r => ((r.Destination2 == airportDestination || r.Destination1 == airportDestination) && (r.Destination1 != airportCurrent && r.Destination2 != airportCurrent))));
+                var codesharingRoutesToOrigin= codeshares.Select(a=>a.Airline1 == airliner.Airliner.Airline ? a.Airline2 : a.Airline1).SelectMany(a => a.Routes.FindAll(r => ((r.Destination1 == airportCurrent || r.Destination2 == airportCurrent) && (r.Destination2 != airportDestination && r.Destination1 != airportDestination))));
+
+                allianceRoutesFromDestination = allianceRoutesFromDestination.Union(codesharingRoutesFromDestination);
+                allianceRoutesToOrigin = allianceRoutesToOrigin.Union(codesharingRoutesToOrigin);
 
                 foreach (PassengerRoute route in allianceRoutesFromDestination)
                 {
                     Airport tDest = route.Destination1 == airportDestination ? route.Destination2 : route.Destination1;
 
-                    double totalDistance = MathHelpers.GetDistance(airportCurrent, tDest);
+                    double totalDistance = airportCurrent.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(tDest.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                     int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(airportCurrent, tDest);
 
@@ -177,7 +185,7 @@ namespace TheAirline.Model.GeneralModel
                 {
                     Airport tDest = route.Destination1 == airportCurrent ? route.Destination2 : route.Destination1;
 
-                    double totalDistance = MathHelpers.GetDistance(tDest, airportDestination);
+                    double totalDistance = tDest.Profile.Coordinates.convertToGeoCoordinate().GetDistanceTo(airportDestination.Profile.Coordinates.convertToGeoCoordinate()) / 1000;
 
                     int directRoutes = AirportHelpers.GetNumberOfAirportsRoutes(tDest, airportDestination);
 
@@ -283,23 +291,35 @@ namespace TheAirline.Model.GeneralModel
             }
 
             double totalRatio = rations.Values.Sum();
-
+            
             double routeRatioPercent = 1;
 
             if (rations.ContainsKey(currentRoute))
                 routeRatioPercent = Math.Max(1, rations[currentRoute] / Math.Max(1, totalRatio));
 
+            IDictionary<Airline, double> airlineScores = new Dictionary<Airline, double>();
+
+            foreach (Airline airline in Airlines.GetAllAirlines())
+                airlineScores.Add(airline, airportCurrent.getAirlineReputation(airline));
+
+            double reputation = StatisticsHelpers.GetRatingScale(airlineScores)[airliner.Airliner.Airline];
+
+            if (reputation < 76)
+                reputation = 75;
+
+            double reputationPercent = reputation / 100;
+            
             double routePriceDiff = priceDiff < 0.5 ? priceDiff : 1;
 
             routePriceDiff *= GameObject.GetInstance().Difficulty.PriceLevel;
 
             double randomPax = Convert.ToDouble(rnd.Next(97, 103)) / 100;
 
-            int pax = (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * capacityPercent * routePriceDiff * randomPax));
+            int pax = (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, (airliner.Airliner.getAirlinerClass(type).SeatingCapacity * routeRatioPercent * reputationPercent* capacityPercent * routePriceDiff * randomPax));
 
             if (pax < 0)
-                totalCapacity = 100;
-
+                pax = 0;
+                         
             return pax;
         }
 
@@ -330,6 +350,9 @@ namespace TheAirline.Model.GeneralModel
                     passengers += GetFlightPassengers(routes[i].Destination1, dest, airliner, type);
                 }
             }
+
+            if (passengers < 0)
+                passengers = 0;
 
             return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, passengers);
         }
@@ -363,6 +386,9 @@ namespace TheAirline.Model.GeneralModel
                 else
                     passengers += GetFlightPassengers(entry.TimeTable.Route.Destination1, legs[i].Destination2, airliner, type);
             }
+
+            if (passengers < 0)
+                passengers = 0;
 
             return (int)Math.Min(airliner.Airliner.getAirlinerClass(type).SeatingCapacity, passengers);
         }
@@ -524,7 +550,7 @@ namespace TheAirline.Model.GeneralModel
         //creates the airport destination passengers a destination
         public static void CreateDestinationPassengers(Airport airport)
         {
-            var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates, airport.Profile.Coordinates) > 50);
+            var airports = Airports.GetAirports(a => a != airport && a.Profile.Town != airport.Profile.Town && MathHelpers.GetDistance(a.Profile.Coordinates.convertToGeoCoordinate(), airport.Profile.Coordinates.convertToGeoCoordinate()) > 50);
             //Parallel.ForEach(airports, dAirport =>
             foreach (Airport dAirport in airports)
             {
@@ -608,6 +634,7 @@ namespace TheAirline.Model.GeneralModel
                 CargoFactors.Add(GeneralHelpers.Size.Very_small, 0.23);
                 CargoFactors.Add(GeneralHelpers.Size.Smallest, 0.23);
             }
+           
             var airports = Airports.GetAllAirports(a => a.Statics.getDestinationPassengersSum() == 0);
             int count = airports.Count;
 

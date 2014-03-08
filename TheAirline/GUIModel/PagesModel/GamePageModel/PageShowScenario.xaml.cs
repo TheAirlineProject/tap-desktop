@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.GeneralModel.Helpers;
 using TheAirline.Model.GeneralModel.ScenarioModel;
 
@@ -40,11 +40,7 @@ namespace TheAirline.GUIModel.PagesModel.GamePageModel
 
         private void btnPlay_Click(object sender, RoutedEventArgs e)
         {
-            Size s = PageNavigator.MainWindow.RenderSize;
-
-            GraphicsHelpers.SetContentHeight(s.Height / 2);
-            GraphicsHelpers.SetContentWidth(s.Width / 2);
-
+            
             ScenarioHelpers.SetupScenario(this.Scenario);
         
         }

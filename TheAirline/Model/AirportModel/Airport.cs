@@ -10,49 +10,51 @@ using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.WeatherModel;
 using System.Runtime.Serialization;
+using System.Reflection;
+using TheAirline.Model.AirlinerModel.RouteModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 
 
 
 namespace TheAirline.Model.AirportModel
 {
-    [DataContract]
+    [Serializable]
     //the class for an airport
-    public class Airport
+    public class Airport : ISerializable
     {
-        [DataMember]
+        [Versioning("profile")]
         public AirportProfile Profile { get; set; }
-        // private List<Passenger> Passengers;
-        //
-        [DataMember]
+         [Versioning("destinationpassengers")]
         private List<DestinationDemand> DestinationPassengers { get; set; }
-        [DataMember]
+        [Versioning("destinationcargo")]
         private List<DestinationDemand> DestinationCargo { get; set; }
-       [DataMember]
+       [Versioning("passengerstatistics")]
         private Dictionary<Airport, long> DestinationPassengerStatistics { get; set; }
-       [DataMember]
+       [Versioning("cargostatistics")]
         private Dictionary<Airport, double> DestinationCargoStatistics { get; set; }
-        [DataMember]
+        [Versioning("facilities")]
         private List<AirlineAirportFacility> Facilities;
-        [DataMember]
+        [Versioning("statistics")]
         public AirportStatistics Statistics { get; set; }
-        [DataMember]
+        [Versioning("weather")]
         public Weather[] Weather { get; set; }
-        [DataMember]
+        [Versioning("runways")]
         public List<Runway> Runways { get; set; }
-        [DataMember]
+        [Versioning("terminals")]
         public Terminals Terminals { get; set; }
-          [DataMember]
+        [Versioning("cooperations",Version=2)]
+        public List<Cooperation> Cooperations { get; set; }
         private List<Hub> _Hubs;
+              [Versioning("hubs")]
         public List<Hub> Hubs { private get { return getHubs(); } set { this._Hubs = value; } }
         public Boolean IsHub { get { return getHubs().Count > 0; } set { ;} }
-        [DataMember]
+        [Versioning("income")]
         public long Income { get; set; }
-        [DataMember]
+        [Versioning("lastexpansiondate")]
         public DateTime LastExpansionDate { get; set; }
-        [DataMember]
+        [Versioning("contracts")]
         private List<AirportContract> _Contracts;
         public List<AirportContract> AirlineContracts { get { return getAirlineContracts();} set { this._Contracts = value; } }
-        [IgnoreDataMember]
         public AirportStatics Statics { get; set; }
         public Airport(AirportProfile profile)
         {
@@ -61,6 +63,7 @@ namespace TheAirline.Model.AirportModel
             this.DestinationPassengers = new List<DestinationDemand>();
             this.DestinationCargo = new List<DestinationDemand>();
             this.Facilities = new List<AirlineAirportFacility>();
+            this.Cooperations = new List<Cooperation>();
             this.Statistics = new AirportStatistics();
             this.Weather = new Weather[5];
             this.Terminals = new Terminals(this);
@@ -115,7 +118,6 @@ namespace TheAirline.Model.AirportModel
         //removes an airline airport contract from the airport
         public void removeAirlineContract(AirportContract contract)
         {
-
             lock (this._Contracts)
             {
                 this._Contracts.Remove(contract);
@@ -123,11 +125,18 @@ namespace TheAirline.Model.AirportModel
 
             if (!this.AirlineContracts.Exists(c => c.Airline == contract.Airline))
                 contract.Airline.removeAirport(this);
+
         }
         //returns the contracts for an airline
         public List<AirportContract> getAirlineContracts(Airline airline)
         {
             return this.AirlineContracts.FindAll(a => a.Airline == airline);
+        }
+        //returns if an airline has a contract of a specific type
+        public Boolean hasContractType(Airline airline, AirportContract.ContractType type)
+        {
+
+            return this.AirlineContracts.Exists(c => c.Airline == airline && c.Type == type);
         }
         //return all airline contracts
         public List<AirportContract> getAirlineContracts()
@@ -311,6 +320,7 @@ namespace TheAirline.Model.AirportModel
         {
             this.DestinationCargoStatistics.Clear();
         }
+
         //returns the number of passengers to a destination
         public long getDestinationPassengerStatistics(Airport destination)
         {
@@ -362,7 +372,10 @@ namespace TheAirline.Model.AirportModel
         //adds a facility to an airline
         public void addAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
         {
-            this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
+            lock (this.Facilities)
+            {
+                this.Facilities.Add(new AirlineAirportFacility(airline, this, facility, finishedDate));
+            }
         }
         //sets the facility for an airline
         public void setAirportFacility(Airline airline, AirportFacility facility, DateTime finishedDate)
@@ -583,6 +596,114 @@ namespace TheAirline.Model.AirportModel
                 removeAirlineContract(terminalContract);
 
             this.Terminals.removeTerminal(terminal);
+        }
+        //adds a cooperation to the airport
+        public void addCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Add(cooperation);
+        }
+        //removes a cooperation from the airport
+        public void removeCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Remove(cooperation);
+        }
+        //returns the reputation score for an airline
+        public double getAirlineReputation(Airline airline)
+        {
+            //The score could be airport facilities for the airline, routes, connecting routes, hotels, service level per route etc
+            double score = 0;
+
+            foreach (Cooperation cooperation in this.Cooperations.Where(c => c.Airline == airline))
+                score += 9 * cooperation.Type.ServiceLevel;
+
+            foreach (AirlineAirportFacility facility in this.Facilities.Where(f=>f.Airline == airline))
+                score += 10*facility.Facility.ServiceLevel;
+
+            var airportRoutes = airline.Routes.Where(r => r.Destination1 == this || r.Destination2 == this);
+            score += 7*airportRoutes.Count();
+            score += 6 * airportRoutes.Where(r => r.Type == AirlinerModel.RouteModel.Route.RouteType.Passenger).Sum(r => ((PassengerRoute)r).getServiceLevel(AirlinerClass.ClassType.Economy_Class));
+
+            foreach (Alliance alliance in airline.Alliances)
+            {
+                var allianceRoutes = alliance.Members.SelectMany(m => m.Airline.Routes).Count(r => r.Destination1 == this || r.Destination2 == this);
+                score += 5 * allianceRoutes;
+            }
+
+            foreach (CodeshareAgreement codesharing in airline.Codeshares)
+            {
+                var codesharingRoutes = (codesharing.Airline1 == airline ? codesharing.Airline2 : codesharing.Airline1).Routes.Count(r => r.Destination2 == this || r.Destination1 == this);
+                score += 4 * codesharingRoutes;
+            }
+
+            return score;
+
+        }
+        private Airport(SerializationInfo info, StreamingContext ctxt)
+        {
+            int version = info.GetInt16("version");
+
+            var fields = this.GetType().GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(this.GetType().GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (SerializationEntry entry in info)
+            {
+                MemberInfo prop = propsAndFields.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
+
+
+                if (prop != null)
+                {
+                    if (prop is FieldInfo)
+                        ((FieldInfo)prop).SetValue(this, entry.Value);
+                    else
+                        ((PropertyInfo)prop).SetValue(this, entry.Value);
+                }
+            }
+
+            var notSetProps = propsAndFields.Where(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Version > version);
+
+            foreach (MemberInfo notSet in notSetProps)
+            {
+                Versioning ver = (Versioning)notSet.GetCustomAttribute(typeof(Versioning));
+
+                if (ver.AutoGenerated)
+                {
+                    if (notSet is FieldInfo)
+                        ((FieldInfo)notSet).SetValue(this, ver.DefaultValue);
+                    else
+                        ((PropertyInfo)notSet).SetValue(this, ver.DefaultValue);
+
+                }
+            }
+        }
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+            info.AddValue("version", 2);
+
+            Type myType = this.GetType();
+
+            var fields = myType.GetFields(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null);
+
+            IList<PropertyInfo> props = new List<PropertyInfo>(myType.GetProperties(BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public).Where(p => p.GetCustomAttribute(typeof(Versioning)) != null));
+
+            var propsAndFields = props.Cast<MemberInfo>().Union(fields.Cast<MemberInfo>());
+
+            foreach (MemberInfo member in propsAndFields)
+            {
+                object propValue;
+
+                if (member is FieldInfo)
+                    propValue = ((FieldInfo)member).GetValue(this);
+                else
+                    propValue = ((PropertyInfo)member).GetValue(this, null);
+
+                Versioning att = (Versioning)member.GetCustomAttribute(typeof(Versioning));
+
+                info.AddValue(att.Name, propValue);
+            }
+
         }
     }
     //the collection of airports

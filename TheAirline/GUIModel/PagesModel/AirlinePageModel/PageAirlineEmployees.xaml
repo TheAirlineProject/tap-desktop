@@ -23,7 +23,7 @@
                 <TextBlock Margin="5 0 0 0" Text="{Binding Value,Converter={StaticResource ValueCurrencyConverter}}" VerticalAlignment="Bottom"></TextBlock>
             </WrapPanel>
         </DataTemplate>
-       
+
     </Page.Resources>
     <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
         <Grid>
@@ -34,31 +34,42 @@
             <Border Style="{StaticResource RoundedBorderStyle}"  Grid.Column="0" Margin="0 0 5 0">
 
                 <StackPanel>
-                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"> </TextBlock>
-                      <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
-            <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1001'}">
-                <h:QuickInfoValue.Value>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.CockpitCrew,ElementName=pageAirlineEmployees}"></TextBlock>
-                </h:QuickInfoValue.Value>
-            </h:QuickInfoValue>
+                    <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
+                    <ListBox Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" ItemTemplate="{StaticResource QuickInfoItem}" >
+                        <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1001'}">
+                            <h:QuickInfoValue.Value>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.Pilots.Count,ElementName=pageAirlineEmployees}"></TextBlock>
+                            </h:QuickInfoValue.Value>
+                        </h:QuickInfoValue>
+                        <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1011'}">
+                            <h:QuickInfoValue.Value>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.UnassignedPilots,ElementName=pageAirlineEmployees}"></TextBlock>
+                            </h:QuickInfoValue.Value>
+                        </h:QuickInfoValue>
+                        <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1012'}">
+                            <h:QuickInfoValue.Value>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.PilotsToRetire,ElementName=pageAirlineEmployees}"></TextBlock>
+                            </h:QuickInfoValue.Value>
+                        </h:QuickInfoValue>
                         <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1002'}">
-                <h:QuickInfoValue.Value>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.CabinCrew,ElementName=pageAirlineEmployees}"></TextBlock>
-                </h:QuickInfoValue.Value>
-            </h:QuickInfoValue>
+                            <h:QuickInfoValue.Value>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.CabinCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                            </h:QuickInfoValue.Value>
+                        </h:QuickInfoValue>
                         <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1003'}">
-                <h:QuickInfoValue.Value>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.SupportCrew,ElementName=pageAirlineEmployees}"></TextBlock>
-                </h:QuickInfoValue.Value>
-            </h:QuickInfoValue>
+                            <h:QuickInfoValue.Value>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.SupportCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                            </h:QuickInfoValue.Value>
+                        </h:QuickInfoValue>
                         <h:QuickInfoValue Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1004'}">
-                <h:QuickInfoValue.Value>
-            <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.MaintenanceCrew,ElementName=pageAirlineEmployees}"></TextBlock>
-                </h:QuickInfoValue.Value>
-            </h:QuickInfoValue>
-        </ListBox>
+                            <h:QuickInfoValue.Value>
+                                <TextBlock VerticalAlignment="Bottom" Text="{Binding Airline.MaintenanceCrew,ElementName=pageAirlineEmployees}"></TextBlock>
+                            </h:QuickInfoValue.Value>
+                        </h:QuickInfoValue>
+                    </ListBox>
 
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1005'}" Margin="0 5 0 0" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
+                  
                     <ListView VerticalAlignment="Stretch" util:GridViewSort.AutoSort="True" Background="Transparent" BorderThickness="0" ItemsSource="{Binding Pilots}">
                         <ListView.View>
                             <GridView>
@@ -111,7 +122,7 @@
                     <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 1010'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"/>
                     <ListBox ItemsSource="{Binding Wages}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility},ConverterParameter='!'}" ItemTemplate="{StaticResource OpponentWageItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
                     <ListBox ItemsSource="{Binding Wages}" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}" ItemTemplate="{StaticResource HumanWageItem}" Background="Transparent" BorderThickness="0"  ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}"></ListBox>
-                      <WrapPanel Margin="0 5 0 0" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
+                    <WrapPanel Margin="0 5 0 0" Visibility="{Binding Airline.IsHuman,Converter={StaticResource BooleanToVisibility}}">
                         <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 200'}" IsDefault="True" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnSaveChanges_Click"></Button>
                         <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageAirlineEmployees 201'}" IsCancel="True" Margin="5 0 0 0" VerticalAlignment="Bottom" Style="{StaticResource StandardButtonStyle}" Click="btnUndo_Click"></Button>
                     </WrapPanel>

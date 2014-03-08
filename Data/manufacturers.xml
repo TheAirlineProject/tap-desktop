@@ -2,6 +2,7 @@
 <manufacturers>
   <manufacturer name="Aerospatiale" shortname="Aerospatiale" country="140"/>
   <manufacturer name="Airbus" shortname="Airbus" country="140"/>
+  <manufacturer name="Airbus Military" shortname="Airbus Military" country="140"/>
   <manufacturer name="Antonov" shortname="Antonov" country="134"/>
   <manufacturer name="Ark Aerospace Industries" shortname="Ark" country="122"/>
   <manufacturer name="Avions de Transport Régional" shortname="ATR" country="141"/>
@@ -12,6 +13,7 @@
   <manufacturer name="British Aircraft Corporation" shortname="BAC" country="130"/>
   <manufacturer name="Cessna Aircraft Company" shortname="Cessna" country="122"/>
   <manufacturer name="Convair" shortname="Convair" country="122"/>
+  <manufacturer name="Dassault Aviation" shortname="Dassault" country="140"/>
   <manufacturer name="de Havilland" shortname="DH" country="130"/>
   <manufacturer name="Douglas Aircraft Company" shortname="Douglas" country="122"/>
   <manufacturer name="Dornier Flugzeugwerke" shortname="Dornier" country="1002"/>
@@ -20,6 +22,7 @@
   <manufacturer name="Fairchild Dornier" shortname="FD" country="122"/>
   <manufacturer name="Fokker" shortname="Fokker" country="179"/>
   <manufacturer name="Hawker Siddeley" shortname="Hawker" country="130"/>
+  <manufacturer name="PT Dirgantara Indonesia" shortname="IAe" country="162"/>
   <manufacturer name="Let Kunovice" shortname="Let" country="106"/>
   <manufacturer name="Lockheed Corporation" shortname="Lockheed" country="122"/>
   <manufacturer name="McDonnell Douglas" shortname="MD" country="122"/>
@@ -29,4 +32,5 @@
   <manufacturer name="Sukhoi Aviation Corporation" shortname="Sukhoi" country="149"/>
   <manufacturer name="The Boeing Company" shortname="Boeing" country="122"/>
   <manufacturer name="Vickers-Armstrongs Limited" shortname="Vickers" country="130"/>
-</manufacturers>
+  <manufacturer name="Commercial Aircraft Corporation of China" shortname="Comac" country="148"/>
+ </manufacturers>

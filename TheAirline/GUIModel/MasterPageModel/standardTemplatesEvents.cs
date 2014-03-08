@@ -5,10 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Documents;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
-using TheAirline.GraphicsModel.PageModel.PageAirportModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.GUIModel.PagesModel.AirlinePageModel;
+using TheAirline.GUIModel.PagesModel.FleetAirlinerPageModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirportModel;
 
 namespace TheAirline.GUIModel.MasterPageModel
@@ -27,6 +28,12 @@ namespace TheAirline.GUIModel.MasterPageModel
         {
             Airline airline = (Airline)((Hyperlink)sender).Tag;
             PageNavigator.NavigateTo(new PageAirline(airline));
+        }
+        private void lnkAirliner_Click(object sender, RoutedEventArgs e)
+        {
+            FleetAirliner airliner = (FleetAirliner)((Hyperlink)sender).Tag;
+
+            PageNavigator.NavigateTo(new PageFleetAirliner(airliner));
         }
     }
 }

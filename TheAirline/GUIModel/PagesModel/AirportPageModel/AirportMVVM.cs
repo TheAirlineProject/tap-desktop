@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.AirlineModel;
+using TheAirline.Model.AirlineModel.AirlineCooperationModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
@@ -26,18 +27,28 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public List<Weather> Weather { get; set; }
         public HourlyWeather CurrentWeather { get; set; }
         public ObservableCollection<AirportTerminalMVVM> Terminals { get; set; }
+        public ObservableCollection<AirportTerminalMVVM> BuildingTerminals { get; set; }
         public ObservableCollection<ContractMVVM> Contracts { get; set; }
         public ObservableCollection<Hub> Hubs { get; set; }
         public List<DemandMVVM> Demands { get; set; }
         public double TerminalPrice { get; set; }
         public double TerminalGatePrice { get; set; }
         public List<AirportFacility> AirportFacilities { get; set; }
+        public ObservableCollection<Cooperation> Cooperations { get; set; }
         public ObservableCollection<AirlineAirportFacilityMVVM> AirlineFacilities { get; set; }
+        public ObservableCollection<AirlineAirportFacilityMVVM> BuildingAirlineFacilities { get; set; }
         public List<AirportTrafficMVVM> Traffic { get; set; }
         public List<AirportStatisticsMVMM> AirlineStatistics { get; set; }
         public List<DestinationFlightsMVVM> Flights { get; set; }
+        public List<AirlineReputationMVVM> AirlineReputations { get; set; }
         public DateTime LocalTime { get; set; }
         public Boolean ShowLocalTime { get; set; }
+        private Boolean _canMakeCooperation;
+        public Boolean CanMakeCooperation
+        {
+            get { return _canMakeCooperation; }
+            set { _canMakeCooperation = value; NotifyPropertyChanged("CanMakeCooperation"); }
+        }
         private Boolean _canBuildHub;
         public Boolean CanBuildHub
         {
@@ -56,19 +67,27 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.TerminalGatePrice = this.Airport.getTerminalGatePrice();
             this.TerminalPrice = this.Airport.getTerminalPrice();
-            
+
+            this.Cooperations = new ObservableCollection<Cooperation>();
             this.Terminals = new ObservableCollection<AirportTerminalMVVM>();
+            this.BuildingTerminals = new ObservableCollection<AirportTerminalMVVM>();
 
             foreach (Terminal terminal in this.Airport.Terminals.getTerminals())
             {
-                Boolean isSellable = terminal.Airline != null && terminal.Airline == GameObject.GetInstance().HumanAirline; 
-       
-                this.Terminals.Add(new AirportTerminalMVVM(terminal,terminal.IsBuyable,isSellable));
+                Boolean isSellable = terminal.Airline != null && terminal.Airline == GameObject.GetInstance().HumanAirline;
+
+                if (terminal.IsBuilt)
+                    this.Terminals.Add(new AirportTerminalMVVM(terminal, terminal.IsBuyable, isSellable));
+                else
+                    this.BuildingTerminals.Add(new AirportTerminalMVVM(terminal, terminal.IsBuyable, isSellable));
             }
             this.Contracts = new ObservableCollection<ContractMVVM>();
 
             foreach (AirportContract contract in this.Airport.AirlineContracts)
                 this.Contracts.Add(new ContractMVVM(contract));
+
+            foreach (Cooperation cooperation in this.Airport.Cooperations)
+                this.Cooperations.Add(cooperation);
 
             AirportHelpers.CreateAirportWeather(this.Airport);
 
@@ -81,19 +100,33 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.Demands = new List<DemandMVVM>();
 
-            foreach (Airport destination in this.Airport.getDestinationDemands().Where(a=> a!=null && GeneralHelpers.IsAirportActive(a)))
-                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class), (int)this.Airport.getDestinationCargoRate(destination), new CountryCurrentCountryConverter().Convert(destination.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country) ? DemandMVVM.DestinationType.Domestic : DemandMVVM.DestinationType.International));
+            var demands = this.Airport.getDestinationDemands().Where(a => a != null && GeneralHelpers.IsAirportActive(a)).OrderByDescending(a=>this.Airport.getDestinationPassengersRate(a, AirlinerClass.ClassType.Economy_Class));
 
-            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null).Select(f=>f.Facility).ToList();
+            var internationalDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) != new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
+            var domesticDemand = demands.Where(a => new CountryCurrentCountryConverter().Convert(a.Profile.Country) == new CountryCurrentCountryConverter().Convert(this.Airport.Profile.Country));
+           
+            foreach (Airport destination in internationalDemand.Take(Math.Min(50,internationalDemand.Count())))
+                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination),DemandMVVM.DestinationType.International));
+
+            foreach (Airport destination in domesticDemand.Take(Math.Min(50, domesticDemand.Count())))
+                this.Demands.Add(new DemandMVVM(destination, (int)this.Airport.getDestinationPassengersRate(destination, AirlinerClass.ClassType.Economy_Class),(int)this.Airport.Profile.Pax, (int)this.Airport.getDestinationCargoRate(destination), DemandMVVM.DestinationType.Domestic));
+            
+            this.AirportFacilities = this.Airport.getAirportFacilities().FindAll(f => f.Airline == null && f.Facility.TypeLevel!=0).Select(f=>f.Facility).ToList();
 
             this.AirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
+            this.BuildingAirlineFacilities = new ObservableCollection<AirlineAirportFacilityMVVM>();
            
             foreach (var facility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
                 if (facility.Facility.TypeLevel != 0)
                 {
                     Alliance alliance = facility.Airline.Alliances.Count == 0 ? null : facility.Airline.Alliances[0];
-      
-                    this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(facility,alliance));
+
+                    AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(facility, alliance);
+
+                    if (airlineFacility.IsDelivered)
+                        this.AirlineFacilities.Add(airlineFacility);
+                    else
+                        this.BuildingAirlineFacilities.Add(airlineFacility);
                 }
 
             this.AirlineStatistics = new List<AirportStatisticsMVMM>();
@@ -107,8 +140,12 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 double passengers = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year,airline,passengersType);
                 double passengersAvg = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year,airline,passengersAvgType);
                 double arrivals = this.Airport.Statistics.getStatisticsValue(GameObject.GetInstance().GameTime.Year,airline,arrivalsType);
-                
-                this.AirlineStatistics.Add(new AirportStatisticsMVMM(airline, passengers, passengersAvg, arrivals));
+
+                int routes = airline.Routes.Count(r => r.Destination1 == this.Airport || r.Destination2 == this.Airport);
+
+                this.AirlineStatistics.Add(new AirportStatisticsMVMM(airline, passengers, passengersAvg, arrivals,routes));
+
+               
             }
 
             this.Traffic = new List<AirportTrafficMVVM>();
@@ -152,10 +189,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 this.Hubs.Add(hub);
 
             this.CanBuildHub = canBuildHub();
+            this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a=>a == this.Airport);
 
             this.LocalTime = MathHelpers.ConvertDateTimeToLoalTime(GameObject.GetInstance().GameTime, this.Airport.Profile.TimeZone);
 
             this.ShowLocalTime = !GameObject.GetInstance().DayRoundEnabled;
+
+            this.AirlineReputations = new List<AirlineReputationMVVM>();
+
+            IDictionary<Airline,double> airlineScores = new Dictionary<Airline,double>();
+
+            foreach (Airline airline in Airlines.GetAllAirlines())
+                airlineScores.Add(airline,this.Airport.getAirlineReputation(airline));
+
+            foreach (KeyValuePair<Airline, double> score in StatisticsHelpers.GetRatingScale(airlineScores))
+                this.AirlineReputations.Add(new AirlineReputationMVVM(score.Key, (int)score.Value));
         }
         //returns if hub can be build
         private Boolean canBuildHub()
@@ -163,7 +211,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             Boolean hasServiceCenter = this.Airport.getAirlineAirportFacility(GameObject.GetInstance().HumanAirline,AirportFacility.FacilityType.Service).Facility.TypeLevel > 0;
             
             double gatesPercent = Convert.ToDouble(this.Contracts.Count(c=>c.Airline == GameObject.GetInstance().HumanAirline)) / Convert.ToDouble(this.Airport.Terminals.NumberOfGates);
-          
+         
             return gatesPercent > 0.2 && this.Hubs.Count == 0 && hasServiceCenter;
         }
         //adds a terminal to the airport
@@ -171,8 +219,8 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             this.Airport.addTerminal(terminal);
 
-            this.Terminals.Add(new AirportTerminalMVVM(terminal, false,terminal.Airline!=null && terminal.Airline == GameObject.GetInstance().HumanAirline));
-
+            this.BuildingTerminals.Add(new AirportTerminalMVVM(terminal, false,terminal.Airline!=null && terminal.Airline == GameObject.GetInstance().HumanAirline));
+ 
         }
         //removes a terminal from the airport
         public void removeTerminal(AirportTerminalMVVM terminal)
@@ -184,19 +232,20 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         //adds an airline contract to the airport
         public void addAirlineContract(AirportContract contract)
         {
-            this.Airport.addAirlineContract(contract);
+            AirportHelpers.AddAirlineContract(contract);
 
             this.Contracts.Add(new ContractMVVM(contract));
 
             this.FreeGates = this.Airport.Terminals.NumberOfFreeGates;
                        
-
             this.CanBuildHub = this.Contracts.Count(c => c.Airline == GameObject.GetInstance().HumanAirline) > 0;
 
             foreach (AirportTerminalMVVM terminal in Terminals)
             {
                 terminal.FreeGates = terminal.Terminal.getFreeGates();
             }
+
+            this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
     
         }
         //removes an airline contract from the airport
@@ -212,6 +261,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             {
                 terminal.FreeGates = terminal.Terminal.getFreeGates();
             }
+
+            this.CanMakeCooperation = GameObject.GetInstance().HumanAirline.Airports.Exists(a => a == this.Airport);
+
     
         }
         //adds a hub
@@ -231,6 +283,21 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
 
             this.CanBuildHub = canBuildHub();
         }
+        //removes a cooperation from the airport
+        public void removeCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Remove(cooperation);
+            this.Airport.removeCooperation(cooperation);
+        }
+        //adds a cooperation to the airport
+        public void addCooperation(Cooperation cooperation)
+        {
+            this.Cooperations.Add(cooperation);
+            this.Airport.addCooperation(cooperation);
+            
+            AirlineHelpers.AddAirlineInvoice(cooperation.Airline, cooperation.BuiltDate, Invoice.InvoiceType.Purchases, -cooperation.Type.Price);
+            
+        }
         //removes an airline facility from the airport
         public void removeAirlineFacility(AirlineAirportFacilityMVVM facility)
         {
@@ -242,7 +309,13 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             if (this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type).Facility.TypeLevel > 0)
             {
                 Alliance alliance = facility.Facility.Airline.Alliances.Count == 0 ? null : facility.Facility.Airline.Alliances[0];
-                this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type),alliance));
+               
+                AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(this.Airport.getAirlineAirportFacility(facility.Facility.Airline, facility.Facility.Facility.Type),alliance);
+
+                if (airlineFacility.IsDelivered)
+                    this.AirlineFacilities.Add(airlineFacility);
+                else
+                    this.BuildingAirlineFacilities.Add(airlineFacility);
             }
         }
         //adds an airline facility to the airport
@@ -251,15 +324,31 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             AirlineAirportFacility nextFacility = new AirlineAirportFacility(GameObject.GetInstance().HumanAirline,this.Airport, facility, GameObject.GetInstance().GameTime.AddDays(facility.BuildingDays));
             this.Airport.setAirportFacility(nextFacility);
 
-            AirlineAirportFacilityMVVM currentFacility = this.AirlineFacilities.Where(f=>f.Facility.Facility.Type == facility.Type).FirstOrDefault();
+            /*
+            AirlineAirportFacilityMVVM currentFacility = this.AirlineFacilities.Where(f => f.Facility.Facility.Type == facility.Type).FirstOrDefault();
 
             if (currentFacility != null)
-                this.AirlineFacilities.Remove(currentFacility);
+                removeAirlineFacility(currentFacility);
             
             Alliance alliance = nextFacility.Airline.Alliances.Count == 0 ? null : nextFacility.Airline.Alliances[0];
-      
-
+            
             this.AirlineFacilities.Add(new AirlineAirportFacilityMVVM(nextFacility,alliance));
+             * */
+            this.AirlineFacilities.Clear();
+            this.BuildingAirlineFacilities.Clear();
+           
+            foreach (var tFacility in this.Airport.getAirportFacilities().FindAll(f => f.Airline != null))
+                if (tFacility.Facility.TypeLevel != 0)
+                {
+                    Alliance alliance = tFacility.Airline.Alliances.Count == 0 ? null : tFacility.Airline.Alliances[0];
+
+                    AirlineAirportFacilityMVVM airlineFacility = new AirlineAirportFacilityMVVM(tFacility, alliance);
+
+                    if (airlineFacility.IsDelivered)
+                        this.AirlineFacilities.Add(airlineFacility);
+                    else
+                        this.BuildingAirlineFacilities.Add(airlineFacility);
+                }
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -290,6 +379,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public int Cargo { get; set; }
         public int Passengers { get; set; }
+        public int TotalPax { get; set; }
         public Airport Destination { get; set; }
         public enum DestinationType { Domestic, International }
         public DestinationType Type{ get; set; }
@@ -299,10 +389,11 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             get { return _contracted; }
             set { _contracted = value; NotifyPropertyChanged("Contracted"); }
         }
-        public DemandMVVM(Airport destination, int passengers, int cargo, DestinationType type)
+        public DemandMVVM(Airport destination, int passengers, int totalpax, int cargo, DestinationType type)
         {
             this.Cargo = cargo;
             this.Passengers = passengers;
+            this.TotalPax = totalpax;
             this.Destination = destination;
             this.Type = type;
             this.Contracted = this.Destination.AirlineContracts.Exists(c => c.Airline == GameObject.GetInstance().HumanAirline);
@@ -340,6 +431,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public void extendContract(int years)
         {
             this.Contract.Length += years;
+            this.Contract.ExpireDate = this.Contract.ExpireDate.AddYears(years);
             this.MonthsLeft = this.Contract.MonthsLeft;
         }
         public event PropertyChangedEventHandler PropertyChanged;
@@ -351,6 +443,29 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
                 handler(this, new PropertyChangedEventArgs(propertyName));
             }
         }
+    }
+    //the mvvm class for an airport gate
+    public class AirportGateMVVM : INotifyPropertyChanged
+    {
+        public int GateNumber { get; set; }
+        public Airline Airline { get; set; }
+        public Boolean IsFree { get; set; }
+        public AirportGateMVVM(int gatenumber, Airline airline)
+        {
+            this.Airline = airline;
+            this.GateNumber = gatenumber;
+            this.IsFree = this.Airline == null;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
     }
     //the mvvm class for an airport terminal
     public class AirportTerminalMVVM : INotifyPropertyChanged
@@ -388,10 +503,9 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
         public DateTime DeliveryDate { get; set; }
 
-        public enum DeliveryType { Delivered, Building }
-        public DeliveryType Type { get; set; }
-
+  
         public Terminal Terminal { get; set; }
+        public ObservableCollection<AirportGateMVVM> AllGates { get; set; }
         public AirportTerminalMVVM(Terminal terminal, Boolean isBuyable, Boolean isSellable)
         {
             this.Terminal = terminal;
@@ -404,7 +518,16 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
             this.DeliveryDate = this.Terminal.DeliveryDate;
             this.IsSellable = isSellable;
 
-            this.Type = GameObject.GetInstance().GameTime < this.DeliveryDate ? DeliveryType.Building : DeliveryType.Delivered;
+             this.AllGates = new ObservableCollection<AirportGateMVVM>();
+
+             int gatenumber = 1;
+            
+            foreach (Gate gate in this.Terminal.Gates.getGates())
+            {
+                this.AllGates.Add(new AirportGateMVVM(gatenumber,gate.Airline));
+
+                gatenumber++;
+            }
 
      
         }
@@ -440,8 +563,7 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         }
     }
     //the mvvm object for airport flights
-    //the class for a destination with number of weekly flights
-    public class DestinationFlightsMVVM
+     public class DestinationFlightsMVVM
     {
         public int Flights { get; set; }
         public Airport Airport { get; set; }
@@ -457,13 +579,15 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         public double Passengers { get; set; }
         public double PassengersPerFlight { get; set; }
         public double Flights { get; set; }
+        public int Routes { get; set; }
         public Airline Airline { get; set; }
-        public AirportStatisticsMVMM(Airline airline, double passengers, double passengersPerFlight, double flights)
+        public AirportStatisticsMVMM(Airline airline, double passengers, double passengersPerFlight, double flights, int routes)
         {
             this.Passengers = passengers;
             this.Airline = airline;
             this.PassengersPerFlight = passengersPerFlight;
             this.Flights = flights;
+            this.Routes = routes;
         }
            
     }
@@ -472,10 +596,25 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
     {
         public AirlineAirportFacility Facility { get; set; }
         public Alliance Alliance { get; set; }
+        public Boolean IsDelivered { get; set; }
+        public Boolean IsHuman { get; set; }
         public AirlineAirportFacilityMVVM(AirlineAirportFacility facility, Alliance alliance)
         {
             this.Facility = facility;
             this.Alliance = alliance;
+            this.IsHuman = GameObject.GetInstance().HumanAirline == facility.Airline;
+            this.IsDelivered = facility.FinishedDate < GameObject.GetInstance().GameTime;
+        }
+    }
+    //the mvvm object for airline reputation score
+    public class AirlineReputationMVVM
+    {
+        public int Reputation { get; set; }
+        public Airline Airline { get; set; }
+        public AirlineReputationMVVM(Airline airline, int reputation)
+        {
+            this.Airline = airline;
+            this.Reputation = reputation;
         }
     }
     //the converter for the price of a terminal
@@ -640,9 +779,10 @@ namespace TheAirline.GUIModel.PagesModel.AirportPageModel
         {
             int gates = System.Convert.ToInt16(values[0]);
             int lenght = System.Convert.ToInt16(values[1]);
-            Airport airport = (Airport)values[2];
+            AirportContract.ContractType contractType = (AirportContract.ContractType)values[2];
+            Airport airport = (Airport)values[3];
 
-            return new ValueCurrencyConverter().Convert(AirportHelpers.GetYearlyContractPayment(airport, gates, lenght));
+            return new ValueCurrencyConverter().Convert(AirportHelpers.GetYearlyContractPayment(airport,contractType, gates, lenght));
 
         }
 

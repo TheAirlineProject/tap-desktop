@@ -1,37 +1,68 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
+
 <airliners>
-  <airliner manufacturer="Boeing" name="Boeing 720 (707-020)" price="3800000">
-	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="39.90" length="41.25" range="4385" speed="905" fuelcapacity="60900" consumption="0.099" runwaylengthrequired="2520"/>
-    <capacity passengers="149" cockpitcrew="4" cabincrew="4" maxclasses="1"/>
-    <produced from="1958" to="1962" rate="17"/>
-  </airliner>
-  <airliner manufacturer="Boeing" name="Boeing 720B (707-020B)" price="5049500"> <!--5100000-->
-	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="39.90" length="41.25" range="7200" speed="905" fuelcapacity="83540" consumption="0.083" runwaylengthrequired="2005"/>
-    <capacity passengers="149" cockpitcrew="4" cabincrew="4" maxclasses="1"/>
-    <produced from="1961" to="1967" rate="17"/>
-  </airliner>
-  <airliner manufacturer="Boeing" name="Boeing 707-120" price="4200000">
-	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="39.90" length="44.07" range="5491" speed="930" fuelcapacity="65590" consumption="0.067" runwaylengthrequired="3110"/>
-    <capacity passengers="179" cockpitcrew="4" cabincrew="4" maxclasses="2"/>
-    <produced from="1958" to="1962" rate="48"/>
-  </airliner>
-  <airliner manufacturer="Boeing" name="Boeing 707-120B" price="6039600"> <!--6100000-->
-	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="39.90" length="44.07" range="7505" speed="975" fuelcapacity="68480" consumption="0.051" runwaylengthrequired="2490"/>
-    <capacity passengers="179" cockpitcrew="4" cabincrew="5" maxclasses="2"/>
-    <produced from="1961" to="1969" rate="48"/>
-  </airliner>
-  <airliner manufacturer="Boeing" name="Boeing 707-220" price="5400000">
-	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
-    <specs wingspan="39.90" length="44.07" range="6982" speed="975" fuelcapacity="77608" consumption="0.062" runwaylengthrequired="2620"/>
-    <capacity passengers="179" cockpitcrew="4" cabincrew="5" maxclasses="2"/>
-    <produced from="1959" to="1962" rate="48"/>
-  </airliner>
+  
+<airliner manufacturer="Boeing" name="Boeing 720 (707-020)" price="3800000">
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="39.90" length="41.25" range="4385" speed="905" fuelcapacity="60900" consumption="0.099" runwaylengthrequired="2520"/>
+    
+<capacity passengers="149" cockpitcrew="4" cabincrew="4" maxclasses="1"/>
+    
+<produced from="1958" to="1962" rate="17"/>
+  
+</airliner>
+
+  
+<airliner manufacturer="Boeing" name="Boeing 720B (707-020B)" price="5049500"> <!--5100000-->
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="39.90" length="41.25" range="7200" speed="905" fuelcapacity="83540" consumption="0.083" runwaylengthrequired="2005"/>
+    
+<capacity passengers="149" cockpitcrew="4" cabincrew="4" maxclasses="1"/>
+    
+<produced from="1961" to="1967" rate="17"/>
+  
+</airliner>
+  
+<airliner manufacturer="Boeing" name="Boeing 707-120" price="4200000">
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="39.90" length="44.07" range="5491" speed="930" fuelcapacity="65590" consumption="0.067" runwaylengthrequired="3110"/>
+    
+<capacity passengers="179" cockpitcrew="4" cabincrew="4" maxclasses="2"/>
+    
+<produced from="1958" to="1962" rate="48"/>
+  
+</airliner>
+  
+<airliner manufacturer="Boeing" name="Boeing 707-120B" price="6039600"> <!--6100000-->
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="39.90" length="44.07" range="7505" speed="975" fuelcapacity="68480" consumption="0.051" runwaylengthrequired="2490"/>
+    
+<capacity passengers="179" cockpitcrew="4" cabincrew="5" maxclasses="2"/>
+    
+<produced from="1961" to="1969" rate="48"/>
+  
+</airliner>
+  
+<airliner manufacturer="Boeing" name="Boeing 707-220" price="5400000">
+	
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    
+<specs wingspan="39.90" length="44.07" range="6982" speed="975" fuelcapacity="77608" consumption="0.062" runwaylengthrequired="2620"/>
+    
+<capacity passengers="179" cockpitcrew="4" cabincrew="5" maxclasses="2"/>
+    
+<produced from="1959" to="1962" rate="48"/>
+</airliner>
   <airliner manufacturer="Boeing" name="Boeing 707-320" price="6000000">
-	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+   <type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
     <specs wingspan="44.42" length="46.61" range="6920" speed="972" fuelcapacity="115404" consumption="0.083" runwaylengthrequired="3190"/>
     <capacity passengers="202" cockpitcrew="4" cabincrew="5" maxclasses="2"/>
     <produced from="1959" to="1962" rate="48"/>
@@ -114,6 +145,12 @@
     <capacity passengers="168" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
     <produced from="1985" to="1999" rate="160"/>
   </airliner>
+  <airliner type="Mixed" manufacturer="Boeing" name="Boeing 737-400M" price="7982130"> <!--159500000-->
+<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="28.90" length="36.50" range="4204" speed="780" fuelcapacity="23800" consumption="0.034" runwaylengthrequired="1590"/>
+    <capacity passengers="72" cockpitcrew="2" cargo="89" cabincrew="3" maxclasses="2"/>
+    <produced from="1989" to="1997" rate="160"/>
+  </airliner>
   <airliner manufacturer="Boeing" name="Boeing 737-500" image="Boeing 737-500" price="7165190"> <!--27500000-->
 	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
     <specs wingspan="28.90" length="31.10" range="4444" speed="780" fuelcapacity="23800" consumption="0.041" runwaylengthrequired="1245"/>
@@ -156,6 +193,24 @@
     <capacity passengers="215" cockpitcrew="2" cabincrew="4" maxclasses="2"/>
     <produced from="2005" to="2020" rate="160"/>
   </airliner>
+<airliner manufacturer="Boeing" name="Boeing 737 MAX 7" image="Boeing 737-700" price="8736030"> <!--47900000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.90" length="33.60" range="7038" speed="842" fuelcapacity="26020" consumption="0.015" runwaylengthrequired="1545"/>
+    <capacity passengers="126" cockpitcrew="2" cabincrew="3" maxclasses="2"/>
+    <produced from="2016" to="2199" rate="160"/>
+  </airliner>
+<airliner manufacturer="Boeing" name="Boeing 737 MAX 8" image="Boeing 737-800" price="10852690"> <!--57000000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.90" length="39.50" range="6704" speed="842" fuelcapacity="26020" consumption="0.017" runwaylengthrequired="1735"/>
+    <capacity passengers="189" cockpitcrew="2" cabincrew="4" maxclasses="2"/>
+    <produced from="2016" to="2199" rate="160"/>
+  </airliner>
+<airliner manufacturer="Boeing" name="Boeing 737 MAX 9" image="Boeing 737-900" price="12543630"> <!--79500000-->
+	<type body="Narrow_Body" rangetype="Medium_Range" engine="Jet"/>
+    <specs wingspan="35.90" length="42.10" range="6658" speed="842" fuelcapacity="29660" consumption="0.020" runwaylengthrequired="1800"/>
+    <capacity passengers="215" cockpitcrew="2" cabincrew="4" maxclasses="2"/>
+    <produced from="2017" to="2199" rate="160"/>
+  </airliner>
   <airliner manufacturer="Boeing" name="Boeing 747-100" image="Boeing 747-100" price="19557820"> <!--23000000-->
 	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
     <specs wingspan="59.60" length="70.60" range="9800" speed="893" fuelcapacity="183380" consumption="0.041" runwaylengthrequired="3100"/>
@@ -197,6 +252,12 @@
     <specs wingspan="64.40" length="70.60" range="14205" speed="917" fuelcapacity="241140" consumption="0.032" runwaylengthrequired="3000"/>
     <capacity passengers="524" cockpitcrew="2" cabincrew="11" maxclasses="3"/>
     <produced from="2000" to="2007" rate="32"/>
+  </airliner>
+   <airliner type="Mixed" manufacturer="Boeing" name="Boeing 747-400M" price="33142330"> <!--159500000-->
+<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>
+    <specs wingspan="64.40" length="70.60" range="8230" speed="908" fuelcapacity="216840" consumption="0.031" runwaylengthrequired="3000"/>
+    <capacity passengers="266" cockpitcrew="2" cargo="295" cabincrew="11" maxclasses="3"/>
+    <produced from="1989" to="2002" rate="32"/>
   </airliner>
   <airliner type="Cargo" manufacturer="Boeing" name="Boeing 747-400ERF" price="35117060"> <!--210000000-->
 	<type body="Wide_Body" rangetype="Long_Range" engine="Jet"/>

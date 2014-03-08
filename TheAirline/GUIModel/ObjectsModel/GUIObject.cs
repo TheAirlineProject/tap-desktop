@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TheAirline.GraphicsModel.PageModel.GeneralModel;
+using TheAirline.GUIModel.HelpersModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers.WorkersModel;
 

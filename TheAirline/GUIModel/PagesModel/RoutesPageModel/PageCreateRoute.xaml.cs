@@ -16,26 +16,35 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using TheAirline.GraphicsModel.UserControlModel.PopUpWindowsModel;
+using TheAirline.GUIModel.CustomControlsModel.PopUpWindowsModel;
 using TheAirline.GUIModel.HelpersModel;
-using TheAirline.GUIModel.MasterPageModel.PopUpPageModel;
 using TheAirline.Model.AirlinerModel;
 using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.AirportModel;
 using TheAirline.Model.GeneralModel;
 using TheAirline.Model.GeneralModel.Helpers;
+using TheAirline.Model.GeneralModel.WeatherModel;
 
 namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 {
     /// <summary>
     /// Interaction logic for PageCreateRoute.xaml
     /// </summary>
-    public partial class PageCreateRoute : Page
+    public partial class PageCreateRoute : Page, INotifyPropertyChanged
     {
+        public ObservableCollection<Route> ConnectingRoutes { get; set; }
         public List<Airport> Airports { get; set; }
         public List<AirlinerType> HumanAircrafts { get; set; }
         public List<MVVMRouteClass> Classes { get; set; }
+        private Route.RouteType _routetype;
+        public Route.RouteType RouteType
+        {
+            get { return _routetype; }
+            set { _routetype = value; NotifyPropertyChanged("RouteType"); }
+        }
         public PageCreateRoute()
         {
+            this.ConnectingRoutes = new ObservableCollection<Route>();
             this.Classes = new List<MVVMRouteClass>();
 
             foreach (AirlinerClass.ClassType type in AirlinerClass.GetAirlinerTypes())
@@ -50,7 +59,7 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
 
             this.Airports = GameObject.GetInstance().HumanAirline.Airports.OrderByDescending(a=>a==GameObject.GetInstance().HumanAirline.Airports[0]).ThenBy(a => a.Profile.Name).ToList();
 
-            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0);
+            AirlinerType dummyAircraft = new AirlinerCargoType(new Manufacturer("Dummy", "", null,false), "All Aircrafts", "", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, AirlinerType.BodyType.Single_Aisle, AirlinerType.TypeRange.Regional, AirlinerType.EngineType.Jet, new Period<DateTime>(DateTime.Now, DateTime.Now), 0,false);
 
             this.HumanAircrafts = new List<AirlinerType>();
 
@@ -93,9 +102,15 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (MVVMRouteClass rClass in this.Classes)
             {
                 foreach (MVVMRouteFacility rFacility in rClass.Facilities)
-                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).First();
+                    rFacility.SelectedFacility = rFacility.Facilities.OrderBy(f => f.ServiceLevel).FirstOrDefault();
 
             }
+
+            CalendarDateRange daysRange = new CalendarDateRange(new DateTime(2000,1,1),GameObject.GetInstance().GameTime);
+
+            dpStartDate.BlackoutDates.Add(daysRange);
+            dpStartDate.DisplayDateStart = GameObject.GetInstance().GameTime;
+            dpStartDate.DisplayDate = GameObject.GetInstance().GameTime;
         }
         private void btnCreateNew_Click(object sender, RoutedEventArgs e)
         {
@@ -141,19 +156,25 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             Airport destination2 = (Airport)cbDestination2.SelectedItem;
             Airport stopover1 = (Airport)cbStopover1.SelectedItem;
             Airport stopover2 = cbStopover2.Visibility == System.Windows.Visibility.Visible ? (Airport)cbStopover2.SelectedItem : null;
+            DateTime startDate = dpStartDate.IsEnabled && dpStartDate.SelectedDate.HasValue ? dpStartDate.SelectedDate.Value : GameObject.GetInstance().GameTime;
+            
+            Weather.Season season = rbSeasonAll.IsChecked.Value ? Weather.Season.All_Year : Weather.Season.Winter;
+            season = rbSeasonSummer.IsChecked.Value ? Weather.Season.Summer : season;
+            season = rbSeasonWinter.IsChecked.Value ? Weather.Season.Winter : season;
 
             try
             {
-                if (AirlineHelpers.IsRouteDestinationsOk(GameObject.GetInstance().HumanAirline, destination1, destination2, rbPassenger.IsChecked.Value ? Route.RouteType.Passenger : Route.RouteType.Cargo, stopover1, stopover2))
+                if (AirlineHelpers.IsRouteDestinationsOk(GameObject.GetInstance().HumanAirline, destination1, destination2, this.RouteType, stopover1, stopover2))
                 {
 
 
                     Guid id = Guid.NewGuid();
 
                     //passenger route
-                    if (rbPassenger.IsChecked.Value)
+                    if (this.RouteType == Route.RouteType.Passenger)
                     {
-                        route = new PassengerRoute(id.ToString(), destination1, destination2, 0);
+                        //Vis på showroute
+                        route = new PassengerRoute(id.ToString(), destination1, destination2,startDate, 0);
 
                         foreach (MVVMRouteClass rac in this.Classes)
                         {
@@ -165,13 +186,30 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                         }
                     }
                     //cargo route
-                    else
+                    else if (this.RouteType == Route.RouteType.Cargo)
                     {
                         double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
-                        route = new CargoRoute(id.ToString(), destination1, destination2, cargoPrice);
+                        route = new CargoRoute(id.ToString(), destination1, destination2,startDate, cargoPrice);
+                    }
+                    else if (this.RouteType == Route.RouteType.Mixed)
+                    {
+                        double cargoPrice = Convert.ToDouble(txtCargoPrice.Text);
+
+                        route = new CombiRoute(id.ToString(), destination1, destination2, startDate, 0, cargoPrice);
+
+                        foreach (MVVMRouteClass rac in this.Classes)
+                        {
+                            ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).FarePrice = rac.FarePrice;
+
+                            foreach (MVVMRouteFacility facility in rac.Facilities)
+                                ((PassengerRoute)route).getRouteAirlinerClass(rac.Type).addFacility(facility.SelectedFacility);
+
+                        }
                     }
 
                     FleetAirlinerHelpers.CreateStopoverRoute(route, stopover1, stopover2);
+
+                    route.Season = season;
 
                     GameObject.GetInstance().HumanAirline.addRoute(route);
 
@@ -200,15 +238,13 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             foreach (RouteClassesConfiguration confItem in Configurations.GetConfigurations(Configuration.ConfigurationType.Routeclasses))
                 cbConfigurations.Items.Add(confItem);
 
-            cbConfigurations.SelectedIndex = 0;
-
-            WPFPopUpLoadConfiguration loadConfiguration = new WPFPopUpLoadConfiguration(Configuration.ConfigurationType.Routeclasses);
+            cbConfigurations.SelectedIndex = 0; 
 
             if (PopUpSingleElement.ShowPopUp(Translator.GetInstance().GetString("PageCreateRoute", "1012"), cbConfigurations) == PopUpSingleElement.ButtonSelected.OK && cbConfigurations.SelectedItem != null)
             {
 
                 RouteClassesConfiguration configuration = (RouteClassesConfiguration)cbConfigurations.SelectedItem;
-
+                
                 foreach (RouteClassConfiguration classConfiguration in configuration.getClasses())
                 {
                     MVVMRouteClass rClass = this.Classes.Find(c => c.Type == classConfiguration.Type);
@@ -219,7 +255,8 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                         {
                             MVVMRouteFacility rFacility = rClass.Facilities.Find(f => f.Type == facility.Type);
 
-                            rFacility.SelectedFacility = facility;
+                            if (rFacility != null)
+                                rFacility.SelectedFacility = facility;
 
                         }
                     }
@@ -240,7 +277,11 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
             cbStopover2.SelectedItem = null;
 
         }
-
+        private void rbRouteType_Checked(object sender, RoutedEventArgs e)
+        {
+            string type = ((RadioButton)sender).Tag.ToString();
+            this.RouteType = (Route.RouteType)Enum.Parse(typeof(Route.RouteType), type, true);
+        }
         private void cbDestination_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Airport destination1 = (Airport)cbDestination1.SelectedItem;
@@ -254,6 +295,21 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 }
 
                 txtDistance.Text = new DistanceToUnitConverter().Convert(MathHelpers.GetDistance(destination1, destination2)).ToString();
+
+                var codesharingRoutes = GameObject.GetInstance().HumanAirline.Codeshares.Where(c=>c.Airline2 == GameObject.GetInstance().HumanAirline || c.Type == Model.AirlineModel.CodeshareAgreement.CodeshareType.Both_Ways).Select(c=>c.Airline1 == GameObject.GetInstance().HumanAirline ? c.Airline2 : c.Airline1).SelectMany(a=>a.Routes);
+                var humanConnectingRoutes = GameObject.GetInstance().HumanAirline.Routes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
+
+                var codesharingConnectingRoutes = codesharingRoutes.Where(r => r.Destination1 == destination1 || r.Destination2 == destination1 || r.Destination1 == destination2 || r.Destination2 == destination2);
+
+                this.ConnectingRoutes.Clear();
+
+                foreach (Route route in humanConnectingRoutes)
+                    this.ConnectingRoutes.Add(route);
+
+                foreach (Route route in codesharingConnectingRoutes)
+                    this.ConnectingRoutes.Add(route);
+
+                
             }
         }
 
@@ -271,8 +327,25 @@ namespace TheAirline.GUIModel.PagesModel.RoutesPageModel
                 };
             }
         }
+        private void btnShowConnectingRoutes_Click(object sender, RoutedEventArgs e)
+        {
+            Airport destination1 = (Airport)cbDestination1.SelectedItem;
+            Airport destination2 = (Airport)cbDestination2.SelectedItem;
 
+            PopUpShowConnectingRoutes.ShowPopUp(destination1,destination2);
+        }
 
+       public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+
+      
 
     }
 

@@ -13,7 +13,6 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 using TheAirline.Model.GeneralModel.StatisticsModel;
 using TheAirline.GraphicsModel.UserControlModel.MessageBoxModel;
 using System.Globalization;
-using TheAirline.GraphicsModel.SkinsModel;
 using TheAirline.Model.PassengerModel;
 using TheAirline.Model.GeneralModel.InvoicesModel;
 using TheAirline.Model.AirlineModel.SubsidiaryModel;
@@ -107,12 +106,12 @@ namespace TheAirline.Model.GeneralModel.Helpers
                     int passengers = Convert.ToInt16(airlinerTypeNode.Attributes["passengers"].Value);
                     int maxclasses = Convert.ToInt16(airlinerTypeNode.Attributes["maxclasses"].Value);
                  
-                    type = new AirlinerPassengerType(baseType.Manufacturer,airlinerTypeName,"",passengers,baseType.CockpitCrew,cabincrew,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,maxclasses,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,baseType.ProductionRate,false);
+                    type = new AirlinerPassengerType(baseType.Manufacturer,airlinerTypeName,"",passengers,baseType.CockpitCrew,cabincrew,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,maxclasses,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,baseType.ProductionRate,false,false);
                 }
                 if (airlinerType == AirlinerType.TypeOfAirliner.Cargo)
                 {
                     double cargo = Convert.ToDouble(airlinerTypeNode.Attributes["cargo"].Value,new CultureInfo("de-DE", false));
-                    type = new AirlinerCargoType(baseType.Manufacturer,airlinerTypeName,"",baseType.CockpitCrew,cargo,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,baseType.ProductionRate, false);
+                    type = new AirlinerCargoType(baseType.Manufacturer,airlinerTypeName,"",baseType.CockpitCrew,cargo,baseType.CruisingSpeed,baseType.Range,baseType.Wingspan,baseType.Length,baseType.FuelConsumption,baseType.Price,baseType.MinRunwaylength,baseType.FuelCapacity,baseType.Body,baseType.RangeType,baseType.Engine,baseType.Produced,baseType.ProductionRate,false, false);
                 }
                 type.BaseType = baseType;
 
@@ -352,8 +351,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
                      Boolean contractExclusive = Convert.ToBoolean(contractNode.Attributes["exclusive"].Value);
                      Terminal contractTerminal = contractNode.HasAttribute("terminal") ? airport.Terminals.AirportTerminals.Find(t => t.Name == contractNode.Attributes["terminal"].Value) : null;
 
-                     AirportContract contract = new AirportContract(contractAirline, airport, contractDate, contractGates, contractLength, contractPayment,false, contractExclusive, contractTerminal);
-                     airport.addAirlineContract(contract);
+                     AirportContract contract = new AirportContract(contractAirline, airport,AirportContract.ContractType.Full, contractDate, contractGates, contractLength, contractPayment,false, contractExclusive, contractTerminal);
+                     AirportHelpers.AddAirlineContract(contract);
+
                  }
 
 
@@ -496,10 +496,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
              {
                  string allianceName = allianceNode.Attributes["name"].Value;
                  DateTime formationDate = DateTime.Parse(allianceNode.Attributes["formation"].Value, new CultureInfo("de-DE"));
-                 Alliance.AllianceType allianceType = (Alliance.AllianceType)Enum.Parse(typeof(Alliance.AllianceType), allianceNode.Attributes["type"].Value);
                  Airport allianceHeadquarter = Airports.GetAirport(allianceNode.Attributes["headquarter"].Value);
 
-                 Alliance alliance = new Alliance(formationDate, allianceType, allianceName, allianceHeadquarter);
+                 Alliance alliance = new Alliance(formationDate, allianceName, allianceHeadquarter);
 
                  XmlNodeList membersList = allianceNode.SelectNodes("members/member");
 
@@ -652,7 +651,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
              Settings.GetInstance().MailsOnLandings = Convert.ToBoolean(gameSettingsNode.Attributes["mailonlandings"].Value);
              Settings.GetInstance().MailsOnBadWeather = Convert.ToBoolean(gameSettingsNode.Attributes["mailonbadweather"].Value);
 
-             SkinObject.GetInstance().setCurrentSkin(Skins.GetSkin(gameSettingsNode.Attributes["skin"].Value));
              Settings.GetInstance().AirportCodeDisplay = (Settings.AirportCode)Enum.Parse(typeof(Settings.AirportCode), gameSettingsNode.Attributes["airportcode"].Value);
              if (gameSettingsNode.HasAttribute("minutesperturn")) Settings.GetInstance().MinutesPerTurn = Convert.ToInt16(gameSettingsNode.Attributes["minutesperturn"].Value);
              AppSettings.GetInstance().setLanguage(Languages.GetLanguage(gameSettingsNode.Attributes["language"].Value));
@@ -1097,7 +1095,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                         else
                         {
 
-                            airliner.CurrentFlight = new Flight(new RouteTimeTableEntry(route.TimeTable, GameObject.GetInstance().GameTime.DayOfWeek, GameObject.GetInstance().GameTime.TimeOfDay, new RouteEntryDestination(airliner.Homebase, "Service")));
+                            airliner.CurrentFlight = new Flight(new RouteTimeTableEntry(route.TimeTable, GameObject.GetInstance().GameTime.DayOfWeek, GameObject.GetInstance().GameTime.TimeOfDay, new RouteEntryDestination(airliner.Homebase, "Service",null),null));
 
                             airliner.Status = FleetAirliner.AirlinerStatus.On_service;
                         }
@@ -1881,7 +1879,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 XmlElement allianceNode = xmlDoc.CreateElement("alliance");
                 allianceNode.SetAttribute("name", alliance.Name);
                 allianceNode.SetAttribute("formation", alliance.FormationDate.ToString(new CultureInfo("de-DE")));
-                allianceNode.SetAttribute("type", alliance.Type.ToString());
                 allianceNode.SetAttribute("headquarter", alliance.Headquarter.Profile.IATACode);
 
                 XmlElement membersNode = xmlDoc.CreateElement("members");
@@ -2027,7 +2024,6 @@ namespace TheAirline.Model.GeneralModel.Helpers
             gameSettingsNode.SetAttribute("timezone", GameObject.GetInstance().TimeZone.UTCOffset.ToString());
             gameSettingsNode.SetAttribute("mailonlandings", Settings.GetInstance().MailsOnLandings.ToString());
             gameSettingsNode.SetAttribute("mailonbadweather", Settings.GetInstance().MailsOnBadWeather.ToString());
-            gameSettingsNode.SetAttribute("skin", SkinObject.GetInstance().CurrentSkin.Name);
             gameSettingsNode.SetAttribute("airportcode", Settings.GetInstance().AirportCodeDisplay.ToString());
             gameSettingsNode.SetAttribute("minutesperturn", Settings.GetInstance().MinutesPerTurn.ToString());
             gameSettingsNode.SetAttribute("language", AppSettings.GetInstance().getLanguage().Name);
@@ -2105,9 +2101,9 @@ namespace TheAirline.Model.GeneralModel.Helpers
             Route route;
 
             if (routetype == Route.RouteType.Passenger || routetype == Route.RouteType.Mixed)
-                route = new PassengerRoute(id, dest1, dest2, 0);
+                route = new PassengerRoute(id, dest1, dest2, DateTime.Now,0);
             else
-                route = new CargoRoute(id, dest1, dest2, 0);
+                route = new CargoRoute(id, dest1, dest2, DateTime.Now,0);
 
             route.Banned = isBanned;
 
@@ -2197,7 +2193,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 TimeSpan time = TimeSpan.Parse(entryNode.Attributes["time"].Value);
                 FleetAirliner airliner = entryNode.Attributes["airliner"].Value == "-" ? null : airline.Fleet.Find(a => a.Airliner.ID == entryNode.Attributes["airliner"].Value); ;
 
-                RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode));
+                RouteTimeTableEntry entry = new RouteTimeTableEntry(timeTable, day, time, new RouteEntryDestination(entryDest, flightCode,null),null);
 
                 if (entryNode.HasAttribute("id"))
                     entry.ID = entryNode.Attributes["id"].Value;

@@ -12,6 +12,12 @@
     <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
     <produced from="1991" to="2002" rate="35"/>
   </airliner>
+  <airliner manufacturer="Beechcraft" name="Raytheon 1900D" price="267340"> <!--1000000-->
+	<type body="Single_Aisle" rangetype="Regional" engine="Turboprop"/>
+    <specs wingspan="17.64" length="17.62" range="707" speed="530" fuelcapacity="2520" consumption="0.019" runwaylengthrequired="890"/>
+    <capacity passengers="19" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+    <produced from="1991" to="2002" rate="35"/>
+  </airliner>
   <airliner manufacturer="Beechcraft" name="Beechcraft King Air B200" price="708220"> <!--1000000-->
     <type body="Single_Aisle" rangetype="Regional" engine="Turboprop"/>
     <specs wingspan="16.61" length="13.34" range="3338" speed="536" fuelcapacity="2056" consumption="0.047" runwaylengthrequired="823"/>

@@ -37,7 +37,20 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             this.Salary = ((int)this.Pilot.Rating) * pilotBasePrice;
             
         }
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
+            if (tab_main != null)
+            {
+                var matchingItem =
+     tab_main.Items.Cast<TabItem>()
+       .Where(item => item.Tag.ToString() == "Pilots")
+       .FirstOrDefault();
+
+                tab_main.SelectedItem = matchingItem;
+            }
+        }
         private void btnHire_Click(object sender, RoutedEventArgs e)
         {
             WPFMessageBoxResult result = WPFMessageBox.Show(Translator.GetInstance().GetString("MessageBox", "2801"), Translator.GetInstance().GetString("MessageBox", "2801", "message"), WPFMessageBoxButtons.YesNo);
@@ -47,17 +60,19 @@ namespace TheAirline.GUIModel.PagesModel.PilotsPageModel
             {
                 GameObject.GetInstance().HumanAirline.addPilot(this.Pilot);
 
-                TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
+               
+            }
 
-                if (tab_main != null)
-                {
-                    var matchingItem =
-         tab_main.Items.Cast<TabItem>()
-           .Where(item => item.Tag.ToString() == "Pilots")
-           .FirstOrDefault();
+            TabControl tab_main = UIHelpers.FindChild<TabControl>(this.Tag as Page, "tabMenu");
 
-                    tab_main.SelectedItem = matchingItem;
-                }
+            if (tab_main != null)
+            {
+                var matchingItem =
+     tab_main.Items.Cast<TabItem>()
+       .Where(item => item.Tag.ToString() == "Pilots")
+       .FirstOrDefault();
+
+                tab_main.SelectedItem = matchingItem;
             }
         }
     }

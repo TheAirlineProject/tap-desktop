@@ -1,0 +1,14 @@
+﻿<airline>
+  <profile name="Adria Airways" iata="JP" color="White" country="105" CEO="Mark Anžur" mentality="Moderate" market="Regional" preferedairport="LJU">
+    <narrative narrative="Adria Airways d.d., formerly Inex-Adria Airways, is the Slovenian national airline. Today, the majority of Adria Airways business is in scheduled flights. Adria operates to 22 scheduled destinations throughout Europe. It is a Star Alliance member since 2004 and a Lufthansa partner since 1996. IOSA Registration was received among the first airlines in the world." />
+  </profile>
+  <info real="True" from="1961" to="2199"></info>
+  <startdata>
+    <airliners>
+         <airliner type="Airbus A319-100" early="0" late="2"></airliner>
+         <airliner type="Airbus A320-200" early="0" late="1"></airliner>
+         <airliner type="Bombardier CRJ200" early="0" late="4"></airliner>
+         <airliner type="Bombardier CRJ900LR" early="0" late="4"></airliner>
+        </airliners>
+  </startdata>
+</airline>

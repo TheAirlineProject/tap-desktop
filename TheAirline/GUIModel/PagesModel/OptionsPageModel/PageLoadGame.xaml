@@ -9,11 +9,10 @@
       d:DesignHeight="300" d:DesignWidth="300"
 	Title="PageLoadGame">
 
-    <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto">
+   
         <StackPanel HorizontalAlignment="Center">
             <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 1000'}" VerticalAlignment="Bottom" Style="{StaticResource SmallHeaderStyle}"></TextBlock>
-            <ListBox BorderThickness="0" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Name="lbSaves" ItemsSource="{Binding Saves,ElementName=pageLoadGame}">
-            </ListBox>
+        <ListBox BorderThickness="0" Background="Transparent" MaxHeight="400" ItemContainerStyleSelector="{StaticResource ListBoxItemStyleSelector}" Name="lbSaves" ItemsSource="{Binding Saves,ElementName=pageLoadGame}"></ListBox>
             <WrapPanel Width="400" Margin="0 5 0 0">
                 <TextBlock Text="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 1001'}" FontWeight="Bold" VerticalAlignment="Bottom"></TextBlock>
             <TextBlock Text="{Binding ElementName=lbSaves, Path=SelectedItem}" VerticalAlignment="Bottom" Name="txtName"></TextBlock>
@@ -30,9 +29,20 @@
                         </Style>
                     </Button.Style>
                 </Button>
+                <Button Content="{Binding Source={x:Null}, Converter={StaticResource TranslatorConverter},ConverterParameter='PageLoadSaveGame 202'}" Margin="5 0 0 0" Click="btnDeleteGame_Click">
+                    <Button.Style>
+                        <Style TargetType="Button" BasedOn="{StaticResource StandardButtonStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=txtName, Path=Text.Length}" Value="0">
+                                    <Setter Property="Button.IsEnabled" Value="False" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
             </WrapPanel>
             <c:SplashControl Visibility="Collapsed" Text="Loading...." HorizontalAlignment="Center" VerticalAlignment="Center" x:Name="scLoading"></c:SplashControl>
 
         </StackPanel>
-    </ScrollViewer>
+ 
 </Page>

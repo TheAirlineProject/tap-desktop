@@ -13,6 +13,56 @@ using TheAirline.Model.GeneralModel;
 
 namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 {
+    //the mvvm class for an airliner type
+    public class AirlinerTypeMVVM : INotifyPropertyChanged
+    {
+        public AirlinerType Type { get; set; }
+        private Boolean _isselected;
+        public Boolean IsSelected
+        {
+            get { return _isselected; }
+            set { _isselected = value; NotifyPropertyChanged("IsSelected"); }
+        }
+        public AirlinerTypeMVVM(AirlinerType type)
+        {
+            this.Type = type;
+            this.IsSelected = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    //the mvvm class for an airliner
+    public class AirlinerMVVM : INotifyPropertyChanged
+    {
+        public Airliner Airliner { get; set; }
+        private Boolean _isselected;
+        public Boolean IsSelected
+        {
+            get { return _isselected; }
+            set { _isselected = value; NotifyPropertyChanged("IsSelected"); }
+        }
+        public AirlinerMVVM(Airliner airliner)
+        {
+            this.Airliner = airliner;
+            this.IsSelected = false;
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(String propertyName)
+        {
+            PropertyChangedEventHandler handler = PropertyChanged;
+            if (null != handler)
+            {
+                handler(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     //the class for the fleet sizes (most used aircrafts)
     public class AirlineFleetSizeMVVM
     {
@@ -52,7 +102,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
 
-            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
+            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0 && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
                 this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
 
             this.TotalAmount = price - this.Discount;
@@ -72,16 +122,19 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
 
             this.Discount = Convert.ToInt64(price * (GeneralHelpers.GetAirlinerOrderDiscount(this.Orders.Sum(o => o.Amount)) / 100));
 
-            if (GameObject.GetInstance().HumanAirline.Contract != null && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
+            if (GameObject.GetInstance().HumanAirline.Contract != null && this.Orders.Count > 0 && GameObject.GetInstance().HumanAirline.Contract.Manufacturer == this.Orders.First().Type.Manufacturer)
                 this.Discount += Convert.ToInt64(price * (GameObject.GetInstance().HumanAirline.Contract.Discount / 100));
 
             this.TotalAmount = price - this.Discount;
 
         }
-        //returns the delivery date for the order
+
+        //returns a date for delivery based on the aircraft production rate
         public DateTime getDeliveryDate()
         {
             double monthsToComplete = 0;
+
+
 
             foreach (AirlinerOrderMVVM order in this.Orders)
             {
@@ -115,6 +168,8 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
             }
 
             return latestDate;
+
+
         }
         public event PropertyChangedEventHandler PropertyChanged;
         private void NotifyPropertyChanged(String propertyName)
@@ -160,9 +215,11 @@ namespace TheAirline.GUIModel.PagesModel.AirlinersPageModel
                 this.Classes.Add(eClass);
             }
 
-            long minRequiredRunway = this.Type.MinRunwaylength;
+            long minRunway = this.Type.MinRunwaylength;
 
-            foreach (var homebase in GameObject.GetInstance().HumanAirline.Airports.FindAll(a => a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0 && a.getMaxRunwayLength() >= minRequiredRunway))
+            var homebases = GameObject.GetInstance().HumanAirline.Airports.FindAll(a => (a.hasContractType(GameObject.GetInstance().HumanAirline, AirportContract.ContractType.Full_Service) || a.getCurrentAirportFacility(GameObject.GetInstance().HumanAirline, AirportFacility.FacilityType.Service).TypeLevel > 0) && a.getMaxRunwayLength() >= minRunway);
+         
+            foreach (var homebase in homebases)
                 this.Homebases.Add(homebase);
 
 

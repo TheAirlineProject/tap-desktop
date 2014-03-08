@@ -14,7 +14,7 @@ using TheAirline.Model.AirlinerModel.RouteModel;
 
 namespace TheAirline.Model.GeneralModel.Helpers
 {
-    public class StatisticsHelpers
+    public static class StatisticsHelpers
     {
         
             //generate a 1-100 scale for a list of values
@@ -54,8 +54,47 @@ namespace TheAirline.Model.GeneralModel.Helpers
                 return uDistPrice;
             }
 
+            //should be used within a loop. will return normally distributed variables of given mean, within given standard deviation
+            public static double NextGaussian(this Random r, double mean = 0, double stdv = 1)
+            {
+                //generate a couple randoms
+                var u1 = r.NextDouble();
+                var u2 = r.NextDouble();
+
+                //stand dev
+                var rand_std_normal = Math.Sqrt(-2.0 * Math.Log(u1)) *
+                                    Math.Sin(2.0 * Math.PI * u2);
+
+                //normalize
+                var rand_normal = mean + stdv * rand_std_normal;
+
+                return rand_normal;
+            }
+
+            public static List<int> GaussianList(int vals, int avg, double stdv = 1)
+            {
+                    List<int> dv = new List<int>();
+                    for (int i = 0; i <= vals; i++)
+                    {
+                        dv.Add((int)NextGaussian(new Random(), avg, stdv));
+                    }
+
+                    return dv;               
+            }
+
+            public static List<double> GaussianList(int vals, double avg, double stdv = 1)
+            {
+                List<double> dv = new List<double>();
+                for (int i = 0; i <= vals; i++)
+                {
+                    dv.Add(NextGaussian(new Random(), avg, stdv));
+                }
+
+                return dv;
+            }
+
             //calculates maximum difference
-            public static Dictionary<Airline,Double> GetPPDdifference()
+            public static Dictionary<Airline, Double> GetPPDdifference()
             {
                 Dictionary<Airline, Double> ppdDifference = new Dictionary<Airline, Double>();
                 foreach (Airline airline in Airlines.GetAllAirlines())
@@ -148,6 +187,7 @@ namespace TheAirline.Model.GeneralModel.Helpers
             //returns the fill degree for an airline
             public static double GetAirlineFillAverage(Airline airline)
             {
+                
                 List<Double> fillDegree = (from r in airline.Routes select r.getFillingDegree()).ToList();
 
                 return fillDegree.DefaultIfEmpty(0).Average();
