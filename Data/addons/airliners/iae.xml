@@ -52,5 +52,29 @@
   
 </airliner>
 
+<airliner manufacturer="IAe" name="N245" price="3332330"> <!--12800000-->
+	
+<type body="Single_Aisle" rangetype="Short_Range" engine="Turboprop"/>
+    
+<specs wingspan="22.4" length="22.20" range="1423" speed="406" fuelcapacity="1728" consumption="0.035" runwaylengthrequired="742"/>
+    
+<capacity passengers="45" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+    
+<produced from="2017" to="2199" rate="50"/>
+  
+</airliner>
+
+<airliner manufacturer="IAe" name="N270" price="3462241"> <!--12800000-->
+	
+<type body="Narrow_Body" rangetype="Short_Range" engine="Turboprop"/>
+    
+<specs wingspan="25.28" length="24.30" range="1342" speed="409" fuelcapacity="1728" consumption="0.035" runwaylengthrequired="742"/>
+    
+<capacity passengers="45" cockpitcrew="2" cabincrew="0" maxclasses="1"/>
+    
+<produced from="2019" to="2199" rate="50"/>
+  
+</airliner>
+
 
 </airliners>

@@ -909,6 +909,7 @@ namespace TheAirline.Model.GeneralModel
         private static void LoadAirliners(string file)
         {
             string dir = AppSettings.getDataPath() + "\\graphics\\airlinerimages\\";
+
             string id = "";
             try
             {
@@ -932,7 +933,12 @@ namespace TheAirline.Model.GeneralModel
                     if (airliner.HasAttribute("family"))
                         family = airliner.Attributes["family"].Value;
                     else
-                        family = name.Substring(0, name.LastIndexOfAny(new char[] { ' ', '-' }));
+                    {
+                        if (name.LastIndexOfAny(new char[] { ' ', '-' }) > 0)
+                            family = name.Substring(0, name.LastIndexOfAny(new char[] { ' ', '-' }));
+                        else
+                            family = name;
+                    }
 
 
                     Boolean isConvertable;

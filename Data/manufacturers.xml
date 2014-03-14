@@ -4,9 +4,10 @@
   <manufacturer name="Airbus" shortname="Airbus" country="140"/>
   <manufacturer name="Airbus Military" shortname="Airbus Military" country="140"/>
   <manufacturer name="Antonov" shortname="Antonov" country="134"/>
-  <manufacturer name="Ark Aerospace Industries" shortname="Ark" country="122"/>
+  <manufacturer name="AVIC Xi'an Aircraft" shortname="Avic" country="148"/>
   <manufacturer name="Avions de Transport Régional" shortname="ATR" country="141"/>
   <manufacturer name="Beechcraft" shortname="Beechcraft" country="122"/>
+  <manufacturer name="Britten-Norman" shortname="BN" country="130"/>
   <manufacturer name="Bombardier Aerospace" shortname="Bombardier" country="113"/>
   <manufacturer name="Bristol Aeroplane Company" shortname="Bristol" country="130"/>
   <manufacturer name="British Aerospace" shortname="BAe" country="130"/>
@@ -32,5 +33,6 @@
   <manufacturer name="Sukhoi Aviation Corporation" shortname="Sukhoi" country="149"/>
   <manufacturer name="The Boeing Company" shortname="Boeing" country="122"/>
   <manufacturer name="Vickers-Armstrongs Limited" shortname="Vickers" country="130"/>
+  <manufacturer name="Viking Air" shortname="Viking" country="113"/>
   <manufacturer name="Commercial Aircraft Corporation of China" shortname="Comac" country="148"/>
  </manufacturers>

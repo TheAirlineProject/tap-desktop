@@ -228,8 +228,11 @@ namespace TheAirline.Model.GeneralModel.Helpers
 
             foreach (Airline airline in Airlines.GetAllAirlines())
             {
+                airline.Money = GameObject.GetInstance().StartMoney;
+
                 if (airline.IsHuman)
-                    airline.Money = GameObject.GetInstance().StartMoney;
+                    GameObject.GetInstance().HumanMoney = airline.Money;
+
                 airline.StartMoney = airline.Money;
                 airline.Fees = new AirlineFees();
                 airline.addAirlinePolicy(new AirlinePolicy("Cancellation Minutes", 150));

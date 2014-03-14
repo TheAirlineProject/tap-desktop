@@ -155,7 +155,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.Cooperations = new List<CooperationMVVM>();
 
             this.Airline.Routes.ForEach(r => this.Routes.Add(new AirlineRouteMVVM(r)));
-            this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l)));
+            this.Airline.Loans.FindAll(l => l.IsActive).ForEach(l => this.Loans.Add(new LoanMVVM(l,this.Airline)));
             this.Airline.Pilots.ForEach(p => this.Pilots.Add(p));
 
             this.UnassignedPilots = this.Pilots.Count(p => p.Airliner == null);
@@ -317,7 +317,7 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
         //adds a loan
         public void addLoan(Loan loan)
         {
-            this.Loans.Add(new LoanMVVM(loan));
+            this.Loans.Add(new LoanMVVM(loan,this.Airline));
 
             this.Airline.addLoan(loan);
 
@@ -350,8 +350,9 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             this.MaintenanceCrew = this.Airline.Airports.SelectMany(a => a.getCurrentAirportFacilities(this.Airline)).Where(a => a.EmployeeType == AirportFacility.EmployeeTypes.Maintenance).Sum(a => a.NumberOfEmployees);
 
             foreach (AirlineFacility facility in AirlineFacilities.GetFacilities(f=>f.FromYear<=GameObject.GetInstance().GameTime.Year).OrderBy(f=>f.Name))
-                this.Facilities.Add(new AirlineFacilityMVVM(this.Airline,facility,this.Airline.Facilities.Exists(f=>f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
-
+                if (this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) || this.Airline.IsHuman)
+                    this.Facilities.Add(new AirlineFacilityMVVM(this.Airline, facility, this.Airline.Facilities.Exists(f => f.Uid == facility.Uid) ? AirlineFacilityMVVM.MVVMType.Purchased : AirlineFacilityMVVM.MVVMType.Available));
+           
             foreach (AdvertisementType.AirlineAdvertisementType type in Enum.GetValues(typeof(AdvertisementType.AirlineAdvertisementType)))
             {
                 if (GameObject.GetInstance().GameTime.Year >= (int)type)
@@ -647,11 +648,13 @@ namespace TheAirline.GUIModel.PagesModel.AirlinePageModel
             get { return _paymentLeft; }
             set { _paymentLeft = value; NotifyPropertyChanged("PaymentLeft"); }
         }
-        public LoanMVVM(Loan loan)
+        public Airline Airline { get; set; }
+        public LoanMVVM(Loan loan,Airline airline)
         {
             this.Loan = loan;
             this.PaymentLeft = loan.PaymentLeft;
             this.MonthsLeft = loan.MonthsLeft;
+            this.Airline = airline;
         }
         //pay some of the loan
         public void payOnLoan(double amount)

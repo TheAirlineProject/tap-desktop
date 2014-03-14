@@ -38,8 +38,8 @@ namespace TheAirline.Model.AirlinerModel
         [Versioning("cockpit")]
         public int CockpitCrew { get; set; }
 
-        private long APrice;
         [Versioning("price")]
+        public long APrice { get; set; }
         public long Price { get { return Convert.ToInt64(GeneralHelpers.GetInflationPrice(this.APrice)); } set { this.APrice = value; } }
 
         [Versioning("produced")]
@@ -126,7 +126,6 @@ namespace TheAirline.Model.AirlinerModel
             foreach (SerializationEntry entry in info)
             {
                 PropertyInfo prop = props.FirstOrDefault(p => ((Versioning)p.GetCustomAttribute(typeof(Versioning))).Name == entry.Name);
-
 
                 if (prop != null)
                     prop.SetValue(this, entry.Value);

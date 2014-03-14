@@ -15,7 +15,10 @@
         <TextBlock Text="Webmaster" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Text="Gerben" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"></TextBlock>
             <TextBlock Text="Programmer" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
-        <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="32" Margin="0 20 0 0"></TextBlock>
+            <TextBlock Text="Rayhan" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="20" HorizontalAlignment="Center"></TextBlock>
+            <TextBlock Text="DLC Creator" VerticalAlignment="Bottom" HorizontalAlignment="Center"></TextBlock>
+
+            <TextBlock Text="Offical Website" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="32" Margin="0 20 0 0"></TextBlock>
         <TextBlock Text="www.theairlineproject.com" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"></TextBlock>
         <TextBlock Text="Forum" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontWeight="Bold" FontSize="32" Margin="0 20 0 0"></TextBlock>
         <TextBlock Text="www.theairlineproject.com/forum" VerticalAlignment="Bottom" HorizontalAlignment="Center" FontSize="20"></TextBlock>

@@ -14,7 +14,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
     public class RouteClassesConfiguration : Configuration
     {
        [Versioning("classes")]
-        private List<RouteClassConfiguration> Classes;
+        public List<RouteClassConfiguration> Classes { get; set; }
         public RouteClassesConfiguration(string name,Boolean standard)
             : base(ConfigurationType.Routeclasses, name,standard)
         {
@@ -116,7 +116,7 @@ namespace TheAirline.Model.AirlinerModel.RouteModel
          [Versioning("type")]
        public AirlinerClass.ClassType Type { get; set; }
       [Versioning("facilities")]
-          private List<RouteFacility> Facilities;
+         public List<RouteFacility> Facilities { get; set; }
         public RouteClassConfiguration(AirlinerClass.ClassType type)
         {
             this.Type = type;

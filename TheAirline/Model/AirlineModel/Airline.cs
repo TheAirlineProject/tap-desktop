@@ -488,7 +488,10 @@ namespace TheAirline.Model.AirlineModel
         //adds a loan to the airline
         public void addLoan(Loan loan)
         {
-            this.Loans.Add(loan);
+            lock (this.Loans)
+            {
+                this.Loans.Add(loan);
+            }
         }
         //removes a loan 
         public void removeLoan(Loan loan)
